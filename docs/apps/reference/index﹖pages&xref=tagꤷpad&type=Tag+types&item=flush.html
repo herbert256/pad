@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -72,6 +72,46 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/cache_file - Page: flushed<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flushed.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>&lt;p&gt;rest&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5662b1d6778d2452aaf06867433a992a"></div>
+                        <script>
+                        padAjax5662b1d6778d2452aaf06867433a992a = new XMLHttpRequest();
+                        padAjax5662b1d6778d2452aaf06867433a992a.onreadystatechange=function() {
+                        if (padAjax5662b1d6778d2452aaf06867433a992a.readyState === 4) {
+                        if (padAjax5662b1d6778d2452aaf06867433a992a.status === 200) {
+                        document.getElementById("padAjax5662b1d6778d2452aaf06867433a992a").innerHTML=padAjax5662b1d6778d2452aaf06867433a992a.responseText;
+                        } else {
+                        document.getElementById("padAjax5662b1d6778d2452aaf06867433a992a").innerHTML=padAjax5662b1d6778d2452aaf06867433a992a.statusText;
+                        }
+                        }
+                        }
+                        padAjax5662b1d6778d2452aaf06867433a992a.open("GET","http://localhost/pad/regression/cache_file/?flushed&padInclude",true);
+                        padAjax5662b1d6778d2452aaf06867433a992a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/errors - Page: syntax/a_flush_stands_at_the_top_level<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -107,6 +147,46 @@
                         }
                         padAjaxd976bf3547fd2ac37b0f137db01643d0.open("GET","http://localhost/pad/regression/errors/?syntax/a_flush_stands_at_the_top_level&padInclude",true);
                         padAjaxd976bf3547fd2ac37b0f137db01643d0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/auth_inner<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/auth_inner.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;top&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>[<b>{<font color="blue">auth</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>guest<b>{/<font color="blue">auth</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaf5f5c194e8ecacdda670ec3e7115015"></div>
+                        <script>
+                        padAjaxaf5f5c194e8ecacdda670ec3e7115015 = new XMLHttpRequest();
+                        padAjaxaf5f5c194e8ecacdda670ec3e7115015.onreadystatechange=function() {
+                        if (padAjaxaf5f5c194e8ecacdda670ec3e7115015.readyState === 4) {
+                        if (padAjaxaf5f5c194e8ecacdda670ec3e7115015.status === 200) {
+                        document.getElementById("padAjaxaf5f5c194e8ecacdda670ec3e7115015").innerHTML=padAjaxaf5f5c194e8ecacdda670ec3e7115015.responseText;
+                        } else {
+                        document.getElementById("padAjaxaf5f5c194e8ecacdda670ec3e7115015").innerHTML=padAjaxaf5f5c194e8ecacdda670ec3e7115015.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaf5f5c194e8ecacdda670ec3e7115015.open("GET","http://localhost/pad/regression/pages/?flush/auth_inner&padInclude",true);
+                        padAjaxaf5f5c194e8ecacdda670ec3e7115015.send();
                         </script>
                       </td>
                     </tr>
@@ -154,6 +234,90 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/pages - Page: flush/csrf_base<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">flush/csrf_base.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/csrf_base.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A &lt;base href&gt; sent early by {flush} still decides where the forms below it post: the<br>  // part sent early and the rest are two passes, and the second knew no base - action="save"<br>  // under a base on another site posted there with the session's token.<br><br>  </span><span style="color: #0000BB">$padCsrf </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;base href="https://elsewhere.example/"&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>&lt;form method="post" action="save"&gt;&lt;input name="x"&gt;&lt;/form&gt;&lt;form method="post"&gt;&lt;input name="y"&gt;&lt;/form&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e0bfd8491adc0fdb4511a5230c868c7"></div>
+                        <script>
+                        padAjax4e0bfd8491adc0fdb4511a5230c868c7 = new XMLHttpRequest();
+                        padAjax4e0bfd8491adc0fdb4511a5230c868c7.onreadystatechange=function() {
+                        if (padAjax4e0bfd8491adc0fdb4511a5230c868c7.readyState === 4) {
+                        if (padAjax4e0bfd8491adc0fdb4511a5230c868c7.status === 200) {
+                        document.getElementById("padAjax4e0bfd8491adc0fdb4511a5230c868c7").innerHTML=padAjax4e0bfd8491adc0fdb4511a5230c868c7.responseText;
+                        } else {
+                        document.getElementById("padAjax4e0bfd8491adc0fdb4511a5230c868c7").innerHTML=padAjax4e0bfd8491adc0fdb4511a5230c868c7.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e0bfd8491adc0fdb4511a5230c868c7.open("GET","http://localhost/pad/regression/pages/?flush/csrf_base&padInclude",true);
+                        padAjax4e0bfd8491adc0fdb4511a5230c868c7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/csrf_split<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">flush/csrf_split.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/csrf_split.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A {flush} inside a posting form: the form gets no CSRF token, so every post of it is<br>  // refused - the strict check says so, where the form went out without a word.<br><br>  </span><span style="color: #0000BB">$padCsrf </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;form method="post"&gt;&lt;input name="a"&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>&lt;button&gt;Go&lt;/button&gt;&lt;/form&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax018b90138044ac2495e3a671117a65ce"></div>
+                        <script>
+                        padAjax018b90138044ac2495e3a671117a65ce = new XMLHttpRequest();
+                        padAjax018b90138044ac2495e3a671117a65ce.onreadystatechange=function() {
+                        if (padAjax018b90138044ac2495e3a671117a65ce.readyState === 4) {
+                        if (padAjax018b90138044ac2495e3a671117a65ce.status === 200) {
+                        document.getElementById("padAjax018b90138044ac2495e3a671117a65ce").innerHTML=padAjax018b90138044ac2495e3a671117a65ce.responseText;
+                        } else {
+                        document.getElementById("padAjax018b90138044ac2495e3a671117a65ce").innerHTML=padAjax018b90138044ac2495e3a671117a65ce.statusText;
+                        }
+                        }
+                        }
+                        padAjax018b90138044ac2495e3a671117a65ce.open("GET","http://localhost/pad/regression/pages/?flush/csrf_split&padInclude",true);
+                        padAjax018b90138044ac2495e3a671117a65ce.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/pages - Page: flush/early<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -191,6 +355,172 @@
                         }
                         padAjaxd47fe17504ba8631cea9320759090ffb.open("GET","http://localhost/pad/regression/pages/?flush/early&padInclude",true);
                         padAjaxd47fe17504ba8631cea9320759090ffb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/fragment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">flush/fragment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/fragment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A request for one response fragment is answered with that fragment alone, a {flush}<br>  // above it on the page or in its wrapper notwithstanding: the flush sent the part of the<br>  // page above it first, and the fragment an HTMX swap or an {ajax fragment=} put in its<br>  // place came with the page's head in front of it.<br><br>  </span><span style="color: #0000BB">$padFragmentOnly </span><span style="color: #007700">= </span><span style="color: #DD0000">'part'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>&lt;div&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>part<font color="black">'</font></font>}</b>&lt;p&gt;part&lt;/p&gt;<b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax204e4e935738ee062ead639749a9bdf0"></div>
+                        <script>
+                        padAjax204e4e935738ee062ead639749a9bdf0 = new XMLHttpRequest();
+                        padAjax204e4e935738ee062ead639749a9bdf0.onreadystatechange=function() {
+                        if (padAjax204e4e935738ee062ead639749a9bdf0.readyState === 4) {
+                        if (padAjax204e4e935738ee062ead639749a9bdf0.status === 200) {
+                        document.getElementById("padAjax204e4e935738ee062ead639749a9bdf0").innerHTML=padAjax204e4e935738ee062ead639749a9bdf0.responseText;
+                        } else {
+                        document.getElementById("padAjax204e4e935738ee062ead639749a9bdf0").innerHTML=padAjax204e4e935738ee062ead639749a9bdf0.statusText;
+                        }
+                        }
+                        }
+                        padAjax204e4e935738ee062ead639749a9bdf0.open("GET","http://localhost/pad/regression/pages/?flush/fragment&padInclude",true);
+                        padAjax204e4e935738ee062ead639749a9bdf0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/livepage<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/livepage.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;p&gt;box&lt;/p&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1eadad53c57714dc22724108a4a0ecd5"></div>
+                        <script>
+                        padAjax1eadad53c57714dc22724108a4a0ecd5 = new XMLHttpRequest();
+                        padAjax1eadad53c57714dc22724108a4a0ecd5.onreadystatechange=function() {
+                        if (padAjax1eadad53c57714dc22724108a4a0ecd5.readyState === 4) {
+                        if (padAjax1eadad53c57714dc22724108a4a0ecd5.status === 200) {
+                        document.getElementById("padAjax1eadad53c57714dc22724108a4a0ecd5").innerHTML=padAjax1eadad53c57714dc22724108a4a0ecd5.responseText;
+                        } else {
+                        document.getElementById("padAjax1eadad53c57714dc22724108a4a0ecd5").innerHTML=padAjax1eadad53c57714dc22724108a4a0ecd5.statusText;
+                        }
+                        }
+                        }
+                        padAjax1eadad53c57714dc22724108a4a0ecd5.open("GET","http://localhost/pad/regression/pages/?flush/livepage&padInclude",true);
+                        padAjax1eadad53c57714dc22724108a4a0ecd5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/login<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">flush/login.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/login.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A login below a {flush}, on a session already open: the id cannot be renewed once the<br>  // headers have gone out, and the login was made on the id from before it - a fixation,<br>  // without a word. padLogin refuses it now.<br><br>  </span><span style="color: #0000BB">padSessionStart </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;top&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b><b>{<font color="blue">page </font><font color="red">"flush/login_inner"</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax98f4dc58d156213897db704875ab17bd"></div>
+                        <script>
+                        padAjax98f4dc58d156213897db704875ab17bd = new XMLHttpRequest();
+                        padAjax98f4dc58d156213897db704875ab17bd.onreadystatechange=function() {
+                        if (padAjax98f4dc58d156213897db704875ab17bd.readyState === 4) {
+                        if (padAjax98f4dc58d156213897db704875ab17bd.status === 200) {
+                        document.getElementById("padAjax98f4dc58d156213897db704875ab17bd").innerHTML=padAjax98f4dc58d156213897db704875ab17bd.responseText;
+                        } else {
+                        document.getElementById("padAjax98f4dc58d156213897db704875ab17bd").innerHTML=padAjax98f4dc58d156213897db704875ab17bd.statusText;
+                        }
+                        }
+                        }
+                        padAjax98f4dc58d156213897db704875ab17bd.open("GET","http://localhost/pad/regression/pages/?flush/login&padInclude",true);
+                        padAjax98f4dc58d156213897db704875ab17bd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/logout<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">flush/logout.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/logout.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A logout below a {flush} while the browser holds a remember-me cookie: the cookie<br>  // cannot be dropped once the headers have gone out, and the logout answered TRUE - the<br>  // next request was logged in again by it. padLogout refuses it now.<br><br>  </span><span style="color: #0000BB">$_COOKIE </span><span style="color: #007700">[ </span><span style="color: #0000BB">padAuthCookieName </span><span style="color: #007700">() ] = </span><span style="color: #DD0000">'kept by the browser'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;top&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b><b>{<font color="blue">page </font><font color="red">"flush/logout_inner"</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax01a0c5451f7f602635f9e3529a343e04"></div>
+                        <script>
+                        padAjax01a0c5451f7f602635f9e3529a343e04 = new XMLHttpRequest();
+                        padAjax01a0c5451f7f602635f9e3529a343e04.onreadystatechange=function() {
+                        if (padAjax01a0c5451f7f602635f9e3529a343e04.readyState === 4) {
+                        if (padAjax01a0c5451f7f602635f9e3529a343e04.status === 200) {
+                        document.getElementById("padAjax01a0c5451f7f602635f9e3529a343e04").innerHTML=padAjax01a0c5451f7f602635f9e3529a343e04.responseText;
+                        } else {
+                        document.getElementById("padAjax01a0c5451f7f602635f9e3529a343e04").innerHTML=padAjax01a0c5451f7f602635f9e3529a343e04.statusText;
+                        }
+                        }
+                        }
+                        padAjax01a0c5451f7f602635f9e3529a343e04.open("GET","http://localhost/pad/regression/pages/?flush/logout&padInclude",true);
+                        padAjax01a0c5451f7f602635f9e3529a343e04.send();
                         </script>
                       </td>
                     </tr>
@@ -238,7 +568,7 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: flush/slow<br>
+                  App: regression/pages - Page: flush/pdf<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -247,7 +577,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">flush/slow.pad</font>
+                        <font size="-2">flush/pdf.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -256,23 +586,63 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>&lt;p&gt;<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>usleep </font><font color="red">400000</font>}</b>slow part&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b><b>{<font color="blue">pdf </font><font color="red">file=<font color="black">'</font>flushed<font color="black">'</font></font>}</b>&lt;h1&gt;Flushed&lt;/h1&gt;<b>{/<font color="blue">pdf</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax32fd62d7577a726a6d1492bc9ef0378e"></div>
+                        <div id="padAjax421de9cd56567ead4ac0b944422e7b6b"></div>
                         <script>
-                        padAjax32fd62d7577a726a6d1492bc9ef0378e = new XMLHttpRequest();
-                        padAjax32fd62d7577a726a6d1492bc9ef0378e.onreadystatechange=function() {
-                        if (padAjax32fd62d7577a726a6d1492bc9ef0378e.readyState === 4) {
-                        if (padAjax32fd62d7577a726a6d1492bc9ef0378e.status === 200) {
-                        document.getElementById("padAjax32fd62d7577a726a6d1492bc9ef0378e").innerHTML=padAjax32fd62d7577a726a6d1492bc9ef0378e.responseText;
+                        padAjax421de9cd56567ead4ac0b944422e7b6b = new XMLHttpRequest();
+                        padAjax421de9cd56567ead4ac0b944422e7b6b.onreadystatechange=function() {
+                        if (padAjax421de9cd56567ead4ac0b944422e7b6b.readyState === 4) {
+                        if (padAjax421de9cd56567ead4ac0b944422e7b6b.status === 200) {
+                        document.getElementById("padAjax421de9cd56567ead4ac0b944422e7b6b").innerHTML=padAjax421de9cd56567ead4ac0b944422e7b6b.responseText;
                         } else {
-                        document.getElementById("padAjax32fd62d7577a726a6d1492bc9ef0378e").innerHTML=padAjax32fd62d7577a726a6d1492bc9ef0378e.statusText;
+                        document.getElementById("padAjax421de9cd56567ead4ac0b944422e7b6b").innerHTML=padAjax421de9cd56567ead4ac0b944422e7b6b.statusText;
                         }
                         }
                         }
-                        padAjax32fd62d7577a726a6d1492bc9ef0378e.open("GET","http://localhost/pad/regression/pages/?flush/slow&padInclude",true);
-                        padAjax32fd62d7577a726a6d1492bc9ef0378e.send();
+                        padAjax421de9cd56567ead4ac0b944422e7b6b.open("GET","http://localhost/pad/regression/pages/?flush/pdf&padInclude",true);
+                        padAjax421de9cd56567ead4ac0b944422e7b6b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: flush/pdf_named_preview<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush/pdf_named_preview.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b><b>{<font color="blue">pdf </font><font color="red">file=<font color="black">'</font>preview-2026<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Order preview<font color="black">'</font></font>}</b>&lt;h1&gt;Flushed&lt;/h1&gt;<b>{/<font color="blue">pdf</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8cba7c0a152684ba0a6c6b8a86c240c8"></div>
+                        <script>
+                        padAjax8cba7c0a152684ba0a6c6b8a86c240c8 = new XMLHttpRequest();
+                        padAjax8cba7c0a152684ba0a6c6b8a86c240c8.onreadystatechange=function() {
+                        if (padAjax8cba7c0a152684ba0a6c6b8a86c240c8.readyState === 4) {
+                        if (padAjax8cba7c0a152684ba0a6c6b8a86c240c8.status === 200) {
+                        document.getElementById("padAjax8cba7c0a152684ba0a6c6b8a86c240c8").innerHTML=padAjax8cba7c0a152684ba0a6c6b8a86c240c8.responseText;
+                        } else {
+                        document.getElementById("padAjax8cba7c0a152684ba0a6c6b8a86c240c8").innerHTML=padAjax8cba7c0a152684ba0a6c6b8a86c240c8.statusText;
+                        }
+                        }
+                        }
+                        padAjax8cba7c0a152684ba0a6c6b8a86c240c8.open("GET","http://localhost/pad/regression/pages/?flush/pdf_named_preview&padInclude",true);
+                        padAjax8cba7c0a152684ba0a6c6b8a86c240c8.send();
                         </script>
                       </td>
                     </tr>
@@ -291,7 +661,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

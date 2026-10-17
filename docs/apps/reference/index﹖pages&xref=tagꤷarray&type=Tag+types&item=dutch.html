@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - dutch
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - dutch
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/pages - Page: db/a_record_formatted_past_a_thousand_is_still_a_record<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/a_record_formatted_past_a_thousand_is_still_a_record.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/a_record_formatted_past_a_thousand_is_still_a_record.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A RECORD whose numbers the page formats for show stays one row whatever their size:<br>  // number_format writes 10000 as '10,000.00', no longer loosely the 10000 db() answered,<br>  // so a record of totals was one row while they stayed below a thousand and fell apart the<br>  // day they passed it. A number grouped either way, or rounded to its decimals, is still the<br>  // record's own; a heading list of the same columns still stays a list.<br><br>  </span><span style="color: #0000BB">$totals </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record sum(salary) as total, avg(salary) as average from staff" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$totals </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">number_format </span><span style="color: #007700">( (float) </span><span style="color: #0000BB">$value</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">), </span><span style="color: #0000BB">$totals </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$dutch </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record sum(salary) as total, avg(salary) as average from staff" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$dutch </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">number_format </span><span style="color: #007700">( (float) </span><span style="color: #0000BB">$value</span><span style="color: #007700">, </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">','</span><span style="color: #007700">, </span><span style="color: #DD0000">'.' </span><span style="color: #007700">), </span><span style="color: #0000BB">$dutch </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$thirds </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record sum(salary) / 3 as third, avg(salary) / 3 as part from staff" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$thirds </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">number_format </span><span style="color: #007700">( (float) </span><span style="color: #0000BB">$value</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">), </span><span style="color: #0000BB">$thirds </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$labels </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'third' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Third'</span><span style="color: #007700">, </span><span style="color: #DD0000">'part' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Part' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">totals</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>total</font>}</b>, <b>{<font color="green"><font color="red">$</font>average</font>}</b> each<b>{/<font color="blue">totals</font><font color="red"></font>}</b>] [<b>{<font color="blue">dutch</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>total</font>}</b>, <b>{<font color="green"><font color="red">$</font>average</font>}</b> each<b>{/<font color="blue">dutch</font><font color="red"></font>}</b>] [<b>{<font color="blue">thirds</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>third</font>}</b> and <b>{<font color="green"><font color="red">$</font>part</font>}</b><b>{/<font color="blue">thirds</font><font color="red"></font>}</b>] [<b>{<font color="blue">labels</font><font color="red"></font>}</b>&lt;th&gt;<b>{<font color="green"><font color="red">$</font>labels</font>}</b>&lt;/th&gt;<b>{/<font color="blue">labels</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe6f618e26f82734ff55730e12d15e7f7"></div>
+                        <script>
+                        padAjaxe6f618e26f82734ff55730e12d15e7f7 = new XMLHttpRequest();
+                        padAjaxe6f618e26f82734ff55730e12d15e7f7.onreadystatechange=function() {
+                        if (padAjaxe6f618e26f82734ff55730e12d15e7f7.readyState === 4) {
+                        if (padAjaxe6f618e26f82734ff55730e12d15e7f7.status === 200) {
+                        document.getElementById("padAjaxe6f618e26f82734ff55730e12d15e7f7").innerHTML=padAjaxe6f618e26f82734ff55730e12d15e7f7.responseText;
+                        } else {
+                        document.getElementById("padAjaxe6f618e26f82734ff55730e12d15e7f7").innerHTML=padAjaxe6f618e26f82734ff55730e12d15e7f7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe6f618e26f82734ff55730e12d15e7f7.open("GET","http://localhost/pad/regression/pages/?db/a_record_formatted_past_a_thousand_is_still_a_record&padInclude",true);
+                        padAjaxe6f618e26f82734ff55730e12d15e7f7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {form} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#forms">Forms and security</a><span>/</span><span aria-current="page">form</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>form<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#forms">Forms and security</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'name'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'search'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'name'</span>, <span class="hl-opt">error</span>=<span class="hl-str">'Please correct the errors below.'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'name'</span>, client, error<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The form's name, sent back in a hidden <code>padForm</code> field: <code>padPosted('name')</code> is TRUE when this form came back. Optional for a form without rules.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>method</code>
+            </dt>
+            <dd>
+              <code>post</code> (the default) or <code>get</code>. A GET form gets no token and no name field, and its fields refill from the query string.
+            </dd>
+            <dt>
+              <code>error</code>
+            </dt>
+            <dd>
+              The message shown above the fields, in <code>&lt;div class="error" role="alert"&gt;</code>, when the form came back with errors. Bare option: <em>Please correct the errors below.</em>
+            </dd>
+            <dt>
+              <code>client</code>
+            </dt>
+            <dd>
+              Bare option: check the <code>rules=</code> of the fields in the browser too, with the same messages - the form gets <code>novalidate</code>, <code>data-pad-rules</code> and the checker script.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its content that posts back to the page it stands in. A posting form carries two hidden fields: the visitor's CSRF token (<code>padCsrfToken</code>, the session starts on demand) and its own name (<code>padForm</code>). In the page's PHP, <code>padPosted('contact')</code> is TRUE when this form came back, so a page with two forms knows which one was sent. A form with <code>method='get'</code> carries neither - its fields end up in the address.
+          </p>
+          <p>
+            Every item besides the name, <code>method</code>, <code>error</code> and <code>client</code> is an attribute of the <code>&lt;form&gt;</code> tag - <code>class=</code>, <code>id=</code>, <code>action=</code>, <code>enctype=</code> - written the way <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> writes them. The token only goes to this site: a form whose <code>action=</code>, or the <code>formaction=</code> of a button in it, points to another site gets none. A posting form holding a file field gets <code>enctype="multipart/form-data"</code> unless it names one itself.
+          </p>
+          <h3>
+            Fields that refill
+          </h3>
+          <p>
+            The <a href="index%EF%B9%96tag%EA%A4%B7input.html">{input}</a> and <a href="index%EF%B9%96tag%EA%A4%B7textarea.html">{textarea}</a> fields inside know which form they are in. When that form came back they show what was sent, escaped, and the message <code>padValidate</code> left for them - a field of the same name in another form of the page stays as it was. A GET form refills from the query string once it holds more than the page's name. With <code>error=</code> a form that came back with errors starts with <code>&lt;div class="error" role="alert"&gt;</code> holding the message; <code>error</code> alone says "Please correct the errors below."
+          </p>
+          <h3>
+            Rules in the template
+          </h3>
+          <p>
+            The fields of a named form can carry their own rules: <code>rules='required|email'</code>. They are read from the page's own text before any PHP runs and a post of the form is checked against them there, so <code>padPosted('contact')</code> is TRUE only for a post that kept them, and <code>padFormFailed('contact')</code> for one that broke them - that one renders the form again, refilled, with the messages. Only the page's own template (with its <code>_inits.pad</code> and <code>_exits.pad</code>) is read: rules in a snippet, a custom tag, a <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> or a layout, rules from a variable, rules in a GET form or one with <code>action=</code>, and an unknown rule are errors, strict check or not - each would be a check that never runs. That is also why the examples with rules on this page are shown, not run: they are rendered here through <code>{page}</code>.
+          </p>
+          <p>
+            <code>client</code> checks the same rules in the browser as well, with the same messages, before the form leaves: the form gets <code>novalidate</code>, its rules in <code>data-pad-rules</code>, and the checker script (see <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{validator}</a>) follows it once a page. A form with <code>client</code> needs a name and at least one field with rules. The pair must close - a lone <code>{form}</code> is an error under the strict check.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A search form
+            </h3>
+            <p class="example-about">
+              A form sent by GET carries no token and no name field - its fields refill from the query string.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/form/1-search.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'search'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'search'</span>, <span class="hl-opt">role</span>=<span class="hl-str">'search'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'q'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'search'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Find a tag'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'if, form, chart ...'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'go'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'submit'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Search'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7form%EA%A4%B71-search.html">open alone</a>
+                </div>
+                <div class="result">
+                  <form method="get" class="search" role="search">
+                    <label for="q">Find a tag</label><input type="search" name="q" id="q" value="" placeholder="if, form, chart ..."> <input type="submit" name="go" id="go" value="Search">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Rules on the fields
+            </h3>
+            <p class="example-about">
+              The rules stand on the fields - checked before the page's PHP, the message above and beside the fields when a post broke them.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/form/2-contact.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'contact'</span>, <span class="hl-opt">error</span>=<span class="hl-str">'Please correct the errors below.'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Checked in the browser too
+            </h3>
+            <p class="example-about">
+              client checks the same rules with the same messages before the form leaves; the server still checks every post.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/form/3-client.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'signup'</span>, client, error<span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>,  <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>,   <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:40'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'age'</span>,   <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Age'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|integer|min:18'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Sign up<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{textarea}</a> <span class="about">A text area with its label that refills from what its form sent and shows the error validation found for it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7csrf.html">{csrf}</a> <span class="about">The hidden form field holding the CSRF token of the visitor's session, or the bare token.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7validator.html">{validator}</a> <span class="about">The browser's checker of the validation rules as one inline script, for a form a component draws.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7flash.html">{flash}</a> <span class="about">The flash messages of this request - set with padFlash on the page before - one occurrence each.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> <span class="about">Writes HTML attributes from values - quoted and escaped, a true boolean attribute bare, a false one left out.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7foo.html">← {foo}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

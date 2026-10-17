@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: showcase/pdf
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: showcase/pdf
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=showcase.html">..</a>
+                  </li>
+                  <li class="current">invoice.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=pdf&amp;file=pdf%EA%A4%B7invoice.php.html">invoice.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  pdf/invoice.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>An invoice as PDF<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An order rendered on a sheet<font color="black">,</font> the same template one click away as an A4 PDF made in plain PHP.<font color="black">'</font></font>}</b><br><b>{<font color="blue">pdf </font><font color="red">preview<font color="black">,</font> file=<font color="black">'</font>invoice-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>invoice</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Invoice <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>invoice</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>  &lt;img src="photos/logo.jpg" width="56" height="56" alt="Harbour Supplies"&gt;<br>  &lt;h1&gt;Invoice <b>{<font color="green"><font color="red">$</font>invoice</font>}</b>&lt;/h1&gt;<br>  &lt;p&gt;&lt;b&gt;Harbour Supplies&lt;/b&gt;&lt;br&gt;Kaai 3, 1781 AA Den Helder&lt;br&gt;info@harbour.example&lt;/p&gt;<br>  &lt;p&gt;To: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>customer.name</font>}</b>&lt;/b&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>customer.street</font>}</b>&lt;br&gt;<b>{<font color="green"><font color="red">$</font>customer.city</font>}</b>&lt;/p&gt;<br>  &lt;p&gt;Issued <b>{<font color="green"><font color="red">$</font>issued</font>}</b> - due <b>{<font color="green"><font color="red">$</font>due</font>}</b>&lt;/p&gt;<br>  &lt;table&gt;<br>    &lt;tr&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th align="right"&gt;Qty&lt;/th&gt;&lt;th align="right"&gt;Price&lt;/th&gt;&lt;th align="right"&gt;Amount&lt;/th&gt;&lt;/tr&gt;<br>    <b>{<font color="blue">lines</font><font color="red"></font>}</b><br>    &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    <b>{/<font color="blue">lines</font><font color="red"></font>}</b><br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;Subtotal&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$subtotal</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;VAT 21%&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$vat</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;&lt;b&gt;Total&lt;/b&gt;&lt;/td&gt;&lt;td align="right"&gt;&lt;b&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;/table&gt;<br>  &lt;p&gt;Please pay within 30 days to &lt;b&gt;NL91 ABNA 0417 1643 00&lt;/b&gt;, quoting invoice <b>{<font color="green"><font color="red">$</font>invoice</font>}</b>.&lt;/p&gt;<br><b>{/<font color="blue">pdf</font><font color="red"></font>}</b></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

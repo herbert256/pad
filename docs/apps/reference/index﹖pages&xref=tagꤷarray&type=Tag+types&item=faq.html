@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - faq
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - faq
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: alpine - Page: examples/components<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/components.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/components.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The data of the components: plain arrays here, a database or a _data file anywhere else.<br>  // The template hands each to its component as the argument - x-data="accordion({^faq})" -<br>  // and renders the same rows as HTML inside it, for a visitor without JavaScript.<br><br>  </span><span style="color: #0000BB">$faq </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Why not write the state in the template?'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.' </span><span style="color: #007700">],<br>           [ </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Where do the components live?'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.' </span><span style="color: #007700">],<br>           [ </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Does it work without JavaScript?'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$tabs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'server'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Server'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'PAD renders the page, with every value escaped for where it stands.' </span><span style="color: #007700">],<br>            [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'wire'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Wire'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The state crosses as JSON in an attribute - no second request.' </span><span style="color: #007700">],<br>            [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'client'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Client'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alpine reads it and keeps the component live in the browser.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="cols-2"&gt;<br><br>  &lt;section&gt;<br>    &lt;div class="panel-title"&gt;Accordion - accordion({^faq})&lt;/div&gt;<br>    &lt;div class="accordion" x-data="accordion({^faq})"&gt;<br>      <b>{<font color="blue">faq</font><font color="red"></font>}</b><br>      &lt;div class="accordion-item" :class="isOpen(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>) &amp;& 'is-open'"&gt;<br>        &lt;button class="accordion-head" @click="toggle(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>)" :aria-expanded="isOpen(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>)"&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;span aria-hidden="true"&gt;+&lt;/span&gt;&lt;/button&gt;<br>        &lt;div class="accordion-body" x-show="isOpen(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>)" x-transition&gt;<b>{<font color="green"><font color="red">$</font>a</font>}</b>&lt;/div&gt;<br>      &lt;/div&gt;<br>      <b>{/<font color="blue">faq</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/section&gt;<br><br>  &lt;section&gt;<br>    &lt;div class="panel-title"&gt;Tabs - tabs({^tabs})&lt;/div&gt;<br>    &lt;div class="tabs" x-data="tabs({^tabs})"&gt;<br>      &lt;div class="pills" role="tablist"&gt;<br>        &lt;template x-for="tab in list" :key="tab.key"&gt;<br>          &lt;button class="pill" role="tab" :class="tab.key === active &amp;& 'is-on'" :aria-selected="tab.key === active" @click="active = tab.key" x-text="tab.label"&gt;&lt;/button&gt;<br>        &lt;/template&gt;<br>      &lt;/div&gt;<br>      &lt;p class="panel tab-text" x-text="current().text"&gt;<b>{<font color="green"><font color="red">$</font>tabs.0.text</font>}</b>&lt;/p&gt;<br>    &lt;/div&gt;<br><br>    &lt;div class="panel-title" style="margin-top: 26px"&gt;Dialog - dialog()&lt;/div&gt;<br>    &lt;div x-data="dialog()"&gt;<br>      &lt;button @click="show()"&gt;Open the dialog&lt;/button&gt;<br>      &lt;div class="backdrop" x-show="open" x-transition.opacity x-cloak @click.self="hide()" @keydown.escape.window="hide()"&gt;<br>        &lt;div class="dialog" role="dialog" aria-modal="true" aria-label="A dialog" x-show="open" x-transition&gt;<br>          &lt;h3&gt;Rendered by PAD, shown by Alpine&lt;/h3&gt;<br>          &lt;p class="muted"&gt;This box was in the page from the start; Alpine only decides when it shows.&lt;/p&gt;<br>          &lt;button class="btn-ghost" @click="hide()" x-ref="close"&gt;Close&lt;/button&gt;<br>        &lt;/div&gt;<br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>  &lt;/section&gt;<br><br>&lt;/div&gt;<br><br>&lt;script src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>alpine/examples/components.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd48db82364b236ad2debc16443f8b580"></div>
+                        <script>
+                        padAjaxd48db82364b236ad2debc16443f8b580 = new XMLHttpRequest();
+                        padAjaxd48db82364b236ad2debc16443f8b580.onreadystatechange=function() {
+                        if (padAjaxd48db82364b236ad2debc16443f8b580.readyState === 4) {
+                        if (padAjaxd48db82364b236ad2debc16443f8b580.status === 200) {
+                        document.getElementById("padAjaxd48db82364b236ad2debc16443f8b580").innerHTML=padAjaxd48db82364b236ad2debc16443f8b580.responseText;
+                        } else {
+                        document.getElementById("padAjaxd48db82364b236ad2debc16443f8b580").innerHTML=padAjaxd48db82364b236ad2debc16443f8b580.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd48db82364b236ad2debc16443f8b580.open("GET","http://localhost/pad/alpine/?examples/components&padInclude",true);
+                        padAjaxd48db82364b236ad2debc16443f8b580.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

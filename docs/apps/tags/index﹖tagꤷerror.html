@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {error} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#debug">Debugging and errors</a><span>/</span><span aria-current="page">error</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>error<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Raises a PAD error from the template, handled as the configured error action says.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#debug">Debugging and errors</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'message'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>message</code>
+            </dt>
+            <dd>
+              The text of the error. The report shows it as <code>PAD: message</code>, with the template position of the tag.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{error 'message'}</code> calls <code>padError()</code> - the same function the engine uses for its own errors - from a template. What happens next is up to <code>$padErrorAction</code> in <code>_config/config.php</code>:
+          </p>
+          <ul>
+            <li>
+              <code>pad</code> (the default): the request ends with status 500 and the error report - the message, where in the template it stands, the stack - for a local request; any other visitor gets the request id, or the application's <code>_errors/500.pad</code>, while the report is logged.
+            </li>
+            <li>
+              <code>stop</code> and <code>exit</code>: the request ends with status 500, without the report page.
+            </li>
+            <li>
+              <code>dump</code>: the full dump is written to <code>DATA/dumps/</code> and the error logged; the page goes on.
+            </li>
+            <li>
+              <code>log</code>: the error is logged and the page goes on; <code>ignore</code>: the page goes on and nothing is logged.
+            </li>
+            <li>
+              <code>boot</code> and <code>php</code>: the boot handler, or PHP's own exception handling, takes over.
+            </li>
+          </ul>
+          <p>
+            In every case the application's <code>_events/error.php</code> hook runs first, with <code>$error</code>, <code>$file</code> and <code>$line</code>. When the request survives, the tag itself renders nothing: <code>padError()</code> returns FALSE.
+          </p>
+          <p>
+            Use it to stop on a state a page must never reach - an unknown value in a <a href="index%EF%B9%96tag%EA%A4%B7case.html">{case}</a>, a required row that is not there. For a check that only test runs should hold the page to, use <a href="index%EF%B9%96tag%EA%A4%B7assert.html">{assert}</a>; to end the request quietly, <a href="index%EF%B9%96tag%EA%A4%B7exit.html">{exit}</a>; to throw a real PHP exception instead, <a href="index%EF%B9%96tag%EA%A4%B7exception.html">{exception}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A value that must not occur
+            </h3>
+            <p class="example-about">
+              An unknown status ends the request with a report naming it, instead of rendering an empty cell.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/error/1-unknown-value.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">case</span> <span class="hl-var">$status</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'open'</span><span class="hl-brc">}</span>    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"open"</span><span class="hl-htm">&gt;</span>Open<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'paid'</span><span class="hl-brc">}</span>    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"paid"</span><span class="hl-htm">&gt;</span>Paid<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'shipped'</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"done"</span><span class="hl-htm">&gt;</span>Shipped<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>           <span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'unknown order status'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A required row
+            </h3>
+            <p class="example-about">
+              No customer for the order: the error is raised, the event hook and the error action take it from there.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/error/2-missing-row.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">if</span> not <span class="hl-var">$customer</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'order without a customer'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$customer.name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7exception.html">{exception}</a> <span class="about">Throws a real PHP exception from the template, to exercise the error handling.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7assert.html">{assert}</a> <span class="about">A condition a test run holds the page to; silent everywhere else.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7exit.html">{exit}</a> <span class="about">Ends the request at once, with an empty body - the PAD way to stop instead of PHP's exit.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7dump.html">{dump}</a> <span class="about">Stops the request and shows the debug dump of the engine's state at that point.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7emoji.html">← {emoji}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7exception.html">{exception} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

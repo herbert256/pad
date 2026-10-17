@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -86,6 +86,48 @@
                         }
                         padAjax68a3bf651f2dc741efa6afd234abee3a.open("GET","http://localhost/pad/manual/?fragments/cache_1&padInclude",true);
                         padAjax68a3bf651f2dc741efa6afd234abee3a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: fragments/cache_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/cache_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/cache_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nocache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$visit </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue">nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>visit = 2</font>}</b><br><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue">nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7ce625e2aa3fe1776a8426fa34b8f4d9"></div>
+                        <script>
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9 = new XMLHttpRequest();
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.onreadystatechange=function() {
+                        if (padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.readyState === 4) {
+                        if (padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.status === 200) {
+                        document.getElementById("padAjax7ce625e2aa3fe1776a8426fa34b8f4d9").innerHTML=padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.responseText;
+                        } else {
+                        document.getElementById("padAjax7ce625e2aa3fe1776a8426fa34b8f4d9").innerHTML=padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.statusText;
+                        }
+                        }
+                        }
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.open("GET","http://localhost/pad/manual/?fragments/cache_2&padInclude",true);
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.send();
                         </script>
                       </td>
                     </tr>
@@ -501,23 +543,6 @@
                   padAjaxdec5a1accf660315eb153f671a166d75.open("GET","http://localhost/pad/manual/?walk/3&padInclude",true);
                   padAjaxdec5a1accf660315eb153f671a166d75.send();
                   </script><br>
-                  <hr>
-                  App: regression/common - Page: misc/eval<br>
-                  <div id="padAjax550458d603cb17b4d44878fa2a9a617a"></div>
-                  <script>
-                  padAjax550458d603cb17b4d44878fa2a9a617a = new XMLHttpRequest();
-                  padAjax550458d603cb17b4d44878fa2a9a617a.onreadystatechange=function() {
-                  if (padAjax550458d603cb17b4d44878fa2a9a617a.readyState === 4) {
-                  if (padAjax550458d603cb17b4d44878fa2a9a617a.status === 200) {
-                  document.getElementById("padAjax550458d603cb17b4d44878fa2a9a617a").innerHTML=padAjax550458d603cb17b4d44878fa2a9a617a.responseText;
-                  } else {
-                  document.getElementById("padAjax550458d603cb17b4d44878fa2a9a617a").innerHTML=padAjax550458d603cb17b4d44878fa2a9a617a.statusText;
-                  }
-                  }
-                  }
-                  padAjax550458d603cb17b4d44878fa2a9a617a.open("GET","http://localhost/pad/regression/common/?misc/eval&padInclude",true);
-                  padAjax550458d603cb17b4d44878fa2a9a617a.send();
-                  </script><br>
                 </center>
               </td>
             </tr>
@@ -532,7 +557,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

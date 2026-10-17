@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {timeago} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">timeago</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>timeago<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            How long ago a moment was, in words, inside a time element that keeps the exact moment as its datetime and title.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$moment</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>moment</code>
+            </dt>
+            <dd>
+              A Unix timestamp, a date in text or a date object. An empty moment writes nothing.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>now</code>
+            </dt>
+            <dd>
+              Count from this moment instead of now.
+            </dd>
+            <dt>
+              <code>format</code>
+            </dt>
+            <dd>
+              The PHP date format of the full moment in the <code>title</code>, default <code>l j F Y, H:i</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{timeago $created}</code> writes how long ago the moment was - just now, 5 minutes ago, yesterday, 3 weeks ago, and for a moment still to come, in 2 days - inside a <code>&lt;time class="pad-timeago"&gt;</code>. The element's <code>datetime</code> is the moment in ISO 8601, for machines, and its <code>title</code> the moment in full, which a browser shows on hover. The words are those of the <code>ago</code> pipe, with the semantic element around them.
+          </p>
+          <p>
+            Now is <code>padNow ()</code>, so <code>padNowFreeze ()</code> in PHP holds a page still for a test. <code>now=</code> counts from a given moment instead - which is how the examples here stay the same on every request. <code>format=</code> is the PHP date format of the title.
+          </p>
+          <p>
+            An empty moment writes nothing, so a row without a date leaves no empty element behind. A moment, or a <code>now=</code>, that cannot be read as a date is a strict error. For the time left until a moment, use <a href="index%EF%B9%96tag%EA%A4%B7countdown.html"><code>{countdown}</code></a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A comment thread
+            </h3>
+            <p class="example-about">
+              Each comment says how long before the fixed now it was posted; hover a time for the full moment.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/timeago/1-thread.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">comments</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> - <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$posted</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/comments</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/timeago/1-thread.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$comments</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Maya'</span><span class="hl-pun">,</span>  <span class="hl-str">'posted'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-06-02 09:00'</span><span class="hl-pun">,</span> <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Can the report be a spreadsheet?'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Jonas'</span><span class="hl-pun">,</span> <span class="hl-str">'posted'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-17 15:30'</span><span class="hl-pun">,</span> <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'The CSV answer of the page does it.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Priya'</span><span class="hl-pun">,</span> <span class="hl-str">'posted'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-10-07 10:00'</span><span class="hl-pun">,</span> <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'One line in the page and it works.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Tomás'</span><span class="hl-pun">,</span> <span class="hl-str">'posted'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-10-08 09:45'</span><span class="hl-pun">,</span> <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Can the columns be chosen?'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Ken'</span><span class="hl-pun">,</span>   <span class="hl-str">'posted'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-10-08 11:55'</span><span class="hl-pun">,</span> <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Yes - list them in the page.'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7timeago%EA%A4%B71-thread.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>
+                      <strong>Maya</strong> - <time class="pad-timeago" datetime="2026-06-02T09:00:00+00:00" title="Tuesday 2 June 2026, 09:00">4 months ago</time>: Can the report be a spreadsheet?
+                    </li>
+                    <li>
+                      <strong>Jonas</strong> - <time class="pad-timeago" datetime="2026-09-17T15:30:00+00:00" title="Thursday 17 September 2026, 15:30">3 weeks ago</time>: The CSV answer of the page does it.
+                    </li>
+                    <li>
+                      <strong>Priya</strong> - <time class="pad-timeago" datetime="2026-10-07T10:00:00+00:00" title="Wednesday 7 October 2026, 10:00">yesterday</time>: One line in the page and it works.
+                    </li>
+                    <li>
+                      <strong>Tomás</strong> - <time class="pad-timeago" datetime="2026-10-08T09:45:00+00:00" title="Thursday 8 October 2026, 09:45">2 hours ago</time>: Can the columns be chosen?
+                    </li>
+                    <li>
+                      <strong>Ken</strong> - <time class="pad-timeago" datetime="2026-10-08T11:55:00+00:00" title="Thursday 8 October 2026, 11:55">5 minutes ago</time>: Yes - list them in the page.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Past and future, another title
+            </h3>
+            <p class="example-about">
+              A moment still to come reads as in ...; format= changes the full date in the title.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/timeago/2-format.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Released <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">'2026-09-01'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Next release <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">'2026-10-22'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Not dated: [<span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">''</span><span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7timeago%EA%A4%B72-format.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Released <time class="pad-timeago" datetime="2026-09-01T00:00:00+00:00" title="1 Sep 2026">1 month ago</time>.
+                  </p>
+                  <p>
+                    Next release <time class="pad-timeago" datetime="2026-10-22T00:00:00+00:00" title="22 Oct 2026">in 2 weeks</time>.
+                  </p>
+                  <p>
+                    Not dated: []
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7countdown.html">{countdown}</a> <span class="about">The time left until a moment, in words inside a time element - ticking every second in the browser when asked.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{calendar}</a> <span class="about">Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7echo.html">{echo}</a> <span class="about">Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7tidy.html">← {tidy}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

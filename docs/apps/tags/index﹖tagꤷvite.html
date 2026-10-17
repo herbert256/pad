@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {vite} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">vite</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>vite<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Links the scripts and stylesheets of a Vite build by the name of their source - or the dev server while it runs.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">'src/main.js'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">'src/main.jsx'</span>, <span class="hl-str">'src/admin.js'</span>, react<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>entry</code>
+            </dt>
+            <dd>
+              An entry of the build, as <code>build.rollupOptions.input</code> names it. Several entries may follow each other.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>react</code>
+            </dt>
+            <dd>
+              Bare option: with the dev server, write the preamble the React plugin needs for fast refresh first.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{vite 'src/main.js'}</code> writes the tags that load an entry of a Vite build. In production it reads the manifest Vite writes - <code>www/&lt;app&gt;/build/.vite/manifest.json</code> (<code>build.manifest: true</code>, <code>build.outDir</code> that directory) - and gives per entry a <code>&lt;link rel="stylesheet"&gt;</code> for its CSS and the CSS of every chunk it imports, a <code>&lt;link rel="modulepreload"&gt;</code> for every such chunk, and its <code>&lt;script type="module"&gt;</code>. A dynamic import is left to load when asked for. The addresses are made of <code>$padRoot</code>, the application and <code>$padViteBuild</code> (default <code>build</code>), which is the build's <code>base</code>.
+          </p>
+          <p>
+            While the dev server runs - <code>$padViteDev</code> names it, or the file <code>hot</code> in the build directory holds its address - the tags point at the dev server instead: <code>@vite/client</code> first, then the sources as they are, for hot module replacement. The <code>react</code> option adds the fast-refresh preamble the React plugin needs in that mode.
+          </p>
+          <p>
+            A file goes out once a page, however many <code>{vite}</code> tags name it, and a script carries the request's nonce when <code>$padCsp</code> asks for one. A <code>{vite}</code> without an entry, an entry the manifest does not have, and a build without a manifest while no dev server runs are errors. The output depends on a build, so the examples are shown rather than run; the islands application uses it for real. For a plain file of <code>www/</code>, use <a href="index%EF%B9%96tag%EA%A4%B7asset.html"><code>{asset}</code></a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              One entry in the head
+            </h3>
+            <p class="example-about">
+              The entry's CSS, its chunks preloaded and its module script, from the build's manifest.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/vite/1-entry.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;head</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;title</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/title</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">'src/main.js'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/head</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Several entries with React
+            </h3>
+            <p class="example-about">
+              Two entries in one tag; with the dev server running, react writes the fast-refresh preamble first.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/vite/2-react.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">'src/main.jsx'</span>, <span class="hl-str">'src/admin.js'</span>, react<span class="hl-brc">}</span>
+<span class="hl-htm">&lt;div</span> <span class="hl-opt">data-island</span>=<span class="hl-str">"Counter"</span> <span class="hl-opt">data-props</span>=<span class="hl-str">"{^counter}"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7asset.html">{asset}</a> <span class="about">The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7reactData.html">{reactData}</a> <span class="about">Writes the mount point of a React component, its data from a provider in _providers/ as JSON in an attribute.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7nonce.html">{nonce}</a> <span class="about">This request's Content-Security-Policy nonce, for a script or style the policy lets run.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7video.html">← {video}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7while.html">{while} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

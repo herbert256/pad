@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -111,6 +111,90 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: webcomponents - Page: examples/cards<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/cards.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/cards.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Three cards from one custom tag: {card} writes a &lt;pad-card&gt; with its shadow root, the<br>  // stylesheet inlined by {shadow css=} and named slots; the page hands it the title and the<br>  // tone as parameters and the rest as content - the light DOM the browser slots in.<br><br>  </span><span style="color: #0000BB">$cards </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Revenue'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'tone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'good'</span><span style="color: #007700">, </span><span style="color: #DD0000">'value' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 48,210'</span><span style="color: #007700">, </span><span style="color: #DD0000">'note' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'12% more than last month' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Visitors'</span><span style="color: #007700">, </span><span style="color: #DD0000">'tone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'info'</span><span style="color: #007700">, </span><span style="color: #DD0000">'value' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'12,804'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'note' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Most of them on a phone' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Returns'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'tone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bad'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'value' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'38'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'note' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Three more than usual' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="grid"&gt;<br><b>{<font color="blue">cards</font><font color="red"></font>}</b><br>  <b>{<font color="blue">card </font><font color="red">title=<font color="red">$</font>title<font color="black">,</font> tone=<font color="red">$</font>tone</font>}</b><br>    &lt;p class="stat"&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/p&gt;<br>    &lt;p class="muted"&gt;<b>{<font color="green"><font color="red">$</font>note</font>}</b>&lt;/p&gt;<br>    &lt;a slot="footer" href="?examples/cards"&gt;Details →&lt;/a&gt;<br>  <b>{/<font color="blue">card</font><font color="red"></font>}</b><br><b>{/<font color="blue">cards</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;p class="muted small" style="margin-top: 18px"&gt;<br>  Open the developer tools: each card is &lt;code&gt;&lt;pad-card&gt;&lt;/code&gt; with a &lt;code&gt;#shadow-root&lt;/code&gt; PAD wrote. The page<br>  loads no script for it - the browser builds the root from the &lt;code&gt;&lt;template shadowrootmode&gt;&lt;/code&gt;, and the<br>  styles inside it neither leak out nor let the page's in.<br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxef274313d23c306d56bc52a935036edd"></div>
+                        <script>
+                        padAjaxef274313d23c306d56bc52a935036edd = new XMLHttpRequest();
+                        padAjaxef274313d23c306d56bc52a935036edd.onreadystatechange=function() {
+                        if (padAjaxef274313d23c306d56bc52a935036edd.readyState === 4) {
+                        if (padAjaxef274313d23c306d56bc52a935036edd.status === 200) {
+                        document.getElementById("padAjaxef274313d23c306d56bc52a935036edd").innerHTML=padAjaxef274313d23c306d56bc52a935036edd.responseText;
+                        } else {
+                        document.getElementById("padAjaxef274313d23c306d56bc52a935036edd").innerHTML=padAjaxef274313d23c306d56bc52a935036edd.statusText;
+                        }
+                        }
+                        }
+                        padAjaxef274313d23c306d56bc52a935036edd.open("GET","http://localhost/pad/webcomponents/?examples/cards&padInclude",true);
+                        padAjaxef274313d23c306d56bc52a935036edd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: webcomponents - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">wcGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; The platform's own components&lt;/span&gt;<br>    &lt;h1&gt;Rendered by PAD,&lt;br&gt;&lt;span class="grad"&gt;defined by the browser.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      A custom element with its shadow root written on the server: declarative shadow DOM shows it<br>      encapsulated and slotted before any script ran, and a small module upgrades it where it needs<br>      behaviour. PAD's own components - a custom tag with parameters - write them.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/cards"&gt;Start with the cards&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How it works&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-demo"&gt;<br>    <b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Rendered on the server<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>good<font color="black">'</font></font>}</b><br>      &lt;p&gt;This card is a &lt;code&gt;&lt;pad-card&gt;&lt;/code&gt; with its shadow root - and the page has no script for it.&lt;/p&gt;<br>      &lt;a slot="footer" href="?examples/cards"&gt;See how&lt;/a&gt;<br>    <b>{/<font color="blue">card</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb32875316ed070d6fb050585f06619e0"></div>
+                        <script>
+                        padAjaxb32875316ed070d6fb050585f06619e0 = new XMLHttpRequest();
+                        padAjaxb32875316ed070d6fb050585f06619e0.onreadystatechange=function() {
+                        if (padAjaxb32875316ed070d6fb050585f06619e0.readyState === 4) {
+                        if (padAjaxb32875316ed070d6fb050585f06619e0.status === 200) {
+                        document.getElementById("padAjaxb32875316ed070d6fb050585f06619e0").innerHTML=padAjaxb32875316ed070d6fb050585f06619e0.responseText;
+                        } else {
+                        document.getElementById("padAjaxb32875316ed070d6fb050585f06619e0").innerHTML=padAjaxb32875316ed070d6fb050585f06619e0.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb32875316ed070d6fb050585f06619e0.open("GET","http://localhost/pad/webcomponents/?index&padInclude",true);
+                        padAjaxb32875316ed070d6fb050585f06619e0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -125,7 +209,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

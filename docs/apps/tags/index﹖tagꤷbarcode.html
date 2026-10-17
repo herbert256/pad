@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {barcode} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">barcode</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>barcode<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'number'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$code</span>, <span class="hl-opt">type</span>=<span class="hl-str">'code128'</span>, <span class="hl-opt">height</span>=<span class="hl-num">60</span>, <span class="hl-opt">scale</span>=<span class="hl-num">2</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, plain, <span class="hl-opt">color</span>=<span class="hl-str">'#000'</span>, <span class="hl-opt">background</span>=<span class="hl-str">'#fff'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>code</code>
+            </dt>
+            <dd>
+              The number or text. An EAN or UPC number may leave its check digit off - it is added; one given is checked.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              <code>ean13</code>, <code>ean8</code>, <code>upca</code> or <code>code128</code>. Left out, twelve or thirteen digits are an EAN-13 and anything else Code 128.
+            </dd>
+            <dt>
+              <code>height</code>
+            </dt>
+            <dd>
+              The height of the bars in pixels, default 60.
+            </dd>
+            <dt>
+              <code>scale</code>
+            </dt>
+            <dd>
+              The width of one module - the thinnest bar - in pixels, default 2 (1 to 10).
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The accessible name, by default the code.
+            </dd>
+            <dt>
+              <code>plain</code>
+            </dt>
+            <dd>
+              Bare option: the bars only, no digits under them.
+            </dd>
+            <dt>
+              <code>color</code>
+            </dt>
+            <dd>
+              The colour of the bars, default <code>#000</code>.
+            </dd>
+            <dt>
+              <code>background</code>
+            </dt>
+            <dd>
+              The colour behind them, default <code>#fff</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{barcode}</code> encodes its first parameter as a one-dimensional barcode and writes it as inline SVG (<code>tags/_lib/barcode.php</code>) - the bars of a product, a ticket or a parcel label, drawn on the server, no font or image needed.
+          </p>
+          <p>
+            Without <code>type</code> the tag decides by the text: twelve or thirteen digits are an EAN-13, anything else Code 128. An EAN-13, EAN-8 or UPC-A number may be written without its check digit, which is then computed and added; a number written with it has the digit checked. These codes draw their guard bars longer and set the digits under the bars in their groups. Code 128 takes printable ASCII, and packs a run of four digits or more two to a symbol, so long numbers stay short.
+          </p>
+          <p>
+            <code>scale</code> is the width of the thinnest bar; keep it at 2 or more for a printed label a scanner has to read. <code>plain</code> leaves the human-readable digits out. The colours are fixed - black on white unless <code>color</code> and <code>background</code> say otherwise - since a scanner needs the contrast.
+          </p>
+          <p>
+            A wrong check digit, a wrong length for the type, a character Code 128 cannot hold or an unknown type is an error under the strict check, and the tag writes nothing. For a code a phone camera reads, see <a href="index%EF%B9%96tag%EA%A4%B7qr.html">{qr}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              An EAN-13 with its check digit added
+            </h3>
+            <p class="example-about">
+              Twelve digits are taken as an EAN-13; the thirteenth, the check digit, is computed.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/barcode/1-ean.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'871234567890'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7barcode%EA%A4%B71-ean.html">open alone</a>
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="74" viewbox="0 0 234 74" shape-rendering="crispEdges">
+                  <title>
+                    8712345678906
+                  </title>
+                  <rect width="100%" height="100%" fill="#fff"></rect>
+                  <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM30,0h6v60h-6zM38,0h4v60h-4zM44,0h4v60h-4zM52,0h4v60h-4zM60,0h2v60h-2zM66,0h4v60h-4zM72,0h2v60h-2zM82,0h2v60h-2zM88,0h6v60h-6zM96,0h2v60h-2zM100,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v60h-2zM126,0h2v60h-2zM136,0h2v60h-2zM144,0h2v60h-2zM150,0h2v60h-2zM156,0h2v60h-2zM164,0h6v60h-6zM172,0h2v60h-2zM178,0h6v60h-6zM188,0h2v60h-2zM192,0h2v60h-2zM196,0h2v60h-2zM206,0h2v66h-2zM210,0h2v66h-2z"></path>
+                  <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                    8
+                  </text>
+                  <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                    712345
+                  </text>
+                  <text x="164" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                    678906
+                  </text></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Code 128 for a parcel
+            </h3>
+            <p class="example-about">
+              Text with letters is Code 128; height and scale size the bars.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/barcode/2-code128.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'PAD-2026-00042'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'code128'</span>, <span class="hl-opt">height</span>=<span class="hl-num">50</span>, <span class="hl-opt">scale</span>=<span class="hl-num">1.5</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7barcode%EA%A4%B72-code128.html">open alone</a>
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="313.5" height="61" viewbox="0 0 313.5 61" shape-rendering="crispEdges">
+                  <title>
+                    PAD-2026-00042
+                  </title>
+                  <rect width="100%" height="100%" fill="#fff"></rect>
+                  <path fill="#000" d="M15,0h3v50h-3zM19.5,0h1.5v50h-1.5zM24,0h1.5v50h-1.5zM31.5,0h4.5v50h-4.5zM37.5,0h4.5v50h-4.5zM43.5,0h3v50h-3zM48,0h1.5v50h-1.5zM51,0h1.5v50h-1.5zM57,0h3v50h-3zM64.5,0h1.5v50h-1.5zM67.5,0h3v50h-3zM75,0h1.5v50h-1.5zM81,0h1.5v50h-1.5zM85.5,0h3v50h-3zM90,0h4.5v50h-4.5zM97.5,0h3v50h-3zM103.5,0h4.5v50h-4.5zM111,0h1.5v50h-1.5zM114,0h1.5v50h-1.5zM118.5,0h4.5v50h-4.5zM124.5,0h3v50h-3zM130.5,0h3v50h-3zM136.5,0h4.5v50h-4.5zM144,0h1.5v50h-1.5zM147,0h3v50h-3zM153,0h4.5v50h-4.5zM159,0h1.5v50h-1.5zM163.5,0h1.5v50h-1.5zM168,0h3v50h-3zM172.5,0h4.5v50h-4.5zM180,0h1.5v50h-1.5zM183,0h4.5v50h-4.5zM189,0h6v50h-6zM196.5,0h3v50h-3zM201,0h3v50h-3zM207,0h3v50h-3zM213,0h1.5v50h-1.5zM217.5,0h1.5v50h-1.5zM223.5,0h3v50h-3zM229.5,0h1.5v50h-1.5zM232.5,0h6v50h-6zM240,0h4.5v50h-4.5zM246,0h3v50h-3zM252,0h4.5v50h-4.5zM259.5,0h1.5v50h-1.5zM262.5,0h1.5v50h-1.5zM267,0h3v50h-3zM271.5,0h1.5v50h-1.5zM279,0h3v50h-3zM286.5,0h4.5v50h-4.5zM292.5,0h1.5v50h-1.5zM295.5,0h3v50h-3z"></path>
+                  <text x="156.75" y="59.14" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="9.3" fill="#000">
+                    PAD-2026-00042
+                  </text></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Plain and coloured
+            </h3>
+            <p class="example-about">
+              plain leaves the digits out; color and background change the black on white.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/barcode/3-plain.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'96385074'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'ean8'</span>, plain, <span class="hl-opt">color</span>=<span class="hl-str">'#1a237e'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7barcode%EA%A4%B73-plain.html">open alone</a>
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="162" height="60" viewbox="0 0 162 60" shape-rendering="crispEdges">
+                  <title>
+                    96385074
+                  </title>
+                  <rect width="100%" height="100%" fill="#fff"></rect>
+                  <path fill="#1a237e" d="M14,0h2v60h-2zM18,0h2v60h-2zM26,0h2v60h-2zM30,0h4v60h-4zM36,0h2v60h-2zM40,0h8v60h-8zM50,0h8v60h-8zM60,0h2v60h-2zM64,0h4v60h-4zM70,0h6v60h-6zM78,0h2v60h-2zM82,0h2v60h-2zM86,0h2v60h-2zM92,0h6v60h-6zM100,0h6v60h-6zM110,0h2v60h-2zM114,0h2v60h-2zM122,0h2v60h-2zM128,0h2v60h-2zM132,0h6v60h-6zM142,0h2v60h-2zM146,0h2v60h-2z"></path></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7qr.html">{qr}</a> <span class="about">Draws a QR code as inline SVG, encoded on the server - no image library, no remote service.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7avatar.html">← {avatar}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7block.html">{block} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

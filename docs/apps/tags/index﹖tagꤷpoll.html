@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {poll} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#widgets">Widgets</a><span>/</span><span aria-current="page">poll</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>poll<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A vote among a few answers, once per visitor, then the results as bars with percentages.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'name'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'Yes, No'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'name'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'PHP, Python, Go'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Question?'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Vote'</span>, results<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              Letters, digits, <code>_</code> and <code>-</code>, at most 64: names the file the votes are kept in, <code>DATA/poll/&lt;app&gt;/&lt;name&gt;.json</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>options</code>
+            </dt>
+            <dd>
+              The answers, separated by commas - two or more; duplicates and empty ones are dropped.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The question. The name made readable when not given (<code>favorite-language</code> is <code>Favorite language</code>).
+            </dd>
+            <dt>
+              <code>button</code>
+            </dt>
+            <dd>
+              The text of the vote button, <code>Vote</code> when not given.
+            </dd>
+            <dt>
+              <code>results</code>
+            </dt>
+            <dd>
+              Bare option: show the results to everyone, also before a vote.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{poll}</code> asks one question with the answers of <code>options=</code> as radio buttons. A visitor votes once per poll: the answer is kept in the session, and a visitor who has voted sees the results instead of the form - a bar per answer with its share in percent. With <code>results</code> everyone sees the results, also before voting, which makes a results page.
+          </p>
+          <p>
+            The form is built on a <a href="index%EF%B9%96tag%EA%A4%B7live.html"><code>{live}</code></a> region and posts to the page itself: with scripting on the vote goes in the background and the results are swapped in; with scripting off it is an ordinary form post and the page comes back with them. <code>$padCsrf</code> protects it like any other form. A GET request starts no session for a visitor without one.
+          </p>
+          <p>
+            The votes are counted per answer in <code>DATA/poll/&lt;app&gt;/&lt;name&gt;.json</code> under an exclusive lock. An answer taken out of <code>options=</code> keeps its count in the file but shows no more. From PHP, <code>padPollVote ( $name, $answer )</code> adds a vote and <code>padPollCounts ( $name )</code> reads the counts.
+          </p>
+          <p>
+            A name that is not a valid file name is always an error; fewer than two answers is one under the strict check. Because what it shows depends on the votes stored and on the visitor's session, the examples below are shown but not run.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A question
+            </h3>
+            <p class="example-about">
+              Four answers and a question; after the vote the visitor sees the results as bars.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/poll/1-question.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'favorite-language'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'PHP, Python, Ruby, Go'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Which language do you reach for first?'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A results page
+            </h3>
+            <p class="example-about">
+              The same poll with results - the bars show to everyone, voted or not.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/poll/2-results.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>How the vote stands<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'favorite-language'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'PHP, Python, Ruby, Go'</span>, results<span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7live.html">{live}</a> <span class="about">A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7rating.html">{rating}</a> <span class="about">Draws a score as stars or hearts in inline SVG - whole ones filled, a part of one clipped - and says it in words.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{progress}</a> <span class="about">Writes an accessible progress bar - the native progress element, styled, with its label and percentage - or a row of step dots.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7placeholder.html">← {placeholder}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7progress.html">{progress} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

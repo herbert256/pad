@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {increment} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#values">Variables and stores</a><span>/</span><span aria-current="page">increment</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>increment<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Adds one to a variable, starting it at 1 when it does not exist yet.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#values">Variables and stores</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$name</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>$name</code>
+            </dt>
+            <dd>
+              The variable to count with, named rather than read, written with its <code>$</code>. An application variable, not an engine one (<code>pad*</code>).
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{increment $counter}</code> adds one to the variable and prints nothing. A variable that does not exist yet, or holds an empty text (an empty request value, a <code>{set $n = ''}</code>), starts at 1. The variable is a global, like one made by <a href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a>: its new value outlives the loop or block the tag stands in, which is what makes it the step of a <a href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> loop.
+          </p>
+          <p>
+            It is the short form of <code>{set $counter = $counter + 1}</code>, without the error the longer form gives when the variable does not exist yet. <a href="index%EF%B9%96tag%EA%A4%B7decrement.html">{decrement}</a> is its mirror image. The tag takes the variable by name - <code>$counter</code>, the <code>$</code> written - so it never evaluates it.
+          </p>
+          <p>
+            A value that is no number cannot be counted: <code>{increment}</code> on a word or a list is an error naming the variable, and so is counting an engine variable such as <code>$padPage</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Counting matches
+            </h3>
+            <p class="example-about">
+              A counter that did not exist starts at 1 and keeps its value after the loop.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/increment/1-count.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..20'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'number'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$number</span> % <span class="hl-num">3</span> eq <span class="hl-num">0</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$threes</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Between <span class="hl-num">1</span> and <span class="hl-num">20</span>, <span class="hl-brc">{</span><span class="hl-var">$threes</span><span class="hl-brc">}</span> numbers are divisible by <span class="hl-num">3</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7increment%EA%A4%B71-count.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Between 1 and 20, 6 numbers are divisible by 3.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Numbering across loops
+            </h3>
+            <p class="example-about">
+              One counter numbers the rows of two separate lists in a single run.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/increment/2-numbering.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$line</span> = <span class="hl-num">100</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'incrementFruit'</span><span class="hl-brc">}</span>[<span class="hl-str">"apple"</span>, <span class="hl-str">"pear"</span>]<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'incrementVeg'</span><span class="hl-brc">}</span>[<span class="hl-str">"leek"</span>, <span class="hl-str">"kale"</span>, <span class="hl-str">"beet"</span>]<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">incrementFruit</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$line</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$line</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$incrementFruit</span><span class="hl-brc">}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/incrementFruit</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">incrementVeg</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$line</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$line</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$incrementVeg</span><span class="hl-brc">}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/incrementVeg</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7increment%EA%A4%B72-numbering.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    101: apple<br>
+                    102: pear<br>
+                  </p>
+                  <p>
+                    103: leek<br>
+                    104: kale<br>
+                    105: beet<br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7decrement.html">{decrement}</a> <span class="about">Takes one off a variable, starting it at -1 when it does not exist yet.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> <span class="about">Renders its content again and again for as long as a condition holds.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7until.html">{until}</a> <span class="about">Renders its content again and again until a condition becomes true.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7img.html">← {img}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7input.html">{input} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

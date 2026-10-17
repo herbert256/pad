@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {echo} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">echo</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>echo<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">echo</span> expression<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">echo</span> expression | pipe | pipe<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>expression</code>
+            </dt>
+            <dd>
+              A PAD expression: fields, literals, arithmetic, comparisons, a ternary - and pipes after it. The whole text up to the closing brace is the expression.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{echo}</code> evaluates the expression written after its name and prints the value. The whole text up to the closing brace is one expression - it is not split into parameters - so <code>{echo $price * $qty}</code>, <code>{echo $n gt 1 ? 'items' : 'item'}</code> and <code>{echo 'Hello ' . $name}</code> all work. A quoted text is a literal: <code>{echo 5 + 3}</code> prints 8, <code>{echo '5 + 3'}</code> prints the text itself.
+          </p>
+          <p>
+            It is the tag to put in front of a pipe when the value is a literal or an expression: <code>{echo $text | trim | upper}</code>, <code>{echo $value | + 1}</code> (an arithmetic pipe needs the space after its operator). A field can be piped directly as well - <code>{$name | upper}</code> - and that is the difference that matters: the field tag runs the sanitize chain, <code>{echo}</code> does not. <code>{echo $html}</code> writes the value as it stands, markup and all, so use <code>{$html}</code> for anything a visitor typed and keep <code>{echo}</code> for values the application made itself.
+          </p>
+          <p>
+            A value is text, never template code: with <code>$v = '{php:getcwd}'</code>, <code>{echo $v}</code> prints those characters rather than running them. TRUE prints as <code>1</code>, FALSE and NULL as nothing.
+          </p>
+          <p>
+            Under the strict syntax check an <code>{echo}</code> with nothing before its first pipe - or nothing at all - is an error, as is an undefined field or a pipe function that does not exist.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Expressions
+            </h3>
+            <p class="example-about">
+              Arithmetic, a joined text and a ternary - and a quoted text that stays text.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/echo/1-expression.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">4.5</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$qty</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Total: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$qty</span> . <span class="hl-str">' '</span> . ( <span class="hl-var">$qty</span> gt <span class="hl-num">1</span> ? <span class="hl-str">'tickets'</span> : <span class="hl-str">'ticket'</span> )<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">5</span> + <span class="hl-num">3</span><span class="hl-brc">}</span> versus <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'5 + 3'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7echo%EA%A4%B71-expression.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Total: 13.5
+                  </p>
+                  <p>
+                    3 tickets
+                  </p>
+                  <p>
+                    8 versus 5 + 3
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              In front of a pipe
+            </h3>
+            <p class="example-about">
+              A literal or an expression goes through pipe functions; arithmetic pipes need a space after the operator.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/echo/2-pipes.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'  hello world  '</span> | trim | upper<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">20</span> | + <span class="hl-num">1</span> | * <span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'herbert@example.com'</span> | after(<span class="hl-str">'@'</span>) | before(<span class="hl-str">'.'</span>)<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7echo%EA%A4%B72-pipes.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    HELLO WORLD
+                  </p>
+                  <p>
+                    42
+                  </p>
+                  <p>
+                    example
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Raw against sanitized
+            </h3>
+            <p class="example-about">
+              The field tag escapes the markup of a value; echo writes it as it stands.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/echo/3-raw.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$note</span> = <span class="hl-str">'&lt;em&gt;fresh&lt;/em&gt; & hot'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Field tag: <span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>echo: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7echo%EA%A4%B73-raw.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Field tag: &lt;em&gt;fresh&lt;/em&gt; & hot
+                  </p>
+                  <p>
+                    echo: <em>fresh</em> & hot
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7field.html">{field}</a> <span class="about">Runs a SQL query on the application database and prints the single value it answers.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7trans.html">{trans}</a> <span class="about">Writes the text a key has in the _lang/ catalog of the request's locale, with plural forms and substitutions.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7dump.html">← {dump}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7emoji.html">{emoji} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

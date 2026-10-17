@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="17cc6274e6cd200ffae4bf14c8c0ca8b37a02fd87f0c1cc398d57e21b635bac1">
+  <meta name="pad-react-version" content="1791450383">
+  <title>Composition - PAD + React</title>
+
+  <link rel="stylesheet" href="react.css">
+
+  <!-- React 18 from a CDN, then the runtime of this application - islands, requests back
+       to PAD, the theme - and Babel, which turns the JSX of the components into JavaScript
+       in the browser: no build step -->
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script src="pad-react.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+  <script type="text/babel" src="ui.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + React home">
+      <svg class="brand-atom" viewBox="-12 -12 24 24" aria-hidden="true">
+        <circle r="2.1"/>
+        <g fill="none" stroke-width="1.1">
+          <ellipse rx="10" ry="3.9"/>
+          <ellipse rx="10" ry="3.9" transform="rotate(60)"/>
+          <ellipse rx="10" ry="3.9" transform="rotate(120)"/>
+        </g>
+      </svg>
+      <span>PAD <em>+</em> React</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html">Home</a>
+      
+        <a href="index%EF%B9%96patterns.html" class="is-active" aria-current="page">Patterns</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96patterns.html">Patterns</a><span aria-hidden="true">/</span>React basics</nav>
+  <h1><span class="example-icon" aria-hidden="true">🧩</span>Composition</h1>
+  <p class="lede">Small components - a card, a button, a todo item - put together into bigger ones with props and children.</p>
+  <div class="chips">
+    
+    <code class="chip is-client">props</code><code class="chip is-client">children</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<div id="components-demo"></div>
+
+<script type="text/babel" src="examples/components.js"></script>
+</section>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">React, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/components.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="client">www/react/examples/components.js</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;div</span> <span class="hl-opt">id</span>=<span class="hl-str">&quot;components-demo&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3"><span class="hl-htm">&lt;script</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;text/babel&quot;</span> <span class="hl-opt">src</span>=<span class="hl-str">&quot;{$padRoot}react/examples/components.js&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="js"><code><span class="hl-line" data-line="1"><span class="hl-com">// Composition: small components that take props and children, put together into bigger</span></span>
+<span class="hl-line" data-line="2"><span class="hl-com">// ones. Card and Button are used several times with different props; TodoApp is built from</span></span>
+<span class="hl-line" data-line="3"><span class="hl-com">// TodoItem - the list&#039;s state lives in the parent, the items only report what happened.</span></span>
+<span class="hl-line" data-line="4"></span>
+<span class="hl-line" data-line="5"><span class="hl-kwd">function</span> <span class="hl-fn">Card</span><span class="hl-pun">(</span><span class="hl-pun">{</span> title<span class="hl-pun">,</span> tone = <span class="hl-str">&#039;react&#039;</span><span class="hl-pun">,</span> children <span class="hl-pun">}</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-kwd">return</span> <span class="hl-pun">(</span></span>
+<span class="hl-line" data-line="7">    &lt;div className=<span class="hl-str">&quot;card&quot;</span> style=<span class="hl-pun">{</span><span class="hl-pun">{</span> borderTop: <span class="hl-str">`3px solid var(--${tone})`</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;</span>
+<span class="hl-line" data-line="8">      <span class="hl-pun">{</span>title &amp;&amp; &lt;h3 style=<span class="hl-pun">{</span><span class="hl-pun">{</span> marginTop: <span class="hl-num">0</span><span class="hl-pun">,</span> color: <span class="hl-str">`var(--${tone})`</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;<span class="hl-pun">{</span>title<span class="hl-pun">}</span>&lt;/h3&gt;<span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="9">      <span class="hl-pun">{</span>children<span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="10">    &lt;/div&gt;</span>
+<span class="hl-line" data-line="11">  <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="12"><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="13"></span>
+<span class="hl-line" data-line="14"><span class="hl-kwd">function</span> <span class="hl-fn">Button</span><span class="hl-pun">(</span><span class="hl-pun">{</span> variant = <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> onClick<span class="hl-pun">,</span> children <span class="hl-pun">}</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="15">  <span class="hl-kwd">return</span> &lt;button className=<span class="hl-pun">{</span><span class="hl-str">&#039;btn-sm &#039;</span> + variant<span class="hl-pun">}</span> onClick=<span class="hl-pun">{</span>onClick<span class="hl-pun">}</span>&gt;<span class="hl-pun">{</span>children<span class="hl-pun">}</span>&lt;/button&gt;<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="16"><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="17"></span>
+<span class="hl-line" data-line="18"><span class="hl-kwd">function</span> <span class="hl-fn">TodoItem</span><span class="hl-pun">(</span><span class="hl-pun">{</span> todo<span class="hl-pun">,</span> onToggle<span class="hl-pun">,</span> onDelete <span class="hl-pun">}</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="19">  <span class="hl-kwd">return</span> <span class="hl-pun">(</span></span>
+<span class="hl-line" data-line="20">    &lt;li className=<span class="hl-str">&quot;rise&quot;</span> style=<span class="hl-pun">{</span><span class="hl-pun">{</span> display: <span class="hl-str">&#039;flex&#039;</span><span class="hl-pun">,</span> alignItems: <span class="hl-str">&#039;center&#039;</span><span class="hl-pun">,</span> gap: <span class="hl-num">10</span><span class="hl-pun">,</span> padding: <span class="hl-str">&#039;8px 0&#039;</span><span class="hl-pun">,</span> borderBottom: <span class="hl-str">&#039;1px solid var(--line)&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;</span>
+<span class="hl-line" data-line="21">      &lt;input type=<span class="hl-str">&quot;checkbox&quot;</span> checked=<span class="hl-pun">{</span>todo<span class="hl-pun">.</span>done<span class="hl-pun">}</span> onChange=<span class="hl-pun">{</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">onToggle</span><span class="hl-pun">(</span>todo<span class="hl-pun">.</span>id<span class="hl-pun">)</span><span class="hl-pun">}</span> aria-label=<span class="hl-pun">{</span>todo<span class="hl-pun">.</span>text<span class="hl-pun">}</span> /&gt;</span>
+<span class="hl-line" data-line="22">      &lt;span style=<span class="hl-pun">{</span><span class="hl-pun">{</span> flex: <span class="hl-num">1</span><span class="hl-pun">,</span> textDecoration: todo<span class="hl-pun">.</span>done ? <span class="hl-str">&#039;line-through&#039;</span> : <span class="hl-str">&#039;none&#039;</span><span class="hl-pun">,</span> color: todo<span class="hl-pun">.</span>done ? <span class="hl-str">&#039;var(--faint)&#039;</span> : <span class="hl-str">&#039;inherit&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;<span class="hl-pun">{</span>todo<span class="hl-pun">.</span>text<span class="hl-pun">}</span>&lt;/span&gt;</span>
+<span class="hl-line" data-line="23">      &lt;button className=<span class="hl-str">&quot;btn-icon btn-ghost&quot;</span> onClick=<span class="hl-pun">{</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">onDelete</span><span class="hl-pun">(</span>todo<span class="hl-pun">.</span>id<span class="hl-pun">)</span><span class="hl-pun">}</span> aria-label=<span class="hl-pun">{</span><span class="hl-str">&#039;Delete &#039;</span> + todo<span class="hl-pun">.</span>text<span class="hl-pun">}</span>&gt;×&lt;/button&gt;</span>
+<span class="hl-line" data-line="24">    &lt;/li&gt;</span>
+<span class="hl-line" data-line="25">  <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="26"><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="27"></span>
+<span class="hl-line" data-line="28"><span class="hl-kwd">function</span> <span class="hl-fn">TodoApp</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="29">  <span class="hl-kwd">const</span> <span class="hl-pun">[</span>todos<span class="hl-pun">,</span> setTodos<span class="hl-pun">]</span> = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span><span class="hl-pun">[</span></span>
+<span class="hl-line" data-line="30">    <span class="hl-pun">{</span> id: <span class="hl-num">1</span><span class="hl-pun">,</span> text: <span class="hl-str">&#039;Learn React basics&#039;</span><span class="hl-pun">,</span> done: <span class="hl-lit">true</span> <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="31">    <span class="hl-pun">{</span> id: <span class="hl-num">2</span><span class="hl-pun">,</span> text: <span class="hl-str">&#039;Build a component&#039;</span><span class="hl-pun">,</span> done: <span class="hl-lit">false</span> <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="32">    <span class="hl-pun">{</span> id: <span class="hl-num">3</span><span class="hl-pun">,</span> text: <span class="hl-str">&#039;Mount it on a PAD page&#039;</span><span class="hl-pun">,</span> done: <span class="hl-lit">false</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="33">  <span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="34">  <span class="hl-kwd">const</span> <span class="hl-pun">[</span>text<span class="hl-pun">,</span> setText<span class="hl-pun">]</span> = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span><span class="hl-str">&#039;&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="35"></span>
+<span class="hl-line" data-line="36">  <span class="hl-kwd">const</span> add = event <span class="hl-pun">=&gt;</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="37">    event<span class="hl-pun">.</span><span class="hl-fn">preventDefault</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="38">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!text<span class="hl-pun">.</span><span class="hl-fn">trim</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="39">    <span class="hl-fn">setTodos</span><span class="hl-pun">(</span><span class="hl-pun">[</span><span class="hl-pun">.</span><span class="hl-pun">.</span><span class="hl-pun">.</span>todos<span class="hl-pun">,</span> <span class="hl-pun">{</span> id: Date<span class="hl-pun">.</span><span class="hl-fn">now</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">,</span> text: text<span class="hl-pun">.</span><span class="hl-fn">trim</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">,</span> done: <span class="hl-lit">false</span> <span class="hl-pun">}</span><span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="40">    <span class="hl-fn">setText</span><span class="hl-pun">(</span><span class="hl-str">&#039;&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="41">  <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="42"></span>
+<span class="hl-line" data-line="43">  <span class="hl-kwd">const</span> done = todos<span class="hl-pun">.</span><span class="hl-fn">filter</span><span class="hl-pun">(</span>todo <span class="hl-pun">=&gt;</span> todo<span class="hl-pun">.</span>done<span class="hl-pun">)</span><span class="hl-pun">.</span>length<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="44"></span>
+<span class="hl-line" data-line="45">  <span class="hl-kwd">return</span> <span class="hl-pun">(</span></span>
+<span class="hl-line" data-line="46">    &lt;div&gt;</span>
+<span class="hl-line" data-line="47">      &lt;form onSubmit=<span class="hl-pun">{</span>add<span class="hl-pun">}</span> style=<span class="hl-pun">{</span><span class="hl-pun">{</span> display: <span class="hl-str">&#039;flex&#039;</span><span class="hl-pun">,</span> gap: <span class="hl-num">8</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;</span>
+<span class="hl-line" data-line="48">        &lt;input className=<span class="hl-str">&quot;input&quot;</span> value=<span class="hl-pun">{</span>text<span class="hl-pun">}</span> onChange=<span class="hl-pun">{</span>event <span class="hl-pun">=&gt;</span> <span class="hl-fn">setText</span><span class="hl-pun">(</span>event<span class="hl-pun">.</span>target<span class="hl-pun">.</span>value<span class="hl-pun">)</span><span class="hl-pun">}</span> placeholder=<span class="hl-str">&quot;Something to do ...&quot;</span> aria-label=<span class="hl-str">&quot;New todo&quot;</span> /&gt;</span>
+<span class="hl-line" data-line="49">        &lt;button type=<span class="hl-str">&quot;submit&quot;</span>&gt;Add&lt;/button&gt;</span>
+<span class="hl-line" data-line="50">      &lt;/form&gt;</span>
+<span class="hl-line" data-line="51">      &lt;div className=<span class="hl-str">&quot;bar&quot;</span> style=<span class="hl-pun">{</span><span class="hl-pun">{</span> margin: <span class="hl-str">&#039;14px 0 4px&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;&lt;span style=<span class="hl-pun">{</span><span class="hl-pun">{</span> width: todos<span class="hl-pun">.</span>length ? <span class="hl-str">`${done / todos.length * 100}%`</span> : <span class="hl-num">0</span> <span class="hl-pun">}</span><span class="hl-pun">}</span> /&gt;&lt;/div&gt;</span>
+<span class="hl-line" data-line="52">      &lt;div className=<span class="hl-str">&quot;muted small&quot;</span>&gt;<span class="hl-pun">{</span>done<span class="hl-pun">}</span> <span class="hl-kwd">of</span> <span class="hl-pun">{</span>todos<span class="hl-pun">.</span>length<span class="hl-pun">}</span> done&lt;/div&gt;</span>
+<span class="hl-line" data-line="53">      &lt;ul style=<span class="hl-pun">{</span><span class="hl-pun">{</span> listStyle: <span class="hl-str">&#039;none&#039;</span><span class="hl-pun">,</span> padding: <span class="hl-num">0</span><span class="hl-pun">,</span> margin: <span class="hl-str">&#039;8px 0 0&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;</span>
+<span class="hl-line" data-line="54">        <span class="hl-pun">{</span>todos<span class="hl-pun">.</span><span class="hl-fn">map</span><span class="hl-pun">(</span>todo <span class="hl-pun">=&gt;</span> <span class="hl-pun">(</span></span>
+<span class="hl-line" data-line="55">          &lt;TodoItem key=<span class="hl-pun">{</span>todo<span class="hl-pun">.</span>id<span class="hl-pun">}</span> todo=<span class="hl-pun">{</span>todo<span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="56">                    onToggle=<span class="hl-pun">{</span>id <span class="hl-pun">=&gt;</span> <span class="hl-fn">setTodos</span><span class="hl-pun">(</span>todos<span class="hl-pun">.</span><span class="hl-fn">map</span><span class="hl-pun">(</span>one <span class="hl-pun">=&gt;</span> one<span class="hl-pun">.</span>id === id ? <span class="hl-pun">{</span> <span class="hl-pun">.</span><span class="hl-pun">.</span><span class="hl-pun">.</span>one<span class="hl-pun">,</span> done: !one<span class="hl-pun">.</span>done <span class="hl-pun">}</span> : one<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="57">                    onDelete=<span class="hl-pun">{</span>id <span class="hl-pun">=&gt;</span> <span class="hl-fn">setTodos</span><span class="hl-pun">(</span>todos<span class="hl-pun">.</span><span class="hl-fn">filter</span><span class="hl-pun">(</span>one <span class="hl-pun">=&gt;</span> one<span class="hl-pun">.</span>id !== id<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">}</span> /&gt;</span>
+<span class="hl-line" data-line="58">        <span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="59">      &lt;/ul&gt;</span>
+<span class="hl-line" data-line="60">      <span class="hl-pun">{</span>todos<span class="hl-pun">.</span>length === <span class="hl-num">0</span> &amp;&amp; &lt;div className=<span class="hl-str">&quot;empty-state&quot;</span>&gt;&lt;span className=<span class="hl-str">&quot;big&quot;</span>&gt;🎉&lt;/span&gt;All done<span class="hl-pun">.</span>&lt;/div&gt;<span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="61">    &lt;/div&gt;</span>
+<span class="hl-line" data-line="62">  <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="63"><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="64"></span>
+<span class="hl-line" data-line="65"><span class="hl-kwd">function</span> <span class="hl-fn">ComponentsDemo</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="66">  <span class="hl-kwd">const</span> <span class="hl-pun">[</span>message<span class="hl-pun">,</span> setMessage<span class="hl-pun">]</span> = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span><span class="hl-str">&#039;No button pressed yet&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="67"></span>
+<span class="hl-line" data-line="68">  <span class="hl-kwd">return</span> <span class="hl-pun">(</span></span>
+<span class="hl-line" data-line="69">    &lt;div className=<span class="hl-str">&quot;cols-2&quot;</span>&gt;</span>
+<span class="hl-line" data-line="70">      &lt;div style=<span class="hl-pun">{</span><span class="hl-pun">{</span> display: <span class="hl-str">&#039;grid&#039;</span><span class="hl-pun">,</span> gap: <span class="hl-num">16</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;</span>
+<span class="hl-line" data-line="71">        &lt;Card title=<span class="hl-str">&quot;A card&quot;</span>&gt;</span>
+<span class="hl-line" data-line="72">          &lt;p style=<span class="hl-pun">{</span><span class="hl-pun">{</span> margin: <span class="hl-num">0</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;Its title is a prop<span class="hl-pun">,</span> <span class="hl-kwd">this</span> text is its &lt;code&gt;children&lt;/code&gt;<span class="hl-pun">.</span>&lt;/p&gt;</span>
+<span class="hl-line" data-line="73">        &lt;/Card&gt;</span>
+<span class="hl-line" data-line="74">        &lt;Card title=<span class="hl-str">&quot;Buttons, three variants&quot;</span> tone=<span class="hl-str">&quot;pad&quot;</span>&gt;</span>
+<span class="hl-line" data-line="75">          &lt;div style=<span class="hl-pun">{</span><span class="hl-pun">{</span> display: <span class="hl-str">&#039;flex&#039;</span><span class="hl-pun">,</span> gap: <span class="hl-num">8</span><span class="hl-pun">,</span> flexWrap: <span class="hl-str">&#039;wrap&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;</span>
+<span class="hl-line" data-line="76">            &lt;Button onClick=<span class="hl-pun">{</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">setMessage</span><span class="hl-pun">(</span><span class="hl-str">&#039;The primary one&#039;</span><span class="hl-pun">)</span><span class="hl-pun">}</span>&gt;Primary&lt;/Button&gt;</span>
+<span class="hl-line" data-line="77">            &lt;Button variant=<span class="hl-str">&quot;btn-good&quot;</span> onClick=<span class="hl-pun">{</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">setMessage</span><span class="hl-pun">(</span><span class="hl-str">&#039;The good one&#039;</span><span class="hl-pun">)</span><span class="hl-pun">}</span>&gt;Good&lt;/Button&gt;</span>
+<span class="hl-line" data-line="78">            &lt;Button variant=<span class="hl-str">&quot;btn-danger&quot;</span> onClick=<span class="hl-pun">{</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">setMessage</span><span class="hl-pun">(</span><span class="hl-str">&#039;The dangerous one&#039;</span><span class="hl-pun">)</span><span class="hl-pun">}</span>&gt;Danger&lt;/Button&gt;</span>
+<span class="hl-line" data-line="79">          &lt;/div&gt;</span>
+<span class="hl-line" data-line="80">          &lt;p className=<span class="hl-str">&quot;muted small&quot;</span> style=<span class="hl-pun">{</span><span class="hl-pun">{</span> margin: <span class="hl-str">&#039;12px 0 0&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;Pressed: &lt;strong&gt;<span class="hl-pun">{</span>message<span class="hl-pun">}</span>&lt;/strong&gt;&lt;/p&gt;</span>
+<span class="hl-line" data-line="81">        &lt;/Card&gt;</span>
+<span class="hl-line" data-line="82">        &lt;Card title=<span class="hl-str">&quot;Cards in cards&quot;</span> tone=<span class="hl-str">&quot;good&quot;</span>&gt;</span>
+<span class="hl-line" data-line="83">          &lt;Card title=<span class="hl-str">&quot;Inner&quot;</span> tone=<span class="hl-str">&quot;warn&quot;</span>&gt;&lt;p style=<span class="hl-pun">{</span><span class="hl-pun">{</span> margin: <span class="hl-num">0</span> <span class="hl-pun">}</span><span class="hl-pun">}</span>&gt;Composition all the way down<span class="hl-pun">.</span>&lt;/p&gt;&lt;/Card&gt;</span>
+<span class="hl-line" data-line="84">        &lt;/Card&gt;</span>
+<span class="hl-line" data-line="85">      &lt;/div&gt;</span>
+<span class="hl-line" data-line="86">      &lt;Card title=<span class="hl-str">&quot;A todo list&quot;</span>&gt;</span>
+<span class="hl-line" data-line="87">        &lt;TodoApp /&gt;</span>
+<span class="hl-line" data-line="88">      &lt;/Card&gt;</span>
+<span class="hl-line" data-line="89">    &lt;/div&gt;</span>
+<span class="hl-line" data-line="90">  <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="91"><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="92"></span>
+<span class="hl-line" data-line="93">ReactDOM<span class="hl-pun">.</span><span class="hl-fn">createRoot</span><span class="hl-pun">(</span>document<span class="hl-pun">.</span><span class="hl-fn">getElementById</span><span class="hl-pun">(</span><span class="hl-str">&#039;components-demo&#039;</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">render</span><span class="hl-pun">(</span>&lt;ComponentsDemo /&gt;<span class="hl-pun">)</span><span class="hl-pun">;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7counter.html"><small>Previous</small>Counter with history</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7form.html"><small>Next</small>Controlled form</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> renders the page and owns the data &middot; <strong>React</strong> makes the islands in it interactive</p>
+    <p class="footer-small">React 18 and Babel come from unpkg.com &middot; the components live in <code>www/react/</code>, the pages in <code>apps/react/</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

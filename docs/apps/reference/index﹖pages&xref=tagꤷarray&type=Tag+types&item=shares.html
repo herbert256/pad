@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - shares
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - shares
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: charts - Page: sparkline/stocks<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sparkline/stocks.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sparkline/stocks.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Five shares and their closing price over the last fifteen days.<br><br>  </span><span style="color: #0000BB">$stocks </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'ASML'    </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">640</span><span style="color: #007700">, </span><span style="color: #0000BB">652</span><span style="color: #007700">, </span><span style="color: #0000BB">648</span><span style="color: #007700">, </span><span style="color: #0000BB">661</span><span style="color: #007700">, </span><span style="color: #0000BB">670</span><span style="color: #007700">, </span><span style="color: #0000BB">668</span><span style="color: #007700">, </span><span style="color: #0000BB">684</span><span style="color: #007700">, </span><span style="color: #0000BB">679</span><span style="color: #007700">, </span><span style="color: #0000BB">692</span><span style="color: #007700">, </span><span style="color: #0000BB">701</span><span style="color: #007700">, </span><span style="color: #0000BB">698</span><span style="color: #007700">, </span><span style="color: #0000BB">712</span><span style="color: #007700">, </span><span style="color: #0000BB">709</span><span style="color: #007700">, </span><span style="color: #0000BB">725</span><span style="color: #007700">, </span><span style="color: #0000BB">731 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Philips' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">21.4</span><span style="color: #007700">, </span><span style="color: #0000BB">21.1</span><span style="color: #007700">, </span><span style="color: #0000BB">20.8</span><span style="color: #007700">, </span><span style="color: #0000BB">21.0</span><span style="color: #007700">, </span><span style="color: #0000BB">20.6</span><span style="color: #007700">, </span><span style="color: #0000BB">20.2</span><span style="color: #007700">, </span><span style="color: #0000BB">20.5</span><span style="color: #007700">, </span><span style="color: #0000BB">19.9</span><span style="color: #007700">, </span><span style="color: #0000BB">19.6</span><span style="color: #007700">, </span><span style="color: #0000BB">19.8</span><span style="color: #007700">, </span><span style="color: #0000BB">19.3</span><span style="color: #007700">, </span><span style="color: #0000BB">19.5</span><span style="color: #007700">, </span><span style="color: #0000BB">19.1</span><span style="color: #007700">, </span><span style="color: #0000BB">18.8</span><span style="color: #007700">, </span><span style="color: #0000BB">18.9 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Shell'   </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">30.1</span><span style="color: #007700">, </span><span style="color: #0000BB">30.4</span><span style="color: #007700">, </span><span style="color: #0000BB">30.2</span><span style="color: #007700">, </span><span style="color: #0000BB">30.9</span><span style="color: #007700">, </span><span style="color: #0000BB">31.3</span><span style="color: #007700">, </span><span style="color: #0000BB">30.8</span><span style="color: #007700">, </span><span style="color: #0000BB">30.6</span><span style="color: #007700">, </span><span style="color: #0000BB">31.1</span><span style="color: #007700">, </span><span style="color: #0000BB">31.4</span><span style="color: #007700">, </span><span style="color: #0000BB">31.0</span><span style="color: #007700">, </span><span style="color: #0000BB">31.6</span><span style="color: #007700">, </span><span style="color: #0000BB">31.9</span><span style="color: #007700">, </span><span style="color: #0000BB">31.5</span><span style="color: #007700">, </span><span style="color: #0000BB">31.8</span><span style="color: #007700">, </span><span style="color: #0000BB">32.2 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Heineken'</span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">85</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">89 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Adyen'   </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">1210</span><span style="color: #007700">, </span><span style="color: #0000BB">1185</span><span style="color: #007700">, </span><span style="color: #0000BB">1240</span><span style="color: #007700">, </span><span style="color: #0000BB">1302</span><span style="color: #007700">, </span><span style="color: #0000BB">1276</span><span style="color: #007700">, </span><span style="color: #0000BB">1330</span><span style="color: #007700">, </span><span style="color: #0000BB">1295</span><span style="color: #007700">, </span><span style="color: #0000BB">1361</span><span style="color: #007700">, </span><span style="color: #0000BB">1408</span><span style="color: #007700">, </span><span style="color: #0000BB">1372</span><span style="color: #007700">, </span><span style="color: #0000BB">1440</span><span style="color: #007700">, </span><span style="color: #0000BB">1415</span><span style="color: #007700">, </span><span style="color: #0000BB">1478</span><span style="color: #007700">, </span><span style="color: #0000BB">1452</span><span style="color: #007700">, </span><span style="color: #0000BB">1499 </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$shares </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$stocks </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$closes </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$shares </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$closes</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'last'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">end </span><span style="color: #007700">( </span><span style="color: #0000BB">$closes </span><span style="color: #007700">),<br>                   </span><span style="color: #DD0000">'change' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( ( </span><span style="color: #0000BB">end </span><span style="color: #007700">( </span><span style="color: #0000BB">$closes </span><span style="color: #007700">) / </span><span style="color: #0000BB">$closes </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] - </span><span style="color: #0000BB">1 </span><span style="color: #007700">) * </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table class="quotes"&gt;<br>  &lt;tr&gt;&lt;th&gt;Share&lt;/th&gt;&lt;th&gt;15 days&lt;/th&gt;&lt;th&gt;Last&lt;/th&gt;&lt;th&gt;Change&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">shares</font><font color="red"></font>}</b><br>  &lt;tr&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>closes<font color="black">'</font><font color="black">,</font> width=140<font color="black">,</font> height=30<font color="black">,</font> title=<font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/td&gt;<br>    &lt;td class="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>change ge 0 ? <font color="black">'</font>up<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>down<font color="black">'</font></font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>change</font>}</b> %&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">shares</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa224302570ef9d02f840166dee529ba7"></div>
+                        <script>
+                        padAjaxa224302570ef9d02f840166dee529ba7 = new XMLHttpRequest();
+                        padAjaxa224302570ef9d02f840166dee529ba7.onreadystatechange=function() {
+                        if (padAjaxa224302570ef9d02f840166dee529ba7.readyState === 4) {
+                        if (padAjaxa224302570ef9d02f840166dee529ba7.status === 200) {
+                        document.getElementById("padAjaxa224302570ef9d02f840166dee529ba7").innerHTML=padAjaxa224302570ef9d02f840166dee529ba7.responseText;
+                        } else {
+                        document.getElementById("padAjaxa224302570ef9d02f840166dee529ba7").innerHTML=padAjaxa224302570ef9d02f840166dee529ba7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa224302570ef9d02f840166dee529ba7.open("GET","http://localhost/pad/charts/?sparkline/stocks&padInclude",true);
+                        padAjaxa224302570ef9d02f840166dee529ba7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/sparkline/2-table<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/sparkline/2-table.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sparkline/2-table.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $shares </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Acme'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">65</span><span style="color: #007700">, </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">66</span><span style="color: #007700">, </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #0000BB">66</span><span style="color: #007700">, </span><span style="color: #0000BB">68</span><span style="color: #007700">, </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #0000BB">69</span><span style="color: #007700">, </span><span style="color: #0000BB">70 </span><span style="color: #007700">], </span><span style="color: #DD0000">'last' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">70 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Globex'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">21.4</span><span style="color: #007700">, </span><span style="color: #0000BB">21.1</span><span style="color: #007700">, </span><span style="color: #0000BB">20.8</span><span style="color: #007700">, </span><span style="color: #0000BB">21.0</span><span style="color: #007700">, </span><span style="color: #0000BB">20.6</span><span style="color: #007700">, </span><span style="color: #0000BB">20.2</span><span style="color: #007700">, </span><span style="color: #0000BB">20.5</span><span style="color: #007700">, </span><span style="color: #0000BB">19.9</span><span style="color: #007700">, </span><span style="color: #0000BB">19.6</span><span style="color: #007700">, </span><span style="color: #0000BB">19.8 </span><span style="color: #007700">], </span><span style="color: #DD0000">'last' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">19.8 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Initech'</span><span style="color: #007700">, </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">85</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">89 </span><span style="color: #007700">], </span><span style="color: #DD0000">'last' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">89 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A line per table row<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Inside a loop<font color="black">,</font> data= names a field of the row that holds a list.<font color="black">'</font></font>}</b><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Share&lt;/th&gt;&lt;th&gt;Ten days&lt;/th&gt;&lt;th&gt;Last&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">shares</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>closes<font color="black">'</font><font color="black">,</font> title=<font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">shares</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc7eb8abc88eeada3c5cba066cfc1967d"></div>
+                        <script>
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d = new XMLHttpRequest();
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d.onreadystatechange=function() {
+                        if (padAjaxc7eb8abc88eeada3c5cba066cfc1967d.readyState === 4) {
+                        if (padAjaxc7eb8abc88eeada3c5cba066cfc1967d.status === 200) {
+                        document.getElementById("padAjaxc7eb8abc88eeada3c5cba066cfc1967d").innerHTML=padAjaxc7eb8abc88eeada3c5cba066cfc1967d.responseText;
+                        } else {
+                        document.getElementById("padAjaxc7eb8abc88eeada3c5cba066cfc1967d").innerHTML=padAjaxc7eb8abc88eeada3c5cba066cfc1967d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d.open("GET","http://localhost/pad/tags/?examples/sparkline/2-table&padInclude",true);
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

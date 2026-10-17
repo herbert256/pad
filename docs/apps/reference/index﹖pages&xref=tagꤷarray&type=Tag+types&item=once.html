@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - once
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - once
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: variables/a_one_shot_iterator_page_variable_is_a_tag_of_its_rows<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_one_shot_iterator_page_variable_is_a_tag_of_its_rows.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_one_shot_iterator_page_variable_is_a_tag_of_its_rows.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An iterator that cannot rewind - a PDOStatement, a NoRewindIterator - is read once, and<br>  // its rows take its place: the type check read it, and the tag found it empty.<br><br>  </span><span style="color: #0000BB">$pdo </span><span style="color: #007700">= new </span><span style="color: #0000BB">PDO </span><span style="color: #007700">( </span><span style="color: #DD0000">'sqlite::memory:' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$pdo </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">exec </span><span style="color: #007700">( </span><span style="color: #DD0000">"create table t ( n int, name text )" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$pdo </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">exec </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into t values ( 1, 'a' ), ( 2, 'b' ), ( 3, 'c' )" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">= </span><span style="color: #0000BB">$pdo </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">query </span><span style="color: #007700">( </span><span style="color: #DD0000">"select n, name from t order by n" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">setFetchMode </span><span style="color: #007700">( </span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ASSOC </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$once </span><span style="color: #007700">= new </span><span style="color: #0000BB">NoRewindIterator </span><span style="color: #007700">( new </span><span style="color: #0000BB">ArrayIterator </span><span style="color: #007700">( [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ] ) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">rows[<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">rows</font><font color="red"></font>}</b>] again[<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>] once[<b>{<font color="blue">once</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">once</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8b7ad7da0ee19db9fc283f7267579305"></div>
+                        <script>
+                        padAjax8b7ad7da0ee19db9fc283f7267579305 = new XMLHttpRequest();
+                        padAjax8b7ad7da0ee19db9fc283f7267579305.onreadystatechange=function() {
+                        if (padAjax8b7ad7da0ee19db9fc283f7267579305.readyState === 4) {
+                        if (padAjax8b7ad7da0ee19db9fc283f7267579305.status === 200) {
+                        document.getElementById("padAjax8b7ad7da0ee19db9fc283f7267579305").innerHTML=padAjax8b7ad7da0ee19db9fc283f7267579305.responseText;
+                        } else {
+                        document.getElementById("padAjax8b7ad7da0ee19db9fc283f7267579305").innerHTML=padAjax8b7ad7da0ee19db9fc283f7267579305.statusText;
+                        }
+                        }
+                        }
+                        padAjax8b7ad7da0ee19db9fc283f7267579305.open("GET","http://localhost/pad/regression/framework/?variables/a_one_shot_iterator_page_variable_is_a_tag_of_its_rows&padInclude",true);
+                        padAjax8b7ad7da0ee19db9fc283f7267579305.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

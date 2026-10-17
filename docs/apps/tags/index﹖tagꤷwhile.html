@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {while} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#loops">Loops and trees</a><span>/</span><span aria-current="page">while</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>while<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content again and again for as long as a condition holds.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#loops">Loops and trees</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">while</span> condition<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/while</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">while</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/while</span> condition<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>condition</code>
+            </dt>
+            <dd>
+              An expression, evaluated again before every pass; the loop ends when it is false. Written on the closing tag instead, it is tested after each pass, so the content renders at least once.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{while condition}</code> tests its condition and, while it holds, renders its content and tests again. Something inside the content has to change what the condition reads - an <a href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a>, a <a href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> - or the loop never ends. The variables it counts with are ordinary globals, so their last value is still there after the loop.
+          </p>
+          <p>
+            Written on the closing tag - <code>{while} ... {/while $i lt 10}</code> - the condition is tested after each pass instead of before it: a do-while, whose content renders once even when the condition is false from the start.
+          </p>
+          <p>
+            <a href="index%EF%B9%96tag%EA%A4%B7until.html">{until}</a> is the same loop with the test turned round: it runs while the condition is false. <a href="index%EF%B9%96tag%EA%A4%B7break.html">{break}</a> leaves the loop at once, <a href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease}</a> lets the current pass finish and asks for no further one, and <a href="index%EF%B9%96tag%EA%A4%B7continue.html">{continue}</a> skips the rest of the current pass.
+          </p>
+          <p>
+            A loop whose condition never turns is stopped after 10000 passes (the sequences' ceiling, <code>$padSeqDefaultTries</code>) instead of running until PHP's time limit; under the strict syntax check that is an error naming the loop. A <code>{while}</code> without a condition or without its closing tag is an error as well. To repeat over data or a fixed range, a data tag or <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence '1..10'}</a> is simpler.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Counting up
+            </h3>
+            <p class="example-about">
+              The content repeats while the condition holds; {increment} moves it on.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/while/1-count.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$step</span> = <span class="hl-num">1</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">while</span> <span class="hl-var">$step</span> le <span class="hl-num">5</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$step</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$step</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/while</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After the loop <span class="hl-var">$step</span> is <span class="hl-brc">{</span><span class="hl-var">$step</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7while%EA%A4%B71-count.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    1 2 3 4 5
+                  </p>
+                  <p>
+                    After the loop $step is 6.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The condition on the closing tag
+            </h3>
+            <p class="example-about">
+              Tested after each pass: the content renders once even though the condition is false from the start.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/while/2-dowhile.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$tries</span> = <span class="hl-num">7</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Before: <span class="hl-brc">{</span><span class="hl-tag">while</span> <span class="hl-var">$tries</span> lt <span class="hl-num">3</span><span class="hl-brc">}</span>[<span class="hl-brc">{</span><span class="hl-var">$tries</span><span class="hl-brc">}</span>]<span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$tries</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/while</span><span class="hl-brc">}</span> - nothing.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After: <span class="hl-brc">{</span><span class="hl-tag">while</span><span class="hl-brc">}</span>[<span class="hl-brc">{</span><span class="hl-var">$tries</span><span class="hl-brc">}</span>]<span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$tries</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/while</span> <span class="hl-var">$tries</span> lt <span class="hl-num">3</span><span class="hl-brc">}</span> - one pass.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7while%EA%A4%B72-dowhile.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Before: - nothing.
+                  </p>
+                  <p>
+                    After: [7] - one pass.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7until.html">{until}</a> <span class="about">Renders its content again and again until a condition becomes true.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a> <span class="about">Adds one to a variable, starting it at 1 when it does not exist yet.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7break.html">{break}</a> <span class="about">Leaves a loop at once: the rest of the current pass is dropped and no further row follows.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7continue.html">{continue}</a> <span class="about">Skips the rest of the current pass of a loop and goes on with its next row.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease}</a> <span class="about">Ends a loop gracefully: the current pass finishes, and no further row follows.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7vite.html">← {vite}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7accordion.html">{accordion} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

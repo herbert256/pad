@@ -30,7 +30,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -54,6 +54,9 @@
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data.html">_data/</a>
                   </li>
                   <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_guide.html">_guide/</a>
+                  </li>
+                  <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_lib.html">_lib/</a>
                   </li>
                   <li class="dir">
@@ -61,6 +64,9 @@
                   </li>
                   <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tests.html">_tests/</a>
                   </li>
                   <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=examples.html">examples/</a>
@@ -71,16 +77,7 @@
                   <li class="current">_inits.php
                   </li>
                   <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.pad.html">components.pad</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.php.html">components.php</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.pad.html">examples.pad</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.php.html">examples.php</a>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=guide.pad.html">guide.pad</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.pad.html">index.pad</a>
@@ -88,13 +85,19 @@
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.php.html">index.php</a>
                   </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=patterns.pad.html">patterns.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=patterns.php.html">patterns.php</a>
+                  </li>
                 </ul>
               </div>
               <div class="source-view">
                 <h3>
                   _inits.php
                 </h3>
-                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Default page title (can be overridden in individual pages)<br>  </span><span style="color: #007700">if (!isset(</span><span style="color: #0000BB">$title</span><span style="color: #007700">)) {<br>    </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD + React'</span><span style="color: #007700">;<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Every page: the title the wrapper writes unless the page sets its own, the section of<br>  // the menu that is lit - the first part of the page's name, the examples belonging to the<br>  // patterns - and the version of the files in www/react/.<br><br>  </span><span style="color: #0000BB">$title      </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD + React'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$navSection </span><span style="color: #007700">= </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">'/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$padPage </span><span style="color: #007700">) [</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br><br>  if ( </span><span style="color: #0000BB">$navSection </span><span style="color: #007700">== </span><span style="color: #DD0000">'examples' </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$navSection </span><span style="color: #007700">= </span><span style="color: #DD0000">'patterns'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The version of www/react/ - when its newest file was saved - for the addresses of the<br>  // stylesheet and the scripts: a browser keeps such a file a while without asking again,<br>  // and would run the old copy of a component that changed (pad-react.js).<br><br>  </span><span style="color: #0000BB">$reactWww     </span><span style="color: #007700">= </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">APPS </span><span style="color: #007700">) . </span><span style="color: #DD0000">"/www/</span><span style="color: #0000BB">$padApp</span><span style="color: #DD0000">/"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$reactFiles   </span><span style="color: #007700">= </span><span style="color: #0000BB">array_merge </span><span style="color: #007700">( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$reactWww</span><span style="color: #DD0000">*.css" </span><span style="color: #007700">) ?: [], </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$reactWww</span><span style="color: #DD0000">*.js" </span><span style="color: #007700">) ?: [], </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #007700">{</span><span style="color: #0000BB">$reactWww</span><span style="color: #007700">}</span><span style="color: #DD0000">examples/*.js" </span><span style="color: #007700">) ?: [] );<br>  </span><span style="color: #0000BB">$reactVersion </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'filemtime'</span><span style="color: #007700">, </span><span style="color: #0000BB">$reactFiles </span><span style="color: #007700">) ?: [ </span><span style="color: #0000BB">0 </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
               </div>
             </div>
           </div>
@@ -108,7 +111,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

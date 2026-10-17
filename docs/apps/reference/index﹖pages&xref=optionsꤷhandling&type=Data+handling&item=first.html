@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -86,6 +86,46 @@
                         }
                         padAjax1905c0f20d0e7efbc018cf5d50f42794.open("GET","http://localhost/pad/regression/framework/?options/a_dotted_option_value_keeps_the_level_name&padInclude",true);
                         padAjax1905c0f20d0e7efbc018cf5d50f42794.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/a_level_the_handling_empties_takes_its_else_and_notok<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/a_level_the_handling_empties_takes_its_else_and_notok.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>none<font color="black">'</font></font>}</b>nothing<b>{/<font color="blue">content</font><font color="red"></font>}</b><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>oops<font color="black">'</font></font>}</b>bad<b>{/<font color="blue">content</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>else:[<b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>xs gt 5<font color="black">'</font><font color="black">,</font> else=<font color="black">'</font>none<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>] first:[<b>{<font color="blue">xs </font><font color="red">first=0<font color="black">,</font> else=<font color="black">'</font>none<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>] notOk:[<b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>xs gt 5<font color="black">'</font><font color="black">,</font> notOk=<font color="black">'</font>oops<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>] kept:[<b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>xs gt 1<font color="black">'</font><font color="black">,</font> else=<font color="black">'</font>none<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax614543cd576658a4e4b14810c2e82fa4"></div>
+                        <script>
+                        padAjax614543cd576658a4e4b14810c2e82fa4 = new XMLHttpRequest();
+                        padAjax614543cd576658a4e4b14810c2e82fa4.onreadystatechange=function() {
+                        if (padAjax614543cd576658a4e4b14810c2e82fa4.readyState === 4) {
+                        if (padAjax614543cd576658a4e4b14810c2e82fa4.status === 200) {
+                        document.getElementById("padAjax614543cd576658a4e4b14810c2e82fa4").innerHTML=padAjax614543cd576658a4e4b14810c2e82fa4.responseText;
+                        } else {
+                        document.getElementById("padAjax614543cd576658a4e4b14810c2e82fa4").innerHTML=padAjax614543cd576658a4e4b14810c2e82fa4.statusText;
+                        }
+                        }
+                        }
+                        padAjax614543cd576658a4e4b14810c2e82fa4.open("GET","http://localhost/pad/regression/framework/?options/a_level_the_handling_empties_takes_its_else_and_notok&padInclude",true);
+                        padAjax614543cd576658a4e4b14810c2e82fa4.send();
                         </script>
                       </td>
                     </tr>
@@ -495,6 +535,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: options/two_sorts_each_sort_on_their_own_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/two_sorts_each_sort_on_their_own_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/two_sorts_each_sort_on_their_own_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A sort before first= and one after it, a sort before a group and one after it: each<br>  // sorts on its own value - both sorted on the last one written.<br><br>  </span><span style="color: #0000BB">$xs     </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-03' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-01' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-02' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-01' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-02' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">xs </font><font color="red">sort=<font color="black">'</font>n<font color="black">'</font><font color="black">,</font> first=2<font color="black">,</font> sort=<font color="black">'</font>n DESC<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b>] <b>{<font color="blue">orders </font><font color="red">sort=<font color="black">'</font>d<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>t<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>t DESC<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>c</font>}</b>:<b>{<font color="green"><font color="red">$</font>t</font>}</b>:<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>d</font>}</b>/<b>{<font color="green"><font color="red">$</font>t</font>}</b>,<b>{/<font color="blue">rows</font><font color="red"></font>}</b>]<b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6ce4271bd9740a1908aa43389fe76b5b"></div>
+                        <script>
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b = new XMLHttpRequest();
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b.onreadystatechange=function() {
+                        if (padAjax6ce4271bd9740a1908aa43389fe76b5b.readyState === 4) {
+                        if (padAjax6ce4271bd9740a1908aa43389fe76b5b.status === 200) {
+                        document.getElementById("padAjax6ce4271bd9740a1908aa43389fe76b5b").innerHTML=padAjax6ce4271bd9740a1908aa43389fe76b5b.responseText;
+                        } else {
+                        document.getElementById("padAjax6ce4271bd9740a1908aa43389fe76b5b").innerHTML=padAjax6ce4271bd9740a1908aa43389fe76b5b.statusText;
+                        }
+                        }
+                        }
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b.open("GET","http://localhost/pad/regression/framework/?options/two_sorts_each_sort_on_their_own_value&padInclude",true);
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: options/where_runs_in_order_with_first<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -534,46 +616,6 @@
                       </td>
                     </tr>
                   </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/ifchanged_starts_afresh_when_the_loop_runs_again<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/ifchanged_starts_afresh_when_the_loop_runs_again.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b>[{"c":"ann","n":1},{"c":"ann","n":2},{"c":"bob","n":3},{"c":"ann","n":4}]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">orders </font><font color="red">first=2</font>}</b><b>{<font color="blue">ifchanged </font><font color="red"><font color="red">$</font>c</font>}</b>&lt;h&gt;<b>{<font color="green"><font color="red">$</font>c</font>}</b>&lt;/h&gt;<b>{/<font color="blue">ifchanged</font><font color="red"></font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b>][<b>{<font color="blue">orders </font><font color="red">first=2</font>}</b><b>{<font color="blue">ifchanged </font><font color="red"><font color="red">$</font>c</font>}</b>&lt;h&gt;<b>{<font color="green"><font color="red">$</font>c</font>}</b>&lt;/h&gt;<b>{/<font color="blue">ifchanged</font><font color="red"></font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax452d041acc963353785db69c22dc4e28"></div>
-                        <script>
-                        padAjax452d041acc963353785db69c22dc4e28 = new XMLHttpRequest();
-                        padAjax452d041acc963353785db69c22dc4e28.onreadystatechange=function() {
-                        if (padAjax452d041acc963353785db69c22dc4e28.readyState === 4) {
-                        if (padAjax452d041acc963353785db69c22dc4e28.status === 200) {
-                        document.getElementById("padAjax452d041acc963353785db69c22dc4e28").innerHTML=padAjax452d041acc963353785db69c22dc4e28.responseText;
-                        } else {
-                        document.getElementById("padAjax452d041acc963353785db69c22dc4e28").innerHTML=padAjax452d041acc963353785db69c22dc4e28.statusText;
-                        }
-                        }
-                        }
-                        padAjax452d041acc963353785db69c22dc4e28.open("GET","http://localhost/pad/regression/framework/?tags/ifchanged_starts_afresh_when_the_loop_runs_again&padInclude",true);
-                        padAjax452d041acc963353785db69c22dc4e28.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
                 </center>
               </td>
             </tr>
@@ -588,7 +630,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

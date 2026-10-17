@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {video} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-video){--pad-video-surface:#e9e7e2;--pad-video-hill:#d6d3cb;--pad-video-hill-2:#c6c2b8;--pad-video-sun:#f2c46b;--pad-video-button:rgba(18,18,18,.78);--pad-video-button-hover:#e0322b;--pad-video-arrow:#ffffff;--pad-video-text:#ffffff;--pad-video-focus:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-video){--pad-video-surface:light-dark(#e9e7e2,#22221f);--pad-video-hill:light-dark(#d6d3cb,#2f2f2b);--pad-video-hill-2:light-dark(#c6c2b8,#3a3a35);--pad-video-sun:light-dark(#f2c46b,#a9853a);--pad-video-button:light-dark(rgba(18,18,18,.78),rgba(0,0,0,.72));--pad-video-button-hover:light-dark(#e0322b,#e0322b);--pad-video-arrow:light-dark(#ffffff,#ffffff);--pad-video-text:light-dark(#ffffff,#ffffff);--pad-video-focus:light-dark(#2a78d6,#7fb2f0);}}.pad-video{position:relative;display:block;aspect-ratio:16/9;width:100%;max-width:100%;overflow:hidden;border-radius:10px;background:var(--pad-video-surface);color:var(--pad-video-text)}video.pad-video{height:auto;background:#000}.pad-video-poster,.pad-video iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}.pad-video-drawn rect{fill:var(--pad-video-surface)}.pad-video-drawn path{fill:var(--pad-video-hill)}.pad-video-drawn path+path{fill:var(--pad-video-hill-2)}.pad-video-drawn circle{fill:var(--pad-video-sun)}.pad-video-play,.pad-video-link{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;margin:0;padding:12px;border:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.55));color:var(--pad-video-text);font:600 15px/1.3 system-ui,sans-serif;text-align:center;text-decoration:none;cursor:pointer}.pad-video-link{justify-content:flex-end;padding-bottom:18px;text-decoration:underline;text-shadow:0 1px 3px rgba(0,0,0,.7)}.pad-video-play svg{flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}.pad-video-disc{fill:var(--pad-video-button);transition:fill .15s}.pad-video-arrow{fill:var(--pad-video-arrow)}.pad-video-play:hover .pad-video-disc,.pad-video-play:focus-visible .pad-video-disc{fill:var(--pad-video-button-hover)}.pad-video-play:focus-visible,.pad-video-link:focus-visible{outline:3px solid var(--pad-video-focus);outline-offset:-3px}.pad-video-title{position:absolute;left:14px;right:14px;bottom:30px;text-shadow:0 1px 3px rgba(0,0,0,.6)}.pad-video-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.pad-video-site{position:absolute;left:14px;right:14px;bottom:12px;font-size:12px;font-weight:500;opacity:.85}@media (scripting:none){.pad-video-play{display:none}}@media print{.pad-video-play svg{display:none}}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">video</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>video<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">video</span> <span class="hl-str">'https://www.youtube.com/watch?v=id'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">video</span> <span class="hl-str">'https://vimeo.com/id#t=1m30s'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/still.jpg'</span>, <span class="hl-opt">ratio</span>=<span class="hl-str">'16:9'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">video</span> <span class="hl-str">'clips/sunrise.webm'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/sunrise.jpg'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>address</code>
+            </dt>
+            <dd>
+              A YouTube address (<code>watch?v=</code>, <code>youtu.be/</code>, <code>/shorts/</code>, <code>/embed/</code>, <code>/live/</code>, youtube-nocookie.com), a Vimeo address (<code>vimeo.com/&lt;id&gt;</code>, <code>player.vimeo.com/video/&lt;id&gt;</code>) or a <code>.mp4</code>, <code>.webm</code>, <code>.ogv</code> or <code>.mov</code> file of <code>www/&lt;application&gt;/</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              Required: the play button's text, the iframe's title, the video element's name.
+            </dd>
+            <dt>
+              <code>poster</code>
+            </dt>
+            <dd>
+              A picture of <code>www/&lt;application&gt;/</code> (versioned as <code>{asset}</code>) in place of the site's thumbnail.
+            </dd>
+            <dt>
+              <code>at</code>
+            </dt>
+            <dd>
+              The moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>; a <code>t=</code>, <code>start=</code> or <code>#t=</code> in the address says it too.
+            </dd>
+            <dt>
+              <code>ratio</code>
+            </dt>
+            <dd>
+              The proportion, default <code>16:9</code>; a short is <code>9:16</code> and kept to a phone's width.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{video}</code> embeds a YouTube or Vimeo video without letting the video site run anything before the visitor asks for it (<code>tags/_lib/video.php</code>). The page shows a poster with a play button; only a click on the button puts the player's iframe in the poster's place and moves the focus into it.
+          </p>
+          <p>
+            The poster of a YouTube video is its thumbnail on i.ytimg.com - an image, no script and no cookie - and the player comes from youtube-nocookie.com with <code>autoplay=1&amp;rel=0</code>. A Vimeo video gets a quiet drawn poster unless <code>poster</code> names a picture, and its player is asked with <code>dnt=1</code>. The small script that swaps poster and player is written once per request, with the CSP nonce when <code>$padCsp</code> asks for one. Without script the button is hidden and a <code>&lt;noscript&gt;</code> link to the video on its own site stands in its place.
+          </p>
+          <p>
+            A file of <code>www/&lt;application&gt;/</code> - <code>.mp4</code>, <code>.webm</code>, <code>.ogv</code> or <code>.mov</code> - is written as <code>&lt;video controls preload="none" playsinline&gt;</code> with its poster: nothing is loaded before play. A start time is written in the address - <code>t=</code>, <code>start=</code> or <code>#t=</code> - or as the <code>at</code> option, as <code>90</code>, <code>1m30s</code> or <code>1:30</code>; not as <code>start</code>, the handling option that skips occurrences. <code>ratio</code> sets the proportion of the box. The colours are <code>--pad-video-*</code> custom properties on <code>.pad-video</code>.
+          </p>
+          <p>
+            <code>title</code> is required - it is what a screen reader says for the button and the player. A missing title and an address that is no known video are errors under the strict check.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              YouTube without tracking
+            </h3>
+            <p class="example-about">
+              The thumbnail and a play button - the player comes from youtube-nocookie.com only after the click.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/video/1-youtube.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"max-width:480px"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">video</span> <span class="hl-str">'https://www.youtube.com/watch?v=aqz-KE-bpKQ'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Big Buck Bunny - Blender Foundation'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B71-youtube.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div style="max-width:480px">
+                    <script>
+                    (function () {
+                    if (window.padVideoReady) return;
+                    window.padVideoReady = true;
+                    document.addEventListener('click', function (event) {
+                    var button = event.target.closest && event.target.closest('.pad-video-play');
+                    if (!button) return;
+                    event.preventDefault();
+                    var frame = document.createElement('iframe');
+                    frame.src = button.getAttribute('data-pad-video');
+                    frame.title = button.getAttribute('data-pad-title');
+                    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                    frame.allowFullscreen = true;
+                    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+                    var box = button.parentNode;
+                    box.querySelectorAll('.pad-video-poster').forEach(function (poster) { poster.remove(); });
+                    box.replaceChild(frame, button);
+                    frame.focus();
+                    });
+                    })();
+                    </script>
+                    <div class="pad-video pad-video-youtube">
+                      <img class="pad-video-poster" src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg" alt="" loading="lazy" decoding="async"><button type="button" class="pad-video-play" data-pad-video="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?autoplay=1&amp;rel=0" data-pad-title="Big Buck Bunny - Blender Foundation"><svg viewbox="0 0 68 48" width="68" height="48" aria-hidden="true" focusable="false">
+                      <rect class="pad-video-disc" width="68" height="48" rx="14"></rect>
+                      <path class="pad-video-arrow" d="M27 14v20l18-10z"></path></svg><span class="pad-video-title"><span class="pad-video-hidden">Play</span> Big Buck Bunny - Blender Foundation</span><span class="pad-video-site">Plays from YouTube</span></button><noscript><a class="pad-video-link" href="https://www.youtube.com/watch?v=aqz-KE-bpKQ">Watch “Big Buck Bunny - Blender Foundation” on YouTube</a></noscript>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Vimeo from a start time
+            </h3>
+            <p class="example-about">
+              A Vimeo address with a #t= start time and a drawn poster - the player is asked with dnt=1.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/video/2-vimeo.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"max-width:480px"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">video</span> <span class="hl-str">'https://vimeo.com/76979871#t=1m30s'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'The new Vimeo player'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B72-vimeo.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div style="max-width:480px">
+                    <div class="pad-video pad-video-vimeo">
+                      <svg class="pad-video-poster pad-video-drawn" viewbox="0 0 160 90" preserveaspectratio="xMidYMid slice" aria-hidden="true" focusable="false">
+                      <rect width="160" height="90"></rect>
+                      <path d="M0 64 Q40 44 80 60 T160 52 V90 H0Z"></path>
+                      <path d="M0 74 Q50 58 96 72 T160 66 V90 H0Z"></path>
+                      <circle cx="122" cy="26" r="9"></circle></svg><button type="button" class="pad-video-play" data-pad-video="https://player.vimeo.com/video/76979871?autoplay=1&amp;dnt=1#t=90s" data-pad-title="The new Vimeo player"><svg viewbox="0 0 68 48" width="68" height="48" aria-hidden="true" focusable="false">
+                      <rect class="pad-video-disc" width="68" height="48" rx="14"></rect>
+                      <path class="pad-video-arrow" d="M27 14v20l18-10z"></path></svg><span class="pad-video-title"><span class="pad-video-hidden">Play</span> The new Vimeo player</span><span class="pad-video-site">Plays from Vimeo</span></button><noscript><a class="pad-video-link" href="https://vimeo.com/76979871#t=90s">Watch “The new Vimeo player” on Vimeo</a></noscript>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              A clip of your own
+            </h3>
+            <p class="example-about">
+              A WebM file of www/&lt;app&gt;/ as a video element - its poster shown, nothing loaded before play.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/video/3-file.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">video</span> <span class="hl-str">'clips/sunrise.webm'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'A sun crossing the sky'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/sunrise.jpg'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{img}</a> <span class="about">Writes a picture of the application's www directory as a thumbnail of the size the page shows it at, resized once with GD.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7asset.html">{asset}</a> <span class="about">The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7modal.html">{modal}</a> <span class="about">A dialog over the page with the button that opens it - works with and without JavaScript.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7validator.html">← {validator}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7vite.html">{vite} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

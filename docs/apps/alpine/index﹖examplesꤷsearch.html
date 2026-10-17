@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="c4558b61ac1466d9bfed6875a4b3b19c0d8883116db815f2a297d3ba87a1ad8e">
+  <title>Live search - PAD + Alpine</title>
+  <link rel="stylesheet" href="alpine.css">
+  <!-- The application's own helpers first - pad.get, pad.post, the request log - then Alpine,
+       deferred: the components of a page register themselves before Alpine starts -->
+  <script src="alpine-app.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.17.4/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + Alpine home">
+      <svg class="brand-mark" viewBox="0 0 32 20" aria-hidden="true"><path d="M10 0 20 10 10 20 0 10z"/><path d="M22 0 32 10 22 20 12 10z" opacity=".55"/></svg>
+      <span>PAD <em>+</em> Alpine</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Talking back to PAD</nav>
+  <h1><span class="example-icon" aria-hidden="true">🔎</span>Live search</h1>
+  <p class="lede">x-model.debounce feeds a fetch of the same page with padFormat=json; the PHP that rendered the first results answers the next ones as JSON - $padExpose names what may leave.</p>
+  <div class="chips">
+    <code class="chip is-server">$padExpose</code><code class="chip is-server">padFormat=json</code>
+    <code class="chip is-client">x-model.debounce</code><code class="chip is-client">x-for</code><code class="chip is-client">fetch</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<div x-data="search({&quot;q&quot;:&quot;&quot;,&quot;count&quot;:24,&quot;items&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;Aurora Headphones&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:189,&quot;rating&quot;:4.6,&quot;stock&quot;:14,&quot;emoji&quot;:&quot;🎧&quot;,&quot;blurb&quot;:&quot;Over-ear, noise cancelling, forty hours on a charge&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Pebble Earbuds&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:79,&quot;rating&quot;:4.2,&quot;stock&quot;:32,&quot;emoji&quot;:&quot;🎶&quot;,&quot;blurb&quot;:&quot;Small enough to forget, loud enough to notice&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Boom Speaker&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:129,&quot;rating&quot;:4.4,&quot;stock&quot;:8,&quot;emoji&quot;:&quot;🔊&quot;,&quot;blurb&quot;:&quot;Waterproof, pairs with a second one for stereo&quot;},{&quot;id&quot;:4,&quot;name&quot;:&quot;Studio Microphone&quot;,&quot;category&quot;:&quot;Audio&quot;,&quot;price&quot;:99,&quot;rating&quot;:4.5,&quot;stock&quot;:0,&quot;emoji&quot;:&quot;🎙️&quot;,&quot;blurb&quot;:&quot;USB condenser with a mute button that clicks&quot;},{&quot;id&quot;:5,&quot;name&quot;:&quot;Nimbus Laptop 14&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:1299,&quot;rating&quot;:4.7,&quot;stock&quot;:5,&quot;emoji&quot;:&quot;💻&quot;,&quot;blurb&quot;:&quot;Fourteen inches, one kilo, a whole day of battery&quot;},{&quot;id&quot;:6,&quot;name&quot;:&quot;Atlas Monitor 27&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:349,&quot;rating&quot;:4.3,&quot;stock&quot;:11,&quot;emoji&quot;:&quot;🖥️&quot;,&quot;blurb&quot;:&quot;1440p at 144 Hz, USB-C with power delivery&quot;},{&quot;id&quot;:7,&quot;name&quot;:&quot;Glide Mouse&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:39,&quot;rating&quot;:4.1,&quot;stock&quot;:54,&quot;emoji&quot;:&quot;🖱️&quot;,&quot;blurb&quot;:&quot;Silent clicks, three devices, one button to switch&quot;},{&quot;id&quot;:8,&quot;name&quot;:&quot;Tactile Keyboard&quot;,&quot;category&quot;:&quot;Computing&quot;,&quot;price&quot;:119,&quot;rating&quot;:4.8,&quot;stock&quot;:21,&quot;emoji&quot;:&quot;⌨️&quot;,&quot;blurb&quot;:&quot;Hot-swappable switches in a seventy-five percent frame&quot;}]})">
+
+  <div class="toolbar">
+    <div class="search">
+      <input class="input" type="search" x-model.debounce.250ms="q" @input.debounce.250ms="ask()" placeholder="Search - try lamp, audio or usb" aria-label="Search the products">
+    </div>
+    <span class="spinner" x-show="busy" x-cloak aria-hidden="true"></span>
+  </div>
+
+  <p class="muted small"><span x-text="count">24</span> found - the first eight shown</p>
+
+  <div class="grid results">
+    <template x-for="item in items" :key="item.id">
+      <div class="card result">
+        <span class="result-emoji" x-text="item.emoji"></span>
+        <div>
+          <strong x-text="item.name"></strong>
+          <div class="muted small" x-text="item.category + ' · € ' + item.price.toFixed(2)"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <p class="empty-state" x-show="count === 0" x-cloak>Nothing in the catalogue matches.</p>
+</div>
+
+<script src="examples/search.js"></script>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests to PAD</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request a component makes to PAD shows here.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">Alpine, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/search.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/search.php</label><input type="radio" name="pad-source-1" id="pad-source-1-3"><label for="pad-source-1-3" data-side="client">www/alpine/examples/search.js</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;div</span> <span class="hl-opt">x-data</span>=<span class="hl-str">&quot;search({^result})&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;toolbar&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4">    <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;search&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="5">      <span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input&quot;</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;search&quot;</span> x-model.debounce.250ms=<span class="hl-str">&quot;q&quot;</span> @input.debounce.250ms=<span class="hl-str">&quot;ask()&quot;</span> <span class="hl-opt">placeholder</span>=<span class="hl-str">&quot;Search - try lamp, audio or usb&quot;</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;Search the products&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="6">    <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="7">    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;spinner&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;busy&quot;</span> x-cloak <span class="hl-opt">aria-hidden</span>=<span class="hl-str">&quot;true&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8">  <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10">  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted small&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;span</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;count&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$result.count</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span> found - the first eight shown<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12">  <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;grid results&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13">    <span class="hl-htm">&lt;template</span> <span class="hl-opt">x-for</span>=<span class="hl-str">&quot;item in items&quot;</span> :<span class="hl-opt">key</span>=<span class="hl-str">&quot;item.id&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="14">      <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;card result&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="15">        <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;result-emoji&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;item.emoji&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="16">        <span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="17">          <span class="hl-htm">&lt;strong</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;item.name&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="18">          <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted small&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;item.category + &#039; · € &#039; + item.price.toFixed(2)&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="19">        <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="20">      <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="21">    <span class="hl-htm">&lt;/template</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="22">  <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="23"></span>
+<span class="hl-line" data-line="24">  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;empty-state&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;count === 0&quot;</span> x-cloak<span class="hl-htm">&gt;</span>Nothing in the catalogue matches.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="25"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="26"></span>
+<span class="hl-line" data-line="27"><span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">&quot;{$padRoot}alpine/examples/search.js&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// The page renders the first results into the component&#039;s argument; every later query</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// asks the same page with padFormat=json, and the same PHP answers - the templates never</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// run for that request, and only $result leaves the server ($padExpose).</span></span>
+<span class="hl-line" data-line="6"></span>
+<span class="hl-line" data-line="7">  <span class="hl-var">$q</span> <span class="hl-pun">=</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-fn">alpineText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;q&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="8"></span>
+<span class="hl-line" data-line="9">  <span class="hl-var">$found</span> <span class="hl-pun">=</span> <span class="hl-fn">array_values</span> <span class="hl-pun">(</span> <span class="hl-fn">array_filter</span> <span class="hl-pun">(</span> <span class="hl-fn">alpineData</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;products&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-kwd">fn</span> <span class="hl-pun">(</span> <span class="hl-var">$product</span> <span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span></span>
+<span class="hl-line" data-line="10">             <span class="hl-var">$q</span> <span class="hl-pun">===</span> <span class="hl-str">&#039;&#039;</span> <span class="hl-kwd">or</span> <span class="hl-fn">stripos</span> <span class="hl-pun">(</span> <span class="hl-var">$product</span> <span class="hl-pun">[</span><span class="hl-str">&#039;name&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">.</span> <span class="hl-str">&#039; &#039;</span> <span class="hl-pun">.</span> <span class="hl-var">$product</span> <span class="hl-pun">[</span><span class="hl-str">&#039;category&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">.</span> <span class="hl-str">&#039; &#039;</span> <span class="hl-pun">.</span> <span class="hl-var">$product</span> <span class="hl-pun">[</span><span class="hl-str">&#039;blurb&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$q</span> <span class="hl-pun">)</span> <span class="hl-pun">!==</span> <span class="hl-lit">FALSE</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12">  <span class="hl-var">$result</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;q&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$q</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">count</span> <span class="hl-pun">(</span> <span class="hl-var">$found</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;items&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">array_slice</span> <span class="hl-pun">(</span> <span class="hl-var">$found</span><span class="hl-pun">,</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-num">8</span> <span class="hl-pun">)</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="13"></span>
+<span class="hl-line" data-line="14">  <span class="hl-var">$padExpose</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;result&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="15"></span>
+<span class="hl-line" data-line="16"><span class="hl-tag">?&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="js"><code><span class="hl-line" data-line="1"><span class="hl-com">// The search: its first result is the argument PAD wrote - search({^result}) - and every</span></span>
+<span class="hl-line" data-line="2"><span class="hl-com">// later query asks the same page for JSON. pad.get is www/alpine/alpine-app.js: it adds</span></span>
+<span class="hl-line" data-line="3"><span class="hl-com">// padFormat=json and logs the request under the example.</span></span>
+<span class="hl-line" data-line="4"></span>
+<span class="hl-line" data-line="5">document<span class="hl-pun">.</span><span class="hl-fn">addEventListener</span><span class="hl-pun">(</span><span class="hl-str">&#039;alpine:init&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="6"></span>
+<span class="hl-line" data-line="7">  Alpine<span class="hl-pun">.</span><span class="hl-fn">data</span><span class="hl-pun">(</span><span class="hl-str">&#039;search&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(</span>first<span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">(</span><span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="8">    q: first<span class="hl-pun">.</span>q<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="9">    count: first<span class="hl-pun">.</span>count<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="10">    items: first<span class="hl-pun">.</span>items<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="11">    busy: <span class="hl-lit">false</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="12">    asked: <span class="hl-num">0</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="13"></span>
+<span class="hl-line" data-line="14">    <span class="hl-kwd">async</span> <span class="hl-fn">ask</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="15">      <span class="hl-kwd">const</span> mine = ++<span class="hl-kwd">this</span><span class="hl-pun">.</span>asked<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="16">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>busy = <span class="hl-lit">true</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="17">      <span class="hl-kwd">try</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="18">        <span class="hl-kwd">const</span> answer = <span class="hl-kwd">await</span> pad<span class="hl-pun">.</span><span class="hl-fn">get</span><span class="hl-pun">(</span><span class="hl-str">&#039;examples/search&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">{</span> q: <span class="hl-kwd">this</span><span class="hl-pun">.</span>q <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="19">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span>mine !== <span class="hl-kwd">this</span><span class="hl-pun">.</span>asked<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span>        <span class="hl-com">// an older answer that came in late</span></span>
+<span class="hl-line" data-line="20">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>count = answer<span class="hl-pun">.</span>result<span class="hl-pun">.</span>count<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="21">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>items = answer<span class="hl-pun">.</span>result<span class="hl-pun">.</span>items<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="22">      <span class="hl-pun">}</span> <span class="hl-kwd">finally</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="23">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span>mine === <span class="hl-kwd">this</span><span class="hl-pun">.</span>asked<span class="hl-pun">)</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>busy = <span class="hl-lit">false</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="24">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="25">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="26">  <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="27"></span>
+<span class="hl-line" data-line="28"><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7components.html"><small>Previous</small>Components in a file</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7form.html"><small>Next</small>One set of rules</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> writes the HTML and keeps the data &middot; <strong>Alpine</strong> brings the parts of it to life where they stand</p>
+    <p class="footer-small">Alpine comes from unpkg.com &middot; the components are in <code>www/alpine/</code>, the pages in <code>apps/alpine/</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

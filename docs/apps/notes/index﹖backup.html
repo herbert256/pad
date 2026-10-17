@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d97706">
+    <meta name="csrf-token" content="7b768405ca2951aca00621ccd21f50858e93dfd6e44c7a2425184ad519a924e5">
+    <title>
+      Backup · Notes
+    </title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="notes.css">
+    <script src="notes.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="index%EF%B9%96index.html"><img src="icon.svg" alt="" width="28" height="28"><span>Notes</span></a>
+      <form class="search" method="get" role="search">
+        <input type="hidden" name="index" value=""> <input type="search" name="q" value="" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
+      </form>
+      <nav>
+        <a class="button primary" href="index%EF%B9%96edit.html">New note</a> <a class="button" href="index%EF%B9%96backup.html">Backup</a>
+      </nav>
+    </header>
+    <main>
+      <div class="backup">
+        <h1>
+          Backup
+        </h1>
+        <p class="lead">
+          Everything Notes holds, to take with you - and to bring back.
+        </p>
+        <div class="stats">
+          <div class="stat">
+            <b>4</b><span>notes</span>
+          </div>
+          <div class="stat">
+            <b>5</b><span>tags</span>
+          </div>
+          <div class="stat">
+            <b>0</b><span>files, 0 B</span>
+          </div>
+          <div class="stat">
+            <b>32 KB</b><span>the database</span>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h2>
+              The notes as JSON
+            </h2>
+            <p>
+              Every note with its tags and dates - readable, and what an import here takes back.
+            </p><a class="button primary" href="index%EF%B9%96export&amp;padFormat=json" download="notes.json">Download notes.json</a>
+          </div>
+          <div class="card">
+            <h2>
+              The database
+            </h2>
+            <p>
+              The SQLite file itself, files' records included - any SQLite tool opens it.
+            </p><a class="button" href="index%EF%B9%96database&amp;download" download="notes.sqlite">Download notes.sqlite</a>
+          </div>
+          <div class="card">
+            <h2>
+              Import notes
+            </h2>
+            <p>
+              A notes.json from this page, here or on another machine: its notes are added.
+            </p>
+            <form method="post" enctype="multipart/form-data">
+              <input type="hidden" name="padCsrfToken" value="7b768405ca2951aca00621ccd21f50858e93dfd6e44c7a2425184ad519a924e5"><input type="hidden" name="padForm" value="import"> <label for="json">The JSON file</label><input type="file" name="json" id="json" accept="application/json,.json"> <button class="button">Import</button>
+            </form>
+          </div>
+        </div>
+        <p class="where">
+          On this server the database is <code>DATA/notes/notes.sqlite</code>. Packed with <code>pad pack notes</code>, Notes runs in a browser with no server at all - and the file downloaded here can be imported there, in the panel of the packed application.
+        </p>
+      </div>
+    </main>
+    <footer class="bottom">
+      Notes runs on PHP 8.5.11. Its notes live in one SQLite database.
+    </footer>
+  </body>
+</html>

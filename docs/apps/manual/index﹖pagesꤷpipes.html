@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -42,7 +42,7 @@
                       1. Variable Pipes
                     </h3>
                     <p>
-                      Apply functions to variables using <code>{echo $variable | function}</code>:
+                      Apply functions to a variable with <code>{$variable | function}</code> - the field tag runs the sanitize chain on the result - or with <code>{echo $variable | function}</code>, which prints it raw, as the examples on this page do:
                     </p>
                     <table border="1" cellpadding="10" cellspacing="0">
                       <tr>
@@ -209,7 +209,7 @@
                           <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                         </td>
                         <td style="vertical-align:top">
-                          <pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre>
+                          <pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and capitalize each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre>
                         </td>
                         <td style="vertical-align:top">
                           <p>
@@ -228,7 +228,7 @@
                             Uppercase first letter of each word: The Quick Brown Fox
                           </p>
                           <p>
-                            Replace and uppercase: The Quick Brown Dog
+                            Replace and capitalize each word: The Quick Brown Dog
                           </p>
                         </td>
                       </tr>
@@ -385,7 +385,7 @@
                     </h2>
                     <ul>
                       <li>
-                        <strong>A literal needs <b>{echo}</b></strong> - <code>{echo 'text' | upper}</code>; a field pipes as it stands, <code>{$var | upper}</code>, as well as through <code>{echo $var | upper}</code>
+                        <strong>A literal needs <b>{echo}</b></strong> - <code>{echo 'text' | upper}</code>; a field pipes as it stands, <code>{$var | upper}</code>, as well as through <code>{echo $var | upper}</code> - which prints the value raw, without the sanitize chain the field tag runs
                       </li>
                       <li>
                         <strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code>
@@ -675,6 +675,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
@@ -688,6 +691,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
                         </li>
                       </ul>
                       <h3 align="center">
@@ -745,11 +751,34 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
                         Forms and security
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
@@ -775,7 +804,7 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
@@ -796,6 +825,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
                         </li>
                         <li>
@@ -812,6 +844,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
                         </li>
                       </ul>
                     </td>
@@ -830,7 +865,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

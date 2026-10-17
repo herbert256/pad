@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {trans} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">trans</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>trans<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes the text a key has in the _lang/ catalog of the request's locale, with plural forms and substitutions.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span>, <span class="hl-opt">count</span>=<span class="hl-var">$n</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span>, <span class="hl-opt">name</span>=<span class="hl-var">$value</span>, <span class="hl-opt">other</span>=<span class="hl-var">$value</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>key</code>
+            </dt>
+            <dd>
+              The key in <code>_lang/&lt;locale&gt;.json</code>. A key no catalog knows is written as itself.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>count</code>
+            </dt>
+            <dd>
+              Picks the plural form of a text with <code>|</code> between its forms, and replaces <code>%d</code> in it.
+            </dd>
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              Any other name: its value replaces <code>:name</code> in the text. The names are read raw, so even <code>content=</code> or <code>data=</code> is a substitution here.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{trans 'cart.title'}</code> looks the key up in the translation catalog of the request's locale and writes its text. A catalog is a flat JSON object in <code>_lang/&lt;locale&gt;.json</code> - <code>_lang/en.json</code>, <code>_lang/nl.json</code>. The catalogs are looked up from the page's directory up to the application root and then <code>_common</code>, the most specific winning; for a locale <code>nl_NL</code> the files <code>nl_NL.json</code>, <code>nl-NL.json</code> and <code>nl.json</code> all count. A key no catalog knows is written as the key itself, so a missing translation shows rather than disappearing.
+          </p>
+          <p>
+            The locale is <code>$padLocale</code>. With <code>$padLocales</code> listing several, a <code>?lang=</code> value, the <code>padLang</code> cookie or the browser's <code>Accept-Language</code> picks among them.
+          </p>
+          <h3>
+            Plurals and substitutions
+          </h3>
+          <p>
+            A text with forms separated by <code>|</code> is plural: two forms are one and other, three are zero, one and other. <code>count=</code> picks the form and replaces <code>%d</code> in it. Every other <code>name=value</code> replaces <code>:name</code> in the text. The items are read raw, as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html"><code>{attrs}</code></a> reads them, so a substitution may be called anything.
+          </p>
+          <h3>
+            Escaping
+          </h3>
+          <p>
+            The catalog's text is the application's own and is written as it stands, markup included. A substitution is data: it is written as <code>{$x}</code> writes a field, sanitized - and so is a key that no catalog knows. The <code>trans</code> pipe does the same for a value: <code>{echo 'cart.title' | trans}</code>. A <code>{trans}</code> without a key is a strict error.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Keys from the catalog
+            </h3>
+            <p class="example-about">
+              The text of each key in _lang/en.json - markup in the catalog stays markup, an unknown key is written as itself.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/trans/1-key.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.title'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.checkout'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.missing'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7trans%EA%A4%B71-key.html">open alone</a>
+                </div>
+                <div class="result">
+                  <h3>
+                    Your <em>shopping</em> cart
+                  </h3>
+                  <p>
+                    <button type="button">Go to checkout</button>
+                  </p>
+                  <p>
+                    trans.cart.missing
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Plural forms
+            </h3>
+            <p class="example-about">
+              count= picks one of the three forms - zero, one, other - and replaces %d.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/trans/2-plural.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'0..3'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'n'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.items'</span>, <span class="hl-opt">count</span>=<span class="hl-var">$n</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7trans%EA%A4%B72-plural.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Your cart is empty
+                    </li>
+                    <li>One item in your cart
+                    </li>
+                    <li>2 items in your cart
+                    </li>
+                    <li>3 items in your cart
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Substitutions
+            </h3>
+            <p class="example-about">
+              Each name= replaces :name; a value is escaped like a field.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/trans/3-substitute.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$visitor</span> = <span class="hl-str">'Ana &lt;script&gt;'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.greeting'</span>, <span class="hl-opt">name</span>=<span class="hl-var">$visitor</span>, <span class="hl-opt">place</span>=<span class="hl-str">'Utrecht'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7trans%EA%A4%B73-substitute.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Hello Ana &lt;script&gt;, welcome back to Utrecht.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7echo.html">{echo}</a> <span class="about">Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7trace.html">← {trace}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7tree.html">{tree} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

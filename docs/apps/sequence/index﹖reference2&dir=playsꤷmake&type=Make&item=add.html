@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -44,6 +44,46 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework Page: sequence/a_listed_value_past_the_integer_range_is_given_not_computed<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_listed_value_past_the_integer_range_is_given_not_computed.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>9223372036854775808;1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;9223372036854775807;2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;100000000000000000000;2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;-100000000000000000000;2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;9223372036854775808;7<font color="black">'</font><font color="black">,</font> stop=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;9;3<font color="black">'</font><font color="black">,</font> maximal=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>9223372036854775807;1<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> add=1</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4cf4c0c2de54652e3b85bc24f208c9a7"></div>
+                        <script>
+                        padAjax4cf4c0c2de54652e3b85bc24f208c9a7 = new XMLHttpRequest();
+                        padAjax4cf4c0c2de54652e3b85bc24f208c9a7.onreadystatechange=function() {
+                        if (padAjax4cf4c0c2de54652e3b85bc24f208c9a7.readyState === 4) {
+                        if (padAjax4cf4c0c2de54652e3b85bc24f208c9a7.status === 200) {
+                        document.getElementById("padAjax4cf4c0c2de54652e3b85bc24f208c9a7").innerHTML=padAjax4cf4c0c2de54652e3b85bc24f208c9a7.responseText;
+                        } else {
+                        document.getElementById("padAjax4cf4c0c2de54652e3b85bc24f208c9a7").innerHTML=padAjax4cf4c0c2de54652e3b85bc24f208c9a7.statusText;
+                        }
+                        }
+                        }
+                        padAjax4cf4c0c2de54652e3b85bc24f208c9a7.open("GET","http://localhost/pad/regression/framework/?sequence/a_listed_value_past_the_integer_range_is_given_not_computed&padInclude",true);
+                        padAjax4cf4c0c2de54652e3b85bc24f208c9a7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                   <hr>
                   App: regression/framework Page: sequence/a_parameter_store_shorter_than_the_sequence_ends_it<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -80,6 +120,168 @@
                         }
                         padAjax6923df31281cbb8ad057e4e6d5f127dd.open("GET","http://localhost/pad/regression/framework/?sequence/a_parameter_store_shorter_than_the_sequence_ends_it&padInclude",true);
                         padAjax6923df31281cbb8ad057e4e6d5f127dd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/a_play_value_without_a_parameter_plays_as_the_bare_option<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_play_value_without_a_parameter_plays_as_the_bare_option.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red">3<font color="black">,</font> make=<font color="black">'</font>multiply<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">3<font color="black">,</font> make=<font color="black">'</font>add<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;4;9;3<font color="black">'</font><font color="black">,</font> keep=<font color="black">'</font>exponentiation<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;4;9;3<font color="black">'</font><font color="black">,</font> flag=<font color="black">'</font>subtract<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc401e401beae902aae11469b70e9b75a"></div>
+                        <script>
+                        padAjaxc401e401beae902aae11469b70e9b75a = new XMLHttpRequest();
+                        padAjaxc401e401beae902aae11469b70e9b75a.onreadystatechange=function() {
+                        if (padAjaxc401e401beae902aae11469b70e9b75a.readyState === 4) {
+                        if (padAjaxc401e401beae902aae11469b70e9b75a.status === 200) {
+                        document.getElementById("padAjaxc401e401beae902aae11469b70e9b75a").innerHTML=padAjaxc401e401beae902aae11469b70e9b75a.responseText;
+                        } else {
+                        document.getElementById("padAjaxc401e401beae902aae11469b70e9b75a").innerHTML=padAjaxc401e401beae902aae11469b70e9b75a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc401e401beae902aae11469b70e9b75a.open("GET","http://localhost/pad/regression/framework/?sequence/a_play_value_without_a_parameter_plays_as_the_bare_option&padInclude",true);
+                        padAjaxc401e401beae902aae11469b70e9b75a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/a_play_with_a_value_leaves_the_kind_of_the_options_after_it<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_play_with_a_value_leaves_the_kind_of_the_options_after_it.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">a[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> keep=<font color="black">'</font>even<font color="black">'</font><font color="black">,</font> multiply=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]<br>b[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> multiply=3<font color="black">,</font> keep=<font color="black">'</font>even<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]<br>c[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> remove=<font color="black">'</font>odd<font color="black">'</font><font color="black">,</font> add=100</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]<br>d[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> flag=<font color="black">'</font>prime<font color="black">'</font><font color="black">,</font> add=1</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]<br>e[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> odd<font color="black">,</font> remove=<font color="black">'</font>square<font color="black">'</font><font color="black">,</font> prime</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax347f622678290493fd00542718d50a88"></div>
+                        <script>
+                        padAjax347f622678290493fd00542718d50a88 = new XMLHttpRequest();
+                        padAjax347f622678290493fd00542718d50a88.onreadystatechange=function() {
+                        if (padAjax347f622678290493fd00542718d50a88.readyState === 4) {
+                        if (padAjax347f622678290493fd00542718d50a88.status === 200) {
+                        document.getElementById("padAjax347f622678290493fd00542718d50a88").innerHTML=padAjax347f622678290493fd00542718d50a88.responseText;
+                        } else {
+                        document.getElementById("padAjax347f622678290493fd00542718d50a88").innerHTML=padAjax347f622678290493fd00542718d50a88.statusText;
+                        }
+                        }
+                        }
+                        padAjax347f622678290493fd00542718d50a88.open("GET","http://localhost/pad/regression/framework/?sequence/a_play_with_a_value_leaves_the_kind_of_the_options_after_it&padInclude",true);
+                        padAjax347f622678290493fd00542718d50a88.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/a_range_with_a_play_is_held_to_the_time_budget<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sequence/a_range_with_a_play_is_held_to_the_time_budget.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_range_with_a_play_is_held_to_the_time_budget.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A budget no run of any length keeps to: a range with a play - each term costs what the<br>  // play costs - is held to it, and ends at once; a range without one ends with its data.<br><br>  </span><span style="color: #0000BB">$padSeqMaxSeconds </span><span style="color: #007700">= </span><span style="color: #0000BB">0.000001</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..20000<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> add=1<font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] [<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..20000<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> even<font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] [<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..20000<font color="black">'</font><font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8420f4b733e0242362e50b1b7b2a5bb3"></div>
+                        <script>
+                        padAjax8420f4b733e0242362e50b1b7b2a5bb3 = new XMLHttpRequest();
+                        padAjax8420f4b733e0242362e50b1b7b2a5bb3.onreadystatechange=function() {
+                        if (padAjax8420f4b733e0242362e50b1b7b2a5bb3.readyState === 4) {
+                        if (padAjax8420f4b733e0242362e50b1b7b2a5bb3.status === 200) {
+                        document.getElementById("padAjax8420f4b733e0242362e50b1b7b2a5bb3").innerHTML=padAjax8420f4b733e0242362e50b1b7b2a5bb3.responseText;
+                        } else {
+                        document.getElementById("padAjax8420f4b733e0242362e50b1b7b2a5bb3").innerHTML=padAjax8420f4b733e0242362e50b1b7b2a5bb3.statusText;
+                        }
+                        }
+                        }
+                        padAjax8420f4b733e0242362e50b1b7b2a5bb3.open("GET","http://localhost/pad/regression/framework/?sequence/a_range_with_a_play_is_held_to_the_time_budget&padInclude",true);
+                        padAjax8420f4b733e0242362e50b1b7b2a5bb3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/an_arithmetic_play_passes_over_a_value_that_is_no_number<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/an_arithmetic_play_passes_over_a_value_that_is_no_number.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> add=1</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> multiply=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> ceil=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> negation</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> identity</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> square</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> and=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> multiple=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> even</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> step=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7;b<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> power=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>0.5..2.5<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> and=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>a;7<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> nand=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1"></div>
+                        <script>
+                        padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1 = new XMLHttpRequest();
+                        padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.onreadystatechange=function() {
+                        if (padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.readyState === 4) {
+                        if (padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.status === 200) {
+                        document.getElementById("padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1").innerHTML=padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.responseText;
+                        } else {
+                        document.getElementById("padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1").innerHTML=padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.statusText;
+                        }
+                        }
+                        }
+                        padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.open("GET","http://localhost/pad/regression/framework/?sequence/an_arithmetic_play_passes_over_a_value_that_is_no_number&padInclude",true);
+                        padAjax8487dcd7d6a2c3a2ffc4d0611c9912c1.send();
                         </script>
                       </td>
                     </tr>
@@ -354,91 +556,6 @@
                   padAjaxd6a8610b06d0b759890732890823fbce.open("GET","http://localhost/pad/sequence/?concepts/resume&padInclude",true);
                   padAjaxd6a8610b06d0b759890732890823fbce.send();
                   </script>
-                  <hr>
-                  App: sequence Page: keepRemoveFlag/add<br>
-                  <div id="padAjax23f4cd7a3b623ea9716c8e1e982c9330"></div>
-                  <script>
-                  padAjax23f4cd7a3b623ea9716c8e1e982c9330 = new XMLHttpRequest();
-                  padAjax23f4cd7a3b623ea9716c8e1e982c9330.onreadystatechange=function() {
-                  if (padAjax23f4cd7a3b623ea9716c8e1e982c9330.readyState === 4) {
-                  if (padAjax23f4cd7a3b623ea9716c8e1e982c9330.status === 200) {
-                  document.getElementById("padAjax23f4cd7a3b623ea9716c8e1e982c9330").innerHTML=padAjax23f4cd7a3b623ea9716c8e1e982c9330.responseText;
-                  } else {
-                  document.getElementById("padAjax23f4cd7a3b623ea9716c8e1e982c9330").innerHTML=padAjax23f4cd7a3b623ea9716c8e1e982c9330.statusText;
-                  }
-                  }
-                  }
-                  padAjax23f4cd7a3b623ea9716c8e1e982c9330.open("GET","http://localhost/pad/sequence/?keepRemoveFlag/add&padInclude",true);
-                  padAjax23f4cd7a3b623ea9716c8e1e982c9330.send();
-                  </script>
-                  <hr>
-                  App: sequence Page: play/double/add<br>
-                  <div id="padAjax5d0178fbdfafa0f824239b1e9ef92b3d"></div>
-                  <script>
-                  padAjax5d0178fbdfafa0f824239b1e9ef92b3d = new XMLHttpRequest();
-                  padAjax5d0178fbdfafa0f824239b1e9ef92b3d.onreadystatechange=function() {
-                  if (padAjax5d0178fbdfafa0f824239b1e9ef92b3d.readyState === 4) {
-                  if (padAjax5d0178fbdfafa0f824239b1e9ef92b3d.status === 200) {
-                  document.getElementById("padAjax5d0178fbdfafa0f824239b1e9ef92b3d").innerHTML=padAjax5d0178fbdfafa0f824239b1e9ef92b3d.responseText;
-                  } else {
-                  document.getElementById("padAjax5d0178fbdfafa0f824239b1e9ef92b3d").innerHTML=padAjax5d0178fbdfafa0f824239b1e9ef92b3d.statusText;
-                  }
-                  }
-                  }
-                  padAjax5d0178fbdfafa0f824239b1e9ef92b3d.open("GET","http://localhost/pad/sequence/?play/double/add&padInclude",true);
-                  padAjax5d0178fbdfafa0f824239b1e9ef92b3d.send();
-                  </script>
-                  <hr>
-                  App: sequence Page: play/single/add<br>
-                  <div id="padAjaxd685ca15f01c43162abff2391284e7e4"></div>
-                  <script>
-                  padAjaxd685ca15f01c43162abff2391284e7e4 = new XMLHttpRequest();
-                  padAjaxd685ca15f01c43162abff2391284e7e4.onreadystatechange=function() {
-                  if (padAjaxd685ca15f01c43162abff2391284e7e4.readyState === 4) {
-                  if (padAjaxd685ca15f01c43162abff2391284e7e4.status === 200) {
-                  document.getElementById("padAjaxd685ca15f01c43162abff2391284e7e4").innerHTML=padAjaxd685ca15f01c43162abff2391284e7e4.responseText;
-                  } else {
-                  document.getElementById("padAjaxd685ca15f01c43162abff2391284e7e4").innerHTML=padAjaxd685ca15f01c43162abff2391284e7e4.statusText;
-                  }
-                  }
-                  }
-                  padAjaxd685ca15f01c43162abff2391284e7e4.open("GET","http://localhost/pad/sequence/?play/single/add&padInclude",true);
-                  padAjaxd685ca15f01c43162abff2391284e7e4.send();
-                  </script>
-                  <hr>
-                  App: sequence Page: specials/arithmetic<br>
-                  <div id="padAjaxf414139f3855726a36610925bb2d1ee5"></div>
-                  <script>
-                  padAjaxf414139f3855726a36610925bb2d1ee5 = new XMLHttpRequest();
-                  padAjaxf414139f3855726a36610925bb2d1ee5.onreadystatechange=function() {
-                  if (padAjaxf414139f3855726a36610925bb2d1ee5.readyState === 4) {
-                  if (padAjaxf414139f3855726a36610925bb2d1ee5.status === 200) {
-                  document.getElementById("padAjaxf414139f3855726a36610925bb2d1ee5").innerHTML=padAjaxf414139f3855726a36610925bb2d1ee5.responseText;
-                  } else {
-                  document.getElementById("padAjaxf414139f3855726a36610925bb2d1ee5").innerHTML=padAjaxf414139f3855726a36610925bb2d1ee5.statusText;
-                  }
-                  }
-                  }
-                  padAjaxf414139f3855726a36610925bb2d1ee5.open("GET","http://localhost/pad/sequence/?specials/arithmetic&padInclude",true);
-                  padAjaxf414139f3855726a36610925bb2d1ee5.send();
-                  </script>
-                  <hr>
-                  App: sequence Page: specials/double<br>
-                  <div id="padAjax65734a2f8de71655182ae3fe8531d180"></div>
-                  <script>
-                  padAjax65734a2f8de71655182ae3fe8531d180 = new XMLHttpRequest();
-                  padAjax65734a2f8de71655182ae3fe8531d180.onreadystatechange=function() {
-                  if (padAjax65734a2f8de71655182ae3fe8531d180.readyState === 4) {
-                  if (padAjax65734a2f8de71655182ae3fe8531d180.status === 200) {
-                  document.getElementById("padAjax65734a2f8de71655182ae3fe8531d180").innerHTML=padAjax65734a2f8de71655182ae3fe8531d180.responseText;
-                  } else {
-                  document.getElementById("padAjax65734a2f8de71655182ae3fe8531d180").innerHTML=padAjax65734a2f8de71655182ae3fe8531d180.statusText;
-                  }
-                  }
-                  }
-                  padAjax65734a2f8de71655182ae3fe8531d180.open("GET","http://localhost/pad/sequence/?specials/double&padInclude",true);
-                  padAjax65734a2f8de71655182ae3fe8531d180.send();
-                  </script>
                 </center>
               </td>
             </tr>
@@ -454,7 +571,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

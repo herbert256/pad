@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {emoji} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">emoji</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>emoji<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            An emoji by its GitHub or Slack shortcode, as a labelled image a screen reader names.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'rocket'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">':tada:'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Party!'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>shortcode</code>
+            </dt>
+            <dd>
+              The shortcode, with or without colons, in any case - <code>+1</code>, <code>heart</code>, <code>:white_check_mark:</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              The name a screen reader says, default the emoji's own name.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{emoji 'rocket'}</code> writes <code>&lt;span class="pad-emoji" role="img" aria-label="rocket"&gt;</code> around the emoji, so a screen reader names it instead of reading out a code point - and <code>label=</code> gives it another name to say. The shortcodes are the common ones of GitHub and Slack, a few hundred with their aliases: faces, hands, people at work, animals, food, travel, objects and symbols, keycaps. They may be written with or without the colons, in any case.
+          </p>
+          <p>
+            An emoji that also has a plain text form - a heart, a sun, a check mark - carries the variation selector that asks for the colour picture, so it does not show as a black glyph in one font and a colour one in another.
+          </p>
+          <p>
+            An unknown shortcode is a strict error that names the nearest one that exists - <code>did you mean ':rocket:'?</code>. The <code>emoji</code> pipe does the replacing for a whole text: <code>{$comment | emoji}</code> turns every shortcode it knows into its emoji and leaves the rest, and a time like <code>10:30:00</code>, as written.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A reaction bar
+            </h3>
+            <p class="example-about">
+              Each emoji from its shortcode - with or without colons - in a span a screen reader names.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/emoji/1-reactions.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">reactions</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-var">$code</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$count</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/reactions</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/emoji/1-reactions.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$reactions</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'+1'</span><span class="hl-pun">,</span>      <span class="hl-str">'count'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">24</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">':tada:'</span><span class="hl-pun">,</span>  <span class="hl-str">'count'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">17</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'heart'</span><span class="hl-pun">,</span>   <span class="hl-str">'count'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">9</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Rocket'</span><span class="hl-pun">,</span>  <span class="hl-str">'count'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">12</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'eyes'</span><span class="hl-pun">,</span>    <span class="hl-str">'count'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">3</span>  <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7emoji%EA%A4%B71-reactions.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"><span class="pad-emoji" role="img" aria-label="thumbs up">👍</span> 24</span> <span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"><span class="pad-emoji" role="img" aria-label="party popper">🎉</span> 17</span> <span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"><span class="pad-emoji" role="img" aria-label="red heart">❤️</span> 9</span> <span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"><span class="pad-emoji" role="img" aria-label="rocket">🚀</span> 12</span> <span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"><span class="pad-emoji" role="img" aria-label="eyes">👀</span> 3</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Another name to say
+            </h3>
+            <p class="example-about">
+              label= replaces the name a screen reader says; the pipe form turns the shortcodes in a text into emoji.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/emoji/2-label.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Status: <span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'white_check_mark'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Build passed'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'warning'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Two warnings'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$message</span> = <span class="hl-str">'Shipped :rocket: at 10:30:00 - thanks all :clap:'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$message</span> | emoji<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7emoji%EA%A4%B72-label.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Status: <span class="pad-emoji" role="img" aria-label="Build passed">✅</span> <span class="pad-emoji" role="img" aria-label="Two warnings">⚠️</span>
+                  </p>
+                  <p>
+                    Shipped 🚀 at 10:30:00 - thanks all 👏
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7icon.html">{icon}</a> <span class="about">Writes an interface icon from PAD's own set of 79 as inline SVG, drawn in the colour of the text around it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7country.html">{country}</a> <span class="about">Writes a country's flag from its ISO 3166 code or English name, optionally with the name beside it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7avatar.html">{avatar}</a> <span class="about">Draws an initials avatar as inline SVG - the letters of a name in a circle coloured by a hash of it, no image needed.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7echo.html">← {echo}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7error.html">{error} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

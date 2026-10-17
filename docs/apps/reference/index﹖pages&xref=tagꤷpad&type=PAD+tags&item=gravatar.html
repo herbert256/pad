@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - gravatar
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - gravatar
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_gravatar_of_an_unknown_default_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_gravatar_of_an_unknown_default_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font>ada<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> default=<font color="black">'</font>kitten<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2c5eb6da8b0e094296fa42b0c3e513af"></div>
+                        <script>
+                        padAjax2c5eb6da8b0e094296fa42b0c3e513af = new XMLHttpRequest();
+                        padAjax2c5eb6da8b0e094296fa42b0c3e513af.onreadystatechange=function() {
+                        if (padAjax2c5eb6da8b0e094296fa42b0c3e513af.readyState === 4) {
+                        if (padAjax2c5eb6da8b0e094296fa42b0c3e513af.status === 200) {
+                        document.getElementById("padAjax2c5eb6da8b0e094296fa42b0c3e513af").innerHTML=padAjax2c5eb6da8b0e094296fa42b0c3e513af.responseText;
+                        } else {
+                        document.getElementById("padAjax2c5eb6da8b0e094296fa42b0c3e513af").innerHTML=padAjax2c5eb6da8b0e094296fa42b0c3e513af.statusText;
+                        }
+                        }
+                        }
+                        padAjax2c5eb6da8b0e094296fa42b0c3e513af.open("GET","http://localhost/pad/regression/errors/?syntax/a_gravatar_of_an_unknown_default_is_reported&padInclude",true);
+                        padAjax2c5eb6da8b0e094296fa42b0c3e513af.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_field_inside_the_quoted_text_of_a_tag_that_computes_from_it_counts_as_its_characters<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_field_inside_the_quoted_text_of_a_tag_that_computes_from_it_counts_as_its_characters.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_field_inside_the_quoted_text_of_a_tag_that_computes_from_it_counts_as_its_characters.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field written inside the quoted text of {avatar}, {gravatar}, {identicon} or {qr}<br>  // gives what the field alone gives: the characters it holds - not the stand-ins it<br>  // travels with, nor the HTML its sanitize step made of it, which went into the initials,<br>  // the hash and the code, and into a label escaped once more.<br><br>  </span><span style="color: #0000BB">$name  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Åsa Ørsted & Co'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #DD0000">"o'brien@example.com"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$query </span><span style="color: #007700">= </span><span style="color: #DD0000">'https://example.com/?a=1&amp;b=2'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">avatar </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>name</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>email</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><b>{<font color="blue">identicon </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>name</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><b>{<font color="blue">qr </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>query</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> size=21</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc7be979a16b56591bf9ab8809ce5abe0"></div>
+                        <script>
+                        padAjaxc7be979a16b56591bf9ab8809ce5abe0 = new XMLHttpRequest();
+                        padAjaxc7be979a16b56591bf9ab8809ce5abe0.onreadystatechange=function() {
+                        if (padAjaxc7be979a16b56591bf9ab8809ce5abe0.readyState === 4) {
+                        if (padAjaxc7be979a16b56591bf9ab8809ce5abe0.status === 200) {
+                        document.getElementById("padAjaxc7be979a16b56591bf9ab8809ce5abe0").innerHTML=padAjaxc7be979a16b56591bf9ab8809ce5abe0.responseText;
+                        } else {
+                        document.getElementById("padAjaxc7be979a16b56591bf9ab8809ce5abe0").innerHTML=padAjaxc7be979a16b56591bf9ab8809ce5abe0.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc7be979a16b56591bf9ab8809ce5abe0.open("GET","http://localhost/pad/regression/framework/?tags/a_field_inside_the_quoted_text_of_a_tag_that_computes_from_it_counts_as_its_characters&padInclude",true);
+                        padAjaxc7be979a16b56591bf9ab8809ce5abe0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/gravatar_fallback_draws_on_the_server<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/gravatar_fallback_draws_on_the_server.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font>ada.lovelace<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> size=32<font color="black">,</font> fallback=<font color="black">'</font>avatar<font color="black">'</font></font>}</b> <b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font>ada<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> size=32<font color="black">,</font> fallback=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>Ada<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax815347d9453ebb692b726380371a6311"></div>
+                        <script>
+                        padAjax815347d9453ebb692b726380371a6311 = new XMLHttpRequest();
+                        padAjax815347d9453ebb692b726380371a6311.onreadystatechange=function() {
+                        if (padAjax815347d9453ebb692b726380371a6311.readyState === 4) {
+                        if (padAjax815347d9453ebb692b726380371a6311.status === 200) {
+                        document.getElementById("padAjax815347d9453ebb692b726380371a6311").innerHTML=padAjax815347d9453ebb692b726380371a6311.responseText;
+                        } else {
+                        document.getElementById("padAjax815347d9453ebb692b726380371a6311").innerHTML=padAjax815347d9453ebb692b726380371a6311.statusText;
+                        }
+                        }
+                        }
+                        padAjax815347d9453ebb692b726380371a6311.open("GET","http://localhost/pad/regression/framework/?tags/gravatar_fallback_draws_on_the_server&padInclude",true);
+                        padAjax815347d9453ebb692b726380371a6311.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/gravatar_sends_only_the_hash_of_the_address<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/gravatar_sends_only_the_hash_of_the_address.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font> Herbert<font color="black">@</font>Example.com<font color="black">'</font><font color="black">,</font> default=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>Herbert &lt;J&gt;<font color="black">'</font></font>}</b> <b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font>ada<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> size=32<font color="black">,</font> default=<font color="black">'</font>https<font color="black">:</font>//example.com/a.png?x=1&amp;y=2<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb811a88708632e7c7cf16c9e2cb29700"></div>
+                        <script>
+                        padAjaxb811a88708632e7c7cf16c9e2cb29700 = new XMLHttpRequest();
+                        padAjaxb811a88708632e7c7cf16c9e2cb29700.onreadystatechange=function() {
+                        if (padAjaxb811a88708632e7c7cf16c9e2cb29700.readyState === 4) {
+                        if (padAjaxb811a88708632e7c7cf16c9e2cb29700.status === 200) {
+                        document.getElementById("padAjaxb811a88708632e7c7cf16c9e2cb29700").innerHTML=padAjaxb811a88708632e7c7cf16c9e2cb29700.responseText;
+                        } else {
+                        document.getElementById("padAjaxb811a88708632e7c7cf16c9e2cb29700").innerHTML=padAjaxb811a88708632e7c7cf16c9e2cb29700.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb811a88708632e7c7cf16c9e2cb29700.open("GET","http://localhost/pad/regression/framework/?tags/gravatar_sends_only_the_hash_of_the_address&padInclude",true);
+                        padAjaxb811a88708632e7c7cf16c9e2cb29700.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: gravatar/comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">gravatar/comments.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">gravatar/comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Herbert Jebbink'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'herbert@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The page cache halves the time of the home page.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ada@example.org'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Could the sequence tags take a step of their own?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'grace@example.net'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A bug report with a template line number - lovely.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Comments with Gravatars<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The picture each address registered at gravatar.com - only its SHA-256 hash leaves the page<font color="black">,</font> lazily<font color="black">,</font> without a referrer.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:16px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;div style="display:flex; gap:12px; align-items:flex-start"&gt;<br>    <b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> default=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b><br>    &lt;div&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb2b33a8af314ffc676c1af35e2a47a79"></div>
+                        <script>
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79 = new XMLHttpRequest();
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79.onreadystatechange=function() {
+                        if (padAjaxb2b33a8af314ffc676c1af35e2a47a79.readyState === 4) {
+                        if (padAjaxb2b33a8af314ffc676c1af35e2a47a79.status === 200) {
+                        document.getElementById("padAjaxb2b33a8af314ffc676c1af35e2a47a79").innerHTML=padAjaxb2b33a8af314ffc676c1af35e2a47a79.responseText;
+                        } else {
+                        document.getElementById("padAjaxb2b33a8af314ffc676c1af35e2a47a79").innerHTML=padAjaxb2b33a8af314ffc676c1af35e2a47a79.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79.open("GET","http://localhost/pad/showcase/?gravatar/comments&padInclude",true);
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: gravatar/private<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">gravatar/private.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">gravatar/private.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Herbert Jebbink'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'herbert@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The page cache halves the time of the home page.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ada@example.org'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Could the sequence tags take a step of their own?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'grace@example.net'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A bug report with a template line number - lovely.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>No request to a third party<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>fallback= draws the picture on the server instead - the initials of the name<font color="black">,</font> or the identicon of the address - so no visitor is sent to Gravatar.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:16px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;div style="display:flex; gap:12px; align-items:flex-start"&gt;<br>    <b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> fallback=<font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b><br>    <b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> fallback=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b><br>    &lt;div&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf67e93bb35dfa79f74eaff1229dee6c1"></div>
+                        <script>
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1 = new XMLHttpRequest();
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1.onreadystatechange=function() {
+                        if (padAjaxf67e93bb35dfa79f74eaff1229dee6c1.readyState === 4) {
+                        if (padAjaxf67e93bb35dfa79f74eaff1229dee6c1.status === 200) {
+                        document.getElementById("padAjaxf67e93bb35dfa79f74eaff1229dee6c1").innerHTML=padAjaxf67e93bb35dfa79f74eaff1229dee6c1.responseText;
+                        } else {
+                        document.getElementById("padAjaxf67e93bb35dfa79f74eaff1229dee6c1").innerHTML=padAjaxf67e93bb35dfa79f74eaff1229dee6c1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1.open("GET","http://localhost/pad/showcase/?gravatar/private&padInclude",true);
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/gravatar/1-comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/gravatar/1-comments.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/gravatar/1-comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ada@example.org'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Could the sequence tags take a step of their own?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'grace@example.net'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A bug report with a template line number - lovely.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Comments with Gravatars<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An img per address<font color="black">,</font> made from its SHA-256 hash; default=identicon for addresses Gravatar does not know.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:12px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;div style="display:flex; gap:10px; align-items:flex-start"&gt;<b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> default=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b> &lt;div&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/div&gt;&lt;/div&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax019baf2bba2698dbdcb50dd0e7c38ea6"></div>
+                        <script>
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6 = new XMLHttpRequest();
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6.onreadystatechange=function() {
+                        if (padAjax019baf2bba2698dbdcb50dd0e7c38ea6.readyState === 4) {
+                        if (padAjax019baf2bba2698dbdcb50dd0e7c38ea6.status === 200) {
+                        document.getElementById("padAjax019baf2bba2698dbdcb50dd0e7c38ea6").innerHTML=padAjax019baf2bba2698dbdcb50dd0e7c38ea6.responseText;
+                        } else {
+                        document.getElementById("padAjax019baf2bba2698dbdcb50dd0e7c38ea6").innerHTML=padAjax019baf2bba2698dbdcb50dd0e7c38ea6.statusText;
+                        }
+                        }
+                        }
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6.open("GET","http://localhost/pad/tags/?examples/gravatar/1-comments&padInclude",true);
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/gravatar/2-fallback<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/gravatar/2-fallback.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>No request to a third party<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>fallback= draws the picture on the server - the initials of alt=<font color="black">,</font> or the identicon of the address.<font color="black">'</font></font>}</b><br>&lt;p style="display:flex; gap:10px; align-items:center"&gt;<br>  <b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font>ada<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> size=40<font color="black">,</font> fallback=<font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>Ada Lovelace<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">gravatar </font><font color="red"><font color="black">'</font>ada<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> size=40<font color="black">,</font> fallback=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>Ada Lovelace<font color="black">'</font></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax126ccd5e67d8963c58df7cd12a365a4d"></div>
+                        <script>
+                        padAjax126ccd5e67d8963c58df7cd12a365a4d = new XMLHttpRequest();
+                        padAjax126ccd5e67d8963c58df7cd12a365a4d.onreadystatechange=function() {
+                        if (padAjax126ccd5e67d8963c58df7cd12a365a4d.readyState === 4) {
+                        if (padAjax126ccd5e67d8963c58df7cd12a365a4d.status === 200) {
+                        document.getElementById("padAjax126ccd5e67d8963c58df7cd12a365a4d").innerHTML=padAjax126ccd5e67d8963c58df7cd12a365a4d.responseText;
+                        } else {
+                        document.getElementById("padAjax126ccd5e67d8963c58df7cd12a365a4d").innerHTML=padAjax126ccd5e67d8963c58df7cd12a365a4d.statusText;
+                        }
+                        }
+                        }
+                        padAjax126ccd5e67d8963c58df7cd12a365a4d.open("GET","http://localhost/pad/tags/?examples/gravatar/2-fallback&padInclude",true);
+                        padAjax126ccd5e67d8963c58df7cd12a365a4d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

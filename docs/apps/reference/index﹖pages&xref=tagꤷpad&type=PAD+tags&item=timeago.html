@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - timeago
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - timeago
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_timeago_of_what_is_no_date_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_timeago_of_what_is_no_date_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font>yesteryear<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax109ef74b01ecd01f97b01314a0d7e8c9"></div>
+                        <script>
+                        padAjax109ef74b01ecd01f97b01314a0d7e8c9 = new XMLHttpRequest();
+                        padAjax109ef74b01ecd01f97b01314a0d7e8c9.onreadystatechange=function() {
+                        if (padAjax109ef74b01ecd01f97b01314a0d7e8c9.readyState === 4) {
+                        if (padAjax109ef74b01ecd01f97b01314a0d7e8c9.status === 200) {
+                        document.getElementById("padAjax109ef74b01ecd01f97b01314a0d7e8c9").innerHTML=padAjax109ef74b01ecd01f97b01314a0d7e8c9.responseText;
+                        } else {
+                        document.getElementById("padAjax109ef74b01ecd01f97b01314a0d7e8c9").innerHTML=padAjax109ef74b01ecd01f97b01314a0d7e8c9.statusText;
+                        }
+                        }
+                        }
+                        padAjax109ef74b01ecd01f97b01314a0d7e8c9.open("GET","http://localhost/pad/regression/errors/?syntax/a_timeago_of_what_is_no_date_is_reported&padInclude",true);
+                        padAjax109ef74b01ecd01f97b01314a0d7e8c9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/timeago_wraps_the_words_in_a_time_with_the_full_moment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/timeago_wraps_the_words_in_a_time_with_the_full_moment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/timeago_wraps_the_words_in_a_time_with_the_full_moment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Now stands still, in one zone whatever the server's is, so the words do too.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-08 12:00:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$posted </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-08 11:55:00'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$empty  </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>posted</font>}</b><br><b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font>2026-10-07 09<font color="black">:</font>00<font color="black">'</font></font>}</b><br><b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font>2026-09-01<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>j M Y<font color="black">'</font></font>}</b><br><b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font>2026-10-08 12<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> now=<font color="black">'</font>2026-10-09 12<font color="black">:</font>00<font color="black">'</font></font>}</b><br>[<b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>empty</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7c24b11f003f6fa5345e8d2bd82c680e"></div>
+                        <script>
+                        padAjax7c24b11f003f6fa5345e8d2bd82c680e = new XMLHttpRequest();
+                        padAjax7c24b11f003f6fa5345e8d2bd82c680e.onreadystatechange=function() {
+                        if (padAjax7c24b11f003f6fa5345e8d2bd82c680e.readyState === 4) {
+                        if (padAjax7c24b11f003f6fa5345e8d2bd82c680e.status === 200) {
+                        document.getElementById("padAjax7c24b11f003f6fa5345e8d2bd82c680e").innerHTML=padAjax7c24b11f003f6fa5345e8d2bd82c680e.responseText;
+                        } else {
+                        document.getElementById("padAjax7c24b11f003f6fa5345e8d2bd82c680e").innerHTML=padAjax7c24b11f003f6fa5345e8d2bd82c680e.statusText;
+                        }
+                        }
+                        }
+                        padAjax7c24b11f003f6fa5345e8d2bd82c680e.open("GET","http://localhost/pad/regression/framework/?tags/timeago_wraps_the_words_in_a_time_with_the_full_moment&padInclude",true);
+                        padAjax7c24b11f003f6fa5345e8d2bd82c680e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: variables/a_date_object_is_a_value_for_tags_and_pipes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_date_object_is_a_value_for_tags_and_pipes.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_date_object_is_a_value_for_tags_and_pipes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-05 03:04:05 UTC' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$when </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-02 03:04:05'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$str  </span><span style="color: #007700">= new class { function </span><span style="color: #0000BB">__toString </span><span style="color: #007700">() { return </span><span style="color: #DD0000">'stringy'</span><span style="color: #007700">; } };<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>when</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font>)</font>}</b>|<b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">ago</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when <font color="black">|</font> ago</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when <font color="black">|</font> localDate(<font color="black">'</font>y-MM-dd<font color="black">'</font>)</font>}</b>|<b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>when</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>str</font>}</b>|<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>str eq <font color="black">'</font>stringy<font color="black">'</font></font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbd92c03a558a08beec01deef093967ad"></div>
+                        <script>
+                        padAjaxbd92c03a558a08beec01deef093967ad = new XMLHttpRequest();
+                        padAjaxbd92c03a558a08beec01deef093967ad.onreadystatechange=function() {
+                        if (padAjaxbd92c03a558a08beec01deef093967ad.readyState === 4) {
+                        if (padAjaxbd92c03a558a08beec01deef093967ad.status === 200) {
+                        document.getElementById("padAjaxbd92c03a558a08beec01deef093967ad").innerHTML=padAjaxbd92c03a558a08beec01deef093967ad.responseText;
+                        } else {
+                        document.getElementById("padAjaxbd92c03a558a08beec01deef093967ad").innerHTML=padAjaxbd92c03a558a08beec01deef093967ad.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbd92c03a558a08beec01deef093967ad.open("GET","http://localhost/pad/regression/framework/?variables/a_date_object_is_a_value_for_tags_and_pipes&padInclude",true);
+                        padAjaxbd92c03a558a08beec01deef093967ad.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: timeago/comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">timeago/comments.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">timeago/comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A thread whose comments were posted some time before now.<br><br>  </span><span style="color: #0000BB">$comments </span><span style="color: #007700">= [];<br><br>  foreach ( [ [ </span><span style="color: #DD0000">'Maya'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'#2a78d6'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-4 months'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'Is there a way to export the report as a spreadsheet?' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Jonas'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'#1baf7a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-3 weeks'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'The CSV answer of the same page does exactly that.' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Priya'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'#eb6834'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-1 day'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'Tried it today - one line in the page and it works.' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Tomás'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'#7c5cff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-2 hours'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'Can the columns be chosen?' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Maya'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'#2a78d6'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-5 minutes'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'Yes: list them in the page, in the order you want.' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Ken'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'#e34948'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-3 seconds'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'Thanks, everyone!' </span><span style="color: #007700">] ] as list ( </span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$color</span><span style="color: #007700">, </span><span style="color: #0000BB">$when</span><span style="color: #007700">, </span><span style="color: #0000BB">$text </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$comments </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$color</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padNow </span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">modify </span><span style="color: #007700">( </span><span style="color: #0000BB">$when </span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">), </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$text </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A comment thread<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each comment says how long ago it was posted; hover a time for the full date<font color="black">,</font> and the datetime attribute carries the exact moment.<font color="black">'</font></font>}</b><br>&lt;ol style="list-style:none;margin:0;padding:0;max-width:32em;display:grid;gap:16px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;li style="display:grid;grid-template-columns:40px 1fr;gap:12px"&gt;<br>    &lt;span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:<b>{<font color="green"><font color="red">$</font>color</font>}</b>"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">left(1)</font>}</b>&lt;/span&gt;<br>    &lt;div&gt;<br>      &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt; &lt;small style="opacity:.65"&gt;· <b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>posted</font>}</b>&lt;/small&gt;<br>      &lt;p style="margin:4px 0 0;line-height:1.5"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>    &lt;/div&gt;<br>  &lt;/li&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/ol&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3e12ebb3bd61e720b84281755c231de7"></div>
+                        <script>
+                        padAjax3e12ebb3bd61e720b84281755c231de7 = new XMLHttpRequest();
+                        padAjax3e12ebb3bd61e720b84281755c231de7.onreadystatechange=function() {
+                        if (padAjax3e12ebb3bd61e720b84281755c231de7.readyState === 4) {
+                        if (padAjax3e12ebb3bd61e720b84281755c231de7.status === 200) {
+                        document.getElementById("padAjax3e12ebb3bd61e720b84281755c231de7").innerHTML=padAjax3e12ebb3bd61e720b84281755c231de7.responseText;
+                        } else {
+                        document.getElementById("padAjax3e12ebb3bd61e720b84281755c231de7").innerHTML=padAjax3e12ebb3bd61e720b84281755c231de7.statusText;
+                        }
+                        }
+                        }
+                        padAjax3e12ebb3bd61e720b84281755c231de7.open("GET","http://localhost/pad/showcase/?timeago/comments&padInclude",true);
+                        padAjax3e12ebb3bd61e720b84281755c231de7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/timeago/1-thread<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/timeago/1-thread.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/timeago/1-thread.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Maya'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-06-02 09:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Can the report be a spreadsheet?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jonas'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-09-17 15:30'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The CSV answer of the page does it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Priya'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-07 10:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'One line in the page and it works.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Tomás'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-08 09:45'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Can the columns be chosen?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ken'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-08 11:55'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Yes - list them in the page.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A comment thread<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each comment says how long before the fixed now it was posted; hover a time for the full moment.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt; - <b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>posted<font color="black">,</font> now=<font color="black">'</font>2026-10-08 12<font color="black">:</font>00<font color="black">'</font></font>}</b>: <b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc87a3156c9f76094347b67c18acba979"></div>
+                        <script>
+                        padAjaxc87a3156c9f76094347b67c18acba979 = new XMLHttpRequest();
+                        padAjaxc87a3156c9f76094347b67c18acba979.onreadystatechange=function() {
+                        if (padAjaxc87a3156c9f76094347b67c18acba979.readyState === 4) {
+                        if (padAjaxc87a3156c9f76094347b67c18acba979.status === 200) {
+                        document.getElementById("padAjaxc87a3156c9f76094347b67c18acba979").innerHTML=padAjaxc87a3156c9f76094347b67c18acba979.responseText;
+                        } else {
+                        document.getElementById("padAjaxc87a3156c9f76094347b67c18acba979").innerHTML=padAjaxc87a3156c9f76094347b67c18acba979.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc87a3156c9f76094347b67c18acba979.open("GET","http://localhost/pad/tags/?examples/timeago/1-thread&padInclude",true);
+                        padAjaxc87a3156c9f76094347b67c18acba979.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/timeago/2-format<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/timeago/2-format.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Past and future<font color="black">,</font> another title<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A moment still to come reads as in ...; format= changes the full date in the title.<font color="black">'</font></font>}</b><br>&lt;p&gt;Released <b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font>2026-09-01<font color="black">'</font><font color="black">,</font> now=<font color="black">'</font>2026-10-08 12<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>j M Y<font color="black">'</font></font>}</b>.&lt;/p&gt;<br>&lt;p&gt;Next release <b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font>2026-10-22<font color="black">'</font><font color="black">,</font> now=<font color="black">'</font>2026-10-08 12<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>j M Y<font color="black">'</font></font>}</b>.&lt;/p&gt;<br>&lt;p&gt;Not dated: [<b>{<font color="blue">timeago </font><font color="red"><font color="black">'</font><font color="black">'</font></font>}</b>]&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf758b68b9d60c932f69949b3a19819b7"></div>
+                        <script>
+                        padAjaxf758b68b9d60c932f69949b3a19819b7 = new XMLHttpRequest();
+                        padAjaxf758b68b9d60c932f69949b3a19819b7.onreadystatechange=function() {
+                        if (padAjaxf758b68b9d60c932f69949b3a19819b7.readyState === 4) {
+                        if (padAjaxf758b68b9d60c932f69949b3a19819b7.status === 200) {
+                        document.getElementById("padAjaxf758b68b9d60c932f69949b3a19819b7").innerHTML=padAjaxf758b68b9d60c932f69949b3a19819b7.responseText;
+                        } else {
+                        document.getElementById("padAjaxf758b68b9d60c932f69949b3a19819b7").innerHTML=padAjaxf758b68b9d60c932f69949b3a19819b7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf758b68b9d60c932f69949b3a19819b7.open("GET","http://localhost/pad/tags/?examples/timeago/2-format&padInclude",true);
+                        padAjaxf758b68b9d60c932f69949b3a19819b7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

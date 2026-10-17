@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: react - Page: examples/enhance<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/enhance.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/enhance.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $people </span><span style="color: #007700">= </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'team' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div data-island="TeamTable" data-props="{^people}"&gt;<br>  &lt;table class="table"&gt;<br>    &lt;thead&gt;<br>      &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Team&lt;/th&gt;&lt;th&gt;City&lt;/th&gt;&lt;th class="num"&gt;Commits&lt;/th&gt;&lt;/tr&gt;<br>    &lt;/thead&gt;<br>    &lt;tbody&gt;<br>      <b>{<font color="blue">people</font><font color="red"></font>}</b><br>      &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>team</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>city</font>}</b>&lt;/td&gt;&lt;td class="num"&gt;<b>{<font color="green"><font color="red">$</font>commits</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>      <b>{/<font color="blue">people</font><font color="red"></font>}</b><br>    &lt;/tbody&gt;<br>  &lt;/table&gt;<br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/enhance.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd1771c66761e538a266bebfa0d5e9ff7"></div>
+                        <script>
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7 = new XMLHttpRequest();
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7.onreadystatechange=function() {
+                        if (padAjaxd1771c66761e538a266bebfa0d5e9ff7.readyState === 4) {
+                        if (padAjaxd1771c66761e538a266bebfa0d5e9ff7.status === 200) {
+                        document.getElementById("padAjaxd1771c66761e538a266bebfa0d5e9ff7").innerHTML=padAjaxd1771c66761e538a266bebfa0d5e9ff7.responseText;
+                        } else {
+                        document.getElementById("padAjaxd1771c66761e538a266bebfa0d5e9ff7").innerHTML=padAjaxd1771c66761e538a266bebfa0d5e9ff7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7.open("GET","http://localhost/pad/react/?examples/enhance&padInclude",true);
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/a_list_of_objects_iterates_as_rows_with_their_fields<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/a_list_of_objects_iterates_as_rows_with_their_fields.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_list_of_objects_iterates_as_rows_with_their_fields.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $decoded </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'[{"a":1,"b":"x"},{"a":2,"b":"y"}]' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$people  </span><span style="color: #007700">= [ (object) [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'P1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'age' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">30 </span><span style="color: #007700">], (object) [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'P2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'age' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">40 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$nested  </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'[{"addr":{"city":"Paris"},"tags":[{"t":1},{"t":2}]}]' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$dates   </span><span style="color: #007700">= [ new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-02 03:04:05'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) ) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">decoded</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>a</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded </font><font color="red">where=<font color="black">'</font><font color="red">$</font>a gt 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 2</font>}</b>two<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded </font><font color="red">sort=<font color="black">'</font>b DESC<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">people</font><font color="red"></font>}</b>(<b>{<font color="green"><font color="red">$</font>name</font>}</b>)<b>{/<font color="blue">people</font><font color="red"></font>}</b>|<b>{<font color="blue">nested</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>addr.city</font>}</b>:<b>{<font color="blue">tags</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b><b>{/<font color="blue">tags</font><font color="red"></font>}</b><b>{/<font color="blue">nested</font><font color="red"></font>}</b>|<b>{<font color="blue">dates</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>dates</font>}</b> <b>{/<font color="blue">dates</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa9206269f883995050b8b8e4b6ca7441"></div>
+                        <script>
+                        padAjaxa9206269f883995050b8b8e4b6ca7441 = new XMLHttpRequest();
+                        padAjaxa9206269f883995050b8b8e4b6ca7441.onreadystatechange=function() {
+                        if (padAjaxa9206269f883995050b8b8e4b6ca7441.readyState === 4) {
+                        if (padAjaxa9206269f883995050b8b8e4b6ca7441.status === 200) {
+                        document.getElementById("padAjaxa9206269f883995050b8b8e4b6ca7441").innerHTML=padAjaxa9206269f883995050b8b8e4b6ca7441.responseText;
+                        } else {
+                        document.getElementById("padAjaxa9206269f883995050b8b8e4b6ca7441").innerHTML=padAjaxa9206269f883995050b8b8e4b6ca7441.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa9206269f883995050b8b8e4b6ca7441.open("GET","http://localhost/pad/regression/framework/?data/a_list_of_objects_iterates_as_rows_with_their_fields&padInclude",true);
+                        padAjaxa9206269f883995050b8b8e4b6ca7441.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/pages - Page: mail/tags<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -87,7 +171,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

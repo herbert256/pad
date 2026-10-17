@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -107,6 +107,172 @@
                         }
                         padAjaxc35d65d13af4b05fbfd334ca2030b382.open("GET","http://localhost/pad/regression/cache_file/?script&padInclude",true);
                         padAjaxc35d65d13af4b05fbfd334ca2030b382.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A section holding the CSP nonce - a widget's or a chart's &lt;style&gt; under style-src 'nonce'<br>  // - is kept, the nonce written in on a hit as the request's: it was never kept at all.<br><br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #DD0000">"default-src 'self'; style-src 'nonce'"</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'nonce-section' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nonce-section<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">nonce</font><font color="red"></font>}</b>-<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>uniqid</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]|[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nonce-section<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">nonce</font><font color="red"></font>}</b>-<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>uniqid</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]|<b>{<font color="blue">nonce</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax094bb5ae15420d84e56c0c35c5905fdc"></div>
+                        <script>
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc = new XMLHttpRequest();
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc.onreadystatechange=function() {
+                        if (padAjax094bb5ae15420d84e56c0c35c5905fdc.readyState === 4) {
+                        if (padAjax094bb5ae15420d84e56c0c35c5905fdc.status === 200) {
+                        document.getElementById("padAjax094bb5ae15420d84e56c0c35c5905fdc").innerHTML=padAjax094bb5ae15420d84e56c0c35c5905fdc.responseText;
+                        } else {
+                        document.getElementById("padAjax094bb5ae15420d84e56c0c35c5905fdc").innerHTML=padAjax094bb5ae15420d84e56c0c35c5905fdc.statusText;
+                        }
+                        }
+                        }
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc.open("GET","http://localhost/pad/regression/framework/?tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce&padInclude",true);
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cached_section_holding_the_csrf_token_or_the_nonce_is_not_kept<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cached_section_holding_the_csrf_token_or_the_nonce_is_not_kept.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cached_section_holding_the_csrf_token_or_the_nonce_is_not_kept.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A section whose rendering holds the visitor's CSRF token - a {form}, {csrf}, a live<br>  // region - is rendered every time and never kept: the copy went to every later visitor,<br>  // who got the first one's token to post with on that visitor's behalf. The second section<br>  // of that name finds no stored copy and renders its own content. One holding the CSP<br>  // nonce is kept with a marker in its place, which a hit fills with the nonce of the<br>  // request it answers - the second section of that name is the first one's copy.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwTokenSection' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwNonceSection' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwTokenSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;i&gt;<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>&lt;/i&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwTokenSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;b&gt;kept&lt;/b&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwNonceSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;i&gt;<b>{<font color="blue">nonce</font><font color="red"></font>}</b>&lt;/i&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwNonceSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;b&gt;kept&lt;/b&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax66bfc9dabefda7b612c34f5eef5f5661"></div>
+                        <script>
+                        padAjax66bfc9dabefda7b612c34f5eef5f5661 = new XMLHttpRequest();
+                        padAjax66bfc9dabefda7b612c34f5eef5f5661.onreadystatechange=function() {
+                        if (padAjax66bfc9dabefda7b612c34f5eef5f5661.readyState === 4) {
+                        if (padAjax66bfc9dabefda7b612c34f5eef5f5661.status === 200) {
+                        document.getElementById("padAjax66bfc9dabefda7b612c34f5eef5f5661").innerHTML=padAjax66bfc9dabefda7b612c34f5eef5f5661.responseText;
+                        } else {
+                        document.getElementById("padAjax66bfc9dabefda7b612c34f5eef5f5661").innerHTML=padAjax66bfc9dabefda7b612c34f5eef5f5661.statusText;
+                        }
+                        }
+                        }
+                        padAjax66bfc9dabefda7b612c34f5eef5f5661.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_holding_the_csrf_token_or_the_nonce_is_not_kept&padInclude",true);
+                        padAjax66bfc9dabefda7b612c34f5eef5f5661.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_nonce_made_inside_a_sandbox_is_the_page_s_nonce<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_nonce_made_inside_a_sandbox_is_the_page_s_nonce.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">sandbox</font><font color="red"></font>}</b><b>{<font color="blue">nonce</font><font color="red"></font>}</b><b>{/<font color="blue">sandbox</font><font color="red"></font>}</b>|<b>{<font color="blue">nonce</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxecefff7ef86ad33edb93fa88e884f5bc"></div>
+                        <script>
+                        padAjaxecefff7ef86ad33edb93fa88e884f5bc = new XMLHttpRequest();
+                        padAjaxecefff7ef86ad33edb93fa88e884f5bc.onreadystatechange=function() {
+                        if (padAjaxecefff7ef86ad33edb93fa88e884f5bc.readyState === 4) {
+                        if (padAjaxecefff7ef86ad33edb93fa88e884f5bc.status === 200) {
+                        document.getElementById("padAjaxecefff7ef86ad33edb93fa88e884f5bc").innerHTML=padAjaxecefff7ef86ad33edb93fa88e884f5bc.responseText;
+                        } else {
+                        document.getElementById("padAjaxecefff7ef86ad33edb93fa88e884f5bc").innerHTML=padAjaxecefff7ef86ad33edb93fa88e884f5bc.statusText;
+                        }
+                        }
+                        }
+                        padAjaxecefff7ef86ad33edb93fa88e884f5bc.open("GET","http://localhost/pad/regression/framework/?tags/a_nonce_made_inside_a_sandbox_is_the_page_s_nonce&padInclude",true);
+                        padAjaxecefff7ef86ad33edb93fa88e884f5bc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_value_in_a_cached_section_never_takes_the_nonce<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_value_in_a_cached_section_never_takes_the_nonce.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_value_in_a_cached_section_never_takes_the_nonce.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value in a {cache} section that holds the text of a nonce marker stays that text on a<br>  // hit - the marker is sealed: the fixed one, brought in by a value, took each later<br>  // request's real nonce, and a script injected with it passed the policy.<br><br>  </span><span style="color: #0000BB">$markerText </span><span style="color: #007700">= </span><span style="color: #DD0000">"\u{E0A0}padNonce\u{E0A0}"</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'nonce-mark' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nonce-mark<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="green"><font color="red">!</font>markerText</font>}</b>|<b>{<font color="blue">nonce</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>][<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nonce-mark<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>x<b>{/<font color="blue">cache</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7276e836ab4b4e935ef886a403d85d95"></div>
+                        <script>
+                        padAjax7276e836ab4b4e935ef886a403d85d95 = new XMLHttpRequest();
+                        padAjax7276e836ab4b4e935ef886a403d85d95.onreadystatechange=function() {
+                        if (padAjax7276e836ab4b4e935ef886a403d85d95.readyState === 4) {
+                        if (padAjax7276e836ab4b4e935ef886a403d85d95.status === 200) {
+                        document.getElementById("padAjax7276e836ab4b4e935ef886a403d85d95").innerHTML=padAjax7276e836ab4b4e935ef886a403d85d95.responseText;
+                        } else {
+                        document.getElementById("padAjax7276e836ab4b4e935ef886a403d85d95").innerHTML=padAjax7276e836ab4b4e935ef886a403d85d95.statusText;
+                        }
+                        }
+                        }
+                        padAjax7276e836ab4b4e935ef886a403d85d95.open("GET","http://localhost/pad/regression/framework/?tags/a_value_in_a_cached_section_never_takes_the_nonce&padInclude",true);
+                        padAjax7276e836ab4b4e935ef886a403d85d95.send();
                         </script>
                       </td>
                     </tr>
@@ -207,7 +373,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

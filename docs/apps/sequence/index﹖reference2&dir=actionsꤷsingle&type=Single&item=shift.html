@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -44,6 +44,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework Page: lenient/a_shift_or_pop_of_a_store_never_pushed_takes_nothing<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_shift_or_pop_of_a_store_never_pushed_takes_nothing.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_shift_or_pop_of_a_store_never_pushed_takes_nothing.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red">pull=<font color="black">'</font>nope<font color="black">'</font><font color="black">,</font> shift=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">pull=<font color="black">'</font>nope<font color="black">'</font><font color="black">,</font> pop=1<font color="black">,</font> toData=<font color="black">'</font>q<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax00afd4cda41e18151ac7b09016570c7c"></div>
+                        <script>
+                        padAjax00afd4cda41e18151ac7b09016570c7c = new XMLHttpRequest();
+                        padAjax00afd4cda41e18151ac7b09016570c7c.onreadystatechange=function() {
+                        if (padAjax00afd4cda41e18151ac7b09016570c7c.readyState === 4) {
+                        if (padAjax00afd4cda41e18151ac7b09016570c7c.status === 200) {
+                        document.getElementById("padAjax00afd4cda41e18151ac7b09016570c7c").innerHTML=padAjax00afd4cda41e18151ac7b09016570c7c.responseText;
+                        } else {
+                        document.getElementById("padAjax00afd4cda41e18151ac7b09016570c7c").innerHTML=padAjax00afd4cda41e18151ac7b09016570c7c.statusText;
+                        }
+                        }
+                        }
+                        padAjax00afd4cda41e18151ac7b09016570c7c.open("GET","http://localhost/pad/regression/framework/?lenient/a_shift_or_pop_of_a_store_never_pushed_takes_nothing&padInclude",true);
+                        padAjax00afd4cda41e18151ac7b09016570c7c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                   <hr>
                   App: regression/framework Page: sequence/shift_leaves_the_rest_in_the_store<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -175,6 +217,86 @@
                   padAjax70960877bcd9af4b641a1295b8f92b68.open("GET","http://localhost/pad/sequence/?specials/shift&padInclude",true);
                   padAjax70960877bcd9af4b641a1295b8f92b68.send();
                   </script>
+                  <hr>
+                  App: tags Page: examples/action/2-shift<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/action/2-shift.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Taking from the front<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>shift takes values out of the store - each shift starts where the last one ended.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..7<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>line<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>shift </font><font color="red">line<font color="black">,</font> 3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>shift</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>shift </font><font color="red">line<font color="black">,</font> 3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>shift</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Left: <b>{<font color="blue">pull </font><font color="red">line</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax40cd44aa93c1e24960087a3bf466d0a1"></div>
+                        <script>
+                        padAjax40cd44aa93c1e24960087a3bf466d0a1 = new XMLHttpRequest();
+                        padAjax40cd44aa93c1e24960087a3bf466d0a1.onreadystatechange=function() {
+                        if (padAjax40cd44aa93c1e24960087a3bf466d0a1.readyState === 4) {
+                        if (padAjax40cd44aa93c1e24960087a3bf466d0a1.status === 200) {
+                        document.getElementById("padAjax40cd44aa93c1e24960087a3bf466d0a1").innerHTML=padAjax40cd44aa93c1e24960087a3bf466d0a1.responseText;
+                        } else {
+                        document.getElementById("padAjax40cd44aa93c1e24960087a3bf466d0a1").innerHTML=padAjax40cd44aa93c1e24960087a3bf466d0a1.statusText;
+                        }
+                        }
+                        }
+                        padAjax40cd44aa93c1e24960087a3bf466d0a1.open("GET","http://localhost/pad/tags/?examples/action/2-shift&padInclude",true);
+                        padAjax40cd44aa93c1e24960087a3bf466d0a1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: tags Page: examples/pull/3-shift<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/pull/3-shift.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Taking values out<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>shift=2 shows the first two values and removes them from the store; the next pull starts at 3.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..6<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>queue<font color="black">'</font></font>}</b><br>&lt;p&gt;Taken: <b>{<font color="blue">pull </font><font color="red"><font color="black">'</font>queue<font color="black">'</font><font color="black">,</font> shift=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Left:  <b>{<font color="blue">pull </font><font color="red"><font color="black">'</font>queue<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4d8c4e5a64da99537af65e249be34310"></div>
+                        <script>
+                        padAjax4d8c4e5a64da99537af65e249be34310 = new XMLHttpRequest();
+                        padAjax4d8c4e5a64da99537af65e249be34310.onreadystatechange=function() {
+                        if (padAjax4d8c4e5a64da99537af65e249be34310.readyState === 4) {
+                        if (padAjax4d8c4e5a64da99537af65e249be34310.status === 200) {
+                        document.getElementById("padAjax4d8c4e5a64da99537af65e249be34310").innerHTML=padAjax4d8c4e5a64da99537af65e249be34310.responseText;
+                        } else {
+                        document.getElementById("padAjax4d8c4e5a64da99537af65e249be34310").innerHTML=padAjax4d8c4e5a64da99537af65e249be34310.statusText;
+                        }
+                        }
+                        }
+                        padAjax4d8c4e5a64da99537af65e249be34310.open("GET","http://localhost/pad/tags/?examples/pull/3-shift&padInclude",true);
+                        padAjax4d8c4e5a64da99537af65e249be34310.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                 </center>
               </td>
             </tr>
@@ -190,7 +312,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

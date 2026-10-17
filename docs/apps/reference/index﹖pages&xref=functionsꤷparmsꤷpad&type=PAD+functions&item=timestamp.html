@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework - Page: functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// time and timestamp are the date pipe under other names: a date object of another zone<br>  // than the application's is the moment it holds to them too, not its wall-clock text.<br>  // 03:04:05 at +05:00 is 22:04:05 UTC the day before.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$d </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime </span><span style="color: #007700">( </span><span style="color: #DD0000">'2020-01-02 03:04:05+05:00' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">date[<b>{<font color="green">$d</font> <font color="black">|</font> <font color="purple">date('Y-m-d H</font><font color="black">:</font><font color="blue">i')</font>}</b>] time[<b>{<font color="green">$d</font> <font color="black">|</font> <font color="purple">time('Y-m-d H</font><font color="black">:</font><font color="blue">i')</font>}</b>] timestamp[<b>{<font color="green">$d</font> <font color="black">|</font> <font color="blue">timestamp('U')</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5bc64767f57e7270fc469f569830b6b3"></div>
+                        <script>
+                        padAjax5bc64767f57e7270fc469f569830b6b3 = new XMLHttpRequest();
+                        padAjax5bc64767f57e7270fc469f569830b6b3.onreadystatechange=function() {
+                        if (padAjax5bc64767f57e7270fc469f569830b6b3.readyState === 4) {
+                        if (padAjax5bc64767f57e7270fc469f569830b6b3.status === 200) {
+                        document.getElementById("padAjax5bc64767f57e7270fc469f569830b6b3").innerHTML=padAjax5bc64767f57e7270fc469f569830b6b3.responseText;
+                        } else {
+                        document.getElementById("padAjax5bc64767f57e7270fc469f569830b6b3").innerHTML=padAjax5bc64767f57e7270fc469f569830b6b3.statusText;
+                        }
+                        }
+                        }
+                        padAjax5bc64767f57e7270fc469f569830b6b3.open("GET","http://localhost/pad/regression/framework/?functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment&padInclude",true);
+                        padAjax5bc64767f57e7270fc469f569830b6b3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: functions/timestamp_is_the_same_function<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -127,7 +169,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -196,6 +196,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: options/group_sum_keeps_the_decimals_of_a_small_float<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/group_sum_keeps_the_decimals_of_a_small_float.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/group_sum_keeps_the_decimals_of_a_small_float.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A float below 0.0001 is written in E notation, 1.0E-5, so its decimals were never<br>  // counted and the sum was rounded to the one decimal of 0.5.<br><br>  </span><span style="color: #0000BB">$tiny </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'g' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.00001 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'g' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.5 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">tiny </font><font color="red">group="g"<font color="black">,</font> sum="x"</font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">tiny</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf4bcbf6811ad2ff45d06963b61952881"></div>
+                        <script>
+                        padAjaxf4bcbf6811ad2ff45d06963b61952881 = new XMLHttpRequest();
+                        padAjaxf4bcbf6811ad2ff45d06963b61952881.onreadystatechange=function() {
+                        if (padAjaxf4bcbf6811ad2ff45d06963b61952881.readyState === 4) {
+                        if (padAjaxf4bcbf6811ad2ff45d06963b61952881.status === 200) {
+                        document.getElementById("padAjaxf4bcbf6811ad2ff45d06963b61952881").innerHTML=padAjaxf4bcbf6811ad2ff45d06963b61952881.responseText;
+                        } else {
+                        document.getElementById("padAjaxf4bcbf6811ad2ff45d06963b61952881").innerHTML=padAjaxf4bcbf6811ad2ff45d06963b61952881.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf4bcbf6811ad2ff45d06963b61952881.open("GET","http://localhost/pad/regression/framework/?options/group_sum_keeps_the_decimals_of_a_small_float&padInclude",true);
+                        padAjaxf4bcbf6811ad2ff45d06963b61952881.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: options/group_sums_a_field_and_rows_give_the_row_its_own_value_again<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -237,6 +279,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/two_sorts_each_sort_on_their_own_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/two_sorts_each_sort_on_their_own_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/two_sorts_each_sort_on_their_own_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A sort before first= and one after it, a sort before a group and one after it: each<br>  // sorts on its own value - both sorted on the last one written.<br><br>  </span><span style="color: #0000BB">$xs     </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-03' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-01' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-02' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-01' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-02' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">xs </font><font color="red">sort=<font color="black">'</font>n<font color="black">'</font><font color="black">,</font> first=2<font color="black">,</font> sort=<font color="black">'</font>n DESC<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b>] <b>{<font color="blue">orders </font><font color="red">sort=<font color="black">'</font>d<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>t<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>t DESC<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>c</font>}</b>:<b>{<font color="green"><font color="red">$</font>t</font>}</b>:<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>d</font>}</b>/<b>{<font color="green"><font color="red">$</font>t</font>}</b>,<b>{/<font color="blue">rows</font><font color="red"></font>}</b>]<b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6ce4271bd9740a1908aa43389fe76b5b"></div>
+                        <script>
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b = new XMLHttpRequest();
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b.onreadystatechange=function() {
+                        if (padAjax6ce4271bd9740a1908aa43389fe76b5b.readyState === 4) {
+                        if (padAjax6ce4271bd9740a1908aa43389fe76b5b.status === 200) {
+                        document.getElementById("padAjax6ce4271bd9740a1908aa43389fe76b5b").innerHTML=padAjax6ce4271bd9740a1908aa43389fe76b5b.responseText;
+                        } else {
+                        document.getElementById("padAjax6ce4271bd9740a1908aa43389fe76b5b").innerHTML=padAjax6ce4271bd9740a1908aa43389fe76b5b.statusText;
+                        }
+                        }
+                        }
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b.open("GET","http://localhost/pad/regression/framework/?options/two_sorts_each_sort_on_their_own_value&padInclude",true);
+                        padAjax6ce4271bd9740a1908aa43389fe76b5b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -251,7 +335,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

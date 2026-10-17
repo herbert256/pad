@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -229,6 +229,88 @@
                         }
                         padAjaxdc7e5384bcb19cba5d0531825c47c2e9.open("GET","http://localhost/pad/regression/framework/?tags/a_before_callback_can_add_a_field_to_every_row&padInclude",true);
                         padAjaxdc7e5384bcb19cba5d0531825c47c2e9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_callback_runs_no_row_phase_for_the_else_branch<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_callback_runs_no_row_phase_for_the_else_branch.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_callback_runs_no_row_phase_for_the_else_branch.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An empty level and one its where= emptied show their @else@: that branch is no row, so<br>  // the callback's row phase does not run for it - init and exit do. The row phase read the<br>  // row's fields and ended the request ("Undefined variable $n").<br><br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">e </font><font color="red">callback=<font color="black">'</font>rowfield<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">e</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sumRows</font>}</b> <b>{<font color="blue">xs </font><font color="red">callback=<font color="black">'</font>before<font color="black">'</font><font color="black">,</font> before<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>n gt 9<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sum</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax22602f73c13e1c8f3d674abc7f692c3b"></div>
+                        <script>
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b = new XMLHttpRequest();
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.onreadystatechange=function() {
+                        if (padAjax22602f73c13e1c8f3d674abc7f692c3b.readyState === 4) {
+                        if (padAjax22602f73c13e1c8f3d674abc7f692c3b.status === 200) {
+                        document.getElementById("padAjax22602f73c13e1c8f3d674abc7f692c3b").innerHTML=padAjax22602f73c13e1c8f3d674abc7f692c3b.responseText;
+                        } else {
+                        document.getElementById("padAjax22602f73c13e1c8f3d674abc7f692c3b").innerHTML=padAjax22602f73c13e1c8f3d674abc7f692c3b.statusText;
+                        }
+                        }
+                        }
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.open("GET","http://localhost/pad/regression/framework/?tags/a_callback_runs_no_row_phase_for_the_else_branch&padInclude",true);
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_streaming_callback_sees_the_row_on_the_page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_streaming_callback_sees_the_row_on_the_page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red">"n"</font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">n </font><font color="red">callback="rowfield.php"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b>,<b>{/<font color="blue">n</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sumRows</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9681a87523586f431d6d8ec4ad675ec1"></div>
+                        <script>
+                        padAjax9681a87523586f431d6d8ec4ad675ec1 = new XMLHttpRequest();
+                        padAjax9681a87523586f431d6d8ec4ad675ec1.onreadystatechange=function() {
+                        if (padAjax9681a87523586f431d6d8ec4ad675ec1.readyState === 4) {
+                        if (padAjax9681a87523586f431d6d8ec4ad675ec1.status === 200) {
+                        document.getElementById("padAjax9681a87523586f431d6d8ec4ad675ec1").innerHTML=padAjax9681a87523586f431d6d8ec4ad675ec1.responseText;
+                        } else {
+                        document.getElementById("padAjax9681a87523586f431d6d8ec4ad675ec1").innerHTML=padAjax9681a87523586f431d6d8ec4ad675ec1.statusText;
+                        }
+                        }
+                        }
+                        padAjax9681a87523586f431d6d8ec4ad675ec1.open("GET","http://localhost/pad/regression/framework/?tags/a_streaming_callback_sees_the_row_on_the_page&padInclude",true);
+                        padAjax9681a87523586f431d6d8ec4ad675ec1.send();
                         </script>
                       </td>
                     </tr>
@@ -565,90 +647,6 @@
                       </td>
                     </tr>
                   </table><br>
-                  <hr>
-                  App: structure - Page: def/page<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">def/page.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">def/page.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'def'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / def <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxf25461ca03a4d2c8e89fad5fe5743064"></div>
-                        <script>
-                        padAjaxf25461ca03a4d2c8e89fad5fe5743064 = new XMLHttpRequest();
-                        padAjaxf25461ca03a4d2c8e89fad5fe5743064.onreadystatechange=function() {
-                        if (padAjaxf25461ca03a4d2c8e89fad5fe5743064.readyState === 4) {
-                        if (padAjaxf25461ca03a4d2c8e89fad5fe5743064.status === 200) {
-                        document.getElementById("padAjaxf25461ca03a4d2c8e89fad5fe5743064").innerHTML=padAjaxf25461ca03a4d2c8e89fad5fe5743064.responseText;
-                        } else {
-                        document.getElementById("padAjaxf25461ca03a4d2c8e89fad5fe5743064").innerHTML=padAjaxf25461ca03a4d2c8e89fad5fe5743064.statusText;
-                        }
-                        }
-                        }
-                        padAjaxf25461ca03a4d2c8e89fad5fe5743064.open("GET","http://localhost/pad/structure/?def/page&padInclude",true);
-                        padAjaxf25461ca03a4d2c8e89fad5fe5743064.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: structure - Page: page<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">page.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">page.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'root'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / root <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb"></div>
-                        <script>
-                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb = new XMLHttpRequest();
-                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.onreadystatechange=function() {
-                        if (padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.readyState === 4) {
-                        if (padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.status === 200) {
-                        document.getElementById("padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb").innerHTML=padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.responseText;
-                        } else {
-                        document.getElementById("padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb").innerHTML=padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.statusText;
-                        }
-                        }
-                        }
-                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.open("GET","http://localhost/pad/structure/?page&padInclude",true);
-                        padAjaxcc37b1cb6a01fe0fa44b71253e8ad0fb.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
                 </center>
               </td>
             </tr>
@@ -663,7 +661,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {extends} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#layout">Layouts and components</a><span>/</span><span aria-current="page">extends</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>extends<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Frames the page with a layout instead of its directories' wrappers.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#layout">Layouts and components</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">'layout'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>layout</code>
+            </dt>
+            <dd>
+              The layout template, named from the application root like a <code>{page}</code> (<code>.pad</code>, else <code>.html</code>). May be an expression the page's PHP set.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{extends 'layout'}</code> makes a page use a layout as its frame. It is not a tag that runs while the page renders: it is resolved in the text while the page is assembled, after the PHP and before anything renders, and taken out. The layout then replaces the frame the page would otherwise get - the <code>_inits.pad</code> and <code>_exits.pad</code> of its directories, and the <code>_common</code> wrapper.
+          </p>
+          <p>
+            The layout is a template named from the application root, like a <a href="index%EF%B9%96tag%EA%A4%B7page.html"><code>{page}</code></a>; keeping layouts in a directory that starts with an underscore (<code>_layouts/</code>) keeps them from being pages of their own. What the page holds outside its <a href="index%EF%B9%96tag%EA%A4%B7block.html"><code>{block}</code></a> pairs goes where the layout writes <code>@page@</code> - in front of the layout when it has none. The page's top-level blocks override the layout's blocks of the same name, and <a href="index%EF%B9%96tag%EA%A4%B7parent.html"><code>{parent}</code></a> inside one of them brings back the content it overrides. A layout may extend a layout of its own; the chain is followed up to the outermost.
+          </p>
+          <p>
+            The tag must stand directly in the page's own template, outside any other tag; one found anywhere else - in a snippet, a custom tag, inside an <code>{if}</code> - is an error under the strict check. Under the strict check a block of an extending page that overrides nothing is reported as well. <code>{meta layout='...'}</code> does the same as <code>{extends}</code>.
+          </p>
+          <p>
+            Because the frame is replaced, a page that extends a layout and is opened on its own shows the layout and nothing of the application's wrapper. Inside a <code>{page}</code>, as in the examples here, the included page is assembled the same way and brings its layout along.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A page in a layout
+            </h3>
+            <p class="example-about">
+              The page extends a layout of the application and overrides one of its blocks.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/extends/1-layout.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">'_layouts/extendsCard'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'title'</span><span class="hl-brc">}</span>Monthly report<span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Sales rose by <span class="hl-num">4</span>% in September.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7extends%EA%A4%B71-layout.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="card" style="border:1px solid #ccc; padding:.5em 1em; border-radius:6px">
+                    <h3>
+                      Monthly report
+                    </h3>
+                    <p>
+                      Sales rose by 4% in September.
+                    </p>
+                    <footer>
+                      <small>Made with PAD</small>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The layout from PHP
+            </h3>
+            <p class="example-about">
+              The layout's name is an expression - a variable the page's PHP set - and the page overrides two blocks.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/extends/2-expression.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'title'</span><span class="hl-brc">}</span>Order <span class="hl-num">10417</span><span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span>Shipped on <span class="hl-num">1</span> October <span class="hl-num">2026</span><span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Two kettles and a teapot.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/extends/2-expression.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$layout</span> <span class="hl-pun">=</span> <span class="hl-str">'_layouts/extendsCard'</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7extends%EA%A4%B72-expression.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="card" style="border:1px solid #ccc; padding:.5em 1em; border-radius:6px">
+                    <h3>
+                      Order 10417
+                    </h3>
+                    <p>
+                      Two kettles and a teapot.
+                    </p>
+                    <footer>
+                      <small>Shipped on 1 October 2026</small>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7block.html">{block}</a> <span class="about">A named region of a layout or wrapper - and a page's override of it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7parent.html">{parent}</a> <span class="about">Inside an overriding block: the content of the block it overrides.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7meta.html">{meta}</a> <span class="about">The page's metadata - a title, a layout, a cache time or any value - read while the page is assembled.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7exit.html">← {exit}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7false.html">{false} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

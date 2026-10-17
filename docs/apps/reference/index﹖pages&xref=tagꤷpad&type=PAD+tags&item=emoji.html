@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - emoji
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - emoji
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/an_unknown_emoji_is_reported_with_the_nearest_shortcode<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/an_unknown_emoji_is_reported_with_the_nearest_shortcode.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>rocet<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd57bb057f15ed9803b4b6d10bf5536bb"></div>
+                        <script>
+                        padAjaxd57bb057f15ed9803b4b6d10bf5536bb = new XMLHttpRequest();
+                        padAjaxd57bb057f15ed9803b4b6d10bf5536bb.onreadystatechange=function() {
+                        if (padAjaxd57bb057f15ed9803b4b6d10bf5536bb.readyState === 4) {
+                        if (padAjaxd57bb057f15ed9803b4b6d10bf5536bb.status === 200) {
+                        document.getElementById("padAjaxd57bb057f15ed9803b4b6d10bf5536bb").innerHTML=padAjaxd57bb057f15ed9803b4b6d10bf5536bb.responseText;
+                        } else {
+                        document.getElementById("padAjaxd57bb057f15ed9803b4b6d10bf5536bb").innerHTML=padAjaxd57bb057f15ed9803b4b6d10bf5536bb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd57bb057f15ed9803b4b6d10bf5536bb.open("GET","http://localhost/pad/regression/errors/?syntax/an_unknown_emoji_is_reported_with_the_nearest_shortcode&padInclude",true);
+                        padAjaxd57bb057f15ed9803b4b6d10bf5536bb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_field_inside_the_title_or_label_of_more_drawing_tags_is_escaped_once<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_field_inside_the_title_or_label_of_more_drawing_tags_is_escaped_once.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_field_inside_the_title_or_label_of_more_drawing_tags_is_escaped_once.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field written inside the quoted title, label, alt, button, past= or tab name of these<br>  // tags is escaped once, as the field alone is: it arrived escaped by its sanitize step and<br>  // the tag escaped it again - Q&amp;A Å was shown and read out as Q&amp;amp;A &amp;Aring;. Each line<br>  // counts the texts written right; a tab named by the field is the one active= and open=<br>  // name with it.<br><br>  </span><span style="color: #0000BB">$t </span><span style="color: #007700">= </span><span style="color: #DD0000">'Q&amp;A Å'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">sudoku <b>{<font color="blue">sudoku </font><font color="red"><font color="black">'</font>53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>chess <b>{<font color="blue">chess </font><font color="red"><font color="black">'</font>rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>crossword <b>{<font color="blue">crossword </font><font color="red">title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>  ECHO: Writes a value<br>  HELLO: The first page<br><b>{/<font color="blue">crossword </font><font color="red"><font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>emoji <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>rocket<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>copy <b>{<font color="blue">copy </font><font color="red"><font color="black">'</font>abc<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>modal <b>{<font color="blue">modal </font><font color="red"><font color="black">'</font>fw-esc-once<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> button=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b>x<b>{/<font color="blue">modal </font><font color="red"><font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>video <b>{<font color="blue">video </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//youtu.be/dQw4w9WgXcQ<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>countdown <b>{<font color="blue">countdown </font><font color="red"><font color="black">'</font>2000-01-01<font color="black">'</font><font color="black">,</font> past=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>tabs <b>{<font color="blue">tabs </font><font color="red">active=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>B<font color="black">'</font></font>}</b>b<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b>a<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{/<font color="blue">tabs </font><font color="red"><font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b> <b>{<font color="blue">tabs </font><font color="red">active=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>B<font color="black">'</font></font>}</b>b<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b>a<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{/<font color="blue">tabs </font><font color="red"><font color="black">|</font> php<font color="black">:</font>preg_match(<font color="black">'</font>/-2-panel. checked/u<font color="black">'</font><font color="black">,</font> <font color="black">@</font>)</font>}</b>;<br>accordion <b>{<font color="blue">accordion </font><font color="red">open=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>B<font color="black">'</font></font>}</b>b<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b>a<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{/<font color="blue">accordion </font><font color="red"><font color="black">|</font> php<font color="black">:</font>preg_match(<font color="black">'</font>/open&gt;&lt;summary class..pad-accordion-summary.&gt;Q&amp;amp;A Å/u<font color="black">'</font><font color="black">,</font> <font color="black">@</font>)</font>}</b>;<br>carousel <b>{<font color="blue">carousel </font><font color="red">label=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font></font>}</b>a<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{/<font color="blue">carousel </font><font color="red"><font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>poll <b>{<font color="blue">poll </font><font color="red"><font color="black">'</font>fw-esc-once<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> button=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> options=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">,</font> B<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b>;<br>img <b>{<font color="blue">img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=40<font color="black">,</font> alt=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>t</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>Q&amp;amp;A Å<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax152b7af569fa921c9ff106bdb3f2e518"></div>
+                        <script>
+                        padAjax152b7af569fa921c9ff106bdb3f2e518 = new XMLHttpRequest();
+                        padAjax152b7af569fa921c9ff106bdb3f2e518.onreadystatechange=function() {
+                        if (padAjax152b7af569fa921c9ff106bdb3f2e518.readyState === 4) {
+                        if (padAjax152b7af569fa921c9ff106bdb3f2e518.status === 200) {
+                        document.getElementById("padAjax152b7af569fa921c9ff106bdb3f2e518").innerHTML=padAjax152b7af569fa921c9ff106bdb3f2e518.responseText;
+                        } else {
+                        document.getElementById("padAjax152b7af569fa921c9ff106bdb3f2e518").innerHTML=padAjax152b7af569fa921c9ff106bdb3f2e518.statusText;
+                        }
+                        }
+                        }
+                        padAjax152b7af569fa921c9ff106bdb3f2e518.open("GET","http://localhost/pad/regression/framework/?tags/a_field_inside_the_title_or_label_of_more_drawing_tags_is_escaped_once&padInclude",true);
+                        padAjax152b7af569fa921c9ff106bdb3f2e518.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/emoji_writes_a_labelled_image_from_a_shortcode<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/emoji_writes_a_labelled_image_from_a_shortcode.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>rocket<font color="black">'</font></font>}</b> <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font><font color="black">:</font>TADA<font color="black">:</font><font color="black">'</font></font>}</b> <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>+1<font color="black">'</font></font>}</b> <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>heart<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Love &lt;3<font color="black">'</font></font>}</b> <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>technologist<font color="black">'</font></font>}</b> <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>hash<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax91d92c0cd60bc8fc8e7afcc568b44f2d"></div>
+                        <script>
+                        padAjax91d92c0cd60bc8fc8e7afcc568b44f2d = new XMLHttpRequest();
+                        padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.onreadystatechange=function() {
+                        if (padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.readyState === 4) {
+                        if (padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.status === 200) {
+                        document.getElementById("padAjax91d92c0cd60bc8fc8e7afcc568b44f2d").innerHTML=padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.responseText;
+                        } else {
+                        document.getElementById("padAjax91d92c0cd60bc8fc8e7afcc568b44f2d").innerHTML=padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.statusText;
+                        }
+                        }
+                        }
+                        padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.open("GET","http://localhost/pad/regression/framework/?tags/emoji_writes_a_labelled_image_from_a_shortcode&padInclude",true);
+                        padAjax91d92c0cd60bc8fc8e7afcc568b44f2d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: emoji/reactions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">emoji/reactions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">emoji/reactions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The reactions a post got, by shortcode - as GitHub and Slack write them.<br><br>  </span><span style="color: #0000BB">$reactions </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'+1'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'tada'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">17 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'heart'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'rocket'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'eyes'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'joy'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2  </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A reaction bar<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Reactions under a post<font color="black">,</font> each emoji from its shortcode in a span with role img and its name as the label a screen reader says.<font color="black">'</font></font>}</b><br>&lt;div style="max-width:30em"&gt;<br>  &lt;p style="margin:0 0 14px;line-height:1.5"&gt;&lt;strong&gt;Release 3.0 is out&lt;/strong&gt; - charts, tables and a faster first render.&lt;/p&gt;<br>  &lt;div style="display:flex;flex-wrap:wrap;gap:8px"&gt;<br>    <b>{<font color="blue">reactions</font><font color="red"></font>}</b><br>    &lt;button type="button" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;font:inherit;font-size:15px"&gt;<br>      <b>{<font color="blue">emoji </font><font color="red"><font color="red">$</font>code</font>}</b> &lt;span style="font-size:13px;font-variant-numeric:tabular-nums"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;<br>    &lt;/button&gt;<br>    <b>{/<font color="blue">reactions</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8aa282e593bfd6623ec652fcbb173c99"></div>
+                        <script>
+                        padAjax8aa282e593bfd6623ec652fcbb173c99 = new XMLHttpRequest();
+                        padAjax8aa282e593bfd6623ec652fcbb173c99.onreadystatechange=function() {
+                        if (padAjax8aa282e593bfd6623ec652fcbb173c99.readyState === 4) {
+                        if (padAjax8aa282e593bfd6623ec652fcbb173c99.status === 200) {
+                        document.getElementById("padAjax8aa282e593bfd6623ec652fcbb173c99").innerHTML=padAjax8aa282e593bfd6623ec652fcbb173c99.responseText;
+                        } else {
+                        document.getElementById("padAjax8aa282e593bfd6623ec652fcbb173c99").innerHTML=padAjax8aa282e593bfd6623ec652fcbb173c99.statusText;
+                        }
+                        }
+                        }
+                        padAjax8aa282e593bfd6623ec652fcbb173c99.open("GET","http://localhost/pad/showcase/?emoji/reactions&padInclude",true);
+                        padAjax8aa282e593bfd6623ec652fcbb173c99.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/emoji/1-reactions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/emoji/1-reactions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/emoji/1-reactions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $reactions </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'+1'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">':tada:'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">17 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'heart'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Rocket'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'eyes'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3  </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A reaction bar<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each emoji from its shortcode - with or without colons - in a span a screen reader names.<font color="black">'</font></font>}</b><br>&lt;p&gt;<br>  <b>{<font color="blue">reactions</font><font color="red"></font>}</b><br>    &lt;span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"&gt;<b>{<font color="blue">emoji </font><font color="red"><font color="red">$</font>code</font>}</b> <b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;<br>  <b>{/<font color="blue">reactions</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa7b328d2730ca77459f4709bfda3c24a"></div>
+                        <script>
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a = new XMLHttpRequest();
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a.onreadystatechange=function() {
+                        if (padAjaxa7b328d2730ca77459f4709bfda3c24a.readyState === 4) {
+                        if (padAjaxa7b328d2730ca77459f4709bfda3c24a.status === 200) {
+                        document.getElementById("padAjaxa7b328d2730ca77459f4709bfda3c24a").innerHTML=padAjaxa7b328d2730ca77459f4709bfda3c24a.responseText;
+                        } else {
+                        document.getElementById("padAjaxa7b328d2730ca77459f4709bfda3c24a").innerHTML=padAjaxa7b328d2730ca77459f4709bfda3c24a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a.open("GET","http://localhost/pad/tags/?examples/emoji/1-reactions&padInclude",true);
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/emoji/2-label<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/emoji/2-label.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Another name to say<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>label= replaces the name a screen reader says; the pipe form turns the shortcodes in a text into emoji.<font color="black">'</font></font>}</b><br>&lt;p&gt;Status: <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>white_check_mark<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Build passed<font color="black">'</font></font>}</b> <b>{<font color="blue">emoji </font><font color="red"><font color="black">'</font>warning<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Two warnings<font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>message = <font color="black">'</font>Shipped <font color="black">:</font>rocket<font color="black">:</font> at 10<font color="black">:</font>30<font color="black">:</font>00 - thanks all <font color="black">:</font>clap<font color="black">:</font><font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="green">$message</font> <font color="black">|</font> <font color="blue">emoji</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax56f449f471f5f525418e341cfa320d6e"></div>
+                        <script>
+                        padAjax56f449f471f5f525418e341cfa320d6e = new XMLHttpRequest();
+                        padAjax56f449f471f5f525418e341cfa320d6e.onreadystatechange=function() {
+                        if (padAjax56f449f471f5f525418e341cfa320d6e.readyState === 4) {
+                        if (padAjax56f449f471f5f525418e341cfa320d6e.status === 200) {
+                        document.getElementById("padAjax56f449f471f5f525418e341cfa320d6e").innerHTML=padAjax56f449f471f5f525418e341cfa320d6e.responseText;
+                        } else {
+                        document.getElementById("padAjax56f449f471f5f525418e341cfa320d6e").innerHTML=padAjax56f449f471f5f525418e341cfa320d6e.statusText;
+                        }
+                        }
+                        }
+                        padAjax56f449f471f5f525418e341cfa320d6e.open("GET","http://localhost/pad/tags/?examples/emoji/2-label&padInclude",true);
+                        padAjax56f449f471f5f525418e341cfa320d6e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

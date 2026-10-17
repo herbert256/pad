@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -44,6 +44,174 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework Page: expressions/a_value_spliced_after_a_string_of_the_other_quote_is_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">expressions/a_value_spliced_after_a_string_of_the_other_quote_is_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_value_spliced_after_a_string_of_the_other_quote_is_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value spliced into the quoted expression of where= or eval= is a string of it also when<br>  // a string of the other quote stands before it - '"': the quotes were counted, the odd one<br>  // made the value seem to stand in a string already, and it went in bare - the request value<br>  // 1 or php:gettype() eq 3 became part of the condition, true for every row, and of the<br>  // eval expression.<br><br>  </span><span style="color: #0000BB">$q  </span><span style="color: #007700">= </span><span style="color: #DD0000">'1 or php:gettype() eq 3'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$g  </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:gettype()'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'s' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'s' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">W[<b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>s ne \<font color="black">'</font>"\<font color="black">'</font> and <font color="red">$</font>n eq <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">xs</font><font color="red"></font>}</b>] E[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> . \<font color="black">'</font>-\<font color="black">'</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] F[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> . \<font color="black">'</font>"\<font color="black">'</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>g</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcb52b5dc60f69c76df6c6b447c2e3b87"></div>
+                        <script>
+                        padAjaxcb52b5dc60f69c76df6c6b447c2e3b87 = new XMLHttpRequest();
+                        padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.onreadystatechange=function() {
+                        if (padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.readyState === 4) {
+                        if (padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.status === 200) {
+                        document.getElementById("padAjaxcb52b5dc60f69c76df6c6b447c2e3b87").innerHTML=padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.responseText;
+                        } else {
+                        document.getElementById("padAjaxcb52b5dc60f69c76df6c6b447c2e3b87").innerHTML=padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.open("GET","http://localhost/pad/regression/framework/?expressions/a_value_spliced_after_a_string_of_the_other_quote_is_text&padInclude",true);
+                        padAjaxcb52b5dc60f69c76df6c6b447c2e3b87.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/a_value_spliced_into_any_eval_expression_is_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sequence/a_value_spliced_into_any_eval_expression_is_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_value_spliced_into_any_eval_expression_is_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value spliced into the quoted expression of the eval sequence is a string of it in every<br>  // spelling - {eval '...'}, {sequence:eval '...'}, make='eval|...', sequence:eval(2, '...') -<br>  // as in eval='...': only eval= quoted it, and in the others the value became part of the<br>  // expression and called the function it named.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:gettype()'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">e[<b>{<font color="blue">eval </font><font color="red"><font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>eval</font>}</b> <b>{/<font color="blue">eval</font><font color="red"></font>}</b>] s[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>eval </font><font color="red"><font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>eval</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>eval</font><font color="red"></font>}</b>] m[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font><font color="black">,</font> make=<font color="black">'</font>eval<font color="black">|</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] c[<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>eval(2<font color="black">,</font> <font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax46b16205e20892180592c2bafd130ad0"></div>
+                        <script>
+                        padAjax46b16205e20892180592c2bafd130ad0 = new XMLHttpRequest();
+                        padAjax46b16205e20892180592c2bafd130ad0.onreadystatechange=function() {
+                        if (padAjax46b16205e20892180592c2bafd130ad0.readyState === 4) {
+                        if (padAjax46b16205e20892180592c2bafd130ad0.status === 200) {
+                        document.getElementById("padAjax46b16205e20892180592c2bafd130ad0").innerHTML=padAjax46b16205e20892180592c2bafd130ad0.responseText;
+                        } else {
+                        document.getElementById("padAjax46b16205e20892180592c2bafd130ad0").innerHTML=padAjax46b16205e20892180592c2bafd130ad0.statusText;
+                        }
+                        }
+                        }
+                        padAjax46b16205e20892180592c2bafd130ad0.open("GET","http://localhost/pad/regression/framework/?sequence/a_value_spliced_into_any_eval_expression_is_text&padInclude",true);
+                        padAjax46b16205e20892180592c2bafd130ad0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/an_eval_expression_is_refused_only_for_a_value_that_could_run<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sequence/an_eval_expression_is_refused_only_for_a_value_that_could_run.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/an_eval_expression_is_refused_only_for_a_value_that_could_run.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The eval sequence refuses an expression only for a spliced value that could call code or<br>  // read a variable - a (, a $ or a : in it: a - or a * 2 printed in a tag's parameters<br>  // elsewhere on the page, and a {define} written into the expression, made eval='@ - 1',<br>  // eval='@ * 2' and eval='@ {twice}' refusals.<br><br>  </span><span style="color: #0000BB">$op   </span><span style="color: #007700">= </span><span style="color: #DD0000">'* 2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dash </span><span style="color: #007700">= </span><span style="color: #DD0000">'-'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">op=[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>op</font><font color="black">}</font></b><font color="black">'</font></font>}</b>] result=[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> * 2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] a=[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>dash</font><font color="black">}</font></b><font color="black">'</font></font>}</b>] b=[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>5..3<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> - 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] <b>{<font color="blue">define </font><font color="red"><font color="black">'</font>twice<font color="black">'</font></font>}</b>* 2<b>{/<font color="blue">define</font><font color="red"></font>}</b>c=[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> <b><font color="black">{</font><font color="blue">twice</font><font color="red"></font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd960b8a07f0df2e6aa6db15fedb3e478"></div>
+                        <script>
+                        padAjaxd960b8a07f0df2e6aa6db15fedb3e478 = new XMLHttpRequest();
+                        padAjaxd960b8a07f0df2e6aa6db15fedb3e478.onreadystatechange=function() {
+                        if (padAjaxd960b8a07f0df2e6aa6db15fedb3e478.readyState === 4) {
+                        if (padAjaxd960b8a07f0df2e6aa6db15fedb3e478.status === 200) {
+                        document.getElementById("padAjaxd960b8a07f0df2e6aa6db15fedb3e478").innerHTML=padAjaxd960b8a07f0df2e6aa6db15fedb3e478.responseText;
+                        } else {
+                        document.getElementById("padAjaxd960b8a07f0df2e6aa6db15fedb3e478").innerHTML=padAjaxd960b8a07f0df2e6aa6db15fedb3e478.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd960b8a07f0df2e6aa6db15fedb3e478.open("GET","http://localhost/pad/regression/framework/?sequence/an_eval_expression_is_refused_only_for_a_value_that_could_run&padInclude",true);
+                        padAjaxd960b8a07f0df2e6aa6db15fedb3e478.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/an_eval_written_by_the_template_runs_a_spliced_value_is_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sequence/an_eval_written_by_the_template_runs_a_spliced_value_is_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/an_eval_written_by_the_template_runs_a_spliced_value_is_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// eval= written by the template runs; a value spliced into its quotes is a string of the<br>  // expression, never part of it - it called the function the value named.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:gettype()'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">a[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> * 2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] b[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> make=<font color="black">'</font>eval<font color="black">|</font><font color="black">@</font> * 10<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] c[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font><font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0e817351dae52b50bb12ac5af5307c15"></div>
+                        <script>
+                        padAjax0e817351dae52b50bb12ac5af5307c15 = new XMLHttpRequest();
+                        padAjax0e817351dae52b50bb12ac5af5307c15.onreadystatechange=function() {
+                        if (padAjax0e817351dae52b50bb12ac5af5307c15.readyState === 4) {
+                        if (padAjax0e817351dae52b50bb12ac5af5307c15.status === 200) {
+                        document.getElementById("padAjax0e817351dae52b50bb12ac5af5307c15").innerHTML=padAjax0e817351dae52b50bb12ac5af5307c15.responseText;
+                        } else {
+                        document.getElementById("padAjax0e817351dae52b50bb12ac5af5307c15").innerHTML=padAjax0e817351dae52b50bb12ac5af5307c15.statusText;
+                        }
+                        }
+                        }
+                        padAjax0e817351dae52b50bb12ac5af5307c15.open("GET","http://localhost/pad/regression/framework/?sequence/an_eval_written_by_the_template_runs_a_spliced_value_is_text&padInclude",true);
+                        padAjax0e817351dae52b50bb12ac5af5307c15.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                   <hr>
                   App: regression/framework Page: sequence/an_expression_inside_a_run_leaves_the_run_alone<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -80,6 +248,46 @@
                         }
                         padAjaxcefd0b4e7bb841225902873195d9846b.open("GET","http://localhost/pad/regression/framework/?sequence/an_expression_inside_a_run_leaves_the_run_alone&padInclude",true);
                         padAjaxcefd0b4e7bb841225902873195d9846b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/membership_hands_the_parameter_over_as_a_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/membership_hands_the_parameter_over_as_a_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>0..6<font color="black">'</font><font color="black">,</font> flag<font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font>*2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>0..6<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font> * 3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font>*2<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> eval=<font color="black">'</font><font color="black">@</font>*4<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5bce9690011d9e402bf2b449634a51f4"></div>
+                        <script>
+                        padAjax5bce9690011d9e402bf2b449634a51f4 = new XMLHttpRequest();
+                        padAjax5bce9690011d9e402bf2b449634a51f4.onreadystatechange=function() {
+                        if (padAjax5bce9690011d9e402bf2b449634a51f4.readyState === 4) {
+                        if (padAjax5bce9690011d9e402bf2b449634a51f4.status === 200) {
+                        document.getElementById("padAjax5bce9690011d9e402bf2b449634a51f4").innerHTML=padAjax5bce9690011d9e402bf2b449634a51f4.responseText;
+                        } else {
+                        document.getElementById("padAjax5bce9690011d9e402bf2b449634a51f4").innerHTML=padAjax5bce9690011d9e402bf2b449634a51f4.statusText;
+                        }
+                        }
+                        }
+                        padAjax5bce9690011d9e402bf2b449634a51f4.open("GET","http://localhost/pad/regression/framework/?sequence/membership_hands_the_parameter_over_as_a_value&padInclude",true);
+                        padAjax5bce9690011d9e402bf2b449634a51f4.send();
                         </script>
                       </td>
                     </tr>
@@ -167,7 +375,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

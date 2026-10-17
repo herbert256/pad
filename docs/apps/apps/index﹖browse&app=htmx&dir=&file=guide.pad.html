@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: htmx
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: htmx
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=_include.html">_include/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">guide.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=htmx&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  guide.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + htmx<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;How PAD answers htmx&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    htmx asks for HTML and swaps it in. A PAD page is HTML with names on its parts - so the<br>    same template answers the browser's first visit and every question htmx asks after it.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. Name the part&lt;/h2&gt;<br>&lt;p&gt;A <b>{<font color="blue">fragment</font><font color="red"></font>}</b> around the part that changes; the element around it gets the same name<br>   as its id:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results"&gt;<br><br>&lt;ul id="results"&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">products</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;2. PAD answers the part alone&lt;/h2&gt;<br>&lt;p&gt;htmx sends &lt;code&gt;HX-Request: true&lt;/code&gt; and the id of the element it swaps in<br>   &lt;code&gt;HX-Target&lt;/code&gt;. When the page has a fragment of that name, the answer is that fragment<br>   and nothing else - no wrapper, no rest of the page; when it has none the page renders whole,<br>   as it always did. A request can also name the fragment itself, for an element without an id<br>   or another part than the target:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;tr hx-get="?orders&amp;p=2&amp;padFragment=rows" hx-trigger="revealed" hx-swap="afterend"&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>&lt;p&gt;The page's PHP runs as for any request - &lt;code&gt;$q&lt;/code&gt; is the request's value - and may narrow<br>   what the fragment shows: &lt;code&gt;$padFragmentOnly = 'row'&lt;/code&gt; sets the answer from PHP. A<br>   fragment inside a loop answers with the first row it renders, so narrow the rows to the one<br>   asked for.&lt;/p&gt;<br><br>&lt;h2&gt;3. Posts carry the token&lt;/h2&gt;<br>&lt;p&gt;With &lt;code&gt;$padCsrf&lt;/code&gt; on, a post without the session's token is refused before the page<br>   runs. A <b>{<font color="blue">form</font><font color="red"></font>}</b> carries it as a field; for an &lt;code&gt;hx-post&lt;/code&gt; on anything else, put<br>   the header on the body once - the ^ sigil writes the array as JSON for the attribute:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;body hx-headers="{^headers}"&gt;          &lt;!-- $headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ] --&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;4. Forms check the same rules twice&lt;/h2&gt;<br>&lt;p&gt;Fields with &lt;code&gt;rules=&lt;/code&gt; are checked on the server before the PHP runs, and with<br>   &lt;code&gt;client&lt;/code&gt; in the browser first. Posted through htmx, a form that broke a rule comes<br>   back as its own fragment, refilled, with PAD's messages beside the fields:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div id="signup"&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>signup<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>signup<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error<font color="black">,</font> hx-post=<font color="black">'</font>?signup<font color="black">'</font><font color="black">,</font> hx-target=<font color="black">'</font>#signup<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">form</font><font color="red"></font>}</b><br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;5. More than one place&lt;/h2&gt;<br>&lt;p&gt;An answer can update other parts of the page as well: elements in it marked<br>   &lt;code&gt;hx-swap-oob="true"&lt;/code&gt; go where their id is - the cart count in the header, a summary<br>   beside the list.&lt;/p&gt;<br><br>&lt;h2&gt;6. Pushed by the server&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;padSse()&lt;/code&gt; keeps a page's connection open and sends events; with htmx's sse<br>   extension each event's HTML is swapped in as it arrives:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div hx-ext="sse" sse-connect="?ticker" sse-close="done"&gt;<br>  &lt;ol sse-swap="tick" hx-swap="afterbegin"&gt;&lt;/ol&gt;<br>&lt;/div&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;div class="callout"&gt;&lt;p&gt;The page cache knows htmx: a request for a part is answered fresh and never stored, and a<br>   fragment chosen by a header is never stored under the page's address.&lt;/p&gt;&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

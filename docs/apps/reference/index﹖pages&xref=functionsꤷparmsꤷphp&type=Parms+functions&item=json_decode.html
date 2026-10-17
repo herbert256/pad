@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - json_decode
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - json decode
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/attrs_from_an_array_leaves_out_the_script_directives_of_the_libraries<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/attrs_from_an_array_leaves_out_the_script_directives_of_the_libraries.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/attrs_from_an_array_leaves_out_the_script_directives_of_the_libraries.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The keys of an array are data, often a visitor's: the directives with which Alpine, Vue,<br>  // htmx, Angular, Livewire, hyperscript and Knockout run their value as script - in every<br>  // spelling those libraries read - are left out, by {attrs} and by an {input} item alike.<br><br>  </span><span style="color: #0000BB">$j </span><span style="color: #007700">= </span><span style="color: #DD0000">'{"x-bind:title":"a","v-bind:title":"b","data-hx-on:click":"c","data-hx-on-click":"d",'<br>     </span><span style="color: #007700">. </span><span style="color: #DD0000">'"x-init":"e","x-data":"{f:1}","x-effect":"g","x-html":"h","v-html":"i","ng-click":"j",'<br>     </span><span style="color: #007700">. </span><span style="color: #DD0000">'"data-ng-click":"k","ng:click":"l","wire:click":"m","hx-vals":"js:{n:1}","_":"on click o",'<br>     </span><span style="color: #007700">. </span><span style="color: #DD0000">'"script":"r","data-script":"p","data-bind":"q","title":"ok","data-id":"7","aria-label":"fine","class":"c1"}'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$j</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;a <b>{<font color="blue">attrs </font><font color="red"><font color="red">$</font>x</font>}</b>&gt;x&lt;/a&gt;|<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>f<font color="black">'</font><font color="black">,</font> php<font color="black">:</font>json_decode(<font color="red">$</font>j<font color="black">,</font> TRUE)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8cc26cbd11cbf01721f84fd593863612"></div>
+                        <script>
+                        padAjax8cc26cbd11cbf01721f84fd593863612 = new XMLHttpRequest();
+                        padAjax8cc26cbd11cbf01721f84fd593863612.onreadystatechange=function() {
+                        if (padAjax8cc26cbd11cbf01721f84fd593863612.readyState === 4) {
+                        if (padAjax8cc26cbd11cbf01721f84fd593863612.status === 200) {
+                        document.getElementById("padAjax8cc26cbd11cbf01721f84fd593863612").innerHTML=padAjax8cc26cbd11cbf01721f84fd593863612.responseText;
+                        } else {
+                        document.getElementById("padAjax8cc26cbd11cbf01721f84fd593863612").innerHTML=padAjax8cc26cbd11cbf01721f84fd593863612.statusText;
+                        }
+                        }
+                        }
+                        padAjax8cc26cbd11cbf01721f84fd593863612.open("GET","http://localhost/pad/regression/framework/?tags/attrs_from_an_array_leaves_out_the_script_directives_of_the_libraries&padInclude",true);
+                        padAjax8cc26cbd11cbf01721f84fd593863612.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/input_from_an_array_guards_its_attribute_names_and_urls<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/input_from_an_array_guards_its_attribute_names_and_urls.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/input_from_an_array_guards_its_attribute_names_and_urls.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An {input} item that is an expression with an array value adds its keys as attributes,<br>  // as {attrs} does, so they are judged as {attrs} judges them: a key that is no attribute<br>  // name, an event handler and a URL that runs script are left out.<br><br>  </span><span style="color: #0000BB">$j </span><span style="color: #007700">= </span><span style="color: #DD0000">'{"x\" onmouseover=\"alert(7)":"y","onclick":"z","href":"javascript:alert(8)","title":"ok"}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> php<font color="black">:</font>json_decode(<font color="red">$</font>j<font color="black">,</font> TRUE)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2233e89e21fcf26f8db23e8b3f31f5d0"></div>
+                        <script>
+                        padAjax2233e89e21fcf26f8db23e8b3f31f5d0 = new XMLHttpRequest();
+                        padAjax2233e89e21fcf26f8db23e8b3f31f5d0.onreadystatechange=function() {
+                        if (padAjax2233e89e21fcf26f8db23e8b3f31f5d0.readyState === 4) {
+                        if (padAjax2233e89e21fcf26f8db23e8b3f31f5d0.status === 200) {
+                        document.getElementById("padAjax2233e89e21fcf26f8db23e8b3f31f5d0").innerHTML=padAjax2233e89e21fcf26f8db23e8b3f31f5d0.responseText;
+                        } else {
+                        document.getElementById("padAjax2233e89e21fcf26f8db23e8b3f31f5d0").innerHTML=padAjax2233e89e21fcf26f8db23e8b3f31f5d0.statusText;
+                        }
+                        }
+                        }
+                        padAjax2233e89e21fcf26f8db23e8b3f31f5d0.open("GET","http://localhost/pad/regression/framework/?tags/input_from_an_array_guards_its_attribute_names_and_urls&padInclude",true);
+                        padAjax2233e89e21fcf26f8db23e8b3f31f5d0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

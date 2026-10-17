@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: charts/distribution
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: charts/distribution
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=charts.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7delivery.pad.html">delivery.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7heights.pad.html">heights.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7heights.php.html">heights.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7reaction.pad.html">reaction.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7reaction.php.html">reaction.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7salaries.pad.html">salaries.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=distribution&amp;file=distribution%EA%A4%B7scores.pad.html">scores.pad</a>
+                  </li>
+                  <li class="current">scores.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  distribution/scores.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The exam scores of four classes of 30, from a fixed seed: a strong class, a weak one,<br>  // one with a wide spread and one split in two - shapes a box plot would draw alike.<br><br>  </span><span style="color: #0000BB">mt_srand </span><span style="color: #007700">( </span><span style="color: #0000BB">23 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$bell </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$mean</span><span style="color: #007700">, </span><span style="color: #0000BB">$sd </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$mean </span><span style="color: #007700">+ </span><span style="color: #0000BB">$sd </span><span style="color: #007700">* </span><span style="color: #0000BB">sqrt </span><span style="color: #007700">( -</span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">log </span><span style="color: #007700">( </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1e-9</span><span style="color: #007700">, </span><span style="color: #0000BB">mt_rand </span><span style="color: #007700">() / </span><span style="color: #0000BB">mt_getrandmax </span><span style="color: #007700">() ) ) ) * </span><span style="color: #0000BB">cos </span><span style="color: #007700">( </span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">M_PI </span><span style="color: #007700">* </span><span style="color: #0000BB">mt_rand </span><span style="color: #007700">() / </span><span style="color: #0000BB">mt_getrandmax </span><span style="color: #007700">() );<br><br>  </span><span style="color: #0000BB">$classes </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'3A' </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">78</span><span style="color: #007700">, </span><span style="color: #0000BB">7 </span><span style="color: #007700">),<br>               </span><span style="color: #DD0000">'3B' </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">61</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">),<br>               </span><span style="color: #DD0000">'3C' </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">68</span><span style="color: #007700">, </span><span style="color: #0000BB">15 </span><span style="color: #007700">),<br>               </span><span style="color: #DD0000">'3D' </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$i </span><span style="color: #007700">% </span><span style="color: #0000BB">2 </span><span style="color: #007700">? </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">52</span><span style="color: #007700">, </span><span style="color: #0000BB">6 </span><span style="color: #007700">) : </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">84</span><span style="color: #007700">, </span><span style="color: #0000BB">6 </span><span style="color: #007700">) ];<br><br>  </span><span style="color: #0000BB">$scores </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$classes </span><span style="color: #007700">as </span><span style="color: #0000BB">$class </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$score </span><span style="color: #007700">)<br>    for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">30</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>      </span><span style="color: #0000BB">$scores </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'class' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$class</span><span style="color: #007700">, </span><span style="color: #DD0000">'score' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$score </span><span style="color: #007700">( </span><span style="color: #0000BB">$i </span><span style="color: #007700">) ) ) ) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

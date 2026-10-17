@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {false} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#conditions">Conditions</a><span>/</span><span aria-current="page">false</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>false<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            The constant FALSE: its content is skipped and its @else@ part renders instead.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#conditions">Conditions</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">false</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">false</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/false</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">false</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/false</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{false}</code> answers FALSE, which is the level's "else" state: the content does not render, and the <code>@else@</code> part of the pair renders in its place. Alone it prints nothing. It is the fixed "no" beside <a href="index%EF%B9%96tag%EA%A4%B7true.html">{true}</a> and <a href="index%EF%B9%96tag%EA%A4%B7null.html">{null}</a>.
+          </p>
+          <p>
+            The common use is switching a block of a template off without deleting it: change <code>{true}</code> to <code>{false}</code>, or wrap the block in <code>{false}</code> ... <code>{/false}</code> - unlike a comment, the content still has to be a valid template. It is also the simplest way to see what a tag's <code>@else@</code> or <code>else=</code> option does, since nothing else influences the outcome.
+          </p>
+          <p>
+            The <code>else='name'</code> option, which every tag takes, puts a stored <a href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> in place of a level that answered FALSE, an empty list or an empty text. That is where <code>{false}</code> and <code>{null}</code> differ: a NULL fires <code>null=</code>, not <code>else=</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Switched off
+            </h3>
+            <p class="example-about">
+              The content of {false} is skipped; the @else@ part renders.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/false/1-else.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">false</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The new banner - not yet.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The old banner.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/false</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7false%EA%A4%B71-else.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    The old banner.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The else option
+            </h3>
+            <p class="example-about">
+              else= puts a stored content in place of a level that answered FALSE.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/false/2-option.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'falseNote'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;em</span><span class="hl-htm">&gt;</span>Nothing to show here.<span class="hl-htm">&lt;/em</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/content</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">false</span> <span class="hl-opt">else</span>=<span class="hl-str">'falseNote'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Hidden.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/false</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7false%EA%A4%B72-option.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <em>Nothing to show here.</em>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7true.html">{true}</a> <span class="about">The constant TRUE: its content renders once, as a level of its own.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7null.html">{null}</a> <span class="about">The constant NULL: its content is dropped, the @else@ part too, and a null= option fires.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> <span class="about">Renders its content only when a condition holds, with elseif and else branches.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7extends.html">← {extends}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7feature.html">{feature} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

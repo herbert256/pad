@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -234,6 +234,46 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: tags/break_and_cease_leave_markdowns_render<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/break_and_cease_leave_markdowns_render.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">markdown</font><font color="red"></font>}</b>**x** <b>{<font color="blue">cease</font><font color="red"></font>}</b><b>{/<font color="blue">markdown</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1087b8cbdde1ff1e585e52a54b61d063"></div>
+                        <script>
+                        padAjax1087b8cbdde1ff1e585e52a54b61d063 = new XMLHttpRequest();
+                        padAjax1087b8cbdde1ff1e585e52a54b61d063.onreadystatechange=function() {
+                        if (padAjax1087b8cbdde1ff1e585e52a54b61d063.readyState === 4) {
+                        if (padAjax1087b8cbdde1ff1e585e52a54b61d063.status === 200) {
+                        document.getElementById("padAjax1087b8cbdde1ff1e585e52a54b61d063").innerHTML=padAjax1087b8cbdde1ff1e585e52a54b61d063.responseText;
+                        } else {
+                        document.getElementById("padAjax1087b8cbdde1ff1e585e52a54b61d063").innerHTML=padAjax1087b8cbdde1ff1e585e52a54b61d063.statusText;
+                        }
+                        }
+                        }
+                        padAjax1087b8cbdde1ff1e585e52a54b61d063.open("GET","http://localhost/pad/regression/framework/?tags/break_and_cease_leave_markdowns_render&padInclude",true);
+                        padAjax1087b8cbdde1ff1e585e52a54b61d063.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/cease_finishes_the_row<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -274,6 +314,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: tags/cease_leaves_a_two_pass_tags_end_pass<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/cease_leaves_a_two_pass_tags_end_pass.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/cease_leaves_a_two_pass_tags_end_pass.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'c' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">items </font><font color="red">toData=<font color="black">'</font>kept<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">cease</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">items</font><font color="red"></font>}</b>[<b>{<font color="blue">kept</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">kept</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb4a5f7891b75f039c74d58783c229363"></div>
+                        <script>
+                        padAjaxb4a5f7891b75f039c74d58783c229363 = new XMLHttpRequest();
+                        padAjaxb4a5f7891b75f039c74d58783c229363.onreadystatechange=function() {
+                        if (padAjaxb4a5f7891b75f039c74d58783c229363.readyState === 4) {
+                        if (padAjaxb4a5f7891b75f039c74d58783c229363.status === 200) {
+                        document.getElementById("padAjaxb4a5f7891b75f039c74d58783c229363").innerHTML=padAjaxb4a5f7891b75f039c74d58783c229363.responseText;
+                        } else {
+                        document.getElementById("padAjaxb4a5f7891b75f039c74d58783c229363").innerHTML=padAjaxb4a5f7891b75f039c74d58783c229363.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb4a5f7891b75f039c74d58783c229363.open("GET","http://localhost/pad/regression/framework/?tags/cease_leaves_a_two_pass_tags_end_pass&padInclude",true);
+                        padAjaxb4a5f7891b75f039c74d58783c229363.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/cease_on_the_first_row_leaves_only_that_row<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -309,6 +391,46 @@
                         }
                         padAjax0d068532fe005003877e20d3b03a878c.open("GET","http://localhost/pad/regression/framework/?tags/cease_on_the_first_row_leaves_only_that_row&padInclude",true);
                         padAjax0d068532fe005003877e20d3b03a878c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/cease_stops_a_while<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/cease_stops_a_while.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 0</font>}</b><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i lt 6</font>}</b><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>i</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>i eq 3</font>}</b><b>{<font color="blue">cease</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b>,<b>{/<font color="blue">while</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbe6f14cb48cceb9760b79bb5a82ab78d"></div>
+                        <script>
+                        padAjaxbe6f14cb48cceb9760b79bb5a82ab78d = new XMLHttpRequest();
+                        padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.onreadystatechange=function() {
+                        if (padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.readyState === 4) {
+                        if (padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.status === 200) {
+                        document.getElementById("padAjaxbe6f14cb48cceb9760b79bb5a82ab78d").innerHTML=padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.responseText;
+                        } else {
+                        document.getElementById("padAjaxbe6f14cb48cceb9760b79bb5a82ab78d").innerHTML=padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.open("GET","http://localhost/pad/regression/framework/?tags/cease_stops_a_while&padInclude",true);
+                        padAjaxbe6f14cb48cceb9760b79bb5a82ab78d.send();
                         </script>
                       </td>
                     </tr>
@@ -395,6 +517,128 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/cease/1-stop<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/cease/1-stop.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/cease/1-stop.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $queue </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Carol' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dave' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Erin' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stop after this row<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The row that ceases still renders in full; the rows after it do not.<font color="black">'</font></font>}</b><br>&lt;ol&gt;<br><b>{<font color="blue">queue</font><font color="red"></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>Carol<font color="black">'</font></font>}</b><b>{<font color="blue">cease</font><font color="red"></font>}</b> - last one today<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">queue</font><font color="red"></font>}</b><br>&lt;/ol&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9c1d0c4ed1650143565cfc2af45cb3bd"></div>
+                        <script>
+                        padAjax9c1d0c4ed1650143565cfc2af45cb3bd = new XMLHttpRequest();
+                        padAjax9c1d0c4ed1650143565cfc2af45cb3bd.onreadystatechange=function() {
+                        if (padAjax9c1d0c4ed1650143565cfc2af45cb3bd.readyState === 4) {
+                        if (padAjax9c1d0c4ed1650143565cfc2af45cb3bd.status === 200) {
+                        document.getElementById("padAjax9c1d0c4ed1650143565cfc2af45cb3bd").innerHTML=padAjax9c1d0c4ed1650143565cfc2af45cb3bd.responseText;
+                        } else {
+                        document.getElementById("padAjax9c1d0c4ed1650143565cfc2af45cb3bd").innerHTML=padAjax9c1d0c4ed1650143565cfc2af45cb3bd.statusText;
+                        }
+                        }
+                        }
+                        padAjax9c1d0c4ed1650143565cfc2af45cb3bd.open("GET","http://localhost/pad/tags/?examples/cease/1-stop&padInclude",true);
+                        padAjax9c1d0c4ed1650143565cfc2af45cb3bd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/cease/2-compare<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/cease/2-compare.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>cease<font color="black">,</font> break and continue<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The same loop with each of the three<font color="black">:</font> what happens to the rest of the pass and to the rows after it.<font color="black">'</font></font>}</b><br>&lt;p&gt;cease: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>ceaseN<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>ceaseN</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>ceaseN eq 3</font>}</b><b>{<font color="blue">cease</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>.]<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;break: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>breakN<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>breakN</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>breakN eq 3</font>}</b><b>{<font color="blue">break</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>.]<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;continue: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>contN<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>contN</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>contN eq 3</font>}</b><b>{<font color="blue">continue</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>.]<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe384165708699e69e09572af229dfd2e"></div>
+                        <script>
+                        padAjaxe384165708699e69e09572af229dfd2e = new XMLHttpRequest();
+                        padAjaxe384165708699e69e09572af229dfd2e.onreadystatechange=function() {
+                        if (padAjaxe384165708699e69e09572af229dfd2e.readyState === 4) {
+                        if (padAjaxe384165708699e69e09572af229dfd2e.status === 200) {
+                        document.getElementById("padAjaxe384165708699e69e09572af229dfd2e").innerHTML=padAjaxe384165708699e69e09572af229dfd2e.responseText;
+                        } else {
+                        document.getElementById("padAjaxe384165708699e69e09572af229dfd2e").innerHTML=padAjaxe384165708699e69e09572af229dfd2e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe384165708699e69e09572af229dfd2e.open("GET","http://localhost/pad/tags/?examples/cease/2-compare&padInclude",true);
+                        padAjaxe384165708699e69e09572af229dfd2e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/cease/3-while<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/cease/3-while.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Ceasing a while<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>In a <b><font color="black">{</font><font color="blue">while</font><font color="red"></font><font color="black">}</font></b> the current pass finishes and no further pass follows<font color="black">,</font> whatever the condition says.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>round = 0</font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">while </font><font color="red"><font color="red">$</font>round lt 10</font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>round</font>}</b><br>  &lt;li&gt;round <b>{<font color="green"><font color="red">$</font>round</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>round eq 3</font>}</b><b>{<font color="blue">cease</font><font color="red"></font>}</b> (the last)<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax19a29d07d625614f3839be47cbc9a8f6"></div>
+                        <script>
+                        padAjax19a29d07d625614f3839be47cbc9a8f6 = new XMLHttpRequest();
+                        padAjax19a29d07d625614f3839be47cbc9a8f6.onreadystatechange=function() {
+                        if (padAjax19a29d07d625614f3839be47cbc9a8f6.readyState === 4) {
+                        if (padAjax19a29d07d625614f3839be47cbc9a8f6.status === 200) {
+                        document.getElementById("padAjax19a29d07d625614f3839be47cbc9a8f6").innerHTML=padAjax19a29d07d625614f3839be47cbc9a8f6.responseText;
+                        } else {
+                        document.getElementById("padAjax19a29d07d625614f3839be47cbc9a8f6").innerHTML=padAjax19a29d07d625614f3839be47cbc9a8f6.statusText;
+                        }
+                        }
+                        }
+                        padAjax19a29d07d625614f3839be47cbc9a8f6.open("GET","http://localhost/pad/tags/?examples/cease/3-while&padInclude",true);
+                        padAjax19a29d07d625614f3839be47cbc9a8f6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -409,7 +653,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

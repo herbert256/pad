@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -74,6 +74,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: escaping/a_quote_stand_in_from_the_request_is_escaped_as_the_quote<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">escaping/a_quote_stand_in_from_the_request_is_escaped_as_the_quote.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">escaping/a_quote_stand_in_from_the_request_is_escaped_as_the_quote.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value as a request brings it: U+E022 and U+E027 are the stand-ins of the two quotes<br>  // and U+E05C the one of the backslash (lib/encoding.php), which exits.php turns back into<br>  // the characters as the page is written out - after every escaper has run.<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #DD0000">"x\u{E022} on=\u{E027}y\u{E05C}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;a title="<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;<br><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> html</font>}</b><br><b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">escape</font>}</b><br><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> escape(<font color="black">'</font>attr<font color="black">'</font>)</font>}</b><br>'<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> slashes</font>}</b>'<br>&lt;a data-p="{^name}"&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfd3827e2e37fc3cce12159b0928e5744"></div>
+                        <script>
+                        padAjaxfd3827e2e37fc3cce12159b0928e5744 = new XMLHttpRequest();
+                        padAjaxfd3827e2e37fc3cce12159b0928e5744.onreadystatechange=function() {
+                        if (padAjaxfd3827e2e37fc3cce12159b0928e5744.readyState === 4) {
+                        if (padAjaxfd3827e2e37fc3cce12159b0928e5744.status === 200) {
+                        document.getElementById("padAjaxfd3827e2e37fc3cce12159b0928e5744").innerHTML=padAjaxfd3827e2e37fc3cce12159b0928e5744.responseText;
+                        } else {
+                        document.getElementById("padAjaxfd3827e2e37fc3cce12159b0928e5744").innerHTML=padAjaxfd3827e2e37fc3cce12159b0928e5744.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfd3827e2e37fc3cce12159b0928e5744.open("GET","http://localhost/pad/regression/framework/?escaping/a_quote_stand_in_from_the_request_is_escaped_as_the_quote&padInclude",true);
+                        padAjaxfd3827e2e37fc3cce12159b0928e5744.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: functions/escape_writes_a_value_for_its_context<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -127,7 +169,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

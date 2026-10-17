@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: react
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: react
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_guide.html">_guide/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_providers.html">_providers/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">guide.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=patterns.pad.html">patterns.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=patterns.php.html">patterns.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  guide.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + React<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Build your own island&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Four files make a page with React in it: the data, the template, the component - and the<br>    runtime every page already has. Then the same page can answer the component's questions.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;div class="cols-2"&gt;<br><br>  &lt;div&gt;<br>    &lt;h2&gt;1. The data, in PHP&lt;/h2&gt;<br>    &lt;p&gt;The page's PHP gathers what the component starts with - from the database, a file in<br>       &lt;code&gt;_data/&lt;/code&gt;, the session. Nothing about React here.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_guide/orders.php<font color="black">'</font></font>}</b><br>  &lt;/div&gt;<br><br>  &lt;div&gt;<br>    &lt;h2&gt;2. The island, in the template&lt;/h2&gt;<br>    &lt;p&gt;An element with &lt;code&gt;data-island&lt;/code&gt; names the component; &lt;code&gt;{^orders}&lt;/code&gt; writes the<br>       field as JSON, escaped for the attribute. What stands inside shows until React takes over.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_guide/orders.pad<font color="black">'</font></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br>&lt;h2&gt;3. The component, in www/&lt;/h2&gt;<br>&lt;p&gt;A plain file under &lt;code&gt;www/react/&lt;/code&gt;, served as it is - so its braces never meet the PAD parser.<br>   &lt;code&gt;PadReact.island&lt;/code&gt; mounts it on every island of that name, the JSON as its props.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_guide/orders.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;4. Talking back&lt;/h2&gt;<br>&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br>    &lt;p&gt;The page answers JSON when asked - but only what &lt;code&gt;$padExpose&lt;/code&gt; names. The templates do not<br>       run for such a request. A post needs the session's CSRF token, which &lt;code&gt;PadReact.post&lt;/code&gt;<br>       sends in a header when &lt;code&gt;$padCsrf&lt;/code&gt; is on.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font></font>}</b><br>// orders.php - one more line<br>$padExpose = [ 'orders' ];<br><br>// a post from the component<br>if ( padRequestIs ( 'POST' ) ) {<br>  $errors = padValidate ( [ 'qty' =&gt; 'required|integer|min:1' ] );<br>  if ( ! $errors )<br>    db ( "UPDATE orders SET qty={0} WHERE id={1}", [ $qty, $id ] );<br>}<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;p&gt;From the component it is one call each - and &lt;code&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>&lt;/code&gt; in the template<br>       lets a component fetch one rendered part of a page as HTML.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>// ?orders&amp;padFormat=json<br>const { orders } = await PadReact.get('orders', { status: 'open' });<br><br>// POST ?orders&amp;padFormat=json, X-CSRF-Token: ...<br>const answer = await PadReact.post('orders', { id: 7, qty: 2 });<br><br>// ?orders&amp;padFragment=summary - HTML<br>const html = await PadReact.fragment('orders', 'summary');<br><br>// as a hook: asked again whenever status changes<br>const { data, loading } = PadReact.useData('orders', { status }, first);<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;The runtime&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;www/react/pad-react.js&lt;/code&gt; - plain JavaScript, loaded by &lt;code&gt;_inits.pad&lt;/code&gt; on every page.&lt;/p&gt;<br>&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Call&lt;/th&gt;&lt;th&gt;What it does&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.island(name, Component)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Renders &lt;code&gt;Component&lt;/code&gt; on every &lt;code&gt;[data-island=name]&lt;/code&gt;, with the JSON of &lt;code&gt;data-props&lt;/code&gt; as props (a list arrives as &lt;code&gt;props.data&lt;/code&gt;) and what PAD rendered inside as &lt;code&gt;props.serverHtml&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.get(page, params)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The page's exposed data: &lt;code&gt;?page&amp;amp;...&amp;amp;padFormat=json&lt;/code&gt;, parsed.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.post(page, body, { token })&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Posts the body form-encoded with the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header from &lt;code&gt;&lt;meta name="csrf-token"&gt;&lt;/code&gt;; &lt;code&gt;token: false&lt;/code&gt; leaves it out.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.fragment(page, name, params)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;One &lt;code&gt;<b>{<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/code&gt; of the page as HTML.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.useData(page, params, first)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;A hook: &lt;code&gt;{ data, loading, error }&lt;/code&gt;, asked again when the params change, the request before aborted.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.useDebounced(value, ms)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The value once it stood still for &lt;code&gt;ms&lt;/code&gt; - for a search box.&lt;/td&gt;&lt;/tr&gt;<br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br>&lt;p class="small muted"&gt;A request that does not succeed throws an error with &lt;code&gt;status&lt;/code&gt; and the parsed &lt;code&gt;body&lt;/code&gt;. Every request is<br>   told to the page as a &lt;code&gt;pad:request&lt;/code&gt; event - the request log under the examples listens to it.&lt;/p&gt;<br><br>&lt;h2&gt;Good to know&lt;/h2&gt;<br>&lt;div class="grid"&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Keep JSX out of templates&lt;/h3&gt;<br>    &lt;p&gt;PAD reads every &lt;code&gt;{ }&lt;/code&gt; of a template. Components live in &lt;code&gt;www/&lt;/code&gt;, loaded with<br>       &lt;code&gt;&lt;script type="text/babel" src&gt;&lt;/code&gt;; for a short inline script there is &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Values are text&lt;/h3&gt;<br>    &lt;p&gt;A field in &lt;code&gt;data-props&lt;/code&gt; is escaped for the attribute and never runs as PAD, whatever a visitor typed<br>       into it - React escapes it once more when it renders.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Server first&lt;/h3&gt;<br>    &lt;p&gt;Give the island its first data in the props and put real HTML inside it: the page shows something before any<br>       script ran, and search engines see it.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Going to production&lt;/h3&gt;<br>    &lt;p&gt;Babel in the browser is for learning. Compile the components with esbuild or Vite into one file, load the<br>       production React builds, and drop &lt;code&gt;type="text/babel"&lt;/code&gt; - the PAD side stays as it is.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

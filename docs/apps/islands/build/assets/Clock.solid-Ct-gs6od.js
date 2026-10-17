@@ -1,0 +1,1 @@
+import{c as s,o as l,i as c,t as i}from"./web-C3vKQ9Zv.js";var w=i("<span class=clock>");function p(a){const e=a.now*1e3-Date.now(),[n,o]=s(new Date(Date.now()+e)),r=setInterval(()=>o(new Date(Date.now()+e)),1e3);return l(()=>clearInterval(r)),(()=>{var t=w();return c(t,()=>n().toLocaleTimeString()),t})()}export{p as default};

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -69,6 +69,132 @@
                         }
                         padAjax59a7e2333dc05309cd99f2f8b7bbf65d.open("GET","http://localhost/pad/manual/?fragments/html_1&padInclude",true);
                         padAjax59a7e2333dc05309cd99f2f8b7bbf65d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: escaping/attrs_and_classes_escape_a_stand_in_quote_from_the_request<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">escaping/attrs_and_classes_escape_a_stand_in_quote_from_the_request.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">escaping/attrs_and_classes_escape_a_stand_in_quote_from_the_request.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A quote's stand-in - U+E022, which a request can carry in a value - is escaped as the<br>  // quote it will become at output (exits.php restores it after all escaping), so it cannot<br>  // close the attribute {attrs} or {classes} builds and add an event handler.<br><br>  </span><span style="color: #0000BB">$t </span><span style="color: #007700">= </span><span style="color: #DD0000">"hi\u{E022} onmouseover=1"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$c </span><span style="color: #007700">= </span><span style="color: #DD0000">"p\u{E022} onx=1"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;a <b>{<font color="blue">attrs </font><font color="red">title=<font color="red">$</font>t</font>}</b>&gt;x&lt;/a&gt;|&lt;i class="<b>{<font color="blue">classes </font><font color="red">p=1<font color="black">,</font> <font color="red">$</font>c</font>}</b>"&gt;y&lt;/i&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax983567c3ead1799a1494e617b5cf23a1"></div>
+                        <script>
+                        padAjax983567c3ead1799a1494e617b5cf23a1 = new XMLHttpRequest();
+                        padAjax983567c3ead1799a1494e617b5cf23a1.onreadystatechange=function() {
+                        if (padAjax983567c3ead1799a1494e617b5cf23a1.readyState === 4) {
+                        if (padAjax983567c3ead1799a1494e617b5cf23a1.status === 200) {
+                        document.getElementById("padAjax983567c3ead1799a1494e617b5cf23a1").innerHTML=padAjax983567c3ead1799a1494e617b5cf23a1.responseText;
+                        } else {
+                        document.getElementById("padAjax983567c3ead1799a1494e617b5cf23a1").innerHTML=padAjax983567c3ead1799a1494e617b5cf23a1.statusText;
+                        }
+                        }
+                        }
+                        padAjax983567c3ead1799a1494e617b5cf23a1.open("GET","http://localhost/pad/regression/framework/?escaping/attrs_and_classes_escape_a_stand_in_quote_from_the_request&padInclude",true);
+                        padAjax983567c3ead1799a1494e617b5cf23a1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/attrs_and_classes_take_an_array_and_leave_out_a_key_that_is_no_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/attrs_and_classes_take_an_array_and_leave_out_a_key_that_is_no_name.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/attrs_and_classes_take_an_array_and_leave_out_a_key_that_is_no_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $extra </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'data-id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">, </span><span style="color: #DD0000">'x" onmouseover="alert(1)' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'y'</span><span style="color: #007700">, </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a"b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'hidden' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">]; </span><span style="color: #0000BB">$list </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'a' </span><span style="color: #007700">]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div <b>{<font color="blue">attrs </font><font color="red"><font color="red">$</font>extra</font>}</b> class="<b>{<font color="blue">classes </font><font color="red"><font color="red">$</font>list<font color="black">,</font> d=1</font>}</b>"&gt;&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax405b8b2673b14fb98a6563c8490f10c6"></div>
+                        <script>
+                        padAjax405b8b2673b14fb98a6563c8490f10c6 = new XMLHttpRequest();
+                        padAjax405b8b2673b14fb98a6563c8490f10c6.onreadystatechange=function() {
+                        if (padAjax405b8b2673b14fb98a6563c8490f10c6.readyState === 4) {
+                        if (padAjax405b8b2673b14fb98a6563c8490f10c6.status === 200) {
+                        document.getElementById("padAjax405b8b2673b14fb98a6563c8490f10c6").innerHTML=padAjax405b8b2673b14fb98a6563c8490f10c6.responseText;
+                        } else {
+                        document.getElementById("padAjax405b8b2673b14fb98a6563c8490f10c6").innerHTML=padAjax405b8b2673b14fb98a6563c8490f10c6.statusText;
+                        }
+                        }
+                        }
+                        padAjax405b8b2673b14fb98a6563c8490f10c6.open("GET","http://localhost/pad/regression/framework/?tags/attrs_and_classes_take_an_array_and_leave_out_a_key_that_is_no_name&padInclude",true);
+                        padAjax405b8b2673b14fb98a6563c8490f10c6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/attrs_and_classes_take_an_array_for_a_named_item<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/attrs_and_classes_take_an_array_for_a_named_item.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/attrs_and_classes_take_an_array_for_a_named_item.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $list </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b' </span><span style="color: #007700">]; </span><span style="color: #0000BB">$none </span><span style="color: #007700">= []; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div <b>{<font color="blue">attrs </font><font color="red">class=<font color="red">$</font>list<font color="black">,</font> data-x=<font color="red">$</font>none</font>}</b> title="<b>{<font color="blue">classes </font><font color="red">on=<font color="red">$</font>list<font color="black">,</font> off=<font color="red">$</font>none</font>}</b>"&gt;&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax68971bed836947c4a713148829015751"></div>
+                        <script>
+                        padAjax68971bed836947c4a713148829015751 = new XMLHttpRequest();
+                        padAjax68971bed836947c4a713148829015751.onreadystatechange=function() {
+                        if (padAjax68971bed836947c4a713148829015751.readyState === 4) {
+                        if (padAjax68971bed836947c4a713148829015751.status === 200) {
+                        document.getElementById("padAjax68971bed836947c4a713148829015751").innerHTML=padAjax68971bed836947c4a713148829015751.responseText;
+                        } else {
+                        document.getElementById("padAjax68971bed836947c4a713148829015751").innerHTML=padAjax68971bed836947c4a713148829015751.statusText;
+                        }
+                        }
+                        }
+                        padAjax68971bed836947c4a713148829015751.open("GET","http://localhost/pad/regression/framework/?tags/attrs_and_classes_take_an_array_for_a_named_item&padInclude",true);
+                        padAjax68971bed836947c4a713148829015751.send();
                         </script>
                       </td>
                     </tr>
@@ -155,6 +281,88 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/classes/1-conditions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/classes/1-conditions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Fixed and conditional names<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>panel is always in; active and invalid only when their condition holds - a repeated name is written once.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>isActive = TRUE</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>hasErrors = FALSE</font>}</b><br>&lt;div class="<b>{<font color="blue">classes </font><font color="red"><font color="black">'</font>panel panel-large<font color="black">'</font><font color="black">,</font> active=<font color="red">$</font>isActive<font color="black">,</font> invalid=<font color="red">$</font>hasErrors<font color="black">,</font> <font color="black">'</font>panel<font color="black">'</font></font>}</b>"&gt;The panel&lt;/div&gt;<br>class="<b>{<font color="blue">classes </font><font color="red"><font color="black">'</font>panel panel-large<font color="black">'</font><font color="black">,</font> active=<font color="red">$</font>isActive<font color="black">,</font> invalid=<font color="red">$</font>hasErrors<font color="black">,</font> <font color="black">'</font>panel<font color="black">'</font></font>}</b>"</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax06d5fbb04c00327249d811ac9fb95730"></div>
+                        <script>
+                        padAjax06d5fbb04c00327249d811ac9fb95730 = new XMLHttpRequest();
+                        padAjax06d5fbb04c00327249d811ac9fb95730.onreadystatechange=function() {
+                        if (padAjax06d5fbb04c00327249d811ac9fb95730.readyState === 4) {
+                        if (padAjax06d5fbb04c00327249d811ac9fb95730.status === 200) {
+                        document.getElementById("padAjax06d5fbb04c00327249d811ac9fb95730").innerHTML=padAjax06d5fbb04c00327249d811ac9fb95730.responseText;
+                        } else {
+                        document.getElementById("padAjax06d5fbb04c00327249d811ac9fb95730").innerHTML=padAjax06d5fbb04c00327249d811ac9fb95730.statusText;
+                        }
+                        }
+                        }
+                        padAjax06d5fbb04c00327249d811ac9fb95730.open("GET","http://localhost/pad/tags/?examples/classes/1-conditions&padInclude",true);
+                        padAjax06d5fbb04c00327249d811ac9fb95730.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/classes/2-loop<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/classes/2-loop.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/classes/2-loop.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $tasks </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Write the release notes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,  </span><span style="color: #DD0000">'days' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Update the screenshots'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #DD0000">'days' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Plan the next version'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #DD0000">'days' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">14 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Per row of a loop<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each row\<font color="black">'</font>s classes from its own fields and from the loop\<font color="black">'</font>s properties.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">tasks</font><font color="red"></font>}</b><br>    &lt;li class="<b>{<font color="blue">classes </font><font color="red"><font color="black">'</font>task<font color="black">'</font><font color="black">,</font> done=<font color="red">$</font>done<font color="black">,</font> first=first<font color="black">@</font>tasks<font color="black">,</font> urgent=<font color="red">$</font>days lt 2</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>: &lt;code&gt;<b>{<font color="blue">classes </font><font color="red"><font color="black">'</font>task<font color="black">'</font><font color="black">,</font> done=<font color="red">$</font>done<font color="black">,</font> first=first<font color="black">@</font>tasks<font color="black">,</font> urgent=<font color="red">$</font>days lt 2</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  <b>{/<font color="blue">tasks</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3b7c86b4e18ad49877cdfc7460fb7643"></div>
+                        <script>
+                        padAjax3b7c86b4e18ad49877cdfc7460fb7643 = new XMLHttpRequest();
+                        padAjax3b7c86b4e18ad49877cdfc7460fb7643.onreadystatechange=function() {
+                        if (padAjax3b7c86b4e18ad49877cdfc7460fb7643.readyState === 4) {
+                        if (padAjax3b7c86b4e18ad49877cdfc7460fb7643.status === 200) {
+                        document.getElementById("padAjax3b7c86b4e18ad49877cdfc7460fb7643").innerHTML=padAjax3b7c86b4e18ad49877cdfc7460fb7643.responseText;
+                        } else {
+                        document.getElementById("padAjax3b7c86b4e18ad49877cdfc7460fb7643").innerHTML=padAjax3b7c86b4e18ad49877cdfc7460fb7643.statusText;
+                        }
+                        }
+                        }
+                        padAjax3b7c86b4e18ad49877cdfc7460fb7643.open("GET","http://localhost/pad/tags/?examples/classes/2-loop&padInclude",true);
+                        padAjax3b7c86b4e18ad49877cdfc7460fb7643.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -169,7 +377,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

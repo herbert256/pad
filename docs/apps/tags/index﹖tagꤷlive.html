@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {live} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pages">Pages and execution</a><span>/</span><span aria-current="page">live</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>live<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pages">Pages and execution</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">live</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-htm">&lt;button</span> <span class="hl-opt">pad-click</span>=<span class="hl-str">"event"</span> <span class="hl-opt">pad-value</span>=<span class="hl-str">"value"</span><span class="hl-htm">&gt;</span>...<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span> ... <span class="hl-brc">{</span><span class="hl-tag">/live</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">live</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-htm">&lt;form</span> <span class="hl-opt">pad-submit</span>=<span class="hl-str">"event"</span><span class="hl-htm">&gt;</span>...<span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span> ... <span class="hl-brc">{</span><span class="hl-tag">/live</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">live</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-htm">&lt;select</span> <span class="hl-opt">name</span>=<span class="hl-str">"field"</span> <span class="hl-opt">pad-change</span>=<span class="hl-str">"event"</span><span class="hl-htm">&gt;</span>...<span class="hl-htm">&lt;/select</span><span class="hl-htm">&gt;</span> ... <span class="hl-brc">{</span><span class="hl-tag">/live</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The region's name - letters, digits, <code>_</code> and <code>-</code>. Give each region of a page its own name: an event is answered by the first region of that name.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{live 'name'}...{/live}</code> makes a part of the page interactive without JavaScript of the application's own. The content is wrapped in <code>&lt;div data-pad-live="name"&gt;</code>, and the first region of the page brings a small inline script. Inside the region three attributes raise an event:
+          </p>
+          <ul>
+            <li>
+              <code>pad-click="event"</code> on any element - a click;
+            </li>
+            <li>
+              <code>pad-submit="event"</code> on a form - its fields come along as request values;
+            </li>
+            <li>
+              <code>pad-change="event"</code> on a field - its name and value come along.
+            </li>
+          </ul>
+          <p>
+            <code>pad-value="..."</code> gives the event a value.
+          </p>
+          <p>
+            An event posts <code>padLive</code>, <code>padEvent</code> and <code>padValue</code> to the page's own URL. The page runs as it always does - its PHP reads <code>padLiveEvent()</code> and <code>padLiveValue()</code> and changes its data - and the answer is the inner content of that one region, which the script swaps in. Nothing else of the page is sent.
+          </p>
+          <p>
+            State lives where a page keeps it: the session (names listed in <code>$padSessionVars</code>), a database, or the value the event carries, as the counter example does with <code>pad-value</code>. With <code>$padCsrf</code> on, the region carries the session's token in <code>data-pad-csrf</code> and the script sends it with every event.
+          </p>
+          <p>
+            Under the strict check a <code>{live}</code> without a name or without its closing tag is an error, and so is an event posted for a region the page does not render. For a part that is only loaded later, not re-rendered, see <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax}</a>; htmx and similar libraries get the same partial answers through <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A counter
+            </h3>
+            <p class="example-about">
+              A click posts the event to the page; only the region is rendered again and swapped in.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/live/1-counter.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">live</span> <span class="hl-str">'liveCounter'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Clicked <span class="hl-brc">{</span><span class="hl-var">$clicks</span><span class="hl-brc">}</span> times<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">pad-click</span>=<span class="hl-str">"add"</span> <span class="hl-opt">pad-value</span>=<span class="hl-str">"{$clicks}"</span><span class="hl-htm">&gt;</span>Add one<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">pad-click</span>=<span class="hl-str">"reset"</span><span class="hl-htm">&gt;</span>Reset<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/live</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/live/1-counter.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$clicks</span> <span class="hl-pun">=</span> <span class="hl-pun">(int)</span> <span class="hl-fn">padLiveValue</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span>
+
+  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-fn">padLiveEvent</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">==</span> <span class="hl-str">'add'</span>   <span class="hl-pun">)</span> <span class="hl-var">$clicks</span><span class="hl-pun">++</span><span class="hl-pun">;</span>
+  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-fn">padLiveEvent</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">==</span> <span class="hl-str">'reset'</span> <span class="hl-pun">)</span> <span class="hl-var">$clicks</span> <span class="hl-pun">=</span> <span class="hl-num">0</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7live%EA%A4%B71-counter.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div data-pad-live="liveCounter">
+                    <p>
+                      Clicked 0 times
+                    </p><button pad-click="add" pad-value="0">Add one</button> <button pad-click="reset">Reset</button>
+                  </div>
+                  <script>
+                  (function () {
+                  if (window.padLiveReady) return;
+                  window.padLiveReady = true;
+                  function send(region, fields) {
+                  var body = new URLSearchParams();
+                  fields.forEach(function (field) { body.append(field[0], field[1]); });
+                  body.set('padLive', region.getAttribute('data-pad-live'));
+                  var token = region.getAttribute('data-pad-csrf');
+                  if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
+                  region.setAttribute('aria-busy', 'true');
+                  fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
+                  .then(function (response) {
+                  return response.text().then(function (text) {
+                  if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+                  return text;
+                  });
+                  })
+                  .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+                  .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
+                  .then(function () { region.removeAttribute('aria-busy'); });
+                  }
+                  function event(element, attribute, value) {
+                  return [['padEvent', element.getAttribute(attribute)], ['padValue', element.hasAttribute('pad-value') ? element.getAttribute('pad-value') : value]];
+                  }
+                  document.addEventListener('click', function (e) {
+                  var element = e.target.closest('[pad-click]');
+                  var region = element && element.closest('[data-pad-live]');
+                  if (!region) return;
+                  e.preventDefault();
+                  send(region, event(element, 'pad-click', ''));
+                  });
+                  document.addEventListener('submit', function (e) {
+                  var form = e.target;
+                  var region = form.hasAttribute('pad-submit') && form.closest('[data-pad-live]');
+                  if (!region) return;
+                  e.preventDefault();
+                  var fields = [];
+                  new FormData(form).forEach(function (value, key) { if (typeof value === 'string') fields.push([key, value]); });
+                  send(region, fields.concat(event(form, 'pad-submit', '')));
+                  });
+                  document.addEventListener('change', function (e) {
+                  var element = e.target.closest('[pad-change]');
+                  var region = element && element.closest('[data-pad-live]');
+                  if (!region) return;
+                  var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+                  send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+                  });
+                  })();
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A form in a region
+            </h3>
+            <p class="example-about">
+              pad-submit posts the form's fields with the event; the answer replaces the region.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/live/2-form.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">live</span> <span class="hl-str">'liveGreet'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;form</span> <span class="hl-opt">pad-submit</span>=<span class="hl-str">"greet"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span>Name <span class="hl-htm">&lt;input</span> <span class="hl-opt">name</span>=<span class="hl-str">"visitor"</span> <span class="hl-opt">value</span>=<span class="hl-str">"{$visitor}"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Greet<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$visitor</span> ne <span class="hl-str">''</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Hello, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/live</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/live/2-form.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$visitor</span> <span class="hl-pun">=</span> <span class="hl-fn">padLiveEvent</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">==</span> <span class="hl-str">'greet'</span> <span class="hl-pun">?</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-pun">(string)</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">'visitor'</span><span class="hl-pun">,</span> <span class="hl-str">''</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">:</span> <span class="hl-str">''</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7live%EA%A4%B72-form.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div data-pad-live="liveGreet">
+                    <form pad-submit="greet">
+                      <label>Name <input name="visitor" value=""></label> <button>Greet</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax}</a> <span class="about">Writes an empty div and a script that has the browser fetch another page into it after the page has loaded.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> <span class="about">A named part of the page that a request can ask for alone - for htmx and ajax swaps.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7keep.html">← {keep}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7lorem.html">{lorem} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

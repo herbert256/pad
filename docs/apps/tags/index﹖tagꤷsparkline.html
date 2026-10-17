@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {sparkline} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">sparkline</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>sparkline<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Draws a word-sized line chart as inline SVG - no axes, the last point marked - to stand in a sentence or a table cell.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">width</span>=<span class="hl-num">120</span>, <span class="hl-opt">height</span>=<span class="hl-num">32</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">sequence</span>=<span class="hl-str">'fibonacci'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">12</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">type</span>=<span class="hl-str">'json'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sparkline</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>data</code>
+            </dt>
+            <dd>
+              The rows: a <code>{data}</code> store, a sequence store, an array of the page (or a field of the current row holding a list) or a <code>_data</code> file of that name, or a literal (<code>data='[3,1,4]'</code>). Left out on a pair, the content is the data.
+            </dd>
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              For a pair: the format of the content - <code>json</code>, <code>yaml</code>, <code>xml</code> or <code>csv</code> - when it is not to be recognised on sight.
+            </dd>
+            <dt>
+              <code>sequence</code>
+            </dt>
+            <dd>
+              Plot the first <code>rows</code> terms (default 10) of a sequence type.
+            </dd>
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              The field with the number - else the first numeric field.
+            </dd>
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              The field naming each point, used in the description read by a screen reader.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The accessible name, the SVG's one <code>&lt;title&gt;</code>.
+            </dd>
+            <dt>
+              <code>width</code>
+            </dt>
+            <dd>
+              The width in pixels, default 120.
+            </dd>
+            <dt>
+              <code>height</code>
+            </dt>
+            <dd>
+              The height in pixels, default 32.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{sparkline}</code> is <a href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart 'sparkline'}</a> by a name of its own: a small line with no axes, no grid and no labels, the last point marked with a dot. Its job is the shape of a series - up, down, flat or jumpy - in the space of a word, so it fits in running text or in a cell of a table.
+          </p>
+          <p>
+            The data is found as for a chart: <code>data=</code> names a <code>{data}</code> store, a sequence store, an array of the page or a <code>_data</code> file - and inside a loop a field of the current row that holds a list, so each row of a table can draw its own line. <code>sequence=</code> plots the first <code>rows</code> terms of a sequence type, and as a pair the content is the data (JSON, YAML, XML or CSV). A plain list of numbers is enough; rows with fields take <code>value=</code>, else their first numeric field.
+          </p>
+          <p>
+            The size is 120 x 32 by default. The line is scaled to its own minimum and maximum, not to zero, so even a small change shows; equal values draw a flat line through the middle. Every finite number is taken - a sparkline has no axis to keep in range. Unlike the bigger kinds it has only the chart's one <code>&lt;title&gt;</code>, no tooltip per point; the colour is <code>--pad-chart-series</code> on <code>.pad-chart</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              In a sentence
+            </h3>
+            <p class="example-about">
+              A literal list of numbers as data, drawn the height of the text around it.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sparkline/1-sentence.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Sign-ups this fortnight <span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">data</span>=<span class="hl-str">'[12, 15, 14, 18, 22, 19, 24, 27, 25, 31, 29, 34, 38, 41]'</span>, <span class="hl-opt">height</span>=<span class="hl-num">20</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Sign-ups per day'</span><span class="hl-brc">}</span> - up again.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sparkline%EA%A4%B71-sentence.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Sign-ups this fortnight <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sparkline" role="img" aria-labelledby="pad-chart-bb08a9a0-title pad-chart-bb08a9a0-desc" width="120" height="20" viewbox="0 0 120 20">
+                    <title id="pad-chart-bb08a9a0-title">
+                      Sign-ups per day
+                    </title>
+                    <desc id="pad-chart-bb08a9a0-desc">
+                      1: 12; 2: 15; 3: 14; 4: 18; 5: 22; 6: 19; 7: 24; 8: 27; 9: 25; 10: 31; 11: 29; 12: 34; 13: 38; 14: 41
+                    </desc>
+                    <path class="pc-line" d="M5,15L13.5,14L21.9,14.3L30.4,12.9L38.8,11.6L47.3,12.6L55.8,10.9L64.2,9.8L72.7,10.5L81.2,8.4L89.6,9.1L98.1,7.4L106.5,6L115,5"></path>
+                    <circle class="pc-dot" cx="115" cy="5" r="3"></circle></svg> - up again.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A line per table row
+            </h3>
+            <p class="example-about">
+              Inside a loop, data= names a field of the row that holds a list.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sparkline/2-table.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Share<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Ten days<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Last<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">shares</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">data</span>=<span class="hl-str">'closes'</span>, <span class="hl-opt">title</span>=<span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$last</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/shares</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/sparkline/2-table.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$shares</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Acme'</span><span class="hl-pun">,</span>    <span class="hl-str">'closes'</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">[</span> <span class="hl-num">64</span><span class="hl-pun">,</span> <span class="hl-num">65</span><span class="hl-pun">,</span> <span class="hl-num">64</span><span class="hl-pun">,</span> <span class="hl-num">66</span><span class="hl-pun">,</span> <span class="hl-num">67</span><span class="hl-pun">,</span> <span class="hl-num">66</span><span class="hl-pun">,</span> <span class="hl-num">68</span><span class="hl-pun">,</span> <span class="hl-num">67</span><span class="hl-pun">,</span> <span class="hl-num">69</span><span class="hl-pun">,</span> <span class="hl-num">70</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">'last'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">70</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Globex'</span><span class="hl-pun">,</span>  <span class="hl-str">'closes'</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">[</span> <span class="hl-num">21.4</span><span class="hl-pun">,</span> <span class="hl-num">21.1</span><span class="hl-pun">,</span> <span class="hl-num">20.8</span><span class="hl-pun">,</span> <span class="hl-num">21.0</span><span class="hl-pun">,</span> <span class="hl-num">20.6</span><span class="hl-pun">,</span> <span class="hl-num">20.2</span><span class="hl-pun">,</span> <span class="hl-num">20.5</span><span class="hl-pun">,</span> <span class="hl-num">19.9</span><span class="hl-pun">,</span> <span class="hl-num">19.6</span><span class="hl-pun">,</span> <span class="hl-num">19.8</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">'last'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">19.8</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Initech'</span><span class="hl-pun">,</span> <span class="hl-str">'closes'</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">[</span> <span class="hl-num">88</span><span class="hl-pun">,</span> <span class="hl-num">87</span><span class="hl-pun">,</span> <span class="hl-num">89</span><span class="hl-pun">,</span> <span class="hl-num">86</span><span class="hl-pun">,</span> <span class="hl-num">88</span><span class="hl-pun">,</span> <span class="hl-num">90</span><span class="hl-pun">,</span> <span class="hl-num">87</span><span class="hl-pun">,</span> <span class="hl-num">85</span><span class="hl-pun">,</span> <span class="hl-num">88</span><span class="hl-pun">,</span> <span class="hl-num">89</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">'last'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">89</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sparkline%EA%A4%B72-table.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table>
+                    <tr>
+                      <th>
+                        Share
+                      </th>
+                      <th>
+                        Ten days
+                      </th>
+                      <th>
+                        Last
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        Acme
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sparkline" role="img" aria-labelledby="pad-chart-6728ebb9-title pad-chart-6728ebb9-desc" width="120" height="32" viewbox="0 0 120 32">
+                        <title id="pad-chart-6728ebb9-title">
+                          Acme
+                        </title>
+                        <desc id="pad-chart-6728ebb9-desc">
+                          1: 64; 2: 65; 3: 64; 4: 66; 5: 67; 6: 66; 7: 68; 8: 67; 9: 69; 10: 70
+                        </desc>
+                        <path class="pc-line" d="M5,27L17.2,23.3L29.4,27L41.7,19.7L53.9,16L66.1,19.7L78.3,12.3L90.6,16L102.8,8.7L115,5"></path>
+                        <circle class="pc-dot" cx="115" cy="5" r="3"></circle></svg>
+                      </td>
+                      <td>
+                        70
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Globex
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sparkline" role="img" aria-labelledby="pad-chart-02ed1933-title pad-chart-02ed1933-desc" width="120" height="32" viewbox="0 0 120 32">
+                        <title id="pad-chart-02ed1933-title">
+                          Globex
+                        </title>
+                        <desc id="pad-chart-02ed1933-desc">
+                          1: 21.4; 2: 21.1; 3: 20.8; 4: 21; 5: 20.6; 6: 20.2; 7: 20.5; 8: 19.9; 9: 19.6; 10: 19.8
+                        </desc>
+                        <path class="pc-line" d="M5,5L17.2,8.7L29.4,12.3L41.7,9.9L53.9,14.8L66.1,19.7L78.3,16L90.6,23.3L102.8,27L115,24.6"></path>
+                        <circle class="pc-dot" cx="115" cy="24.6" r="3"></circle></svg>
+                      </td>
+                      <td>
+                        19.8
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Initech
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sparkline" role="img" aria-labelledby="pad-chart-2b1fb776-title pad-chart-2b1fb776-desc" width="120" height="32" viewbox="0 0 120 32">
+                        <title id="pad-chart-2b1fb776-title">
+                          Initech
+                        </title>
+                        <desc id="pad-chart-2b1fb776-desc">
+                          1: 88; 2: 87; 3: 89; 4: 86; 5: 88; 6: 90; 7: 87; 8: 85; 9: 88; 10: 89
+                        </desc>
+                        <path class="pc-line" d="M5,13.8L17.2,18.2L29.4,9.4L41.7,22.6L53.9,13.8L66.1,5L78.3,18.2L90.6,27L102.8,13.8L115,9.4"></path>
+                        <circle class="pc-dot" cx="115" cy="9.4" r="3"></circle></svg>
+                      </td>
+                      <td>
+                        89
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              A sequence as data
+            </h3>
+            <p class="example-about">
+              sequence= plots the first rows terms of a sequence type.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sparkline/3-sequence.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Fibonacci <span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">sequence</span>=<span class="hl-str">'fibonacci'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">12</span><span class="hl-brc">}</span> and the primes <span class="hl-brc">{</span><span class="hl-tag">sparkline</span> <span class="hl-opt">sequence</span>=<span class="hl-str">'prime'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">12</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sparkline%EA%A4%B73-sequence.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Fibonacci <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sparkline" role="img" aria-labelledby="pad-chart-dd70c00f-title pad-chart-dd70c00f-desc" width="120" height="32" viewbox="0 0 120 32">
+                    <title id="pad-chart-dd70c00f-title">
+                      Fibonacci, the first 12 terms
+                    </title>
+                    <desc id="pad-chart-dd70c00f-desc">
+                      1: 0; 2: 1; 3: 1; 4: 2; 5: 3; 6: 5; 7: 8; 8: 13; 9: 21; 10: 34; 11: 55; 12: 89
+                    </desc>
+                    <path class="pc-line" d="M5,27L15,26.8L25,26.8L35,26.5L45,26.3L55,25.8L65,25L75,23.8L85,21.8L95,18.6L105,13.4L115,5"></path>
+                    <circle class="pc-dot" cx="115" cy="5" r="3"></circle></svg> and the primes <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sparkline" role="img" aria-labelledby="pad-chart-0d06bae5-title pad-chart-0d06bae5-desc" width="120" height="32" viewbox="0 0 120 32">
+                    <title id="pad-chart-0d06bae5-title">
+                      Prime, the first 12 terms
+                    </title>
+                    <desc id="pad-chart-0d06bae5-desc">
+                      1: 2; 2: 3; 3: 5; 4: 7; 5: 11; 6: 13; 7: 17; 8: 19; 9: 23; 10: 29; 11: 31; 12: 37
+                    </desc>
+                    <path class="pc-line" d="M5,27L15,26.4L25,25.1L35,23.9L45,21.3L55,20.1L65,17.6L75,16.3L85,13.8L95,10L105,8.8L115,5"></path>
+                    <circle class="pc-dot" cx="115" cy="5" r="3"></circle></svg>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7spaceless.html">← {spaceless}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7stack.html">{stack} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

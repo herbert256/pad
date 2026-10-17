@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {tab} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-tabs){--pad-tabs-accent:#2a78d6;--pad-tabs-text:#1f1f1d;--pad-tabs-muted:#62615c;--pad-tabs-line:#e4e3df;}@supports (color:light-dark(#000,#fff)){:where(.pad-tabs){--pad-tabs-accent:light-dark(#2a78d6,#5598e7);--pad-tabs-text:light-dark(#1f1f1d,#ecebe6);--pad-tabs-muted:light-dark(#62615c,#a9a8a0);--pad-tabs-line:light-dark(#e4e3df,#3a3a37);}}.pad-tabs{display:flex;flex-wrap:wrap;align-items:flex-end;margin:0 0 1em}.pad-tabs-radio{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}.pad-tabs-label{position:relative;z-index:1;margin-bottom:-1px;padding:.55em 1em;border-bottom:2px solid transparent;color:var(--pad-tabs-muted);font-weight:500;cursor:pointer;user-select:none}.pad-tabs-label:hover{color:var(--pad-tabs-text)}.pad-tabs-radio:checked+.pad-tabs-label{color:var(--pad-tabs-text);border-bottom-color:var(--pad-tabs-accent)}.pad-tabs-radio:focus-visible+.pad-tabs-label{outline:2px solid var(--pad-tabs-accent);outline-offset:-2px;border-radius:6px 6px 0 0}.pad-tabs-panel{display:none;flex:1 0 100%;order:1;padding:1em 0 0;border-top:1px solid var(--pad-tabs-line)}.pad-tabs>.pad-tabs-radio:nth-of-type(1):checked~.pad-tabs-panel:nth-of-type(1){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(2):checked~.pad-tabs-panel:nth-of-type(2){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(3):checked~.pad-tabs-panel:nth-of-type(3){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(4):checked~.pad-tabs-panel:nth-of-type(4){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(5):checked~.pad-tabs-panel:nth-of-type(5){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(6):checked~.pad-tabs-panel:nth-of-type(6){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(7):checked~.pad-tabs-panel:nth-of-type(7){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(8):checked~.pad-tabs-panel:nth-of-type(8){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(9):checked~.pad-tabs-panel:nth-of-type(9){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(10):checked~.pad-tabs-panel:nth-of-type(10){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(11):checked~.pad-tabs-panel:nth-of-type(11){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(12):checked~.pad-tabs-panel:nth-of-type(12){display:block}@media print{.pad-tabs-panel{display:block}}
+    </style>
+    <style>
+    :where(.pad-accordion){--pad-accordion-accent:#2a78d6;--pad-accordion-text:#1f1f1d;--pad-accordion-muted:#62615c;--pad-accordion-line:#e4e3df;--pad-accordion-hover:#f4f3f0;}@supports (color:light-dark(#000,#fff)){:where(.pad-accordion){--pad-accordion-accent:light-dark(#2a78d6,#5598e7);--pad-accordion-text:light-dark(#1f1f1d,#ecebe6);--pad-accordion-muted:light-dark(#62615c,#a9a8a0);--pad-accordion-line:light-dark(#e4e3df,#3a3a37);--pad-accordion-hover:light-dark(#f4f3f0,#242422);}}.pad-accordion{margin:0 0 1em;border-top:1px solid var(--pad-accordion-line)}.pad-accordion-item{border-bottom:1px solid var(--pad-accordion-line)}.pad-accordion-summary{display:flex;align-items:center;gap:.75em;padding:.8em .5em;cursor:pointer;list-style:none;color:var(--pad-accordion-text);font-weight:600}.pad-accordion-summary::-webkit-details-marker{display:none}.pad-accordion-summary::after{content:"";flex:none;margin-left:auto;width:.5em;height:.5em;border-right:2px solid var(--pad-accordion-muted);border-bottom:2px solid var(--pad-accordion-muted);transform:translateY(-25%) rotate(45deg);transition:transform .15s}.pad-accordion-item[open]>.pad-accordion-summary::after{transform:translateY(25%) rotate(-135deg)}.pad-accordion-summary:hover{background:var(--pad-accordion-hover)}.pad-accordion-summary:focus-visible{outline:2px solid var(--pad-accordion-accent);outline-offset:-2px;border-radius:6px}.pad-accordion-body{padding:0 .5em 1em;color:var(--pad-accordion-text)}.pad-accordion-body>:first-child{margin-top:0}.pad-accordion-body>:last-child{margin-bottom:0}@media (prefers-reduced-motion:reduce){.pad-accordion-summary::after{transition:none}}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#widgets">Widgets</a><span>/</span><span aria-current="page">tab</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>tab<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            One item of a tabs, accordion or carousel: its label and its content, handed to that owner.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              The tab's label, the summary of an accordion item or the caption of a carousel slide. Required in <code>{tabs}</code> and <code>{accordion}</code>, optional in <code>{carousel}</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{tab}</code> is the item of the three widgets that take a list of labelled parts: <a href="index%EF%B9%96tag%EA%A4%B7tabs.html"><code>{tabs}</code></a> (a tab and its panel), <a href="index%EF%B9%96tag%EA%A4%B7accordion.html"><code>{accordion}</code></a> (a <code>&lt;details&gt;</code> with the label as its summary) and <a href="index%EF%B9%96tag%EA%A4%B7carousel.html"><code>{carousel}</code></a> (a slide with the label as its caption). It prints nothing where it stands: its content is rendered, trimmed, and handed to the nearest of those owners above it, which builds its markup from the items once its own content has rendered.
+          </p>
+          <p>
+            Because the hand-over goes to the nearest owner and not to the direct parent, a tab may stand inside an <code>{if}</code>, or inside a loop that makes a tab per row of data: <code>{tabs}{plans}{tab $name}...{/tab}{/plans}{/tabs}</code>.
+          </p>
+          <p>
+            Under the strict check a <code>{tab}</code> outside any owner is an error, as is one that never closes, and a tab of a <code>{tabs}</code> or an <code>{accordion}</code> without a label. A carousel slide may go without a label; it then has no caption.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A tab in an if
+            </h3>
+            <p class="example-about">
+              A tab only shows up when its condition holds - the hand-over skips the if around it.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/tab/1-conditional.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$hasReviews</span> = <span class="hl-num">0</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">tabs</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A kettle in brushed steel.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$hasReviews</span> gt <span class="hl-num">0</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Reviews'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The reviews.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Delivery'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Delivered the next working day.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7tab%EA%A4%B71-conditional.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="pad-tabs" id="pad-tabs-c996ddf2">
+                    <input class="pad-tabs-radio" type="radio" name="pad-tabs-c996ddf2" id="pad-tabs-c996ddf2-1" aria-controls="pad-tabs-c996ddf2-1-panel" checked><label class="pad-tabs-label" for="pad-tabs-c996ddf2-1" id="pad-tabs-c996ddf2-1-label">Overview</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-c996ddf2" id="pad-tabs-c996ddf2-2" aria-controls="pad-tabs-c996ddf2-2-panel"><label class="pad-tabs-label" for="pad-tabs-c996ddf2-2" id="pad-tabs-c996ddf2-2-label">Delivery</label>
+                    <div class="pad-tabs-panel" id="pad-tabs-c996ddf2-1-panel" role="region" aria-labelledby="pad-tabs-c996ddf2-1-label">
+                      <p>
+                        A kettle in brushed steel.
+                      </p>
+                    </div>
+                    <div class="pad-tabs-panel" id="pad-tabs-c996ddf2-2-panel" role="region" aria-labelledby="pad-tabs-c996ddf2-2-label">
+                      <p>
+                        Delivered the next working day.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The same tabs, another owner
+            </h3>
+            <p class="example-about">
+              Identical tab items laid out by an accordion instead of a tab set.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/tab/2-owners.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A kettle in brushed steel.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Delivery'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Delivered the next working day.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7tab%EA%A4%B72-owners.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="pad-accordion" id="pad-accordion-c996ddf2">
+                    <details class="pad-accordion-item">
+                      <summary class="pad-accordion-summary">
+                        Overview
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          A kettle in brushed steel.
+                        </p>
+                      </div>
+                    </details>
+                    <details class="pad-accordion-item">
+                      <summary class="pad-accordion-summary">
+                        Delivery
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          Delivered the next working day.
+                        </p>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tabs.html">{tabs}</a> <span class="about">Panels behind a row of tabs, switched by radio buttons and CSS - no JavaScript.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7accordion.html">{accordion}</a> <span class="about">Items that open and close on a click, each a details element - no JavaScript.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7carousel.html">{carousel}</a> <span class="about">Slides in a row that scrolls and snaps sideways, with arrow links and dots - no JavaScript needed.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7switch.html">← {switch}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7tabs.html">{tabs} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

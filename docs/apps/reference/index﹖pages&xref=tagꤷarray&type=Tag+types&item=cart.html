@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - cart
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - cart
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: variables/a_collection_page_variable_stays_the_object_after_a_list_lookup<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_collection_page_variable_stays_the_object_after_a_list_lookup.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_collection_page_variable_stays_the_object_after_a_list_lookup.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An object a page leaves that can be read as a list again - an IteratorAggregate, an<br>  // ArrayObject - stays that object after a tag read it as a list; only an iterator that runs<br>  // once is replaced by its rows. Replaced, a later {$cart.items.1.name} was not found and a<br>  // function calling $cart-&gt;total() met an array.<br><br>  </span><span style="color: #007700">class </span><span style="color: #0000BB">VariablesKeptCart </span><span style="color: #007700">implements </span><span style="color: #0000BB">IteratorAggregate </span><span style="color: #007700">{<br><br>    public </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Pen'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ink'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br><br>    function </span><span style="color: #0000BB">getIterator </span><span style="color: #007700">(): </span><span style="color: #0000BB">Iterator </span><span style="color: #007700">{ return new </span><span style="color: #0000BB">ArrayIterator </span><span style="color: #007700">( </span><span style="color: #0000BB">$this </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">items </span><span style="color: #007700">); }<br><br>    function </span><span style="color: #0000BB">total </span><span style="color: #007700">() { return </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$this </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">items</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">) ); }<br><br>  }<br><br>  function </span><span style="color: #0000BB">variablesKeptCartTotal </span><span style="color: #007700">() { return </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'cart'</span><span style="color: #007700">] -&gt; </span><span style="color: #0000BB">total </span><span style="color: #007700">(); }<br><br>  function </span><span style="color: #0000BB">variablesKeptListKind </span><span style="color: #007700">() { return </span><span style="color: #0000BB">get_class </span><span style="color: #007700">( </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'list'</span><span style="color: #007700">] ); }<br><br>  </span><span style="color: #0000BB">$cart </span><span style="color: #007700">= new </span><span style="color: #0000BB">VariablesKeptCart</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$list </span><span style="color: #007700">= new </span><span style="color: #0000BB">ArrayObject </span><span style="color: #007700">( [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">before[<b>{<font color="green"><font color="red">$</font>cart.items.1.name</font>}</b>] <b>{<font color="blue">cart</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">cart</font><font color="red"></font>}</b>after[<b>{<font color="green"><font color="red">$</font>cart.items.1.name</font>}</b>] total[<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>variablesKeptCartTotal</font><font color="red"></font>}</b>] list[<b>{<font color="blue">list</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">list</font><font color="red"></font>}</b>] kind[<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>variablesKeptListKind</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf5485003ae6f267f94154d16e7c577d8"></div>
+                        <script>
+                        padAjaxf5485003ae6f267f94154d16e7c577d8 = new XMLHttpRequest();
+                        padAjaxf5485003ae6f267f94154d16e7c577d8.onreadystatechange=function() {
+                        if (padAjaxf5485003ae6f267f94154d16e7c577d8.readyState === 4) {
+                        if (padAjaxf5485003ae6f267f94154d16e7c577d8.status === 200) {
+                        document.getElementById("padAjaxf5485003ae6f267f94154d16e7c577d8").innerHTML=padAjaxf5485003ae6f267f94154d16e7c577d8.responseText;
+                        } else {
+                        document.getElementById("padAjaxf5485003ae6f267f94154d16e7c577d8").innerHTML=padAjaxf5485003ae6f267f94154d16e7c577d8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf5485003ae6f267f94154d16e7c577d8.open("GET","http://localhost/pad/regression/framework/?variables/a_collection_page_variable_stays_the_object_after_a_list_lookup&padInclude",true);
+                        padAjaxf5485003ae6f267f94154d16e7c577d8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

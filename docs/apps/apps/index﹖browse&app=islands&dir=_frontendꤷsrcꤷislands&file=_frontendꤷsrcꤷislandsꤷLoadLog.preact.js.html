@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: islands/_frontend/src/islands
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: islands/ frontend/src/islands
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src%EA%A4%B7islands&amp;file=_frontend%EA%A4%B7src%EA%A4%B7islands%EA%A4%B7Counter.preact.js.html">Counter.preact.js</a>
+                  </li>
+                  <li class="current">LoadLog.preact.js
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _frontend/src/islands/LoadLog.preact.js
+                </h3>
+                <pre><code style="color: #000000">// The log of the loading page, in Preact: every island that mounted before it, and every<br>// one after (the pad:island event of pad-islands.js), with the time its code took to come.<br>import { html } from 'htm/preact';<br>import { useState, useEffect } from 'preact/hooks';<br>import { mounted } from '../pad-islands.js';<br><br>export default function LoadLog() {<br>  const [rows, setRows] = useState(mounted);<br>  useEffect(() =&gt; {<br>    setRows(mounted());                                    // what came between render and now<br>    const told = (event) =&gt; setRows((now) =&gt; [...now, event.detail]);<br>    window.addEventListener('pad:island', told);<br>    return () =&gt; window.removeEventListener('pad:island', told);<br>  }, []);<br>  return html`<br>    &lt;ol class="load-log"&gt;<br>      ${rows.length === 0 &amp;& html`&lt;li class="muted"&gt;Waiting for the first island ...&lt;/li&gt;`}<br>      ${rows.map((row) =&gt; html`&lt;li class="rise"&gt;&lt;code&gt;${row.at.toLocaleTimeString()}&lt;/code&gt; &lt;strong&gt;${row.name}&lt;/strong&gt; mounted - its code took ${row.ms} ms &lt;span class="badge"&gt;${row.element.getAttribute('data-load') || 'eager'}&lt;/span&gt;&lt;/li&gt;`)}<br>    &lt;/ol&gt;`;<br>}<br></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

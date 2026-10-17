@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - plan
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - plan
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: ledger - Page: budgets<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">budgets.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">budgets.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What each category of spending may cost a month. A budget of 0 takes the category's<br>  // budget away; the overview shows how far each month got.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'budgets' </span><span style="color: #007700">) ) {<br><br>    foreach ( (array) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'budget'</span><span style="color: #007700">, [] ) as </span><span style="color: #0000BB">$id </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$amount </span><span style="color: #007700">) {<br>      if ( ! </span><span style="color: #0000BB">is_scalar </span><span style="color: #007700">( </span><span style="color: #0000BB">$amount </span><span style="color: #007700">) )<br>        continue;<br>      </span><span style="color: #0000BB">$amount </span><span style="color: #007700">= (float) </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">','</span><span style="color: #007700">, </span><span style="color: #DD0000">'.'</span><span style="color: #007700">, (string) </span><span style="color: #0000BB">$amount </span><span style="color: #007700">);<br>      if ( </span><span style="color: #0000BB">$amount </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">)<br>        </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"INSERT OR REPLACE INTO budgets (category_id, monthly) SELECT id, {1} FROM categories WHERE id={0} AND kind = 'expense'"</span><span style="color: #007700">, [ (int) </span><span style="color: #0000BB">$id</span><span style="color: #007700">, </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$amount</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">) ] );<br>      else<br>        </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"DELETE FROM budgets WHERE category_id={0}"</span><span style="color: #007700">, [ (int) </span><span style="color: #0000BB">$id </span><span style="color: #007700">] );<br>    }<br><br>    </span><span style="color: #0000BB">padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'The budgets are saved.' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">( </span><span style="color: #DD0000">'index'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">] );<br><br>  }<br><br>  </span><span style="color: #0000BB">$plan </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"ARRAY c.id, c.name, c.color, coalesce(b.monthly, 0) AS monthly<br>                               FROM categories c LEFT JOIN budgets b ON b.category_id = c.id<br>                               WHERE c.kind = 'expense' ORDER BY c.name" </span><span style="color: #007700">) ?: [] );<br><br>  </span><span style="color: #0000BB">$planned    </span><span style="color: #007700">= </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$plan</span><span style="color: #007700">, </span><span style="color: #DD0000">'monthly' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$ledgerPage </span><span style="color: #007700">= </span><span style="color: #DD0000">'Budgets'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="narrow"&gt;<br><br>  &lt;h1&gt;Budgets&lt;/h1&gt;<br>  &lt;p class="lead"&gt;What each kind of spending may cost a month - <b>{<font color="green">$planned</font> <font color="black">|</font> <font color="blue">money</font>}</b> together. 0 leaves a category without one.&lt;/p&gt;<br><br>  <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>budgets<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>budget-form<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">plan</font><font color="red"></font>}</b><br>    &lt;label class="budget-row" for="budget-<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;&lt;span class="dot" style="background: <b>{<font color="green"><font color="red">$</font>color</font>}</b>"&gt;&lt;/span&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b><br>      &lt;input id="budget-<b>{<font color="green"><font color="red">$</font>id</font>}</b>" name="budget[<b>{<font color="green"><font color="red">$</font>id</font>}</b>]" value="<b>{<font color="green"><font color="red">$</font>monthly</font>}</b>" inputmode="decimal" size="8"&gt;&lt;/label&gt;<br>    <b>{/<font color="blue">plan</font><font color="red"></font>}</b><br>    &lt;div class="bar"&gt;&lt;button class="button primary"&gt;Save&lt;/button&gt;&lt;a class="button" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>index<b>{<font color="green">?month</font>}</b>"&gt;Cancel&lt;/a&gt;&lt;/div&gt;<br>  <b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfc594517e98cfc815e8b33f17545c4b3"></div>
+                        <script>
+                        padAjaxfc594517e98cfc815e8b33f17545c4b3 = new XMLHttpRequest();
+                        padAjaxfc594517e98cfc815e8b33f17545c4b3.onreadystatechange=function() {
+                        if (padAjaxfc594517e98cfc815e8b33f17545c4b3.readyState === 4) {
+                        if (padAjaxfc594517e98cfc815e8b33f17545c4b3.status === 200) {
+                        document.getElementById("padAjaxfc594517e98cfc815e8b33f17545c4b3").innerHTML=padAjaxfc594517e98cfc815e8b33f17545c4b3.responseText;
+                        } else {
+                        document.getElementById("padAjaxfc594517e98cfc815e8b33f17545c4b3").innerHTML=padAjaxfc594517e98cfc815e8b33f17545c4b3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfc594517e98cfc815e8b33f17545c4b3.open("GET","http://localhost/pad/ledger/?budgets&padInclude",true);
+                        padAjaxfc594517e98cfc815e8b33f17545c4b3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: showcase/datatable
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: showcase/datatable
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=showcase.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7expenses.pad.html">expenses.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7orders.pad.html">orders.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7orders.php.html">orders.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7paged.pad.html">paged.pad</a>
+                  </li>
+                  <li class="current">paged.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  datatable/paged.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The cities proper by population, the largest first, with their area.<br><br>  </span><span style="color: #0000BB">$cities </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shanghai'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'China'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24870895</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6341  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Beijing'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'China'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">21893095</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">16411 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kinshasa'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'DR Congo'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">16315534</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9965  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Istanbul'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Türkiye'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">15655924</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5461  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Tokyo'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Japan'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">14094034</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2194  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Moscow'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Russia'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">13010112</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2511  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mumbai'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'India'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12442373</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">603   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'São Paulo'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Brazil'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">11451245</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1521  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Delhi'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'India'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">11034555</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1484  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jakarta'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Indonesia'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10562088</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">662   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dhaka'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bangladesh'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10278882</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">306   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cairo'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Egypt'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10044894</span><span style="color: #007700">, </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3085  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Lima'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Peru'</span><span style="color: #007700">,           </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9943800</span><span style="color: #007700">,  </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2672  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Seoul'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'South Korea'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9586195</span><span style="color: #007700">,  </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">605   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mexico City'</span><span style="color: #007700">, </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mexico'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9209944</span><span style="color: #007700">,  </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1485  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'United Kingdom'</span><span style="color: #007700">, </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">8799800</span><span style="color: #007700">,  </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1572  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Lagos'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Nigeria'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">8048430</span><span style="color: #007700">,  </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1171  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bangkok'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Thailand'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'population' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5494932</span><span style="color: #007700">,  </span><span style="color: #DD0000">'area' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1569  </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

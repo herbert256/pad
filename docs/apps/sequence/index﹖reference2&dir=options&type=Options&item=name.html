@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -223,7 +223,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Response fragments<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. &lt;code&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>...<b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/code&gt; names such a part. A normal request renders the whole page, the fragment in its place:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/response_fragments_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A request that adds &lt;code&gt;&amp;amp;padFragment=order-list&lt;/code&gt; to the URL gets that fragment and nothing else - the same template serves the full page and the update:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/response_fragments_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;How it works&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;The page renders up to the end of the fragment, and the fragment's rendering - closing pipe included - is the whole response. What comes after it is not rendered at all.&lt;/li&gt;<br>  &lt;li&gt;The response is bare, like a &lt;code&gt;padInclude&lt;/code&gt; request: no wrapper, no tidy.&lt;/li&gt;<br>  &lt;li&gt;The first fragment of that name to finish rendering is the one sent. Keep a fragment unconditional and put conditions inside it: a request for a fragment that never rendered is an error under the strict check, and an empty 404 otherwise.&lt;/li&gt;<br>  &lt;li&gt;The page's PHP may decide too: &lt;code&gt;$padFragmentOnly = 'order-list';&lt;/code&gt; - for instance when the request carries an &lt;code&gt;HX-Request&lt;/code&gt; header.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;With ajax and HTMX&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">ajax </font><font color="red"><font color="black">'</font>orders<font color="black">'</font><font color="black">,</font> fragment=<font color="black">'</font>order-list<font color="black">'</font></font>}</b>&lt;/code&gt; fetches only that fragment of the page into its div.&lt;/li&gt;<br>  &lt;li&gt;HTMX: &lt;code&gt;&lt;div hx-get="?orders&amp;amp;padFragment=order-list" hx-trigger="every 5s"&gt;&lt;/code&gt; swaps in the fresh list.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Response fragments<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. &lt;code&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>...<b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/code&gt; names such a part. A normal request renders the whole page, the fragment in its place:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/response_fragments_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A request that adds &lt;code&gt;&amp;amp;padFragment=order-list&lt;/code&gt; to the URL gets that fragment and nothing else - the same template serves the full page and the update:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/response_fragments_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;How it works&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;The page renders up to the end of the fragment, and the fragment's rendering - closing pipe included - is the whole response. What comes after it is not rendered at all.&lt;/li&gt;<br>  &lt;li&gt;The response is bare, like a &lt;code&gt;padInclude&lt;/code&gt; request: no wrapper, no tidy.&lt;/li&gt;<br>  &lt;li&gt;The first fragment of that name to finish rendering is the one sent. Keep a fragment unconditional and put conditions inside it: a request for a fragment that never rendered is an error under the strict check, and an empty 404 otherwise.&lt;/li&gt;<br>  &lt;li&gt;The page's PHP may decide too: &lt;code&gt;$padFragmentOnly = 'order-list';&lt;/code&gt; - for instance when the request carries an &lt;code&gt;HX-Request&lt;/code&gt; header.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;With ajax and HTMX&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">ajax </font><font color="red"><font color="black">'</font>orders<font color="black">'</font><font color="black">,</font> fragment=<font color="black">'</font>order-list<font color="black">'</font></font>}</b>&lt;/code&gt; fetches only that fragment of the page into its div.&lt;/li&gt;<br>  &lt;li&gt;HTMX: &lt;code&gt;&lt;div hx-get="?orders&amp;amp;padFragment=order-list" hx-trigger="every 5s"&gt;&lt;/code&gt; swaps in the fresh list.&lt;/li&gt;<br>  &lt;li&gt;An HTMX request needs no &lt;code&gt;padFragment&lt;/code&gt; when it swaps an element named like the fragment: &lt;code&gt;hx-target="#order-list"&lt;/code&gt; sends &lt;code&gt;HX-Target: order-list&lt;/code&gt;, and a page with a fragment of that name answers it alone. A page without one renders whole, as it would otherwise. See <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>htmx<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjaxd7af6d6b488fa7f2ff52512ba31d99da"></div>
@@ -263,7 +263,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stacks<font color="black">:</font> push and stack<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A component knows which script or stylesheet it needs; the layout knows where those belong. &lt;code&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>&lt;/code&gt; adds rendered text to a named stack where the component is used, and &lt;code&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>&lt;/code&gt; prints the stack - in the &lt;code&gt;&lt;head&gt;&lt;/code&gt;, say, far above the components that fill it.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/stacks_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Filled in at the end&lt;/h2&gt;<br><br>&lt;p&gt;A page renders from top to bottom, so a &lt;code&gt;<b>{<font color="blue">stack</font><font color="red"></font>}</b>&lt;/code&gt; in the head comes out before anything below it has pushed. It prints a marker instead, and the marker is replaced by the stack once the whole page has rendered: it gets every push of the page, made above it or below it, in the order they were made.&lt;/p&gt;<br><br>&lt;h2&gt;once&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;once='chart'&lt;/code&gt; - the first push of that key is kept and a later one is skipped before its content renders, so a component used fifty times renders its script tag once. Keys are per stack.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;once&lt;/code&gt; without a key - a push whose rendered text the stack already holds is dropped.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Where pushes come from&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;The content of a push renders where the tag stands, with the variables of that spot - inside a loop, the row's.&lt;/li&gt;<br>  &lt;li&gt;A &lt;code&gt;<b>{<font color="blue">page</font><font color="red"></font>}</b>&lt;/code&gt; or &lt;code&gt;<b>{<font color="blue">code</font><font color="red"></font>}</b>&lt;/code&gt; pass adds to the page's stacks; a sandboxed pass keeps its own.&lt;/li&gt;<br>  &lt;li&gt;A push inside a &lt;code&gt;<b>{<font color="blue">cache</font><font color="red"></font>}</b>&lt;/code&gt; section is stored with the section and made again on every hit.&lt;/li&gt;<br>  &lt;li&gt;From PHP: &lt;code&gt;padStackPush ( 'scripts', $html, $once )&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stacks<font color="black">:</font> push and stack<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A component knows which script or stylesheet it needs; the layout knows where those belong. &lt;code&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>&lt;/code&gt; adds rendered text to a named stack where the component is used, and &lt;code&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>&lt;/code&gt; prints the stack - in the &lt;code&gt;&lt;head&gt;&lt;/code&gt;, say, far above the components that fill it.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/stacks_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Filled in at the end&lt;/h2&gt;<br><br>&lt;p&gt;A page renders from top to bottom, so a &lt;code&gt;<b>{<font color="blue">stack</font><font color="red"></font>}</b>&lt;/code&gt; in the head comes out before anything below it has pushed. It prints a marker instead, and the marker is replaced by the stack once the whole page has rendered: it gets every push of the page, made above it or below it, in the order they were made.&lt;/p&gt;<br><br>&lt;h2&gt;once&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;once='chart'&lt;/code&gt; - the first push of that key is kept and a later one is skipped before its content renders, so a component used fifty times renders its script tag once. Keys are per stack.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;once&lt;/code&gt; without a key - a push whose rendered text the stack already holds is dropped.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Where pushes come from&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;The content of a push renders where the tag stands, with the variables of that spot - inside a loop, the row's.&lt;/li&gt;<br>  &lt;li&gt;A plain &lt;code&gt;<b>{<font color="blue">page</font><font color="red"></font>}</b>&lt;/code&gt; or &lt;code&gt;<b>{<font color="blue">code</font><font color="red"></font>}</b>&lt;/code&gt; pass adds to the page's stacks; a sandbox, clean or reset pass keeps its own.&lt;/li&gt;<br>  &lt;li&gt;A push inside a &lt;code&gt;<b>{<font color="blue">cache</font><font color="red"></font>}</b>&lt;/code&gt; section is stored with the section and made again on every hit.&lt;/li&gt;<br>  &lt;li&gt;From PHP: &lt;code&gt;padStackPush ( 'scripts', $html, $once )&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax865e82fd3232f98ab86c8ba385034fa8"></div>
@@ -445,6 +445,46 @@
                     </tr>
                   </table>
                   <hr>
+                  App: regression/framework Page: sequence/a_list_has_no_empty_entries_and_trims_its_words<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_list_has_no_empty_entries_and_trims_its_words.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">a[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;2;<font color="black">'</font><font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] b[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>red; green<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>c<font color="black">'</font></font>}</b>&lt;<b>{<font color="green"><font color="red">$</font>c</font>}</b>&gt;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] c[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>red;green;<font color="black">'</font><font color="black">,</font> last</font>}</b>&lt;<b>{<font color="green"><font color="red">$</font>sequence</font>}</b>&gt;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] d[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1;;2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>|<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] e[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font> 3 ; 4 <font color="black">'</font></font>}</b>&lt;<b>{<font color="green"><font color="red">$</font>sequence</font>}</b>&gt;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax566ec05518e2ade3975cb44dda7ff010"></div>
+                        <script>
+                        padAjax566ec05518e2ade3975cb44dda7ff010 = new XMLHttpRequest();
+                        padAjax566ec05518e2ade3975cb44dda7ff010.onreadystatechange=function() {
+                        if (padAjax566ec05518e2ade3975cb44dda7ff010.readyState === 4) {
+                        if (padAjax566ec05518e2ade3975cb44dda7ff010.status === 200) {
+                        document.getElementById("padAjax566ec05518e2ade3975cb44dda7ff010").innerHTML=padAjax566ec05518e2ade3975cb44dda7ff010.responseText;
+                        } else {
+                        document.getElementById("padAjax566ec05518e2ade3975cb44dda7ff010").innerHTML=padAjax566ec05518e2ade3975cb44dda7ff010.statusText;
+                        }
+                        }
+                        }
+                        padAjax566ec05518e2ade3975cb44dda7ff010.open("GET","http://localhost/pad/regression/framework/?sequence/a_list_has_no_empty_entries_and_trims_its_words&padInclude",true);
+                        padAjax566ec05518e2ade3975cb44dda7ff010.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
                   App: regression/framework Page: sequence/name_on_a_closed_tag_stores_it_too<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -565,7 +605,7 @@
                     </tr>
                   </table>
                   <hr>
-                  App: regression/framework Page: tags/a_self_closing_tag_does_not_open_a_pair_of_its_name<br>
+                  App: regression/framework Page: sequence/the_type_field_follows_the_rows_through_an_action<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -574,7 +614,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/a_self_closing_tag_does_not_open_a_pair_of_its_name.pad</font>
+                        <font size="-2">sequence/the_type_field_follows_the_rows_through_an_action.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -583,63 +623,23 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>a<font color="black">'</font></font>}</b>&lt;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>7..8<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>|<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>5..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>c<font color="black">'</font> </font>/}</b>&gt;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>nums<font color="black">'</font></font>}</b><br>a[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>b[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> last=2</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>c[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> sum</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>d[<b>{<font color="blue">fibonacci </font><font color="red">rows=5<font color="black">,</font> make<font color="black">,</font> multiply=2<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>multiply</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>e[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> name=<font color="black">'</font>f<font color="black">'</font><font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>f</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>f[<b>{<font color="blue">nums </font><font color="red">reverse</font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b> <b>{/<font color="blue">nums</font><font color="red"></font>}</b>]<br>g[<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums </font><font color="red">reverse</font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b>]<br>h[<b>{<font color="blue">nums </font><font color="red">sum</font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b><b>{/<font color="blue">nums</font><font color="red"></font>}</b>]</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax5d737ebf1b65e4cf8330002aedf35ce3"></div>
+                        <div id="padAjax508e8393bc6c33d6561dbe774ac8691f"></div>
                         <script>
-                        padAjax5d737ebf1b65e4cf8330002aedf35ce3 = new XMLHttpRequest();
-                        padAjax5d737ebf1b65e4cf8330002aedf35ce3.onreadystatechange=function() {
-                        if (padAjax5d737ebf1b65e4cf8330002aedf35ce3.readyState === 4) {
-                        if (padAjax5d737ebf1b65e4cf8330002aedf35ce3.status === 200) {
-                        document.getElementById("padAjax5d737ebf1b65e4cf8330002aedf35ce3").innerHTML=padAjax5d737ebf1b65e4cf8330002aedf35ce3.responseText;
+                        padAjax508e8393bc6c33d6561dbe774ac8691f = new XMLHttpRequest();
+                        padAjax508e8393bc6c33d6561dbe774ac8691f.onreadystatechange=function() {
+                        if (padAjax508e8393bc6c33d6561dbe774ac8691f.readyState === 4) {
+                        if (padAjax508e8393bc6c33d6561dbe774ac8691f.status === 200) {
+                        document.getElementById("padAjax508e8393bc6c33d6561dbe774ac8691f").innerHTML=padAjax508e8393bc6c33d6561dbe774ac8691f.responseText;
                         } else {
-                        document.getElementById("padAjax5d737ebf1b65e4cf8330002aedf35ce3").innerHTML=padAjax5d737ebf1b65e4cf8330002aedf35ce3.statusText;
+                        document.getElementById("padAjax508e8393bc6c33d6561dbe774ac8691f").innerHTML=padAjax508e8393bc6c33d6561dbe774ac8691f.statusText;
                         }
                         }
                         }
-                        padAjax5d737ebf1b65e4cf8330002aedf35ce3.open("GET","http://localhost/pad/regression/framework/?tags/a_self_closing_tag_does_not_open_a_pair_of_its_name&padInclude",true);
-                        padAjax5d737ebf1b65e4cf8330002aedf35ce3.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table>
-                  <hr>
-                  App: regression/framework Page: tags/parm_reads_a_parameter_from_inside_the_tag<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/parm_reads_a_parameter_from_inside_the_tag.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>s<font color="black">'</font></font>}</b><br>  <b>{<font color="blue"><font color="purple">parm</font><font color="black"><b>:</b></font>name</font><font color="red"></font>}</b>,<br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408"></div>
-                        <script>
-                        padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408 = new XMLHttpRequest();
-                        padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.onreadystatechange=function() {
-                        if (padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.readyState === 4) {
-                        if (padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.status === 200) {
-                        document.getElementById("padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408").innerHTML=padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.responseText;
-                        } else {
-                        document.getElementById("padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408").innerHTML=padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.statusText;
-                        }
-                        }
-                        }
-                        padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.open("GET","http://localhost/pad/regression/framework/?tags/parm_reads_a_parameter_from_inside_the_tag&padInclude",true);
-                        padAjaxe15bd8c8a8b6164c0ee71e8ccdf19408.send();
+                        padAjax508e8393bc6c33d6561dbe774ac8691f.open("GET","http://localhost/pad/regression/framework/?sequence/the_type_field_follows_the_rows_through_an_action&padInclude",true);
+                        padAjax508e8393bc6c33d6561dbe774ac8691f.send();
                         </script>
                       </td>
                     </tr>
@@ -659,7 +659,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

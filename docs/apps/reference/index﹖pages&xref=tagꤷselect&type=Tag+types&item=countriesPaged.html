@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - countriesPaged
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - countriesPaged
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/pages - Page: select/demo/a_pager_counts_the_rows_its_fields_make<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/a_pager_counts_the_rows_its_fields_make.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/a_pager_counts_the_rows_its_fields_make.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A pager counts the rows the select answers also when its fields= decides what a row is:<br>  // distinct countries, or one row of totals. The count over the table alone was taken<br>  // whenever distinct=, group=, having= and union= were not given, so 27 countries had the<br>  // 13 pages of the 122 customers, and the one row of totals a pager of 28 pages.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'countriesPaged'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'paymentTotals'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payments'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'checkNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">countriesPaged </font><font color="red">fields=<font color="black">'</font>distinct country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>; <b>{/<font color="blue">countriesPaged</font><font color="red"></font>}</b>]<br>(<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>countriesPaged<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)<br>[<b>{<font color="blue">paymentTotals </font><font color="red">fields=<font color="black">'</font>count(*) as n<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">paymentTotals</font><font color="red"></font>}</b>]<br>(<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>paymentTotals<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa770e48197265ef61a22a5b627dcd37c"></div>
+                        <script>
+                        padAjaxa770e48197265ef61a22a5b627dcd37c = new XMLHttpRequest();
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.onreadystatechange=function() {
+                        if (padAjaxa770e48197265ef61a22a5b627dcd37c.readyState === 4) {
+                        if (padAjaxa770e48197265ef61a22a5b627dcd37c.status === 200) {
+                        document.getElementById("padAjaxa770e48197265ef61a22a5b627dcd37c").innerHTML=padAjaxa770e48197265ef61a22a5b627dcd37c.responseText;
+                        } else {
+                        document.getElementById("padAjaxa770e48197265ef61a22a5b627dcd37c").innerHTML=padAjaxa770e48197265ef61a22a5b627dcd37c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_counts_the_rows_its_fields_make&padInclude",true);
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

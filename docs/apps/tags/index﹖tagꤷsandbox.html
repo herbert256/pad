@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {sandbox} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pages">Pages and execution</a><span>/</span><span aria-current="page">sandbox</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>sandbox<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Runs its content as PAD source in an isolated pass that cannot see or leave behind anything of the page.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pages">Pages and execution</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sandbox</span> <span class="hl-opt">function</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | sandbox<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>function</code>
+            </dt>
+            <dd>
+              Runs the pass inside a PHP function of that name, with a variable scope of its own; being sandboxed, nothing is copied out.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{sandbox}...{/sandbox}</code> does what <a href="index%EF%B9%96tag%EA%A4%B7code.html">{code}</a> does - renders its content as PAD source in a separate engine pass - with the pass sandboxed. It is <code>{code sandbox}</code> under a name of its own.
+          </p>
+          <p>
+            Sandboxed means: going in, the page's variables are hidden and the data, content, bool and sequence stores are emptied; coming out, everything is restored and what the pass set is gone. A field of the page is missing inside - write <code>{echo $city ?? 'default'}</code> when a snippet may run either way - and a <code>{push}</code> made inside fills the pass's own stacks, not the page's.
+          </p>
+          <p>
+            The pipe form, <code>{echo $snippet | sandbox}</code>, runs a value as a template in the same isolation. It is the safer choice for template text that comes from outside the code - an editor, a database - when that text should not read or change the page's state. It is not a security boundary for untrusted authors on its own: the template language can still call what <code>$padPhpFunctions</code> allows.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A sandboxed pass
+            </h3>
+            <p class="example-about">
+              The content renders in a pass of its own, like code.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sandbox/1-run.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span>Three squared is <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">3</span> * <span class="hl-num">3</span><span class="hl-brc">}</span>.<span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sandbox%EA%A4%B71-run.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Three squared is 9.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Nothing in, nothing out
+            </h3>
+            <p class="example-about">
+              Inside, the variables of the page are missing; what the pass sets is gone afterwards.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sandbox/2-hidden.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$city</span> = <span class="hl-str">'Utrecht'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>outside: <span class="hl-brc">{</span><span class="hl-var">$city</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>inside: [<span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$city</span> ?? <span class="hl-str">'not visible'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$inner</span> = <span class="hl-str">'x'</span>/<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>after: [<span class="hl-brc">{</span><span class="hl-var">$inner</span> | optional<span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sandbox%EA%A4%B72-hidden.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    outside: Utrecht
+                  </p>
+                  <p>
+                    inside: [not visible]
+                  </p>
+                  <p>
+                    after: []
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              The sandbox pipe
+            </h3>
+            <p class="example-about">
+              A value run as PAD, isolated - a snippet kept elsewhere cannot touch the page.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sandbox/3-pipe.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">10</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>code: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | code<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | sandbox<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/sandbox/3-pipe.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$snippet</span> <span class="hl-pun">=</span> <span class="hl-str">'price is {echo $price ?? \'unknown\'}'</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sandbox%EA%A4%B73-pipe.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    code: price is 10
+                  </p>
+                  <p>
+                    sandbox: price is unknown
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7code.html">{code}</a> <span class="about">Runs its content as PAD source in a separate engine pass and outputs what that pass produced.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7resume.html">← {resume}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

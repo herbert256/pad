@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - calendar
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - calendar
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: demo - Page: calendar<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">calendar.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">calendar.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Calendar'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The agenda of the month on show - the one the calendar's links ask for, else this<br>  // one: a stand-up every Monday, payday on the 25th, drinks on the last Friday and a<br>  // release on the second Tuesday.<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #0000BB">padCalendarMonth </span><span style="color: #007700">( </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'month'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) ?? </span><span style="color: #0000BB">padNow </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$first </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$shown</span><span style="color: #DD0000">-01" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$day </span><span style="color: #007700">= </span><span style="color: #0000BB">$first</span><span style="color: #007700">; </span><span style="color: #0000BB">$day</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m' </span><span style="color: #007700">) == </span><span style="color: #0000BB">$shown</span><span style="color: #007700">; </span><span style="color: #0000BB">$day </span><span style="color: #007700">= </span><span style="color: #0000BB">$day</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify </span><span style="color: #007700">( </span><span style="color: #DD0000">'+1 day' </span><span style="color: #007700">) )<br>    if ( </span><span style="color: #0000BB">$day</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'N' </span><span style="color: #007700">) == </span><span style="color: #0000BB">1 </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$day</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d' </span><span style="color: #007700">), </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Stand-up' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$first</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify </span><span style="color: #007700">( </span><span style="color: #DD0000">'second tuesday of this month' </span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d' </span><span style="color: #007700">), </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Release' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$shown</span><span style="color: #DD0000">-25"</span><span style="color: #007700">,                                                         </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Payday' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$first</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">modify </span><span style="color: #007700">( </span><span style="color: #DD0000">'last friday of this month' </span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d' </span><span style="color: #007700">),   </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Drinks' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">calendar</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; tag draws a month with its events - from a &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">data</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;<br>block, a page array or a &lt;code&gt;_data&lt;/code&gt; file. The arrows move a month; today is marked.&lt;/p&gt;<br><br><b>{<font color="blue">calendar </font><font color="red">data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>what<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">calendar </font><font color="red">data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>what<font color="black">'</font></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/p&gt;<br><br>&lt;h2&gt;Your own markup&lt;/h2&gt;<br><br>&lt;p&gt;As a pair the tag hands over the weeks and their days as rows - &lt;code&gt;$day&lt;/code&gt;, &lt;code&gt;$date&lt;/code&gt;,<br>&lt;code&gt;$today&lt;/code&gt;, &lt;code&gt;$count&lt;/code&gt;, &lt;code&gt;$class&lt;/code&gt;, the day's &lt;code&gt;events&lt;/code&gt; - so a<br>mini calendar with a dot per busy day is a few lines:&lt;/p&gt;<br><br>&lt;table class="mini"&gt;<br>  &lt;tr&gt;&lt;th&gt;Mo&lt;/th&gt;&lt;th&gt;Tu&lt;/th&gt;&lt;th&gt;We&lt;/th&gt;&lt;th&gt;Th&lt;/th&gt;&lt;th&gt;Fr&lt;/th&gt;&lt;th&gt;Sa&lt;/th&gt;&lt;th&gt;Su&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">calendar </font><font color="red">data=<font color="black">'</font>agenda<font color="black">'</font></font>}</b><br>  &lt;tr&gt;<br>    <b>{<font color="blue">days</font><font color="red"></font>}</b>&lt;td class="<b>{<font color="green"><font color="red">$</font>class</font>}</b>" title="<b>{<font color="green"><font color="red">$</font>date</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>day</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count gt 0</font>}</b>&lt;i&gt;&lt;/i&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<b>{/<font color="blue">days</font><font color="red"></font>}</b><br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">calendar</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">calendar </font><font color="red">data=<font color="black">'</font>agenda<font color="black">'</font></font>}</b><br>  &lt;tr&gt;<br>    <b>{<font color="blue">days</font><font color="red"></font>}</b>&lt;td class="<b>{<font color="green"><font color="red">$</font>class</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>day</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count gt 0</font>}</b>&lt;i&gt;&lt;/i&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<b>{/<font color="blue">days</font><font color="red"></font>}</b><br>  &lt;/tr&gt;<br><b>{/<font color="blue">calendar</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2e89d3db1d4a67b51296a0f0b588d626"></div>
+                        <script>
+                        padAjax2e89d3db1d4a67b51296a0f0b588d626 = new XMLHttpRequest();
+                        padAjax2e89d3db1d4a67b51296a0f0b588d626.onreadystatechange=function() {
+                        if (padAjax2e89d3db1d4a67b51296a0f0b588d626.readyState === 4) {
+                        if (padAjax2e89d3db1d4a67b51296a0f0b588d626.status === 200) {
+                        document.getElementById("padAjax2e89d3db1d4a67b51296a0f0b588d626").innerHTML=padAjax2e89d3db1d4a67b51296a0f0b588d626.responseText;
+                        } else {
+                        document.getElementById("padAjax2e89d3db1d4a67b51296a0f0b588d626").innerHTML=padAjax2e89d3db1d4a67b51296a0f0b588d626.statusText;
+                        }
+                        }
+                        }
+                        padAjax2e89d3db1d4a67b51296a0f0b588d626.open("GET","http://localhost/pad/demo/?calendar&padInclude",true);
+                        padAjax2e89d3db1d4a67b51296a0f0b588d626.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_calendar_of_a_month_that_does_not_exist_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_calendar_of_a_month_that_does_not_exist_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-13<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax80713b6d951ab01eaecedd912111edfd"></div>
+                        <script>
+                        padAjax80713b6d951ab01eaecedd912111edfd = new XMLHttpRequest();
+                        padAjax80713b6d951ab01eaecedd912111edfd.onreadystatechange=function() {
+                        if (padAjax80713b6d951ab01eaecedd912111edfd.readyState === 4) {
+                        if (padAjax80713b6d951ab01eaecedd912111edfd.status === 200) {
+                        document.getElementById("padAjax80713b6d951ab01eaecedd912111edfd").innerHTML=padAjax80713b6d951ab01eaecedd912111edfd.responseText;
+                        } else {
+                        document.getElementById("padAjax80713b6d951ab01eaecedd912111edfd").innerHTML=padAjax80713b6d951ab01eaecedd912111edfd.statusText;
+                        }
+                        }
+                        }
+                        padAjax80713b6d951ab01eaecedd912111edfd.open("GET","http://localhost/pad/regression/errors/?syntax/a_calendar_of_a_month_that_does_not_exist_is_reported&padInclude",true);
+                        padAjax80713b6d951ab01eaecedd912111edfd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_field_inside_a_data_literal_is_read_as_its_characters_by_map_timeline_and_calendar<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_field_inside_a_data_literal_is_read_as_its_characters_by_map_timeline_and_calendar.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>d = <font color="black">'</font>Oct 8<font color="black">,</font> 2026<font color="black">'</font></font>}</b><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>k = <font color="black">'</font>Korea<font color="black">,</font> Republic of<font color="black">'</font></font>}</b><br><b>{<font color="blue">timeline </font><font color="red">data=<font color="black">'</font>[<font color="black">{</font>"when"<font color="black">:</font>"<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>d</font><font color="black">}</font></b>"<font color="black">,</font>"what"<font color="black">:</font>"x"</font>}</b>,{"when":"2026-10-01","what":"y"}]', date='when', label='what'}<br><b>{<font color="blue">map </font><font color="red">data=<font color="black">'</font>[<font color="black">{</font>"c"<font color="black">:</font>"<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>k</font><font color="black">}</font></b>"<font color="black">,</font>"n"<font color="black">:</font>1</font>}</b>]', key='c', value='n'}<br><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-10<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>[<font color="black">{</font>"when"<font color="black">:</font>"<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>d</font><font color="black">}</font></b>"<font color="black">,</font>"what"<font color="black">:</font>"x"</font>}</b>]', date='when'}<b>{<font color="blue">days</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count gt 0</font>}</b><b>{<font color="green"><font color="red">$</font>date</font>}</b>: <b>{<font color="green"><font color="red">$</font>count</font>}</b>;<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">days</font><font color="red"></font>}</b><b>{/<font color="blue">calendar</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb"></div>
+                        <script>
+                        padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb = new XMLHttpRequest();
+                        padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.onreadystatechange=function() {
+                        if (padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.readyState === 4) {
+                        if (padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.status === 200) {
+                        document.getElementById("padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb").innerHTML=padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.responseText;
+                        } else {
+                        document.getElementById("padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb").innerHTML=padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.open("GET","http://localhost/pad/regression/framework/?tags/a_field_inside_a_data_literal_is_read_as_its_characters_by_map_timeline_and_calendar&padInclude",true);
+                        padAjaxa3fbab0ecfd1fc9634b76bb4d44d1ccb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_and_timeline_guess_a_datetime_field_as_their_date<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_and_timeline_guess_a_datetime_field_as_their_date.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_and_timeline_guess_a_datetime_field_as_their_date.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field holding a date object of the page's PHP is guessed as the date field, as a<br>  // field holding a date as text is: read only when date= named it, the timeline without<br>  // date= failed - "the timeline has no events with a date" - and the calendar showed no<br>  // event at all, the text date of the other row neither.<br><br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-05 10:00'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) ), </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Review' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-07'</span><span style="color: #007700">, </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Text date' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-10<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>agenda<font color="black">'</font></font>}</b><b>{<font color="blue">days</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count gt 0</font>}</b><b>{<font color="green"><font color="red">$</font>date</font>}</b>: <b>{<font color="blue">events</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>what</font>}</b><b>{/<font color="blue">events</font><font color="red"></font>}</b>; <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">days</font><font color="red"></font>}</b><b>{/<font color="blue">calendar</font><font color="red"></font>}</b><br><b>{<font color="blue">timeline </font><font color="red">data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>what<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9b8c41519ff6fc9138fe17b5313277ea"></div>
+                        <script>
+                        padAjax9b8c41519ff6fc9138fe17b5313277ea = new XMLHttpRequest();
+                        padAjax9b8c41519ff6fc9138fe17b5313277ea.onreadystatechange=function() {
+                        if (padAjax9b8c41519ff6fc9138fe17b5313277ea.readyState === 4) {
+                        if (padAjax9b8c41519ff6fc9138fe17b5313277ea.status === 200) {
+                        document.getElementById("padAjax9b8c41519ff6fc9138fe17b5313277ea").innerHTML=padAjax9b8c41519ff6fc9138fe17b5313277ea.responseText;
+                        } else {
+                        document.getElementById("padAjax9b8c41519ff6fc9138fe17b5313277ea").innerHTML=padAjax9b8c41519ff6fc9138fe17b5313277ea.statusText;
+                        }
+                        }
+                        }
+                        padAjax9b8c41519ff6fc9138fe17b5313277ea.open("GET","http://localhost/pad/regression/framework/?tags/calendar_and_timeline_guess_a_datetime_field_as_their_date&padInclude",true);
+                        padAjax9b8c41519ff6fc9138fe17b5313277ea.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_and_timeline_put_a_moment_on_its_day_in_the_application_timezone<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_and_timeline_put_a_moment_on_its_day_in_the_application_timezone.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_and_timeline_put_a_moment_on_its_day_in_the_application_timezone.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A moment - a Unix timestamp, a date with its offset - falls on the day it is in the<br>  // application's timezone, the one today is: an event at local midnight in Amsterdam is<br>  // on the 13th, where the calendar put a timestamp and an offset date on their UTC day,<br>  // the 12th, and the timeline wrote them as 22:00 and 22:30 of the 12th.<br><br>  </span><span style="color: #007700">include_once </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'tags/_lib/timeline.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'Europe/Amsterdam'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2025-10-13 00:30:00' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1760306400'</span><span style="color: #007700">,                </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'stamp'  </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2025-10-13T00:30:00+02:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offset' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2025-10-13 00:30:00'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'plain'  </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #0000BB">padTimelineShow </span><span style="color: #007700">( ...</span><span style="color: #0000BB">padTimelineDate </span><span style="color: #007700">( </span><span style="color: #DD0000">'1760306400' </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2025-10<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> date=<font color="black">'</font>when<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>what<font color="black">'</font></font>}</b><b>{<font color="blue">days</font><font color="red"></font>}</b><b>{<font color="blue">events</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>date</font>}</b>=<b>{<font color="green"><font color="red">$</font>what</font>}</b> <b>{/<font color="blue">events</font><font color="red"></font>}</b><b>{/<font color="blue">days</font><font color="red"></font>}</b><b>{/<font color="blue">calendar</font><font color="red"></font>}</b><br>timeline: <b>{<font color="green"><font color="red">$</font>shown</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax31fd3d5e8a86df436ffe33ea7f000a45"></div>
+                        <script>
+                        padAjax31fd3d5e8a86df436ffe33ea7f000a45 = new XMLHttpRequest();
+                        padAjax31fd3d5e8a86df436ffe33ea7f000a45.onreadystatechange=function() {
+                        if (padAjax31fd3d5e8a86df436ffe33ea7f000a45.readyState === 4) {
+                        if (padAjax31fd3d5e8a86df436ffe33ea7f000a45.status === 200) {
+                        document.getElementById("padAjax31fd3d5e8a86df436ffe33ea7f000a45").innerHTML=padAjax31fd3d5e8a86df436ffe33ea7f000a45.responseText;
+                        } else {
+                        document.getElementById("padAjax31fd3d5e8a86df436ffe33ea7f000a45").innerHTML=padAjax31fd3d5e8a86df436ffe33ea7f000a45.statusText;
+                        }
+                        }
+                        }
+                        padAjax31fd3d5e8a86df436ffe33ea7f000a45.open("GET","http://localhost/pad/regression/framework/?tags/calendar_and_timeline_put_a_moment_on_its_day_in_the_application_timezone&padInclude",true);
+                        padAjax31fd3d5e8a86df436ffe33ea7f000a45.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_and_timeline_take_a_datetime_object_as_its_moment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_and_timeline_take_a_datetime_object_as_its_moment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_and_timeline_take_a_datetime_object_as_its_moment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The most exact date a page can hand over - a DateTimeImmutable - was no text, and its<br>  // event was left out without a word.<br><br>  </span><span style="color: #0000BB">$agenda </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-05 10:00'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) ), </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Review' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'when' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-07'</span><span style="color: #007700">, </span><span style="color: #DD0000">'what' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Text date' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-10<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> date=<font color="black">'</font>when<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>what<font color="black">'</font></font>}</b><b>{<font color="blue">days</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count gt 0</font>}</b><b>{<font color="green"><font color="red">$</font>date</font>}</b>: <b>{<font color="blue">events</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>what</font>}</b><b>{/<font color="blue">events</font><font color="red"></font>}</b>; <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">days</font><font color="red"></font>}</b><b>{/<font color="blue">calendar</font><font color="red"></font>}</b><br><b>{<font color="blue">timeline </font><font color="red">data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> date=<font color="black">'</font>when<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>what<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4ad7600309123cffc917bc07fe077d66"></div>
+                        <script>
+                        padAjax4ad7600309123cffc917bc07fe077d66 = new XMLHttpRequest();
+                        padAjax4ad7600309123cffc917bc07fe077d66.onreadystatechange=function() {
+                        if (padAjax4ad7600309123cffc917bc07fe077d66.readyState === 4) {
+                        if (padAjax4ad7600309123cffc917bc07fe077d66.status === 200) {
+                        document.getElementById("padAjax4ad7600309123cffc917bc07fe077d66").innerHTML=padAjax4ad7600309123cffc917bc07fe077d66.responseText;
+                        } else {
+                        document.getElementById("padAjax4ad7600309123cffc917bc07fe077d66").innerHTML=padAjax4ad7600309123cffc917bc07fe077d66.statusText;
+                        }
+                        }
+                        }
+                        padAjax4ad7600309123cffc917bc07fe077d66.open("GET","http://localhost/pad/regression/framework/?tags/calendar_and_timeline_take_a_datetime_object_as_its_moment&padInclude",true);
+                        padAjax4ad7600309123cffc917bc07fe077d66.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_as_a_pair_hands_over_weeks_and_days<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_as_a_pair_hands_over_weeks_and_days.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>agenda<font color="black">'</font></font>}</b>[{"when":"2001-02-07","what":"Launch"},{"when":"2001-03-01","what":"Next"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2001-02<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> sunday</font>}</b><b>{<font color="green"><font color="red">$</font>week</font>}</b>:<b>{<font color="blue">days</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>day</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>other</font>}</b>*<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">events</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>what</font>}</b>]<b>{/<font color="blue">events</font><font color="red"></font>}</b> <b>{/<font color="blue">days</font><font color="red"></font>}</b>|<b>{/<font color="blue">calendar</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax32a308f234d21b3c2661cb6321cfbf8a"></div>
+                        <script>
+                        padAjax32a308f234d21b3c2661cb6321cfbf8a = new XMLHttpRequest();
+                        padAjax32a308f234d21b3c2661cb6321cfbf8a.onreadystatechange=function() {
+                        if (padAjax32a308f234d21b3c2661cb6321cfbf8a.readyState === 4) {
+                        if (padAjax32a308f234d21b3c2661cb6321cfbf8a.status === 200) {
+                        document.getElementById("padAjax32a308f234d21b3c2661cb6321cfbf8a").innerHTML=padAjax32a308f234d21b3c2661cb6321cfbf8a.responseText;
+                        } else {
+                        document.getElementById("padAjax32a308f234d21b3c2661cb6321cfbf8a").innerHTML=padAjax32a308f234d21b3c2661cb6321cfbf8a.statusText;
+                        }
+                        }
+                        }
+                        padAjax32a308f234d21b3c2661cb6321cfbf8a.open("GET","http://localhost/pad/regression/framework/?tags/calendar_as_a_pair_hands_over_weeks_and_days&padInclude",true);
+                        padAjax32a308f234d21b3c2661cb6321cfbf8a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_draws_a_month_with_its_events<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_draws_a_month_with_its_events.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>agenda<font color="black">'</font></font>}</b><br>when,what,url<br>2001-02-07,Launch &lt;b&gt;,https://example.com/x<br>2001-02-07,Trap,javascript:alert(1)<br>2001-02-28,Close,<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2001-02<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>agenda<font color="black">'</font><font color="black">,</font> link=<font color="black">'</font>url<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4c3f390d2a253f8ae94a82a23841ff85"></div>
+                        <script>
+                        padAjax4c3f390d2a253f8ae94a82a23841ff85 = new XMLHttpRequest();
+                        padAjax4c3f390d2a253f8ae94a82a23841ff85.onreadystatechange=function() {
+                        if (padAjax4c3f390d2a253f8ae94a82a23841ff85.readyState === 4) {
+                        if (padAjax4c3f390d2a253f8ae94a82a23841ff85.status === 200) {
+                        document.getElementById("padAjax4c3f390d2a253f8ae94a82a23841ff85").innerHTML=padAjax4c3f390d2a253f8ae94a82a23841ff85.responseText;
+                        } else {
+                        document.getElementById("padAjax4c3f390d2a253f8ae94a82a23841ff85").innerHTML=padAjax4c3f390d2a253f8ae94a82a23841ff85.statusText;
+                        }
+                        }
+                        }
+                        padAjax4c3f390d2a253f8ae94a82a23841ff85.open("GET","http://localhost/pad/regression/framework/?tags/calendar_draws_a_month_with_its_events&padInclude",true);
+                        padAjax4c3f390d2a253f8ae94a82a23841ff85.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_in_a_locale_names_the_month_of_its_grid_before_1582<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_in_a_locale_names_the_month_of_its_grid_before_1582.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_in_a_locale_names_the_month_of_its_grid_before_1582.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A Dutch calendar of a month before October 1582 names the month of its grid, and the<br>  // year as the grid writes it: ICU's calendar turned Julian there - 1582-10 was captioned<br>  // september 1582, 1500-03 februari 1500 and 0000-01 januari 1, the year 1 BC.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>1582-10<font color="black">'</font></font>}</b><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>1500-03<font color="black">'</font></font>}</b><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>0000-01<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd834b5710977f1cfe587bddd5c245a44"></div>
+                        <script>
+                        padAjaxd834b5710977f1cfe587bddd5c245a44 = new XMLHttpRequest();
+                        padAjaxd834b5710977f1cfe587bddd5c245a44.onreadystatechange=function() {
+                        if (padAjaxd834b5710977f1cfe587bddd5c245a44.readyState === 4) {
+                        if (padAjaxd834b5710977f1cfe587bddd5c245a44.status === 200) {
+                        document.getElementById("padAjaxd834b5710977f1cfe587bddd5c245a44").innerHTML=padAjaxd834b5710977f1cfe587bddd5c245a44.responseText;
+                        } else {
+                        document.getElementById("padAjaxd834b5710977f1cfe587bddd5c245a44").innerHTML=padAjaxd834b5710977f1cfe587bddd5c245a44.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd834b5710977f1cfe587bddd5c245a44.open("GET","http://localhost/pad/regression/framework/?tags/calendar_in_a_locale_names_the_month_of_its_grid_before_1582&padInclude",true);
+                        padAjaxd834b5710977f1cfe587bddd5c245a44.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_offers_no_link_past_the_months_it_can_show<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_offers_no_link_past_the_months_it_can_show.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_offers_no_link_past_the_months_it_can_show.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The last month a calendar shows: its link to the next one led to 10000-01, which it<br>  // refuses - and so to this month.<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'month'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'9999-12'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax239cff72702b28cca761dc76f7f8652d"></div>
+                        <script>
+                        padAjax239cff72702b28cca761dc76f7f8652d = new XMLHttpRequest();
+                        padAjax239cff72702b28cca761dc76f7f8652d.onreadystatechange=function() {
+                        if (padAjax239cff72702b28cca761dc76f7f8652d.readyState === 4) {
+                        if (padAjax239cff72702b28cca761dc76f7f8652d.status === 200) {
+                        document.getElementById("padAjax239cff72702b28cca761dc76f7f8652d").innerHTML=padAjax239cff72702b28cca761dc76f7f8652d.responseText;
+                        } else {
+                        document.getElementById("padAjax239cff72702b28cca761dc76f7f8652d").innerHTML=padAjax239cff72702b28cca761dc76f7f8652d.statusText;
+                        }
+                        }
+                        }
+                        padAjax239cff72702b28cca761dc76f7f8652d.open("GET","http://localhost/pad/regression/framework/?tags/calendar_offers_no_link_past_the_months_it_can_show&padInclude",true);
+                        padAjax239cff72702b28cca761dc76f7f8652d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_takes_a_month_list_in_the_request_for_no_month<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_takes_a_month_list_in_the_request_for_no_month.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_takes_a_month_list_in_the_request_for_no_month.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// ?month[]=x - a list where the calendar reads a month from the request - is no month,<br>  // as any other value that is none: the calendar shows this month, where turning the list<br>  // into text ended the request of every page with a {calendar}, for any visitor.<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'month'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'x' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-12 12:00:00' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3293f162c98c46714047c1d66f186cb1"></div>
+                        <script>
+                        padAjax3293f162c98c46714047c1d66f186cb1 = new XMLHttpRequest();
+                        padAjax3293f162c98c46714047c1d66f186cb1.onreadystatechange=function() {
+                        if (padAjax3293f162c98c46714047c1d66f186cb1.readyState === 4) {
+                        if (padAjax3293f162c98c46714047c1d66f186cb1.status === 200) {
+                        document.getElementById("padAjax3293f162c98c46714047c1d66f186cb1").innerHTML=padAjax3293f162c98c46714047c1d66f186cb1.responseText;
+                        } else {
+                        document.getElementById("padAjax3293f162c98c46714047c1d66f186cb1").innerHTML=padAjax3293f162c98c46714047c1d66f186cb1.statusText;
+                        }
+                        }
+                        }
+                        padAjax3293f162c98c46714047c1d66f186cb1.open("GET","http://localhost/pad/regression/framework/?tags/calendar_takes_a_month_list_in_the_request_for_no_month&padInclude",true);
+                        padAjax3293f162c98c46714047c1d66f186cb1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_with_its_month_as_parameter_offers_no_month_links<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_with_its_month_as_parameter_offers_no_month_links.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-10<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3e07bb2b21207b05d42fe7e3eb246cf8"></div>
+                        <script>
+                        padAjax3e07bb2b21207b05d42fe7e3eb246cf8 = new XMLHttpRequest();
+                        padAjax3e07bb2b21207b05d42fe7e3eb246cf8.onreadystatechange=function() {
+                        if (padAjax3e07bb2b21207b05d42fe7e3eb246cf8.readyState === 4) {
+                        if (padAjax3e07bb2b21207b05d42fe7e3eb246cf8.status === 200) {
+                        document.getElementById("padAjax3e07bb2b21207b05d42fe7e3eb246cf8").innerHTML=padAjax3e07bb2b21207b05d42fe7e3eb246cf8.responseText;
+                        } else {
+                        document.getElementById("padAjax3e07bb2b21207b05d42fe7e3eb246cf8").innerHTML=padAjax3e07bb2b21207b05d42fe7e3eb246cf8.statusText;
+                        }
+                        }
+                        }
+                        padAjax3e07bb2b21207b05d42fe7e3eb246cf8.open("GET","http://localhost/pad/regression/framework/?tags/calendar_with_its_month_as_parameter_offers_no_month_links&padInclude",true);
+                        padAjax3e07bb2b21207b05d42fe7e3eb246cf8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_with_the_asked_month_as_parameter_keeps_its_month_links<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_with_the_asked_month_as_parameter_keeps_its_month_links.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_with_the_asked_month_as_parameter_keeps_its_month_links.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A calendar whose parameter holds the month the request asked for - {calendar $month},<br>  // the request value its links set - keeps the links to the months around it: following<br>  // them changes the month it shows. They were dropped with every parameter, and such a<br>  // calendar could no longer leave November.<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'month'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'2026-11'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$month </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'month'</span><span style="color: #007700">, </span><span style="color: #0000BB">padNow </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m' </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="red">$</font>month</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax250ca59b7b94f644e3365bd24aaa3de4"></div>
+                        <script>
+                        padAjax250ca59b7b94f644e3365bd24aaa3de4 = new XMLHttpRequest();
+                        padAjax250ca59b7b94f644e3365bd24aaa3de4.onreadystatechange=function() {
+                        if (padAjax250ca59b7b94f644e3365bd24aaa3de4.readyState === 4) {
+                        if (padAjax250ca59b7b94f644e3365bd24aaa3de4.status === 200) {
+                        document.getElementById("padAjax250ca59b7b94f644e3365bd24aaa3de4").innerHTML=padAjax250ca59b7b94f644e3365bd24aaa3de4.responseText;
+                        } else {
+                        document.getElementById("padAjax250ca59b7b94f644e3365bd24aaa3de4").innerHTML=padAjax250ca59b7b94f644e3365bd24aaa3de4.statusText;
+                        }
+                        }
+                        }
+                        padAjax250ca59b7b94f644e3365bd24aaa3de4.open("GET","http://localhost/pad/regression/framework/?tags/calendar_with_the_asked_month_as_parameter_keeps_its_month_links&padInclude",true);
+                        padAjax250ca59b7b94f644e3365bd24aaa3de4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/calendar_writes_its_month_and_weekdays_in_the_locale<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/calendar_writes_its_month_and_weekdays_in_the_locale.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/calendar_writes_its_month_and_weekdays_in_the_locale.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A Dutch page: the link labels were translated, the month and the weekdays stayed<br>  // English while localDate on the same page wrote "oktober".<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-10<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf0f4034d878df4e175937cdae7547fe1"></div>
+                        <script>
+                        padAjaxf0f4034d878df4e175937cdae7547fe1 = new XMLHttpRequest();
+                        padAjaxf0f4034d878df4e175937cdae7547fe1.onreadystatechange=function() {
+                        if (padAjaxf0f4034d878df4e175937cdae7547fe1.readyState === 4) {
+                        if (padAjaxf0f4034d878df4e175937cdae7547fe1.status === 200) {
+                        document.getElementById("padAjaxf0f4034d878df4e175937cdae7547fe1").innerHTML=padAjaxf0f4034d878df4e175937cdae7547fe1.responseText;
+                        } else {
+                        document.getElementById("padAjaxf0f4034d878df4e175937cdae7547fe1").innerHTML=padAjaxf0f4034d878df4e175937cdae7547fe1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf0f4034d878df4e175937cdae7547fe1.open("GET","http://localhost/pad/regression/framework/?tags/calendar_writes_its_month_and_weekdays_in_the_locale&padInclude",true);
+                        padAjaxf0f4034d878df4e175937cdae7547fe1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/timeline_and_calendar_read_a_basic_iso_date_and_year_zero<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/timeline_and_calendar_read_a_basic_iso_date_and_year_zero.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>when<font color="black">'</font></font>}</b><br>when,what<br>0,Year zero<br>20261012,Basic ISO date<br>20261020,Another<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">timeline </font><font color="red">data=<font color="black">'</font>when<font color="black">'</font><font color="black">,</font> date=<font color="black">'</font>when<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>what<font color="black">'</font></font>}</b><br><b>{<font color="blue">calendar </font><font color="red"><font color="black">'</font>2026-10<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>when<font color="black">'</font><font color="black">,</font> date=<font color="black">'</font>when<font color="black">'</font></font>}</b><b>{<font color="blue">days</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count gt 0</font>}</b><b>{<font color="green"><font color="red">$</font>date</font>}</b>: <b>{<font color="green"><font color="red">$</font>count</font>}</b>; <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">days</font><font color="red"></font>}</b><b>{/<font color="blue">calendar</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0e027f4f4fcfecfbdf8ee88a205cf85d"></div>
+                        <script>
+                        padAjax0e027f4f4fcfecfbdf8ee88a205cf85d = new XMLHttpRequest();
+                        padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.onreadystatechange=function() {
+                        if (padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.readyState === 4) {
+                        if (padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.status === 200) {
+                        document.getElementById("padAjax0e027f4f4fcfecfbdf8ee88a205cf85d").innerHTML=padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.responseText;
+                        } else {
+                        document.getElementById("padAjax0e027f4f4fcfecfbdf8ee88a205cf85d").innerHTML=padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.statusText;
+                        }
+                        }
+                        }
+                        padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.open("GET","http://localhost/pad/regression/framework/?tags/timeline_and_calendar_read_a_basic_iso_date_and_year_zero&padInclude",true);
+                        padAjax0e027f4f4fcfecfbdf8ee88a205cf85d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

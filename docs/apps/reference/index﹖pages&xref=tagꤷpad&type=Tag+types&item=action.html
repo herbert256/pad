@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -164,6 +164,46 @@
                   padAjax70960877bcd9af4b641a1295b8f92b68.open("GET","http://localhost/pad/sequence/?specials/shift&padInclude",true);
                   padAjax70960877bcd9af4b641a1295b8f92b68.send();
                   </script><br>
+                  <hr>
+                  App: tags - Page: examples/action/1-store<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/action/1-store.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>An action over a store<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Reverse<font color="black">,</font> the first two and the sum of a stored list - the store keeps its order.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..6<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>six<font color="black">'</font></font>}</b><br>&lt;p&gt;reverse: <b>{<font color="blue">action </font><font color="red">six<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;first=2: <b>{<font color="blue">action </font><font color="red">six<font color="black">,</font> first=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;sum:     <b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>sum </font><font color="red">six</font>}</b><b>{<font color="green"><font color="red">$</font>sum</font>}</b><b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>sum</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;store:   <b>{<font color="blue">pull </font><font color="red">six</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax47a7c9e8c93f7273c5871743f5816685"></div>
+                        <script>
+                        padAjax47a7c9e8c93f7273c5871743f5816685 = new XMLHttpRequest();
+                        padAjax47a7c9e8c93f7273c5871743f5816685.onreadystatechange=function() {
+                        if (padAjax47a7c9e8c93f7273c5871743f5816685.readyState === 4) {
+                        if (padAjax47a7c9e8c93f7273c5871743f5816685.status === 200) {
+                        document.getElementById("padAjax47a7c9e8c93f7273c5871743f5816685").innerHTML=padAjax47a7c9e8c93f7273c5871743f5816685.responseText;
+                        } else {
+                        document.getElementById("padAjax47a7c9e8c93f7273c5871743f5816685").innerHTML=padAjax47a7c9e8c93f7273c5871743f5816685.statusText;
+                        }
+                        }
+                        }
+                        padAjax47a7c9e8c93f7273c5871743f5816685.open("GET","http://localhost/pad/tags/?examples/action/1-store&padInclude",true);
+                        padAjax47a7c9e8c93f7273c5871743f5816685.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -178,7 +218,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

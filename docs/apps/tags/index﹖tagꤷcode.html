@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {code} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pages">Pages and execution</a><span>/</span><span aria-current="page">code</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>code<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Runs its content as PAD source in a separate engine pass and outputs what that pass produced.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pages">Pages and execution</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">code</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">code</span> sandbox<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">code</span> reset<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">code</span> clean<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">code</span> <span class="hl-opt">function</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | code<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>sandbox</code>
+            </dt>
+            <dd>
+              Bare option: the pass sees none of the page's variables and stores and leaves none behind - what <a href="index%EF%B9%96tag%EA%A4%B7sandbox.html">{sandbox}</a> does.
+            </dd>
+            <dt>
+              <code>reset</code>
+            </dt>
+            <dd>
+              Bare option: the level arrays and the data, content, bool and sequence stores are cleared for the pass and restored after it; variables stay visible, and what the pass sets stays behind.
+            </dd>
+            <dt>
+              <code>clean</code>
+            </dt>
+            <dd>
+              Bare option: the pass sees everything around it, but every variable it creates or changes is undone afterwards.
+            </dd>
+            <dt>
+              <code>function</code>
+            </dt>
+            <dd>
+              Runs the pass inside a PHP function of that name, giving it a variable scope of its own; what it creates is copied out afterwards (not with <code>sandbox</code>).
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{code}...{/code}</code> takes its content as PAD source and renders it in a separate engine pass - a fresh build, as if the content were a little page of its own - and outputs what that pass produced. Inside, everything a page can do works: tags, fields, expressions, <code>{set}</code>.
+          </p>
+          <p>
+            Its main use is as a pipe. A value is text in PAD: a field holding <code>{echo 1 + 1}</code> prints those characters, it does not run them. Piping the value into <code>code</code> - <code>{echo $snippet | code}</code> - is the explicit way to say that it is a template, for a snippet kept in a database or a file.
+          </p>
+          <p>
+            By default the pass shares the page's state: it sees the variables and the stores, and what it sets stays behind. Four options change how isolated it is:
+          </p>
+          <ul>
+            <li>
+              <code>sandbox</code> - nothing in, nothing out; the same as the <a href="index%EF%B9%96tag%EA%A4%B7sandbox.html">{sandbox}</a> tag and the <code>sandbox</code> pipe;
+            </li>
+            <li>
+              <code>reset</code> - the levels and the stores start empty and are put back afterwards, while variables are shared as in a plain pass;
+            </li>
+            <li>
+              <code>clean</code> - the pass sees everything, and what it created or changed is undone when it ends;
+            </li>
+            <li>
+              <code>function='name'</code> - the pass runs inside a PHP function, so variables get a scope of their own; what it creates is copied out unless <code>sandbox</code> is given too.
+            </li>
+          </ul>
+          <p>
+            The same four options are read by <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a>, which runs a whole page in such a pass. To show braces without running them, the opposite tool is <a href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Content run as a pass
+            </h3>
+            <p class="example-about">
+              The content is rendered in a separate engine pass and its output takes the tag's place.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/code/1-run.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">code</span><span class="hl-brc">}</span>Six times seven is <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">6</span> * <span class="hl-num">7</span><span class="hl-brc">}</span>.<span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7code%EA%A4%B71-run.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Six times seven is 42.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A value run as PAD
+            </h3>
+            <p class="example-about">
+              A value is text; piped into code it runs as a template.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/code/2-value.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>As text: <span class="hl-brc">{</span><span class="hl-var">$snippet</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Run: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | code<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/code/2-value.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$snippet</span> <span class="hl-pun">=</span> <span class="hl-str">'The total is {echo 19 + 23}.'</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7code%EA%A4%B72-value.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    As text: The total is {echo 19 + 23}.
+                  </p>
+                  <p>
+                    Run: The total is 42.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              plain, reset, clean and sandbox
+            </h3>
+            <p class="example-about">
+              Whether a variable set inside the pass is still there after it.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/code/3-isolation.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>plain: [<span class="hl-brc">{</span><span class="hl-tag">code</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$made1</span> = <span class="hl-str">'kept'</span>/<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$made1</span> | optional<span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>reset: [<span class="hl-brc">{</span><span class="hl-tag">code</span> reset<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$made2</span> = <span class="hl-str">'kept'</span>/<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$made2</span> | optional<span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>clean: [<span class="hl-brc">{</span><span class="hl-tag">code</span> clean<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$made3</span> = <span class="hl-str">'kept'</span>/<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$made3</span> | optional<span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: [<span class="hl-brc">{</span><span class="hl-tag">code</span> sandbox<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$made4</span> = <span class="hl-str">'kept'</span>/<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/code</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$made4</span> | optional<span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7code%EA%A4%B73-isolation.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    plain: [kept]
+                  </p>
+                  <p>
+                    reset: [kept]
+                  </p>
+                  <p>
+                    clean: []
+                  </p>
+                  <p>
+                    sandbox: []
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sandbox.html">{sandbox}</a> <span class="about">Runs its content as PAD source in an isolated pass that cannot see or leave behind anything of the page.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pad.html">{pad}</a> <span class="about">A tag with no behaviour of its own: its content renders once, or per row with data=, carrying the generic options.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7close.html">← {close}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7collection.html">{collection} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

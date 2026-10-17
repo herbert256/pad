@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Server-sent events
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Server-sent events
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <div style="display: inline-block; text-align: left;">
+                    <p>
+                      A page usually answers once. With <code>padSse()</code> in its PHP it keeps the connection open and sends events while they happen - what the browser's <code>EventSource</code> reads, and what htmx's sse extension, a React or an Alpine component listen to. There is no template: the stream is the whole answer.
+                    </p>
+                    <pre><code>&lt;?php
+
+  // ticker.php - the producer sends the events itself
+  padSse ( function ( $send, $lastId ) {
+    foreach ( [ 'one', 'two', 'three' ] as $n =&gt; $word ) {
+      $send ( 'word', [ 'n' =&gt; $n, 'word' =&gt; $word ], $n );
+      sleep ( 1 );
+    }
+  }, [ 'retry' =&gt; 3000 ] );
+
+?&gt;</code></pre>
+                    <p>
+                      The browser side is a few lines, with no library:
+                    </p>
+                    <pre><code>const source = new EventSource('?ticker');
+source.addEventListener('word', event =&gt; show(JSON.parse(event.data)));</code></pre>
+                    <h2>
+                      On an interval
+                    </h2>
+                    <p>
+                      Given <code>every</code>, PAD calls the producer itself, every so many seconds, and sends what it answers as the event named by <code>event</code>: an array goes as JSON, <code>NULL</code> sends nothing that round, <code>FALSE</code> ends the stream.
+                    </p>
+                    <pre><code>&lt;?php
+
+  // stats.php - a fresh number every two seconds, for at most a minute
+  padSse ( fn () =&gt; [ 'orders' =&gt; db ( "FIELD count(*) FROM orders" ) ],
+           [ 'every' =&gt; 2, 'for' =&gt; 60, 'event' =&gt; 'stats' ] );
+
+?&gt;</code></pre>
+                    <table border="1" cellpadding="4">
+                      <tr>
+                        <th>
+                          Option
+                        </th>
+                        <th>
+                          Meaning
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>every</code>
+                        </td>
+                        <td>
+                          Seconds between two calls of the producer; without it the producer is called once and loops itself
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>for</code>
+                        </td>
+                        <td>
+                          How long a stream with <code>every</code> runs at most - 60 seconds unless said otherwise
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>event</code>
+                        </td>
+                        <td>
+                          The name of the event an answer of the producer is sent as - <code>message</code> unless said otherwise
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>retry</code>
+                        </td>
+                        <td>
+                          Milliseconds the browser waits before it reconnects when the stream ended
+                        </td>
+                      </tr>
+                    </table>
+                    <h2>
+                      What to know
+                    </h2>
+                    <ul>
+                      <li>
+                        <code>$send ( $event, $data, $id )</code> answers whether the visitor is still connected; a long loop stops when it says no. Text data that runs over lines goes as several <code>data:</code> lines, which the browser joins again.
+                      </li>
+                      <li>An event needs data: the browser drops one whose data is empty, so an event a page closes the stream on says something - <code>$send ( 'done', 'done' )</code>.
+                      </li>
+                      <li>The browser reconnects by itself and sends the id of the last event it had - the producer gets it as its second argument, <code>padSseLastId()</code> reads it anywhere.
+                      </li>
+                      <li>The session is written and closed before the first event, so the visitor's other requests do not wait for the stream; read what the producer needs from it first.
+                      </li>
+                      <li>A stream holds a PHP worker for as long as it runs: keep <code>for</code> short and let the browser reconnect. Nothing of the answer is cached, compressed or buffered by PAD; <code>X-Accel-Buffering: no</code> asks nginx not to hold the events back.
+                      </li>
+                      <li>In the browser - an application packed by <code>pad pack</code>, see <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a> - one PHP answers the whole tab, so a stream is one round there: the <code>every</code> form calls its producer once and asks the browser back after the interval, a <code>FALSE</code> with nothing sent is answered 204 and ends it, and the loop form ends at the first event sent a tenth of a second after it began. <code>padWasm()</code> says where a page runs.
+                      </li>
+                    </ul>
+                    <p>
+                      The htmx application streams rows of HTML that its sse extension swaps in (<a href="../htmx/index%EF%B9%96examples%EA%A4%B7live.html">htmx/?examples/live</a>), the Alpine application JSON an <code>EventSource</code> turns into state (<a href="../alpine/index%EF%B9%96examples%EA%A4%B7live.html">alpine/?examples/live</a>).
+                    </p>
+                  </div>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Text and markup
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Data
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        PHP helpers
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Output
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Layouts and components
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        The application
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Forms and security
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Development tools
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
+                        </li>
+                        <li>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

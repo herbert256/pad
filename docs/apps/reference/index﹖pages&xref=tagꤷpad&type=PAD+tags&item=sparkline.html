@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: charts - Page: sparkline/stocks<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sparkline/stocks.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sparkline/stocks.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Five shares and their closing price over the last fifteen days.<br><br>  </span><span style="color: #0000BB">$stocks </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'ASML'    </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">640</span><span style="color: #007700">, </span><span style="color: #0000BB">652</span><span style="color: #007700">, </span><span style="color: #0000BB">648</span><span style="color: #007700">, </span><span style="color: #0000BB">661</span><span style="color: #007700">, </span><span style="color: #0000BB">670</span><span style="color: #007700">, </span><span style="color: #0000BB">668</span><span style="color: #007700">, </span><span style="color: #0000BB">684</span><span style="color: #007700">, </span><span style="color: #0000BB">679</span><span style="color: #007700">, </span><span style="color: #0000BB">692</span><span style="color: #007700">, </span><span style="color: #0000BB">701</span><span style="color: #007700">, </span><span style="color: #0000BB">698</span><span style="color: #007700">, </span><span style="color: #0000BB">712</span><span style="color: #007700">, </span><span style="color: #0000BB">709</span><span style="color: #007700">, </span><span style="color: #0000BB">725</span><span style="color: #007700">, </span><span style="color: #0000BB">731 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Philips' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">21.4</span><span style="color: #007700">, </span><span style="color: #0000BB">21.1</span><span style="color: #007700">, </span><span style="color: #0000BB">20.8</span><span style="color: #007700">, </span><span style="color: #0000BB">21.0</span><span style="color: #007700">, </span><span style="color: #0000BB">20.6</span><span style="color: #007700">, </span><span style="color: #0000BB">20.2</span><span style="color: #007700">, </span><span style="color: #0000BB">20.5</span><span style="color: #007700">, </span><span style="color: #0000BB">19.9</span><span style="color: #007700">, </span><span style="color: #0000BB">19.6</span><span style="color: #007700">, </span><span style="color: #0000BB">19.8</span><span style="color: #007700">, </span><span style="color: #0000BB">19.3</span><span style="color: #007700">, </span><span style="color: #0000BB">19.5</span><span style="color: #007700">, </span><span style="color: #0000BB">19.1</span><span style="color: #007700">, </span><span style="color: #0000BB">18.8</span><span style="color: #007700">, </span><span style="color: #0000BB">18.9 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Shell'   </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">30.1</span><span style="color: #007700">, </span><span style="color: #0000BB">30.4</span><span style="color: #007700">, </span><span style="color: #0000BB">30.2</span><span style="color: #007700">, </span><span style="color: #0000BB">30.9</span><span style="color: #007700">, </span><span style="color: #0000BB">31.3</span><span style="color: #007700">, </span><span style="color: #0000BB">30.8</span><span style="color: #007700">, </span><span style="color: #0000BB">30.6</span><span style="color: #007700">, </span><span style="color: #0000BB">31.1</span><span style="color: #007700">, </span><span style="color: #0000BB">31.4</span><span style="color: #007700">, </span><span style="color: #0000BB">31.0</span><span style="color: #007700">, </span><span style="color: #0000BB">31.6</span><span style="color: #007700">, </span><span style="color: #0000BB">31.9</span><span style="color: #007700">, </span><span style="color: #0000BB">31.5</span><span style="color: #007700">, </span><span style="color: #0000BB">31.8</span><span style="color: #007700">, </span><span style="color: #0000BB">32.2 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Heineken'</span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">85</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">89 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Adyen'   </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">1210</span><span style="color: #007700">, </span><span style="color: #0000BB">1185</span><span style="color: #007700">, </span><span style="color: #0000BB">1240</span><span style="color: #007700">, </span><span style="color: #0000BB">1302</span><span style="color: #007700">, </span><span style="color: #0000BB">1276</span><span style="color: #007700">, </span><span style="color: #0000BB">1330</span><span style="color: #007700">, </span><span style="color: #0000BB">1295</span><span style="color: #007700">, </span><span style="color: #0000BB">1361</span><span style="color: #007700">, </span><span style="color: #0000BB">1408</span><span style="color: #007700">, </span><span style="color: #0000BB">1372</span><span style="color: #007700">, </span><span style="color: #0000BB">1440</span><span style="color: #007700">, </span><span style="color: #0000BB">1415</span><span style="color: #007700">, </span><span style="color: #0000BB">1478</span><span style="color: #007700">, </span><span style="color: #0000BB">1452</span><span style="color: #007700">, </span><span style="color: #0000BB">1499 </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$shares </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$stocks </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$closes </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$shares </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$closes</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'last'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">end </span><span style="color: #007700">( </span><span style="color: #0000BB">$closes </span><span style="color: #007700">),<br>                   </span><span style="color: #DD0000">'change' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( ( </span><span style="color: #0000BB">end </span><span style="color: #007700">( </span><span style="color: #0000BB">$closes </span><span style="color: #007700">) / </span><span style="color: #0000BB">$closes </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] - </span><span style="color: #0000BB">1 </span><span style="color: #007700">) * </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table class="quotes"&gt;<br>  &lt;tr&gt;&lt;th&gt;Share&lt;/th&gt;&lt;th&gt;15 days&lt;/th&gt;&lt;th&gt;Last&lt;/th&gt;&lt;th&gt;Change&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">shares</font><font color="red"></font>}</b><br>  &lt;tr&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>closes<font color="black">'</font><font color="black">,</font> width=140<font color="black">,</font> height=30<font color="black">,</font> title=<font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/td&gt;<br>    &lt;td class="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>change ge 0 ? <font color="black">'</font>up<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>down<font color="black">'</font></font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>change</font>}</b> %&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">shares</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa224302570ef9d02f840166dee529ba7"></div>
+                        <script>
+                        padAjaxa224302570ef9d02f840166dee529ba7 = new XMLHttpRequest();
+                        padAjaxa224302570ef9d02f840166dee529ba7.onreadystatechange=function() {
+                        if (padAjaxa224302570ef9d02f840166dee529ba7.readyState === 4) {
+                        if (padAjaxa224302570ef9d02f840166dee529ba7.status === 200) {
+                        document.getElementById("padAjaxa224302570ef9d02f840166dee529ba7").innerHTML=padAjaxa224302570ef9d02f840166dee529ba7.responseText;
+                        } else {
+                        document.getElementById("padAjaxa224302570ef9d02f840166dee529ba7").innerHTML=padAjaxa224302570ef9d02f840166dee529ba7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa224302570ef9d02f840166dee529ba7.open("GET","http://localhost/pad/charts/?sparkline/stocks&padInclude",true);
+                        padAjaxa224302570ef9d02f840166dee529ba7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: manual - Page: fragments/charts_2<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -112,6 +154,208 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $sbxRows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] ]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>[{"id":1,"name":"Ann"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxSet<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxRows<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>][<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>][<b>{<font color="blue">sbxRows </font><font color="red">page=1<font color="black">,</font> rows=1</font>}</b>r<b>{/<font color="blue">sbxRows</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd1fc24dd95f5e487a375619f1388da23"></div>
+                        <script>
+                        padAjaxd1fc24dd95f5e487a375619f1388da23 = new XMLHttpRequest();
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.onreadystatechange=function() {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.readyState === 4) {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.status === 200) {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.responseText;
+                        } else {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.open("GET","http://localhost/pad/regression/framework/?passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides&padInclude",true);
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/chart_as_a_pair_reads_its_content_as_the_data<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/chart_as_a_pair_reads_its_content_as_the_data.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b><br>  month,amount<br>  Jan,120<br>  Feb,90<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b><br>  [ { "m": "Jan", "v": 3 }, { "m": "Feb", "v": 5 } ]<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>m<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b><br>  # two months<br>  - m: Mar<br>    v: 7<br>  - m: Apr<br>    v: 2<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>m<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b><br>  &lt;rows&gt;&lt;row m="May" v="4"/&gt;&lt;row m="Jun" v="6"/&gt;&lt;/rows&gt;<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b><br><b>{<font color="blue">sparkline</font><font color="red"></font>}</b><br>  [ 3, 1, 4, 1, 5 ]<br><b>{/<font color="blue">sparkline</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxabb746a54ba48837461c252303194d01"></div>
+                        <script>
+                        padAjaxabb746a54ba48837461c252303194d01 = new XMLHttpRequest();
+                        padAjaxabb746a54ba48837461c252303194d01.onreadystatechange=function() {
+                        if (padAjaxabb746a54ba48837461c252303194d01.readyState === 4) {
+                        if (padAjaxabb746a54ba48837461c252303194d01.status === 200) {
+                        document.getElementById("padAjaxabb746a54ba48837461c252303194d01").innerHTML=padAjaxabb746a54ba48837461c252303194d01.responseText;
+                        } else {
+                        document.getElementById("padAjaxabb746a54ba48837461c252303194d01").innerHTML=padAjaxabb746a54ba48837461c252303194d01.statusText;
+                        }
+                        }
+                        }
+                        padAjaxabb746a54ba48837461c252303194d01.open("GET","http://localhost/pad/regression/framework/?tags/chart_as_a_pair_reads_its_content_as_the_data&padInclude",true);
+                        padAjaxabb746a54ba48837461c252303194d01.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/chart_handles_its_rows_as_a_data_tag<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/chart_handles_its_rows_as_a_data_tag.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"m":"Jan","a":5},{"m":"Feb","a":9},{"m":"Mar","a":2},{"m":"Apr","a":7}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>a DESC<font color="black">'</font><font color="black">,</font> first=2</font>}</b> <b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>a gt 4<font color="black">'</font></font>}</b> [<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>a gt 40<font color="black">'</font></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sparkline</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax01f6f7689d2f09d877a2cc90994ac40f"></div>
+                        <script>
+                        padAjax01f6f7689d2f09d877a2cc90994ac40f = new XMLHttpRequest();
+                        padAjax01f6f7689d2f09d877a2cc90994ac40f.onreadystatechange=function() {
+                        if (padAjax01f6f7689d2f09d877a2cc90994ac40f.readyState === 4) {
+                        if (padAjax01f6f7689d2f09d877a2cc90994ac40f.status === 200) {
+                        document.getElementById("padAjax01f6f7689d2f09d877a2cc90994ac40f").innerHTML=padAjax01f6f7689d2f09d877a2cc90994ac40f.responseText;
+                        } else {
+                        document.getElementById("padAjax01f6f7689d2f09d877a2cc90994ac40f").innerHTML=padAjax01f6f7689d2f09d877a2cc90994ac40f.statusText;
+                        }
+                        }
+                        }
+                        padAjax01f6f7689d2f09d877a2cc90994ac40f.open("GET","http://localhost/pad/regression/framework/?tags/chart_handles_its_rows_as_a_data_tag&padInclude",true);
+                        padAjax01f6f7689d2f09d877a2cc90994ac40f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/chart_leaves_out_a_value_whose_axis_would_overflow<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/chart_leaves_out_a_value_whose_axis_would_overflow.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>huge<font color="black">'</font></font>}</b>[{"m":"a","v":"1.7e308"},{"m":"b","v":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>wide<font color="black">'</font></font>}</b>[{"m":"a","v":"1e308"},{"m":"b","v":"-1e308"},{"m":"c","v":3}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>huge<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b>|<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>wide<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font></font>}</b>|<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>wide<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7c2203ebdd1614fb9203d11fd249ad46"></div>
+                        <script>
+                        padAjax7c2203ebdd1614fb9203d11fd249ad46 = new XMLHttpRequest();
+                        padAjax7c2203ebdd1614fb9203d11fd249ad46.onreadystatechange=function() {
+                        if (padAjax7c2203ebdd1614fb9203d11fd249ad46.readyState === 4) {
+                        if (padAjax7c2203ebdd1614fb9203d11fd249ad46.status === 200) {
+                        document.getElementById("padAjax7c2203ebdd1614fb9203d11fd249ad46").innerHTML=padAjax7c2203ebdd1614fb9203d11fd249ad46.responseText;
+                        } else {
+                        document.getElementById("padAjax7c2203ebdd1614fb9203d11fd249ad46").innerHTML=padAjax7c2203ebdd1614fb9203d11fd249ad46.statusText;
+                        }
+                        }
+                        }
+                        padAjax7c2203ebdd1614fb9203d11fd249ad46.open("GET","http://localhost/pad/regression/framework/?tags/chart_leaves_out_a_value_whose_axis_would_overflow&padInclude",true);
+                        padAjax7c2203ebdd1614fb9203d11fd249ad46.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/chart_without_points_shows_its_else<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/chart_without_points_shows_its_else.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>e<font color="black">'</font></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>No sales yet<b>{/<font color="blue">chart</font><font color="red"></font>}</b>] [<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>e<font color="black">'</font></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sparkline</font><font color="red"></font>}</b>] [<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>e<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax100fd2285e5547500e1bc6797f43ca02"></div>
+                        <script>
+                        padAjax100fd2285e5547500e1bc6797f43ca02 = new XMLHttpRequest();
+                        padAjax100fd2285e5547500e1bc6797f43ca02.onreadystatechange=function() {
+                        if (padAjax100fd2285e5547500e1bc6797f43ca02.readyState === 4) {
+                        if (padAjax100fd2285e5547500e1bc6797f43ca02.status === 200) {
+                        document.getElementById("padAjax100fd2285e5547500e1bc6797f43ca02").innerHTML=padAjax100fd2285e5547500e1bc6797f43ca02.responseText;
+                        } else {
+                        document.getElementById("padAjax100fd2285e5547500e1bc6797f43ca02").innerHTML=padAjax100fd2285e5547500e1bc6797f43ca02.statusText;
+                        }
+                        }
+                        }
+                        padAjax100fd2285e5547500e1bc6797f43ca02.open("GET","http://localhost/pad/regression/framework/?tags/chart_without_points_shows_its_else&padInclude",true);
+                        padAjax100fd2285e5547500e1bc6797f43ca02.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/sparkline_plots_the_terms_of_a_sequence<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -147,6 +391,86 @@
                         }
                         padAjaxef0eced71865d8714676a6c69bf904ad.open("GET","http://localhost/pad/regression/framework/?tags/sparkline_plots_the_terms_of_a_sequence&padInclude",true);
                         padAjaxef0eced71865d8714676a6c69bf904ad.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/sparkline_plots_values_beyond_the_axis_bound<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/sparkline_plots_values_beyond_the_axis_bound.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>k<font color="black">'</font></font>}</b>[{"m":"a","v":"1e301"},{"m":"b","v":"5e305"},{"m":"c","v":"1e306"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>w<font color="black">'</font></font>}</b>[{"m":"a","v":"1e308"},{"m":"b","v":"-1e308"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b>[{"m":"a","v":"1e20"},{"m":"b","v":"1e20"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>k<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font></font>}</b>|<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>w<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font></font>}</b>|<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>f<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d"></div>
+                        <script>
+                        padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d = new XMLHttpRequest();
+                        padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.onreadystatechange=function() {
+                        if (padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.readyState === 4) {
+                        if (padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.status === 200) {
+                        document.getElementById("padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d").innerHTML=padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.responseText;
+                        } else {
+                        document.getElementById("padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d").innerHTML=padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.open("GET","http://localhost/pad/regression/framework/?tags/sparkline_plots_values_beyond_the_axis_bound&padInclude",true);
+                        padAjaxc2b295fd4d5f49dfb83c29a1ba8f5b3d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/sparkline_scales_a_span_of_one_denormal<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/sparkline_scales_a_span_of_one_denormal.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>k<font color="black">'</font></font>}</b>[{"v":"5e-324"},{"v":"0"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>m<font color="black">'</font></font>}</b>[{"v":"5e-324"},{"v":"-5e-324"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>k<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font></font>}</b>|<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>m<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd54ccb90751ce940badc1e968585bb18"></div>
+                        <script>
+                        padAjaxd54ccb90751ce940badc1e968585bb18 = new XMLHttpRequest();
+                        padAjaxd54ccb90751ce940badc1e968585bb18.onreadystatechange=function() {
+                        if (padAjaxd54ccb90751ce940badc1e968585bb18.readyState === 4) {
+                        if (padAjaxd54ccb90751ce940badc1e968585bb18.status === 200) {
+                        document.getElementById("padAjaxd54ccb90751ce940badc1e968585bb18").innerHTML=padAjaxd54ccb90751ce940badc1e968585bb18.responseText;
+                        } else {
+                        document.getElementById("padAjaxd54ccb90751ce940badc1e968585bb18").innerHTML=padAjaxd54ccb90751ce940badc1e968585bb18.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd54ccb90751ce940badc1e968585bb18.open("GET","http://localhost/pad/regression/framework/?tags/sparkline_scales_a_span_of_one_denormal&padInclude",true);
+                        padAjaxd54ccb90751ce940badc1e968585bb18.send();
                         </script>
                       </td>
                     </tr>
@@ -193,6 +517,128 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/sparkline/1-sentence<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sparkline/1-sentence.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>In a sentence<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A literal list of numbers as data<font color="black">,</font> drawn the height of the text around it.<font color="black">'</font></font>}</b><br>&lt;p&gt;Sign-ups this fortnight <b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>[12<font color="black">,</font> 15<font color="black">,</font> 14<font color="black">,</font> 18<font color="black">,</font> 22<font color="black">,</font> 19<font color="black">,</font> 24<font color="black">,</font> 27<font color="black">,</font> 25<font color="black">,</font> 31<font color="black">,</font> 29<font color="black">,</font> 34<font color="black">,</font> 38<font color="black">,</font> 41]<font color="black">'</font><font color="black">,</font> height=20<font color="black">,</font> title=<font color="black">'</font>Sign-ups per day<font color="black">'</font></font>}</b> - up again.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd4fb58a171317cfffedae00ab3d65bbc"></div>
+                        <script>
+                        padAjaxd4fb58a171317cfffedae00ab3d65bbc = new XMLHttpRequest();
+                        padAjaxd4fb58a171317cfffedae00ab3d65bbc.onreadystatechange=function() {
+                        if (padAjaxd4fb58a171317cfffedae00ab3d65bbc.readyState === 4) {
+                        if (padAjaxd4fb58a171317cfffedae00ab3d65bbc.status === 200) {
+                        document.getElementById("padAjaxd4fb58a171317cfffedae00ab3d65bbc").innerHTML=padAjaxd4fb58a171317cfffedae00ab3d65bbc.responseText;
+                        } else {
+                        document.getElementById("padAjaxd4fb58a171317cfffedae00ab3d65bbc").innerHTML=padAjaxd4fb58a171317cfffedae00ab3d65bbc.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd4fb58a171317cfffedae00ab3d65bbc.open("GET","http://localhost/pad/tags/?examples/sparkline/1-sentence&padInclude",true);
+                        padAjaxd4fb58a171317cfffedae00ab3d65bbc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/sparkline/2-table<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/sparkline/2-table.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sparkline/2-table.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $shares </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Acme'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">65</span><span style="color: #007700">, </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">66</span><span style="color: #007700">, </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #0000BB">66</span><span style="color: #007700">, </span><span style="color: #0000BB">68</span><span style="color: #007700">, </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #0000BB">69</span><span style="color: #007700">, </span><span style="color: #0000BB">70 </span><span style="color: #007700">], </span><span style="color: #DD0000">'last' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">70 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Globex'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">21.4</span><span style="color: #007700">, </span><span style="color: #0000BB">21.1</span><span style="color: #007700">, </span><span style="color: #0000BB">20.8</span><span style="color: #007700">, </span><span style="color: #0000BB">21.0</span><span style="color: #007700">, </span><span style="color: #0000BB">20.6</span><span style="color: #007700">, </span><span style="color: #0000BB">20.2</span><span style="color: #007700">, </span><span style="color: #0000BB">20.5</span><span style="color: #007700">, </span><span style="color: #0000BB">19.9</span><span style="color: #007700">, </span><span style="color: #0000BB">19.6</span><span style="color: #007700">, </span><span style="color: #0000BB">19.8 </span><span style="color: #007700">], </span><span style="color: #DD0000">'last' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">19.8 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Initech'</span><span style="color: #007700">, </span><span style="color: #DD0000">'closes' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #0000BB">86</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">90</span><span style="color: #007700">, </span><span style="color: #0000BB">87</span><span style="color: #007700">, </span><span style="color: #0000BB">85</span><span style="color: #007700">, </span><span style="color: #0000BB">88</span><span style="color: #007700">, </span><span style="color: #0000BB">89 </span><span style="color: #007700">], </span><span style="color: #DD0000">'last' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">89 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A line per table row<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Inside a loop<font color="black">,</font> data= names a field of the row that holds a list.<font color="black">'</font></font>}</b><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Share&lt;/th&gt;&lt;th&gt;Ten days&lt;/th&gt;&lt;th&gt;Last&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">shares</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>closes<font color="black">'</font><font color="black">,</font> title=<font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">shares</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc7eb8abc88eeada3c5cba066cfc1967d"></div>
+                        <script>
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d = new XMLHttpRequest();
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d.onreadystatechange=function() {
+                        if (padAjaxc7eb8abc88eeada3c5cba066cfc1967d.readyState === 4) {
+                        if (padAjaxc7eb8abc88eeada3c5cba066cfc1967d.status === 200) {
+                        document.getElementById("padAjaxc7eb8abc88eeada3c5cba066cfc1967d").innerHTML=padAjaxc7eb8abc88eeada3c5cba066cfc1967d.responseText;
+                        } else {
+                        document.getElementById("padAjaxc7eb8abc88eeada3c5cba066cfc1967d").innerHTML=padAjaxc7eb8abc88eeada3c5cba066cfc1967d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d.open("GET","http://localhost/pad/tags/?examples/sparkline/2-table&padInclude",true);
+                        padAjaxc7eb8abc88eeada3c5cba066cfc1967d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/sparkline/3-sequence<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sparkline/3-sequence.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A sequence as data<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>sequence= plots the first rows terms of a sequence type.<font color="black">'</font></font>}</b><br>&lt;p&gt;Fibonacci <b>{<font color="blue">sparkline </font><font color="red">sequence=<font color="black">'</font>fibonacci<font color="black">'</font><font color="black">,</font> rows=12</font>}</b> and the primes <b>{<font color="blue">sparkline </font><font color="red">sequence=<font color="black">'</font>prime<font color="black">'</font><font color="black">,</font> rows=12</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax32879e98204d9f1d1196ff486bc5fc13"></div>
+                        <script>
+                        padAjax32879e98204d9f1d1196ff486bc5fc13 = new XMLHttpRequest();
+                        padAjax32879e98204d9f1d1196ff486bc5fc13.onreadystatechange=function() {
+                        if (padAjax32879e98204d9f1d1196ff486bc5fc13.readyState === 4) {
+                        if (padAjax32879e98204d9f1d1196ff486bc5fc13.status === 200) {
+                        document.getElementById("padAjax32879e98204d9f1d1196ff486bc5fc13").innerHTML=padAjax32879e98204d9f1d1196ff486bc5fc13.responseText;
+                        } else {
+                        document.getElementById("padAjax32879e98204d9f1d1196ff486bc5fc13").innerHTML=padAjax32879e98204d9f1d1196ff486bc5fc13.statusText;
+                        }
+                        }
+                        }
+                        padAjax32879e98204d9f1d1196ff486bc5fc13.open("GET","http://localhost/pad/tags/?examples/sparkline/3-sequence&padInclude",true);
+                        padAjax32879e98204d9f1d1196ff486bc5fc13.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -207,7 +653,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

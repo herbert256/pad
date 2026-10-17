@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {meta} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#layout">Layouts and components</a><span>/</span><span aria-current="page">meta</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>meta<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            The page's metadata - a title, a layout, a cache time or any value - read while the page is assembled.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#layout">Layouts and components</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'Title'</span>, <span class="hl-opt">name</span>=value<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">layout</span>=<span class="hl-str">'layout'</span>, <span class="hl-opt">cache</span>=<span class="hl-num">600</span>, <span class="hl-opt">access</span>=<span class="hl-str">'admin'</span>, <span class="hl-opt">sitemap</span>=false<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>layout</code>
+            </dt>
+            <dd>
+              Frames the page with that layout, as <code>{extends}</code> does.
+            </dd>
+            <dt>
+              <code>cache</code>
+            </dt>
+            <dd>
+              The page's own server-cache time in seconds, in an application with the page cache on; <code>0</code> or <code>false</code> keeps the page out of the cache.
+            </dd>
+            <dt>
+              <code>access</code>
+            </dt>
+            <dd>
+              Kept for access rules to read with <code>padMeta ( 'access' )</code>.
+            </dd>
+            <dt>
+              <code>sitemap</code>
+            </dt>
+            <dd>
+              <code>false</code> leaves the page out of <code>{sitemap}</code>; read with <code>padMeta ( 'sitemap', 'page' )</code>.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              Like any other name: becomes the variable <code>$title</code>, which a wrapper's <code>&lt;title&gt;</code> shows.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{meta}</code> says in the template what a page with PHP would say in its <code>.php</code> - so a plain <code>.pad</code>, or an <code>.html</code> file dropped into the application, can set its title or its layout. Like <a href="index%EF%B9%96tag%EA%A4%B7extends.html"><code>{extends}</code></a> it is no tag that renders: the <code>{meta}</code> tags are read while the page is assembled - after the PHP of <code>_inits.php</code> and of the page itself, before the template renders - and taken out of the text. Their values are expressions and may use the PHP's variables.
+          </p>
+          <ul>
+            <li>
+              <code>layout=</code> frames the page with a layout, exactly as <code>{extends}</code> does.
+            </li>
+            <li>
+              <code>cache=</code> is the page's own cache time in an application whose page cache is on; <code>0</code> or <code>false</code> keeps the page out. It is read from the file before the cache is consulted, so only a plain value counts there.
+            </li>
+            <li>
+              <code>access=</code> and <code>sitemap=</code> are kept for others to read: <code>padMeta ( 'access' )</code> for the page being built, <code>padMeta ( 'sitemap', 'reports/monthly' )</code> from another page's file; <code>sitemap=false</code> leaves a page out of <a href="index%EF%B9%96tag%EA%A4%B7sitemap.html"><code>{sitemap}</code></a>.
+            </li>
+            <li>Any other name becomes a variable of the page: <code>title=</code> is <code>$title</code>, which the wrapper's <code>&lt;title&gt;</code> shows.
+            </li>
+          </ul>
+          <p>
+            A page may hold more than one <code>{meta}</code>. Every example on this site starts with one - its title and about line are what the indexes show. The tag must stand directly in the page's own template, outside any other tag; anywhere else it is an error under the strict check, as is a name that is not a valid variable name.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Values for the page
+            </h3>
+            <p class="example-about">
+              Every name that is not one of the engine's becomes a variable of the page - this line itself is a meta.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/meta/1-values.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">weight</span>=<span class="hl-str">'1.1 kg'</span>, <span class="hl-opt">price</span>=<span class="hl-num">79</span> * <span class="hl-num">1.21</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>This example is called <span class="hl-htm">&lt;q</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/q</span><span class="hl-htm">&gt;</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The kettle weighs <span class="hl-brc">{</span><span class="hl-var">$weight</span><span class="hl-brc">}</span> and costs € <span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7meta%EA%A4%B71-values.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    This example is called <q>Values for the page</q>.
+                  </p>
+                  <p>
+                    The kettle weighs 1.1 kg and costs € 95.59.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A layout by meta
+            </h3>
+            <p class="example-about">
+              layout= does what extends does: the page is framed by the layout, its blocks override the layout's.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/meta/2-layout.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">layout</span>=<span class="hl-str">'_layouts/extendsCard'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'title'</span><span class="hl-brc">}</span>Framed by meta<span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>No extends tag on this page.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7meta%EA%A4%B72-layout.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="card" style="border:1px solid #ccc; padding:.5em 1em; border-radius:6px">
+                    <h3>
+                      Framed by meta
+                    </h3>
+                    <p>
+                      No extends tag on this page.
+                    </p>
+                    <footer>
+                      <small>Made with PAD</small>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7extends.html">{extends}</a> <span class="about">Frames the page with a layout instead of its directories' wrappers.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7block.html">{block}</a> <span class="about">A named region of a layout or wrapper - and a page's override of it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sitemap.html">{sitemap}</a> <span class="about">Lists the pages of the application, read from the file tree, as rows with page, url and lastmod.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7markdown.html">← {markdown}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7modal.html">{modal} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -73,6 +73,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: showcase - Page: excerpt/search<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">excerpt/search.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">excerpt/search.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $q </span><span style="color: #007700">= </span><span style="color: #DD0000">'cache'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$results </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fragment cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Some parts of a page cost more to render than others: a list of the best selling products, a menu built from the database, a report over a year of orders. The fragment cache keeps the rendered text of such a section for a number of seconds and serves it again on the next request without running the tags inside it. Name the section, give it a ttl, and forget it when what it shows has changed.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Remote data'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/curl'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A page that shows exchange rates or the weather fetches them from another server. Every request would wait for that server, so the answer is kept for a while: the ttl option says how many seconds. When the source fails afterwards, the last good copy in the cache is served and the failure is logged, so a slow or broken service never takes the page down with it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Page cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/config'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'With the page cache switched on in the configuration, a whole page is kept after its first rendering, with an ETag, and a browser that asks again with that tag gets a 304 Not Modified. Pages with a guard, a flash message or a form are never cached. The cache can live in files, APCu, Redis, Memcached or the database.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Search results<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each result cut to 24 words around the first match of the query<font color="black">,</font> every match marked.<font color="black">'</font></font>}</b><br>&lt;div&gt;<br>  &lt;p&gt;Results for &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/strong&gt;&lt;/p&gt;<br>  <b>{<font color="blue">results</font><font color="red"></font>}</b><br>    &lt;article&gt;<br>      &lt;h3&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>url</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/a&gt;&lt;/h3&gt;<br>      &lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=24<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b>&lt;/p&gt;<br>    &lt;/article&gt;<br>  <b>{/<font color="blue">results</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax29b4517a66717481757edc829d47c8a1"></div>
+                        <script>
+                        padAjax29b4517a66717481757edc829d47c8a1 = new XMLHttpRequest();
+                        padAjax29b4517a66717481757edc829d47c8a1.onreadystatechange=function() {
+                        if (padAjax29b4517a66717481757edc829d47c8a1.readyState === 4) {
+                        if (padAjax29b4517a66717481757edc829d47c8a1.status === 200) {
+                        document.getElementById("padAjax29b4517a66717481757edc829d47c8a1").innerHTML=padAjax29b4517a66717481757edc829d47c8a1.responseText;
+                        } else {
+                        document.getElementById("padAjax29b4517a66717481757edc829d47c8a1").innerHTML=padAjax29b4517a66717481757edc829d47c8a1.statusText;
+                        }
+                        }
+                        }
+                        padAjax29b4517a66717481757edc829d47c8a1.open("GET","http://localhost/pad/showcase/?excerpt/search&padInclude",true);
+                        padAjax29b4517a66717481757edc829d47c8a1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -87,7 +129,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

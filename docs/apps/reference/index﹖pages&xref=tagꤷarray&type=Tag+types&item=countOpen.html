@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - countOpen
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - countOpen
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: tags - Page: examples/count/1-table<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/count/1-table.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/count/1-table.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $countOpen </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A-101'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A-102'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$countLate </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A table only when there are rows<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The heading and table render for a list with rows; an empty list gets the <font color="black">@</font>else<font color="black">@</font> text.<font color="black">'</font></font>}</b><br><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>countOpen<font color="black">'</font></font>}</b><br>  &lt;h4&gt;Open orders&lt;/h4&gt;<br>  &lt;table&gt;<b>{<font color="blue">countOpen</font><font color="red"></font>}</b>&lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>&lt;/td&gt;&lt;/tr&gt;<b>{/<font color="blue">countOpen</font><font color="red"></font>}</b>&lt;/table&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;No open orders.&lt;/p&gt;<br><b>{/<font color="blue">count</font><font color="red"></font>}</b><br><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>countLate<font color="black">'</font></font>}</b><br>  &lt;h4&gt;Late orders&lt;/h4&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;No late orders.&lt;/p&gt;<br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe74a62268aca193f88727269c3827e45"></div>
+                        <script>
+                        padAjaxe74a62268aca193f88727269c3827e45 = new XMLHttpRequest();
+                        padAjaxe74a62268aca193f88727269c3827e45.onreadystatechange=function() {
+                        if (padAjaxe74a62268aca193f88727269c3827e45.readyState === 4) {
+                        if (padAjaxe74a62268aca193f88727269c3827e45.status === 200) {
+                        document.getElementById("padAjaxe74a62268aca193f88727269c3827e45").innerHTML=padAjaxe74a62268aca193f88727269c3827e45.responseText;
+                        } else {
+                        document.getElementById("padAjaxe74a62268aca193f88727269c3827e45").innerHTML=padAjaxe74a62268aca193f88727269c3827e45.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe74a62268aca193f88727269c3827e45.open("GET","http://localhost/pad/tags/?examples/count/1-table&padInclude",true);
+                        padAjaxe74a62268aca193f88727269c3827e45.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

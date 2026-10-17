@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - user
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - user
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: variables/a_json_serializable_object_is_the_data_it_answers<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_json_serializable_object_is_the_data_it_answers.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_json_serializable_object_is_the_data_it_answers.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An object that says what its data is - JsonSerializable - is that data, to {^user} as to<br>  // json_encode: read by its public properties, the hash it leaves out was written into the page.<br><br>  </span><span style="color: #007700">class </span><span style="color: #0000BB">padCaseJsonUser </span><span style="color: #007700">implements </span><span style="color: #0000BB">JsonSerializable </span><span style="color: #007700">{<br><br>    public </span><span style="color: #0000BB">$name          </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>    public </span><span style="color: #0000BB">$password_hash</span><span style="color: #007700">= </span><span style="color: #DD0000">'*REDACTED*'</span><span style="color: #007700">;<br><br>    function </span><span style="color: #0000BB">jsonSerialize </span><span style="color: #007700">(): </span><span style="color: #0000BB">mixed </span><span style="color: #007700">{ return [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$this </span><span style="color: #007700">-&gt; </span><span style="color: #0000BB">name </span><span style="color: #007700">]; }<br><br>  }<br><br>  </span><span style="color: #0000BB">$user </span><span style="color: #007700">= new </span><span style="color: #0000BB">padCaseJsonUser</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">json[{^user}] tag[<b>{<font color="blue">user</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>user</font>}</b>]<b>{/<font color="blue">user</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax910b8d837f72d17b17437c196be6eb87"></div>
+                        <script>
+                        padAjax910b8d837f72d17b17437c196be6eb87 = new XMLHttpRequest();
+                        padAjax910b8d837f72d17b17437c196be6eb87.onreadystatechange=function() {
+                        if (padAjax910b8d837f72d17b17437c196be6eb87.readyState === 4) {
+                        if (padAjax910b8d837f72d17b17437c196be6eb87.status === 200) {
+                        document.getElementById("padAjax910b8d837f72d17b17437c196be6eb87").innerHTML=padAjax910b8d837f72d17b17437c196be6eb87.responseText;
+                        } else {
+                        document.getElementById("padAjax910b8d837f72d17b17437c196be6eb87").innerHTML=padAjax910b8d837f72d17b17437c196be6eb87.statusText;
+                        }
+                        }
+                        }
+                        padAjax910b8d837f72d17b17437c196be6eb87.open("GET","http://localhost/pad/regression/framework/?variables/a_json_serializable_object_is_the_data_it_answers&padInclude",true);
+                        padAjax910b8d837f72d17b17437c196be6eb87.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

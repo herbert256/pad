@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {resume} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#sequences">Sequences</a><span>/</span><span aria-current="page">resume</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>resume<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Transforms the sequence pushed last, in place, through an action or a play.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#sequences">Sequences</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">resume</span> reverse<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">add</span>=<span class="hl-num">10</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> keep, prime<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>action</code>
+            </dt>
+            <dd>
+              Any sequence action, as an option of its own or named with <code>action='reverse'</code> - <code>reverse</code>, <code>sort</code>, <code>sum</code>, <code>first=3</code>, ... - or a play with a type: <code>add=10</code> (make), <code>keep, prime</code>, <code>remove, even</code>, <code>flag, odd</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{resume reverse}</code> picks up the sequence that was stored last - by <code>push=</code> or <code>name=</code> on a <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> - runs the action or play written with it, and writes the result back over that store. It prints nothing: read the store afterwards with <a href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a> or by its own name.
+          </p>
+          <p>
+            Each <code>{resume}</code> works on what the one before left, so a list can be built in steps: <code>{resume add=10}</code> then <code>{resume reverse}</code> turns <code>1 2 3</code> into <code>13 12 11</code>. Plays work as well as actions - <code>{resume keep, prime}</code> filters the store, <code>{resume add=100}</code> transforms every value.
+          </p>
+          <p>
+            It always acts on the store pushed last; it takes no store name. A store named in the tag is not read as one, and the prefix form <code>{resume:name}</code> is an error - <em>there is no type named 'resume'</em>. A <code>{resume}</code> before anything was pushed is an error too: <em>nothing has been pushed</em>. It has nothing to do with <a href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease}</a> or loops; to apply an action without changing the store, use <a href="index%EF%B9%96tag%EA%A4%B7action.html">{action}</a> or <a href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Build a list in steps
+            </h3>
+            <p class="example-about">
+              Three resumes rewrite the stored range one after another; the store holds the end result.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/resume/1-steps.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'steps'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">add</span>=<span class="hl-num">100</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> reverse<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">pull</span> steps<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7resume%EA%A4%B71-steps.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    105 104 103
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Filter a store in place
+            </h3>
+            <p class="example-about">
+              keep, prime as a resume: the store itself now holds only the primes.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/resume/2-filter.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..30'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'candidates'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> keep, prime<span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">candidates</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$candidates</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/candidates</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7resume%EA%A4%B72-filter.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    2 3 5 7 11 13 17 19 23 29
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a> <span class="about">Iterates a stored sequence, optionally through plays and actions.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7action.html">{action}</a> <span class="about">Runs one sequence action - reverse, sum, first and the rest - over a store, a range or a type, and iterates the result.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7restart.html">← {restart}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7sandbox.html">{sandbox} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

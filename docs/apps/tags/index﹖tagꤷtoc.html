@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {toc} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-toc){--pad-toc-text:#3d3c39;--pad-toc-line:#e4e3df;--pad-toc-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-toc){--pad-toc-text:light-dark(#3d3c39,#d6d5cd);--pad-toc-line:light-dark(#e4e3df,#3a3a37);--pad-toc-accent:light-dark(#2a78d6,#5598e7);}}.pad-toc{border-left:3px solid var(--pad-toc-line);padding:2px 0 2px 14px;color:var(--pad-toc-text);line-height:1.45}.pad-toc-title{margin:0 0 6px;font-weight:600;font-size:.8em;letter-spacing:.06em;text-transform:uppercase}.pad-toc ol,.pad-toc ul{margin:0;padding-left:1.4em}.pad-toc>ol,.pad-toc>ul{padding-left:1.1em}.pad-toc li{margin:2px 0}.pad-toc a{color:inherit;text-decoration:none}.pad-toc a:hover,.pad-toc a:focus-visible{color:var(--pad-toc-accent);text-decoration:underline}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">toc</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>toc<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A table of contents of the page from its own rendered headings, nested and linked - filled in once the page has rendered.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toc</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toc</span> <span class="hl-opt">levels</span>=<span class="hl-str">'2-4'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'On this page'</span>, <span class="hl-opt">list</span>=<span class="hl-str">'ul'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>levels</code>
+            </dt>
+            <dd>
+              The heading levels listed - a list or a range, <code>'2,3'</code> by default, <code>'2-4'</code>.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The label above the list, <code>Contents</code> by default; <code>''</code> for none.
+            </dd>
+            <dt>
+              <code>list</code>
+            </dt>
+            <dd>
+              <code>ol</code> (numbered, the default) or <code>ul</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{toc}</code> writes a table of contents of the page it stands in, from the page's own rendered headings - <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code> by default - as a <code>&lt;nav&gt;</code> with nested, linked lists. Like <code>{stack}</code>, the tag writes a marker that is filled in once the whole page has rendered, so the headings below it are listed too, including the ones a loop, a snippet or a <code>{markdown}</code> produced.
+          </p>
+          <p>
+            A heading without an id gets one to link to: the slug of its text, with <code>-2</code>, <code>-3</code> behind a repeat, never an id the page already has. A heading with an id keeps it. A level one deeper nests one list deeper, never more than one step in, so a page that skips from <code>&lt;h2&gt;</code> to <code>&lt;h4&gt;</code> still gives a sound list. The title is a paragraph rather than a heading, so the contents never list themselves. Without a heading of the chosen levels, the tag writes nothing.
+          </p>
+          <p>
+            The marker is filled in when the request's page ends and also when a <code>{page}</code> pass ends for a page it renders, so a <code>{toc}</code> in such a page lists the headings of that page alone - which is how the examples here list their own headings and not those of this page. Colours are <code>--pad-toc-*</code> custom properties with <code>light-dark()</code> defaults. Levels outside 1 to 6 and a list other than <code>ol</code> or <code>ul</code> are strict errors.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Contents above an article
+            </h3>
+            <p class="example-about">
+              The contents stand above the headings they list; every heading gets an id to link to.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/toc/1-article.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;article</span> <span class="hl-opt">style</span>=<span class="hl-str">"max-width:40em"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">toc</span> <span class="hl-opt">title</span>=<span class="hl-str">'In this article'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Choosing the beans<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Buy whole beans roasted in the last few weeks.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Light or dark roast<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A light roast keeps the fruit; a dark roast trades it for body.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Grinding<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Grind just before brewing, coarse for a press and fine for espresso.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Brewing<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Pour-over<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Bloom the grounds for thirty seconds, then pour slowly.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>French press<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Steep four minutes and press gently.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/article</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7toc%EA%A4%B71-article.html">open alone</a>
+                </div>
+                <div class="result">
+                  <article style="max-width:40em">
+                    <nav class="pad-toc" aria-labelledby="pad-toc-1">
+                      <p class="pad-toc-title" id="pad-toc-1">
+                        In this article
+                      </p>
+                      <ol>
+                        <li>
+                          <a href="#choosing-the-beans">Choosing the beans</a>
+                          <ol>
+                            <li>
+                              <a href="#light-or-dark-roast">Light or dark roast</a>
+                            </li>
+                          </ol>
+                        </li>
+                        <li>
+                          <a href="#grinding">Grinding</a>
+                        </li>
+                        <li>
+                          <a href="#brewing">Brewing</a>
+                          <ol>
+                            <li>
+                              <a href="#pour-over">Pour-over</a>
+                            </li>
+                            <li>
+                              <a href="#french-press">French press</a>
+                            </li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </nav>
+                    <h2 id="choosing-the-beans">
+                      Choosing the beans
+                    </h2>
+                    <p>
+                      Buy whole beans roasted in the last few weeks.
+                    </p>
+                    <h3 id="light-or-dark-roast">
+                      Light or dark roast
+                    </h3>
+                    <p>
+                      A light roast keeps the fruit; a dark roast trades it for body.
+                    </p>
+                    <h2 id="grinding">
+                      Grinding
+                    </h2>
+                    <p>
+                      Grind just before brewing, coarse for a press and fine for espresso.
+                    </p>
+                    <h2 id="brewing">
+                      Brewing
+                    </h2>
+                    <h3 id="pour-over">
+                      Pour-over
+                    </h3>
+                    <p>
+                      Bloom the grounds for thirty seconds, then pour slowly.
+                    </p>
+                    <h3 id="french-press">
+                      French press
+                    </h3>
+                    <p>
+                      Steep four minutes and press gently.
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Three levels as bullets
+            </h3>
+            <p class="example-about">
+              levels= picks the levels, list= the kind of list; a heading with its own id keeps it.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/toc/2-levels.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toc</span> <span class="hl-opt">levels</span>=<span class="hl-str">'2-4'</span>, <span class="hl-opt">list</span>=<span class="hl-str">'ul'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'On this page'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;h2</span> <span class="hl-opt">id</span>=<span class="hl-str">"install"</span><span class="hl-htm">&gt;</span>Installation<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Requirements<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;h4</span><span class="hl-htm">&gt;</span>Extensions<span class="hl-htm">&lt;/h4</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>First run<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Configuration<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7toc%EA%A4%B72-levels.html">open alone</a>
+                </div>
+                <div class="result">
+                  <nav class="pad-toc" aria-labelledby="pad-toc-2">
+                    <p class="pad-toc-title" id="pad-toc-2">
+                      On this page
+                    </p>
+                    <ul>
+                      <li>
+                        <a href="#install">Installation</a>
+                        <ul>
+                          <li>
+                            <a href="#requirements">Requirements</a>
+                            <ul>
+                              <li>
+                                <a href="#extensions">Extensions</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <a href="#first-run">First run</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#configuration">Configuration</a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <h2 id="install">
+                    Installation
+                  </h2>
+                  <h3 id="requirements">
+                    Requirements
+                  </h3>
+                  <h4 id="extensions">
+                    Extensions
+                  </h4>
+                  <h3 id="first-run">
+                    First run
+                  </h3>
+                  <h2 id="configuration">
+                    Configuration
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7stack.html">{stack}</a> <span class="about">Prints everything pushed to a named stack, from above or below it in the page.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7timeline.html">← {timeline}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7trace.html">{trace} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -28,7 +28,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -68,7 +68,7 @@
                       Example 1: JavaScript with Object Literals
                     </h4>
                     <p>
-                      Without <b>{ignore}</b>, PAD would try to parse the JavaScript object literal as PAD tags:
+                      A brace followed by a space or a line end is left alone, but compact code - <code>function f(){return 1;}</code>, <code>a{color:red}</code> - is read as tags. Wrapped in <b>{ignore}</b>, the code is safe whichever way it is written:
                     </p>
                     <table border="1" cellpadding="10" cellspacing="0">
                       <tr>
@@ -148,13 +148,13 @@
                       2. As a Pipe Function: <code>| ignore</code>
                     </h3>
                     <p>
-                      Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.
+                      Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. A variable's value needs it no more: values are text, their braces are never parsed (with <code>$padProtectValues</code> on, the default). It matters for what a tag answers as template source - an application tag that builds its <code>$padContent</code>, such as a <code>{json 'products' | ignore}</code> - and with <code>$padProtectValues</code> off.
                     </p>
                     <h4>
                       Example 3: JSON Data in Attributes
                     </h4>
                     <p>
-                      When a variable contains JSON data, use the <b>{ignore}</b> pipe function to prevent PAD from parsing the curly braces:
+                      JSON from a variable, passed to JavaScript through a data attribute - the pipe changes nothing here while values are protected, and keeps the braces safe when they are not:
                     </p>
                     <table border="1" cellpadding="10" cellspacing="0">
                       <tr>
@@ -224,15 +224,15 @@
                       <tr>
                         <td style="vertical-align:top"></td>
                         <td style="vertical-align:top">
-                          <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">ignore</font>}</b>{"theme": "dark", "settings": {"notifications": true}}<b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                          <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">ignore</font>}</b>.box<b>{<font color="blue"><font color="purple">color</font><font color="black"><b>:</b></font>red</font><font color="red"></font>}</b> .note{margin:0}<b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
                         </td>
                         <td style="vertical-align:top">
-                          <pre>{"theme": "dark", "settings": {"notifications": true}}</pre>
+                          <pre>.box{color:red} .note{margin:0}</pre>
                         </td>
                       </tr>
                     </table>
                     <p>
-                      Without the ignore option, PAD would try to parse <code>{"theme": "dark"}</code> as PAD tags, causing errors.
+                      Without the ignore option, PAD would read <code>{color:red}</code> as a tag - "there is no type named 'color'".
                     </p>
                     <h2>
                       Best Practices
@@ -242,7 +242,7 @@
                         <strong>Always use <b>{ignore}</b> for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped
                       </li>
                       <li>
-                        <strong>Use <code>| ignore</code> for dynamic JSON</strong> - When expressions output JSON, pipe through ignore
+                        <strong>Use <code>| ignore</code> on a tag's JSON</strong> - When a tag answers JSON as template source, pipe it through ignore
                       </li>
                       <li>
                         <strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in <b>{ignore}</b>
@@ -353,7 +353,7 @@
                     </h2>
                     <ul>
                       <li>
-                        <strong>Cannot nest</strong> - Once inside an ignore block, all content is literal until <code>{/ignore}</code>
+                        <strong>Pairs nest</strong> - an inner <code>{ignore}...{/ignore}</code> inside an ignore block is kept as literal text, and the block ends at its own closing tag
                       </li>
                       <li>
                         <strong>Use sparingly</strong> - Only use where necessary to avoid confusion
@@ -632,6 +632,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
@@ -645,6 +648,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
                         </li>
                       </ul>
                       <h3 align="center">
@@ -702,11 +708,34 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
                         Forms and security
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
@@ -732,7 +761,7 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
@@ -753,6 +782,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
                         </li>
                         <li>
@@ -769,6 +801,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
                         </li>
                       </ul>
                     </td>
@@ -787,7 +822,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

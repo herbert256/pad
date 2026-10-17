@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {files} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#files">Files</a><span>/</span><span aria-current="page">files</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>files<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Scans a directory and iterates its entries, with path, file, ext, item and dir for each.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#files">Files</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-str">'dir'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'app'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$file</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$ext</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-opt">dir</span>=<span class="hl-str">'dir'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'data'</span>, <span class="hl-opt">mask</span>=<span class="hl-str">'*.txt'</span>, <span class="hl-opt">exclude</span>=<span class="hl-str">'old*'</span>, recursive, onlyFiles, includeHidden<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-str">'dir'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'app'</span>, onlyDirs<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>dir</code>
+            </dt>
+            <dd>
+              The directory, relative to what <code>base=</code> names. Also written <code>dir=</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>base</code>
+            </dt>
+            <dd>
+              What the directory is relative to: <code>app</code> (the application), <code>data</code> (DATA/) or <code>pad</code> (the path as given); otherwise the file system root. It must lie inside the applications, the engine or DATA.
+            </dd>
+            <dt>
+              <code>mask</code>
+            </dt>
+            <dd>
+              Only the names that match this shell pattern - <code>*.pad</code>.
+            </dd>
+            <dt>
+              <code>exclude</code>
+            </dt>
+            <dd>
+              Leave out the names that match this shell pattern.
+            </dd>
+            <dt>
+              <code>recursive</code>
+            </dt>
+            <dd>
+              Bare option: the subdirectories too - every file below, <code>item</code> holding the path.
+            </dd>
+            <dt>
+              <code>onlyFiles</code>
+            </dt>
+            <dd>
+              Bare option: files only.
+            </dd>
+            <dt>
+              <code>onlyDirs</code>
+            </dt>
+            <dd>
+              Bare option: directories only.
+            </dd>
+            <dt>
+              <code>includeHidden</code>
+            </dt>
+            <dd>
+              Bare option: names starting with a dot too.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{files 'dir', base='app'}</code> scans a directory and iterates its entries, one occurrence each, with five fields: <code>path</code> (the full path), <code>file</code> (the name), <code>ext</code> (the extension, empty for a directory), <code>item</code> (the entry relative to the scanned directory, the extension taken off a file - the name a page is addressed by) and <code>dir</code> (the part of <code>item</code> before its last slash).
+          </p>
+          <p>
+            <code>base=</code> says what the directory is relative to: <code>app</code> the application, <code>data</code> DATA/, <code>pad</code> the path as given; otherwise it is read from the file system root. Whatever the base, the directory must lie inside the applications, the engine or DATA - anything else is an error. A directory that is not there is an error under the strict check, an empty list without it.
+          </p>
+          <p>
+            <code>recursive</code> walks every subdirectory and lists the files below; <code>mask</code> and <code>exclude</code> keep or drop names by a shell pattern, <code>onlyFiles</code> and <code>onlyDirs</code> keep one kind, and names starting with a dot are left out unless <code>includeHidden</code> is given. <code>.</code> and <code>..</code> never come along.
+          </p>
+          <p>
+            The entries come in the order the file system keeps them, which differs between machines: add <code>sort='item'</code> (any handling option works) when the order matters. The tag reads a <code>group</code> parameter of its own as well, but the handling option of that name takes it first, so it cannot be used. <a href="index%EF%B9%96tag%EA%A4%B7dir.html">{dir}</a> is the plain version - the names only.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A folder of the application
+            </h3>
+            <p class="example-about">
+              base='app' reads the directory from the application's root; sort makes the order the file system keeps irrelevant.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/files/1-list.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-str">'_data/filesDemo'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'app'</span>, <span class="hl-opt">sort</span>=<span class="hl-str">'item'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$ext</span><span class="hl-brc">}</span><span class="hl-htm">&lt;small</span><span class="hl-htm">&gt;</span>(<span class="hl-brc">{</span><span class="hl-var">$ext</span><span class="hl-brc">}</span>)<span class="hl-htm">&lt;/small</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span><span class="hl-htm">&lt;small</span><span class="hl-htm">&gt;</span>(directory)<span class="hl-htm">&lt;/small</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7files%EA%A4%B71-list.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>archive <small>(directory)</small>
+                    </li>
+                    <li>notes <small>(txt)</small>
+                    </li>
+                    <li>prices <small>(csv)</small>
+                    </li>
+                    <li>readme <small>(md)</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Recursive, files only, by mask
+            </h3>
+            <p class="example-about">
+              recursive walks the subdirectories too; item keeps the path below the scanned directory, dir the part before its last slash.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/files/2-recursive.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>file<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>dir<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-str">'_data/filesDemo'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'app'</span>, recursive, onlyFiles, <span class="hl-opt">mask</span>=<span class="hl-str">'*.txt'</span>, <span class="hl-opt">sort</span>=<span class="hl-str">'item'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$file</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$dir</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7files%EA%A4%B72-recursive.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table>
+                    <tr>
+                      <th>
+                        item
+                      </th>
+                      <th>
+                        file
+                      </th>
+                      <th>
+                        dir
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        archive/2025
+                      </td>
+                      <td>
+                        2025.txt
+                      </td>
+                      <td>
+                        archive
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        archive/2026
+                      </td>
+                      <td>
+                        2026.txt
+                      </td>
+                      <td>
+                        archive
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        notes
+                      </td>
+                      <td>
+                        notes.txt
+                      </td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Directories only, or all but some
+            </h3>
+            <p class="example-about">
+              onlyDirs keeps the directories; exclude drops the names that match its pattern.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/files/3-exclude.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Directories: <span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-str">'_data/filesDemo'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'app'</span>, onlyDirs<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Not text: <span class="hl-brc">{</span><span class="hl-tag">files</span> <span class="hl-str">'_data/filesDemo'</span>, <span class="hl-opt">base</span>=<span class="hl-str">'app'</span>, onlyFiles, <span class="hl-opt">exclude</span>=<span class="hl-str">'*.txt'</span>, <span class="hl-opt">sort</span>=<span class="hl-str">'item'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">notFirst@files</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-tag">/notFirst@files</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$file</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/files</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7files%EA%A4%B73-exclude.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Directories: archive
+                  </p>
+                  <p>
+                    Not text: prices.csv, readme.md
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7dir.html">{dir}</a> <span class="about">Lists the names in a directory, one occurrence each - the plain version of files.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7exists.html">{exists}</a> <span class="about">Renders its content when a file or directory is there, its else half when not.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7file.html">{file}</a> <span class="about">Writes its rendered content to a file under DATA/ instead of to the page.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sitemap.html">{sitemap}</a> <span class="about">Lists the pages of the application, read from the file tree, as rows with page, url and lastmod.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7file.html">← {file}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7flag.html">{flag} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

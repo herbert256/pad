@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {calendar} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-calendar){border-collapse:collapse;width:100%;table-layout:fixed;font-size:14px}:where(.pad-calendar caption){padding:6px;font-weight:600;font-size:16px}:where(.pad-calendar caption a){display:inline-block;padding:0 10px;text-decoration:none;color:inherit}:where(.pad-calendar th){padding:4px;font-weight:600;font-size:12px;text-align:center;opacity:.7}:where(.pad-calendar td){vertical-align:top;height:72px;padding:4px;border:1px solid rgba(128,128,128,.25)}:where(.pad-calendar td.other){opacity:.4}:where(.pad-calendar td.weekend){background:rgba(128,128,128,.06)}:where(.pad-calendar td.today time){display:inline-block;min-width:1.6em;text-align:center;border-radius:1em;background:#2a78d6;color:#fff}:where(.pad-calendar ul){margin:4px 0 0;padding:0;list-style:none;font-size:12px}:where(.pad-calendar li){margin:2px 0;padding:1px 4px;border-radius:3px;background:rgba(42,120,214,.12);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">calendar</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>calendar<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">calendar</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">calendar</span> <span class="hl-str">'2026-10'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">link</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">query</span>=<span class="hl-str">'month'</span>, sunday<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">calendar</span> <span class="hl-str">'2026-10'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">days</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">events</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/events</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/days</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/calendar</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>month</code>
+            </dt>
+            <dd>
+              The month, written <code>2026-10</code>. Left out: the request value named by <code>query</code>, else this month.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>data</code>
+            </dt>
+            <dd>
+              The events: a <code>{data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart}</code>.
+            </dd>
+            <dt>
+              <code>date</code>
+            </dt>
+            <dd>
+              The field with an event's date - by default the first field that reads as one.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The field with an event's text - by default the first other text field.
+            </dd>
+            <dt>
+              <code>link</code>
+            </dt>
+            <dd>
+              A field with a link for the event - http(s), a page or an anchor; never <code>javascript:</code> or <code>data:</code>.
+            </dd>
+            <dt>
+              <code>query</code>
+            </dt>
+            <dd>
+              The request value the links to the months around set, and that picks the month when no parameter is given; default <code>month</code>.
+            </dd>
+            <dt>
+              <code>sunday</code>
+            </dt>
+            <dd>
+              Bare option: the weeks start on Sunday instead of Monday.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{calendar}</code> shows a month. The month is the first parameter (<code>'2026-10'</code>); without it, the request value named by <code>query</code> (<code>?month=2026-11</code>) - the value the links to the month before and after set - and otherwise this month, by <code>padNow</code>, so <code>padNowFreeze</code> holds it still in a test. A month that cannot be read is an error under the strict check.
+          </p>
+          <p>
+            Written alone it answers a complete table: the month in the caption between links to its neighbours (keeping the other request values, as <a href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager}</a> does), a column per weekday, a cell per day with its <code>&lt;time&gt;</code> and its events as a list. Today has <code>aria-current="date"</code>. A small default look rides along under <code>:where()</code>, so the page's own CSS wins.
+          </p>
+          <p>
+            The events come from <code>data=</code> - a <code>{data}</code> store, a page array or a <code>_data</code> file. <code>date</code> names the field with the day and <code>title</code> the text; left out, the first field that reads as a date and the first other text field are taken. <code>link</code> makes an event's text a link.
+          </p>
+          <p>
+            Written as a pair it hands over the weeks as rows instead: <code>$week</code> (the ISO number) and <code>days</code>, in which every day is a row with <code>$date</code>, <code>$day</code>, <code>$weekday</code>, <code>$month</code>, <code>$other</code> (a day of the month before or after), <code>$today</code>, <code>$weekend</code>, <code>$count</code>, <code>$class</code> (<code>other today weekend events</code>, as they apply) and <code>events</code>, the data rows of that date. A store named <code>events</code> hides the day's field of that name - <code>{level:events}</code> reaches it then. For a whole year of values as coloured squares, see <a href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart 'calendar'}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A month with its events
+            </h3>
+            <p class="example-about">
+              A fixed month as a table; date= and title= name the fields of the events.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/calendar/1-month.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">calendar</span> <span class="hl-str">'2026-09'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'agenda'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'when'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'what'</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/calendar/1-month.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$agenda</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'when'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-03'</span><span class="hl-pun">,</span> <span class="hl-str">'what'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Team lunch'</span>     <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'when'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-14'</span><span class="hl-pun">,</span> <span class="hl-str">'what'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Release 2.4'</span>    <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'when'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-14'</span><span class="hl-pun">,</span> <span class="hl-str">'what'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Retrospective'</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'when'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-25'</span><span class="hl-pun">,</span> <span class="hl-str">'what'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Board meeting'</span>  <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7calendar%EA%A4%B71-month.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table class="pad-calendar">
+                    <caption>
+                      <span>September 2026</span>
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                          Mon
+                        </th>
+                        <th scope="col">
+                          Tue
+                        </th>
+                        <th scope="col">
+                          Wed
+                        </th>
+                        <th scope="col">
+                          Thu
+                        </th>
+                        <th scope="col">
+                          Fri
+                        </th>
+                        <th scope="col">
+                          Sat
+                        </th>
+                        <th scope="col">
+                          Sun
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="other">
+                          <time datetime="2026-08-31">31</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-01">1</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-02">2</time>
+                        </td>
+                        <td class="events">
+                          <time datetime="2026-09-03">3</time>
+                          <ul>
+                            <li>Team lunch
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-04">4</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-05">5</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-06">6</time>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <time datetime="2026-09-07">7</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-08">8</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-09">9</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-10">10</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-11">11</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-12">12</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-13">13</time>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="events">
+                          <time datetime="2026-09-14">14</time>
+                          <ul>
+                            <li>Release 2.4
+                            </li>
+                            <li>Retrospective
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-15">15</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-16">16</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-17">17</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-18">18</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-19">19</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-20">20</time>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <time datetime="2026-09-21">21</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-22">22</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-23">23</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-24">24</time>
+                        </td>
+                        <td class="events">
+                          <time datetime="2026-09-25">25</time>
+                          <ul>
+                            <li>Board meeting
+                            </li>
+                          </ul>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-26">26</time>
+                        </td>
+                        <td class="weekend">
+                          <time datetime="2026-09-27">27</time>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <time datetime="2026-09-28">28</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-29">29</time>
+                        </td>
+                        <td>
+                          <time datetime="2026-09-30">30</time>
+                        </td>
+                        <td class="other">
+                          <time datetime="2026-10-01">1</time>
+                        </td>
+                        <td class="other">
+                          <time datetime="2026-10-02">2</time>
+                        </td>
+                        <td class="other weekend">
+                          <time datetime="2026-10-03">3</time>
+                        </td>
+                        <td class="other weekend">
+                          <time datetime="2026-10-04">4</time>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Weeks and days as rows
+            </h3>
+            <p class="example-about">
+              As a pair the weeks are rows, each with its days, each day with its events.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/calendar/2-pair.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Week<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Mo<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Tu<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>We<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Th<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Fr<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Sa<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Su<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">calendar</span> <span class="hl-str">'2026-09'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'shifts'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$week</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">days</span><span class="hl-brc">}</span><span class="hl-htm">&lt;td</span> <span class="hl-opt">class</span>=<span class="hl-str">"{$class}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">if</span> not <span class="hl-var">$other</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$day</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">events</span><span class="hl-brc">}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;small</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$who</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/small</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/events</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/days</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/calendar</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/calendar/2-pair.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$shifts</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'date'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-05'</span><span class="hl-pun">,</span> <span class="hl-str">'who'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Anna'</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'date'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-06'</span><span class="hl-pun">,</span> <span class="hl-str">'who'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Bram'</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'date'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-19'</span><span class="hl-pun">,</span> <span class="hl-str">'who'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Chris'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'date'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-09-20'</span><span class="hl-pun">,</span> <span class="hl-str">'who'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Anna'</span>  <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7calendar%EA%A4%B72-pair.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table>
+                    <tr>
+                      <th>
+                        Week
+                      </th>
+                      <th>
+                        Mo
+                      </th>
+                      <th>
+                        Tu
+                      </th>
+                      <th>
+                        We
+                      </th>
+                      <th>
+                        Th
+                      </th>
+                      <th>
+                        Fr
+                      </th>
+                      <th>
+                        Sa
+                      </th>
+                      <th>
+                        Su
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        36
+                      </th>
+                      <td class="other"></td>
+                      <td class="">
+                        1
+                      </td>
+                      <td class="">
+                        2
+                      </td>
+                      <td class="">
+                        3
+                      </td>
+                      <td class="">
+                        4
+                      </td>
+                      <td class="weekend events">
+                        5<br>
+                        <small>Anna</small>
+                      </td>
+                      <td class="weekend events">
+                        6<br>
+                        <small>Bram</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        37
+                      </th>
+                      <td class="">
+                        7
+                      </td>
+                      <td class="">
+                        8
+                      </td>
+                      <td class="">
+                        9
+                      </td>
+                      <td class="">
+                        10
+                      </td>
+                      <td class="">
+                        11
+                      </td>
+                      <td class="weekend">
+                        12
+                      </td>
+                      <td class="weekend">
+                        13
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        38
+                      </th>
+                      <td class="">
+                        14
+                      </td>
+                      <td class="">
+                        15
+                      </td>
+                      <td class="">
+                        16
+                      </td>
+                      <td class="">
+                        17
+                      </td>
+                      <td class="">
+                        18
+                      </td>
+                      <td class="weekend events">
+                        19<br>
+                        <small>Chris</small>
+                      </td>
+                      <td class="weekend events">
+                        20<br>
+                        <small>Anna</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        39
+                      </th>
+                      <td class="">
+                        21
+                      </td>
+                      <td class="">
+                        22
+                      </td>
+                      <td class="">
+                        23
+                      </td>
+                      <td class="">
+                        24
+                      </td>
+                      <td class="">
+                        25
+                      </td>
+                      <td class="weekend">
+                        26
+                      </td>
+                      <td class="weekend">
+                        27
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        40
+                      </th>
+                      <td class="">
+                        28
+                      </td>
+                      <td class="">
+                        29
+                      </td>
+                      <td class="">
+                        30
+                      </td>
+                      <td class="other"></td>
+                      <td class="other"></td>
+                      <td class="other weekend"></td>
+                      <td class="other weekend"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager}</a> <span class="about">Page links for a tag written with the page option: first and last, a window round the current page, previous and next.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7cache.html">← {cache}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7can.html">{can} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

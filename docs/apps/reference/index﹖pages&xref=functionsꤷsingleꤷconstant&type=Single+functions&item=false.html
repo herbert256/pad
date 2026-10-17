@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -73,6 +73,332 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: escaping/a_bool_value_is_a_truth_test_not_run_as_pad<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">escaping/a_bool_value_is_a_truth_test_not_run_as_pad.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">escaping/a_bool_value_is_a_truth_test_not_run_as_pad.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// {bool} from a value is that value's own truth, not the value run as PAD: $v names a<br>  // sequence tag and '1 eq 2' is an expression - run, the first would make a sequence and<br>  // the second would be FALSE - so a value kept its text and both are TRUE; '0' is FALSE.<br>  // A written-out literal second parameter is still the expression it is: 'false' is FALSE.<br><br>  </span><span style="color: #0000BB">$v </span><span style="color: #007700">= </span><span style="color: #DD0000">'sequence:fibonacci(6)'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">'1 eq 2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$w </span><span style="color: #007700">= </span><span style="color: #DD0000">'0'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="red">$</font>v</font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="red">$</font>x</font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>c<font color="black">'</font><font color="black">,</font> <font color="red">$</font>w</font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>false<font color="black">'</font></font>}</b>[<b>{<font color="blue">a</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">a</font><font color="red"></font>}</b><b>{<font color="blue">b</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">b</font><font color="red"></font>}</b><b>{<font color="blue">c</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">c</font><font color="red"></font>}</b><b>{<font color="blue">d</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">d</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax19ccf2eb341b224be51c01d49b11eecb"></div>
+                        <script>
+                        padAjax19ccf2eb341b224be51c01d49b11eecb = new XMLHttpRequest();
+                        padAjax19ccf2eb341b224be51c01d49b11eecb.onreadystatechange=function() {
+                        if (padAjax19ccf2eb341b224be51c01d49b11eecb.readyState === 4) {
+                        if (padAjax19ccf2eb341b224be51c01d49b11eecb.status === 200) {
+                        document.getElementById("padAjax19ccf2eb341b224be51c01d49b11eecb").innerHTML=padAjax19ccf2eb341b224be51c01d49b11eecb.responseText;
+                        } else {
+                        document.getElementById("padAjax19ccf2eb341b224be51c01d49b11eecb").innerHTML=padAjax19ccf2eb341b224be51c01d49b11eecb.statusText;
+                        }
+                        }
+                        }
+                        padAjax19ccf2eb341b224be51c01d49b11eecb.open("GET","http://localhost/pad/regression/framework/?escaping/a_bool_value_is_a_truth_test_not_run_as_pad&padInclude",true);
+                        padAjax19ccf2eb341b224be51c01d49b11eecb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_bare_word_condition_is_a_constant_not_an_option<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_bare_word_condition_is_a_constant_not_an_option.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">false</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">FALSE</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">null</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">true</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b> <b>{<font color="blue">echo </font><font color="red">PHP_INT_SIZE</font>}</b> <b>{<font color="blue">echo </font><font color="red">M_PI <font color="black">|</font> + 0</font>}</b> [<b>{<font color="blue">echo </font><font color="red">false</font>}</b>] <b>{<font color="blue">case </font><font color="red">PHP_INT_SIZE</font>}</b><b>{<font color="blue">when </font><font color="red">8</font>}</b>eight<b>{<font color="blue">else</font><font color="red"></font>}</b>other<b>{/<font color="blue">case</font><font color="red"></font>}</b> <b>{<font color="blue">while </font><font color="red">false</font>}</b>x<b>{/<font color="blue">while</font><font color="red"></font>}</b>.</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax50d22ad7c250826d8b9f4d4be24f5fca"></div>
+                        <script>
+                        padAjax50d22ad7c250826d8b9f4d4be24f5fca = new XMLHttpRequest();
+                        padAjax50d22ad7c250826d8b9f4d4be24f5fca.onreadystatechange=function() {
+                        if (padAjax50d22ad7c250826d8b9f4d4be24f5fca.readyState === 4) {
+                        if (padAjax50d22ad7c250826d8b9f4d4be24f5fca.status === 200) {
+                        document.getElementById("padAjax50d22ad7c250826d8b9f4d4be24f5fca").innerHTML=padAjax50d22ad7c250826d8b9f4d4be24f5fca.responseText;
+                        } else {
+                        document.getElementById("padAjax50d22ad7c250826d8b9f4d4be24f5fca").innerHTML=padAjax50d22ad7c250826d8b9f4d4be24f5fca.statusText;
+                        }
+                        }
+                        }
+                        padAjax50d22ad7c250826d8b9f4d4be24f5fca.open("GET","http://localhost/pad/regression/framework/?expressions/a_bare_word_condition_is_a_constant_not_an_option&padInclude",true);
+                        padAjax50d22ad7c250826d8b9f4d4be24f5fca.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/sitemap - Page: commented<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">commented.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">commented.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A {meta sitemap=false} inside a comment is commented out: the page it stands in is<br>  // listed. The sitemap read the template with a pattern of its own, past comments and<br>  // {ignore}, and left such a page out. The page is made for the moment of one walk and<br>  // taken away again, as dotted does with its directory.<br><br>  </span><span style="color: #0000BB">$commentedFile </span><span style="color: #007700">= </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'commentedmeta.pad'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$commentedFile</span><span style="color: #007700">, </span><span style="color: #DD0000">"{# {meta sitemap=false} #}a page\n" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$commentedRows </span><span style="color: #007700">= </span><span style="color: #0000BB">padSitemapPages </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">unlink </span><span style="color: #007700">( </span><span style="color: #0000BB">$commentedFile </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$commentedResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'commentedmeta ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #DD0000">'commentedmeta'</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$commentedRows</span><span style="color: #007700">, </span><span style="color: #DD0000">'page' </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'listed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'left out' </span><span style="color: #007700">)<br>                   . </span><span style="color: #DD0000">', dotted ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #DD0000">'dotted'</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$commentedRows</span><span style="color: #007700">, </span><span style="color: #DD0000">'page' </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'listed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'left out' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">sitemap=false</font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>commentedResult</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax585efd844f6322b239b83fb40130d1cc"></div>
+                        <script>
+                        padAjax585efd844f6322b239b83fb40130d1cc = new XMLHttpRequest();
+                        padAjax585efd844f6322b239b83fb40130d1cc.onreadystatechange=function() {
+                        if (padAjax585efd844f6322b239b83fb40130d1cc.readyState === 4) {
+                        if (padAjax585efd844f6322b239b83fb40130d1cc.status === 200) {
+                        document.getElementById("padAjax585efd844f6322b239b83fb40130d1cc").innerHTML=padAjax585efd844f6322b239b83fb40130d1cc.responseText;
+                        } else {
+                        document.getElementById("padAjax585efd844f6322b239b83fb40130d1cc").innerHTML=padAjax585efd844f6322b239b83fb40130d1cc.statusText;
+                        }
+                        }
+                        }
+                        padAjax585efd844f6322b239b83fb40130d1cc.open("GET","http://localhost/pad/regression/sitemap/?commented&padInclude",true);
+                        padAjax585efd844f6322b239b83fb40130d1cc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/sitemap - Page: dotted<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">dotted.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">dotted.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A directory whose name the router cannot take - a dot in it, v1.0/ - holds pages no<br>  // address reaches: ?v1.0/old answers 404. The sitemap listed them all the same. The<br>  // directory is made for the moment of one walk and taken away again, so no other page of<br>  // the tree - the develop crawls of every page - ever meets a page that cannot be asked for.<br><br>  </span><span style="color: #0000BB">$dottedDir </span><span style="color: #007700">= </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'v1.0'</span><span style="color: #007700">;<br><br>  @</span><span style="color: #0000BB">mkdir </span><span style="color: #007700">( </span><span style="color: #0000BB">$dottedDir </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$dottedDir</span><span style="color: #DD0000">/old.pad"</span><span style="color: #007700">, </span><span style="color: #DD0000">"an old page\n" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$dottedRows </span><span style="color: #007700">= </span><span style="color: #0000BB">padSitemapPages </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">unlink </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$dottedDir</span><span style="color: #DD0000">/old.pad" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">rmdir </span><span style="color: #007700">( </span><span style="color: #0000BB">$dottedDir </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$dottedResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'v1.0/old ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #DD0000">'v1.0/old'</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$dottedRows</span><span style="color: #007700">, </span><span style="color: #DD0000">'page' </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'listed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'left out' </span><span style="color: #007700">)<br>                . </span><span style="color: #DD0000">', about ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #DD0000">'about'</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$dottedRows</span><span style="color: #007700">, </span><span style="color: #DD0000">'page' </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'listed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'left out' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">sitemap=false</font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>dottedResult</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0982b3e6a649d5eeca133282eec1da36"></div>
+                        <script>
+                        padAjax0982b3e6a649d5eeca133282eec1da36 = new XMLHttpRequest();
+                        padAjax0982b3e6a649d5eeca133282eec1da36.onreadystatechange=function() {
+                        if (padAjax0982b3e6a649d5eeca133282eec1da36.readyState === 4) {
+                        if (padAjax0982b3e6a649d5eeca133282eec1da36.status === 200) {
+                        document.getElementById("padAjax0982b3e6a649d5eeca133282eec1da36").innerHTML=padAjax0982b3e6a649d5eeca133282eec1da36.responseText;
+                        } else {
+                        document.getElementById("padAjax0982b3e6a649d5eeca133282eec1da36").innerHTML=padAjax0982b3e6a649d5eeca133282eec1da36.statusText;
+                        }
+                        }
+                        }
+                        padAjax0982b3e6a649d5eeca133282eec1da36.open("GET","http://localhost/pad/regression/sitemap/?dotted&padInclude",true);
+                        padAjax0982b3e6a649d5eeca133282eec1da36.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/attrs/1-boolean<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/attrs/1-boolean.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Booleans and escaped values<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>disabled is written bare while busy<font color="black">,</font> a false aria value stays the text false<font color="black">,</font> and the quote in the title is escaped.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>busy = TRUE</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>help = <font color="black">'</font>Saves the "draft" now<font color="black">'</font></font>}</b><br>&lt;button <b>{<font color="blue">attrs </font><font color="red">disabled=<font color="red">$</font>busy<font color="black">,</font> title=<font color="red">$</font>help<font color="black">,</font> aria-expanded=<font color="black">'</font>false<font color="black">'</font><font color="black">,</font> data-step=2</font>}</b>&gt;Save&lt;/button&gt;<br>&lt;button <b>{<font color="blue">attrs </font><font color="red">disabled=FALSE<font color="black">,</font> title=<font color="red">$</font>help</font>}</b>&gt;Publish&lt;/button&gt;<br><b>{<font color="blue">attrs </font><font color="red">disabled=<font color="red">$</font>busy<font color="black">,</font> title=<font color="red">$</font>help<font color="black">,</font> aria-expanded=<font color="black">'</font>false<font color="black">'</font><font color="black">,</font> data-step=2</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1d6e99273a4e5e0b95b4be1bb817748d"></div>
+                        <script>
+                        padAjax1d6e99273a4e5e0b95b4be1bb817748d = new XMLHttpRequest();
+                        padAjax1d6e99273a4e5e0b95b4be1bb817748d.onreadystatechange=function() {
+                        if (padAjax1d6e99273a4e5e0b95b4be1bb817748d.readyState === 4) {
+                        if (padAjax1d6e99273a4e5e0b95b4be1bb817748d.status === 200) {
+                        document.getElementById("padAjax1d6e99273a4e5e0b95b4be1bb817748d").innerHTML=padAjax1d6e99273a4e5e0b95b4be1bb817748d.responseText;
+                        } else {
+                        document.getElementById("padAjax1d6e99273a4e5e0b95b4be1bb817748d").innerHTML=padAjax1d6e99273a4e5e0b95b4be1bb817748d.statusText;
+                        }
+                        }
+                        }
+                        padAjax1d6e99273a4e5e0b95b4be1bb817748d.open("GET","http://localhost/pad/tags/?examples/attrs/1-boolean&padInclude",true);
+                        padAjax1d6e99273a4e5e0b95b4be1bb817748d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/classes/1-conditions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/classes/1-conditions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Fixed and conditional names<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>panel is always in; active and invalid only when their condition holds - a repeated name is written once.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>isActive = TRUE</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>hasErrors = FALSE</font>}</b><br>&lt;div class="<b>{<font color="blue">classes </font><font color="red"><font color="black">'</font>panel panel-large<font color="black">'</font><font color="black">,</font> active=<font color="red">$</font>isActive<font color="black">,</font> invalid=<font color="red">$</font>hasErrors<font color="black">,</font> <font color="black">'</font>panel<font color="black">'</font></font>}</b>"&gt;The panel&lt;/div&gt;<br>class="<b>{<font color="blue">classes </font><font color="red"><font color="black">'</font>panel panel-large<font color="black">'</font><font color="black">,</font> active=<font color="red">$</font>isActive<font color="black">,</font> invalid=<font color="red">$</font>hasErrors<font color="black">,</font> <font color="black">'</font>panel<font color="black">'</font></font>}</b>"</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax06d5fbb04c00327249d811ac9fb95730"></div>
+                        <script>
+                        padAjax06d5fbb04c00327249d811ac9fb95730 = new XMLHttpRequest();
+                        padAjax06d5fbb04c00327249d811ac9fb95730.onreadystatechange=function() {
+                        if (padAjax06d5fbb04c00327249d811ac9fb95730.readyState === 4) {
+                        if (padAjax06d5fbb04c00327249d811ac9fb95730.status === 200) {
+                        document.getElementById("padAjax06d5fbb04c00327249d811ac9fb95730").innerHTML=padAjax06d5fbb04c00327249d811ac9fb95730.responseText;
+                        } else {
+                        document.getElementById("padAjax06d5fbb04c00327249d811ac9fb95730").innerHTML=padAjax06d5fbb04c00327249d811ac9fb95730.statusText;
+                        }
+                        }
+                        }
+                        padAjax06d5fbb04c00327249d811ac9fb95730.open("GET","http://localhost/pad/tags/?examples/classes/1-conditions&padInclude",true);
+                        padAjax06d5fbb04c00327249d811ac9fb95730.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/input/2-attributes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/input/2-attributes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Other items are attributes<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Every item the tag does not take itself goes on the input<font color="black">,</font> a bare word as a bare attribute.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>busy = FALSE</font>}</b><br><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>qty<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>number<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Quantity<font color="black">'</font><font color="black">,</font> value=1<font color="black">,</font> min=1<font color="black">,</font> max=10<font color="black">,</font> required<font color="black">,</font> disabled=<font color="red">$</font>busy</font>}</b><br><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>user[email]<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> placeholder=<font color="black">'</font>you<font color="black">@</font>example.org<font color="black">'</font><font color="black">,</font> autocomplete=<font color="black">'</font>email<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax95291c89c2485a40ff9ff9577d1a3902"></div>
+                        <script>
+                        padAjax95291c89c2485a40ff9ff9577d1a3902 = new XMLHttpRequest();
+                        padAjax95291c89c2485a40ff9ff9577d1a3902.onreadystatechange=function() {
+                        if (padAjax95291c89c2485a40ff9ff9577d1a3902.readyState === 4) {
+                        if (padAjax95291c89c2485a40ff9ff9577d1a3902.status === 200) {
+                        document.getElementById("padAjax95291c89c2485a40ff9ff9577d1a3902").innerHTML=padAjax95291c89c2485a40ff9ff9577d1a3902.responseText;
+                        } else {
+                        document.getElementById("padAjax95291c89c2485a40ff9ff9577d1a3902").innerHTML=padAjax95291c89c2485a40ff9ff9577d1a3902.statusText;
+                        }
+                        }
+                        }
+                        padAjax95291c89c2485a40ff9ff9577d1a3902.open("GET","http://localhost/pad/tags/?examples/input/2-attributes&padInclude",true);
+                        padAjax95291c89c2485a40ff9ff9577d1a3902.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/sitemap/site/thanks<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sitemap/site/thanks.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">sitemap=false</font>}</b><br>&lt;p&gt;Thank you - not in the site map.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa70bccd85f970b5bc2af2ef685b0a947"></div>
+                        <script>
+                        padAjaxa70bccd85f970b5bc2af2ef685b0a947 = new XMLHttpRequest();
+                        padAjaxa70bccd85f970b5bc2af2ef685b0a947.onreadystatechange=function() {
+                        if (padAjaxa70bccd85f970b5bc2af2ef685b0a947.readyState === 4) {
+                        if (padAjaxa70bccd85f970b5bc2af2ef685b0a947.status === 200) {
+                        document.getElementById("padAjaxa70bccd85f970b5bc2af2ef685b0a947").innerHTML=padAjaxa70bccd85f970b5bc2af2ef685b0a947.responseText;
+                        } else {
+                        document.getElementById("padAjaxa70bccd85f970b5bc2af2ef685b0a947").innerHTML=padAjaxa70bccd85f970b5bc2af2ef685b0a947.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa70bccd85f970b5bc2af2ef685b0a947.open("GET","http://localhost/pad/tags/?examples/sitemap/site/thanks&padInclude",true);
+                        padAjaxa70bccd85f970b5bc2af2ef685b0a947.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -87,7 +413,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

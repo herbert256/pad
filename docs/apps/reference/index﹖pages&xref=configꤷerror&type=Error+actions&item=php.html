@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/error_php - Page: answered_then_failed<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">answered_then_failed.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">answered_then_failed.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fails once its answer has gone out: a shutdown function of the page raises an error<br>  // after the engine has sent the body and its Content-Length.<br><br>  </span><span style="color: #0000BB">register_shutdown_function </span><span style="color: #007700">( function () { </span><span style="color: #0000BB">padError </span><span style="color: #007700">( </span><span style="color: #DD0000">'raised after the answer went out' </span><span style="color: #007700">); } );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;answered&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax433d739dbbddd66f698d2a7c64e74f63"></div>
+                        <script>
+                        padAjax433d739dbbddd66f698d2a7c64e74f63 = new XMLHttpRequest();
+                        padAjax433d739dbbddd66f698d2a7c64e74f63.onreadystatechange=function() {
+                        if (padAjax433d739dbbddd66f698d2a7c64e74f63.readyState === 4) {
+                        if (padAjax433d739dbbddd66f698d2a7c64e74f63.status === 200) {
+                        document.getElementById("padAjax433d739dbbddd66f698d2a7c64e74f63").innerHTML=padAjax433d739dbbddd66f698d2a7c64e74f63.responseText;
+                        } else {
+                        document.getElementById("padAjax433d739dbbddd66f698d2a7c64e74f63").innerHTML=padAjax433d739dbbddd66f698d2a7c64e74f63.statusText;
+                        }
+                        }
+                        }
+                        padAjax433d739dbbddd66f698d2a7c64e74f63.open("GET","http://localhost/pad/regression/error_php/?answered_then_failed&padInclude",true);
+                        padAjax433d739dbbddd66f698d2a7c64e74f63.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_php - Page: answered_then_threw<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">answered_then_threw.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">answered_then_threw.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fails once its answer has gone out with an error of its own, not padError: a shutdown<br>  // function throws, and another warns.<br><br>  </span><span style="color: #0000BB">register_shutdown_function </span><span style="color: #007700">( function () { </span><span style="color: #0000BB">trigger_error </span><span style="color: #007700">( </span><span style="color: #DD0000">'warned after the answer went out'</span><span style="color: #007700">, </span><span style="color: #0000BB">E_USER_WARNING </span><span style="color: #007700">); } );<br>  </span><span style="color: #0000BB">register_shutdown_function </span><span style="color: #007700">( function () { throw new </span><span style="color: #0000BB">Exception </span><span style="color: #007700">( </span><span style="color: #DD0000">'thrown after the answer went out' </span><span style="color: #007700">); } );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;answered&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0d523b5c416e3e198613d0d8d960ab3c"></div>
+                        <script>
+                        padAjax0d523b5c416e3e198613d0d8d960ab3c = new XMLHttpRequest();
+                        padAjax0d523b5c416e3e198613d0d8d960ab3c.onreadystatechange=function() {
+                        if (padAjax0d523b5c416e3e198613d0d8d960ab3c.readyState === 4) {
+                        if (padAjax0d523b5c416e3e198613d0d8d960ab3c.status === 200) {
+                        document.getElementById("padAjax0d523b5c416e3e198613d0d8d960ab3c").innerHTML=padAjax0d523b5c416e3e198613d0d8d960ab3c.responseText;
+                        } else {
+                        document.getElementById("padAjax0d523b5c416e3e198613d0d8d960ab3c").innerHTML=padAjax0d523b5c416e3e198613d0d8d960ab3c.statusText;
+                        }
+                        }
+                        }
+                        padAjax0d523b5c416e3e198613d0d8d960ab3c.open("GET","http://localhost/pad/regression/error_php/?answered_then_threw&padInclude",true);
+                        padAjax0d523b5c416e3e198613d0d8d960ab3c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/error_php - Page: boom<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -116,6 +200,90 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/error_php - Page: late<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">late.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">late.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Under this action an error is PHP's to show: once the answer had gone out, PHP's own<br>  // "Fatal error: Uncaught Exception" landed behind the body, past the Content-Length the<br>  // headers declared. The page that fails after answering is read off the socket.<br><br>  </span><span style="color: #0000BB">$url  </span><span style="color: #007700">= </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/error_php/?answered_then_failed&amp;padInclude' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$sock </span><span style="color: #007700">= </span><span style="color: #0000BB">fsockopen </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">], </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'port'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">80</span><span style="color: #007700">, </span><span style="color: #0000BB">$errno</span><span style="color: #007700">, </span><span style="color: #0000BB">$errstr</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">fwrite </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock</span><span style="color: #007700">, </span><span style="color: #DD0000">"GET </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">]}</span><span style="color: #DD0000">?</span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'query'</span><span style="color: #007700">]}</span><span style="color: #DD0000"> HTTP/1.1\r\nHost: </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">]}</span><span style="color: #DD0000">\r\nConnection: close\r\n\r\n" </span><span style="color: #007700">);<br><br>  [ </span><span style="color: #0000BB">$head</span><span style="color: #007700">, </span><span style="color: #0000BB">$body </span><span style="color: #007700">] = </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">"\r\n\r\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">stream_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">), </span><span style="color: #0000BB">2 </span><span style="color: #007700">) + [ </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">fclose </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^Content-Length:\s*(\d+)/mi'</span><span style="color: #007700">, </span><span style="color: #0000BB">$head</span><span style="color: #007700">, </span><span style="color: #0000BB">$length </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$endsThere </span><span style="color: #007700">= ( isset ( </span><span style="color: #0000BB">$length </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) and </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$body </span><span style="color: #007700">) == </span><span style="color: #0000BB">$length </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;the answer ends where its Content-Length says: <b>{<font color="green"><font color="red">$</font>endsThere</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax188afeb3358c01ba55d13f3a3ee905b6"></div>
+                        <script>
+                        padAjax188afeb3358c01ba55d13f3a3ee905b6 = new XMLHttpRequest();
+                        padAjax188afeb3358c01ba55d13f3a3ee905b6.onreadystatechange=function() {
+                        if (padAjax188afeb3358c01ba55d13f3a3ee905b6.readyState === 4) {
+                        if (padAjax188afeb3358c01ba55d13f3a3ee905b6.status === 200) {
+                        document.getElementById("padAjax188afeb3358c01ba55d13f3a3ee905b6").innerHTML=padAjax188afeb3358c01ba55d13f3a3ee905b6.responseText;
+                        } else {
+                        document.getElementById("padAjax188afeb3358c01ba55d13f3a3ee905b6").innerHTML=padAjax188afeb3358c01ba55d13f3a3ee905b6.statusText;
+                        }
+                        }
+                        }
+                        padAjax188afeb3358c01ba55d13f3a3ee905b6.open("GET","http://localhost/pad/regression/error_php/?late&padInclude",true);
+                        padAjax188afeb3358c01ba55d13f3a3ee905b6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_php - Page: late_own<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">late_own.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">late_own.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Under this action an error is PHP's to show, and an application's own - an exception or<br>  // a warning of a shutdown function - after the answer had gone out landed behind the<br>  // body, past the Content-Length the headers declared: only an error raised through<br>  // padError had been kept out. The page is read off the socket.<br><br>  </span><span style="color: #0000BB">$url  </span><span style="color: #007700">= </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/error_php/?answered_then_threw&amp;padInclude' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$sock </span><span style="color: #007700">= </span><span style="color: #0000BB">fsockopen </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">], </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'port'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">80</span><span style="color: #007700">, </span><span style="color: #0000BB">$errno</span><span style="color: #007700">, </span><span style="color: #0000BB">$errstr</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">fwrite </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock</span><span style="color: #007700">, </span><span style="color: #DD0000">"GET </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">]}</span><span style="color: #DD0000">?</span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'query'</span><span style="color: #007700">]}</span><span style="color: #DD0000"> HTTP/1.1\r\nHost: </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">]}</span><span style="color: #DD0000">\r\nConnection: close\r\n\r\n" </span><span style="color: #007700">);<br><br>  [ </span><span style="color: #0000BB">$head</span><span style="color: #007700">, </span><span style="color: #0000BB">$body </span><span style="color: #007700">] = </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">"\r\n\r\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">stream_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">), </span><span style="color: #0000BB">2 </span><span style="color: #007700">) + [ </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">fclose </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^Content-Length:\s*(\d+)/mi'</span><span style="color: #007700">, </span><span style="color: #0000BB">$head</span><span style="color: #007700">, </span><span style="color: #0000BB">$length </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$endsThere </span><span style="color: #007700">= ( isset ( </span><span style="color: #0000BB">$length </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) and </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$body </span><span style="color: #007700">) == </span><span style="color: #0000BB">$length </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;the answer ends where its Content-Length says: <b>{<font color="green"><font color="red">$</font>endsThere</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e"></div>
+                        <script>
+                        padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e = new XMLHttpRequest();
+                        padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.onreadystatechange=function() {
+                        if (padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.readyState === 4) {
+                        if (padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.status === 200) {
+                        document.getElementById("padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e").innerHTML=padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.responseText;
+                        } else {
+                        document.getElementById("padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e").innerHTML=padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.open("GET","http://localhost/pad/regression/error_php/?late_own&padInclude",true);
+                        padAjaxcb6c45a2ac0c346bc06ec6f3c5a1c66e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/error_php - Page: verdict<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -171,7 +339,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

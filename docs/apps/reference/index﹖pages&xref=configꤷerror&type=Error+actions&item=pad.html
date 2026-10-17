@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -32,16 +32,16 @@
               <td>
                 <center>
                   <hr>
-                  App: react - Page: components<br>
+                  App: react - Page: examples/cart<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">components.php</font>
+                        <font size="-2">examples/cart.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">components.pad</font>
+                        <font size="-2">examples/cart.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -49,41 +49,41 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Components - PAD + React'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The cart is the session's: product id =&gt; quantity. A post adds one (op=add), takes one<br>  // off (op=remove) or empties it (op=clear), and the answer to it - like the page itself -<br>  // is the cart as the islands show it: lines, count and total. Stock is the server's to<br>  // check: a product sold out cannot be added, however the button was pressed.<br><br>  </span><span style="color: #0000BB">$products </span><span style="color: #007700">= </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">), </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #DD0000">'id' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$counts   </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'reactCart'</span><span style="color: #007700">, [] );<br><br>  if ( </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$op </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'op'</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$id </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'id'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'clear' </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$counts </span><span style="color: #007700">= [];<br>    elseif ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'add' </span><span style="color: #007700">and isset ( </span><span style="color: #0000BB">$products </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ) and </span><span style="color: #0000BB">$products </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'stock'</span><span style="color: #007700">] &gt; ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] = ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) + </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>    elseif ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'remove' </span><span style="color: #007700">and isset ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ) and --</span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] &lt;= </span><span style="color: #0000BB">0 </span><span style="color: #007700">)<br>      unset ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] );<br><br>    </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'reactCart'</span><span style="color: #007700">, </span><span style="color: #0000BB">$counts </span><span style="color: #007700">);<br><br>  }<br><br>  </span><span style="color: #0000BB">$cart  </span><span style="color: #007700">= </span><span style="color: #0000BB">reactCart </span><span style="color: #007700">( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$shelf </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'products' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">$products </span><span style="color: #007700">), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">9 </span><span style="color: #007700">), </span><span style="color: #DD0000">'cart' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$cart </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'cart' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;Reusable React Components&lt;/h1&gt;<br><br>&lt;p&gt;Learn how to create and reuse React components in your PAD application.&lt;/p&gt;<br><br>&lt;h2&gt;Component Pattern&lt;/h2&gt;<br>&lt;p&gt;<br>  You can define React components once and reuse them multiple times. Here's an example<br>  showing how to create a reusable Card component:<br>&lt;/p&gt;<br><br>&lt;div id="components-demo"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/components/demo.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Component Best Practices&lt;/h2&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;&lt;strong&gt;Single Responsibility:&lt;/strong&gt; Each component should do one thing well&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Props:&lt;/strong&gt; Pass data to components via props (parameters)&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Composition:&lt;/strong&gt; Build complex UIs by combining simple components&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Reusability:&lt;/strong&gt; Design components to be reused in different contexts&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;State Management:&lt;/strong&gt; Keep state in the component that needs it&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Todo List Component Example&lt;/h2&gt;<br>&lt;div id="todo-app"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/components/todo.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Next Steps&lt;/h2&gt;<br>&lt;p&gt;<br>  For larger applications, consider organizing components in separate JavaScript files<br>  and using a build tool like Vite or Webpack. This example uses inline JSX for simplicity.<br>&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;div class="cols-2" style="grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr)"&gt;<br>  &lt;div data-island="Shelf" data-props="{^shelf}"&gt;&lt;/div&gt;<br>  &lt;aside data-island="Basket" data-props="{^cart}"&gt;&lt;/aside&gt;<br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/cart.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax272bb92a7b17055f425716a0a35487ec"></div>
+                        <div id="padAjaxeaaadfa2b5be3a09f1947a295503ffde"></div>
                         <script>
-                        padAjax272bb92a7b17055f425716a0a35487ec = new XMLHttpRequest();
-                        padAjax272bb92a7b17055f425716a0a35487ec.onreadystatechange=function() {
-                        if (padAjax272bb92a7b17055f425716a0a35487ec.readyState === 4) {
-                        if (padAjax272bb92a7b17055f425716a0a35487ec.status === 200) {
-                        document.getElementById("padAjax272bb92a7b17055f425716a0a35487ec").innerHTML=padAjax272bb92a7b17055f425716a0a35487ec.responseText;
+                        padAjaxeaaadfa2b5be3a09f1947a295503ffde = new XMLHttpRequest();
+                        padAjaxeaaadfa2b5be3a09f1947a295503ffde.onreadystatechange=function() {
+                        if (padAjaxeaaadfa2b5be3a09f1947a295503ffde.readyState === 4) {
+                        if (padAjaxeaaadfa2b5be3a09f1947a295503ffde.status === 200) {
+                        document.getElementById("padAjaxeaaadfa2b5be3a09f1947a295503ffde").innerHTML=padAjaxeaaadfa2b5be3a09f1947a295503ffde.responseText;
                         } else {
-                        document.getElementById("padAjax272bb92a7b17055f425716a0a35487ec").innerHTML=padAjax272bb92a7b17055f425716a0a35487ec.statusText;
+                        document.getElementById("padAjaxeaaadfa2b5be3a09f1947a295503ffde").innerHTML=padAjaxeaaadfa2b5be3a09f1947a295503ffde.statusText;
                         }
                         }
                         }
-                        padAjax272bb92a7b17055f425716a0a35487ec.open("GET","http://localhost/pad/react/?components&padInclude",true);
-                        padAjax272bb92a7b17055f425716a0a35487ec.send();
+                        padAjaxeaaadfa2b5be3a09f1947a295503ffde.open("GET","http://localhost/pad/react/?examples/cart&padInclude",true);
+                        padAjaxeaaadfa2b5be3a09f1947a295503ffde.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: react - Page: examples<br>
+                  App: react - Page: examples/chart<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">examples.php</font>
+                        <font size="-2">examples/chart.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">examples.pad</font>
+                        <font size="-2">examples/chart.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -91,26 +91,26 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Examples - PAD + React'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The chart the request asks for: its kind, how many months, which channels. The browser<br>  // gets the whole page; the component asks for &amp;padFragment=chart with its choices and gets<br>  // the {fragment 'chart'} of chart.pad alone - the SVG PAD drew, nothing around it.<br><br>  </span><span style="color: #0000BB">$kind     </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'kind'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bar' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$kind     </span><span style="color: #007700">= </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$kind</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'bar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stacked'</span><span style="color: #007700">, </span><span style="color: #DD0000">'line'</span><span style="color: #007700">, </span><span style="color: #DD0000">'hbar' </span><span style="color: #007700">] ) ? </span><span style="color: #0000BB">$kind </span><span style="color: #007700">: </span><span style="color: #DD0000">'bar'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$months   </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">12</span><span style="color: #007700">, (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'months'</span><span style="color: #007700">, </span><span style="color: #0000BB">12 </span><span style="color: #007700">) ) );<br>  </span><span style="color: #0000BB">$channels </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_intersect </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'online'</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'wholesale' </span><span style="color: #007700">], </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">','</span><span style="color: #007700">, </span><span style="color: #0000BB">reactText </span><span style="color: #007700">( </span><span style="color: #DD0000">'channels'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online,shop,wholesale' </span><span style="color: #007700">) ) ) );<br><br>  if ( ! </span><span style="color: #0000BB">$channels </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$channels </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'online' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$sales     </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'sales' </span><span style="color: #007700">), -</span><span style="color: #0000BB">$months </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$value     </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$channels </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$stacked   </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$kind </span><span style="color: #007700">== </span><span style="color: #DD0000">'stacked' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$chartKind </span><span style="color: #007700">= </span><span style="color: #0000BB">$stacked </span><span style="color: #007700">? </span><span style="color: #DD0000">'bar' </span><span style="color: #007700">: </span><span style="color: #0000BB">$kind</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$row </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_intersect_key </span><span style="color: #007700">( </span><span style="color: #0000BB">$row</span><span style="color: #007700">, </span><span style="color: #0000BB">array_flip </span><span style="color: #007700">( </span><span style="color: #0000BB">$channels </span><span style="color: #007700">) ) ), </span><span style="color: #0000BB">$sales </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$choice </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'kind' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$kind</span><span style="color: #007700">, </span><span style="color: #DD0000">'months' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$months</span><span style="color: #007700">, </span><span style="color: #DD0000">'channels' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$channels </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">redirect </font><font color="red"><font color="black">'</font>examples/index<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000">&lt;div data-island="ChartStudio" data-props="{^choice}"&gt;<br><b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>chart<font color="black">'</font></font>}</b><br>  &lt;div class="chart-frame" data-total="<b>{<font color="green"><font color="red">$</font>total</font>}</b>"&gt;<br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>stacked</font>}</b><br>      <b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>value<font color="black">,</font> stacked<font color="black">,</font> title=<font color="black">'</font>Sales per month<font color="black">,</font> in thousands<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">else</font><font color="red"></font>}</b><br>      <b>{<font color="blue">chart </font><font color="red"><font color="red">$</font>chartKind<font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>value<font color="black">,</font> title=<font color="black">'</font>Sales per month<font color="black">,</font> in thousands<font color="black">'</font></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/chart.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax1da74b114cd26ae4b82e9bff5651e773"></div>
+                        <div id="padAjax29a7efc24147864f70c20a4824edc839"></div>
                         <script>
-                        padAjax1da74b114cd26ae4b82e9bff5651e773 = new XMLHttpRequest();
-                        padAjax1da74b114cd26ae4b82e9bff5651e773.onreadystatechange=function() {
-                        if (padAjax1da74b114cd26ae4b82e9bff5651e773.readyState === 4) {
-                        if (padAjax1da74b114cd26ae4b82e9bff5651e773.status === 200) {
-                        document.getElementById("padAjax1da74b114cd26ae4b82e9bff5651e773").innerHTML=padAjax1da74b114cd26ae4b82e9bff5651e773.responseText;
+                        padAjax29a7efc24147864f70c20a4824edc839 = new XMLHttpRequest();
+                        padAjax29a7efc24147864f70c20a4824edc839.onreadystatechange=function() {
+                        if (padAjax29a7efc24147864f70c20a4824edc839.readyState === 4) {
+                        if (padAjax29a7efc24147864f70c20a4824edc839.status === 200) {
+                        document.getElementById("padAjax29a7efc24147864f70c20a4824edc839").innerHTML=padAjax29a7efc24147864f70c20a4824edc839.responseText;
                         } else {
-                        document.getElementById("padAjax1da74b114cd26ae4b82e9bff5651e773").innerHTML=padAjax1da74b114cd26ae4b82e9bff5651e773.statusText;
+                        document.getElementById("padAjax29a7efc24147864f70c20a4824edc839").innerHTML=padAjax29a7efc24147864f70c20a4824edc839.statusText;
                         }
                         }
                         }
-                        padAjax1da74b114cd26ae4b82e9bff5651e773.open("GET","http://localhost/pad/react/?examples&padInclude",true);
-                        padAjax1da74b114cd26ae4b82e9bff5651e773.send();
+                        padAjax29a7efc24147864f70c20a4824edc839.open("GET","http://localhost/pad/react/?examples/chart&padInclude",true);
+                        padAjax29a7efc24147864f70c20a4824edc839.send();
                         </script>
                       </td>
                     </tr>
@@ -134,7 +134,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;Simple Click Handler&lt;/h1&gt;<br><br>&lt;p&gt;Basic React component with state and event handling.&lt;/p&gt;<br><br>&lt;div id="example1"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/click.js"&gt;&lt;/script&gt;<br><br>&lt;div style="margin-top: 30px;"&gt;<br>  &lt;a href="?examples/index" class="btn"&gt;← Back to Examples&lt;/a&gt;<br>&lt;/div&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;div id="example1"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/click.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjaxa1a87ed1a632c1c597e472a72c96dccb"></div>
@@ -151,6 +151,46 @@
                         }
                         padAjaxa1a87ed1a632c1c597e472a72c96dccb.open("GET","http://localhost/pad/react/?examples/click&padInclude",true);
                         padAjaxa1a87ed1a632c1c597e472a72c96dccb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: react - Page: examples/components<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/components.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div id="components-demo"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/components.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax94229110c99f81d98edc56307ea9da7d"></div>
+                        <script>
+                        padAjax94229110c99f81d98edc56307ea9da7d = new XMLHttpRequest();
+                        padAjax94229110c99f81d98edc56307ea9da7d.onreadystatechange=function() {
+                        if (padAjax94229110c99f81d98edc56307ea9da7d.readyState === 4) {
+                        if (padAjax94229110c99f81d98edc56307ea9da7d.status === 200) {
+                        document.getElementById("padAjax94229110c99f81d98edc56307ea9da7d").innerHTML=padAjax94229110c99f81d98edc56307ea9da7d.responseText;
+                        } else {
+                        document.getElementById("padAjax94229110c99f81d98edc56307ea9da7d").innerHTML=padAjax94229110c99f81d98edc56307ea9da7d.statusText;
+                        }
+                        }
+                        }
+                        padAjax94229110c99f81d98edc56307ea9da7d.open("GET","http://localhost/pad/react/?examples/components&padInclude",true);
+                        padAjax94229110c99f81d98edc56307ea9da7d.send();
                         </script>
                       </td>
                     </tr>
@@ -173,10 +213,10 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Counter Demo - PAD + React'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Initial counter value from server<br>  </span><span style="color: #0000BB">$initialCount </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The start value comes from the server; everything after it is React state.<br><br>  </span><span style="color: #0000BB">$initialCount </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;Interactive Counter Demo&lt;/h1&gt;<br><br>&lt;p&gt;A complete React counter application with multiple features.&lt;/p&gt;<br><br>&lt;div id="counter-app" data-initial-count="<b>{<font color="green"><font color="red">$</font>initialCount</font>}</b>"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/counter/app.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;About This Demo&lt;/h2&gt;<br>&lt;p&gt;This counter demonstrates:&lt;/p&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;&lt;strong&gt;State management&lt;/strong&gt; - Using React's useState hook&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Event handling&lt;/strong&gt; - Button clicks and input changes&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Conditional rendering&lt;/strong&gt; - History only shows when available&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Server integration&lt;/strong&gt; - Initial count from PAD/PHP: <b>{<font color="green"><font color="red">$</font>initialCount</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Dynamic UI&lt;/strong&gt; - Disabled button when history is empty&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Controlled components&lt;/strong&gt; - Step size input&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;div id="counter-app" data-initial-count="<b>{<font color="green"><font color="red">$</font>initialCount</font>}</b>"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/counter.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjaxc07310b7e370621c5468ef69095e144e"></div>
@@ -193,6 +233,90 @@
                         }
                         padAjaxc07310b7e370621c5468ef69095e144e.open("GET","http://localhost/pad/react/?examples/counter&padInclude",true);
                         padAjaxc07310b7e370621c5468ef69095e144e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: react - Page: examples/enhance<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/enhance.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/enhance.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $people </span><span style="color: #007700">= </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'team' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div data-island="TeamTable" data-props="{^people}"&gt;<br>  &lt;table class="table"&gt;<br>    &lt;thead&gt;<br>      &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Team&lt;/th&gt;&lt;th&gt;City&lt;/th&gt;&lt;th class="num"&gt;Commits&lt;/th&gt;&lt;/tr&gt;<br>    &lt;/thead&gt;<br>    &lt;tbody&gt;<br>      <b>{<font color="blue">people</font><font color="red"></font>}</b><br>      &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>team</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>city</font>}</b>&lt;/td&gt;&lt;td class="num"&gt;<b>{<font color="green"><font color="red">$</font>commits</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>      <b>{/<font color="blue">people</font><font color="red"></font>}</b><br>    &lt;/tbody&gt;<br>  &lt;/table&gt;<br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/enhance.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd1771c66761e538a266bebfa0d5e9ff7"></div>
+                        <script>
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7 = new XMLHttpRequest();
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7.onreadystatechange=function() {
+                        if (padAjaxd1771c66761e538a266bebfa0d5e9ff7.readyState === 4) {
+                        if (padAjaxd1771c66761e538a266bebfa0d5e9ff7.status === 200) {
+                        document.getElementById("padAjaxd1771c66761e538a266bebfa0d5e9ff7").innerHTML=padAjaxd1771c66761e538a266bebfa0d5e9ff7.responseText;
+                        } else {
+                        document.getElementById("padAjaxd1771c66761e538a266bebfa0d5e9ff7").innerHTML=padAjaxd1771c66761e538a266bebfa0d5e9ff7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7.open("GET","http://localhost/pad/react/?examples/enhance&padInclude",true);
+                        padAjaxd1771c66761e538a266bebfa0d5e9ff7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: react - Page: examples/feedback<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/feedback.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/feedback.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The wall is this visitor's own, kept in the session: padSession reads it, padSessionPut<br>  // writes it. A post comes from the component's fetch - with $padCsrf on in the application's<br>  // configuration it carries the session's token in an X-CSRF-Token header, or PAD answers 403<br>  // before this file runs. padValidate answers a message per field that broke its rules;<br>  // with none the message goes on the wall. The answer to the post is the JSON of $padExpose.<br>  //<br>  // One list of rules for both sides: padValidate checks the post with it, and the component<br>  // gets it as padValidateClient exports it, for the browser's checker that {validator} in<br>  // the template brings - the same rules, the same messages, before the post leaves.<br><br>  </span><span style="color: #0000BB">$rules </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|max:40'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'email'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|email'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'mood'    </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|in:happy,curious,puzzled'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|min:10|max:280' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$wall   </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'reactWall'</span><span style="color: #007700">, [] );<br>  </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$saved  </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">);<br><br>    if ( ! </span><span style="color: #0000BB">$errors </span><span style="color: #007700">) {<br><br>      </span><span style="color: #0000BB">array_unshift </span><span style="color: #007700">( </span><span style="color: #0000BB">$wall</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'name' </span><span style="color: #007700">) ),<br>                               </span><span style="color: #DD0000">'mood'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'mood' </span><span style="color: #007700">),<br>                               </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'message' </span><span style="color: #007700">) ),<br>                               </span><span style="color: #DD0000">'at'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'H:i' </span><span style="color: #007700">) ] );<br><br>      </span><span style="color: #0000BB">$wall  </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$wall</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">12 </span><span style="color: #007700">);<br>      </span><span style="color: #0000BB">$saved </span><span style="color: #007700">= </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'reactWall'</span><span style="color: #007700">, </span><span style="color: #0000BB">$wall </span><span style="color: #007700">);<br><br>    }<br><br>  }<br><br>  </span><span style="color: #0000BB">$start     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'wall' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$wall</span><span style="color: #007700">, </span><span style="color: #DD0000">'rules' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padValidateClient </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">) ];<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'saved'</span><span style="color: #007700">, </span><span style="color: #DD0000">'errors'</span><span style="color: #007700">, </span><span style="color: #DD0000">'wall' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div data-island="FeedbackWall" data-props="{^start}"&gt;<br>  &lt;p class="island-fallback"&gt;The form needs JavaScript - it posts with fetch().&lt;/p&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">validator</font><font color="red"></font>}</b><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/feedback.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbbc96a633eaecd57c8f195ea92fd0078"></div>
+                        <script>
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078 = new XMLHttpRequest();
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078.onreadystatechange=function() {
+                        if (padAjaxbbc96a633eaecd57c8f195ea92fd0078.readyState === 4) {
+                        if (padAjaxbbc96a633eaecd57c8f195ea92fd0078.status === 200) {
+                        document.getElementById("padAjaxbbc96a633eaecd57c8f195ea92fd0078").innerHTML=padAjaxbbc96a633eaecd57c8f195ea92fd0078.responseText;
+                        } else {
+                        document.getElementById("padAjaxbbc96a633eaecd57c8f195ea92fd0078").innerHTML=padAjaxbbc96a633eaecd57c8f195ea92fd0078.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078.open("GET","http://localhost/pad/react/?examples/feedback&padInclude",true);
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078.send();
                         </script>
                       </td>
                     </tr>
@@ -216,7 +340,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;Form with Controlled Components&lt;/h1&gt;<br><br>&lt;p&gt;Demonstrates controlled form inputs in React.&lt;/p&gt;<br><br>&lt;div id="example2"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/form.js"&gt;&lt;/script&gt;<br><br>&lt;div style="margin-top: 30px;"&gt;<br>  &lt;a href="?examples/index" class="btn"&gt;← Back to Examples&lt;/a&gt;<br>&lt;/div&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;div id="example2"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/form.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax8a68acb2441c8487658e5d5d63d2a687"></div>
@@ -238,41 +362,43 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: react - Page: examples/index<br>
+                  App: react - Page: examples/live<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2"></font>
+                        <font size="-2">examples/live.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">examples/index.pad</font>
+                        <font size="-2">examples/live.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
                       </th>
                     </tr>
                     <tr>
-                      <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;React Examples&lt;/h1&gt;<br><br>&lt;p&gt;Explore various React patterns and examples showing integration with PAD.&lt;/p&gt;<br><br>&lt;div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;"&gt;<br><br>  &lt;div class="card" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"&gt;<br>    &lt;h3&gt;🖱️ Click Handler&lt;/h3&gt;<br>    &lt;p style="color: #666; font-size: 14px;"&gt;Basic React component with state and event handling.&lt;/p&gt;<br>    &lt;a href="?examples/click" class="btn" style="display: inline-block; margin-top: 10px;"&gt;View Example →&lt;/a&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="card" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"&gt;<br>    &lt;h3&gt;📝 Form Controls&lt;/h3&gt;<br>    &lt;p style="color: #666; font-size: 14px;"&gt;Controlled form inputs with validation.&lt;/p&gt;<br>    &lt;a href="?examples/form" class="btn" style="display: inline-block; margin-top: 10px;"&gt;View Example →&lt;/a&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="card" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"&gt;<br>    &lt;h3&gt;📦 Server Data&lt;/h3&gt;<br>    &lt;p style="color: #666; font-size: 14px;"&gt;Product list using &lt;code&gt;<b>{<font color="blue">json</font><font color="red"></font>}</b>&lt;/code&gt; tag pattern.&lt;/p&gt;<br>    &lt;a href="?examples/products" class="btn" style="display: inline-block; margin-top: 10px;"&gt;View Example →&lt;/a&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="card" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"&gt;<br>    &lt;h3&gt;🔘 Toggle Button&lt;/h3&gt;<br>    &lt;p style="color: #666; font-size: 14px;"&gt;Simple toggle component with state management.&lt;/p&gt;<br>    &lt;a href="?examples/toggle" class="btn" style="display: inline-block; margin-top: 10px;"&gt;View Example →&lt;/a&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="card" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"&gt;<br>    &lt;h3&gt;🔢 Counter Demo&lt;/h3&gt;<br>    &lt;p style="color: #666; font-size: 14px;"&gt;Interactive counter with increment/decrement.&lt;/p&gt;<br>    &lt;a href="?examples/counter" class="btn" style="display: inline-block; margin-top: 10px;"&gt;View Example →&lt;/a&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="card" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"&gt;<br>    &lt;h3&gt;💬 Topic Page&lt;/h3&gt;<br>    &lt;p style="color: #666; font-size: 14px;"&gt;Forum topic using &lt;code&gt;<b>{<font color="blue">reactData</font><font color="red"></font>}</b>&lt;/code&gt; tag.&lt;/p&gt;<br>    &lt;a href="?examples/topic" class="btn" style="display: inline-block; margin-top: 10px;"&gt;View Example →&lt;/a&gt;<br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br>&lt;h2 style="margin-top: 40px;"&gt;Learning Resources&lt;/h2&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;&lt;a href="https://react.dev/learn" target="_blank"&gt;Official React Documentation&lt;/a&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="https://react.dev/reference/react" target="_blank"&gt;React API Reference&lt;/a&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="https://react.dev/learn/tutorial-tic-tac-toe" target="_blank"&gt;React Tutorial (Tic-Tac-Toe)&lt;/a&gt;&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A small status board. The component asks for it every few seconds with padFormat=json;<br>  // padCacheIncrement keeps a count of the asks of every visitor together, under<br>  // DATA/cache/app/react/ - under a lock, so asks that come at once are each counted. The<br>  // rest is what the server knows at that moment.<br><br>  </span><span style="color: #0000BB">$hits </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padCacheIncrement </span><span style="color: #007700">( </span><span style="color: #DD0000">'liveHits'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">86400 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$load </span><span style="color: #007700">= </span><span style="color: #0000BB">function_exists </span><span style="color: #007700">( </span><span style="color: #DD0000">'sys_getloadavg' </span><span style="color: #007700">) ? </span><span style="color: #0000BB">sys_getloadavg </span><span style="color: #007700">() : </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$status </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'time'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'H:i:s' </span><span style="color: #007700">),<br>              </span><span style="color: #DD0000">'date'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'l j F Y' </span><span style="color: #007700">),<br>              </span><span style="color: #DD0000">'hits'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$hits</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'php'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">PHP_VERSION</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'memory' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">memory_get_peak_usage </span><span style="color: #007700">() / </span><span style="color: #0000BB">1048576</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>              </span><span style="color: #DD0000">'load'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$load </span><span style="color: #007700">? </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$load </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">], </span><span style="color: #0000BB">2 </span><span style="color: #007700">) : </span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'pid'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">getmypid </span><span style="color: #007700">() ];<br><br>  </span><span style="color: #0000BB">$settings  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'every' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'status' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxc13a73efcb8df8a7538790b5149ffc66"></div>
+                        <pre><code style="color: #000000">&lt;div data-island="LiveBoard" data-props="{^settings}"&gt;<br>  &lt;p class="island-fallback"&gt;The board asks the server for its numbers as soon as it runs.&lt;/p&gt;<br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/live.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax44a080fb3a26cde71169c9df54623ebb"></div>
                         <script>
-                        padAjaxc13a73efcb8df8a7538790b5149ffc66 = new XMLHttpRequest();
-                        padAjaxc13a73efcb8df8a7538790b5149ffc66.onreadystatechange=function() {
-                        if (padAjaxc13a73efcb8df8a7538790b5149ffc66.readyState === 4) {
-                        if (padAjaxc13a73efcb8df8a7538790b5149ffc66.status === 200) {
-                        document.getElementById("padAjaxc13a73efcb8df8a7538790b5149ffc66").innerHTML=padAjaxc13a73efcb8df8a7538790b5149ffc66.responseText;
+                        padAjax44a080fb3a26cde71169c9df54623ebb = new XMLHttpRequest();
+                        padAjax44a080fb3a26cde71169c9df54623ebb.onreadystatechange=function() {
+                        if (padAjax44a080fb3a26cde71169c9df54623ebb.readyState === 4) {
+                        if (padAjax44a080fb3a26cde71169c9df54623ebb.status === 200) {
+                        document.getElementById("padAjax44a080fb3a26cde71169c9df54623ebb").innerHTML=padAjax44a080fb3a26cde71169c9df54623ebb.responseText;
                         } else {
-                        document.getElementById("padAjaxc13a73efcb8df8a7538790b5149ffc66").innerHTML=padAjaxc13a73efcb8df8a7538790b5149ffc66.statusText;
+                        document.getElementById("padAjax44a080fb3a26cde71169c9df54623ebb").innerHTML=padAjax44a080fb3a26cde71169c9df54623ebb.statusText;
                         }
                         }
                         }
-                        padAjaxc13a73efcb8df8a7538790b5149ffc66.open("GET","http://localhost/pad/react/?examples/index&padInclude",true);
-                        padAjaxc13a73efcb8df8a7538790b5149ffc66.send();
+                        padAjax44a080fb3a26cde71169c9df54623ebb.open("GET","http://localhost/pad/react/?examples/live&padInclude",true);
+                        padAjax44a080fb3a26cde71169c9df54623ebb.send();
                         </script>
                       </td>
                     </tr>
@@ -296,7 +422,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;Product List from Server Data&lt;/h1&gt;<br><br>&lt;p&gt;Shows how to use the &lt;code&gt;<b>{<font color="blue">json</font><font color="red"></font>}</b>&lt;/code&gt; tag to pass server data to React components.&lt;/p&gt;<br><br>&lt;div id="example3" data-products="<b>{<font color="blue">json </font><font color="red"><font color="black">'</font>products<font color="black">'</font> <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/products.js"&gt;&lt;/script&gt;<br><br>&lt;div style="margin-top: 30px;"&gt;<br>  &lt;a href="?examples/index" class="btn"&gt;← Back to Examples&lt;/a&gt;<br>&lt;/div&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;div id="products" data-products="<b>{<font color="blue">json </font><font color="red"><font color="black">'</font>products<font color="black">'</font> <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/products.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax6508fdebd26698742a1141a2ffb8e4d2"></div>
@@ -313,6 +439,90 @@
                         }
                         padAjax6508fdebd26698742a1141a2ffb8e4d2.open("GET","http://localhost/pad/react/?examples/products&padInclude",true);
                         padAjax6508fdebd26698742a1141a2ffb8e4d2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: react - Page: examples/props<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/props.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/props.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What the islands start with. Each member's row carries its card - the props of one<br>  // island - and the stats are one more island's; the template writes them with the ^<br>  // sigil, as JSON escaped for the attribute.<br><br>  </span><span style="color: #0000BB">$team </span><span style="color: #007700">= </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'team' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$most </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$team</span><span style="color: #007700">, </span><span style="color: #DD0000">'commits' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$members </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$team </span><span style="color: #007700">as </span><span style="color: #0000BB">$member </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$members </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$member </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">],<br>                    </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$member </span><span style="color: #007700">[</span><span style="color: #DD0000">'role'</span><span style="color: #007700">],<br>                    </span><span style="color: #DD0000">'card' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$member </span><span style="color: #007700">+ [ </span><span style="color: #DD0000">'most' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$most </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$stats </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'people'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$team </span><span style="color: #007700">),<br>             </span><span style="color: #DD0000">'commits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$team</span><span style="color: #007700">, </span><span style="color: #DD0000">'commits' </span><span style="color: #007700">) ),<br>             </span><span style="color: #DD0000">'cities'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">array_unique </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$team</span><span style="color: #007700">, </span><span style="color: #DD0000">'city' </span><span style="color: #007700">) ) ),<br>             </span><span style="color: #DD0000">'teams'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">array_unique </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$team</span><span style="color: #007700">, </span><span style="color: #DD0000">'team' </span><span style="color: #007700">) ) ) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div data-island="TeamStats" data-props="{^stats}"&gt;<br>  &lt;p class="island-fallback"&gt;<b>{<font color="green"><font color="red">$</font>stats.people</font>}</b> people, <b>{<font color="green"><font color="red">$</font>stats.commits</font>}</b> commits&lt;/p&gt;<br>&lt;/div&gt;<br><br>&lt;div class="grid" style="margin-top: 22px"&gt;<br>  <b>{<font color="blue">members</font><font color="red"></font>}</b><br>  &lt;div data-island="MemberCard" data-props="{^card}"&gt;<br>    &lt;div class="card"&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;&lt;span class="muted"&gt;<b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">members</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/props.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0ee31f601e2990a1b3c49034ecacadab"></div>
+                        <script>
+                        padAjax0ee31f601e2990a1b3c49034ecacadab = new XMLHttpRequest();
+                        padAjax0ee31f601e2990a1b3c49034ecacadab.onreadystatechange=function() {
+                        if (padAjax0ee31f601e2990a1b3c49034ecacadab.readyState === 4) {
+                        if (padAjax0ee31f601e2990a1b3c49034ecacadab.status === 200) {
+                        document.getElementById("padAjax0ee31f601e2990a1b3c49034ecacadab").innerHTML=padAjax0ee31f601e2990a1b3c49034ecacadab.responseText;
+                        } else {
+                        document.getElementById("padAjax0ee31f601e2990a1b3c49034ecacadab").innerHTML=padAjax0ee31f601e2990a1b3c49034ecacadab.statusText;
+                        }
+                        }
+                        }
+                        padAjax0ee31f601e2990a1b3c49034ecacadab.open("GET","http://localhost/pad/react/?examples/props&padInclude",true);
+                        padAjax0ee31f601e2990a1b3c49034ecacadab.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: react - Page: examples/search<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/search.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/search.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// One page, two answers. The browser asking ?examples/search gets search.pad with the<br>  // first result in it; the component asks the same page with padFormat=json and gets<br>  // $result as JSON - the templates never run for that request. $padExpose is the list of<br>  // what may leave the server: nothing else of this page does.<br><br>  </span><span style="color: #0000BB">$query    </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">reactText </span><span style="color: #007700">( </span><span style="color: #DD0000">'q' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$category </span><span style="color: #007700">= </span><span style="color: #0000BB">reactText </span><span style="color: #007700">( </span><span style="color: #DD0000">'category' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$order    </span><span style="color: #007700">= </span><span style="color: #0000BB">reactText </span><span style="color: #007700">( </span><span style="color: #DD0000">'sort'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$perPage  </span><span style="color: #007700">= </span><span style="color: #0000BB">6</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$products   </span><span style="color: #007700">= </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$categories </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_unique </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$products</span><span style="color: #007700">, </span><span style="color: #DD0000">'category' </span><span style="color: #007700">) ) );<br><br>  </span><span style="color: #0000BB">$found </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$products</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$product </span><span style="color: #007700">) =&gt;<br>             ( </span><span style="color: #0000BB">$category </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'category'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$category </span><span style="color: #007700">) and<br>             ( </span><span style="color: #0000BB">$query    </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">stripos </span><span style="color: #007700">( </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'blurb'</span><span style="color: #007700">], </span><span style="color: #0000BB">$query </span><span style="color: #007700">) !== </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) ) );<br><br>  </span><span style="color: #0000BB">usort </span><span style="color: #007700">( </span><span style="color: #0000BB">$found</span><span style="color: #007700">, match ( </span><span style="color: #0000BB">$order </span><span style="color: #007700">) {<br>    </span><span style="color: #DD0000">'cheap'  </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'price'</span><span style="color: #007700">]  &lt;=&gt; </span><span style="color: #0000BB">$b </span><span style="color: #007700">[</span><span style="color: #DD0000">'price'</span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'dear'   </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$b </span><span style="color: #007700">[</span><span style="color: #DD0000">'price'</span><span style="color: #007700">]  &lt;=&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'price'</span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'rating' </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$b </span><span style="color: #007700">[</span><span style="color: #DD0000">'rating'</span><span style="color: #007700">] &lt;=&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'rating'</span><span style="color: #007700">],<br>    default  =&gt; fn ( </span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">strcasecmp </span><span style="color: #007700">( </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">], </span><span style="color: #0000BB">$b </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] )<br>  } );<br><br>  </span><span style="color: #0000BB">$pages  </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, (int) </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$found </span><span style="color: #007700">) / </span><span style="color: #0000BB">$perPage </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$pageNo </span><span style="color: #007700">= </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">$pages</span><span style="color: #007700">, </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'p'</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">) ) );<br><br>  </span><span style="color: #0000BB">$result </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$found</span><span style="color: #007700">, ( </span><span style="color: #0000BB">$pageNo </span><span style="color: #007700">- </span><span style="color: #0000BB">1 </span><span style="color: #007700">) * </span><span style="color: #0000BB">$perPage</span><span style="color: #007700">, </span><span style="color: #0000BB">$perPage </span><span style="color: #007700">),<br>              </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$found </span><span style="color: #007700">),<br>              </span><span style="color: #DD0000">'page'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pageNo</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'pages' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pages </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'result' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$result</span><span style="color: #007700">, </span><span style="color: #DD0000">'categories' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$categories </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= </span><span style="color: #0000BB">$result </span><span style="color: #007700">[</span><span style="color: #DD0000">'items'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'result' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div data-island="CatalogSearch" data-props="{^start}"&gt;<br>  &lt;ul&gt;<br>    <b>{<font color="blue">items</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b> - <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/li&gt;<b>{/<font color="blue">items</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/search.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax75e65fae94eeff70bc084320cad620e1"></div>
+                        <script>
+                        padAjax75e65fae94eeff70bc084320cad620e1 = new XMLHttpRequest();
+                        padAjax75e65fae94eeff70bc084320cad620e1.onreadystatechange=function() {
+                        if (padAjax75e65fae94eeff70bc084320cad620e1.readyState === 4) {
+                        if (padAjax75e65fae94eeff70bc084320cad620e1.status === 200) {
+                        document.getElementById("padAjax75e65fae94eeff70bc084320cad620e1").innerHTML=padAjax75e65fae94eeff70bc084320cad620e1.responseText;
+                        } else {
+                        document.getElementById("padAjax75e65fae94eeff70bc084320cad620e1").innerHTML=padAjax75e65fae94eeff70bc084320cad620e1.statusText;
+                        }
+                        }
+                        }
+                        padAjax75e65fae94eeff70bc084320cad620e1.open("GET","http://localhost/pad/react/?examples/search&padInclude",true);
+                        padAjax75e65fae94eeff70bc084320cad620e1.send();
                         </script>
                       </td>
                     </tr>
@@ -336,7 +546,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h1&gt;Toggle Component&lt;/h1&gt;<br><br>&lt;p&gt;Simple toggle button component with state management.&lt;/p&gt;<br><br>&lt;div id="example4"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/toggle.js"&gt;&lt;/script&gt;<br><br>&lt;div style="margin-top: 30px;"&gt;<br>  &lt;a href="?examples/index" class="btn"&gt;← Back to Examples&lt;/a&gt;<br>&lt;/div&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;div id="example4"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/toggle.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax64a0d90ec507788eae6c90824d7332f6"></div>
@@ -376,7 +586,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> <font color="red">$</font>id=1</font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>board<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>board_from_topic<font color="black">'</font></font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>user<font color="black">'</font><font color="black">,</font>  provider=<font color="black">'</font>user_from_topic<font color="black">'</font></font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>posts<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>posts_from_topic<font color="black">'</font></font>}</b><br><br>&lt;div id="topic-display"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/topic/display.js"&gt;&lt;/script&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> <font color="red">$</font>id=1</font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>board<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>board_from_topic<font color="black">'</font></font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>user<font color="black">'</font><font color="black">,</font>  provider=<font color="black">'</font>user_from_topic<font color="black">'</font></font>}</b><br><b>{<font color="blue">reactData </font><font color="red">id=<font color="black">'</font>posts<font color="black">'</font><font color="black">,</font> provider=<font color="black">'</font>posts_from_topic<font color="black">'</font></font>}</b><br><br>&lt;div id="topic-display"&gt;&lt;/div&gt;<br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/topic.js"&gt;&lt;/script&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax3b6f8d2b3b0901ea027b9bb83050f241"></div>
@@ -398,217 +608,7 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: react - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Home - PAD + React'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Server-side data that can be used by React<br>  </span><span style="color: #0000BB">$serverMessage </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello from PAD Server!'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$serverTime </span><span style="color: #007700">= </span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d H:i:s'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">#</font> The page carries the server time, into the text and into a data attribute, so it differs on<br>   every request. The crawl reads the word random here and compares it with the digits masked<br>   instead, which still checks the markup React is handed. <font color="red">#</font></font>}</b><br>&lt;h1&gt;Welcome to PAD + React&lt;/h1&gt;<br><br>&lt;p&gt;<br>  This application demonstrates how to combine &lt;strong&gt;PAD&lt;/strong&gt; (server-side template engine)<br>  with &lt;strong&gt;React&lt;/strong&gt; (client-side JavaScript framework).<br>&lt;/p&gt;<br><br>&lt;div class="info-box"&gt;<br>  &lt;strong&gt;How it works:&lt;/strong&gt;<br>  &lt;ul style="margin-top: 10px; margin-left: 20px;"&gt;<br>    &lt;li&gt;PAD handles routing (?page URLs), server-side data, and initial HTML&lt;/li&gt;<br>    &lt;li&gt;React is loaded globally in _inits.pad and available on every page&lt;/li&gt;<br>    &lt;li&gt;You can embed React components anywhere in your PAD templates&lt;/li&gt;<br>    &lt;li&gt;Server data from PHP can be passed to React components via data attributes or window object&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;Server-Side Data from PAD&lt;/h2&gt;<br>&lt;p&gt;Message: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>serverMessage</font>}</b>&lt;/code&gt;&lt;/p&gt;<br>&lt;p&gt;Server Time: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>serverTime</font>}</b>&lt;/code&gt;&lt;/p&gt;<br><br>&lt;h2&gt;React Component Example&lt;/h2&gt;<br>&lt;p&gt;Below is a simple React component rendered on the client:&lt;/p&gt;<br><br>&lt;!-- React component will be rendered here --&gt;<br>&lt;div id="welcome-component"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index/welcome.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;React Component with Server Data&lt;/h2&gt;<br>&lt;p&gt;This component receives data from PAD's server-side PHP:&lt;/p&gt;<br><br>&lt;!-- Pass server data to React via JavaScript variable --&gt;<br>&lt;div id="users-component"<br>     data-server-message="<b>{<font color="green"><font color="red">$</font>serverMessage</font>}</b>"<br>     data-server-time="<b>{<font color="green"><font color="red">$</font>serverTime</font>}</b>"<br>     data-users-json="<b>{<font color="blue">json </font><font color="red"><font color="black">'</font>users<font color="black">'</font> <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br>&lt;script&gt;<br>  // Parse from data attribute<br>  const elem = document.getElementById('users-component');<br>  window.serverData = {<br>    serverMessage: elem.dataset.serverMessage,<br>    serverTime: elem.dataset.serverTime,<br>    users: JSON.parse(elem.dataset.usersJson)<br>  };<br>&lt;/script&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index/users.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Next Steps&lt;/h2&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;Visit the &lt;a href="?examples"&gt;Examples&lt;/a&gt; page to see more React patterns&lt;/li&gt;<br>  &lt;li&gt;Visit the &lt;a href="?examples/counter"&gt;Counter Demo&lt;/a&gt; to see a complete example&lt;/li&gt;<br>  &lt;li&gt;Create new pages by adding &lt;code&gt;.php&lt;/code&gt; and &lt;code&gt;.pad&lt;/code&gt; files&lt;/li&gt;<br>  &lt;li&gt;React is automatically loaded on every page via &lt;code&gt;_inits.pad&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;Learn more about React at &lt;a href="https://react.dev" target="_blank"&gt;react.dev&lt;/a&gt;&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;div class="info-box" style="margin-top: 30px;"&gt;<br>  &lt;strong&gt;Development Mode:&lt;/strong&gt; This application uses React development builds and Babel standalone<br>  for in-browser JSX transformation. For production, you should use a build tool like Vite or Create React App<br>  to compile JSX and use production builds of React.<br>&lt;/div&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax590265b434bfab1e18db6d29707c5076"></div>
-                        <script>
-                        padAjax590265b434bfab1e18db6d29707c5076 = new XMLHttpRequest();
-                        padAjax590265b434bfab1e18db6d29707c5076.onreadystatechange=function() {
-                        if (padAjax590265b434bfab1e18db6d29707c5076.readyState === 4) {
-                        if (padAjax590265b434bfab1e18db6d29707c5076.status === 200) {
-                        document.getElementById("padAjax590265b434bfab1e18db6d29707c5076").innerHTML=padAjax590265b434bfab1e18db6d29707c5076.responseText;
-                        } else {
-                        document.getElementById("padAjax590265b434bfab1e18db6d29707c5076").innerHTML=padAjax590265b434bfab1e18db6d29707c5076.statusText;
-                        }
-                        }
-                        }
-                        padAjax590265b434bfab1e18db6d29707c5076.open("GET","http://localhost/pad/react/?index&padInclude",true);
-                        padAjax590265b434bfab1e18db6d29707c5076.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/error_pad - Page: boom<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">boom.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">boom.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Raises an engine-level PHP warning - reading an undefined variable - which<br>  // $padErrorLevel promotes to a PAD error handled by this application's error action.<br><br>  </span><span style="color: #0000BB">$boom </span><span style="color: #007700">= </span><span style="color: #0000BB">$neverSetAnywhere</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;before&lt;/p&gt;<br>&lt;p&gt;after&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax7551a4f4d7681af278521117102f2a29"></div>
-                        <script>
-                        padAjax7551a4f4d7681af278521117102f2a29 = new XMLHttpRequest();
-                        padAjax7551a4f4d7681af278521117102f2a29.onreadystatechange=function() {
-                        if (padAjax7551a4f4d7681af278521117102f2a29.readyState === 4) {
-                        if (padAjax7551a4f4d7681af278521117102f2a29.status === 200) {
-                        document.getElementById("padAjax7551a4f4d7681af278521117102f2a29").innerHTML=padAjax7551a4f4d7681af278521117102f2a29.responseText;
-                        } else {
-                        document.getElementById("padAjax7551a4f4d7681af278521117102f2a29").innerHTML=padAjax7551a4f4d7681af278521117102f2a29.statusText;
-                        }
-                        }
-                        }
-                        padAjax7551a4f4d7681af278521117102f2a29.open("GET","http://localhost/pad/regression/error_pad/?boom&padInclude",true);
-                        padAjax7551a4f4d7681af278521117102f2a29.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/error_pad - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Test fetches the boom page - an undefined variable its .php reads - and asserts what<br>  // the 'pad' error action is supposed to do with it: a 500 whose page carries the<br>  // message. A plain load only offers the link, so a crawl of this page raises nothing.<br><br>  </span><span style="color: #0000BB">$tested </span><span style="color: #007700">= isset ( </span><span style="color: #0000BB">$test </span><span style="color: #007700">) ? </span><span style="color: #0000BB">1 </span><span style="color: #007700">: </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">$tested </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$r    </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/error_pad/?boom&amp;padInclude' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$code </span><span style="color: #007700">= </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br><br>    </span><span style="color: #0000BB">$verdict </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$code </span><span style="color: #007700">== </span><span style="color: #0000BB">500 </span><span style="color: #007700">and </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$body</span><span style="color: #007700">, </span><span style="color: #DD0000">"Undefined variable" </span><span style="color: #007700">)<br>               and </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$body</span><span style="color: #007700">, </span><span style="color: #DD0000">"neverSetAnywhere" </span><span style="color: #007700">) ) ? </span><span style="color: #DD0000">"yes" </span><span style="color: #007700">: </span><span style="color: #DD0000">"NO"</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$action </span><span style="color: #007700">= </span><span style="color: #0000BB">$padErrorAction</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;action: <b>{<font color="green"><font color="red">$</font>action</font>}</b>&lt;/p&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>tested eq 1</font>}</b><br>  &lt;p&gt;the boom page behaved as this action promises: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>verdict</font>}</b>&lt;/b&gt;&lt;/p&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;p&gt;&lt;a href="?index&amp;test"&gt;Test&lt;/a&gt; the boom page&lt;/p&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax6e010859f89f7313d702dd344d31968e"></div>
-                        <script>
-                        padAjax6e010859f89f7313d702dd344d31968e = new XMLHttpRequest();
-                        padAjax6e010859f89f7313d702dd344d31968e.onreadystatechange=function() {
-                        if (padAjax6e010859f89f7313d702dd344d31968e.readyState === 4) {
-                        if (padAjax6e010859f89f7313d702dd344d31968e.status === 200) {
-                        document.getElementById("padAjax6e010859f89f7313d702dd344d31968e").innerHTML=padAjax6e010859f89f7313d702dd344d31968e.responseText;
-                        } else {
-                        document.getElementById("padAjax6e010859f89f7313d702dd344d31968e").innerHTML=padAjax6e010859f89f7313d702dd344d31968e.statusText;
-                        }
-                        }
-                        }
-                        padAjax6e010859f89f7313d702dd344d31968e.open("GET","http://localhost/pad/regression/error_pad/?index&padInclude",true);
-                        padAjax6e010859f89f7313d702dd344d31968e.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/error_pad - Page: verdict<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">verdict.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">verdict.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The check the index runs when asked with &amp;test, run every time. The crawl fetches this<br>  // page and compares it with its stored answer, so every suite run holds the action to<br>  // its promise - the index alone only offers a Test link, which no run follows.<br><br>  </span><span style="color: #0000BB">$test </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  include </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'index.php'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>verdict</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax15d020e2c7eeaf2ef93ea394fc5797d6"></div>
-                        <script>
-                        padAjax15d020e2c7eeaf2ef93ea394fc5797d6 = new XMLHttpRequest();
-                        padAjax15d020e2c7eeaf2ef93ea394fc5797d6.onreadystatechange=function() {
-                        if (padAjax15d020e2c7eeaf2ef93ea394fc5797d6.readyState === 4) {
-                        if (padAjax15d020e2c7eeaf2ef93ea394fc5797d6.status === 200) {
-                        document.getElementById("padAjax15d020e2c7eeaf2ef93ea394fc5797d6").innerHTML=padAjax15d020e2c7eeaf2ef93ea394fc5797d6.responseText;
-                        } else {
-                        document.getElementById("padAjax15d020e2c7eeaf2ef93ea394fc5797d6").innerHTML=padAjax15d020e2c7eeaf2ef93ea394fc5797d6.statusText;
-                        }
-                        }
-                        }
-                        padAjax15d020e2c7eeaf2ef93ea394fc5797d6.open("GET","http://localhost/pad/regression/error_pad/?verdict&padInclude",true);
-                        padAjax15d020e2c7eeaf2ef93ea394fc5797d6.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/try_pad - Page: call<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">call.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">call.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">throw new </span><span style="color: #0000BB">\Exception </span><span style="color: #007700">( </span><span style="color: #DD0000">'the page php went boom' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;the page still renders&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax44b9df535a322c288e8054472408bfc5"></div>
-                        <script>
-                        padAjax44b9df535a322c288e8054472408bfc5 = new XMLHttpRequest();
-                        padAjax44b9df535a322c288e8054472408bfc5.onreadystatechange=function() {
-                        if (padAjax44b9df535a322c288e8054472408bfc5.readyState === 4) {
-                        if (padAjax44b9df535a322c288e8054472408bfc5.status === 200) {
-                        document.getElementById("padAjax44b9df535a322c288e8054472408bfc5").innerHTML=padAjax44b9df535a322c288e8054472408bfc5.responseText;
-                        } else {
-                        document.getElementById("padAjax44b9df535a322c288e8054472408bfc5").innerHTML=padAjax44b9df535a322c288e8054472408bfc5.statusText;
-                        }
-                        }
-                        }
-                        padAjax44b9df535a322c288e8054472408bfc5.open("GET","http://localhost/pad/regression/try_pad/?call&padInclude",true);
-                        padAjax44b9df535a322c288e8054472408bfc5.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/try_pad - Page: eval<br>
+                  App: react - Page: guide<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -617,7 +617,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">eval.pad</font>
+                        <font size="-2">guide.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -626,23 +626,23 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> php<font color="black">:</font>intdiv(<font color="black">@</font><font color="black">,</font> 0)</font>}</b>] &lt;p&gt;the page around the expression still renders&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + React<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Build your own island&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Four files make a page with React in it: the data, the template, the component - and the<br>    runtime every page already has. Then the same page can answer the component's questions.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;div class="cols-2"&gt;<br><br>  &lt;div&gt;<br>    &lt;h2&gt;1. The data, in PHP&lt;/h2&gt;<br>    &lt;p&gt;The page's PHP gathers what the component starts with - from the database, a file in<br>       &lt;code&gt;_data/&lt;/code&gt;, the session. Nothing about React here.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_guide/orders.php<font color="black">'</font></font>}</b><br>  &lt;/div&gt;<br><br>  &lt;div&gt;<br>    &lt;h2&gt;2. The island, in the template&lt;/h2&gt;<br>    &lt;p&gt;An element with &lt;code&gt;data-island&lt;/code&gt; names the component; &lt;code&gt;{^orders}&lt;/code&gt; writes the<br>       field as JSON, escaped for the attribute. What stands inside shows until React takes over.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_guide/orders.pad<font color="black">'</font></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br>&lt;h2&gt;3. The component, in www/&lt;/h2&gt;<br>&lt;p&gt;A plain file under &lt;code&gt;www/react/&lt;/code&gt;, served as it is - so its braces never meet the PAD parser.<br>   &lt;code&gt;PadReact.island&lt;/code&gt; mounts it on every island of that name, the JSON as its props.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_guide/orders.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;4. Talking back&lt;/h2&gt;<br>&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br>    &lt;p&gt;The page answers JSON when asked - but only what &lt;code&gt;$padExpose&lt;/code&gt; names. The templates do not<br>       run for such a request. A post needs the session's CSRF token, which &lt;code&gt;PadReact.post&lt;/code&gt;<br>       sends in a header when &lt;code&gt;$padCsrf&lt;/code&gt; is on.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font></font>}</b><br>// orders.php - one more line<br>$padExpose = [ 'orders' ];<br><br>// a post from the component<br>if ( padRequestIs ( 'POST' ) ) {<br>  $errors = padValidate ( [ 'qty' =&gt; 'required|integer|min:1' ] );<br>  if ( ! $errors )<br>    db ( "UPDATE orders SET qty={0} WHERE id={1}", [ $qty, $id ] );<br>}<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;p&gt;From the component it is one call each - and &lt;code&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>&lt;/code&gt; in the template<br>       lets a component fetch one rendered part of a page as HTML.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>// ?orders&amp;padFormat=json<br>const { orders } = await PadReact.get('orders', { status: 'open' });<br><br>// POST ?orders&amp;padFormat=json, X-CSRF-Token: ...<br>const answer = await PadReact.post('orders', { id: 7, qty: 2 });<br><br>// ?orders&amp;padFragment=summary - HTML<br>const html = await PadReact.fragment('orders', 'summary');<br><br>// as a hook: asked again whenever status changes<br>const { data, loading } = PadReact.useData('orders', { status }, first);<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;The runtime&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;www/react/pad-react.js&lt;/code&gt; - plain JavaScript, loaded by &lt;code&gt;_inits.pad&lt;/code&gt; on every page.&lt;/p&gt;<br>&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Call&lt;/th&gt;&lt;th&gt;What it does&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.island(name, Component)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Renders &lt;code&gt;Component&lt;/code&gt; on every &lt;code&gt;[data-island=name]&lt;/code&gt;, with the JSON of &lt;code&gt;data-props&lt;/code&gt; as props (a list arrives as &lt;code&gt;props.data&lt;/code&gt;) and what PAD rendered inside as &lt;code&gt;props.serverHtml&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.get(page, params)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The page's exposed data: &lt;code&gt;?page&amp;amp;...&amp;amp;padFormat=json&lt;/code&gt;, parsed.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.post(page, body, { token })&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Posts the body form-encoded with the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header from &lt;code&gt;&lt;meta name="csrf-token"&gt;&lt;/code&gt;; &lt;code&gt;token: false&lt;/code&gt; leaves it out.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.fragment(page, name, params)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;One &lt;code&gt;<b>{<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/code&gt; of the page as HTML.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.useData(page, params, first)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;A hook: &lt;code&gt;{ data, loading, error }&lt;/code&gt;, asked again when the params change, the request before aborted.&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td&gt;&lt;code&gt;PadReact.useDebounced(value, ms)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The value once it stood still for &lt;code&gt;ms&lt;/code&gt; - for a search box.&lt;/td&gt;&lt;/tr&gt;<br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br>&lt;p class="small muted"&gt;A request that does not succeed throws an error with &lt;code&gt;status&lt;/code&gt; and the parsed &lt;code&gt;body&lt;/code&gt;. Every request is<br>   told to the page as a &lt;code&gt;pad:request&lt;/code&gt; event - the request log under the examples listens to it.&lt;/p&gt;<br><br>&lt;h2&gt;Good to know&lt;/h2&gt;<br>&lt;div class="grid"&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Keep JSX out of templates&lt;/h3&gt;<br>    &lt;p&gt;PAD reads every &lt;code&gt;{ }&lt;/code&gt; of a template. Components live in &lt;code&gt;www/&lt;/code&gt;, loaded with<br>       &lt;code&gt;&lt;script type="text/babel" src&gt;&lt;/code&gt;; for a short inline script there is &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Values are text&lt;/h3&gt;<br>    &lt;p&gt;A field in &lt;code&gt;data-props&lt;/code&gt; is escaped for the attribute and never runs as PAD, whatever a visitor typed<br>       into it - React escapes it once more when it renders.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Server first&lt;/h3&gt;<br>    &lt;p&gt;Give the island its first data in the props and put real HTML inside it: the page shows something before any<br>       script ran, and search engines see it.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Going to production&lt;/h3&gt;<br>    &lt;p&gt;Babel in the browser is for learning. Compile the components with esbuild or Vite into one file, load the<br>       production React builds, and drop &lt;code&gt;type="text/babel"&lt;/code&gt; - the PAD side stays as it is.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxb44cb3688c2289923267cf219fd94b04"></div>
+                        <div id="padAjax92cdb275aee59b998354364ff6a308c4"></div>
                         <script>
-                        padAjaxb44cb3688c2289923267cf219fd94b04 = new XMLHttpRequest();
-                        padAjaxb44cb3688c2289923267cf219fd94b04.onreadystatechange=function() {
-                        if (padAjaxb44cb3688c2289923267cf219fd94b04.readyState === 4) {
-                        if (padAjaxb44cb3688c2289923267cf219fd94b04.status === 200) {
-                        document.getElementById("padAjaxb44cb3688c2289923267cf219fd94b04").innerHTML=padAjaxb44cb3688c2289923267cf219fd94b04.responseText;
+                        padAjax92cdb275aee59b998354364ff6a308c4 = new XMLHttpRequest();
+                        padAjax92cdb275aee59b998354364ff6a308c4.onreadystatechange=function() {
+                        if (padAjax92cdb275aee59b998354364ff6a308c4.readyState === 4) {
+                        if (padAjax92cdb275aee59b998354364ff6a308c4.status === 200) {
+                        document.getElementById("padAjax92cdb275aee59b998354364ff6a308c4").innerHTML=padAjax92cdb275aee59b998354364ff6a308c4.responseText;
                         } else {
-                        document.getElementById("padAjaxb44cb3688c2289923267cf219fd94b04").innerHTML=padAjaxb44cb3688c2289923267cf219fd94b04.statusText;
+                        document.getElementById("padAjax92cdb275aee59b998354364ff6a308c4").innerHTML=padAjax92cdb275aee59b998354364ff6a308c4.statusText;
                         }
                         }
                         }
-                        padAjaxb44cb3688c2289923267cf219fd94b04.open("GET","http://localhost/pad/regression/try_pad/?eval&padInclude",true);
-                        padAjaxb44cb3688c2289923267cf219fd94b04.send();
+                        padAjax92cdb275aee59b998354364ff6a308c4.open("GET","http://localhost/pad/react/?guide&padInclude",true);
+                        padAjax92cdb275aee59b998354364ff6a308c4.send();
                         </script>
                       </td>
                     </tr>
@@ -661,7 +661,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

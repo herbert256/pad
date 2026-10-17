@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {null} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#conditions">Conditions</a><span>/</span><span aria-current="page">null</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>null<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            The constant NULL: its content is dropped, the @else@ part too, and a null= option fires.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#conditions">Conditions</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">null</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">null</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/null</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">null</span> <span class="hl-opt">null</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/null</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{null}</code> answers NULL, the level's third state next to the hit of <a href="index%EF%B9%96tag%EA%A4%B7true.html">{true}</a> and the else of <a href="index%EF%B9%96tag%EA%A4%B7false.html">{false}</a>. In the null state nothing of the pair renders: not the content and not its <code>@else@</code> part either. Alone it prints nothing.
+          </p>
+          <p>
+            What a NULL does fire is the <code>null='name'</code> option every tag takes: the stored <a href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> of that name renders in the level's place. An <code>else=</code> option does not fire on NULL - it is kept for FALSE, an empty list and an empty text. A tag of your own (or a PHP call) that answers NULL for "there is no such thing" therefore has its own way out, separate from "there is something, and it is empty".
+          </p>
+          <p>
+            The engine reads INF and NAN as NULL too. <code>{null}</code> is mainly there to show and test that difference, and to switch a block off so thoroughly that even its else part stays away.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Three states side by side
+            </h3>
+            <p class="example-about">
+              The @else@ part renders for {false} but not for {null}.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/null/1-states.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>true: <span class="hl-brc">{</span><span class="hl-tag">true</span><span class="hl-brc">}</span>content<span class="hl-var">@else@</span>else part<span class="hl-brc">{</span><span class="hl-tag">/true</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>false: <span class="hl-brc">{</span><span class="hl-tag">false</span><span class="hl-brc">}</span>content<span class="hl-var">@else@</span>else part<span class="hl-brc">{</span><span class="hl-tag">/false</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>null: <span class="hl-brc">{</span><span class="hl-tag">null</span><span class="hl-brc">}</span>content<span class="hl-var">@else@</span>else part<span class="hl-brc">{</span><span class="hl-tag">/null</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7null%EA%A4%B71-states.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>true: content
+                    </li>
+                    <li>false: else part
+                    </li>
+                    <li>null:
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              null= and else=
+            </h3>
+            <p class="example-about">
+              A NULL fires the null= option and leaves else= alone.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/null/2-option.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'nullMissing'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;em</span><span class="hl-htm">&gt;</span>no such thing<span class="hl-htm">&lt;/em</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/content</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'nullEmpty'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;em</span><span class="hl-htm">&gt;</span>empty<span class="hl-htm">&lt;/em</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/content</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>null with <span class="hl-opt">null</span>=: <span class="hl-brc">{</span><span class="hl-tag">null</span> <span class="hl-opt">null</span>=<span class="hl-str">'nullMissing'</span><span class="hl-brc">}</span>x<span class="hl-brc">{</span><span class="hl-tag">/null</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>null with <span class="hl-opt">else</span>=: <span class="hl-brc">{</span><span class="hl-tag">null</span> <span class="hl-opt">else</span>=<span class="hl-str">'nullEmpty'</span><span class="hl-brc">}</span>x<span class="hl-brc">{</span><span class="hl-tag">/null</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>false with <span class="hl-opt">else</span>=: <span class="hl-brc">{</span><span class="hl-tag">false</span> <span class="hl-opt">else</span>=<span class="hl-str">'nullEmpty'</span><span class="hl-brc">}</span>x<span class="hl-brc">{</span><span class="hl-tag">/false</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7null%EA%A4%B72-option.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    null with null=: <em>no such thing</em>
+                  </p>
+                  <p>
+                    null with else=:
+                  </p>
+                  <p>
+                    false with else=: <em>empty</em>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7true.html">{true}</a> <span class="about">The constant TRUE: its content renders once, as a level of its own.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7false.html">{false}</a> <span class="about">The constant FALSE: its content is skipped and its @else@ part renders instead.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> <span class="about">Keeps a piece of template under a name instead of printing it, for a later {name} to render.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7nonce.html">← {nonce}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7open.html">{open} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - cannot
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - cannot
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/can_asks_a_gate_with_a_value_and_with_the_row_of_an_enclosing_loop<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/can_asks_a_gate_with_a_value_and_with_the_row_of_an_enclosing_loop.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/can_asks_a_gate_with_a_value_and_with_the_row_of_an_enclosing_loop.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A gate gets the user and the values {can} names: $post a page array, $posts inside<br>  // {posts} the row of that occurrence.<br><br>  </span><span style="color: #0000BB">padGate </span><span style="color: #007700">( </span><span style="color: #DD0000">'edit-post'</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #0000BB">$post </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$post </span><span style="color: #007700">[</span><span style="color: #DD0000">'user_id'</span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">padLogin </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$posts </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'mine'</span><span style="color: #007700">, </span><span style="color: #DD0000">'user_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'theirs'</span><span style="color: #007700">, </span><span style="color: #DD0000">'user_id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">8 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$post  </span><span style="color: #007700">= </span><span style="color: #0000BB">$posts </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">can </font><font color="red"><font color="black">'</font>edit-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>post</font>}</b>edit<b>{<font color="blue">else</font><font color="red"></font>}</b>read<b>{/<font color="blue">can</font><font color="red"></font>}</b> | <b>{<font color="blue">posts</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b>: <b>{<font color="blue">can </font><font color="red"><font color="black">'</font>edit-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>posts</font>}</b>edit<b>{<font color="blue">else</font><font color="red"></font>}</b>read<b>{/<font color="blue">can</font><font color="red"></font>}</b>; <b>{/<font color="blue">posts</font><font color="red"></font>}</b>| <b>{<font color="blue">posts</font><font color="red"></font>}</b><b>{<font color="blue">cannot </font><font color="red"><font color="black">'</font>edit-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>posts</font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> is not mine<b>{/<font color="blue">cannot</font><font color="red"></font>}</b><b>{/<font color="blue">posts</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbeed1dc040a1e3214b185c73800da75c"></div>
+                        <script>
+                        padAjaxbeed1dc040a1e3214b185c73800da75c = new XMLHttpRequest();
+                        padAjaxbeed1dc040a1e3214b185c73800da75c.onreadystatechange=function() {
+                        if (padAjaxbeed1dc040a1e3214b185c73800da75c.readyState === 4) {
+                        if (padAjaxbeed1dc040a1e3214b185c73800da75c.status === 200) {
+                        document.getElementById("padAjaxbeed1dc040a1e3214b185c73800da75c").innerHTML=padAjaxbeed1dc040a1e3214b185c73800da75c.responseText;
+                        } else {
+                        document.getElementById("padAjaxbeed1dc040a1e3214b185c73800da75c").innerHTML=padAjaxbeed1dc040a1e3214b185c73800da75c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbeed1dc040a1e3214b185c73800da75c.open("GET","http://localhost/pad/regression/framework/?tags/can_asks_a_gate_with_a_value_and_with_the_row_of_an_enclosing_loop&padInclude",true);
+                        padAjaxbeed1dc040a1e3214b185c73800da75c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/can_lets_a_guest_reach_only_a_gate_that_takes_null<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/can_lets_a_guest_reach_only_a_gate_that_takes_null.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/can_lets_a_guest_reach_only_a_gate_that_takes_null.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Nobody is logged in: a gate whose first parameter allows NULL is asked, any other is<br>  // not - and a before hook is skipped the same way.<br><br>  </span><span style="color: #0000BB">padGateBefore </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #0000BB">$ability </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padGate </span><span style="color: #007700">( </span><span style="color: #DD0000">'view-post'</span><span style="color: #007700">,   fn ( ?array </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #0000BB">$post </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$post </span><span style="color: #007700">[</span><span style="color: #DD0000">'public'</span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">padGate </span><span style="color: #007700">( </span><span style="color: #DD0000">'delete-post'</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$user</span><span style="color: #007700">, </span><span style="color: #0000BB">$post </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$post </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'public' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">can </font><font color="red"><font color="black">'</font>view-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>post</font>}</b>view<b>{<font color="blue">else</font><font color="red"></font>}</b>no view<b>{/<font color="blue">can</font><font color="red"></font>}</b> | <b>{<font color="blue">can </font><font color="red"><font color="black">'</font>delete-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>post</font>}</b>delete<b>{<font color="blue">else</font><font color="red"></font>}</b>no delete<b>{/<font color="blue">can</font><font color="red"></font>}</b> | <b>{<font color="blue">cannot </font><font color="red"><font color="black">'</font>delete-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>post</font>}</b>cannot delete<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>can delete<b>{/<font color="blue">cannot</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4babbe2592ff58165448eff8b0b87619"></div>
+                        <script>
+                        padAjax4babbe2592ff58165448eff8b0b87619 = new XMLHttpRequest();
+                        padAjax4babbe2592ff58165448eff8b0b87619.onreadystatechange=function() {
+                        if (padAjax4babbe2592ff58165448eff8b0b87619.readyState === 4) {
+                        if (padAjax4babbe2592ff58165448eff8b0b87619.status === 200) {
+                        document.getElementById("padAjax4babbe2592ff58165448eff8b0b87619").innerHTML=padAjax4babbe2592ff58165448eff8b0b87619.responseText;
+                        } else {
+                        document.getElementById("padAjax4babbe2592ff58165448eff8b0b87619").innerHTML=padAjax4babbe2592ff58165448eff8b0b87619.statusText;
+                        }
+                        }
+                        }
+                        padAjax4babbe2592ff58165448eff8b0b87619.open("GET","http://localhost/pad/regression/framework/?tags/can_lets_a_guest_reach_only_a_gate_that_takes_null&padInclude",true);
+                        padAjax4babbe2592ff58165448eff8b0b87619.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/cannot/1-locked<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/cannot/1-locked.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/cannot/1-locked.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $posts </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Release notes'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'published' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,  </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Draft: roadmap'</span><span style="color: #007700">, </span><span style="color: #DD0000">'published' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The opposite of can<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The content renders when the gate says no - here for the post a guest may not read.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">posts</font><font color="red"></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{<font color="blue">cannot </font><font color="red"><font color="black">'</font>read-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>posts</font>}</b> &lt;span class="badge"&gt;locked&lt;/span&gt;<b>{/<font color="blue">cannot</font><font color="red"></font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">posts</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb75ff19a6fdd9c44c266336e68b11f42"></div>
+                        <script>
+                        padAjaxb75ff19a6fdd9c44c266336e68b11f42 = new XMLHttpRequest();
+                        padAjaxb75ff19a6fdd9c44c266336e68b11f42.onreadystatechange=function() {
+                        if (padAjaxb75ff19a6fdd9c44c266336e68b11f42.readyState === 4) {
+                        if (padAjaxb75ff19a6fdd9c44c266336e68b11f42.status === 200) {
+                        document.getElementById("padAjaxb75ff19a6fdd9c44c266336e68b11f42").innerHTML=padAjaxb75ff19a6fdd9c44c266336e68b11f42.responseText;
+                        } else {
+                        document.getElementById("padAjaxb75ff19a6fdd9c44c266336e68b11f42").innerHTML=padAjaxb75ff19a6fdd9c44c266336e68b11f42.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb75ff19a6fdd9c44c266336e68b11f42.open("GET","http://localhost/pad/tags/?examples/cannot/1-locked&padInclude",true);
+                        padAjaxb75ff19a6fdd9c44c266336e68b11f42.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/cannot/2-else<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/cannot/2-else.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>With an else<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font><b><font color="black">{</font><font color="blue">cannot</font><font color="red"></font><font color="black">}</font></b> owns its <b><font color="black">{</font><font color="blue">else</font><font color="red"></font><font color="black">}</font></b> too<font color="black">:</font> the part after it renders when the gate says yes.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>note = [ <font color="black">'</font>title<font color="black">'</font> =&gt; <font color="black">'</font>Minutes<font color="black">'</font><font color="black">,</font> <font color="black">'</font>published<font color="black">'</font> =&gt; TRUE<font color="black">,</font> <font color="black">'</font>author<font color="black">'</font> =&gt; 7 ]</font>}</b><br><b>{<font color="blue">cannot </font><font color="red"><font color="black">'</font>edit-post<font color="black">'</font><font color="black">,</font> <font color="red">$</font>note</font>}</b><br>  &lt;p&gt;You cannot change these minutes.&lt;/p&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;p&gt;&lt;a href="#edit"&gt;Change the minutes&lt;/a&gt;&lt;/p&gt;<br><b>{/<font color="blue">cannot</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e"></div>
+                        <script>
+                        padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e = new XMLHttpRequest();
+                        padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.onreadystatechange=function() {
+                        if (padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.readyState === 4) {
+                        if (padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.status === 200) {
+                        document.getElementById("padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e").innerHTML=padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.responseText;
+                        } else {
+                        document.getElementById("padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e").innerHTML=padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.open("GET","http://localhost/pad/tags/?examples/cannot/2-else&padInclude",true);
+                        padAjaxf1ada01dc7cdbbe3cac0b530dea42d3e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

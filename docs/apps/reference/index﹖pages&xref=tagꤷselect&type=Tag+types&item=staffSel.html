@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -158,6 +158,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/errors - Page: syntax/negative_cannot_turn_round_a_select_where<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/negative_cannot_turn_round_a_select_where.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/negative_cannot_turn_round_a_select_where.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// negative over a select table's where: the SQL applied it, so nothing was left to turn<br>  // round and the list came out empty, in silence.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax69d0835e920518e5eb2215a01f60c1bd"></div>
+                        <script>
+                        padAjax69d0835e920518e5eb2215a01f60c1bd = new XMLHttpRequest();
+                        padAjax69d0835e920518e5eb2215a01f60c1bd.onreadystatechange=function() {
+                        if (padAjax69d0835e920518e5eb2215a01f60c1bd.readyState === 4) {
+                        if (padAjax69d0835e920518e5eb2215a01f60c1bd.status === 200) {
+                        document.getElementById("padAjax69d0835e920518e5eb2215a01f60c1bd").innerHTML=padAjax69d0835e920518e5eb2215a01f60c1bd.responseText;
+                        } else {
+                        document.getElementById("padAjax69d0835e920518e5eb2215a01f60c1bd").innerHTML=padAjax69d0835e920518e5eb2215a01f60c1bd.statusText;
+                        }
+                        }
+                        }
+                        padAjax69d0835e920518e5eb2215a01f60c1bd.open("GET","http://localhost/pad/regression/errors/?syntax/negative_cannot_turn_round_a_select_where&padInclude",true);
+                        padAjax69d0835e920518e5eb2215a01f60c1bd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/pages - Page: select/demo/options<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -259,10 +301,10 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The Select subsystem over the same staff table: the statement it builds - backquoted<br>  // names, a quoted key, limit offset,count - is one SQLite reads as MySQL does.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// A value bound into where= is escaped as SQLite wants it: the quote stays in the string.<br><br>  </span><span style="color: #0000BB">$who </span><span style="color: #007700">= </span><span style="color: #DD0000">"x' or name &gt; '"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The Select subsystem over the same staff table: the statement it builds - backquoted<br>  // names, a quoted key, limit offset,count - is one SQLite reads as MySQL does.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// A value bound into where= is escaped as SQLite wants it: the quote stays in the string.<br><br>  </span><span style="color: #0000BB">$who </span><span style="color: #007700">= </span><span style="color: #DD0000">"x' or name &gt; '"</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// A negative number bound after a minus keeps its distance, so "salary &gt; 2000-$adj" is<br>  // 2000 - (-1000) = 3000 and not a -- comment that leaves SQLite with half a clause.<br><br>  </span><span style="color: #0000BB">$adj </span><span style="color: #007700">= -</span><span style="color: #0000BB">1000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">where: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> order="salary"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> fields="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>first: [<b>{<font color="blue">staffSel </font><font color="red">order="name"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>bound: [<b>{<font color="blue">staffSel </font><font color="red">where="name = <font color="red">$</font>who"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                        <pre><code style="color: #000000">where: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> order="salary"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> fields="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>first: [<b>{<font color="blue">staffSel </font><font color="red">order="name"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>bound: [<b>{<font color="blue">staffSel </font><font color="red">where="name = <font color="red">$</font>who"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>minus: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt; 2000-<font color="red">$</font>adj"<font color="black">,</font> order="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjaxe9ac1f94341e72a4ee6bce80f01d64ea"></div>
@@ -297,7 +339,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

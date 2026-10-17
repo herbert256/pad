@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - tagList
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - tagList
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: notes - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The notes, pinned first and then the last changed: all of them, those of one tag, or<br>  // those a search finds in a title, a text or a tag. The list is a live region - the star<br>  // pins a note, and this PHP answers the click with the region alone - and a fragment,<br>  // which notes.js asks for while a search is typed.<br><br>  </span><span style="color: #0000BB">$only </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">notesText </span><span style="color: #007700">( </span><span style="color: #DD0000">'tag' </span><span style="color: #007700">) );<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'pin' </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">notesPin </span><span style="color: #007700">( (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">() );<br><br>  </span><span style="color: #0000BB">$notes   </span><span style="color: #007700">= </span><span style="color: #0000BB">notesList </span><span style="color: #007700">( </span><span style="color: #0000BB">$search</span><span style="color: #007700">, </span><span style="color: #0000BB">$only </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$tagList </span><span style="color: #007700">= </span><span style="color: #0000BB">notesTags </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$total   </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"FIELD count(*) FROM notes" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$found   </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$notes </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$notesPage </span><span style="color: #007700">= </span><span style="color: #0000BB">$only </span><span style="color: #007700">!== </span><span style="color: #DD0000">'' </span><span style="color: #007700">? </span><span style="color: #DD0000">"#</span><span style="color: #0000BB">$only</span><span style="color: #DD0000">" </span><span style="color: #007700">: ( </span><span style="color: #0000BB">$search </span><span style="color: #007700">!== </span><span style="color: #DD0000">'' </span><span style="color: #007700">? </span><span style="color: #DD0000">"Search: </span><span style="color: #0000BB">$search</span><span style="color: #DD0000">" </span><span style="color: #007700">: </span><span style="color: #DD0000">'All notes' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="layout"&gt;<br><br>  &lt;aside class="tags" aria-label="Tags"&gt;<br>    &lt;a href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>index" class="<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>only eq <font color="black">'</font><font color="black">'</font></font>}</b>on<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;All notes &lt;span&gt;<b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/span&gt;&lt;/a&gt;<br>    <b>{<font color="blue">tagList</font><font color="red"></font>}</b>&lt;a href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>index<b>{<font color="green">?tag</font>}</b>" class="<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>tag eq <font color="red">$</font>only</font>}</b>on<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;#<b>{<font color="green"><font color="red">$</font>tag</font>}</b> &lt;span&gt;<b>{<font color="green"><font color="red">$</font>uses</font>}</b>&lt;/span&gt;&lt;/a&gt;<b>{/<font color="blue">tagList</font><font color="red"></font>}</b><br>  &lt;/aside&gt;<br><br>  &lt;section class="list"&gt;<br>    &lt;div class="list-head"&gt;<br>      &lt;h1&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>only</font>}</b>#<b>{<font color="green"><font color="red">$</font>only</font>}</b><b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>search</font>}</b>Found for “<b>{<font color="green"><font color="red">$</font>search</font>}</b>”<b>{<font color="blue">else</font><font color="red"></font>}</b>All notes<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/h1&gt;<br>      &lt;span class="count"&gt;<b>{<font color="green"><font color="red">$</font>found</font>}</b> of <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/span&gt;<br>    &lt;/div&gt;<br>    &lt;div id="results" data-tag="<b>{<font color="green"><font color="red">$</font>only</font>}</b>"&gt;<br>      <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>list<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">live </font><font color="red"><font color="black">'</font>notes<font color="black">'</font></font>}</b><br>      &lt;div class="grid"&gt;<br>        <b>{<font color="blue">notes</font><font color="red"></font>}</b><br>        &lt;article class="note color-<b>{<font color="green"><font color="red">$</font>color</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>pinned</font>}</b> pinned<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;<br>          &lt;button type="button" class="pin" pad-click="pin" pad-value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>" aria-pressed="<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>pinned</font>}</b>true<b>{<font color="blue">else</font><font color="red"></font>}</b>false<b>{/<font color="blue">if</font><font color="red"></font>}</b>" title="<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>pinned</font>}</b>Unpin<b>{<font color="blue">else</font><font color="red"></font>}</b>Pin to the top<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;★&lt;/button&gt;<br>          &lt;a class="open" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>note&amp;id=<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>            &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>            &lt;p&gt;<b>{<font color="green"><font color="red">$</font>excerpt</font>}</b>&lt;/p&gt;<br>          &lt;/a&gt;<br>          &lt;footer&gt;<br>            &lt;time datetime="<b>{<font color="green"><font color="red">$</font>updated</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>day</font>}</b>&lt;/time&gt;<br>            <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>files gt 0</font>}</b>&lt;span class="clip" title="Attached files"&gt;📎 <b>{<font color="green"><font color="red">$</font>files</font>}</b>&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>            <b>{<font color="blue"><font color="purple">level</font><font color="black"><b>:</b></font>tags</font><font color="red"></font>}</b>&lt;a class="tag" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>index<b>{<font color="green">?tag</font>}</b>"&gt;#<b>{<font color="green"><font color="red">$</font>tag</font>}</b>&lt;/a&gt;<b>{/<font color="blue"><font color="purple">level</font><font color="black"><b>:</b></font>tags</font><font color="red"></font>}</b><br>          &lt;/footer&gt;<br>        &lt;/article&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>        &lt;p class="empty"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>search</font>}</b>Nothing found for “<b>{<font color="green"><font color="red">$</font>search</font>}</b>”.<b>{<font color="blue">else</font><font color="red"></font>}</b>No notes here yet.<b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;a href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>edit"&gt;Write one&lt;/a&gt;.&lt;/p&gt;<br>        <b>{/<font color="blue">notes</font><font color="red"></font>}</b><br>      &lt;/div&gt;<br>      <b>{/<font color="blue">live</font><font color="red"></font>}</b><br>      <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/section&gt;<br><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax411d09cc70c0cebeb496654077b7b1b5"></div>
+                        <script>
+                        padAjax411d09cc70c0cebeb496654077b7b1b5 = new XMLHttpRequest();
+                        padAjax411d09cc70c0cebeb496654077b7b1b5.onreadystatechange=function() {
+                        if (padAjax411d09cc70c0cebeb496654077b7b1b5.readyState === 4) {
+                        if (padAjax411d09cc70c0cebeb496654077b7b1b5.status === 200) {
+                        document.getElementById("padAjax411d09cc70c0cebeb496654077b7b1b5").innerHTML=padAjax411d09cc70c0cebeb496654077b7b1b5.responseText;
+                        } else {
+                        document.getElementById("padAjax411d09cc70c0cebeb496654077b7b1b5").innerHTML=padAjax411d09cc70c0cebeb496654077b7b1b5.statusText;
+                        }
+                        }
+                        }
+                        padAjax411d09cc70c0cebeb496654077b7b1b5.open("GET","http://localhost/pad/notes/?index&padInclude",true);
+                        padAjax411d09cc70c0cebeb496654077b7b1b5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

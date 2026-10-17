@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,334 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: alpine - Page: examples/components<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/components.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/components.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The data of the components: plain arrays here, a database or a _data file anywhere else.<br>  // The template hands each to its component as the argument - x-data="accordion({^faq})" -<br>  // and renders the same rows as HTML inside it, for a visitor without JavaScript.<br><br>  </span><span style="color: #0000BB">$faq </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Why not write the state in the template?'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.' </span><span style="color: #007700">],<br>           [ </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Where do the components live?'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.' </span><span style="color: #007700">],<br>           [ </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Does it work without JavaScript?'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$tabs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'server'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Server'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'PAD renders the page, with every value escaped for where it stands.' </span><span style="color: #007700">],<br>            [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'wire'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Wire'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The state crosses as JSON in an attribute - no second request.' </span><span style="color: #007700">],<br>            [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'client'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Client'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alpine reads it and keeps the component live in the browser.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="cols-2"&gt;<br><br>  &lt;section&gt;<br>    &lt;div class="panel-title"&gt;Accordion - accordion({^faq})&lt;/div&gt;<br>    &lt;div class="accordion" x-data="accordion({^faq})"&gt;<br>      <b>{<font color="blue">faq</font><font color="red"></font>}</b><br>      &lt;div class="accordion-item" :class="isOpen(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>) &amp;& 'is-open'"&gt;<br>        &lt;button class="accordion-head" @click="toggle(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>)" :aria-expanded="isOpen(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>)"&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;span aria-hidden="true"&gt;+&lt;/span&gt;&lt;/button&gt;<br>        &lt;div class="accordion-body" x-show="isOpen(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>faq</font><font color="red"></font>}</b>)" x-transition&gt;<b>{<font color="green"><font color="red">$</font>a</font>}</b>&lt;/div&gt;<br>      &lt;/div&gt;<br>      <b>{/<font color="blue">faq</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/section&gt;<br><br>  &lt;section&gt;<br>    &lt;div class="panel-title"&gt;Tabs - tabs({^tabs})&lt;/div&gt;<br>    &lt;div class="tabs" x-data="tabs({^tabs})"&gt;<br>      &lt;div class="pills" role="tablist"&gt;<br>        &lt;template x-for="tab in list" :key="tab.key"&gt;<br>          &lt;button class="pill" role="tab" :class="tab.key === active &amp;& 'is-on'" :aria-selected="tab.key === active" @click="active = tab.key" x-text="tab.label"&gt;&lt;/button&gt;<br>        &lt;/template&gt;<br>      &lt;/div&gt;<br>      &lt;p class="panel tab-text" x-text="current().text"&gt;<b>{<font color="green"><font color="red">$</font>tabs.0.text</font>}</b>&lt;/p&gt;<br>    &lt;/div&gt;<br><br>    &lt;div class="panel-title" style="margin-top: 26px"&gt;Dialog - dialog()&lt;/div&gt;<br>    &lt;div x-data="dialog()"&gt;<br>      &lt;button @click="show()"&gt;Open the dialog&lt;/button&gt;<br>      &lt;div class="backdrop" x-show="open" x-transition.opacity x-cloak @click.self="hide()" @keydown.escape.window="hide()"&gt;<br>        &lt;div class="dialog" role="dialog" aria-modal="true" aria-label="A dialog" x-show="open" x-transition&gt;<br>          &lt;h3&gt;Rendered by PAD, shown by Alpine&lt;/h3&gt;<br>          &lt;p class="muted"&gt;This box was in the page from the start; Alpine only decides when it shows.&lt;/p&gt;<br>          &lt;button class="btn-ghost" @click="hide()" x-ref="close"&gt;Close&lt;/button&gt;<br>        &lt;/div&gt;<br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>  &lt;/section&gt;<br><br>&lt;/div&gt;<br><br>&lt;script src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>alpine/examples/components.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd48db82364b236ad2debc16443f8b580"></div>
+                        <script>
+                        padAjaxd48db82364b236ad2debc16443f8b580 = new XMLHttpRequest();
+                        padAjaxd48db82364b236ad2debc16443f8b580.onreadystatechange=function() {
+                        if (padAjaxd48db82364b236ad2debc16443f8b580.readyState === 4) {
+                        if (padAjaxd48db82364b236ad2debc16443f8b580.status === 200) {
+                        document.getElementById("padAjaxd48db82364b236ad2debc16443f8b580").innerHTML=padAjaxd48db82364b236ad2debc16443f8b580.responseText;
+                        } else {
+                        document.getElementById("padAjaxd48db82364b236ad2debc16443f8b580").innerHTML=padAjaxd48db82364b236ad2debc16443f8b580.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd48db82364b236ad2debc16443f8b580.open("GET","http://localhost/pad/alpine/?examples/components&padInclude",true);
+                        padAjaxd48db82364b236ad2debc16443f8b580.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: alpine - Page: guide<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">guide.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + Alpine<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Alpine on a PAD page&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Alpine reads attributes, PAD writes them. Both love braces - so give each its own, hand<br>    Alpine its state as JSON, and let it talk back to the page that wrote it.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. The braces&lt;/h2&gt;<br>&lt;p&gt;PAD reads every &lt;code&gt;<b>{<font color="purple">&lt;/code&gt; of a template as the start of a tag; Alpine writes objects<br>   with them. Three ways that never collide<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;State from PHP&lt;/h3&gt;<br>    &lt;p&gt;The ^ sigil writes a field as JSON, escaped for the attribute - &lt;code&gt;x-data="{^profile</font>}</b>"&lt;/code&gt;.<br>       No brace of Alpine's in the template, and a quote in a value stays text.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Components in a file&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;Alpine.data('tabs', ...)&lt;/code&gt; in a script of &lt;code&gt;www/&lt;/code&gt;, called by name:<br>       &lt;code&gt;x-data="tabs({^tabs})"&lt;/code&gt; - the file never meets the PAD parser.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;A space after the brace&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;x-data="{ open: false }"&lt;/code&gt; written as &lt;code&gt;{ open: false }&lt;/code&gt; -<br>       a brace with a space after it is no PAD tag. It works for a short object; prefer the other two.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;2. Load order&lt;/h2&gt;<br>&lt;p&gt;The application's scripts first, Alpine last and deferred - a page's components register<br>   themselves on &lt;code&gt;alpine:init&lt;/code&gt; before Alpine walks the page:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>html<font color="black">'</font></font>}</b><br>&lt;script src="alpine-app.js"&gt;&lt;/script&gt;                         &lt;!-- pad.get, pad.post --&gt;<br>&lt;script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"&gt;&lt;/script&gt;<br>...<br>&lt;script src="examples/search.js"&gt;&lt;/script&gt;                    &lt;!-- Alpine.data('search', ...) --&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;3. Talking back&lt;/h2&gt;<br>&lt;p&gt;A page answers JSON when asked - &lt;code&gt;?page&amp;amp;padFormat=json&lt;/code&gt; - with only what its PHP<br>   names in &lt;code&gt;$padExpose&lt;/code&gt;; the templates do not run for it. A post carries the session's<br>   token in a header, read from &lt;code&gt;&lt;meta name="csrf-token" content="<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>"&gt;&lt;/code&gt;:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>const answer = await pad.get('examples/search', { q: this.q });   // the JSON of $padExpose<br>const saved  = await pad.post('examples/todos', { op: 'add', text }); // X-CSRF-Token sent<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;4. One set of rules&lt;/h2&gt;<br>&lt;p&gt;Keep a form's rules in PHP: &lt;code&gt;padValidate ( $rules )&lt;/code&gt; checks the post,<br>   &lt;code&gt;padValidateClient ( $rules )&lt;/code&gt; hands them to the component, <b>{<font color="blue">validator</font><font color="red"></font>}</b> brings the<br>   checker, and &lt;code&gt;padValidate.field ( rules.email, value, form )&lt;/code&gt; answers in the server's<br>   words.&lt;/p&gt;<br><br>&lt;h2&gt;5. Events from the server&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;padSse()&lt;/code&gt; streams JSON events; an &lt;code&gt;EventSource&lt;/code&gt; opened in<br>   &lt;code&gt;x-init&lt;/code&gt; - in a component that closes it again in &lt;code&gt;destroy()&lt;/code&gt; - turns them<br>   into state.&lt;/p&gt;<br><br>&lt;div class="callout"&gt;&lt;p&gt;Values are text: whatever a visitor typed, the ^ sigil writes it as JSON escaped for the attribute,<br>   and &lt;code&gt;x-text&lt;/code&gt; puts it in as text. Avoid &lt;code&gt;x-html&lt;/code&gt; with data that is not yours.&lt;/p&gt;&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxeede1d894995d5f43b5c945baee9ccd4"></div>
+                        <script>
+                        padAjaxeede1d894995d5f43b5c945baee9ccd4 = new XMLHttpRequest();
+                        padAjaxeede1d894995d5f43b5c945baee9ccd4.onreadystatechange=function() {
+                        if (padAjaxeede1d894995d5f43b5c945baee9ccd4.readyState === 4) {
+                        if (padAjaxeede1d894995d5f43b5c945baee9ccd4.status === 200) {
+                        document.getElementById("padAjaxeede1d894995d5f43b5c945baee9ccd4").innerHTML=padAjaxeede1d894995d5f43b5c945baee9ccd4.responseText;
+                        } else {
+                        document.getElementById("padAjaxeede1d894995d5f43b5c945baee9ccd4").innerHTML=padAjaxeede1d894995d5f43b5c945baee9ccd4.statusText;
+                        }
+                        }
+                        }
+                        padAjaxeede1d894995d5f43b5c945baee9ccd4.open("GET","http://localhost/pad/alpine/?guide&padInclude",true);
+                        padAjaxeede1d894995d5f43b5c945baee9ccd4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: htmx - Page: guide<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">guide.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + htmx<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;How PAD answers htmx&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    htmx asks for HTML and swaps it in. A PAD page is HTML with names on its parts - so the<br>    same template answers the browser's first visit and every question htmx asks after it.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. Name the part&lt;/h2&gt;<br>&lt;p&gt;A <b>{<font color="blue">fragment</font><font color="red"></font>}</b> around the part that changes; the element around it gets the same name<br>   as its id:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results"&gt;<br><br>&lt;ul id="results"&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">products</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;2. PAD answers the part alone&lt;/h2&gt;<br>&lt;p&gt;htmx sends &lt;code&gt;HX-Request: true&lt;/code&gt; and the id of the element it swaps in<br>   &lt;code&gt;HX-Target&lt;/code&gt;. When the page has a fragment of that name, the answer is that fragment<br>   and nothing else - no wrapper, no rest of the page; when it has none the page renders whole,<br>   as it always did. A request can also name the fragment itself, for an element without an id<br>   or another part than the target:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;tr hx-get="?orders&amp;p=2&amp;padFragment=rows" hx-trigger="revealed" hx-swap="afterend"&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>&lt;p&gt;The page's PHP runs as for any request - &lt;code&gt;$q&lt;/code&gt; is the request's value - and may narrow<br>   what the fragment shows: &lt;code&gt;$padFragmentOnly = 'row'&lt;/code&gt; sets the answer from PHP. A<br>   fragment inside a loop answers with the first row it renders, so narrow the rows to the one<br>   asked for.&lt;/p&gt;<br><br>&lt;h2&gt;3. Posts carry the token&lt;/h2&gt;<br>&lt;p&gt;With &lt;code&gt;$padCsrf&lt;/code&gt; on, a post without the session's token is refused before the page<br>   runs. A <b>{<font color="blue">form</font><font color="red"></font>}</b> carries it as a field; for an &lt;code&gt;hx-post&lt;/code&gt; on anything else, put<br>   the header on the body once - the ^ sigil writes the array as JSON for the attribute:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;body hx-headers="{^headers}"&gt;          &lt;!-- $headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ] --&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;4. Forms check the same rules twice&lt;/h2&gt;<br>&lt;p&gt;Fields with &lt;code&gt;rules=&lt;/code&gt; are checked on the server before the PHP runs, and with<br>   &lt;code&gt;client&lt;/code&gt; in the browser first. Posted through htmx, a form that broke a rule comes<br>   back as its own fragment, refilled, with PAD's messages beside the fields:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div id="signup"&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>signup<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>signup<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error<font color="black">,</font> hx-post=<font color="black">'</font>?signup<font color="black">'</font><font color="black">,</font> hx-target=<font color="black">'</font>#signup<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>}</b><br>  <b>{/<font color="blue">form</font><font color="red"></font>}</b><br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;5. More than one place&lt;/h2&gt;<br>&lt;p&gt;An answer can update other parts of the page as well: elements in it marked<br>   &lt;code&gt;hx-swap-oob="true"&lt;/code&gt; go where their id is - the cart count in the header, a summary<br>   beside the list.&lt;/p&gt;<br><br>&lt;h2&gt;6. Pushed by the server&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;padSse()&lt;/code&gt; keeps a page's connection open and sends events; with htmx's sse<br>   extension each event's HTML is swapped in as it arrives:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div hx-ext="sse" sse-connect="?ticker" sse-close="done"&gt;<br>  &lt;ol sse-swap="tick" hx-swap="afterbegin"&gt;&lt;/ol&gt;<br>&lt;/div&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;div class="callout"&gt;&lt;p&gt;The page cache knows htmx: a request for a part is answered fresh and never stored, and a<br>   fragment chosen by a header is never stored under the page's address.&lt;/p&gt;&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2"></div>
+                        <script>
+                        padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2 = new XMLHttpRequest();
+                        padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.onreadystatechange=function() {
+                        if (padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.readyState === 4) {
+                        if (padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.status === 200) {
+                        document.getElementById("padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2").innerHTML=padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.responseText;
+                        } else {
+                        document.getElementById("padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2").innerHTML=padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.open("GET","http://localhost/pad/htmx/?guide&padInclude",true);
+                        padAjaxe3fa0ac00c692bfcd0fe9e40b1f47cd2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: htmx - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; HTML over the wire&lt;/span&gt;<br>    &lt;h1&gt;The server renders.&lt;br&gt;&lt;span class="grad"&gt;htmx swaps it in.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      htmx asks the server for a part of the page and puts the answer where it belongs. PAD<br>      already speaks that language: every <b>{<font color="blue">fragment</font><font color="red"></font>}</b> of a template can be asked for<br>      alone - by its name, or by the element htmx swaps - so one template serves the whole page<br>      and every piece of it.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/search"&gt;Start with active search&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How PAD answers htmx&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;input name="q" hx-get="?products"<br>       hx-trigger="input changed delay:300ms"<br>       hx-target="#results"&gt;<br><br>&lt;ul id="results"&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">products</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>    &lt;p class="small muted"&gt;The request carries &lt;code&gt;HX-Target: results&lt;/code&gt;; PAD answers that fragment alone.&lt;/p&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbbde10c3af3eb550f30077e247997828"></div>
+                        <script>
+                        padAjaxbbde10c3af3eb550f30077e247997828 = new XMLHttpRequest();
+                        padAjaxbbde10c3af3eb550f30077e247997828.onreadystatechange=function() {
+                        if (padAjaxbbde10c3af3eb550f30077e247997828.readyState === 4) {
+                        if (padAjaxbbde10c3af3eb550f30077e247997828.status === 200) {
+                        document.getElementById("padAjaxbbde10c3af3eb550f30077e247997828").innerHTML=padAjaxbbde10c3af3eb550f30077e247997828.responseText;
+                        } else {
+                        document.getElementById("padAjaxbbde10c3af3eb550f30077e247997828").innerHTML=padAjaxbbde10c3af3eb550f30077e247997828.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbbde10c3af3eb550f30077e247997828.open("GET","http://localhost/pad/htmx/?index&padInclude",true);
+                        padAjaxbbde10c3af3eb550f30077e247997828.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: islands - Page: examples/build<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/build.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/build.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What {vite 'src/main.js'} wrote into this page's &lt;head&gt;, and where it came from: the<br>  // manifest of the build - every source and the file it became - or the dev server, while it<br>  // runs. The clock is a Solid island started from the server's time.<br><br>  </span><span style="color: #0000BB">$dev      </span><span style="color: #007700">= </span><span style="color: #0000BB">padViteDev </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$manifest </span><span style="color: #007700">= </span><span style="color: #0000BB">$dev </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">? ( </span><span style="color: #0000BB">padViteManifest </span><span style="color: #007700">() ?? [] ) : [];<br>  </span><span style="color: #0000BB">$written  </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padViteTags </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'src/main.js' </span><span style="color: #007700">], </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$sources </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$manifest </span><span style="color: #007700">as </span><span style="color: #0000BB">$source </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    if ( ! </span><span style="color: #0000BB">str_starts_with </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'_' </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$sources </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'source' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$source</span><span style="color: #007700">,<br>                      </span><span style="color: #DD0000">'file'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">],<br>                      </span><span style="color: #DD0000">'kind'   </span><span style="color: #007700">=&gt; ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'isEntry'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'entry' </span><span style="color: #007700">: ( ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'isDynamicEntry'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'loaded on demand' </span><span style="color: #007700">: </span><span style="color: #DD0000">'chunk' </span><span style="color: #007700">),<br>                      </span><span style="color: #DD0000">'css'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'css'</span><span style="color: #007700">] ?? [] ) ];<br><br>  </span><span style="color: #0000BB">$sourceCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$sources </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$clock       </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'now' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">time </span><span style="color: #007700">() ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dev</font>}</b>The dev server runs: <b>{<font color="green"><font color="red">$</font>dev</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>The build: www/islands/build/<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>    &lt;p class="muted small"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dev</font>}</b><b>{<font color="blue">vite</font><font color="red"></font>}</b> asks the dev server - every save shows at once.<b>{<font color="blue">else</font><font color="red"></font>}</b>Start &lt;code&gt;npm run dev&lt;/code&gt; in &lt;code&gt;_frontend/&lt;/code&gt; and reload: <b>{<font color="blue">vite</font><font color="red"></font>}</b> then asks the dev server instead.<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;<br>    &lt;div class="panel-title" style="margin-top: 18px"&gt;What <b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b> wrote into the head&lt;/div&gt;<br>    <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>written <font color="black">|</font> highlight(<font color="black">'</font>html<font color="black">'</font>)</font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;The server's time, ticking in a Solid island&lt;/div&gt;<br>    &lt;div class="clock-box" data-island="Clock" data-props="{^clock}"&gt;&lt;span class="clock"&gt;-&lt;/span&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>sourceCount</font>}</b><br>&lt;div class="panel-title" style="margin-top: 26px"&gt;The manifest - every source and what it became&lt;/div&gt;<br>&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Source&lt;/th&gt;&lt;th&gt;File&lt;/th&gt;&lt;th&gt;Kind&lt;/th&gt;&lt;th&gt;CSS&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>    <b>{<font color="blue">sources</font><font color="red"></font>}</b>&lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>source</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>file</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>kind</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>css</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<b>{/<font color="blue">sources</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcf22fc4d410fa247b79a1720d28c2d47"></div>
+                        <script>
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47 = new XMLHttpRequest();
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47.onreadystatechange=function() {
+                        if (padAjaxcf22fc4d410fa247b79a1720d28c2d47.readyState === 4) {
+                        if (padAjaxcf22fc4d410fa247b79a1720d28c2d47.status === 200) {
+                        document.getElementById("padAjaxcf22fc4d410fa247b79a1720d28c2d47").innerHTML=padAjaxcf22fc4d410fa247b79a1720d28c2d47.responseText;
+                        } else {
+                        document.getElementById("padAjaxcf22fc4d410fa247b79a1720d28c2d47").innerHTML=padAjaxcf22fc4d410fa247b79a1720d28c2d47.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47.open("GET","http://localhost/pad/islands/?examples/build&padInclude",true);
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: islands - Page: guide<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">guide.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + islands<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Islands of any framework&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    PAD writes the page and marks the islands; one small runtime mounts a component of any<br>    framework on each; Vite builds the components and <b>{<font color="blue">vite</font><font color="red"></font>}</b> links the build.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. The island, in the template&lt;/h2&gt;<br>&lt;p&gt;An element names its component and carries its props - the ^ sigil writes a field as JSON for the<br>   attribute - and &lt;code&gt;data-load&lt;/code&gt; says when its code is fetched. What stands inside shows<br>   until the component takes over.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div data-island="VueCounter" data-load="visible" data-props="{^counter}"&gt;<br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>counter.start</font>}</b>&lt;/p&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;2. The registry, in the build&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;_frontend/src/main.js&lt;/code&gt; names every island and pairs it with its framework. Both are<br>   fetched by &lt;code&gt;import()&lt;/code&gt; when an island of the name is due - a page without a Vue island<br>   loads no Vue:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_frontend/src/main.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;3. An adapter per framework&lt;/h2&gt;<br>&lt;p&gt;An adapter is a dozen lines: it mounts a component on an element with props and answers how to<br>   unmount it. Each is a module of its own, so it travels with its framework:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_frontend/src/adapters/svelte.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;4. Talking to PAD, and to each other&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;pad-islands.js&lt;/code&gt; also exports &lt;code&gt;get(page, params)&lt;/code&gt; - the JSON of a page's<br>   &lt;code&gt;$padExpose&lt;/code&gt; - &lt;code&gt;post(page, body)&lt;/code&gt; with the session's CSRF token, and<br>   &lt;code&gt;store(name, initial)&lt;/code&gt;: state any framework subscribes to. A React island writes it, a<br>   Vue and a Svelte island show it.&lt;/p&gt;<br><br>&lt;h2&gt;5. Build and dev server&lt;/h2&gt;<br>&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>bash<font color="black">'</font></font>}</b><br>cd apps/islands/_frontend<br>npm install<br>npm run build     # www/islands/build/ with .vite/manifest.json<br>npm run dev       # the dev server; build/hot holds its address<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;p&gt;<b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b> reads the manifest and writes the entry's CSS, its chunks as<br>       &lt;code&gt;modulepreload&lt;/code&gt; and its module script. While &lt;code&gt;npm run dev&lt;/code&gt; runs, a hook of<br>       &lt;code&gt;vite.config.js&lt;/code&gt; writes the dev server's address into &lt;code&gt;build/hot&lt;/code&gt;, and<br>       <b>{<font color="blue">vite</font><font color="red"></font>}</b> asks the dev server instead - a save in the editor shows at once.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="callout"&gt;&lt;p&gt;Each framework compiles its own files: &lt;code&gt;*.react.jsx&lt;/code&gt;, &lt;code&gt;*.solid.jsx&lt;/code&gt;, &lt;code&gt;*.vue&lt;/code&gt;,<br>   &lt;code&gt;*.svelte&lt;/code&gt;. Preact needs no compiler - its components are written with &lt;code&gt;htm&lt;/code&gt;.&lt;/p&gt;&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf0571d0b248cddd410d860b94abb333e"></div>
+                        <script>
+                        padAjaxf0571d0b248cddd410d860b94abb333e = new XMLHttpRequest();
+                        padAjaxf0571d0b248cddd410d860b94abb333e.onreadystatechange=function() {
+                        if (padAjaxf0571d0b248cddd410d860b94abb333e.readyState === 4) {
+                        if (padAjaxf0571d0b248cddd410d860b94abb333e.status === 200) {
+                        document.getElementById("padAjaxf0571d0b248cddd410d860b94abb333e").innerHTML=padAjaxf0571d0b248cddd410d860b94abb333e.responseText;
+                        } else {
+                        document.getElementById("padAjaxf0571d0b248cddd410d860b94abb333e").innerHTML=padAjaxf0571d0b248cddd410d860b94abb333e.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf0571d0b248cddd410d860b94abb333e.open("GET","http://localhost/pad/islands/?guide&padInclude",true);
+                        padAjaxf0571d0b248cddd410d860b94abb333e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: islands - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">islandsGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; Any framework, one runtime&lt;/span&gt;<br>    &lt;h1&gt;Islands of any kind&lt;br&gt;&lt;span class="grad"&gt;on one PAD page.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      PAD writes the page and marks the places that move. A small runtime mounts a component on<br>      each - React here, Vue there, Svelte, Preact or Solid - and fetches a framework only when<br>      an island of it is on the page. Vite builds them; <b>{<font color="blue">vite</font><font color="red"></font>}</b> links the build.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/frameworks"&gt;See all five&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How it fits together&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div data-island="VueCounter" data-props="{^vue}"&gt;&lt;/div&gt;<br>&lt;div data-island="SvelteCounter" data-load="visible"<br>     data-props="{^svelte}"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>islands({<br>  VueCounter:    vue(() =&gt; import('./Counter.vue')),<br>  SvelteCounter: svelte(() =&gt; import('./Counter.svelte'))<br>});<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe2af573f5d4b2baf6d7bce96e248e742"></div>
+                        <script>
+                        padAjaxe2af573f5d4b2baf6d7bce96e248e742 = new XMLHttpRequest();
+                        padAjaxe2af573f5d4b2baf6d7bce96e248e742.onreadystatechange=function() {
+                        if (padAjaxe2af573f5d4b2baf6d7bce96e248e742.readyState === 4) {
+                        if (padAjaxe2af573f5d4b2baf6d7bce96e248e742.status === 200) {
+                        document.getElementById("padAjaxe2af573f5d4b2baf6d7bce96e248e742").innerHTML=padAjaxe2af573f5d4b2baf6d7bce96e248e742.responseText;
+                        } else {
+                        document.getElementById("padAjaxe2af573f5d4b2baf6d7bce96e248e742").innerHTML=padAjaxe2af573f5d4b2baf6d7bce96e248e742.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe2af573f5d4b2baf6d7bce96e248e742.open("GET","http://localhost/pad/islands/?index&padInclude",true);
+                        padAjaxe2af573f5d4b2baf6d7bce96e248e742.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/alpine<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/alpine.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Alpine<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Alpine adds behaviour to HTML with attributes - and PAD writes that HTML. Both use braces,<br>and PAD reads every &lt;code&gt;<b>{<font color="purple">&lt;/code&gt; of a template as the start of a tag, so the state of a<br>component comes from the page's PHP as JSON instead<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;&lt;div x-data="{^profile</font>}</b>"&gt;                &lt;!-- $profile = [ 'name' =&gt; 'Ada', 'likes' =&gt; 12 ] --&gt;<br>  &lt;h2 x-text="name"&gt;&lt;/h2&gt;<br>  &lt;button @click="likes++"&gt;♥ &lt;span x-text="likes"&gt;&lt;/span&gt;&lt;/button&gt;<br>&lt;/div&gt;&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;The ^ sigil writes a field as JSON escaped for the attribute: a quote or a brace in a value<br>stays text. Three ways keep the braces apart:&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;b&gt;State from PHP&lt;/b&gt; - &lt;code&gt;x-data="{^field}"&lt;/code&gt;, as above.&lt;/li&gt;<br>  &lt;li&gt;&lt;b&gt;Components in a file&lt;/b&gt; - &lt;code&gt;Alpine.data('tabs', list =&gt; (...))&lt;/code&gt; in a script of<br>      &lt;code&gt;www/&lt;/code&gt;, called by name with PAD's data: &lt;code&gt;x-data="tabs({^tabs})"&lt;/code&gt;.<br>      Load the page's scripts before Alpine, and Alpine with &lt;code&gt;defer&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;&lt;b&gt;A space after the brace&lt;/b&gt; - &lt;code&gt;{ open: false }&lt;/code&gt; is no PAD tag; fine for a short<br>      object.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Talking back&lt;/h2&gt;<br><br>&lt;p&gt;A component asks the page that wrote it: &lt;code&gt;?page&amp;amp;padFormat=json&lt;/code&gt; answers what<br>the page's PHP names in &lt;code&gt;$padExpose&lt;/code&gt; (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>data_answers<font color="black">'</font></font>}</b>). A post carries the<br>session's token in an &lt;code&gt;X-CSRF-Token&lt;/code&gt; header, read from<br>&lt;code&gt;&lt;meta name="csrf-token" content="<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>"&gt;&lt;/code&gt;. A form's rules can live in<br>PHP for both sides - &lt;code&gt;padValidateClient ( $rules )&lt;/code&gt; for the browser,<br>&lt;code&gt;padValidate ( $rules )&lt;/code&gt; for the post (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>client_validation<font color="black">'</font></font>}</b>) - and<br>&lt;code&gt;padSse()&lt;/code&gt; streams events an &lt;code&gt;EventSource&lt;/code&gt; in &lt;code&gt;x-init&lt;/code&gt; turns into<br>state (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>server_sent_events<font color="black">'</font></font>}</b>).&lt;/p&gt;<br><br>&lt;p&gt;The Alpine application shows each of these, with its template, PHP and script:<br>&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>alpine/"&gt;alpine&lt;/a&gt;.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax644b33df2d579cff438d41e3592d22cf"></div>
+                        <script>
+                        padAjax644b33df2d579cff438d41e3592d22cf = new XMLHttpRequest();
+                        padAjax644b33df2d579cff438d41e3592d22cf.onreadystatechange=function() {
+                        if (padAjax644b33df2d579cff438d41e3592d22cf.readyState === 4) {
+                        if (padAjax644b33df2d579cff438d41e3592d22cf.status === 200) {
+                        document.getElementById("padAjax644b33df2d579cff438d41e3592d22cf").innerHTML=padAjax644b33df2d579cff438d41e3592d22cf.responseText;
+                        } else {
+                        document.getElementById("padAjax644b33df2d579cff438d41e3592d22cf").innerHTML=padAjax644b33df2d579cff438d41e3592d22cf.statusText;
+                        }
+                        }
+                        }
+                        padAjax644b33df2d579cff438d41e3592d22cf.open("GET","http://localhost/pad/manual/?pages/alpine&padInclude",true);
+                        padAjax644b33df2d579cff438d41e3592d22cf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: manual - Page: pages/app_tests<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -170,7 +498,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown collections<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A folder of Markdown files is a data source - a small flat-file CMS. The files live in<br>&lt;code&gt;_content/&lt;name&gt;/&lt;/code&gt;, and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>collection<font color="black">'</font></font>}</b> iterates them: each file is a<br>row, the keys of its front matter (YAML between two &lt;code&gt;---&lt;/code&gt; lines) are its fields,<br>and three are added - &lt;code&gt;slug&lt;/code&gt;, the file name without &lt;code&gt;.md&lt;/code&gt;;<br>&lt;code&gt;body&lt;/code&gt;, the Markdown written as HTML; and &lt;code&gt;source&lt;/code&gt;, the Markdown as it<br>was.&lt;/p&gt;<br><br>&lt;p&gt;This manual has a folder &lt;code&gt;_content/news/&lt;/code&gt; with two files. The newest first:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;One post&lt;/h2&gt;<br><br>&lt;p&gt;A list links to the page of a post with its slug - &lt;code&gt;?news/post&amp;amp;slug=<b>{<font color="green"><font color="red">$</font>slug</font>}</b>&lt;/code&gt; -<br>and that page names it with the &lt;code&gt;slug&lt;/code&gt; option. A slug that names no file gives no<br>rows, so the &lt;code&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;/code&gt; part answers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;body&lt;/code&gt; is HTML; print it raw with &lt;code&gt;<b>{<font color="green"><font color="red">!</font>body</font>}</b>&lt;/code&gt;. Raw HTML in a file is escaped unless the tag has the &lt;code&gt;html&lt;/code&gt; option.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and the other handling options work on the rows as on any data.&lt;/li&gt;<br>  &lt;li&gt;The folder is looked up like a &lt;code&gt;_data&lt;/code&gt; file: the page's directory, its parents, then &lt;code&gt;_common&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;In PHP, &lt;code&gt;padCollection('news')&lt;/code&gt; gives the same rows.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown collections<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A folder of Markdown files is a data source - a small flat-file CMS. The files live in<br>&lt;code&gt;_content/&lt;name&gt;/&lt;/code&gt;, and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>collection<font color="black">'</font></font>}</b> iterates them: each file is a<br>row, the keys of its front matter (YAML between two &lt;code&gt;---&lt;/code&gt; lines) are its fields,<br>and three are added - &lt;code&gt;slug&lt;/code&gt;, the file name without &lt;code&gt;.md&lt;/code&gt;;<br>&lt;code&gt;body&lt;/code&gt;, the Markdown written as HTML; and &lt;code&gt;source&lt;/code&gt;, the Markdown as it<br>was.&lt;/p&gt;<br><br>&lt;p&gt;This manual has a folder &lt;code&gt;_content/news/&lt;/code&gt; with two files. The newest first:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;One post&lt;/h2&gt;<br><br>&lt;p&gt;A list links to the page of a post with its slug - &lt;code&gt;?news/post&amp;amp;slug=<b>{<font color="green"><font color="red">$</font>slug</font>}</b>&lt;/code&gt; -<br>and that page names it with the &lt;code&gt;slug&lt;/code&gt; option. A slug that names no file gives no<br>rows, so the <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part answers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;body&lt;/code&gt; is HTML; print it raw with &lt;code&gt;<b>{<font color="green"><font color="red">!</font>body</font>}</b>&lt;/code&gt;. Raw HTML in a file is escaped unless the tag has the &lt;code&gt;html&lt;/code&gt; option.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and the other handling options work on the rows as on any data.&lt;/li&gt;<br>  &lt;li&gt;The folder is looked up like a &lt;code&gt;_data&lt;/code&gt; file: the page's directory, its parents, then &lt;code&gt;_common&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;In PHP, &lt;code&gt;padCollection('news')&lt;/code&gt; gives the same rows.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax85793968e31469c16e870763297dce26"></div>
@@ -250,7 +578,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Components<font color="black">:</font> slots and declared parameters<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A tag of your own with a &lt;code&gt;.pad&lt;/code&gt; template is a component: the caller's content goes where the template writes <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>. Named slots give it more than one place for content, and &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt; says which parameters it takes. The card below is &lt;code&gt;_tags/card.pad&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">source </font><font color="red"><font color="black">'</font>_tags/card.pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Slots&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>...<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;/code&gt;. The rest of the content goes to <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>  &lt;li&gt;In the template, the content of a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; is its default, rendered when the caller gave no fill. &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>/}</b>&lt;/code&gt; in the caller's content is an empty fill.&lt;/li&gt;<br>  &lt;li&gt;A default holding <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> is a frame: &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;&amp;#64;content&amp;#64;&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; renders the frame round the fill, and nothing - or its <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part - when there is no fill.&lt;/li&gt;<br>  &lt;li&gt;A fill is the caller's text: it renders with the caller's variables, and a &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; or a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Every use has its own&lt;/h2&gt;<br><br>&lt;p&gt;The fills belong to one use of the tag, so a card inside a card keeps its own footer:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Declared parameters&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b>&lt;/code&gt; at the top of the template declares the parameters: a name alone is required, &lt;code&gt;name=default&lt;/code&gt; fills in what the caller left out. Both read as &lt;code&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: &lt;code&gt;<b>{<font color="blue">card </font><font color="red">titel=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;/code&gt; is reported by name.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Components<font color="black">:</font> slots and declared parameters<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A tag of your own with a &lt;code&gt;.pad&lt;/code&gt; template is a component: the caller's content goes where the template writes <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>. Named slots give it more than one place for content, and &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt; says which parameters it takes. The card below is &lt;code&gt;_tags/card.pad&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">source </font><font color="red"><font color="black">'</font>_tags/card.pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Slots&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>...<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;/code&gt;. The rest of the content goes to <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>  &lt;li&gt;In the template, the content of a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; is its default, rendered when the caller gave no fill. &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>/}</b>&lt;/code&gt; in the caller's content is an empty fill.&lt;/li&gt;<br>  &lt;li&gt;A default holding <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> is a frame: &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;&amp;#64;content&amp;#64;&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; renders the frame round the fill, and nothing - or its <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part - when there is no fill.&lt;/li&gt;<br>  &lt;li&gt;A fill is the caller's text: it renders with the caller's variables, and a &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; or a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Every use has its own&lt;/h2&gt;<br><br>&lt;p&gt;The fills belong to one use of the tag, so a card inside a card keeps its own footer:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Declared parameters&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b>&lt;/code&gt; at the top of the template declares the parameters: a name alone is required, &lt;code&gt;name=default&lt;/code&gt; fills in what the caller left out. Both read as &lt;code&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: &lt;code&gt;<b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>x<font color="black">'</font><font color="black">,</font> titel=<font color="black">'</font>y<font color="black">'</font></font>}</b>&lt;/code&gt; is reported by name.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Components written in the template&lt;/h2&gt;<br><br>&lt;p&gt;A component used on one page only needs no file of its own. &lt;code&gt;<b>{<font color="blue">define </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>...<b>{/<font color="blue">define</font><font color="red"></font>}</b>&lt;/code&gt; writes it in the template: from there on &lt;code&gt;<b>{<font color="blue">name</font><font color="red"></font>}</b>&lt;/code&gt; renders the body as &lt;code&gt;_tags/name.pad&lt;/code&gt; would - &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt;, &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt;, <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> and slots work alike.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A &lt;code&gt;<b>{<font color="blue">macro</font><font color="red"></font>}</b>&lt;/code&gt; is called the way a function is: its parameters are declared on it - a name alone required, &lt;code&gt;name=default&lt;/code&gt; filling in - given in their order or by name, and read as fields, &lt;code&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_4<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;Both render at every use, in its place and with its fields; both can use themselves, for the rows below the current one.&lt;/li&gt;<br>  &lt;li&gt;A define or macro exists from the point it is walked, as a &lt;code&gt;<b>{<font color="blue">content</font><font color="red"></font>}</b>&lt;/code&gt; store does: a use before it is an unknown tag.&lt;/li&gt;<br>  &lt;li&gt;A macro given too many values, missing a required one, or given a name it does not declare is an error.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax9517814ba2f06ae79791a85fe3038659"></div>
@@ -290,7 +618,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Conditions and Branching<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt; pair renders its content when its expression holds, with<br>as many &lt;code&gt;<b>{<font color="blue">elseif</font><font color="red"></font>}</b>&lt;/code&gt; branches as needed and an<br>&lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; for when none did:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The comparison operators&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;operator&lt;/th&gt;&lt;th&gt;meaning&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;eq&lt;/code&gt; or &lt;code&gt;==&lt;/code&gt;&lt;/td&gt;&lt;td&gt;equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ne&lt;/code&gt; or &lt;code&gt;!=&lt;/code&gt;&lt;/td&gt;&lt;td&gt;not equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;gt&lt;/code&gt; / &lt;code&gt;lt&lt;/code&gt;&lt;/td&gt;&lt;td&gt;greater / less than&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ge&lt;/code&gt; / &lt;code&gt;le&lt;/code&gt;&lt;/td&gt;&lt;td&gt;greater / less or equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;and&lt;/code&gt; / &lt;code&gt;or&lt;/code&gt;&lt;/td&gt;&lt;td&gt;both hold / either holds&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;range (a, b)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value lies between a and b, ends included&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;b&gt;A condition needs a comparison.&lt;/b&gt; &lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>flag</font>}</b>&lt;/code&gt; is not a<br>shorthand for testing truth - write what is being compared:<br>&lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>flag eq 1</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br>&lt;h2&gt;Case and when&lt;/h2&gt;<br><br>&lt;p&gt;When one value decides between several branches, &lt;code&gt;<b>{<font color="blue">case</font><font color="red"></font>}</b>&lt;/code&gt; reads<br>better than a chain of elseifs. Each &lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt; names a value, and<br>&lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; catches the rest:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A &lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt; may list several values, separated by commas; it answers<br>when any of them matches:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_7<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The ternary&lt;/h2&gt;<br><br>&lt;p&gt;Inside an expression tag, &lt;code&gt;?&lt;/code&gt; and &lt;code&gt;:&lt;/code&gt; pick one of two values - the<br>usual way to give alternating rows their class, together with the<br>&lt;a href="?pages/properties"&gt;iteration properties&lt;/a&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Inside an expression&lt;/h2&gt;<br><br>&lt;p&gt;An expression has a ternary of its own, &lt;code&gt;cond ? then : else&lt;/code&gt;, the weakest<br>binding there is. &lt;code&gt;a ?? b&lt;/code&gt; answers &lt;code&gt;a&lt;/code&gt; unless it is empty or a field<br>that is not there - so it gives a field its default - and the tests &lt;code&gt;in&lt;/code&gt;,<br>&lt;code&gt;like&lt;/code&gt;, &lt;code&gt;matches&lt;/code&gt; and &lt;code&gt;range&lt;/code&gt; read infix:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_6<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Properties in conditions&lt;/h2&gt;<br><br>&lt;p&gt;The &lt;a href="?pages/properties"&gt;iteration properties&lt;/a&gt; read as values inside an<br>expression, so they stand in conditions - alone for the boolean ones, with an operator for<br>the counting ones:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_5<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Every tag also carries the &lt;a href="?pages/else"&gt;else construct&lt;/a&gt;: the part after the<br>divider renders when the tag itself produced nothing.&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Conditions and Branching<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt; pair renders its content when its expression holds, with<br>as many &lt;code&gt;<b>{<font color="blue">elseif</font><font color="red"></font>}</b>&lt;/code&gt; branches as needed and an<br>&lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; for when none did:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The comparison operators&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;operator&lt;/th&gt;&lt;th&gt;meaning&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;eq&lt;/code&gt; or &lt;code&gt;==&lt;/code&gt;&lt;/td&gt;&lt;td&gt;equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ne&lt;/code&gt; or &lt;code&gt;!=&lt;/code&gt;&lt;/td&gt;&lt;td&gt;not equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;gt&lt;/code&gt; / &lt;code&gt;lt&lt;/code&gt;&lt;/td&gt;&lt;td&gt;greater / less than&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ge&lt;/code&gt; / &lt;code&gt;le&lt;/code&gt;&lt;/td&gt;&lt;td&gt;greater / less or equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;and&lt;/code&gt; / &lt;code&gt;or&lt;/code&gt;&lt;/td&gt;&lt;td&gt;both hold / either holds&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;range (a, b)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value lies between a and b, ends included&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;b&gt;A bare value is tested for its truth.&lt;/b&gt; &lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>flag</font>}</b>&lt;/code&gt; holds<br>unless the value is empty, &lt;code&gt;0&lt;/code&gt;, &lt;code&gt;'0'&lt;/code&gt; or FALSE - the truth PHP gives it;<br>write a comparison when a particular value is meant: &lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 0</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br>&lt;h2&gt;Case and when&lt;/h2&gt;<br><br>&lt;p&gt;When one value decides between several branches, &lt;code&gt;<b>{<font color="blue">case</font><font color="red"></font>}</b>&lt;/code&gt; reads<br>better than a chain of elseifs. Each &lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt; names a value, and<br>&lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; catches the rest:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A &lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt; may list several values, separated by commas; it answers<br>when any of them matches:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_7<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;The ternary&lt;/h2&gt;<br><br>&lt;p&gt;Inside an expression tag, &lt;code&gt;?&lt;/code&gt; and &lt;code&gt;:&lt;/code&gt; pick one of two values - the<br>usual way to give alternating rows their class, together with the<br>&lt;a href="?pages/properties"&gt;iteration properties&lt;/a&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Inside an expression&lt;/h2&gt;<br><br>&lt;p&gt;An expression has a ternary of its own, &lt;code&gt;cond ? then : else&lt;/code&gt;, the weakest<br>binding there is. &lt;code&gt;a ?? b&lt;/code&gt; answers &lt;code&gt;a&lt;/code&gt; unless it is empty or a field<br>that is not there - so it gives a field its default - and the tests &lt;code&gt;in&lt;/code&gt;,<br>&lt;code&gt;like&lt;/code&gt;, &lt;code&gt;matches&lt;/code&gt; and &lt;code&gt;range&lt;/code&gt; read infix:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_6<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Properties in conditions&lt;/h2&gt;<br><br>&lt;p&gt;The &lt;a href="?pages/properties"&gt;iteration properties&lt;/a&gt; read as values inside an<br>expression, so they stand in conditions - alone for the boolean ones, with an operator for<br>the counting ones:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/conditions_5<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Every tag also carries the &lt;a href="?pages/else"&gt;else construct&lt;/a&gt;: the part after the<br>divider renders when the tag itself produced nothing.&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjaxa00f191833214ee4e071cc46d3b17cb8"></div>
@@ -311,326 +639,6 @@
                       </td>
                     </tr>
                   </table><br>
-                  <hr>
-                  App: manual - Page: pages/coverage<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/coverage.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Template coverage<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A test suite says what it checks; coverage says what it reaches. With coverage on, every<br>local request notes which templates it read, which of their tags ran, and which branch each<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>if<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>case<font color="black">'</font></font>}</b> took. The report then shows each template with the parts that<br>never ran marked.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/coverage_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;$padCoverage = TRUE&lt;/code&gt; in &lt;code&gt;_config/config.php&lt;/code&gt; records into the run<br>      &lt;code&gt;default&lt;/code&gt;; a name instead of TRUE records into a run of that name, and<br>      &lt;code&gt;?page&amp;amp;padCoverage=name&lt;/code&gt; records one request.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;develop/?coverage&amp;amp;start=suites&lt;/code&gt; records every local request of every<br>      application until &lt;code&gt;develop/?coverage&amp;amp;stop&lt;/code&gt; - start it, run the suites,<br>      stop it, and &lt;code&gt;develop/?coverage&amp;amp;run=suites&lt;/code&gt; lists every template with the<br>      share of its tags and branches that ran, and the files no request read at all.&lt;/li&gt;<br>  &lt;li&gt;A run is a file of JSON lines, &lt;code&gt;DATA/coverage/&lt;run&gt;.jsonl&lt;/code&gt;, one line per<br>      request. Only local requests are recorded.&lt;/li&gt;<br>  &lt;li&gt;An <b>{<font color="blue">if</font><font color="red"></font>}</b> without an <b>{<font color="blue">else</font><font color="red"></font>}</b> has one branch more: the run in which<br>      its condition was false. It is marked on the <b>{/<font color="blue">if</font><font color="red"></font>}</b>.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxab404f7fac361f1cd85688a892e7c405"></div>
-                        <script>
-                        padAjaxab404f7fac361f1cd85688a892e7c405 = new XMLHttpRequest();
-                        padAjaxab404f7fac361f1cd85688a892e7c405.onreadystatechange=function() {
-                        if (padAjaxab404f7fac361f1cd85688a892e7c405.readyState === 4) {
-                        if (padAjaxab404f7fac361f1cd85688a892e7c405.status === 200) {
-                        document.getElementById("padAjaxab404f7fac361f1cd85688a892e7c405").innerHTML=padAjaxab404f7fac361f1cd85688a892e7c405.responseText;
-                        } else {
-                        document.getElementById("padAjaxab404f7fac361f1cd85688a892e7c405").innerHTML=padAjaxab404f7fac361f1cd85688a892e7c405.statusText;
-                        }
-                        }
-                        }
-                        padAjaxab404f7fac361f1cd85688a892e7c405.open("GET","http://localhost/pad/manual/?pages/coverage&padInclude",true);
-                        padAjaxab404f7fac361f1cd85688a892e7c405.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/csrf_protection<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/csrf_protection.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>CSRF protection<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Another site can make a visitor's browser post to your application - a hidden form that<br>submits itself - and the browser sends your session cookie along. A CSRF token tells those<br>posts apart from the ones your own forms send: a random value kept in the visitor's session<br>and written into your form, which another site can make the browser send but cannot read.&lt;/p&gt;<br><br>&lt;h2&gt;One setting&lt;/h2&gt;<br><br>&lt;p&gt;With &lt;code&gt;$padCsrf = TRUE&lt;/code&gt; in &lt;code&gt;_config/config.php&lt;/code&gt; every<br>&lt;code&gt;&lt;form method="post"&gt;&lt;/code&gt; of a page gets a hidden &lt;code&gt;padCsrfToken&lt;/code&gt; field<br>holding the token, and every POST - and PUT, PATCH and DELETE - that does not bring the token<br>back is answered &lt;code&gt;403&lt;/code&gt; before any of the application runs. The forms an<br>application already has are protected without a change to them. A form that posts to another<br>site gets no token, and neither does a GET form, whose fields end up in the url.&lt;/p&gt;<br><br>&lt;h2&gt;The <b>{<font color="blue">csrf</font><font color="red"></font>}</b> tag&lt;/h2&gt;<br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>csrf<font color="black">'</font></font>}</b> writes the field itself, for a form the page builds some other way, or for<br>an application that leaves &lt;code&gt;$padCsrf&lt;/code&gt; off and checks a post by hand with<br>&lt;code&gt;padCsrfValid ()&lt;/code&gt;. &lt;code&gt;<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>&lt;/code&gt; is the bare token, for a<br>script that sends it in an &lt;code&gt;X-CSRF-Token&lt;/code&gt; header:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/csrf_protection_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;The token is one per session, so two open tabs and the back button keep working. The<br>  session starts the first time a token is needed.&lt;/li&gt;<br>  &lt;li&gt;A page carrying a token is never stored in the page cache - it would hand one visitor's<br>  token to the next.&lt;/li&gt;<br>  &lt;li&gt;An application that accepts posts from elsewhere on some pages - a webhook - switches<br>  &lt;code&gt;$padCsrf&lt;/code&gt; off for those pages in its &lt;code&gt;_config/config.php&lt;/code&gt;, which<br>  knows &lt;code&gt;$padPage&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax0e8e19d536720d1826e36fc9a4758ece"></div>
-                        <script>
-                        padAjax0e8e19d536720d1826e36fc9a4758ece = new XMLHttpRequest();
-                        padAjax0e8e19d536720d1826e36fc9a4758ece.onreadystatechange=function() {
-                        if (padAjax0e8e19d536720d1826e36fc9a4758ece.readyState === 4) {
-                        if (padAjax0e8e19d536720d1826e36fc9a4758ece.status === 200) {
-                        document.getElementById("padAjax0e8e19d536720d1826e36fc9a4758ece").innerHTML=padAjax0e8e19d536720d1826e36fc9a4758ece.responseText;
-                        } else {
-                        document.getElementById("padAjax0e8e19d536720d1826e36fc9a4758ece").innerHTML=padAjax0e8e19d536720d1826e36fc9a4758ece.statusText;
-                        }
-                        }
-                        }
-                        padAjax0e8e19d536720d1826e36fc9a4758ece.open("GET","http://localhost/pad/manual/?pages/csrf_protection&padInclude",true);
-                        padAjax0e8e19d536720d1826e36fc9a4758ece.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/data_answers<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/data_answers.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>JSON and CSV from the same page<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page's PHP already produces its data, so the same page can answer with that data instead<br>of rendering its template. The PHP names what may leave the server in<br>&lt;code&gt;$padExpose&lt;/code&gt; - nothing else ever does, and an engine variable never does:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/data_answers_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Asked with &lt;code&gt;&amp;amp;padFormat=json&lt;/code&gt; - or by a client sending<br>&lt;code&gt;Accept: application/json&lt;/code&gt; - that page answers the named variables as one JSON<br>object. &lt;code&gt;&amp;amp;padFormat=csv&lt;/code&gt;, or &lt;code&gt;Accept: text/csv&lt;/code&gt;, answers the first<br>list among them as a table with a header row. The template does not run for either:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/data_answers_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;A page that exposes nothing renders its HTML as always. Asked outright with<br>      &lt;code&gt;padFormat=&lt;/code&gt;, it answers 406 Not Acceptable - as does a format that does not<br>      exist, or CSV from a page with no list.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;$padOutputType = 'json'&lt;/code&gt; (or &lt;code&gt;'csv'&lt;/code&gt;) in<br>      &lt;code&gt;_config/config.php&lt;/code&gt; makes every page of an application answer its data;<br>      &lt;code&gt;<b>{<font color="blue">output </font><font color="red"><font color="black">'</font>json<font color="black">'</font></font>}</b>&lt;/code&gt; does it from a template.&lt;/li&gt;<br>  &lt;li&gt;A script or a React component fetches from the ordinary page:<br>      &lt;code&gt;fetch('?orders&amp;amp;padFormat=json')&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax51e9e787f114c5e3c3ca61b54cf506b1"></div>
-                        <script>
-                        padAjax51e9e787f114c5e3c3ca61b54cf506b1 = new XMLHttpRequest();
-                        padAjax51e9e787f114c5e3c3ca61b54cf506b1.onreadystatechange=function() {
-                        if (padAjax51e9e787f114c5e3c3ca61b54cf506b1.readyState === 4) {
-                        if (padAjax51e9e787f114c5e3c3ca61b54cf506b1.status === 200) {
-                        document.getElementById("padAjax51e9e787f114c5e3c3ca61b54cf506b1").innerHTML=padAjax51e9e787f114c5e3c3ca61b54cf506b1.responseText;
-                        } else {
-                        document.getElementById("padAjax51e9e787f114c5e3c3ca61b54cf506b1").innerHTML=padAjax51e9e787f114c5e3c3ca61b54cf506b1.statusText;
-                        }
-                        }
-                        }
-                        padAjax51e9e787f114c5e3c3ca61b54cf506b1.open("GET","http://localhost/pad/manual/?pages/data_answers&padInclude",true);
-                        padAjax51e9e787f114c5e3c3ca61b54cf506b1.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/database<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/database.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Database<font color="black">'</font></font>}</b><br><br>&lt;p&gt;PAD talks to the application's database - configured in<br>&lt;code&gt;_config/config.php&lt;/code&gt; - in two places: a page's PHP half calls<br>&lt;code&gt;db()&lt;/code&gt;, and the template side has tags that ask directly. The examples here read<br>the &lt;code&gt;staff&lt;/code&gt; table of the demo database - four people of its own, not the five of<br>the &lt;code&gt;staff.xml&lt;/code&gt; file the manual's other examples use.&lt;/p&gt;<br><br>&lt;h2&gt;db() from the page's PHP&lt;/h2&gt;<br><br>&lt;p&gt;The first word of the statement says what shape comes back:&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;word&lt;/th&gt;&lt;th&gt;answers with&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;field&lt;/code&gt;&lt;/td&gt;&lt;td&gt;one value&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;record&lt;/code&gt;&lt;/td&gt;&lt;td&gt;one row, as an array of fields&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;array&lt;/code&gt;&lt;/td&gt;&lt;td&gt;all rows, ready for a tag to iterate&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;check&lt;/code&gt;&lt;/td&gt;&lt;td&gt;whether a row exists - written &lt;code&gt;check table where ...&lt;/code&gt;, with no column list&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;insert&lt;/code&gt; / &lt;code&gt;update&lt;/code&gt;&lt;/td&gt;&lt;td&gt;writes, taking their values from an array&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/database_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;An &lt;code&gt;array&lt;/code&gt; lands in a variable, and the variable's name is a tag - with the<br>&lt;a href="?pages/else"&gt;else construct&lt;/a&gt; for when the query found nothing:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/database_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Asking from the template&lt;/h2&gt;<br><br>&lt;p&gt;The same questions can be asked where the answer is used: a &lt;code&gt;<b>{<font color="blue">field</font><font color="red"></font>}</b>&lt;/code&gt;<br>tag drops one value into the page, and an &lt;code&gt;<b>{<font color="blue">array</font><font color="red"></font>}</b>&lt;/code&gt; pair iterates its<br>query on the spot. Inside the quotes a comma is part of the query, so a column list is<br>written as it is - &lt;code&gt;<b>{<font color="blue">array </font><font color="red">"name<font color="black">,</font> phone from staff"</font>}</b>&lt;/code&gt; - and the example<br>keeps to &lt;code&gt;*&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/database_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A &lt;code&gt;<b>{<font color="blue">record</font><font color="red"></font>}</b>&lt;/code&gt; pair does the same for a single row.&lt;/p&gt;<br><br>&lt;h2&gt;Named queries - a .sql file in _data&lt;/h2&gt;<br><br>&lt;p&gt;A query can also live in a file of its own. &lt;code&gt;_data/staffByPhone.sql&lt;/code&gt; holds:&lt;/p&gt;<br><br>-- The staff whose phone number matches a pattern, at most so many of them.<br>select name, phone<br>  from staff<br> where phone like <b>{<font color="green"><font color="red">$</font>pattern</font>}</b><br> order by name<br> limit <b>{<font color="green"><font color="red">$</font>max</font>}</b><br><br>&lt;p&gt;and the tag &lt;code&gt;<b>{<font color="blue">staffByPhone</font><font color="red"></font>}</b>&lt;/code&gt; runs it. The file is never run as PAD:<br>each &lt;code&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/code&gt; is bound as a placeholder - an option of the tag first,<br>then a variable of the page - so a value can never become SQL. The statement must read.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/database_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Declared tables - the select subsystem&lt;/h2&gt;<br><br>&lt;p&gt;For an application built around its tables there is a third way: declare the tables once<br>in the configuration and every one of them is a tag, relations and automatic joins<br>included - the &lt;code&gt;select:&lt;/code&gt; prefix. The<br>&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>classicModels/"&gt;classicModels application&lt;/a&gt; is that subsystem<br>demonstrated over a whole database, and &lt;code&gt;docs/DATABASE.md&lt;/code&gt; in the repository is<br>the reference.&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxfc5f6895045e84699b5a33edfe38b885"></div>
-                        <script>
-                        padAjaxfc5f6895045e84699b5a33edfe38b885 = new XMLHttpRequest();
-                        padAjaxfc5f6895045e84699b5a33edfe38b885.onreadystatechange=function() {
-                        if (padAjaxfc5f6895045e84699b5a33edfe38b885.readyState === 4) {
-                        if (padAjaxfc5f6895045e84699b5a33edfe38b885.status === 200) {
-                        document.getElementById("padAjaxfc5f6895045e84699b5a33edfe38b885").innerHTML=padAjaxfc5f6895045e84699b5a33edfe38b885.responseText;
-                        } else {
-                        document.getElementById("padAjaxfc5f6895045e84699b5a33edfe38b885").innerHTML=padAjaxfc5f6895045e84699b5a33edfe38b885.statusText;
-                        }
-                        }
-                        }
-                        padAjaxfc5f6895045e84699b5a33edfe38b885.open("GET","http://localhost/pad/manual/?pages/database&padInclude",true);
-                        padAjaxfc5f6895045e84699b5a33edfe38b885.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/dates_and_logging<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/dates_and_logging.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Dates and logging<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page's PHP asks for the date all the time: to stamp a record, to say how old a comment<br>is, to write down what happened. These helpers give "now" in the application's timezone, read<br>a date whatever form it arrives in, put an age into words and keep a log of the<br>application's own - plain functions, loaded on every request.&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;function&lt;/th&gt;&lt;th&gt;what it answers&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padNow ( $format = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;now, as a &lt;code&gt;DateTimeImmutable&lt;/code&gt; in &lt;code&gt;$padTimezone&lt;/code&gt; (else PHP's zone) - or, with a format, the formatted text&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padToday ( $format = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;today at midnight&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padNowFreeze ( $time = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;fixes now for the rest of the request; &lt;code&gt;NULL&lt;/code&gt; lets the clock run again&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padDateParse ( $value )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a &lt;code&gt;DateTimeImmutable&lt;/code&gt; from a timestamp, a date in text or a date object - &lt;code&gt;NULL&lt;/code&gt; for what is none of those&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padAgo ( $date, $now = NULL )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the age in words: just now, 5 minutes ago, yesterday, in 3 days&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;padLog ( $message, $level = 'info', $context = [] )&lt;/code&gt;&lt;/td&gt;&lt;td&gt;appends one line to the application's log of the day&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Now and today&lt;/h2&gt;<br><br>&lt;p&gt;The example freezes the clock first, so it shows the same on every day it is read - what a<br>test does too. Without the freeze, now is the real moment.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/dates_and_logging_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;A number is a Unix timestamp, as the &lt;code&gt;date&lt;/code&gt; pipe reads it; text is read the<br>  way PHP's &lt;code&gt;DateTime&lt;/code&gt; reads it. A timestamp and text without a zone are in the<br>  application's zone; a zone that was given is kept.&lt;/li&gt;<br>  &lt;li&gt;A date that does not exist - &lt;code&gt;2026-02-30&lt;/code&gt;, which PHP itself would make<br>  2 March - is no date, nor are &lt;code&gt;NULL&lt;/code&gt;, &lt;code&gt;''&lt;/code&gt; and booleans:<br>  &lt;code&gt;padDateParse&lt;/code&gt; answers &lt;code&gt;NULL&lt;/code&gt; for them, never an error.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;$padTimezone&lt;/code&gt; is read when a function is called, so a page can set it for<br>  itself.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Freezing the clock&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padNowFreeze ( '2026-10-05 14:30:00' )&lt;/code&gt; fixes now for the rest of the request:<br>&lt;code&gt;padNow&lt;/code&gt;, &lt;code&gt;padToday&lt;/code&gt;, &lt;code&gt;padAgo&lt;/code&gt;, the time stamp of<br>&lt;code&gt;padLog&lt;/code&gt;, and text like &lt;code&gt;tomorrow&lt;/code&gt; or &lt;code&gt;+1 week&lt;/code&gt; given to<br>&lt;code&gt;padDateParse&lt;/code&gt; all count from that moment. A test gets the same answer on every<br>run, and a page can be looked at as it will be on another day.<br>&lt;code&gt;padNowFreeze ()&lt;/code&gt; lets the clock run again.&lt;/p&gt;<br><br>&lt;h2&gt;How long ago&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padAgo&lt;/code&gt; says the age of a moment in words, and the &lt;code&gt;ago&lt;/code&gt; pipe does<br>the same in a template: &lt;code&gt;<b>{<font color="green">$posted</font> <font color="black">|</font> <font color="blue">ago</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/dates_and_logging_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;Under ten seconds is &lt;em&gt;just now&lt;/em&gt;, then seconds, minutes and hours. From a day on<br>  the calendar counts: the day before today is &lt;em&gt;yesterday&lt;/em&gt; whatever the hour, then<br>  days, weeks, months and years.&lt;/li&gt;<br>  &lt;li&gt;A moment still to come is said the other way round: &lt;em&gt;in 3 days&lt;/em&gt;,<br>  &lt;em&gt;tomorrow&lt;/em&gt;.&lt;/li&gt;<br>  &lt;li&gt;A second argument - &lt;code&gt;padAgo ( $start, $end )&lt;/code&gt;, or<br>  &lt;code&gt;<b>{<font color="green">$start</font> <font color="black">|</font> <font color="blue">ago($end)</font>}</b>&lt;/code&gt; - counts from that moment instead of now. An<br>  empty value answers nothing.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Logging&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padLog&lt;/code&gt; appends one line to<br>&lt;code&gt;DATA/logs/&lt;application&gt;/&lt;Y-m-d&gt;.log&lt;/code&gt;: the time, the level, the<br>message and the context as JSON. The levels are those of PSR-3 - debug, info, notice,<br>warning, error, critical, alert and emergency - and &lt;code&gt;<b>{<font color="blue">name</font><font color="red"></font>}</b>&lt;/code&gt; in the<br>message is filled from the context.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/dates_and_logging_3<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;One call is always one line: a newline in the message is written &lt;code&gt;\n&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A message that is no text is written as JSON; a &lt;code&gt;Throwable&lt;/code&gt; in the context<br>  as its class, message, file and line.&lt;/li&gt;<br>  &lt;li&gt;A log line never stops the page: a disk that refuses the write is answered<br>  &lt;code&gt;FALSE&lt;/code&gt;, not an exception. An unknown level is an error, the author's<br>  mistake.&lt;/li&gt;<br>  &lt;li&gt;The engine's own errors go to PHP's error log; this log is for what the application<br>  wants to remember - a payment, a login, a failed import.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax013c8430fad9ad8d84eb88d2bf917813"></div>
-                        <script>
-                        padAjax013c8430fad9ad8d84eb88d2bf917813 = new XMLHttpRequest();
-                        padAjax013c8430fad9ad8d84eb88d2bf917813.onreadystatechange=function() {
-                        if (padAjax013c8430fad9ad8d84eb88d2bf917813.readyState === 4) {
-                        if (padAjax013c8430fad9ad8d84eb88d2bf917813.status === 200) {
-                        document.getElementById("padAjax013c8430fad9ad8d84eb88d2bf917813").innerHTML=padAjax013c8430fad9ad8d84eb88d2bf917813.responseText;
-                        } else {
-                        document.getElementById("padAjax013c8430fad9ad8d84eb88d2bf917813").innerHTML=padAjax013c8430fad9ad8d84eb88d2bf917813.statusText;
-                        }
-                        }
-                        }
-                        padAjax013c8430fad9ad8d84eb88d2bf917813.open("GET","http://localhost/pad/manual/?pages/dates_and_logging&padInclude",true);
-                        padAjax013c8430fad9ad8d84eb88d2bf917813.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/debug<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/debug.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Inline debug<font color="black">'</font></font>}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>debug<font color="black">'</font></font>}</b> shows a value as a collapsible tree in the page, where the template uses<br>it, and the rendering goes on - unlike <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>dump<font color="black">'</font></font>}</b>, which stops the request.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/debug_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>name</font>}</b>&lt;/code&gt; - one value; an array is a tree to unfold, a missing name says so.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">debug</font><font color="red"></font>}</b>&lt;/code&gt; - every field visible where it stands: the rows of the enclosing levels, innermost first, and the application's variables.&lt;/li&gt;<br>  &lt;li&gt;Only a local request sees it: the command line, or this machine asking itself with nothing forwarded. Anyone else gets nothing, and &lt;code&gt;$padDiagnostics = FALSE&lt;/code&gt; switches it off for everyone.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb1f146c83312811429e8d74077317628"></div>
-                        <script>
-                        padAjaxb1f146c83312811429e8d74077317628 = new XMLHttpRequest();
-                        padAjaxb1f146c83312811429e8d74077317628.onreadystatechange=function() {
-                        if (padAjaxb1f146c83312811429e8d74077317628.readyState === 4) {
-                        if (padAjaxb1f146c83312811429e8d74077317628.status === 200) {
-                        document.getElementById("padAjaxb1f146c83312811429e8d74077317628").innerHTML=padAjaxb1f146c83312811429e8d74077317628.responseText;
-                        } else {
-                        document.getElementById("padAjaxb1f146c83312811429e8d74077317628").innerHTML=padAjaxb1f146c83312811429e8d74077317628.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb1f146c83312811429e8d74077317628.open("GET","http://localhost/pad/manual/?pages/debug&padInclude",true);
-                        padAjaxb1f146c83312811429e8d74077317628.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/editor_support<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/editor_support.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Editor support<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The kits in &lt;code&gt;editors/&lt;/code&gt; give PAD templates highlighting, completion and snippets<br>in Sublime Text, VS Code, Vim, Emacs, Kate, BBEdit and Notepad++. An editor that speaks the<br>Language Server Protocol - Neovim, Helix, Zed, Emacs with eglot, Sublime Text with LSP - runs<br>&lt;code&gt;editors/lsp/pad-lsp.js&lt;/code&gt;, a Node server without dependencies.&lt;/p&gt;<br><br>&lt;h2&gt;The language server&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Completion&lt;/strong&gt; - the built-in tags, functions, options, properties and type prefixes, and after &lt;code&gt;{/&lt;/code&gt; the tags still open.&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Diagnostics&lt;/strong&gt; - when a page is opened or saved, PAD itself renders it on the command line under the strict syntax check (&lt;code&gt;editors/render.php&lt;/code&gt;), and the error lands on the tag it names. A &lt;code&gt;_inits.pad&lt;/code&gt; is checked through the index page of its directory; a snippet in &lt;code&gt;_include&lt;/code&gt; or &lt;code&gt;_tags&lt;/code&gt; has no page of its own and is not rendered.&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Hover&lt;/strong&gt; - the text of &lt;code&gt;docs/reference&lt;/code&gt; for the tag, function, option, property or type prefix under the cursor; on an application's own tag or function, the comment at the top of its file; on a field, the line that assigns it.&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Go to definition&lt;/strong&gt; - PAD's own lookup order: &lt;code&gt;<b>{<font color="blue">badge</font><font color="red"></font>}</b>&lt;/code&gt; to the nearest &lt;code&gt;_tags/badge.*&lt;/code&gt; up the directories, then &lt;code&gt;_common&lt;/code&gt;, then the engine; &lt;code&gt;<b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>footer</font><font color="red"></font>}</b>&lt;/code&gt; to &lt;code&gt;_include/footer.pad&lt;/code&gt;; &lt;code&gt;| money&lt;/code&gt; to &lt;code&gt;_functions/money.php&lt;/code&gt;; &lt;code&gt;callback='x'&lt;/code&gt; to &lt;code&gt;_callbacks/x.php&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;Page pairing makes one more jump possible: from a field in the template to the line of<br>the paired &lt;code&gt;.php&lt;/code&gt; that assigns it. Here, go to definition on &lt;code&gt;<b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/code&gt;<br>lands on &lt;code&gt;$total = 42;&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/editor_support_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Tree-sitter&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;editors/tree-sitter-pad&lt;/code&gt; is a Tree-sitter grammar: native highlighting in Zed,<br>Helix and Neovim, with the HTML around the tags highlighted as HTML. A pair of tags is one<br>node of the tree, so an editor can fold &lt;code&gt;<b>{<font color="blue">orders</font><font color="red"></font>}</b> ... <b>{/<font color="blue">orders</font><font color="red"></font>}</b>&lt;/code&gt;,<br>select it, or select just what is inside it. Whether a tag is a pair is decided as the engine<br>decides it: &lt;code&gt;<b>{<font color="blue">orders</font><font color="red"></font>}</b>&lt;/code&gt; opens a block only when a &lt;code&gt;<b>{/<font color="blue">orders</font><font color="red"></font>}</b>&lt;/code&gt;<br>closes it further on, so &lt;code&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;/code&gt; and &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x</font>}</b>&lt;/code&gt; stay<br>single tags.&lt;/p&gt;<br><br>&lt;h2&gt;AI assistants&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;editors/mcp/pad-mcp.js&lt;/code&gt; is an MCP server: an assistant such as Claude Code asks<br>the engine itself instead of relying on what it remembers. It renders a page, or a template<br>that exists in no file yet, and runs the strict syntax check on it; it traces a request, lists<br>the applications, their pages and the built-ins, looks a tag or function up in the reference,<br>and runs the regression suites. Register it with<br>&lt;code&gt;claude mcp add pad -- node editors/mcp/pad-mcp.js&lt;/code&gt;.&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax2bdf9a38400c85c78d6a2196162fbf60"></div>
-                        <script>
-                        padAjax2bdf9a38400c85c78d6a2196162fbf60 = new XMLHttpRequest();
-                        padAjax2bdf9a38400c85c78d6a2196162fbf60.onreadystatechange=function() {
-                        if (padAjax2bdf9a38400c85c78d6a2196162fbf60.readyState === 4) {
-                        if (padAjax2bdf9a38400c85c78d6a2196162fbf60.status === 200) {
-                        document.getElementById("padAjax2bdf9a38400c85c78d6a2196162fbf60").innerHTML=padAjax2bdf9a38400c85c78d6a2196162fbf60.responseText;
-                        } else {
-                        document.getElementById("padAjax2bdf9a38400c85c78d6a2196162fbf60").innerHTML=padAjax2bdf9a38400c85c78d6a2196162fbf60.statusText;
-                        }
-                        }
-                        }
-                        padAjax2bdf9a38400c85c78d6a2196162fbf60.open("GET","http://localhost/pad/manual/?pages/editor_support&padInclude",true);
-                        padAjax2bdf9a38400c85c78d6a2196162fbf60.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/ending_the_request<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/ending_the_request.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Ending the Request<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Some pages do not end by reaching their last line: a form handler redirects, a guard<br>refuses, an error stops everything. PAD has a tag or a function for each - and none of them<br>can be demonstrated live on this page, because each one would end the request this page is.<br>The examples are therefore shown, not run.&lt;/p&gt;<br><br>&lt;h2&gt;Redirecting&lt;/h2&gt;<br><br>&lt;p&gt;From a page's PHP, &lt;code&gt;padRedirect()&lt;/code&gt; sends the browser to another page and ends<br>the request cleanly - session closed, buffers flushed, headers sent:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;padRedirect ( 'tickets/index' );           // to a page of this application<br>padRedirect ( 'tickets/index', $vars );    // with variables carried along&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;&lt;b&gt;Never use PHP's &lt;code&gt;exit&lt;/code&gt; or &lt;code&gt;die&lt;/code&gt;&lt;/b&gt;, and not<br>&lt;code&gt;header()&lt;/code&gt; either: they end PHP mid-request, skipping everything PAD still had to<br>do. The same goes for a restart - &lt;code&gt;padRestart('page')&lt;/code&gt; renders another page in<br>place of this one without a round trip to the browser.&lt;/p&gt;<br><br>&lt;h2&gt;The tags that end a request&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr&gt;&lt;th&gt;tag&lt;/th&gt;&lt;th&gt;what it does&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">exit</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;ends the request where it stands - nothing is shipped, not even the output so far&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">error </font><font color="red"><font color="black">'</font>message<font color="black">'</font></font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;reports an error through the configured error action, which normally ends the request with a 500&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">exception </font><font color="red"><font color="black">'</font>message<font color="black">'</font></font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;throws a real PHP exception, for testing the nets that catch one&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">dump</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;stops the request on a dump of the engine state, the heavy debugging tool&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;What happens on an error&lt;/h2&gt;<br><br>&lt;p&gt;Any error - a tag that misses, a PHP warning, a thrown exception - ends the request<br>through the configured &lt;code&gt;$padErrorAction&lt;/code&gt;: &lt;code&gt;pad&lt;/code&gt; renders an error page,<br>&lt;code&gt;log&lt;/code&gt; and &lt;code&gt;ignore&lt;/code&gt; carry on, &lt;code&gt;dump&lt;/code&gt; stops on the state<br>dump. The request answers with HTTP 500, and a command-line run exits with status 1, so a<br>script can test the outcome without reading the output.&lt;/p&gt;<br><br>&lt;p&gt;A &lt;code&gt;demand&lt;/code&gt; option turns an empty tag into an error: a page that is meaningless<br>without its data can say so - &lt;code&gt;<b>{<font color="blue">users </font><font color="red">demand</font>}</b>...<b>{/<font color="blue">users</font><font color="red"></font>}</b>&lt;/code&gt; -<br>instead of rendering a hole.&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxec65915b90bf37acd6b9ee7914731280"></div>
-                        <script>
-                        padAjaxec65915b90bf37acd6b9ee7914731280 = new XMLHttpRequest();
-                        padAjaxec65915b90bf37acd6b9ee7914731280.onreadystatechange=function() {
-                        if (padAjaxec65915b90bf37acd6b9ee7914731280.readyState === 4) {
-                        if (padAjaxec65915b90bf37acd6b9ee7914731280.status === 200) {
-                        document.getElementById("padAjaxec65915b90bf37acd6b9ee7914731280").innerHTML=padAjaxec65915b90bf37acd6b9ee7914731280.responseText;
-                        } else {
-                        document.getElementById("padAjaxec65915b90bf37acd6b9ee7914731280").innerHTML=padAjaxec65915b90bf37acd6b9ee7914731280.statusText;
-                        }
-                        }
-                        }
-                        padAjaxec65915b90bf37acd6b9ee7914731280.open("GET","http://localhost/pad/manual/?pages/ending_the_request&padInclude",true);
-                        padAjaxec65915b90bf37acd6b9ee7914731280.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
                 </center>
               </td>
             </tr>
@@ -645,7 +653,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

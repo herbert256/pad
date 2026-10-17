@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -48,6 +48,88 @@
                   padAjax550458d603cb17b4d44878fa2a9a617a.open("GET","http://localhost/pad/regression/common/?misc/eval&padInclude",true);
                   padAjax550458d603cb17b4d44878fa2a9a617a.send();
                   </script><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_built_in_written_as_a_call_reads_its_first_argument<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_built_in_written_as_a_call_reads_its_first_argument.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>s = <font color="black">'</font>hello<font color="black">'</font></font>}</b>[<b>{<font color="blue">echo </font><font color="red">trim(<font color="black">'</font>  a  <font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">upper(<font color="red">$</font>s)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">left(<font color="red">$</font>s<font color="black">,</font> 2)</font>}</b>][<b>{<font color="blue">if </font><font color="red">upper(<font color="red">$</font>s) eq <font color="black">'</font>HELLO<font color="black">'</font></font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> . upper(<font color="red">$</font>s)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">date(<font color="black">'</font>Y<font color="black">'</font><font color="black">,</font> 0)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> replace(<font color="black">'</font>l<font color="black">'</font><font color="black">,</font> upper(<font color="black">'</font>x<font color="black">'</font>))</font>}</b>][<b>{<font color="blue">echo </font><font color="red">substr(<font color="red">$</font>s<font color="black">,</font> 0<font color="black">,</font> 3)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> left(2)</font>}</b>][<b>{<font color="green">$s</font> <font color="black">|</font> <font color="blue">left(3)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxff7fe9d42b560e17faec7ee77eac4f29"></div>
+                        <script>
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29 = new XMLHttpRequest();
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29.onreadystatechange=function() {
+                        if (padAjaxff7fe9d42b560e17faec7ee77eac4f29.readyState === 4) {
+                        if (padAjaxff7fe9d42b560e17faec7ee77eac4f29.status === 200) {
+                        document.getElementById("padAjaxff7fe9d42b560e17faec7ee77eac4f29").innerHTML=padAjaxff7fe9d42b560e17faec7ee77eac4f29.responseText;
+                        } else {
+                        document.getElementById("padAjaxff7fe9d42b560e17faec7ee77eac4f29").innerHTML=padAjaxff7fe9d42b560e17faec7ee77eac4f29.statusText;
+                        }
+                        }
+                        }
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29.open("GET","http://localhost/pad/regression/framework/?expressions/a_built_in_written_as_a_call_reads_its_first_argument&padInclude",true);
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_sign_before_a_field_a_group_or_a_call_negates_it<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">expressions/a_sign_before_a_field_a_group_or_a_call_negates_it.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_sign_before_a_field_a_group_or_a_call_negates_it.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $a   </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$b   </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$n   </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$neg </span><span style="color: #007700">= -</span><span style="color: #0000BB">4</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 * -<font color="red">$</font>b</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>a - -<font color="red">$</font>b</font>}</b>][<b>{<font color="blue">echo </font><font color="red">5 * -(1 + 2)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">10 / -<font color="red">$</font>n</font>}</b>][<b>{<font color="blue">echo </font><font color="red">2 ** -<font color="red">$</font>n</font>}</b>]<br>[<b>{<font color="blue">echo </font><font color="red">5 * - 3</font>}</b>][<b>{<font color="blue">echo </font><font color="red">2 - - 3</font>}</b>][<b>{<font color="blue">echo </font><font color="red">3 - -<font color="red">$</font>n * 2</font>}</b>][<b>{<font color="blue">echo </font><font color="red">5 * -php<font color="black">:</font>abs(3)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1 + +<font color="red">$</font>b</font>}</b>]<br>[<b>{<font color="blue">echo </font><font color="red">10 <font color="black">|</font> * -<font color="red">$</font>n</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> substr(-<font color="red">$</font>n)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> substr(1<font color="black">,</font> -<font color="red">$</font>n)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(1<font color="black">,</font> -<font color="red">$</font>n)</font>}</b>]<br>[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>neg gt -<font color="red">$</font>b</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red">-<font color="red">$</font>b</font>}</b>][<b>{<font color="blue">echo </font><font color="red">10 <font color="black">|</font> - 3</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxab52b97c19dba41a3b940bb0db212f64"></div>
+                        <script>
+                        padAjaxab52b97c19dba41a3b940bb0db212f64 = new XMLHttpRequest();
+                        padAjaxab52b97c19dba41a3b940bb0db212f64.onreadystatechange=function() {
+                        if (padAjaxab52b97c19dba41a3b940bb0db212f64.readyState === 4) {
+                        if (padAjaxab52b97c19dba41a3b940bb0db212f64.status === 200) {
+                        document.getElementById("padAjaxab52b97c19dba41a3b940bb0db212f64").innerHTML=padAjaxab52b97c19dba41a3b940bb0db212f64.responseText;
+                        } else {
+                        document.getElementById("padAjaxab52b97c19dba41a3b940bb0db212f64").innerHTML=padAjaxab52b97c19dba41a3b940bb0db212f64.statusText;
+                        }
+                        }
+                        }
+                        padAjaxab52b97c19dba41a3b940bb0db212f64.open("GET","http://localhost/pad/regression/framework/?expressions/a_sign_before_a_field_a_group_or_a_call_negates_it&padInclude",true);
+                        padAjaxab52b97c19dba41a3b940bb0db212f64.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: functions/cuts_count_characters_not_bytes<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -384,7 +466,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

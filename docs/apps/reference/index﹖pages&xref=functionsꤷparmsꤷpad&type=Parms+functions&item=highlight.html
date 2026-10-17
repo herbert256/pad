@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - highlight
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - highlight
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: demo - Page: highlight<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">highlight.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">highlight.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Syntax Highlighting'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// A query as it would come from a database or a log - a value, coloured by the pipe.<br><br>  </span><span style="color: #0000BB">$query </span><span style="color: #007700">= </span><span style="color: #DD0000">"SELECT name, COUNT(*) AS orders FROM customers JOIN orders USING (customer_id) WHERE country = 'NL' GROUP BY name"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">highlight</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; tag colours source code on the server - PAD, PHP, HTML,<br>CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces inside need no<br>&lt;code&gt;&amp;#123;ignore&amp;#125;&lt;/code&gt;.&lt;/p&gt;<br><br>&lt;h2&gt;PHP, with line numbers and a marked line&lt;/h2&gt;<br><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font><font color="black">,</font> lines<font color="black">,</font> mark=<font color="black">'</font>4<font color="black">'</font></font>}</b><br>  <span style="color: #0000BB">&lt;?php<br><br>    $orders </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"ARRAY * FROM orders WHERE status = 'open'" </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$total  </span><span style="color: #007700">= </span><span style="color: #0000BB">padArrSum </span><span style="color: #007700">( </span><span style="color: #0000BB">$orders</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">);<br><br>    if ( ! </span><span style="color: #0000BB">$orders </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">( </span><span style="color: #DD0000">'empty' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">?&gt;<br></span><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>php<font color="black">'</font><font color="black">,</font> lines<font color="black">,</font> mark=<font color="black">'</font>4<font color="black">'</font></font>}</b>...<b>{/<font color="blue">highlight</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/p&gt;<br><br>&lt;h2&gt;PAD itself&lt;/h2&gt;<br><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">orders </font><font color="red">sort=<font color="black">'</font>date<font color="black">'</font><font color="black">,</font> first=10</font>}</b><br>    &lt;li class="<b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>orders </font><font color="red">? <font color="black">'</font>even<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>odd<font color="black">'</font></font>}</b>"&gt;<br>      <b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">money</font>}</b><br>    &lt;/li&gt;<br>  @else@<br>    &lt;li&gt;No orders yet&lt;/li&gt;<br>  <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;CSS and JavaScript&lt;/h2&gt;<br><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>css<font color="black">'</font></font>}</b><br>  .card { padding: 12px 16px; border-radius: 8px; color: #333; }<br>  @media (prefers-color-scheme: dark) { .card { color: #eee; } }<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>  // Counts the clicks on every button with a data-count attribute<br>  document.querySelectorAll('[data-count]').forEach(button =&gt; {<br>    let clicks = 0;<br>    button.addEventListener('click', () =&gt; button.textContent = `Clicked ${++clicks} times`);<br>  });<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;A file of this application&lt;/h2&gt;<br><br><b>{<font color="blue">highlight </font><font color="red">file=<font color="black">'</font>qr.php<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">highlight </font><font color="red">file=<font color="black">'</font>qr.php<font color="black">'</font></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; - the language follows the extension.&lt;/p&gt;<br><br>&lt;h2&gt;A value, through the pipe&lt;/h2&gt;<br><br><b>{<font color="green">$query</font> <font color="black">|</font> <font color="blue">highlight('sql')</font>}</b><br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="green">$query</font> <font color="black">|</font> <font color="blue">highlight('sql')</font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; - a query kept in a database or a log.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6eba59b1d546c48d07233bb3741003e2"></div>
+                        <script>
+                        padAjax6eba59b1d546c48d07233bb3741003e2 = new XMLHttpRequest();
+                        padAjax6eba59b1d546c48d07233bb3741003e2.onreadystatechange=function() {
+                        if (padAjax6eba59b1d546c48d07233bb3741003e2.readyState === 4) {
+                        if (padAjax6eba59b1d546c48d07233bb3741003e2.status === 200) {
+                        document.getElementById("padAjax6eba59b1d546c48d07233bb3741003e2").innerHTML=padAjax6eba59b1d546c48d07233bb3741003e2.responseText;
+                        } else {
+                        document.getElementById("padAjax6eba59b1d546c48d07233bb3741003e2").innerHTML=padAjax6eba59b1d546c48d07233bb3741003e2.statusText;
+                        }
+                        }
+                        }
+                        padAjax6eba59b1d546c48d07233bb3741003e2.open("GET","http://localhost/pad/demo/?highlight&padInclude",true);
+                        padAjax6eba59b1d546c48d07233bb3741003e2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: islands - Page: examples/build<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/build.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/build.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// What {vite 'src/main.js'} wrote into this page's &lt;head&gt;, and where it came from: the<br>  // manifest of the build - every source and the file it became - or the dev server, while it<br>  // runs. The clock is a Solid island started from the server's time.<br><br>  </span><span style="color: #0000BB">$dev      </span><span style="color: #007700">= </span><span style="color: #0000BB">padViteDev </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$manifest </span><span style="color: #007700">= </span><span style="color: #0000BB">$dev </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">? ( </span><span style="color: #0000BB">padViteManifest </span><span style="color: #007700">() ?? [] ) : [];<br>  </span><span style="color: #0000BB">$written  </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padViteTags </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'src/main.js' </span><span style="color: #007700">], </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$sources </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$manifest </span><span style="color: #007700">as </span><span style="color: #0000BB">$source </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    if ( ! </span><span style="color: #0000BB">str_starts_with </span><span style="color: #007700">( </span><span style="color: #0000BB">$source</span><span style="color: #007700">, </span><span style="color: #DD0000">'_' </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$sources </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'source' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$source</span><span style="color: #007700">,<br>                      </span><span style="color: #DD0000">'file'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">],<br>                      </span><span style="color: #DD0000">'kind'   </span><span style="color: #007700">=&gt; ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'isEntry'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'entry' </span><span style="color: #007700">: ( ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'isDynamicEntry'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'loaded on demand' </span><span style="color: #007700">: </span><span style="color: #DD0000">'chunk' </span><span style="color: #007700">),<br>                      </span><span style="color: #DD0000">'css'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'css'</span><span style="color: #007700">] ?? [] ) ];<br><br>  </span><span style="color: #0000BB">$sourceCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$sources </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$clock       </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'now' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">time </span><span style="color: #007700">() ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dev</font>}</b>The dev server runs: <b>{<font color="green"><font color="red">$</font>dev</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>The build: www/islands/build/<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>    &lt;p class="muted small"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dev</font>}</b><b>{<font color="blue">vite</font><font color="red"></font>}</b> asks the dev server - every save shows at once.<b>{<font color="blue">else</font><font color="red"></font>}</b>Start &lt;code&gt;npm run dev&lt;/code&gt; in &lt;code&gt;_frontend/&lt;/code&gt; and reload: <b>{<font color="blue">vite</font><font color="red"></font>}</b> then asks the dev server instead.<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;<br>    &lt;div class="panel-title" style="margin-top: 18px"&gt;What <b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b> wrote into the head&lt;/div&gt;<br>    <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>written <font color="black">|</font> highlight(<font color="black">'</font>html<font color="black">'</font>)</font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;The server's time, ticking in a Solid island&lt;/div&gt;<br>    &lt;div class="clock-box" data-island="Clock" data-props="{^clock}"&gt;&lt;span class="clock"&gt;-&lt;/span&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>sourceCount</font>}</b><br>&lt;div class="panel-title" style="margin-top: 26px"&gt;The manifest - every source and what it became&lt;/div&gt;<br>&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Source&lt;/th&gt;&lt;th&gt;File&lt;/th&gt;&lt;th&gt;Kind&lt;/th&gt;&lt;th&gt;CSS&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>    <b>{<font color="blue">sources</font><font color="red"></font>}</b>&lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>source</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>file</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>kind</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>css</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<b>{/<font color="blue">sources</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcf22fc4d410fa247b79a1720d28c2d47"></div>
+                        <script>
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47 = new XMLHttpRequest();
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47.onreadystatechange=function() {
+                        if (padAjaxcf22fc4d410fa247b79a1720d28c2d47.readyState === 4) {
+                        if (padAjaxcf22fc4d410fa247b79a1720d28c2d47.status === 200) {
+                        document.getElementById("padAjaxcf22fc4d410fa247b79a1720d28c2d47").innerHTML=padAjaxcf22fc4d410fa247b79a1720d28c2d47.responseText;
+                        } else {
+                        document.getElementById("padAjaxcf22fc4d410fa247b79a1720d28c2d47").innerHTML=padAjaxcf22fc4d410fa247b79a1720d28c2d47.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47.open("GET","http://localhost/pad/islands/?examples/build&padInclude",true);
+                        padAjaxcf22fc4d410fa247b79a1720d28c2d47.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/highlight_pipe_escapes_a_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/highlight_pipe_escapes_a_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/highlight_pipe_escapes_a_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $query </span><span style="color: #007700">= </span><span style="color: #DD0000">"SELECT * FROM t WHERE a = '&lt;script&gt;' -- {php:getcwd}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green">$query</font> <font color="black">|</font> <font color="blue">highlight('sql')</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax70b5262961ed3b812d2da33f33c57ce4"></div>
+                        <script>
+                        padAjax70b5262961ed3b812d2da33f33c57ce4 = new XMLHttpRequest();
+                        padAjax70b5262961ed3b812d2da33f33c57ce4.onreadystatechange=function() {
+                        if (padAjax70b5262961ed3b812d2da33f33c57ce4.readyState === 4) {
+                        if (padAjax70b5262961ed3b812d2da33f33c57ce4.status === 200) {
+                        document.getElementById("padAjax70b5262961ed3b812d2da33f33c57ce4").innerHTML=padAjax70b5262961ed3b812d2da33f33c57ce4.responseText;
+                        } else {
+                        document.getElementById("padAjax70b5262961ed3b812d2da33f33c57ce4").innerHTML=padAjax70b5262961ed3b812d2da33f33c57ce4.statusText;
+                        }
+                        }
+                        }
+                        padAjax70b5262961ed3b812d2da33f33c57ce4.open("GET","http://localhost/pad/regression/framework/?tags/highlight_pipe_escapes_a_value&padInclude",true);
+                        padAjax70b5262961ed3b812d2da33f33c57ce4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

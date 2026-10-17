@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -56,7 +56,7 @@
                         </td>
                         <td style="vertical-align:top">
                           <form method="post">
-                            <input type="hidden" name="padCsrfToken" value="ae0b97c3f5880bcdc327dbcb5965d013051043216e2a23543457cfe6200855a4"><input type="hidden" name="padForm" value="contact"> <label for="email">E-mail</label><input type="email" name="email" id="email" value="" required=""> <label for="message">Message</label>
+                            <input type="hidden" name="padCsrfToken" value="c2d7cd3607c31e2e4179e669f7a1d970dd54ebb1ed86e91984f3c6dc3446775a"><input type="hidden" name="padForm" value="contact"> <label for="email">E-mail</label><input type="email" name="email" id="email" value="" required=""> <label for="message">Message</label>
                             <textarea name="message" id="message" rows="3"></textarea> <button>Send</button>
                           </form>
                         </td>
@@ -110,7 +110,7 @@
                       </tr>
                     </table>
                     <p>
-                      The rules: <code>required</code>, <code>email</code>, <code>url</code>, <code>numeric</code>, <code>integer</code>, <code>min:n</code> and <code>max:n</code> (a length, or a value with <code>numeric</code> or <code>integer</code>), <code>in:a,b,c</code>, <code>regex:/.../</code>, <code>same:other_field</code>, <code>accepted</code> and <code>date</code>. An empty field is checked for <code>required</code> only. A rule name nothing knows is an error.
+                      The rules: <code>required</code>, <code>email</code>, <code>url</code>, <code>numeric</code>, <code>integer</code>, <code>min:n</code> and <code>max:n</code> (a length, or a value with <code>numeric</code> or <code>integer</code>), <code>in:a,b,c</code>, <code>regex:/.../</code>, <code>same:other_field</code>, <code>accepted</code> and <code>date</code>. An empty field is checked for <code>required</code> and <code>accepted</code> only. A rule name nothing knows is an error.
                     </p>
                     <h2>
                       After a failed post
@@ -167,7 +167,7 @@
                       </tr>
                       <tr>
                         <td style="vertical-align:top">
-                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Runs after the post was checked against the rules of forms_4.pad, and acts only when<br>  // it kept them; a post that broke one renders the form again, with its messages.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'contact' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Thank you for your message.' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">();<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Runs after the post was checked against the rules of forms_4.pad, and acts only when<br>  // it kept them; a post that broke one renders the form again, with its messages.<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'contact' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Thank you for your message.' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">();<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                         </td>
                         <td style="vertical-align:top">
                           <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>contact<font color="black">'</font><font color="black">,</font> error=<font color="black">'</font>Please correct the errors below.<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">textarea </font><font color="red"><font color="black">'</font>message<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Message<font color="black">'</font><font color="black">,</font> rows=3<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>2000<font color="black">'</font></font>}</b><br>  &lt;button&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
@@ -387,6 +387,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
@@ -400,6 +403,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
                         </li>
                       </ul>
                       <h3 align="center">
@@ -457,11 +463,34 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
                         Forms and security
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
@@ -487,7 +516,7 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
@@ -508,6 +537,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
                         </li>
                         <li>
@@ -524,6 +556,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
                         </li>
                       </ul>
                     </td>
@@ -542,7 +577,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

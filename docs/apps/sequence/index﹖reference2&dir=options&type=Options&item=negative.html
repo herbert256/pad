@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -198,6 +198,46 @@
                   padAjax7e7381d5e304fc0264140c35410b3e00.open("GET","http://localhost/pad/sequence/?specials/negative&padInclude",true);
                   padAjax7e7381d5e304fc0264140c35410b3e00.send();
                   </script>
+                  <hr>
+                  App: tags Page: examples/sequence/3-plays-actions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sequence/3-plays-actions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Plays and actions<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>keep filters while building; sum<font color="black">,</font> reverse and first=3 with negative work on the result.<font color="black">'</font></font>}</b><br>&lt;p&gt;Primes up to 20: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..20<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> prime</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Their sum: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..20<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> prime<font color="black">,</font> sum</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Odd numbers, reversed: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..12<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> odd<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;All but the first three: <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> first=3<font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9794722ca923066743defb873381026a"></div>
+                        <script>
+                        padAjax9794722ca923066743defb873381026a = new XMLHttpRequest();
+                        padAjax9794722ca923066743defb873381026a.onreadystatechange=function() {
+                        if (padAjax9794722ca923066743defb873381026a.readyState === 4) {
+                        if (padAjax9794722ca923066743defb873381026a.status === 200) {
+                        document.getElementById("padAjax9794722ca923066743defb873381026a").innerHTML=padAjax9794722ca923066743defb873381026a.responseText;
+                        } else {
+                        document.getElementById("padAjax9794722ca923066743defb873381026a").innerHTML=padAjax9794722ca923066743defb873381026a.statusText;
+                        }
+                        }
+                        }
+                        padAjax9794722ca923066743defb873381026a.open("GET","http://localhost/pad/tags/?examples/sequence/3-plays-actions&padInclude",true);
+                        padAjax9794722ca923066743defb873381026a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                 </center>
               </td>
             </tr>
@@ -213,7 +253,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

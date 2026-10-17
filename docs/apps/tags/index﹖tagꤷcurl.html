@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {curl} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#network">Network and mail</a><span>/</span><span aria-current="page">curl</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>curl<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Fetches a URL and answers the body of the response, optionally kept in a cache for a number of seconds.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#network">Network and mail</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/data.json'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-opt">url</span>=<span class="hl-str">'https://example.com/data.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/api'</span>, <span class="hl-opt">post</span>=<span class="hl-str">'a=1&amp;b=2'</span>, <span class="hl-opt">user</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">password</span>=<span class="hl-var">$secret</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'SELF://shop/?orders'</span>, <span class="hl-var">$status</span>=<span class="hl-str">'open'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/api'</span>, <span class="hl-opt">get</span>=<span class="hl-var">$query</span>, <span class="hl-opt">cookies</span>=<span class="hl-var">$jar</span>, <span class="hl-opt">headers</span>=<span class="hl-var">$headers</span>, <span class="hl-opt">options</span>=<span class="hl-var">$curlOptions</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>url</code>
+            </dt>
+            <dd>
+              The address - also written <code>url=</code>. <code>SELF://</code> at its start is this site's own host and mount prefix.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>ttl</code>
+            </dt>
+            <dd>
+              Keep the answer this many seconds; when the source fails afterwards the last good copy is served and the failure logged.
+            </dd>
+            <dt>
+              <code>post</code>
+            </dt>
+            <dd>
+              The body to post - the request is then a POST.
+            </dd>
+            <dt>
+              <code>user</code>
+            </dt>
+            <dd>
+              The user name of basic authentication.
+            </dd>
+            <dt>
+              <code>password</code>
+            </dt>
+            <dd>
+              The password of basic authentication.
+            </dd>
+            <dt>
+              <code>get</code>
+            </dt>
+            <dd>
+              An array of query values added to the URL.
+            </dd>
+            <dt>
+              <code>cookies</code>
+            </dt>
+            <dd>
+              An array of cookies to send.
+            </dd>
+            <dt>
+              <code>headers</code>
+            </dt>
+            <dd>
+              An array of request headers.
+            </dd>
+            <dt>
+              <code>options</code>
+            </dt>
+            <dd>
+              An array of curl options by name.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{curl 'https://...'}</code> fetches a URL and answers the body of the response as the tag's value - a value, so braces in it stay text. <code>url=</code> or the first parameter gives the address; <code>SELF://</code> at its start becomes this site's own host and mount prefix, so an application can call itself wherever it is served. A <code>$name=value</code> written on the tag is added to the URL as a query value.
+          </p>
+          <p>
+            The tag's parameters as a whole are the input of <code>padCurl()</code>: <code>post=</code> makes the request a POST with that body, <code>user=</code> and <code>password=</code> are basic authentication, and <code>get=</code>, <code>cookies=</code>, <code>headers=</code> and <code>options=</code> (curl options by name) are arrays. Any answer but HTTP 200 is a PAD error, and nothing of the failing answer goes into the page.
+          </p>
+          <h3>
+            A cache
+          </h3>
+          <p>
+            With <code>ttl=600</code> the answer is kept ten minutes: the requests in that time are answered from the copy. When the source fails after the ttl the last good copy is served and the failure goes to the error log (and to the application's <code>_events/curl.php</code>); only a good answer is kept. <code>$padCurlCache</code> picks the store - <code>'file'</code> (the default), <code>'apcu'</code>, <code>'redis'</code>, <code>'memcached'</code> or <code>FALSE</code>. <code>data='https://...'</code> on a tag takes the same <code>ttl=</code> and reads the answer as data, and <code>padPrefetch</code> in the page's PHP fetches several sources in parallel.
+          </p>
+          <p>
+            In tests <code>padCurlFake</code> answers every fetch from fakes. A remote fetch is neither deterministic nor allowed here, so the examples are shown, not run.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Fetch a URL
+            </h3>
+            <p class="example-about">
+              The body of the answer is the tag's value; anything but HTTP 200 is a PAD error.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/curl/1-fetch.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/status.txt'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Kept for ten minutes
+            </h3>
+            <p class="example-about">
+              ttl=600 answers from a copy for ten minutes, and serves the last good copy when the source fails afterwards.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/curl/2-ttl.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad</span> <span class="hl-opt">data</span>=<span class="hl-str">'https://api.example.com/rates.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$code</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$rate</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/rates.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span> | ignore<span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              A post with credentials
+            </h3>
+            <p class="example-about">
+              post= makes it a POST; user= and password= are basic authentication; a $name=value set on the tag goes into the query string.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/curl/3-post.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/orders'</span>, <span class="hl-opt">post</span>=<span class="hl-str">'number=1042&amp;status=paid'</span>, <span class="hl-opt">user</span>=<span class="hl-str">'shop'</span>, <span class="hl-opt">password</span>=<span class="hl-var">$apiKey</span> | ignore<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'SELF://shop/?orders'</span>, <span class="hl-var">$status</span>=<span class="hl-str">'open'</span> | ignore<span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7get.html">{get}</a> <span class="about">Fetches another page of the application over HTTP, as a second request, and inserts its output.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pad.html">{pad}</a> <span class="about">A tag with no behaviour of its own: its content renders once, or per row with data=, carrying the generic options.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7mail.html">{mail}</a> <span class="about">Renders a template, or its own content, to an e-mail with an HTML and a text part, and sends it.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7csrf.html">← {csrf}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7data.html">{data} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

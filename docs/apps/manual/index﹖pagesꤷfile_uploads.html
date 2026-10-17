@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -69,7 +69,7 @@
                             No picture was sent yet.
                           </p>
                           <form method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="padCsrfToken" value="65afb0356b93329bcd93c2d6cb1acce874926f4c6a1a9a2b50c133a60d2217da"><input type="hidden" name="padForm" value="picture"> <label for="avatar">Your picture</label><input type="file" name="avatar" id="avatar"> <button>Upload</button>
+                            <input type="hidden" name="padCsrfToken" value="7021bfc22dc98b0b3438850558c89da443f308ab4c2997e0ccff4db62d68fe7b"><input type="hidden" name="padForm" value="picture"> <label for="avatar">Your picture</label><input type="file" name="avatar" id="avatar"> <button>Upload</button>
                           </form>
                         </td>
                       </tr>
@@ -79,6 +79,9 @@
                     </p>
                     <p>
                       A <b>{form}</b> holding a file field posts as <code>multipart/form-data</code> by itself; without that the browser sends only the file's name.
+                    </p>
+                    <p>
+                      What is stored under <code>DATA</code> no address reaches. A page sends it back with <code>padUploadSend ( $record ['file'], $record ['name'] )</code>, which answers the file as the whole page and ends the request: its type read from its content again, a picture, a PDF or plain text shown, anything else - HTML, SVG, a script, which shown on the site's own address would run with its rights - downloaded; <code>TRUE</code> as its third argument downloads it in any case. A path out of <code>DATA</code>, or to no file, answers 404.
                     </p>
                   </div>
                 </center>
@@ -284,6 +287,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
@@ -297,6 +303,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
                         </li>
                       </ul>
                       <h3 align="center">
@@ -354,11 +363,34 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
                         Forms and security
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
@@ -384,7 +416,7 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
@@ -405,6 +437,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
                         </li>
                         <li>
@@ -421,6 +456,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
                         </li>
                       </ul>
                     </td>
@@ -439,7 +477,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

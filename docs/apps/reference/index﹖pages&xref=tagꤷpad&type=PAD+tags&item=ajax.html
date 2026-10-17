@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -233,6 +233,170 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/pages - Page: routes/ajax_script<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">routes/ajax_script.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">routes/ajax_script.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page an {ajax} or a {page app=} loads in the browser goes into the script as one<br>  // JavaScript string, its segments encoded. A route segment may hold a quote - products/[id]<br>  // takes any value - and the name went in as it was: this one closed the string and ran its<br>  // own statement.<br><br>  </span><span style="color: #0000BB">$p </span><span style="color: #007700">= </span><span style="color: #DD0000">'routes/products/x");alert(1);("'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">ajax </font><font color="red"><font color="red">$</font>p</font>}</b>][<b>{<font color="blue">page </font><font color="red"><font color="red">$</font>p<font color="black">,</font> app=<font color="black">'</font>regression/pages<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1a1932f561fc9d5c76a62e07368aa787"></div>
+                        <script>
+                        padAjax1a1932f561fc9d5c76a62e07368aa787 = new XMLHttpRequest();
+                        padAjax1a1932f561fc9d5c76a62e07368aa787.onreadystatechange=function() {
+                        if (padAjax1a1932f561fc9d5c76a62e07368aa787.readyState === 4) {
+                        if (padAjax1a1932f561fc9d5c76a62e07368aa787.status === 200) {
+                        document.getElementById("padAjax1a1932f561fc9d5c76a62e07368aa787").innerHTML=padAjax1a1932f561fc9d5c76a62e07368aa787.responseText;
+                        } else {
+                        document.getElementById("padAjax1a1932f561fc9d5c76a62e07368aa787").innerHTML=padAjax1a1932f561fc9d5c76a62e07368aa787.statusText;
+                        }
+                        }
+                        }
+                        padAjax1a1932f561fc9d5c76a62e07368aa787.open("GET","http://localhost/pad/regression/pages/?routes/ajax_script&padInclude",true);
+                        padAjax1a1932f561fc9d5c76a62e07368aa787.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: routes/ajax_segment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">routes/ajax_segment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">routes/ajax_segment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An {ajax} of a routed page loads it with each segment encoded: products/[id] takes a&amp;b,<br>  // and the browser loaded products/a with a value b.<br><br>  </span><span style="color: #0000BB">$p </span><span style="color: #007700">= </span><span style="color: #DD0000">'routes/products/a&amp;b'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">ajax </font><font color="red"><font color="red">$</font>p</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax41603c796c439a6b65f62e9f15fdbe2d"></div>
+                        <script>
+                        padAjax41603c796c439a6b65f62e9f15fdbe2d = new XMLHttpRequest();
+                        padAjax41603c796c439a6b65f62e9f15fdbe2d.onreadystatechange=function() {
+                        if (padAjax41603c796c439a6b65f62e9f15fdbe2d.readyState === 4) {
+                        if (padAjax41603c796c439a6b65f62e9f15fdbe2d.status === 200) {
+                        document.getElementById("padAjax41603c796c439a6b65f62e9f15fdbe2d").innerHTML=padAjax41603c796c439a6b65f62e9f15fdbe2d.responseText;
+                        } else {
+                        document.getElementById("padAjax41603c796c439a6b65f62e9f15fdbe2d").innerHTML=padAjax41603c796c439a6b65f62e9f15fdbe2d.statusText;
+                        }
+                        }
+                        }
+                        padAjax41603c796c439a6b65f62e9f15fdbe2d.open("GET","http://localhost/pad/regression/pages/?routes/ajax_segment&padInclude",true);
+                        padAjax41603c796c439a6b65f62e9f15fdbe2d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/ajax/1-load<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/ajax/1-load.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A part the browser fetches<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The tag writes an empty div and a script that loads the page into it after the page arrived.<font color="black">'</font></font>}</b><br><b>{<font color="blue">ajax </font><font color="red"><font color="black">'</font>examples/ajax/parts/note<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1966c262d2c7e854699780503a86d451"></div>
+                        <script>
+                        padAjax1966c262d2c7e854699780503a86d451 = new XMLHttpRequest();
+                        padAjax1966c262d2c7e854699780503a86d451.onreadystatechange=function() {
+                        if (padAjax1966c262d2c7e854699780503a86d451.readyState === 4) {
+                        if (padAjax1966c262d2c7e854699780503a86d451.status === 200) {
+                        document.getElementById("padAjax1966c262d2c7e854699780503a86d451").innerHTML=padAjax1966c262d2c7e854699780503a86d451.responseText;
+                        } else {
+                        document.getElementById("padAjax1966c262d2c7e854699780503a86d451").innerHTML=padAjax1966c262d2c7e854699780503a86d451.statusText;
+                        }
+                        }
+                        }
+                        padAjax1966c262d2c7e854699780503a86d451.open("GET","http://localhost/pad/tags/?examples/ajax/1-load&padInclude",true);
+                        padAjax1966c262d2c7e854699780503a86d451.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/ajax/2-fragment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/ajax/2-fragment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One fragment of a page<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>fragment= asks the page for that response fragment alone.<font color="black">'</font></font>}</b><br><b>{<font color="blue">ajax </font><font color="red"><font color="black">'</font>examples/ajax/parts/list<font color="black">'</font><font color="black">,</font> fragment=<font color="black">'</font>ajaxItems<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax91ae6f7fbe1ae5dc19ba26bb0024637c"></div>
+                        <script>
+                        padAjax91ae6f7fbe1ae5dc19ba26bb0024637c = new XMLHttpRequest();
+                        padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.onreadystatechange=function() {
+                        if (padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.readyState === 4) {
+                        if (padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.status === 200) {
+                        document.getElementById("padAjax91ae6f7fbe1ae5dc19ba26bb0024637c").innerHTML=padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.responseText;
+                        } else {
+                        document.getElementById("padAjax91ae6f7fbe1ae5dc19ba26bb0024637c").innerHTML=padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.statusText;
+                        }
+                        }
+                        }
+                        padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.open("GET","http://localhost/pad/tags/?examples/ajax/2-fragment&padInclude",true);
+                        padAjax91ae6f7fbe1ae5dc19ba26bb0024637c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -247,7 +411,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

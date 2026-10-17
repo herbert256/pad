@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - probes
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - probes
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/cors - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fetches the data page as other origins would, and shows the CORS headers of each answer:<br>  // the listed origin gets itself back, with credentials, the exposed header and Vary:<br>  // Origin; another origin gets no Access-Control header at all; a preflight from the<br>  // listed origin is a 204 with the methods, headers and age, one from another a bare 204 -<br>  // neither runs the page nor asks the CSRF token; a post from the listed origin without<br>  // its token is still refused, its CORS headers on the 403; with every origin allowed the<br>  // answer is * and depends on no Origin.<br><br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cors/'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$probes </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #0000BB">$asks </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'listed'          </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data&amp;padInclude'</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://app.example.com' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'other'           </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data&amp;padInclude'</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://evil.example.org' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'none'            </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data&amp;padInclude' </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'preflight'       </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data'</span><span style="color: #007700">, </span><span style="color: #DD0000">'options' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'CUSTOMREQUEST' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'OPTIONS' </span><span style="color: #007700">],<br>                           </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://app.example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Access-Control-Request-Method' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'POST'</span><span style="color: #007700">,<br>                                          </span><span style="color: #DD0000">'Access-Control-Request-Headers' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'content-type' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'preflight other' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data'</span><span style="color: #007700">, </span><span style="color: #DD0000">'options' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'CUSTOMREQUEST' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'OPTIONS' </span><span style="color: #007700">],<br>                           </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://evil.example.org'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Access-Control-Request-Method' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'post'            </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data'</span><span style="color: #007700">, </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1' </span><span style="color: #007700">],<br>                           </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://app.example.com' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'any'             </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?data&amp;any&amp;padInclude'</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://elsewhere.example.net' </span><span style="color: #007700">] ],<br>  ];<br><br>  foreach ( </span><span style="color: #0000BB">$asks </span><span style="color: #007700">as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ask </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$curl </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$ask </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$cors </span><span style="color: #007700">= [];<br><br>    foreach ( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] as </span><span style="color: #0000BB">$header </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$value </span><span style="color: #007700">)<br>      if ( </span><span style="color: #0000BB">str_starts_with </span><span style="color: #007700">( </span><span style="color: #0000BB">strtolower </span><span style="color: #007700">( </span><span style="color: #0000BB">$header </span><span style="color: #007700">), </span><span style="color: #DD0000">'access-control-' </span><span style="color: #007700">) or </span><span style="color: #0000BB">strtolower </span><span style="color: #007700">( </span><span style="color: #0000BB">$header </span><span style="color: #007700">) == </span><span style="color: #DD0000">'vary' </span><span style="color: #007700">)<br>        </span><span style="color: #0000BB">$cors </span><span style="color: #007700">[] = </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$header</span><span style="color: #DD0000">: </span><span style="color: #0000BB">$value</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">sort </span><span style="color: #007700">( </span><span style="color: #0000BB">$cors </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$probes </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'name'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">],<br>      </span><span style="color: #DD0000">'cors'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$cors </span><span style="color: #007700">? </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$cors </span><span style="color: #007700">) : </span><span style="color: #DD0000">'(none)'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) ) &gt; </span><span style="color: #0000BB">60 </span><span style="color: #007700">? </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">60 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'...' </span><span style="color: #007700">: </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] )<br>    ];<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">probes</font><font color="red"></font>}</b><br>&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/h2&gt;<br><b>{<font color="green"><font color="red">$</font>cors</font>}</b><br><b>{<font color="green"><font color="red">$</font>body</font>}</b><br><b>{/<font color="blue">probes</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b"></div>
+                        <script>
+                        padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b = new XMLHttpRequest();
+                        padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.onreadystatechange=function() {
+                        if (padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.readyState === 4) {
+                        if (padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.status === 200) {
+                        document.getElementById("padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b").innerHTML=padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.responseText;
+                        } else {
+                        document.getElementById("padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b").innerHTML=padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.open("GET","http://localhost/pad/regression/cors/?index&padInclude",true);
+                        padAjaxeb22312e51d5f1aa9ebd5fbf97e69b1b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errorpages - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fetches the answers this application gives when a request cannot go on, and shows for<br>  // each its status, its content type and its body: the 404 of a page that is not there -<br>  // also of ?sitemap.xml and ?up, which the engine would answer were they on - and of<br>  // _errors/404 itself, which is no page; the guard's 403, a post without its CSRF token,<br>  // padAbort's 429 and 410 through _errors/4xx.pad, the 500 of a failing page under the<br>  // 'pad' error action (diagnostics off: a visitor's request), and the 418 whose page fails<br>  // in turn and falls back to the plain line.<br><br>  </span><span style="color: #0000BB">$probes </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #DD0000">'nothere'</span><span style="color: #007700">, </span><span style="color: #DD0000">'deep/not/here'</span><span style="color: #007700">, </span><span style="color: #DD0000">'sitemap.xml'</span><span style="color: #007700">, </span><span style="color: #DD0000">'up'</span><span style="color: #007700">, </span><span style="color: #DD0000">'_errors/404'</span><span style="color: #007700">, </span><span style="color: #DD0000">'admin/panel'</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'slow'</span><span style="color: #007700">, </span><span style="color: #DD0000">'gone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'teapot'</span><span style="color: #007700">, </span><span style="color: #DD0000">'broken'</span><span style="color: #007700">, </span><span style="color: #DD0000">'about&amp;padInclude'</span><span style="color: #007700">, </span><span style="color: #DD0000">'post' </span><span style="color: #007700">] as </span><span style="color: #0000BB">$ask </span><span style="color: #007700">) {<br><br>    if ( </span><span style="color: #0000BB">$ask </span><span style="color: #007700">== </span><span style="color: #DD0000">'post' </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$curl </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/errorpages/?about'</span><span style="color: #007700">, </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1' </span><span style="color: #007700">] ] );<br>    else<br>      </span><span style="color: #0000BB">$curl </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">"regression/errorpages/?</span><span style="color: #0000BB">$ask</span><span style="color: #DD0000">" </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$probes </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'ask'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ask</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">],<br>      </span><span style="color: #DD0000">'type'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Content-Type'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'/Quote \S+ when/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Quote ID when'</span><span style="color: #007700">, </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) )<br>    ];<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">probes</font><font color="red"></font>}</b><br>&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>ask</font>}</b>: <b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/h2&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/p&gt;<br><b>{<font color="green"><font color="red">$</font>body</font>}</b><br><b>{/<font color="blue">probes</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax458365ae5f2e4c5204c7214f3f16b446"></div>
+                        <script>
+                        padAjax458365ae5f2e4c5204c7214f3f16b446 = new XMLHttpRequest();
+                        padAjax458365ae5f2e4c5204c7214f3f16b446.onreadystatechange=function() {
+                        if (padAjax458365ae5f2e4c5204c7214f3f16b446.readyState === 4) {
+                        if (padAjax458365ae5f2e4c5204c7214f3f16b446.status === 200) {
+                        document.getElementById("padAjax458365ae5f2e4c5204c7214f3f16b446").innerHTML=padAjax458365ae5f2e4c5204c7214f3f16b446.responseText;
+                        } else {
+                        document.getElementById("padAjax458365ae5f2e4c5204c7214f3f16b446").innerHTML=padAjax458365ae5f2e4c5204c7214f3f16b446.statusText;
+                        }
+                        }
+                        }
+                        padAjax458365ae5f2e4c5204c7214f3f16b446.open("GET","http://localhost/pad/regression/errorpages/?index&padInclude",true);
+                        padAjax458365ae5f2e4c5204c7214f3f16b446.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/health - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fetches ?up four ways: all checks passing - 200 with the JSON of every check -, the<br>  // application's own check failing with its reason, the database not answering - 503<br>  // with the check named but neither the reason nor anything of the credentials - and the<br>  // database not answering while _health.php claims it does, which stays a 503. Each with<br>  // its content type and caching.<br><br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/health/'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$probes </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #DD0000">'ok' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?up'</span><span style="color: #007700">, </span><span style="color: #DD0000">'behind' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?up&amp;behind'</span><span style="color: #007700">, </span><span style="color: #DD0000">'nodb' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?up&amp;nodb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'claim' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?up&amp;nodb&amp;claim' </span><span style="color: #007700">] as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ask </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$curl </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #0000BB">$ask </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$probes </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'name'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">],<br>      </span><span style="color: #DD0000">'type'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Content-Type'</span><span style="color: #007700">]  ?? </span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'cache'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Cache-Control'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ),<br>      </span><span style="color: #DD0000">'leak'   </span><span style="color: #007700">=&gt; ( </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">], </span><span style="color: #DD0000">'secret-password' </span><span style="color: #007700">) or </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">], </span><span style="color: #DD0000">'nobody' </span><span style="color: #007700">) ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'<br>    </span><span style="color: #007700">];<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">probes</font><font color="red"></font>}</b><br>&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/h2&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>, <b>{<font color="green"><font color="red">$</font>cache</font>}</b>, credentials shown: <b>{<font color="green"><font color="red">$</font>leak</font>}</b>&lt;/p&gt;<br><b>{<font color="green"><font color="red">$</font>body</font>}</b><br><b>{/<font color="blue">probes</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3ef2fdc83d79edee7a89208fcc7a22c3"></div>
+                        <script>
+                        padAjax3ef2fdc83d79edee7a89208fcc7a22c3 = new XMLHttpRequest();
+                        padAjax3ef2fdc83d79edee7a89208fcc7a22c3.onreadystatechange=function() {
+                        if (padAjax3ef2fdc83d79edee7a89208fcc7a22c3.readyState === 4) {
+                        if (padAjax3ef2fdc83d79edee7a89208fcc7a22c3.status === 200) {
+                        document.getElementById("padAjax3ef2fdc83d79edee7a89208fcc7a22c3").innerHTML=padAjax3ef2fdc83d79edee7a89208fcc7a22c3.responseText;
+                        } else {
+                        document.getElementById("padAjax3ef2fdc83d79edee7a89208fcc7a22c3").innerHTML=padAjax3ef2fdc83d79edee7a89208fcc7a22c3.statusText;
+                        }
+                        }
+                        }
+                        padAjax3ef2fdc83d79edee7a89208fcc7a22c3.open("GET","http://localhost/pad/regression/health/?index&padInclude",true);
+                        padAjax3ef2fdc83d79edee7a89208fcc7a22c3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/maintenance - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Takes this application down - as pad down does, with a secret - and fetches it the<br>  // ways maintenance promises to answer: a page 503 with a Retry-After and the 503 page of<br>  // _errors/, the plain message without error pages, a page that is not there 503 as well,<br>  // the secret a redirect to the front page with the cookie, and that cookie let through.<br>  // Then up again, and the page is there as before. The request that does this is past the<br>  // gate already; the suite fetches this application's pages one at a time.<br><br>  </span><span style="color: #0000BB">$secret</span><span style="color: #007700">= </span><span style="color: #DD0000">'*REDACTED*'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/maintenance/'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$probes </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #0000BB">padMaintenanceDown </span><span style="color: #007700">( </span><span style="color: #0000BB">$padApp</span><span style="color: #007700">, </span><span style="color: #0000BB">$secret</span><span style="color: #007700">, </span><span style="color: #0000BB">30</span><span style="color: #007700">, </span><span style="color: #DD0000">'Back in half a minute' </span><span style="color: #007700">);<br><br>  try {<br><br>    </span><span style="color: #0000BB">$page   </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?about' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$plain  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?about&amp;plain' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$gone   </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?nothere' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$bypass </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">"?</span><span style="color: #0000BB">$secret</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #DD0000">'options' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'FOLLOWLOCATION' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">] ] );<br>    </span><span style="color: #0000BB">$wrong  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?wrong-secret' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$cookie </span><span style="color: #007700">= </span><span style="color: #0000BB">$bypass </span><span style="color: #007700">[</span><span style="color: #DD0000">'cookies'</span><span style="color: #007700">] [ </span><span style="color: #0000BB">padMaintenanceCookie </span><span style="color: #007700">() ] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$inside </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?about&amp;padInclude'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cookies' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">padMaintenanceCookie </span><span style="color: #007700">() =&gt; </span><span style="color: #0000BB">$cookie </span><span style="color: #007700">] ] );<br><br>  } finally {<br><br>    </span><span style="color: #0000BB">padMaintenanceUp </span><span style="color: #007700">( </span><span style="color: #0000BB">$padApp </span><span style="color: #007700">);<br><br>  }<br><br>  </span><span style="color: #0000BB">$after </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$base </span><span style="color: #007700">. </span><span style="color: #DD0000">'?about&amp;padInclude' </span><span style="color: #007700">);<br><br>  foreach ( </span><span style="color: #0000BB">compact </span><span style="color: #007700">( </span><span style="color: #DD0000">'page'</span><span style="color: #007700">, </span><span style="color: #DD0000">'plain'</span><span style="color: #007700">, </span><span style="color: #DD0000">'gone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bypass'</span><span style="color: #007700">, </span><span style="color: #DD0000">'wrong'</span><span style="color: #007700">, </span><span style="color: #DD0000">'inside'</span><span style="color: #007700">, </span><span style="color: #DD0000">'after' </span><span style="color: #007700">) as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$probes </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'name'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'status'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">],<br>      </span><span style="color: #DD0000">'retry'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Retry-After'</span><span style="color: #007700">]   ?? </span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'cache'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Cache-Control'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'location' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost</span><span style="color: #007700">, </span><span style="color: #DD0000">'HOST/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Location'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'-' </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'body'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$curl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] )<br>    ];<br><br>  </span><span style="color: #0000BB">$cookieSet </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$cookie </span><span style="color: #007700">!== </span><span style="color: #DD0000">'' </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$stillDown </span><span style="color: #007700">= </span><span style="color: #0000BB">padMaintenanceRead </span><span style="color: #007700">( </span><span style="color: #0000BB">$padApp </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">probes</font><font color="red"></font>}</b><br>&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/h2&gt;<br>&lt;p&gt;Retry-After <b>{<font color="green"><font color="red">$</font>retry</font>}</b>, Cache-Control <b>{<font color="green"><font color="red">$</font>cache</font>}</b>, Location <b>{<font color="green"><font color="red">$</font>location</font>}</b>&lt;/p&gt;<br><b>{<font color="green"><font color="red">$</font>body</font>}</b><br><b>{/<font color="blue">probes</font><font color="red"></font>}</b><br>&lt;p&gt;cookie set: <b>{<font color="green"><font color="red">$</font>cookieSet</font>}</b>, still down: <b>{<font color="green"><font color="red">$</font>stillDown</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb44b7f28664dcf99c653c54936718bbf"></div>
+                        <script>
+                        padAjaxb44b7f28664dcf99c653c54936718bbf = new XMLHttpRequest();
+                        padAjaxb44b7f28664dcf99c653c54936718bbf.onreadystatechange=function() {
+                        if (padAjaxb44b7f28664dcf99c653c54936718bbf.readyState === 4) {
+                        if (padAjaxb44b7f28664dcf99c653c54936718bbf.status === 200) {
+                        document.getElementById("padAjaxb44b7f28664dcf99c653c54936718bbf").innerHTML=padAjaxb44b7f28664dcf99c653c54936718bbf.responseText;
+                        } else {
+                        document.getElementById("padAjaxb44b7f28664dcf99c653c54936718bbf").innerHTML=padAjaxb44b7f28664dcf99c653c54936718bbf.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb44b7f28664dcf99c653c54936718bbf.open("GET","http://localhost/pad/regression/maintenance/?index&padInclude",true);
+                        padAjaxb44b7f28664dcf99c653c54936718bbf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

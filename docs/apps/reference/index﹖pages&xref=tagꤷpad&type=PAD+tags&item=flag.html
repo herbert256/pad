@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -164,6 +164,126 @@
                   padAjaxd41f84fa20aec2fe88ae31d21d544511.open("GET","http://localhost/pad/sequence/?check/store&padInclude",true);
                   padAjaxd41f84fa20aec2fe88ae31d21d544511.send();
                   </script><br>
+                  <hr>
+                  App: tags - Page: examples/flag/1-flags<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/flag/1-flags.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Flags in a row<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each of the numbers 1 to 12 marked 1 when even<font color="black">,</font> 0 when odd.<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">flag </font><font color="red"><font color="black">'</font>1..12<font color="black">'</font><font color="black">,</font> even</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">flag</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax93def8e01b6367d5e883d86bc7cad0a5"></div>
+                        <script>
+                        padAjax93def8e01b6367d5e883d86bc7cad0a5 = new XMLHttpRequest();
+                        padAjax93def8e01b6367d5e883d86bc7cad0a5.onreadystatechange=function() {
+                        if (padAjax93def8e01b6367d5e883d86bc7cad0a5.readyState === 4) {
+                        if (padAjax93def8e01b6367d5e883d86bc7cad0a5.status === 200) {
+                        document.getElementById("padAjax93def8e01b6367d5e883d86bc7cad0a5").innerHTML=padAjax93def8e01b6367d5e883d86bc7cad0a5.responseText;
+                        } else {
+                        document.getElementById("padAjax93def8e01b6367d5e883d86bc7cad0a5").innerHTML=padAjax93def8e01b6367d5e883d86bc7cad0a5.statusText;
+                        }
+                        }
+                        }
+                        padAjax93def8e01b6367d5e883d86bc7cad0a5.open("GET","http://localhost/pad/tags/?examples/flag/1-flags&padInclude",true);
+                        padAjax93def8e01b6367d5e883d86bc7cad0a5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/flag/2-count<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/flag/2-count.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Count the members<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Summing the flags counts how many values belong to the type.<font color="black">'</font></font>}</b><br>&lt;p&gt;Primes up to 100: <b>{<font color="blue">flag </font><font color="red"><font color="black">'</font>1..100<font color="black">'</font><font color="black">,</font> prime<font color="black">,</font> sum</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">flag</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;Squares up to 100: <b>{<font color="blue">flag </font><font color="red"><font color="black">'</font>1..100<font color="black">'</font><font color="black">,</font> square<font color="black">,</font> sum</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">flag</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9295ec68cecb3c93423c98b80a120874"></div>
+                        <script>
+                        padAjax9295ec68cecb3c93423c98b80a120874 = new XMLHttpRequest();
+                        padAjax9295ec68cecb3c93423c98b80a120874.onreadystatechange=function() {
+                        if (padAjax9295ec68cecb3c93423c98b80a120874.readyState === 4) {
+                        if (padAjax9295ec68cecb3c93423c98b80a120874.status === 200) {
+                        document.getElementById("padAjax9295ec68cecb3c93423c98b80a120874").innerHTML=padAjax9295ec68cecb3c93423c98b80a120874.responseText;
+                        } else {
+                        document.getElementById("padAjax9295ec68cecb3c93423c98b80a120874").innerHTML=padAjax9295ec68cecb3c93423c98b80a120874.statusText;
+                        }
+                        }
+                        }
+                        padAjax9295ec68cecb3c93423c98b80a120874.open("GET","http://localhost/pad/tags/?examples/flag/2-count&padInclude",true);
+                        padAjax9295ec68cecb3c93423c98b80a120874.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/flag/3-table<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/flag/3-table.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Value and flag side by side<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A stored list and its flags against the type prime<font color="black">,</font> in a two-row table.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>10..17<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>teens<font color="black">'</font></font>}</b><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;n&lt;/th&gt;<b>{<font color="blue">pull </font><font color="red">teens</font>}</b>&lt;td&gt;<b>{<font color="green"><font color="red">$</font>sequence</font>}</b>&lt;/td&gt;<b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/tr&gt;<br>  &lt;tr&gt;&lt;th&gt;prime&lt;/th&gt;<b>{<font color="blue">flag </font><font color="red">teens<font color="black">,</font> prime</font>}</b>&lt;td&gt;<b>{<font color="green"><font color="red">$</font>sequence</font>}</b>&lt;/td&gt;<b>{/<font color="blue">flag</font><font color="red"></font>}</b>&lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa0052af12044a2bb25ebd80b513b6bb7"></div>
+                        <script>
+                        padAjaxa0052af12044a2bb25ebd80b513b6bb7 = new XMLHttpRequest();
+                        padAjaxa0052af12044a2bb25ebd80b513b6bb7.onreadystatechange=function() {
+                        if (padAjaxa0052af12044a2bb25ebd80b513b6bb7.readyState === 4) {
+                        if (padAjaxa0052af12044a2bb25ebd80b513b6bb7.status === 200) {
+                        document.getElementById("padAjaxa0052af12044a2bb25ebd80b513b6bb7").innerHTML=padAjaxa0052af12044a2bb25ebd80b513b6bb7.responseText;
+                        } else {
+                        document.getElementById("padAjaxa0052af12044a2bb25ebd80b513b6bb7").innerHTML=padAjaxa0052af12044a2bb25ebd80b513b6bb7.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa0052af12044a2bb25ebd80b513b6bb7.open("GET","http://localhost/pad/tags/?examples/flag/3-table&padInclude",true);
+                        padAjaxa0052af12044a2bb25ebd80b513b6bb7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -178,7 +298,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

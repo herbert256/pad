@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {input} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#forms">Forms and security</a><span>/</span><span aria-current="page">input</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>input<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A form field with its label that refills from what its form sent and shows the error validation found for it.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#forms">Forms and security</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The field name - required. <code>user[email]</code> and <code>tags[]</code> are found where PHP files them; the id is the name with what an id cannot hold made a dash.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              The input type, <code>text</code> by default: <code>email</code>, <code>number</code>, <code>checkbox</code>, <code>radio</code>, <code>hidden</code>, <code>password</code>, <code>file</code>, <code>submit</code> ...
+            </dd>
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              A <code>&lt;label for&gt;</code> before the field - after a checkbox or radio - and the word its error message uses.
+            </dd>
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              The value before anything was sent; for a checkbox or radio its own value (<code>on</code> by default).
+            </dd>
+            <dt>
+              <code>id</code>
+            </dt>
+            <dd>
+              The id, by default the name.
+            </dd>
+            <dt>
+              <code>checked</code>
+            </dt>
+            <dd>
+              Bare option: a checkbox or radio is checked before a post.
+            </dd>
+            <dt>
+              <code>rules</code>
+            </dt>
+            <dd>
+              The field's rules - <code>required|email|max:80</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{form}</code> of the page itself.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{input 'email', type='email', label='E-mail'}</code> writes a <code>&lt;label for&gt;</code> and an <code>&lt;input&gt;</code> with the name and an id - the name with every character an id cannot hold made a dash, so <code>user[email]</code> gets the id <code>user-email</code>. The name is required: a field without one is an error under the strict check.
+          </p>
+          <p>
+            The tag takes <code>type</code>, <code>label</code>, <code>value</code>, <code>id</code>, <code>checked</code> and <code>rules</code> itself; every other item is an attribute of the input, written as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> writes it - a bare word such as <code>required</code> is a bare attribute, a false value leaves the attribute out.
+          </p>
+          <p>
+            Before a post a field shows <code>value=</code>. After a post of its own <a href="index%EF%B9%96tag%EA%A4%B7form.html">{form}</a> it shows the posted value, escaped, found where PHP files the name (<code>user[email]</code> is <code>$_POST['user']['email']</code>). A checkbox or radio is checked when the posted value is its own value - before a post when <code>checked</code> is given - and its label comes after it. A password or file field is never refilled; a submit, button, reset or image input has no label and no error.
+          </p>
+          <p>
+            When <code>padValidate</code> - or the field's own <code>rules=</code> - found something wrong, the message follows the field in <code>&lt;span class="error" id="email-error"&gt;</code>, worded with the field's label, and the field gets <code>aria-invalid="true"</code> and <code>aria-describedby</code>, so a screen reader says the message with the field. A file field shows why <code>padUpload</code> refused its file the same way. Outside a <code>{form}</code> the tag still writes the field, but it never refills.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Field types
+            </h3>
+            <p class="example-about">
+              A label before a text field, after a checkbox or radio; value= is what shows before anything was sent.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/input/1-types.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'order'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-s'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Small'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'S'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-l'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Large'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'L'</span>, checked<span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'gift'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Gift wrap'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'step'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'hidden'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'2'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B71-types.html">open alone</a>
+                </div>
+                <div class="result">
+                  <form method="get">
+                    <label for="name">Name</label><input type="text" name="name" id="name" value="Ann"> <input type="radio" name="size" id="size-s" value="S"><label for="size-s">Small</label> <input type="radio" name="size" id="size-l" value="L" checked><label for="size-l">Large</label> <input type="checkbox" name="gift" id="gift" value="yes"><label for="gift">Gift wrap</label> <input type="hidden" name="step" id="step" value="2">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Other items are attributes
+            </h3>
+            <p class="example-about">
+              Every item the tag does not take itself goes on the input, a bare word as a bare attribute.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/input/2-attributes.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = FALSE<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'qty'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quantity'</span>, <span class="hl-opt">value</span>=<span class="hl-num">1</span>, <span class="hl-opt">min</span>=<span class="hl-num">1</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, required, <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'user[email]'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, <span class="hl-opt">autocomplete</span>=<span class="hl-str">'email'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B72-attributes.html">open alone</a>
+                </div>
+                <div class="result">
+                  <label for="qty">Quantity</label><input type="number" name="qty" id="qty" value="1" min="1" max="10" required=""> <label for="user-email">E-mail</label><input type="email" name="user[email]" id="user-email" value="" placeholder="you@example.org" autocomplete="email">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              The message beside the field
+            </h3>
+            <p class="example-about">
+              After a post padValidate found wrong, the field shows the posted value and its message, tied to it for a screen reader.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/input/3-errors.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-com">{# contact.php: if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' =&gt; 'required|email' ] ); #}</span>
+<span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'contact'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span>
+
+<span class="hl-com">{# after posting "ann@" the field renders as:
+&lt;label for="email"&gt;E-mail&lt;/label&gt;&lt;input type="email" name="email" id="email" value="ann@"
+  aria-invalid="true" aria-describedby="email-error"&gt;&lt;span class="error" id="email-error"&gt;E-mail must be a valid e-mail address&lt;/span&gt; #}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{textarea}</a> <span class="about">A text area with its label that refills from what its form sent and shows the error validation found for it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> <span class="about">Writes HTML attributes from values - quoted and escaped, a true boolean attribute bare, a false one left out.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7validator.html">{validator}</a> <span class="about">The browser's checker of the validation rules as one inline script, for a form a component draws.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7increment.html">← {increment}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7jsonview.html">{jsonview} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {at} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#values">Variables and stores</a><span>/</span><span aria-current="page">at</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>at<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Looks a value up in a data set by a path of names and conditions - the @ notation as a tag.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#values">Variables and stores</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">'field@store'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">"path.key='value'.field@store"</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>path</code>
+            </dt>
+            <dd>
+              An @ expression: before the <code>@</code> a dotted path - field names, and <code>key='value'</code> steps that pick the row whose field has that value - and after it where to look: a <code>{data}</code> store, a page array, a <code>_data/</code> file or a level.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{at 'path'}</code> answers the value an @ expression points at - the same notation a field can carry, <code>{$name@staff}</code>, written as a tag with the path as a quoted parameter. The part after the <code>@</code> says where to look: a data set made with <a href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a>, an array of the page, a <code>_data/</code> file, a stored sequence, or an enclosing level by name.
+          </p>
+          <p>
+            The part before the <code>@</code> is a path through that data, its steps separated by dots. A plain step is a field name - <code>owner.phone@shop</code> descends into the <code>owner</code> object. A step <code>id='b2'</code> picks, among the rows at that point, the one whose <code>id</code> field is <code>b2</code>, so <code>{at "id='b2'.name@staff"}</code> is the name of the row with that id. Steps can be chained as deep as the data goes: <code>{at "country.id='f0_162'.province.id='f0_17460'.name@mondial"}</code>. A row can also be named by its key - <code>1.city@cities</code> - and <code>@globals</code> searches the page's variables: <code>{at 'order.total@globals'}</code>. In a <code>{data}</code> set a bare field name searches the rows and answers the first one that has it.
+          </p>
+          <p>
+            The tag asserts its path: under the strict syntax check a path that reaches nothing - or an empty value - is an error naming the path. The field form (<code>{$name@staff}</code>) is searched more leniently, which is what <code>optional</code> lookups rest on. Use the <code>lookup</code> pipe to find one row by a key for every row of a loop.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Paths into nested data
+            </h3>
+            <p class="example-about">
+              Field names descend into objects; a key=value step picks the matching row.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/at/1-path.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'atShop'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span>
+  <span class="hl-str">"name"</span>: <span class="hl-str">"Corner Shop"</span>,
+  <span class="hl-str">"owner"</span>: <span class="hl-brc">{</span> <span class="hl-str">"name"</span>: <span class="hl-str">"Eve"</span>, <span class="hl-str">"phone"</span>: <span class="hl-str">"555-0142"</span> <span class="hl-brc">}</span>,
+  <span class="hl-str">"items"</span>: [
+    <span class="hl-brc">{</span> <span class="hl-str">"sku"</span>: <span class="hl-str">"k1"</span>, <span class="hl-str">"title"</span>: <span class="hl-str">"Kettle"</span>, <span class="hl-str">"price"</span>: <span class="hl-num">24</span> <span class="hl-brc">}</span>,
+    <span class="hl-brc">{</span> <span class="hl-str">"sku"</span>: <span class="hl-str">"k2"</span>, <span class="hl-str">"title"</span>: <span class="hl-str">"Teapot"</span>, <span class="hl-str">"price"</span>: <span class="hl-num">18</span> <span class="hl-brc">}</span>
+  ]
+<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Owner: <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">'owner.name@atShop'</span><span class="hl-brc">}</span>, phone <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">'owner.phone@atShop'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Item k2: <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">"items.sku='k2'.title@atShop"</span><span class="hl-brc">}</span> at <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">"items.sku='k2'.price@atShop"</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7at%EA%A4%B71-path.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Owner: Eve, phone 555-0142
+                  </p>
+                  <p>
+                    Item k2: Teapot at 18
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A row picked by its key
+            </h3>
+            <p class="example-about">
+              Among the rows of a data set, the one whose id matches answers its field.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/at/2-rows.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'atStaff'</span><span class="hl-brc">}</span>
+[
+  <span class="hl-brc">{</span> <span class="hl-str">"id"</span>: <span class="hl-str">"a1"</span>, <span class="hl-str">"name"</span>: <span class="hl-str">"Ann"</span>, <span class="hl-str">"city"</span>: <span class="hl-str">"Oslo"</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"id"</span>: <span class="hl-str">"b2"</span>, <span class="hl-str">"name"</span>: <span class="hl-str">"Bob"</span>, <span class="hl-str">"city"</span>: <span class="hl-str">"Rome"</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"id"</span>: <span class="hl-str">"c3"</span>, <span class="hl-str">"name"</span>: <span class="hl-str">"Cleo"</span>, <span class="hl-str">"city"</span>: <span class="hl-str">"Lima"</span> <span class="hl-brc">}</span>
+]
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>b2 is <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">"id='b2'.name@atStaff"</span><span class="hl-brc">}</span> from <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">"id='b2'.city@atStaff"</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The first city in the list: <span class="hl-brc">{</span><span class="hl-tag">at</span> <span class="hl-str">'city@atStaff'</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7at%EA%A4%B72-rows.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    b2 is Bob from Rome.
+                  </p>
+                  <p>
+                    The first city in the list: Oslo.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tree.html">{tree}</a> <span class="about">Renders a tree of rows: its body for every row, and {recurse} renders it again for the row's children.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7asset.html">← {asset}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

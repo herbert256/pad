@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - found
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - found
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: htmx - Page: examples/search<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/search.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/search.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The products whose name, category or text holds the query. The same PHP serves the page<br>  // and every answer to htmx: the input's hx-target="#results" sends HX-Target: results,<br>  // and PAD answers the {fragment 'results'} of search.pad alone. The query stands in the<br>  // address (hx-push-url), so a reload - or a link - shows the same results whole.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxText </span><span style="color: #007700">( </span><span style="color: #DD0000">'q' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$found </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">), fn ( </span><span style="color: #0000BB">$product </span><span style="color: #007700">) =&gt;<br>             </span><span style="color: #0000BB">$q </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">stripos </span><span style="color: #007700">( </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'category'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'blurb'</span><span style="color: #007700">], </span><span style="color: #0000BB">$q </span><span style="color: #007700">) !== </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$found </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="toolbar"&gt;<br>  &lt;div class="search"&gt;<br>    &lt;input class="input" type="search" name="q" value="<b>{<font color="green"><font color="red">$</font>q</font>}</b>" placeholder="Search - try lamp, audio or usb" autocomplete="off"<br>           aria-label="Search the products" hx-get="?examples/search" hx-trigger="input changed delay:250ms, search"<br>           hx-target="#results" hx-push-url="true" hx-indicator="#searching"&gt;<br>  &lt;/div&gt;<br>  &lt;span id="searching" class="htmx-indicator spinner" aria-hidden="true"&gt;&lt;/span&gt;<br>&lt;/div&gt;<br><br>&lt;div id="results"&gt;<br><b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>  &lt;p class="muted small"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 1</font>}</b>product<b>{<font color="blue">else</font><font color="red"></font>}</b>products<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>q</font>}</b> for &lt;mark&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/mark&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;<br>  &lt;table class="table"&gt;<br>    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th class="num"&gt;Price&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>    &lt;tbody&gt;<br>      <b>{<font color="blue">found</font><font color="red"></font>}</b><br>      &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>category</font>}</b>&lt;/span&gt;&lt;/td&gt;&lt;td class="num"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>      <b>{/<font color="blue">found</font><font color="red"></font>}</b><br>    &lt;/tbody&gt;<br>  &lt;/table&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 0</font>}</b>&lt;div class="empty-state"&gt;&lt;span class="big"&gt;🔎&lt;/span&gt;Nothing in the catalogue matches.&lt;/div&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxee9088bf9a5dc78924535538aa455a34"></div>
+                        <script>
+                        padAjaxee9088bf9a5dc78924535538aa455a34 = new XMLHttpRequest();
+                        padAjaxee9088bf9a5dc78924535538aa455a34.onreadystatechange=function() {
+                        if (padAjaxee9088bf9a5dc78924535538aa455a34.readyState === 4) {
+                        if (padAjaxee9088bf9a5dc78924535538aa455a34.status === 200) {
+                        document.getElementById("padAjaxee9088bf9a5dc78924535538aa455a34").innerHTML=padAjaxee9088bf9a5dc78924535538aa455a34.responseText;
+                        } else {
+                        document.getElementById("padAjaxee9088bf9a5dc78924535538aa455a34").innerHTML=padAjaxee9088bf9a5dc78924535538aa455a34.statusText;
+                        }
+                        }
+                        }
+                        padAjaxee9088bf9a5dc78924535538aa455a34.open("GET","http://localhost/pad/htmx/?examples/search&padInclude",true);
+                        padAjaxee9088bf9a5dc78924535538aa455a34.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -30,7 +30,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -51,6 +51,9 @@
                     <a href="index%EF%B9%96browse&amp;app=cli.html">..</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7down.php.html">down.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7export.php.html">export.php</a>
                   </li>
                   <li class="current">help.php
@@ -62,10 +65,25 @@
                     <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7lint.php.html">lint.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7migrate.php.html">migrate.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7new.php.html">new.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7pack.php.html">pack.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7queue.php.html">queue.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7render.php.html">render.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7schedule.php.html">schedule.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7seed.php.html">seed.php</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7serve.php.html">serve.php</a>
@@ -73,13 +91,22 @@
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7test.php.html">test.php</a>
                   </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7types.php.html">types.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7up.php.html">up.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=cli&amp;dir=_commands&amp;file=_commands%EA%A4%B7work.php.html">work.php</a>
+                  </li>
                 </ul>
               </div>
               <div class="source-view">
                 <h3>
                   _commands/help.php
                 </h3>
-                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// pad help: the commands there are.<br><br>  </span><span style="color: #0000BB">cliOut </span><span style="color: #007700">( &lt;&lt;&lt;'TEXT'<br></span><span style="color: #DD0000">pad - the PAD command<br><br>  pad new &lt;app&gt;                         a new application: apps/&lt;app&gt;/ and www/&lt;app&gt;/index.php<br>  pad new &lt;app&gt;/&lt;dir&gt;/&lt;page&gt;            a new page in it: &lt;page&gt;.php and &lt;page&gt;.pad<br>  pad serve [port] [host] [--mount=x]   PHP's built-in server over www/, no Apache needed<br>  pad render &lt;app&gt; [page] [name=value]  a page of any application to stdout<br>  pad lint &lt;app&gt; [dir]                  every page rendered under the strict check, errors listed<br>  pad export &lt;app&gt; &lt;dir&gt;                a static copy: &lt;page&gt;.html files and the assets of www/&lt;app&gt;/<br>  pad test &lt;app&gt; [name] [--record]      the application's own tests, in apps/&lt;app&gt;/_tests/<br>  pad test --all [--brief]              the tests of every application that has them<br>  pad help                              this list<br><br>Without a command word, pad runs the cli application: pad [page].<br></span><span style="color: #007700">TEXT );<br><br>  return </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// pad help: the commands there are.<br><br>  </span><span style="color: #0000BB">cliOut </span><span style="color: #007700">( &lt;&lt;&lt;'TEXT'<br></span><span style="color: #DD0000">pad - the PAD command<br><br>  pad new &lt;app&gt;                         a new application: apps/&lt;app&gt;/ and www/&lt;app&gt;/index.php<br>  pad new &lt;app&gt;/&lt;dir&gt;/&lt;page&gt;            a new page in it: &lt;page&gt;.php and &lt;page&gt;.pad<br>  pad serve [port] [host] [--mount=x]   PHP's built-in server over www/, no Apache needed<br>  pad render &lt;app&gt; [page] [name=value]  a page of any application to stdout<br>  pad lint &lt;app&gt; [dir]                  every page rendered under the strict check, errors listed<br>  pad export &lt;app&gt; &lt;dir&gt;                a static copy: &lt;page&gt;.html files and the assets of www/&lt;app&gt;/<br>  pad test &lt;app&gt; [name] [--record]      the application's own tests, in apps/&lt;app&gt;/_tests/<br>  pad test --all [--brief]              the tests of every application that has them<br>  pad sample &lt;app&gt; [page]               the page rendered once, its variables kept in _samples/<br>  pad types &lt;app&gt; [page ...] [--out=f]  TypeScript types of the pages' variables and JSON answers<br>  pad migrate &lt;app&gt; [--pretend|--seed]  the pending migrations of apps/&lt;app&gt;/_migrations/, as one batch<br>  pad migrate &lt;app&gt; --status            every migration: ran or not, and its batch<br>  pad migrate &lt;app&gt; --rollback[=n]      the down of the last batch (or n batches)<br>  pad migrate &lt;app&gt; --fresh --force     every table dropped, then every migration from nothing<br>  pad migrate &lt;app&gt; --new=name [--php]  a new, empty migration stamped with the time now<br>  pad seed &lt;app&gt; [name]                 the seeders of apps/&lt;app&gt;/_seeds/, or the one named<br>  pad work &lt;app&gt; [--queue=x] [--once]   the queue worker: runs the queued jobs (--max, --sleep, --tries, --timeout)<br>  pad queue &lt;app&gt; [--failed]            the queues' sizes; --retry=&lt;id|all&gt;, --flush[=queue]<br>  pad schedule &lt;app&gt; [--list]           what _schedule.php has due this minute; --all for every application<br>  pad pack &lt;app&gt;[,&lt;app&gt;...] [dir]       for the browser: PHP as WebAssembly, the engine and the applications in one<br>           [--serve[=port]] [--name=x]   directory that runs from the disk or installs offline; their data kept there<br>           [--panel=button|key|none]<br>  pad pack --install                    the packages the packing needs, into ~/.cache/pad-wasm (node and npm)<br>  pad down &lt;app&gt; [--secret[=word]]      maintenance: every request 503 until pad up; ?&lt;word&gt; lets you through<br>           [--retry=s] [--message=x]<br>  pad down                              the applications that are down<br>  pad up &lt;app&gt;                          back from maintenance<br>  pad help                              this list<br><br>Without a command word, pad runs the cli application: pad [page].<br></span><span style="color: #007700">TEXT );<br><br>  return </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
               </div>
             </div>
           </div>
@@ -93,7 +120,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

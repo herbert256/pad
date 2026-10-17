@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - keyed
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - keyed
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: variables/a_generator_yielding_from_two_lists_keeps_every_row<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_generator_yielding_from_two_lists_keeps_every_row.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_generator_yielding_from_two_lists_keeps_every_row.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A generator that yields from two lists gives the second list's keys 0, 1 again; read by<br>  // key, its rows overwrote the first list's and four rows read as two. A key that comes twice<br>  // reads the items as a list; distinct keys stay as they were.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">padCaseRowsTwice </span><span style="color: #007700">() {<br>    yield from [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br>    yield from [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">] ];<br>  }<br><br>  function </span><span style="color: #0000BB">padCaseRowsKeyed </span><span style="color: #007700">() {<br>    yield </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">];<br>    yield </span><span style="color: #DD0000">'b' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6 </span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCaseRowsTwice </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$keyed </span><span style="color: #007700">= </span><span style="color: #0000BB">padCaseRowsKeyed </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">rows[<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">rows</font><font color="red"></font>}</b>] keyed[<b>{<font color="blue">keyed</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">keyed</font><font color="red"></font>}</b>] again[<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4c19c17b1bc639950cdcf73c593cb21f"></div>
+                        <script>
+                        padAjax4c19c17b1bc639950cdcf73c593cb21f = new XMLHttpRequest();
+                        padAjax4c19c17b1bc639950cdcf73c593cb21f.onreadystatechange=function() {
+                        if (padAjax4c19c17b1bc639950cdcf73c593cb21f.readyState === 4) {
+                        if (padAjax4c19c17b1bc639950cdcf73c593cb21f.status === 200) {
+                        document.getElementById("padAjax4c19c17b1bc639950cdcf73c593cb21f").innerHTML=padAjax4c19c17b1bc639950cdcf73c593cb21f.responseText;
+                        } else {
+                        document.getElementById("padAjax4c19c17b1bc639950cdcf73c593cb21f").innerHTML=padAjax4c19c17b1bc639950cdcf73c593cb21f.statusText;
+                        }
+                        }
+                        }
+                        padAjax4c19c17b1bc639950cdcf73c593cb21f.open("GET","http://localhost/pad/regression/framework/?variables/a_generator_yielding_from_two_lists_keeps_every_row&padInclude",true);
+                        padAjax4c19c17b1bc639950cdcf73c593cb21f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

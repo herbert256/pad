@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: react/_data
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: react/ data
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=react.html">..</a>
+                  </li>
+                  <li class="current">examples.json
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data&amp;file=_data%EA%A4%B7nav.json.html">nav.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data&amp;file=_data%EA%A4%B7products.json.html">products.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data&amp;file=_data%EA%A4%B7sales.json.html">sales.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data&amp;file=_data%EA%A4%B7team.json.html">team.json</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _data/examples.json
+                </h3>
+                <pre><code style="color: #000000">{<br>  "groups": [<br>    {<br>      "key":   "in",<br>      "title": "Server to React",<br>      "text":  "The data is in the HTML before the first paint: PHP gathers it, PAD writes it into the page, React picks it up. No second request, no loading spinner."<br>    },<br>    {<br>      "key":   "back",<br>      "title": "React back to PAD",<br>      "text":  "The component asks the server again while it runs - the same pages answer JSON, a single fragment, or take a post - and PAD stays the one that knows."<br>    },<br>    {<br>      "key":   "basics",<br>      "title": "React basics",<br>      "text":  "State, events, forms and composition - plain React, mounted in a PAD page."<br>    }<br>  ],<br>  "examples": [<br>    {<br>      "page":   "examples/props",<br>      "group":  "in",<br>      "icon":   "🏝️",<br>      "title":  "Islands with props",<br>      "lede":   "PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.",<br>      "server": [ "{^field}", "a {loop} of islands" ],<br>      "client": [ "PadReact.island", "props" ],<br>      "files":  [ "www:pad-react.js" ]<br>    },<br>    {<br>      "page":   "examples/enhance",<br>      "group":  "in",<br>      "icon":   "🌱",<br>      "title":  "Progressive enhancement",<br>      "lede":   "PAD renders a complete table - with JavaScript off it is all there. React then takes the same element over and adds search and sorting, and can show you what the server sent.",<br>      "server": [ "{people}", "{^people}" ],<br>      "client": [ "serverHtml", "useMemo" ]<br>    },<br>    {<br>      "page":   "examples/products",<br>      "group":  "in",<br>      "icon":   "📦",<br>      "title":  "Data files with a tag",<br>      "lede":   "A custom tag of the application reads _data/products.json and writes it into a data attribute; a product grid filters and sorts it in the browser. Bare React, no runtime.",<br>      "server": [ "_tags/json.php", "_data/" ],<br>      "client": [ "dataset", "createRoot" ],<br>      "files":  [ "_tags/json.php" ]<br>    },<br>    {<br>      "page":   "examples/topic",<br>      "group":  "in",<br>      "icon":   "💬",<br>      "title":  "Providers with {reactData}",<br>      "lede":   "Four providers in _providers/ query the database, each building on the one before it; {reactData} writes every answer as a mount point and React draws the forum topic.",<br>      "server": [ "{reactData}", "_providers/", "db()" ],<br>      "client": [ "getAttribute('data')" ],<br>      "files":  [ "_providers/topic.php", "_providers/board_from_topic.php", "_providers/user_from_topic.php", "_providers/posts_from_topic.php" ]<br>    },<br>    {<br>      "page":   "examples/search",<br>      "group":  "back",<br>      "icon":   "🔎",<br>      "title":  "One page, two answers",<br>      "lede":   "The page renders HTML for the browser and answers JSON to fetch(): the same PHP filters, sorts and pages the catalogue, and $padExpose names what may leave the server.",<br>      "server": [ "$padExpose", "padFormat=json" ],<br>      "client": [ "useEffect", "AbortController" ]<br>    },<br>    {<br>      "page":   "examples/feedback",<br>      "group":  "back",<br>      "icon":   "✉️",<br>      "title":  "Forms checked by PAD",<br>      "lede":   "One list of rules for both sides: the browser checks the form with them first, then React posts it with the session's CSRF token in a header and padValidate answers a message per field, or the new list of messages.",<br>      "server": [ "padValidate", "padValidateClient", "$padCsrf", "padSession" ],<br>      "client": [ "controlled inputs", "X-CSRF-Token" ]<br>    },<br>    {<br>      "page":   "examples/cart",<br>      "group":  "back",<br>      "icon":   "🛒",<br>      "title":  "Islands sharing server state",<br>      "lede":   "Two islands, one cart kept in the PHP session: the shelf posts, the server answers the cart, and an event tells the other island - a reload shows the same cart.",<br>      "server": [ "padSession", "$padExpose" ],<br>      "client": [ "CustomEvent", "useEffect" ]<br>    },<br>    {<br>      "page":   "examples/chart",<br>      "group":  "back",<br>      "icon":   "📈",<br>      "title":  "PAD draws, React steers",<br>      "lede":   "React holds the controls; PAD renders the {chart} as SVG and answers just that {fragment}. The first chart is in the HTML before any script ran.",<br>      "server": [ "{chart}", "{fragment}", "padFragment" ],<br>      "client": [ "dangerouslySetInnerHTML" ]<br>    },<br>    {<br>      "page":   "examples/live",<br>      "group":  "back",<br>      "icon":   "📡",<br>      "title":  "Live polling",<br>      "lede":   "A status board asks its page for fresh JSON every few seconds and stops while the tab is hidden; padCache counts the asks of every visitor.",<br>      "server": [ "$padExpose", "padCacheGet" ],<br>      "client": [ "setInterval", "visibilitychange" ]<br>    },<br>    {<br>      "page":   "examples/counter",<br>      "group":  "basics",<br>      "icon":   "🔢",<br>      "title":  "Counter with history",<br>      "lede":   "The start value comes from PHP in a data attribute; the step size, the undo history and the statistics are React state.",<br>      "server": [ "data-*" ],<br>      "client": [ "useState" ]<br>    },<br>    {<br>      "page":   "examples/components",<br>      "group":  "basics",<br>      "icon":   "🧩",<br>      "title":  "Composition",<br>      "lede":   "Small components - a card, a button, a todo item - put together into bigger ones with props and children.",<br>      "server": [ ],<br>      "client": [ "props", "children" ]<br>    },<br>    {<br>      "page":   "examples/form",<br>      "group":  "basics",<br>      "icon":   "📝",<br>      "title":  "Controlled form",<br>      "lede":   "Every field is React state and checked as you type - nothing leaves the browser. Compare it with the form PAD checks.",<br>      "server": [ ],<br>      "client": [ "useState", "onSubmit" ]<br>    },<br>    {<br>      "page":   "examples/toggle",<br>      "group":  "basics",<br>      "icon":   "💡",<br>      "title":  "Toggles",<br>      "lede":   "A switch component used three times - each copy keeps its own state.",<br>      "server": [ ],<br>      "client": [ "useState" ]<br>    },<br>    {<br>      "page":   "examples/click",<br>      "group":  "basics",<br>      "icon":   "🖱️",<br>      "title":  "Click handler",<br>      "lede":   "An event handler that reads where you clicked and leaves a ripple there.",<br>      "server": [ ],<br>      "client": [ "onClick", "useRef" ]<br>    }<br>  ]<br>}<br></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

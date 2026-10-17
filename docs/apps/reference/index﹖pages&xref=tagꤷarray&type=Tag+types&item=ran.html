@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - ran
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - ran
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/queue - Page: schedule<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">schedule.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">schedule.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The scheduler at fixed moments, in a timezone of its own: the entries of _schedule.php<br>  // with their next run after Wednesday 7 October 2026 07:59, which entries are due at a<br>  // few moments, and one run of the scheduler at Monday 12 October 08:00 - its record<br>  // removed first, so every fetch runs it afresh, and the queue it fills emptied after. The<br>  // entry again asks the scheduler once more while it runs, as a second process in the<br>  // same minute would: it runs once, and the inner asker finds it ran.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'Europe/Amsterdam'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$from    </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-07 07:59'</span><span style="color: #007700">, </span><span style="color: #0000BB">padDateZone </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$entries </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">padScheduleList </span><span style="color: #007700">( </span><span style="color: #0000BB">$from </span><span style="color: #007700">) as </span><span style="color: #0000BB">$entry </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$entries </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">],<br>                    </span><span style="color: #DD0000">'cron'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'cron'</span><span style="color: #007700">],<br>                    </span><span style="color: #DD0000">'queue' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'queue'</span><span style="color: #007700">] === </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">? </span><span style="color: #DD0000">'inline' </span><span style="color: #007700">: </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'queue'</span><span style="color: #007700">],<br>                    </span><span style="color: #DD0000">'next'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date_create </span><span style="color: #007700">( </span><span style="color: #DD0000">'@' </span><span style="color: #007700">. </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'next'</span><span style="color: #007700">] )-&gt;</span><span style="color: #0000BB">setTimezone </span><span style="color: #007700">( </span><span style="color: #0000BB">padDateZone </span><span style="color: #007700">() )-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'D Y-m-d H:i' </span><span style="color: #007700">) ];<br><br>  </span><span style="color: #0000BB">$due </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #DD0000">'2026-10-12 08:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2026-10-12 08:15'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2026-10-13 03:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2026-11-01 00:00' </span><span style="color: #007700">] as </span><span style="color: #0000BB">$at </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$names </span><span style="color: #007700">= [];<br>    foreach ( </span><span style="color: #0000BB">padScheduleList </span><span style="color: #007700">() as </span><span style="color: #0000BB">$entry </span><span style="color: #007700">)<br>      if ( </span><span style="color: #0000BB">padScheduleDue </span><span style="color: #007700">( </span><span style="color: #0000BB">$entry</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #0000BB">$at</span><span style="color: #007700">, </span><span style="color: #0000BB">padDateZone </span><span style="color: #007700">() ) ) )<br>        </span><span style="color: #0000BB">$names </span><span style="color: #007700">[] = </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$due </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'at' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$at</span><span style="color: #007700">, </span><span style="color: #DD0000">'names' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$names </span><span style="color: #007700">) ];<br>  }<br><br>  @</span><span style="color: #0000BB">unlink </span><span style="color: #007700">( </span><span style="color: #0000BB">padScheduleFile </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'later' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$queueHeard </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$againRuns  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$againInner </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$monday     </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-10-12 08:00'</span><span style="color: #007700">, </span><span style="color: #0000BB">padDateZone </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$ran        </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$round </span><span style="color: #007700">)<br>    foreach ( </span><span style="color: #0000BB">padScheduleRun </span><span style="color: #007700">( </span><span style="color: #0000BB">$monday </span><span style="color: #007700">) as </span><span style="color: #0000BB">$line </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$ran </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'round' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$round</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$line </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">], </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$line </span><span style="color: #007700">[</span><span style="color: #DD0000">'status'</span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$heard </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$queueHeard </span><span style="color: #007700">);<br><br>  @</span><span style="color: #0000BB">unlink </span><span style="color: #007700">( </span><span style="color: #0000BB">padScheduleFile </span><span style="color: #007700">() );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table&gt;<br><b>{<font color="blue">entries</font><font color="red"></font>}</b>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>cron</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>queue</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>next</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br><b>{/<font color="blue">entries</font><font color="red"></font>}</b>&lt;/table&gt;<br>&lt;ul&gt;<br><b>{<font color="blue">due</font><font color="red"></font>}</b>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>at</font>}</b>: <b>{<font color="green"><font color="red">$</font>names</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">due</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;ul&gt;<br><b>{<font color="blue">ran</font><font color="red"></font>}</b>  &lt;li&gt;round <b>{<font color="green"><font color="red">$</font>round</font>}</b>: <b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">ran</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;p&gt;heard: <b>{<font color="green"><font color="red">$</font>heard</font>}</b>&lt;/p&gt;<br>&lt;p&gt;again: ran <b>{<font color="green"><font color="red">$</font>againRuns</font>}</b> time, the asker inside it found it <b>{<font color="green"><font color="red">$</font>againInner</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4412c847716fe705e184095ad5fd8604"></div>
+                        <script>
+                        padAjax4412c847716fe705e184095ad5fd8604 = new XMLHttpRequest();
+                        padAjax4412c847716fe705e184095ad5fd8604.onreadystatechange=function() {
+                        if (padAjax4412c847716fe705e184095ad5fd8604.readyState === 4) {
+                        if (padAjax4412c847716fe705e184095ad5fd8604.status === 200) {
+                        document.getElementById("padAjax4412c847716fe705e184095ad5fd8604").innerHTML=padAjax4412c847716fe705e184095ad5fd8604.responseText;
+                        } else {
+                        document.getElementById("padAjax4412c847716fe705e184095ad5fd8604").innerHTML=padAjax4412c847716fe705e184095ad5fd8604.statusText;
+                        }
+                        }
+                        }
+                        padAjax4412c847716fe705e184095ad5fd8604.open("GET","http://localhost/pad/regression/queue/?schedule&padInclude",true);
+                        padAjax4412c847716fe705e184095ad5fd8604.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

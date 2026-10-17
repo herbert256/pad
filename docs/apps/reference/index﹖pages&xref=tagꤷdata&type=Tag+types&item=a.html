@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework - Page: data/xml_with_no_element_is_an_empty_set<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/xml_with_no_element_is_an_empty_set.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/xml_with_no_element_is_an_empty_set.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An XML document that holds no element - only a prolog, or only a comment - parses to no<br>  // rows. It ended the request on a foreach() over FALSE from inside the reader.<br><br>  </span><span style="color: #0000BB">$prolog  </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;?xml version="1.0"?&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$comment </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;!-- nothing here --&gt;'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="red">$</font>prolog<font color="black">,</font> type=<font color="black">'</font>xml<font color="black">'</font></font>}</b><b>{<font color="blue">a</font><font color="red"></font>}</b>row<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>empty<b>{/<font color="blue">a</font><font color="red"></font>}</b>][<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="red">$</font>comment<font color="black">,</font> type=<font color="black">'</font>xml<font color="black">'</font></font>}</b><b>{<font color="blue">b</font><font color="red"></font>}</b>row<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>empty<b>{/<font color="blue">b</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdf6b56cb6264b0da992eeeb83593b853"></div>
+                        <script>
+                        padAjaxdf6b56cb6264b0da992eeeb83593b853 = new XMLHttpRequest();
+                        padAjaxdf6b56cb6264b0da992eeeb83593b853.onreadystatechange=function() {
+                        if (padAjaxdf6b56cb6264b0da992eeeb83593b853.readyState === 4) {
+                        if (padAjaxdf6b56cb6264b0da992eeeb83593b853.status === 200) {
+                        document.getElementById("padAjaxdf6b56cb6264b0da992eeeb83593b853").innerHTML=padAjaxdf6b56cb6264b0da992eeeb83593b853.responseText;
+                        } else {
+                        document.getElementById("padAjaxdf6b56cb6264b0da992eeeb83593b853").innerHTML=padAjaxdf6b56cb6264b0da992eeeb83593b853.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdf6b56cb6264b0da992eeeb83593b853.open("GET","http://localhost/pad/regression/framework/?data/xml_with_no_element_is_an_empty_set&padInclude",true);
+                        padAjaxdf6b56cb6264b0da992eeeb83593b853.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: properties/depth_of_a_level_that_is_no_tree_counts_the_levels_of_its_name<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -85,7 +127,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

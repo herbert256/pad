@@ -30,7 +30,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -54,6 +54,9 @@
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data.html">_data/</a>
                   </li>
                   <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_guide.html">_guide/</a>
+                  </li>
+                  <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_lib.html">_lib/</a>
                   </li>
                   <li class="dir">
@@ -61,6 +64,9 @@
                   </li>
                   <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tests.html">_tests/</a>
                   </li>
                   <li class="dir">
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=examples.html">examples/</a>
@@ -72,21 +78,18 @@
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
                   </li>
                   <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.pad.html">components.pad</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.php.html">components.php</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.pad.html">examples.pad</a>
-                  </li>
-                  <li>
-                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.php.html">examples.php</a>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=guide.pad.html">guide.pad</a>
                   </li>
                   <li class="current">index.pad
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=patterns.pad.html">patterns.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=patterns.php.html">patterns.php</a>
                   </li>
                 </ul>
               </div>
@@ -94,7 +97,7 @@
                 <h3>
                   index.pad
                 </h3>
-                <pre><code style="color: #000000"><b>{<font color="green"><font color="red">#</font> The page carries the server time, into the text and into a data attribute, so it differs on<br>   every request. The crawl reads the word random here and compares it with the digits masked<br>   instead, which still checks the markup React is handed. <font color="red">#</font></font>}</b><br>&lt;h1&gt;Welcome to PAD + React&lt;/h1&gt;<br><br>&lt;p&gt;<br>  This application demonstrates how to combine &lt;strong&gt;PAD&lt;/strong&gt; (server-side template engine)<br>  with &lt;strong&gt;React&lt;/strong&gt; (client-side JavaScript framework).<br>&lt;/p&gt;<br><br>&lt;div class="info-box"&gt;<br>  &lt;strong&gt;How it works:&lt;/strong&gt;<br>  &lt;ul style="margin-top: 10px; margin-left: 20px;"&gt;<br>    &lt;li&gt;PAD handles routing (?page URLs), server-side data, and initial HTML&lt;/li&gt;<br>    &lt;li&gt;React is loaded globally in _inits.pad and available on every page&lt;/li&gt;<br>    &lt;li&gt;You can embed React components anywhere in your PAD templates&lt;/li&gt;<br>    &lt;li&gt;Server data from PHP can be passed to React components via data attributes or window object&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;Server-Side Data from PAD&lt;/h2&gt;<br>&lt;p&gt;Message: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>serverMessage</font>}</b>&lt;/code&gt;&lt;/p&gt;<br>&lt;p&gt;Server Time: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>serverTime</font>}</b>&lt;/code&gt;&lt;/p&gt;<br><br>&lt;h2&gt;React Component Example&lt;/h2&gt;<br>&lt;p&gt;Below is a simple React component rendered on the client:&lt;/p&gt;<br><br>&lt;!-- React component will be rendered here --&gt;<br>&lt;div id="welcome-component"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index/welcome.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;React Component with Server Data&lt;/h2&gt;<br>&lt;p&gt;This component receives data from PAD's server-side PHP:&lt;/p&gt;<br><br>&lt;!-- Pass server data to React via JavaScript variable --&gt;<br>&lt;div id="users-component"<br>     data-server-message="<b>{<font color="green"><font color="red">$</font>serverMessage</font>}</b>"<br>     data-server-time="<b>{<font color="green"><font color="red">$</font>serverTime</font>}</b>"<br>     data-users-json="<b>{<font color="blue">json </font><font color="red"><font color="black">'</font>users<font color="black">'</font> <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br>&lt;script&gt;<br>  // Parse from data attribute<br>  const elem = document.getElementById('users-component');<br>  window.serverData = {<br>    serverMessage: elem.dataset.serverMessage,<br>    serverTime: elem.dataset.serverTime,<br>    users: JSON.parse(elem.dataset.usersJson)<br>  };<br>&lt;/script&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index/users.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Next Steps&lt;/h2&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;Visit the &lt;a href="?examples"&gt;Examples&lt;/a&gt; page to see more React patterns&lt;/li&gt;<br>  &lt;li&gt;Visit the &lt;a href="?examples/counter"&gt;Counter Demo&lt;/a&gt; to see a complete example&lt;/li&gt;<br>  &lt;li&gt;Create new pages by adding &lt;code&gt;.php&lt;/code&gt; and &lt;code&gt;.pad&lt;/code&gt; files&lt;/li&gt;<br>  &lt;li&gt;React is automatically loaded on every page via &lt;code&gt;_inits.pad&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;Learn more about React at &lt;a href="https://react.dev" target="_blank"&gt;react.dev&lt;/a&gt;&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;div class="info-box" style="margin-top: 30px;"&gt;<br>  &lt;strong&gt;Development Mode:&lt;/strong&gt; This application uses React development builds and Babel standalone<br>  for in-browser JSX transformation. For production, you should use a build tool like Vite or Create React App<br>  to compile JSX and use production builds of React.<br>&lt;/div&gt;</code></pre>
+                <pre><code style="color: #000000"><b>{<font color="purple"><font color="red">#</font> The island carries the server time, so the page differs on every request<font color="black"></font><b><font color="black">:</font></b><font color="green"></font> the stored<br>   answer is a pattern. <font color="red">#</font></font>}</b><br>&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; PHP renders &amp;middot; React reacts&lt;/span&gt;<br>    &lt;h1&gt;Server pages,&lt;br&gt;&lt;span class="grad"&gt;living islands.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      PAD builds the page on the server - the data, the HTML, the routing by file name. React<br>      takes over the parts that move: an island here, a widget there, each handed its data by<br>      PAD and talking back to PAD while it runs.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?patterns"&gt;See the patterns&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;Build your own&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div data-island="HelloServer" data-props="{^hello}"&gt;<br>    &lt;div class="island-fallback"&gt;PAD says: &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>hello.message</font>}</b>&lt;/strong&gt; at <b>{<font color="green"><font color="red">$</font>hello.time</font>}</b> - React takes this box over in a moment.&lt;/div&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br>&lt;div class="flow"&gt;<br>  &lt;div class="flow-step"&gt;<br>    &lt;h3&gt;PHP gathers&lt;/h3&gt;<br>    &lt;p&gt;The page's &lt;code&gt;.php&lt;/code&gt; reads the database, a &lt;code&gt;_data/&lt;/code&gt; file, the session.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step"&gt;<br>    &lt;h3&gt;PAD writes&lt;/h3&gt;<br>    &lt;p&gt;The template places the islands and hands each its props: &lt;code&gt;data-props="{^field}"&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step is-client"&gt;<br>    &lt;h3&gt;React mounts&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;PadReact.island()&lt;/code&gt; finds the islands and renders a component on each.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step is-client"&gt;<br>    &lt;h3&gt;React asks back&lt;/h3&gt;<br>    &lt;p&gt;The same pages answer JSON, one fragment, or a post - &lt;code&gt;padFormat=json&lt;/code&gt;, &lt;code&gt;padFragment&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card rise" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b><br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index.js"&gt;&lt;/script&gt;</code></pre>
               </div>
             </div>
           </div>
@@ -108,7 +111,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

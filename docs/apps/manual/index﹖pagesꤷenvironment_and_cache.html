@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -39,7 +39,7 @@
                       Environment values
                     </h2>
                     <p>
-                      <code>padEnv ( 'KEY', $default )</code> looks in three places and answers the first that has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>, <code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code> sets), then the application's <code>_config/.env</code>, then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as the default is called. This manual has a <code>_config/.env</code> of its own:
+                      <code>padEnv ( 'KEY', $default )</code> looks in three places and answers the first that has the key: the real environment of the server (<code>getenv</code>, <code>$_ENV</code>, <code>$_SERVER</code> - what Apache's <code>SetEnv</code> or PHP-FPM's <code>env[...]</code> sets), then the <code>.env</code> in the application's root - <code>apps/shop/.env</code> - then <code>_common</code>'s <code>.env</code> for an application that runs with <code>_common</code>, then <code>.env</code> in the PAD home. Without the key it answers the default - a closure as the default is called. This manual has a <code>.env</code> of its own:
                     </p>
                     <pre><code>MANUAL_SITE_NAME="PAD manual"
 MANUAL_PAGE_SIZE=20
@@ -60,7 +60,7 @@ MANUAL_DEBUG=false</code></pre>
                       </tr>
                       <tr>
                         <td style="vertical-align:top">
-                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/_config/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                         </td>
                         <td style="vertical-align:top">
                           <pre><code style="color: #000000">&lt;ul&gt;<br>  &lt;li&gt;Site: <b>{<font color="green"><font color="red">$</font>site</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Rows a page: <b>{<font color="green"><font color="red">$</font>rows</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Debugging: <b>{<font color="green"><font color="red">$</font>debug</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Maps key: <b>{<font color="green"><font color="red">$</font>maps</font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
@@ -82,8 +82,8 @@ MANUAL_DEBUG=false</code></pre>
                     <p>
                       The engine loads its library before it reads any configuration, so the place a secret is needed first can ask for it - <code>_config/config.php</code>:
                     </p>
-                    <pre><code>$padSqlPassword = padEnv ( 'DB_PASSWORD' );
-$padSqlUser     = padEnv ( 'DB_USER', 'shop' );</code></pre>
+                    <pre><code>$padSqlPassword = padEnv ( 'padSqlPassword' );
+$padSqlUser     = padEnv ( 'padSqlUser', 'shop' );</code></pre>
                     <h2>
                       The .env file
                     </h2>
@@ -107,7 +107,7 @@ lines"                            a quoted value may run over several lines</cod
                       </li>
                       <li>A key that starts with <code>HTTP_</code> is never read from the real environment: those are the headers of the request, which the client sends.
                       </li>
-                      <li>No URL reaches <code>apps/</code> - the web server serves <code>www/</code> only - so an application's <code>_config/.env</code> is not served. The repository's <code>.gitignore</code> keeps the <code>.env</code> of the PAD home out of git; keep an application's out the same way when it holds a real secret.
+                      <li>No URL reaches <code>apps/</code> - the web server serves <code>www/</code> only - so an application's <code>.env</code> is not served. The repository's <code>.gitignore</code> keeps the <code>.env</code> of the PAD home out of git; keep an application's out the same way when it holds a real secret.
                       </li>
                       <li>Each file is read once per request, the first time a key is asked for.
                       </li>
@@ -244,7 +244,7 @@ lines"                            a quoted value may run over several lines</cod
                           <code>padEnv ( $key, $default = NULL )</code>
                         </td>
                         <td>
-                          the value of an environment key - the real environment, then <code>_config/.env</code>, then the PAD home's <code>.env</code>, else the default
+                          the value of an environment key - the real environment, then the application's <code>.env</code>, then <code>_common</code>'s, then the PAD home's <code>.env</code>, else the default
                         </td>
                       </tr>
                       <tr>
@@ -532,6 +532,9 @@ lines"                            a quoted value may run over several lines</cod
                           <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
@@ -545,6 +548,9 @@ lines"                            a quoted value may run over several lines</cod
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
                         </li>
                       </ul>
                       <h3 align="center">
@@ -602,11 +608,34 @@ lines"                            a quoted value may run over several lines</cod
                     </td>
                     <td valign="top">
                       <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
                         Forms and security
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
@@ -632,7 +661,7 @@ lines"                            a quoted value may run over several lines</cod
                           <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
@@ -653,6 +682,9 @@ lines"                            a quoted value may run over several lines</cod
                           <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
                         </li>
                         <li>
@@ -669,6 +701,9 @@ lines"                            a quoted value may run over several lines</cod
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
                         </li>
                       </ul>
                     </td>
@@ -687,7 +722,7 @@ lines"                            a quoted value may run over several lines</cod
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

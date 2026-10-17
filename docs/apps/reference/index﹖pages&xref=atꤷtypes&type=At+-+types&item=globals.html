@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework - Page: variables/a_condition_first_step_reads_no_superglobal_or_engine_array<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_condition_first_step_reads_no_superglobal_or_engine_array.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_condition_first_step_reads_no_superglobal_or_engine_array.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'DB_PASSWORD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'s3cret'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padCurlLast'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'input' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'password'</span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'*REDACTED*' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="green">$DB_PASSWORD&lt;&gt;x.DB_PASSWORD</font> <font color="black">|</font> <font color="blue">optional</font>}</b>][<b>{<font color="green">$input&lt;&gt;x.input.password</font> <font color="black">|</font> <font color="blue">optional</font>}</b>][<b>{<font color="green">$DB_PASSWORD&lt;&gt;x.DB_PASSWORD<font color="black"><b>@</b></font>globals</font> <font color="black">|</font> <font color="blue">optional</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf93ff0d535f100e7c988673cbfcb1924"></div>
+                        <script>
+                        padAjaxf93ff0d535f100e7c988673cbfcb1924 = new XMLHttpRequest();
+                        padAjaxf93ff0d535f100e7c988673cbfcb1924.onreadystatechange=function() {
+                        if (padAjaxf93ff0d535f100e7c988673cbfcb1924.readyState === 4) {
+                        if (padAjaxf93ff0d535f100e7c988673cbfcb1924.status === 200) {
+                        document.getElementById("padAjaxf93ff0d535f100e7c988673cbfcb1924").innerHTML=padAjaxf93ff0d535f100e7c988673cbfcb1924.responseText;
+                        } else {
+                        document.getElementById("padAjaxf93ff0d535f100e7c988673cbfcb1924").innerHTML=padAjaxf93ff0d535f100e7c988673cbfcb1924.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf93ff0d535f100e7c988673cbfcb1924.open("GET","http://localhost/pad/regression/framework/?variables/a_condition_first_step_reads_no_superglobal_or_engine_array&padInclude",true);
+                        padAjaxf93ff0d535f100e7c988673cbfcb1924.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: request/at_superglobals<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">request/at_superglobals.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">request/at_superglobals.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The @ path reads none of PHP's own arrays, as the plain field search reads none; an<br>  // application global set here is still found through @globals.<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #DD0000">'app value'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">server=[<b>{<font color="green">$_SERVER.HTTP_HOST</font> <font color="black">|</font> <font color="blue">optional</font>}</b>] globals=[<b>{<font color="green">$HTTP_HOST<font color="black"><b>@</b></font>globals</font> <font color="black">|</font> <font color="blue">optional</font>}</b>] atserver=[<b>{<font color="green">$HTTP_HOST<font color="black"><b>@</b></font>_SERVER</font> <font color="black">|</font> <font color="blue">optional</font>}</b>] cookie=[<b>{<font color="green">$_COOKIE.x</font> <font color="black">|</font> <font color="blue">optional</font>}</b>] app=[<b>{<font color="green">$shown<font color="black"><b>@</b></font>globals</font> <font color="black">|</font> <font color="blue">optional</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax953589da7a889951c5927153c95055ae"></div>
+                        <script>
+                        padAjax953589da7a889951c5927153c95055ae = new XMLHttpRequest();
+                        padAjax953589da7a889951c5927153c95055ae.onreadystatechange=function() {
+                        if (padAjax953589da7a889951c5927153c95055ae.readyState === 4) {
+                        if (padAjax953589da7a889951c5927153c95055ae.status === 200) {
+                        document.getElementById("padAjax953589da7a889951c5927153c95055ae").innerHTML=padAjax953589da7a889951c5927153c95055ae.responseText;
+                        } else {
+                        document.getElementById("padAjax953589da7a889951c5927153c95055ae").innerHTML=padAjax953589da7a889951c5927153c95055ae.statusText;
+                        }
+                        }
+                        }
+                        padAjax953589da7a889951c5927153c95055ae.open("GET","http://localhost/pad/regression/pages/?request/at_superglobals&padInclude",true);
+                        padAjax953589da7a889951c5927153c95055ae.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/pages - Page: vars/at/1<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -129,7 +213,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

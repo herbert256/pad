@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {sitemap} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#navigation">Navigation</a><span>/</span><span aria-current="page">sitemap</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>sitemap<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Lists the pages of the application, read from the file tree, as rows with page, url and lastmod.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#navigation">Navigation</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sitemap</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$url</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$lastmod</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sitemap</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sitemap</span> <span class="hl-str">'dir'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sitemap</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>dir</code>
+            </dt>
+            <dd>
+              Optional: a directory of the application - <code>'docs'</code>; only the pages below it are listed. A name that is no directory, or starts with <code>_</code>, is an error under the strict check.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{sitemap}...{/sitemap}</code> walks the application's directories and makes a row of every page - in PAD every page is a file, so no list of routes is needed to know them. Each row has <code>page</code> (<code>docs/intro</code>), <code>url</code> (the absolute address, <code>?docs/intro</code>, or the clean form under <code>$padCleanUrls</code>) and <code>lastmod</code> (<code>Y-m-d</code>, the newest of the page's files). The rows come per directory: its index first, then its other pages, then its subdirectories; a directory's index has the directory as its url.
+          </p>
+          <p>
+            Left out are the entries that are no pages to visit: <code>_</code> and dot entries, a directory holding a <code>_guard.php</code>, a bracketed route (<code>products/[id]</code>), a page with no template whose PHP only redirects, restarts or writes, a page whose template says <code>{meta sitemap=false}</code>, and every page or directory listed in <code>$padSitemapSkip</code>.
+          </p>
+          <p>
+            A first parameter limits the list to one directory - <code>{sitemap 'docs'}</code> - for a menu of a section. The rows are ordinary data, so the handling options apply: <code>first=</code>, <code>where=</code>, <code>sort='lastmod DESC'</code> for "recently changed".
+          </p>
+          <p>
+            With <code>$padSitemap = TRUE</code> in the configuration the same list answers <code>?sitemap.xml</code> as the sitemap protocol's XML, and <code>?robots.txt</code> points to it, as long as the application has no page of that name.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              The pages of a directory
+            </h3>
+            <p class="example-about">
+              A row per page, read from the file tree - the index first, then the pages, then the subdirectories.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sitemap/1-list.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sitemap</span> <span class="hl-str">'examples/sitemap/site'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/sitemap</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sitemap%EA%A4%B71-list.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>examples/sitemap/site/index
+                    </li>
+                    <li>examples/sitemap/site/about
+                    </li>
+                    <li>examples/sitemap/site/contact
+                    </li>
+                    <li>examples/sitemap/site/docs/index
+                    </li>
+                    <li>examples/sitemap/site/docs/intro
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              As links
+            </h3>
+            <p class="example-about">
+              url is the address of each page; a directory's index is the directory.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sitemap/2-links.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;nav</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sitemap</span> <span class="hl-str">'examples/sitemap/site/docs'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"{$url}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$page</span> | after(<span class="hl-str">'site/'</span>)<span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> <span class="hl-brc">{</span><span class="hl-tag">/sitemap</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/nav</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sitemap%EA%A4%B72-links.html">open alone</a>
+                </div>
+                <div class="result">
+                  <nav>
+                    <a href="index%EF%B9%96examples%EA%A4%B7sitemap%EA%A4%B7site%EA%A4%B7docs.html">docs/index</a> <a href="index%EF%B9%96examples%EA%A4%B7sitemap%EA%A4%B7site%EA%A4%B7docs%EA%A4%B7intro.html">docs/intro</a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              With the date of change
+            </h3>
+            <p class="example-about">
+              lastmod is the newest file time of a page - Y-m-d - so it changes whenever a file does.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sitemap/3-lastmod.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sitemap</span><span class="hl-brc">}</span><span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"{$url}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$lastmod</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/sitemap</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7files.html">{files}</a> <span class="about">Scans a directory and iterates its entries, with path, file, ext, item and dir for each.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7dir.html">{dir}</a> <span class="about">Lists the names in a directory, one occurrence each - the plain version of files.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager}</a> <span class="about">Page links for a tag written with the page option: first and last, a window round the current page, previous and next.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7meta.html">{meta}</a> <span class="about">The page's metadata - a title, a layout, a cache time or any value - read while the page is assembled.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7shadow.html">← {shadow}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7slot.html">{slot} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

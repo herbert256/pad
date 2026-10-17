@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: webcomponents
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: webcomponents
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">guide.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=webcomponents&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  guide.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + web components<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Web components on a PAD page&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Custom elements and shadow DOM are the browser's own components. PAD writes them with their<br>    shadow root already in place - declarative shadow DOM - and a small module adds behaviour.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. A PAD custom tag writes the element&lt;/h2&gt;<br>&lt;p&gt;A &lt;code&gt;.pad&lt;/code&gt; file in &lt;code&gt;_tags/&lt;/code&gt; is a tag of the application. It writes the custom element, and<br>   <b>{<font color="blue">shadow</font><font color="red"></font>}</b> writes its shadow root as a &lt;code&gt;&lt;template shadowrootmode="open"&gt;&lt;/code&gt; - with the<br>   stylesheet inlined, since a shadow root takes no styles from the page and a &lt;code&gt;&lt;style&gt;&lt;/code&gt; in a<br>   template would have its braces read as PAD tags:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_tags/card.pad<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;2. The page uses it like any tag&lt;/h2&gt;<br>&lt;p&gt;Parameters for what the tag writes, content for the light DOM the browser slots in -<br>   &lt;code&gt;slot="footer"&lt;/code&gt; goes to the &lt;code&gt;&lt;slot name="footer"&gt;&lt;/code&gt; of the root:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br><b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Revenue<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>good<font color="black">'</font></font>}</b><br>  &lt;p class="stat"&gt;<b>{<font color="green"><font color="red">$</font>revenue</font>}</b>&lt;/p&gt;<br>  &lt;a slot="footer" href="?report"&gt;Details&lt;/a&gt;<br><b>{/<font color="blue">card</font><font color="red"></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;3. A module upgrades it&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;customElements.define&lt;/code&gt; in a module of &lt;code&gt;www/&lt;/code&gt;. The element finds the root PAD rendered in<br>   &lt;code&gt;this.shadowRoot&lt;/code&gt; and only adds behaviour; before the module ran, the element already showed:&lt;/p&gt;<br><b>{<font color="blue">source </font><font color="red">only=<font color="black">'</font>www<font color="black">:</font>elements/tabs.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;4. Data, posts and forms&lt;/h2&gt;<br>&lt;ul&gt;<br>  &lt;li&gt;Attributes carry values (&lt;code&gt;value="<b>{<font color="green"><font color="red">$</font>mine</font>}</b>"&lt;/code&gt;) and JSON (&lt;code&gt;items="{^items}"&lt;/code&gt;);<br>      CSS can style by an attribute before any script runs: &lt;code&gt;:host([value="3"])&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A post sends the session's CSRF token in the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header, read from<br>      &lt;code&gt;&lt;meta name="csrf-token"&gt;&lt;/code&gt;; the page answers the JSON of &lt;code&gt;$padExpose&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A form-associated element - &lt;code&gt;static formAssociated = true&lt;/code&gt; and<br>      &lt;code&gt;ElementInternals.setFormValue&lt;/code&gt; - posts its value with a <b>{<font color="blue">form</font><font color="red"></font>}</b> like an<br>      &lt;code&gt;&lt;input&gt;&lt;/code&gt;, and &lt;code&gt;padValidate&lt;/code&gt; checks it on the server.&lt;/li&gt;<br>  &lt;li&gt;A library works the same: Lit reads PAD's JSON from an attribute into a property.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

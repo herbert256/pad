@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {ignore} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    .ignore-demo { padding: 8px 12px; border-left: 4px solid #eb6834; }
+    .ignore-demo b { color: #eb6834; }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">ignore</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>ignore<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/ignore</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            Everything between <code>{ignore}</code> and <code>{/ignore}</code> is written out as it stands: the characters PAD reads as syntax - <code>{ } | = , @</code> - are swapped for stand-ins before the engine looks at the content, and turned back into the real characters when the page is written. Nothing inside runs: no tag, no field. A comment is the exception - comments are dropped before the template is scanned, so one inside the pair is gone too.
+          </p>
+          <p>
+            It is what inline code with braces needs. A <code>&lt;script&gt;</code> with an object literal, a <code>&lt;style&gt;</code> with its selector blocks, a JSON sample in a <code>&lt;pre&gt;</code> - without <code>{ignore}</code> each <code>{ ... }</code> would be read as a tag, and the strict check would report it. External files are better still; the pair is for the few lines that belong in the page.
+          </p>
+          <p>
+            The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps that tag's content in <code>{ignore}</code>: <code>{data 'config' ignore}</code>, <code>{markdown ignore}</code>. The <code>ignore</code> pipe escapes a value: <code>{echo $json | ignore}</code>. For a single brace in text, <a href="index%EF%B9%96tag%EA%A4%B7open.html"><code>{open}</code></a> and <a href="index%EF%B9%96tag%EA%A4%B7close.html"><code>{close}</code></a> are enough. <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{highlight}</code></a> takes its content as it stands too, so a coloured code sample needs no <code>{ignore}</code>.
+          </p>
+          <p>
+            An <code>{ignore}</code> without its <code>{/ignore}</code> protects nothing; the strict check names it rather than blaming some tag inside.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Braces as text
+            </h3>
+            <p class="example-about">
+              A JavaScript sample with an object literal is written as it stands; the field inside is not read.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ignore/1-code.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span>const user = <span class="hl-brc">{</span> name: <span class="hl-str">'Alice'</span>, role: <span class="hl-str">'admin'</span> <span class="hl-brc">}</span>;
+if ( user.role == <span class="hl-str">'admin'</span> ) <span class="hl-brc">{</span> show ( <span class="hl-str">'{$secret}'</span> ); <span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/ignore</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ignore%EA%A4%B71-code.html">open alone</a>
+                </div>
+                <div class="result">
+                  <pre>const user = { name: 'Alice', role: 'admin' };
+if ( user.role == 'admin' ) { show ( '{$secret}' ); }</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              An inline style block
+            </h3>
+            <p class="example-about">
+              CSS selector blocks inside the pair reach the browser; the rest of the page is rendered as usual.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ignore/2-style.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;style</span><span class="hl-htm">&gt;</span>
+  .ignore-demo <span class="hl-brc">{</span> padding: 8px 12px; border-left: 4px solid <span class="hl-var">#eb6834</span>; <span class="hl-brc">}</span>
+  .ignore-demo b <span class="hl-brc">{</span> color: <span class="hl-var">#eb6834</span>; <span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/style</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/ignore</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$who</span> = <span class="hl-str">'PAD'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"ignore-demo"</span><span class="hl-htm">&gt;</span>Styled by <span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$who</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ignore%EA%A4%B72-style.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p class="ignore-demo">
+                    Styled by <b>PAD</b>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              The option form
+            </h3>
+            <p class="example-about">
+              ignore on another tag protects that tag's content - here a data block whose rows hold braces.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ignore/3-option.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'snippets'</span> ignore<span class="hl-brc">}</span>
+  [ <span class="hl-brc">{</span> <span class="hl-str">"code"</span>: <span class="hl-str">"{$name}"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"code"</span>: <span class="hl-str">"{echo 1 + 1}"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">snippets</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$code</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/snippets</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ignore%EA%A4%B73-option.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>
+                      <code>{$name}</code>
+                    </li>
+                    <li>
+                      <code>{echo 1 + 1}</code>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7open.html">{open}</a> <span class="about">Writes a literal opening brace that the template engine does not read as the start of a tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7close.html">{close}</a> <span class="about">Writes a literal closing brace that the template engine does not read as the end of a tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7ifchanged.html">← {ifchanged}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7img.html">{img} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

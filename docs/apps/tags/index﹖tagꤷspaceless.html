@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {spaceless} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">spaceless</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>spaceless<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Takes out the whitespace between HTML tags, and at both ends of the content.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">spaceless</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/spaceless</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{spaceless}</code> renders its content first and then removes every run of whitespace that stands between a <code>&gt;</code> and a <code>&lt;</code>, newlines included, and the whitespace at both ends. <code>&lt;li&gt;a&lt;/li&gt; &lt;li&gt;b&lt;/li&gt;</code> becomes <code>&lt;li&gt;a&lt;/li&gt;&lt;li&gt;b&lt;/li&gt;</code>; the text inside an element keeps its spaces.
+          </p>
+          <p>
+            That matters where whitespace shows: between <code>inline-block</code> elements a newline in the template is a visible gap, and in a <code>&lt;pre&gt;</code> or a JSON-like attribute every character counts. The template can stay indented for the reader while the output is compact.
+          </p>
+          <p>
+            For one tag at a time the <code>~</code> whitespace control does the same job without a pair: <code>{items}</code> takes the whitespace on both sides of the tag, newlines included. <a href="index%EF%B9%96tag%EA%A4%B7tidy.html"><code>{tidy}</code></a> goes the other way and indents the markup.
+          </p>
+          <p>
+            The tag only makes sense as a pair: written alone, the strict check reports that it never closes.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A compact list
+            </h3>
+            <p class="example-about">
+              The template is indented; the output has no whitespace between the tags.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/spaceless/1-list.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">spaceless</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Red  wine<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>White wine<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/spaceless</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7spaceless%EA%A4%B71-list.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Red wine
+                    </li>
+                    <li>White wine
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              No gaps between blocks
+            </h3>
+            <p class="example-about">
+              Inline blocks touch each other once the newlines between them are gone.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/spaceless/2-gaps.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:4px 10px;background:#2a78d6;color:#fff"</span><span class="hl-htm">&gt;</span>one<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:4px 10px;background:#1baf7a;color:#fff"</span><span class="hl-htm">&gt;</span>two<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">spaceless</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:4px 10px;background:#2a78d6;color:#fff"</span><span class="hl-htm">&gt;</span>one<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:4px 10px;background:#1baf7a;color:#fff"</span><span class="hl-htm">&gt;</span>two<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/spaceless</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7spaceless%EA%A4%B72-gaps.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div>
+                    <span style="display:inline-block;padding:4px 10px;background:#2a78d6;color:#fff">one</span> <span style="display:inline-block;padding:4px 10px;background:#1baf7a;color:#fff">two</span>
+                  </div>
+                  <div>
+                    <span style="display:inline-block;padding:4px 10px;background:#2a78d6;color:#fff">one</span><span style="display:inline-block;padding:4px 10px;background:#1baf7a;color:#fff">two</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tidy.html">{tidy}</a> <span class="about">Rewrites the HTML it wraps as tidied, indented markup through PHP's tidy extension.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7source.html">← {source}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7sparkline.html">{sparkline} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

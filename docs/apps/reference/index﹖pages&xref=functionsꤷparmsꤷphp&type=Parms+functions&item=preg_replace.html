@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - preg_replace
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - preg replace
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/a_map_of_a_country_value_object_in_a_store_or_its_content_colours_the_countries<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_map_of_a_country_value_object_in_a_store_or_its_content_colours_the_countries.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>mapObject<font color="black">'</font></font>}</b>{"NL": 1200, "BE": 800, "Germany": 300}<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">map </font><font color="red"><font color="black">'</font>europe<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>mapObject<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>preg_replace(<font color="black">'</font>/^.*?(&lt;desc[^&gt;]*&gt;[^&lt;]*).*<font color="red">$</font>/s<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="red">$</font>1<font color="black">'</font><font color="black">,</font> <font color="black">@</font>)</font>}</b>|<b>{<font color="blue">map </font><font color="red"><font color="black">'</font>europe<font color="black">'</font></font>}</b>{"NL": 1200, "BE": 800}<b>{/<font color="blue">map </font><font color="red"><font color="black">|</font> php<font color="black">:</font>preg_replace(<font color="black">'</font>/^.*?(&lt;desc[^&gt;]*&gt;[^&lt;]*).*<font color="red">$</font>/s<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="red">$</font>1<font color="black">'</font><font color="black">,</font> <font color="black">@</font>)</font>}</b>|<b>{<font color="blue">map </font><font color="red"><font color="black">'</font>europe<font color="black">'</font></font>}</b><br>NL: 1200<br>FR: 700<br><b>{/<font color="blue">map </font><font color="red"><font color="black">|</font> php<font color="black">:</font>preg_replace(<font color="black">'</font>/^.*?(&lt;desc[^&gt;]*&gt;[^&lt;]*).*<font color="red">$</font>/s<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="red">$</font>1<font color="black">'</font><font color="black">,</font> <font color="black">@</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax79fed6bf2a64aa034a34470fdcebf85f"></div>
+                        <script>
+                        padAjax79fed6bf2a64aa034a34470fdcebf85f = new XMLHttpRequest();
+                        padAjax79fed6bf2a64aa034a34470fdcebf85f.onreadystatechange=function() {
+                        if (padAjax79fed6bf2a64aa034a34470fdcebf85f.readyState === 4) {
+                        if (padAjax79fed6bf2a64aa034a34470fdcebf85f.status === 200) {
+                        document.getElementById("padAjax79fed6bf2a64aa034a34470fdcebf85f").innerHTML=padAjax79fed6bf2a64aa034a34470fdcebf85f.responseText;
+                        } else {
+                        document.getElementById("padAjax79fed6bf2a64aa034a34470fdcebf85f").innerHTML=padAjax79fed6bf2a64aa034a34470fdcebf85f.statusText;
+                        }
+                        }
+                        }
+                        padAjax79fed6bf2a64aa034a34470fdcebf85f.open("GET","http://localhost/pad/regression/framework/?tags/a_map_of_a_country_value_object_in_a_store_or_its_content_colours_the_countries&padInclude",true);
+                        padAjax79fed6bf2a64aa034a34470fdcebf85f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

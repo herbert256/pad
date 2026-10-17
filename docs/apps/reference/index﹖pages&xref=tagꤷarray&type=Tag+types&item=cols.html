@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -199,6 +199,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_level_number_target_or_an_end_step_stays_in_the_reference<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">expressions/a_level_number_target_or_an_end_step_stays_in_the_reference.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_level_number_target_or_an_end_step_stays_in_the_reference.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'x' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'y' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$cols  </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$u     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'tags' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'c' </span><span style="color: #007700">], </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">7 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">items</font><font color="red"></font>}</b><b>{<font color="blue">cols</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font><font color="red">@</font><font color="purple">1</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name<font color="black">@</font>1</font>}</b>|<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name<font color="black">@</font>1 eq <font color="black">'</font>zzz<font color="black">'</font></font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b> <b>{/<font color="blue">cols</font><font color="red"></font>}</b><b>{/<font color="blue">items</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>u.tags.1&gt;</font>}</b>][<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>u.tags.1&gt; eq <font color="black">'</font>c<font color="black">'</font></font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>][<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>u.n.1&gt;3</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxce90517c5591396a01f09cc772818f74"></div>
+                        <script>
+                        padAjaxce90517c5591396a01f09cc772818f74 = new XMLHttpRequest();
+                        padAjaxce90517c5591396a01f09cc772818f74.onreadystatechange=function() {
+                        if (padAjaxce90517c5591396a01f09cc772818f74.readyState === 4) {
+                        if (padAjaxce90517c5591396a01f09cc772818f74.status === 200) {
+                        document.getElementById("padAjaxce90517c5591396a01f09cc772818f74").innerHTML=padAjaxce90517c5591396a01f09cc772818f74.responseText;
+                        } else {
+                        document.getElementById("padAjaxce90517c5591396a01f09cc772818f74").innerHTML=padAjaxce90517c5591396a01f09cc772818f74.statusText;
+                        }
+                        }
+                        }
+                        padAjaxce90517c5591396a01f09cc772818f74.open("GET","http://localhost/pad/regression/framework/?expressions/a_level_number_target_or_an_end_step_stays_in_the_reference&padInclude",true);
+                        padAjaxce90517c5591396a01f09cc772818f74.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -213,7 +255,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

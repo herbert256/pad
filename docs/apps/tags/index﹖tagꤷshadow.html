@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {shadow} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#layout">Layouts and components</a><span>/</span><span aria-current="page">shadow</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>shadow<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            The shadow root of a custom element, rendered on the server as declarative shadow DOM.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#layout">Layouts and components</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">shadow</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/shadow</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">shadow</span> <span class="hl-opt">css</span>=<span class="hl-str">'file.css, www:other.css'</span>, <span class="hl-opt">mode</span>=<span class="hl-str">'closed'</span>, focus<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/shadow</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>css</code>
+            </dt>
+            <dd>
+              Stylesheets inlined as one <code>&lt;style&gt;</code> at the start of the root, separated by commas: a <code>.css</code> file of the application, or <code>www:</code> one of its <code>www/</code> directory.
+            </dd>
+            <dt>
+              <code>mode</code>
+            </dt>
+            <dd>
+              <code>open</code> (the default) or <code>closed</code>.
+            </dd>
+            <dt>
+              <code>focus</code>
+            </dt>
+            <dd>
+              Bare option: adds <code>shadowrootdelegatesfocus</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{shadow}</code> writes <code>&lt;template shadowrootmode="open"&gt;</code> around its rendered content. Placed inside a custom element, it is that element's shadow root: the browser builds the root while it parses the page, so the element shows - with encapsulated styles and slotted light DOM - before any script has run, and a module that defines the element later finds the root ready in <code>this.shadowRoot</code>. Like <code>{tidy}</code>, the tag runs twice: the content renders first, then the template tags go around it.
+          </p>
+          <p>
+            A shadow root takes no styles from the page, and a <code>&lt;style&gt;</code> written into the template would have its braces read as PAD tags. <code>css=</code> therefore inlines stylesheet files instead, as one <code>&lt;style&gt;</code> at the start of the root: a <code>.css</code> file of the application, or with <code>www:</code> one in its <code>www/</code> directory - the file rule of <a href="index%EF%B9%96tag%EA%A4%B7source.html"><code>{source}</code></a>. Each file is read once a request. <code>mode='closed'</code> makes a closed root, <code>focus</code> adds <code>shadowrootdelegatesfocus</code>.
+          </p>
+          <p>
+            The usual home of <code>{shadow}</code> is a custom tag in <code>_tags/</code> that writes a custom element, combined with <a href="index%EF%B9%96tag%EA%A4%B7parms.html"><code>{parms}</code></a>; the first example uses <code>_tags/shadowCard.pad</code> with its stylesheet <code>_tags/shadowCard.css</code>. Inside the pair, <code>{#name}</code> is <code>{shadow}</code>'s own parameter - in a custom tag, put the tag's parameters to use outside the pair, or carry one in with <code>{set $value = {#value}}</code> before it.
+          </p>
+          <p>
+            A stylesheet that is not there or is no <code>.css</code> file, a mode that is neither open nor closed, and a pair that never closes are errors.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A card with a shadow root
+            </h3>
+            <p class="example-about">
+              A custom tag writes a custom element with its shadow root, the stylesheet inlined, the title slotted.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/shadow/1-card.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">shadowCard</span> <span class="hl-opt">title</span>=<span class="hl-str">'Revenue'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>€ <span class="hl-num">12</span>,<span class="hl-num">400</span> this month.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/shadowCard</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7shadow%EA%A4%B71-card.html">open alone</a>
+                </div>
+                <div class="result">
+                  <shadow-card>
+  <template shadowrootmode="open"><style>:host { display: block; border: 1px solid #ccc; border-radius: 6px; padding: .5em 1em; margin: .5em 0 }
+header { font-weight: bold; color: #2a78d6 }</style>
+    <header><slot name="title"></slot></header>
+    <slot></slot>
+  </template>
+  <span slot="title">Revenue</span>
+  
+  <p>€ 12,400 this month.</p>
+
+</shadow-card>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A closed root that delegates focus
+            </h3>
+            <p class="example-about">
+              The pair straight in a page - mode='closed' and focus, the light DOM slotted.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/shadow/2-closed.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;search-box</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">shadow</span> <span class="hl-opt">mode</span>=<span class="hl-str">'closed'</span>, focus<span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;slot</span> <span class="hl-opt">name</span>=<span class="hl-str">"label"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/slot</span><span class="hl-htm">&gt;</span> <span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"search"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/shadow</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;span</span> <span class="hl-opt">slot</span>=<span class="hl-str">"label"</span><span class="hl-htm">&gt;</span>Search the shop<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/search-box</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7shadow%EA%A4%B72-closed.html">open alone</a>
+                </div>
+                <div class="result">
+                  <search-box>
+  <template shadowrootmode="closed" shadowrootdelegatesfocus>
+    <label><slot name="label"></slot> <input type="search"></label>
+  </template>
+  <span slot="label">Search the shop</span>
+</search-box>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7slot.html">{slot}</a> <span class="about">A named place in a custom tag's template - and the fill a caller gives it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7parms.html">{parms}</a> <span class="about">Declares the parameters of a custom tag, with defaults, at the top of its template.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7set.html">← {set}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7sitemap.html">{sitemap} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -30,7 +30,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -70,7 +70,7 @@
                 <h3>
                   _providers/user_from_topic.php
                 </h3>
-                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"RECORD id, username, email, role, created_at FROM users WHERE id={0}"</span><span style="color: #007700">, <br>            [ </span><span style="color: #0000BB">$padProviders </span><span style="color: #007700">[</span><span style="color: #DD0000">'topic'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'user_id'</span><span style="color: #007700">] ] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The topic's author as the component shows it - the name and the role. What a provider<br>  // returns is in the page source for every visitor, so the e-mail address is left out:<br>  // nothing showed it, and every visitor got it.<br><br>  </span><span style="color: #007700">return </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"RECORD id, username, role, created_at FROM users WHERE id={0}"</span><span style="color: #007700">,<br>            [ </span><span style="color: #0000BB">$padProviders </span><span style="color: #007700">[</span><span style="color: #DD0000">'topic'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'user_id'</span><span style="color: #007700">] ] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: charts/line
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: charts/line
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=charts.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=line&amp;file=line%EA%A4%B7shares.pad.html">shares.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=line&amp;file=line%EA%A4%B7temperatures.pad.html">temperatures.pad</a>
+                  </li>
+                  <li class="current">temperatures.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=line&amp;file=line%EA%A4%B7visits.pad.html">visits.pad</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  line/temperatures.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The average day temperature, in degrees Celsius.<br><br>  </span><span style="color: #0000BB">$temperatures </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">3.4</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">6.3</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; -</span><span style="color: #0000BB">4.3 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">3.6</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">7.9</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; -</span><span style="color: #0000BB">4.0 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">6.0</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">11.2</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; -</span><span style="color: #0000BB">0.2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">9.0</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12.9</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">4.5 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'May'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12.8</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">16.7</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10.8 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jun'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">15.6</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">22.4</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">15.2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jul'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">17.6</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">25.6</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">16.4 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Aug'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">17.5</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">25.1</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">15.2 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sep'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">14.8</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20.9</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10.8 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Oct'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">11.1</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">15.1</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">6.3 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Nov'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">7.0</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">9.9</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">0.7 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dec'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">4.3</span><span style="color: #007700">, </span><span style="color: #DD0000">'Madrid' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">6.9</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oslo' </span><span style="color: #007700">=&gt; -</span><span style="color: #0000BB">3.1 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

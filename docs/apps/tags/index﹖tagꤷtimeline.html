@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {timeline} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-timeline){--pad-timeline-card:#ffffff;--pad-timeline-border:#dcdbd6;--pad-timeline-line:#9a9993;--pad-timeline-muted:#787670;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-timeline){--pad-timeline-card:light-dark(#ffffff,#232322);--pad-timeline-border:light-dark(#dcdbd6,#3f3f3c);--pad-timeline-line:light-dark(#9a9993,#6f6e69);--pad-timeline-muted:light-dark(#787670,#a3a29a);}}.pad-chart-timeline .pt-card{fill:var(--pad-timeline-card);stroke:var(--pad-timeline-border);stroke-width:1}.pad-chart-timeline .pt-line{stroke:var(--pad-timeline-line);stroke-width:2}.pad-chart-timeline .pt-leader{stroke:var(--pad-timeline-line);stroke-width:1;stroke-dasharray:2 3}.pad-chart-timeline .pt-tick{stroke:var(--pad-timeline-line);stroke-width:1}.pad-chart-timeline .pt-dot{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart-timeline .pt-date{fill:var(--pad-timeline-muted);font-size:11px}.pad-chart-timeline .pt-label{font-size:12px;font-weight:600}.pad-chart-timeline .pt-text{font-size:11.5px}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-timeline){--pad-timeline-card:#ffffff;--pad-timeline-border:#dcdbd6;--pad-timeline-line:#9a9993;--pad-timeline-muted:#787670;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-timeline){--pad-timeline-card:light-dark(#ffffff,#232322);--pad-timeline-border:light-dark(#dcdbd6,#3f3f3c);--pad-timeline-line:light-dark(#9a9993,#6f6e69);--pad-timeline-muted:light-dark(#787670,#a3a29a);}}.pad-chart-timeline .pt-card{fill:var(--pad-timeline-card);stroke:var(--pad-timeline-border);stroke-width:1}.pad-chart-timeline .pt-line{stroke:var(--pad-timeline-line);stroke-width:2}.pad-chart-timeline .pt-leader{stroke:var(--pad-timeline-line);stroke-width:1;stroke-dasharray:2 3}.pad-chart-timeline .pt-tick{stroke:var(--pad-timeline-line);stroke-width:1}.pad-chart-timeline .pt-dot{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart-timeline .pt-date{fill:var(--pad-timeline-muted);font-size:11px}.pad-chart-timeline .pt-label{font-size:12px;font-weight:600}.pad-chart-timeline .pt-text{font-size:11.5px}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-timeline){--pad-timeline-card:#ffffff;--pad-timeline-border:#dcdbd6;--pad-timeline-line:#9a9993;--pad-timeline-muted:#787670;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-timeline){--pad-timeline-card:light-dark(#ffffff,#232322);--pad-timeline-border:light-dark(#dcdbd6,#3f3f3c);--pad-timeline-line:light-dark(#9a9993,#6f6e69);--pad-timeline-muted:light-dark(#787670,#a3a29a);}}.pad-chart-timeline .pt-card{fill:var(--pad-timeline-card);stroke:var(--pad-timeline-border);stroke-width:1}.pad-chart-timeline .pt-line{stroke:var(--pad-timeline-line);stroke-width:2}.pad-chart-timeline .pt-leader{stroke:var(--pad-timeline-line);stroke-width:1;stroke-dasharray:2 3}.pad-chart-timeline .pt-tick{stroke:var(--pad-timeline-line);stroke-width:1}.pad-chart-timeline .pt-dot{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart-timeline .pt-date{fill:var(--pad-timeline-muted);font-size:11px}.pad-chart-timeline .pt-label{font-size:12px;font-weight:600}.pad-chart-timeline .pt-text{font-size:11.5px}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">timeline</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>timeline<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeline</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'Y'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">width</span>=<span class="hl-num">720</span>, <span class="hl-opt">height</span>=<span class="hl-num">300</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeline</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">from</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeline</span> <span class="hl-opt">date</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, vertical<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/timeline</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>data</code>
+            </dt>
+            <dd>
+              The rows: a <code>{data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.
+            </dd>
+            <dt>
+              <code>date</code>
+            </dt>
+            <dd>
+              The field of a moment: a year (<code>1969</code>), a month (<code>2026-10</code>) or anything <code>strtotime</code> reads - else the first field that reads as one.
+            </dd>
+            <dt>
+              <code>from</code>
+            </dt>
+            <dd>
+              The field with the start of a span, drawn as a bar (with <code>to</code>).
+            </dd>
+            <dt>
+              <code>to</code>
+            </dt>
+            <dd>
+              The field with the end of a span.
+            </dd>
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              The field with an event's title - else the first other text field.
+            </dd>
+            <dt>
+              <code>text</code>
+            </dt>
+            <dd>
+              The field with the line under the title - else the next text field.
+            </dd>
+            <dt>
+              <code>color</code>
+            </dt>
+            <dd>
+              A field that groups the events: a colour each and a legend.
+            </dd>
+            <dt>
+              <code>format</code>
+            </dt>
+            <dd>
+              A PHP date format for the dates written - else by the date's precision (<code>1969</code>, <code>Oct 2026</code>, <code>Oct 8, 2026</code>).
+            </dd>
+            <dt>
+              <code>vertical</code>
+            </dt>
+            <dd>
+              Bare option: dates on the left and cards on the right, one under the other - for a long list.
+            </dd>
+            <dt>
+              <code>width</code>
+            </dt>
+            <dd>
+              The width in pixels, default 720 (vertical 600).
+            </dd>
+            <dt>
+              <code>height</code>
+            </dt>
+            <dd>
+              The height in pixels; by default it follows from the cards (not in the vertical form).
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The accessible name, default <code>Timeline</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{timeline}</code> lays events out on a time axis and writes them as inline SVG (<code>tags/_lib/timeline.php</code>). The rows come from <code>data=</code> as for <a href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a>, or from the content of the pair - JSON, YAML, XML or CSV.
+          </p>
+          <p>
+            A row with a <code>date</code> is a moment: a dot on the axis and a card above or below it with the <code>label</code> and, under it, the <code>text</code>. The sides alternate, and a card that would cover another card or a leader line moves to the other side or a lane further out. A row with <code>from</code> and <code>to</code> is a span, drawn as a bar in a lane under the axis with its label inside or beside it; moments and spans mix in one timeline. Left out, <code>date</code> is the first field that reads as a date, and <code>label</code> and <code>text</code> the first other text fields.
+          </p>
+          <p>
+            The axis gets round ticks by the span it covers - years in steps of 1 to 100, months by 1, 3 or 6, or days - and the dates on the cards are written by their precision, or by <code>format</code>. <code>color</code> groups the events by a field, a colour each with a legend. <code>vertical</code> puts the events one under the other instead, dates left and cards right, which suits a long list or a narrow column.
+          </p>
+          <p>
+            Every event has a <code>&lt;title&gt;</code> and the <code>&lt;desc&gt;</code> lists them all. A timeline without rows answers nothing, so its <code>@else@</code> shows; rows of which none has a usable date are an error under the strict check. For a month grid see <a href="index%EF%B9%96tag%EA%A4%B7calendar.html">{calendar}</a>, for a project plan with progress <a href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart 'gantt'}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Moments from CSV
+            </h3>
+            <p class="example-about">
+              The rows written as CSV between the tags; format=Y writes only the year.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/timeline/1-moments.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeline</span> <span class="hl-opt">date</span>=<span class="hl-str">'when'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'what'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'detail'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'Y'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Milestones of spaceflight'</span><span class="hl-brc">}</span>
+  when,what,detail
+  <span class="hl-num">1957</span>-<span class="hl-num">10</span>-<span class="hl-num">04</span>,Sputnik <span class="hl-num">1</span>,First satellite
+  <span class="hl-num">1961</span>-<span class="hl-num">04</span>-<span class="hl-num">12</span>,Vostok <span class="hl-num">1</span>,Gagarin in orbit
+  <span class="hl-num">1969</span>-<span class="hl-num">07</span>-<span class="hl-num">20</span>,Apollo <span class="hl-num">11</span>,People on the Moon
+  <span class="hl-num">1971</span>-<span class="hl-num">04</span>-<span class="hl-num">19</span>,Salyut <span class="hl-num">1</span>,First space station
+  <span class="hl-num">1990</span>-<span class="hl-num">04</span>-<span class="hl-num">24</span>,Hubble,A telescope in orbit
+  <span class="hl-num">1998</span>-<span class="hl-num">11</span>-<span class="hl-num">20</span>,Zarya,The ISS begins
+<span class="hl-brc">{</span><span class="hl-tag">/timeline</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B71-moments.html">open alone</a>
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-timeline" role="img" aria-labelledby="pad-chart-7521cf27-title pad-chart-7521cf27-desc" width="720" height="188" viewbox="0 0 720 188">
+                  <title id="pad-chart-7521cf27-title">
+                    Milestones of spaceflight
+                  </title>
+                  <desc id="pad-chart-7521cf27-desc">
+                    1957: Sputnik 1 - First satellite; 1961: Vostok 1 - Gagarin in orbit; 1969: Apollo 11 - People on the Moon; 1971: Salyut 1 - First space station; 1990: Hubble - A telescope in orbit; 1998: Zarya - The ISS begins
+                  </desc>
+                  <line class="pt-line" x1="16" x2="704" y1="87" y2="87"></line>
+                  <line class="pt-tick" x1="76.2" x2="76.2" y1="87" y2="93"></line>
+                  <text class="pt-date" x="76.2" y="105" text-anchor="middle">
+                    1960
+                  </text>
+                  <line class="pt-tick" x1="153.7" x2="153.7" y1="87" y2="93"></line>
+                  <text class="pt-date" x="153.7" y="105" text-anchor="middle">
+                    1965
+                  </text>
+                  <line class="pt-tick" x1="231.1" x2="231.1" y1="87" y2="93"></line>
+                  <text class="pt-date" x="231.1" y="105" text-anchor="middle">
+                    1970
+                  </text>
+                  <line class="pt-tick" x1="308.6" x2="308.6" y1="87" y2="93"></line>
+                  <text class="pt-date" x="308.6" y="105" text-anchor="middle">
+                    1975
+                  </text>
+                  <line class="pt-tick" x1="386" x2="386" y1="87" y2="93"></line>
+                  <text class="pt-date" x="386" y="105" text-anchor="middle">
+                    1980
+                  </text>
+                  <line class="pt-tick" x1="463.5" x2="463.5" y1="87" y2="93"></line>
+                  <text class="pt-date" x="463.5" y="105" text-anchor="middle">
+                    1985
+                  </text>
+                  <line class="pt-tick" x1="540.9" x2="540.9" y1="87" y2="93"></line>
+                  <text class="pt-date" x="540.9" y="105" text-anchor="middle">
+                    1990
+                  </text>
+                  <line class="pt-tick" x1="618.3" x2="618.3" y1="87" y2="93"></line>
+                  <text class="pt-date" x="618.3" y="105" text-anchor="middle">
+                    1995
+                  </text>
+                  <line class="pt-tick" x1="695.8" x2="695.8" y1="87" y2="93"></line>
+                  <text class="pt-date" x="695.8" y="105" text-anchor="middle">
+                    2000
+                  </text>
+                  <line class="pt-leader" x1="41.5" x2="41.5" y1="87" y2="73"></line>
+                  <line class="pt-leader" x1="96" x2="96" y1="87" y2="119"></line>
+                  <line class="pt-leader" x1="224.1" x2="224.1" y1="87" y2="73"></line>
+                  <line class="pt-leader" x1="251.2" x2="251.2" y1="87" y2="119"></line>
+                  <line class="pt-leader" x1="545.7" x2="545.7" y1="87" y2="73"></line>
+                  <line class="pt-leader" x1="678.5" x2="678.5" y1="87" y2="119"></line>
+                  <g class="pc-mark">
+                    <title>
+                      1957: Sputnik 1 - First satellite
+                    </title>
+                    <rect class="pt-card" x="27.5" y="18" width="119.5" height="55" rx="5"></rect>
+                    <rect class="pc-c1" x="27.5" y="23" width="3" height="45" rx="1.5"></rect>
+                    <text class="pt-date" x="38.5" y="34">
+                      1957
+                    </text>
+                    <text class="pt-label" x="38.5" y="50">
+                      Sputnik 1
+                    </text>
+                    <text class="pt-text" x="38.5" y="66">
+                      First satellite
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="41.5" cy="87" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      1961: Vostok 1 - Gagarin in orbit
+                    </title>
+                    <rect class="pt-card" x="82" y="119" width="126" height="55" rx="5"></rect>
+                    <rect class="pc-c1" x="82" y="124" width="3" height="45" rx="1.5"></rect>
+                    <text class="pt-date" x="93" y="135">
+                      1961
+                    </text>
+                    <text class="pt-label" x="93" y="151">
+                      Vostok 1
+                    </text>
+                    <text class="pt-text" x="93" y="167">
+                      Gagarin in orbit
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="96" cy="87" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      1969: Apollo 11 - People on the Moon
+                    </title>
+                    <rect class="pt-card" x="210.1" y="18" width="139" height="55" rx="5"></rect>
+                    <rect class="pc-c1" x="210.1" y="23" width="3" height="45" rx="1.5"></rect>
+                    <text class="pt-date" x="221.1" y="34">
+                      1969
+                    </text>
+                    <text class="pt-label" x="221.1" y="50">
+                      Apollo 11
+                    </text>
+                    <text class="pt-text" x="221.1" y="66">
+                      People on the Moon
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="224.1" cy="87" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      1971: Salyut 1 - First space station
+                    </title>
+                    <rect class="pt-card" x="237.2" y="119" width="145.5" height="55" rx="5"></rect>
+                    <rect class="pc-c1" x="237.2" y="124" width="3" height="45" rx="1.5"></rect>
+                    <text class="pt-date" x="248.2" y="135">
+                      1971
+                    </text>
+                    <text class="pt-label" x="248.2" y="151">
+                      Salyut 1
+                    </text>
+                    <text class="pt-text" x="248.2" y="167">
+                      First space station
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="251.2" cy="87" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      1990: Hubble - A telescope in orbit
+                    </title>
+                    <rect class="pt-card" x="531.7" y="18" width="152" height="55" rx="5"></rect>
+                    <rect class="pc-c1" x="531.7" y="23" width="3" height="45" rx="1.5"></rect>
+                    <text class="pt-date" x="542.7" y="34">
+                      1990
+                    </text>
+                    <text class="pt-label" x="542.7" y="50">
+                      Hubble
+                    </text>
+                    <text class="pt-text" x="542.7" y="66">
+                      A telescope in orbit
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="545.7" cy="87" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      1998: Zarya - The ISS begins
+                    </title>
+                    <rect class="pt-card" x="591" y="119" width="113" height="55" rx="5"></rect>
+                    <rect class="pc-c1" x="591" y="124" width="3" height="45" rx="1.5"></rect>
+                    <text class="pt-date" x="602" y="135">
+                      1998
+                    </text>
+                    <text class="pt-label" x="602" y="151">
+                      Zarya
+                    </text>
+                    <text class="pt-text" x="602" y="167">
+                      The ISS begins
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="678.5" cy="87" r="5"></circle>
+                  </g></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Spans and milestones
+            </h3>
+            <p class="example-about">
+              from= and to= draw bars, date= the milestones; color= groups them with a legend.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/timeline/2-plan.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeline</span> <span class="hl-opt">data</span>=<span class="hl-str">'plan'</span>, <span class="hl-opt">from</span>=<span class="hl-str">'start'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'end'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'day'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'kind'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Website relaunch 2026'</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/timeline/2-plan.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$plan</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Design'</span><span class="hl-pun">,</span>   <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Phase'</span><span class="hl-pun">,</span>     <span class="hl-str">'start'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-02-02'</span><span class="hl-pun">,</span> <span class="hl-str">'end'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-03-27'</span><span class="hl-pun">,</span> <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span>           <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Build'</span><span class="hl-pun">,</span>    <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Phase'</span><span class="hl-pun">,</span>     <span class="hl-str">'start'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-03-16'</span><span class="hl-pun">,</span> <span class="hl-str">'end'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-06-12'</span><span class="hl-pun">,</span> <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span>           <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Testing'</span><span class="hl-pun">,</span>  <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Phase'</span><span class="hl-pun">,</span>     <span class="hl-str">'start'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-05-25'</span><span class="hl-pun">,</span> <span class="hl-str">'end'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-06-26'</span><span class="hl-pun">,</span> <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span>           <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Kick-off'</span><span class="hl-pun">,</span> <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Milestone'</span><span class="hl-pun">,</span> <span class="hl-str">'start'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span><span class="hl-pun">,</span>           <span class="hl-str">'end'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span><span class="hl-pun">,</span>           <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-02-02'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Beta'</span><span class="hl-pun">,</span>     <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Milestone'</span><span class="hl-pun">,</span> <span class="hl-str">'start'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span><span class="hl-pun">,</span>           <span class="hl-str">'end'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span><span class="hl-pun">,</span>           <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-05-15'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Launch'</span><span class="hl-pun">,</span>   <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Milestone'</span><span class="hl-pun">,</span> <span class="hl-str">'start'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span><span class="hl-pun">,</span>           <span class="hl-str">'end'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">''</span><span class="hl-pun">,</span>           <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'2026-07-01'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B72-plan.html">open alone</a>
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-timeline" role="img" aria-labelledby="pad-chart-1a265fe5-title pad-chart-1a265fe5-desc" width="720" height="234" viewbox="0 0 720 234">
+                  <title id="pad-chart-1a265fe5-title">
+                    Website relaunch 2026
+                  </title>
+                  <desc id="pad-chart-1a265fe5-desc">
+                    Feb 2, 2026 – Mar 27, 2026: Design (Phase); Feb 2, 2026: Kick-off (Milestone); Mar 16, 2026 – Jun 12, 2026: Build (Phase); May 15, 2026: Beta (Milestone); May 25, 2026 – Jun 26, 2026: Testing (Phase); Jul 1, 2026: Launch (Milestone)
+                  </desc>
+                  <g class="pc-key">
+                    <rect class="pc-c1" x="16" y="8" width="10" height="10" rx="2"></rect>
+                    <text x="30" y="17">
+                      Phase
+                    </text>
+                    <rect class="pc-c2" x="74.5" y="8" width="10" height="10" rx="2"></rect>
+                    <text x="88.5" y="17">
+                      Milestone
+                    </text>
+                  </g>
+                  <line class="pt-line" x1="16" x2="704" y1="92" y2="92"></line>
+                  <line class="pt-tick" x1="37.2" x2="37.2" y1="92" y2="98"></line>
+                  <text class="pt-date" x="37.2" y="110" text-anchor="middle">
+                    Feb 2026
+                  </text>
+                  <line class="pt-tick" x1="156.9" x2="156.9" y1="92" y2="98"></line>
+                  <text class="pt-date" x="156.9" y="110" text-anchor="middle">
+                    Mar 2026
+                  </text>
+                  <line class="pt-tick" x1="289.5" x2="289.5" y1="92" y2="98"></line>
+                  <text class="pt-date" x="289.5" y="110" text-anchor="middle">
+                    Apr 2026
+                  </text>
+                  <line class="pt-tick" x1="417.7" x2="417.7" y1="92" y2="98"></line>
+                  <text class="pt-date" x="417.7" y="110" text-anchor="middle">
+                    May 2026
+                  </text>
+                  <line class="pt-tick" x1="550.3" x2="550.3" y1="92" y2="98"></line>
+                  <text class="pt-date" x="550.3" y="110" text-anchor="middle">
+                    Jun 2026
+                  </text>
+                  <line class="pt-tick" x1="678.5" x2="678.5" y1="92" y2="98"></line>
+                  <text class="pt-date" x="678.5" y="110" text-anchor="middle">
+                    Jul 2026
+                  </text>
+                  <line class="pt-leader" x1="41.5" x2="41.5" y1="92" y2="78"></line>
+                  <line class="pt-leader" x1="477.6" x2="477.6" y1="92" y2="180"></line>
+                  <line class="pt-leader" x1="678.5" x2="678.5" y1="92" y2="78"></line>
+                  <g class="pc-mark">
+                    <title>
+                      Feb 2, 2026: Kick-off (Milestone)
+                    </title>
+                    <rect class="pt-card" x="27.5" y="38" width="93.5" height="40" rx="5"></rect>
+                    <rect class="pc-c2" x="27.5" y="43" width="3" height="30" rx="1.5"></rect>
+                    <text class="pt-date" x="38.5" y="54">
+                      Feb 2, 2026
+                    </text>
+                    <text class="pt-label" x="38.5" y="70">
+                      Kick-off
+                    </text>
+                    <circle class="pt-dot pc-c2" cx="41.5" cy="92" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      May 15, 2026: Beta (Milestone)
+                    </title>
+                    <rect class="pt-card" x="463.6" y="180" width="100" height="40" rx="5"></rect>
+                    <rect class="pc-c2" x="463.6" y="185" width="3" height="30" rx="1.5"></rect>
+                    <text class="pt-date" x="474.6" y="196">
+                      May 15, 2026
+                    </text>
+                    <text class="pt-label" x="474.6" y="212">
+                      Beta
+                    </text>
+                    <circle class="pt-dot pc-c2" cx="477.6" cy="92" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Jul 1, 2026: Launch (Milestone)
+                    </title>
+                    <rect class="pt-card" x="610.5" y="38" width="93.5" height="40" rx="5"></rect>
+                    <rect class="pc-c2" x="610.5" y="43" width="3" height="30" rx="1.5"></rect>
+                    <text class="pt-date" x="621.5" y="54">
+                      Jul 1, 2026
+                    </text>
+                    <text class="pt-label" x="621.5" y="70">
+                      Launch
+                    </text>
+                    <circle class="pt-dot pc-c2" cx="678.5" cy="92" r="5"></circle>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Feb 2, 2026 – Mar 27, 2026: Design (Phase)
+                    </title>
+                    <rect class="pc-c1" x="41.5" y="118" width="226.6" height="18" rx="4"></rect>
+                    <text class="pc-in" x="47.5" y="131">
+                      Design
+                    </text>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Mar 16, 2026 – Jun 12, 2026: Build (Phase)
+                    </title>
+                    <rect class="pc-c1" x="221" y="142" width="376.2" height="18" rx="4"></rect>
+                    <text class="pc-in" x="227" y="155">
+                      Build
+                    </text>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      May 25, 2026 – Jun 26, 2026: Testing (Phase)
+                    </title>
+                    <rect class="pc-c1" x="520.3" y="118" width="136.8" height="18" rx="4"></rect>
+                    <text class="pc-in" x="526.3" y="131">
+                      Testing
+                    </text>
+                  </g></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              One under the other
+            </h3>
+            <p class="example-about">
+              vertical lists the events down the page - the rows as JSON in a data store.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/timeline/3-vertical.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'releases'</span><span class="hl-brc">}</span>
+  [ <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"PHP 7.0"</span>, <span class="hl-str">"released"</span>: <span class="hl-str">"2015-12-03"</span>, <span class="hl-str">"brought"</span>: <span class="hl-str">"A twice as fast engine"</span> <span class="hl-brc">}</span>,
+    <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"PHP 7.4"</span>, <span class="hl-str">"released"</span>: <span class="hl-str">"2019-11-28"</span>, <span class="hl-str">"brought"</span>: <span class="hl-str">"Typed properties and arrow functions"</span> <span class="hl-brc">}</span>,
+    <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"PHP 8.0"</span>, <span class="hl-str">"released"</span>: <span class="hl-str">"2020-11-26"</span>, <span class="hl-str">"brought"</span>: <span class="hl-str">"JIT, named arguments, match"</span> <span class="hl-brc">}</span>,
+    <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"PHP 8.1"</span>, <span class="hl-str">"released"</span>: <span class="hl-str">"2021-11-25"</span>, <span class="hl-str">"brought"</span>: <span class="hl-str">"Enums, readonly properties, fibers"</span> <span class="hl-brc">}</span>,
+    <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"PHP 8.4"</span>, <span class="hl-str">"released"</span>: <span class="hl-str">"2024-11-21"</span>, <span class="hl-str">"brought"</span>: <span class="hl-str">"Property hooks"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeline</span> <span class="hl-opt">data</span>=<span class="hl-str">'releases'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'released'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'version'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'brought'</span>, vertical, <span class="hl-opt">width</span>=<span class="hl-num">480</span>, <span class="hl-opt">title</span>=<span class="hl-str">'PHP releases'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B73-vertical.html">open alone</a>
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-timeline" role="img" aria-labelledby="pad-chart-7dd3ada1-title pad-chart-7dd3ada1-desc" width="480" height="285" viewbox="0 0 480 285">
+                  <title id="pad-chart-7dd3ada1-title">
+                    PHP releases
+                  </title>
+                  <desc id="pad-chart-7dd3ada1-desc">
+                    Dec 3, 2015: PHP 7.0 - A twice as fast engine; Nov 28, 2019: PHP 7.4 - Typed properties and arrow functions; Nov 26, 2020: PHP 8.0 - JIT, named arguments, match; Nov 25, 2021: PHP 8.1 - Enums, readonly properties, fibers; Nov 21, 2024: PHP 8.4 - Property hooks
+                  </desc>
+                  <line class="pt-line" x1="106" x2="106" y1="10" y2="275"></line>
+                  <g class="pc-mark">
+                    <title>
+                      Dec 3, 2015: PHP 7.0 - A twice as fast engine
+                    </title>
+                    <text class="pt-date" x="92" y="28" text-anchor="end">
+                      Dec 3, 2015
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="106" cy="24" r="6"></circle>
+                    <rect class="pt-card" x="124" y="10" width="348" height="43" rx="5"></rect>
+                    <rect class="pc-c1" x="124" y="15" width="3" height="33" rx="1.5"></rect>
+                    <text class="pt-label" x="135" y="28">
+                      PHP 7.0
+                    </text>
+                    <text class="pt-text" x="135" y="44">
+                      A twice as fast engine
+                    </text>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Nov 28, 2019: PHP 7.4 - Typed properties and arrow functions
+                    </title>
+                    <text class="pt-date" x="92" y="83" text-anchor="end">
+                      Nov 28, 2019
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="106" cy="79" r="6"></circle>
+                    <rect class="pt-card" x="124" y="65" width="348" height="43" rx="5"></rect>
+                    <rect class="pc-c1" x="124" y="70" width="3" height="33" rx="1.5"></rect>
+                    <text class="pt-label" x="135" y="83">
+                      PHP 7.4
+                    </text>
+                    <text class="pt-text" x="135" y="99">
+                      Typed properties and arrow functions
+                    </text>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Nov 26, 2020: PHP 8.0 - JIT, named arguments, match
+                    </title>
+                    <text class="pt-date" x="92" y="138" text-anchor="end">
+                      Nov 26, 2020
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="106" cy="134" r="6"></circle>
+                    <rect class="pt-card" x="124" y="120" width="348" height="43" rx="5"></rect>
+                    <rect class="pc-c1" x="124" y="125" width="3" height="33" rx="1.5"></rect>
+                    <text class="pt-label" x="135" y="138">
+                      PHP 8.0
+                    </text>
+                    <text class="pt-text" x="135" y="154">
+                      JIT, named arguments, match
+                    </text>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Nov 25, 2021: PHP 8.1 - Enums, readonly properties, fibers
+                    </title>
+                    <text class="pt-date" x="92" y="193" text-anchor="end">
+                      Nov 25, 2021
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="106" cy="189" r="6"></circle>
+                    <rect class="pt-card" x="124" y="175" width="348" height="43" rx="5"></rect>
+                    <rect class="pc-c1" x="124" y="180" width="3" height="33" rx="1.5"></rect>
+                    <text class="pt-label" x="135" y="193">
+                      PHP 8.1
+                    </text>
+                    <text class="pt-text" x="135" y="209">
+                      Enums, readonly properties, fibers
+                    </text>
+                  </g>
+                  <g class="pc-mark">
+                    <title>
+                      Nov 21, 2024: PHP 8.4 - Property hooks
+                    </title>
+                    <text class="pt-date" x="92" y="248" text-anchor="end">
+                      Nov 21, 2024
+                    </text>
+                    <circle class="pt-dot pc-c1" cx="106" cy="244" r="6"></circle>
+                    <rect class="pt-card" x="124" y="230" width="348" height="43" rx="5"></rect>
+                    <rect class="pc-c1" x="124" y="235" width="3" height="33" rx="1.5"></rect>
+                    <text class="pt-label" x="135" y="248">
+                      PHP 8.4
+                    </text>
+                    <text class="pt-text" x="135" y="264">
+                      Property hooks
+                    </text>
+                  </g></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{calendar}</a> <span class="about">Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7diagram.html">{diagram}</a> <span class="about">Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7timeago.html">← {timeago}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7toc.html">{toc} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

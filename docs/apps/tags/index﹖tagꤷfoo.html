@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {foo} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">foo</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>foo<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A built-in demo tag that answers a fixed line, there to show how the type prefixes resolve a name.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">foo</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:foo</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{foo}</code> has no use of its own: it answers the line <code>Foo tag from pad</code>. It exists so that the manual can show what a name resolves to when several kinds of thing carry it - an application tag in <code>_tags/foo.php</code>, a pipe function, a PHP function, a data or bool store, a content block.
+          </p>
+          <p>
+            A bare <code>{foo}</code> is looked up in a fixed order, and an application tag comes before the built-in one: a <code>_tags/foo.php</code> in the page's directory or one of its parents wins. A type prefix names the kind outright - <code>{pad:foo}</code> is always the built-in tag, <code>{app:foo}</code> always the application's, and <code>php:</code>, <code>function:</code>, <code>data:</code>, <code>bool:</code> and the other prefixes each name their own kind.
+          </p>
+          <p>
+            The second example below has a <code>_tags/foo.php</code> in its own directory, so the bare name and the <code>app:</code> prefix find that one, while <code>pad:foo</code> still reaches the built-in.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              The demo tag
+            </h3>
+            <p class="example-about">
+              The built-in foo answers a fixed line - there to show which tag a name resolves to.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/foo/1-builtin.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">pad:foo</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7foo%EA%A4%B71-builtin.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Foo tag from pad
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Which foo?
+            </h3>
+            <p class="example-about">
+              This directory has a _tags/foo.php of its own: the bare name finds it first, pad: names the built-in.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/foo/2-prefixes.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>foo: <span class="hl-brc">{</span><span class="hl-tag">foo</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>app:foo: <span class="hl-brc">{</span><span class="hl-tag">app:foo</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>pad:foo: <span class="hl-brc">{</span><span class="hl-tag">pad:foo</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7foo%EA%A4%B72-prefixes.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    foo: Foo tag from this directory's _tags
+                  </p>
+                  <p>
+                    app:foo: Foo tag from this directory's _tags
+                  </p>
+                  <p>
+                    pad:foo: Foo tag from pad
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pad.html">{pad}</a> <span class="about">A tag with no behaviour of its own: its content renders once, or per row with data=, carrying the generic options.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7echo.html">{echo}</a> <span class="about">Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7flush.html">← {flush}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7form.html">{form} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {ifchanged} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#conditions">Conditions</a><span>/</span><span aria-current="page">ifchanged</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>ifchanged<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content when a value differs from the previous row of the loop around it - a heading per group.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#conditions">Conditions</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ifchanged</span> value<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/ifchanged</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ifchanged</span> value, value<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/ifchanged</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ifchanged</span> value<span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/ifchanged</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              One or more values, usually fields of the current row. The content renders when any of them differs from what it was on the previous row.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{ifchanged $customer}</code> compares its value with the value it had the previous time it ran in the same loop. The content renders when the value is different - and always on the first row - so in a list sorted on that field it renders once at the start of every group: the classic group heading. When the value is the same as before, the <code>@else@</code> part renders instead, if the tag has one.
+          </p>
+          <p>
+            With several values - <code>{ifchanged $year, $month}</code> - the content renders when any of them changed. Sort the rows first (the <code>sort</code> option, or in the query): the tag only looks one row back, so an unsorted list gets a heading every time the value flips.
+          </p>
+          <p>
+            The memory belongs to one run of the enclosing loop - the nearest level that is not an <code>{if}</code>, a <code>{case}</code> or another <code>{ifchanged}</code> - so the tag may stand inside an <code>{if}</code> in the loop, and a loop that runs again (an inner loop on the next outer row) starts afresh. Several <code>{ifchanged}</code> tags in one row are kept apart by position: the second one of a row is compared with the second one of the row before.
+          </p>
+          <p>
+            Under the strict syntax check an <code>{ifchanged}</code> without a value, or without its closing tag, is an error. The <a href="index%EF%B9%96tag%EA%A4%B7case.html">{case}</a> and <a href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> tags compare with fixed values; <code>{ifchanged}</code> compares with the row before.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A heading per group
+            </h3>
+            <p class="example-about">
+              Sorted on the city, the heading renders once at the start of each city.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ifchanged/1-heading.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">offices</span> <span class="hl-opt">sort</span>=<span class="hl-str">'city'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">ifchanged</span> <span class="hl-var">$city</span><span class="hl-brc">}</span><span class="hl-htm">&lt;h4</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$city</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h4</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/ifchanged</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$person</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/offices</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/ifchanged/1-heading.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$offices</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'city'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Utrecht'</span><span class="hl-pun">,</span> <span class="hl-str">'person'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Anna'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'city'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Lisbon'</span><span class="hl-pun">,</span>  <span class="hl-str">'person'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Bruno'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'city'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Utrecht'</span><span class="hl-pun">,</span> <span class="hl-str">'person'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Carla'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'city'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Lisbon'</span><span class="hl-pun">,</span>  <span class="hl-str">'person'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Dinis'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'city'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Oslo'</span><span class="hl-pun">,</span>    <span class="hl-str">'person'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Eirik'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ifchanged%EA%A4%B71-heading.html">open alone</a>
+                </div>
+                <div class="result">
+                  <h4>
+                    Lisbon
+                  </h4>
+                  <p>
+                    Bruno
+                  </p>
+                  <p>
+                    Dinis
+                  </p>
+                  <h4>
+                    Oslo
+                  </h4>
+                  <p>
+                    Eirik
+                  </p>
+                  <h4>
+                    Utrecht
+                  </h4>
+                  <p>
+                    Anna
+                  </p>
+                  <p>
+                    Carla
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Several values and @else@
+            </h3>
+            <p class="example-about">
+              A change in either value renders the heading; an unchanged row renders the @else@ part.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ifchanged/2-several.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'ifchangedPosts'</span><span class="hl-brc">}</span>
+year,month,post
+<span class="hl-num">2026</span>,September,Launch
+<span class="hl-num">2026</span>,September,First fix
+<span class="hl-num">2026</span>,October,Autumn release
+<span class="hl-num">2027</span>,October,Next year
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">ifchangedPosts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">ifchanged</span> <span class="hl-var">$year</span>, <span class="hl-var">$month</span><span class="hl-brc">}</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$month</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$year</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-var">@else@</span><span class="hl-var">&amp;mdash</span>; same month<span class="hl-brc">{</span><span class="hl-tag">/ifchanged</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$post</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/ifchangedPosts</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ifchanged%EA%A4%B72-several.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>
+                      <strong>September 2026</strong>: Launch
+                    </li>
+                    <li>— same month: First fix
+                    </li>
+                    <li>
+                      <strong>October 2026</strong>: Autumn release
+                    </li>
+                    <li>
+                      <strong>October 2027</strong>: Next year
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> <span class="about">Renders its content only when a condition holds, with elseif and else branches.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7case.html">{case}</a> <span class="about">Renders the one branch whose {when} matches a value, with an {else} for none.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7switch.html">{switch}</a> <span class="about">Answers the next value of a rotating list on every call - striped rows without a counter.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7if.html">← {if}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

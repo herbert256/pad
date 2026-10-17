@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - nocache
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - nocache
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: fragments/cache_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/cache_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/cache_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nocache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$visit </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue">nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>visit = 2</font>}</b><br><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue">nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7ce625e2aa3fe1776a8426fa34b8f4d9"></div>
+                        <script>
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9 = new XMLHttpRequest();
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.onreadystatechange=function() {
+                        if (padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.readyState === 4) {
+                        if (padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.status === 200) {
+                        document.getElementById("padAjax7ce625e2aa3fe1776a8426fa34b8f4d9").innerHTML=padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.responseText;
+                        } else {
+                        document.getElementById("padAjax7ce625e2aa3fe1776a8426fa34b8f4d9").innerHTML=padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.statusText;
+                        }
+                        }
+                        }
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.open("GET","http://localhost/pad/manual/?fragments/cache_2&padInclude",true);
+                        padAjax7ce625e2aa3fe1776a8426fa34b8f4d9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_file - Page: nocacheprobe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">nocacheprobe.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">nocacheprobe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of nocache: its build moment in nanoseconds, and rows for a loop. A hit<br>  // of the page cache runs none of this - the {nocache} parts render without it.<br><br>  </span><span style="color: #0000BB">$stamp </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">built <b>{<font color="green"><font color="red">$</font>stamp</font>}</b> live <b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>microtime</font><font color="red"></font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b> rows <b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b>=<b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>;<b>{/<font color="blue">rows</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaf6f154aa4b0d2334a38ced88a31de67"></div>
+                        <script>
+                        padAjaxaf6f154aa4b0d2334a38ced88a31de67 = new XMLHttpRequest();
+                        padAjaxaf6f154aa4b0d2334a38ced88a31de67.onreadystatechange=function() {
+                        if (padAjaxaf6f154aa4b0d2334a38ced88a31de67.readyState === 4) {
+                        if (padAjaxaf6f154aa4b0d2334a38ced88a31de67.status === 200) {
+                        document.getElementById("padAjaxaf6f154aa4b0d2334a38ced88a31de67").innerHTML=padAjaxaf6f154aa4b0d2334a38ced88a31de67.responseText;
+                        } else {
+                        document.getElementById("padAjaxaf6f154aa4b0d2334a38ced88a31de67").innerHTML=padAjaxaf6f154aa4b0d2334a38ced88a31de67.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaf6f154aa4b0d2334a38ced88a31de67.open("GET","http://localhost/pad/regression/cache_file/?nocacheprobe&padInclude",true);
+                        padAjaxaf6f154aa4b0d2334a38ced88a31de67.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_nocache_takes_no_parameter<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_nocache_takes_no_parameter.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">nocache </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b>a<b>{/<font color="blue">nocache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa5527a0759dc9f8f8bb54b878857057a"></div>
+                        <script>
+                        padAjaxa5527a0759dc9f8f8bb54b878857057a = new XMLHttpRequest();
+                        padAjaxa5527a0759dc9f8f8bb54b878857057a.onreadystatechange=function() {
+                        if (padAjaxa5527a0759dc9f8f8bb54b878857057a.readyState === 4) {
+                        if (padAjaxa5527a0759dc9f8f8bb54b878857057a.status === 200) {
+                        document.getElementById("padAjaxa5527a0759dc9f8f8bb54b878857057a").innerHTML=padAjaxa5527a0759dc9f8f8bb54b878857057a.responseText;
+                        } else {
+                        document.getElementById("padAjaxa5527a0759dc9f8f8bb54b878857057a").innerHTML=padAjaxa5527a0759dc9f8f8bb54b878857057a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa5527a0759dc9f8f8bb54b878857057a.open("GET","http://localhost/pad/regression/errors/?syntax/a_nocache_takes_no_parameter&padInclude",true);
+                        padAjaxa5527a0759dc9f8f8bb54b878857057a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_nocache_part_renders_again_on_a_cache_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_nocache_part_renders_again_on_a_cache_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_nocache_part_renders_again_on_a_cache_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-nocache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>x = 1</font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-nocache<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b>:<b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>|<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b>=<b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>;<b>{/<font color="blue">rows</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b> <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>x = 2</font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-nocache<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b>:<b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>|<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b>=<b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>;<b>{/<font color="blue">rows</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9a47e84a94eb54f1cf932b6df9fb11de"></div>
+                        <script>
+                        padAjax9a47e84a94eb54f1cf932b6df9fb11de = new XMLHttpRequest();
+                        padAjax9a47e84a94eb54f1cf932b6df9fb11de.onreadystatechange=function() {
+                        if (padAjax9a47e84a94eb54f1cf932b6df9fb11de.readyState === 4) {
+                        if (padAjax9a47e84a94eb54f1cf932b6df9fb11de.status === 200) {
+                        document.getElementById("padAjax9a47e84a94eb54f1cf932b6df9fb11de").innerHTML=padAjax9a47e84a94eb54f1cf932b6df9fb11de.responseText;
+                        } else {
+                        document.getElementById("padAjax9a47e84a94eb54f1cf932b6df9fb11de").innerHTML=padAjax9a47e84a94eb54f1cf932b6df9fb11de.statusText;
+                        }
+                        }
+                        }
+                        padAjax9a47e84a94eb54f1cf932b6df9fb11de.open("GET","http://localhost/pad/regression/framework/?tags/a_nocache_part_renders_again_on_a_cache_hit&padInclude",true);
+                        padAjax9a47e84a94eb54f1cf932b6df9fb11de.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_nocache_part_with_nothing_caching_renders_as_it_stands<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_nocache_part_with_nothing_caching_renders_as_it_stands.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_nocache_part_with_nothing_caching_renders_as_it_stands.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $x </span><span style="color: #007700">= </span><span style="color: #DD0000">'b'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">a<b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>c</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf752535ba19f695c473e3d07f5d4378b"></div>
+                        <script>
+                        padAjaxf752535ba19f695c473e3d07f5d4378b = new XMLHttpRequest();
+                        padAjaxf752535ba19f695c473e3d07f5d4378b.onreadystatechange=function() {
+                        if (padAjaxf752535ba19f695c473e3d07f5d4378b.readyState === 4) {
+                        if (padAjaxf752535ba19f695c473e3d07f5d4378b.status === 200) {
+                        document.getElementById("padAjaxf752535ba19f695c473e3d07f5d4378b").innerHTML=padAjaxf752535ba19f695c473e3d07f5d4378b.responseText;
+                        } else {
+                        document.getElementById("padAjaxf752535ba19f695c473e3d07f5d4378b").innerHTML=padAjaxf752535ba19f695c473e3d07f5d4378b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf752535ba19f695c473e3d07f5d4378b.open("GET","http://localhost/pad/regression/framework/?tags/a_nocache_part_with_nothing_caching_renders_as_it_stands&padInclude",true);
+                        padAjaxf752535ba19f695c473e3d07f5d4378b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_poll_inside_a_nocache_part_leaves_its_cache_section_kept<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_poll_inside_a_nocache_part_leaves_its_cache_section_kept.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_poll_inside_a_nocache_part_leaves_its_cache_section_kept.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A {poll} inside a {nocache} part renders on every request, the hit included, so the<br>  // section round it is kept: the second section of the name is a hit - the stored text,<br>  // the poll made again from its source.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwPollNocache' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwPollNocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>kept <b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue">poll </font><font color="red"><font color="black">'</font>fw-poll-nocache<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Yes<font color="black">,</font> No<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>padPollAnswer<font color="black">'</font>)</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>|<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwPollNocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>its own <b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue">poll </font><font color="red"><font color="black">'</font>fw-poll-nocache<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Yes<font color="black">,</font> No<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>padPollAnswer<font color="black">'</font>)</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfd0ce58f80d83c660e22e19431f547f6"></div>
+                        <script>
+                        padAjaxfd0ce58f80d83c660e22e19431f547f6 = new XMLHttpRequest();
+                        padAjaxfd0ce58f80d83c660e22e19431f547f6.onreadystatechange=function() {
+                        if (padAjaxfd0ce58f80d83c660e22e19431f547f6.readyState === 4) {
+                        if (padAjaxfd0ce58f80d83c660e22e19431f547f6.status === 200) {
+                        document.getElementById("padAjaxfd0ce58f80d83c660e22e19431f547f6").innerHTML=padAjaxfd0ce58f80d83c660e22e19431f547f6.responseText;
+                        } else {
+                        document.getElementById("padAjaxfd0ce58f80d83c660e22e19431f547f6").innerHTML=padAjaxfd0ce58f80d83c660e22e19431f547f6.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfd0ce58f80d83c660e22e19431f547f6.open("GET","http://localhost/pad/regression/framework/?tags/a_poll_inside_a_nocache_part_leaves_its_cache_section_kept&padInclude",true);
+                        padAjaxfd0ce58f80d83c660e22e19431f547f6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-nocache-push' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-nocache-push<font color="black">'</font></font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>A<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-nocache-push<font color="black">'</font></font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>A<b>{/<font color="blue">cache</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7c056f7d527128c09005a5216a9bac38"></div>
+                        <script>
+                        padAjax7c056f7d527128c09005a5216a9bac38 = new XMLHttpRequest();
+                        padAjax7c056f7d527128c09005a5216a9bac38.onreadystatechange=function() {
+                        if (padAjax7c056f7d527128c09005a5216a9bac38.readyState === 4) {
+                        if (padAjax7c056f7d527128c09005a5216a9bac38.status === 200) {
+                        document.getElementById("padAjax7c056f7d527128c09005a5216a9bac38").innerHTML=padAjax7c056f7d527128c09005a5216a9bac38.responseText;
+                        } else {
+                        document.getElementById("padAjax7c056f7d527128c09005a5216a9bac38").innerHTML=padAjax7c056f7d527128c09005a5216a9bac38.statusText;
+                        }
+                        }
+                        }
+                        padAjax7c056f7d527128c09005a5216a9bac38.open("GET","http://localhost/pad/regression/framework/?tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit&padInclude",true);
+                        padAjax7c056f7d527128c09005a5216a9bac38.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/nocache/1-section<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/nocache/1-section.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/nocache/1-section.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $nocacheVisitor  </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'visitor'</span><span style="color: #007700">, </span><span style="color: #DD0000">'guest' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$nocacheProducts </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kettle'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Toaster' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Blender' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A live part in a cached section<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The list is kept five minutes; the greeting renders on every request - try ?examples/nocache/1-section&amp;visitor=Ann.<font color="black">'</font></font>}</b><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nocacheDemo<font color="black">'</font><font color="black">,</font> ttl=300</font>}</b><br>  &lt;p&gt;<b>{<font color="blue">nocache</font><font color="red"></font>}</b>Hello, <b>{<font color="green"><font color="red">$</font>nocacheVisitor</font>}</b>!<b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br>  &lt;ul&gt;<br>  <b>{<font color="blue">nocacheProducts</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">nocacheProducts</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax097c9ac343f1b430c339168928cf6f64"></div>
+                        <script>
+                        padAjax097c9ac343f1b430c339168928cf6f64 = new XMLHttpRequest();
+                        padAjax097c9ac343f1b430c339168928cf6f64.onreadystatechange=function() {
+                        if (padAjax097c9ac343f1b430c339168928cf6f64.readyState === 4) {
+                        if (padAjax097c9ac343f1b430c339168928cf6f64.status === 200) {
+                        document.getElementById("padAjax097c9ac343f1b430c339168928cf6f64").innerHTML=padAjax097c9ac343f1b430c339168928cf6f64.responseText;
+                        } else {
+                        document.getElementById("padAjax097c9ac343f1b430c339168928cf6f64").innerHTML=padAjax097c9ac343f1b430c339168928cf6f64.statusText;
+                        }
+                        }
+                        }
+                        padAjax097c9ac343f1b430c339168928cf6f64.open("GET","http://localhost/pad/tags/?examples/nocache/1-section&padInclude",true);
+                        padAjax097c9ac343f1b430c339168928cf6f64.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

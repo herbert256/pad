@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: showcase/carousel
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: showcase/carousel
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=showcase.html">..</a>
+                  </li>
+                  <li class="current">landscapes.pad
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  carousel/landscapes.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Four landscapes<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Slides that snap sideways - swipe<font color="black">,</font> scroll<font color="black">,</font> or use the arrows and the dots<font color="black">,</font> which are plain links.<font color="black">'</font></font>}</b><br>&lt;div style="width:100%; max-width:640px"&gt;<br>  <b>{<font color="blue">carousel </font><font color="red">label=<font color="black">'</font>Landscapes<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>Sunrise over the hills<font color="black">'</font></font>}</b><br>      &lt;svg viewBox="0 0 800 400" role="img" aria-label="Hills under a rising sun"&gt;<br>        &lt;rect width="800" height="400" fill="#fbd38d"/&gt;<br>        &lt;circle cx="560" cy="250" r="80" fill="#f6ad55"/&gt;<br>        &lt;path d="M0 290 Q200 190 400 280 T800 250 V400 H0Z" fill="#c05621"/&gt;<br>        &lt;path d="M0 340 Q250 270 500 330 T800 320 V400 H0Z" fill="#7b341e"/&gt;<br>      &lt;/svg&gt;<br>    <b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>The open sea<font color="black">'</font></font>}</b><br>      &lt;svg viewBox="0 0 800 400" role="img" aria-label="Waves under a pale sky"&gt;<br>        &lt;rect width="800" height="400" fill="#bee3f8"/&gt;<br>        &lt;rect y="220" width="800" height="180" fill="#3182ce"/&gt;<br>        &lt;path d="M0 260 q50 -20 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0" stroke="#90cdf4" stroke-width="6" fill="none"/&gt;<br>        &lt;path d="M0 320 q50 -20 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0" stroke="#63b3ed" stroke-width="6" fill="none"/&gt;<br>        &lt;path d="M520 220 l40 -80 l40 80z" fill="#fff"/&gt;<br>      &lt;/svg&gt;<br>    <b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>A forest at dusk<font color="black">'</font></font>}</b><br>      &lt;svg viewBox="0 0 800 400" role="img" aria-label="Pine trees against a violet sky"&gt;<br>        &lt;rect width="800" height="400" fill="#553c9a"/&gt;<br>        &lt;circle cx="160" cy="90" r="34" fill="#faf089"/&gt;<br>        &lt;path d="M80 400 l60 -220 l60 220z M240 400 l70 -260 l70 260z M420 400 l55 -200 l55 200z M560 400 l75 -280 l75 280z" fill="#22543d"/&gt;<br>        &lt;rect y="370" width="800" height="30" fill="#1c4532"/&gt;<br>      &lt;/svg&gt;<br>    <b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>Snow on the peaks<font color="black">'</font></font>}</b><br>      &lt;svg viewBox="0 0 800 400" role="img" aria-label="Mountains with snow caps under a blue sky"&gt;<br>        &lt;rect width="800" height="400" fill="#90cdf4"/&gt;<br>        &lt;path d="M0 400 L230 120 L460 400Z" fill="#4a5568"/&gt;<br>        &lt;path d="M300 400 L560 80 L800 400Z" fill="#2d3748"/&gt;<br>        &lt;path d="M230 120 L280 181 L250 170 L215 190 L185 175Z M560 80 L620 154 L585 140 L550 165 L515 140Z" fill="#fff"/&gt;<br>      &lt;/svg&gt;<br>    <b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">carousel</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

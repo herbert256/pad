@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_tag_answer_spliced_into_an_eval_expression_is_refused<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_tag_answer_spliced_into_an_eval_expression_is_refused.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_tag_answer_spliced_into_an_eval_expression_is_refused.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A tag's answer spliced into the expression of the eval sequence - {echo $q} inside its<br>  // quotes - is refused as a field's value is: it went in bare and ran, 3 3.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">'0 + php:abs(-3)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">eval </font><font color="red"><font color="black">'</font><font color="black">@</font> * <b><font color="black">{</font><font color="blue">echo </font><font color="red"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>eval</font>}</b> <b>{/<font color="blue">eval</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe80182cb0c434672872bbe5953f1c860"></div>
+                        <script>
+                        padAjaxe80182cb0c434672872bbe5953f1c860 = new XMLHttpRequest();
+                        padAjaxe80182cb0c434672872bbe5953f1c860.onreadystatechange=function() {
+                        if (padAjaxe80182cb0c434672872bbe5953f1c860.readyState === 4) {
+                        if (padAjaxe80182cb0c434672872bbe5953f1c860.status === 200) {
+                        document.getElementById("padAjaxe80182cb0c434672872bbe5953f1c860").innerHTML=padAjaxe80182cb0c434672872bbe5953f1c860.responseText;
+                        } else {
+                        document.getElementById("padAjaxe80182cb0c434672872bbe5953f1c860").innerHTML=padAjaxe80182cb0c434672872bbe5953f1c860.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe80182cb0c434672872bbe5953f1c860.open("GET","http://localhost/pad/regression/errors/?syntax/a_tag_answer_spliced_into_an_eval_expression_is_refused&padInclude",true);
+                        padAjaxe80182cb0c434672872bbe5953f1c860.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: sequence/a_value_spliced_into_any_eval_expression_is_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">sequence/a_value_spliced_into_any_eval_expression_is_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_value_spliced_into_any_eval_expression_is_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value spliced into the quoted expression of the eval sequence is a string of it in every<br>  // spelling - {eval '...'}, {sequence:eval '...'}, make='eval|...', sequence:eval(2, '...') -<br>  // as in eval='...': only eval= quoted it, and in the others the value became part of the<br>  // expression and called the function it named.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:gettype()'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">e[<b>{<font color="blue">eval </font><font color="red"><font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>eval</font>}</b> <b>{/<font color="blue">eval</font><font color="red"></font>}</b>] s[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>eval </font><font color="red"><font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>eval</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>eval</font><font color="red"></font>}</b>] m[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font><font color="black">,</font> make=<font color="black">'</font>eval<font color="black">|</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>] c[<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>eval(2<font color="black">,</font> <font color="black">'</font><font color="black">@</font> . <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax46b16205e20892180592c2bafd130ad0"></div>
+                        <script>
+                        padAjax46b16205e20892180592c2bafd130ad0 = new XMLHttpRequest();
+                        padAjax46b16205e20892180592c2bafd130ad0.onreadystatechange=function() {
+                        if (padAjax46b16205e20892180592c2bafd130ad0.readyState === 4) {
+                        if (padAjax46b16205e20892180592c2bafd130ad0.status === 200) {
+                        document.getElementById("padAjax46b16205e20892180592c2bafd130ad0").innerHTML=padAjax46b16205e20892180592c2bafd130ad0.responseText;
+                        } else {
+                        document.getElementById("padAjax46b16205e20892180592c2bafd130ad0").innerHTML=padAjax46b16205e20892180592c2bafd130ad0.statusText;
+                        }
+                        }
+                        }
+                        padAjax46b16205e20892180592c2bafd130ad0.open("GET","http://localhost/pad/regression/framework/?sequence/a_value_spliced_into_any_eval_expression_is_text&padInclude",true);
+                        padAjax46b16205e20892180592c2bafd130ad0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: sequence - Page: types/eval<br>
                   <div id="padAjax86c22d749c6dbe433cb2d661c33be064"></div>
@@ -62,7 +146,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

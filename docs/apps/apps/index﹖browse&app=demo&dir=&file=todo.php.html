@@ -30,7 +30,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -66,6 +66,18 @@
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=barcode.pad.html">barcode.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=barcode.php.html">barcode.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=calendar.pad.html">calendar.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=calendar.php.html">calendar.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=clock.pad.html">clock.pad</a>
                   </li>
                   <li>
@@ -87,10 +99,22 @@
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.php.html">guestbook.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=highlight.pad.html">highlight.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=highlight.php.html">highlight.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.pad.html">index.pad</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=qr.pad.html">qr.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=qr.php.html">qr.php</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todo.pad.html">todo.pad</a>
@@ -106,7 +130,7 @@
                 <h3>
                   todo.php
                 </h3>
-                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Todo List'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #DD0000">'demo/todos.json'</span><span style="color: #007700">;   </span><span style="color: #FF8000">// under DATA/, for padFileGet and padFilePut<br>  </span><span style="color: #0000BB">$message  </span><span style="color: #007700">= </span><span style="color: #0000BB">$message </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;      </span><span style="color: #FF8000">// todoPost sets it, then restarts this page<br><br>  </span><span style="color: #0000BB">$todos </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padFileGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br><br>  </span><span style="color: #0000BB">$hasTodos     </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$doneCount    </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">padArrWhere </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos</span><span style="color: #007700">, </span><span style="color: #DD0000">'done' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$pendingCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos </span><span style="color: #007700">) - </span><span style="color: #0000BB">$doneCount</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Todo List'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #DD0000">'demo/todos.json'</span><span style="color: #007700">;   </span><span style="color: #FF8000">// under DATA/, for padFileGet and padFilePut<br>  </span><span style="color: #0000BB">$message  </span><span style="color: #007700">= </span><span style="color: #0000BB">$message </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;      </span><span style="color: #FF8000">// todoPost sets it, then restarts this page<br><br>  // A notice from the request - ?todo&amp;message[]=x - is no text: {if $message} ended the<br>  // page on a 500 over the list.<br><br>  </span><span style="color: #007700">if ( ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$message </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$todos </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padFileGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br><br>  </span><span style="color: #0000BB">$hasTodos     </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$doneCount    </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">padArrWhere </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos</span><span style="color: #007700">, </span><span style="color: #DD0000">'done' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$pendingCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos </span><span style="color: #007700">) - </span><span style="color: #0000BB">$doneCount</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
               </div>
             </div>
           </div>
@@ -120,7 +144,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {dump} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#debug">Debugging and errors</a><span>/</span><span aria-current="page">dump</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>dump<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Stops the request and shows the debug dump of the engine's state at that point.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#debug">Debugging and errors</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">dump</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{dump}</code> ends the request right where it stands and answers with the debug dump of the engine: the message <code>{dump} tag used</code>, the stack, every level of the tag stack with its tag, type, parameters, content and flags, the application's variables, the stores, the request, the headers and the SQL and remote calls made so far. Nothing after the tag is processed - the output rendered so far is thrown away and the status is <code>500</code>.
+          </p>
+          <p>
+            Who sees what depends on where the request comes from. A local request - the command line, or a loopback request with nothing forwarded - gets the full report inline - under the <code>console</code> output type the message, the template position and the directory the full report was written to. Any other visitor gets only the request id, or the application's <code>_errors/500.pad</code> when it has one, while the full report is written under <code>DATA/dumps/</code>, so a forgotten <code>{dump}</code> leaks nothing.
+          </p>
+          <p>
+            Use it to look at everything at one moment. To look at one value while the page goes on rendering, use <a href="index%EF%B9%96tag%EA%A4%B7debug.html">{debug}</a>; to follow the execution of a part of the page, <a href="index%EF%B9%96tag%EA%A4%B7trace.html">{trace}</a>. Like <a href="index%EF%B9%96tag%EA%A4%B7exit.html">{exit}</a> it never returns, so it has no content and no else branch.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Look at the state mid-page
+            </h3>
+            <p class="example-about">
+              The request stops at the dump; the rows above it were processed, the paragraph below never is.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/dump/1-stop-here.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">orders</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$total</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$total</span> gt <span class="hl-num">1000</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">dump</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/orders</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>This paragraph is never rendered when an order above <span class="hl-num">1000</span> is there.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Check a computed value
+            </h3>
+            <p class="example-about">
+              The dump lists the application variables, so a value set just before it can be inspected.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/dump/2-after-set.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$subtotal</span> = <span class="hl-var">$price</span> * <span class="hl-var">$quantity</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$vat</span>      = <span class="hl-var">$subtotal</span> * <span class="hl-num">0.21</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">dump</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Never reached: <span class="hl-brc">{</span><span class="hl-var">$vat</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7debug.html">{debug}</a> <span class="about">Shows values as a collapsible tree in the page, for a local request only, while rendering goes on.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7trace.html">{trace}</a> <span class="about">Switches the execution trace on for just the part of the page it wraps.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7error.html">{error}</a> <span class="about">Raises a PAD error from the template, handled as the configured error action says.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7exit.html">{exit}</a> <span class="about">Ends the request at once, with an empty body - the PAD way to stop instead of PHP's exit.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7dir.html">← {dir}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7echo.html">{echo} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

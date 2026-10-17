@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: showcase/map
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: showcase/map
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=showcase.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=map&amp;file=map%EA%A4%B7forest.pad.html">forest.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=map&amp;file=map%EA%A4%B7population.pad.html">population.pad</a>
+                  </li>
+                  <li class="current">population.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=map&amp;file=map%EA%A4%B7renewables.pad.html">renewables.pad</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  map/population.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Population in millions, 2023, rounded - UN World Population Prospects.<br><br>  </span><span style="color: #0000BB">$population </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #DD0000">'India' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1428</span><span style="color: #007700">, </span><span style="color: #DD0000">'China' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1410</span><span style="color: #007700">, </span><span style="color: #DD0000">'United States' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">340</span><span style="color: #007700">, </span><span style="color: #DD0000">'Indonesia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">277</span><span style="color: #007700">, </span><span style="color: #DD0000">'Pakistan' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">240</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Nigeria' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">224</span><span style="color: #007700">, </span><span style="color: #DD0000">'Brazil' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">216</span><span style="color: #007700">, </span><span style="color: #DD0000">'Bangladesh' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">173</span><span style="color: #007700">, </span><span style="color: #DD0000">'Russia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">144</span><span style="color: #007700">, </span><span style="color: #DD0000">'Mexico' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">128</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Ethiopia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">127</span><span style="color: #007700">, </span><span style="color: #DD0000">'Japan' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">124</span><span style="color: #007700">, </span><span style="color: #DD0000">'Philippines' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">117</span><span style="color: #007700">, </span><span style="color: #DD0000">'Egypt' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">113</span><span style="color: #007700">, </span><span style="color: #DD0000">'DR Congo' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">102</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Vietnam' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">99</span><span style="color: #007700">, </span><span style="color: #DD0000">'Iran' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">89</span><span style="color: #007700">, </span><span style="color: #DD0000">'Turkey' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">85</span><span style="color: #007700">, </span><span style="color: #DD0000">'Germany' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">84</span><span style="color: #007700">, </span><span style="color: #DD0000">'Thailand' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">72</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'United Kingdom' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">68</span><span style="color: #007700">, </span><span style="color: #DD0000">'Tanzania' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">67</span><span style="color: #007700">, </span><span style="color: #DD0000">'France' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">65</span><span style="color: #007700">, </span><span style="color: #DD0000">'South Africa' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">60</span><span style="color: #007700">, </span><span style="color: #DD0000">'Italy' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">59</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Kenya' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">55</span><span style="color: #007700">, </span><span style="color: #DD0000">'Myanmar' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">54</span><span style="color: #007700">, </span><span style="color: #DD0000">'Colombia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">52</span><span style="color: #007700">, </span><span style="color: #DD0000">'South Korea' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">52</span><span style="color: #007700">, </span><span style="color: #DD0000">'Sudan' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">48</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Uganda' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">48</span><span style="color: #007700">, </span><span style="color: #DD0000">'Spain' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">48</span><span style="color: #007700">, </span><span style="color: #DD0000">'Argentina' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">46</span><span style="color: #007700">, </span><span style="color: #DD0000">'Algeria' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">45</span><span style="color: #007700">, </span><span style="color: #DD0000">'Iraq' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">45</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Afghanistan' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42</span><span style="color: #007700">, </span><span style="color: #DD0000">'Canada' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">39</span><span style="color: #007700">, </span><span style="color: #DD0000">'Poland' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">37</span><span style="color: #007700">, </span><span style="color: #DD0000">'Morocco' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">37</span><span style="color: #007700">, </span><span style="color: #DD0000">'Saudi Arabia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">37</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Ukraine' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">37</span><span style="color: #007700">, </span><span style="color: #DD0000">'Angola' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">37</span><span style="color: #007700">, </span><span style="color: #DD0000">'Uzbekistan' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">35</span><span style="color: #007700">, </span><span style="color: #DD0000">'Peru' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">34</span><span style="color: #007700">, </span><span style="color: #DD0000">'Malaysia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">34</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Mozambique' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">34</span><span style="color: #007700">, </span><span style="color: #DD0000">'Ghana' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">34</span><span style="color: #007700">, </span><span style="color: #DD0000">'Yemen' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">34</span><span style="color: #007700">, </span><span style="color: #DD0000">'Nepal' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">31</span><span style="color: #007700">, </span><span style="color: #DD0000">'Venezuela' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">28</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Madagascar' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">30</span><span style="color: #007700">, </span><span style="color: #DD0000">'Cameroon' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #DD0000">'Australia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">26</span><span style="color: #007700">, </span><span style="color: #DD0000">'North Korea' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">26</span><span style="color: #007700">, </span><span style="color: #DD0000">'Niger' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">27</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Mali' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">23</span><span style="color: #007700">, </span><span style="color: #DD0000">'Kazakhstan' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20</span><span style="color: #007700">, </span><span style="color: #DD0000">'Chile' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20</span><span style="color: #007700">, </span><span style="color: #DD0000">'Romania' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">19</span><span style="color: #007700">, </span><span style="color: #DD0000">'Netherlands' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Ecuador' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #DD0000">'Guatemala' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #DD0000">'Zambia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">21</span><span style="color: #007700">, </span><span style="color: #DD0000">'Chad' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #DD0000">'Somalia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Sweden' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #DD0000">'Norway' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'Finland' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">, </span><span style="color: #DD0000">'New Zealand' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'Mongolia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Bolivia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">, </span><span style="color: #DD0000">'Paraguay' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">, </span><span style="color: #DD0000">'Libya' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">, </span><span style="color: #DD0000">'Mauritania' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'Namibia' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'Botswana' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'Greenland' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.06</span><span style="color: #007700">, </span><span style="color: #DD0000">'Iceland' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.4</span><span style="color: #007700">, </span><span style="color: #DD0000">'Papua New Guinea' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #DD0000">'Cuba' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">11 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$country </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$millions </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$population </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'country' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$country</span><span style="color: #007700">, </span><span style="color: #DD0000">'millions' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$millions </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - optionRows
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - optionRows
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: tags - Page: options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $optionRows </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByOption </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by option<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by option&lt;/h1&gt;<br>&lt;p class="lead"&gt;Every option a tag takes of its own, and what it does there. The handling<br>options every tag takes - &lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;,<br>&lt;code&gt;rows&lt;/code&gt;, &lt;code&gt;group&lt;/code&gt; and the rest - are not listed here.&lt;/p&gt;<br><br>&lt;table class="options-table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;Option&lt;/th&gt;&lt;th scope="col"&gt;Tag&lt;/th&gt;&lt;th scope="col"&gt;Meaning&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>  <b>{<font color="blue">optionRows</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>tags</font><font color="red"></font>}</b>&lt;td class="opt" rowspan="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>option</font>}</b>&lt;/td&gt;<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>tags</font><font color="red"></font>}</b><br>      &lt;td&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt;&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">!</font>meaning</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">optionRows</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb99371e67931e37f89ae92488c5a4bf1"></div>
+                        <script>
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1 = new XMLHttpRequest();
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1.onreadystatechange=function() {
+                        if (padAjaxb99371e67931e37f89ae92488c5a4bf1.readyState === 4) {
+                        if (padAjaxb99371e67931e37f89ae92488c5a4bf1.status === 200) {
+                        document.getElementById("padAjaxb99371e67931e37f89ae92488c5a4bf1").innerHTML=padAjaxb99371e67931e37f89ae92488c5a4bf1.responseText;
+                        } else {
+                        document.getElementById("padAjaxb99371e67931e37f89ae92488c5a4bf1").innerHTML=padAjaxb99371e67931e37f89ae92488c5a4bf1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1.open("GET","http://localhost/pad/tags/?options&padInclude",true);
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

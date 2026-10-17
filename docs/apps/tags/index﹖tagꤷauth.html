@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {auth} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#access">Users and access</a><span>/</span><span aria-current="page">auth</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>auth<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content when a user is logged in, with the user's row as its data, and its else half for a guest.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#access">Users and access</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">auth</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/auth</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">auth</span><span class="hl-brc">}</span> Hello <span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/auth</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">auth</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/auth</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{auth}</code> renders its content once when a user is logged in to this application - by <code>padLogin ( $row )</code> or <code>padAttempt ( ... )</code> - with the user's row as its data: every field of it is a <code>{$field}</code> inside, <code>{$name}</code>, <code>{$email}</code>. The password and token fields were never kept, so they are not there.
+          </p>
+          <p>
+            For a guest the part after its own <code>{else}</code> renders, or the <code>@else@</code> half. The tag owns that <code>{else}</code>: an <a href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> around it keeps its own. <a href="index%EF%B9%96tag%EA%A4%B7guest.html">{guest}</a> is the reverse and hands over no data.
+          </p>
+          <p>
+            Reading the user never starts a session the visitor did not bring - a guest's page makes no session - but a request that brings the remember-me cookie is logged in here, the first time anything asks. <code>padUser ( 'name' )</code>, <code>padUserId ()</code> and <code>padAuthCheck ()</code> ask the same from PHP.
+          </p>
+          <p>
+            The examples run without a login, so the runnable one shows the guest's half; the other is shown, not run.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Nobody logged in
+            </h3>
+            <p class="example-about">
+              Without a padLogin the else half renders - the user's row is not there.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/auth/1-guest.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">auth</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Hello <span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span> - <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#logout"</span><span class="hl-htm">&gt;</span>log out<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#login"</span><span class="hl-htm">&gt;</span>Log in<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> to see your orders.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/auth</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7auth%EA%A4%B71-guest.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <a href="#login">Log in</a> to see your orders.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The user's row as data
+            </h3>
+            <p class="example-about">
+              After padLogin every field of the row is a field inside - the password and token fields were never kept.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/auth/2-user.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-com">{# login.php: if ( padAttempt ( $password, $row ['password'], $row ) ) padRedirectIntended (); #}</span>
+<span class="hl-brc">{</span><span class="hl-tag">auth</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Hello <span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span> (<span class="hl-brc">{</span><span class="hl-var">$email</span><span class="hl-brc">}</span>) - <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?logout"</span><span class="hl-htm">&gt;</span>log out<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$role</span> eq <span class="hl-str">'admin'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?admin"</span><span class="hl-htm">&gt;</span>Administration<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?login"</span><span class="hl-htm">&gt;</span>Log in<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/auth</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7guest.html">{guest}</a> <span class="about">Renders its content when nobody is logged in, and its else half for a user.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7can.html">{can}</a> <span class="about">Renders its content when the user may do something a gate decides, and its else half when not.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7cannot.html">{cannot}</a> <span class="about">Renders its content when the user may not do something a gate decides - can turned round.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7feature.html">{feature}</a> <span class="about">Renders its content while a feature flag is on for this visitor, and its else half while it is off.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">← {attrs}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7avatar.html">{avatar} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

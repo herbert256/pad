@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {action} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#sequences">Sequences</a><span>/</span><span aria-current="page">action</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>action<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Runs one sequence action - reverse, sum, first and the rest - over a store, a range or a type, and iterates the result.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#sequences">Sequences</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">action</span> store, reverse<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/action</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">action</span> reverse, store<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/action</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">action</span> store, <span class="hl-opt">first</span>=<span class="hl-num">2</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/action</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">action</span> sum, <span class="hl-str">'31..40'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/action</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">action:reverse</span> store<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/action:reverse</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">action:shift</span> store, <span class="hl-num">2</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/action:shift</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>values</code>
+            </dt>
+            <dd>
+              A stored sequence named bare, a range <code>'31..40'</code>, or a sequence type with its options (<code>prime, rows=5</code>).
+            </dd>
+            <dt>
+              <code>action</code>
+            </dt>
+            <dd>
+              The action: <code>reverse</code>, <code>sort</code>, <code>shuffle</code>, <code>sum</code>, <code>average</code>, <code>median</code>, <code>count</code>, <code>dedup</code>, <code>first=n</code>, <code>last=n</code>, <code>shift=n</code>, <code>pop=n</code>, ... The two may come in either order; in the prefix form <code>{action:shift store, 2}</code> the tag names the action and a bare number is its value.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{action primes, reverse}</code> ... <code>{/action}</code> applies one of the sequence actions to a list and iterates what comes out, the current value in <code>{$sequence}</code>. The list is usually a store pushed earlier, but a range (<code>{action sum, '31..40'}</code>, 355) or a type with its options (<code>{action:reverse prime, rows=5}</code>, <code>11 7 5 3 2</code>) works too. Store and action may be written in either order, and the prefix form names the action in the tag: <code>{action:reverse primes}</code>, <code>{action:shift primes, 2}</code>.
+          </p>
+          <p>
+            The actions are those of <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a>: orderings (<code>reverse</code>, <code>sort</code>, <code>shuffle</code>), selections (<code>first=n</code>, <code>last=n</code>, <code>element</code>, <code>slice</code>), aggregates that leave a single value (<code>sum</code>, <code>average</code>, <code>median</code>, <code>count</code>, <code>minimum</code>, <code>maximum</code>) and <code>dedup</code>. An aggregate's value is also there under the action's name - <code>{$sum}</code>.
+          </p>
+          <p>
+            The store is read, not rewritten: after <code>{action primes, reverse}</code> the store still holds its original order - except for <code>shift</code> and <code>pop</code>, which take values out of it. To transform a store in place, use <a href="index%EF%B9%96tag%EA%A4%B7resume.html">{resume}</a>; to apply several actions and plays to a store at once, <a href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              An action over a store
+            </h3>
+            <p class="example-about">
+              Reverse, the first two and the sum of a stored list - the store keeps its order.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/action/1-store.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..6'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'six'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>reverse: <span class="hl-brc">{</span><span class="hl-tag">action</span> six, reverse<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/action</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-opt">first</span>=<span class="hl-num">2</span>: <span class="hl-brc">{</span><span class="hl-tag">action</span> six, <span class="hl-opt">first</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/action</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sum:     <span class="hl-brc">{</span><span class="hl-tag">action:sum</span> six<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sum</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/action:sum</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>store:   <span class="hl-brc">{</span><span class="hl-tag">pull</span> six<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7action%EA%A4%B71-store.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    reverse: 6 5 4 3 2 1
+                  </p>
+                  <p>
+                    first=2: 1 2
+                  </p>
+                  <p>
+                    sum: 21
+                  </p>
+                  <p>
+                    store: 1 2 3 4 5 6
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Taking from the front
+            </h3>
+            <p class="example-about">
+              shift takes values out of the store - each shift starts where the last one ended.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/action/2-shift.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..7'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'line'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">action:shift</span> line, <span class="hl-num">3</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/action:shift</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">action:shift</span> line, <span class="hl-num">3</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/action:shift</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Left: <span class="hl-brc">{</span><span class="hl-tag">pull</span> line<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7action%EA%A4%B72-shift.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    1 2 3
+                  </p>
+                  <p>
+                    4 5 6
+                  </p>
+                  <p>
+                    Left: 7
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a> <span class="about">Iterates a stored sequence, optionally through plays and actions.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7resume.html">{resume}</a> <span class="about">Transforms the sequence pushed last, in place, through an action or a play.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7accordion.html">← {accordion}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -69,6 +69,90 @@
                         }
                         padAjax0b757028a794db771689c1e136f67564.open("GET","http://localhost/pad/regression/output_download/?index&padInclude",true);
                         padAjax0b757028a794db771689c1e136f67564.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/output_download - Page: late<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">late.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">late.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of lateread: a download that fails once it has gone out - a shutdown<br>  // function warns, and another raises a PAD error.<br><br>  </span><span style="color: #0000BB">register_shutdown_function </span><span style="color: #007700">( function () { </span><span style="color: #0000BB">trigger_error </span><span style="color: #007700">( </span><span style="color: #DD0000">'warned after the download went out'</span><span style="color: #007700">, </span><span style="color: #0000BB">E_USER_WARNING </span><span style="color: #007700">); } );<br>  </span><span style="color: #0000BB">register_shutdown_function </span><span style="color: #007700">( function () { </span><span style="color: #0000BB">padError </span><span style="color: #007700">( </span><span style="color: #DD0000">'a PAD error after the download went out' </span><span style="color: #007700">); } );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">the download</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3b88f7d351b2ae8ceb889b2f9322fb20"></div>
+                        <script>
+                        padAjax3b88f7d351b2ae8ceb889b2f9322fb20 = new XMLHttpRequest();
+                        padAjax3b88f7d351b2ae8ceb889b2f9322fb20.onreadystatechange=function() {
+                        if (padAjax3b88f7d351b2ae8ceb889b2f9322fb20.readyState === 4) {
+                        if (padAjax3b88f7d351b2ae8ceb889b2f9322fb20.status === 200) {
+                        document.getElementById("padAjax3b88f7d351b2ae8ceb889b2f9322fb20").innerHTML=padAjax3b88f7d351b2ae8ceb889b2f9322fb20.responseText;
+                        } else {
+                        document.getElementById("padAjax3b88f7d351b2ae8ceb889b2f9322fb20").innerHTML=padAjax3b88f7d351b2ae8ceb889b2f9322fb20.statusText;
+                        }
+                        }
+                        }
+                        padAjax3b88f7d351b2ae8ceb889b2f9322fb20.open("GET","http://localhost/pad/regression/output_download/?late&padInclude",true);
+                        padAjax3b88f7d351b2ae8ceb889b2f9322fb20.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/output_download - Page: lateread<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lateread.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lateread.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A download ends where its Content-Length says: the writer sent the body and never said<br>  // it had (padSent) nor turned PHP's display of errors off, as the web writer does, so an<br>  // error after it - a shutdown function's warning, a late padError - was written behind<br>  // the declared length. The download is read off the socket.<br><br>  </span><span style="color: #0000BB">$url  </span><span style="color: #007700">= </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/output_download/?late&amp;padInclude' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$sock </span><span style="color: #007700">= </span><span style="color: #0000BB">fsockopen </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">], </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'port'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">80</span><span style="color: #007700">, </span><span style="color: #0000BB">$errno</span><span style="color: #007700">, </span><span style="color: #0000BB">$errstr</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">fwrite </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock</span><span style="color: #007700">, </span><span style="color: #DD0000">"GET </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">]}</span><span style="color: #DD0000">?</span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'query'</span><span style="color: #007700">]}</span><span style="color: #DD0000"> HTTP/1.1\r\nHost: </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">]}</span><span style="color: #DD0000">\r\nConnection: close\r\n\r\n" </span><span style="color: #007700">);<br><br>  [ </span><span style="color: #0000BB">$head</span><span style="color: #007700">, </span><span style="color: #0000BB">$body </span><span style="color: #007700">] = </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">"\r\n\r\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">stream_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">), </span><span style="color: #0000BB">2 </span><span style="color: #007700">) + [ </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">fclose </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^Content-Length:\s*(\d+)/mi'</span><span style="color: #007700">, </span><span style="color: #0000BB">$head</span><span style="color: #007700">, </span><span style="color: #0000BB">$length </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$lateEnds </span><span style="color: #007700">= ( isset ( </span><span style="color: #0000BB">$length </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) and </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">$body </span><span style="color: #007700">) == </span><span style="color: #0000BB">$length </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;the download ends where its Content-Length says: <b>{<font color="green"><font color="red">$</font>lateEnds</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827"></div>
+                        <script>
+                        padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827 = new XMLHttpRequest();
+                        padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.onreadystatechange=function() {
+                        if (padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.readyState === 4) {
+                        if (padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.status === 200) {
+                        document.getElementById("padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827").innerHTML=padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.responseText;
+                        } else {
+                        document.getElementById("padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827").innerHTML=padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.open("GET","http://localhost/pad/regression/output_download/?lateread&padInclude",true);
+                        padAjaxfc8a68d4cbe0cf222810d8e8e2bfb827.send();
                         </script>
                       </td>
                     </tr>
@@ -129,7 +213,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

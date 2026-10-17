@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -154,6 +154,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: functions/localDate_reads_a_date_in_text_in_the_application_timezone<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/localDate_reads_a_date_in_text_in_the_application_timezone.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/localDate_reads_a_date_in_text_in_the_application_timezone.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A date in text is read in the application's timezone, the one localDate writes it in:<br>  // read with strtotime in the zone the request started with, 2023-11-15 01:00 came out as<br>  // another hour, and with a zone west of that one as the day before.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'Pacific/Kiritimati'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$day  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2023-11-15'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$time </span><span style="color: #007700">= </span><span style="color: #DD0000">'2023-11-15 01:00'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="green">$day</font> <font color="black">|</font> <font color="blue">localDate</font>}</b>][<b>{<font color="green">$time</font> <font color="black">|</font> <font color="purple">localDate('y-MM-dd HH</font><font color="black">:</font><font color="blue">mm')</font>}</b>][<b>{<font color="green">$time</font> <font color="black">|</font> <font color="blue">localDate('short', 'short', 'nl')</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2015b5cf2a4c7d37cd37b096c89224ea"></div>
+                        <script>
+                        padAjax2015b5cf2a4c7d37cd37b096c89224ea = new XMLHttpRequest();
+                        padAjax2015b5cf2a4c7d37cd37b096c89224ea.onreadystatechange=function() {
+                        if (padAjax2015b5cf2a4c7d37cd37b096c89224ea.readyState === 4) {
+                        if (padAjax2015b5cf2a4c7d37cd37b096c89224ea.status === 200) {
+                        document.getElementById("padAjax2015b5cf2a4c7d37cd37b096c89224ea").innerHTML=padAjax2015b5cf2a4c7d37cd37b096c89224ea.responseText;
+                        } else {
+                        document.getElementById("padAjax2015b5cf2a4c7d37cd37b096c89224ea").innerHTML=padAjax2015b5cf2a4c7d37cd37b096c89224ea.statusText;
+                        }
+                        }
+                        }
+                        padAjax2015b5cf2a4c7d37cd37b096c89224ea.open("GET","http://localhost/pad/regression/framework/?functions/localDate_reads_a_date_in_text_in_the_application_timezone&padInclude",true);
+                        padAjax2015b5cf2a4c7d37cd37b096c89224ea.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: functions/localDate_reads_an_empty_style_as_the_default_one<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -234,6 +276,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: functions/local_date_writes_the_timezone_the_page_set<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/local_date_writes_the_timezone_the_page_set.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/local_date_writes_the_timezone_the_page_set.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page sets its own timezone; 1700000000 is 22:13 UTC on 14 November 2023.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'Asia/Tokyo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$t           </span><span style="color: #007700">= </span><span style="color: #0000BB">1700000000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green">$t</font> <font color="black">|</font> <font color="purple">localDate('yyyy-MM-dd HH</font><font color="black">:</font><font color="blue">mm')</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax79f15d9ccc0053422267cbd742d0883f"></div>
+                        <script>
+                        padAjax79f15d9ccc0053422267cbd742d0883f = new XMLHttpRequest();
+                        padAjax79f15d9ccc0053422267cbd742d0883f.onreadystatechange=function() {
+                        if (padAjax79f15d9ccc0053422267cbd742d0883f.readyState === 4) {
+                        if (padAjax79f15d9ccc0053422267cbd742d0883f.status === 200) {
+                        document.getElementById("padAjax79f15d9ccc0053422267cbd742d0883f").innerHTML=padAjax79f15d9ccc0053422267cbd742d0883f.responseText;
+                        } else {
+                        document.getElementById("padAjax79f15d9ccc0053422267cbd742d0883f").innerHTML=padAjax79f15d9ccc0053422267cbd742d0883f.statusText;
+                        }
+                        }
+                        }
+                        padAjax79f15d9ccc0053422267cbd742d0883f.open("GET","http://localhost/pad/regression/framework/?functions/local_date_writes_the_timezone_the_page_set&padInclude",true);
+                        padAjax79f15d9ccc0053422267cbd742d0883f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -275,6 +359,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: variables/a_date_object_is_a_value_for_tags_and_pipes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_date_object_is_a_value_for_tags_and_pipes.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_date_object_is_a_value_for_tags_and_pipes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padNowFreeze </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-05 03:04:05 UTC' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$when </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-02 03:04:05'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$str  </span><span style="color: #007700">= new class { function </span><span style="color: #0000BB">__toString </span><span style="color: #007700">() { return </span><span style="color: #DD0000">'stringy'</span><span style="color: #007700">; } };<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>when</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font>)</font>}</b>|<b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">ago</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when <font color="black">|</font> ago</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>when <font color="black">|</font> localDate(<font color="black">'</font>y-MM-dd<font color="black">'</font>)</font>}</b>|<b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>when</font>}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>str</font>}</b>|<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>str eq <font color="black">'</font>stringy<font color="black">'</font></font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbd92c03a558a08beec01deef093967ad"></div>
+                        <script>
+                        padAjaxbd92c03a558a08beec01deef093967ad = new XMLHttpRequest();
+                        padAjaxbd92c03a558a08beec01deef093967ad.onreadystatechange=function() {
+                        if (padAjaxbd92c03a558a08beec01deef093967ad.readyState === 4) {
+                        if (padAjaxbd92c03a558a08beec01deef093967ad.status === 200) {
+                        document.getElementById("padAjaxbd92c03a558a08beec01deef093967ad").innerHTML=padAjaxbd92c03a558a08beec01deef093967ad.responseText;
+                        } else {
+                        document.getElementById("padAjaxbd92c03a558a08beec01deef093967ad").innerHTML=padAjaxbd92c03a558a08beec01deef093967ad.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbd92c03a558a08beec01deef093967ad.open("GET","http://localhost/pad/regression/framework/?variables/a_date_object_is_a_value_for_tags_and_pipes&padInclude",true);
+                        padAjaxbd92c03a558a08beec01deef093967ad.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -289,7 +415,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

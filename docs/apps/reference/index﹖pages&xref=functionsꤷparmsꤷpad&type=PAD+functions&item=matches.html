@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -114,6 +114,46 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: expressions/a_not_between_a_value_and_its_test_denies_the_test<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_not_between_a_value_and_its_test_denies_the_test.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b>[{"s":"a"},{"s":"b"},{"s":"c"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">rows </font><font color="red">where=<font color="black">'</font><font color="red">$</font>s not in ("a"<font color="black">,</font> "b")<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>|<b>{<font color="blue">rows </font><font color="red">where=<font color="black">'</font><font color="red">$</font>s not like "a<font color="black">%</font>"<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>|<b>{<font color="blue">if </font><font color="red">5 not in (5<font color="black">,</font> 6)</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>|<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>s ne <font color="black">'</font>a<font color="black">'</font> and <font color="red">$</font>s not in (<font color="black">'</font>b<font color="black">'</font>)</font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>|<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>s not matches <font color="black">'</font>/^[ab]<font color="red">$</font>/<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>|<b>{<font color="blue">if </font><font color="red">5 not range (1<font color="black">,</font> 4)</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>|<b>{<font color="blue">if </font><font color="red">not 5 in (1)</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxebf26af739f05b54980c8c09d046ed48"></div>
+                        <script>
+                        padAjaxebf26af739f05b54980c8c09d046ed48 = new XMLHttpRequest();
+                        padAjaxebf26af739f05b54980c8c09d046ed48.onreadystatechange=function() {
+                        if (padAjaxebf26af739f05b54980c8c09d046ed48.readyState === 4) {
+                        if (padAjaxebf26af739f05b54980c8c09d046ed48.status === 200) {
+                        document.getElementById("padAjaxebf26af739f05b54980c8c09d046ed48").innerHTML=padAjaxebf26af739f05b54980c8c09d046ed48.responseText;
+                        } else {
+                        document.getElementById("padAjaxebf26af739f05b54980c8c09d046ed48").innerHTML=padAjaxebf26af739f05b54980c8c09d046ed48.statusText;
+                        }
+                        }
+                        }
+                        padAjaxebf26af739f05b54980c8c09d046ed48.open("GET","http://localhost/pad/regression/framework/?expressions/a_not_between_a_value_and_its_test_denies_the_test&padInclude",true);
+                        padAjaxebf26af739f05b54980c8c09d046ed48.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: expressions/matches_tests_a_regular_expression<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -169,7 +209,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

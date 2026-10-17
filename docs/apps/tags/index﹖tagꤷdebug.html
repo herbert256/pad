@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {debug} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#debug">Debugging and errors</a><span>/</span><span aria-current="page">debug</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>debug<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Shows values as a collapsible tree in the page, for a local request only, while rendering goes on.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#debug">Debugging and errors</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$value</span>, <span class="hl-var">$other</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-opt">label</span>=<span class="hl-var">$value</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              Any number of items. A <code>$name</code> shows that field or array as it is - a missing one is shown as <em>missing</em>, not an error; anything else is evaluated as an expression. <code>label=expression</code> gives the box a name of its own. Without items: every field visible where the tag stands.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{debug $order}</code> writes the value where the tag stands, as a <code>&lt;details&gt;</code> box with its type and size in the summary - <code>array(3)</code>, <code>string(12)</code>, <code>int</code> - and nested arrays as a tree you can fold open. Unlike <a href="index%EF%B9%96tag%EA%A4%B7dump.html">{dump}</a> the request goes on: the rest of the page renders as usual, so several <code>{debug}</code> tags can follow a value through a loop.
+          </p>
+          <p>
+            The items are read raw, the way <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> reads them. A plain <code>$name</code> is looked up as a field or a page array, and when it does not exist the box says <em>missing</em> instead of ending the request under the strict syntax check. Any other item - <code>$price * 2</code>, <code>count@items</code> - is evaluated as an expression, and <code>total=$price * 2</code> puts the label <code>total</code> on the box. Values whose name looks like a credential (passwords, tokens, keys) show redacted, as in the debug toolbar.
+          </p>
+          <p>
+            <code>{debug}</code> without items shows two boxes: <em>fields here</em> - the rows of the enclosing levels, innermost first - and <em>application variables</em>, every global that is not the engine's own.
+          </p>
+          <p>
+            Only a local request gets anything: the command line, or a loopback request with nothing forwarded. Every other visitor gets an empty string, and <code>$padDiagnostics = FALSE</code> switches it off for every web request. A page or a <a href="index%EF%B9%96tag%EA%A4%B7cache.html">{cache}</a> section holding a debug box is never stored in the page or fragment cache, so no later visitor is served what a local request was shown.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              One value
+            </h3>
+            <p class="example-about">
+              The order array shown as a tree above the table; the page renders on below it.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/debug/1-one-value.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$order</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">order</span><span class="hl-brc">}</span><span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$sku</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$qty</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/order</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Inside a loop
+            </h3>
+            <p class="example-about">
+              Without items the tag shows the fields of the current row and the application variables.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/debug/2-inside-a-loop.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">orders</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$total</span> gt <span class="hl-num">1000</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">debug</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/orders</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Expressions and labels
+            </h3>
+            <p class="example-about">
+              Any expression is evaluated; name=expression puts a label on its box.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/debug/3-labels.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$cart</span>, <span class="hl-opt">vat</span>=<span class="hl-var">$total</span> * <span class="hl-num">0.21</span>, <span class="hl-var">$typo</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7dump.html">{dump}</a> <span class="about">Stops the request and shows the debug dump of the engine's state at that point.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7trace.html">{trace}</a> <span class="about">Switches the execution trace on for just the part of the page it wraps.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonview.html">{jsonview}</a> <span class="about">A JSON value or a PHP array as a tree that folds open and shut, coloured by type.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7datatable.html">← {datatable}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7decrement.html">{decrement} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

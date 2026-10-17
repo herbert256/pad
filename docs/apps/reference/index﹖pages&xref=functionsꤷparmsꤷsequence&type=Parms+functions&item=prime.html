@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,46 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_term_position_must_be_a_whole_number_from_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_term_position_must_be_a_whole_number_from_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(0)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb2432696613b5f7eb45b11c4ff34218d"></div>
+                        <script>
+                        padAjaxb2432696613b5f7eb45b11c4ff34218d = new XMLHttpRequest();
+                        padAjaxb2432696613b5f7eb45b11c4ff34218d.onreadystatechange=function() {
+                        if (padAjaxb2432696613b5f7eb45b11c4ff34218d.readyState === 4) {
+                        if (padAjaxb2432696613b5f7eb45b11c4ff34218d.status === 200) {
+                        document.getElementById("padAjaxb2432696613b5f7eb45b11c4ff34218d").innerHTML=padAjaxb2432696613b5f7eb45b11c4ff34218d.responseText;
+                        } else {
+                        document.getElementById("padAjaxb2432696613b5f7eb45b11c4ff34218d").innerHTML=padAjaxb2432696613b5f7eb45b11c4ff34218d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb2432696613b5f7eb45b11c4ff34218d.open("GET","http://localhost/pad/regression/errors/?syntax/a_term_position_must_be_a_whole_number_from_1&padInclude",true);
+                        padAjaxb2432696613b5f7eb45b11c4ff34218d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: expressions/any_type_answers_the_same_way<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -67,6 +107,48 @@
                         }
                         padAjax76b0876d856bf28203660416ac233772.open("GET","http://localhost/pad/regression/framework/?expressions/any_type_answers_the_same_way&padInclude",true);
                         padAjax76b0876d856bf28203660416ac233772.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: lenient/a_term_position_below_1_or_with_a_fraction_has_no_term<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">lenient/a_term_position_below_1_or_with_a_fraction_has_no_term.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lenient/a_term_position_below_1_or_with_a_fraction_has_no_term.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(0)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>fibonacci(-3)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>fibonacci(2.7)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(1)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf9f0ec43c7b4011115d91b368ca64273"></div>
+                        <script>
+                        padAjaxf9f0ec43c7b4011115d91b368ca64273 = new XMLHttpRequest();
+                        padAjaxf9f0ec43c7b4011115d91b368ca64273.onreadystatechange=function() {
+                        if (padAjaxf9f0ec43c7b4011115d91b368ca64273.readyState === 4) {
+                        if (padAjaxf9f0ec43c7b4011115d91b368ca64273.status === 200) {
+                        document.getElementById("padAjaxf9f0ec43c7b4011115d91b368ca64273").innerHTML=padAjaxf9f0ec43c7b4011115d91b368ca64273.responseText;
+                        } else {
+                        document.getElementById("padAjaxf9f0ec43c7b4011115d91b368ca64273").innerHTML=padAjaxf9f0ec43c7b4011115d91b368ca64273.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf9f0ec43c7b4011115d91b368ca64273.open("GET","http://localhost/pad/regression/framework/?lenient/a_term_position_below_1_or_with_a_fraction_has_no_term&padInclude",true);
+                        padAjaxf9f0ec43c7b4011115d91b368ca64273.send();
                         </script>
                       </td>
                     </tr>
@@ -125,7 +207,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

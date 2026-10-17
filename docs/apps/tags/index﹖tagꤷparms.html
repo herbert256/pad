@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {parms} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#layout">Layouts and components</a><span>/</span><span aria-current="page">parms</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>parms<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Declares the parameters of a custom tag, with defaults, at the top of its template.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#layout">Layouts and components</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">parms</span> name<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">subtitle</span>=<span class="hl-str">''</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>names</code>
+            </dt>
+            <dd>
+              The parameters, separated by commas: a name alone is required, <code>name=default</code> is optional with that default.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{parms}</code> stands at the top of a custom tag's template - a <code>.pad</code> file in <code>_tags/</code> or <code>_common</code> - and declares which parameters the tag takes. It prints nothing.
+          </p>
+          <ul>
+            <li>A name alone is required: a caller that leaves it out gets an error - <q>the {card} needs the parameter title=</q>.
+            </li>
+            <li>
+              <code>name=default</code> is optional: what the caller left out is filled in with the default, and reads as <code>{#name}</code> exactly like a given parameter.
+            </li>
+          </ul>
+          <p>
+            Once a tag declares its parameters, the strict check also reports a parameter that the caller gives but the tag does not declare - <q>the tag {card} has no parameter 'titel' - it declares title, tone</q> - so a typo at the call is caught instead of silently ignored. The items are read raw, as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html"><code>{attrs}</code></a> reads them, so a default may be any expression.
+          </p>
+          <p>
+            A <code>{parms}</code> outside any custom tag's template is an error under the strict check. The examples use the application's tag <code>_tags/parmsBadge.pad</code>, which starts with <code>{parms label, tone='info', count=0}</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Declared parameters
+            </h3>
+            <p class="example-about">
+              The badge tag declares label (required), tone and count (with defaults); the callers leave out what they like.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/parms/1-declare.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'New'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Inbox'</span>, <span class="hl-opt">count</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Errors'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'danger'</span>, <span class="hl-opt">count</span>=<span class="hl-num">12</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7parms%EA%A4%B71-declare.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <span style="display:inline-block; padding:.1em .6em; border-radius:1em; border:1px solid currentColor" data-tone="info">New</span> <span style="display:inline-block; padding:.1em .6em; border-radius:1em; border:1px solid currentColor" data-tone="info">Inbox (3)</span> <span style="display:inline-block; padding:.1em .6em; border-radius:1em; border:1px solid currentColor" data-tone="danger">Errors (12)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A parameter the tag does not declare
+            </h3>
+            <p class="example-about">
+              Under the strict check a misspelled parameter is an error - here cuont, which the badge does not declare.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/parms/2-typo.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Inbox'</span>, <span class="hl-opt">cuont</span>=<span class="hl-num">3</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7slot.html">{slot}</a> <span class="about">A named place in a custom tag's template - and the fill a caller gives it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7define.html">{define}</a> <span class="about">Writes a custom tag in the template itself - what a _tags/name.pad file is, without the file.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7macro.html">{macro}</a> <span class="about">A template function: declared parameters, given in order or by name, read as fields inside its body.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7shadow.html">{shadow}</a> <span class="about">The shadow root of a custom element, rendered on the server as declarative shadow DOM.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> <span class="about">Writes HTML attributes from values - quoted and escaped, a true boolean attribute bare, a false one left out.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7parent.html">← {parent}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7pdf.html">{pdf} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

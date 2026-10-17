@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {nocache} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">nocache</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>nocache<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Marks a part of a cached page or {cache} section that renders again on every request, the hit included.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">cache</span> <span class="hl-str">'name'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">300</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/cache</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            Where nothing caches, <code>{nocache}</code> is invisible: its content renders as any content does. It matters inside a <a href="index%EF%B9%96tag%EA%A4%B7cache.html"><code>{cache}</code></a> section (or a tag's <code>cache=</code> option) that is rendering, and on a page the page cache may keep. There the part is stored as its source rather than as its output; a hit hands back the stored rendering with each part rendered again for this request.
+          </p>
+          <p>
+            A part inside a loop gets the fields of its rows back as they were when the section was stored, so <code>{topProducts}...{nocache}{stock $id}{/nocache}...</code> looks up the live stock of each cached product. In a section the part renders where the section stands, with the page's fields.
+          </p>
+          <p>
+            A page-cache hit runs no PHP - not the page's, nor an <code>_inits.php</code> - so a part there sees what a request has without it: request and session values, the configuration, the <code>_lib</code> functions and the application's tags. A page-cache entry with parts is never answered with a 304 from the entry alone, nor does a hit renew it.
+          </p>
+          <p>
+            A <a href="index%EF%B9%96tag%EA%A4%B7form.html"><code>{form}</code></a>'s CSRF token or a <a href="index%EF%B9%96tag%EA%A4%B7nonce.html"><code>{nonce}</code></a> inside a part no longer keeps a section out of the fragment cache: the part renders for each visitor. <code>{nocache}</code> takes no parameter, and is always a pair - a single <code>{nocache}</code> is an error under the strict check.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A live part in a cached section
+            </h3>
+            <p class="example-about">
+              The list is kept five minutes; the greeting renders on every request - try ?examples/nocache/1-section&amp;visitor=Ann.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/nocache/1-section.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">cache</span> <span class="hl-str">'nocacheDemo'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">300</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span>Hello, <span class="hl-brc">{</span><span class="hl-var">$nocacheVisitor</span><span class="hl-brc">}</span>!<span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">nocacheProducts</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/nocacheProducts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/cache</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/nocache/1-section.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$nocacheVisitor</span>  <span class="hl-pun">=</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">'visitor'</span><span class="hl-pun">,</span> <span class="hl-str">'guest'</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+
+  <span class="hl-var">$nocacheProducts</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Kettle'</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Toaster'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Blender'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7nocache%EA%A4%B71-section.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Hello, guest!
+                  </p>
+                  <ul>
+                    <li>Kettle
+                    </li>
+                    <li>Toaster
+                    </li>
+                    <li>Blender
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Per row of a cached loop
+            </h3>
+            <p class="example-about">
+              Each part gets the fields of its row back, so the stock is looked up live for every cached product.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/nocache/2-rows.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">cache</span> <span class="hl-str">'top-products'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">300</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">topProducts</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span>- <span class="hl-brc">{</span><span class="hl-tag">stock</span> <span class="hl-var">$id</span><span class="hl-brc">}</span> left<span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/topProducts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/cache</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              In a page the page cache keeps
+            </h3>
+            <p class="example-about">
+              With $padCache on, the page is served from the cache; the time is rendered again on every hit, without running any PHP.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/nocache/3-page-cache.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;h1</span><span class="hl-htm">&gt;</span>Our products<span class="hl-htm">&lt;/h1</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">products</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/products</span><span class="hl-brc">}</span>
+
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Served at <span class="hl-brc">{</span><span class="hl-tag">nocache</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">php:date</span> <span class="hl-str">'H:i:s'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/nocache</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7cache.html">{cache}</a> <span class="about">Keeps a named section of the page rendered for a number of seconds - the fragment cache.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> <span class="about">A named part of the page that a request can ask for alone - for htmx and ajax swaps.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7csrf.html">{csrf}</a> <span class="about">The hidden form field holding the CSRF token of the visitor's session, or the bare token.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7nonce.html">{nonce}</a> <span class="about">This request's Content-Security-Policy nonce, for a script or style the policy lets run.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7modal.html">← {modal}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7nonce.html">{nonce} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -152,6 +152,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: tags/a_callback_runs_no_row_phase_for_the_else_branch<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_callback_runs_no_row_phase_for_the_else_branch.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_callback_runs_no_row_phase_for_the_else_branch.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An empty level and one its where= emptied show their @else@: that branch is no row, so<br>  // the callback's row phase does not run for it - init and exit do. The row phase read the<br>  // row's fields and ended the request ("Undefined variable $n").<br><br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">e </font><font color="red">callback=<font color="black">'</font>rowfield<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">e</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sumRows</font>}</b> <b>{<font color="blue">xs </font><font color="red">callback=<font color="black">'</font>before<font color="black">'</font><font color="black">,</font> before<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>n gt 9<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sum</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax22602f73c13e1c8f3d674abc7f692c3b"></div>
+                        <script>
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b = new XMLHttpRequest();
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.onreadystatechange=function() {
+                        if (padAjax22602f73c13e1c8f3d674abc7f692c3b.readyState === 4) {
+                        if (padAjax22602f73c13e1c8f3d674abc7f692c3b.status === 200) {
+                        document.getElementById("padAjax22602f73c13e1c8f3d674abc7f692c3b").innerHTML=padAjax22602f73c13e1c8f3d674abc7f692c3b.responseText;
+                        } else {
+                        document.getElementById("padAjax22602f73c13e1c8f3d674abc7f692c3b").innerHTML=padAjax22602f73c13e1c8f3d674abc7f692c3b.statusText;
+                        }
+                        }
+                        }
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.open("GET","http://localhost/pad/regression/framework/?tags/a_callback_runs_no_row_phase_for_the_else_branch&padInclude",true);
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/and_finishes_its_total_before_the_first_occurrence<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -247,7 +289,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

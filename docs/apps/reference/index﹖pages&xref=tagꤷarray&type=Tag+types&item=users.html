@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -73,6 +73,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: variables/a_dotted_path_a_row_lacks_reads_the_enclosing_levels_not_a_sibling_row<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">variables/a_dotted_path_a_row_lacks_reads_the_enclosing_levels_not_a_sibling_row.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">variables/a_dotted_path_a_row_lacks_reads_the_enclosing_levels_not_a_sibling_row.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Rows without the dotted path read it from the enclosing levels and the page's variables,<br>  // never from another row: every row printed Bob, the row's customer.address.city stood in<br>  // for the page's $address.city, a row without purchases got the first row's.<br><br>  </span><span style="color: #0000BB">$user    </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$rows    </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'user' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob' </span><span style="color: #007700">] ], [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$address </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$orders  </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'X'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Paris' </span><span style="color: #007700">] ] ], [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Y' </span><span style="color: #007700">] ] ];<br>  </span><span style="color: #0000BB">$users   </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bought' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ] ], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'B' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'C'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bought' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">] ] ] ];<br>  </span><span style="color: #0000BB">$a       </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$items   </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'y' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">rows </font><font color="red">where=<font color="black">'</font><font color="red">$</font>user.name eq "Bob"<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>a</font>}</b> <b>{/<font color="blue">rows</font><font color="red"></font>}</b>|<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>a</font>}</b>:<b>{<font color="green"><font color="red">$</font>user.name</font>}</b> <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br><b>{<font color="blue">orders</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>id</font>}</b>:<b>{<font color="green"><font color="red">$</font>address.city</font>}</b> <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br><b>{<font color="blue">users</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>:<b>{<font color="green">$bought.0.id</font> <font color="black">|</font> <font color="blue">optional</font>}</b> <b>{/<font color="blue">users</font><font color="red"></font>}</b><br><b>{<font color="blue">items</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a.n eq 1</font>}</b>one:<b>{<font color="green"><font color="red">$</font>a.n</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>other:<b>{<font color="green"><font color="red">$</font>a.n</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2cc516e09f4823b3ae7497386987f2df"></div>
+                        <script>
+                        padAjax2cc516e09f4823b3ae7497386987f2df = new XMLHttpRequest();
+                        padAjax2cc516e09f4823b3ae7497386987f2df.onreadystatechange=function() {
+                        if (padAjax2cc516e09f4823b3ae7497386987f2df.readyState === 4) {
+                        if (padAjax2cc516e09f4823b3ae7497386987f2df.status === 200) {
+                        document.getElementById("padAjax2cc516e09f4823b3ae7497386987f2df").innerHTML=padAjax2cc516e09f4823b3ae7497386987f2df.responseText;
+                        } else {
+                        document.getElementById("padAjax2cc516e09f4823b3ae7497386987f2df").innerHTML=padAjax2cc516e09f4823b3ae7497386987f2df.statusText;
+                        }
+                        }
+                        }
+                        padAjax2cc516e09f4823b3ae7497386987f2df.open("GET","http://localhost/pad/regression/framework/?variables/a_dotted_path_a_row_lacks_reads_the_enclosing_levels_not_a_sibling_row&padInclude",true);
+                        padAjax2cc516e09f4823b3ae7497386987f2df.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -87,7 +129,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

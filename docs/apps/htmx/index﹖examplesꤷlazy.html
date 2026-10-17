@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lazy loading - PAD + htmx</title>
+  <link rel="stylesheet" href="htmx.css">
+  <script src="htmx-app.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
+  <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
+</head>
+<body hx-headers="{&quot;X-CSRF-Token&quot;:&quot;c133b23a813ea20d99a1dac75e0aff76b9d654720fe3f7bf4723d5e6ff8bfd4b&quot;}">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + htmx home">
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+      <span>PAD <em>+</em> htmx</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <a class="cart-badge" href="index%EF%B9%96examples%EA%A4%B7cart.html" aria-label="The cart">
+      🛒 <span id="cart-count">0</span>
+    </a>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Parts of a page</nav>
+  <h1><span class="example-icon" aria-hidden="true">⏳</span>Lazy loading</h1>
+  <p class="lede">The page arrives at once; the slow part - a chart PAD draws - is asked for when the page has loaded, and a skeleton stands in until it comes.</p>
+  <div class="chips">
+    <code class="chip is-server">{fragment}</code><code class="chip is-server">{chart}</code>
+    <code class="chip is-client">hx-get</code><code class="chip is-client">hx-trigger=&quot;load&quot;</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<p class="muted">The page came at once. The chart below is asked for after it - watch the skeleton.</p>
+
+<div id="chart" class="chart-frame" hx-get="?examples/lazy" hx-trigger="load" hx-swap="innerHTML">
+
+  
+    <div class="skeleton" style="height: 300px" aria-label="The chart is coming"></div>
+  
+
+</div>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests htmx made</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request it makes shows here with the part PAD answered.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">htmx, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/lazy.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/lazy.php</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted&quot;</span><span class="hl-htm">&gt;</span>The page came at once. The chart below is asked for after it - watch the skeleton.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3"><span class="hl-htm">&lt;div</span> <span class="hl-opt">id</span>=<span class="hl-str">&quot;chart&quot;</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;chart-frame&quot;</span> <span class="hl-opt">hx-get</span>=<span class="hl-str">&quot;?examples/lazy&quot;</span> <span class="hl-opt">hx-trigger</span>=<span class="hl-str">&quot;load&quot;</span> <span class="hl-opt">hx-swap</span>=<span class="hl-str">&quot;innerHTML&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4"><span class="hl-brc">{</span><span class="hl-tag">fragment</span> <span class="hl-str">&#039;chart&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$slow</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="6">    <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">&#039;bar&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;sales&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;month&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;online, shop, wholesale&#039;</span>, stacked, <span class="hl-opt">title</span>=<span class="hl-str">&#039;Sales per month, in thousands&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="8">    <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;skeleton&quot;</span> <span class="hl-opt">style</span>=<span class="hl-str">&quot;height: 300px&quot;</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;The chart is coming&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9">  <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="10"><span class="hl-brc">{</span><span class="hl-tag">/fragment</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="11"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// The slow part. The page itself renders a skeleton where the chart goes; once it has</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// loaded, htmx asks for the {fragment &#039;chart&#039;} (hx-trigger=&quot;load&quot;, HX-Target: chart) and</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// that answer holds the chart PAD draws. The wait is made up - the answer of a slow</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-com">// database or service - and only an htmx request has it.</span></span>
+<span class="hl-line" data-line="7"></span>
+<span class="hl-line" data-line="8">  <span class="hl-var">$slow</span> <span class="hl-pun">=</span> <span class="hl-pun">(</span> <span class="hl-var">$_SERVER</span> <span class="hl-pun">[</span><span class="hl-str">&#039;HTTP_HX_REQUEST&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">??</span> <span class="hl-str">&#039;&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">===</span> <span class="hl-str">&#039;true&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10">  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$slow</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="11">    <span class="hl-fn">usleep</span> <span class="hl-pun">(</span> <span class="hl-num">700000</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="12"></span>
+<span class="hl-line" data-line="13">  <span class="hl-var">$sales</span> <span class="hl-pun">=</span> <span class="hl-fn">htmxData</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;sales&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="14"></span>
+<span class="hl-line" data-line="15"><span class="hl-tag">?&gt;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7search.html"><small>Previous</small>Active search</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7scroll.html"><small>Next</small>Infinite scroll</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> renders every part of the page &middot; <strong>htmx</strong> asks for the part that changes and swaps it in</p>
+    <p class="footer-small">htmx comes from unpkg.com &middot; the pages are in <code>apps/htmx/</code> - there is no JavaScript of the application's own but a request log</p>
+  </div>
+</footer>
+
+</body>
+</html>

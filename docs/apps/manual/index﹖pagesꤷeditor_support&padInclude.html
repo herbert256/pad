@@ -91,7 +91,15 @@ single tags.</p>
 
 <p><code>editors/mcp/pad-mcp.js</code> is an MCP server: an assistant such as Claude Code asks
 the engine itself instead of relying on what it remembers. It renders a page, or a template
-that exists in no file yet, and runs the strict syntax check on it; it traces a request, lists
-the applications, their pages and the built-ins, looks a tag or function up in the reference,
-and runs the regression suites. Register it with
+that exists in no file yet - given variables of its own when no PHP should run - and runs the
+strict syntax check on it; it traces a request, runs PHP in a booted application, renders the
+same template on the engine of an older commit to show what a change changed, runs one
+regression test, one suite or all of them, lists the applications, their pages and the
+built-ins, and looks a tag or function up in the reference. Register it with
 <code>claude mcp add pad -- node editors/mcp/pad-mcp.js</code>.</p>
+
+<p>For Claude Code, <code>editors/claude</code> is a plugin with all of it in one install: the
+language server above - after every edit of a page Claude gets PAD's own error, without asking
+for it - the MCP server, and a skill on hunting, proving and fixing a bug in PAD. Install it
+with <code>claude plugin marketplace add editors/claude</code> and
+<code>claude plugin install pad@pad</code>.</p>

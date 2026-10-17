@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Two years of listening · PAD Charts
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+    <link rel="stylesheet" href="charts.css">
+    <script src="charts.js"></script>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+  </head>
+  <body class="is-example">
+    <div class="aurora" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><svg class="brand-mark" viewbox="0 0 32 32" aria-hidden="true">
+        <rect x="3" y="17" width="6" height="12" rx="2"></rect>
+        <rect x="13" y="9" width="6" height="20" rx="2"></rect>
+        <rect x="23" y="3" width="6" height="26" rx="2"></rect></svg> <span>PAD <b>Charts</b></span></a>
+        <nav class="menu" aria-label="Chart types">
+          <ul>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Line">Line <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Change over time</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96line%EA%A4%B7visits.html"><span class="drop-title">Website visits</span> <span class="drop-text">One series, the last point marked - the data JSON, between the tags.</span></a> <a class="drop-link" href="index%EF%B9%96line%EA%A4%B7temperatures.html"><span class="drop-title">Temperatures in three cities</span> <span class="drop-text">A list of fields in value= draws a line each, named at its end.</span></a> <a class="drop-link" href="index%EF%B9%96line%EA%A4%B7shares.html"><span class="drop-title">A share price over a year</span> <span class="drop-text">Twelve months of a stock, from a YAML file.</span></a>
+              </div>
+            </li>
+            <li class="menu-item is-active">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Area &amp; stream">Area <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Amounts adding up over time</span><span class="drop-count">4 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96area%EA%A4%B7energy.html"><span class="drop-title">Electricity by source</span> <span class="drop-text">stacked lays the areas on top of each other, the top edge the total.</span></a> <a class="drop-link" href="index%EF%B9%96area%EA%A4%B7devices.html"><span class="drop-title">Visits by device</span> <span class="drop-text">percent stacks every year to 100% - the shift from desktop to mobile.</span></a> <a class="drop-link is-active" href="index%EF%B9%96area%EA%A4%B7music.html"><span class="drop-title">Two years of listening</span> <span class="drop-text">stream: the genres swell and shrink around a wandering middle, in smooth curves.</span></a> <a class="drop-link" href="index%EF%B9%96area%EA%A4%B7cities.html"><span class="drop-title">Temperatures in nine cities</span> <span class="drop-text">multiples: a small chart per city, all on one scale, in a grid.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Bars">Bars <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Categories compared</span><span class="drop-count">7 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7sales.html"><span class="drop-title">Sales per month</span> <span class="drop-text">Columns from a zero baseline - the data CSV, between the tags.</span></a> <a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7channels.html"><span class="drop-title">Online against the shop</span> <span class="drop-text">Several series side by side, a legend above.</span></a> <a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7energy.html"><span class="drop-title">The energy mix per year</span> <span class="drop-text">stacked puts the series on top of each other.</span></a> <a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7profit.html"><span class="drop-title">Profit and loss</span> <span class="drop-text">Negative values hang below the baseline.</span></a> <a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7languages.html"><span class="drop-title">The most spoken languages</span> <span class="drop-text">hbar lays the bars down - the data XML, between the tags.</span></a> <a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7survey.html"><span class="drop-title">A survey, answer by answer</span> <span class="drop-text">Horizontal and stacked: every answer a part of the bar.</span></a> <a class="drop-link" href="index%EF%B9%96bars%EA%A4%B7waterfall.html"><span class="drop-title">From revenue to profit</span> <span class="drop-text">waterfall: each step floats from where the one before ended.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Funnel &amp; pyramid">Funnel <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Steps that narrow</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96funnel%EA%A4%B7shop.html"><span class="drop-title">A web shop funnel</span> <span class="drop-text">From visit to payment - the share of the first step and of the step before.</span></a> <a class="drop-link" href="index%EF%B9%96funnel%EA%A4%B7population.html"><span class="drop-title">A population pyramid</span> <span class="drop-text">Two fields back to back: men left, women right, by age group.</span></a> <a class="drop-link" href="index%EF%B9%96funnel%EA%A4%B7food.html"><span class="drop-title">A food pyramid</span> <span class="drop-text">One field: a triangle in layers, each layer's area its share.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Pie &amp; donut">Pie <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Parts of a whole</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96pie%EA%A4%B7browsers.html"><span class="drop-title">Browser market share</span> <span class="drop-text">Slices clockwise from twelve o'clock, the share in the legend.</span></a> <a class="drop-link" href="index%EF%B9%96pie%EA%A4%B7budget.html"><span class="drop-title">A monthly budget</span> <span class="drop-text">A donut shows the total in its middle.</span></a> <a class="drop-link" href="index%EF%B9%96pie%EA%A4%B7fruit.html"><span class="drop-title">Eleven kinds of fruit</span> <span class="drop-text">Past eight slices the smallest are folded into a grey Other.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Waffle, marimekko &amp; more">Parts <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">More ways to part a whole</span><span class="drop-count">5 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96parts%EA%A4%B7energy.html"><span class="drop-title">Where a home's energy goes</span> <span class="drop-text">waffle: 100 squares shared out by the largest remainder.</span></a> <a class="drop-link" href="index%EF%B9%96parts%EA%A4%B7market.html"><span class="drop-title">Phones by region and brand</span> <span class="drop-text">marimekko: each column as wide as its region, the brands to 100% inside.</span></a> <a class="drop-link" href="index%EF%B9%96parts%EA%A4%B7house.html"><span class="drop-title">A house of 150 seats</span> <span class="drop-text">parliament: a dot per seat, the parties from left to right.</span></a> <a class="drop-link" href="index%EF%B9%96parts%EA%A4%B7languages.html"><span class="drop-title">Languages 1,000 students speak</span> <span class="drop-text">venn: three sets, every region with its own count.</span></a> <a class="drop-link" href="index%EF%B9%96parts%EA%A4%B7pets.html"><span class="drop-title">Cats, dogs or both</span> <span class="drop-text">venn: two circles whose overlap has the area of the homes with both.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Scatter &amp; bubble">Scatter <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">How two numbers relate</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96scatter%EA%A4%B7athletes.html"><span class="drop-title">Height against weight</span> <span class="drop-text">A dot per row, and trend draws the least-squares line.</span></a> <a class="drop-link" href="index%EF%B9%96scatter%EA%A4%B7flowers.html"><span class="drop-title">Three kinds of flowers</span> <span class="drop-text">color= colours the dots by a field.</span></a> <a class="drop-link" href="index%EF%B9%96scatter%EA%A4%B7countries.html"><span class="drop-title">Income, life and people</span> <span class="drop-text">A bubble's area is its size= - here the population.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Heatmap">Heatmap <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Patterns in dense data</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96heatmap%EA%A4%B7traffic.html"><span class="drop-title">Traffic by day and hour</span> <span class="drop-text">Data made by a PHP loop - seven steps of one hue.</span></a> <a class="drop-link" href="index%EF%B9%96heatmap%EA%A4%B7rainfall.html"><span class="drop-title">Rainfall per month</span> <span class="drop-text">Cities against months, the value in every cell that has room.</span></a> <a class="drop-link" href="index%EF%B9%96heatmap%EA%A4%B7commits.html"><span class="drop-title">A year of commits</span> <span class="drop-text">calendar: a square per day, a column per week, the months above.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Gauge &amp; radar">Gauge <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Measures at a glance</span><span class="drop-count">4 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96gauge%EA%A4%B7disk.html"><span class="drop-title">Disk in use</span> <span class="drop-text">One number on a half ring, coloured bands and a target.</span></a> <a class="drop-link" href="index%EF%B9%96gauge%EA%A4%B7servers.html"><span class="drop-title">Three servers</span> <span class="drop-text">A gauge per row - the value and label of each from the data.</span></a> <a class="drop-link" href="index%EF%B9%96radar%EA%A4%B7phones.html"><span class="drop-title">Three phones compared</span> <span class="drop-text">radar: a spoke per measure, a polygon per phone.</span></a> <a class="drop-link" href="index%EF%B9%96radar%EA%A4%B7players.html"><span class="drop-title">Two midfielders</span> <span class="drop-text">Six skills from a YAML file, on a scale of 0 to 100.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Rose &amp; radial bars">Radial <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Values around a centre</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96radial%EA%A4%B7nightingale.html"><span class="drop-title">Nightingale's rose</span> <span class="drop-text">Deaths in the Crimean war by month - each wedge's area its value, three causes as rings.</span></a> <a class="drop-link" href="index%EF%B9%96radial%EA%A4%B7wind.html"><span class="drop-title">A wind rose</span> <span class="drop-text">Sixteen compass points, north on top - one field, one colour.</span></a> <a class="drop-link" href="index%EF%B9%96radial%EA%A4%B7funds.html"><span class="drop-title">Raised towards a goal</span> <span class="drop-text">radialbar: a ring per class, the arc its share of to=.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Distributions">Spread <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">How values spread</span><span class="drop-count">5 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96distribution%EA%A4%B7heights.html"><span class="drop-title">Heights of 400 adults</span> <span class="drop-text">histogram: two bell curves together give two humps.</span></a> <a class="drop-link" href="index%EF%B9%96distribution%EA%A4%B7delivery.html"><span class="drop-title">Delivery times</span> <span class="drop-text">Whole days are counted in bins of whole days.</span></a> <a class="drop-link" href="index%EF%B9%96distribution%EA%A4%B7salaries.html"><span class="drop-title">Salary per team</span> <span class="drop-text">boxplot: quartiles, median, whiskers and the outlier.</span></a> <a class="drop-link" href="index%EF%B9%96distribution%EA%A4%B7reaction.html"><span class="drop-title">Reaction times, rested or not</span> <span class="drop-text">density: a smooth curve per group over one axis, the medians dashed.</span></a> <a class="drop-link" href="index%EF%B9%96distribution%EA%A4%B7scores.html"><span class="drop-title">Exam scores per class</span> <span class="drop-text">violin: the shape of each class, quartiles and median inside - a split class shows its two humps.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Bullet, rings &amp; areas">Measure <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Measures against goals</span><span class="drop-count">5 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96measure%EA%A4%B7kpis.html"><span class="drop-title">A quarter against its targets</span> <span class="drop-text">bullet: the value as a bar, the target a line, grey bands from poor to good.</span></a> <a class="drop-link" href="index%EF%B9%96measure%EA%A4%B7activity.html"><span class="drop-title">Today's activity</span> <span class="drop-text">rings: a progress ring per goal, a goal from a field of each row.</span></a> <a class="drop-link" href="index%EF%B9%96measure%EA%A4%B7projects.html"><span class="drop-title">Five projects, per cent done</span> <span class="drop-text">Rings against the default goal of 100, the share in the legend.</span></a> <a class="drop-link" href="index%EF%B9%96measure%EA%A4%B7emissions.html"><span class="drop-title">CO₂ per country</span> <span class="drop-text">proportional: a circle's area is the value, wrapping into a second line.</span></a> <a class="drop-link" href="index%EF%B9%96measure%EA%A4%B7oceans.html"><span class="drop-title">The five oceans</span> <span class="drop-text">square draws squares instead, on one baseline.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Gantt">Gantt <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Tasks in time</span><span class="drop-count">2 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96gantt%EA%A4%B7website.html"><span class="drop-title">A new website</span> <span class="drop-text">Dates from CSV, the part done drawn full, today marked.</span></a> <a class="drop-link" href="index%EF%B9%96gantt%EA%A4%B7release.html"><span class="drop-title">A release by team</span> <span class="drop-text">Weeks as plain numbers, the bars coloured by team.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Finance">Finance <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Prices and two measures at once</span><span class="drop-count">2 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96finance%EA%A4%B7share.html"><span class="drop-title">A share over thirty days</span> <span class="drop-text">candlestick: open, high, low and close a day, and the volume below.</span></a> <a class="drop-link" href="index%EF%B9%96finance%EA%A4%B7margin.html"><span class="drop-title">Revenue and margin</span> <span class="drop-text">dual: bars on the left axis, the margin as a line on the right one.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Spiral">Spiral <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Cycles in a long series</span><span class="drop-count">2 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96time%EA%A4%B7icecream.html"><span class="drop-title">Five years of ice cream</span> <span class="drop-text">spiral: a turn a year, every summer a dark band on the same spoke.</span></a> <a class="drop-link" href="index%EF%B9%96time%EA%A4%B7visits.html"><span class="drop-title">Visits day by day</span> <span class="drop-text">period=7 winds a turn a week - the quiet weekends line up.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Sankey">Sankey <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Flows from stage to stage</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96sankey%EA%A4%B7energy.html"><span class="drop-title">Where energy goes</span> <span class="drop-text">Sources, conversion and use - each band as wide as its flow.</span></a> <a class="drop-link" href="index%EF%B9%96sankey%EA%A4%B7funnel.html"><span class="drop-title">A web shop funnel</span> <span class="drop-text">Visitors on their way to an order - the data YAML, between the tags.</span></a> <a class="drop-link" href="index%EF%B9%96sankey%EA%A4%B7salary.html"><span class="drop-title">A salary, spent</span> <span class="drop-text">One income split over posts, then over sub-posts.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Network">Network <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Connections</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96network%EA%A4%B7friends.html"><span class="drop-title">A circle of friends</span> <span class="drop-text">The force layout pulls linked nodes together.</span></a> <a class="drop-link" href="index%EF%B9%96network%EA%A4%B7flights.html"><span class="drop-title">Flights between hubs</span> <span class="drop-text">layout='radial' sets the nodes on a circle.</span></a> <a class="drop-link" href="index%EF%B9%96network%EA%A4%B7modules.html"><span class="drop-title">Who imports whom</span> <span class="drop-text">arrows show the direction, value= the weight of a link.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Chord, arc &amp; parallel">Relations <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Flows, links and many measures</span><span class="drop-count">3 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96relations%EA%A4%B7migration.html"><span class="drop-title">Moving between regions</span> <span class="drop-text">chord: an arc per region, a ribbon per move as wide as the people moving.</span></a> <a class="drop-link" href="index%EF%B9%96relations%EA%A4%B7coauthors.html"><span class="drop-title">Papers written together</span> <span class="drop-text">arc: the authors on a line, a half circle per pair, thicker for more papers.</span></a> <a class="drop-link" href="index%EF%B9%96relations%EA%A4%B7cars.html"><span class="drop-title">Thirty-two cars, six measures</span> <span class="drop-text">parallel: an axis per measure, a line per car, coloured by origin.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Trees &amp; packs">Trees <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">Parts of a hierarchy</span><span class="drop-count">5 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96hierarchy%EA%A4%B7company.html"><span class="drop-title">A company budget</span> <span class="drop-text">levels= nests the posts in their departments.</span></a> <a class="drop-link" href="index%EF%B9%96hierarchy%EA%A4%B7disk.html"><span class="drop-title">What fills the disk</span> <span class="drop-text">A flat treemap: one level, one colour.</span></a> <a class="drop-link" href="index%EF%B9%96hierarchy%EA%A4%B7world.html"><span class="drop-title">The world's people</span> <span class="drop-text">A sunburst: continents inside, regions around them.</span></a> <a class="drop-link" href="index%EF%B9%96hierarchy%EA%A4%B7files.html"><span class="drop-title">The files of a project</span> <span class="drop-text">pack: circles in circles, a folder around its files, sized by kilobytes.</span></a> <a class="drop-link" href="index%EF%B9%96hierarchy%EA%A4%B7company_org.html"><span class="drop-title">Who reports to whom</span> <span class="drop-text">orgchart: a box per person under their boss, the job title as a second line.</span></a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Sparkline">Sparkline <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
+              <path d="M3 4.5l3 3 3-3"></path></svg></button>
+              <div class="drop">
+                <div class="drop-head">
+                  <span class="drop-kicker">A chart the size of a word</span><span class="drop-count">1 example</span>
+                </div><a class="drop-link" href="index%EF%B9%96sparkline%EA%A4%B7stocks.html"><span class="drop-title">Shares in a table</span> <span class="drop-text">Word-sized lines in table cells, no axes.</span></a>
+              </div>
+            </li>
+          </ul>
+        </nav><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page example">
+      <div class="intro">
+        <a class="crumb" href="index%EF%B9%96index.html">All charts</a><span class="crumb-sep">/</span><span class="crumb-here">Area & stream</span>
+        <h1>
+          Two years of listening
+        </h1>
+        <p class="lead">
+          stream: the genres swell and shrink around a wandering middle, in smooth curves.
+        </p>
+      </div>
+      <div class="stage">
+        <section class="cell cell-data" aria-label="The data">
+          <header class="cell-head">
+            <span class="cell-num">1</span> <span class="cell-name">The data</span> <span class="cell-file">area/music.php</span> <span class="badge badge-php">php</span> <button type="button" class="copy" data-copy="data-src" aria-label="Copy the data">Copy</button>
+          </header>
+          <pre class="code" id="data-src"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-com">// Two years of listening, in hours per month: pop steady with a summer swell, rock</span>
+  <span class="hl-com">// fading, hip-hop rising, electronic peaking each summer, jazz and classical in winter.</span>
+
+  <span class="hl-var">$listening</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span><span class="hl-pun">]</span><span class="hl-pun">;</span>
+  <span class="hl-var">$months</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'Jan'</span><span class="hl-pun">,</span> <span class="hl-str">'Feb'</span><span class="hl-pun">,</span> <span class="hl-str">'Mar'</span><span class="hl-pun">,</span> <span class="hl-str">'Apr'</span><span class="hl-pun">,</span> <span class="hl-str">'May'</span><span class="hl-pun">,</span> <span class="hl-str">'Jun'</span><span class="hl-pun">,</span> <span class="hl-str">'Jul'</span><span class="hl-pun">,</span> <span class="hl-str">'Aug'</span><span class="hl-pun">,</span> <span class="hl-str">'Sep'</span><span class="hl-pun">,</span> <span class="hl-str">'Oct'</span><span class="hl-pun">,</span> <span class="hl-str">'Nov'</span><span class="hl-pun">,</span> <span class="hl-str">'Dec'</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+  <span class="hl-kwd">for</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span> <span class="hl-pun">=</span> <span class="hl-num">0</span><span class="hl-pun">;</span> <span class="hl-var">$m</span> <span class="hl-pun">&lt;</span> <span class="hl-num">24</span><span class="hl-pun">;</span> <span class="hl-var">$m</span><span class="hl-pun">++</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span>
+
+    <span class="hl-var">$summer</span> <span class="hl-pun">=</span> <span class="hl-fn">cos</span> <span class="hl-pun">(</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span> <span class="hl-pun">%</span> <span class="hl-num">12</span> <span class="hl-pun">-</span> <span class="hl-num">6.5</span> <span class="hl-pun">)</span> <span class="hl-pun">/</span> <span class="hl-num">12</span> <span class="hl-pun">*</span> <span class="hl-num">2</span> <span class="hl-pun">*</span> <span class="hl-def">M_PI</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+    <span class="hl-var">$winter</span> <span class="hl-pun">=</span> <span class="hl-pun">-</span> <span class="hl-var">$summer</span><span class="hl-pun">;</span>
+
+    <span class="hl-var">$listening</span> <span class="hl-pun">[</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+      <span class="hl-str">'month'</span>      <span class="hl-pun">=&gt;</span> <span class="hl-var">$months</span> <span class="hl-pun">[</span><span class="hl-var">$m</span> <span class="hl-pun">%</span> <span class="hl-num">12</span><span class="hl-pun">]</span> <span class="hl-pun">.</span> <span class="hl-str">' '</span> <span class="hl-pun">.</span> <span class="hl-pun">(</span> <span class="hl-num">2025</span> <span class="hl-pun">+</span> <span class="hl-fn">intdiv</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span><span class="hl-pun">,</span> <span class="hl-num">12</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span>
+      <span class="hl-str">'pop'</span>        <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-num">42</span> <span class="hl-pun">+</span> <span class="hl-num">10</span> <span class="hl-pun">*</span> <span class="hl-var">$summer</span> <span class="hl-pun">+</span> <span class="hl-num">4</span> <span class="hl-pun">*</span> <span class="hl-fn">sin</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span> <span class="hl-pun">/</span> <span class="hl-num">2</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span>
+      <span class="hl-str">'rock'</span>       <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-num">38</span> <span class="hl-pun">-</span> <span class="hl-var">$m</span> <span class="hl-pun">*</span> <span class="hl-num">1.1</span> <span class="hl-pun">+</span> <span class="hl-num">5</span> <span class="hl-pun">*</span> <span class="hl-fn">sin</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span> <span class="hl-pun">/</span> <span class="hl-num">3</span> <span class="hl-pun">+</span> <span class="hl-num">1</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span>
+      <span class="hl-str">'hiphop'</span>     <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-num">8</span> <span class="hl-pun">+</span> <span class="hl-var">$m</span> <span class="hl-pun">*</span> <span class="hl-num">1.6</span> <span class="hl-pun">+</span> <span class="hl-num">3</span> <span class="hl-pun">*</span> <span class="hl-fn">sin</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span> <span class="hl-pun">/</span> <span class="hl-num">2.5</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span>
+      <span class="hl-str">'electronic'</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-num">12</span> <span class="hl-pun">+</span> <span class="hl-num">16</span> <span class="hl-pun">*</span> <span class="hl-fn">max</span> <span class="hl-pun">(</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-var">$summer</span> <span class="hl-pun">)</span> <span class="hl-pun">**</span> <span class="hl-num">2</span> <span class="hl-pun">)</span><span class="hl-pun">,</span>
+      <span class="hl-str">'jazz'</span>       <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-num">9</span> <span class="hl-pun">+</span> <span class="hl-num">7</span> <span class="hl-pun">*</span> <span class="hl-fn">max</span> <span class="hl-pun">(</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-var">$winter</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span>
+      <span class="hl-str">'classical'</span>  <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-num">6</span> <span class="hl-pun">+</span> <span class="hl-num">9</span> <span class="hl-pun">*</span> <span class="hl-fn">max</span> <span class="hl-pun">(</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-var">$winter</span> <span class="hl-pun">)</span> <span class="hl-pun">**</span> <span class="hl-num">3</span> <span class="hl-pun">+</span> <span class="hl-pun">(</span> <span class="hl-var">$m</span> <span class="hl-pun">%</span> <span class="hl-num">12</span> <span class="hl-pun">==</span> <span class="hl-num">11</span> <span class="hl-pun">?</span> <span class="hl-num">8</span> <span class="hl-pun">:</span> <span class="hl-num">0</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+  <span class="hl-pun">}</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+        </section>
+        <section class="cell cell-tag" aria-label="The chart tag">
+          <header class="cell-head">
+            <span class="cell-num">2</span> <span class="cell-name">The chart tag</span> <span class="cell-file">area/music.pad</span> <span class="badge badge-pad">pad</span> <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
+          </header>
+          <pre class="code" id="tag-src"><code><span class="flow" style="--hang: 7ch"><span><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'stream'</span>,</span> <span><span class="hl-opt">data</span>=<span class="hl-str">'listening'</span>,</span> <span><span class="hl-opt">label</span>=<span class="hl-str">'month'</span>,</span> <span><span class="hl-opt">value</span>=<span class="hl-str">'pop, hiphop, rock, electronic, classical, jazz'</span>,</span> <span><span class="hl-opt">title</span>=<span class="hl-str">'Hours listened per genre, month by month'</span>,</span> <span><span class="hl-opt">width</span>=<span class="hl-num">640</span>,</span> <span><span class="hl-opt">height</span>=<span class="hl-num">340</span><span class="hl-brc">}</span></span></span></code></pre>
+        </section>
+        <section class="cell cell-chart" aria-label="The chart">
+          <header class="cell-head">
+            <span class="cell-num">3</span> <span class="cell-name">The result</span> <span class="cell-file">inline SVG · no JavaScript</span>
+          </header>
+          <div class="canvas">
+            <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-stream" role="img" aria-labelledby="pad-chart-debc47f8-title pad-chart-debc47f8-desc" width="640" height="340" viewbox="0 0 640 340">
+            <title id="pad-chart-debc47f8-title">
+              Hours listened per genre, month by month
+            </title>
+            <desc id="pad-chart-debc47f8-desc">
+              Jan 2025: Pop 32, Hiphop 8, Rock 42, Electronic 12, Classical 14, Jazz 16; Feb 2025: Pop 34, Hiphop 11, Rock 42, Electronic 12, Classical 14, Jazz 16; Mar 2025: Pop 38, Hiphop 13, Rock 41, Electronic 12, Classical 9, Jazz 14; Apr 2025: Pop 43, Hiphop 16, Rock 39, Electronic 12, Classical 6, Jazz 11; May 2025: Pop 48, Hiphop 17, Rock 37, Electronic 13, Classical 6, Jazz 9; Jun 2025: Pop 51, Hiphop 19, Rock 35, Electronic 20, Classical 6, Jazz 9; Jul 2025: Pop 52, Hiphop 20, Rock 32, Electronic 27, Classical 6, Jazz 9; Aug 2025: Pop 50, Hiphop 20, Rock 29, Electronic 27, Classical 6, Jazz 9; Sep 2025: Pop 46, Hiphop 21, Rock 27, Electronic 20, Classical 6, Jazz 9; Oct 2025: Pop 41, Hiphop 21, Rock 24, Electronic 13, Classical 6, Jazz 9; Nov 2025: Pop 36, Hiphop 22, Rock 22, Electronic 12, Classical 6, Jazz 11; Dec 2025: Pop 32, Hiphop 23, Rock 21, Electronic 12, Classical 17, Jazz 14; Jan 2026: Pop 31, Hiphop 24, Rock 20, Electronic 12, Classical 14, Jazz 16; Feb 2026: Pop 33, Hiphop 26, Rock 20, Electronic 12, Classical 14, Jazz 16; Mar 2026: Pop 38, Hiphop 29, Rock 20, Electronic 12, Classical 9, Jazz 14; Apr 2026: Pop 43, Hiphop 31, Rock 20, Electronic 12, Classical 6, Jazz 11; May 2026: Pop 49, Hiphop 34, Rock 21, Electronic 13, Classical 6, Jazz 9; Jun 2026: Pop 52, Hiphop 37, Rock 21, Electronic 20, Classical 6, Jazz 9; Jul 2026: Pop 53, Hiphop 39, Rock 21, Electronic 27, Classical 6, Jazz 9; Aug 2026: Pop 51, Hiphop 41, Rock 21, Electronic 27, Classical 6, Jazz 9; Sep 2026: Pop 47, Hiphop 43, Rock 21, Electronic 20, Classical 6, Jazz 9; Oct 2026: Pop 41, Hiphop 44, Rock 20, Electronic 13, Classical 6, Jazz 9; Nov 2026: Pop 35, Hiphop 45, Rock 18, Electronic 12, Classical 6, Jazz 11; Dec 2026: Pop 31, Hiphop 45, Rock 16, Electronic 12, Classical 17, Jazz 14
+            </desc>
+            <g class="pc-key">
+              <rect class="pc-c1" x="10" y="6" width="10" height="10" rx="2"></rect>
+              <text x="24" y="15">
+                Pop
+              </text>
+              <rect class="pc-c2" x="55.5" y="6" width="10" height="10" rx="2"></rect>
+              <text x="69.5" y="15">
+                Hiphop
+              </text>
+              <rect class="pc-c3" x="120.5" y="6" width="10" height="10" rx="2"></rect>
+              <text x="134.5" y="15">
+                Rock
+              </text>
+              <rect class="pc-c4" x="172.5" y="6" width="10" height="10" rx="2"></rect>
+              <text x="186.5" y="15">
+                Electronic
+              </text>
+              <rect class="pc-c5" x="263.5" y="6" width="10" height="10" rx="2"></rect>
+              <text x="277.5" y="15">
+                Classical
+              </text>
+              <rect class="pc-c6" x="348" y="6" width="10" height="10" rx="2"></rect>
+              <text x="362" y="15">
+                Jazz
+              </text>
+            </g>
+            <text x="40" y="332" text-anchor="middle">
+              Jan 2025
+            </text>
+            <text x="113" y="332" text-anchor="middle">
+              Apr 2025
+            </text>
+            <text x="186.1" y="332" text-anchor="middle">
+              Jul 2025
+            </text>
+            <text x="259.1" y="332" text-anchor="middle">
+              Oct 2025
+            </text>
+            <text x="332.2" y="332" text-anchor="middle">
+              Jan 2026
+            </text>
+            <text x="405.2" y="332" text-anchor="middle">
+              Apr 2026
+            </text>
+            <text x="478.3" y="332" text-anchor="middle">
+              Jul 2026
+            </text>
+            <text x="551.3" y="332" text-anchor="middle">
+              Oct 2026
+            </text>
+            <path class="pc-c1 pc-seg" fill-opacity="0.9" d="M40,67C48.1,65.9 56.2,64.8 64.3,63.9C72.5,62.9 80.6,62.4 88.7,61.5C96.8,60.7 104.9,60 113,58.7C121.2,57.3 129.3,56 137.4,53.4C145.5,50.9 153.6,46.1 161.7,43.3C169.9,40.6 178,36.7 186.1,36.7C194.2,36.7 202.3,38.2 210.4,41C218.6,43.8 226.7,49.4 234.8,54.2C242.9,59.1 251,66.1 259.1,69.9C267.2,73.8 275.4,77.4 283.5,77.4C291.6,77.4 299.7,75.9 307.8,75.9C315.9,75.9 324.1,77.4 332.2,77.4C340.3,77.4 348.4,75.2 356.5,74.1C364.6,72.9 372.8,71.6 380.9,70.4C389,69.2 397.1,69 405.2,67C413.3,64.9 421.4,61.5 429.6,58.1C437.7,54.7 445.8,49.8 453.9,46.4C462,43.1 470.1,37.8 478.3,37.8C486.4,37.8 494.5,38.6 502.6,40.2C510.7,41.8 518.8,47.8 527,52.7C535.1,57.5 543.2,65.1 551.3,69.4C559.4,73.7 567.5,78.7 575.7,78.7C583.8,78.7 591.9,77.2 600,75.8L600,128.5C591.9,133 583.8,137.5 575.7,138.1C567.5,138.8 559.4,139.1 551.3,139.1C543.2,139.1 535.1,134.6 527,132.5C518.8,130.5 510.7,126.9 502.6,126.9C494.5,126.9 486.4,127.2 478.3,127.9C470.1,128.6 462,132.6 453.9,134.8C445.8,137.1 437.7,141.4 429.6,141.4C421.4,141.4 413.3,140.9 405.2,140.1C397.1,139.2 389,136.7 380.9,135C372.8,133.4 364.6,130.2 356.5,130.1C348.4,130.1 340.3,130.1 332.2,130.1C324.1,130.1 315.9,130.1 307.8,130.3C299.7,130.5 291.6,137.8 283.5,138.5C275.4,139.2 267.2,139.6 259.1,139.6C251,139.6 242.9,134.7 234.8,132.4C226.7,130.2 218.6,126.6 210.4,126C202.3,125.4 194.2,125.1 186.1,125.1C178,125.1 169.9,128.4 161.7,130C153.6,131.7 145.5,135 137.4,135C129.3,135 121.2,133.2 113,131.8C104.9,130.3 96.8,127.8 88.7,126.1C80.6,124.4 72.5,121.8 64.3,121.6C56.2,121.5 48.1,121.5 40,121.4Z">
+              <title>
+                Pop: 1,007 in all
+              </title>
+            </path>
+            <path class="pc-c2 pc-seg" fill-opacity="0.9" d="M40,264.2C48.1,264.3 56.2,264.4 64.3,264.4C72.5,264.4 80.6,258.1 88.7,255.3C96.8,252.4 104.9,248.6 113,247.3C121.2,246.1 129.3,245.5 137.4,245.5C145.5,245.5 153.6,248.1 161.7,249C169.9,249.9 178,250.9 186.1,250.9C194.2,250.9 202.3,248.8 210.4,246.6C218.6,244.5 226.7,240.9 234.8,237.8C242.9,234.7 251,229.8 259.1,228C267.2,226.1 275.4,225.2 283.5,225.2C291.6,225.2 299.7,239.1 307.8,239.1C315.9,239.1 324.1,235.4 332.2,235.4C340.3,235.4 348.4,235.5 356.5,235.5C364.6,235.5 372.8,230.5 380.9,228.5C389,226.5 397.1,223.3 405.2,223.3C413.3,223.3 421.4,223.8 429.6,224.6C437.7,225.5 445.8,228.3 453.9,230C462,231.7 470.1,234.9 478.3,234.9C486.4,234.9 494.5,234.6 502.6,233.9C510.7,233.3 518.8,229.9 527,227.7C535.1,225.5 543.2,222.3 551.3,220.7C559.4,219.1 567.5,218 575.7,218C583.8,218 591.9,223.4 600,228.8L600,305.3C591.9,299.9 583.8,294.5 575.7,294.5C567.5,294.5 559.4,294.8 551.3,295.4C543.2,296.1 535.1,299.4 527,300.8C518.8,302.1 510.7,303.6 502.6,303.6C494.5,303.6 486.4,302.8 478.3,301.2C470.1,299.6 462,296 453.9,292.9C445.8,289.7 437.7,285.2 429.6,282.4C421.4,279.6 413.3,276 405.2,276C397.1,276 389,277.2 380.9,277.8C372.8,278.4 364.6,279.7 356.5,279.7C348.4,279.7 340.3,276.2 332.2,276.2C324.1,276.2 315.9,278.2 307.8,278.2C299.7,278.2 291.6,262.6 283.5,262.6C275.4,262.6 267.2,263 259.1,263.6C251,264.3 242.9,270.7 234.8,273.5C226.7,276.3 218.6,278.7 210.4,280.6C202.3,282.5 194.2,284.9 186.1,284.9C178,284.9 169.9,283 161.7,281.3C153.6,279.5 145.5,274.4 137.4,274.4C129.3,274.4 121.2,274.4 113,274.5C104.9,274.6 96.8,275.9 88.7,277.4C80.6,278.8 72.5,283.1 64.3,283.1C56.2,283.1 48.1,280.4 40,277.8Z">
+              <title>
+                Hiphop: 649 in all
+              </title>
+            </path>
+            <path class="pc-c3 pc-seg" fill-opacity="0.9" d="M40,169C48.1,169 56.2,169.1 64.3,169.2C72.5,169.4 80.6,170 88.7,170.3C96.8,170.6 104.9,170.5 113,170.9C121.2,171.2 129.3,171.4 137.4,172.4C145.5,173.4 153.6,177 161.7,179.3C169.9,181.6 178,185.7 186.1,186.3C194.2,186.9 202.3,187.2 210.4,187.2C218.6,187.2 226.7,183.4 234.8,181.7C242.9,180 251,177 259.1,177C267.2,177 275.4,177.6 283.5,177.6C291.6,177.6 299.7,174.5 307.8,174.5C315.9,174.5 324.1,177.6 332.2,177.6C340.3,177.7 348.4,177.7 356.5,177.7C364.6,177.8 372.8,179.2 380.9,179.2C389,179.2 397.1,179.2 405.2,179.2C413.3,179.1 421.4,178.7 429.6,178.7C437.7,178.7 445.8,182.4 453.9,184.1C462,185.8 470.1,189.1 478.3,189.1C486.4,189.1 494.5,188.7 502.6,188.1C510.7,187.4 518.8,183.7 527,181.8C535.1,179.9 543.2,176.5 551.3,176.5C559.4,176.5 567.5,177.2 575.7,177.2C583.8,177.2 591.9,175 600,172.7L600,199.9C591.9,203 583.8,206.1 575.7,207.8C567.5,209.6 559.4,208.9 551.3,210.5C543.2,212.1 535.1,215.3 527,217.5C518.8,219.7 510.7,223.1 502.6,223.7C494.5,224.4 486.4,224.8 478.3,224.8C470.1,224.8 462,221.5 453.9,219.8C445.8,218.1 437.7,215.3 429.6,214.4C421.4,213.6 413.3,213.1 405.2,213.1C397.1,213.1 389,213.2 380.9,213.2C372.8,213.2 364.6,211.8 356.5,211.7C348.4,211.7 340.3,211.7 332.2,211.6C324.1,211.6 315.9,210.2 307.8,210.2C299.7,210.2 291.6,213.8 283.5,215C275.4,216.3 267.2,215.9 259.1,217.8C251,219.6 242.9,224.5 234.8,227.6C226.7,230.7 218.6,234.3 210.4,236.4C202.3,238.6 194.2,240.7 186.1,240.7C178,240.7 169.9,239.7 161.7,238.8C153.6,237.9 145.5,235.3 137.4,235.3C129.3,235.3 121.2,236.4 113,237.1C104.9,237.9 96.8,239.5 88.7,240C80.6,240.4 72.5,240.6 64.3,240.6C56.2,240.6 48.1,240.5 40,240.4Z">
+              <title>
+                Rock: 630 in all
+              </title>
+            </path>
+            <path class="pc-c4 pc-seg" fill-opacity="0.9" d="M40,121.4C48.1,121.5 56.2,121.5 64.3,121.6C72.5,121.8 80.6,124.4 88.7,126.1C96.8,127.8 104.9,130.3 113,131.8C121.2,133.2 129.3,135 137.4,135C145.5,135 153.6,131.7 161.7,130C169.9,128.4 178,125.1 186.1,125.1C194.2,125.1 202.3,125.4 210.4,126C218.6,126.6 226.7,130.2 234.8,132.4C242.9,134.7 251,139.6 259.1,139.6C267.2,139.6 275.4,139.2 283.5,138.5C291.6,137.8 299.7,130.5 307.8,130.3C315.9,130.1 324.1,130.1 332.2,130.1C340.3,130.1 348.4,130.1 356.5,130.1C364.6,130.2 372.8,133.4 380.9,135C389,136.7 397.1,139.2 405.2,140.1C413.3,140.9 421.4,141.4 429.6,141.4C437.7,141.4 445.8,137.1 453.9,134.8C462,132.6 470.1,128.6 478.3,127.9C486.4,127.2 494.5,126.9 502.6,126.9C510.7,126.9 518.8,130.5 527,132.5C535.1,134.6 543.2,139.1 551.3,139.1C559.4,139.1 567.5,138.8 575.7,138.1C583.8,137.5 591.9,133 600,128.5L600,148.9C591.9,152.8 583.8,156.8 575.7,158.5C567.5,160.3 559.4,159.9 551.3,161.2C543.2,162.5 535.1,164.6 527,166.5C518.8,168.4 510.7,172.1 502.6,172.8C494.5,173.4 486.4,173.8 478.3,173.8C470.1,173.8 462,170.5 453.9,168.8C445.8,167.1 437.7,164.8 429.6,163.4C421.4,162.1 413.3,161.8 405.2,160.5C397.1,159.1 389,157.1 380.9,155.4C372.8,153.8 364.6,150.6 356.5,150.5C348.4,150.5 340.3,150.4 332.2,150.4C324.1,150.4 315.9,150.5 307.8,150.7C299.7,150.9 291.6,157.1 283.5,158.9C275.4,160.8 267.2,160.4 259.1,161.7C251,162.9 242.9,164.7 234.8,166.4C226.7,168.1 218.6,171.9 210.4,171.9C202.3,171.9 194.2,171.6 186.1,171C178,170.4 169.9,166.3 161.7,164C153.6,161.7 145.5,159.1 137.4,157.1C129.3,155.1 121.2,153.9 113,152.2C104.9,150.4 96.8,148.2 88.7,146.5C80.6,144.8 72.5,142.2 64.3,142C56.2,141.9 48.1,141.8 40,141.8Z">
+              <title>
+                Electronic: 384 in all
+              </title>
+            </path>
+            <path class="pc-c5 pc-seg" fill-opacity="0.9" d="M40,240.4C48.1,240.5 56.2,240.6 64.3,240.6C72.5,240.6 80.6,240.4 88.7,240C96.8,239.5 104.9,237.9 113,237.1C121.2,236.4 129.3,235.3 137.4,235.3C145.5,235.3 153.6,237.9 161.7,238.8C169.9,239.7 178,240.7 186.1,240.7C194.2,240.7 202.3,238.6 210.4,236.4C218.6,234.3 226.7,230.7 234.8,227.6C242.9,224.5 251,219.6 259.1,217.8C267.2,215.9 275.4,216.3 283.5,215C291.6,213.8 299.7,210.2 307.8,210.2C315.9,210.2 324.1,211.6 332.2,211.6C340.3,211.7 348.4,211.7 356.5,211.7C364.6,211.8 372.8,213.2 380.9,213.2C389,213.2 397.1,213.1 405.2,213.1C413.3,213.1 421.4,213.6 429.6,214.4C437.7,215.3 445.8,218.1 453.9,219.8C462,221.5 470.1,224.8 478.3,224.8C486.4,224.8 494.5,224.4 502.6,223.7C510.7,223.1 518.8,219.7 527,217.5C535.1,215.3 543.2,212.1 551.3,210.5C559.4,208.9 567.5,209.6 575.7,207.8C583.8,206.1 591.9,203 600,199.9L600,228.8C591.9,223.4 583.8,218 575.7,218C567.5,218 559.4,219.1 551.3,220.7C543.2,222.3 535.1,225.5 527,227.7C518.8,229.9 510.7,233.3 502.6,233.9C494.5,234.6 486.4,234.9 478.3,234.9C470.1,234.9 462,231.7 453.9,230C445.8,228.3 437.7,225.5 429.6,224.6C421.4,223.8 413.3,223.3 405.2,223.3C397.1,223.3 389,226.5 380.9,228.5C372.8,230.5 364.6,235.5 356.5,235.5C348.4,235.5 340.3,235.4 332.2,235.4C324.1,235.4 315.9,239.1 307.8,239.1C299.7,239.1 291.6,225.2 283.5,225.2C275.4,225.2 267.2,226.1 259.1,228C251,229.8 242.9,234.7 234.8,237.8C226.7,240.9 218.6,244.5 210.4,246.6C202.3,248.8 194.2,250.9 186.1,250.9C178,250.9 169.9,249.9 161.7,249C153.6,248.1 145.5,245.5 137.4,245.5C129.3,245.5 121.2,246.1 113,247.3C104.9,248.6 96.8,252.4 88.7,255.3C80.6,258.1 72.5,264.4 64.3,264.4C56.2,264.4 48.1,264.3 40,264.2Z">
+              <title>
+                Classical: 204 in all
+              </title>
+            </path>
+            <path class="pc-c6 pc-seg" fill-opacity="0.9" d="M40,141.8C48.1,141.8 56.2,141.9 64.3,142C72.5,142.2 80.6,144.8 88.7,146.5C96.8,148.2 104.9,150.4 113,152.2C121.2,153.9 129.3,155.1 137.4,157.1C145.5,159.1 153.6,161.7 161.7,164C169.9,166.3 178,170.4 186.1,171C194.2,171.6 202.3,171.9 210.4,171.9C218.6,171.9 226.7,168.1 234.8,166.4C242.9,164.7 251,162.9 259.1,161.7C267.2,160.4 275.4,160.8 283.5,158.9C291.6,157.1 299.7,150.9 307.8,150.7C315.9,150.5 324.1,150.4 332.2,150.4C340.3,150.4 348.4,150.5 356.5,150.5C364.6,150.6 372.8,153.8 380.9,155.4C389,157.1 397.1,159.1 405.2,160.5C413.3,161.8 421.4,162.1 429.6,163.4C437.7,164.8 445.8,167.1 453.9,168.8C462,170.5 470.1,173.8 478.3,173.8C486.4,173.8 494.5,173.4 502.6,172.8C510.7,172.1 518.8,168.4 527,166.5C535.1,164.6 543.2,162.5 551.3,161.2C559.4,159.9 567.5,160.3 575.7,158.5C583.8,156.8 591.9,152.8 600,148.9L600,172.7C591.9,175 583.8,177.2 575.7,177.2C567.5,177.2 559.4,176.5 551.3,176.5C543.2,176.5 535.1,179.9 527,181.8C518.8,183.7 510.7,187.4 502.6,188.1C494.5,188.7 486.4,189.1 478.3,189.1C470.1,189.1 462,185.8 453.9,184.1C445.8,182.4 437.7,178.7 429.6,178.7C421.4,178.7 413.3,179.1 405.2,179.2C397.1,179.2 389,179.2 380.9,179.2C372.8,179.2 364.6,177.8 356.5,177.7C348.4,177.7 340.3,177.7 332.2,177.6C324.1,177.6 315.9,174.5 307.8,174.5C299.7,174.5 291.6,177.6 283.5,177.6C275.4,177.6 267.2,177 259.1,177C251,177 242.9,180 234.8,181.7C226.7,183.4 218.6,187.2 210.4,187.2C202.3,187.2 194.2,186.9 186.1,186.3C178,185.7 169.9,181.6 161.7,179.3C153.6,177 145.5,173.4 137.4,172.4C129.3,171.4 121.2,171.2 113,170.9C104.9,170.5 96.8,170.6 88.7,170.3C80.6,170 72.5,169.4 64.3,169.2C56.2,169.1 48.1,169 40,169Z">
+              <title>
+                Jazz: 272 in all
+              </title>
+            </path>
+            <rect class="pc-hit" x="27.8" y="26" width="24.3" height="290">
+              <title>
+                Jan 2025: Pop 32, Hiphop 8, Rock 42, Electronic 12, Classical 14, Jazz 16
+              </title>
+            </rect>
+            <rect class="pc-hit" x="52.2" y="26" width="24.3" height="290">
+              <title>
+                Feb 2025: Pop 34, Hiphop 11, Rock 42, Electronic 12, Classical 14, Jazz 16
+              </title>
+            </rect>
+            <rect class="pc-hit" x="76.5" y="26" width="24.3" height="290">
+              <title>
+                Mar 2025: Pop 38, Hiphop 13, Rock 41, Electronic 12, Classical 9, Jazz 14
+              </title>
+            </rect>
+            <rect class="pc-hit" x="100.9" y="26" width="24.3" height="290">
+              <title>
+                Apr 2025: Pop 43, Hiphop 16, Rock 39, Electronic 12, Classical 6, Jazz 11
+              </title>
+            </rect>
+            <rect class="pc-hit" x="125.2" y="26" width="24.3" height="290">
+              <title>
+                May 2025: Pop 48, Hiphop 17, Rock 37, Electronic 13, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="149.6" y="26" width="24.3" height="290">
+              <title>
+                Jun 2025: Pop 51, Hiphop 19, Rock 35, Electronic 20, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="173.9" y="26" width="24.3" height="290">
+              <title>
+                Jul 2025: Pop 52, Hiphop 20, Rock 32, Electronic 27, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="198.3" y="26" width="24.3" height="290">
+              <title>
+                Aug 2025: Pop 50, Hiphop 20, Rock 29, Electronic 27, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="222.6" y="26" width="24.3" height="290">
+              <title>
+                Sep 2025: Pop 46, Hiphop 21, Rock 27, Electronic 20, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="247" y="26" width="24.3" height="290">
+              <title>
+                Oct 2025: Pop 41, Hiphop 21, Rock 24, Electronic 13, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="271.3" y="26" width="24.3" height="290">
+              <title>
+                Nov 2025: Pop 36, Hiphop 22, Rock 22, Electronic 12, Classical 6, Jazz 11
+              </title>
+            </rect>
+            <rect class="pc-hit" x="295.7" y="26" width="24.3" height="290">
+              <title>
+                Dec 2025: Pop 32, Hiphop 23, Rock 21, Electronic 12, Classical 17, Jazz 14
+              </title>
+            </rect>
+            <rect class="pc-hit" x="320" y="26" width="24.3" height="290">
+              <title>
+                Jan 2026: Pop 31, Hiphop 24, Rock 20, Electronic 12, Classical 14, Jazz 16
+              </title>
+            </rect>
+            <rect class="pc-hit" x="344.3" y="26" width="24.3" height="290">
+              <title>
+                Feb 2026: Pop 33, Hiphop 26, Rock 20, Electronic 12, Classical 14, Jazz 16
+              </title>
+            </rect>
+            <rect class="pc-hit" x="368.7" y="26" width="24.3" height="290">
+              <title>
+                Mar 2026: Pop 38, Hiphop 29, Rock 20, Electronic 12, Classical 9, Jazz 14
+              </title>
+            </rect>
+            <rect class="pc-hit" x="393" y="26" width="24.3" height="290">
+              <title>
+                Apr 2026: Pop 43, Hiphop 31, Rock 20, Electronic 12, Classical 6, Jazz 11
+              </title>
+            </rect>
+            <rect class="pc-hit" x="417.4" y="26" width="24.3" height="290">
+              <title>
+                May 2026: Pop 49, Hiphop 34, Rock 21, Electronic 13, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="441.7" y="26" width="24.3" height="290">
+              <title>
+                Jun 2026: Pop 52, Hiphop 37, Rock 21, Electronic 20, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="466.1" y="26" width="24.3" height="290">
+              <title>
+                Jul 2026: Pop 53, Hiphop 39, Rock 21, Electronic 27, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="490.4" y="26" width="24.3" height="290">
+              <title>
+                Aug 2026: Pop 51, Hiphop 41, Rock 21, Electronic 27, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="514.8" y="26" width="24.3" height="290">
+              <title>
+                Sep 2026: Pop 47, Hiphop 43, Rock 21, Electronic 20, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="539.1" y="26" width="24.3" height="290">
+              <title>
+                Oct 2026: Pop 41, Hiphop 44, Rock 20, Electronic 13, Classical 6, Jazz 9
+              </title>
+            </rect>
+            <rect class="pc-hit" x="563.5" y="26" width="24.3" height="290">
+              <title>
+                Nov 2026: Pop 35, Hiphop 45, Rock 18, Electronic 12, Classical 6, Jazz 11
+              </title>
+            </rect>
+            <rect class="pc-hit" x="587.8" y="26" width="24.3" height="290">
+              <title>
+                Dec 2026: Pop 31, Hiphop 45, Rock 16, Electronic 12, Classical 17, Jazz 14
+              </title>
+            </rect></svg>
+          </div>
+        </section>
+      </div>
+      <nav class="pager" aria-label="More examples">
+        <a class="pager-link prev" href="index%EF%B9%96area%EA%A4%B7devices.html"><span class="pager-dir">← Previous</span><span class="pager-title">Visits by device</span></a> <a class="pager-link next" href="index%EF%B9%96area%EA%A4%B7cities.html"><span class="pager-dir">Next →</span><span class="pager-title">Temperatures in nine cities</span></a>
+      </nav>
+    </main>
+  </body>
+</html>

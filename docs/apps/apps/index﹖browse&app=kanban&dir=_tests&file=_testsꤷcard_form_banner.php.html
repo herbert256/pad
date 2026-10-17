@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: kanban/_tests
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: kanban/ tests
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=kanban.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7card_form_banner.pad.html">card_form_banner.pad</a>
+                  </li>
+                  <li class="current">card_form_banner.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7excerpt.pad.html">excerpt.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7excerpt.php.html">excerpt.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7move.pad.html">move.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7move.php.html">move.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7text.pad.html">text.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests&amp;file=_tests%EA%A4%B7text.php.html">text.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _tests/card_form_banner.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A new card whose details are too long comes back with a banner true for it - the form<br>  // has two rules, the title's and the details' - where it said "The card needs a title of<br>  // at most 100 characters." above the title Fine. The board's page is rendered as the post<br>  // would be, in a child process of its own with a session holding the post's token; a<br>  // refused post stores nothing.<br><br>  </span><span style="color: #0000BB">$render   </span><span style="color: #007700">= </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">PAD </span><span style="color: #007700">) . </span><span style="color: #DD0000">'/editors/render.php'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$sessions </span><span style="color: #007700">= </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'kanban-test-' </span><span style="color: #007700">. </span><span style="color: #0000BB">getmypid </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$child    </span><span style="color: #007700">= </span><span style="color: #DD0000">'session_save_path ( $argv [3] ); session_start (); $_SESSION ["padCsrf"] = str_repeat ( "a", 64 ); '<br>            </span><span style="color: #007700">. </span><span style="color: #DD0000">'$_SERVER ["REQUEST_METHOD"] = "POST"; parse_str ( $argv [1], $_POST ); $_POST ["padCsrfToken"] = $_SESSION ["padCsrf"]; $_REQUEST = $_POST; '<br>            </span><span style="color: #007700">. </span><span style="color: #DD0000">'$render = $argv [2]; $argv = [ "render.php", "kanban", "index" ]; include $render;'</span><span style="color: #007700">;<br><br>  @</span><span style="color: #0000BB">mkdir </span><span style="color: #007700">( </span><span style="color: #0000BB">$sessions</span><span style="color: #007700">, </span><span style="color: #0000BB">0700</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$banner </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #DD0000">'title=Fine&amp;body=' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">2001 </span><span style="color: #007700">), </span><span style="color: #DD0000">'title=' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">101 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'&amp;body=Fine' </span><span style="color: #007700">] as </span><span style="color: #0000BB">$post </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$process </span><span style="color: #007700">= </span><span style="color: #0000BB">proc_open </span><span style="color: #007700">( [ </span><span style="color: #0000BB">PHP_BINARY</span><span style="color: #007700">, </span><span style="color: #DD0000">'-r'</span><span style="color: #007700">, </span><span style="color: #0000BB">$child</span><span style="color: #007700">, </span><span style="color: #DD0000">"padForm=card&amp;label=&</span><span style="color: #0000BB">$post</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #0000BB">$render</span><span style="color: #007700">, </span><span style="color: #0000BB">$sessions </span><span style="color: #007700">], [ </span><span style="color: #0000BB">1 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'pipe'</span><span style="color: #007700">, </span><span style="color: #DD0000">'w' </span><span style="color: #007700">], </span><span style="color: #0000BB">2 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'pipe'</span><span style="color: #007700">, </span><span style="color: #DD0000">'w' </span><span style="color: #007700">] ], </span><span style="color: #0000BB">$pipes </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$out     </span><span style="color: #007700">= </span><span style="color: #0000BB">stream_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$pipes </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] );<br><br>    </span><span style="color: #0000BB">stream_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$pipes </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] );<br>    </span><span style="color: #0000BB">proc_close </span><span style="color: #007700">( </span><span style="color: #0000BB">$process </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$banner </span><span style="color: #007700">[] = </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/&lt;div class="error" role="alert"&gt;(.*?)&lt;\/div&gt;/s'</span><span style="color: #007700">, </span><span style="color: #0000BB">$out</span><span style="color: #007700">, </span><span style="color: #0000BB">$m </span><span style="color: #007700">) ? </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$m </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) : </span><span style="color: #DD0000">'no banner'</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'unlink'</span><span style="color: #007700">, </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$sessions</span><span style="color: #DD0000">/*" </span><span style="color: #007700">) ?: [] );<br>  @</span><span style="color: #0000BB">rmdir </span><span style="color: #007700">( </span><span style="color: #0000BB">$sessions </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$shown </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">"\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">$banner </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

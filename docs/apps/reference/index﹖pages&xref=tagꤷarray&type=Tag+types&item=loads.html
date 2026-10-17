@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - loads
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - loads
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: islands - Page: examples/loading<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/loading.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/loading.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Six islands, three ways of loading: the first two at once, two when the browser is idle,<br>  // two only when they scroll into view - far down the page. The log is an island too, loaded<br>  // at once so it hears the others mount.<br><br>  </span><span style="color: #0000BB">$loads </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'island' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ReactCounter'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'load' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'eager'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'framework' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'React'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'island' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'PreactCounter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'load' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'eager'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'framework' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Preact'</span><span style="color: #007700">, </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'island' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'VueCounter'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'load' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'idle'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'framework' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Vue'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'island' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'SolidCounter'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'load' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'idle'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'framework' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Solid'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'island' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'SvelteCounter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'load' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'visible'</span><span style="color: #007700">, </span><span style="color: #DD0000">'framework' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Svelte'</span><span style="color: #007700">, </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br><br>  foreach ( </span><span style="color: #0000BB">$loads </span><span style="color: #007700">as </span><span style="color: #0000BB">$at </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$loads </span><span style="color: #007700">[</span><span style="color: #0000BB">$at</span><span style="color: #007700">] [</span><span style="color: #DD0000">'props'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'start'</span><span style="color: #007700">], </span><span style="color: #DD0000">'framework' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'framework'</span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;When each island came&lt;/div&gt;<br>    &lt;div data-island="LoadLog"&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>  &lt;div class="loads"&gt;<br>    <b>{<font color="blue">loads</font><font color="red"></font>}</b><br>    &lt;div class="card load-card"&gt;<br>      &lt;div class="framework-head"&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>framework</font>}</b>&lt;/strong&gt;&lt;code class="badge"&gt;data-load="<b>{<font color="green"><font color="red">$</font>load</font>}</b>"&lt;/code&gt;&lt;/div&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>load ne <font color="black">'</font>visible<font color="black">'</font></font>}</b>&lt;div data-island="<b>{<font color="green"><font color="red">$</font>island</font>}</b>" data-load="<b>{<font color="green"><font color="red">$</font>load</font>}</b>" data-props="{^props}"&gt;&lt;p class="muted small"&gt;Waiting to load ...&lt;/p&gt;&lt;/div&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>    <b>{/<font color="blue">loads</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="far-below"&gt;<br>  &lt;p class="muted"&gt;Far down the page - the island below loads only when it scrolls into view. Scroll on.&lt;/p&gt;<br>  <b>{<font color="blue">loads</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>load eq <font color="black">'</font>visible<font color="black">'</font></font>}</b><br>  &lt;div class="card load-card"&gt;<br>    &lt;div class="framework-head"&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>framework</font>}</b>&lt;/strong&gt;&lt;code class="badge"&gt;data-load="<b>{<font color="green"><font color="red">$</font>load</font>}</b>"&lt;/code&gt;&lt;/div&gt;<br>    &lt;div data-island="<b>{<font color="green"><font color="red">$</font>island</font>}</b>" data-load="<b>{<font color="green"><font color="red">$</font>load</font>}</b>" data-props="{^props}"&gt;&lt;p class="muted small"&gt;Not loaded yet - it is not in view.&lt;/p&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">loads</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8e36d767c5d8973801837c1e915e1ac8"></div>
+                        <script>
+                        padAjax8e36d767c5d8973801837c1e915e1ac8 = new XMLHttpRequest();
+                        padAjax8e36d767c5d8973801837c1e915e1ac8.onreadystatechange=function() {
+                        if (padAjax8e36d767c5d8973801837c1e915e1ac8.readyState === 4) {
+                        if (padAjax8e36d767c5d8973801837c1e915e1ac8.status === 200) {
+                        document.getElementById("padAjax8e36d767c5d8973801837c1e915e1ac8").innerHTML=padAjax8e36d767c5d8973801837c1e915e1ac8.responseText;
+                        } else {
+                        document.getElementById("padAjax8e36d767c5d8973801837c1e915e1ac8").innerHTML=padAjax8e36d767c5d8973801837c1e915e1ac8.statusText;
+                        }
+                        }
+                        }
+                        padAjax8e36d767c5d8973801837c1e915e1ac8.open("GET","http://localhost/pad/islands/?examples/loading&padInclude",true);
+                        padAjax8e36d767c5d8973801837c1e915e1ac8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,86 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: charts - Page: bars/languages<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">bars/languages.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>hbar<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>language<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>speakers<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Speakers in millions<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  &lt;languages&gt;<br>    &lt;row language="English" speakers="1515"/&gt;<br>    &lt;row language="Mandarin Chinese" speakers="1140"/&gt;<br>    &lt;row language="Hindi" speakers="609"/&gt;<br>    &lt;row language="Spanish" speakers="560"/&gt;<br>    &lt;row language="Standard Arabic" speakers="332"/&gt;<br>    &lt;row language="French" speakers="312"/&gt;<br>    &lt;row language="Bengali" speakers="278"/&gt;<br>    &lt;row language="Portuguese" speakers="264"/&gt;<br>  &lt;/languages&gt;<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc26de070221bde14b860abec116ecda3"></div>
+                        <script>
+                        padAjaxc26de070221bde14b860abec116ecda3 = new XMLHttpRequest();
+                        padAjaxc26de070221bde14b860abec116ecda3.onreadystatechange=function() {
+                        if (padAjaxc26de070221bde14b860abec116ecda3.readyState === 4) {
+                        if (padAjaxc26de070221bde14b860abec116ecda3.status === 200) {
+                        document.getElementById("padAjaxc26de070221bde14b860abec116ecda3").innerHTML=padAjaxc26de070221bde14b860abec116ecda3.responseText;
+                        } else {
+                        document.getElementById("padAjaxc26de070221bde14b860abec116ecda3").innerHTML=padAjaxc26de070221bde14b860abec116ecda3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc26de070221bde14b860abec116ecda3.open("GET","http://localhost/pad/charts/?bars/languages&padInclude",true);
+                        padAjaxc26de070221bde14b860abec116ecda3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;main class="page home"&gt;<br><br>  &lt;section class="hero"&gt;<br>    &lt;div class="hero-text"&gt;<br>      &lt;span class="kicker"&gt;PAD · <b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">chart</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/span&gt;<br>      &lt;h1&gt;Every chart,&lt;br&gt;&lt;span class="shine"&gt;drawn on the server.&lt;/span&gt;&lt;/h1&gt;<br>      &lt;p class="lead"&gt;One tag turns rows of JSON, YAML, CSV or PHP into an accessible SVG chart -<br>      lines, areas, streams, bars, funnels, pyramids, waterfalls, pies, waffles, marimekkos,<br>      parliaments, venns, gauges, radars, roses, bullets, histograms, violins, scatters, heatmaps,<br>      candlesticks, spirals, sankeys, chords, networks, treemaps, packs, org charts and gantt<br>      charts. No JavaScript, so it prints, caches and shows up in an e-mail.&lt;/p&gt;<br>      &lt;ul class="stats"&gt;<br>        &lt;li&gt;&lt;b&gt;46&lt;/b&gt; kinds&lt;/li&gt;<br>        &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>exampleCount</font>}</b>&lt;/b&gt; examples&lt;/li&gt;<br>        &lt;li&gt;&lt;b&gt;0&lt;/b&gt; lines of JavaScript&lt;/li&gt;<br>      &lt;/ul&gt;<br>    &lt;/div&gt;<br>    &lt;a class="hero-card" href="?sankey/energy" aria-label="Open the energy sankey"&gt;<br>      <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>sankey/energy<font color="black">'</font></font>}</b><br>    &lt;/a&gt;<br>  &lt;/section&gt;<br><br>  <b>{<font color="blue">families</font><font color="red"></font>}</b><br>  &lt;section class="family" id="<b>{<font color="green"><font color="red">$</font>family</font>}</b>"&gt;<br>    &lt;header class="family-head"&gt;<br>      &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;<br>      &lt;span class="family-line"&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b>&lt;/span&gt;<br>    &lt;/header&gt;<br>    &lt;div class="cards"&gt;<br>      <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>      &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>        &lt;span class="card-chart"&gt;<b>{<font color="blue">page </font><font color="red"><font color="red">$</font>page</font>}</b>&lt;/span&gt;<br>        &lt;span class="card-body"&gt;<br>          &lt;span class="card-title"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/span&gt;<br>          &lt;span class="card-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/span&gt;<br>        &lt;/span&gt;<br>      &lt;/a&gt;<br>      <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/section&gt;<br>  <b>{/<font color="blue">families</font><font color="red"></font>}</b><br><br>&lt;/main&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaeb55916f9d76f31984758a1a8cb78c9"></div>
+                        <script>
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9 = new XMLHttpRequest();
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9.onreadystatechange=function() {
+                        if (padAjaxaeb55916f9d76f31984758a1a8cb78c9.readyState === 4) {
+                        if (padAjaxaeb55916f9d76f31984758a1a8cb78c9.status === 200) {
+                        document.getElementById("padAjaxaeb55916f9d76f31984758a1a8cb78c9").innerHTML=padAjaxaeb55916f9d76f31984758a1a8cb78c9.responseText;
+                        } else {
+                        document.getElementById("padAjaxaeb55916f9d76f31984758a1a8cb78c9").innerHTML=padAjaxaeb55916f9d76f31984758a1a8cb78c9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9.open("GET","http://localhost/pad/charts/?index&padInclude",true);
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: manual - Page: callback/before<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -482,86 +562,6 @@
                       </td>
                     </tr>
                   </table><br>
-                  <hr>
-                  App: manual - Page: pages/prefix<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/prefix.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">It can get confusing because a PAD tag can be so many things,&lt;br&gt;<br>to solve this, use a prefix that gives the tag type. <br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>prefix/prefix<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>prefix/types<font color="black">'</font></font>}</b><br><b>{<font color="blue">extra </font><font color="red"><font color="black">'</font>prefix/prefix<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax94e925fb0bb3e406c5afdea3328aaf85"></div>
-                        <script>
-                        padAjax94e925fb0bb3e406c5afdea3328aaf85 = new XMLHttpRequest();
-                        padAjax94e925fb0bb3e406c5afdea3328aaf85.onreadystatechange=function() {
-                        if (padAjax94e925fb0bb3e406c5afdea3328aaf85.readyState === 4) {
-                        if (padAjax94e925fb0bb3e406c5afdea3328aaf85.status === 200) {
-                        document.getElementById("padAjax94e925fb0bb3e406c5afdea3328aaf85").innerHTML=padAjax94e925fb0bb3e406c5afdea3328aaf85.responseText;
-                        } else {
-                        document.getElementById("padAjax94e925fb0bb3e406c5afdea3328aaf85").innerHTML=padAjax94e925fb0bb3e406c5afdea3328aaf85.statusText;
-                        }
-                        }
-                        }
-                        padAjax94e925fb0bb3e406c5afdea3328aaf85.open("GET","http://localhost/pad/manual/?pages/prefix&padInclude",true);
-                        padAjax94e925fb0bb3e406c5afdea3328aaf85.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: pages/properties<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pages/properties.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">Tag properties give information about a tag, they can be used:<br><br>&lt;p&gt;&lt;table border=0&gt;<br>&lt;tr&gt;&lt;td&gt;- as a pad tag &lt;/td&gt;&lt;td&gt;<b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="blue">first</font><font color="red"></font>}</b> ... <b>{/<font color="blue">first</font><font color="red"></font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- as a variable with the & prefix &amp;nbsp; &lt;/td&gt;&lt;td&gt;<b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">&amp;first</font>}</b> ... <b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>properties/doc1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;When working with properties of a tag that is deeper in the stack of tags, the name of that tag must be given.<br> <br>&lt;p&gt;&lt;table border=0&gt;<br>&lt;tr&gt;&lt;td&gt;- as parameter when used as tag&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- as prefix, when used as &amp;var&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;- relative level number&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>properties/doc2<font color="black">'</font></font>}</b><br><br>&lt;!-- todo-1 --&gt;<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>properties/doc4<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">usesFragment </font><font color="red"><font color="black">'</font>properties/_lib/lib<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax1520cc8f0e65785573428b1184432948"></div>
-                        <script>
-                        padAjax1520cc8f0e65785573428b1184432948 = new XMLHttpRequest();
-                        padAjax1520cc8f0e65785573428b1184432948.onreadystatechange=function() {
-                        if (padAjax1520cc8f0e65785573428b1184432948.readyState === 4) {
-                        if (padAjax1520cc8f0e65785573428b1184432948.status === 200) {
-                        document.getElementById("padAjax1520cc8f0e65785573428b1184432948").innerHTML=padAjax1520cc8f0e65785573428b1184432948.responseText;
-                        } else {
-                        document.getElementById("padAjax1520cc8f0e65785573428b1184432948").innerHTML=padAjax1520cc8f0e65785573428b1184432948.statusText;
-                        }
-                        }
-                        }
-                        padAjax1520cc8f0e65785573428b1184432948.open("GET","http://localhost/pad/manual/?pages/properties&padInclude",true);
-                        padAjax1520cc8f0e65785573428b1184432948.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
                 </center>
               </td>
             </tr>
@@ -576,7 +576,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

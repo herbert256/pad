@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {redirect} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#navigation">Navigation</a><span>/</span><span aria-current="page">redirect</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>redirect<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Sends the browser to another page or address with a 302 and ends the request.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#navigation">Navigation</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span>, <span class="hl-var">$status</span> = <span class="hl-str">'open'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'https://example.com/'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>target</code>
+            </dt>
+            <dd>
+              A page of the application - <code>'orders/list'</code>, also in its <code>?page</code> form, routes resolved - or an absolute <code>http://</code> / <code>https://</code> address.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{redirect 'name'}</code> answers the request with a <code>302 Found</code> and a <code>Location</code> header, and ends it there: nothing after the tag runs and nothing of the page is sent. The browser then asks for the new address itself, so its address bar shows it - the pattern after a form post, where a reload must not post again.
+          </p>
+          <p>
+            Variables assigned on the tag - <code>{redirect 'list', $status = 'open'}</code> - are added to the new address's query string. A page name stays on this site and is resolved as <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> resolves one; under the strict check a plain page name that does not exist is an error, instead of a clean 302 into a 404.
+          </p>
+          <p>
+            An absolute <code>http://</code> or <code>https://</code> address is sent as written, with the assigned values added in front of any <code>#fragment</code>. That means a target taken from the request can leave the site: the template must check it first. <code>padRedirect()</code> in PHP takes page names only and never leaves the site; called without a page it goes back to the page that was asked for.
+          </p>
+          <p>
+            To show another page without a round trip, keeping the address, use <a href="index%EF%B9%96tag%EA%A4%B7restart.html">{restart}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              After a form post
+            </h3>
+            <p class="example-about">
+              The post is handled, then the browser is sent to the list - a reload does not post again.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/redirect/1-after-post.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$saved</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              With values
+            </h3>
+            <p class="example-about">
+              Variables assigned on the tag go on the query string of the new address.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/redirect/2-values.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span>, <span class="hl-var">$status</span> = <span class="hl-str">'open'</span>, <span class="hl-var">$page</span> = <span class="hl-num">2</span><span class="hl-brc">}</span>
+<span class="hl-com">{# Location: ?orders/list&amp;status=open&amp;page=2 #}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              An absolute address
+            </h3>
+            <p class="example-about">
+              http:// and https:// addresses are sent as written - this one leaves the site.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/redirect/3-external.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'https://example.com/help#contact'</span>, <span class="hl-var">$from</span> = <span class="hl-str">'shop'</span><span class="hl-brc">}</span>
+<span class="hl-com">{# Location: https://example.com/help?from=shop#contact #}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7restart.html">{restart}</a> <span class="about">Abandons the page being built and renders another page in its place, in the same request.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7exit.html">{exit}</a> <span class="about">Ends the request at once, with an empty body - the PAD way to stop instead of PHP's exit.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7recurse.html">← {recurse}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7remove.html">{remove} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

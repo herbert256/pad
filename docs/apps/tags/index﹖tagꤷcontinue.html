@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {continue} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#loops">Loops and trees</a><span>/</span><span aria-current="page">continue</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>continue<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Skips the rest of the current pass of a loop and goes on with its next row.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#loops">Loops and trees</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">continue</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">continue</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>level</code>
+            </dt>
+            <dd>
+              Optional: which loop. The name of an enclosing tag or its <code>name=</code> (<code>'items'</code>), a level number, or a negative offset counting levels up from here. Without it, the nearest enclosing level that is not an <code>{if}</code> or <code>{case}</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{continue}</code> abandons what is left of the current pass of a loop - everything of the loop's content after the tag is dropped - and the loop carries on with its next row, like PHP's <code>continue</code>. It is usually written inside an <code>{if}</code>, to skip the rows that do not qualify. The rows are untouched; that is the difference with <a href="index%EF%B9%96tag%EA%A4%B7break.html">{break}</a>, which empties them.
+          </p>
+          <p>
+            Without a parameter it works on the nearest enclosing level that is not an <code>{if}</code> or a <code>{case}</code>: the data tag, <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a>, <a href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> or other loop the tag stands in. With a name - <code>{continue 'orders'}</code>, the tag's name or its <code>name=</code> - it reaches an outer loop: the inner loop is abandoned with the rest of the outer pass. A level number or a negative offset (<code>-2</code>: two levels up) picks the level by position.
+          </p>
+          <p>
+            Under the strict syntax check a name that no enclosing level has, or an offset past the page, is an error rather than a silent fall-back to the nearest loop; so is loop control with no loop around it. To skip rows that can be told apart by their fields alone, the <code>where</code> option on the loop is simpler.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Skipping rows
+            </h3>
+            <p class="example-about">
+              Rows that are out of stock are skipped; the loop goes on with the next one.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/continue/1-skip.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">products</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$stock</span> eq <span class="hl-num">0</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">continue</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$stock</span><span class="hl-brc">}</span> left<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/products</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/continue/1-skip.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$products</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Kettle'</span><span class="hl-pun">,</span>  <span class="hl-str">'stock'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Toaster'</span><span class="hl-pun">,</span> <span class="hl-str">'stock'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">0</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Teapot'</span><span class="hl-pun">,</span>  <span class="hl-str">'stock'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">2</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Mixer'</span><span class="hl-pun">,</span>   <span class="hl-str">'stock'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">0</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Grater'</span><span class="hl-pun">,</span>  <span class="hl-str">'stock'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">9</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7continue%EA%A4%B71-skip.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Kettle: 4 left
+                    </li>
+                    <li>Teapot: 2 left
+                    </li>
+                    <li>Grater: 9 left
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Continuing an outer loop
+            </h3>
+            <p class="example-about">
+              Named, continue leaves the inner loop and the rest of the outer pass, and goes on with the next outer row.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/continue/2-outer.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..3'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'table'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span>Table <span class="hl-brc">{</span><span class="hl-var">$table</span><span class="hl-brc">}</span>:
+  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..4'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'seat'</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$seat</span> gt <span class="hl-var">$table</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">continue</span> <span class="hl-str">'table'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+    seat <span class="hl-brc">{</span><span class="hl-var">$seat</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+  - never reached
+<span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7continue%EA%A4%B72-outer.html">open alone</a>
+                </div>
+                <div class="result">
+                  <br>
+                  Table 1: seat 1<br>
+                  Table 2: seat 1 seat 2<br>
+                  Table 3: seat 1 seat 2 seat 3
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7break.html">{break}</a> <span class="about">Leaves a loop at once: the rest of the current pass is dropped and no further row follows.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease}</a> <span class="about">Ends a loop gracefully: the current pass finishes, and no further row follows.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> <span class="about">Renders its content again and again for as long as a condition holds.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7content.html">← {content}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7copy.html">{copy} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

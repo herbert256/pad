@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="5414eae51d53b853ad9118d487850b5201701906553ccf1095b47c07ce6bb2ec">
+  <title>A list PAD keeps - PAD + Alpine</title>
+  <link rel="stylesheet" href="alpine.css">
+  <!-- The application's own helpers first - pad.get, pad.post, the request log - then Alpine,
+       deferred: the components of a page register themselves before Alpine starts -->
+  <script src="alpine-app.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.17.4/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + Alpine home">
+      <svg class="brand-mark" viewBox="0 0 32 20" aria-hidden="true"><path d="M10 0 20 10 10 20 0 10z"/><path d="M22 0 32 10 22 20 12 10z" opacity=".55"/></svg>
+      <span>PAD <em>+</em> Alpine</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Talking back to PAD</nav>
+  <h1><span class="example-icon" aria-hidden="true">✅</span>A list PAD keeps</h1>
+  <p class="lede">Every change shows at once and is posted to the page, which keeps the list in the session and answers it - the server&#039;s answer is the list. Reload, and it is still there.</p>
+  <div class="chips">
+    <code class="chip is-server">padSession</code><code class="chip is-server">$padExpose</code>
+    <code class="chip is-client">x-for</code><code class="chip is-client">@submit.prevent</code><code class="chip is-client">fetch POST</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<div class="todos" x-data="todos([{&quot;id&quot;:1,&quot;text&quot;:&quot;Read the guide about braces&quot;,&quot;done&quot;:true},{&quot;id&quot;:2,&quot;text&quot;:&quot;Hand Alpine its state with {^}&quot;,&quot;done&quot;:false},{&quot;id&quot;:3,&quot;text&quot;:&quot;Let PAD keep the list&quot;,&quot;done&quot;:false}])">
+
+  <form class="todo-add" @submit.prevent="add()">
+    <input class="input" x-model="text" placeholder="Something to do ..." aria-label="A new todo" maxlength="80">
+    <button>Add</button>
+  </form>
+
+  <div class="bar"><span :style="'width:' + progress() + '%'"></span></div>
+  <p class="muted small"><span x-text="done()"></span> of <span x-text="list.length"></span> done
+     <span x-show="syncing" x-cloak> &middot; saving ...</span></p>
+
+  <ul class="todo-list">
+    <template x-for="todo in list" :key="todo.id">
+      <li :class="todo.done && 'is-done'">
+        <label><input type="checkbox" :checked="todo.done" :disabled="!!todo.pending" @change="toggle(todo)"> <span x-text="todo.text"></span></label>
+        <button class="btn-icon btn-ghost" @click="remove(todo)" :disabled="!!todo.pending" :aria-label="'Remove ' + todo.text">×</button>
+      </li>
+    </template>
+  </ul>
+
+  <button class="btn-sm btn-ghost" @click="clear()" x-show="done() > 0" x-cloak>Clear the done ones</button>
+
+  <ul class="todo-list" x-show="false">
+    <li>Read the guide about braces</li><li>Hand Alpine its state with {^}</li><li>Let PAD keep the list</li>
+  </ul>
+</div>
+
+<script src="examples/todos.js"></script>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests to PAD</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request a component makes to PAD shows here.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">Alpine, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/todos.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/todos.php</label><input type="radio" name="pad-source-1" id="pad-source-1-3"><label for="pad-source-1-3" data-side="client">www/alpine/examples/todos.js</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;todos&quot;</span> <span class="hl-opt">x-data</span>=<span class="hl-str">&quot;todos({^todos})&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-htm">&lt;form</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;todo-add&quot;</span> @submit.<span class="hl-opt">prevent</span>=<span class="hl-str">&quot;add()&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4">    <span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input&quot;</span> <span class="hl-opt">x-model</span>=<span class="hl-str">&quot;text&quot;</span> <span class="hl-opt">placeholder</span>=<span class="hl-str">&quot;Something to do ...&quot;</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;A new todo&quot;</span> <span class="hl-opt">maxlength</span>=<span class="hl-str">&quot;80&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="5">    <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Add<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="7"></span>
+<span class="hl-line" data-line="8">  <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;bar&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;span</span> :<span class="hl-opt">style</span>=<span class="hl-str">&quot;&#039;width:&#039; + progress() + &#039;%&#039;&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9">  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted small&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;span</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;done()&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span> of <span class="hl-htm">&lt;span</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;list.length&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span> done</span>
+<span class="hl-line" data-line="10">     <span class="hl-htm">&lt;span</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;syncing&quot;</span> x-cloak<span class="hl-htm">&gt;</span> <span class="hl-var">&amp;middot</span>; saving ...<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12">  <span class="hl-htm">&lt;ul</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;todo-list&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13">    <span class="hl-htm">&lt;template</span> <span class="hl-opt">x-for</span>=<span class="hl-str">&quot;todo in list&quot;</span> :<span class="hl-opt">key</span>=<span class="hl-str">&quot;todo.id&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="14">      <span class="hl-htm">&lt;li</span> :<span class="hl-opt">class</span>=<span class="hl-str">&quot;todo.done &amp;&amp; &#039;is-done&#039;&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="15">        <span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;checkbox&quot;</span> :<span class="hl-opt">checked</span>=<span class="hl-str">&quot;todo.done&quot;</span> :<span class="hl-opt">disabled</span>=<span class="hl-str">&quot;!!todo.pending&quot;</span> @<span class="hl-opt">change</span>=<span class="hl-str">&quot;toggle(todo)&quot;</span><span class="hl-htm">&gt;</span> <span class="hl-htm">&lt;span</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;todo.text&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="16">        <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-icon btn-ghost&quot;</span> @<span class="hl-opt">click</span>=<span class="hl-str">&quot;remove(todo)&quot;</span> :<span class="hl-opt">disabled</span>=<span class="hl-str">&quot;!!todo.pending&quot;</span> :<span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;&#039;Remove &#039; + todo.text&quot;</span><span class="hl-htm">&gt;</span>×<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="17">      <span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="18">    <span class="hl-htm">&lt;/template</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="19">  <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="20"></span>
+<span class="hl-line" data-line="21">  <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-sm btn-ghost&quot;</span> @<span class="hl-opt">click</span>=<span class="hl-str">&quot;clear()&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;done() &gt; 0&quot;</span> x-cloak<span class="hl-htm">&gt;</span>Clear the done ones<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="22"></span>
+<span class="hl-line" data-line="23">  <span class="hl-htm">&lt;ul</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;todo-list&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;false&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="24">    <span class="hl-brc">{</span><span class="hl-tag">todos</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/todos</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="25">  <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="26"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="27"></span>
+<span class="hl-line" data-line="28"><span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">&quot;{$padRoot}alpine/examples/todos.js&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// The list is the session&#039;s, started from _data/todos.json. Every change is a post - op=add</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// with a text, toggle or remove with an id, clear for the done ones - and the answer is</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// the list as it now stands ($padExpose): the component shows a change at once and then</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-com">// takes the server&#039;s list as the truth.</span></span>
+<span class="hl-line" data-line="7"></span>
+<span class="hl-line" data-line="8">  <span class="hl-var">$todos</span> <span class="hl-pun">=</span> <span class="hl-fn">padSession</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;alpineTodos&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">alpineData</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;todos&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10">  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequestIs</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;POST&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12">    <span class="hl-var">$op</span>   <span class="hl-pun">=</span> <span class="hl-fn">alpineText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;op&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="13">    <span class="hl-var">$id</span>   <span class="hl-pun">=</span> <span class="hl-pun">(int)</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;id&#039;</span><span class="hl-pun">,</span> <span class="hl-num">0</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="14">    <span class="hl-var">$text</span> <span class="hl-pun">=</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-fn">alpineText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;text&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="15"></span>
+<span class="hl-line" data-line="16">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$op</span> <span class="hl-pun">==</span> <span class="hl-str">&#039;add&#039;</span> <span class="hl-kwd">and</span> <span class="hl-var">$text</span> <span class="hl-pun">!==</span> <span class="hl-str">&#039;&#039;</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="17">      <span class="hl-var">$todos</span> <span class="hl-pun">[</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;id&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">max</span> <span class="hl-pun">(</span> <span class="hl-fn">array_column</span> <span class="hl-pun">(</span> <span class="hl-var">$todos</span><span class="hl-pun">,</span> <span class="hl-str">&#039;id&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">?</span><span class="hl-pun">:</span> <span class="hl-pun">[</span> <span class="hl-num">0</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span> <span class="hl-pun">+</span> <span class="hl-num">1</span><span class="hl-pun">,</span> <span class="hl-str">&#039;text&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">mb_substr</span> <span class="hl-pun">(</span> <span class="hl-var">$text</span><span class="hl-pun">,</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-num">80</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;done&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">FALSE</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="18"></span>
+<span class="hl-line" data-line="19">    <span class="hl-kwd">foreach</span> <span class="hl-pun">(</span> <span class="hl-var">$todos</span> <span class="hl-kwd">as</span> <span class="hl-var">$at</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$todo</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="20">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$op</span> <span class="hl-pun">==</span> <span class="hl-str">&#039;toggle&#039;</span> <span class="hl-kwd">and</span> <span class="hl-var">$todo</span> <span class="hl-pun">[</span><span class="hl-str">&#039;id&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">==</span> <span class="hl-var">$id</span> <span class="hl-pun">)</span> <span class="hl-var">$todos</span> <span class="hl-pun">[</span><span class="hl-var">$at</span><span class="hl-pun">]</span> <span class="hl-pun">[</span><span class="hl-str">&#039;done&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-pun">!</span> <span class="hl-var">$todo</span> <span class="hl-pun">[</span><span class="hl-str">&#039;done&#039;</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="21">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$op</span> <span class="hl-pun">==</span> <span class="hl-str">&#039;remove&#039;</span> <span class="hl-kwd">and</span> <span class="hl-var">$todo</span> <span class="hl-pun">[</span><span class="hl-str">&#039;id&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">==</span> <span class="hl-var">$id</span> <span class="hl-pun">)</span> <span class="hl-kwd">unset</span> <span class="hl-pun">(</span> <span class="hl-var">$todos</span> <span class="hl-pun">[</span><span class="hl-var">$at</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="22">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="23"></span>
+<span class="hl-line" data-line="24">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$op</span> <span class="hl-pun">==</span> <span class="hl-str">&#039;clear&#039;</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="25">      <span class="hl-var">$todos</span> <span class="hl-pun">=</span> <span class="hl-fn">array_filter</span> <span class="hl-pun">(</span> <span class="hl-var">$todos</span><span class="hl-pun">,</span> <span class="hl-kwd">fn</span> <span class="hl-pun">(</span> <span class="hl-var">$todo</span> <span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">!</span> <span class="hl-var">$todo</span> <span class="hl-pun">[</span><span class="hl-str">&#039;done&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="26"></span>
+<span class="hl-line" data-line="27">    <span class="hl-var">$todos</span> <span class="hl-pun">=</span> <span class="hl-fn">array_values</span> <span class="hl-pun">(</span> <span class="hl-var">$todos</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="28"></span>
+<span class="hl-line" data-line="29">    <span class="hl-fn">padSessionPut</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;alpineTodos&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$todos</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="30"></span>
+<span class="hl-line" data-line="31">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="32"></span>
+<span class="hl-line" data-line="33">  <span class="hl-var">$padExpose</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;todos&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="34"></span>
+<span class="hl-line" data-line="35"><span class="hl-tag">?&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="js"><code><span class="hl-line" data-line="1"><span class="hl-com">// The list: what PAD wrote into the argument - todos({^todos}) - and from then on what PAD</span></span>
+<span class="hl-line" data-line="2"><span class="hl-com">// answers. A change shows at once; the post that follows answers the whole list, which</span></span>
+<span class="hl-line" data-line="3"><span class="hl-com">// replaces the component&#039;s own. If the post fails, the server&#039;s list stands.</span></span>
+<span class="hl-line" data-line="4"><span class="hl-com">//</span></span>
+<span class="hl-line" data-line="5"><span class="hl-com">// A todo just added has no id of the server&#039;s until the answer to its post is in: it shows</span></span>
+<span class="hl-line" data-line="6"><span class="hl-com">// with a key of its own and cannot be ticked or removed yet. It was id &#039;new&#039; - a toggle or</span></span>
+<span class="hl-line" data-line="7"><span class="hl-com">// remove of it posted id=new, which matched nothing, so the change was lost when the answer</span></span>
+<span class="hl-line" data-line="8"><span class="hl-com">// came, and two quick adds were two items with the key &#039;new&#039;.</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10">document<span class="hl-pun">.</span><span class="hl-fn">addEventListener</span><span class="hl-pun">(</span><span class="hl-str">&#039;alpine:init&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12">  Alpine<span class="hl-pun">.</span><span class="hl-fn">data</span><span class="hl-pun">(</span><span class="hl-str">&#039;todos&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(</span>first<span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">(</span><span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="13">    list: first<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="14">    text: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="15">    syncing: <span class="hl-lit">false</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="16">    added: <span class="hl-num">0</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="17"></span>
+<span class="hl-line" data-line="18">    <span class="hl-fn">done</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>list<span class="hl-pun">.</span><span class="hl-fn">filter</span><span class="hl-pun">(</span>todo <span class="hl-pun">=&gt;</span> todo<span class="hl-pun">.</span>done<span class="hl-pun">)</span><span class="hl-pun">.</span>length<span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="19">    <span class="hl-fn">progress</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>list<span class="hl-pun">.</span>length ? Math<span class="hl-pun">.</span><span class="hl-fn">round</span><span class="hl-pun">(</span><span class="hl-kwd">this</span><span class="hl-pun">.</span><span class="hl-fn">done</span><span class="hl-pun">(</span><span class="hl-pun">)</span> / <span class="hl-kwd">this</span><span class="hl-pun">.</span>list<span class="hl-pun">.</span>length * <span class="hl-num">100</span><span class="hl-pun">)</span> : <span class="hl-num">0</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="20"></span>
+<span class="hl-line" data-line="21">    <span class="hl-kwd">async</span> <span class="hl-fn">sync</span><span class="hl-pun">(</span>body<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="22">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>syncing = <span class="hl-lit">true</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="23">      <span class="hl-kwd">try</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="24">        <span class="hl-kwd">const</span> answer = <span class="hl-kwd">await</span> pad<span class="hl-pun">.</span><span class="hl-fn">post</span><span class="hl-pun">(</span><span class="hl-str">&#039;examples/todos&#039;</span><span class="hl-pun">,</span> body<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="25">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>list = answer<span class="hl-pun">.</span>todos<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="26">      <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>error<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="27">        <span class="hl-kwd">const</span> answer = <span class="hl-kwd">await</span> pad<span class="hl-pun">.</span><span class="hl-fn">get</span><span class="hl-pun">(</span><span class="hl-str">&#039;examples/todos&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="28">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>list = answer<span class="hl-pun">.</span>todos<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="29">      <span class="hl-pun">}</span> <span class="hl-kwd">finally</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="30">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>syncing = <span class="hl-lit">false</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="31">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="32">    <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="33"></span>
+<span class="hl-line" data-line="34">    <span class="hl-fn">add</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="35">      <span class="hl-kwd">const</span> text = <span class="hl-kwd">this</span><span class="hl-pun">.</span>text<span class="hl-pun">.</span><span class="hl-fn">trim</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="36">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!text<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="37">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>list<span class="hl-pun">.</span><span class="hl-fn">push</span><span class="hl-pun">(</span><span class="hl-pun">{</span> id: <span class="hl-str">&#039;new-&#039;</span> + ++<span class="hl-kwd">this</span><span class="hl-pun">.</span>added<span class="hl-pun">,</span> text<span class="hl-pun">,</span> done: <span class="hl-lit">false</span><span class="hl-pun">,</span> pending: <span class="hl-lit">true</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="38">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>text = <span class="hl-str">&#039;&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="39">      <span class="hl-kwd">this</span><span class="hl-pun">.</span><span class="hl-fn">sync</span><span class="hl-pun">(</span><span class="hl-pun">{</span> op: <span class="hl-str">&#039;add&#039;</span><span class="hl-pun">,</span> text <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="40">    <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="41"></span>
+<span class="hl-line" data-line="42">    <span class="hl-fn">toggle</span><span class="hl-pun">(</span>todo<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="43">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>todo<span class="hl-pun">.</span>pending<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="44">      todo<span class="hl-pun">.</span>done = !todo<span class="hl-pun">.</span>done<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="45">      <span class="hl-kwd">this</span><span class="hl-pun">.</span><span class="hl-fn">sync</span><span class="hl-pun">(</span><span class="hl-pun">{</span> op: <span class="hl-str">&#039;toggle&#039;</span><span class="hl-pun">,</span> id: todo<span class="hl-pun">.</span>id <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="46">    <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="47"></span>
+<span class="hl-line" data-line="48">    <span class="hl-fn">remove</span><span class="hl-pun">(</span>todo<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="49">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>todo<span class="hl-pun">.</span>pending<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="50">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>list = <span class="hl-kwd">this</span><span class="hl-pun">.</span>list<span class="hl-pun">.</span><span class="hl-fn">filter</span><span class="hl-pun">(</span>one <span class="hl-pun">=&gt;</span> one !== todo<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="51">      <span class="hl-kwd">this</span><span class="hl-pun">.</span><span class="hl-fn">sync</span><span class="hl-pun">(</span><span class="hl-pun">{</span> op: <span class="hl-str">&#039;remove&#039;</span><span class="hl-pun">,</span> id: todo<span class="hl-pun">.</span>id <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="52">    <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="53"></span>
+<span class="hl-line" data-line="54">    <span class="hl-fn">clear</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="55">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>list = <span class="hl-kwd">this</span><span class="hl-pun">.</span>list<span class="hl-pun">.</span><span class="hl-fn">filter</span><span class="hl-pun">(</span>todo <span class="hl-pun">=&gt;</span> !todo<span class="hl-pun">.</span>done<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="56">      <span class="hl-kwd">this</span><span class="hl-pun">.</span><span class="hl-fn">sync</span><span class="hl-pun">(</span><span class="hl-pun">{</span> op: <span class="hl-str">&#039;clear&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="57">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="58">  <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="59"></span>
+<span class="hl-line" data-line="60"><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7form.html"><small>Previous</small>One set of rules</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7live.html"><small>Next</small>Server-sent events</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> writes the HTML and keeps the data &middot; <strong>Alpine</strong> brings the parts of it to life where they stand</p>
+    <p class="footer-small">Alpine comes from unpkg.com &middot; the components are in <code>www/alpine/</code>, the pages in <code>apps/alpine/</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

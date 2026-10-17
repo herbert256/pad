@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: showcase/datatable
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: showcase/datatable
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=showcase.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7expenses.pad.html">expenses.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7orders.pad.html">orders.pad</a>
+                  </li>
+                  <li class="current">orders.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7paged.pad.html">paged.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=datatable&amp;file=datatable%EA%A4%B7paged.php.html">paged.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  datatable/orders.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The orders of a week, as a database answers them.<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10412</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Atelier Graphique'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">,  </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1245.5</span><span style="color: #007700">,  </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'    </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10413</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Signal Gift Stores'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">,  </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">89.9</span><span style="color: #007700">,    </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'    </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10414</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-06'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mini Wheels Co.'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4310</span><span style="color: #007700">,    </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'shipped' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10415</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-06'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Land of Toys Inc.'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">,  </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">642.25</span><span style="color: #007700">,  </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'paid'    </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10416</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-07'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Baane Mini Imports'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">,  </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">318</span><span style="color: #007700">,     </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'open'    </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10417</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-08'</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Euro+ Shopping'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">8</span><span style="color: #007700">,  </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2975.75</span><span style="color: #007700">, </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'open'    </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="acc86c215bad8742e0f04c02af5477597cf34bd3b9274270cbabfb22c206a3ef">
+  <title>One set of rules - PAD + Alpine</title>
+  <link rel="stylesheet" href="alpine.css">
+  <!-- The application's own helpers first - pad.get, pad.post, the request log - then Alpine,
+       deferred: the components of a page register themselves before Alpine starts -->
+  <script src="alpine-app.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.17.4/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + Alpine home">
+      <svg class="brand-mark" viewBox="0 0 32 20" aria-hidden="true"><path d="M10 0 20 10 10 20 0 10z"/><path d="M22 0 32 10 22 20 12 10z" opacity=".55"/></svg>
+      <span>PAD <em>+</em> Alpine</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Talking back to PAD</nav>
+  <h1><span class="example-icon" aria-hidden="true">📝</span>One set of rules</h1>
+  <p class="lede">The rules live in the page&#039;s PHP: padValidate checks the post with them, padValidateClient hands them to Alpine, and {validator} checks them in the browser first - the same messages on both sides.</p>
+  <div class="chips">
+    <code class="chip is-server">padValidateClient</code><code class="chip is-server">padValidate</code><code class="chip is-server">{validator}</code>
+    <code class="chip is-client">@blur</code><code class="chip is-client">padValidate.check</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<div class="cols-2" x-data="signup({&quot;rules&quot;:{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;team&quot;:{&quot;label&quot;:&quot;Team&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;in&quot;,&quot;web,platform,data&quot;,&quot;:label must be one of :n&quot;,&quot;web, platform, data&quot;]]},&quot;seats&quot;:{&quot;label&quot;:&quot;Seats&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;1&quot;,&quot;:label must be at least :n&quot;,&quot;1&quot;],[&quot;max&quot;,&quot;8&quot;,&quot;:label must be at most :n&quot;,&quot;8&quot;]]}},&quot;people&quot;:[]})">
+
+  <form novalidate @submit.prevent="send()" class="stack-fields">
+    <label class="label">Name <input class="input" name="name" x-model="form.name" @blur="leave('name')" :class="errors.name && 'is-invalid'"></label>
+    <span class="error" x-text="errors.name" x-show="errors.name" x-cloak></span>
+
+    <label class="label">E-mail <input class="input" name="email" type="email" x-model="form.email" @blur="leave('email')" :class="errors.email && 'is-invalid'"></label>
+    <span class="error" x-text="errors.email" x-show="errors.email" x-cloak></span>
+
+    <label class="label">Team
+      <select class="input" name="team" x-model="form.team" @change="leave('team')" :class="errors.team && 'is-invalid'">
+        <option value="">Choose ...</option>
+        <option value="web">Web</option>
+        <option value="platform">Platform</option>
+        <option value="data">Data</option>
+        <option value="sales">Sales - not one of the rules</option>
+      </select>
+    </label>
+    <span class="error" x-text="errors.team" x-show="errors.team" x-cloak></span>
+
+    <label class="label">Seats <input class="input" name="seats" x-model="form.seats" @blur="leave('seats')" :class="errors.seats && 'is-invalid'"></label>
+    <span class="error" x-text="errors.seats" x-show="errors.seats" x-cloak></span>
+
+    <label class="small check-line"><input type="checkbox" x-model="browser"> Check in the browser first</label>
+    <button :disabled="busy">Book</button>
+    <p class="small" x-text="note" x-show="note" x-cloak></p>
+  </form>
+
+  <div>
+    <div class="panel-title">Booked in your session</div>
+    <template x-for="(one, at) in people" :key="at">
+      <div class="card booked"><strong x-text="one.name"></strong> <span class="badge" x-text="one.team"></span> <span class="muted small" x-text="one.seats + ' seats'"></span></div>
+    </template>
+    <p class="muted small" x-show="people.length === 0">Nobody yet.</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  if (window.padValidate) return;
+  var numberPattern = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
+  var emailPattern = /^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i;
+  function trim(value) {
+    return typeof value === 'string' ? value.replace(/^[ \t\n\r\0\x0B]+|[ \t\n\r\0\x0B]+$/g, '') : value;
+  }
+  function empty(value) {
+    return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
+  }
+  function toNumber(value) {
+    var found = String(value).match(/^\s*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
+    return found ? parseFloat(found[0]) : 0;
+  }
+  function length(value) {
+    return Array.from(String(value)).length;
+  }
+  function email(value) {
+    return value.length <= 320 && emailPattern.test(value);
+  }
+  function integer(value) {
+    var found = value.match(/^([+-]?)(0|[1-9]\d*)$/);
+    if (!found) return false;
+    var limit = found[1] === '-' ? '9223372036854775808' : '9223372036854775807';
+    return found[2].length < limit.length || (found[2].length === limit.length && found[2] <= limit);
+  }
+  function url(value) {
+    if (!/^https?:\/\//i.test(value) || /[^A-Za-z0-9$\-_.+!*'(),{}|\\^~\[\]`<>#%";\/?:@&=]/.test(value)) return false;
+    var rest = value.replace(/^https?:\/\//i, '');
+    var authority = rest.slice(0, rest.search(/[\/?#]|$/));
+    var at = authority.lastIndexOf('@');
+    var host = authority.slice(at + 1);
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']')) {
+      var colon = host.lastIndexOf(':');
+      if (colon >= 0) {
+        var port = host.slice(colon + 1);
+        if (port.length > 5) return false;
+        if (port !== '') {
+          var number = port.match(/^[+-]?\d+/);
+          if (!number || +number[0] < 0 || +number[0] > 65535) return false;
+        }
+        host = host.slice(0, colon);
+      }
+    }
+    if (host === '') return false;
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']' && ipv6(host.slice(1, -1))) && !hostname(host)) return false;
+    if (at < 0) return true;
+    var info = authority.slice(0, at), split = info.indexOf(':');
+    return userinfo(split < 0 ? info : info.slice(0, split)) && (split < 0 || userinfo(info.slice(split + 1)));
+  }
+  function alnum(c) {
+    return /^[A-Za-z0-9]$/.test(c);
+  }
+  function hostname(host) {
+    var end = host.length;
+    if (end > 0 && host.charAt(end - 1) === '.') end--;
+    if (end > 253 || !alnum(host.charAt(0)) || host.slice(-1) === '-') return false;
+    for (var i = 0, size = 1; i < end; i++) {
+      var c = host.charAt(i);
+      if (c === '.') {
+        if (host.charAt(i + 1) === '.' || !alnum(host.charAt(i - 1)) || !alnum(host.charAt(i + 1))) return false;
+        size = 1;
+      } else {
+        if (size > 63 || (c !== '-' && !alnum(c))) return false;
+        size++;
+      }
+    }
+    return true;
+  }
+  function ipv4(text) {
+    var parts = text.split('.');
+    return parts.length === 4 && parts.every(function (one) { return /^(0|[1-9]\d{0,2})$/.test(one) && +one <= 255; });
+  }
+  function ipv6(text) {
+    if (text.indexOf(':') < 0) return false;
+    var blocks = 0, compressed = false, at = 0, end = text.length;
+    var dot = text.indexOf('.');
+    if (dot >= 0) {
+      var start = text.lastIndexOf(':', dot) + 1;
+      if (!ipv4(text.slice(start))) return false;
+      end = start;
+      if (end < 2) return false;
+      if (text.charAt(end - 2) !== ':') end--;
+      blocks = 2;
+    }
+    while (at < end) {
+      if (text.charAt(at) === ':') {
+        if (++at >= end) return false;
+        if (text.charAt(at) === ':') {
+          if (compressed) return false;
+          compressed = true;
+          blocks++;
+          if (++at === end) return blocks <= 8;
+        } else if (at - 1 === 0) return false;
+      }
+      var digits = text.slice(at, end).match(/^[0-9A-Fa-f]*/)[0].length;
+      at += digits;
+      if (digits < 1 || digits > 4 || ++blocks > 8) return false;
+    }
+    return (compressed && blocks <= 8) || blocks === 8;
+  }
+  function userinfo(text) {
+    return /^(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9][0-9A-Fa-f])*$/.test(text);
+  }
+  function date(value) {
+    var iso = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[Tt ](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+    if (iso) {
+      if (iso[4] !== undefined && (+iso[4] > 24 || +iso[5] > 59 || +(iso[6] || 0) > 60)) return false;
+      return calendarDay(+iso[1], +iso[2], +iso[3]);
+    }
+    var dmy = value.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+    if (dmy) return value.charAt(dmy[1].length) === '/' ? calendarDay(+dmy[3], +dmy[1], +dmy[2]) : calendarDay(+dmy[3], +dmy[2], +dmy[1]);
+    return /\d/.test(value);
+  }
+  function calendarDay(year, month, day) {
+    var moment = new Date(0);
+    moment.setUTCFullYear(year, month - 1, day);
+    return year > 0 && moment.getUTCFullYear() === year && moment.getUTCMonth() === month - 1 && moment.getUTCDate() === day;
+  }
+  function regex(pattern) {
+    var open = pattern.charAt(0);
+    var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
+    var end = pattern.lastIndexOf(close);
+    if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
+    var flags = pattern.slice(end + 1);
+    if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
+    var body = pattern.slice(1, end);
+    var bare = body.replace(/\\\\/g, '');
+    if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
+    if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+  }
+  function rule(name, arg, value, values, number) {
+    if (Array.isArray(value)) {
+      if (name === 'required') return value.length > 0;
+      if (name === 'in') return value.every(function (one) { return typeof one === 'string' && rule('in', arg, trim(one), values, number); });
+      return false;
+    }
+    value = String(value);
+    var size = number ? toNumber(value) : length(value);
+    switch (name) {
+      case 'required': return value !== '';
+      case 'accepted': return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0;
+      case 'email':    return email(value);
+      case 'url':      return url(value);
+      case 'numeric':  return numberPattern.test(value);
+      case 'integer':  return integer(value);
+      case 'min':      return size >= toNumber(arg);
+      case 'max':      return size <= toNumber(arg);
+      case 'in':       return arg.split(',').map(trim).indexOf(value) >= 0;
+      case 'regex':    var pattern = regex(arg); return pattern && (pattern.unicode || !/[^\x00-\x7f]/.test(value)) ? pattern.test(value) : true;
+      case 'same':     var other = values[arg]; return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
+      case 'date':     return date(value);
+    }
+    return true;
+  }
+  function message(text, label, shown) {
+    return text.replace(/:label|:n/g, function (token) { return token === ':label' ? label : shown; });
+  }
+  function field(spec, value, values, label) {
+    value = trim(value === undefined || value === null ? '' : value);
+    label = label || spec.label;
+    if (spec.rules.length && Array.isArray(value) && !spec.list) return message(spec.single, label, '');
+    for (var i = 0; i < spec.rules.length; i++) {
+      var one = spec.rules[i];
+      if (empty(value) && one[0] !== 'required' && one[0] !== 'accepted') continue;
+      if (!rule(one[0], one[1], value, values, spec.number)) return message(one[2], label, one[3]);
+    }
+    return '';
+  }
+  function check(rules, values) {
+    var errors = {};
+    Object.keys(rules || {}).forEach(function (name) {
+      var problem = field(rules[name], values[name], values);
+      if (problem) errors[name] = problem;
+    });
+    return errors;
+  }
+  function rulesOf(form) {
+    try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
+  }
+  function sent(one) {
+    return one.replace(/\r\n|\r|\n/g, '\r\n');
+  }
+  function valuesOf(form, rules) {
+    var data = new FormData(form);
+    var values = {};
+    data.forEach(function (one, name) {
+      if (typeof one === 'string') values[name] = sent(one);
+    });
+    Object.keys(rules).forEach(function (name) {
+      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
+      values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
+    });
+    return values;
+  }
+  function controlsOf(form, name) {
+    return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
+  }
+  function labelOf(form, control) {
+    if (!control || !control.id) return '';
+    var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
+    return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
+  }
+  function idOf(name, control) {
+    return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function show(form, name, text) {
+    var controls = controlsOf(form, name);
+    var last = controls[controls.length - 1];
+    if (!last) return;
+    var id = idOf(name, last) + '-error';
+    var span = document.getElementById(id);
+    controls.forEach(function (control) {
+      if (text) {
+        control.setAttribute('aria-invalid', 'true');
+        control.setAttribute('aria-describedby', id);
+      } else if (control.getAttribute('aria-describedby') === id) {
+        control.removeAttribute('aria-invalid');
+        control.removeAttribute('aria-describedby');
+      }
+    });
+    if (!text) {
+      if (span && form.contains(span)) span.remove();
+      return;
+    }
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'error';
+      span.id = id;
+      var after = last;
+      if ((last.type === 'checkbox' || last.type === 'radio') && last.nextElementSibling && last.nextElementSibling.tagName === 'LABEL')
+        after = last.nextElementSibling;
+      after.insertAdjacentElement('afterend', span);
+    }
+    span.textContent = text;
+  }
+  function banner(form, on) {
+    var text = form.getAttribute('data-pad-error');
+    var shown = form.querySelector(':scope > .error[role="alert"]');
+    if (!text) return;
+    if (on && !shown) {
+      shown = document.createElement('div');
+      shown.className = 'error';
+      shown.setAttribute('role', 'alert');
+      shown.textContent = text;
+      form.insertBefore(shown, form.firstChild);
+    } else if (!on && shown) {
+      shown.remove();
+    }
+  }
+  function checkOne(form, name) {
+    var rules = rulesOf(form);
+    if (!rules[name]) return true;
+    var values = valuesOf(form, rules);
+    var controls = controlsOf(form, name);
+    var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
+    show(form, name, problem);
+    return !problem;
+  }
+  function checkForm(form) {
+    var rules = rulesOf(form);
+    var values = valuesOf(form, rules);
+    var first = null;
+    Object.keys(rules).forEach(function (name) {
+      var controls = controlsOf(form, name);
+      var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
+      show(form, name, problem);
+      if (problem && !first) first = controls[0];
+    });
+    banner(form, !!first);
+    if (first && first.focus) first.focus();
+    return !first;
+  }
+  function ruled(target) {
+    return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
+  }
+  document.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (!form.hasAttribute || !form.hasAttribute('data-pad-rules')) return;
+    if (!checkForm(form)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+  document.addEventListener('focusout', function (event) {
+    var form = ruled(event.target);
+    if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
+      checkOne(form, event.target.name);
+  });
+  ['input', 'change'].forEach(function (type) {
+    document.addEventListener(type, function (event) {
+      var form = ruled(event.target);
+      if (form && event.target.getAttribute('aria-invalid') === 'true')
+        checkOne(form, event.target.name);
+    });
+  });
+  window.padValidate = { check: check, field: field, form: checkForm };
+})();
+</script>
+<script src="examples/form.js"></script>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests to PAD</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request a component makes to PAD shows here.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">Alpine, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/form.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/form.php</label><input type="radio" name="pad-source-1" id="pad-source-1-3"><label for="pad-source-1-3" data-side="client">www/alpine/examples/form.js</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;cols-2&quot;</span> <span class="hl-opt">x-data</span>=<span class="hl-str">&quot;signup({^start})&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-htm">&lt;form</span> novalidate @submit.<span class="hl-opt">prevent</span>=<span class="hl-str">&quot;send()&quot;</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;stack-fields&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4">    <span class="hl-htm">&lt;label</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;label&quot;</span><span class="hl-htm">&gt;</span>Name <span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;name&quot;</span> <span class="hl-opt">x-model</span>=<span class="hl-str">&quot;form.name&quot;</span> @<span class="hl-opt">blur</span>=<span class="hl-str">&quot;leave(&#039;name&#039;)&quot;</span> :<span class="hl-opt">class</span>=<span class="hl-str">&quot;errors.name &amp;&amp; &#039;is-invalid&#039;&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="5">    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;errors.name&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;errors.name&quot;</span> x-cloak<span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="6"></span>
+<span class="hl-line" data-line="7">    <span class="hl-htm">&lt;label</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;label&quot;</span><span class="hl-htm">&gt;</span>E-mail <span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;email&quot;</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;email&quot;</span> <span class="hl-opt">x-model</span>=<span class="hl-str">&quot;form.email&quot;</span> @<span class="hl-opt">blur</span>=<span class="hl-str">&quot;leave(&#039;email&#039;)&quot;</span> :<span class="hl-opt">class</span>=<span class="hl-str">&quot;errors.email &amp;&amp; &#039;is-invalid&#039;&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8">    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;errors.email&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;errors.email&quot;</span> x-cloak<span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10">    <span class="hl-htm">&lt;label</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;label&quot;</span><span class="hl-htm">&gt;</span>Team</span>
+<span class="hl-line" data-line="11">      <span class="hl-htm">&lt;select</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;team&quot;</span> <span class="hl-opt">x-model</span>=<span class="hl-str">&quot;form.team&quot;</span> @<span class="hl-opt">change</span>=<span class="hl-str">&quot;leave(&#039;team&#039;)&quot;</span> :<span class="hl-opt">class</span>=<span class="hl-str">&quot;errors.team &amp;&amp; &#039;is-invalid&#039;&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="12">        <span class="hl-htm">&lt;option</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;&quot;</span><span class="hl-htm">&gt;</span>Choose ...<span class="hl-htm">&lt;/option</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13">        <span class="hl-htm">&lt;option</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;web&quot;</span><span class="hl-htm">&gt;</span>Web<span class="hl-htm">&lt;/option</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="14">        <span class="hl-htm">&lt;option</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;platform&quot;</span><span class="hl-htm">&gt;</span>Platform<span class="hl-htm">&lt;/option</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="15">        <span class="hl-htm">&lt;option</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;data&quot;</span><span class="hl-htm">&gt;</span>Data<span class="hl-htm">&lt;/option</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="16">        <span class="hl-htm">&lt;option</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;sales&quot;</span><span class="hl-htm">&gt;</span>Sales - not one of the rules<span class="hl-htm">&lt;/option</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="17">      <span class="hl-htm">&lt;/select</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="18">    <span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="19">    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;errors.team&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;errors.team&quot;</span> x-cloak<span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="20"></span>
+<span class="hl-line" data-line="21">    <span class="hl-htm">&lt;label</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;label&quot;</span><span class="hl-htm">&gt;</span>Seats <span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;seats&quot;</span> <span class="hl-opt">x-model</span>=<span class="hl-str">&quot;form.seats&quot;</span> @<span class="hl-opt">blur</span>=<span class="hl-str">&quot;leave(&#039;seats&#039;)&quot;</span> :<span class="hl-opt">class</span>=<span class="hl-str">&quot;errors.seats &amp;&amp; &#039;is-invalid&#039;&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="22">    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;errors.seats&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;errors.seats&quot;</span> x-cloak<span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="23"></span>
+<span class="hl-line" data-line="24">    <span class="hl-htm">&lt;label</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;small check-line&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;checkbox&quot;</span> <span class="hl-opt">x-model</span>=<span class="hl-str">&quot;browser&quot;</span><span class="hl-htm">&gt;</span> Check in the browser first<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="25">    <span class="hl-htm">&lt;button</span> :<span class="hl-opt">disabled</span>=<span class="hl-str">&quot;busy&quot;</span><span class="hl-htm">&gt;</span>Book<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="26">    <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;small&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;note&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;note&quot;</span> x-cloak<span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="27">  <span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="28"></span>
+<span class="hl-line" data-line="29">  <span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="30">    <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;panel-title&quot;</span><span class="hl-htm">&gt;</span>Booked in your session<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="31">    <span class="hl-htm">&lt;template</span> <span class="hl-opt">x-for</span>=<span class="hl-str">&quot;(one, at) in people&quot;</span> :<span class="hl-opt">key</span>=<span class="hl-str">&quot;at&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="32">      <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;card booked&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;one.name&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;badge&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;one.team&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span> <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted small&quot;</span> <span class="hl-opt">x-text</span>=<span class="hl-str">&quot;one.seats + &#039; seats&#039;&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="33">    <span class="hl-htm">&lt;/template</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="34">    <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted small&quot;</span> <span class="hl-opt">x-show</span>=<span class="hl-str">&quot;people.length === 0&quot;</span><span class="hl-htm">&gt;</span>Nobody yet.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="35">  <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="36"></span>
+<span class="hl-line" data-line="37"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="38"></span>
+<span class="hl-line" data-line="39"><span class="hl-brc">{</span><span class="hl-tag">validator</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="40"><span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">&quot;{$padRoot}alpine/examples/form.js&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// One list of rules for both sides. padValidate checks a post against it; for the browser</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// padValidateClient exports the same list, every rule with the message padValidate would</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// give, and {validator} in the template brings the checker that reads it. A good post is</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-com">// kept in the session; the answer is JSON either way - the messages, or the new list.</span></span>
+<span class="hl-line" data-line="7"></span>
+<span class="hl-line" data-line="8">  <span class="hl-var">$rules</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;name&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|max:40&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="9">             <span class="hl-str">&#039;email&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|email&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="10">             <span class="hl-str">&#039;team&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|in:web,platform,data&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="11">             <span class="hl-str">&#039;seats&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|integer|min:1|max:8&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="12"></span>
+<span class="hl-line" data-line="13">  <span class="hl-var">$people</span> <span class="hl-pun">=</span> <span class="hl-fn">padSession</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;alpinePeople&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="14">  <span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="15">  <span class="hl-var">$saved</span>  <span class="hl-pun">=</span> <span class="hl-lit">FALSE</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="16"></span>
+<span class="hl-line" data-line="17">  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequestIs</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;POST&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="18"></span>
+<span class="hl-line" data-line="19">    <span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-var">$rules</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="20"></span>
+<span class="hl-line" data-line="21">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-pun">!</span> <span class="hl-var">$errors</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="22">      <span class="hl-fn">array_unshift</span> <span class="hl-pun">(</span> <span class="hl-var">$people</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;team&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;team&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;seats&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">(int)</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;seats&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="23">      <span class="hl-var">$saved</span> <span class="hl-pun">=</span> <span class="hl-fn">padSessionPut</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;alpinePeople&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">array_slice</span> <span class="hl-pun">(</span> <span class="hl-var">$people</span><span class="hl-pun">,</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-num">8</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="24">      <span class="hl-var">$people</span> <span class="hl-pun">=</span> <span class="hl-fn">array_slice</span> <span class="hl-pun">(</span> <span class="hl-var">$people</span><span class="hl-pun">,</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-num">8</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="25">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="26"></span>
+<span class="hl-line" data-line="27">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="28"></span>
+<span class="hl-line" data-line="29">  <span class="hl-var">$start</span>     <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;rules&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">padValidateClient</span> <span class="hl-pun">(</span> <span class="hl-var">$rules</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;people&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$people</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="30">  <span class="hl-var">$padExpose</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;saved&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;errors&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;people&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="31"></span>
+<span class="hl-line" data-line="32"><span class="hl-tag">?&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="js"><code><span class="hl-line" data-line="1"><span class="hl-com">// The form: the rules are the page&#039;s PHP&#039;s, exported by padValidateClient into the argument</span></span>
+<span class="hl-line" data-line="2"><span class="hl-com">// - signup({^start}) - and padValidate, the checker {validator} brought, judges them in the</span></span>
+<span class="hl-line" data-line="3"><span class="hl-com">// browser with the server&#039;s own messages. Untick &quot;check in the browser&quot; and the post goes as</span></span>
+<span class="hl-line" data-line="4"><span class="hl-com">// it is: the server&#039;s answer holds the same messages.</span></span>
+<span class="hl-line" data-line="5"></span>
+<span class="hl-line" data-line="6">document<span class="hl-pun">.</span><span class="hl-fn">addEventListener</span><span class="hl-pun">(</span><span class="hl-str">&#039;alpine:init&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="7"></span>
+<span class="hl-line" data-line="8">  Alpine<span class="hl-pun">.</span><span class="hl-fn">data</span><span class="hl-pun">(</span><span class="hl-str">&#039;signup&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(</span>start<span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">(</span><span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="9">    rules: start<span class="hl-pun">.</span>rules<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="10">    people: start<span class="hl-pun">.</span>people<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="11">    form: <span class="hl-pun">{</span> name: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> email: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> team: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> seats: <span class="hl-str">&#039;&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="12">    errors: <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="13">    browser: <span class="hl-lit">true</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="14">    busy: <span class="hl-lit">false</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="15">    note: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="16"></span>
+<span class="hl-line" data-line="17">    <span class="hl-fn">leave</span><span class="hl-pun">(</span>name<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="18">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span><span class="hl-kwd">this</span><span class="hl-pun">.</span>browser &amp;&amp; <span class="hl-kwd">this</span><span class="hl-pun">.</span>form<span class="hl-pun">[</span>name<span class="hl-pun">]</span> !== <span class="hl-str">&#039;&#039;</span><span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="19">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>errors<span class="hl-pun">[</span>name<span class="hl-pun">]</span> = padValidate<span class="hl-pun">.</span><span class="hl-fn">field</span><span class="hl-pun">(</span><span class="hl-kwd">this</span><span class="hl-pun">.</span>rules<span class="hl-pun">[</span>name<span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>form<span class="hl-pun">[</span>name<span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>form<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="20">    <span class="hl-pun">}</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="21"></span>
+<span class="hl-line" data-line="22">    <span class="hl-kwd">async</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="23">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>note = <span class="hl-str">&#039;&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="24">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span><span class="hl-kwd">this</span><span class="hl-pun">.</span>browser<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="25">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>errors = padValidate<span class="hl-pun">.</span><span class="hl-fn">check</span><span class="hl-pun">(</span><span class="hl-kwd">this</span><span class="hl-pun">.</span>rules<span class="hl-pun">,</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>form<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="26">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span>Object<span class="hl-pun">.</span><span class="hl-fn">keys</span><span class="hl-pun">(</span><span class="hl-kwd">this</span><span class="hl-pun">.</span>errors<span class="hl-pun">)</span><span class="hl-pun">.</span>length<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="27">          <span class="hl-kwd">this</span><span class="hl-pun">.</span>note = <span class="hl-str">&#039;Stopped in the browser - the same rules the server checks.&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="28">          <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="29">        <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="30">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="31">      <span class="hl-kwd">this</span><span class="hl-pun">.</span>busy = <span class="hl-lit">true</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="32">      <span class="hl-kwd">try</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="33">        <span class="hl-kwd">const</span> answer = <span class="hl-kwd">await</span> pad<span class="hl-pun">.</span><span class="hl-fn">post</span><span class="hl-pun">(</span><span class="hl-str">&#039;examples/form&#039;</span><span class="hl-pun">,</span> <span class="hl-kwd">this</span><span class="hl-pun">.</span>form<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="34">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>errors = Array<span class="hl-pun">.</span><span class="hl-fn">isArray</span><span class="hl-pun">(</span>answer<span class="hl-pun">.</span>errors<span class="hl-pun">)</span> ? <span class="hl-pun">{</span><span class="hl-pun">}</span> : answer<span class="hl-pun">.</span>errors<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="35">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>people = answer<span class="hl-pun">.</span>people<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="36">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span>answer<span class="hl-pun">.</span>saved<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="37">          <span class="hl-kwd">this</span><span class="hl-pun">.</span>form = <span class="hl-pun">{</span> name: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> email: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> team: <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span> seats: <span class="hl-str">&#039;&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="38">          <span class="hl-kwd">this</span><span class="hl-pun">.</span>note = <span class="hl-str">&#039;Booked - PAD kept it in your session.&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="39">        <span class="hl-pun">}</span> <span class="hl-kwd">else</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="40">          <span class="hl-kwd">this</span><span class="hl-pun">.</span>note = <span class="hl-str">&#039;The server sent it back - these are its messages.&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="41">        <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="42">      <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>error<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="43">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>note = error<span class="hl-pun">.</span>message<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="44">      <span class="hl-pun">}</span> <span class="hl-kwd">finally</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="45">        <span class="hl-kwd">this</span><span class="hl-pun">.</span>busy = <span class="hl-lit">false</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="46">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="47">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="48">  <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="49"></span>
+<span class="hl-line" data-line="50"><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7search.html"><small>Previous</small>Live search</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7todos.html"><small>Next</small>A list PAD keeps</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> writes the HTML and keeps the data &middot; <strong>Alpine</strong> brings the parts of it to life where they stand</p>
+    <p class="footer-small">Alpine comes from unpkg.com &middot; the components are in <code>www/alpine/</code>, the pages in <code>apps/alpine/</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

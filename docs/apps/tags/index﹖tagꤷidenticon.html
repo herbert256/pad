@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {identicon} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-identicon){--pad-identicon-background:#f0f0ee}@supports (color:light-dark(#000,#fff)){:where(.pad-identicon){--pad-identicon-background:light-dark(#f0f0ee,#dddcd6)}}.pad-identicon{vertical-align:middle;flex:none}.pad-identicon .pi-back{fill:var(--pad-identicon-background)}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">identicon</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>identicon<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Draws a GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a hash of the value.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$email</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$value</span>, <span class="hl-opt">size</span>=<span class="hl-num">64</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              What the picture is made from - an e-mail address, a user id, a key. Trimmed and lower-cased before it is hashed.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>size</code>
+            </dt>
+            <dd>
+              Width and height in pixels, default 64.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The accessible name, default <code>Identicon</code> - the value itself is not written into the page.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{identicon}</code> gives every account a picture of its own without asking for one: a symmetric pattern on a 5 by 5 grid and a colour, both taken from a SHA-256 hash of the value (<code>tags/_lib/identicon.php</code>). Nothing leaves the server, and the same value is always the same picture.
+          </p>
+          <p>
+            The value is trimmed and lower-cased before it is hashed, so every spelling of an e-mail address is one picture. Fifteen nibbles of the hash fill the left three columns, mirrored to the right; the colour is a hue from the last bytes at a saturation and lightness that read on the light square behind it, <code>--pad-identicon-background</code> on <code>.pad-identicon</code> (a <code>light-dark()</code> default, written once per page).
+          </p>
+          <p>
+            Unlike <a href="index%EF%B9%96tag%EA%A4%B7avatar.html">{avatar}</a> the picture says nothing of the value: the accessible name is <code>Identicon</code>, or <code>title</code>, never the address itself. An empty value is an error under the strict check.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              An identicon per account
+            </h3>
+            <p class="example-about">
+              The value is trimmed and lower-cased first - the last row is the second one spelled differently.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/identicon/1-accounts.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">accounts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$email</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/accounts</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/identicon/1-accounts.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$accounts</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'email'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'herbert@example.com'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'email'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'ada@example.org'</span>     <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'email'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'grace@example.net'</span>   <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'email'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">' Ada@Example.ORG '</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7identicon%EA%A4%B71-accounts.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table>
+                    <tr>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="Identicon" width="40" height="40" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                        <title>
+                          Identicon
+                        </title>
+                        <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                        <path fill="#2267ce" d="M1.5,0.5h1v1h-1zM3.5,0.5h1v1h-1zM0.5,1.5h5v1h-5zM0.5,2.5h1v1h-1zM4.5,2.5h1v1h-1zM0.5,3.5h2v1h-2zM3.5,3.5h2v1h-2zM1.5,4.5h3v1h-3z"></path></svg>
+                      </td>
+                      <td>
+                        herbert@example.com
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="Identicon" width="40" height="40" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                        <title>
+                          Identicon
+                        </title>
+                        <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                        <path fill="#50289a" d="M0.5,0.5h1v1h-1zM2.5,0.5h1v1h-1zM4.5,0.5h1v1h-1zM0.5,2.5h2v1h-2zM3.5,2.5h2v1h-2zM0.5,3.5h5v1h-5zM0.5,4.5h5v1h-5z"></path></svg>
+                      </td>
+                      <td>
+                        ada@example.org
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="Identicon" width="40" height="40" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                        <title>
+                          Identicon
+                        </title>
+                        <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                        <path fill="#2ec296" d="M0.5,1.5h2v1h-2zM3.5,1.5h2v1h-2zM0.5,2.5h2v1h-2zM3.5,2.5h2v1h-2zM0.5,4.5h2v1h-2zM3.5,4.5h2v1h-2z"></path></svg>
+                      </td>
+                      <td>
+                        grace@example.net
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="Identicon" width="40" height="40" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                        <title>
+                          Identicon
+                        </title>
+                        <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                        <path fill="#50289a" d="M0.5,0.5h1v1h-1zM2.5,0.5h1v1h-1zM4.5,0.5h1v1h-1zM0.5,2.5h2v1h-2zM3.5,2.5h2v1h-2zM0.5,3.5h5v1h-5zM0.5,4.5h5v1h-5z"></path></svg>
+                      </td>
+                      <td>
+                        Ada@Example.ORG
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A wall of identicons
+            </h3>
+            <p class="example-about">
+              Ten user ids, ten patterns - title= names each for a screen reader.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/identicon/2-grid.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; flex-wrap:wrap; gap:10px"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..10'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'id'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-str">'user-'</span> . <span class="hl-var">$id</span>, <span class="hl-opt">size</span>=<span class="hl-num">48</span>, <span class="hl-opt">title</span>=<span class="hl-str">'User '</span> . <span class="hl-var">$id</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7identicon%EA%A4%B72-grid.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div style="display:flex; flex-wrap:wrap; gap:10px">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 1" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 1
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#c99922" d="M0.5,0.5h1v1h-1zM4.5,0.5h1v1h-1zM0.5,1.5h5v1h-5zM0.5,2.5h5v1h-5zM0.5,3.5h1v1h-1zM4.5,3.5h1v1h-1zM0.5,4.5h2v1h-2zM3.5,4.5h2v1h-2z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 2" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 2
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#8c239f" d="M2.5,0.5h1v1h-1zM1.5,1.5h3v1h-3zM0.5,2.5h1v1h-1zM2.5,2.5h1v1h-1zM4.5,2.5h1v1h-1zM2.5,3.5h1v1h-1zM0.5,4.5h5v1h-5z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 3" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 3
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#985f2a" d="M1.5,0.5h3v1h-3zM0.5,1.5h2v1h-2zM3.5,1.5h2v1h-2zM1.5,2.5h3v1h-3zM0.5,3.5h5v1h-5zM1.5,4.5h1v1h-1zM3.5,4.5h1v1h-1z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 4" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 4
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#2598bb" d="M1.5,0.5h1v1h-1zM3.5,0.5h1v1h-1zM0.5,1.5h2v1h-2zM3.5,1.5h2v1h-2zM0.5,3.5h1v1h-1zM2.5,3.5h1v1h-1zM4.5,3.5h1v1h-1z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 5" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 5
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#63af2c" d="M1.5,0.5h1v1h-1zM3.5,0.5h1v1h-1zM0.5,2.5h5v1h-5zM1.5,3.5h1v1h-1zM3.5,3.5h1v1h-1zM0.5,4.5h1v1h-1zM4.5,4.5h1v1h-1z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 6" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 6
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#4a2999" d="M1.5,0.5h3v1h-3zM0.5,1.5h1v1h-1zM2.5,1.5h1v1h-1zM4.5,1.5h1v1h-1zM0.5,2.5h5v1h-5zM0.5,3.5h5v1h-5zM0.5,4.5h5v1h-5z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 7" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 7
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#211cb0" d="M0.5,0.5h1v1h-1zM2.5,0.5h1v1h-1zM4.5,0.5h1v1h-1zM0.5,2.5h2v1h-2zM3.5,2.5h2v1h-2zM0.5,3.5h2v1h-2zM3.5,3.5h2v1h-2zM0.5,4.5h1v1h-1zM2.5,4.5h1v1h-1zM4.5,4.5h1v1h-1z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 8" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 8
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#9f2897" d="M0.5,0.5h1v1h-1zM2.5,0.5h1v1h-1zM4.5,0.5h1v1h-1zM0.5,1.5h1v1h-1zM4.5,1.5h1v1h-1zM0.5,2.5h1v1h-1zM4.5,2.5h1v1h-1zM0.5,3.5h5v1h-5zM1.5,4.5h3v1h-3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 9" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 9
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#baae21" d="M2.5,0.5h1v1h-1zM0.5,1.5h1v1h-1zM4.5,1.5h1v1h-1zM0.5,2.5h5v1h-5zM2.5,4.5h1v1h-1z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-identicon" role="img" aria-label="User 10" width="48" height="48" viewbox="0 0 6 6" shape-rendering="crispEdges">
+                    <title>
+                      User 10
+                    </title>
+                    <rect class="pi-back" width="6" height="6" fill="#f0f0ee"></rect>
+                    <path fill="#ae9529" d="M0.5,0.5h1v1h-1zM2.5,0.5h1v1h-1zM4.5,0.5h1v1h-1zM0.5,1.5h1v1h-1zM2.5,1.5h1v1h-1zM4.5,1.5h1v1h-1zM0.5,2.5h2v1h-2zM3.5,2.5h2v1h-2zM2.5,3.5h1v1h-1zM1.5,4.5h3v1h-3z"></path></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7avatar.html">{avatar}</a> <span class="about">Draws an initials avatar as inline SVG - the letters of a name in a circle coloured by a hash of it, no image needed.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{gravatar}</a> <span class="about">Writes the Gravatar picture of an e-mail address as an img - only a hash of the address leaves the page - or a local avatar instead.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7icon.html">← {icon}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7if.html">{if} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

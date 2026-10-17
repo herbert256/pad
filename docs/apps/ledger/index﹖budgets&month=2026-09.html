@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f766e">
+    <meta name="csrf-token" content="0b9d3052eb2bd4facd648d78f8d3558def9e2a4e2ce1ef347f91c285f5bf3079">
+    <title>
+      Budgets · Ledger
+    </title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="ledger.css">
+    <script src="ledger.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="index%EF%B9%96index.html"><img src="icon.svg" alt="" width="30" height="30"><span>Ledger</span></a>
+      <nav>
+        <a href="index%EF%B9%96index&amp;month=2026-09.html" aria-current="false">Overview</a><a href="index%EF%B9%96transactions&amp;month=2026-09.html" aria-current="false">Transactions</a><a href="index%EF%B9%96budgets&amp;month=2026-09.html" aria-current="page">Budgets</a><a href="index%EF%B9%96import&amp;month=2026-09.html" aria-current="false">Import</a>
+      </nav>
+      <form class="month" method="get">
+        <input type="hidden" name="budgets" value=""> <label for="month-pick" class="hide">Month</label> <select id="month-pick" name="month" onchange="this.form.submit()">
+          <option value="2026-09" selected>
+            September 2026
+          </option>
+          <option value="2026-08">
+            August 2026
+          </option>
+          <option value="2026-07">
+            July 2026
+          </option>
+          <option value="2026-06">
+            June 2026
+          </option>
+          <option value="2026-05">
+            May 2026
+          </option>
+          <option value="2026-04">
+            April 2026
+          </option>
+        </select> <noscript><button>Show</button></noscript>
+      </form><a class="button primary" href="index%EF%B9%96add&amp;month=2026-09.html">+ Add</a>
+    </header>
+    <main>
+      <div class="narrow">
+        <h1>
+          Budgets
+        </h1>
+        <p class="lead">
+          What each kind of spending may cost a month - € 2,450.00 together. 0 leaves a category without one.
+        </p>
+        <form method="post" class="budget-form">
+          <input type="hidden" name="padCsrfToken" value="0b9d3052eb2bd4facd648d78f8d3558def9e2a4e2ce1ef347f91c285f5bf3079"><input type="hidden" name="padForm" value="budgets"> <label class="budget-row" for="budget-5"><span class="dot" style="background: #f97316"></span>Dining out <input id="budget-5" name="budget[5]" value="160" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-8"><span class="dot" style="background: #ec4899"></span>Fun <input id="budget-8" name="budget[8]" value="120" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-4"><span class="dot" style="background: #0ea5e9"></span>Groceries <input id="budget-4" name="budget[4]" value="450" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-9"><span class="dot" style="background: #ef4444"></span>Health <input id="budget-9" name="budget[9]" value="60" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-10"><span class="dot" style="background: #a16207"></span>Home <input id="budget-10" name="budget[10]" value="100" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-3"><span class="dot" style="background: #0f766e"></span>Rent <input id="budget-3" name="budget[3]" value="1250" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-6"><span class="dot" style="background: #8b5cf6"></span>Transport <input id="budget-6" name="budget[6]" value="120" inputmode="decimal" size="8"></label> <label class="budget-row" for="budget-7"><span class="dot" style="background: #64748b"></span>Utilities <input id="budget-7" name="budget[7]" value="190" inputmode="decimal" size="8"></label>
+          <div class="bar">
+            <button class="button primary">Save</button><a class="button" href="index%EF%B9%96index&amp;month=2026-09.html">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="bottom">
+      Ledger runs on PHP 8.5.11, the books in DATA/ledger/ledger.sqlite.
+    </footer>
+  </body>
+</html>

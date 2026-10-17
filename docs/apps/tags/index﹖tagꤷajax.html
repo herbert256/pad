@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {ajax} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pages">Pages and execution</a><span>/</span><span aria-current="page">ajax</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>ajax<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes an empty div and a script that has the browser fetch another page into it after the page has loaded.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pages">Pages and execution</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-opt">fragment</span>=<span class="hl-str">'fragmentName'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-opt">app</span>=<span class="hl-str">'other'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>page</code>
+            </dt>
+            <dd>
+              The page to fetch, named as in a URL - <code>'orders/list'</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>fragment</code>
+            </dt>
+            <dd>
+              Ask the page for one of its response fragments alone - <code>&amp;padFragment=name</code> - instead of the whole page.
+            </dd>
+            <dt>
+              <code>app</code>
+            </dt>
+            <dd>
+              A page of another application; under the strict check it must exist there.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{ajax 'name'}</code> does not render the page itself. It writes an empty <code>&lt;div&gt;</code> and a small script; once the page is in the browser, the script requests the named page with <code>&amp;padInclude</code> - bare, without its wrappers - and puts the answer in the div. The page around it is sent at once, and a slow part arrives when it is ready. When the request fails, the div shows the status text.
+          </p>
+          <p>
+            The div's id is <code>padAjax</code> followed by a hash of the page and its query, so the markup is the same on every request. Variables assigned on the tag - <code>{ajax 'orders', $status = 'open'}</code> - go on the query string, and <code>fragment='name'</code> asks for one <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> of the page alone: the page renders whole on the server, but only that part is sent back.
+          </p>
+          <p>
+            With <code>app='other'</code> the page belongs to another application. Under the strict check the page must exist, in this application or the one named - a typo is reported when the template renders, not later as a 404 in the visitor's browser.
+          </p>
+          <p>
+            Compare <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a>, which renders the page on the server in the same request, and <a href="index%EF%B9%96tag%EA%A4%B7get.html">{get}</a>, which fetches it on the server as a second request. For a part that re-renders on clicks and forms, see <a href="index%EF%B9%96tag%EA%A4%B7live.html">{live}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A part the browser fetches
+            </h3>
+            <p class="example-about">
+              The tag writes an empty div and a script that loads the page into it after the page arrived.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ajax/1-load.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'examples/ajax/parts/note'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ajax%EA%A4%B71-load.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div id="padAjaxb7a9d28a2351580773f7f02822bb95f7"></div>
+                  <script>
+                  padAjaxb7a9d28a2351580773f7f02822bb95f7 = new XMLHttpRequest();
+                  padAjaxb7a9d28a2351580773f7f02822bb95f7.onreadystatechange=function() {
+                  if (padAjaxb7a9d28a2351580773f7f02822bb95f7.readyState === 4) {
+                  if (padAjaxb7a9d28a2351580773f7f02822bb95f7.status === 200) {
+                  document.getElementById("padAjaxb7a9d28a2351580773f7f02822bb95f7").innerHTML=padAjaxb7a9d28a2351580773f7f02822bb95f7.responseText;
+                  } else {
+                  document.getElementById("padAjaxb7a9d28a2351580773f7f02822bb95f7").innerHTML=padAjaxb7a9d28a2351580773f7f02822bb95f7.statusText;
+                  }
+                  }
+                  }
+                  padAjaxb7a9d28a2351580773f7f02822bb95f7.open("GET","http://localhost/pad/tags/?examples/ajax/parts/note&padInclude",true);
+                  padAjaxb7a9d28a2351580773f7f02822bb95f7.send();
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              One fragment of a page
+            </h3>
+            <p class="example-about">
+              fragment= asks the page for that response fragment alone.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/ajax/2-fragment.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'examples/ajax/parts/list'</span>, <span class="hl-opt">fragment</span>=<span class="hl-str">'ajaxItems'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7ajax%EA%A4%B72-fragment.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div id="padAjax96c2d26a95ce2c4f785f3a012a53754e"></div>
+                  <script>
+                  padAjax96c2d26a95ce2c4f785f3a012a53754e = new XMLHttpRequest();
+                  padAjax96c2d26a95ce2c4f785f3a012a53754e.onreadystatechange=function() {
+                  if (padAjax96c2d26a95ce2c4f785f3a012a53754e.readyState === 4) {
+                  if (padAjax96c2d26a95ce2c4f785f3a012a53754e.status === 200) {
+                  document.getElementById("padAjax96c2d26a95ce2c4f785f3a012a53754e").innerHTML=padAjax96c2d26a95ce2c4f785f3a012a53754e.responseText;
+                  } else {
+                  document.getElementById("padAjax96c2d26a95ce2c4f785f3a012a53754e").innerHTML=padAjax96c2d26a95ce2c4f785f3a012a53754e.statusText;
+                  }
+                  }
+                  }
+                  padAjax96c2d26a95ce2c4f785f3a012a53754e.open("GET","http://localhost/pad/tags/?examples/ajax/parts/list&padInclude&padFragment=ajaxItems",true);
+                  padAjax96c2d26a95ce2c4f785f3a012a53754e.send();
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7get.html">{get}</a> <span class="about">Fetches another page of the application over HTTP, as a second request, and inserts its output.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7live.html">{live}</a> <span class="about">A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> <span class="about">A named part of the page that a request can ask for alone - for htmx and ajax swaps.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7action.html">← {action}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7array.html">{array} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

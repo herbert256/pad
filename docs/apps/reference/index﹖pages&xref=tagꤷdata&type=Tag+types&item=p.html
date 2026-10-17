@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework - Page: data/a_utf8_bom_at_the_start_is_stripped<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/a_utf8_bom_at_the_start_is_stripped.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_utf8_bom_at_the_start_is_stripped.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $csv  </span><span style="color: #007700">= </span><span style="color: #DD0000">"﻿name,phone\nbob,123\namy,456"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$json </span><span style="color: #007700">= </span><span style="color: #DD0000">"﻿[{\"name\":\"zoe\"}]"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">csv:<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>p<font color="black">'</font><font color="black">,</font> <font color="red">$</font>csv</font>}</b><b>{<font color="blue">p</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">p</font><font color="red"></font>}</b>json:<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>j<font color="black">'</font><font color="black">,</font> <font color="red">$</font>json</font>}</b><b>{<font color="blue">j</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">j</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax742756a31b7a1e940a90fb58a42eb0ef"></div>
+                        <script>
+                        padAjax742756a31b7a1e940a90fb58a42eb0ef = new XMLHttpRequest();
+                        padAjax742756a31b7a1e940a90fb58a42eb0ef.onreadystatechange=function() {
+                        if (padAjax742756a31b7a1e940a90fb58a42eb0ef.readyState === 4) {
+                        if (padAjax742756a31b7a1e940a90fb58a42eb0ef.status === 200) {
+                        document.getElementById("padAjax742756a31b7a1e940a90fb58a42eb0ef").innerHTML=padAjax742756a31b7a1e940a90fb58a42eb0ef.responseText;
+                        } else {
+                        document.getElementById("padAjax742756a31b7a1e940a90fb58a42eb0ef").innerHTML=padAjax742756a31b7a1e940a90fb58a42eb0ef.statusText;
+                        }
+                        }
+                        }
+                        padAjax742756a31b7a1e940a90fb58a42eb0ef.open("GET","http://localhost/pad/regression/framework/?data/a_utf8_bom_at_the_start_is_stripped&padInclude",true);
+                        padAjax742756a31b7a1e940a90fb58a42eb0ef.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: data/csv_the_first_line_names_the_fields<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -205,7 +247,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

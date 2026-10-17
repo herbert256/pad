@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: alpine/_data
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: alpine/ data
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=alpine.html">..</a>
+                  </li>
+                  <li class="current">examples.json
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_data&amp;file=_data%EA%A4%B7nav.json.html">nav.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_data&amp;file=_data%EA%A4%B7products.json.html">products.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_data&amp;file=_data%EA%A4%B7todos.json.html">todos.json</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _data/examples.json
+                </h3>
+                <pre><code style="color: #000000">{<br>  "groups": [<br>    {<br>      "key":   "state",<br>      "title": "State from the server",<br>      "text":  "Alpine lives in the HTML PAD writes. Its state comes from the page's PHP as JSON in the attribute - the ^ sigil writes it - or as the argument of a component registered in a file of www/."<br>    },<br>    {<br>      "key":   "talk",<br>      "title": "Talking back to PAD",<br>      "text":  "A component asks the page again: the JSON of $padExpose, a post with the session's token, a stream of events. The server keeps the truth."<br>    }<br>  ],<br>  "examples": [<br>    {<br>      "page":   "examples/state",<br>      "group":  "state",<br>      "icon":   "🧊",<br>      "title":  "State from PHP",<br>      "lede":   "x-data=\"{^profile}\": the page's PHP prepares an array, the ^ sigil writes it as JSON into the attribute, and Alpine makes it live - no braces of Alpine's in the template at all.",<br>      "server": [ "{^field}" ],<br>      "client": [ "x-data", "x-model", "x-text" ]<br>    },<br>    {<br>      "page":   "examples/components",<br>      "group":  "state",<br>      "icon":   "🧩",<br>      "title":  "Components in a file",<br>      "lede":   "Tabs, an accordion and a dialog registered with Alpine.data in www/alpine/ - the template calls them by name and hands them PAD's data as the argument: x-data=\"accordion({^faq})\".",<br>      "server": [ "{^field}", "{faq}" ],<br>      "client": [ "Alpine.data", "x-show", "x-transition" ],<br>      "files":  [ "www:examples/components.js" ]<br>    },<br>    {<br>      "page":   "examples/search",<br>      "group":  "talk",<br>      "icon":   "🔎",<br>      "title":  "Live search",<br>      "lede":   "x-model.debounce feeds a fetch of the same page with padFormat=json; the PHP that rendered the first results answers the next ones as JSON - $padExpose names what may leave.",<br>      "server": [ "$padExpose", "padFormat=json" ],<br>      "client": [ "x-model.debounce", "x-for", "fetch" ]<br>    },<br>    {<br>      "page":   "examples/form",<br>      "group":  "talk",<br>      "icon":   "📝",<br>      "title":  "One set of rules",<br>      "lede":   "The rules live in the page's PHP: padValidate checks the post with them, padValidateClient hands them to Alpine, and {validator} checks them in the browser first - the same messages on both sides.",<br>      "server": [ "padValidateClient", "padValidate", "{validator}" ],<br>      "client": [ "@blur", "padValidate.check" ]<br>    },<br>    {<br>      "page":   "examples/todos",<br>      "group":  "talk",<br>      "icon":   "✅",<br>      "title":  "A list PAD keeps",<br>      "lede":   "Every change shows at once and is posted to the page, which keeps the list in the session and answers it - the server's answer is the list. Reload, and it is still there.",<br>      "server": [ "padSession", "$padExpose" ],<br>      "client": [ "x-for", "@submit.prevent", "fetch POST" ]<br>    },<br>    {<br>      "page":   "examples/live",<br>      "group":  "talk",<br>      "icon":   "📡",<br>      "title":  "Server-sent events",<br>      "lede":   "padSse sends the server's numbers every second as JSON; the component opens an EventSource in x-init and closes it when the stream says it is done.",<br>      "server": [ "padSse", "every=" ],<br>      "client": [ "EventSource", "x-init" ]<br>    }<br>  ]<br>}<br></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

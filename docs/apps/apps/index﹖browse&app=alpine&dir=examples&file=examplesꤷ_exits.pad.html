@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: alpine/examples
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: alpine/examples
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=alpine.html">..</a>
+                  </li>
+                  <li class="current">_exits.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7_inits.php.html">_inits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7components.pad.html">components.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7components.php.html">components.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7form.pad.html">form.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7form.php.html">form.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7live.pad.html">live.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7live.php.html">live.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7search.pad.html">search.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7search.php.html">search.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7state.pad.html">state.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7state.php.html">state.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7todos.pad.html">todos.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples&amp;file=examples%EA%A4%B7todos.php.html">todos.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  examples/_exits.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;/section&gt;<br><br>&lt;div class="request-log" data-request-log&gt;<br>  &lt;div class="request-log-head"&gt;&lt;span&gt;Requests to PAD&lt;/span&gt;&lt;span data-request-count&gt;&lt;/span&gt;&lt;/div&gt;<br>  &lt;ol&gt;&lt;/ol&gt;<br>  &lt;div class="empty"&gt;Nothing yet - use the example above, and every request a component makes to PAD shows here.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;section class="how"&gt;<br>  &lt;h2&gt;How it is built&lt;/h2&gt;<br>  &lt;p class="how-legend"&gt;&lt;span class="is-server"&gt;PAD, on the server&lt;/span&gt; &lt;span class="is-client"&gt;Alpine, in the browser&lt;/span&gt;&lt;/p&gt;<br>  <b>{<font color="blue">source </font><font color="red">files=<font color="red">$</font>sourceFiles</font>}</b><br>&lt;/section&gt;<br><br>&lt;nav class="prev-next" aria-label="More examples"&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>prev.page</font>}</b>&lt;a class="prev" href="?<b>{<font color="green"><font color="red">$</font>prev.page</font>}</b>"&gt;&lt;small&gt;Previous&lt;/small&gt;<b>{<font color="green"><font color="red">$</font>prev.title</font>}</b>&lt;/a&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b>&lt;span&gt;&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>next.page</font>}</b>&lt;a class="next" href="?<b>{<font color="green"><font color="red">$</font>next.page</font>}</b>"&gt;&lt;small&gt;Next&lt;/small&gt;<b>{<font color="green"><font color="red">$</font>next.title</font>}</b>&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>&lt;/nav&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

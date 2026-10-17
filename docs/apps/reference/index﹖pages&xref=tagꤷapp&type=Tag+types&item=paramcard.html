@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - paramcard
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - paramcard
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: escaping/a_param_a_custom_tag_prints_stays_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">escaping/a_param_a_custom_tag_prints_stays_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">escaping/a_param_a_custom_tag_prints_stays_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $t </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo (1 + 2)}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">paramcard </font><font color="red">title=<font color="red">$</font>t</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa46f33c7a83cf4d34ad03e04f9300d56"></div>
+                        <script>
+                        padAjaxa46f33c7a83cf4d34ad03e04f9300d56 = new XMLHttpRequest();
+                        padAjaxa46f33c7a83cf4d34ad03e04f9300d56.onreadystatechange=function() {
+                        if (padAjaxa46f33c7a83cf4d34ad03e04f9300d56.readyState === 4) {
+                        if (padAjaxa46f33c7a83cf4d34ad03e04f9300d56.status === 200) {
+                        document.getElementById("padAjaxa46f33c7a83cf4d34ad03e04f9300d56").innerHTML=padAjaxa46f33c7a83cf4d34ad03e04f9300d56.responseText;
+                        } else {
+                        document.getElementById("padAjaxa46f33c7a83cf4d34ad03e04f9300d56").innerHTML=padAjaxa46f33c7a83cf4d34ad03e04f9300d56.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa46f33c7a83cf4d34ad03e04f9300d56.open("GET","http://localhost/pad/regression/framework/?escaping/a_param_a_custom_tag_prints_stays_text&padInclude",true);
+                        padAjaxa46f33c7a83cf4d34ad03e04f9300d56.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/a_long_option_value_passes_the_comma_check<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/a_long_option_value_passes_the_comma_check.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/a_long_option_value_passes_the_comma_check.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $body </span><span style="color: #007700">= </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'Lorem ipsum dolor sit amet. '</span><span style="color: #007700">, </span><span style="color: #0000BB">500 </span><span style="color: #007700">); </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">paramcard </font><font color="red">title=<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>body</font><font color="black">}</font></b></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax75ee5680af3102b6772a47cedfb9a597"></div>
+                        <script>
+                        padAjax75ee5680af3102b6772a47cedfb9a597 = new XMLHttpRequest();
+                        padAjax75ee5680af3102b6772a47cedfb9a597.onreadystatechange=function() {
+                        if (padAjax75ee5680af3102b6772a47cedfb9a597.readyState === 4) {
+                        if (padAjax75ee5680af3102b6772a47cedfb9a597.status === 200) {
+                        document.getElementById("padAjax75ee5680af3102b6772a47cedfb9a597").innerHTML=padAjax75ee5680af3102b6772a47cedfb9a597.responseText;
+                        } else {
+                        document.getElementById("padAjax75ee5680af3102b6772a47cedfb9a597").innerHTML=padAjax75ee5680af3102b6772a47cedfb9a597.statusText;
+                        }
+                        }
+                        }
+                        padAjax75ee5680af3102b6772a47cedfb9a597.open("GET","http://localhost/pad/regression/framework/?options/a_long_option_value_passes_the_comma_check&padInclude",true);
+                        padAjax75ee5680af3102b6772a47cedfb9a597.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

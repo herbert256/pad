@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {pager} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#navigation">Navigation</a><span>/</span><span aria-current="page">pager</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>pager<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Page links for a tag written with the page option: first and last, a window round the current page, previous and next.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#navigation">Navigation</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span>, <span class="hl-opt">window</span>=<span class="hl-num">2</span>, <span class="hl-opt">query</span>=<span class="hl-str">'p'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$kind</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$href</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pager</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The paged tag - its <code>name=</code>, or the tag's own name. Left out, the pager follows the last paged tag of the page.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>window</code>
+            </dt>
+            <dd>
+              The number of pages shown on each side of the current one; 2 by default. The first and the last page always show, a gap (<code>…</code>) stands for the pages left out.
+            </dd>
+            <dt>
+              <code>query</code>
+            </dt>
+            <dd>
+              The request value the links set. By default the variable <code>page=</code> was written with - <code>page=$pg</code> makes the links set <code>pg</code> - else <code>page</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{pager 'products'}</code> writes the page links for a tag that the <code>page</code> handling option slices - <code>{products page=$pg ?? 1, rows=12}</code>. While that tag renders, its paging books the current page, the rows per page and the number of rows it pages through (after the options written before <code>page</code>, such as a <code>where</code>); the pager reads that booking. So the paged tag must come first: under the strict check a pager without a paged tag of that name before it is an error.
+          </p>
+          <p>
+            Written alone the tag answers <code>&lt;nav class="pager" aria-label="Pagination"&gt;</code> with links: previous, the first page, a window of pages around the current one, the last page, next. The current page is marked <code>aria-current="page"</code>, a gap of pages left out is <code>…</code>, and a previous or next that does not exist is a disabled <code>&lt;span&gt;</code>. The labels <code>pager.label</code>, <code>pager.previous</code> and <code>pager.next</code> come from the application's <code>_lang/</code> catalog when it has them. When everything fits on one page the pager answers nothing.
+          </p>
+          <p>
+            Each link is <code>$padGo</code> with the page the request asked for, the request's other query values kept and the page value set - so a search or filter in the address survives. The value is the variable the <code>page</code> option was written with (<code>page=$pg</code> gives <code>&amp;pg=3</code>), or <code>query=</code>.
+          </p>
+          <p>
+            Written as a pair the pager hands the links over as rows for markup of your own: <code>kind</code> (<code>prev</code>, <code>next</code>, <code>page</code>, <code>current</code>, <code>gap</code>), <code>page</code>, <code>label</code> and <code>href</code> - empty for a gap and for a missing previous or next. A single page gives no rows, so the pair shows its <code>@else@</code> branch. A table of the Select subsystem is paged by its SQL limit; the pager then counts the same query to know the total.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Page links
+            </h3>
+            <p class="example-about">
+              The tag with page= comes first; the pager reads what its paging left and links the pages.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/pager/1-links.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">numbers</span> <span class="hl-opt">page</span>=<span class="hl-var">$pg</span> ?? <span class="hl-num">1</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$numbers</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/numbers</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'numbers'</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/pager/1-links.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$numbers</span> <span class="hl-pun">=</span> <span class="hl-fn">range</span> <span class="hl-pun">(</span> <span class="hl-num">1</span><span class="hl-pun">,</span> <span class="hl-num">23</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7pager%EA%A4%B71-links.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    11 12 13 14 15
+                  </p>
+                  <nav class="pager" aria-label="Pagination">
+                    <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=2.html" rel="prev" aria-label="Previous page">‹</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=1.html">1</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=2.html">2</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3.html" aria-current="page">3</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=4.html">4</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=5.html">5</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=4.html" rel="next" aria-label="Next page">›</a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A window round the current page
+            </h3>
+            <p class="example-about">
+              window= sets how many pages show on each side; the first and the last are always there.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/pager/2-window.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">cities</span> <span class="hl-opt">page</span>=<span class="hl-var">$cityPage</span> ?? <span class="hl-num">6</span>, <span class="hl-opt">rows</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$cities</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/cities</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'cities'</span>, <span class="hl-opt">window</span>=<span class="hl-num">1</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/pager/2-window.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$cities</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'Amsterdam'</span><span class="hl-pun">,</span> <span class="hl-str">'Berlin'</span><span class="hl-pun">,</span> <span class="hl-str">'Copenhagen'</span><span class="hl-pun">,</span> <span class="hl-str">'Dublin'</span><span class="hl-pun">,</span> <span class="hl-str">'Edinburgh'</span><span class="hl-pun">,</span> <span class="hl-str">'Florence'</span><span class="hl-pun">,</span>
+              <span class="hl-str">'Geneva'</span><span class="hl-pun">,</span> <span class="hl-str">'Helsinki'</span><span class="hl-pun">,</span> <span class="hl-str">'Istanbul'</span><span class="hl-pun">,</span> <span class="hl-str">'Jerusalem'</span><span class="hl-pun">,</span> <span class="hl-str">'Kyoto'</span><span class="hl-pun">,</span> <span class="hl-str">'Lisbon'</span><span class="hl-pun">,</span>
+              <span class="hl-str">'Madrid'</span><span class="hl-pun">,</span> <span class="hl-str">'Naples'</span><span class="hl-pun">,</span> <span class="hl-str">'Oslo'</span><span class="hl-pun">,</span> <span class="hl-str">'Prague'</span><span class="hl-pun">,</span> <span class="hl-str">'Quebec'</span><span class="hl-pun">,</span> <span class="hl-str">'Riga'</span><span class="hl-pun">,</span> <span class="hl-str">'Seville'</span><span class="hl-pun">,</span> <span class="hl-str">'Tallinn'</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7pager%EA%A4%B72-window.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Kyoto Lisbon
+                  </p>
+                  <nav class="pager" aria-label="Pagination">
+                    <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=5.html" rel="prev" aria-label="Previous page">‹</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=1.html">1</a> <span class="gap">…</span> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=5.html">5</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=6.html" aria-current="page">6</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=7.html">7</a> <span class="gap">…</span> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=10.html">10</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;cityPage=7.html" rel="next" aria-label="Next page">›</a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Markup of your own
+            </h3>
+            <p class="example-about">
+              As a pair the pager hands the links over as rows: kind, page, label and href.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/pager/3-pair.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">letters</span> <span class="hl-opt">page</span>=<span class="hl-var">$letterPage</span> ?? <span class="hl-num">2</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$letters</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/letters</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'letters'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$href</span> eq <span class="hl-str">''</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"color:#999"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">elseif</span> <span class="hl-var">$kind</span> eq <span class="hl-str">'current'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span>[<span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span>]<span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"{$href}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+<span class="hl-var">@else@</span>
+  Everything fits on one page.
+<span class="hl-brc">{</span><span class="hl-tag">/pager</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/pager/3-pair.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$letters</span> <span class="hl-pun">=</span> <span class="hl-fn">range</span> <span class="hl-pun">(</span> <span class="hl-str">'a'</span><span class="hl-pun">,</span> <span class="hl-str">'n'</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7pager%EA%A4%B73-pair.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    e f g h
+                  </p>
+                  <p>
+                    <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;letterPage=1.html">‹</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;letterPage=1.html">1</a> <strong>[2]</strong> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;letterPage=3.html">3</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;letterPage=4.html">4</a> <a href="index%EF%B9%96tag%EA%A4%B7pager&amp;pg=3&amp;letterPage=3.html">›</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{datatable}</a> <span class="about">Rows as a complete HTML table - formatted numbers, a totals row, sorting and paging on the server.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7array.html">{array}</a> <span class="about">Runs a SQL query on the application database and repeats its content once per row.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7collection.html">{collection}</a> <span class="about">Reads a folder of Markdown files from _content/ and repeats its content once per file, the front matter as fields.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7page.html">← {page}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7parent.html">{parent} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

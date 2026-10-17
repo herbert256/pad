@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -88,7 +88,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">chance=4</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->4 10 12 16 19 21 22 23 28 29<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->5 7 13 18 20 22 24 28 30 33<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                   </table>
@@ -121,7 +121,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">chance=4<font color="black">,</font>       rows=10</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->1 15 26 27 28 31 35 39 47 55<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->10 14 24 31 34 36 44 47 52 61<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                     <tr>
@@ -130,7 +130,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">even<font color="black">,</font> chance=4<font color="black">,</font> rows=5</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->12 26 34 42 44<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->20 22 32 34 40<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                   </table>
@@ -223,7 +223,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> make<font color="black">,</font>   chance=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->4 6 15 17 18 20 23<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->5 6 22 23<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                     <tr>
@@ -232,7 +232,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> keep<font color="black">,</font>   chance=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->9 12 13 17 20<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->2 10 14 15 17<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                     <tr>
@@ -241,7 +241,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> remove<font color="black">,</font> chance=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->2 6 7 8 9 10 11 12 13 16 18 19 21 22 23 24 25<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 6 7 8 9 11 13 14 15 18 19 20 21 22 23 24 25<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                     <tr>
@@ -250,7 +250,7 @@
                         <pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> flag<font color="black">,</font>   chance=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
                       </td>
                       <td style="vertical-align:top">
-                        <code><span style="color: #000000"><!-- START DEMO RESULT -->1 0 1 1 1 0 0 0 0 0 0 0 0 1 1 0 1 0 0 1 0 0 0 0 0<!-- END DEMO RESULT --></span></code>
+                        <code><span style="color: #000000"><!-- START DEMO RESULT -->0 0 0 0 1 0 0 0 0 1 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0<!-- END DEMO RESULT --></span></code>
                       </td>
                     </tr>
                   </table>
@@ -270,7 +270,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d97706">
+    <meta name="csrf-token" content="a64f860192e2824af808530e0546ca9593361b97597f2b31a52f1f192a57af92">
+    <title>
+      #markdown · Notes
+    </title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="notes.css">
+    <script src="notes.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="index%EF%B9%96index.html"><img src="icon.svg" alt="" width="28" height="28"><span>Notes</span></a>
+      <form class="search" method="get" role="search">
+        <input type="hidden" name="index" value=""> <input type="search" name="q" value="" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
+      </form>
+      <nav>
+        <a class="button primary" href="index%EF%B9%96edit.html">New note</a> <a class="button" href="index%EF%B9%96backup.html">Backup</a>
+      </nav>
+    </header>
+    <main>
+      <div class="layout">
+        <aside class="tags" aria-label="Tags">
+          <a href="index%EF%B9%96index.html" class="">All notes <span>4</span></a> <a href="index%EF%B9%96index&amp;tag=ideas.html" class="">#ideas <span>1</span></a><a href="index%EF%B9%96index&amp;tag=markdown.html" class="on">#markdown <span>1</span></a><a href="index%EF%B9%96index&amp;tag=offline.html" class="">#offline <span>2</span></a><a href="index%EF%B9%96index&amp;tag=pad.html" class="">#pad <span>2</span></a><a href="index%EF%B9%96index&amp;tag=personal.html" class="">#personal <span>1</span></a>
+        </aside>
+        <section class="list">
+          <div class="list-head">
+            <h1>
+              #markdown
+            </h1><span class="count">1 of 4</span>
+          </div>
+          <div id="results" data-tag="markdown">
+            <div data-pad-live="notes" data-pad-csrf="a64f860192e2824af808530e0546ca9593361b97597f2b31a52f1f192a57af92">
+              <div class="grid">
+                <article class="note color-sea">
+                  <button type="button" class="pin" pad-click="pin" pad-value="2" aria-pressed="false" title="Pin to the top">★</button> <a class="open" href="index%EF%B9%96note&amp;id=2.html">
+                  <h2>
+                    Markdown, briefly
+                  </h2>
+                  <p>
+                    A heading starts with hashes Text in bold, in italics, or as code. a list of things numbered as well A quote, for what someone else said. A link and a rule…
+                  </p></a>
+                  <footer>
+                    <time datetime="2026-10-02 10:30:00">2 Oct 2026</time> <a class="tag" href="index%EF%B9%96index&amp;tag=markdown.html">#markdown</a><a class="tag" href="index%EF%B9%96index&amp;tag=pad.html">#pad</a>
+                  </footer>
+                </article>
+              </div>
+            </div>
+            <script>
+            (function () {
+            if (window.padLiveReady) return;
+            window.padLiveReady = true;
+            function send(region, fields) {
+            var body = new URLSearchParams();
+            fields.forEach(function (field) { body.append(field[0], field[1]); });
+            body.set('padLive', region.getAttribute('data-pad-live'));
+            var token = region.getAttribute('data-pad-csrf');
+            if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
+            region.setAttribute('aria-busy', 'true');
+            fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
+            .then(function (response) {
+            return response.text().then(function (text) {
+            if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+            return text;
+            });
+            })
+            .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+            .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
+            .then(function () { region.removeAttribute('aria-busy'); });
+            }
+            function event(element, attribute, value) {
+            return [['padEvent', element.getAttribute(attribute)], ['padValue', element.hasAttribute('pad-value') ? element.getAttribute('pad-value') : value]];
+            }
+            document.addEventListener('click', function (e) {
+            var element = e.target.closest('[pad-click]');
+            var region = element && element.closest('[data-pad-live]');
+            if (!region) return;
+            e.preventDefault();
+            send(region, event(element, 'pad-click', ''));
+            });
+            document.addEventListener('submit', function (e) {
+            var form = e.target;
+            var region = form.hasAttribute('pad-submit') && form.closest('[data-pad-live]');
+            if (!region) return;
+            e.preventDefault();
+            var fields = [];
+            new FormData(form).forEach(function (value, key) { if (typeof value === 'string') fields.push([key, value]); });
+            send(region, fields.concat(event(form, 'pad-submit', '')));
+            });
+            document.addEventListener('change', function (e) {
+            var element = e.target.closest('[pad-change]');
+            var region = element && element.closest('[data-pad-live]');
+            if (!region) return;
+            var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+            send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+            });
+            })();
+            </script>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="bottom">
+      Notes runs on PHP 8.5.11. Its notes live in one SQLite database.
+    </footer>
+  </body>
+</html>

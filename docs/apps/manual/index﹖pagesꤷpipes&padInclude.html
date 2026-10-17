@@ -6,7 +6,7 @@
 
 <h3>1. Variable Pipes</h3>
 
-<p>Apply functions to variables using <code>{echo $variable | function}</code>:</p>
+<p>Apply functions to a variable with <code>{$variable | function}</code> - the field tag runs the sanitize chain on the result - or with <code>{echo $variable | function}</code>, which prints it raw, as the examples on this page do:</p>
 
 
 
@@ -264,7 +264,7 @@
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rawText </span><span style="color: #007700">= </span><span style="color: #DD0000">'  hello world  '</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'the quick brown fox'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and uppercase: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Chain multiple pipes together:&lt;/p&gt;<br><br>&lt;p&gt;Original: [<b>{<font color="green"><font color="red">$</font>rawText</font>}</b>]&lt;/p&gt;<br>&lt;p&gt;Trimmed and uppercase: [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>rawText <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>]&lt;/p&gt;<br><br>&lt;p&gt;Original: <b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Uppercase first letter of each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Replace and capitalize each word: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>message <font color="black">|</font> replace(<font color="black">'</font>fox<font color="black">'</font><font color="black">,</font> <font color="black">'</font>dog<font color="black">'</font>) <font color="black">|</font> ucwords</font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -275,7 +275,7 @@
 
 <p>Original: the quick brown fox</p>
 <p>Uppercase first letter of each word: The Quick Brown Fox</p>
-<p>Replace and uppercase: The Quick Brown Dog</p>
+<p>Replace and capitalize each word: The Quick Brown Dog</p>
 
 
 </td>
@@ -415,7 +415,7 @@ context it lands in - <code>html</code>, <code>attr</code>, <code>js</code>, <co
 <h2>Important Rules</h2>
 
 <ul>
-  <li><strong>A literal needs <b>{echo}</b></strong> - <code>{echo 'text' | upper}</code>; a field pipes as it stands, <code>{$var | upper}</code>, as well as through <code>{echo $var | upper}</code></li>
+  <li><strong>A literal needs <b>{echo}</b></strong> - <code>{echo 'text' | upper}</code>; a field pipes as it stands, <code>{$var | upper}</code>, as well as through <code>{echo $var | upper}</code> - which prints the value raw, without the sanitize chain the field tag runs</li>
   <li><strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code></li>
   <li><strong>Quote string parameters</strong> - <code>{echo $x | replace('a','b')}</code></li>
   <li><strong>Functions apply left to right</strong> - <code>{echo $x | trim | upper}</code> trims first, then uppercases</li>

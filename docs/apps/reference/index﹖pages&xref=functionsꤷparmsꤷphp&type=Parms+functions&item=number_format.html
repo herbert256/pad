@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -115,6 +115,90 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: showcase - Page: country/visitors<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">country/visitors.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">country/visitors.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Last month's visits by country, as an analytics export gives them.<br><br>  </span><span style="color: #0000BB">$visitors </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'NL'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18230 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'US'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12904 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'DE'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">8711  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'GB'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6120  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BE'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4385  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'JP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2017  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BR'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1460  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'CI'</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">312   </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Visitors by country<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The flag and the name from a two-letter code<font color="black">,</font> with name - the flag is then decoration and the name is what a screen reader says.<font color="black">'</font></font>}</b><br>&lt;ol style="margin:0;padding:0;list-style:none;min-width:20em"&gt;<br>  <b>{<font color="blue">visitors</font><font color="red"></font>}</b><br>  &lt;li style="display:flex;justify-content:space-between;gap:24px;padding:8px 0;border-bottom:1px solid rgba(128,128,128,.25);font-size:15px"&gt;<br>    <b>{<font color="blue">country </font><font color="red"><font color="red">$</font>code<font color="black">,</font> name</font>}</b><br>    &lt;span style="font-variant-numeric:tabular-nums;opacity:.8"&gt;<b>{<font color="green">$visits</font> <font color="black">|</font> <font color="blue">number_format</font>}</b>&lt;/span&gt;<br>  &lt;/li&gt;<br>  <b>{/<font color="blue">visitors</font><font color="red"></font>}</b><br>&lt;/ol&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3277e687b765ed152378dd3c9ecb27b5"></div>
+                        <script>
+                        padAjax3277e687b765ed152378dd3c9ecb27b5 = new XMLHttpRequest();
+                        padAjax3277e687b765ed152378dd3c9ecb27b5.onreadystatechange=function() {
+                        if (padAjax3277e687b765ed152378dd3c9ecb27b5.readyState === 4) {
+                        if (padAjax3277e687b765ed152378dd3c9ecb27b5.status === 200) {
+                        document.getElementById("padAjax3277e687b765ed152378dd3c9ecb27b5").innerHTML=padAjax3277e687b765ed152378dd3c9ecb27b5.responseText;
+                        } else {
+                        document.getElementById("padAjax3277e687b765ed152378dd3c9ecb27b5").innerHTML=padAjax3277e687b765ed152378dd3c9ecb27b5.statusText;
+                        }
+                        }
+                        }
+                        padAjax3277e687b765ed152378dd3c9ecb27b5.open("GET","http://localhost/pad/showcase/?country/visitors&padInclude",true);
+                        padAjax3277e687b765ed152378dd3c9ecb27b5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/macro/2-loop<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/macro/2-loop.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/macro/2-loop.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $macroProducts </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'product' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kettle'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">39.5 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'product' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Toaster'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'product' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Blender'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">79.9 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Used inside a loop<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The macro\<font color="black">'</font>s own parameters are its fields<font color="black">,</font> and the row round the use stays visible behind them.<font color="black">'</font></font>}</b><br><b>{<font color="blue">macro </font><font color="red"><font color="black">'</font>macroPrice<font color="black">'</font><font color="black">,</font> amount</font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>product</font>}</b>: € <b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">number_format(<font color="black"><b>@</b></font>, 2)</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">macro</font><font color="red"></font>}</b><br><br>&lt;ul&gt;<br><b>{<font color="blue">macroProducts</font><font color="red"></font>}</b><br>  <b>{<font color="blue">macroPrice </font><font color="red"><font color="red">$</font>price</font>}</b><br><b>{/<font color="blue">macroProducts</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcdd00991873d1f0f7f030b24d0f85c25"></div>
+                        <script>
+                        padAjaxcdd00991873d1f0f7f030b24d0f85c25 = new XMLHttpRequest();
+                        padAjaxcdd00991873d1f0f7f030b24d0f85c25.onreadystatechange=function() {
+                        if (padAjaxcdd00991873d1f0f7f030b24d0f85c25.readyState === 4) {
+                        if (padAjaxcdd00991873d1f0f7f030b24d0f85c25.status === 200) {
+                        document.getElementById("padAjaxcdd00991873d1f0f7f030b24d0f85c25").innerHTML=padAjaxcdd00991873d1f0f7f030b24d0f85c25.responseText;
+                        } else {
+                        document.getElementById("padAjaxcdd00991873d1f0f7f030b24d0f85c25").innerHTML=padAjaxcdd00991873d1f0f7f030b24d0f85c25.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcdd00991873d1f0f7f030b24d0f85c25.open("GET","http://localhost/pad/tags/?examples/macro/2-loop&padInclude",true);
+                        padAjaxcdd00991873d1f0f7f030b24d0f85c25.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -129,7 +213,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

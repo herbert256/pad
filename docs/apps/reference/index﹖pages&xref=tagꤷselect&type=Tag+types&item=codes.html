@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - codes
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - codes
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/pages - Page: db/sqlite_numeric_text_keeps_its_zeros<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/sqlite_numeric_text_keeps_its_zeros.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/sqlite_numeric_text_keeps_its_zeros.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// On SQLite numeric text goes into a bare placeholder, or a select's $name, as a number<br>  // only when SQLite gives the same text back: '007' became the integer 7, so the code<br>  // '007' found the row of code '7', the zip '01234' was stored as '1234' and '1.10' as<br>  // '1.1'. A numeral like '3' stays a number, so a count still compares with it.<br><br>  </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padSqlConnect'</span><span style="color: #007700">] = </span><span style="color: #0000BB">padDbSqlite </span><span style="color: #007700">( </span><span style="color: #DD0000">':memory:' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"create table codes (code text primary key, zip varchar(10), label text)" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into codes values ('007', '01234', 'bond'), ('7', '1234', 'seven')" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$byCode </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field label from codes where code = {0}"</span><span style="color: #007700">,                   [ </span><span style="color: #DD0000">'007' </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">$byZip  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field zip from codes where zip = {0}"</span><span style="color: #007700">,                      [ </span><span style="color: #DD0000">'01234' </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">$inList </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array code from codes where code in ({0}) order by code"</span><span style="color: #007700">,   [ [ </span><span style="color: #DD0000">'007'</span><span style="color: #007700">, </span><span style="color: #DD0000">'7' </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">$inList </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$inList</span><span style="color: #007700">, </span><span style="color: #DD0000">'code' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into codes values ({0}, {1}, 'kept')"</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'0042'</span><span style="color: #007700">, </span><span style="color: #DD0000">'1.10' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$stored </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record code, zip from codes where label = 'kept'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$count  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field 'three' where (select count(*) from codes) = {0}"</span><span style="color: #007700">,    [ </span><span style="color: #DD0000">'3' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'codes'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'codes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'code' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$c </span><span style="color: #007700">= </span><span style="color: #DD0000">'007'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">code:   <b>{<font color="green"><font color="red">$</font>byCode</font>}</b><br>zip:    <b>{<font color="green"><font color="red">$</font>byZip</font>}</b><br>list:   <b>{<font color="green"><font color="red">$</font>inList</font>}</b><br>stored: <b>{<font color="green"><font color="red">$</font>stored.code</font>}</b> <b>{<font color="green"><font color="red">$</font>stored.zip</font>}</b><br>count:  <b>{<font color="green"><font color="red">$</font>count</font>}</b><br>select: <b>{<font color="blue">codes </font><font color="red">where="code = <font color="red">$</font>c"</font>}</b><b>{<font color="green"><font color="red">$</font>label</font>}</b><b>{/<font color="blue">codes</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax38d34d04baad4440ab9f65607ebcfed9"></div>
+                        <script>
+                        padAjax38d34d04baad4440ab9f65607ebcfed9 = new XMLHttpRequest();
+                        padAjax38d34d04baad4440ab9f65607ebcfed9.onreadystatechange=function() {
+                        if (padAjax38d34d04baad4440ab9f65607ebcfed9.readyState === 4) {
+                        if (padAjax38d34d04baad4440ab9f65607ebcfed9.status === 200) {
+                        document.getElementById("padAjax38d34d04baad4440ab9f65607ebcfed9").innerHTML=padAjax38d34d04baad4440ab9f65607ebcfed9.responseText;
+                        } else {
+                        document.getElementById("padAjax38d34d04baad4440ab9f65607ebcfed9").innerHTML=padAjax38d34d04baad4440ab9f65607ebcfed9.statusText;
+                        }
+                        }
+                        }
+                        padAjax38d34d04baad4440ab9f65607ebcfed9.open("GET","http://localhost/pad/regression/pages/?db/sqlite_numeric_text_keeps_its_zeros&padInclude",true);
+                        padAjax38d34d04baad4440ab9f65607ebcfed9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: select/demo/sqlite_key_and_relation_match_an_untyped_column<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/sqlite_key_and_relation_match_an_untyped_column.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/sqlite_key_and_relation_match_an_untyped_column.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// On SQLite a key bound on a select tag and the relation to the enclosing select compare<br>  // a number as a number: the value went in as quoted text, and a column declared without<br>  // a type has no affinity, so '2' never equalled the integer 2 - {boards $id=2} found no<br>  // board, and every board's topics came out empty. A key that only looks like a number,<br>  // '007', stays text.<br><br>  </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padSqlConnect'</span><span style="color: #007700">] = </span><span style="color: #0000BB">padDbSqlite </span><span style="color: #007700">( </span><span style="color: #DD0000">':memory:' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"create table boards (id, name)" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"create table topics (id integer primary key, board_id, title text)" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"create table codes (code, label)" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into boards values (1, 'one'), (2, 'two')" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into topics (board_id, title) values (1, 'a'), (1, 'b'), (2, 'c')" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into codes values ('007', 'bond'), (7, 'seven')" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'boards'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'boards'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'id' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'topics'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'topics'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'id' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'codes'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'codes'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'code' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'topics'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'boards'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'board_id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'id' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$wanted </span><span style="color: #007700">= </span><span style="color: #DD0000">'2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$code   </span><span style="color: #007700">= </span><span style="color: #DD0000">'007'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">key:      [<b>{<font color="blue">boards </font><font color="red"><font color="red">$</font>id=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">boards</font><font color="red"></font>}</b>]<br>request:  [<b>{<font color="blue">boards </font><font color="red"><font color="red">$</font>id=<font color="red">$</font>wanted</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">boards</font><font color="red"></font>}</b>]<br>relation: [<b>{<font color="blue">boards</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="blue">topics</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{/<font color="blue">topics</font><font color="red"></font>}</b> <b>{/<font color="blue">boards</font><font color="red"></font>}</b>]<br>text:     [<b>{<font color="blue">codes </font><font color="red"><font color="red">$</font>code=<font color="red">$</font>code</font>}</b><b>{<font color="green"><font color="red">$</font>label</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">codes</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561"></div>
+                        <script>
+                        padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561 = new XMLHttpRequest();
+                        padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.onreadystatechange=function() {
+                        if (padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.readyState === 4) {
+                        if (padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.status === 200) {
+                        document.getElementById("padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561").innerHTML=padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.responseText;
+                        } else {
+                        document.getElementById("padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561").innerHTML=padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.statusText;
+                        }
+                        }
+                        }
+                        padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.open("GET","http://localhost/pad/regression/pages/?select/demo/sqlite_key_and_relation_match_an_untyped_column&padInclude",true);
+                        padAjaxecb45ce7b99d08cdfcd7bcafb3ba3561.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

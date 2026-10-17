@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - placeholder
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - placeholder
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_placeholder_without_a_size_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_placeholder_without_a_size_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>big<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd278e795702ccb8d98833b91fc9478bb"></div>
+                        <script>
+                        padAjaxd278e795702ccb8d98833b91fc9478bb = new XMLHttpRequest();
+                        padAjaxd278e795702ccb8d98833b91fc9478bb.onreadystatechange=function() {
+                        if (padAjaxd278e795702ccb8d98833b91fc9478bb.readyState === 4) {
+                        if (padAjaxd278e795702ccb8d98833b91fc9478bb.status === 200) {
+                        document.getElementById("padAjaxd278e795702ccb8d98833b91fc9478bb").innerHTML=padAjaxd278e795702ccb8d98833b91fc9478bb.responseText;
+                        } else {
+                        document.getElementById("padAjaxd278e795702ccb8d98833b91fc9478bb").innerHTML=padAjaxd278e795702ccb8d98833b91fc9478bb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd278e795702ccb8d98833b91fc9478bb.open("GET","http://localhost/pad/regression/errors/?syntax/a_placeholder_without_a_size_is_reported&padInclude",true);
+                        padAjaxd278e795702ccb8d98833b91fc9478bb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_field_inside_the_label_of_a_drawing_tag_is_escaped_once<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_field_inside_the_label_of_a_drawing_tag_is_escaped_once.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_field_inside_the_label_of_a_drawing_tag_is_escaped_once.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field written inside the quoted label of {progress}, {rating}, {icon} or the text of<br>  // {placeholder} is escaped once, as the field alone is: it arrived escaped by its<br>  // sanitize step and the tag escaped it again - Q&amp;amp;A was shown as Q&amp;amp;amp;A.<br><br>  </span><span style="color: #0000BB">$topic </span><span style="color: #007700">= </span><span style="color: #DD0000">'Q&amp;A'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">progress </font><font color="red">40<font color="black">,</font> label=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>topic</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><b>{<font color="blue">rating </font><font color="red">3<font color="black">,</font> label=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>topic</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>check<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>topic</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>60x30<font color="black">'</font><font color="black">,</font> text=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>topic</font><font color="black">}</font></b><font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4de1548b733ffabf5f623a9bafbf245f"></div>
+                        <script>
+                        padAjax4de1548b733ffabf5f623a9bafbf245f = new XMLHttpRequest();
+                        padAjax4de1548b733ffabf5f623a9bafbf245f.onreadystatechange=function() {
+                        if (padAjax4de1548b733ffabf5f623a9bafbf245f.readyState === 4) {
+                        if (padAjax4de1548b733ffabf5f623a9bafbf245f.status === 200) {
+                        document.getElementById("padAjax4de1548b733ffabf5f623a9bafbf245f").innerHTML=padAjax4de1548b733ffabf5f623a9bafbf245f.responseText;
+                        } else {
+                        document.getElementById("padAjax4de1548b733ffabf5f623a9bafbf245f").innerHTML=padAjax4de1548b733ffabf5f623a9bafbf245f.statusText;
+                        }
+                        }
+                        }
+                        padAjax4de1548b733ffabf5f623a9bafbf245f.open("GET","http://localhost/pad/regression/framework/?tags/a_field_inside_the_label_of_a_drawing_tag_is_escaped_once&padInclude",true);
+                        padAjax4de1548b733ffabf5f623a9bafbf245f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_quote_stand_in_in_a_value_stays_inside_the_attribute_of_a_drawing_tag<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_quote_stand_in_in_a_value_stays_inside_the_attribute_of_a_drawing_tag.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_quote_stand_in_in_a_value_stays_inside_the_attribute_of_a_drawing_tag.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value holding the stand-in of a quote - what %EE%80%A2 in a request is - written by<br>  // the tags that draw into an attribute: escaped as the quote it becomes when the page is<br>  // written out, where their escapers left it and it closed the attribute and opened one<br>  // of the visitor's own, an event handler.<br><br>  </span><span style="color: #0000BB">$hostile </span><span style="color: #007700">= </span><span style="color: #DD0000">"red\u{E022} onclick=\u{E022}alert(1)"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">qr </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//example.com<font color="black">'</font><font color="black">,</font> size=60<font color="black">,</font> color=<font color="red">$</font>hostile</font>}</b><br><b>{<font color="blue">countdown </font><font color="red"><font color="black">'</font>2030-01-01<font color="black">'</font><font color="black">,</font> now=<font color="black">'</font>2026-01-01<font color="black">'</font><font color="black">,</font> past=<font color="red">$</font>hostile<font color="black">,</font> live</font>}</b><br><b>{<font color="blue">rating </font><font color="red">3<font color="black">,</font> label=<font color="red">$</font>hostile</font>}</b><br><b>{<font color="blue">progress </font><font color="red">40<font color="black">,</font> label=<font color="red">$</font>hostile</font>}</b><br><b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>60x30<font color="black">'</font><font color="black">,</font> text=<font color="red">$</font>hostile</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf406d5bcc405881231d6cae26c1da169"></div>
+                        <script>
+                        padAjaxf406d5bcc405881231d6cae26c1da169 = new XMLHttpRequest();
+                        padAjaxf406d5bcc405881231d6cae26c1da169.onreadystatechange=function() {
+                        if (padAjaxf406d5bcc405881231d6cae26c1da169.readyState === 4) {
+                        if (padAjaxf406d5bcc405881231d6cae26c1da169.status === 200) {
+                        document.getElementById("padAjaxf406d5bcc405881231d6cae26c1da169").innerHTML=padAjaxf406d5bcc405881231d6cae26c1da169.responseText;
+                        } else {
+                        document.getElementById("padAjaxf406d5bcc405881231d6cae26c1da169").innerHTML=padAjaxf406d5bcc405881231d6cae26c1da169.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf406d5bcc405881231d6cae26c1da169.open("GET","http://localhost/pad/regression/framework/?tags/a_quote_stand_in_in_a_value_stays_inside_the_attribute_of_a_drawing_tag&padInclude",true);
+                        padAjaxf406d5bcc405881231d6cae26c1da169.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/placeholder_draws_a_size_or_a_ratio<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/placeholder_draws_a_size_or_a_ratio.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>600x300<font color="black">'</font></font>}</b> <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>320x50<font color="black">'</font><font color="black">,</font> text=<font color="black">'</font>Banner & &lt;more&gt;<font color="black">'</font></font>}</b> <b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>16<font color="black">:</font>9<font color="black">'</font><font color="black">,</font> width=320<font color="black">,</font> fluid</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax08d4fafd57ecf0be075735d8a17b726b"></div>
+                        <script>
+                        padAjax08d4fafd57ecf0be075735d8a17b726b = new XMLHttpRequest();
+                        padAjax08d4fafd57ecf0be075735d8a17b726b.onreadystatechange=function() {
+                        if (padAjax08d4fafd57ecf0be075735d8a17b726b.readyState === 4) {
+                        if (padAjax08d4fafd57ecf0be075735d8a17b726b.status === 200) {
+                        document.getElementById("padAjax08d4fafd57ecf0be075735d8a17b726b").innerHTML=padAjax08d4fafd57ecf0be075735d8a17b726b.responseText;
+                        } else {
+                        document.getElementById("padAjax08d4fafd57ecf0be075735d8a17b726b").innerHTML=padAjax08d4fafd57ecf0be075735d8a17b726b.statusText;
+                        }
+                        }
+                        }
+                        padAjax08d4fafd57ecf0be075735d8a17b726b.open("GET","http://localhost/pad/regression/framework/?tags/placeholder_draws_a_size_or_a_ratio&padInclude",true);
+                        padAjax08d4fafd57ecf0be075735d8a17b726b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/placeholder_too_small_for_its_label_draws_no_pill<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/placeholder_too_small_for_its_label_draws_no_pill.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>1x1<font color="black">'</font></font>}</b><b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>2x2<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax536a656713208cb537ad469ca7181fea"></div>
+                        <script>
+                        padAjax536a656713208cb537ad469ca7181fea = new XMLHttpRequest();
+                        padAjax536a656713208cb537ad469ca7181fea.onreadystatechange=function() {
+                        if (padAjax536a656713208cb537ad469ca7181fea.readyState === 4) {
+                        if (padAjax536a656713208cb537ad469ca7181fea.status === 200) {
+                        document.getElementById("padAjax536a656713208cb537ad469ca7181fea").innerHTML=padAjax536a656713208cb537ad469ca7181fea.responseText;
+                        } else {
+                        document.getElementById("padAjax536a656713208cb537ad469ca7181fea").innerHTML=padAjax536a656713208cb537ad469ca7181fea.statusText;
+                        }
+                        }
+                        }
+                        padAjax536a656713208cb537ad469ca7181fea.open("GET","http://localhost/pad/regression/framework/?tags/placeholder_too_small_for_its_label_draws_no_pill&padInclude",true);
+                        padAjax536a656713208cb537ad469ca7181fea.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: placeholder/sizes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">placeholder/sizes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Banner sizes<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The size as width x height<font color="black">,</font> written in the middle unless a text is given.<font color="black">'</font></font>}</b><br>&lt;div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start; justify-content:center"&gt;<br>  <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>300x250<font color="black">'</font><font color="black">,</font> text=<font color="black">'</font>Medium rectangle<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>160x250<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>320x50<font color="black">'</font><font color="black">,</font> text=<font color="black">'</font>Mobile banner<font color="black">'</font></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax898f0febae1710dd7dd7b32304722a13"></div>
+                        <script>
+                        padAjax898f0febae1710dd7dd7b32304722a13 = new XMLHttpRequest();
+                        padAjax898f0febae1710dd7dd7b32304722a13.onreadystatechange=function() {
+                        if (padAjax898f0febae1710dd7dd7b32304722a13.readyState === 4) {
+                        if (padAjax898f0febae1710dd7dd7b32304722a13.status === 200) {
+                        document.getElementById("padAjax898f0febae1710dd7dd7b32304722a13").innerHTML=padAjax898f0febae1710dd7dd7b32304722a13.responseText;
+                        } else {
+                        document.getElementById("padAjax898f0febae1710dd7dd7b32304722a13").innerHTML=padAjax898f0febae1710dd7dd7b32304722a13.statusText;
+                        }
+                        }
+                        }
+                        padAjax898f0febae1710dd7dd7b32304722a13.open("GET","http://localhost/pad/showcase/?placeholder/sizes&padInclude",true);
+                        padAjax898f0febae1710dd7dd7b32304722a13.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: placeholder/wireframe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">placeholder/wireframe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A page in wireframe<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A hero at 21<font color="black">:</font>9 and three cards at 4<font color="black">:</font>3<font color="black">,</font> all as wide as their column - the layout stands before the photos do.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:16px; width:min(100%, 640px); margin:0 auto"&gt;<br>  <b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>21<font color="black">:</font>9<font color="black">'</font><font color="black">,</font> fluid<font color="black">,</font> text=<font color="black">'</font>Hero image<font color="black">'</font></font>}</b><br>  &lt;div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px"&gt;<br>    &lt;div&gt;<b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>4<font color="black">:</font>3<font color="black">'</font><font color="black">,</font> fluid<font color="black">,</font> text=<font color="black">'</font>Product<font color="black">'</font></font>}</b>&lt;p style="margin:6px 0 0"&gt;&lt;strong&gt;Lamp&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;<br>    &lt;div&gt;<b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>4<font color="black">:</font>3<font color="black">'</font><font color="black">,</font> fluid<font color="black">,</font> text=<font color="black">'</font>Product<font color="black">'</font></font>}</b>&lt;p style="margin:6px 0 0"&gt;&lt;strong&gt;Chair&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;<br>    &lt;div&gt;<b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>4<font color="black">:</font>3<font color="black">'</font><font color="black">,</font> fluid<font color="black">,</font> text=<font color="black">'</font>Product<font color="black">'</font></font>}</b>&lt;p style="margin:6px 0 0"&gt;&lt;strong&gt;Table&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax01c470cc2f613d5bbff929757dc7e81a"></div>
+                        <script>
+                        padAjax01c470cc2f613d5bbff929757dc7e81a = new XMLHttpRequest();
+                        padAjax01c470cc2f613d5bbff929757dc7e81a.onreadystatechange=function() {
+                        if (padAjax01c470cc2f613d5bbff929757dc7e81a.readyState === 4) {
+                        if (padAjax01c470cc2f613d5bbff929757dc7e81a.status === 200) {
+                        document.getElementById("padAjax01c470cc2f613d5bbff929757dc7e81a").innerHTML=padAjax01c470cc2f613d5bbff929757dc7e81a.responseText;
+                        } else {
+                        document.getElementById("padAjax01c470cc2f613d5bbff929757dc7e81a").innerHTML=padAjax01c470cc2f613d5bbff929757dc7e81a.statusText;
+                        }
+                        }
+                        }
+                        padAjax01c470cc2f613d5bbff929757dc7e81a.open("GET","http://localhost/pad/showcase/?placeholder/wireframe&padInclude",true);
+                        padAjax01c470cc2f613d5bbff929757dc7e81a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/placeholder/1-sizes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/placeholder/1-sizes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Fixed sizes<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The size in the middle<font color="black">,</font> unless a text is given.<font color="black">'</font></font>}</b><br>&lt;p style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start"&gt;<br>  <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>300x250<font color="black">'</font><font color="black">,</font> text=<font color="black">'</font>Medium rectangle<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>160x250<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">placeholder </font><font color="red"><font color="black">'</font>320x50<font color="black">'</font><font color="black">,</font> text=<font color="black">'</font>Mobile banner<font color="black">'</font></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7"></div>
+                        <script>
+                        padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7 = new XMLHttpRequest();
+                        padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.onreadystatechange=function() {
+                        if (padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.readyState === 4) {
+                        if (padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.status === 200) {
+                        document.getElementById("padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7").innerHTML=padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.responseText;
+                        } else {
+                        document.getElementById("padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7").innerHTML=padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.statusText;
+                        }
+                        }
+                        }
+                        padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.open("GET","http://localhost/pad/tags/?examples/placeholder/1-sizes&padInclude",true);
+                        padAjax7aad2b5a2a93c4b5e1a9aa4fdcedccf7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/placeholder/2-fluid<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/placeholder/2-fluid.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A wireframe at ratios<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>ratio= and fluid make boxes as wide as their column<font color="black">,</font> their height following.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:12px; max-width:480px"&gt;<br>  <b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>21<font color="black">:</font>9<font color="black">'</font><font color="black">,</font> fluid<font color="black">,</font> text=<font color="black">'</font>Hero image<font color="black">'</font></font>}</b><br>  &lt;div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px"&gt;<br>    <b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>4<font color="black">:</font>3<font color="black">'</font><font color="black">,</font> fluid</font>}</b><b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>4<font color="black">:</font>3<font color="black">'</font><font color="black">,</font> fluid</font>}</b><b>{<font color="blue">placeholder </font><font color="red">ratio=<font color="black">'</font>4<font color="black">:</font>3<font color="black">'</font><font color="black">,</font> fluid</font>}</b><br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a"></div>
+                        <script>
+                        padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a = new XMLHttpRequest();
+                        padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.onreadystatechange=function() {
+                        if (padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.readyState === 4) {
+                        if (padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.status === 200) {
+                        document.getElementById("padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a").innerHTML=padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.responseText;
+                        } else {
+                        document.getElementById("padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a").innerHTML=padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.open("GET","http://localhost/pad/tags/?examples/placeholder/2-fluid&padInclude",true);
+                        padAjaxc94f17dd4b963c1a66b2b4d3ec47d49a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

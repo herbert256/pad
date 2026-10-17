@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {sudoku} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-sudoku){--pad-sudoku-line:#b9b8b2;--pad-sudoku-box:#2b2a28;--pad-sudoku-given:#1a1a19;--pad-sudoku-solved:#2a78d6;--pad-sudoku-cell:#ffffff;--pad-sudoku-shade:#f4f3ef;}@supports (color:light-dark(#000,#fff)){:where(.pad-sudoku){--pad-sudoku-line:light-dark(#b9b8b2,#4a4a46);--pad-sudoku-box:light-dark(#2b2a28,#c3c2b7);--pad-sudoku-given:light-dark(#1a1a19,#f4f3ee);--pad-sudoku-solved:light-dark(#2a78d6,#5598e7);--pad-sudoku-cell:light-dark(#ffffff,#1f1f1d);--pad-sudoku-shade:light-dark(#f4f3ef,#262624);}}:where(.pad-sudoku){border-collapse:collapse;border:3px solid var(--pad-sudoku-box);background:var(--pad-sudoku-cell);font:22px/1 system-ui,sans-serif;margin:0 auto}:where(.pad-sudoku caption){padding:6px;font-weight:600;font-size:16px}:where(.pad-sudoku td){width:2em;height:2em;padding:0;text-align:center;vertical-align:middle;border:1px solid var(--pad-sudoku-line)}:where(.pad-sudoku td:nth-child(3n)){border-right:3px solid var(--pad-sudoku-box)}:where(.pad-sudoku tr:nth-child(3n) td){border-bottom:3px solid var(--pad-sudoku-box)}:where(.pad-sudoku .psd-given){background:var(--pad-sudoku-shade);color:var(--pad-sudoku-given)}:where(.pad-sudoku .psd-given b){font-weight:700}:where(.pad-sudoku .psd-solved){color:var(--pad-sudoku-solved);font-weight:400}.pad-sudoku .psd-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#games">Games</a><span>/</span><span aria-current="page">sudoku</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>sudoku<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A sudoku as a table, the givens bold - and with solve, solved on the server.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#games">Games</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sudoku</span> <span class="hl-str">'puzzle'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sudoku</span> <span class="hl-str">'puzzle'</span>, solve, <span class="hl-opt">title</span>=<span class="hl-str">'Caption'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>puzzle</code>
+            </dt>
+            <dd>
+              The 81 cells row by row: a digit 1-9 for a given, <code>.</code> or <code>0</code> for an open cell. Whitespace is passed over, so nine lines will do.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>solve</code>
+            </dt>
+            <dd>
+              Bare option: fill the open cells with the solution, in another colour than the givens.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              A caption for the table. Without it the table is named by <code>aria-label</code> (<code>Sudoku, 30 givens</code>).
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{sudoku}</code> draws a sudoku as an HTML table with the three-by-three boxes marked. The puzzle is written as its 81 cells, row by row: a digit for a given, a <code>.</code> or <code>0</code> for an open cell. Whitespace is passed over, as are the bars and plus signs of a grid drawn in text, so the puzzle may be written as one string or as nine lines.
+          </p>
+          <p>
+            Without options the givens show in bold and the open cells are empty - ready to print. An open cell says "empty" to a screen reader. With <code>solve</code> a backtracking solver fills in every open cell, in another colour than the givens. It tries the cell with the fewest candidates first, so even the hardest published puzzles are solved well within a second. <code>title=</code> adds a caption.
+          </p>
+          <p>
+            Under the strict check a wrong number of cells, an unknown character, two equal givens in a row, column or box, and - with <code>solve</code> - a puzzle that has no solution are errors. The colours are <code>--pad-sudoku-line</code>, <code>-box</code>, <code>-given</code>, <code>-solved</code>, <code>-cell</code> and <code>-shade</code> on <code>.pad-sudoku</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              The puzzle
+            </h3>
+            <p class="example-about">
+              The classic example puzzle as one string - givens bold, the open cells empty.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sudoku/1-puzzle.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sudoku</span> <span class="hl-str">'53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sudoku%EA%A4%B71-puzzle.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table class="pad-sudoku" aria-label="Sudoku, 30 givens">
+                    <tbody>
+                      <tr>
+                        <td class="psd-given">
+                          <b>5</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>3</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>7</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>1</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>9</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>5</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>9</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>3</b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-given">
+                          <b>4</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>3</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>1</b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-given">
+                          <b>7</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>2</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>2</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>4</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>1</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>9</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>5</b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-open">
+                          <span class="psd-hide">empty</span>
+                        </td>
+                        <td class="psd-given">
+                          <b>7</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>9</b>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Solved on the server
+            </h3>
+            <p class="example-about">
+              Written as nine lines, solved by the backtracking solver, with a caption.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/sudoku/2-solved.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sudoku</span> '
+  <span class="hl-num">8</span>........
+  ..<span class="hl-num">36</span>.....
+  .<span class="hl-num">7</span>..<span class="hl-num">9.2</span>..
+  .<span class="hl-num">5</span>...<span class="hl-num">7</span>...
+  ....<span class="hl-num">457</span>..
+  ...<span class="hl-num">1</span>...<span class="hl-num">3</span>.
+  ..<span class="hl-num">1</span>....<span class="hl-num">68</span>
+  ..<span class="hl-num">85</span>...<span class="hl-num">1</span>.
+  .<span class="hl-num">9</span>....<span class="hl-num">4</span>..
+<span class="hl-str">', solve, title='</span>Arto Inkala, <span class="hl-num">2012</span>'<span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7sudoku%EA%A4%B72-solved.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table class="pad-sudoku is-solved">
+                    <caption>
+                      Arto Inkala, 2012
+                    </caption>
+                    <tbody>
+                      <tr>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-solved">
+                          1
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-solved">
+                          7
+                        </td>
+                        <td class="psd-solved">
+                          5
+                        </td>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                        <td class="psd-given">
+                          <b>3</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                        <td class="psd-solved">
+                          8
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-solved">
+                          1
+                        </td>
+                        <td class="psd-solved">
+                          7
+                        </td>
+                        <td class="psd-solved">
+                          5
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                        <td class="psd-given">
+                          <b>7</b>
+                        </td>
+                        <td class="psd-solved">
+                          5
+                        </td>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                        <td class="psd-given">
+                          <b>9</b>
+                        </td>
+                        <td class="psd-solved">
+                          1
+                        </td>
+                        <td class="psd-given">
+                          <b>2</b>
+                        </td>
+                        <td class="psd-solved">
+                          8
+                        </td>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          1
+                        </td>
+                        <td class="psd-given">
+                          <b>5</b>
+                        </td>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                        <td class="psd-given">
+                          <b>7</b>
+                        </td>
+                        <td class="psd-solved">
+                          8
+                        </td>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                        <td class="psd-solved">
+                          8
+                        </td>
+                        <td class="psd-given">
+                          <b>4</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>5</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>7</b>
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-solved">
+                          1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-solved">
+                          8
+                        </td>
+                        <td class="psd-solved">
+                          7
+                        </td>
+                        <td class="psd-given">
+                          <b>1</b>
+                        </td>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                        <td class="psd-solved">
+                          5
+                        </td>
+                        <td class="psd-given">
+                          <b>3</b>
+                        </td>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          5
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-given">
+                          <b>1</b>
+                        </td>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                        <td class="psd-solved">
+                          7
+                        </td>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                        <td class="psd-given">
+                          <b>6</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          4
+                        </td>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                        <td class="psd-given">
+                          <b>8</b>
+                        </td>
+                        <td class="psd-given">
+                          <b>5</b>
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                        <td class="psd-solved">
+                          9
+                        </td>
+                        <td class="psd-given">
+                          <b>1</b>
+                        </td>
+                        <td class="psd-solved">
+                          7
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="psd-solved">
+                          7
+                        </td>
+                        <td class="psd-given">
+                          <b>9</b>
+                        </td>
+                        <td class="psd-solved">
+                          6
+                        </td>
+                        <td class="psd-solved">
+                          3
+                        </td>
+                        <td class="psd-solved">
+                          1
+                        </td>
+                        <td class="psd-solved">
+                          8
+                        </td>
+                        <td class="psd-given">
+                          <b>4</b>
+                        </td>
+                        <td class="psd-solved">
+                          5
+                        </td>
+                        <td class="psd-solved">
+                          2
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7chess.html">{chess}</a> <span class="about">A chess position from FEN as an SVG board, with marked squares and arrows.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7crossword.html">{crossword}</a> <span class="about">A crossword made from a list of words: a numbered SVG grid with the Across and Down clues.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7stack.html">← {stack}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7switch.html">{switch} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

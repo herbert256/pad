@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {page} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pages">Pages and execution</a><span>/</span><span aria-current="page">page</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>page<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders another page of the application - its PHP and its template - in place of the tag.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pages">Pages and execution</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'dir/name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'products/42'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">include</span>=false<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, sandbox<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, reset<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, clean<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">function</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">app</span>=<span class="hl-str">'other'</span>, <span class="hl-opt">ajax</span>=false<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>page</code>
+            </dt>
+            <dd>
+              The page, named from the application root as in a URL - <code>'orders/list'</code>. A directory is its index, a <code>.html</code> page counts, and a clean URL route binds its segments: <code>'products/42'</code> renders <code>products/[id].pad</code> with <code>$id</code> set.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>include</code>
+            </dt>
+            <dd>
+              Whether the page renders bare. TRUE by default - the <code>_inits.pad</code>/<code>_exits.pad</code> wrappers are left out; <code>include=false</code> wraps it as a request would.
+            </dd>
+            <dt>
+              <code>sandbox</code>
+            </dt>
+            <dd>
+              Bare option: the page runs isolated - it sees none of the variables and stores of the page around it, and leaves none behind.
+            </dd>
+            <dt>
+              <code>reset</code>
+            </dt>
+            <dd>
+              Bare option: the level arrays and the stores are cleared for the pass and restored after it; the application's variables stay visible.
+            </dd>
+            <dt>
+              <code>clean</code>
+            </dt>
+            <dd>
+              Bare option: the page sees everything around it, but whatever it creates or changes is undone afterwards.
+            </dd>
+            <dt>
+              <code>function</code>
+            </dt>
+            <dd>
+              Runs the page inside a PHP function of that name, so its PHP has a scope of its own; what it creates is copied out unless <code>sandbox</code> is given too.
+            </dd>
+            <dt>
+              <code>app</code>
+            </dt>
+            <dd>
+              A page of another application. It cannot be built in this process, so it is fetched over HTTP - by the browser by default (as <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax}</a> does).
+            </dd>
+            <dt>
+              <code>ajax</code>
+            </dt>
+            <dd>
+              With <code>app=</code>: <code>ajax=false</code> fetches the other application's page on the server and inserts its body instead of leaving it to the browser.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{page 'name'}</code> builds another page of the same application in a nested engine pass and puts its output where the tag stands. It is not a second request: the page's PHP runs in this request, its template renders, and the result is the tag's value. The page is named from the application root, as in a URL, and resolved as the router resolves one - a directory means its <code>index</code>, a <code>.html</code> template counts, and a clean URL route binds its segments, so <code>{page 'products/42'}</code> renders <code>products/[id].pad</code> with <code>$id</code> set to 42.
+          </p>
+          <p>
+            By default the page renders bare (<code>include</code> is TRUE): the <code>_inits.pad</code> and <code>_exits.pad</code> wrappers are not added a second time. The page's directory guards still decide - a <code>_guard.php</code> that refuses makes the tag render as nothing instead of refusing the whole request. A page that does not exist is an error under the strict check; without it the tag is empty and the rest of the page lives.
+          </p>
+          <h3>
+            How isolated the page is
+          </h3>
+          <p>
+            A plain <code>{page}</code> shares the request: it reads the variables set before it, and what its PHP creates stays behind for the rest of the page. Four options change that, the same four <a href="index%EF%B9%96tag%EA%A4%B7code.html">{code}</a> takes:
+          </p>
+          <ul>
+            <li>
+              <code>sandbox</code> - the page sees nothing of the page around it and leaves nothing behind (the <a href="index%EF%B9%96tag%EA%A4%B7sandbox.html">{sandbox}</a> tag runs content this way);
+            </li>
+            <li>
+              <code>reset</code> - the levels and stores are cleared for the pass, the variables stay;
+            </li>
+            <li>
+              <code>clean</code> - the page sees everything, but what it changes is undone afterwards;
+            </li>
+            <li>
+              <code>function='name'</code> - the page's PHP runs inside a PHP function, with a scope of its own.
+            </li>
+          </ul>
+          <h3>
+            Other applications
+          </h3>
+          <p>
+            With <code>app='other'</code> the page belongs to another application, with its own configuration, <code>_lib</code> and database, so it cannot be built here: it is fetched over HTTP. By default the browser fetches it, as <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax}</a> does; <code>ajax=false</code> has the server fetch it and insert its body. For a page of this application fetched as a real second request, see <a href="index%EF%B9%96tag%EA%A4%B7get.html">{get}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Another page inside this one
+            </h3>
+            <p class="example-about">
+              The page runs its PHP and its template, and its output takes the tag's place.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/page/1-basic.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Before the page.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/greeting'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After it.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7page%EA%A4%B71-basic.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Before the page.
+                  </p>
+                  <div style="border:1px solid #aaa; padding:0 .5em">
+                    <p>
+                      Hello from parts/greeting
+                    </p>
+                    <ul>
+                      <li>its own PHP ran
+                      </li>
+                      <li>its template rendered
+                      </li>
+                    </ul>
+                  </div>
+                  <p>
+                    After it.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              It sees the variables
+            </h3>
+            <p class="example-about">
+              The included page is built in the same request and reads what is set before the tag.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/page/2-variables.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'green'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7page%EA%A4%B72-variables.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <span style="border:1px solid #aaa; padding:0 .3em">red</span>
+                  </p>
+                  <p>
+                    <span style="border:1px solid #aaa; padding:0 .3em">green</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Isolated with sandbox
+            </h3>
+            <p class="example-about">
+              With sandbox the page sees nothing of the page around it.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/page/3-sandbox.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>plain: <span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: <span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span>, sandbox<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7page%EA%A4%B73-sandbox.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    plain: <span style="border:1px solid #aaa; padding:0 .3em">red</span>
+                  </p>
+                  <p>
+                    sandbox: <span style="border:1px solid #aaa; padding:0 .3em">no colour</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7get.html">{get}</a> <span class="about">Fetches another page of the application over HTTP, as a second request, and inserts its output.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax}</a> <span class="about">Writes an empty div and a script that has the browser fetch another page into it after the page has loaded.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7code.html">{code}</a> <span class="about">Runs its content as PAD source in a separate engine pass and outputs what that pass produced.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sandbox.html">{sandbox}</a> <span class="about">Runs its content as PAD source in an isolated pass that cannot see or leave behind anything of the page.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7restart.html">{restart}</a> <span class="about">Abandons the page being built and renders another page in its place, in the same request.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7pad.html">← {pad}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -547,16 +547,16 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: select/demo/pager<br>
+                  App: regression/pages - Page: select/demo/a_pager_counts_a_select_with_a_join<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">select/demo/pager.php</font>
+                        <font size="-2">select/demo/a_pager_counts_a_select_with_a_join.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">select/demo/pager.pad</font>
+                        <font size="-2">select/demo/a_pager_counts_a_select_with_a_join.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -564,41 +564,41 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A pager over a declared select table: the page is cut by the SQL limit, so the rows do<br>  // not hold the total - the pager runs the count statement the select kept for it. The<br>  // links keep the request's other values; q stands in for a search field.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffPaged'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'q'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'j'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$pg         </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A pager after a select that joins two tables sharing a column name - orders and<br>  // customers, both with customerNumber - counts its rows: the count ran the select list<br>  // as a derived table, which MySQL refuses with two columns of one name ("1060: Duplicate<br>  // column name 'customerNumber'"), and the page ended at the pager.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'ordersPaged'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">staffPaged </font><font color="red">page=<font color="red">$</font>pg<font color="black">,</font> rows=1</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffPaged</font><font color="red"></font>}</b>]<br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>staffPaged<font color="black">'</font><font color="black">,</font> window=0</font>}</b></code></pre>
+                        <pre><code style="color: #000000">[<b>{<font color="blue">ordersPaged </font><font color="red">join=<font color="black">'</font>customers on customers.customerNumber = orders.customerNumber<font color="black">'</font><font color="black">,</font> where="customers.country = <font color="black">'</font>Norway<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>orderNumber<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>orderNumber</font>}</b> <b>{<font color="green"><font color="red">$</font>customerName</font>}</b>; <b>{/<font color="blue">ordersPaged</font><font color="red"></font>}</b>]<br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>ordersPaged<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax2fe35c97b338def9ff9c95e9dc7cf05f"></div>
+                        <div id="padAjax9b58a3d67cb1cafc2e54f779b125e366"></div>
                         <script>
-                        padAjax2fe35c97b338def9ff9c95e9dc7cf05f = new XMLHttpRequest();
-                        padAjax2fe35c97b338def9ff9c95e9dc7cf05f.onreadystatechange=function() {
-                        if (padAjax2fe35c97b338def9ff9c95e9dc7cf05f.readyState === 4) {
-                        if (padAjax2fe35c97b338def9ff9c95e9dc7cf05f.status === 200) {
-                        document.getElementById("padAjax2fe35c97b338def9ff9c95e9dc7cf05f").innerHTML=padAjax2fe35c97b338def9ff9c95e9dc7cf05f.responseText;
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366 = new XMLHttpRequest();
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366.onreadystatechange=function() {
+                        if (padAjax9b58a3d67cb1cafc2e54f779b125e366.readyState === 4) {
+                        if (padAjax9b58a3d67cb1cafc2e54f779b125e366.status === 200) {
+                        document.getElementById("padAjax9b58a3d67cb1cafc2e54f779b125e366").innerHTML=padAjax9b58a3d67cb1cafc2e54f779b125e366.responseText;
                         } else {
-                        document.getElementById("padAjax2fe35c97b338def9ff9c95e9dc7cf05f").innerHTML=padAjax2fe35c97b338def9ff9c95e9dc7cf05f.statusText;
+                        document.getElementById("padAjax9b58a3d67cb1cafc2e54f779b125e366").innerHTML=padAjax9b58a3d67cb1cafc2e54f779b125e366.statusText;
                         }
                         }
                         }
-                        padAjax2fe35c97b338def9ff9c95e9dc7cf05f.open("GET","http://localhost/pad/regression/pages/?select/demo/pager&padInclude",true);
-                        padAjax2fe35c97b338def9ff9c95e9dc7cf05f.send();
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_counts_a_select_with_a_join&padInclude",true);
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: select/demo/pager_rows<br>
+                  App: regression/pages - Page: select/demo/a_pager_counts_the_rows_its_fields_make<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">select/demo/pager_rows.php</font>
+                        <font size="-2">select/demo/a_pager_counts_the_rows_its_fields_make.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">select/demo/pager_rows.pad</font>
+                        <font size="-2">select/demo/a_pager_counts_the_rows_its_fields_make.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -606,26 +606,26 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A table declared with its own rows: the page is cut by those rows, and the pager counts<br>  // its pages by them too - it took the tag's rows= or 10, and with four rows of one per<br>  // page saw a single page of ten and wrote no links at all.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffByOne'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rows' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$pg </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A pager counts the rows the select answers also when its fields= decides what a row is:<br>  // distinct countries, or one row of totals. The count over the table alone was taken<br>  // whenever distinct=, group=, having= and union= were not given, so 27 countries had the<br>  // 13 pages of the 122 customers, and the one row of totals a pager of 28 pages.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'countriesPaged'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'paymentTotals'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payments'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'checkNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">staffByOne </font><font color="red">page=<font color="red">$</font>pg</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffByOne</font><font color="red"></font>}</b>]<br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>staffByOne<font color="black">'</font><font color="black">,</font> window=0</font>}</b></code></pre>
+                        <pre><code style="color: #000000">[<b>{<font color="blue">countriesPaged </font><font color="red">fields=<font color="black">'</font>distinct country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>; <b>{/<font color="blue">countriesPaged</font><font color="red"></font>}</b>]<br>(<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>countriesPaged<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)<br>[<b>{<font color="blue">paymentTotals </font><font color="red">fields=<font color="black">'</font>count(*) as n<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">paymentTotals</font><font color="red"></font>}</b>]<br>(<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>paymentTotals<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax99ce3995d6786b7fd57e951fca968899"></div>
+                        <div id="padAjaxa770e48197265ef61a22a5b627dcd37c"></div>
                         <script>
-                        padAjax99ce3995d6786b7fd57e951fca968899 = new XMLHttpRequest();
-                        padAjax99ce3995d6786b7fd57e951fca968899.onreadystatechange=function() {
-                        if (padAjax99ce3995d6786b7fd57e951fca968899.readyState === 4) {
-                        if (padAjax99ce3995d6786b7fd57e951fca968899.status === 200) {
-                        document.getElementById("padAjax99ce3995d6786b7fd57e951fca968899").innerHTML=padAjax99ce3995d6786b7fd57e951fca968899.responseText;
+                        padAjaxa770e48197265ef61a22a5b627dcd37c = new XMLHttpRequest();
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.onreadystatechange=function() {
+                        if (padAjaxa770e48197265ef61a22a5b627dcd37c.readyState === 4) {
+                        if (padAjaxa770e48197265ef61a22a5b627dcd37c.status === 200) {
+                        document.getElementById("padAjaxa770e48197265ef61a22a5b627dcd37c").innerHTML=padAjaxa770e48197265ef61a22a5b627dcd37c.responseText;
                         } else {
-                        document.getElementById("padAjax99ce3995d6786b7fd57e951fca968899").innerHTML=padAjax99ce3995d6786b7fd57e951fca968899.statusText;
+                        document.getElementById("padAjaxa770e48197265ef61a22a5b627dcd37c").innerHTML=padAjaxa770e48197265ef61a22a5b627dcd37c.statusText;
                         }
                         }
                         }
-                        padAjax99ce3995d6786b7fd57e951fca968899.open("GET","http://localhost/pad/regression/pages/?select/demo/pager_rows&padInclude",true);
-                        padAjax99ce3995d6786b7fd57e951fca968899.send();
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_counts_the_rows_its_fields_make&padInclude",true);
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.send();
                         </script>
                       </td>
                     </tr>
@@ -644,7 +644,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

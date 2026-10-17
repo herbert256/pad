@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - stepper
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - stepper
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: webcomponents - Page: examples/stepper<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/stepper.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/stepper.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An order: the quantity comes from &lt;pad-stepper&gt;, a form-associated custom element whose<br>  // value the {form} posts like any field; the size from an {input}. padValidate checks both<br>  // on the server - the stepper lets the visitor go to 12, the rule stops at 10.<br><br>  </span><span style="color: #0000BB">$errors  </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$ordered </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'order' </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">$errors  </span><span style="color: #007700">= </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|integer|min:1|max:10'</span><span style="color: #007700">, </span><span style="color: #DD0000">'size' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|in:s,m,l' </span><span style="color: #007700">],<br>                             </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'qty.max' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'At most :n at a time'</span><span style="color: #007700">, </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The quantity is a number from 1 to 10' </span><span style="color: #007700">] );<br>    </span><span style="color: #0000BB">$ordered </span><span style="color: #007700">= ! </span><span style="color: #0000BB">$errors</span><span style="color: #007700">;<br>  }<br><br>  </span><span style="color: #0000BB">$qty      </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'qty'</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$size     </span><span style="color: #007700">= </span><span style="color: #0000BB">wcText </span><span style="color: #007700">( </span><span style="color: #DD0000">'size' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$qtyError </span><span style="color: #007700">= </span><span style="color: #0000BB">$errors </span><span style="color: #007700">[</span><span style="color: #DD0000">'qty'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>ordered</font>}</b><br>  &lt;div class="callout is-good"&gt;&lt;p&gt;&lt;strong&gt;Ordered:&lt;/strong&gt; <b>{<font color="green"><font color="red">$</font>qty</font>}</b> × size <b>{<font color="green"><font color="red">$</font>size</font>}</b> - the stepper's value came with the post like any field.&lt;/p&gt;&lt;/div&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>order<font color="black">'</font><font color="black">,</font> error<font color="black">,</font> class=<font color="black">'</font>stack<font color="black">'</font></font>}</b><br>  &lt;label for="qty"&gt;Quantity&lt;/label&gt;<br>  <b>{<font color="blue">stepper </font><font color="red">name=<font color="black">'</font>qty<font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>qty<font color="black">,</font> min=1<font color="black">,</font> max=12</font>}</b><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>qtyError</font>}</b>&lt;span class="error"&gt;<b>{<font color="green"><font color="red">$</font>qtyError</font>}</b>&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>size<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Size - s<font color="black">,</font> m or l<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>input<font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>size</font>}</b><br><br>  &lt;button&gt;Order&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>&lt;script type="module" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>webcomponents/elements/stepper.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf2c4703757639289bb6898ccb14059d9"></div>
+                        <script>
+                        padAjaxf2c4703757639289bb6898ccb14059d9 = new XMLHttpRequest();
+                        padAjaxf2c4703757639289bb6898ccb14059d9.onreadystatechange=function() {
+                        if (padAjaxf2c4703757639289bb6898ccb14059d9.readyState === 4) {
+                        if (padAjaxf2c4703757639289bb6898ccb14059d9.status === 200) {
+                        document.getElementById("padAjaxf2c4703757639289bb6898ccb14059d9").innerHTML=padAjaxf2c4703757639289bb6898ccb14059d9.responseText;
+                        } else {
+                        document.getElementById("padAjaxf2c4703757639289bb6898ccb14059d9").innerHTML=padAjaxf2c4703757639289bb6898ccb14059d9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf2c4703757639289bb6898ccb14059d9.open("GET","http://localhost/pad/webcomponents/?examples/stepper&padInclude",true);
+                        padAjaxf2c4703757639289bb6898ccb14059d9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

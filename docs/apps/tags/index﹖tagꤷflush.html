@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {flush} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">flush</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>flush<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Sends the page rendered so far to the browser at once, so it can load the stylesheets while a slow part below renders.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">flush</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{flush}</code> sends what has been rendered above it to the browser now, instead of with the rest when the whole page is done. Put after the wrapper's <code>&lt;/head&gt;</code>, it lets the browser fetch the stylesheets, scripts and fonts the head names while a slow part of the page - a large table, a remote fetch - is still rendering. The page's PHP runs before any of the template, so what a flush wins is the rendering below it.
+          </p>
+          <p>
+            The first flush switches off, for that request, everything that needs the whole body at once: tidy, gzip of the whole body, the ETag and its 304, <code>Content-Length</code> and the page cache. The headers go out with the first part, so a header or cookie set after the flush is lost. A <code>{stack}</code> in the part already sent gets only the pushes made before the flush.
+          </p>
+          <p>
+            It stands at the top level of the page or its wrapper. Inside another tag, or in a page whose PHP returns data, the strict check reports it. In a page rendered inside another (a <code>{page}</code>), for an output type other than web, and in a request answered with one fragment or the post of a live region, it does nothing - which is why the example is shown rather than run.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              After the head of the wrapper
+            </h3>
+            <p class="example-about">
+              In _inits.pad: the head goes out at once, and the browser loads site.css while the page renders.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/flush/1-wrapper.src</span>
+                </div>
+                <pre class="code"><code>&lt;<span class="hl-var">!DOCTYPE</span> html<span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;html</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;head</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;title</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/title</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;link</span> <span class="hl-opt">rel</span>=<span class="hl-str">"stylesheet"</span> <span class="hl-opt">href</span>=<span class="hl-str">"{asset 'site.css'}"</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/head</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">flush</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;body</span><span class="hl-htm">&gt;</span>
+  <span class="hl-var">@page@</span>
+<span class="hl-htm">&lt;/body</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/html</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7output.html">{output}</a> <span class="about">Switches how the running request answers - a web page, the console, a file, a download, JSON or CSV.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7stack.html">{stack}</a> <span class="about">Prints everything pushed to a named stack, from above or below it in the page.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7cache.html">{cache}</a> <span class="about">Keeps a named section of the page rendered for a number of seconds - the fragment cache.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7flash.html">← {flash}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7foo.html">{foo} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

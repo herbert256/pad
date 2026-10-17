@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - uniqid
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - uniqid
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A section holding the CSP nonce - a widget's or a chart's &lt;style&gt; under style-src 'nonce'<br>  // - is kept, the nonce written in on a hit as the request's: it was never kept at all.<br><br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #DD0000">"default-src 'self'; style-src 'nonce'"</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'nonce-section' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nonce-section<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">nonce</font><font color="red"></font>}</b>-<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>uniqid</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]|[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>nonce-section<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">nonce</font><font color="red"></font>}</b>-<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>uniqid</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]|<b>{<font color="blue">nonce</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax094bb5ae15420d84e56c0c35c5905fdc"></div>
+                        <script>
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc = new XMLHttpRequest();
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc.onreadystatechange=function() {
+                        if (padAjax094bb5ae15420d84e56c0c35c5905fdc.readyState === 4) {
+                        if (padAjax094bb5ae15420d84e56c0c35c5905fdc.status === 200) {
+                        document.getElementById("padAjax094bb5ae15420d84e56c0c35c5905fdc").innerHTML=padAjax094bb5ae15420d84e56c0c35c5905fdc.responseText;
+                        } else {
+                        document.getElementById("padAjax094bb5ae15420d84e56c0c35c5905fdc").innerHTML=padAjax094bb5ae15420d84e56c0c35c5905fdc.statusText;
+                        }
+                        }
+                        }
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc.open("GET","http://localhost/pad/regression/framework/?tags/a_cache_section_holding_the_nonce_is_kept_and_takes_the_request_s_nonce&padInclude",true);
+                        padAjax094bb5ae15420d84e56c0c35c5905fdc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

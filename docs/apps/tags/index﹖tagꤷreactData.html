@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {reactData} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">reactData</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>reactData<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes the mount point of a React component, its data from a provider in _providers/ as JSON in an attribute.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>id</code>
+            </dt>
+            <dd>
+              The id of the <code>&lt;div&gt;</code>, and the key the result is kept under in <code>$padProviders</code> - default <code>myReactId</code>.
+            </dd>
+            <dt>
+              <code>provider</code>
+            </dt>
+            <dd>
+              The file <code>_providers/&lt;name&gt;.php</code> that answers the data - default the id. A plain name only.
+            </dd>
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              <code>check</code> turns the result into 1 or 0; otherwise (<code>record</code>, the default, or <code>array</code>) it is passed as the provider returned it.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{reactData id='products'}</code> runs the provider <code>_providers/products.php</code> and writes <code>&lt;div id="products" data="..."&gt;&lt;/div&gt;</code>, the provider's result as JSON, HTML-escaped for the attribute. A React component mounted on the div reads it with <code>JSON.parse ( el.getAttribute ( 'data' ) )</code> - <code>getAttribute</code>, not <code>dataset.data</code>, which reads <code>data-data</code>.
+          </p>
+          <p>
+            <code>provider=</code> names another file than the id; it must be a plain name, so no path outside <code>_providers/</code> can be run. The result keeps the types the provider gave it - numbers stay numbers, a text like <code>"007"</code> stays a text. It is also kept in <code>$padProviders</code> under the id, for a later provider. <code>type='check'</code> collapses it to 1 or 0.
+          </p>
+          <p>
+            The tag writes an empty element whose meaning only a script brings out, so the examples are shown rather than run. For new work the islands pattern of the react application is the more general route: <code>&lt;div data-island="Name" data-props="{^field}"&gt;</code> with the props from the page's own PHP. See <code>docs/REACT.md</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A mount point with data
+            </h3>
+            <p class="example-about">
+              _providers/products.php answers the rows; the div carries them as JSON for the component.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/reactData/1-mount.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Products<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">"{asset 'products.js'}"</span> <span class="hl-opt">type</span>=<span class="hl-str">"module"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Another provider, and a check
+            </h3>
+            <p class="example-about">
+              The id names the element, provider= the file; type='check' answers 1 or 0.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/reactData/2-provider.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'bestSellers'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'hasStock'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'stock'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'check'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7vite.html">{vite}</a> <span class="about">Links the scripts and stylesheets of a Vite build by the name of their source - or the dev server while it runs.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7echo.html">{echo}</a> <span class="about">Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7rating.html">← {rating}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7record.html">{record} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

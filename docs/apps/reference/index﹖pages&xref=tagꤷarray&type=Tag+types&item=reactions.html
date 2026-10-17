@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - reactions
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - reactions
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: showcase - Page: emoji/reactions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">emoji/reactions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">emoji/reactions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The reactions a post got, by shortcode - as GitHub and Slack write them.<br><br>  </span><span style="color: #0000BB">$reactions </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'+1'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'tada'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">17 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'heart'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'rocket'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'eyes'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'joy'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2  </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A reaction bar<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Reactions under a post<font color="black">,</font> each emoji from its shortcode in a span with role img and its name as the label a screen reader says.<font color="black">'</font></font>}</b><br>&lt;div style="max-width:30em"&gt;<br>  &lt;p style="margin:0 0 14px;line-height:1.5"&gt;&lt;strong&gt;Release 3.0 is out&lt;/strong&gt; - charts, tables and a faster first render.&lt;/p&gt;<br>  &lt;div style="display:flex;flex-wrap:wrap;gap:8px"&gt;<br>    <b>{<font color="blue">reactions</font><font color="red"></font>}</b><br>    &lt;button type="button" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;font:inherit;font-size:15px"&gt;<br>      <b>{<font color="blue">emoji </font><font color="red"><font color="red">$</font>code</font>}</b> &lt;span style="font-size:13px;font-variant-numeric:tabular-nums"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;<br>    &lt;/button&gt;<br>    <b>{/<font color="blue">reactions</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8aa282e593bfd6623ec652fcbb173c99"></div>
+                        <script>
+                        padAjax8aa282e593bfd6623ec652fcbb173c99 = new XMLHttpRequest();
+                        padAjax8aa282e593bfd6623ec652fcbb173c99.onreadystatechange=function() {
+                        if (padAjax8aa282e593bfd6623ec652fcbb173c99.readyState === 4) {
+                        if (padAjax8aa282e593bfd6623ec652fcbb173c99.status === 200) {
+                        document.getElementById("padAjax8aa282e593bfd6623ec652fcbb173c99").innerHTML=padAjax8aa282e593bfd6623ec652fcbb173c99.responseText;
+                        } else {
+                        document.getElementById("padAjax8aa282e593bfd6623ec652fcbb173c99").innerHTML=padAjax8aa282e593bfd6623ec652fcbb173c99.statusText;
+                        }
+                        }
+                        }
+                        padAjax8aa282e593bfd6623ec652fcbb173c99.open("GET","http://localhost/pad/showcase/?emoji/reactions&padInclude",true);
+                        padAjax8aa282e593bfd6623ec652fcbb173c99.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/emoji/1-reactions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/emoji/1-reactions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/emoji/1-reactions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $reactions </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'+1'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">':tada:'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">17 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'heart'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Rocket'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'eyes'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3  </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A reaction bar<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each emoji from its shortcode - with or without colons - in a span a screen reader names.<font color="black">'</font></font>}</b><br>&lt;p&gt;<br>  <b>{<font color="blue">reactions</font><font color="red"></font>}</b><br>    &lt;span style="display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"&gt;<b>{<font color="blue">emoji </font><font color="red"><font color="red">$</font>code</font>}</b> <b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;<br>  <b>{/<font color="blue">reactions</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa7b328d2730ca77459f4709bfda3c24a"></div>
+                        <script>
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a = new XMLHttpRequest();
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a.onreadystatechange=function() {
+                        if (padAjaxa7b328d2730ca77459f4709bfda3c24a.readyState === 4) {
+                        if (padAjaxa7b328d2730ca77459f4709bfda3c24a.status === 200) {
+                        document.getElementById("padAjaxa7b328d2730ca77459f4709bfda3c24a").innerHTML=padAjaxa7b328d2730ca77459f4709bfda3c24a.responseText;
+                        } else {
+                        document.getElementById("padAjaxa7b328d2730ca77459f4709bfda3c24a").innerHTML=padAjaxa7b328d2730ca77459f4709bfda3c24a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a.open("GET","http://localhost/pad/tags/?examples/emoji/1-reactions&padInclude",true);
+                        padAjaxa7b328d2730ca77459f4709bfda3c24a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

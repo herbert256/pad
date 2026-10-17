@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {get} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pages">Pages and execution</a><span>/</span><span aria-current="page">get</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>get<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Fetches another page of the application over HTTP, as a second request, and inserts its output.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pages">Pages and execution</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">get</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">get</span> <span class="hl-str">'name'</span>, <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>page</code>
+            </dt>
+            <dd>
+              The page of this application to fetch, as in a URL - <code>'orders/list'</code>; a clean URL route counts.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{get 'name'}</code> asks the web server for another page of this application and puts what comes back in place of the tag. Unlike <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a>, which builds the page inside the current request, this is a real second HTTP request: the page runs in a fresh process, with its own variables, and sees nothing of the page that asked for it.
+          </p>
+          <p>
+            The page is fetched with <code>&amp;padInclude</code>, so it renders bare - without its <code>_inits.pad</code>/<code>_exits.pad</code> wrappers. Every variable assigned on the tag, <code>{get 'badge', $colour = 'red'}</code>, goes along on the query string, where the other page finds it as a request value. The answer is inserted as a value: its braces are text and are not parsed again.
+          </p>
+          <p>
+            The fetch goes to the server's own address, never to the host a request names. Under the strict check a page that does not exist is an error before any request is made. Because it costs a round trip, <code>{get}</code> is for the case where the isolation of a separate request is the point; <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> is faster and shares the request. Remote addresses are fetched with <a href="index%EF%B9%96tag%EA%A4%B7curl.html">{curl}</a>; a stored content block is read with <code>{content:name}</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Another page, fetched
+            </h3>
+            <p class="example-about">
+              A second request for a page of this application; its output is inserted as text.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/get/1-fetch.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;aside</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">get</span> <span class="hl-str">'news/latest'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/aside</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Values on the query string
+            </h3>
+            <p class="example-about">
+              Variables assigned on the tag become request values of the fetched page.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/get/2-values.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">get</span> <span class="hl-str">'reports/summary'</span>, <span class="hl-var">$year</span> = <span class="hl-num">2026</span>, <span class="hl-var">$region</span> = <span class="hl-str">'north'</span><span class="hl-brc">}</span>
+<span class="hl-com">{# fetches ?reports/summary&amp;padInclude&amp;year=2026&amp;region=north #}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ajax.html">{ajax}</a> <span class="about">Writes an empty div and a script that has the browser fetch another page into it after the page has loaded.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7curl.html">{curl}</a> <span class="about">Fetches a URL and answers the body of the response, optionally kept in a cache for a number of seconds.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> <span class="about">Keeps a piece of template under a name instead of printing it, for a later {name} to render.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">← {fragment}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{gravatar} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Server-sent events - PAD + htmx</title>
+  <link rel="stylesheet" href="htmx.css">
+  <script src="htmx-app.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
+  <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
+</head>
+<body hx-headers="{&quot;X-CSRF-Token&quot;:&quot;32bdf7b3a4c18fc1c9b2092dd2c486046c42c16829608d71106e79a790c4bfc7&quot;}">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + htmx home">
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+      <span>PAD <em>+</em> htmx</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <a class="cart-badge" href="index%EF%B9%96examples%EA%A4%B7cart.html" aria-label="The cart">
+      🛒 <span id="cart-count">0</span>
+    </a>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>From the server</nav>
+  <h1><span class="example-icon" aria-hidden="true">📡</span>Server-sent events</h1>
+  <p class="lede">The server pushes HTML: padSse sends a rendered row every second, and htmx&#039;s sse extension swaps each one into the page as it arrives.</p>
+  <div class="chips">
+    <code class="chip is-server">padSse</code>
+    <code class="chip is-client">hx-ext=&quot;sse&quot;</code><code class="chip is-client">sse-swap</code><code class="chip is-client">sse-close</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<div hx-ext="sse" sse-connect="?examples/live&stream" sse-close="done">
+  <p class="muted">A row a second, rendered on the server and pushed down the open connection - thirty, then the stream ends.
+     <a href="index%EF%B9%96examples%EA%A4%B7live.html">Start again</a></p>
+  <ol class="ticks" sse-swap="tick" hx-swap="afterbegin"></ol>
+</div>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests htmx made</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request it makes shows here with the part PAD answered.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">htmx, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/live.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/live.php</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;div</span> <span class="hl-opt">hx-ext</span>=<span class="hl-str">&quot;sse&quot;</span> <span class="hl-opt">sse-connect</span>=<span class="hl-str">&quot;?examples/live&amp;stream&quot;</span> <span class="hl-opt">sse-close</span>=<span class="hl-str">&quot;done&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2">  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted&quot;</span><span class="hl-htm">&gt;</span>A row a second, rendered on the server and pushed down the open connection - thirty, then the stream ends.</span>
+<span class="hl-line" data-line="3">     <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">&quot;?examples/live&quot;</span><span class="hl-htm">&gt;</span>Start again<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-htm">&lt;ol</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;ticks&quot;</span> <span class="hl-opt">sse-swap</span>=<span class="hl-str">&quot;tick&quot;</span> <span class="hl-opt">hx-swap</span>=<span class="hl-str">&quot;afterbegin&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/ol</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="5"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// ?examples/live&amp;stream is the stream: padSse sends a row of HTML every second, thirty in</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// all, as &#039;tick&#039; events that htmx&#039;s sse extension swaps into the list (sse-swap=&quot;tick&quot;),</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// then a &#039;done&#039; event that closes the connection (sse-close=&quot;done&quot;). The page itself -</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-com">// asked without stream - is the list they come into.</span></span>
+<span class="hl-line" data-line="7"></span>
+<span class="hl-line" data-line="8">  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequestHas</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;stream&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="9">    <span class="hl-fn">padSse</span> <span class="hl-pun">(</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span> <span class="hl-var">$send</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="10"></span>
+<span class="hl-line" data-line="11">      <span class="hl-kwd">for</span> <span class="hl-pun">(</span> <span class="hl-var">$n</span> <span class="hl-pun">=</span> <span class="hl-num">1</span><span class="hl-pun">;</span> <span class="hl-var">$n</span> <span class="hl-pun">&lt;=</span> <span class="hl-num">30</span><span class="hl-pun">;</span> <span class="hl-var">$n</span><span class="hl-pun">++</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="12"></span>
+<span class="hl-line" data-line="13">        <span class="hl-var">$load</span> <span class="hl-pun">=</span> <span class="hl-fn">function_exists</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;sys_getloadavg&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">?</span> <span class="hl-fn">number_format</span> <span class="hl-pun">(</span> <span class="hl-fn">sys_getloadavg</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-num">2</span> <span class="hl-pun">)</span> <span class="hl-pun">:</span> <span class="hl-str">&#039;-&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="14"></span>
+<span class="hl-line" data-line="15">        <span class="hl-var">$row</span> <span class="hl-pun">=</span> <span class="hl-str">&#039;&lt;li class=&quot;tick rise&quot;&gt;&lt;span class=&quot;badge is-accent&quot;&gt;#&#039;</span> <span class="hl-pun">.</span> <span class="hl-var">$n</span> <span class="hl-pun">.</span> <span class="hl-str">&#039;&lt;/span&gt; &#039;</span></span>
+<span class="hl-line" data-line="16">             <span class="hl-pun">.</span> <span class="hl-str">&#039;&lt;code&gt;&#039;</span> <span class="hl-pun">.</span> <span class="hl-fn">date</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;H:i:s&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">.</span> <span class="hl-str">&#039;&lt;/code&gt; load &#039;</span> <span class="hl-pun">.</span> <span class="hl-fn">htmlspecialchars</span> <span class="hl-pun">(</span> <span class="hl-var">$load</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="17">             <span class="hl-pun">.</span> <span class="hl-str">&#039;, &#039;</span> <span class="hl-pun">.</span> <span class="hl-fn">round</span> <span class="hl-pun">(</span> <span class="hl-fn">memory_get_usage</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">/</span> <span class="hl-num">1024</span> <span class="hl-pun">)</span> <span class="hl-pun">.</span> <span class="hl-str">&#039; kB in use&lt;/li&gt;&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="18"></span>
+<span class="hl-line" data-line="19">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-pun">!</span> <span class="hl-var">$send</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;tick&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$row</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="20">          <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="21"></span>
+<span class="hl-line" data-line="22">        <span class="hl-fn">sleep</span> <span class="hl-pun">(</span> <span class="hl-num">1</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="23"></span>
+<span class="hl-line" data-line="24">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="25"></span>
+<span class="hl-line" data-line="26">      <span class="hl-var">$send</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;done&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;done&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="27"></span>
+<span class="hl-line" data-line="28">    <span class="hl-pun">}</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;retry&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">5000</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="29"></span>
+<span class="hl-line" data-line="30"><span class="hl-tag">?&gt;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7cart.html"><small>Previous</small>Out-of-band updates</a>
+  
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> renders every part of the page &middot; <strong>htmx</strong> asks for the part that changes and swaps it in</p>
+    <p class="footer-small">htmx comes from unpkg.com &middot; the pages are in <code>apps/htmx/</code> - there is no JavaScript of the application's own but a request log</p>
+  </div>
+</footer>
+
+</body>
+</html>

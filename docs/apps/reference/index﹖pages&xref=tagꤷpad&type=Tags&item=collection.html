@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -194,6 +194,88 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: data/a_collection_slug_left_empty_names_no_post<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/a_collection_slug_left_empty_names_no_post.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_collection_slug_left_empty_names_no_post.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The post page asked as ?post&amp;slug= - a link with its slug missing, a crawler that<br>  // trimmed the query.<br><br>  </span><span style="color: #0000BB">$slug </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">collection </font><font color="red">"posts"<font color="black">,</font> slug=<font color="red">$</font>slug</font>}</b>&lt;h1&gt;<b>{<font color="green">$title</font> <font color="black">|</font> <font color="blue">optional</font>}</b>&lt;/h1&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;p&gt;No such post&lt;/p&gt;<b>{/<font color="blue">collection</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c"></div>
+                        <script>
+                        padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c = new XMLHttpRequest();
+                        padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.onreadystatechange=function() {
+                        if (padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.readyState === 4) {
+                        if (padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.status === 200) {
+                        document.getElementById("padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c").innerHTML=padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.responseText;
+                        } else {
+                        document.getElementById("padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c").innerHTML=padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.open("GET","http://localhost/pad/regression/framework/?data/a_collection_slug_left_empty_names_no_post&padInclude",true);
+                        padAjaxd8ddd6adb7a7f264d8549a7c5dbe580c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/a_collection_slug_names_its_file_in_its_case<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_collection_slug_names_its_file_in_its_case.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>posts<font color="black">'</font><font color="black">,</font> slug=<font color="black">'</font>HELLO<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>no such post<b>{/<font color="blue">collection</font><font color="red"></font>}</b><br><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>posts<font color="black">'</font><font color="black">,</font> slug=<font color="black">'</font>hello<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{/<font color="blue">collection</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12"></div>
+                        <script>
+                        padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12 = new XMLHttpRequest();
+                        padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.onreadystatechange=function() {
+                        if (padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.readyState === 4) {
+                        if (padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.status === 200) {
+                        document.getElementById("padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12").innerHTML=padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.responseText;
+                        } else {
+                        document.getElementById("padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12").innerHTML=padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.open("GET","http://localhost/pad/regression/framework/?data/a_collection_slug_names_its_file_in_its_case&padInclude",true);
+                        padAjaxb8fe7eb87e4bdb7c990a41e059b3cf12.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: data/a_collection_slug_picks_one_file<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -273,6 +355,126 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/collection/1-list<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/collection/1-list.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A folder of Markdown as rows<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each file of _content/collectionBooks/ is a row - its front matter as fields<font color="black">,</font> its text as body.<font color="black">'</font></font>}</b><br><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>collectionBooks<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>year<font color="black">'</font></font>}</b><br>  &lt;h4&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> &lt;small&gt;(<b>{<font color="green"><font color="red">$</font>year</font>}</b>, <b>{<font color="green"><font color="red">$</font>author</font>}</b>)&lt;/small&gt;&lt;/h4&gt;<br>  <b>{<font color="green"><font color="red">!</font>body</font>}</b><br><b>{/<font color="blue">collection</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e97813fb61668ba7c9448458e637b55"></div>
+                        <script>
+                        padAjax4e97813fb61668ba7c9448458e637b55 = new XMLHttpRequest();
+                        padAjax4e97813fb61668ba7c9448458e637b55.onreadystatechange=function() {
+                        if (padAjax4e97813fb61668ba7c9448458e637b55.readyState === 4) {
+                        if (padAjax4e97813fb61668ba7c9448458e637b55.status === 200) {
+                        document.getElementById("padAjax4e97813fb61668ba7c9448458e637b55").innerHTML=padAjax4e97813fb61668ba7c9448458e637b55.responseText;
+                        } else {
+                        document.getElementById("padAjax4e97813fb61668ba7c9448458e637b55").innerHTML=padAjax4e97813fb61668ba7c9448458e637b55.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e97813fb61668ba7c9448458e637b55.open("GET","http://localhost/pad/tags/?examples/collection/1-list&padInclude",true);
+                        padAjax4e97813fb61668ba7c9448458e637b55.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/collection/2-slug<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/collection/2-slug.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One file by its slug<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>slug= picks a single file; a slug that names none shows the else branch.<font color="black">'</font></font>}</b><br><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>collectionBooks<font color="black">'</font><font color="black">,</font> slug=<font color="black">'</font>solaris<font color="black">'</font></font>}</b><br>  &lt;p&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/strong&gt; - file <b>{<font color="green"><font color="red">$</font>slug</font>}</b>.md&lt;/p&gt;<br>  <b>{<font color="green"><font color="red">$</font>source</font>}</b><br><b>{/<font color="blue">collection</font><font color="red"></font>}</b><br><b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>collectionBooks<font color="black">'</font><font color="black">,</font> slug=<font color="black">'</font>missing<font color="black">'</font></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;There is no book named missing.&lt;/p&gt;<br><b>{/<font color="blue">collection</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax89562c0b16c37debdce83baaca6d2fdf"></div>
+                        <script>
+                        padAjax89562c0b16c37debdce83baaca6d2fdf = new XMLHttpRequest();
+                        padAjax89562c0b16c37debdce83baaca6d2fdf.onreadystatechange=function() {
+                        if (padAjax89562c0b16c37debdce83baaca6d2fdf.readyState === 4) {
+                        if (padAjax89562c0b16c37debdce83baaca6d2fdf.status === 200) {
+                        document.getElementById("padAjax89562c0b16c37debdce83baaca6d2fdf").innerHTML=padAjax89562c0b16c37debdce83baaca6d2fdf.responseText;
+                        } else {
+                        document.getElementById("padAjax89562c0b16c37debdce83baaca6d2fdf").innerHTML=padAjax89562c0b16c37debdce83baaca6d2fdf.statusText;
+                        }
+                        }
+                        }
+                        padAjax89562c0b16c37debdce83baaca6d2fdf.open("GET","http://localhost/pad/tags/?examples/collection/2-slug&padInclude",true);
+                        padAjax89562c0b16c37debdce83baaca6d2fdf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/collection/3-options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/collection/3-options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>With handling options<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>where<font color="black">,</font> sort and first work on the rows as on any data.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">collection </font><font color="red"><font color="black">'</font>collectionBooks<font color="black">'</font><font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>year lt 1965<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>title DESC<font color="black">'</font><font color="black">,</font> first=1</font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> - <b>{<font color="green"><font color="red">$</font>year</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">collection</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax00e3aae5a435ef76078940568d86b31e"></div>
+                        <script>
+                        padAjax00e3aae5a435ef76078940568d86b31e = new XMLHttpRequest();
+                        padAjax00e3aae5a435ef76078940568d86b31e.onreadystatechange=function() {
+                        if (padAjax00e3aae5a435ef76078940568d86b31e.readyState === 4) {
+                        if (padAjax00e3aae5a435ef76078940568d86b31e.status === 200) {
+                        document.getElementById("padAjax00e3aae5a435ef76078940568d86b31e").innerHTML=padAjax00e3aae5a435ef76078940568d86b31e.responseText;
+                        } else {
+                        document.getElementById("padAjax00e3aae5a435ef76078940568d86b31e").innerHTML=padAjax00e3aae5a435ef76078940568d86b31e.statusText;
+                        }
+                        }
+                        }
+                        padAjax00e3aae5a435ef76078940568d86b31e.open("GET","http://localhost/pad/tags/?examples/collection/3-options&padInclude",true);
+                        padAjax00e3aae5a435ef76078940568d86b31e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -287,7 +489,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

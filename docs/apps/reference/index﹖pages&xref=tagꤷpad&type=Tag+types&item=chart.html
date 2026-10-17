@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -32,16 +32,16 @@
               <td>
                 <center>
                   <hr>
-                  App: manual - Page: fragments/charts_1<br>
+                  App: charts - Page: area/cities<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">fragments/charts_1.php</font>
+                        <font size="-2">area/cities.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">fragments/charts_1.pad</font>
+                        <font size="-2">area/cities.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -49,32 +49,32 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sales </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1200 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">950 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1430 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1610 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The average temperature of every month in nine cities, in °C: the north and the south<br>  // of Europe, a continental winter, the tropics that hardly change, and two cities south<br>  // of the equator whose summer falls in January.<br><br>  </span><span style="color: #0000BB">$normals </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'Oslo'      </span><span style="color: #007700">=&gt; [ -</span><span style="color: #0000BB">4</span><span style="color: #007700">, -</span><span style="color: #0000BB">4</span><span style="color: #007700">,  </span><span style="color: #0000BB">0</span><span style="color: #007700">,  </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">, </span><span style="color: #0000BB">15</span><span style="color: #007700">, </span><span style="color: #0000BB">17</span><span style="color: #007700">, </span><span style="color: #0000BB">16</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">,  </span><span style="color: #0000BB">6</span><span style="color: #007700">,  </span><span style="color: #0000BB">1</span><span style="color: #007700">, -</span><span style="color: #0000BB">3 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Amsterdam' </span><span style="color: #007700">=&gt; [  </span><span style="color: #0000BB">3</span><span style="color: #007700">,  </span><span style="color: #0000BB">4</span><span style="color: #007700">,  </span><span style="color: #0000BB">6</span><span style="color: #007700">,  </span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #0000BB">13</span><span style="color: #007700">, </span><span style="color: #0000BB">16</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">15</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">,  </span><span style="color: #0000BB">7</span><span style="color: #007700">,  </span><span style="color: #0000BB">4 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Madrid'    </span><span style="color: #007700">=&gt; [  </span><span style="color: #0000BB">6</span><span style="color: #007700">,  </span><span style="color: #0000BB">8</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">, </span><span style="color: #0000BB">13</span><span style="color: #007700">, </span><span style="color: #0000BB">17</span><span style="color: #007700">, </span><span style="color: #0000BB">23</span><span style="color: #007700">, </span><span style="color: #0000BB">26</span><span style="color: #007700">, </span><span style="color: #0000BB">25</span><span style="color: #007700">, </span><span style="color: #0000BB">21</span><span style="color: #007700">, </span><span style="color: #0000BB">15</span><span style="color: #007700">, </span><span style="color: #0000BB">10</span><span style="color: #007700">,  </span><span style="color: #0000BB">7 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Moscow'    </span><span style="color: #007700">=&gt; [ -</span><span style="color: #0000BB">7</span><span style="color: #007700">, -</span><span style="color: #0000BB">6</span><span style="color: #007700">, -</span><span style="color: #0000BB">1</span><span style="color: #007700">,  </span><span style="color: #0000BB">6</span><span style="color: #007700">, </span><span style="color: #0000BB">13</span><span style="color: #007700">, </span><span style="color: #0000BB">17</span><span style="color: #007700">, </span><span style="color: #0000BB">19</span><span style="color: #007700">, </span><span style="color: #0000BB">17</span><span style="color: #007700">, </span><span style="color: #0000BB">11</span><span style="color: #007700">,  </span><span style="color: #0000BB">5</span><span style="color: #007700">, -</span><span style="color: #0000BB">1</span><span style="color: #007700">, -</span><span style="color: #0000BB">5 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Cairo'     </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">15</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">25</span><span style="color: #007700">, </span><span style="color: #0000BB">27</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">26</span><span style="color: #007700">, </span><span style="color: #0000BB">24</span><span style="color: #007700">, </span><span style="color: #0000BB">19</span><span style="color: #007700">, </span><span style="color: #0000BB">15 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Singapore' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">27</span><span style="color: #007700">, </span><span style="color: #0000BB">27</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #0000BB">27</span><span style="color: #007700">, </span><span style="color: #0000BB">27 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Tokyo'     </span><span style="color: #007700">=&gt; [  </span><span style="color: #0000BB">5</span><span style="color: #007700">,  </span><span style="color: #0000BB">6</span><span style="color: #007700">,  </span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">19</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">26</span><span style="color: #007700">, </span><span style="color: #0000BB">27</span><span style="color: #007700">, </span><span style="color: #0000BB">24</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">13</span><span style="color: #007700">,  </span><span style="color: #0000BB">8 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Sydney'    </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">23</span><span style="color: #007700">, </span><span style="color: #0000BB">23</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">19</span><span style="color: #007700">, </span><span style="color: #0000BB">16</span><span style="color: #007700">, </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">13</span><span style="color: #007700">, </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">16</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">20</span><span style="color: #007700">, </span><span style="color: #0000BB">22 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'Cape Town' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">21</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">16</span><span style="color: #007700">, </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">13</span><span style="color: #007700">, </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">15</span><span style="color: #007700">, </span><span style="color: #0000BB">17</span><span style="color: #007700">, </span><span style="color: #0000BB">19</span><span style="color: #007700">, </span><span style="color: #0000BB">21 </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$months  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'May'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Jun'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Jul'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Aug'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Sep'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oct'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Nov'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Dec' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$climate </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$normals </span><span style="color: #007700">as </span><span style="color: #0000BB">$city </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$temperatures </span><span style="color: #007700">)<br>    foreach ( </span><span style="color: #0000BB">$temperatures </span><span style="color: #007700">as </span><span style="color: #0000BB">$m </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$temperature </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$climate </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$city</span><span style="color: #007700">, </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$months </span><span style="color: #007700">[</span><span style="color: #0000BB">$m</span><span style="color: #007700">], </span><span style="color: #DD0000">'temperature' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$temperature </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>              title=<font color="black">'</font>Sales per month<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=200</font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>multiples<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>climate<font color="black">'</font><font color="black">,</font><br>       by=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>temperature<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Average temperature per month in nine cities<font color="black">,</font> in °C<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax77a843ea737847b651cbcd8c6cfc0153"></div>
+                        <div id="padAjax555f01e742d4de303c8b8e41ec3a0c78"></div>
                         <script>
-                        padAjax77a843ea737847b651cbcd8c6cfc0153 = new XMLHttpRequest();
-                        padAjax77a843ea737847b651cbcd8c6cfc0153.onreadystatechange=function() {
-                        if (padAjax77a843ea737847b651cbcd8c6cfc0153.readyState === 4) {
-                        if (padAjax77a843ea737847b651cbcd8c6cfc0153.status === 200) {
-                        document.getElementById("padAjax77a843ea737847b651cbcd8c6cfc0153").innerHTML=padAjax77a843ea737847b651cbcd8c6cfc0153.responseText;
+                        padAjax555f01e742d4de303c8b8e41ec3a0c78 = new XMLHttpRequest();
+                        padAjax555f01e742d4de303c8b8e41ec3a0c78.onreadystatechange=function() {
+                        if (padAjax555f01e742d4de303c8b8e41ec3a0c78.readyState === 4) {
+                        if (padAjax555f01e742d4de303c8b8e41ec3a0c78.status === 200) {
+                        document.getElementById("padAjax555f01e742d4de303c8b8e41ec3a0c78").innerHTML=padAjax555f01e742d4de303c8b8e41ec3a0c78.responseText;
                         } else {
-                        document.getElementById("padAjax77a843ea737847b651cbcd8c6cfc0153").innerHTML=padAjax77a843ea737847b651cbcd8c6cfc0153.statusText;
+                        document.getElementById("padAjax555f01e742d4de303c8b8e41ec3a0c78").innerHTML=padAjax555f01e742d4de303c8b8e41ec3a0c78.statusText;
                         }
                         }
                         }
-                        padAjax77a843ea737847b651cbcd8c6cfc0153.open("GET","http://localhost/pad/manual/?fragments/charts_1&padInclude",true);
-                        padAjax77a843ea737847b651cbcd8c6cfc0153.send();
+                        padAjax555f01e742d4de303c8b8e41ec3a0c78.open("GET","http://localhost/pad/charts/?area/cities&padInclude",true);
+                        padAjax555f01e742d4de303c8b8e41ec3a0c78.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/errors - Page: syntax/a_chart_of_an_unknown_kind_is_reported<br>
+                  App: charts - Page: area/devices<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -83,7 +83,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">syntax/a_chart_of_an_unknown_kind_is_reported.pad</font>
+                        <font size="-2">area/devices.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -92,29 +92,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>pie<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>area<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>year<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>desktop<font color="black">,</font> mobile<font color="black">,</font> tablet<font color="black">'</font><font color="black">,</font><br>       percent<font color="black">,</font><br>       title=<font color="black">'</font>Share of web visits by device<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=320</font>}</b><br>  year,desktop,mobile,tablet<br>  2012,1820,210,95<br>  2013,1790,390,160<br>  2014,1750,610,230<br>  2015,1700,890,260<br>  2016,1640,1210,250<br>  2017,1580,1540,235<br>  2018,1510,1860,215<br>  2019,1450,2150,190<br>  2020,1520,2380,180<br>  2021,1430,2620,165<br>  2022,1380,2810,150<br>  2023,1340,2990,140<br>  2024,1300,3150,130<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax52cf8fd811c10a4779109ac842047ea2"></div>
+                        <div id="padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f"></div>
                         <script>
-                        padAjax52cf8fd811c10a4779109ac842047ea2 = new XMLHttpRequest();
-                        padAjax52cf8fd811c10a4779109ac842047ea2.onreadystatechange=function() {
-                        if (padAjax52cf8fd811c10a4779109ac842047ea2.readyState === 4) {
-                        if (padAjax52cf8fd811c10a4779109ac842047ea2.status === 200) {
-                        document.getElementById("padAjax52cf8fd811c10a4779109ac842047ea2").innerHTML=padAjax52cf8fd811c10a4779109ac842047ea2.responseText;
+                        padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f = new XMLHttpRequest();
+                        padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.onreadystatechange=function() {
+                        if (padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.readyState === 4) {
+                        if (padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.status === 200) {
+                        document.getElementById("padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f").innerHTML=padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.responseText;
                         } else {
-                        document.getElementById("padAjax52cf8fd811c10a4779109ac842047ea2").innerHTML=padAjax52cf8fd811c10a4779109ac842047ea2.statusText;
+                        document.getElementById("padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f").innerHTML=padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.statusText;
                         }
                         }
                         }
-                        padAjax52cf8fd811c10a4779109ac842047ea2.open("GET","http://localhost/pad/regression/errors/?syntax/a_chart_of_an_unknown_kind_is_reported&padInclude",true);
-                        padAjax52cf8fd811c10a4779109ac842047ea2.send();
+                        padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.open("GET","http://localhost/pad/charts/?area/devices&padInclude",true);
+                        padAjaxc73d0f3a8012e0d2be1b198b6f62fe7f.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/errors - Page: syntax/a_chart_without_data_is_reported<br>
+                  App: charts - Page: area/energy<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -123,7 +123,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">syntax/a_chart_without_data_is_reported.pad</font>
+                        <font size="-2">area/energy.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -132,38 +132,38 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>area<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>year<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>coal<font color="black">,</font> gas<font color="black">,</font> nuclear<font color="black">,</font> wind<font color="black">,</font> solar<font color="black">'</font><font color="black">,</font><br>       stacked<font color="black">,</font><br>       title=<font color="black">'</font>Electricity generated by source<font color="black">,</font> in TWh<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  year,coal,gas,nuclear,wind,solar<br>  2010,310,250,140,40,12<br>  2011,300,235,138,48,20<br>  2012,315,205,136,55,28<br>  2013,305,190,135,62,32<br>  2014,285,180,134,70,36<br>  2015,265,195,132,82,40<br>  2016,225,230,130,90,44<br>  2017,210,240,128,105,48<br>  2018,195,235,127,115,53<br>  2019,150,255,125,130,60<br>  2020,125,245,118,145,70<br>  2021,140,235,120,140,82<br>  2022,150,205,110,155,100<br>  2023,110,190,112,175,118<br>  2024,90,180,112,190,135<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxce674645671b5f38480b28bb542e82b0"></div>
+                        <div id="padAjax9111a01d93b512b98bbce7425c4c975d"></div>
                         <script>
-                        padAjaxce674645671b5f38480b28bb542e82b0 = new XMLHttpRequest();
-                        padAjaxce674645671b5f38480b28bb542e82b0.onreadystatechange=function() {
-                        if (padAjaxce674645671b5f38480b28bb542e82b0.readyState === 4) {
-                        if (padAjaxce674645671b5f38480b28bb542e82b0.status === 200) {
-                        document.getElementById("padAjaxce674645671b5f38480b28bb542e82b0").innerHTML=padAjaxce674645671b5f38480b28bb542e82b0.responseText;
+                        padAjax9111a01d93b512b98bbce7425c4c975d = new XMLHttpRequest();
+                        padAjax9111a01d93b512b98bbce7425c4c975d.onreadystatechange=function() {
+                        if (padAjax9111a01d93b512b98bbce7425c4c975d.readyState === 4) {
+                        if (padAjax9111a01d93b512b98bbce7425c4c975d.status === 200) {
+                        document.getElementById("padAjax9111a01d93b512b98bbce7425c4c975d").innerHTML=padAjax9111a01d93b512b98bbce7425c4c975d.responseText;
                         } else {
-                        document.getElementById("padAjaxce674645671b5f38480b28bb542e82b0").innerHTML=padAjaxce674645671b5f38480b28bb542e82b0.statusText;
+                        document.getElementById("padAjax9111a01d93b512b98bbce7425c4c975d").innerHTML=padAjax9111a01d93b512b98bbce7425c4c975d.statusText;
                         }
                         }
                         }
-                        padAjaxce674645671b5f38480b28bb542e82b0.open("GET","http://localhost/pad/regression/errors/?syntax/a_chart_without_data_is_reported&padInclude",true);
-                        padAjaxce674645671b5f38480b28bb542e82b0.send();
+                        padAjax9111a01d93b512b98bbce7425c4c975d.open("GET","http://localhost/pad/charts/?area/energy&padInclude",true);
+                        padAjax9111a01d93b512b98bbce7425c4c975d.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: escaping/a_chart_label_is_escaped_and_stays_text<br>
+                  App: charts - Page: area/music<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">escaping/a_chart_label_is_escaped_and_stays_text.php</font>
+                        <font size="-2">area/music.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">escaping/a_chart_label_is_escaped_and_stays_text.pad</font>
+                        <font size="-2">area/music.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -171,41 +171,41 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $rows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;b&gt;{php:getcwd}&lt;/b&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Two years of listening, in hours per month: pop steady with a summer swell, rock<br>  // fading, hip-hop rising, electronic peaking each summer, jazz and classical in winter.<br><br>  </span><span style="color: #0000BB">$listening </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$months    </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'May'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Jun'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Jul'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Aug'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Sep'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Oct'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Nov'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Dec' </span><span style="color: #007700">];<br><br>  for ( </span><span style="color: #0000BB">$m </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$m </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">24</span><span style="color: #007700">; </span><span style="color: #0000BB">$m</span><span style="color: #007700">++ ) {<br><br>    </span><span style="color: #0000BB">$summer </span><span style="color: #007700">= </span><span style="color: #0000BB">cos </span><span style="color: #007700">( ( </span><span style="color: #0000BB">$m </span><span style="color: #007700">% </span><span style="color: #0000BB">12 </span><span style="color: #007700">- </span><span style="color: #0000BB">6.5 </span><span style="color: #007700">) / </span><span style="color: #0000BB">12 </span><span style="color: #007700">* </span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">M_PI </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$winter </span><span style="color: #007700">= - </span><span style="color: #0000BB">$summer</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">$listening </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'month'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$months </span><span style="color: #007700">[</span><span style="color: #0000BB">$m </span><span style="color: #007700">% </span><span style="color: #0000BB">12</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">2025 </span><span style="color: #007700">+ </span><span style="color: #0000BB">intdiv </span><span style="color: #007700">( </span><span style="color: #0000BB">$m</span><span style="color: #007700">, </span><span style="color: #0000BB">12 </span><span style="color: #007700">) ),<br>      </span><span style="color: #DD0000">'pop'        </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">42 </span><span style="color: #007700">+ </span><span style="color: #0000BB">10 </span><span style="color: #007700">* </span><span style="color: #0000BB">$summer </span><span style="color: #007700">+ </span><span style="color: #0000BB">4 </span><span style="color: #007700">* </span><span style="color: #0000BB">sin </span><span style="color: #007700">( </span><span style="color: #0000BB">$m </span><span style="color: #007700">/ </span><span style="color: #0000BB">2 </span><span style="color: #007700">) ),<br>      </span><span style="color: #DD0000">'rock'       </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">38 </span><span style="color: #007700">- </span><span style="color: #0000BB">$m </span><span style="color: #007700">* </span><span style="color: #0000BB">1.1 </span><span style="color: #007700">+ </span><span style="color: #0000BB">5 </span><span style="color: #007700">* </span><span style="color: #0000BB">sin </span><span style="color: #007700">( </span><span style="color: #0000BB">$m </span><span style="color: #007700">/ </span><span style="color: #0000BB">3 </span><span style="color: #007700">+ </span><span style="color: #0000BB">1 </span><span style="color: #007700">) ),<br>      </span><span style="color: #DD0000">'hiphop'     </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">8 </span><span style="color: #007700">+ </span><span style="color: #0000BB">$m </span><span style="color: #007700">* </span><span style="color: #0000BB">1.6 </span><span style="color: #007700">+ </span><span style="color: #0000BB">3 </span><span style="color: #007700">* </span><span style="color: #0000BB">sin </span><span style="color: #007700">( </span><span style="color: #0000BB">$m </span><span style="color: #007700">/ </span><span style="color: #0000BB">2.5 </span><span style="color: #007700">) ),<br>      </span><span style="color: #DD0000">'electronic' </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">12 </span><span style="color: #007700">+ </span><span style="color: #0000BB">16 </span><span style="color: #007700">* </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">$summer </span><span style="color: #007700">) ** </span><span style="color: #0000BB">2 </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'jazz'       </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">9 </span><span style="color: #007700">+ </span><span style="color: #0000BB">7 </span><span style="color: #007700">* </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">$winter </span><span style="color: #007700">) ),<br>      </span><span style="color: #DD0000">'classical'  </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">6 </span><span style="color: #007700">+ </span><span style="color: #0000BB">9 </span><span style="color: #007700">* </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">$winter </span><span style="color: #007700">) ** </span><span style="color: #0000BB">3 </span><span style="color: #007700">+ ( </span><span style="color: #0000BB">$m </span><span style="color: #007700">% </span><span style="color: #0000BB">12 </span><span style="color: #007700">== </span><span style="color: #0000BB">11 </span><span style="color: #007700">? </span><span style="color: #0000BB">8 </span><span style="color: #007700">: </span><span style="color: #0000BB">0 </span><span style="color: #007700">) ) ];<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>rows<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>stream<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>listening<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>pop<font color="black">,</font> hiphop<font color="black">,</font> rock<font color="black">,</font> electronic<font color="black">,</font> classical<font color="black">,</font> jazz<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Hours listened per genre<font color="black">,</font> month by month<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxc41cb394a78fa890319de8eaa09d2568"></div>
+                        <div id="padAjax28579f88395316fc95ecd8b81a03e300"></div>
                         <script>
-                        padAjaxc41cb394a78fa890319de8eaa09d2568 = new XMLHttpRequest();
-                        padAjaxc41cb394a78fa890319de8eaa09d2568.onreadystatechange=function() {
-                        if (padAjaxc41cb394a78fa890319de8eaa09d2568.readyState === 4) {
-                        if (padAjaxc41cb394a78fa890319de8eaa09d2568.status === 200) {
-                        document.getElementById("padAjaxc41cb394a78fa890319de8eaa09d2568").innerHTML=padAjaxc41cb394a78fa890319de8eaa09d2568.responseText;
+                        padAjax28579f88395316fc95ecd8b81a03e300 = new XMLHttpRequest();
+                        padAjax28579f88395316fc95ecd8b81a03e300.onreadystatechange=function() {
+                        if (padAjax28579f88395316fc95ecd8b81a03e300.readyState === 4) {
+                        if (padAjax28579f88395316fc95ecd8b81a03e300.status === 200) {
+                        document.getElementById("padAjax28579f88395316fc95ecd8b81a03e300").innerHTML=padAjax28579f88395316fc95ecd8b81a03e300.responseText;
                         } else {
-                        document.getElementById("padAjaxc41cb394a78fa890319de8eaa09d2568").innerHTML=padAjaxc41cb394a78fa890319de8eaa09d2568.statusText;
+                        document.getElementById("padAjax28579f88395316fc95ecd8b81a03e300").innerHTML=padAjax28579f88395316fc95ecd8b81a03e300.statusText;
                         }
                         }
                         }
-                        padAjaxc41cb394a78fa890319de8eaa09d2568.open("GET","http://localhost/pad/regression/framework/?escaping/a_chart_label_is_escaped_and_stays_text&padInclude",true);
-                        padAjaxc41cb394a78fa890319de8eaa09d2568.send();
+                        padAjax28579f88395316fc95ecd8b81a03e300.open("GET","http://localhost/pad/charts/?area/music&padInclude",true);
+                        padAjax28579f88395316fc95ecd8b81a03e300.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids<br>
+                  App: charts - Page: bars/channels<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids.php</font>
+                        <font size="-2">bars/channels.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids.pad</font>
+                        <font size="-2">bars/channels.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -213,32 +213,32 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An earlier request stores the named section with the bar chart, under the ids that<br>  // request gave it; this request serves the bar from the cache and draws the line itself.<br><br>  </span><span style="color: #007700">if ( ! isset ( </span><span style="color: #0000BB">$warm </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwChartIds' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">"regression/framework/?tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids&amp;padInclude&amp;warm=1" </span><span style="color: #007700">] );<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Orders per quarter, by where they were placed.<br><br>  </span><span style="color: #0000BB">$channels </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">320</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">410</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">95 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">380</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">395</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">80 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q3'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">455</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">350</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">70 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q4'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">610</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">420</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">65 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"month":"Jan","amount":120},{"month":"Feb","amount":90}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwChartIds<font color="black">'</font></font>}</b><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>channels<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>quarter<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">,</font> phone<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Orders per quarter and channel<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax966dea167adc0244df33ddddde81a0a7"></div>
+                        <div id="padAjaxf8950f8bb864f1eb229a93057521ee58"></div>
                         <script>
-                        padAjax966dea167adc0244df33ddddde81a0a7 = new XMLHttpRequest();
-                        padAjax966dea167adc0244df33ddddde81a0a7.onreadystatechange=function() {
-                        if (padAjax966dea167adc0244df33ddddde81a0a7.readyState === 4) {
-                        if (padAjax966dea167adc0244df33ddddde81a0a7.status === 200) {
-                        document.getElementById("padAjax966dea167adc0244df33ddddde81a0a7").innerHTML=padAjax966dea167adc0244df33ddddde81a0a7.responseText;
+                        padAjaxf8950f8bb864f1eb229a93057521ee58 = new XMLHttpRequest();
+                        padAjaxf8950f8bb864f1eb229a93057521ee58.onreadystatechange=function() {
+                        if (padAjaxf8950f8bb864f1eb229a93057521ee58.readyState === 4) {
+                        if (padAjaxf8950f8bb864f1eb229a93057521ee58.status === 200) {
+                        document.getElementById("padAjaxf8950f8bb864f1eb229a93057521ee58").innerHTML=padAjaxf8950f8bb864f1eb229a93057521ee58.responseText;
                         } else {
-                        document.getElementById("padAjax966dea167adc0244df33ddddde81a0a7").innerHTML=padAjax966dea167adc0244df33ddddde81a0a7.statusText;
+                        document.getElementById("padAjaxf8950f8bb864f1eb229a93057521ee58").innerHTML=padAjaxf8950f8bb864f1eb229a93057521ee58.statusText;
                         }
                         }
                         }
-                        padAjax966dea167adc0244df33ddddde81a0a7.open("GET","http://localhost/pad/regression/framework/?tags/a_chart_from_the_fragment_cache_and_a_chart_drawn_now_have_their_own_ids&padInclude",true);
-                        padAjax966dea167adc0244df33ddddde81a0a7.send();
+                        padAjaxf8950f8bb864f1eb229a93057521ee58.open("GET","http://localhost/pad/charts/?bars/channels&padInclude",true);
+                        padAjaxf8950f8bb864f1eb229a93057521ee58.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/a_chart_without_points_draws_nothing<br>
+                  App: charts - Page: bars/energy<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -247,7 +247,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/a_chart_without_points_draws_nothing.pad</font>
+                        <font size="-2">bars/energy.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -256,29 +256,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>[]<font color="black">'</font></font>}</b>]</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>energymix<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>year<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>coal<font color="black">,</font> gas<font color="black">,</font> wind<font color="black">,</font> solar<font color="black">'</font><font color="black">,</font><br>       stacked<font color="black">,</font><br>       title=<font color="black">'</font>Electricity by source<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax2e2fa5fc7a76a52e9cdcb330519f5200"></div>
+                        <div id="padAjax87021782414861abb1d12093c3fd14e1"></div>
                         <script>
-                        padAjax2e2fa5fc7a76a52e9cdcb330519f5200 = new XMLHttpRequest();
-                        padAjax2e2fa5fc7a76a52e9cdcb330519f5200.onreadystatechange=function() {
-                        if (padAjax2e2fa5fc7a76a52e9cdcb330519f5200.readyState === 4) {
-                        if (padAjax2e2fa5fc7a76a52e9cdcb330519f5200.status === 200) {
-                        document.getElementById("padAjax2e2fa5fc7a76a52e9cdcb330519f5200").innerHTML=padAjax2e2fa5fc7a76a52e9cdcb330519f5200.responseText;
+                        padAjax87021782414861abb1d12093c3fd14e1 = new XMLHttpRequest();
+                        padAjax87021782414861abb1d12093c3fd14e1.onreadystatechange=function() {
+                        if (padAjax87021782414861abb1d12093c3fd14e1.readyState === 4) {
+                        if (padAjax87021782414861abb1d12093c3fd14e1.status === 200) {
+                        document.getElementById("padAjax87021782414861abb1d12093c3fd14e1").innerHTML=padAjax87021782414861abb1d12093c3fd14e1.responseText;
                         } else {
-                        document.getElementById("padAjax2e2fa5fc7a76a52e9cdcb330519f5200").innerHTML=padAjax2e2fa5fc7a76a52e9cdcb330519f5200.statusText;
+                        document.getElementById("padAjax87021782414861abb1d12093c3fd14e1").innerHTML=padAjax87021782414861abb1d12093c3fd14e1.statusText;
                         }
                         }
                         }
-                        padAjax2e2fa5fc7a76a52e9cdcb330519f5200.open("GET","http://localhost/pad/regression/framework/?tags/a_chart_without_points_draws_nothing&padInclude",true);
-                        padAjax2e2fa5fc7a76a52e9cdcb330519f5200.send();
+                        padAjax87021782414861abb1d12093c3fd14e1.open("GET","http://localhost/pad/charts/?bars/energy&padInclude",true);
+                        padAjax87021782414861abb1d12093c3fd14e1.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/chart_draws_a_bar_chart_as_inline_svg<br>
+                  App: charts - Page: bars/languages<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -287,7 +287,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/chart_draws_a_bar_chart_as_inline_svg.pad</font>
+                        <font size="-2">bars/languages.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -296,71 +296,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"month":"Jan","amount":120},{"month":"Feb","amount":90}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>hbar<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>language<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>speakers<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Speakers in millions<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  &lt;languages&gt;<br>    &lt;row language="English" speakers="1515"/&gt;<br>    &lt;row language="Mandarin Chinese" speakers="1140"/&gt;<br>    &lt;row language="Hindi" speakers="609"/&gt;<br>    &lt;row language="Spanish" speakers="560"/&gt;<br>    &lt;row language="Standard Arabic" speakers="332"/&gt;<br>    &lt;row language="French" speakers="312"/&gt;<br>    &lt;row language="Bengali" speakers="278"/&gt;<br>    &lt;row language="Portuguese" speakers="264"/&gt;<br>  &lt;/languages&gt;<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxa63826b4e61c2d7663212b83a7840861"></div>
+                        <div id="padAjaxc26de070221bde14b860abec116ecda3"></div>
                         <script>
-                        padAjaxa63826b4e61c2d7663212b83a7840861 = new XMLHttpRequest();
-                        padAjaxa63826b4e61c2d7663212b83a7840861.onreadystatechange=function() {
-                        if (padAjaxa63826b4e61c2d7663212b83a7840861.readyState === 4) {
-                        if (padAjaxa63826b4e61c2d7663212b83a7840861.status === 200) {
-                        document.getElementById("padAjaxa63826b4e61c2d7663212b83a7840861").innerHTML=padAjaxa63826b4e61c2d7663212b83a7840861.responseText;
+                        padAjaxc26de070221bde14b860abec116ecda3 = new XMLHttpRequest();
+                        padAjaxc26de070221bde14b860abec116ecda3.onreadystatechange=function() {
+                        if (padAjaxc26de070221bde14b860abec116ecda3.readyState === 4) {
+                        if (padAjaxc26de070221bde14b860abec116ecda3.status === 200) {
+                        document.getElementById("padAjaxc26de070221bde14b860abec116ecda3").innerHTML=padAjaxc26de070221bde14b860abec116ecda3.responseText;
                         } else {
-                        document.getElementById("padAjaxa63826b4e61c2d7663212b83a7840861").innerHTML=padAjaxa63826b4e61c2d7663212b83a7840861.statusText;
+                        document.getElementById("padAjaxc26de070221bde14b860abec116ecda3").innerHTML=padAjaxc26de070221bde14b860abec116ecda3.statusText;
                         }
                         }
                         }
-                        padAjaxa63826b4e61c2d7663212b83a7840861.open("GET","http://localhost/pad/regression/framework/?tags/chart_draws_a_bar_chart_as_inline_svg&padInclude",true);
-                        padAjaxa63826b4e61c2d7663212b83a7840861.send();
+                        padAjaxc26de070221bde14b860abec116ecda3.open("GET","http://localhost/pad/charts/?bars/languages&padInclude",true);
+                        padAjaxc26de070221bde14b860abec116ecda3.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/chart_draws_a_line_from_the_pages_array<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/chart_draws_a_line_from_the_pages_array.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/chart_draws_a_line_from_the_pages_array.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $visits </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'day' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mon'</span><span style="color: #007700">, </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'day' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Tue'</span><span style="color: #007700">, </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">30 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'day' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Wed'</span><span style="color: #007700">, </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20 </span><span style="color: #007700">] ];<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>visits<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Visits this week<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxd404936c88c18653b65fa642f8dc75d7"></div>
-                        <script>
-                        padAjaxd404936c88c18653b65fa642f8dc75d7 = new XMLHttpRequest();
-                        padAjaxd404936c88c18653b65fa642f8dc75d7.onreadystatechange=function() {
-                        if (padAjaxd404936c88c18653b65fa642f8dc75d7.readyState === 4) {
-                        if (padAjaxd404936c88c18653b65fa642f8dc75d7.status === 200) {
-                        document.getElementById("padAjaxd404936c88c18653b65fa642f8dc75d7").innerHTML=padAjaxd404936c88c18653b65fa642f8dc75d7.responseText;
-                        } else {
-                        document.getElementById("padAjaxd404936c88c18653b65fa642f8dc75d7").innerHTML=padAjaxd404936c88c18653b65fa642f8dc75d7.statusText;
-                        }
-                        }
-                        }
-                        padAjaxd404936c88c18653b65fa642f8dc75d7.open("GET","http://localhost/pad/regression/framework/?tags/chart_draws_a_line_from_the_pages_array&padInclude",true);
-                        padAjaxd404936c88c18653b65fa642f8dc75d7.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/chart_leaves_out_a_value_too_large_to_plot<br>
+                  App: charts - Page: bars/profit<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -369,7 +327,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/chart_leaves_out_a_value_too_large_to_plot.pad</font>
+                        <font size="-2">bars/profit.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -378,29 +336,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>big<font color="black">'</font></font>}</b>[{"m":"a","v":"1e999"},{"m":"b","v":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>big<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=150</font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>column<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>profit<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>quarter<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>result<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Result per quarter<font color="black">,</font> in thousands<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax638c6de1fbf1efcb19bf509f05a67eea"></div>
+                        <div id="padAjaxa135ea1236bddb597c7d560ed1b49a9e"></div>
                         <script>
-                        padAjax638c6de1fbf1efcb19bf509f05a67eea = new XMLHttpRequest();
-                        padAjax638c6de1fbf1efcb19bf509f05a67eea.onreadystatechange=function() {
-                        if (padAjax638c6de1fbf1efcb19bf509f05a67eea.readyState === 4) {
-                        if (padAjax638c6de1fbf1efcb19bf509f05a67eea.status === 200) {
-                        document.getElementById("padAjax638c6de1fbf1efcb19bf509f05a67eea").innerHTML=padAjax638c6de1fbf1efcb19bf509f05a67eea.responseText;
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e = new XMLHttpRequest();
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e.onreadystatechange=function() {
+                        if (padAjaxa135ea1236bddb597c7d560ed1b49a9e.readyState === 4) {
+                        if (padAjaxa135ea1236bddb597c7d560ed1b49a9e.status === 200) {
+                        document.getElementById("padAjaxa135ea1236bddb597c7d560ed1b49a9e").innerHTML=padAjaxa135ea1236bddb597c7d560ed1b49a9e.responseText;
                         } else {
-                        document.getElementById("padAjax638c6de1fbf1efcb19bf509f05a67eea").innerHTML=padAjax638c6de1fbf1efcb19bf509f05a67eea.statusText;
+                        document.getElementById("padAjaxa135ea1236bddb597c7d560ed1b49a9e").innerHTML=padAjaxa135ea1236bddb597c7d560ed1b49a9e.statusText;
                         }
                         }
                         }
-                        padAjax638c6de1fbf1efcb19bf509f05a67eea.open("GET","http://localhost/pad/regression/framework/?tags/chart_leaves_out_a_value_too_large_to_plot&padInclude",true);
-                        padAjax638c6de1fbf1efcb19bf509f05a67eea.send();
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e.open("GET","http://localhost/pad/charts/?bars/profit&padInclude",true);
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/chart_reads_a_data_file_by_name<br>
+                  App: charts - Page: bars/sales<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -409,7 +367,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/chart_reads_a_data_file_by_name.pad</font>
+                        <font size="-2">bars/sales.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -418,38 +376,38 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>nums<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Nums<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Sales per month<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  month,amount<br>  Jan,12400<br>  Feb,9500<br>  Mar,14300<br>  Apr,16100<br>  May,15200<br>  Jun,18750<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax4d67a643bf15b5c93508aae5d2c5e96e"></div>
+                        <div id="padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5"></div>
                         <script>
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e = new XMLHttpRequest();
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e.onreadystatechange=function() {
-                        if (padAjax4d67a643bf15b5c93508aae5d2c5e96e.readyState === 4) {
-                        if (padAjax4d67a643bf15b5c93508aae5d2c5e96e.status === 200) {
-                        document.getElementById("padAjax4d67a643bf15b5c93508aae5d2c5e96e").innerHTML=padAjax4d67a643bf15b5c93508aae5d2c5e96e.responseText;
+                        padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5 = new XMLHttpRequest();
+                        padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.onreadystatechange=function() {
+                        if (padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.readyState === 4) {
+                        if (padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.status === 200) {
+                        document.getElementById("padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5").innerHTML=padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.responseText;
                         } else {
-                        document.getElementById("padAjax4d67a643bf15b5c93508aae5d2c5e96e").innerHTML=padAjax4d67a643bf15b5c93508aae5d2c5e96e.statusText;
+                        document.getElementById("padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5").innerHTML=padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.statusText;
                         }
                         }
                         }
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e.open("GET","http://localhost/pad/regression/framework/?tags/chart_reads_a_data_file_by_name&padInclude",true);
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e.send();
+                        padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.open("GET","http://localhost/pad/charts/?bars/sales&padInclude",true);
+                        padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: sequence - Page: listen<br>
+                  App: charts - Page: bars/survey<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">listen.php</font>
+                        <font size="-2">bars/survey.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">listen.pad</font>
+                        <font size="-2">bars/survey.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -457,26 +415,230 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Listen: a sequence played as notes. Each of the first 32 terms becomes a note - the<br>  // term modulo 60, five octaves up from C2, the way the OEIS 'listen' button folds a term<br>  // into the keyboard - and the notes are written as a WAV file into the page itself<br>  // (seqFunWav in _lib/fun.php), so an &lt;audio&gt; element plays them without JavaScript.<br>  // Recamán's sequence, which jumps back and forth, is the famous one to listen to.<br>  //<br>  // type arrives from the query string and is used only when it names a type the gallery<br>  // draws.<br><br>  </span><span style="color: #0000BB">$choices </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunTypes </span><span style="color: #007700">();<br><br>  if ( ! isset ( </span><span style="color: #0000BB">$type </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$type </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$type</span><span style="color: #007700">, </span><span style="color: #0000BB">$choices </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$type </span><span style="color: #007700">= </span><span style="color: #DD0000">'recaman'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$terms </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunTerms </span><span style="color: #007700">( </span><span style="color: #0000BB">$type</span><span style="color: #007700">, </span><span style="color: #0000BB">32 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$oeis  </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunOeis </span><span style="color: #007700">( </span><span style="color: #0000BB">$terms </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$oeis  </span><span style="color: #007700">= </span><span style="color: #0000BB">$oeis </span><span style="color: #007700">? </span><span style="color: #0000BB">sprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'A%06d'</span><span style="color: #007700">, </span><span style="color: #0000BB">$oeis </span><span style="color: #007700">) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$list  </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$terms </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$notes </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'seqFunNoteName'</span><span style="color: #007700">, </span><span style="color: #0000BB">seqFunNotes </span><span style="color: #007700">( </span><span style="color: #0000BB">$terms </span><span style="color: #007700">) ) );<br>  </span><span style="color: #0000BB">$audio </span><span style="color: #007700">= </span><span style="color: #0000BB">seqFunWav </span><span style="color: #007700">( </span><span style="color: #0000BB">$terms </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// How 200 people answered five statements about their work.<br><br>  </span><span style="color: #0000BB">$survey </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'statement' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'I like my work'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'agree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">128</span><span style="color: #007700">, </span><span style="color: #DD0000">'neutral' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">44</span><span style="color: #007700">, </span><span style="color: #DD0000">'disagree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">28 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'statement' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'I learn new things'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'agree' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">96</span><span style="color: #007700">, </span><span style="color: #DD0000">'neutral' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">62</span><span style="color: #007700">, </span><span style="color: #DD0000">'disagree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'statement' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'My pay is fair'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'agree' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">71</span><span style="color: #007700">, </span><span style="color: #DD0000">'neutral' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">58</span><span style="color: #007700">, </span><span style="color: #DD0000">'disagree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">71 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'statement' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'I have enough time'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'agree' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #DD0000">'neutral' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">51</span><span style="color: #007700">, </span><span style="color: #DD0000">'disagree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">85 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'statement' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'I would recommend us'</span><span style="color: #007700">, </span><span style="color: #DD0000">'agree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">112</span><span style="color: #007700">, </span><span style="color: #DD0000">'neutral' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">53</span><span style="color: #007700">, </span><span style="color: #DD0000">'disagree' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">35 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">choices</font><font color="red"></font>}</b><b>{<font color="blue">notFirst</font><font color="red"></font>}</b> | <b>{/<font color="blue">notFirst</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>choices eq <font color="red">$</font>type</font>}</b>&lt;b&gt;<b>{<font color="green"><font color="red">$</font>choices</font>}</b>&lt;/b&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;a href="?listen&amp;type=<b>{<font color="green"><font color="red">$</font>choices</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>choices</font>}</b>&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">choices</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;<b>{<font color="green">$type</font> <font color="black">|</font> <font color="blue">ucfirst</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>oeis ne <font color="black">'</font><font color="black">'</font></font>}</b> - &lt;a href="https://oeis.org/<b>{<font color="green"><font color="red">$</font>oeis</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>oeis</font>}</b>&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/h3&gt;<br><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>terms<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red">$</font>type</font> <font color="black"><font color="black">|</font></font> <font color="blue">ucfirst</font><font color="black">}</font></b><font color="black">,</font> the first 32 terms<font color="black">'</font><font color="black">,</font> width=640<font color="black">,</font> height=220</font>}</b><br><br>&lt;p&gt;&lt;audio controls preload="none" src="<b>{<font color="green"><font color="red">$</font>audio</font>}</b>"&gt;&lt;/audio&gt;&lt;/p&gt;<br><br>&lt;p&gt;Each term is a note: the term modulo 60, counted in semitones up from C2.&lt;/p&gt;<br><br>&lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>list</font>}</b>&lt;/small&gt;&lt;/p&gt;<br><br>&lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>notes</font>}</b>&lt;/small&gt;&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>hbar<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>survey<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>statement<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>agree<font color="black">,</font> neutral<font color="black">,</font> disagree<font color="black">'</font><font color="black">,</font><br>       stacked<font color="black">,</font><br>       title=<font color="black">'</font>Answers per statement<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax97ba38becd0eb0a23a71b513c855af36"></div>
+                        <div id="padAjax1b5392d2fa14f17a60c66e19f337a029"></div>
                         <script>
-                        padAjax97ba38becd0eb0a23a71b513c855af36 = new XMLHttpRequest();
-                        padAjax97ba38becd0eb0a23a71b513c855af36.onreadystatechange=function() {
-                        if (padAjax97ba38becd0eb0a23a71b513c855af36.readyState === 4) {
-                        if (padAjax97ba38becd0eb0a23a71b513c855af36.status === 200) {
-                        document.getElementById("padAjax97ba38becd0eb0a23a71b513c855af36").innerHTML=padAjax97ba38becd0eb0a23a71b513c855af36.responseText;
+                        padAjax1b5392d2fa14f17a60c66e19f337a029 = new XMLHttpRequest();
+                        padAjax1b5392d2fa14f17a60c66e19f337a029.onreadystatechange=function() {
+                        if (padAjax1b5392d2fa14f17a60c66e19f337a029.readyState === 4) {
+                        if (padAjax1b5392d2fa14f17a60c66e19f337a029.status === 200) {
+                        document.getElementById("padAjax1b5392d2fa14f17a60c66e19f337a029").innerHTML=padAjax1b5392d2fa14f17a60c66e19f337a029.responseText;
                         } else {
-                        document.getElementById("padAjax97ba38becd0eb0a23a71b513c855af36").innerHTML=padAjax97ba38becd0eb0a23a71b513c855af36.statusText;
+                        document.getElementById("padAjax1b5392d2fa14f17a60c66e19f337a029").innerHTML=padAjax1b5392d2fa14f17a60c66e19f337a029.statusText;
                         }
                         }
                         }
-                        padAjax97ba38becd0eb0a23a71b513c855af36.open("GET","http://localhost/pad/sequence/?listen&padInclude",true);
-                        padAjax97ba38becd0eb0a23a71b513c855af36.send();
+                        padAjax1b5392d2fa14f17a60c66e19f337a029.open("GET","http://localhost/pad/charts/?bars/survey&padInclude",true);
+                        padAjax1b5392d2fa14f17a60c66e19f337a029.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: bars/waterfall<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">bars/waterfall.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>waterfall<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>step<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>       total=<font color="black">'</font>Profit<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>From revenue to profit<font color="black">,</font> in thousands<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  step,amount<br>  Revenue,420<br>  Cost of sales,-180<br>  Salaries,-120<br>  Rent,-24<br>  Tax,-35<br>  Subsidy,12<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4"></div>
+                        <script>
+                        padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4 = new XMLHttpRequest();
+                        padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.onreadystatechange=function() {
+                        if (padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.readyState === 4) {
+                        if (padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.status === 200) {
+                        document.getElementById("padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4").innerHTML=padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.responseText;
+                        } else {
+                        document.getElementById("padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4").innerHTML=padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.open("GET","http://localhost/pad/charts/?bars/waterfall&padInclude",true);
+                        padAjaxcfc60714f28879b7ec21a1b4bfc4cdd4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: distribution/delivery<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">distribution/delivery.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>histogram<font color="black">'</font><font color="black">,</font><br>       bins=8<font color="black">,</font><br>       title=<font color="black">'</font>Delivery time of the last 40 orders<font color="black">,</font> in days<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  [ 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5,<br>    5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 12, 14, 15, 18, 21 ]<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce"></div>
+                        <script>
+                        padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce = new XMLHttpRequest();
+                        padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.onreadystatechange=function() {
+                        if (padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.readyState === 4) {
+                        if (padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.status === 200) {
+                        document.getElementById("padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce").innerHTML=padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.responseText;
+                        } else {
+                        document.getElementById("padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce").innerHTML=padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.open("GET","http://localhost/pad/charts/?distribution/delivery&padInclude",true);
+                        padAjaxe5e79b9dc41f70b610fc8efc4a20f0ce.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: distribution/heights<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">distribution/heights.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">distribution/heights.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The heights of 400 adults in centimetres: two bell curves of men and women together,<br>  // from a fixed seed - so a distribution with two humps rather than one.<br><br>  </span><span style="color: #0000BB">mt_srand </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$bell </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$mean</span><span style="color: #007700">, </span><span style="color: #0000BB">$sd </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$mean </span><span style="color: #007700">+ </span><span style="color: #0000BB">$sd </span><span style="color: #007700">* </span><span style="color: #0000BB">sqrt </span><span style="color: #007700">( -</span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">log </span><span style="color: #007700">( </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1e-9</span><span style="color: #007700">, </span><span style="color: #0000BB">mt_rand </span><span style="color: #007700">() / </span><span style="color: #0000BB">mt_getrandmax </span><span style="color: #007700">() ) ) ) * </span><span style="color: #0000BB">cos </span><span style="color: #007700">( </span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">M_PI </span><span style="color: #007700">* </span><span style="color: #0000BB">mt_rand </span><span style="color: #007700">() / </span><span style="color: #0000BB">mt_getrandmax </span><span style="color: #007700">() );<br><br>  </span><span style="color: #0000BB">$people </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">400</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$people </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'height' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$i </span><span style="color: #007700">% </span><span style="color: #0000BB">2 </span><span style="color: #007700">? </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">167</span><span style="color: #007700">, </span><span style="color: #0000BB">6.5 </span><span style="color: #007700">) : </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">181</span><span style="color: #007700">, </span><span style="color: #0000BB">7 </span><span style="color: #007700">), </span><span style="color: #0000BB">1 </span><span style="color: #007700">) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>histogram<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>people<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>height<font color="black">'</font><font color="black">,</font><br>       bins=16<font color="black">,</font><br>       title=<font color="black">'</font>Heights of 400 adults<font color="black">,</font> in cm<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7ee3ad8460b26a96bc7d60038589d2a5"></div>
+                        <script>
+                        padAjax7ee3ad8460b26a96bc7d60038589d2a5 = new XMLHttpRequest();
+                        padAjax7ee3ad8460b26a96bc7d60038589d2a5.onreadystatechange=function() {
+                        if (padAjax7ee3ad8460b26a96bc7d60038589d2a5.readyState === 4) {
+                        if (padAjax7ee3ad8460b26a96bc7d60038589d2a5.status === 200) {
+                        document.getElementById("padAjax7ee3ad8460b26a96bc7d60038589d2a5").innerHTML=padAjax7ee3ad8460b26a96bc7d60038589d2a5.responseText;
+                        } else {
+                        document.getElementById("padAjax7ee3ad8460b26a96bc7d60038589d2a5").innerHTML=padAjax7ee3ad8460b26a96bc7d60038589d2a5.statusText;
+                        }
+                        }
+                        }
+                        padAjax7ee3ad8460b26a96bc7d60038589d2a5.open("GET","http://localhost/pad/charts/?distribution/heights&padInclude",true);
+                        padAjax7ee3ad8460b26a96bc7d60038589d2a5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: distribution/reaction<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">distribution/reaction.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">distribution/reaction.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Reaction times in milliseconds of 150 trials rested and 150 after a night without<br>  // sleep, from a fixed seed: the tired ones slower and more spread, with a long tail of<br>  // lapses - two bell curves of their own, drawn as densities over one axis.<br><br>  </span><span style="color: #0000BB">mt_srand </span><span style="color: #007700">( </span><span style="color: #0000BB">11 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$bell </span><span style="color: #007700">= fn ( </span><span style="color: #0000BB">$mean</span><span style="color: #007700">, </span><span style="color: #0000BB">$sd </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$mean </span><span style="color: #007700">+ </span><span style="color: #0000BB">$sd </span><span style="color: #007700">* </span><span style="color: #0000BB">sqrt </span><span style="color: #007700">( -</span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">log </span><span style="color: #007700">( </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1e-9</span><span style="color: #007700">, </span><span style="color: #0000BB">mt_rand </span><span style="color: #007700">() / </span><span style="color: #0000BB">mt_getrandmax </span><span style="color: #007700">() ) ) ) * </span><span style="color: #0000BB">cos </span><span style="color: #007700">( </span><span style="color: #0000BB">2 </span><span style="color: #007700">* </span><span style="color: #0000BB">M_PI </span><span style="color: #007700">* </span><span style="color: #0000BB">mt_rand </span><span style="color: #007700">() / </span><span style="color: #0000BB">mt_getrandmax </span><span style="color: #007700">() );<br><br>  </span><span style="color: #0000BB">$trials </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">150</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$trials </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'group' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Rested'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ms' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">285</span><span style="color: #007700">, </span><span style="color: #0000BB">32 </span><span style="color: #007700">) ) ];<br><br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">150</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$trials </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'group' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sleep-deprived'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ms' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$i </span><span style="color: #007700">% </span><span style="color: #0000BB">6 </span><span style="color: #007700">? </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">340</span><span style="color: #007700">, </span><span style="color: #0000BB">45 </span><span style="color: #007700">) : </span><span style="color: #0000BB">$bell </span><span style="color: #007700">( </span><span style="color: #0000BB">480</span><span style="color: #007700">, </span><span style="color: #0000BB">60 </span><span style="color: #007700">) ) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>density<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>trials<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>group<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>ms<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Reaction time in ms<font color="black">,</font> rested and after a sleepless night<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=320</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax56b536f4ab91719e47f1b95b165a10a2"></div>
+                        <script>
+                        padAjax56b536f4ab91719e47f1b95b165a10a2 = new XMLHttpRequest();
+                        padAjax56b536f4ab91719e47f1b95b165a10a2.onreadystatechange=function() {
+                        if (padAjax56b536f4ab91719e47f1b95b165a10a2.readyState === 4) {
+                        if (padAjax56b536f4ab91719e47f1b95b165a10a2.status === 200) {
+                        document.getElementById("padAjax56b536f4ab91719e47f1b95b165a10a2").innerHTML=padAjax56b536f4ab91719e47f1b95b165a10a2.responseText;
+                        } else {
+                        document.getElementById("padAjax56b536f4ab91719e47f1b95b165a10a2").innerHTML=padAjax56b536f4ab91719e47f1b95b165a10a2.statusText;
+                        }
+                        }
+                        }
+                        padAjax56b536f4ab91719e47f1b95b165a10a2.open("GET","http://localhost/pad/charts/?distribution/reaction&padInclude",true);
+                        padAjax56b536f4ab91719e47f1b95b165a10a2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: distribution/salaries<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">distribution/salaries.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>boxplot<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>salaries<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>team<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>salary<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Monthly salary per team<font color="black">,</font> in euros<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=360</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax073b55f49226de0438dad87c970a3bd7"></div>
+                        <script>
+                        padAjax073b55f49226de0438dad87c970a3bd7 = new XMLHttpRequest();
+                        padAjax073b55f49226de0438dad87c970a3bd7.onreadystatechange=function() {
+                        if (padAjax073b55f49226de0438dad87c970a3bd7.readyState === 4) {
+                        if (padAjax073b55f49226de0438dad87c970a3bd7.status === 200) {
+                        document.getElementById("padAjax073b55f49226de0438dad87c970a3bd7").innerHTML=padAjax073b55f49226de0438dad87c970a3bd7.responseText;
+                        } else {
+                        document.getElementById("padAjax073b55f49226de0438dad87c970a3bd7").innerHTML=padAjax073b55f49226de0438dad87c970a3bd7.statusText;
+                        }
+                        }
+                        }
+                        padAjax073b55f49226de0438dad87c970a3bd7.open("GET","http://localhost/pad/charts/?distribution/salaries&padInclude",true);
+                        padAjax073b55f49226de0438dad87c970a3bd7.send();
                         </script>
                       </td>
                     </tr>
@@ -495,7 +657,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

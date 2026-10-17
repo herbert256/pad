@@ -1,0 +1,316 @@
+<label class="small switch-line"><input type="checkbox" checked data-toggle-rules="#signup form"> Check in the browser first - turn it off to see PAD's answer to a bad post</label>
+
+<div id="signup">
+
+  
+    <form method="post" hx-post="?examples/form" hx-target="#signup" class="stack" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="17196173f7b91b9057dfd78d40de8e56653329405eb01eb4e589f88d4c9398b8"><input type="hidden" name="padForm" value="signup">
+      <label for="name">Name</label><input type="text" name="name" id="name" value="" class="input">
+      <label for="email">E-mail</label><input type="email" name="email" id="email" value="" class="input">
+      <label for="age">Age</label><input type="text" name="age" id="age" value="" class="input">
+      <button>Sign up</button>
+    </form><script>
+(function () {
+  'use strict';
+  if (window.padValidate) return;
+  var numberPattern = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
+  var emailPattern = /^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i;
+  function trim(value) {
+    return typeof value === 'string' ? value.replace(/^[ \t\n\r\0\x0B]+|[ \t\n\r\0\x0B]+$/g, '') : value;
+  }
+  function empty(value) {
+    return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
+  }
+  function toNumber(value) {
+    var found = String(value).match(/^\s*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
+    return found ? parseFloat(found[0]) : 0;
+  }
+  function length(value) {
+    return Array.from(String(value)).length;
+  }
+  function email(value) {
+    return value.length <= 320 && emailPattern.test(value);
+  }
+  function integer(value) {
+    var found = value.match(/^([+-]?)(0|[1-9]\d*)$/);
+    if (!found) return false;
+    var limit = found[1] === '-' ? '9223372036854775808' : '9223372036854775807';
+    return found[2].length < limit.length || (found[2].length === limit.length && found[2] <= limit);
+  }
+  function url(value) {
+    if (!/^https?:\/\//i.test(value) || /[^A-Za-z0-9$\-_.+!*'(),{}|\\^~\[\]`<>#%";\/?:@&=]/.test(value)) return false;
+    var rest = value.replace(/^https?:\/\//i, '');
+    var authority = rest.slice(0, rest.search(/[\/?#]|$/));
+    var at = authority.lastIndexOf('@');
+    var host = authority.slice(at + 1);
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']')) {
+      var colon = host.lastIndexOf(':');
+      if (colon >= 0) {
+        var port = host.slice(colon + 1);
+        if (port.length > 5) return false;
+        if (port !== '') {
+          var number = port.match(/^[+-]?\d+/);
+          if (!number || +number[0] < 0 || +number[0] > 65535) return false;
+        }
+        host = host.slice(0, colon);
+      }
+    }
+    if (host === '') return false;
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']' && ipv6(host.slice(1, -1))) && !hostname(host)) return false;
+    if (at < 0) return true;
+    var info = authority.slice(0, at), split = info.indexOf(':');
+    return userinfo(split < 0 ? info : info.slice(0, split)) && (split < 0 || userinfo(info.slice(split + 1)));
+  }
+  function alnum(c) {
+    return /^[A-Za-z0-9]$/.test(c);
+  }
+  function hostname(host) {
+    var end = host.length;
+    if (end > 0 && host.charAt(end - 1) === '.') end--;
+    if (end > 253 || !alnum(host.charAt(0)) || host.slice(-1) === '-') return false;
+    for (var i = 0, size = 1; i < end; i++) {
+      var c = host.charAt(i);
+      if (c === '.') {
+        if (host.charAt(i + 1) === '.' || !alnum(host.charAt(i - 1)) || !alnum(host.charAt(i + 1))) return false;
+        size = 1;
+      } else {
+        if (size > 63 || (c !== '-' && !alnum(c))) return false;
+        size++;
+      }
+    }
+    return true;
+  }
+  function ipv4(text) {
+    var parts = text.split('.');
+    return parts.length === 4 && parts.every(function (one) { return /^(0|[1-9]\d{0,2})$/.test(one) && +one <= 255; });
+  }
+  function ipv6(text) {
+    if (text.indexOf(':') < 0) return false;
+    var blocks = 0, compressed = false, at = 0, end = text.length;
+    var dot = text.indexOf('.');
+    if (dot >= 0) {
+      var start = text.lastIndexOf(':', dot) + 1;
+      if (!ipv4(text.slice(start))) return false;
+      end = start;
+      if (end < 2) return false;
+      if (text.charAt(end - 2) !== ':') end--;
+      blocks = 2;
+    }
+    while (at < end) {
+      if (text.charAt(at) === ':') {
+        if (++at >= end) return false;
+        if (text.charAt(at) === ':') {
+          if (compressed) return false;
+          compressed = true;
+          blocks++;
+          if (++at === end) return blocks <= 8;
+        } else if (at - 1 === 0) return false;
+      }
+      var digits = text.slice(at, end).match(/^[0-9A-Fa-f]*/)[0].length;
+      at += digits;
+      if (digits < 1 || digits > 4 || ++blocks > 8) return false;
+    }
+    return (compressed && blocks <= 8) || blocks === 8;
+  }
+  function userinfo(text) {
+    return /^(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9][0-9A-Fa-f])*$/.test(text);
+  }
+  function date(value) {
+    var iso = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[Tt ](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+    if (iso) {
+      if (iso[4] !== undefined && (+iso[4] > 24 || +iso[5] > 59 || +(iso[6] || 0) > 60)) return false;
+      return calendarDay(+iso[1], +iso[2], +iso[3]);
+    }
+    var dmy = value.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+    if (dmy) return value.charAt(dmy[1].length) === '/' ? calendarDay(+dmy[3], +dmy[1], +dmy[2]) : calendarDay(+dmy[3], +dmy[2], +dmy[1]);
+    return /\d/.test(value);
+  }
+  function calendarDay(year, month, day) {
+    var moment = new Date(0);
+    moment.setUTCFullYear(year, month - 1, day);
+    return year > 0 && moment.getUTCFullYear() === year && moment.getUTCMonth() === month - 1 && moment.getUTCDate() === day;
+  }
+  function regex(pattern) {
+    var open = pattern.charAt(0);
+    var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
+    var end = pattern.lastIndexOf(close);
+    if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
+    var flags = pattern.slice(end + 1);
+    if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
+    var body = pattern.slice(1, end);
+    var bare = body.replace(/\\\\/g, '');
+    if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
+    if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+  }
+  function rule(name, arg, value, values, number) {
+    if (Array.isArray(value)) {
+      if (name === 'required') return value.length > 0;
+      if (name === 'in') return value.every(function (one) { return typeof one === 'string' && rule('in', arg, trim(one), values, number); });
+      return false;
+    }
+    value = String(value);
+    var size = number ? toNumber(value) : length(value);
+    switch (name) {
+      case 'required': return value !== '';
+      case 'accepted': return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0;
+      case 'email':    return email(value);
+      case 'url':      return url(value);
+      case 'numeric':  return numberPattern.test(value);
+      case 'integer':  return integer(value);
+      case 'min':      return size >= toNumber(arg);
+      case 'max':      return size <= toNumber(arg);
+      case 'in':       return arg.split(',').map(trim).indexOf(value) >= 0;
+      case 'regex':    var pattern = regex(arg); return pattern && (pattern.unicode || !/[^\x00-\x7f]/.test(value)) ? pattern.test(value) : true;
+      case 'same':     var other = values[arg]; return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
+      case 'date':     return date(value);
+    }
+    return true;
+  }
+  function message(text, label, shown) {
+    return text.replace(/:label|:n/g, function (token) { return token === ':label' ? label : shown; });
+  }
+  function field(spec, value, values, label) {
+    value = trim(value === undefined || value === null ? '' : value);
+    label = label || spec.label;
+    if (spec.rules.length && Array.isArray(value) && !spec.list) return message(spec.single, label, '');
+    for (var i = 0; i < spec.rules.length; i++) {
+      var one = spec.rules[i];
+      if (empty(value) && one[0] !== 'required' && one[0] !== 'accepted') continue;
+      if (!rule(one[0], one[1], value, values, spec.number)) return message(one[2], label, one[3]);
+    }
+    return '';
+  }
+  function check(rules, values) {
+    var errors = {};
+    Object.keys(rules || {}).forEach(function (name) {
+      var problem = field(rules[name], values[name], values);
+      if (problem) errors[name] = problem;
+    });
+    return errors;
+  }
+  function rulesOf(form) {
+    try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
+  }
+  function sent(one) {
+    return one.replace(/\r\n|\r|\n/g, '\r\n');
+  }
+  function valuesOf(form, rules) {
+    var data = new FormData(form);
+    var values = {};
+    data.forEach(function (one, name) {
+      if (typeof one === 'string') values[name] = sent(one);
+    });
+    Object.keys(rules).forEach(function (name) {
+      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
+      values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
+    });
+    return values;
+  }
+  function controlsOf(form, name) {
+    return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
+  }
+  function labelOf(form, control) {
+    if (!control || !control.id) return '';
+    var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
+    return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
+  }
+  function idOf(name, control) {
+    return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function show(form, name, text) {
+    var controls = controlsOf(form, name);
+    var last = controls[controls.length - 1];
+    if (!last) return;
+    var id = idOf(name, last) + '-error';
+    var span = document.getElementById(id);
+    controls.forEach(function (control) {
+      if (text) {
+        control.setAttribute('aria-invalid', 'true');
+        control.setAttribute('aria-describedby', id);
+      } else if (control.getAttribute('aria-describedby') === id) {
+        control.removeAttribute('aria-invalid');
+        control.removeAttribute('aria-describedby');
+      }
+    });
+    if (!text) {
+      if (span && form.contains(span)) span.remove();
+      return;
+    }
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'error';
+      span.id = id;
+      var after = last;
+      if ((last.type === 'checkbox' || last.type === 'radio') && last.nextElementSibling && last.nextElementSibling.tagName === 'LABEL')
+        after = last.nextElementSibling;
+      after.insertAdjacentElement('afterend', span);
+    }
+    span.textContent = text;
+  }
+  function banner(form, on) {
+    var text = form.getAttribute('data-pad-error');
+    var shown = form.querySelector(':scope > .error[role="alert"]');
+    if (!text) return;
+    if (on && !shown) {
+      shown = document.createElement('div');
+      shown.className = 'error';
+      shown.setAttribute('role', 'alert');
+      shown.textContent = text;
+      form.insertBefore(shown, form.firstChild);
+    } else if (!on && shown) {
+      shown.remove();
+    }
+  }
+  function checkOne(form, name) {
+    var rules = rulesOf(form);
+    if (!rules[name]) return true;
+    var values = valuesOf(form, rules);
+    var controls = controlsOf(form, name);
+    var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
+    show(form, name, problem);
+    return !problem;
+  }
+  function checkForm(form) {
+    var rules = rulesOf(form);
+    var values = valuesOf(form, rules);
+    var first = null;
+    Object.keys(rules).forEach(function (name) {
+      var controls = controlsOf(form, name);
+      var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
+      show(form, name, problem);
+      if (problem && !first) first = controls[0];
+    });
+    banner(form, !!first);
+    if (first && first.focus) first.focus();
+    return !first;
+  }
+  function ruled(target) {
+    return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
+  }
+  document.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (!form.hasAttribute || !form.hasAttribute('data-pad-rules')) return;
+    if (!checkForm(form)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+  document.addEventListener('focusout', function (event) {
+    var form = ruled(event.target);
+    if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
+      checkOne(form, event.target.name);
+  });
+  ['input', 'change'].forEach(function (type) {
+    document.addEventListener(type, function (event) {
+      var form = ruled(event.target);
+      if (form && event.target.getAttribute('aria-invalid') === 'true')
+        checkOne(form, event.target.name);
+    });
+  });
+  window.padValidate = { check: check, field: field, form: checkForm };
+})();
+</script>
+  
+
+</div>

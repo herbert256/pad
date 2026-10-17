@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {pdf} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-pdf){--pad-pdf-paper:#ffffff;--pad-pdf-ink:#1f1f1f;--pad-pdf-rule:#c9c8c3;--pad-pdf-head:#efefed;--pad-pdf-shade:rgba(0,0,0,.12);--pad-pdf-link:#1a56b0;}@supports (color:light-dark(#000,#fff)){:where(.pad-pdf){--pad-pdf-paper:light-dark(#ffffff,#ffffff);--pad-pdf-ink:light-dark(#1f1f1f,#1f1f1f);--pad-pdf-rule:light-dark(#c9c8c3,#b9b8b2);--pad-pdf-head:light-dark(#efefed,#e2e1dc);--pad-pdf-shade:light-dark(rgba(0,0,0,.12),rgba(0,0,0,.5));--pad-pdf-link:light-dark(#1a56b0,#7fb2f0);}}.pad-pdf{max-width:640px;margin:0 auto}.pad-pdf-sheet{background:var(--pad-pdf-paper);color:var(--pad-pdf-ink);padding:44px 48px;border-radius:3px;box-shadow:0 1px 3px var(--pad-pdf-shade),0 8px 28px var(--pad-pdf-shade);font:13px/1.45 Helvetica,Arial,sans-serif;text-align:left}.pad-pdf-sheet h1{font-size:24px;margin:0 0 12px}.pad-pdf-sheet h2{font-size:17px;margin:18px 0 6px}.pad-pdf-sheet h3{font-size:14px;margin:14px 0 4px}.pad-pdf-sheet p{margin:0 0 10px}.pad-pdf-sheet a{color:#1a56b0}.pad-pdf-sheet img{max-width:100%;height:auto}.pad-pdf-sheet hr{border:0;border-top:1px solid var(--pad-pdf-rule);margin:10px 0}.pad-pdf-sheet table{width:100%;border-collapse:collapse;margin:4px 0 12px;font-size:12px}.pad-pdf-sheet th,.pad-pdf-sheet td{border:1px solid var(--pad-pdf-rule);padding:5px 6px;text-align:left;vertical-align:top}.pad-pdf-sheet th{background:var(--pad-pdf-head)}.pad-pdf-sheet [align=right]{text-align:right}.pad-pdf-sheet [align=center]{text-align:center}.pad-pdf-links{display:flex;gap:16px;justify-content:center;margin:14px 0 0;font:600 14px/1.4 system-ui,sans-serif}.pad-pdf-links a{color:var(--pad-pdf-link)}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">pdf</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>pdf<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Sends what its content renders as a PDF instead of the page - a writer in plain PHP, the standard fonts, no library.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pdf</span> <span class="hl-opt">file</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'A4'</span>, landscape, <span class="hl-opt">font</span>=<span class="hl-str">'helvetica'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pdf</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pdf</span> preview, <span class="hl-opt">file</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pdf</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pdf</span> download<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>file</code>
+            </dt>
+            <dd>
+              The file name of the document, default the page's name (<code>.pdf</code> is added).
+            </dd>
+            <dt>
+              <code>download</code>
+            </dt>
+            <dd>
+              Bare option: sent as an attachment (<code>Content-Disposition: attachment</code>) instead of shown inline.
+            </dd>
+            <dt>
+              <code>size</code>
+            </dt>
+            <dd>
+              <code>A4</code> (default), <code>Letter</code>, <code>A5</code> or <code>Legal</code>.
+            </dd>
+            <dt>
+              <code>landscape</code>
+            </dt>
+            <dd>
+              Bare option: the page turned.
+            </dd>
+            <dt>
+              <code>font</code>
+            </dt>
+            <dd>
+              <code>helvetica</code> (default), <code>times</code> or <code>courier</code> - code is always Courier.
+            </dd>
+            <dt>
+              <code>title</code>
+            </dt>
+            <dd>
+              The document's title, default its first heading.
+            </dd>
+            <dt>
+              <code>preview</code>
+            </dt>
+            <dd>
+              Bare option: the page stays a page - the content on a sheet with links to open or download it; the same page asked with <code>&amp;padPdf</code> (<code>padPdf=download</code> for the attachment) answers the PDF.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{pdf}</code> turns HTML into a PDF on the server with a writer in plain PHP (<code>tags/_lib/pdf.php</code>): PDF 1.4, the standard fonts every reader has, no library and no headless browser. A pair renders its content as ever - fields, loops, tags - and the response becomes the PDF of it (<code>application/pdf</code>, with the file name) instead of the page; the page cache and tidy are left out. Written as a single tag, <code>{pdf download}</code>, the whole page is the document. Several <code>{pdf}</code> pairs on one page make one document, the first one's options counting.
+          </p>
+          <h3>
+            What is read
+          </h3>
+          <p>
+            <code>h1</code>-<code>h6</code>, <code>p</code>, <code>b</code>/<code>strong</code>, <code>i</code>/<code>em</code>, <code>u</code>, <code>code</code>, <code>a</code> (a link of the document for an http, https or mailto address), <code>br</code>, <code>ul</code>/<code>ol</code>/<code>li</code> (nested), <code>blockquote</code>, <code>pre</code>, <code>hr</code>, tables with <code>colspan</code> and <code>align</code> - the header row repeated on every page - and <code>img</code>: a JPEG of <code>www/&lt;application&gt;/</code> or a <code>data:</code> address. Another picture is its alt text, any other element its text, and script, style, svg and form fields are left out. The text is WinAnsi (a <code>?</code> for what it lacks) and is measured with the real font widths, so lines wrap where a reader draws them; past one page there is "2 / 5" at the foot. The document carries no date, so the same page is the same bytes.
+          </p>
+          <h3>
+            Preview and nesting
+          </h3>
+          <p>
+            With <code>preview</code> the page stays a page: the content is shown on a sheet with links "Open name.pdf" and "Download", and the same address with <code>&amp;padPdf</code> answers the document. Only the page the request asked for answers a PDF: a <code>{pdf}</code> inside a page included by <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> shows its content on its sheet, and the response stays the including page's.
+          </p>
+          <p>
+            An unknown <code>size</code> or <code>font</code> is an error under the strict check. From PHP, <code>padPdf ( $html, [ 'size' =&gt; 'Letter' ] )</code> answers the bytes - for a mail attachment, say.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              An invoice as PDF
+            </h3>
+            <p class="example-about">
+              The rendered content becomes the response: an A4 document named invoice-2026-114.pdf.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/pdf/1-invoice.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pdf</span> <span class="hl-opt">file</span>=<span class="hl-str">'invoice-{$number}'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Invoice {$number}'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h1</span><span class="hl-htm">&gt;</span>Invoice <span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h1</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>To: <span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$customer</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span> <span class="hl-opt">align</span>=<span class="hl-str">"right"</span><span class="hl-htm">&gt;</span>Amount<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-brc">{</span><span class="hl-tag">lines</span><span class="hl-brc">}</span><span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span> <span class="hl-opt">align</span>=<span class="hl-str">"right"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$amount</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/lines</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pdf</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A preview on a sheet
+            </h3>
+            <p class="example-about">
+              preview keeps the page a page - the content on a sheet - and &amp;padPdf on the address answers the document.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/pdf/2-preview.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pdf</span> preview, <span class="hl-opt">file</span>=<span class="hl-str">'packing-list'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'A5'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h1</span><span class="hl-htm">&gt;</span>Packing list<span class="hl-htm">&lt;/h1</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+    <span class="hl-brc">{</span><span class="hl-tag">items</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$qty</span><span class="hl-brc">}</span> x <span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/items</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pdf</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/pdf/2-preview.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$items</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'item'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Mooring rope, 20 m'</span><span class="hl-pun">,</span> <span class="hl-str">'qty'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'item'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Fender, large'</span><span class="hl-pun">,</span>      <span class="hl-str">'qty'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">6</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'item'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Life jacket'</span><span class="hl-pun">,</span>        <span class="hl-str">'qty'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">10</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7pdf%EA%A4%B72-preview.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="pad-pdf">
+                    <div class="pad-pdf-sheet">
+                      <h1>
+                        Packing list
+                      </h1>
+                      <ul>
+                        <li>4 x Mooring rope, 20 m
+                        </li>
+                        <li>6 x Fender, large
+                        </li>
+                        <li>10 x Life jacket
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7output.html">{output}</a> <span class="about">Switches how the running request answers - a web page, the console, a file, a download, JSON or CSV.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7mail.html">{mail}</a> <span class="about">Renders a template, or its own content, to an e-mail with an HTML and a text part, and sends it.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7parms.html">← {parms}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{placeholder} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

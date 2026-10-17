@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Single functions - none
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Single functions - none
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: expressions/and_or_and_xor_read_a_list_by_its_truth_against_a_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">expressions/and_or_and_xor_read_a_list_by_its_truth_against_a_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/and_or_and_xor_read_a_list_by_its_truth_against_a_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $t    </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$f    </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$nums </span><span style="color: #007700">= [ </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$none </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">array<font color="black">:</font>rows and <font color="red">$</font>t</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">array<font color="black">:</font>rows or <font color="red">$</font>t</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>t and array<font color="black">:</font>rows</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">array<font color="black">:</font>nums and <font color="red">$</font>t</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">array<font color="black">:</font>none or <font color="red">$</font>f</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">array<font color="black">:</font>none xor <font color="red">$</font>t</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>f and array<font color="black">:</font>rows</font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf"></div>
+                        <script>
+                        padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf = new XMLHttpRequest();
+                        padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.onreadystatechange=function() {
+                        if (padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.readyState === 4) {
+                        if (padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.status === 200) {
+                        document.getElementById("padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf").innerHTML=padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.responseText;
+                        } else {
+                        document.getElementById("padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf").innerHTML=padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.open("GET","http://localhost/pad/regression/framework/?expressions/and_or_and_xor_read_a_list_by_its_truth_against_a_value&padInclude",true);
+                        padAjaxf9a3c04ee4f25cba2ccd9a21b6e26cbf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

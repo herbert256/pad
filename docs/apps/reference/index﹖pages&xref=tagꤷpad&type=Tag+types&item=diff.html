@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - diff
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - diff
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_diff_without_a_second_text_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_diff_without_a_second_text_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">diff </font><font color="red"><font color="black">'</font>only one text<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4426eb2437a47e3e722bd2abc8412447"></div>
+                        <script>
+                        padAjax4426eb2437a47e3e722bd2abc8412447 = new XMLHttpRequest();
+                        padAjax4426eb2437a47e3e722bd2abc8412447.onreadystatechange=function() {
+                        if (padAjax4426eb2437a47e3e722bd2abc8412447.readyState === 4) {
+                        if (padAjax4426eb2437a47e3e722bd2abc8412447.status === 200) {
+                        document.getElementById("padAjax4426eb2437a47e3e722bd2abc8412447").innerHTML=padAjax4426eb2437a47e3e722bd2abc8412447.responseText;
+                        } else {
+                        document.getElementById("padAjax4426eb2437a47e3e722bd2abc8412447").innerHTML=padAjax4426eb2437a47e3e722bd2abc8412447.statusText;
+                        }
+                        }
+                        }
+                        padAjax4426eb2437a47e3e722bd2abc8412447.open("GET","http://localhost/pad/regression/errors/?syntax/a_diff_without_a_second_text_is_reported&padInclude",true);
+                        padAjax4426eb2437a47e3e722bd2abc8412447.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/diff_lines_numbers_the_old_and_the_new_version<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/diff_lines_numbers_the_old_and_the_new_version.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/diff_lines_numbers_the_old_and_the_new_version.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $old </span><span style="color: #007700">= </span><span style="color: #DD0000">"one\ntwo\nthree\nfour"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$new </span><span style="color: #007700">= </span><span style="color: #DD0000">"one\n2 two\nthree\nfive\nsix"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>old<font color="black">,</font> <font color="red">$</font>new<font color="black">,</font> lines<font color="black">,</font> from=<font color="black">'</font>v1<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>v2<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6b25fd2919f288579ca844e903449393"></div>
+                        <script>
+                        padAjax6b25fd2919f288579ca844e903449393 = new XMLHttpRequest();
+                        padAjax6b25fd2919f288579ca844e903449393.onreadystatechange=function() {
+                        if (padAjax6b25fd2919f288579ca844e903449393.readyState === 4) {
+                        if (padAjax6b25fd2919f288579ca844e903449393.status === 200) {
+                        document.getElementById("padAjax6b25fd2919f288579ca844e903449393").innerHTML=padAjax6b25fd2919f288579ca844e903449393.responseText;
+                        } else {
+                        document.getElementById("padAjax6b25fd2919f288579ca844e903449393").innerHTML=padAjax6b25fd2919f288579ca844e903449393.statusText;
+                        }
+                        }
+                        }
+                        padAjax6b25fd2919f288579ca844e903449393.open("GET","http://localhost/pad/regression/framework/?tags/diff_lines_numbers_the_old_and_the_new_version&padInclude",true);
+                        padAjax6b25fd2919f288579ca844e903449393.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/diff_marks_the_changed_words_and_escapes_them<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/diff_marks_the_changed_words_and_escapes_them.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/diff_marks_the_changed_words_and_escapes_them.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $old </span><span style="color: #007700">= </span><span style="color: #DD0000">'The &lt;b&gt;quick&lt;/b&gt; brown fox & the dog.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$new </span><span style="color: #007700">= </span><span style="color: #DD0000">'The &lt;b&gt;slow&lt;/b&gt; brown fox & the cat!'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>old<font color="black">,</font> <font color="red">$</font>new</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5d30c3503f80644d9de1d2301d37970f"></div>
+                        <script>
+                        padAjax5d30c3503f80644d9de1d2301d37970f = new XMLHttpRequest();
+                        padAjax5d30c3503f80644d9de1d2301d37970f.onreadystatechange=function() {
+                        if (padAjax5d30c3503f80644d9de1d2301d37970f.readyState === 4) {
+                        if (padAjax5d30c3503f80644d9de1d2301d37970f.status === 200) {
+                        document.getElementById("padAjax5d30c3503f80644d9de1d2301d37970f").innerHTML=padAjax5d30c3503f80644d9de1d2301d37970f.responseText;
+                        } else {
+                        document.getElementById("padAjax5d30c3503f80644d9de1d2301d37970f").innerHTML=padAjax5d30c3503f80644d9de1d2301d37970f.statusText;
+                        }
+                        }
+                        }
+                        padAjax5d30c3503f80644d9de1d2301d37970f.open("GET","http://localhost/pad/regression/framework/?tags/diff_marks_the_changed_words_and_escapes_them&padInclude",true);
+                        padAjax5d30c3503f80644d9de1d2301d37970f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/diff_side_puts_the_versions_next_to_each_other<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/diff_side_puts_the_versions_next_to_each_other.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/diff_side_puts_the_versions_next_to_each_other.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $old </span><span style="color: #007700">= </span><span style="color: #DD0000">"one\ntwo\nthree\nfour"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$new </span><span style="color: #007700">= </span><span style="color: #DD0000">"one\n2 two\nthree\nfive\nsix"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>old<font color="black">,</font> <font color="red">$</font>new<font color="black">,</font> side<font color="black">,</font> from=<font color="black">'</font>v1<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>v2 &lt;new&gt;<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax134d5fea143dcdfc9992e8e2c9dc0fe1"></div>
+                        <script>
+                        padAjax134d5fea143dcdfc9992e8e2c9dc0fe1 = new XMLHttpRequest();
+                        padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.onreadystatechange=function() {
+                        if (padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.readyState === 4) {
+                        if (padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.status === 200) {
+                        document.getElementById("padAjax134d5fea143dcdfc9992e8e2c9dc0fe1").innerHTML=padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.responseText;
+                        } else {
+                        document.getElementById("padAjax134d5fea143dcdfc9992e8e2c9dc0fe1").innerHTML=padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.statusText;
+                        }
+                        }
+                        }
+                        padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.open("GET","http://localhost/pad/regression/framework/?tags/diff_side_puts_the_versions_next_to_each_other&padInclude",true);
+                        padAjax134d5fea143dcdfc9992e8e2c9dc0fe1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: diff/lines<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">diff/lines.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">diff/lines.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $v1 </span><span style="color: #007700">= </span><span style="color: #DD0000">"Milk\nEggs\nBread\nButter\nCoffee\nApples"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$v2 </span><span style="color: #007700">= </span><span style="color: #DD0000">"Milk\nEggs\nSourdough bread\nCoffee\nApples\nPears\nCheese"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Line by line<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A shopping list in one column - the old and the new line number<font color="black">,</font> a sign<font color="black">,</font> the line.<font color="black">'</font></font>}</b><br><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>v1<font color="black">,</font> <font color="red">$</font>v2<font color="black">,</font> lines<font color="black">,</font> from=<font color="black">'</font>Monday<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>Friday<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax12db961561da99186da517476927beaa"></div>
+                        <script>
+                        padAjax12db961561da99186da517476927beaa = new XMLHttpRequest();
+                        padAjax12db961561da99186da517476927beaa.onreadystatechange=function() {
+                        if (padAjax12db961561da99186da517476927beaa.readyState === 4) {
+                        if (padAjax12db961561da99186da517476927beaa.status === 200) {
+                        document.getElementById("padAjax12db961561da99186da517476927beaa").innerHTML=padAjax12db961561da99186da517476927beaa.responseText;
+                        } else {
+                        document.getElementById("padAjax12db961561da99186da517476927beaa").innerHTML=padAjax12db961561da99186da517476927beaa.statusText;
+                        }
+                        }
+                        }
+                        padAjax12db961561da99186da517476927beaa.open("GET","http://localhost/pad/showcase/?diff/lines&padInclude",true);
+                        padAjax12db961561da99186da517476927beaa.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: diff/paragraph<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">diff/paragraph.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">diff/paragraph.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $draft </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the application: a page is a template, and the template asks '<br>         </span><span style="color: #007700">. </span><span style="color: #DD0000">'for its data. There are no controllers and no routing tables - you create a file '<br>         </span><span style="color: #007700">. </span><span style="color: #DD0000">'and it is a page. Most tags are rendered on the server, so they work without JavaScript.'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$final </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the application: every page is a template, and the template '<br>         </span><span style="color: #007700">. </span><span style="color: #DD0000">'asks for the data it needs. There are no controllers, no routes and no glue code - '<br>         </span><span style="color: #007700">. </span><span style="color: #DD0000">'you create a file and it is a page. Every tag is rendered on the server, so it works '<br>         </span><span style="color: #007700">. </span><span style="color: #DD0000">'without JavaScript, in print and in e-mail.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Two versions of a paragraph<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An edited paragraph word by word - struck what went<font color="black">,</font> marked what came.<font color="black">'</font></font>}</b><br><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>draft<font color="black">,</font> <font color="red">$</font>final</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb9bdc0a0809f3d180bc79c05a5b44510"></div>
+                        <script>
+                        padAjaxb9bdc0a0809f3d180bc79c05a5b44510 = new XMLHttpRequest();
+                        padAjaxb9bdc0a0809f3d180bc79c05a5b44510.onreadystatechange=function() {
+                        if (padAjaxb9bdc0a0809f3d180bc79c05a5b44510.readyState === 4) {
+                        if (padAjaxb9bdc0a0809f3d180bc79c05a5b44510.status === 200) {
+                        document.getElementById("padAjaxb9bdc0a0809f3d180bc79c05a5b44510").innerHTML=padAjaxb9bdc0a0809f3d180bc79c05a5b44510.responseText;
+                        } else {
+                        document.getElementById("padAjaxb9bdc0a0809f3d180bc79c05a5b44510").innerHTML=padAjaxb9bdc0a0809f3d180bc79c05a5b44510.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb9bdc0a0809f3d180bc79c05a5b44510.open("GET","http://localhost/pad/showcase/?diff/paragraph&padInclude",true);
+                        padAjaxb9bdc0a0809f3d180bc79c05a5b44510.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: diff/side<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">diff/side.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">diff/side.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $before </span><span style="color: #007700">= &lt;&lt;&lt;'TEXT'<br></span><span style="color: #DD0000">function total ( $rows ) {<br><br>  $sum = 0;<br><br>  foreach ( $rows as $row )<br>    $sum += $row ['price'];<br><br>  return $sum;<br><br>}<br></span><span style="color: #007700">TEXT;<br><br>  </span><span style="color: #0000BB">$after </span><span style="color: #007700">= &lt;&lt;&lt;'TEXT'<br></span><span style="color: #DD0000">function total ( $rows, $tax = 0.21 ) {<br><br>  $sum = 0;<br><br>  foreach ( $rows as $row )<br>    $sum += $row ['price'] * $row ['quantity'];<br><br>  return round ( $sum * ( 1 + $tax ), 2 );<br><br>}<br></span><span style="color: #007700">TEXT;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Side by side<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Two versions of a function next to each other<font color="black">,</font> line numbers on both sides and the changed words marked.<font color="black">'</font></font>}</b><br><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>before<font color="black">,</font> <font color="red">$</font>after<font color="black">,</font> side<font color="black">,</font> from=<font color="black">'</font>total.php - before<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>total.php - after<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6966876b07b124e990cb1b9fd9992518"></div>
+                        <script>
+                        padAjax6966876b07b124e990cb1b9fd9992518 = new XMLHttpRequest();
+                        padAjax6966876b07b124e990cb1b9fd9992518.onreadystatechange=function() {
+                        if (padAjax6966876b07b124e990cb1b9fd9992518.readyState === 4) {
+                        if (padAjax6966876b07b124e990cb1b9fd9992518.status === 200) {
+                        document.getElementById("padAjax6966876b07b124e990cb1b9fd9992518").innerHTML=padAjax6966876b07b124e990cb1b9fd9992518.responseText;
+                        } else {
+                        document.getElementById("padAjax6966876b07b124e990cb1b9fd9992518").innerHTML=padAjax6966876b07b124e990cb1b9fd9992518.statusText;
+                        }
+                        }
+                        }
+                        padAjax6966876b07b124e990cb1b9fd9992518.open("GET","http://localhost/pad/showcase/?diff/side&padInclude",true);
+                        padAjax6966876b07b124e990cb1b9fd9992518.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/diff/1-words<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/diff/1-words.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/diff/1-words.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $draft </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the application: a page is a template, and the template asks for its data.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$final </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the application: every page is a template, and the template asks for the data it needs.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Two versions of a sentence<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Word by word in the flow of the text - struck what went<font color="black">,</font> marked what came.<font color="black">'</font></font>}</b><br><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>draft<font color="black">,</font> <font color="red">$</font>final</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax548b23f314a4967d880046fd2e50fdff"></div>
+                        <script>
+                        padAjax548b23f314a4967d880046fd2e50fdff = new XMLHttpRequest();
+                        padAjax548b23f314a4967d880046fd2e50fdff.onreadystatechange=function() {
+                        if (padAjax548b23f314a4967d880046fd2e50fdff.readyState === 4) {
+                        if (padAjax548b23f314a4967d880046fd2e50fdff.status === 200) {
+                        document.getElementById("padAjax548b23f314a4967d880046fd2e50fdff").innerHTML=padAjax548b23f314a4967d880046fd2e50fdff.responseText;
+                        } else {
+                        document.getElementById("padAjax548b23f314a4967d880046fd2e50fdff").innerHTML=padAjax548b23f314a4967d880046fd2e50fdff.statusText;
+                        }
+                        }
+                        }
+                        padAjax548b23f314a4967d880046fd2e50fdff.open("GET","http://localhost/pad/tags/?examples/diff/1-words&padInclude",true);
+                        padAjax548b23f314a4967d880046fd2e50fdff.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/diff/2-lines<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/diff/2-lines.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/diff/2-lines.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $monday </span><span style="color: #007700">= </span><span style="color: #DD0000">"Milk\nEggs\nBread\nButter\nCoffee"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$friday </span><span style="color: #007700">= </span><span style="color: #DD0000">"Milk\nEggs\nSourdough bread\nCoffee\nPears"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Line by line<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A shopping list in one column - the old and the new line number<font color="black">,</font> a sign<font color="black">,</font> the line.<font color="black">'</font></font>}</b><br><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>monday<font color="black">,</font> <font color="red">$</font>friday<font color="black">,</font> lines<font color="black">,</font> from=<font color="black">'</font>Monday<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>Friday<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe29fdbfeb43913f74c72742006f70a01"></div>
+                        <script>
+                        padAjaxe29fdbfeb43913f74c72742006f70a01 = new XMLHttpRequest();
+                        padAjaxe29fdbfeb43913f74c72742006f70a01.onreadystatechange=function() {
+                        if (padAjaxe29fdbfeb43913f74c72742006f70a01.readyState === 4) {
+                        if (padAjaxe29fdbfeb43913f74c72742006f70a01.status === 200) {
+                        document.getElementById("padAjaxe29fdbfeb43913f74c72742006f70a01").innerHTML=padAjaxe29fdbfeb43913f74c72742006f70a01.responseText;
+                        } else {
+                        document.getElementById("padAjaxe29fdbfeb43913f74c72742006f70a01").innerHTML=padAjaxe29fdbfeb43913f74c72742006f70a01.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe29fdbfeb43913f74c72742006f70a01.open("GET","http://localhost/pad/tags/?examples/diff/2-lines&padInclude",true);
+                        padAjaxe29fdbfeb43913f74c72742006f70a01.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/diff/3-side<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/diff/3-side.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/diff/3-side.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $before </span><span style="color: #007700">= </span><span style="color: #DD0000">"function total ( \$rows ) {\n  \$sum = 0;\n  foreach ( \$rows as \$row )\n    \$sum += \$row ['price'];\n  return \$sum;\n}"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$after  </span><span style="color: #007700">= </span><span style="color: #DD0000">"function total ( \$rows, \$tax = 0.21 ) {\n  \$sum = 0;\n  foreach ( \$rows as \$row )\n    \$sum += \$row ['price'] * \$row ['quantity'];\n  return round ( \$sum * ( 1 + \$tax ), 2 );\n}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Side by side<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Two versions of a function next to each other<font color="black">,</font> the changed words marked within each changed line.<font color="black">'</font></font>}</b><br><b>{<font color="blue">diff </font><font color="red"><font color="red">$</font>before<font color="black">,</font> <font color="red">$</font>after<font color="black">,</font> side<font color="black">,</font> from=<font color="black">'</font>before<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>after<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8e90a870dc4ad253ce30a3d0dbaf8524"></div>
+                        <script>
+                        padAjax8e90a870dc4ad253ce30a3d0dbaf8524 = new XMLHttpRequest();
+                        padAjax8e90a870dc4ad253ce30a3d0dbaf8524.onreadystatechange=function() {
+                        if (padAjax8e90a870dc4ad253ce30a3d0dbaf8524.readyState === 4) {
+                        if (padAjax8e90a870dc4ad253ce30a3d0dbaf8524.status === 200) {
+                        document.getElementById("padAjax8e90a870dc4ad253ce30a3d0dbaf8524").innerHTML=padAjax8e90a870dc4ad253ce30a3d0dbaf8524.responseText;
+                        } else {
+                        document.getElementById("padAjax8e90a870dc4ad253ce30a3d0dbaf8524").innerHTML=padAjax8e90a870dc4ad253ce30a3d0dbaf8524.statusText;
+                        }
+                        }
+                        }
+                        padAjax8e90a870dc4ad253ce30a3d0dbaf8524.open("GET","http://localhost/pad/tags/?examples/diff/3-side&padInclude",true);
+                        padAjax8e90a870dc4ad253ce30a3d0dbaf8524.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

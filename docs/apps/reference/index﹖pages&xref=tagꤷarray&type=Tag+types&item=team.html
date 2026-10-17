@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - team
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - team
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: showcase - Page: avatar/team<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">avatar/team.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">avatar/team.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $team </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Herbert Jebbink'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Founder and engine'     </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sequences'              </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Compilers and tooling'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alan Turing'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Expression evaluator'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Émile Zola'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Translations'           </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Margaret Hamilton'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Error handling'         </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A team list<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Every member gets a circle with their initials - the colour comes from a hash of the name<font color="black">,</font> the text colour from its contrast.<font color="black">'</font></font>}</b><br>&lt;ul style="list-style:none; margin:0; padding:0; display:grid; gap:14px"&gt;<br>  <b>{<font color="blue">team</font><font color="red"></font>}</b><br>  &lt;li style="display:flex; align-items:center; gap:12px"&gt;<br>    <b>{<font color="blue">avatar </font><font color="red"><font color="red">$</font>name<font color="black">,</font> size=44</font>}</b><br>    &lt;span&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;&lt;small style="opacity:.7"&gt;<b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/small&gt;&lt;/span&gt;<br>  &lt;/li&gt;<br>  <b>{/<font color="blue">team</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7476dac1d10567dc8e4bb32e3b1b6d79"></div>
+                        <script>
+                        padAjax7476dac1d10567dc8e4bb32e3b1b6d79 = new XMLHttpRequest();
+                        padAjax7476dac1d10567dc8e4bb32e3b1b6d79.onreadystatechange=function() {
+                        if (padAjax7476dac1d10567dc8e4bb32e3b1b6d79.readyState === 4) {
+                        if (padAjax7476dac1d10567dc8e4bb32e3b1b6d79.status === 200) {
+                        document.getElementById("padAjax7476dac1d10567dc8e4bb32e3b1b6d79").innerHTML=padAjax7476dac1d10567dc8e4bb32e3b1b6d79.responseText;
+                        } else {
+                        document.getElementById("padAjax7476dac1d10567dc8e4bb32e3b1b6d79").innerHTML=padAjax7476dac1d10567dc8e4bb32e3b1b6d79.statusText;
+                        }
+                        }
+                        }
+                        padAjax7476dac1d10567dc8e4bb32e3b1b6d79.open("GET","http://localhost/pad/showcase/?avatar/team&padInclude",true);
+                        padAjax7476dac1d10567dc8e4bb32e3b1b6d79.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/avatar/2-team<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/avatar/2-team.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/avatar/2-team.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $team </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alan Turing'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Expressions'    </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Émile Zola'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Translations'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Margaret Hamilton'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Error handling' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A team list<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An avatar per row - the colour comes from a hash of the name.<font color="black">'</font></font>}</b><br>&lt;ul style="list-style:none; padding:0; display:grid; gap:10px"&gt;<br>  <b>{<font color="blue">team</font><font color="red"></font>}</b><br>  &lt;li style="display:flex; align-items:center; gap:10px"&gt;<b>{<font color="blue">avatar </font><font color="red"><font color="red">$</font>name<font color="black">,</font> size=36</font>}</b> &lt;span&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt; - <b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/span&gt;&lt;/li&gt;<br>  <b>{/<font color="blue">team</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc36952a197d55f54c8ec6b945ff2cd71"></div>
+                        <script>
+                        padAjaxc36952a197d55f54c8ec6b945ff2cd71 = new XMLHttpRequest();
+                        padAjaxc36952a197d55f54c8ec6b945ff2cd71.onreadystatechange=function() {
+                        if (padAjaxc36952a197d55f54c8ec6b945ff2cd71.readyState === 4) {
+                        if (padAjaxc36952a197d55f54c8ec6b945ff2cd71.status === 200) {
+                        document.getElementById("padAjaxc36952a197d55f54c8ec6b945ff2cd71").innerHTML=padAjaxc36952a197d55f54c8ec6b945ff2cd71.responseText;
+                        } else {
+                        document.getElementById("padAjaxc36952a197d55f54c8ec6b945ff2cd71").innerHTML=padAjaxc36952a197d55f54c8ec6b945ff2cd71.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc36952a197d55f54c8ec6b945ff2cd71.open("GET","http://localhost/pad/tags/?examples/avatar/2-team&padInclude",true);
+                        padAjaxc36952a197d55f54c8ec6b945ff2cd71.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

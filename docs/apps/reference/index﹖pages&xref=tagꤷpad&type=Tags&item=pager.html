@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -151,6 +151,48 @@
                         }
                         padAjaxde855d5bbb1b07e709fbb76115d09878.open("GET","http://localhost/pad/regression/errors/?syntax/a_pager_needs_its_paged_tag_before_it&padInclude",true);
                         padAjaxde855d5bbb1b07e709fbb76115d09878.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $sbxRows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] ]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>[{"id":1,"name":"Ann"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxSet<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxRows<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>][<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>][<b>{<font color="blue">sbxRows </font><font color="red">page=1<font color="black">,</font> rows=1</font>}</b>r<b>{/<font color="blue">sbxRows</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd1fc24dd95f5e487a375619f1388da23"></div>
+                        <script>
+                        padAjaxd1fc24dd95f5e487a375619f1388da23 = new XMLHttpRequest();
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.onreadystatechange=function() {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.readyState === 4) {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.status === 200) {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.responseText;
+                        } else {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.open("GET","http://localhost/pad/regression/framework/?passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides&padInclude",true);
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.send();
                         </script>
                       </td>
                     </tr>
@@ -408,6 +450,90 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/pages - Page: select/demo/a_pager_counts_a_select_with_a_join<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/a_pager_counts_a_select_with_a_join.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/a_pager_counts_a_select_with_a_join.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A pager after a select that joins two tables sharing a column name - orders and<br>  // customers, both with customerNumber - counts its rows: the count ran the select list<br>  // as a derived table, which MySQL refuses with two columns of one name ("1060: Duplicate<br>  // column name 'customerNumber'"), and the page ended at the pager.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'ordersPaged'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">ordersPaged </font><font color="red">join=<font color="black">'</font>customers on customers.customerNumber = orders.customerNumber<font color="black">'</font><font color="black">,</font> where="customers.country = <font color="black">'</font>Norway<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>orderNumber<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>orderNumber</font>}</b> <b>{<font color="green"><font color="red">$</font>customerName</font>}</b>; <b>{/<font color="blue">ordersPaged</font><font color="red"></font>}</b>]<br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>ordersPaged<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9b58a3d67cb1cafc2e54f779b125e366"></div>
+                        <script>
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366 = new XMLHttpRequest();
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366.onreadystatechange=function() {
+                        if (padAjax9b58a3d67cb1cafc2e54f779b125e366.readyState === 4) {
+                        if (padAjax9b58a3d67cb1cafc2e54f779b125e366.status === 200) {
+                        document.getElementById("padAjax9b58a3d67cb1cafc2e54f779b125e366").innerHTML=padAjax9b58a3d67cb1cafc2e54f779b125e366.responseText;
+                        } else {
+                        document.getElementById("padAjax9b58a3d67cb1cafc2e54f779b125e366").innerHTML=padAjax9b58a3d67cb1cafc2e54f779b125e366.statusText;
+                        }
+                        }
+                        }
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_counts_a_select_with_a_join&padInclude",true);
+                        padAjax9b58a3d67cb1cafc2e54f779b125e366.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: select/demo/a_pager_counts_the_rows_its_fields_make<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/a_pager_counts_the_rows_its_fields_make.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/a_pager_counts_the_rows_its_fields_make.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A pager counts the rows the select answers also when its fields= decides what a row is:<br>  // distinct countries, or one row of totals. The count over the table alone was taken<br>  // whenever distinct=, group=, having= and union= were not given, so 27 countries had the<br>  // 13 pages of the 122 customers, and the one row of totals a pager of 28 pages.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'countriesPaged'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'paymentTotals'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payments'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'checkNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">countriesPaged </font><font color="red">fields=<font color="black">'</font>distinct country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>; <b>{/<font color="blue">countriesPaged</font><font color="red"></font>}</b>]<br>(<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>countriesPaged<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)<br>[<b>{<font color="blue">paymentTotals </font><font color="red">fields=<font color="black">'</font>count(*) as n<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">paymentTotals</font><font color="red"></font>}</b>]<br>(<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>paymentTotals<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa770e48197265ef61a22a5b627dcd37c"></div>
+                        <script>
+                        padAjaxa770e48197265ef61a22a5b627dcd37c = new XMLHttpRequest();
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.onreadystatechange=function() {
+                        if (padAjaxa770e48197265ef61a22a5b627dcd37c.readyState === 4) {
+                        if (padAjaxa770e48197265ef61a22a5b627dcd37c.status === 200) {
+                        document.getElementById("padAjaxa770e48197265ef61a22a5b627dcd37c").innerHTML=padAjaxa770e48197265ef61a22a5b627dcd37c.responseText;
+                        } else {
+                        document.getElementById("padAjaxa770e48197265ef61a22a5b627dcd37c").innerHTML=padAjaxa770e48197265ef61a22a5b627dcd37c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_counts_the_rows_its_fields_make&padInclude",true);
+                        padAjaxa770e48197265ef61a22a5b627dcd37c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/pages - Page: select/demo/pager<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -491,6 +617,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/pager/1-links<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/pager/1-links.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/pager/1-links.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $numbers </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">23 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Page links<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The tag with page= comes first; the pager reads what its paging left and links the pages.<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">numbers </font><font color="red">page=<font color="red">$</font>pg ?? 1<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>numbers</font>}</b> <b>{/<font color="blue">numbers</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>numbers<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax77222282930a953cee969a5abc5f2ba1"></div>
+                        <script>
+                        padAjax77222282930a953cee969a5abc5f2ba1 = new XMLHttpRequest();
+                        padAjax77222282930a953cee969a5abc5f2ba1.onreadystatechange=function() {
+                        if (padAjax77222282930a953cee969a5abc5f2ba1.readyState === 4) {
+                        if (padAjax77222282930a953cee969a5abc5f2ba1.status === 200) {
+                        document.getElementById("padAjax77222282930a953cee969a5abc5f2ba1").innerHTML=padAjax77222282930a953cee969a5abc5f2ba1.responseText;
+                        } else {
+                        document.getElementById("padAjax77222282930a953cee969a5abc5f2ba1").innerHTML=padAjax77222282930a953cee969a5abc5f2ba1.statusText;
+                        }
+                        }
+                        }
+                        padAjax77222282930a953cee969a5abc5f2ba1.open("GET","http://localhost/pad/tags/?examples/pager/1-links&padInclude",true);
+                        padAjax77222282930a953cee969a5abc5f2ba1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -505,7 +673,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {country} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">country</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>country<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes a country's flag from its ISO 3166 code or English name, optionally with the name beside it.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-str">'NL'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-var">$code</span>, name<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>country</code>
+            </dt>
+            <dd>
+              An alpha-2 code (<code>NL</code>), an alpha-3 code (<code>NLD</code>) or the English name, in any case.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              Bare option: writes the English name beside the flag; the flag is then decoration (<code>aria-hidden</code>).
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{country}</code> turns a country code into its flag (<code>tags/_lib/country.php</code>). The code may be the two-letter alpha-2 (<code>NL</code>), the three-letter alpha-3 (<code>NLD</code>, as passports and sports use it) or the English name, in any case; the table holds the 249 entries of ISO 3166-1 with the names as CLDR gives them.
+          </p>
+          <p>
+            The flag is the code written as two regional indicator symbols - text, not an image - which a system with flag emoji draws as the flag and one without (Windows) as the two letters. Alone it is <code>&lt;span class="pad-country" role="img" aria-label="Netherlands"&gt;</code>, with the name as its tooltip too. With <code>name</code> the English name is written beside it and the flag becomes decoration, so a screen reader says the name once.
+          </p>
+          <p>
+            A code that is no country is an error under the strict check, naming the nearest country when the text is close to a name; without the check the text is written as it was given. <code>padCountry ( $code )</code> answers <code>[ alpha-2, alpha-3, name ]</code> to PHP. To colour countries by a value, see <a href="index%EF%B9%96tag%EA%A4%B7map.html">{map}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Flags from codes
+            </h3>
+            <p class="example-about">
+              Alpha-2, alpha-3 and the English name give the same flag; alone each is an image named by its country.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/country/1-flags.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"font-size:32px; display:flex; gap:12px"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-str">'NL'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-str">'FRA'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-str">'Japan'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-str">'br'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-str">'KEN'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7country%EA%A4%B71-flags.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p style="font-size:32px; display:flex; gap:12px">
+                    <span class="pad-country" role="img" aria-label="Netherlands" title="Netherlands">🇳🇱</span> <span class="pad-country" role="img" aria-label="France" title="France">🇫🇷</span> <span class="pad-country" role="img" aria-label="Japan" title="Japan">🇯🇵</span> <span class="pad-country" role="img" aria-label="Brazil" title="Brazil">🇧🇷</span> <span class="pad-country" role="img" aria-label="Kenya" title="Kenya">🇰🇪</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              With the name
+            </h3>
+            <p class="example-about">
+              name writes the English name beside the flag - here visitors per country from the page's PHP.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/country/2-names.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span> <span class="hl-opt">style</span>=<span class="hl-str">"list-style:none; padding:0"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">visitors</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-var">$code</span>, name<span class="hl-brc">}</span> - <span class="hl-brc">{</span><span class="hl-var">$visits</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/visitors</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/country/2-names.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$visitors</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'NL'</span><span class="hl-pun">,</span> <span class="hl-str">'visits'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">18230</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'US'</span><span class="hl-pun">,</span> <span class="hl-str">'visits'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">12904</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'DE'</span><span class="hl-pun">,</span> <span class="hl-str">'visits'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">8711</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'code'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'CI'</span><span class="hl-pun">,</span> <span class="hl-str">'visits'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">312</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7country%EA%A4%B72-names.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul style="list-style:none; padding:0">
+                    <li>
+                      <span class="pad-country"><span class="pad-country-flag" aria-hidden="true">🇳🇱</span> <span class="pad-country-name">Netherlands</span></span> - 18230
+                    </li>
+                    <li>
+                      <span class="pad-country"><span class="pad-country-flag" aria-hidden="true">🇺🇸</span> <span class="pad-country-name">United States</span></span> - 12904
+                    </li>
+                    <li>
+                      <span class="pad-country"><span class="pad-country-flag" aria-hidden="true">🇩🇪</span> <span class="pad-country-name">Germany</span></span> - 8711
+                    </li>
+                    <li>
+                      <span class="pad-country"><span class="pad-country-flag" aria-hidden="true">🇨🇮</span> <span class="pad-country-name">Côte d’Ivoire</span></span> - 312
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{map}</a> <span class="about">Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its regions.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7emoji.html">{emoji}</a> <span class="about">An emoji by its GitHub or Slack shortcode, as a labelled image a screen reader names.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7countdown.html">← {countdown}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7crossword.html">{crossword} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - servers
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - servers
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: charts - Page: gauge/servers<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">gauge/servers.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">gauge/servers.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Three servers and how loaded they are, as a monitoring page would read them.<br><br>  </span><span style="color: #0000BB">$servers </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'web-1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cpu' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">34</span><span style="color: #007700">, </span><span style="color: #DD0000">'memory' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">61 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'web-2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cpu' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">71</span><span style="color: #007700">, </span><span style="color: #DD0000">'memory' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">78 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'db-1'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'cpu' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">93</span><span style="color: #007700">, </span><span style="color: #DD0000">'memory' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">88 </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="gauges"&gt;<br>  <b>{<font color="blue">servers</font><font color="red"></font>}</b><br>  <b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>gauge<font color="black">'</font><font color="black">,</font><br>         value=<font color="red">$</font>cpu<font color="black">,</font><br>         label=<font color="red">$</font>name<font color="black">,</font><br>         unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font><font color="black">,</font><br>         bands=<font color="black">'</font>70<font color="black">,</font> 90<font color="black">'</font><font color="black">,</font><br>         width=200<font color="black">,</font><br>         height=130</font>}</b><br>  <b>{/<font color="blue">servers</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax02a2e7548a05e1b4365af337a2e5fc55"></div>
+                        <script>
+                        padAjax02a2e7548a05e1b4365af337a2e5fc55 = new XMLHttpRequest();
+                        padAjax02a2e7548a05e1b4365af337a2e5fc55.onreadystatechange=function() {
+                        if (padAjax02a2e7548a05e1b4365af337a2e5fc55.readyState === 4) {
+                        if (padAjax02a2e7548a05e1b4365af337a2e5fc55.status === 200) {
+                        document.getElementById("padAjax02a2e7548a05e1b4365af337a2e5fc55").innerHTML=padAjax02a2e7548a05e1b4365af337a2e5fc55.responseText;
+                        } else {
+                        document.getElementById("padAjax02a2e7548a05e1b4365af337a2e5fc55").innerHTML=padAjax02a2e7548a05e1b4365af337a2e5fc55.statusText;
+                        }
+                        }
+                        }
+                        padAjax02a2e7548a05e1b4365af337a2e5fc55.open("GET","http://localhost/pad/charts/?gauge/servers&padInclude",true);
+                        padAjax02a2e7548a05e1b4365af337a2e5fc55.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

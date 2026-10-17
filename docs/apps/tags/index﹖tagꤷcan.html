@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {can} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#access">Users and access</a><span>/</span><span aria-current="page">can</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>can<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content when the user may do something a gate decides, and its else half when not.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#access">Users and access</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">can</span> <span class="hl-str">'ability'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/can</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">can</span> <span class="hl-str">'ability'</span>, <span class="hl-var">$value</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/can</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">rows</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">can</span> <span class="hl-str">'ability'</span>, <span class="hl-var">$rows</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/can</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/rows</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>ability</code>
+            </dt>
+            <dd>
+              The name of a gate defined with <code>padGate ( 'edit-post', fn ( $user, $post ) =&gt; ... )</code> in a <code>_lib/</code> file.
+            </dd>
+            <dt>
+              <code>values</code>
+            </dt>
+            <dd>
+              Optional, any number: what the gate is given after the user - an expression each, an array of the page whole, and the name of an enclosing loop for the row of its occurrence.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{can 'edit-post', $post}</code> asks a gate whether the user logged in may do something, and renders its content when the answer is yes; the part after its own <code>{else}</code>, or the <code>@else@</code> half, renders when it is no. The gates are functions the application defines once, in a file of its <code>_lib/</code>:
+          </p>
+          <pre><code>padGate ( 'edit-post', fn ( array $user, array $post ) =&gt; $user ['id'] === $post ['author'] );</code></pre>
+          <p>
+            The first item is the ability, the others are what the gate is given after the user: an expression each, the name of an array of the page as that array - and the name of an enclosing loop as the row of its current occurrence, so <code>{posts}{can 'edit-post', $posts}</code> asks about one post, not the list.
+          </p>
+          <p>
+            <code>padGateBefore ( fn ( $user, $ability ) =&gt; ... )</code> hooks are asked first: TRUE or FALSE decides, NULL leaves it to the gate - an admin who may do anything. A guest reaches only a gate (or hook) whose user parameter takes NULL - <code>?array $user</code> or <code>$user = NULL</code>; any other gate is not even asked and answers no. An ability nobody defined is FALSE and, under the strict check, an error, so a misspelled name is reported instead of silently hiding a button. <a href="index%EF%B9%96tag%EA%A4%B7cannot.html">{cannot}</a> turns the answer round; <code>padCan</code>, <code>padCannot</code> and <code>padAuthorize</code> (403) ask from PHP.
+          </p>
+          <p>
+            The gates of the examples here are in this application's <code>_lib/canGates.php</code>: <code>read-post</code> takes a guest, <code>edit-post</code> does not.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A gate that takes a guest
+            </h3>
+            <p class="example-about">
+              read-post takes ?array $user, so a guest is asked too - inside {posts}, $posts is the row of the occurrence.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/can/1-guest-gate.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">posts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">can</span> <span class="hl-str">'read-post'</span>, <span class="hl-var">$posts</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> - not published yet<span class="hl-brc">{</span><span class="hl-tag">/can</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/posts</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/can/1-guest-gate.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$posts</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Release notes'</span><span class="hl-pun">,</span>  <span class="hl-str">'published'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">TRUE</span><span class="hl-pun">,</span>  <span class="hl-str">'author'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">1</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Draft: roadmap'</span><span class="hl-pun">,</span> <span class="hl-str">'published'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">FALSE</span><span class="hl-pun">,</span> <span class="hl-str">'author'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">1</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7can%EA%A4%B71-guest-gate.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>
+                      <a href="#">Release notes</a>
+                    </li>
+                    <li>Draft: roadmap - not published yet
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A gate for users only
+            </h3>
+            <p class="example-about">
+              edit-post takes array $user: a guest is never let through and the gate is not even asked.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/can/2-user-gate.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$post.title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">can</span> <span class="hl-str">'edit-post'</span>, <span class="hl-var">$post</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#edit"</span><span class="hl-htm">&gt;</span>Edit<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Read only.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/can</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/can/2-user-gate.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$post</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Release notes'</span><span class="hl-pun">,</span> <span class="hl-str">'published'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">TRUE</span><span class="hl-pun">,</span> <span class="hl-str">'author'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">1</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7can%EA%A4%B72-user-gate.html">open alone</a>
+                </div>
+                <div class="result">
+                  <h3>
+                    Release notes
+                  </h3>
+                  <p>
+                    Read only.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Defining the gates
+            </h3>
+            <p class="example-about">
+              The gates live in a file of _lib/; padGateBefore decides before every gate - here an admin may do anything.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/can/3-gates.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-com">{# _lib/gates.php:
+  padGate       ( 'edit-post', fn ( array $user, array $post ) =&gt; $user ['id'] === $post ['author'] );
+  padGateBefore ( fn ( array $user, string $ability ) =&gt; $user ['role'] == 'admin' ? TRUE : NULL );
+#}</span>
+<span class="hl-brc">{</span><span class="hl-tag">posts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">can</span> <span class="hl-str">'edit-post'</span>, <span class="hl-var">$posts</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?edit&amp;amp;id={$id}"</span><span class="hl-htm">&gt;</span>Edit<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/can</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/posts</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7cannot.html">{cannot}</a> <span class="about">Renders its content when the user may not do something a gate decides - can turned round.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7auth.html">{auth}</a> <span class="about">Renders its content when a user is logged in, with the user's row as its data, and its else half for a guest.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7guest.html">{guest}</a> <span class="about">Renders its content when nobody is logged in, and its else half for a user.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7feature.html">{feature}</a> <span class="about">Renders its content while a feature flag is on for this visitor, and its else half while it is off.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7calendar.html">← {calendar}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7cannot.html">{cannot} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

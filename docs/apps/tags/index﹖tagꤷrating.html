@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {rating} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-rating){--pad-rating-star:#e09a00;--pad-rating-heart:#d93b5a;--pad-rating-empty:#dddcd7;}@supports (color:light-dark(#000,#fff)){:where(.pad-rating){--pad-rating-star:light-dark(#e09a00,#f5b82e);--pad-rating-heart:light-dark(#d93b5a,#f0627d);--pad-rating-empty:light-dark(#dddcd7,#3d3d3a);}}.pad-rating{vertical-align:middle;flex:none}.pad-rating .rt-star{fill:var(--pad-rating-star)}.pad-rating .rt-heart{fill:var(--pad-rating-heart)}.pad-rating .rt-empty{fill:var(--pad-rating-empty)}.pad-rating path{stroke-linejoin:round}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">rating</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>rating<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Draws a score as stars or hearts in inline SVG - whole ones filled, a part of one clipped - and says it in words.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">rating</span> <span class="hl-num">4.5</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">rating</span> <span class="hl-var">$score</span>, <span class="hl-opt">max</span>=<span class="hl-num">5</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span>, <span class="hl-opt">icon</span>=<span class="hl-str">'heart'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>score</code>
+            </dt>
+            <dd>
+              The score, a number, clamped to 0 ... <code>max</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>max</code>
+            </dt>
+            <dd>
+              The number of icons, a whole number from 1 to 20, default 5.
+            </dd>
+            <dt>
+              <code>size</code>
+            </dt>
+            <dd>
+              The height in pixels, default 20.
+            </dd>
+            <dt>
+              <code>icon</code>
+            </dt>
+            <dd>
+              <code>star</code> (default) or <code>heart</code>.
+            </dd>
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              The accessible name, default <code>4.5 out of 5</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{rating}</code> shows a score as a row of stars - or hearts - in inline SVG (<code>tags/_lib/rating.php</code>). The whole icons up to the score are filled, the rest empty, and a part of one is filled as far as the score goes: 3.75 fills three stars and three quarters of the fourth.
+          </p>
+          <p>
+            The part is a nested <code>&lt;svg&gt;</code> as wide as the part - no <code>clipPath</code>, so no id that two ratings on one page could share - measured over the drawn icon, so 0.5 is exactly half. The whole is <code>role="img"</code>, with the score in words as its <code>aria-label</code> and <code>&lt;title&gt;</code>: <code>4.5 out of 5</code>, or <code>label</code>.
+          </p>
+          <p>
+            The colours are <code>--pad-rating-star</code>, <code>-heart</code> and <code>-empty</code> on <code>.pad-rating</code>, with <code>light-dark()</code> defaults written once per page; the fill attributes carry the light ones for a reader without the style. A score that is no number, a max that is no whole number from 1 to 20 or an unknown icon is an error under the strict check. The tag only shows a score; to collect votes see <a href="index%EF%B9%96tag%EA%A4%B7poll.html">{poll}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Scores in a table
+            </h3>
+            <p class="example-about">
+              Each product's average as stars, a part of a star filled as far as the score goes.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/rating/1-reviews.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">products</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$product</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">rating</span> <span class="hl-var">$score</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$score</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/products</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/rating/1-reviews.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$products</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'product'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Walnut desk lamp'</span><span class="hl-pun">,</span> <span class="hl-str">'score'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4.7</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'product'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Linen armchair'</span><span class="hl-pun">,</span>   <span class="hl-str">'score'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4.2</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'product'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Oak side table'</span><span class="hl-pun">,</span>   <span class="hl-str">'score'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">3.5</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'product'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Ceramic vase'</span><span class="hl-pun">,</span>     <span class="hl-str">'score'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">5</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7rating%EA%A4%B71-reviews.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table>
+                    <tr>
+                      <td>
+                        Walnut desk lamp
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="4.7 out of 5" width="90.67" height="16" viewbox="0 0 136 24">
+                        <title>
+                          4.7 out of 5
+                        </title>
+                        <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-empty" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path><svg x="112" width="16" height="24" viewbox="0 0 16 24">
+                        <path class="rt-star" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path></svg></svg>
+                      </td>
+                      <td>
+                        4.7
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Linen armchair
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="4.2 out of 5" width="90.67" height="16" viewbox="0 0 136 24">
+                        <title>
+                          4.2 out of 5
+                        </title>
+                        <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-empty" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path><svg x="112" width="6" height="24" viewbox="0 0 6 24">
+                        <path class="rt-star" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path></svg></svg>
+                      </td>
+                      <td>
+                        4.2
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Oak side table
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="3.5 out of 5" width="90.67" height="16" viewbox="0 0 136 24">
+                        <title>
+                          3.5 out of 5
+                        </title>
+                        <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-empty" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path><svg x="84" width="12" height="24" viewbox="0 0 12 24">
+                        <path class="rt-star" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path></svg>
+                        <path class="rt-empty" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path></svg>
+                      </td>
+                      <td>
+                        3.5
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Ceramic vase
+                      </td>
+                      <td>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="5 out of 5" width="90.67" height="16" viewbox="0 0 136 24">
+                        <title>
+                          5 out of 5
+                        </title>
+                        <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                        <path class="rt-star" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path></svg>
+                      </td>
+                      <td>
+                        5
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Hearts, another max, a label
+            </h3>
+            <p class="example-about">
+              icon=heart, max=10 and a label= read out instead of the score.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/rating/2-hearts.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">rating</span> <span class="hl-num">3.75</span>, <span class="hl-opt">icon</span>=<span class="hl-str">'heart'</span>, <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">rating</span> <span class="hl-num">7.3</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, <span class="hl-opt">size</span>=<span class="hl-num">18</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">rating</span> <span class="hl-num">9</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, <span class="hl-opt">size</span>=<span class="hl-num">18</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Nine of ten critics recommend it'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7rating%EA%A4%B72-hearts.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="3.75 out of 5" width="136" height="24" viewbox="0 0 136 24">
+                    <title>
+                      3.75 out of 5
+                    </title>
+                    <path class="rt-heart" transform="translate(0)" d="M12 20.6C6.9 16.7 2.7 13.1 2.7 8.8 2.7 6 4.8 3.9 7.5 3.9c1.9 0 3.5 1 4.5 2.6 1-1.6 2.6-2.6 4.5-2.6 2.7 0 4.8 2.1 4.8 4.9 0 4.3-4.2 7.9-9.3 11.8Z" fill="#d93b5a"></path>
+                    <path class="rt-heart" transform="translate(28)" d="M12 20.6C6.9 16.7 2.7 13.1 2.7 8.8 2.7 6 4.8 3.9 7.5 3.9c1.9 0 3.5 1 4.5 2.6 1-1.6 2.6-2.6 4.5-2.6 2.7 0 4.8 2.1 4.8 4.9 0 4.3-4.2 7.9-9.3 11.8Z" fill="#d93b5a"></path>
+                    <path class="rt-heart" transform="translate(56)" d="M12 20.6C6.9 16.7 2.7 13.1 2.7 8.8 2.7 6 4.8 3.9 7.5 3.9c1.9 0 3.5 1 4.5 2.6 1-1.6 2.6-2.6 4.5-2.6 2.7 0 4.8 2.1 4.8 4.9 0 4.3-4.2 7.9-9.3 11.8Z" fill="#d93b5a"></path>
+                    <path class="rt-empty" transform="translate(84)" d="M12 20.6C6.9 16.7 2.7 13.1 2.7 8.8 2.7 6 4.8 3.9 7.5 3.9c1.9 0 3.5 1 4.5 2.6 1-1.6 2.6-2.6 4.5-2.6 2.7 0 4.8 2.1 4.8 4.9 0 4.3-4.2 7.9-9.3 11.8Z" fill="#dddcd7"></path><svg x="84" width="17" height="24" viewbox="0 0 17 24">
+                    <path class="rt-heart" d="M12 20.6C6.9 16.7 2.7 13.1 2.7 8.8 2.7 6 4.8 3.9 7.5 3.9c1.9 0 3.5 1 4.5 2.6 1-1.6 2.6-2.6 4.5-2.6 2.7 0 4.8 2.1 4.8 4.9 0 4.3-4.2 7.9-9.3 11.8Z" fill="#d93b5a"></path></svg>
+                    <path class="rt-empty" transform="translate(112)" d="M12 20.6C6.9 16.7 2.7 13.1 2.7 8.8 2.7 6 4.8 3.9 7.5 3.9c1.9 0 3.5 1 4.5 2.6 1-1.6 2.6-2.6 4.5-2.6 2.7 0 4.8 2.1 4.8 4.9 0 4.3-4.2 7.9-9.3 11.8Z" fill="#dddcd7"></path></svg>
+                  </p>
+                  <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="7.3 out of 10" width="207" height="18" viewbox="0 0 276 24">
+                    <title>
+                      7.3 out of 10
+                    </title>
+                    <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(140)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(168)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-empty" transform="translate(196)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path><svg x="196" width="8" height="24" viewbox="0 0 8 24">
+                    <path class="rt-star" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path></svg>
+                    <path class="rt-empty" transform="translate(224)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path>
+                    <path class="rt-empty" transform="translate(252)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path></svg>
+                  </p>
+                  <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="Nine of ten critics recommend it" width="207" height="18" viewbox="0 0 276 24">
+                    <title>
+                      Nine of ten critics recommend it
+                    </title>
+                    <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(140)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(168)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(196)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(224)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-empty" transform="translate(252)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path></svg>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{progress}</a> <span class="about">Writes an accessible progress bar - the native progress element, styled, with its label and percentage - or a row of step dots.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7icon.html">{icon}</a> <span class="about">Writes an interface icon from PAD's own set of 79 as inline SVG, drawn in the colour of the text around it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7poll.html">{poll}</a> <span class="about">A vote among a few answers, once per visitor, then the results as bars with percentages.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7qr.html">← {qr}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7reactData.html">{reactData} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

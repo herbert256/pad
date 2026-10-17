@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {data} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#values">Variables and stores</a><span>/</span><span aria-current="page">data</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>data<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#values">Variables and stores</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'csv'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span>, source<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/data</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The name the data is kept under; <code>{name}</code> ... <code>{/name}</code> (or <code>{data:name}</code>) iterates it. Not the name of a built-in or application tag.
+            </dd>
+            <dt>
+              <code>source</code>
+            </dt>
+            <dd>
+              Optional, when there is no content: the data as a value - <code>'1..5'</code>, <code>'["a","b"]'</code> - or a field holding it.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              The format of the content - <code>json</code>, <code>xml</code>, <code>yaml</code>, <code>csv</code>, <code>list</code>, <code>range</code> ... - when its first characters do not tell.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{data 'name'}</code> ... <code>{/data}</code> reads its content as data and keeps it under that name; it prints nothing. A later <code>{name}</code> ... <code>{/name}</code> iterates it like any page array - fields, properties, the handling options (<code>sort</code>, <code>where</code>, <code>first</code> ...) - and so do <code>data='name'</code> on another tag, <code>{data:name}</code>, <a href="index%EF%B9%96tag%EA%A4%B7tree.html">{tree}</a> and the <code>lookup</code> pipe.
+          </p>
+          <h3>
+            Formats
+          </h3>
+          <p>
+            The format is recognised from the content itself:
+          </p>
+          <ul>
+            <li>
+              <strong>JSON</strong> - starts with <code>[</code> or <code>{</code>. An array of objects gives rows with fields; a plain array gives values, read with <code>{$name}</code>.
+            </li>
+            <li>
+              <strong>XML</strong> - starts with <code>&lt;</code>. The elements under the root are the rows, their attributes and child elements the fields.
+            </li>
+            <li>
+              <strong>YAML</strong> - starts with <code>---</code>, or with a <code>- item</code> or <code>key: value</code> line. It needs PHP's yaml extension.
+            </li>
+            <li>
+              <strong>A list</strong> - <code>('a', 'b', 2 * 3)</code> in parentheses: every element is evaluated as an expression.
+            </li>
+            <li>
+              <strong>A range</strong> - <code>1..10</code> or <code>a..z</code>.
+            </li>
+            <li>
+              <strong>CSV</strong> - anything else of several lines: the first line names the fields, each further line is a row.
+            </li>
+          </ul>
+          <p>
+            When the start does not tell, <code>type='csv'</code> (or another format) says it. A one-line name of a file in the application's <code>_data/</code> directory reads that file.
+          </p>
+          <h3>
+            Other forms
+          </h3>
+          <p>
+            Without content, a second parameter is the source: <code>{data 'steps', '1..5'}</code>. A value from a field there is data, never template: a field holding a parenthesised list is refused, since its elements would run as expressions. With the name on the closing tag - <code>{data}</code> ... <code>{/data 'name'}</code> - the content is rendered first and the result read as data, so fields and tags inside it are resolved.
+          </p>
+          <p>
+            Content with braces - JSON objects - is read as written: a JSON object in the content is not taken for a tag. Under the strict syntax check a <code>{data}</code> without a name is an error, and so is a name that is already a built-in or application tag, since <code>{name}</code> would never reach the store.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              JSON rows
+            </h3>
+            <p class="example-about">
+              An array of objects becomes rows with fields, iterated by the name it was given.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/data/1-json.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataPlanets'</span><span class="hl-brc">}</span>
+[
+  <span class="hl-brc">{</span> <span class="hl-str">"name"</span>: <span class="hl-str">"Mercury"</span>, <span class="hl-str">"moons"</span>: <span class="hl-num">0</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"name"</span>: <span class="hl-str">"Earth"</span>,   <span class="hl-str">"moons"</span>: <span class="hl-num">1</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"name"</span>: <span class="hl-str">"Mars"</span>,    <span class="hl-str">"moons"</span>: <span class="hl-num">2</span> <span class="hl-brc">}</span>
+]
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">dataPlanets</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$moons</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$moons</span> eq <span class="hl-num">1</span> ? <span class="hl-str">'moon'</span> : <span class="hl-str">'moons'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/dataPlanets</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7data%EA%A4%B71-json.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Mercury: 0 moons
+                    </li>
+                    <li>Earth: 1 moon
+                    </li>
+                    <li>Mars: 2 moons
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              CSV and XML
+            </h3>
+            <p class="example-about">
+              The first CSV line names the fields; XML elements under the root are the rows, attributes the fields.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/data/2-csv-xml.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataPrices'</span><span class="hl-brc">}</span>
+fruit,price
+Apple,<span class="hl-num">0.40</span>
+Pear,<span class="hl-num">0.55</span>
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataStock'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;stock</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;item</span> <span class="hl-opt">fruit</span>=<span class="hl-str">"Apple"</span> <span class="hl-opt">boxes</span>=<span class="hl-str">"12"</span><span class="hl-htm">/&gt;</span>
+  <span class="hl-htm">&lt;item</span> <span class="hl-opt">fruit</span>=<span class="hl-str">"Pear"</span> <span class="hl-opt">boxes</span>=<span class="hl-str">"3"</span><span class="hl-htm">/&gt;</span>
+<span class="hl-htm">&lt;/stock</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataPrices</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$fruit</span><span class="hl-brc">}</span> costs <span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span>. <span class="hl-brc">{</span><span class="hl-tag">/dataPrices</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataStock</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$fruit</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$boxes</span><span class="hl-brc">}</span> boxes. <span class="hl-brc">{</span><span class="hl-tag">/dataStock</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7data%EA%A4%B72-csv-xml.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Apple costs 0.40. Pear costs 0.55.
+                  </p>
+                  <p>
+                    Apple: 12 boxes. Pear: 3 boxes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Ranges, lists and a source parameter
+            </h3>
+            <p class="example-about">
+              A range, an evaluated list, and data given as the second parameter instead of content.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/data/3-list.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataLetters'</span><span class="hl-brc">}</span>a..f<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataSums'</span><span class="hl-brc">}</span>(<span class="hl-num">1</span> + <span class="hl-num">1</span>, <span class="hl-num">2</span> * <span class="hl-num">3</span>, <span class="hl-num">10</span> - <span class="hl-num">7</span>)<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataSteps'</span>, <span class="hl-str">'1..4'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataLetters</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$dataLetters</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/dataLetters</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataSums</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$dataSums</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/dataSums</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataSteps</span><span class="hl-brc">}</span>step <span class="hl-brc">{</span><span class="hl-var">$dataSteps</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">notLast@dataSteps</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-tag">/notLast@dataSteps</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/dataSteps</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7data%EA%A4%B73-list.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    a b c d e f
+                  </p>
+                  <p>
+                    2 6 3
+                  </p>
+                  <p>
+                    step 1, step 2, step 3, step 4
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> <span class="about">Keeps a piece of template under a name instead of printing it, for a later {name} to render.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7bool.html">{bool}</a> <span class="about">Reduces its content or a value to TRUE or FALSE and keeps it under a name, for a later {name} to test.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tree.html">{tree}</a> <span class="about">Renders a tree of rows: its body for every row, and {recurse} renders it again for the row's children.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7count.html">{count}</a> <span class="about">Renders its content only when a named data set or page array holds at least one element.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7curl.html">← {curl}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7datatable.html">{datatable} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

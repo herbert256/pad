@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/pages - Page: db/a_database_tag_binds_a_value_put_in_as_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/a_database_tag_binds_a_value_put_in_as_name.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/a_database_tag_binds_a_value_put_in_as_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The SQL of a database tag is a quoted string, and a value goes into it as $name, bound<br>  // as an escaped literal of that variable - an array as a list, a row's field inside a<br>  // loop too. A value concatenated in was SQL, and one put in as {$name} reached the<br>  // database as PAD's inert stand-ins, so no tag had a way to take a value that worked.<br><br>  </span><span style="color: #0000BB">$who   </span><span style="color: #007700">= </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$names </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'joe' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$odd   </span><span style="color: #007700">= </span><span style="color: #DD0000">"O'Br\\ien=a{b}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">field:  [<b>{<font color="blue">field </font><font color="red">"phone from staff where name = <font color="red">$</font>who"</font>}</b>]<br>array:  [<b>{<font color="blue">array </font><font color="red">"name from staff where name in (<font color="red">$</font>names) order by name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">array</font><font color="red"></font>}</b>]<br>check:  [<b>{<font color="blue">check </font><font color="red">"staff where name = <font color="red">$</font>who"</font>}</b>yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>no<b>{/<font color="blue">check</font><font color="red"></font>}</b>]<br>record: [<b>{<font color="blue">record </font><font color="red">"name<font color="black">,</font> phone from staff where name = <font color="red">$</font>who"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{<font color="green"><font color="red">$</font>phone</font>}</b><b>{/<font color="blue">record</font><font color="red"></font>}</b>]<br>odd:    [<b>{<font color="blue">field </font><font color="red">"concat(<font color="red">$</font>odd<font color="black">,</font> <font color="black">'</font><font color="black">|</font><font color="black">'</font>)"</font>}</b>]<br>quoted: [<b>{<font color="blue">field </font><font color="red">"count(*) from staff where name = <font color="black">'</font><font color="red">$</font>who<font color="black">'</font>"</font>}</b>]<br>loop:   [<b>{<font color="blue">array </font><font color="red">"name from staff where salary &gt; 2000 order by name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{<font color="blue">field </font><font color="red">"phone from staff where name = <font color="red">$</font>name"</font>}</b> <b>{/<font color="blue">array</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax363261f13a8880d871e58f0f8806e78a"></div>
+                        <script>
+                        padAjax363261f13a8880d871e58f0f8806e78a = new XMLHttpRequest();
+                        padAjax363261f13a8880d871e58f0f8806e78a.onreadystatechange=function() {
+                        if (padAjax363261f13a8880d871e58f0f8806e78a.readyState === 4) {
+                        if (padAjax363261f13a8880d871e58f0f8806e78a.status === 200) {
+                        document.getElementById("padAjax363261f13a8880d871e58f0f8806e78a").innerHTML=padAjax363261f13a8880d871e58f0f8806e78a.responseText;
+                        } else {
+                        document.getElementById("padAjax363261f13a8880d871e58f0f8806e78a").innerHTML=padAjax363261f13a8880d871e58f0f8806e78a.statusText;
+                        }
+                        }
+                        }
+                        padAjax363261f13a8880d871e58f0f8806e78a.open("GET","http://localhost/pad/regression/pages/?db/a_database_tag_binds_a_value_put_in_as_name&padInclude",true);
+                        padAjax363261f13a8880d871e58f0f8806e78a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/pages - Page: db/record2<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -71,6 +113,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/pages - Page: db/sqlite_binds_a_name_after_a_literal_ending_in_a_backslash<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/sqlite_binds_a_name_after_a_literal_ending_in_a_backslash.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/sqlite_binds_a_name_after_a_literal_ending_in_a_backslash.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// On SQLite a backslash in a quoted literal is a character like any other, so 'C:\' ends<br>  // where its quote does and a $name after it is bound. The bind took the backslash for an<br>  // escape on every driver: the quote that ends the literal counted as escaped, the rest of<br>  // the statement as quoted, and $n went to SQLite as written - a parameter of its own, NULL.<br><br>  </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padSqlConnect'</span><span style="color: #007700">] = </span><span style="color: #0000BB">padDbSqlite </span><span style="color: #007700">( </span><span style="color: #DD0000">':memory:' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"create table staff (name text, folder text)" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"insert into staff values ('bob', 'C:\\'), ('jim', 'D:\\')" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$n </span><span style="color: #007700">= </span><span style="color: #DD0000">'bob'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">A[<b>{<font color="blue">field </font><font color="red">"count(*) from staff where name = <font color="red">$</font>n"</font>}</b>] B[<b>{<font color="blue">field </font><font color="red">"count(*) from staff where folder &lt;&gt; <font color="black">'</font>D<font color="black">:</font>\\<font color="black">'</font> and name = <font color="red">$</font>n"</font>}</b>] C[<b>{<font color="blue">record </font><font color="red">"folder from staff where folder = <font color="black">'</font>C<font color="black">:</font>\\<font color="black">'</font> and name = <font color="red">$</font>n"</font>}</b><b>{<font color="green"><font color="red">$</font>folder</font>}</b><b>{/<font color="blue">record</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc8e5e3f21139c8104a080ab6df6ce159"></div>
+                        <script>
+                        padAjaxc8e5e3f21139c8104a080ab6df6ce159 = new XMLHttpRequest();
+                        padAjaxc8e5e3f21139c8104a080ab6df6ce159.onreadystatechange=function() {
+                        if (padAjaxc8e5e3f21139c8104a080ab6df6ce159.readyState === 4) {
+                        if (padAjaxc8e5e3f21139c8104a080ab6df6ce159.status === 200) {
+                        document.getElementById("padAjaxc8e5e3f21139c8104a080ab6df6ce159").innerHTML=padAjaxc8e5e3f21139c8104a080ab6df6ce159.responseText;
+                        } else {
+                        document.getElementById("padAjaxc8e5e3f21139c8104a080ab6df6ce159").innerHTML=padAjaxc8e5e3f21139c8104a080ab6df6ce159.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc8e5e3f21139c8104a080ab6df6ce159.open("GET","http://localhost/pad/regression/pages/?db/sqlite_binds_a_name_after_a_literal_ending_in_a_backslash&padInclude",true);
+                        padAjaxc8e5e3f21139c8104a080ab6df6ce159.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -85,7 +169,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework - Page: data/a_value_quoted_in_a_data_list_named_at_its_close_is_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/a_value_quoted_in_a_data_list_named_at_its_close_is_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_value_quoted_in_a_data_list_named_at_its_close_is_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// In a {data} list named on its closing tag a value written in quotes is an element's<br>  // text, and a number is the number - the content is walked before it is stored, and a<br>  // value standing bare there is refused (errors/syntax).<br><br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:strlen(12345)'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$n </span><span style="color: #007700">= </span><span style="color: #0000BB">7</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">q[<b>{<font color="blue">data</font><font color="red"></font>}</b>( '<b>{<font color="green"><font color="red">$</font>x</font>}</b>', 'b' )<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b><b>{<font color="blue">e</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>e</font>}</b>;<b>{/<font color="blue">e</font><font color="red"></font>}</b>] n[<b>{<font color="blue">data</font><font color="red"></font>}</b>( <b>{<font color="green"><font color="red">$</font>n</font>}</b>, 2 )<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b><b>{<font color="blue">f</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>f</font>}</b>;<b>{/<font color="blue">f</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc3a765261bcc5007d4b9e6831244e630"></div>
+                        <script>
+                        padAjaxc3a765261bcc5007d4b9e6831244e630 = new XMLHttpRequest();
+                        padAjaxc3a765261bcc5007d4b9e6831244e630.onreadystatechange=function() {
+                        if (padAjaxc3a765261bcc5007d4b9e6831244e630.readyState === 4) {
+                        if (padAjaxc3a765261bcc5007d4b9e6831244e630.status === 200) {
+                        document.getElementById("padAjaxc3a765261bcc5007d4b9e6831244e630").innerHTML=padAjaxc3a765261bcc5007d4b9e6831244e630.responseText;
+                        } else {
+                        document.getElementById("padAjaxc3a765261bcc5007d4b9e6831244e630").innerHTML=padAjaxc3a765261bcc5007d4b9e6831244e630.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc3a765261bcc5007d4b9e6831244e630.open("GET","http://localhost/pad/regression/framework/?data/a_value_quoted_in_a_data_list_named_at_its_close_is_text&padInclude",true);
+                        padAjaxc3a765261bcc5007d4b9e6831244e630.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: options/dedup_keeps_floats_apart<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -85,7 +127,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

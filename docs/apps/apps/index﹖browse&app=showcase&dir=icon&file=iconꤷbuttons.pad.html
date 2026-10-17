@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: showcase/icon
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: showcase/icon
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=showcase.html">..</a>
+                  </li>
+                  <li class="current">buttons.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=icon&amp;file=icon%EA%A4%B7gallery.pad.html">gallery.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=showcase&amp;dir=icon&amp;file=icon%EA%A4%B7gallery.php.html">gallery.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  icon/buttons.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Icons in buttons and links<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An icon beside text is decoration; one alone gets label= and is read out. size= and stroke= change its scale and weight.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:18px; justify-items:start"&gt;<br>  &lt;p style="display:flex; gap:10px; flex-wrap:wrap; margin:0"&gt;<br>    &lt;button type="button"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>download<font color="black">'</font><font color="black">,</font> size=16</font>}</b> Download&lt;/button&gt;<br>    &lt;button type="button"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>edit<font color="black">'</font><font color="black">,</font> size=16</font>}</b> Edit&lt;/button&gt;<br>    &lt;button type="button"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>trash<font color="black">'</font><font color="black">,</font> size=16</font>}</b> Delete&lt;/button&gt;<br>    &lt;button type="button"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>settings<font color="black">'</font><font color="black">,</font> size=16<font color="black">,</font> label=<font color="black">'</font>Settings<font color="black">'</font></font>}</b>&lt;/button&gt;<br>  &lt;/p&gt;<br>  &lt;p style="margin:0"&gt;&lt;a href="?icon/gallery"&gt;See every icon <b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>arrow-right<font color="black">'</font><font color="black">,</font> size=16</font>}</b>&lt;/a&gt;&lt;/p&gt;<br>  &lt;p style="display:flex; gap:14px; align-items:center; margin:0"&gt;<br>    <b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>heart<font color="black">'</font><font color="black">,</font> size=16</font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>heart<font color="black">'</font><font color="black">,</font> size=24</font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>heart<font color="black">'</font><font color="black">,</font> size=32</font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>heart<font color="black">'</font><font color="black">,</font> size=48<font color="black">,</font> stroke=1.5</font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>heart<font color="black">'</font><font color="black">,</font> size=48<font color="black">,</font> stroke=1</font>}</b><br>  &lt;/p&gt;<br>  &lt;p style="display:flex; gap:14px; align-items:center; margin:0; color:#2a78d6"&gt;<br>    <b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>check-circle<font color="black">'</font><font color="black">,</font> size=28<font color="black">,</font> label=<font color="black">'</font>Done<font color="black">'</font></font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>info<font color="black">'</font><font color="black">,</font> size=28<font color="black">,</font> label=<font color="black">'</font>Information<font color="black">'</font></font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>alert<font color="black">'</font><font color="black">,</font> size=28<font color="black">,</font> label=<font color="black">'</font>Warning<font color="black">'</font></font>}</b><b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>x-circle<font color="black">'</font><font color="black">,</font> size=28<font color="black">,</font> label=<font color="black">'</font>Failed<font color="black">'</font></font>}</b><br>  &lt;/p&gt;<br>&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

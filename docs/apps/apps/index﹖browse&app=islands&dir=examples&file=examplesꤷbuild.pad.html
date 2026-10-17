@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: islands/examples
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: islands/examples
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=islands.html">..</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples%EA%A4%B7_samples.html">_samples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7_exits.pad.html">_exits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">build.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7build.php.html">build.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7frameworks.pad.html">frameworks.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7frameworks.php.html">frameworks.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7loading.pad.html">loading.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7loading.php.html">loading.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7shared.pad.html">shared.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7shared.php.html">shared.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7typed.pad.html">typed.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples&amp;file=examples%EA%A4%B7typed.php.html">typed.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  examples/build.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dev</font>}</b>The dev server runs: <b>{<font color="green"><font color="red">$</font>dev</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>The build: www/islands/build/<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>    &lt;p class="muted small"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dev</font>}</b><b>{<font color="blue">vite</font><font color="red"></font>}</b> asks the dev server - every save shows at once.<b>{<font color="blue">else</font><font color="red"></font>}</b>Start &lt;code&gt;npm run dev&lt;/code&gt; in &lt;code&gt;_frontend/&lt;/code&gt; and reload: <b>{<font color="blue">vite</font><font color="red"></font>}</b> then asks the dev server instead.<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;<br>    &lt;div class="panel-title" style="margin-top: 18px"&gt;What <b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b> wrote into the head&lt;/div&gt;<br>    <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>written <font color="black">|</font> highlight(<font color="black">'</font>html<font color="black">'</font>)</font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;The server's time, ticking in a Solid island&lt;/div&gt;<br>    &lt;div class="clock-box" data-island="Clock" data-props="{^clock}"&gt;&lt;span class="clock"&gt;-&lt;/span&gt;&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>sourceCount</font>}</b><br>&lt;div class="panel-title" style="margin-top: 26px"&gt;The manifest - every source and what it became&lt;/div&gt;<br>&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Source&lt;/th&gt;&lt;th&gt;File&lt;/th&gt;&lt;th&gt;Kind&lt;/th&gt;&lt;th&gt;CSS&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>    <b>{<font color="blue">sources</font><font color="red"></font>}</b>&lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>source</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>file</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>kind</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>css</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<b>{/<font color="blue">sources</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

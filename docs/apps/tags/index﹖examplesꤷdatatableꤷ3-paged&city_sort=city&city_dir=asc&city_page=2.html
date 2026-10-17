@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Sortable and paged · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-datatable){--pad-datatable-text:#1f1f1d;--pad-datatable-muted:#6b6a66;--pad-datatable-line:#e4e3df;--pad-datatable-head:#f4f3ef;--pad-datatable-stripe:#f9f9f7;--pad-datatable-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-datatable){--pad-datatable-text:light-dark(#1f1f1d,#ecebe6);--pad-datatable-muted:light-dark(#6b6a66,#9d9c93);--pad-datatable-line:light-dark(#e4e3df,#3a3a37);--pad-datatable-head:light-dark(#f4f3ef,#242422);--pad-datatable-stripe:light-dark(#f9f9f7,#1e1e1c);--pad-datatable-accent:light-dark(#2a78d6,#5598e7);}}.pad-datatable{max-width:100%;overflow-x:auto;color:var(--pad-datatable-text)}.pad-datatable table{border-collapse:collapse;font-variant-numeric:tabular-nums;line-height:1.4}.pad-datatable caption{caption-side:top;text-align:left;font-weight:600;padding:0 0 8px}.pad-datatable th,.pad-datatable td{padding:7px 12px;text-align:left;border-bottom:1px solid var(--pad-datatable-line)}.pad-datatable thead th{background:var(--pad-datatable-head);font-weight:600;white-space:nowrap;border-bottom-width:2px}.pad-datatable .num{text-align:right}.pad-datatable-striped tbody tr:nth-child(even){background:var(--pad-datatable-stripe)}.pad-datatable tfoot th,.pad-datatable tfoot td{font-weight:600;border-top:2px solid var(--pad-datatable-line);border-bottom:0}.pad-datatable thead a{color:inherit;text-decoration:none}.pad-datatable thead a:hover,.pad-datatable thead a:focus-visible{color:var(--pad-datatable-accent)}.pad-datatable-arrow{margin-left:4px;font-size:.75em;color:var(--pad-datatable-muted)}.pad-datatable [aria-sort] .pad-datatable-arrow{color:var(--pad-datatable-accent)}.pad-datatable-pager{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}.pad-datatable-pager a,.pad-datatable-pager span{min-width:2em;padding:3px 8px;border:1px solid var(--pad-datatable-line);border-radius:6px;text-align:center;text-decoration:none;color:inherit}.pad-datatable-pager a:hover{border-color:var(--pad-datatable-accent)}.pad-datatable-pager [aria-current]{background:var(--pad-datatable-accent);border-color:var(--pad-datatable-accent);color:#fff}.pad-datatable-pager [aria-disabled],.pad-datatable-pager .gap{opacity:.45;border-color:transparent}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <div class="pad-datatable">
+        <table class="pad-datatable-table">
+          <thead>
+            <tr>
+              <th scope="col" aria-sort="ascending">
+                <a href="index%EF%B9%96examples%EA%A4%B7datatable%EA%A4%B73-paged&amp;city_sort=city&amp;city_dir=desc.html">City<span class="pad-datatable-arrow" aria-hidden="true">▲</span></a>
+              </th>
+              <th scope="col">
+                <a href="index%EF%B9%96examples%EA%A4%B7datatable%EA%A4%B73-paged&amp;city_sort=country&amp;city_dir=asc.html">Country<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
+              </th>
+              <th scope="col" class="num">
+                <a href="index%EF%B9%96examples%EA%A4%B7datatable%EA%A4%B73-paged&amp;city_sort=population&amp;city_dir=asc.html">Population<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Moscow
+              </td>
+              <td>
+                Russia
+              </td>
+              <td class="num">
+                13,010,112
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Mumbai
+              </td>
+              <td>
+                India
+              </td>
+              <td class="num">
+                12,442,373
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Shanghai
+              </td>
+              <td>
+                China
+              </td>
+              <td class="num">
+                24,870,895
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Tokyo
+              </td>
+              <td>
+                Japan
+              </td>
+              <td class="num">
+                14,094,034
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav class="pad-datatable-pager" aria-label="Pagination">
+          <a href="index%EF%B9%96examples%EA%A4%B7datatable%EA%A4%B73-paged&amp;city_sort=city&amp;city_dir=asc&amp;city_page=1.html" rel="prev" aria-label="Previous page">‹</a><a href="index%EF%B9%96examples%EA%A4%B7datatable%EA%A4%B73-paged&amp;city_sort=city&amp;city_dir=asc&amp;city_page=1.html">1</a><a href="index%EF%B9%96examples%EA%A4%B7datatable%EA%A4%B73-paged&amp;city_sort=city&amp;city_dir=asc&amp;city_page=2.html" aria-current="page">2</a><span aria-disabled="true" aria-label="Next page">›</span>
+        </nav>
+      </div>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

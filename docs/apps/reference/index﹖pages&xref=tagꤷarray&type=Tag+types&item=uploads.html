@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - uploads
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - uploads
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: showcase - Page: progress/uploads<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">progress/uploads.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">progress/uploads.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $uploads </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'holiday-photos.zip'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'success' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'quarterly-report.pdf'</span><span style="color: #007700">,</span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">72</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'accent'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'site-backup.tar.gz'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">38</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'accent'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'video-raw.mov'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">91</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'warning' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'database.sql'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'danger'  </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Uploads in progress<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A native progress element per file<font color="black">,</font> styled<font color="black">,</font> with its label and percentage - the colour slot says how it goes.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:18px; width:min(100%, 460px); margin:0 auto"&gt;<br>  <b>{<font color="blue">uploads</font><font color="red"></font>}</b><b>{<font color="blue">progress </font><font color="red"><font color="red">$</font>done<font color="black">,</font> label=<font color="red">$</font>file<font color="black">,</font> color=<font color="red">$</font>color</font>}</b><b>{/<font color="blue">uploads</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd6c01be85ee63119a06f9f90685f7821"></div>
+                        <script>
+                        padAjaxd6c01be85ee63119a06f9f90685f7821 = new XMLHttpRequest();
+                        padAjaxd6c01be85ee63119a06f9f90685f7821.onreadystatechange=function() {
+                        if (padAjaxd6c01be85ee63119a06f9f90685f7821.readyState === 4) {
+                        if (padAjaxd6c01be85ee63119a06f9f90685f7821.status === 200) {
+                        document.getElementById("padAjaxd6c01be85ee63119a06f9f90685f7821").innerHTML=padAjaxd6c01be85ee63119a06f9f90685f7821.responseText;
+                        } else {
+                        document.getElementById("padAjaxd6c01be85ee63119a06f9f90685f7821").innerHTML=padAjaxd6c01be85ee63119a06f9f90685f7821.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd6c01be85ee63119a06f9f90685f7821.open("GET","http://localhost/pad/showcase/?progress/uploads&padInclude",true);
+                        padAjaxd6c01be85ee63119a06f9f90685f7821.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/progress/1-uploads<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/progress/1-uploads.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/progress/1-uploads.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $uploads </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'holiday-photos.zip'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'success' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'quarterly-report.pdf'</span><span style="color: #007700">, </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">72</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'accent'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'video-raw.mov'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">91</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'warning' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'file' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'database.sql'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'done' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">,  </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'danger'  </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A bar per upload<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The label and percentage above each bar; the colour slot says how it goes.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:14px; max-width:420px"&gt;<br>  <b>{<font color="blue">uploads</font><font color="red"></font>}</b><b>{<font color="blue">progress </font><font color="red"><font color="red">$</font>done<font color="black">,</font> label=<font color="red">$</font>file<font color="black">,</font> color=<font color="red">$</font>color</font>}</b><b>{/<font color="blue">uploads</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcba91bf45954fdb0901144e8c4c0b675"></div>
+                        <script>
+                        padAjaxcba91bf45954fdb0901144e8c4c0b675 = new XMLHttpRequest();
+                        padAjaxcba91bf45954fdb0901144e8c4c0b675.onreadystatechange=function() {
+                        if (padAjaxcba91bf45954fdb0901144e8c4c0b675.readyState === 4) {
+                        if (padAjaxcba91bf45954fdb0901144e8c4c0b675.status === 200) {
+                        document.getElementById("padAjaxcba91bf45954fdb0901144e8c4c0b675").innerHTML=padAjaxcba91bf45954fdb0901144e8c4c0b675.responseText;
+                        } else {
+                        document.getElementById("padAjaxcba91bf45954fdb0901144e8c4c0b675").innerHTML=padAjaxcba91bf45954fdb0901144e8c4c0b675.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcba91bf45954fdb0901144e8c4c0b675.open("GET","http://localhost/pad/tags/?examples/progress/1-uploads&padInclude",true);
+                        padAjaxcba91bf45954fdb0901144e8c4c0b675.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

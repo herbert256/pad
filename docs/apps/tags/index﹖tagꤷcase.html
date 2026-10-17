@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {case} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#conditions">Conditions</a><span>/</span><span aria-current="page">case</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>case<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders the one branch whose {when} matches a value, with an {else} for none.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#conditions">Conditions</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">case</span> value<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'a'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'b'</span>, <span class="hl-str">'c'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">case</span> value<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'a'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              An expression - a field such as <code>$color</code>, or any computed value - that each <code>{when}</code> is compared with.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{case value}</code> evaluates its value once and keeps only the branch of the first <code>{when}</code> that matches it. A <code>{when}</code> may list several values separated by commas - <code>{when 'yellow', 'amber'}</code> - and matches when any of them is equal. Each value is an expression of its own, so <code>{when $limit}</code> or <code>{when 2 * 5}</code> work too. The comparison is PHP's loose <code>==</code>, so <code>{when 3}</code> matches the text <code>'3'</code>.
+          </p>
+          <p>
+            A branch runs from its <code>{when}</code> to the next one (or to <code>{else}</code> or <code>{/case}</code>). <code>{else}</code> opens the default branch, rendered when no <code>{when}</code> matched; without it nothing renders in that case. <code>{when 'default'}</code> is not a default - it is an ordinary branch matching the text <code>default</code>. A nested <code>{case}</code> or <code>{if}</code> inside a branch keeps its own <code>{when}</code> and <code>{else}</code>.
+          </p>
+          <p>
+            Under the strict syntax check the tag is held to its shape: a <code>{case}</code> without a value, without any <code>{when}</code> or without its <code>{/case}</code> is an error; so is text standing before the first <code>{when}</code> (it would never render), a <code>{when}</code> behind the <code>{else}</code>, a <code>{when}</code> without a value, and a value listed twice - only the first one could ever answer.
+          </p>
+          <p>
+            For a yes/no test use <a href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a>; for a heading each time a value changes inside a loop, <a href="index%EF%B9%96tag%EA%A4%B7ifchanged.html">{ifchanged}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Matching a value
+            </h3>
+            <p class="example-about">
+              The branch of the {when} that matches renders; a {when} can list several values.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/case/1-basic.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$light</span> = <span class="hl-str">'amber'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The light is <span class="hl-brc">{</span><span class="hl-var">$light</span><span class="hl-brc">}</span>:
+<span class="hl-brc">{</span><span class="hl-tag">case</span> <span class="hl-var">$light</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'red'</span><span class="hl-brc">}</span> stop.
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'yellow'</span>, <span class="hl-str">'amber'</span><span class="hl-brc">}</span> slow down.
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'green'</span><span class="hl-brc">}</span> go.
+<span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7case%EA%A4%B71-basic.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    The light is amber: slow down.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The else branch
+            </h3>
+            <p class="example-about">
+              {else} renders when no {when} matched - here inside a loop, once per row.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/case/2-else.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'day'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Day <span class="hl-brc">{</span><span class="hl-var">$day</span><span class="hl-brc">}</span>:
+  <span class="hl-brc">{</span><span class="hl-tag">case</span> <span class="hl-var">$day</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-num">1</span><span class="hl-brc">}</span> Monday
+    <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-num">2</span><span class="hl-brc">}</span> Tuesday
+    <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-num">3</span><span class="hl-brc">}</span> Wednesday
+  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+    later in the week
+  <span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7case%EA%A4%B72-else.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Day 1: Monday
+                    </li>
+                    <li>Day 2: Tuesday
+                    </li>
+                    <li>Day 3: Wednesday
+                    </li>
+                    <li>Day 4: later in the week
+                    </li>
+                    <li>Day 5: later in the week
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Computed values
+            </h3>
+            <p class="example-about">
+              The case value and the when values are expressions, compared loosely.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/case/3-expression.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$score</span> = <span class="hl-num">7</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$score</span><span class="hl-brc">}</span> is
+<span class="hl-brc">{</span><span class="hl-tag">case</span> <span class="hl-var">$score</span> % <span class="hl-num">2</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-num">0</span><span class="hl-brc">}</span> even
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-num">1</span><span class="hl-brc">}</span> odd
+<span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span>
+and
+<span class="hl-brc">{</span><span class="hl-tag">case</span> <span class="hl-var">$score</span> gt <span class="hl-num">5</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">when</span> TRUE<span class="hl-brc">}</span> high.
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  low.
+<span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7case%EA%A4%B73-expression.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    7 is odd and high.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> <span class="about">Renders its content only when a condition holds, with elseif and else branches.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ifchanged.html">{ifchanged}</a> <span class="about">Renders its content when a value differs from the previous row of the loop around it - a heading per group.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7switch.html">{switch}</a> <span class="about">Answers the next value of a rotating list on every call - striped rows without a counter.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7carousel.html">← {carousel}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {attrs} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">attrs</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>attrs<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes HTML attributes from values - quoted and escaped, a true boolean attribute bare, a false one left out.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">name</span>=<span class="hl-var">$value</span>, <span class="hl-opt">other</span>=<span class="hl-var">$value</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">attrs</span> required, <span class="hl-opt">aria-expanded</span>=<span class="hl-var">$open</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$array</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>items</code>
+            </dt>
+            <dd>
+              Any number of items: <code>name=expression</code> (any HTML attribute name, dashes included), a bare <code>name</code> written as a bare attribute, or an expression whose array value adds its keys as attributes.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{attrs}</code> stands inside an HTML start tag and writes the attributes its items describe, separated by spaces: <code>&lt;button {attrs disabled=$busy, title=$help}&gt;</code>. Each value is escaped for the attribute, so a quote in a value cannot end it. The items are read raw - <code>content=</code>, <code>data=</code> or <code>print=</code> are attribute names here, not the options they are on other tags.
+          </p>
+          <h3>
+            True, false and the rest
+          </h3>
+          <p>
+            A boolean HTML attribute - <code>disabled</code>, <code>checked</code>, <code>selected</code>, <code>required</code>, <code>hidden</code>, <code>readonly</code> and the like - is written bare when its value is true and left out otherwise. Any other attribute is left out for FALSE and NULL, written bare for TRUE, and otherwise written with its value: the text <code>'false'</code> stays <code>aria-expanded="false"</code>, an empty text is an empty attribute, an array is joined with spaces. A name alone - <code>{attrs required}</code> - is a bare attribute.
+          </p>
+          <h3>
+            Attributes from an array
+          </h3>
+          <p>
+            An item without a name whose value is an array adds its keys as attributes. Those keys are data, often a visitor's, so some are left out: a key that is no attribute name, an event handler (<code>on...</code>), a script library's directive in any spelling (<code>@</code>, <code>:</code>, <code>x-</code>, <code>v-</code>, <code>hx-</code>, <code>ng-</code>, <code>wire:</code> and more), an iframe's <code>srcdoc</code>, and a URL attribute whose value names a scheme that runs script (<code>javascript:</code>, <code>vbscript:</code>, <code>data:</code> other than <code>data:image/</code>).
+          </p>
+          <p>
+            For the <code>class</code> attribute, <a href="index%EF%B9%96tag%EA%A4%B7classes.html"><code>{classes}</code></a> builds the list from conditions.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Booleans and escaped values
+            </h3>
+            <p class="example-about">
+              disabled is written bare while busy, a false aria value stays the text false, and the quote in the title is escaped.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/attrs/1-boolean.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = TRUE<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$help</span> = <span class="hl-str">'Saves the "draft" now'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;button</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span>, <span class="hl-opt">title</span>=<span class="hl-var">$help</span>, <span class="hl-opt">aria-expanded</span>=<span class="hl-str">'false'</span>, <span class="hl-opt">data-step</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-htm">&gt;</span>Save<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;button</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=FALSE, <span class="hl-opt">title</span>=<span class="hl-var">$help</span><span class="hl-brc">}</span><span class="hl-htm">&gt;</span>Publish<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span>, <span class="hl-opt">title</span>=<span class="hl-var">$help</span>, <span class="hl-opt">aria-expanded</span>=<span class="hl-str">'false'</span>, <span class="hl-opt">data-step</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7attrs%EA%A4%B71-boolean.html">open alone</a>
+                </div>
+                <div class="result">
+                  <button disabled title="Saves the &quot;draft&quot; now" aria-expanded="false" data-step="2">Save</button> <button title="Saves the &quot;draft&quot; now">Publish</button>
+                  <pre>disabled title="Saves the "draft" now" aria-expanded="false" data-step="2"</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Attributes from an array
+            </h3>
+            <p class="example-about">
+              The keys of an array become attributes; the event handler, the false hidden and the javascript: address in the data are left out.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/attrs/2-array.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;a</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$link</span><span class="hl-brc">}</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;input</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$field</span>, required<span class="hl-brc">}</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$link</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$field</span>, required<span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/attrs/2-array.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$label</span> <span class="hl-pun">=</span> <span class="hl-str">'Documentation'</span><span class="hl-pun">;</span>
+
+  <span class="hl-var">$link</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'href'</span>    <span class="hl-pun">=&gt;</span> <span class="hl-str">'?names'</span><span class="hl-pun">,</span>
+            <span class="hl-str">'title'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'All tags'</span><span class="hl-pun">,</span>
+            <span class="hl-str">'onclick'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'steal()'</span><span class="hl-pun">,</span>
+            <span class="hl-str">'hidden'</span>  <span class="hl-pun">=&gt;</span> <span class="hl-lit">FALSE</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+  <span class="hl-var">$field</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'type'</span>        <span class="hl-pun">=&gt;</span> <span class="hl-str">'email'</span><span class="hl-pun">,</span>
+             <span class="hl-str">'name'</span>        <span class="hl-pun">=&gt;</span> <span class="hl-str">'email'</span><span class="hl-pun">,</span>
+             <span class="hl-str">'placeholder'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'you@example.com'</span><span class="hl-pun">,</span>
+             <span class="hl-str">'formaction'</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">'javascript:alert(1)'</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7attrs%EA%A4%B72-array.html">open alone</a>
+                </div>
+                <div class="result">
+                  <a href="index%EF%B9%96names.html" title="All tags">Documentation</a> <input type="email" name="email" placeholder="you@example.com" required="">
+                  <pre>href="?names" title="All tags"
+type="email" name="email" placeholder="you@example.com" required</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7classes.html">{classes}</a> <span class="about">Builds a class list from fixed names and names that are in only while their condition holds.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7echo.html">{echo}</a> <span class="about">Evaluates an expression and prints the result - the general output tag, and the one to put in front of a pipe.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7at.html">← {at}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7auth.html">{auth} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

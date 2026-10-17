@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {decrement} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#values">Variables and stores</a><span>/</span><span aria-current="page">decrement</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>decrement<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Takes one off a variable, starting it at -1 when it does not exist yet.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#values">Variables and stores</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$name</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>$name</code>
+            </dt>
+            <dd>
+              The variable to count down, named rather than read, written with its <code>$</code>. An application variable, not an engine one (<code>pad*</code>).
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{decrement $counter}</code> takes one off the variable and prints nothing. A variable that does not exist yet, or holds an empty text, starts at -1. The variable is a global: the new value outlives the loop or block the tag stands in, so it can count down the condition of an <a href="index%EF%B9%96tag%EA%A4%B7until.html">{until}</a> or <a href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> loop.
+          </p>
+          <p>
+            It is the short form of <code>{set $counter = $counter - 1}</code> and the mirror image of <a href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a>. The variable is taken by name - <code>$counter</code>, the <code>$</code> written - and is never evaluated as an expression.
+          </p>
+          <p>
+            A value that is no number is an error naming the variable, and so is counting an engine variable such as <code>$padPage</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Places left
+            </h3>
+            <p class="example-about">
+              Each booking takes one place off; when none are left the next guests go on the waiting list.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/decrement/1-countdown.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$places</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">bookings</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$places</span> eq <span class="hl-num">0</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$guest</span><span class="hl-brc">}</span>: waiting list<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">continue</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$places</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$guest</span><span class="hl-brc">}</span>: booked, <span class="hl-brc">{</span><span class="hl-var">$places</span><span class="hl-brc">}</span> left<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/bookings</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/decrement/1-countdown.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$bookings</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'guest'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Ann'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'guest'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Bob'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'guest'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Cleo'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'guest'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Dirk'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7decrement%EA%A4%B71-countdown.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Ann: booked, 2 left
+                    </li>
+                    <li>Bob: booked, 1 left
+                    </li>
+                    <li>Cleo: booked, 0 left
+                    </li>
+                    <li>Dirk: waiting list
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A counter that did not exist
+            </h3>
+            <p class="example-about">
+              Decrementing a new variable starts it at -1.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/decrement/2-new.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$balance</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$balance</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$balance</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$balance</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$balance</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$balance</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7decrement%EA%A4%B72-new.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    -1, -2, -3
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a> <span class="about">Adds one to a variable, starting it at 1 when it does not exist yet.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7set.html">{set}</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7until.html">{until}</a> <span class="about">Renders its content again and again until a condition becomes true.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> <span class="about">Renders its content again and again for as long as a condition holds.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7debug.html">← {debug}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7define.html">{define} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

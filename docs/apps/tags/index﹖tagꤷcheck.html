@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {check} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#database">Database</a><span>/</span><span aria-current="page">check</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>check<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Asks the application database whether a row exists, and renders its content only when one does.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#database">Database</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">check</span> <span class="hl-str">"table where ..."</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/check</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">check</span> <span class="hl-str">"users where email='x@y.z'"</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/check</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>condition</code>
+            </dt>
+            <dd>
+              A table and a WHERE clause - <code>"users where active=1"</code>. No <code>* from</code>: CHECK takes the bare table.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              In the designer preview (<code>&amp;padSample</code>) the sample's value of that name answers, true or false, instead of the database.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{check "..."}</code> asks the database whether a row exists and answers TRUE or FALSE: on a hit the content renders, otherwise the <code>@else@</code> branch does (or nothing). It is the template form of <code>db ( "CHECK ..." )</code>, and CHECK has a form of its own: a bare table followed by a WHERE clause - <code>{check "orders where status='open'"}</code>, never <code>{check "* from orders ..."}</code>.
+          </p>
+          <p>
+            Nothing of the row is read, so no field of it is available in the content - use <a href="index%EF%B9%96tag%EA%A4%B7record.html">{record}</a> when the row itself is wanted. For a test on a value that is already in a variable, <a href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> is the tag.
+          </p>
+          <p>
+            As with the other database tags, a request value belongs in a placeholder in PHP: <code>$taken = db ( "CHECK users WHERE email='{0}'", [ $email ] );</code> and then <code>{if $taken}</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Does it exist?
+            </h3>
+            <p class="example-about">
+              A table and a WHERE clause - the content on a hit, @else@ otherwise.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/check/1-exists.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">check</span> <span class="hl-str">"orders where status='open'"</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>There is work waiting.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>All orders are done.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/check</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The same from PHP
+            </h3>
+            <p class="example-about">
+              With a request value the check belongs in PHP, through a placeholder.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/check/2-php.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-com">{# signup.php: $taken = db ( "CHECK users WHERE email='{0}'", [ $email ] ); #}</span>
+<span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$taken</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>That address already has an account.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7record.html">{record}</a> <span class="about">Runs a SQL query on the application database and renders its content with the first row's columns as fields.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7field.html">{field}</a> <span class="about">Runs a SQL query on the application database and prints the single value it answers.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7array.html">{array}</a> <span class="about">Runs a SQL query on the application database and repeats its content once per row.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> <span class="about">Renders its content only when a condition holds, with elseif and else branches.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7chart.html">← {chart}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7chess.html">{chess} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

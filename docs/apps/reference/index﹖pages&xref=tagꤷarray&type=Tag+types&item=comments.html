@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -73,6 +73,216 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: showcase - Page: gravatar/comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">gravatar/comments.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">gravatar/comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Herbert Jebbink'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'herbert@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The page cache halves the time of the home page.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ada@example.org'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Could the sequence tags take a step of their own?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'grace@example.net'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A bug report with a template line number - lovely.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Comments with Gravatars<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The picture each address registered at gravatar.com - only its SHA-256 hash leaves the page<font color="black">,</font> lazily<font color="black">,</font> without a referrer.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:16px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;div style="display:flex; gap:12px; align-items:flex-start"&gt;<br>    <b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> default=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b><br>    &lt;div&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb2b33a8af314ffc676c1af35e2a47a79"></div>
+                        <script>
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79 = new XMLHttpRequest();
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79.onreadystatechange=function() {
+                        if (padAjaxb2b33a8af314ffc676c1af35e2a47a79.readyState === 4) {
+                        if (padAjaxb2b33a8af314ffc676c1af35e2a47a79.status === 200) {
+                        document.getElementById("padAjaxb2b33a8af314ffc676c1af35e2a47a79").innerHTML=padAjaxb2b33a8af314ffc676c1af35e2a47a79.responseText;
+                        } else {
+                        document.getElementById("padAjaxb2b33a8af314ffc676c1af35e2a47a79").innerHTML=padAjaxb2b33a8af314ffc676c1af35e2a47a79.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79.open("GET","http://localhost/pad/showcase/?gravatar/comments&padInclude",true);
+                        padAjaxb2b33a8af314ffc676c1af35e2a47a79.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: gravatar/private<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">gravatar/private.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">gravatar/private.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Herbert Jebbink'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'herbert@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The page cache halves the time of the home page.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ada@example.org'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Could the sequence tags take a step of their own?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'grace@example.net'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A bug report with a template line number - lovely.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>No request to a third party<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>fallback= draws the picture on the server instead - the initials of the name<font color="black">,</font> or the identicon of the address - so no visitor is sent to Gravatar.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:16px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;div style="display:flex; gap:12px; align-items:flex-start"&gt;<br>    <b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> fallback=<font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b><br>    <b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> fallback=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b><br>    &lt;div&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf67e93bb35dfa79f74eaff1229dee6c1"></div>
+                        <script>
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1 = new XMLHttpRequest();
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1.onreadystatechange=function() {
+                        if (padAjaxf67e93bb35dfa79f74eaff1229dee6c1.readyState === 4) {
+                        if (padAjaxf67e93bb35dfa79f74eaff1229dee6c1.status === 200) {
+                        document.getElementById("padAjaxf67e93bb35dfa79f74eaff1229dee6c1").innerHTML=padAjaxf67e93bb35dfa79f74eaff1229dee6c1.responseText;
+                        } else {
+                        document.getElementById("padAjaxf67e93bb35dfa79f74eaff1229dee6c1").innerHTML=padAjaxf67e93bb35dfa79f74eaff1229dee6c1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1.open("GET","http://localhost/pad/showcase/?gravatar/private&padInclude",true);
+                        padAjaxf67e93bb35dfa79f74eaff1229dee6c1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: showcase - Page: timeago/comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">timeago/comments.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">timeago/comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A thread whose comments were posted some time before now.<br><br>  </span><span style="color: #0000BB">$comments </span><span style="color: #007700">= [];<br><br>  foreach ( [ [ </span><span style="color: #DD0000">'Maya'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'#2a78d6'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-4 months'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'Is there a way to export the report as a spreadsheet?' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Jonas'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'#1baf7a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-3 weeks'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'The CSV answer of the same page does exactly that.' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Priya'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'#eb6834'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-1 day'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'Tried it today - one line in the page and it works.' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Tomás'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'#7c5cff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-2 hours'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'Can the columns be chosen?' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Maya'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'#2a78d6'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-5 minutes'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'Yes: list them in the page, in the order you want.' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'Ken'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'#e34948'</span><span style="color: #007700">, </span><span style="color: #DD0000">'-3 seconds'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'Thanks, everyone!' </span><span style="color: #007700">] ] as list ( </span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$color</span><span style="color: #007700">, </span><span style="color: #0000BB">$when</span><span style="color: #007700">, </span><span style="color: #0000BB">$text </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$comments </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #DD0000">'color' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$color</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padNow </span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">modify </span><span style="color: #007700">( </span><span style="color: #0000BB">$when </span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">), </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$text </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A comment thread<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each comment says how long ago it was posted; hover a time for the full date<font color="black">,</font> and the datetime attribute carries the exact moment.<font color="black">'</font></font>}</b><br>&lt;ol style="list-style:none;margin:0;padding:0;max-width:32em;display:grid;gap:16px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;li style="display:grid;grid-template-columns:40px 1fr;gap:12px"&gt;<br>    &lt;span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:<b>{<font color="green"><font color="red">$</font>color</font>}</b>"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">left(1)</font>}</b>&lt;/span&gt;<br>    &lt;div&gt;<br>      &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt; &lt;small style="opacity:.65"&gt;· <b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>posted</font>}</b>&lt;/small&gt;<br>      &lt;p style="margin:4px 0 0;line-height:1.5"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>    &lt;/div&gt;<br>  &lt;/li&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/ol&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3e12ebb3bd61e720b84281755c231de7"></div>
+                        <script>
+                        padAjax3e12ebb3bd61e720b84281755c231de7 = new XMLHttpRequest();
+                        padAjax3e12ebb3bd61e720b84281755c231de7.onreadystatechange=function() {
+                        if (padAjax3e12ebb3bd61e720b84281755c231de7.readyState === 4) {
+                        if (padAjax3e12ebb3bd61e720b84281755c231de7.status === 200) {
+                        document.getElementById("padAjax3e12ebb3bd61e720b84281755c231de7").innerHTML=padAjax3e12ebb3bd61e720b84281755c231de7.responseText;
+                        } else {
+                        document.getElementById("padAjax3e12ebb3bd61e720b84281755c231de7").innerHTML=padAjax3e12ebb3bd61e720b84281755c231de7.statusText;
+                        }
+                        }
+                        }
+                        padAjax3e12ebb3bd61e720b84281755c231de7.open("GET","http://localhost/pad/showcase/?timeago/comments&padInclude",true);
+                        padAjax3e12ebb3bd61e720b84281755c231de7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/gravatar/1-comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/gravatar/1-comments.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/gravatar/1-comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada Lovelace'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ada@example.org'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Could the sequence tags take a step of their own?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Grace Hopper'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'grace@example.net'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A bug report with a template line number - lovely.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Comments with Gravatars<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An img per address<font color="black">,</font> made from its SHA-256 hash; default=identicon for addresses Gravatar does not know.<font color="black">'</font></font>}</b><br>&lt;div style="display:grid; gap:12px"&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>  &lt;div style="display:flex; gap:10px; align-items:flex-start"&gt;<b>{<font color="blue">gravatar </font><font color="red"><font color="red">$</font>email<font color="black">,</font> size=40<font color="black">,</font> default=<font color="black">'</font>identicon<font color="black">'</font><font color="black">,</font> alt=<font color="red">$</font>name</font>}</b> &lt;div&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/div&gt;&lt;/div&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax019baf2bba2698dbdcb50dd0e7c38ea6"></div>
+                        <script>
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6 = new XMLHttpRequest();
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6.onreadystatechange=function() {
+                        if (padAjax019baf2bba2698dbdcb50dd0e7c38ea6.readyState === 4) {
+                        if (padAjax019baf2bba2698dbdcb50dd0e7c38ea6.status === 200) {
+                        document.getElementById("padAjax019baf2bba2698dbdcb50dd0e7c38ea6").innerHTML=padAjax019baf2bba2698dbdcb50dd0e7c38ea6.responseText;
+                        } else {
+                        document.getElementById("padAjax019baf2bba2698dbdcb50dd0e7c38ea6").innerHTML=padAjax019baf2bba2698dbdcb50dd0e7c38ea6.statusText;
+                        }
+                        }
+                        }
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6.open("GET","http://localhost/pad/tags/?examples/gravatar/1-comments&padInclude",true);
+                        padAjax019baf2bba2698dbdcb50dd0e7c38ea6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/timeago/1-thread<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/timeago/1-thread.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/timeago/1-thread.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $comments </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Maya'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-06-02 09:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Can the report be a spreadsheet?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jonas'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-09-17 15:30'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The CSV answer of the page does it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Priya'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-07 10:00'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'One line in the page and it works.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Tomás'</span><span style="color: #007700">, </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-08 09:45'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Can the columns be chosen?' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ken'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'posted' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-08 11:55'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Yes - list them in the page.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A comment thread<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each comment says how long before the fixed now it was posted; hover a time for the full moment.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">comments</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt; - <b>{<font color="blue">timeago </font><font color="red"><font color="red">$</font>posted<font color="black">,</font> now=<font color="black">'</font>2026-10-08 12<font color="black">:</font>00<font color="black">'</font></font>}</b>: <b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">comments</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc87a3156c9f76094347b67c18acba979"></div>
+                        <script>
+                        padAjaxc87a3156c9f76094347b67c18acba979 = new XMLHttpRequest();
+                        padAjaxc87a3156c9f76094347b67c18acba979.onreadystatechange=function() {
+                        if (padAjaxc87a3156c9f76094347b67c18acba979.readyState === 4) {
+                        if (padAjaxc87a3156c9f76094347b67c18acba979.status === 200) {
+                        document.getElementById("padAjaxc87a3156c9f76094347b67c18acba979").innerHTML=padAjaxc87a3156c9f76094347b67c18acba979.responseText;
+                        } else {
+                        document.getElementById("padAjaxc87a3156c9f76094347b67c18acba979").innerHTML=padAjaxc87a3156c9f76094347b67c18acba979.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc87a3156c9f76094347b67c18acba979.open("GET","http://localhost/pad/tags/?examples/timeago/1-thread&padInclude",true);
+                        padAjaxc87a3156c9f76094347b67c18acba979.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -87,7 +297,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -32,7 +32,7 @@
               <td>
                 <center>
                   <hr>
-                  App: manual - Page: lvl_occ/12<br>
+                  App: charts - Page: bars/energy<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -41,7 +41,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">lvl_occ/12.pad</font>
+                        <font size="-2">bars/energy.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -50,29 +50,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXml<font color="black">'</font><font color="black">,</font> <font color="black">'</font>level_demo.xml<font color="black">'</font></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myXml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myXml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>energymix<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>year<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>coal<font color="black">,</font> gas<font color="black">,</font> wind<font color="black">,</font> solar<font color="black">'</font><font color="black">,</font><br>       stacked<font color="black">,</font><br>       title=<font color="black">'</font>Electricity by source<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax8bd4100af43b8ddbc5d102afbd6e46de"></div>
+                        <div id="padAjax87021782414861abb1d12093c3fd14e1"></div>
                         <script>
-                        padAjax8bd4100af43b8ddbc5d102afbd6e46de = new XMLHttpRequest();
-                        padAjax8bd4100af43b8ddbc5d102afbd6e46de.onreadystatechange=function() {
-                        if (padAjax8bd4100af43b8ddbc5d102afbd6e46de.readyState === 4) {
-                        if (padAjax8bd4100af43b8ddbc5d102afbd6e46de.status === 200) {
-                        document.getElementById("padAjax8bd4100af43b8ddbc5d102afbd6e46de").innerHTML=padAjax8bd4100af43b8ddbc5d102afbd6e46de.responseText;
+                        padAjax87021782414861abb1d12093c3fd14e1 = new XMLHttpRequest();
+                        padAjax87021782414861abb1d12093c3fd14e1.onreadystatechange=function() {
+                        if (padAjax87021782414861abb1d12093c3fd14e1.readyState === 4) {
+                        if (padAjax87021782414861abb1d12093c3fd14e1.status === 200) {
+                        document.getElementById("padAjax87021782414861abb1d12093c3fd14e1").innerHTML=padAjax87021782414861abb1d12093c3fd14e1.responseText;
                         } else {
-                        document.getElementById("padAjax8bd4100af43b8ddbc5d102afbd6e46de").innerHTML=padAjax8bd4100af43b8ddbc5d102afbd6e46de.statusText;
+                        document.getElementById("padAjax87021782414861abb1d12093c3fd14e1").innerHTML=padAjax87021782414861abb1d12093c3fd14e1.statusText;
                         }
                         }
                         }
-                        padAjax8bd4100af43b8ddbc5d102afbd6e46de.open("GET","http://localhost/pad/manual/?lvl_occ/12&padInclude",true);
-                        padAjax8bd4100af43b8ddbc5d102afbd6e46de.send();
+                        padAjax87021782414861abb1d12093c3fd14e1.open("GET","http://localhost/pad/charts/?bars/energy&padInclude",true);
+                        padAjax87021782414861abb1d12093c3fd14e1.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: manual - Page: pages/levels_and_occurrences<br>
+                  App: charts - Page: bars/profit<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -81,7 +81,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">pages/levels_and_occurrences.pad</font>
+                        <font size="-2">bars/profit.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -90,29 +90,269 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">block</font><font color="red"></font>}</b><br>    PAD is data driven, the PAD data concepts are named Level and Occurence<br>    &lt;br&gt;&lt;br&gt;<br>    Below example: &lt;br&gt;<br>    - Is two levels deep &lt;br&gt;<br>    - The level 'row' has 3 occurences&lt;br&gt;<br>    - The level 'column' has 5 occurences&lt;br&gt;&lt;br&gt;<br>  <b>{/<font color="blue">block</font><font color="red"></font>}</b><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>lvl_occ/1<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font> center</font>}</b><br>&lt;/p&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br>  If not specifield for a PAD tag then default it has 1 occurence.<br>  &lt;br&gt;&lt;br&gt;&lt;hr&gt;&lt;br&gt;<br>  Just for fun, below the above example implemented in a few different ways.<br>  &lt;br&gt;<br>  Hopefully all this magic will be explained in this manual.<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt; <br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>2..12<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>xxx<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">example </font><font color="red"><font color="black">'</font>lvl_occ/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>xxx</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> skipNames<b><font color="black">{</font><font color="blue">notFirst</font><font color="red"></font><font color="black">}</font></b><font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<b><font color="black">{</font>/<font color="blue">notFirst</font><font color="red"></font><font color="black">}</font></b><b><font color="black">{</font><font color="blue">notLast</font><font color="red"></font><font color="black">}</font></b><font color="black">,</font>skipClose<b><font color="black">{</font>/<font color="blue">notLast</font><font color="red"></font><font color="black">}</font></b></font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>column<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>profit<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>quarter<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>result<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Result per quarter<font color="black">,</font> in thousands<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d"></div>
+                        <div id="padAjaxa135ea1236bddb597c7d560ed1b49a9e"></div>
                         <script>
-                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d = new XMLHttpRequest();
-                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.onreadystatechange=function() {
-                        if (padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.readyState === 4) {
-                        if (padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.status === 200) {
-                        document.getElementById("padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d").innerHTML=padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.responseText;
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e = new XMLHttpRequest();
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e.onreadystatechange=function() {
+                        if (padAjaxa135ea1236bddb597c7d560ed1b49a9e.readyState === 4) {
+                        if (padAjaxa135ea1236bddb597c7d560ed1b49a9e.status === 200) {
+                        document.getElementById("padAjaxa135ea1236bddb597c7d560ed1b49a9e").innerHTML=padAjaxa135ea1236bddb597c7d560ed1b49a9e.responseText;
                         } else {
-                        document.getElementById("padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d").innerHTML=padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.statusText;
+                        document.getElementById("padAjaxa135ea1236bddb597c7d560ed1b49a9e").innerHTML=padAjaxa135ea1236bddb597c7d560ed1b49a9e.statusText;
                         }
                         }
                         }
-                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.open("GET","http://localhost/pad/manual/?pages/levels_and_occurrences&padInclude",true);
-                        padAjax5e1bc0cd7d2a6c45f12af2dff1ed398d.send();
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e.open("GET","http://localhost/pad/charts/?bars/profit&padInclude",true);
+                        padAjaxa135ea1236bddb597c7d560ed1b49a9e.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: reference - Page: index<br>
+                  App: charts - Page: distribution/salaries<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">distribution/salaries.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>boxplot<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>salaries<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>team<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>salary<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Monthly salary per team<font color="black">,</font> in euros<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=360</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax073b55f49226de0438dad87c970a3bd7"></div>
+                        <script>
+                        padAjax073b55f49226de0438dad87c970a3bd7 = new XMLHttpRequest();
+                        padAjax073b55f49226de0438dad87c970a3bd7.onreadystatechange=function() {
+                        if (padAjax073b55f49226de0438dad87c970a3bd7.readyState === 4) {
+                        if (padAjax073b55f49226de0438dad87c970a3bd7.status === 200) {
+                        document.getElementById("padAjax073b55f49226de0438dad87c970a3bd7").innerHTML=padAjax073b55f49226de0438dad87c970a3bd7.responseText;
+                        } else {
+                        document.getElementById("padAjax073b55f49226de0438dad87c970a3bd7").innerHTML=padAjax073b55f49226de0438dad87c970a3bd7.statusText;
+                        }
+                        }
+                        }
+                        padAjax073b55f49226de0438dad87c970a3bd7.open("GET","http://localhost/pad/charts/?distribution/salaries&padInclude",true);
+                        padAjax073b55f49226de0438dad87c970a3bd7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: gantt/release<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">gantt/release.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>gantt<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>release<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>work<font color="black">'</font><font color="black">,</font><br>       from=<font color="black">'</font>week<font color="black">'</font><font color="black">,</font><br>       to=<font color="black">'</font>weeks<font color="black">'</font><font color="black">,</font><br>       color=<font color="black">'</font>team<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>A release in twelve weeks<font color="black">,</font> by team<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3d6e59b32c184580d49cab9357241f59"></div>
+                        <script>
+                        padAjax3d6e59b32c184580d49cab9357241f59 = new XMLHttpRequest();
+                        padAjax3d6e59b32c184580d49cab9357241f59.onreadystatechange=function() {
+                        if (padAjax3d6e59b32c184580d49cab9357241f59.readyState === 4) {
+                        if (padAjax3d6e59b32c184580d49cab9357241f59.status === 200) {
+                        document.getElementById("padAjax3d6e59b32c184580d49cab9357241f59").innerHTML=padAjax3d6e59b32c184580d49cab9357241f59.responseText;
+                        } else {
+                        document.getElementById("padAjax3d6e59b32c184580d49cab9357241f59").innerHTML=padAjax3d6e59b32c184580d49cab9357241f59.statusText;
+                        }
+                        }
+                        }
+                        padAjax3d6e59b32c184580d49cab9357241f59.open("GET","http://localhost/pad/charts/?gantt/release&padInclude",true);
+                        padAjax3d6e59b32c184580d49cab9357241f59.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: heatmap/rainfall<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">heatmap/rainfall.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>heatmap<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>rainfall<font color="black">'</font><font color="black">,</font><br>       x=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font><br>       y=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>mm<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Rainfall in millimetres<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=300</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax11a63d169ddce6638296740bc385885f"></div>
+                        <script>
+                        padAjax11a63d169ddce6638296740bc385885f = new XMLHttpRequest();
+                        padAjax11a63d169ddce6638296740bc385885f.onreadystatechange=function() {
+                        if (padAjax11a63d169ddce6638296740bc385885f.readyState === 4) {
+                        if (padAjax11a63d169ddce6638296740bc385885f.status === 200) {
+                        document.getElementById("padAjax11a63d169ddce6638296740bc385885f").innerHTML=padAjax11a63d169ddce6638296740bc385885f.responseText;
+                        } else {
+                        document.getElementById("padAjax11a63d169ddce6638296740bc385885f").innerHTML=padAjax11a63d169ddce6638296740bc385885f.statusText;
+                        }
+                        }
+                        }
+                        padAjax11a63d169ddce6638296740bc385885f.open("GET","http://localhost/pad/charts/?heatmap/rainfall&padInclude",true);
+                        padAjax11a63d169ddce6638296740bc385885f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: hierarchy/company<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">hierarchy/company.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>treemap<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>company<font color="black">'</font><font color="black">,</font><br>       levels=<font color="black">'</font>department<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>The budget<font color="black">,</font> in thousands<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0021a0a2c93f9bcaaf9f40374035f7c2"></div>
+                        <script>
+                        padAjax0021a0a2c93f9bcaaf9f40374035f7c2 = new XMLHttpRequest();
+                        padAjax0021a0a2c93f9bcaaf9f40374035f7c2.onreadystatechange=function() {
+                        if (padAjax0021a0a2c93f9bcaaf9f40374035f7c2.readyState === 4) {
+                        if (padAjax0021a0a2c93f9bcaaf9f40374035f7c2.status === 200) {
+                        document.getElementById("padAjax0021a0a2c93f9bcaaf9f40374035f7c2").innerHTML=padAjax0021a0a2c93f9bcaaf9f40374035f7c2.responseText;
+                        } else {
+                        document.getElementById("padAjax0021a0a2c93f9bcaaf9f40374035f7c2").innerHTML=padAjax0021a0a2c93f9bcaaf9f40374035f7c2.statusText;
+                        }
+                        }
+                        }
+                        padAjax0021a0a2c93f9bcaaf9f40374035f7c2.open("GET","http://localhost/pad/charts/?hierarchy/company&padInclude",true);
+                        padAjax0021a0a2c93f9bcaaf9f40374035f7c2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: hierarchy/files<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">hierarchy/files.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>pack<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>sourcefiles<font color="black">'</font><font color="black">,</font><br>       levels=<font color="black">'</font>folder<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>file<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>kb<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>The files of a project by folder<font color="black">,</font> in kilobytes<font color="black">'</font><font color="black">,</font><br>       width=560<font color="black">,</font><br>       height=520</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa162133767f0bd6457ec1c937410dc52"></div>
+                        <script>
+                        padAjaxa162133767f0bd6457ec1c937410dc52 = new XMLHttpRequest();
+                        padAjaxa162133767f0bd6457ec1c937410dc52.onreadystatechange=function() {
+                        if (padAjaxa162133767f0bd6457ec1c937410dc52.readyState === 4) {
+                        if (padAjaxa162133767f0bd6457ec1c937410dc52.status === 200) {
+                        document.getElementById("padAjaxa162133767f0bd6457ec1c937410dc52").innerHTML=padAjaxa162133767f0bd6457ec1c937410dc52.responseText;
+                        } else {
+                        document.getElementById("padAjaxa162133767f0bd6457ec1c937410dc52").innerHTML=padAjaxa162133767f0bd6457ec1c937410dc52.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa162133767f0bd6457ec1c937410dc52.open("GET","http://localhost/pad/charts/?hierarchy/files&padInclude",true);
+                        padAjaxa162133767f0bd6457ec1c937410dc52.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: hierarchy/world<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">hierarchy/world.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>sunburst<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>world<font color="black">'</font><font color="black">,</font><br>       levels=<font color="black">'</font>continent<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>region<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>people<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>The world population in millions<font color="black">'</font><font color="black">,</font><br>       width=420<font color="black">,</font><br>       height=420</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax81db6bf48e258521d25e2dde7fe5c2a0"></div>
+                        <script>
+                        padAjax81db6bf48e258521d25e2dde7fe5c2a0 = new XMLHttpRequest();
+                        padAjax81db6bf48e258521d25e2dde7fe5c2a0.onreadystatechange=function() {
+                        if (padAjax81db6bf48e258521d25e2dde7fe5c2a0.readyState === 4) {
+                        if (padAjax81db6bf48e258521d25e2dde7fe5c2a0.status === 200) {
+                        document.getElementById("padAjax81db6bf48e258521d25e2dde7fe5c2a0").innerHTML=padAjax81db6bf48e258521d25e2dde7fe5c2a0.responseText;
+                        } else {
+                        document.getElementById("padAjax81db6bf48e258521d25e2dde7fe5c2a0").innerHTML=padAjax81db6bf48e258521d25e2dde7fe5c2a0.statusText;
+                        }
+                        }
+                        }
+                        padAjax81db6bf48e258521d25e2dde7fe5c2a0.open("GET","http://localhost/pad/charts/?hierarchy/world&padInclude",true);
+                        padAjax81db6bf48e258521d25e2dde7fe5c2a0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: charts - Page: index<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -130,29 +370,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;blockquote&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>reference<font color="black">'</font></font>}</b><br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/h3&gt;<br><br>    &lt;blockquote&gt;<br><br>      <b>{<font color="blue">getReference </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>dir</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> <font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>xref</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dir</font>}</b><br>          &lt;a href="?dir<b>{<font color="green">?xref</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br>        <b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>pages</font>}</b><br>          &lt;a href="?pages<b>{<font color="green">?xref</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>          <b>{<font color="green"><font color="red">$</font>item</font>}</b><br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>        &amp;nbsp; <br>        <br>      <b>{/<font color="blue">getReference</font><font color="red"></font>}</b><br>            <br>    &lt;/blockquote&gt;<br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;/blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>  <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;/blockquote&gt;</code></pre>
+                        <pre><code style="color: #000000">&lt;main class="page home"&gt;<br><br>  &lt;section class="hero"&gt;<br>    &lt;div class="hero-text"&gt;<br>      &lt;span class="kicker"&gt;PAD · <b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">chart</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/span&gt;<br>      &lt;h1&gt;Every chart,&lt;br&gt;&lt;span class="shine"&gt;drawn on the server.&lt;/span&gt;&lt;/h1&gt;<br>      &lt;p class="lead"&gt;One tag turns rows of JSON, YAML, CSV or PHP into an accessible SVG chart -<br>      lines, areas, streams, bars, funnels, pyramids, waterfalls, pies, waffles, marimekkos,<br>      parliaments, venns, gauges, radars, roses, bullets, histograms, violins, scatters, heatmaps,<br>      candlesticks, spirals, sankeys, chords, networks, treemaps, packs, org charts and gantt<br>      charts. No JavaScript, so it prints, caches and shows up in an e-mail.&lt;/p&gt;<br>      &lt;ul class="stats"&gt;<br>        &lt;li&gt;&lt;b&gt;46&lt;/b&gt; kinds&lt;/li&gt;<br>        &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>exampleCount</font>}</b>&lt;/b&gt; examples&lt;/li&gt;<br>        &lt;li&gt;&lt;b&gt;0&lt;/b&gt; lines of JavaScript&lt;/li&gt;<br>      &lt;/ul&gt;<br>    &lt;/div&gt;<br>    &lt;a class="hero-card" href="?sankey/energy" aria-label="Open the energy sankey"&gt;<br>      <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>sankey/energy<font color="black">'</font></font>}</b><br>    &lt;/a&gt;<br>  &lt;/section&gt;<br><br>  <b>{<font color="blue">families</font><font color="red"></font>}</b><br>  &lt;section class="family" id="<b>{<font color="green"><font color="red">$</font>family</font>}</b>"&gt;<br>    &lt;header class="family-head"&gt;<br>      &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;<br>      &lt;span class="family-line"&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b>&lt;/span&gt;<br>    &lt;/header&gt;<br>    &lt;div class="cards"&gt;<br>      <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>      &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>        &lt;span class="card-chart"&gt;<b>{<font color="blue">page </font><font color="red"><font color="red">$</font>page</font>}</b>&lt;/span&gt;<br>        &lt;span class="card-body"&gt;<br>          &lt;span class="card-title"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/span&gt;<br>          &lt;span class="card-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/span&gt;<br>        &lt;/span&gt;<br>      &lt;/a&gt;<br>      <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/section&gt;<br>  <b>{/<font color="blue">families</font><font color="red"></font>}</b><br><br>&lt;/main&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax0fd44c7dcc64a9365f5e14f19d9aeea8"></div>
+                        <div id="padAjaxaeb55916f9d76f31984758a1a8cb78c9"></div>
                         <script>
-                        padAjax0fd44c7dcc64a9365f5e14f19d9aeea8 = new XMLHttpRequest();
-                        padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.onreadystatechange=function() {
-                        if (padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.readyState === 4) {
-                        if (padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.status === 200) {
-                        document.getElementById("padAjax0fd44c7dcc64a9365f5e14f19d9aeea8").innerHTML=padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.responseText;
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9 = new XMLHttpRequest();
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9.onreadystatechange=function() {
+                        if (padAjaxaeb55916f9d76f31984758a1a8cb78c9.readyState === 4) {
+                        if (padAjaxaeb55916f9d76f31984758a1a8cb78c9.status === 200) {
+                        document.getElementById("padAjaxaeb55916f9d76f31984758a1a8cb78c9").innerHTML=padAjaxaeb55916f9d76f31984758a1a8cb78c9.responseText;
                         } else {
-                        document.getElementById("padAjax0fd44c7dcc64a9365f5e14f19d9aeea8").innerHTML=padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.statusText;
+                        document.getElementById("padAjaxaeb55916f9d76f31984758a1a8cb78c9").innerHTML=padAjaxaeb55916f9d76f31984758a1a8cb78c9.statusText;
                         }
                         }
                         }
-                        padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.open("GET","http://localhost/pad/reference/?index&padInclude",true);
-                        padAjax0fd44c7dcc64a9365f5e14f19d9aeea8.send();
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9.open("GET","http://localhost/pad/charts/?index&padInclude",true);
+                        padAjaxaeb55916f9d76f31984758a1a8cb78c9.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: data/the_data_tag_reads_a_file_named_as_its_second_parameter<br>
+                  App: charts - Page: line/shares<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -161,7 +401,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">data/the_data_tag_reads_a_file_named_as_its_second_parameter.pad</font>
+                        <font size="-2">line/shares.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -170,29 +410,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>fromFile<font color="black">'</font><font color="black">,</font> <font color="black">'</font>nums.json<font color="black">'</font></font>}</b><br><b>{<font color="blue">fromFile</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>nums</font>}</b>,<br><b>{/<font color="blue">fromFile</font><font color="red"></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>shares<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>price<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Closing price per month<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173"></div>
+                        <div id="padAjax5002ee09affa13427a94a8858c79307a"></div>
                         <script>
-                        padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173 = new XMLHttpRequest();
-                        padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.onreadystatechange=function() {
-                        if (padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.readyState === 4) {
-                        if (padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.status === 200) {
-                        document.getElementById("padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173").innerHTML=padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.responseText;
+                        padAjax5002ee09affa13427a94a8858c79307a = new XMLHttpRequest();
+                        padAjax5002ee09affa13427a94a8858c79307a.onreadystatechange=function() {
+                        if (padAjax5002ee09affa13427a94a8858c79307a.readyState === 4) {
+                        if (padAjax5002ee09affa13427a94a8858c79307a.status === 200) {
+                        document.getElementById("padAjax5002ee09affa13427a94a8858c79307a").innerHTML=padAjax5002ee09affa13427a94a8858c79307a.responseText;
                         } else {
-                        document.getElementById("padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173").innerHTML=padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.statusText;
+                        document.getElementById("padAjax5002ee09affa13427a94a8858c79307a").innerHTML=padAjax5002ee09affa13427a94a8858c79307a.statusText;
                         }
                         }
                         }
-                        padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.open("GET","http://localhost/pad/regression/framework/?data/the_data_tag_reads_a_file_named_as_its_second_parameter&padInclude",true);
-                        padAjaxc9ad65c3cbcc8bc187e5242c8cbe0173.send();
+                        padAjax5002ee09affa13427a94a8858c79307a.open("GET","http://localhost/pad/charts/?line/shares&padInclude",true);
+                        padAjax5002ee09affa13427a94a8858c79307a.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/chart_reads_a_data_file_by_name<br>
+                  App: charts - Page: network/flights<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -201,7 +441,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/chart_reads_a_data_file_by_name.pad</font>
+                        <font size="-2">network/flights.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -210,29 +450,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>nums<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Nums<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>network<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>flights<font color="black">'</font><font color="black">,</font><br>       source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font><br>       target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>flights<font color="black">'</font><font color="black">,</font><br>       layout=<font color="black">'</font>radial<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Direct flights per day<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax4d67a643bf15b5c93508aae5d2c5e96e"></div>
+                        <div id="padAjax6df272edead962d1359311cf59006ba1"></div>
                         <script>
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e = new XMLHttpRequest();
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e.onreadystatechange=function() {
-                        if (padAjax4d67a643bf15b5c93508aae5d2c5e96e.readyState === 4) {
-                        if (padAjax4d67a643bf15b5c93508aae5d2c5e96e.status === 200) {
-                        document.getElementById("padAjax4d67a643bf15b5c93508aae5d2c5e96e").innerHTML=padAjax4d67a643bf15b5c93508aae5d2c5e96e.responseText;
+                        padAjax6df272edead962d1359311cf59006ba1 = new XMLHttpRequest();
+                        padAjax6df272edead962d1359311cf59006ba1.onreadystatechange=function() {
+                        if (padAjax6df272edead962d1359311cf59006ba1.readyState === 4) {
+                        if (padAjax6df272edead962d1359311cf59006ba1.status === 200) {
+                        document.getElementById("padAjax6df272edead962d1359311cf59006ba1").innerHTML=padAjax6df272edead962d1359311cf59006ba1.responseText;
                         } else {
-                        document.getElementById("padAjax4d67a643bf15b5c93508aae5d2c5e96e").innerHTML=padAjax4d67a643bf15b5c93508aae5d2c5e96e.statusText;
+                        document.getElementById("padAjax6df272edead962d1359311cf59006ba1").innerHTML=padAjax6df272edead962d1359311cf59006ba1.statusText;
                         }
                         }
                         }
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e.open("GET","http://localhost/pad/regression/framework/?tags/chart_reads_a_data_file_by_name&padInclude",true);
-                        padAjax4d67a643bf15b5c93508aae5d2c5e96e.send();
+                        padAjax6df272edead962d1359311cf59006ba1.open("GET","http://localhost/pad/charts/?network/flights&padInclude",true);
+                        padAjax6df272edead962d1359311cf59006ba1.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: misc/local<br>
+                  App: charts - Page: network/friends<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -241,7 +481,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">misc/local.pad</font>
+                        <font size="-2">network/friends.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -250,29 +490,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><br>  &lt;h3&gt;<b>{<font color="purple"><font color="red">&</font>departments<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>data</font>}</b>&lt;/h3&gt;<br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; department &lt;/th&gt;<br>      &lt;th&gt; manager &lt;/th&gt;<br>      &lt;th&gt; phone &lt;/th&gt;<br>    &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.json<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>network<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font><br>       source=<font color="black">'</font>person<font color="black">'</font><font color="black">,</font><br>       target=<font color="black">'</font>friend<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Who is friends with whom<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax8f2613601d0cfdacf153e44f35a5cdc7"></div>
+                        <div id="padAjax68c070f8c0b37d53ccd9de3ead4730f6"></div>
                         <script>
-                        padAjax8f2613601d0cfdacf153e44f35a5cdc7 = new XMLHttpRequest();
-                        padAjax8f2613601d0cfdacf153e44f35a5cdc7.onreadystatechange=function() {
-                        if (padAjax8f2613601d0cfdacf153e44f35a5cdc7.readyState === 4) {
-                        if (padAjax8f2613601d0cfdacf153e44f35a5cdc7.status === 200) {
-                        document.getElementById("padAjax8f2613601d0cfdacf153e44f35a5cdc7").innerHTML=padAjax8f2613601d0cfdacf153e44f35a5cdc7.responseText;
+                        padAjax68c070f8c0b37d53ccd9de3ead4730f6 = new XMLHttpRequest();
+                        padAjax68c070f8c0b37d53ccd9de3ead4730f6.onreadystatechange=function() {
+                        if (padAjax68c070f8c0b37d53ccd9de3ead4730f6.readyState === 4) {
+                        if (padAjax68c070f8c0b37d53ccd9de3ead4730f6.status === 200) {
+                        document.getElementById("padAjax68c070f8c0b37d53ccd9de3ead4730f6").innerHTML=padAjax68c070f8c0b37d53ccd9de3ead4730f6.responseText;
                         } else {
-                        document.getElementById("padAjax8f2613601d0cfdacf153e44f35a5cdc7").innerHTML=padAjax8f2613601d0cfdacf153e44f35a5cdc7.statusText;
+                        document.getElementById("padAjax68c070f8c0b37d53ccd9de3ead4730f6").innerHTML=padAjax68c070f8c0b37d53ccd9de3ead4730f6.statusText;
                         }
                         }
                         }
-                        padAjax8f2613601d0cfdacf153e44f35a5cdc7.open("GET","http://localhost/pad/regression/pages/?misc/local&padInclude",true);
-                        padAjax8f2613601d0cfdacf153e44f35a5cdc7.send();
+                        padAjax68c070f8c0b37d53ccd9de3ead4730f6.open("GET","http://localhost/pad/charts/?network/friends&padInclude",true);
+                        padAjax68c070f8c0b37d53ccd9de3ead4730f6.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: vars/at/8<br>
+                  App: charts - Page: pie/browsers<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -281,7 +521,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">vars/at/8.pad</font>
+                        <font size="-2">pie/browsers.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -290,29 +530,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>country.id='f0_162'.province.id='f0_17460'.city.id='f0_2317'.name</font><font color="red">@</font><font color="purple">mondial</font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>pie<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>browsers<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>browser<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>share<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Browser market share<font color="black">'</font><font color="black">,</font><br>       width=560<font color="black">,</font><br>       height=320</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxf5830ed52ccfef022f65fde9fdd40787"></div>
+                        <div id="padAjaxb313d37102723315bd35ecc9247321e5"></div>
                         <script>
-                        padAjaxf5830ed52ccfef022f65fde9fdd40787 = new XMLHttpRequest();
-                        padAjaxf5830ed52ccfef022f65fde9fdd40787.onreadystatechange=function() {
-                        if (padAjaxf5830ed52ccfef022f65fde9fdd40787.readyState === 4) {
-                        if (padAjaxf5830ed52ccfef022f65fde9fdd40787.status === 200) {
-                        document.getElementById("padAjaxf5830ed52ccfef022f65fde9fdd40787").innerHTML=padAjaxf5830ed52ccfef022f65fde9fdd40787.responseText;
+                        padAjaxb313d37102723315bd35ecc9247321e5 = new XMLHttpRequest();
+                        padAjaxb313d37102723315bd35ecc9247321e5.onreadystatechange=function() {
+                        if (padAjaxb313d37102723315bd35ecc9247321e5.readyState === 4) {
+                        if (padAjaxb313d37102723315bd35ecc9247321e5.status === 200) {
+                        document.getElementById("padAjaxb313d37102723315bd35ecc9247321e5").innerHTML=padAjaxb313d37102723315bd35ecc9247321e5.responseText;
                         } else {
-                        document.getElementById("padAjaxf5830ed52ccfef022f65fde9fdd40787").innerHTML=padAjaxf5830ed52ccfef022f65fde9fdd40787.statusText;
+                        document.getElementById("padAjaxb313d37102723315bd35ecc9247321e5").innerHTML=padAjaxb313d37102723315bd35ecc9247321e5.statusText;
                         }
                         }
                         }
-                        padAjaxf5830ed52ccfef022f65fde9fdd40787.open("GET","http://localhost/pad/regression/pages/?vars/at/8&padInclude",true);
-                        padAjaxf5830ed52ccfef022f65fde9fdd40787.send();
+                        padAjaxb313d37102723315bd35ecc9247321e5.open("GET","http://localhost/pad/charts/?pie/browsers&padInclude",true);
+                        padAjaxb313d37102723315bd35ecc9247321e5.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: vars/at/9<br>
+                  App: charts - Page: pie/budget<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -321,7 +561,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">vars/at/9.pad</font>
+                        <font size="-2">pie/budget.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -330,29 +570,29 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">country.id='f0_325'<font color="black"><b><font color="red">@</font></b></font>mondial</font><font color="red"></font>}</b><br><br>  &lt;h3&gt;The borders of <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/h3&gt;<br><br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b><br>    {country.id='<b>{<font color="green"><font color="red">$</font>country</font>}</b>'.name@mondial} &lt;br&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">country.id='f0_325'<font color="black"><b><font color="red">@</font></b></font>mondial</font><font color="red"></font>}</b><br><br><b>{<font color="blue">at </font><font color="red">"country.id=<font color="black">'</font>f0_325<font color="black">'</font><font color="black">@</font>mondial"</font>}</b><br><br>  &lt;h3&gt;The borders of <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/h3&gt;<br><br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b><br>    {country.id='<b>{<font color="green"><font color="red">$</font>country</font>}</b>'.name@mondial} &lt;br&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">at</font><font color="red"></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>donut<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>A monthly budget<font color="black">'</font><font color="black">,</font><br>       width=560<font color="black">,</font><br>       height=320</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax4b4038087dad89749c1bd607042fcf5f"></div>
+                        <div id="padAjax3f4dc7240453420e0394a530110d4239"></div>
                         <script>
-                        padAjax4b4038087dad89749c1bd607042fcf5f = new XMLHttpRequest();
-                        padAjax4b4038087dad89749c1bd607042fcf5f.onreadystatechange=function() {
-                        if (padAjax4b4038087dad89749c1bd607042fcf5f.readyState === 4) {
-                        if (padAjax4b4038087dad89749c1bd607042fcf5f.status === 200) {
-                        document.getElementById("padAjax4b4038087dad89749c1bd607042fcf5f").innerHTML=padAjax4b4038087dad89749c1bd607042fcf5f.responseText;
+                        padAjax3f4dc7240453420e0394a530110d4239 = new XMLHttpRequest();
+                        padAjax3f4dc7240453420e0394a530110d4239.onreadystatechange=function() {
+                        if (padAjax3f4dc7240453420e0394a530110d4239.readyState === 4) {
+                        if (padAjax3f4dc7240453420e0394a530110d4239.status === 200) {
+                        document.getElementById("padAjax3f4dc7240453420e0394a530110d4239").innerHTML=padAjax3f4dc7240453420e0394a530110d4239.responseText;
                         } else {
-                        document.getElementById("padAjax4b4038087dad89749c1bd607042fcf5f").innerHTML=padAjax4b4038087dad89749c1bd607042fcf5f.statusText;
+                        document.getElementById("padAjax3f4dc7240453420e0394a530110d4239").innerHTML=padAjax3f4dc7240453420e0394a530110d4239.statusText;
                         }
                         }
                         }
-                        padAjax4b4038087dad89749c1bd607042fcf5f.open("GET","http://localhost/pad/regression/pages/?vars/at/9&padInclude",true);
-                        padAjax4b4038087dad89749c1bd607042fcf5f.send();
+                        padAjax3f4dc7240453420e0394a530110d4239.open("GET","http://localhost/pad/charts/?pie/budget&padInclude",true);
+                        padAjax3f4dc7240453420e0394a530110d4239.send();
                         </script>
                       </td>
                     </tr>
                   </table><br>
                   <hr>
-                  App: sequence - Page: reference<br>
+                  App: charts - Page: radar/players<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
@@ -361,7 +601,7 @@
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">reference.pad</font>
+                        <font size="-2">radar/players.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -370,23 +610,23 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;blockquote&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>reference<font color="black">'</font></font>}</b><br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/h3&gt;<br><br>    &lt;blockquote&gt;<br><br>      <b>{<font color="blue">getXref </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>dir</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><br>        &lt;a href="?reference2<b>{<font color="green">?dir</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br><br>        &amp;nbsp; <br>        <br>      <b>{/<font color="blue">getXref</font><font color="red"></font>}</b><br>            <br>    &lt;/blockquote&gt;<br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;/blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>  <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;/blockquote&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>radar<font color="black">'</font><font color="black">,</font><br>       data=<font color="black">'</font>players<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>player<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>passing<font color="black">,</font> shooting<font color="black">,</font> tackling<font color="black">,</font> stamina<font color="black">,</font> dribbling<font color="black">,</font> heading<font color="black">'</font><font color="black">,</font><br>       to=100<font color="black">,</font><br>       title=<font color="black">'</font>Two midfielders<font color="black">,</font> skill by skill<font color="black">'</font><font color="black">,</font><br>       width=560<font color="black">,</font><br>       height=400</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax0783ac725f77dd53d2e859d9e7802db7"></div>
+                        <div id="padAjaxb9894f3927b52929d3322474b7b980e1"></div>
                         <script>
-                        padAjax0783ac725f77dd53d2e859d9e7802db7 = new XMLHttpRequest();
-                        padAjax0783ac725f77dd53d2e859d9e7802db7.onreadystatechange=function() {
-                        if (padAjax0783ac725f77dd53d2e859d9e7802db7.readyState === 4) {
-                        if (padAjax0783ac725f77dd53d2e859d9e7802db7.status === 200) {
-                        document.getElementById("padAjax0783ac725f77dd53d2e859d9e7802db7").innerHTML=padAjax0783ac725f77dd53d2e859d9e7802db7.responseText;
+                        padAjaxb9894f3927b52929d3322474b7b980e1 = new XMLHttpRequest();
+                        padAjaxb9894f3927b52929d3322474b7b980e1.onreadystatechange=function() {
+                        if (padAjaxb9894f3927b52929d3322474b7b980e1.readyState === 4) {
+                        if (padAjaxb9894f3927b52929d3322474b7b980e1.status === 200) {
+                        document.getElementById("padAjaxb9894f3927b52929d3322474b7b980e1").innerHTML=padAjaxb9894f3927b52929d3322474b7b980e1.responseText;
                         } else {
-                        document.getElementById("padAjax0783ac725f77dd53d2e859d9e7802db7").innerHTML=padAjax0783ac725f77dd53d2e859d9e7802db7.statusText;
+                        document.getElementById("padAjaxb9894f3927b52929d3322474b7b980e1").innerHTML=padAjaxb9894f3927b52929d3322474b7b980e1.statusText;
                         }
                         }
                         }
-                        padAjax0783ac725f77dd53d2e859d9e7802db7.open("GET","http://localhost/pad/sequence/?reference&padInclude",true);
-                        padAjax0783ac725f77dd53d2e859d9e7802db7.send();
+                        padAjaxb9894f3927b52929d3322474b7b980e1.open("GET","http://localhost/pad/charts/?radar/players&padInclude",true);
+                        padAjaxb9894f3927b52929d3322474b7b980e1.send();
                         </script>
                       </td>
                     </tr>
@@ -405,7 +645,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {lorem} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">lorem</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>lorem<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Placeholder text - Lorem ipsum and Latin words - in words, sentences or paragraphs, the same text for the same seed.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">lorem</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">3</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">4</span>, varied<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>words</code>
+            </dt>
+            <dd>
+              So many words exactly, as sentences; fewer than five are a title, without a full stop. 50 when no length is given.
+            </dd>
+            <dt>
+              <code>sentences</code>
+            </dt>
+            <dd>
+              So many sentences of six to fourteen words; with <code>paragraphs</code>, the sentences of each paragraph.
+            </dd>
+            <dt>
+              <code>paragraphs</code>
+            </dt>
+            <dd>
+              So many <code>&lt;p&gt;</code> paragraphs, of four to seven sentences unless <code>sentences</code> says.
+            </dd>
+            <dt>
+              <code>seed</code>
+            </dt>
+            <dd>
+              Another text, the same again for the same seed - default 0.
+            </dd>
+            <dt>
+              <code>varied</code>
+            </dt>
+            <dd>
+              Bare option: leave the classic opening "Lorem ipsum dolor sit amet" out - for the second text on a page.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{lorem}</code> writes placeholder text: "Lorem ipsum dolor sit amet, ..." and then Latin words, for a layout that has to be filled before its copy is written. Without a length it is 50 words. <code>words=</code> gives so many words exactly, made into sentences - fewer than five are a title, capitalised and without a full stop. <code>sentences=</code> gives so many sentences of six to fourteen words, <code>paragraphs=</code> so many <code>&lt;p&gt;</code> elements of four to seven sentences, or of <code>sentences=</code> each when both are given.
+          </p>
+          <p>
+            The words are picked by the seeded sequence of <code>lib/fake.php</code>, the same on every machine and every request: a page does not change each time it is loaded, and a test can compare it. <code>seed=</code> asks for another text - any value, a number or a word - and <code>varied</code> leaves the classic opening out, so two placeholders on one page do not start alike. The sequence's own state is put back afterwards, so a page that seeds the <code>padFake*</code> functions for its data gets the same values with or without a <code>{lorem}</code> on it.
+          </p>
+          <p>
+            A length that is no number from 1 to 10000, and <code>words=</code> beside <code>sentences=</code> or <code>paragraphs=</code>, are strict errors.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Words, sentences, paragraphs
+            </h3>
+            <p class="example-about">
+              A title of four words, a lead of two sentences and two paragraphs of three sentences.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/lorem/1-lengths.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;article</span> <span class="hl-opt">style</span>=<span class="hl-str">"max-width:60ch"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">2</span>, varied<span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">2</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">3</span>, <span class="hl-opt">seed</span>=<span class="hl-num">3</span>, varied<span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/article</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7lorem%EA%A4%B71-lengths.html">open alone</a>
+                </div>
+                <div class="result">
+                  <article style="max-width:60ch">
+                    <h3>
+                      Lorem ipsum dolor sit
+                    </h3>
+                    <p>
+                      <strong>Semper diam aliquam per nec dictumst montes facilisis at sapien. Potenti senectus accumsan felis, dui vulputate.</strong>
+                    </p>
+                    <p>
+                      Luctus quis facilisis sociosqu tortor, iaculis sagittis ultrices parturient pulvinar mus sollicitudin fusce. Tempus malesuada cubilia odio quis semper curae erat lacus iaculis varius hendrerit risus. Eu etiam facilisis quisque felis viverra sodales ligula habitasse eros sed sollicitudin euismod.
+                    </p>
+                    <p>
+                      Auctor nostra mus habitant, interdum quam. Neque at ornare hendrerit pellentesque quisque dictumst himenaeos mauris enim, quam tempor. Tincidunt efficitur ullamcorper efficitur potenti cras convallis curae.
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A seed per card
+            </h3>
+            <p class="example-about">
+              The same tag with another seed in every card - varied text, the same again on every request.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/lorem/2-seed.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px"</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..3'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'card'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:10px 12px"</span><span class="hl-htm">&gt;</span>
+      <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-var">$card</span>, varied<span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>
+      <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin:6px 0 0"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">12</span>, <span class="hl-opt">seed</span>=<span class="hl-var">$card</span> + <span class="hl-num">100</span>, varied<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7lorem%EA%A4%B72-seed.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
+                    <div style="border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:10px 12px">
+                      <strong>Augue varius</strong>
+                      <p style="margin:6px 0 0">
+                        Etiam sodales nostra bibendum magna habitasse consequat nisl nullam feugiat nullam curabitur.
+                      </p>
+                    </div>
+                    <div style="border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:10px 12px">
+                      <strong>Libero semper</strong>
+                      <p style="margin:6px 0 0">
+                        Arcu ultrices nec faucibus, torquent id consequat felis, arcu rutrum curae montes.
+                      </p>
+                    </div>
+                    <div style="border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:10px 12px">
+                      <strong>Venenatis luctus</strong>
+                      <p style="margin:6px 0 0">
+                        Iaculis sapien aliquet netus rhoncus vulputate volutpat vestibulum. Maximus lacinia quam posuere.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{placeholder}</a> <span class="about">Draws a grey image placeholder as inline SVG - crossing lines and the size or a text in the middle.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{excerpt}</a> <span class="about">Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7live.html">← {live}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7macro.html">{macro} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

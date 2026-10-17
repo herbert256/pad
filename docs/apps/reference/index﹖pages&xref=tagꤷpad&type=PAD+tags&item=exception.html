@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,132 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/error_dump - Page: unguarded<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">unguarded.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">unguarded.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With the try guards off a throwable reaches PHP's exception handler, after which PHP<br>  // ends the request whatever the handler does: the action records it and the request<br>  // ends as a failure - it ended on an empty 200, a blank page that said all was well.<br><br>  </span><span style="color: #0000BB">$padErrorTry </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;before&lt;/p&gt;<b>{<font color="blue">exception </font><font color="red"><font color="black">'</font>thrown with the guards off<font color="black">'</font></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxefdce024978e469eb4fdf62f1c077df2"></div>
+                        <script>
+                        padAjaxefdce024978e469eb4fdf62f1c077df2 = new XMLHttpRequest();
+                        padAjaxefdce024978e469eb4fdf62f1c077df2.onreadystatechange=function() {
+                        if (padAjaxefdce024978e469eb4fdf62f1c077df2.readyState === 4) {
+                        if (padAjaxefdce024978e469eb4fdf62f1c077df2.status === 200) {
+                        document.getElementById("padAjaxefdce024978e469eb4fdf62f1c077df2").innerHTML=padAjaxefdce024978e469eb4fdf62f1c077df2.responseText;
+                        } else {
+                        document.getElementById("padAjaxefdce024978e469eb4fdf62f1c077df2").innerHTML=padAjaxefdce024978e469eb4fdf62f1c077df2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxefdce024978e469eb4fdf62f1c077df2.open("GET","http://localhost/pad/regression/error_dump/?unguarded&padInclude",true);
+                        padAjaxefdce024978e469eb4fdf62f1c077df2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_ignore - Page: unguarded<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">unguarded.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">unguarded.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With the try guards off a throwable reaches PHP's exception handler, after which PHP<br>  // ends the request whatever the handler does: the action records it and the request<br>  // ends as a failure - it ended on an empty 200, a blank page that said all was well.<br><br>  </span><span style="color: #0000BB">$padErrorTry </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;before&lt;/p&gt;<b>{<font color="blue">exception </font><font color="red"><font color="black">'</font>thrown with the guards off<font color="black">'</font></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax85b4d689f44cc0da591e151b0f0b13eb"></div>
+                        <script>
+                        padAjax85b4d689f44cc0da591e151b0f0b13eb = new XMLHttpRequest();
+                        padAjax85b4d689f44cc0da591e151b0f0b13eb.onreadystatechange=function() {
+                        if (padAjax85b4d689f44cc0da591e151b0f0b13eb.readyState === 4) {
+                        if (padAjax85b4d689f44cc0da591e151b0f0b13eb.status === 200) {
+                        document.getElementById("padAjax85b4d689f44cc0da591e151b0f0b13eb").innerHTML=padAjax85b4d689f44cc0da591e151b0f0b13eb.responseText;
+                        } else {
+                        document.getElementById("padAjax85b4d689f44cc0da591e151b0f0b13eb").innerHTML=padAjax85b4d689f44cc0da591e151b0f0b13eb.statusText;
+                        }
+                        }
+                        }
+                        padAjax85b4d689f44cc0da591e151b0f0b13eb.open("GET","http://localhost/pad/regression/error_ignore/?unguarded&padInclude",true);
+                        padAjax85b4d689f44cc0da591e151b0f0b13eb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_log - Page: unguarded<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">unguarded.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">unguarded.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With the try guards off a throwable reaches PHP's exception handler, after which PHP<br>  // ends the request whatever the handler does: the action records it and the request<br>  // ends as a failure - it ended on an empty 200, a blank page that said all was well.<br><br>  </span><span style="color: #0000BB">$padErrorTry </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;before&lt;/p&gt;<b>{<font color="blue">exception </font><font color="red"><font color="black">'</font>thrown with the guards off<font color="black">'</font></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2"></div>
+                        <script>
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2 = new XMLHttpRequest();
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.onreadystatechange=function() {
+                        if (padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.readyState === 4) {
+                        if (padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.status === 200) {
+                        document.getElementById("padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2").innerHTML=padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.responseText;
+                        } else {
+                        document.getElementById("padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2").innerHTML=padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.open("GET","http://localhost/pad/regression/error_log/?unguarded&padInclude",true);
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/errors - Page: error/throw<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -85,7 +211,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

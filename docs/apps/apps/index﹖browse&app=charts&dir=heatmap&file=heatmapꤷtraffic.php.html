@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: charts/heatmap
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: charts/heatmap
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=charts.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=heatmap&amp;file=heatmap%EA%A4%B7commits.pad.html">commits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=heatmap&amp;file=heatmap%EA%A4%B7commits.php.html">commits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=heatmap&amp;file=heatmap%EA%A4%B7rainfall.pad.html">rainfall.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=charts&amp;dir=heatmap&amp;file=heatmap%EA%A4%B7traffic.pad.html">traffic.pad</a>
+                  </li>
+                  <li class="current">traffic.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  heatmap/traffic.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Visits per weekday and hour: a busy lunch, a busier evening, a quiet weekend morning,<br>  // and a week that gets busier towards Thursday and quieter on Friday night.<br><br>  </span><span style="color: #0000BB">$traffic </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$week    </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Mon' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.85</span><span style="color: #007700">, </span><span style="color: #DD0000">'Tue' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.95</span><span style="color: #007700">, </span><span style="color: #DD0000">'Wed' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1.0</span><span style="color: #007700">, </span><span style="color: #DD0000">'Thu' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1.1</span><span style="color: #007700">, </span><span style="color: #DD0000">'Fri' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.9</span><span style="color: #007700">, </span><span style="color: #DD0000">'Sat' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1.2</span><span style="color: #007700">, </span><span style="color: #DD0000">'Sun' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1.3 </span><span style="color: #007700">];<br><br>  foreach ( </span><span style="color: #0000BB">$week </span><span style="color: #007700">as </span><span style="color: #0000BB">$day </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$busy </span><span style="color: #007700">)<br>    foreach ( [ </span><span style="color: #0000BB">8</span><span style="color: #007700">, </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #0000BB">12</span><span style="color: #007700">, </span><span style="color: #0000BB">14</span><span style="color: #007700">, </span><span style="color: #0000BB">16</span><span style="color: #007700">, </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #0000BB">20</span><span style="color: #007700">, </span><span style="color: #0000BB">22 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$hour </span><span style="color: #007700">) {<br><br>      </span><span style="color: #0000BB">$visits </span><span style="color: #007700">= </span><span style="color: #0000BB">40 </span><span style="color: #007700">+ </span><span style="color: #0000BB">60 </span><span style="color: #007700">* </span><span style="color: #0000BB">exp </span><span style="color: #007700">( - ( ( </span><span style="color: #0000BB">$hour </span><span style="color: #007700">- </span><span style="color: #0000BB">12.5 </span><span style="color: #007700">) ** </span><span style="color: #0000BB">2 </span><span style="color: #007700">) / </span><span style="color: #0000BB">3 </span><span style="color: #007700">)<br>                   + </span><span style="color: #0000BB">90 </span><span style="color: #007700">* </span><span style="color: #0000BB">exp </span><span style="color: #007700">( - ( ( </span><span style="color: #0000BB">$hour </span><span style="color: #007700">- </span><span style="color: #0000BB">20 </span><span style="color: #007700">)   ** </span><span style="color: #0000BB">2 </span><span style="color: #007700">) / </span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br><br>      </span><span style="color: #0000BB">$visits </span><span style="color: #007700">= </span><span style="color: #0000BB">$visits </span><span style="color: #007700">* </span><span style="color: #0000BB">$busy </span><span style="color: #007700">- ( </span><span style="color: #0000BB">$busy </span><span style="color: #007700">&gt; </span><span style="color: #0000BB">1.15 </span><span style="color: #007700">and </span><span style="color: #0000BB">$hour </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">? </span><span style="color: #0000BB">35 </span><span style="color: #007700">: </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br><br>      </span><span style="color: #0000BB">$traffic </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'day' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$day</span><span style="color: #007700">, </span><span style="color: #DD0000">'hour' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"</span><span style="color: #007700">{</span><span style="color: #0000BB">$hour</span><span style="color: #007700">}</span><span style="color: #DD0000">h"</span><span style="color: #007700">, </span><span style="color: #DD0000">'visits' </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$visits </span><span style="color: #007700">) ];<br><br>    }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

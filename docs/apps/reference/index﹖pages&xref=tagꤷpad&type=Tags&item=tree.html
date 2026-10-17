@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -191,6 +191,48 @@
                         }
                         padAjax7c194b916eb6c319514010322c368be8.open("GET","http://localhost/pad/regression/errors/?syntax/a_tree_needs_its_rows&padInclude",true);
                         padAjax7c194b916eb6c319514010322c368be8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $sbxRows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] ]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>[{"id":1,"name":"Ann"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxSet<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxRows<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>][<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>][<b>{<font color="blue">sbxRows </font><font color="red">page=1<font color="black">,</font> rows=1</font>}</b>r<b>{/<font color="blue">sbxRows</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd1fc24dd95f5e487a375619f1388da23"></div>
+                        <script>
+                        padAjaxd1fc24dd95f5e487a375619f1388da23 = new XMLHttpRequest();
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.onreadystatechange=function() {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.readyState === 4) {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.status === 200) {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.responseText;
+                        } else {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.open("GET","http://localhost/pad/regression/framework/?passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides&padInclude",true);
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.send();
                         </script>
                       </td>
                     </tr>
@@ -445,6 +487,166 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/branch/1-icons<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/branch/1-icons.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Folders and files<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A row with children gets a folder and its list; a leaf gets the <font color="black">@</font>else<font color="black">@</font> part.<font color="black">'</font></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>branchFiles<font color="black">'</font></font>}</b><br>[<br>  { "name": "photos", "children": [<br>      { "name": "2026", "children": [ { "name": "harbour.jpg" } ] },<br>      { "name": "cat.jpg" } ] },<br>  { "name": "notes.txt" }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>branchFiles<font color="black">'</font></font>}</b><br>  &lt;li&gt;<b>{<font color="blue">branch</font><font color="red"></font>}</b>&amp;#128193; <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;ul&gt;<b>{<font color="blue">recurse</font><font color="red"></font>}</b>&lt;/ul&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&amp;#128196; <b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">branch</font><font color="red"></font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">tree</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa826c898a6f6018042600780420c7e15"></div>
+                        <script>
+                        padAjaxa826c898a6f6018042600780420c7e15 = new XMLHttpRequest();
+                        padAjaxa826c898a6f6018042600780420c7e15.onreadystatechange=function() {
+                        if (padAjaxa826c898a6f6018042600780420c7e15.readyState === 4) {
+                        if (padAjaxa826c898a6f6018042600780420c7e15.status === 200) {
+                        document.getElementById("padAjaxa826c898a6f6018042600780420c7e15").innerHTML=padAjaxa826c898a6f6018042600780420c7e15.responseText;
+                        } else {
+                        document.getElementById("padAjaxa826c898a6f6018042600780420c7e15").innerHTML=padAjaxa826c898a6f6018042600780420c7e15.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa826c898a6f6018042600780420c7e15.open("GET","http://localhost/pad/tags/?examples/branch/1-icons&padInclude",true);
+                        padAjaxa826c898a6f6018042600780420c7e15.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/recurse/1-comments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/recurse/1-comments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Threaded comments<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each reply is rendered by the same body one level deeper<font color="black">,</font> indented by its depth.<font color="black">'</font></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>recurseThread<font color="black">'</font></font>}</b><br>[<br>  { "who": "Ann", "text": "Is the shop open on Sunday?", "children": [<br>      { "who": "Ben", "text": "Only in December.", "children": [<br>          { "who": "Ann", "text": "Thanks!" } ] },<br>      { "who": "Cy", "text": "Check the calendar page." } ] },<br>  { "who": "Dee", "text": "Great service." }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>recurseThread<font color="black">'</font></font>}</b><br>  &lt;p style="margin-left: <b>{<font color="blue">echo </font><font color="red">(depth<font color="black">@</font>tree - 1) * 2</font>}</b>em"&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>who</font>}</b>&lt;/strong&gt;: <b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>  <b>{<font color="blue">recurse</font><font color="red"></font>}</b><br><b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9a5853cd4ec03979cdd8830920413e8f"></div>
+                        <script>
+                        padAjax9a5853cd4ec03979cdd8830920413e8f = new XMLHttpRequest();
+                        padAjax9a5853cd4ec03979cdd8830920413e8f.onreadystatechange=function() {
+                        if (padAjax9a5853cd4ec03979cdd8830920413e8f.readyState === 4) {
+                        if (padAjax9a5853cd4ec03979cdd8830920413e8f.status === 200) {
+                        document.getElementById("padAjax9a5853cd4ec03979cdd8830920413e8f").innerHTML=padAjax9a5853cd4ec03979cdd8830920413e8f.responseText;
+                        } else {
+                        document.getElementById("padAjax9a5853cd4ec03979cdd8830920413e8f").innerHTML=padAjax9a5853cd4ec03979cdd8830920413e8f.statusText;
+                        }
+                        }
+                        }
+                        padAjax9a5853cd4ec03979cdd8830920413e8f.open("GET","http://localhost/pad/tags/?examples/recurse/1-comments&padInclude",true);
+                        padAjax9a5853cd4ec03979cdd8830920413e8f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/recurse/2-where<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/recurse/2-where.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Filtered at every depth<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A where option on the tree is carried along by recurse - hidden rows are left out at every level.<font color="black">'</font></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>recurseSite<font color="black">'</font></font>}</b><br>[<br>  { "page": "About", "hidden": 0, "children": [<br>      { "page": "Team", "hidden": 0 },<br>      { "page": "Drafts", "hidden": 1 } ] },<br>  { "page": "Admin", "hidden": 1, "children": [ { "page": "Users", "hidden": 0 } ] },<br>  { "page": "Blog", "hidden": 0 }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>recurseSite<font color="black">'</font><font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>hidden eq 0<font color="black">'</font></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b><b>{<font color="blue">branch</font><font color="red"></font>}</b>&lt;ul&gt;<b>{<font color="blue">recurse</font><font color="red"></font>}</b>&lt;/ul&gt;<b>{/<font color="blue">branch</font><font color="red"></font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">tree</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbab2978ec7e2c0199d2196516a10e2be"></div>
+                        <script>
+                        padAjaxbab2978ec7e2c0199d2196516a10e2be = new XMLHttpRequest();
+                        padAjaxbab2978ec7e2c0199d2196516a10e2be.onreadystatechange=function() {
+                        if (padAjaxbab2978ec7e2c0199d2196516a10e2be.readyState === 4) {
+                        if (padAjaxbab2978ec7e2c0199d2196516a10e2be.status === 200) {
+                        document.getElementById("padAjaxbab2978ec7e2c0199d2196516a10e2be").innerHTML=padAjaxbab2978ec7e2c0199d2196516a10e2be.responseText;
+                        } else {
+                        document.getElementById("padAjaxbab2978ec7e2c0199d2196516a10e2be").innerHTML=padAjaxbab2978ec7e2c0199d2196516a10e2be.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbab2978ec7e2c0199d2196516a10e2be.open("GET","http://localhost/pad/tags/?examples/recurse/2-where&padInclude",true);
+                        padAjaxbab2978ec7e2c0199d2196516a10e2be.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/tree/1-menu<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/tree/1-menu.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A nested menu<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>One body renders every level; branch leaves the inner list out for a leaf.<font color="black">'</font></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>treeMenu<font color="black">'</font></font>}</b><br>[<br>  { "title": "Home" },<br>  { "title": "Shop", "children": [<br>      { "title": "Books" },<br>      { "title": "Music", "children": [ { "title": "Jazz" }, { "title": "Folk" } ] } ] },<br>  { "title": "Contact" }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>treeMenu<font color="black">'</font></font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{<font color="blue">branch</font><font color="red"></font>}</b>&lt;ul&gt;<b>{<font color="blue">recurse</font><font color="red"></font>}</b>&lt;/ul&gt;<b>{/<font color="blue">branch</font><font color="red"></font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">tree</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax52acd1092f67c61ed7f8377d5ef62e86"></div>
+                        <script>
+                        padAjax52acd1092f67c61ed7f8377d5ef62e86 = new XMLHttpRequest();
+                        padAjax52acd1092f67c61ed7f8377d5ef62e86.onreadystatechange=function() {
+                        if (padAjax52acd1092f67c61ed7f8377d5ef62e86.readyState === 4) {
+                        if (padAjax52acd1092f67c61ed7f8377d5ef62e86.status === 200) {
+                        document.getElementById("padAjax52acd1092f67c61ed7f8377d5ef62e86").innerHTML=padAjax52acd1092f67c61ed7f8377d5ef62e86.responseText;
+                        } else {
+                        document.getElementById("padAjax52acd1092f67c61ed7f8377d5ef62e86").innerHTML=padAjax52acd1092f67c61ed7f8377d5ef62e86.statusText;
+                        }
+                        }
+                        }
+                        padAjax52acd1092f67c61ed7f8377d5ef62e86.open("GET","http://localhost/pad/tags/?examples/tree/1-menu&padInclude",true);
+                        padAjax52acd1092f67c61ed7f8377d5ef62e86.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -459,7 +661,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

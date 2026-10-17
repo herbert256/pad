@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - sandbox
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - sandbox
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/sandbox_and_the_sandbox_pipe_run_their_text_isolated<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/sandbox_and_the_sandbox_pipe_run_their_text_isolated.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/sandbox_and_the_sandbox_pipe_run_their_text_isolated.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $s </span><span style="color: #007700">= </span><span style="color: #DD0000">"{set \$v = 3}&lt;{\$v}&gt;"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>v = 1</font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>&lt;<b>{<font color="green">$v</font> <font color="black">|</font> <font color="blue">optional</font>}</b>&gt;<b>{<font color="blue">set </font><font color="red"><font color="red">$</font>v = 2</font>}</b>&lt;<b>{<font color="green"><font color="red">$</font>v</font>}</b>&gt;<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>v</font>}</b>]<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> sandbox</font>}</b>[<b>{<font color="green"><font color="red">$</font>v</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc0b7f5adb291a9300b71f66bbaa4f650"></div>
+                        <script>
+                        padAjaxc0b7f5adb291a9300b71f66bbaa4f650 = new XMLHttpRequest();
+                        padAjaxc0b7f5adb291a9300b71f66bbaa4f650.onreadystatechange=function() {
+                        if (padAjaxc0b7f5adb291a9300b71f66bbaa4f650.readyState === 4) {
+                        if (padAjaxc0b7f5adb291a9300b71f66bbaa4f650.status === 200) {
+                        document.getElementById("padAjaxc0b7f5adb291a9300b71f66bbaa4f650").innerHTML=padAjaxc0b7f5adb291a9300b71f66bbaa4f650.responseText;
+                        } else {
+                        document.getElementById("padAjaxc0b7f5adb291a9300b71f66bbaa4f650").innerHTML=padAjaxc0b7f5adb291a9300b71f66bbaa4f650.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc0b7f5adb291a9300b71f66bbaa4f650.open("GET","http://localhost/pad/regression/framework/?tags/sandbox_and_the_sandbox_pipe_run_their_text_isolated&padInclude",true);
+                        padAjaxc0b7f5adb291a9300b71f66bbaa4f650.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/sandbox/3-pipe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/sandbox/3-pipe.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sandbox/3-pipe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'price is {echo $price ?? \'unknown\'}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The sandbox pipe<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value run as PAD<font color="black">,</font> isolated - a snippet kept elsewhere cannot touch the page.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 10</font>}</b><br>&lt;p&gt;code: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;<br>&lt;p&gt;sandbox: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> sandbox</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa9139a1855a0d4e67b8405b2483b07ea"></div>
+                        <script>
+                        padAjaxa9139a1855a0d4e67b8405b2483b07ea = new XMLHttpRequest();
+                        padAjaxa9139a1855a0d4e67b8405b2483b07ea.onreadystatechange=function() {
+                        if (padAjaxa9139a1855a0d4e67b8405b2483b07ea.readyState === 4) {
+                        if (padAjaxa9139a1855a0d4e67b8405b2483b07ea.status === 200) {
+                        document.getElementById("padAjaxa9139a1855a0d4e67b8405b2483b07ea").innerHTML=padAjaxa9139a1855a0d4e67b8405b2483b07ea.responseText;
+                        } else {
+                        document.getElementById("padAjaxa9139a1855a0d4e67b8405b2483b07ea").innerHTML=padAjaxa9139a1855a0d4e67b8405b2483b07ea.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa9139a1855a0d4e67b8405b2483b07ea.open("GET","http://localhost/pad/tags/?examples/sandbox/3-pipe&padInclude",true);
+                        padAjaxa9139a1855a0d4e67b8405b2483b07ea.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

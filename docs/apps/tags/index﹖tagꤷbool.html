@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {bool} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#values">Variables and stores</a><span>/</span><span aria-current="page">bool</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>bool<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Reduces its content or a value to TRUE or FALSE and keeps it under a name, for a later {name} to test.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#values">Variables and stores</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">bool</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> expression <span class="hl-brc">{</span><span class="hl-tag">/bool</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">bool</span> <span class="hl-str">'name'</span>, value<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/name</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The name the flag is kept under; <code>{name}</code> ... <code>{/name}</code> or <code>{bool:name}</code> ... <code>{/bool:name}</code> renders its content when it is TRUE. Not the name of a built-in or application tag.
+            </dd>
+            <dt>
+              <code>value</code>
+            </dt>
+            <dd>
+              Optional, when there is no content: a value whose truth is the flag - blank and <code>'0'</code> are FALSE, anything else TRUE. With neither content nor value the flag is FALSE.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{bool 'name'}</code> ... <code>{/bool}</code> works out a yes or no once and keeps it under a name; the tag prints nothing. The content is read as an expression - <code>$stock gt 0</code>, <code>1</code>, <code>$isAdmin and $active</code> - and its truth is the flag: blank content, <code>0</code> or a false comparison give FALSE, anything else TRUE.
+          </p>
+          <p>
+            Later, <code>{name}</code> ... <code>{/name}</code> (or <code>{bool:name}</code> ... <code>{/bool:name}</code> when the name is also something else) renders its content when the flag is TRUE and its <code>@else@</code> part when it is FALSE. In an expression the flag is read with <code>flag:name</code>. The flag keeps the value it had when it was stored, even when the variables in the expression change afterwards.
+          </p>
+          <p>
+            Without content, a second parameter gives the value: <code>{bool 'open', $hours}</code> - the value's own truth by PHP's rule, so blank and <code>'0'</code> are FALSE and anything else TRUE. A value is never run as template or expression. With neither content nor value the flag is FALSE.
+          </p>
+          <p>
+            Under the strict syntax check a <code>{bool}</code> without a name, or with the name of a built-in or application tag, is an error. For a test used once, <a href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> is simpler; a flag pays off when the same test is asked in several places.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A flag tested twice
+            </h3>
+            <p class="example-about">
+              The expression is evaluated once; the flag answers in two places, with an @else@ part.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/bool/1-flag.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$stock</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">bool</span> <span class="hl-str">'boolInStock'</span><span class="hl-brc">}</span><span class="hl-var">$stock</span> gt <span class="hl-num">0</span><span class="hl-brc">{</span><span class="hl-tag">/bool</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">boolInStock</span><span class="hl-brc">}</span>In stock.<span class="hl-var">@else@</span>Sold out.<span class="hl-brc">{</span><span class="hl-tag">/boolInStock</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">boolInStock</span><span class="hl-brc">}</span><span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Add to cart<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-var">@else@</span><span class="hl-htm">&lt;button</span> disabled<span class="hl-htm">&gt;</span>Notify me<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/boolInStock</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7bool%EA%A4%B71-flag.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    In stock.
+                  </p>
+                  <p>
+                    <button>Add to cart</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              From a value
+            </h3>
+            <p class="example-about">
+              Without content the second parameter's own truth is the flag: blank and 0 are FALSE.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/bool/2-value.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">bool</span> <span class="hl-str">'boolName'</span>, <span class="hl-str">'Ann'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">bool</span> <span class="hl-str">'boolZero'</span>, <span class="hl-num">0</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">bool</span> <span class="hl-str">'boolBlank'</span>, <span class="hl-str">''</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-str">'Ann'</span>: <span class="hl-brc">{</span><span class="hl-tag">boolName</span><span class="hl-brc">}</span>TRUE<span class="hl-var">@else@</span>FALSE<span class="hl-brc">{</span><span class="hl-tag">/boolName</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-num">0</span>: <span class="hl-brc">{</span><span class="hl-tag">boolZero</span><span class="hl-brc">}</span>TRUE<span class="hl-var">@else@</span>FALSE<span class="hl-brc">{</span><span class="hl-tag">/boolZero</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>blank: <span class="hl-brc">{</span><span class="hl-tag">boolBlank</span><span class="hl-brc">}</span>TRUE<span class="hl-var">@else@</span>FALSE<span class="hl-brc">{</span><span class="hl-tag">/boolBlank</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7bool%EA%A4%B72-value.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>'Ann': TRUE
+                    </li>
+                    <li>0: FALSE
+                    </li>
+                    <li>blank: FALSE
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> <span class="about">Renders its content only when a condition holds, with elseif and else branches.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> <span class="about">Keeps a piece of template under a name instead of printing it, for a later {name} to render.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7true.html">{true}</a> <span class="about">The constant TRUE: its content renders once, as a level of its own.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7false.html">{false}</a> <span class="about">The constant FALSE: its content is skipped and its @else@ part renders instead.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7block.html">← {block}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7branch.html">{branch} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

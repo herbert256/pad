@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: islands/_frontend/src
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: islands/ frontend/src
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend.html">..</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src%EA%A4%B7adapters.html">adapters/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src%EA%A4%B7islands.html">islands/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src%EA%A4%B7types.html">types/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src&amp;file=_frontend%EA%A4%B7src%EA%A4%B7main.js.html">main.js</a>
+                  </li>
+                  <li class="current">pad-islands.js
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src&amp;file=_frontend%EA%A4%B7src%EA%A4%B7theme.js.html">theme.js</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _frontend/src/pad-islands.js
+                </h3>
+                <pre><code style="color: #000000">// pad-islands - the runtime of the islands application, for components of any framework.<br>//<br>//   islands({ Counter: react(() =&gt; import('./islands/Counter.react.jsx')) })<br>//<br>// mounts a component on every element &lt;div data-island="Counter" data-props="{^props}"&gt; PAD<br>// wrote, the JSON of data-props as its props and what PAD rendered inside as serverHtml.<br>// A component's code - its framework with it - is fetched when its island needs it:<br>//<br>//   data-load="eager"      at once (the default)<br>//   data-load="idle"       once the browser has nothing else to do<br>//   data-load="visible"    when the island scrolls into view<br>//<br>// react(), vue(), svelte(), preact() and solid() pair a component with its framework's<br>// mount; each adapter is a module of its own, so a page without a Vue island loads no Vue.<br>// store() is state the islands of every framework share; get() and post() talk to PAD.<br><br>const registry = {};<br><br>function adapter(load) {<br>  return (component) =&gt; () =&gt; Promise.all([load(), component()]).then(([a, c]) =&gt; a.island(c.default));<br>}<br><br>export const react  = adapter(() =&gt; import('./adapters/react.js'));<br>export const vue    = adapter(() =&gt; import('./adapters/vue.js'));<br>export const svelte = adapter(() =&gt; import('./adapters/svelte.js'));<br>export const preact = adapter(() =&gt; import('./adapters/preact.js'));<br>export const solid  = adapter(() =&gt; import('./adapters/solid.js'));<br><br>function props(element) {<br>  let value = {};<br>  try { value = JSON.parse(element.getAttribute('data-props') || '{}'); } catch (e) { console.error('pad-islands: no JSON in data-props', element); }<br>  if (!value || typeof value !== 'object' || Array.isArray(value)) value = { data: value };<br>  value.serverHtml = element.innerHTML;<br>  return value;<br>}<br><br>// Every island that mounted, told as a pad:island event and kept: a listener that came<br>// later - itself an island - reads what it missed with mounted().<br><br>const history = [];<br><br>function told(name, element, ms) {<br>  const detail = { name, element, ms, at: new Date() };<br>  history.push(detail);<br>  window.dispatchEvent(new CustomEvent('pad:island', { detail }));<br>}<br><br>export const mounted = () =&gt; history.slice();<br><br>function start(element) {<br>  if (element.padIsland) return;<br>  const name = element.getAttribute('data-island');<br>  const load = registry[name];<br>  if (!load) return console.warn(`pad-islands: no island named ${name}`);<br>  element.padIsland = 'loading';<br>  const began = performance.now();<br>  load().then((mount) =&gt; {<br>    element.padIsland = mount(element, props(element));<br>    element.classList.add('is-mounted');<br>    told(name, element, Math.round(performance.now() - began));<br>  });<br>}<br><br>function when(element) {<br>  const how = element.getAttribute('data-load') || 'eager';<br>  if (how === 'idle')<br>    return (window.requestIdleCallback || ((go) =&gt; setTimeout(go, 200)))(() =&gt; start(element));<br>  if (how === 'visible' &amp;& 'IntersectionObserver' in window) {<br>    const seen = new IntersectionObserver((entries) =&gt; {<br>      if (entries.some((entry) =&gt; entry.isIntersecting)) { seen.disconnect(); start(element); }<br>    }, { rootMargin: '100px' });<br>    return seen.observe(element);<br>  }<br>  start(element);<br>}<br><br>export function islands(list) {<br>  Object.assign(registry, list);<br>  document.querySelectorAll('[data-island]').forEach(when);<br>}<br><br>// ------------------------------------------------------------------ shared state<br><br>const stores = {};<br><br>export function store(name, initial) {<br>  if (stores[name]) return stores[name];<br>  let value = initial;<br>  const listeners = new Set();<br>  return stores[name] = {<br>    get: () =&gt; value,<br>    set(next) {<br>      value = typeof next === 'function' ? next(value) : next;<br>      listeners.forEach((listener) =&gt; listener(value));<br>    },<br>    subscribe(listener) {<br>      listeners.add(listener);<br>      return () =&gt; listeners.delete(listener);<br>    }<br>  };<br>}<br><br>// ------------------------------------------------------------------ requests back to PAD<br><br>function address(page, params) {<br>  let url = location.pathname + '?' + page;<br>  for (const [key, value] of Object.entries(params || {}))<br>    if (value !== undefined &amp;& value !== null &amp;& value !== '')<br>      url += '&amp;' + encodeURIComponent(key) + '=' + encodeURIComponent(value);<br>  return url;<br>}<br><br>async function send(method, page, params, body) {<br>  const init = { method, headers: { Accept: 'application/json' }, credentials: 'same-origin' };<br>  if (body) {<br>    init.headers['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]')?.content || '';<br>    init.body = new URLSearchParams(body);<br>  }<br>  const response = await fetch(address(page, { ...params, padFormat: 'json' }), init);<br>  if (!response.ok) throw Object.assign(new Error(`The server answered ${response.status}`), { status: response.status });<br>  return response.json();<br>}<br><br>export const get  = (page, params) =&gt; send('GET', page, params);<br>export const post = (page, body) =&gt; send('POST', page, {}, body);<br></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {remove} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#sequences">Sequences</a><span>/</span><span aria-current="page">remove</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>remove<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Removes the values of a sequence that belong to a sequence type - the inverse of keep.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#sequences">Sequences</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">remove</span> <span class="hl-str">'1..10'</span>, prime<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/remove</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">remove</span> prime, <span class="hl-opt">rows</span>=<span class="hl-num">5</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/remove</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">remove:odd</span> <span class="hl-opt">rows</span>=<span class="hl-num">5</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/remove:odd</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">remove</span> store, even<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/remove</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>values</code>
+            </dt>
+            <dd>
+              Where the values come from: a range <code>'1..10'</code>, a stored sequence named bare (not quoted), or left out - the candidates then run from <code>from</code> upward.
+            </dd>
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              The sequence type whose members are removed: <code>prime</code>, <code>odd</code>, <code>square</code>, ... A type with a value is written as an option: <code>multiple=3</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{remove '1..10', prime}</code> runs a sequence in <em>remove</em> mode: every value that belongs to the named type is dropped, the rest stay - here <code>1 4 6 8 9 10</code>. It is the same run as <code>{sequence '1..10', remove, prime}</code>, and the exact inverse of <a href="index%EF%B9%96tag%EA%A4%B7keep.html">{keep}</a>: together the two split a list in two.
+          </p>
+          <p>
+            Without a range the candidates run from <code>from</code> (default 1) upward, and <code>rows</code> counts what is left: <code>{remove prime, rows=5}</code> is the first five numbers that are not prime, <code>1 4 6 8 9</code>. A stored sequence, named bare, works as the source as well, and the prefix form <code>{remove:odd rows=5}</code> names the type in the tag.
+          </p>
+          <p>
+            To invert an <em>action</em> - all but the first three - use the <code>negative</code> option of <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> instead; <code>remove</code> is the inversion for plays.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              What is not prime
+            </h3>
+            <p class="example-about">
+              The same range through remove and keep - together they hold every number once.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/remove/1-not-prime.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>remove: <span class="hl-brc">{</span><span class="hl-tag">remove</span> <span class="hl-str">'1..20'</span>, prime<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/remove</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>keep:   <span class="hl-brc">{</span><span class="hl-tag">keep</span> <span class="hl-str">'1..20'</span>, prime<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/keep</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7remove%EA%A4%B71-not-prime.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    remove: 1 4 6 8 9 10 12 14 15 16 18 20
+                  </p>
+                  <p>
+                    keep: 2 3 5 7 11 13 17 19
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              From a store
+            </h3>
+            <p class="example-about">
+              The odd numbers removed from a stored list of the first ten triangular numbers.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/remove/2-store.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> triangular, <span class="hl-opt">rows</span>=<span class="hl-num">10</span>, <span class="hl-opt">push</span>=<span class="hl-str">'triangles'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>All:  <span class="hl-brc">{</span><span class="hl-tag">pull</span> <span class="hl-str">'triangles'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Not odd: <span class="hl-brc">{</span><span class="hl-tag">remove</span> triangles, odd<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/remove</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7remove%EA%A4%B72-store.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    All: 1 3 6 10 15 21 28 36 45 55
+                  </p>
+                  <p>
+                    Not odd: 6 10 28 36
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7keep.html">{keep}</a> <span class="about">Keeps only the values of a sequence that belong to a sequence type.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7flag.html">{flag}</a> <span class="about">Replaces every value of a sequence with 1 or 0: whether it belongs to a sequence type.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7make.html">{make}</a> <span class="about">Replaces every value of a sequence with what a sequence type makes of it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a> <span class="about">Iterates a stored sequence, optionally through plays and actions.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7redirect.html">← {redirect}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7restart.html">{restart} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

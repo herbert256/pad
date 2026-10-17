@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d97706">
+    <meta name="csrf-token" content="4048b262dcc9eb2edd425905462a95f91667c96c6728e7569507ac953cddc4f5">
+    <title>
+      Ideas for the offline shop · Notes
+    </title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="notes.css">
+    <script src="notes.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="index%EF%B9%96index.html"><img src="icon.svg" alt="" width="28" height="28"><span>Notes</span></a>
+      <form class="search" method="get" role="search">
+        <input type="hidden" name="index" value=""> <input type="search" name="q" value="" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
+      </form>
+      <nav>
+        <a class="button primary" href="index%EF%B9%96edit.html">New note</a> <a class="button" href="index%EF%B9%96backup.html">Backup</a>
+      </nav>
+    </header>
+    <main>
+      <div data-pad-live="note" data-pad-csrf="4048b262dcc9eb2edd425905462a95f91667c96c6728e7569507ac953cddc4f5">
+        <article class="sheet color-lilac">
+          <div class="crumbs">
+            <a href="index%EF%B9%96index.html">← All notes</a>
+          </div>
+          <h1>
+            Ideas for the offline shop
+          </h1>
+          <div class="meta">
+            <span>Changed 4 Oct 2026</span> <span>Written 4 Oct 2026</span> <a class="tag" href="index%EF%B9%96index&amp;tag=ideas.html">#ideas</a><a class="tag" href="index%EF%B9%96index&amp;tag=offline.html">#offline</a>
+          </div>
+          <div class="controls">
+            <button type="button" class="toggle" pad-click="pin" aria-pressed="false">★ Pin</button>
+            <div class="swatches" role="group" aria-label="Colour">
+              <button type="button" class="swatch color-plain" pad-click="color" pad-value="plain" aria-pressed="false" title="Plain" aria-label="Plain"></button><button type="button" class="swatch color-sun" pad-click="color" pad-value="sun" aria-pressed="false" title="Sun" aria-label="Sun"></button><button type="button" class="swatch color-sea" pad-click="color" pad-value="sea" aria-pressed="false" title="Sea" aria-label="Sea"></button><button type="button" class="swatch color-mint" pad-click="color" pad-value="mint" aria-pressed="false" title="Mint" aria-label="Mint"></button><button type="button" class="swatch color-rose" pad-click="color" pad-value="rose" aria-pressed="false" title="Rose" aria-label="Rose"></button><button type="button" class="swatch color-lilac" pad-click="color" pad-value="lilac" aria-pressed="true" title="Lilac" aria-label="Lilac"></button>
+            </div>
+          </div>
+          <div class="body">
+            <p>
+              Orders written on the market, without network, and sent in the evening.
+            </p>
+            <p>
+              The database goes with the tablet; the <strong>Backup</strong> page hands it to the office as a file.
+            </p>
+          </div>
+          <div class="actions">
+            <a class="button primary" href="index%EF%B9%96edit&amp;id=4.html">Edit</a>
+            <details>
+              <summary class="button danger">
+                Delete…
+              </summary>
+              <form method="post">
+                <input type="hidden" name="padCsrfToken" value="4048b262dcc9eb2edd425905462a95f91667c96c6728e7569507ac953cddc4f5"><input type="hidden" name="padForm" value="delete"><span>Delete this note and its files?</span><button class="button danger">Delete</button>
+              </form>
+            </details>
+          </div>
+        </article>
+      </div>
+      <script>
+      (function () {
+      if (window.padLiveReady) return;
+      window.padLiveReady = true;
+      function send(region, fields) {
+      var body = new URLSearchParams();
+      fields.forEach(function (field) { body.append(field[0], field[1]); });
+      body.set('padLive', region.getAttribute('data-pad-live'));
+      var token = region.getAttribute('data-pad-csrf');
+      if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
+      region.setAttribute('aria-busy', 'true');
+      fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
+      .then(function (response) {
+        return response.text().then(function (text) {
+          if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+          return text;
+        });
+      })
+      .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+      .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
+      .then(function () { region.removeAttribute('aria-busy'); });
+      }
+      function event(element, attribute, value) {
+      return [['padEvent', element.getAttribute(attribute)], ['padValue', element.hasAttribute('pad-value') ? element.getAttribute('pad-value') : value]];
+      }
+      document.addEventListener('click', function (e) {
+      var element = e.target.closest('[pad-click]');
+      var region = element && element.closest('[data-pad-live]');
+      if (!region) return;
+      e.preventDefault();
+      send(region, event(element, 'pad-click', ''));
+      });
+      document.addEventListener('submit', function (e) {
+      var form = e.target;
+      var region = form.hasAttribute('pad-submit') && form.closest('[data-pad-live]');
+      if (!region) return;
+      e.preventDefault();
+      var fields = [];
+      new FormData(form).forEach(function (value, key) { if (typeof value === 'string') fields.push([key, value]); });
+      send(region, fields.concat(event(form, 'pad-submit', '')));
+      });
+      document.addEventListener('change', function (e) {
+      var element = e.target.closest('[pad-change]');
+      var region = element && element.closest('[data-pad-live]');
+      if (!region) return;
+      var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+      send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+      });
+      })();
+      </script>
+    </main>
+    <footer class="bottom">
+      Notes runs on PHP 8.5.11. Its notes live in one SQLite database.
+    </footer>
+  </body>
+</html>

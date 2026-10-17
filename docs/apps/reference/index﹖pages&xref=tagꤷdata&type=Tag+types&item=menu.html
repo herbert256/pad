@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - menu
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - menu
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: helpers/http_fake_answers_every_road_a_fetch_takes_and_records_it<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">helpers/http_fake_answers_every_road_a_fetch_takes_and_records_it.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">helpers/http_fake_answers_every_road_a_fetch_takes_and_records_it.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fetches of this request answered from fakes: padCurl, padCurlCached (which passes<br>  // its cache by while faking), padPrefetch, and in the template {curl} and data=. The<br>  // URLs fetched are read back after the template made its own.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'https://api.example.com/rates'  </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'eur' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1.08 </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'https://api.example.com/list*'  </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'status'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">200</span><span style="color: #007700">, </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"name,price\nTea,2\nCake,3"</span><span style="color: #007700">,<br>                                          </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Content-Type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'text/csv'</span><span style="color: #007700">, </span><span style="color: #DD0000">'X-Fake' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'api.example.com/down'           </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">503</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'https://api.example.com/echo'   </span><span style="color: #007700">=&gt; fn ( </span><span style="color: #0000BB">$request </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$request </span><span style="color: #007700">[</span><span style="color: #DD0000">'method'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$request </span><span style="color: #007700">[</span><span style="color: #DD0000">'post'</span><span style="color: #007700">]<br>  ] );<br><br>  </span><span style="color: #0000BB">$rates  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #DD0000">'https://api.example.com/rates' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$cached </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurlCached </span><span style="color: #007700">( </span><span style="color: #DD0000">'https://api.example.com/rates'</span><span style="color: #007700">, </span><span style="color: #0000BB">600 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$down   </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #DD0000">'https://api.example.com/down' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$echo   </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://api.example.com/echo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a=1' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">padPrefetch </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'menu' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://api.example.com/list?for=menu' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$summary </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'rates'  </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">$rates </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">], </span><span style="color: #0000BB">$rates </span><span style="color: #007700">[</span><span style="color: #DD0000">'type'</span><span style="color: #007700">], </span><span style="color: #0000BB">$rates </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'cached' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">$cached </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">], </span><span style="color: #0000BB">$cached </span><span style="color: #007700">[</span><span style="color: #DD0000">'cache'</span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'down'   </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">$down </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">], </span><span style="color: #0000BB">$down </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'echo'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$echo </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">],<br>  ], </span><span style="color: #0000BB">JSON_UNESCAPED_SLASHES </span><span style="color: #007700">);<br><br>  function </span><span style="color: #0000BB">httpFakeCalls </span><span style="color: #007700">() {<br>    return </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' | '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$call </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$call </span><span style="color: #007700">[</span><span style="color: #DD0000">'method'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$call </span><span style="color: #007700">[</span><span style="color: #DD0000">'url'</span><span style="color: #007700">], </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() ) );<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>summary</font>}</b><br><b>{<font color="blue">menu</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>=<b>{<font color="green"><font color="red">$</font>price</font>}</b> <b>{/<font color="blue">menu</font><font color="red"></font>}</b><br><b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//api.example.com/list.csv<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>https<font color="black">:</font>//api.example.com/list?for=data<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>httpFakeCalls</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5b7cbde1d1aae2d391b52b39a3371fa2"></div>
+                        <script>
+                        padAjax5b7cbde1d1aae2d391b52b39a3371fa2 = new XMLHttpRequest();
+                        padAjax5b7cbde1d1aae2d391b52b39a3371fa2.onreadystatechange=function() {
+                        if (padAjax5b7cbde1d1aae2d391b52b39a3371fa2.readyState === 4) {
+                        if (padAjax5b7cbde1d1aae2d391b52b39a3371fa2.status === 200) {
+                        document.getElementById("padAjax5b7cbde1d1aae2d391b52b39a3371fa2").innerHTML=padAjax5b7cbde1d1aae2d391b52b39a3371fa2.responseText;
+                        } else {
+                        document.getElementById("padAjax5b7cbde1d1aae2d391b52b39a3371fa2").innerHTML=padAjax5b7cbde1d1aae2d391b52b39a3371fa2.statusText;
+                        }
+                        }
+                        }
+                        padAjax5b7cbde1d1aae2d391b52b39a3371fa2.open("GET","http://localhost/pad/regression/framework/?helpers/http_fake_answers_every_road_a_fetch_takes_and_records_it&padInclude",true);
+                        padAjax5b7cbde1d1aae2d391b52b39a3371fa2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {asset} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">asset</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>asset<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'file'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'file'</span>, tag<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>file</code>
+            </dt>
+            <dd>
+              A file relative to <code>www/&lt;app&gt;/</code> - <code>'charts.css'</code>, <code>'js/app.js'</code>. It never leaves that directory.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>tag</code>
+            </dt>
+            <dd>
+              Bare option: write the element instead of the address - <code>&lt;link rel="stylesheet"&gt;</code> for <code>.css</code>, <code>&lt;script defer&gt;</code> for <code>.js</code>, <code>&lt;script type="module"&gt;</code> for <code>.mjs</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{asset 'charts.css'}</code> answers the address of <code>www/&lt;app&gt;/charts.css</code> with <code>?v=</code> and the first ten hex digits of a hash of the file's contents: <code>/charts/charts.css?v=1f3a9c0b2e</code>. The hash is made once per request. A changed file gets a new address, so the server can send its assets with a cache lifetime of a year and a browser still fetches the new version the moment it changes - no build step, no manifest.
+          </p>
+          <p>
+            With the bare <code>tag</code> option it writes the element itself: a <code>&lt;link rel="stylesheet"&gt;</code> for a <code>.css</code> file, a <code>&lt;script defer&gt;</code> for <code>.js</code> and a <code>&lt;script type="module"&gt;</code> for <code>.mjs</code>, carrying the request's nonce when <code>$padCsp</code> asks for one. From PHP, <code>padAsset ( 'charts.css' )</code> and <code>padAssetTag ( 'app.js' )</code> give the same.
+          </p>
+          <p>
+            A name never leaves <code>www/&lt;app&gt;/</code>. A file that is not there is written as the plain address and, under the strict check, reported as an error. The hash follows the file, so the examples are shown rather than run. For the bundles of a Vite build, use <a href="index%EF%B9%96tag%EA%A4%B7vite.html"><code>{vite}</code></a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A versioned address
+            </h3>
+            <p class="example-about">
+              The stylesheet's address carries a hash of its contents - /tags/tags.css?v=9c41e07a2b.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/asset/1-address.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;link</span> <span class="hl-opt">rel</span>=<span class="hl-str">"stylesheet"</span> <span class="hl-opt">href</span>=<span class="hl-str">"{asset 'tags.css'}"</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;img</span> <span class="hl-opt">src</span>=<span class="hl-str">"{asset 'img/logo.svg'}"</span> <span class="hl-opt">alt</span>=<span class="hl-str">"Logo"</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The element written for you
+            </h3>
+            <p class="example-about">
+              tag writes a link for a stylesheet, a deferred script for .js and a module for .mjs.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/asset/2-tag.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'tags.css'</span>, tag<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'tags.js'</span>, tag<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'islands.mjs'</span>, tag<span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7vite.html">{vite}</a> <span class="about">Links the scripts and stylesheets of a Vite build by the name of their source - or the dev server while it runs.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7nonce.html">{nonce}</a> <span class="about">This request's Content-Security-Policy nonce, for a script or style the policy lets run.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7flush.html">{flush}</a> <span class="about">Sends the page rendered so far to the browser at once, so it can load the stylesheets while a slow part below renders.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7assert.html">← {assert}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7at.html">{at} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

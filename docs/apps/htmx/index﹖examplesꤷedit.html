@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inline editing - PAD + htmx</title>
+  <link rel="stylesheet" href="htmx.css">
+  <script src="htmx-app.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
+  <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
+</head>
+<body hx-headers="{&quot;X-CSRF-Token&quot;:&quot;9740463388c49e4e782c87db7cfd0597026cbed96757eeb9c9df6db351d31438&quot;}">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + htmx home">
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+      <span>PAD <em>+</em> htmx</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <a class="cart-badge" href="index%EF%B9%96examples%EA%A4%B7cart.html" aria-label="The cart">
+      🛒 <span id="cart-count">0</span>
+    </a>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Changing data</nav>
+  <h1><span class="example-icon" aria-hidden="true">✏️</span>Inline editing</h1>
+  <p class="lede">A row turns into a form and back. Each answer is one row of the same loop - the PHP narrows the rows to the one asked for, padValidate checks the post, the session keeps the edits.</p>
+  <div class="chips">
+    <code class="chip is-server">padValidate</code><code class="chip is-server">padSession</code><code class="chip is-server">&amp;padFragment=row</code>
+    <code class="chip is-client">hx-get</code><code class="chip is-client">hx-post</code><code class="chip is-client">hx-include</code><code class="chip is-client">hx-target=&quot;closest tr&quot;</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<table class="table">
+  <thead><tr><th>Name</th><th>E-mail</th><th>City</th><th></th></tr></thead>
+  <tbody hx-target="closest tr" hx-swap="outerHTML">
+  
+  
+    
+    <tr>
+      <td><strong>Ada Fern&aacute;ndez</strong></td>
+      <td>ada@example.com</td>
+      <td>Amsterdam</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=1&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Bram Visser</strong></td>
+      <td>bram@example.com</td>
+      <td>Utrecht</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=2&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Chen Wei</strong></td>
+      <td>chen@example.com</td>
+      <td>Rotterdam</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=3&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Dalia Haddad</strong></td>
+      <td>dalia@example.com</td>
+      <td>Eindhoven</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=4&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  
+    
+    <tr>
+      <td><strong>Emeka Obi</strong></td>
+      <td>emeka@example.com</td>
+      <td>Groningen</td>
+      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id=5&mode=edit&padFragment=row">Edit</button></td>
+    </tr>
+    
+  
+  
+  </tbody>
+</table>
+
+<p class="small muted" style="margin-top: 14px">
+  Your edits stay in your session.
+  <button class="btn-sm btn-ghost" hx-post="?examples/edit&reset" hx-select="table" hx-target="previous table" hx-swap="outerHTML">Undo them all</button>
+</p>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests htmx made</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request it makes shows here with the part PAD answered.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">htmx, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/edit.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/edit.php</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;table&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2">  <span class="hl-htm">&lt;thead</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Name<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>E-mail<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>City<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/thead</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="3">  <span class="hl-htm">&lt;tbody</span> <span class="hl-opt">hx-target</span>=<span class="hl-str">&quot;closest tr&quot;</span> <span class="hl-opt">hx-swap</span>=<span class="hl-str">&quot;outerHTML&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-brc">{</span><span class="hl-tag">rows</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">fragment</span> <span class="hl-str">&#039;row&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="6">    <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$editing</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="7">    <span class="hl-htm">&lt;tr</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;is-editing&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8">      <span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input{if $errName} is-invalid{/if}&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;name&quot;</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;{$name}&quot;</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;Name&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$errName</span><span class="hl-brc">}</span><span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$errName</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9">      <span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input{if $errEmail} is-invalid{/if}&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;email&quot;</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;{$email}&quot;</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;E-mail&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$errEmail</span><span class="hl-brc">}</span><span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$errEmail</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="10">      <span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;input{if $errCity} is-invalid{/if}&quot;</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;city&quot;</span> <span class="hl-opt">value</span>=<span class="hl-str">&quot;{$city}&quot;</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">&quot;City&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$errCity</span><span class="hl-brc">}</span><span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;error&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$errCity</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="11">      <span class="hl-htm">&lt;td</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;actions&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="12">        <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-sm&quot;</span> <span class="hl-opt">hx-post</span>=<span class="hl-str">&quot;?examples/edit&amp;id={$id}&amp;padFragment=row&quot;</span> <span class="hl-opt">hx-include</span>=<span class="hl-str">&quot;closest tr&quot;</span><span class="hl-htm">&gt;</span>Save<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13">        <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-sm btn-ghost&quot;</span> <span class="hl-opt">hx-get</span>=<span class="hl-str">&quot;?examples/edit&amp;id={$id}&amp;padFragment=row&quot;</span><span class="hl-htm">&gt;</span>Cancel<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="14">      <span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="15">    <span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="16">    <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="17">    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="18">      <span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="19">      <span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$email</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="20">      <span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$city</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="21">      <span class="hl-htm">&lt;td</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;actions&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-sm btn-ghost&quot;</span> <span class="hl-opt">hx-get</span>=<span class="hl-str">&quot;?examples/edit&amp;id={$id}&amp;mode=edit&amp;padFragment=row&quot;</span><span class="hl-htm">&gt;</span>Edit<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="22">    <span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="23">    <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="24">  <span class="hl-brc">{</span><span class="hl-tag">/fragment</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="25">  <span class="hl-brc">{</span><span class="hl-tag">/rows</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="26">  <span class="hl-htm">&lt;/tbody</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="27"><span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="28"></span>
+<span class="hl-line" data-line="29"><span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;small muted&quot;</span> <span class="hl-opt">style</span>=<span class="hl-str">&quot;margin-top: 14px&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="30">  Your edits stay in your session.</span>
+<span class="hl-line" data-line="31">  <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-sm btn-ghost&quot;</span> <span class="hl-opt">hx-post</span>=<span class="hl-str">&quot;?examples/edit&amp;reset&quot;</span> <span class="hl-opt">hx-select</span>=<span class="hl-str">&quot;table&quot;</span> <span class="hl-opt">hx-target</span>=<span class="hl-str">&quot;previous table&quot;</span> <span class="hl-opt">hx-swap</span>=<span class="hl-str">&quot;outerHTML&quot;</span><span class="hl-htm">&gt;</span>Undo them all<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="32"><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// The contacts are the session&#039;s copy of _data/contacts.json. htmx asks for one row at a</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// time - &amp;id= with &amp;padFragment=row - and this file narrows the loop to that row, so the</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// first {fragment &#039;row&#039;} to render is the answer: the row to read, the row as a form</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-com">// (mode=edit), or after a post the row as stored - or the form again with padValidate&#039;s</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-com">// messages in it. The token of the post comes in the X-CSRF-Token header (_inits.pad).</span></span>
+<span class="hl-line" data-line="8"></span>
+<span class="hl-line" data-line="9">  <span class="hl-var">$contacts</span> <span class="hl-pun">=</span> <span class="hl-fn">padSession</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;htmxContacts&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">htmxData</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;contacts&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="10">  <span class="hl-var">$id</span>       <span class="hl-pun">=</span> <span class="hl-pun">(int)</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;id&#039;</span><span class="hl-pun">,</span> <span class="hl-num">0</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="11">  <span class="hl-var">$mode</span>     <span class="hl-pun">=</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;mode&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">===</span> <span class="hl-str">&#039;edit&#039;</span> <span class="hl-pun">?</span> <span class="hl-str">&#039;edit&#039;</span> <span class="hl-pun">:</span> <span class="hl-str">&#039;view&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="12">  <span class="hl-var">$errors</span>   <span class="hl-pun">=</span> <span class="hl-pun">[</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="13"></span>
+<span class="hl-line" data-line="14">  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequestIs</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;POST&#039;</span> <span class="hl-pun">)</span> <span class="hl-kwd">and</span> <span class="hl-fn">padRequestHas</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;reset&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="15">    <span class="hl-var">$contacts</span> <span class="hl-pun">=</span> <span class="hl-fn">htmxData</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;contacts&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="16">    <span class="hl-fn">padSessionPut</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;htmxContacts&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contacts</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="17">    <span class="hl-var">$id</span> <span class="hl-pun">=</span> <span class="hl-num">0</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="18">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="19"></span>
+<span class="hl-line" data-line="20">  <span class="hl-kwd">elseif</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequestIs</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;POST&#039;</span> <span class="hl-pun">)</span> <span class="hl-kwd">and</span> <span class="hl-var">$id</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="21"></span>
+<span class="hl-line" data-line="22">    <span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|max:40&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;email&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|email&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;city&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required|max:30&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="23"></span>
+<span class="hl-line" data-line="24">    <span class="hl-kwd">foreach</span> <span class="hl-pun">(</span> <span class="hl-var">$contacts</span> <span class="hl-kwd">as</span> <span class="hl-var">$at</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$contact</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="25">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$contact</span> <span class="hl-pun">[</span><span class="hl-str">&#039;id&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">==</span> <span class="hl-var">$id</span> <span class="hl-kwd">and</span> <span class="hl-pun">!</span> <span class="hl-var">$errors</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="26">        <span class="hl-var">$contacts</span> <span class="hl-pun">[</span><span class="hl-var">$at</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;id&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$id</span><span class="hl-pun">,</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;email&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;email&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-str">&#039;city&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">trim</span> <span class="hl-pun">(</span> <span class="hl-fn">padRequest</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;city&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="27">        <span class="hl-fn">padSessionPut</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;htmxContacts&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contacts</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="28">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="29"></span>
+<span class="hl-line" data-line="30">    <span class="hl-var">$mode</span> <span class="hl-pun">=</span> <span class="hl-var">$errors</span> <span class="hl-pun">?</span> <span class="hl-str">&#039;edit&#039;</span> <span class="hl-pun">:</span> <span class="hl-str">&#039;view&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="31"></span>
+<span class="hl-line" data-line="32">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="33"></span>
+<span class="hl-line" data-line="34">  <span class="hl-com">// The rows the template walks: all of them, or the one asked for - a form of it showing</span></span>
+<span class="hl-line" data-line="35">  <span class="hl-com">// the posted values and the messages when the post had errors.</span></span>
+<span class="hl-line" data-line="36"></span>
+<span class="hl-line" data-line="37">  <span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="38"></span>
+<span class="hl-line" data-line="39">  <span class="hl-kwd">foreach</span> <span class="hl-pun">(</span> <span class="hl-var">$contacts</span> <span class="hl-kwd">as</span> <span class="hl-var">$contact</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="40"></span>
+<span class="hl-line" data-line="41">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$id</span> <span class="hl-kwd">and</span> <span class="hl-var">$contact</span> <span class="hl-pun">[</span><span class="hl-str">&#039;id&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">!=</span> <span class="hl-var">$id</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="42">      <span class="hl-kwd">continue</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="43"></span>
+<span class="hl-line" data-line="44">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$errors</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="45">      <span class="hl-var">$contact</span> <span class="hl-pun">=</span> <span class="hl-fn">array_replace</span> <span class="hl-pun">(</span> <span class="hl-var">$contact</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;name&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-fn">htmxText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="46">                                             <span class="hl-str">&#039;email&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-fn">htmxText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;email&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="47">                                             <span class="hl-str">&#039;city&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-fn">htmxText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;city&#039;</span> <span class="hl-pun">)</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="48"></span>
+<span class="hl-line" data-line="49">    <span class="hl-var">$rows</span> <span class="hl-pun">[</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-var">$contact</span> <span class="hl-pun">+</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;editing&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-pun">(</span> <span class="hl-var">$id</span> <span class="hl-kwd">and</span> <span class="hl-var">$mode</span> <span class="hl-pun">==</span> <span class="hl-str">&#039;edit&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="50">                            <span class="hl-str">&#039;errName&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-var">$errors</span> <span class="hl-pun">[</span><span class="hl-str">&#039;name&#039;</span><span class="hl-pun">]</span>  <span class="hl-pun">??</span> <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="51">                            <span class="hl-str">&#039;errEmail&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$errors</span> <span class="hl-pun">[</span><span class="hl-str">&#039;email&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">??</span> <span class="hl-str">&#039;&#039;</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="52">                            <span class="hl-str">&#039;errCity&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-var">$errors</span> <span class="hl-pun">[</span><span class="hl-str">&#039;city&#039;</span><span class="hl-pun">]</span>  <span class="hl-pun">??</span> <span class="hl-str">&#039;&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="53"></span>
+<span class="hl-line" data-line="54">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="55"></span>
+<span class="hl-line" data-line="56">  <span class="hl-com">// An id the session does not hold - a stale or made-up request - has no row to answer: a</span></span>
+<span class="hl-line" data-line="57">  <span class="hl-com">// 404, which htmx swaps nothing for, where the empty loop rendered no {fragment &#039;row&#039;} and</span></span>
+<span class="hl-line" data-line="58">  <span class="hl-com">// the answer was a 500, &quot;there is no fragment named &#039;row&#039; on this page&quot;.</span></span>
+<span class="hl-line" data-line="59"></span>
+<span class="hl-line" data-line="60">  <span class="hl-kwd">if</span> <span class="hl-pun">(</span> <span class="hl-var">$id</span> <span class="hl-kwd">and</span> <span class="hl-pun">!</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="61">    <span class="hl-fn">padAbort</span> <span class="hl-pun">(</span> <span class="hl-num">404</span><span class="hl-pun">,</span> <span class="hl-str">&#039;There is no such contact&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="62"></span>
+<span class="hl-line" data-line="63"><span class="hl-tag">?&gt;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7scroll.html"><small>Previous</small>Infinite scroll</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7form.html"><small>Next</small>Forms without reloads</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> renders every part of the page &middot; <strong>htmx</strong> asks for the part that changes and swaps it in</p>
+    <p class="footer-small">htmx comes from unpkg.com &middot; the pages are in <code>apps/htmx/</code> - there is no JavaScript of the application's own but a request log</p>
+  </div>
+</footer>
+
+</body>
+</html>

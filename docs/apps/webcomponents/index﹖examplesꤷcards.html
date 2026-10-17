@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="b280b36c94731948021d64e1cfa4fc7dc4db46e719b931d90ae1415c729b9d4f">
+  <title>Cards with slots - PAD + web components</title>
+  <link rel="stylesheet" href="webcomponents.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + web components home">
+      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><rect x="2" y="2" width="11" height="11" rx="3"/><rect x="15" y="2" width="11" height="11" rx="3" opacity=".6"/><rect x="2" y="15" width="11" height="11" rx="3" opacity=".6"/><rect x="15" y="15" width="11" height="11" rx="3" opacity=".3"/></svg>
+      <span>PAD <em>+</em> web components</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Rendered on the server</nav>
+  <h1><span class="example-icon" aria-hidden="true">🃏</span>Cards with slots</h1>
+  <p class="lede">{card title=&#039;Revenue&#039;} is a PAD custom tag that writes &lt;pad-card&gt; with its shadow root: encapsulated styles inlined by {shadow css=}, named slots the browser fills from the light DOM - and not a line of JavaScript.</p>
+  <div class="chips">
+    <code class="chip is-server">{shadow}</code><code class="chip is-server">_tags/card.pad</code><code class="chip is-server">{parms}</code>
+    <code class="chip is-client">shadowrootmode</code><code class="chip is-client">&lt;slot&gt;</code><code class="chip is-client">::slotted</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<div class="grid">
+
+  
+<pad-card tone="good">
+  <template shadowrootmode="open"><style>/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
+   stylesheet reaches in - but custom properties do, so the card follows the page's theme. */
+
+:host {
+  --tone: var(--accent, #e8590c);
+  display: block;
+  border-radius: 16px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, #ddd);
+  border-top: 4px solid var(--tone);
+  box-shadow: var(--shadow, none);
+  overflow: hidden;
+}
+:host([tone="good"]) { --tone: var(--good, #108a4a); }
+:host([tone="bad"])  { --tone: var(--bad, #c93838); }
+:host([tone="info"]) { --tone: var(--accent, #e8590c); }
+
+header { padding: 14px 18px 0; font: 700 12px/1.4 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--tone); }
+.body { padding: 4px 18px 10px; }
+footer { padding: 10px 18px; border-top: 1px solid var(--line, #ddd); font-size: 14px; }
+::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }</style>
+    <header part="head"><slot name="title"></slot></header>
+    <div class="body"><slot></slot></div>
+    <footer part="foot"><slot name="footer"></slot></footer>
+  </template>
+  <span slot="title">Revenue</span>
+  
+    <p class="stat">&euro; 48,210</p>
+    <p class="muted">12% more than last month</p>
+    <a slot="footer" href="index%EF%B9%96examples%EA%A4%B7cards.html">Details →</a>
+  
+</pad-card>
+
+
+  
+<pad-card tone="info">
+  <template shadowrootmode="open"><style>/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
+   stylesheet reaches in - but custom properties do, so the card follows the page's theme. */
+
+:host {
+  --tone: var(--accent, #e8590c);
+  display: block;
+  border-radius: 16px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, #ddd);
+  border-top: 4px solid var(--tone);
+  box-shadow: var(--shadow, none);
+  overflow: hidden;
+}
+:host([tone="good"]) { --tone: var(--good, #108a4a); }
+:host([tone="bad"])  { --tone: var(--bad, #c93838); }
+:host([tone="info"]) { --tone: var(--accent, #e8590c); }
+
+header { padding: 14px 18px 0; font: 700 12px/1.4 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--tone); }
+.body { padding: 4px 18px 10px; }
+footer { padding: 10px 18px; border-top: 1px solid var(--line, #ddd); font-size: 14px; }
+::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }</style>
+    <header part="head"><slot name="title"></slot></header>
+    <div class="body"><slot></slot></div>
+    <footer part="foot"><slot name="footer"></slot></footer>
+  </template>
+  <span slot="title">Visitors</span>
+  
+    <p class="stat">12,804</p>
+    <p class="muted">Most of them on a phone</p>
+    <a slot="footer" href="index%EF%B9%96examples%EA%A4%B7cards.html">Details →</a>
+  
+</pad-card>
+
+
+  
+<pad-card tone="bad">
+  <template shadowrootmode="open"><style>/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
+   stylesheet reaches in - but custom properties do, so the card follows the page's theme. */
+
+:host {
+  --tone: var(--accent, #e8590c);
+  display: block;
+  border-radius: 16px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line, #ddd);
+  border-top: 4px solid var(--tone);
+  box-shadow: var(--shadow, none);
+  overflow: hidden;
+}
+:host([tone="good"]) { --tone: var(--good, #108a4a); }
+:host([tone="bad"])  { --tone: var(--bad, #c93838); }
+:host([tone="info"]) { --tone: var(--accent, #e8590c); }
+
+header { padding: 14px 18px 0; font: 700 12px/1.4 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--tone); }
+.body { padding: 4px 18px 10px; }
+footer { padding: 10px 18px; border-top: 1px solid var(--line, #ddd); font-size: 14px; }
+::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }</style>
+    <header part="head"><slot name="title"></slot></header>
+    <div class="body"><slot></slot></div>
+    <footer part="foot"><slot name="footer"></slot></footer>
+  </template>
+  <span slot="title">Returns</span>
+  
+    <p class="stat">38</p>
+    <p class="muted">Three more than usual</p>
+    <a slot="footer" href="index%EF%B9%96examples%EA%A4%B7cards.html">Details →</a>
+  
+</pad-card>
+
+
+</div>
+
+<p class="muted small" style="margin-top: 18px">
+  Open the developer tools: each card is <code>&lt;pad-card&gt;</code> with a <code>#shadow-root</code> PAD wrote. The page
+  loads no script for it - the browser builds the root from the <code>&lt;template shadowrootmode&gt;</code>, and the
+  styles inside it neither leak out nor let the page's in.
+</p>
+</section>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/cards.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/cards.php</label><input type="radio" name="pad-source-1" id="pad-source-1-3"><label for="pad-source-1-3" data-side="server">_tags/card.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-4"><label for="pad-source-1-4" data-side="client">www/webcomponents/elements/card.css</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;grid&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"><span class="hl-brc">{</span><span class="hl-tag">cards</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="3">  <span class="hl-brc">{</span><span class="hl-tag">card</span> <span class="hl-opt">title</span>=<span class="hl-var">$title</span>, <span class="hl-opt">tone</span>=<span class="hl-var">$tone</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="4">    <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;stat&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$value</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="5">    <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="6">    <span class="hl-htm">&lt;a</span> <span class="hl-opt">slot</span>=<span class="hl-str">&quot;footer&quot;</span> <span class="hl-opt">href</span>=<span class="hl-str">&quot;?examples/cards&quot;</span><span class="hl-htm">&gt;</span>Details →<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-brc">{</span><span class="hl-tag">/card</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="8"><span class="hl-brc">{</span><span class="hl-tag">/cards</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="9"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="10"></span>
+<span class="hl-line" data-line="11"><span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted small&quot;</span> <span class="hl-opt">style</span>=<span class="hl-str">&quot;margin-top: 18px&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="12">  Open the developer tools: each card is <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-var">&amp;lt</span>;pad-card<span class="hl-var">&amp;gt</span>;<span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> with a <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-var">#shadow</span>-root<span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> PAD wrote. The page</span>
+<span class="hl-line" data-line="13">  loads no script for it - the browser builds the root from the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-var">&amp;lt</span>;template shadowrootmode<span class="hl-var">&amp;gt</span>;<span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span>, and the</span>
+<span class="hl-line" data-line="14">  styles inside it neither leak out nor let the page&#039;s in.</span>
+<span class="hl-line" data-line="15"><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// Three cards from one custom tag: {card} writes a &lt;pad-card&gt; with its shadow root, the</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// stylesheet inlined by {shadow css=} and named slots; the page hands it the title and the</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// tone as parameters and the rest as content - the light DOM the browser slots in.</span></span>
+<span class="hl-line" data-line="6"></span>
+<span class="hl-line" data-line="7">  <span class="hl-var">$cards</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;title&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;Revenue&#039;</span><span class="hl-pun">,</span>  <span class="hl-str">&#039;tone&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;good&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;€ 48,210&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;note&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;12% more than last month&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="8">             <span class="hl-pun">[</span> <span class="hl-str">&#039;title&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;Visitors&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;tone&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;info&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;12,804&#039;</span><span class="hl-pun">,</span>   <span class="hl-str">&#039;note&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;Most of them on a phone&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="9">             <span class="hl-pun">[</span> <span class="hl-str">&#039;title&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;Returns&#039;</span><span class="hl-pun">,</span>  <span class="hl-str">&#039;tone&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;bad&#039;</span><span class="hl-pun">,</span>  <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;38&#039;</span><span class="hl-pun">,</span>       <span class="hl-str">&#039;note&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;Three more than usual&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="10"></span>
+<span class="hl-line" data-line="11"><span class="hl-tag">?&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">tone</span>=<span class="hl-str">&#039;info&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="2"><span class="hl-htm">&lt;pad-card</span> <span class="hl-opt">tone</span>=<span class="hl-str">&quot;{#tone}&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="3">  <span class="hl-brc">{</span><span class="hl-tag">shadow</span> <span class="hl-opt">css</span>=<span class="hl-str">&#039;www:elements/card.css&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="4">    <span class="hl-htm">&lt;header</span> <span class="hl-opt">part</span>=<span class="hl-str">&quot;head&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;slot</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;title&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/slot</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/header</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="5">    <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;body&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;slot</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/slot</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="6">    <span class="hl-htm">&lt;footer</span> <span class="hl-opt">part</span>=<span class="hl-str">&quot;foot&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;slot</span> <span class="hl-opt">name</span>=<span class="hl-str">&quot;footer&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/slot</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/footer</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-brc">{</span><span class="hl-tag">/shadow</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="8">  <span class="hl-htm">&lt;span</span> <span class="hl-opt">slot</span>=<span class="hl-str">&quot;title&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">#title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9">  <span class="hl-var">@content@</span></span>
+<span class="hl-line" data-line="10"><span class="hl-htm">&lt;/pad-card</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="css"><code><span class="hl-line" data-line="1"><span class="hl-com">/* The shadow root of &lt;pad-card&gt;, inlined into it by {shadow css=}. Nothing of the page&#039;s</span></span>
+<span class="hl-line" data-line="2"><span class="hl-com">   stylesheet reaches in - but custom properties do, so the card follows the page&#039;s theme. */</span></span>
+<span class="hl-line" data-line="3"></span>
+<span class="hl-line" data-line="4"><span class="hl-pun">:</span>host <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-key">--tone</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--accent<span class="hl-pun">,</span> <span class="hl-num">#e8590c</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-key">display</span><span class="hl-pun">:</span> block<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-key">border-radius</span><span class="hl-pun">:</span> <span class="hl-num">16px</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="8">  <span class="hl-key">background</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--surface<span class="hl-pun">,</span> <span class="hl-num">#fff</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="9">  <span class="hl-key">border</span><span class="hl-pun">:</span> <span class="hl-num">1px</span> solid <span class="hl-fn">var</span><span class="hl-pun">(</span>--line<span class="hl-pun">,</span> <span class="hl-num">#ddd</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="10">  <span class="hl-key">border-top</span><span class="hl-pun">:</span> <span class="hl-num">4px</span> solid <span class="hl-fn">var</span><span class="hl-pun">(</span>--tone<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="11">  <span class="hl-key">box-shadow</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--shadow<span class="hl-pun">,</span> none<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="12">  <span class="hl-key">overflow</span><span class="hl-pun">:</span> hidden<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="13"><span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="14"><span class="hl-pun">:</span><span class="hl-fn">host</span><span class="hl-pun">(</span>[tone=<span class="hl-str">&quot;good&quot;</span>]<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-key">--tone</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--good<span class="hl-pun">,</span> <span class="hl-num">#108a4a</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="15"><span class="hl-pun">:</span><span class="hl-fn">host</span><span class="hl-pun">(</span>[tone=<span class="hl-str">&quot;bad&quot;</span>]<span class="hl-pun">)</span>  <span class="hl-pun">{</span> <span class="hl-key">--tone</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--bad<span class="hl-pun">,</span> <span class="hl-num">#c93838</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="16"><span class="hl-pun">:</span><span class="hl-fn">host</span><span class="hl-pun">(</span>[tone=<span class="hl-str">&quot;info&quot;</span>]<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-key">--tone</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--accent<span class="hl-pun">,</span> <span class="hl-num">#e8590c</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="17"></span>
+<span class="hl-line" data-line="18">header <span class="hl-pun">{</span> <span class="hl-key">padding</span><span class="hl-pun">:</span> <span class="hl-num">14px</span> <span class="hl-num">18px</span> <span class="hl-num">0</span><span class="hl-pun">;</span> <span class="hl-key">font</span><span class="hl-pun">:</span> <span class="hl-num">700</span> <span class="hl-num">12px</span>/<span class="hl-num">1.4</span> system-ui<span class="hl-pun">,</span> sans-serif<span class="hl-pun">;</span> <span class="hl-key">letter-spacing</span><span class="hl-pun">:</span> .<span class="hl-num">08em</span><span class="hl-pun">;</span> <span class="hl-key">text-transform</span><span class="hl-pun">:</span> uppercase<span class="hl-pun">;</span> <span class="hl-key">color</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--tone<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="19">.body <span class="hl-pun">{</span> <span class="hl-key">padding</span><span class="hl-pun">:</span> <span class="hl-num">4px</span> <span class="hl-num">18px</span> <span class="hl-num">10px</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="20">footer <span class="hl-pun">{</span> <span class="hl-key">padding</span><span class="hl-pun">:</span> <span class="hl-num">10px</span> <span class="hl-num">18px</span><span class="hl-pun">;</span> <span class="hl-key">border-top</span><span class="hl-pun">:</span> <span class="hl-num">1px</span> solid <span class="hl-fn">var</span><span class="hl-pun">(</span>--line<span class="hl-pun">,</span> <span class="hl-num">#ddd</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-key">font-size</span><span class="hl-pun">:</span> <span class="hl-num">14px</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="21"><span class="hl-pun">:</span><span class="hl-pun">:</span><span class="hl-fn">slotted</span><span class="hl-pun">(</span>[slot=<span class="hl-str">&quot;footer&quot;</span>]<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-key">color</span><span class="hl-pun">:</span> <span class="hl-fn">var</span><span class="hl-pun">(</span>--tone<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-key">font-weight</span><span class="hl-pun">:</span> <span class="hl-num">600</span><span class="hl-pun">;</span> <span class="hl-key">text-decoration</span><span class="hl-pun">:</span> none<span class="hl-pun">;</span> <span class="hl-pun">}</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <span></span>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7tabs.html"><small>Next</small>Tabs, upgraded</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> renders each element with its shadow root &middot; <strong>the platform</strong> slots and styles it &middot; a small module upgrades it</p>
+    <p class="footer-small">No framework: custom elements and declarative shadow DOM are the browser's own &middot; the elements are in <code>apps/webcomponents/_tags/</code> and <code>www/webcomponents/elements/</code></p>
+  </div>
+</footer>
+
+</body>
+</html>

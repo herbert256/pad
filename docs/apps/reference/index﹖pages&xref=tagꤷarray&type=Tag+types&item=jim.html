@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/pages - Page: db/a_page_array_sharing_a_record_s_columns_is_no_record<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/a_page_array_sharing_a_record_s_columns_is_no_record.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/a_page_array_sharing_a_record_s_columns_is_no_record.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A heading list keyed by column name is the page's own array, not the row a RECORD read<br>  // before it answered: three occurrences, one per heading. The record stays one.<br><br>  </span><span style="color: #0000BB">$jim    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"record name, phone from staff where name = 'jim'" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$labels </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Phone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'salary' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Salary' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;tr&gt;<b>{<font color="blue">labels</font><font color="red"></font>}</b>&lt;th&gt;<b>{<font color="green"><font color="red">$</font>labels</font>}</b>&lt;/th&gt;<b>{/<font color="blue">labels</font><font color="red"></font>}</b>&lt;/tr&gt; [<b>{<font color="blue">jim</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>/<b>{<font color="green"><font color="red">$</font>phone</font>}</b>;<b>{/<font color="blue">jim</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaf7f3b663f340c25659d7a0810869073"></div>
+                        <script>
+                        padAjaxaf7f3b663f340c25659d7a0810869073 = new XMLHttpRequest();
+                        padAjaxaf7f3b663f340c25659d7a0810869073.onreadystatechange=function() {
+                        if (padAjaxaf7f3b663f340c25659d7a0810869073.readyState === 4) {
+                        if (padAjaxaf7f3b663f340c25659d7a0810869073.status === 200) {
+                        document.getElementById("padAjaxaf7f3b663f340c25659d7a0810869073").innerHTML=padAjaxaf7f3b663f340c25659d7a0810869073.responseText;
+                        } else {
+                        document.getElementById("padAjaxaf7f3b663f340c25659d7a0810869073").innerHTML=padAjaxaf7f3b663f340c25659d7a0810869073.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaf7f3b663f340c25659d7a0810869073.open("GET","http://localhost/pad/regression/pages/?db/a_page_array_sharing_a_record_s_columns_is_no_record&padInclude",true);
+                        padAjaxaf7f3b663f340c25659d7a0810869073.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/pages - Page: db/record_changed<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -129,7 +171,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

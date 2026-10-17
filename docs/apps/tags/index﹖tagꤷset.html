@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {set} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#values">Variables and stores</a><span>/</span><span aria-current="page">set</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>set<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Assigns one or more variables, as globals that outlive the level the tag stands in.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#values">Variables and stores</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$name</span> = value<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$name</span> = value, <span class="hl-var">$other</span> = value<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>$name = value</code>
+            </dt>
+            <dd>
+              One or more assignments, separated by commas. The value is an expression: a literal, a field, arithmetic (<code>$price * $qty</code>), a comparison.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{set $name = value}</code> evaluates the value and assigns it to a global variable, which every tag after it can read as <code>{$name}</code>. Several assignments go in one tag, separated by commas. The tag prints nothing.
+          </p>
+          <p>
+            The assignment sticks: a <code>{set}</code> inside a loop, an <code>{if}</code> or any other level outlives it, so a loop can add up a total that is still there after the loop. That is the difference with a <code>$name = value</code> written on another tag - <code>{orders $n = 5}</code> - which is that level's own and is unwound when the level closes, and with <code>%name = value</code>, which is set again for every occurrence.
+          </p>
+          <p>
+            The values of one <code>{set}</code> are evaluated before any of them is assigned: in <code>{set $a = 1, $b = $a + 1}</code> the <code>$a</code> on the right is the value from before the tag (an error when there was none). Write two <code>{set}</code> tags when one value builds on another.
+          </p>
+          <p>
+            Under the strict syntax check a <code>{set}</code> written as a pair, or one whose words hold no <code>$name = value</code> assignment (a missing <code>$</code>, a missing value), is an error. To count, <a href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a> and <a href="index%EF%B9%96tag%EA%A4%B7decrement.html">{decrement}</a> are shorter; to keep a list or a piece of template, <a href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> and <a href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Assigning values
+            </h3>
+            <p class="example-about">
+              Literals and expressions, several in one tag; a second set reads the first.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/set/1-assign.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$item</span> = <span class="hl-str">'Notebook'</span>, <span class="hl-var">$price</span> = <span class="hl-num">4.50</span>, <span class="hl-var">$qty</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$qty</span><span class="hl-brc">}</span> <span class="hl-var">&amp;times</span>; <span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span> at <span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span> = <span class="hl-brc">{</span><span class="hl-var">$total</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7set%EA%A4%B71-assign.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    3 × Notebook at 4.50 = 13.5
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A total that outlives the loop
+            </h3>
+            <p class="example-about">
+              A set inside a loop sticks; a variable written on the loop tag itself is unwound when the loop ends.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/set/2-sticks.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-num">0</span>, <span class="hl-var">$note</span> = <span class="hl-str">'before'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..4'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'num'</span>, <span class="hl-var">$note</span> = <span class="hl-str">'inside'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-var">$sum</span> + <span class="hl-var">$num</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$num</span><span class="hl-brc">}</span>: running total <span class="hl-brc">{</span><span class="hl-var">$sum</span><span class="hl-brc">}</span>, note <span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After the loop: total <span class="hl-brc">{</span><span class="hl-var">$sum</span><span class="hl-brc">}</span>, note <span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7set%EA%A4%B72-sticks.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    1: running total 1, note inside
+                  </p>
+                  <p>
+                    2: running total 3, note inside
+                  </p>
+                  <p>
+                    3: running total 6, note inside
+                  </p>
+                  <p>
+                    4: running total 10, note inside
+                  </p>
+                  <p>
+                    After the loop: total 10, note before
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a> <span class="about">Adds one to a variable, starting it at 1 when it does not exist yet.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7decrement.html">{decrement}</a> <span class="about">Takes one off a variable, starting it at -1 when it does not exist yet.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> <span class="about">Keeps a piece of template under a name instead of printing it, for a later {name} to render.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">← {sequence}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7shadow.html">{shadow} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

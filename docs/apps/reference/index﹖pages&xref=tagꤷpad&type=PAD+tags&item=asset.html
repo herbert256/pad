@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - PAD tags - asset
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD tags - asset
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/an_asset_that_is_not_there_is_named<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/an_asset_that_is_not_there_is_named.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>nope.css<font color="black">'</font><font color="black">,</font> tag</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxda5fec59913d87c3b47313ee6d34833c"></div>
+                        <script>
+                        padAjaxda5fec59913d87c3b47313ee6d34833c = new XMLHttpRequest();
+                        padAjaxda5fec59913d87c3b47313ee6d34833c.onreadystatechange=function() {
+                        if (padAjaxda5fec59913d87c3b47313ee6d34833c.readyState === 4) {
+                        if (padAjaxda5fec59913d87c3b47313ee6d34833c.status === 200) {
+                        document.getElementById("padAjaxda5fec59913d87c3b47313ee6d34833c").innerHTML=padAjaxda5fec59913d87c3b47313ee6d34833c.responseText;
+                        } else {
+                        document.getElementById("padAjaxda5fec59913d87c3b47313ee6d34833c").innerHTML=padAjaxda5fec59913d87c3b47313ee6d34833c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxda5fec59913d87c3b47313ee6d34833c.open("GET","http://localhost/pad/regression/errors/?syntax/an_asset_that_is_not_there_is_named&padInclude",true);
+                        padAjaxda5fec59913d87c3b47313ee6d34833c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field written inside the quoted name of {asset} - and of {img} and {video}, which<br>  // check their file the same way - is the name it holds: the @ of logo@2x.css came as its<br>  // stand-in, and the name was refused as no file name below www/&lt;application&gt;/. The<br>  // fixture is www/regression/framework/assets/logo@2x.css.<br><br>  </span><span style="color: #0000BB">$f </span><span style="color: #007700">= </span><span style="color: #DD0000">'logo@2x.css'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>f</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>f</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> tag <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5373dfa2efa938f05ff9b85c86bad530"></div>
+                        <script>
+                        padAjax5373dfa2efa938f05ff9b85c86bad530 = new XMLHttpRequest();
+                        padAjax5373dfa2efa938f05ff9b85c86bad530.onreadystatechange=function() {
+                        if (padAjax5373dfa2efa938f05ff9b85c86bad530.readyState === 4) {
+                        if (padAjax5373dfa2efa938f05ff9b85c86bad530.status === 200) {
+                        document.getElementById("padAjax5373dfa2efa938f05ff9b85c86bad530").innerHTML=padAjax5373dfa2efa938f05ff9b85c86bad530.responseText;
+                        } else {
+                        document.getElementById("padAjax5373dfa2efa938f05ff9b85c86bad530").innerHTML=padAjax5373dfa2efa938f05ff9b85c86bad530.statusText;
+                        }
+                        }
+                        }
+                        padAjax5373dfa2efa938f05ff9b85c86bad530.open("GET","http://localhost/pad/regression/framework/?tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters&padInclude",true);
+                        padAjax5373dfa2efa938f05ff9b85c86bad530.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/asset_writes_the_address_with_a_hash_of_the_contents<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/asset_writes_the_address_with_a_hash_of_the_contents.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/asset_writes_the_address_with_a_hash_of_the_contents.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixtures are www/regression/framework/assets/case.css, case.js and case.mjs. The<br>  // version is the start of the contents' hash; a policy that asks for a nonce gets it on<br>  // the element. The addresses are shown from the application on: the mount prefix before<br>  // it is the server's.<br><br>  </span><span style="color: #0000BB">$same </span><span style="color: #007700">= ( </span><span style="color: #0000BB">padAsset </span><span style="color: #007700">( </span><span style="color: #DD0000">'assets/case.css' </span><span style="color: #007700">) == </span><span style="color: #0000BB">$padRoot </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/framework/assets/case.css?v='<br>            </span><span style="color: #007700">. </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">hash_file </span><span style="color: #007700">( </span><span style="color: #DD0000">'xxh128'</span><span style="color: #007700">, </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">APPS </span><span style="color: #007700">) . </span><span style="color: #DD0000">'/www/regression/framework/assets/case.css' </span><span style="color: #007700">), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">) )<br>        ? </span><span style="color: #DD0000">'the hash of the contents' </span><span style="color: #007700">: </span><span style="color: #DD0000">'another hash'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$cspWas </span><span style="color: #007700">= </span><span style="color: #0000BB">$padCsp</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #DD0000">"script-src 'nonce'"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$nonced </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( [ </span><span style="color: #0000BB">padNonce </span><span style="color: #007700">(), </span><span style="color: #0000BB">$padRoot </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'NONCE'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">], </span><span style="color: #0000BB">padAssetTag </span><span style="color: #007700">( </span><span style="color: #DD0000">'assets/case.mjs' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #0000BB">$cspWas</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>same</font>}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/case.css<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/case.js<font color="black">'</font><font color="black">,</font> tag <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/case.css<font color="black">'</font><font color="black">,</font> tag <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>}</b> | <b>{<font color="green"><font color="red">!</font>nonced</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa30426e7c776b721b4b454c05fca983f"></div>
+                        <script>
+                        padAjaxa30426e7c776b721b4b454c05fca983f = new XMLHttpRequest();
+                        padAjaxa30426e7c776b721b4b454c05fca983f.onreadystatechange=function() {
+                        if (padAjaxa30426e7c776b721b4b454c05fca983f.readyState === 4) {
+                        if (padAjaxa30426e7c776b721b4b454c05fca983f.status === 200) {
+                        document.getElementById("padAjaxa30426e7c776b721b4b454c05fca983f").innerHTML=padAjaxa30426e7c776b721b4b454c05fca983f.responseText;
+                        } else {
+                        document.getElementById("padAjaxa30426e7c776b721b4b454c05fca983f").innerHTML=padAjaxa30426e7c776b721b4b454c05fca983f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa30426e7c776b721b4b454c05fca983f.open("GET","http://localhost/pad/regression/framework/?tags/asset_writes_the_address_with_a_hash_of_the_contents&padInclude",true);
+                        padAjaxa30426e7c776b721b4b454c05fca983f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/img_of_a_picture_named_with_a_space_or_an_accent<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/img_of_a_picture_named_with_a_space_or_an_accent.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/img_of_a_picture_named_with_a_space_or_an_accent.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A picture named as a camera or a designer names one - with a space, with an accent - is<br>  // a file below www/&lt;app&gt;/ like any: it was refused as "no file name".<br><br>  </span><span style="color: #0000BB">$accent </span><span style="color: #007700">= </span><span style="color: #0000BB">padAssetName </span><span style="color: #007700">( </span><span style="color: #DD0000">'photos/Zürich.jpg'</span><span style="color: #007700">, </span><span style="color: #DD0000">'the case' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">img </font><font color="red"><font color="black">'</font>assets/my photo.jpg<font color="black">'</font><font color="black">,</font> width=40<font color="black">,</font> alt=<font color="black">'</font>Dunes<font color="black">'</font></font>}</b> <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/my photo.jpg<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>accent</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc745f9ef7901acd7101024b0144fe8bb"></div>
+                        <script>
+                        padAjaxc745f9ef7901acd7101024b0144fe8bb = new XMLHttpRequest();
+                        padAjaxc745f9ef7901acd7101024b0144fe8bb.onreadystatechange=function() {
+                        if (padAjaxc745f9ef7901acd7101024b0144fe8bb.readyState === 4) {
+                        if (padAjaxc745f9ef7901acd7101024b0144fe8bb.status === 200) {
+                        document.getElementById("padAjaxc745f9ef7901acd7101024b0144fe8bb").innerHTML=padAjaxc745f9ef7901acd7101024b0144fe8bb.responseText;
+                        } else {
+                        document.getElementById("padAjaxc745f9ef7901acd7101024b0144fe8bb").innerHTML=padAjaxc745f9ef7901acd7101024b0144fe8bb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc745f9ef7901acd7101024b0144fe8bb.open("GET","http://localhost/pad/regression/framework/?tags/img_of_a_picture_named_with_a_space_or_an_accent&padInclude",true);
+                        padAjaxc745f9ef7901acd7101024b0144fe8bb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

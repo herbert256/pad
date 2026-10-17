@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -74,6 +74,90 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/cache_file - Page: debugged<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">debugged.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">debugged.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of debug: a page with a {debug} in it, which shows its value to this<br>  // machine's own requests only.<br><br>  </span><span style="color: #0000BB">$debugValue </span><span style="color: #007700">= </span><span style="color: #DD0000">'for this machine only'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;page&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax34b6a1d2b150e83d576072442982e65e"></div>
+                        <script>
+                        padAjax34b6a1d2b150e83d576072442982e65e = new XMLHttpRequest();
+                        padAjax34b6a1d2b150e83d576072442982e65e.onreadystatechange=function() {
+                        if (padAjax34b6a1d2b150e83d576072442982e65e.readyState === 4) {
+                        if (padAjax34b6a1d2b150e83d576072442982e65e.status === 200) {
+                        document.getElementById("padAjax34b6a1d2b150e83d576072442982e65e").innerHTML=padAjax34b6a1d2b150e83d576072442982e65e.responseText;
+                        } else {
+                        document.getElementById("padAjax34b6a1d2b150e83d576072442982e65e").innerHTML=padAjax34b6a1d2b150e83d576072442982e65e.statusText;
+                        }
+                        }
+                        }
+                        padAjax34b6a1d2b150e83d576072442982e65e.open("GET","http://localhost/pad/regression/cache_file/?debugged&padInclude",true);
+                        padAjax34b6a1d2b150e83d576072442982e65e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_cached_section_holding_a_debug_box_is_not_kept<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_cached_section_holding_a_debug_box_is_not_kept.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_cached_section_holding_a_debug_box_is_not_kept.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A section whose rendering holds a {debug} box - shown to this machine's own requests<br>  // only - is rendered every time and never kept: built for a local request, the copy went<br>  // to every visitor after it, the value with it. The second section of the name finds no<br>  // stored copy and renders its own content.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwDebugSection' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$debugValue </span><span style="color: #007700">= </span><span style="color: #DD0000">'for this machine only'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwDebugSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;i&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>}</b>&lt;/i&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwDebugSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;b&gt;kept&lt;/b&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax60b12eddfc89197f191eed64f6489d91"></div>
+                        <script>
+                        padAjax60b12eddfc89197f191eed64f6489d91 = new XMLHttpRequest();
+                        padAjax60b12eddfc89197f191eed64f6489d91.onreadystatechange=function() {
+                        if (padAjax60b12eddfc89197f191eed64f6489d91.readyState === 4) {
+                        if (padAjax60b12eddfc89197f191eed64f6489d91.status === 200) {
+                        document.getElementById("padAjax60b12eddfc89197f191eed64f6489d91").innerHTML=padAjax60b12eddfc89197f191eed64f6489d91.responseText;
+                        } else {
+                        document.getElementById("padAjax60b12eddfc89197f191eed64f6489d91").innerHTML=padAjax60b12eddfc89197f191eed64f6489d91.statusText;
+                        }
+                        }
+                        }
+                        padAjax60b12eddfc89197f191eed64f6489d91.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_holding_a_debug_box_is_not_kept&padInclude",true);
+                        padAjax60b12eddfc89197f191eed64f6489d91.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/debug_names_a_missing_field_instead_of_failing<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -109,6 +193,48 @@
                         }
                         padAjaxb87153839f39b20612e6b4a60ffe5a2e.open("GET","http://localhost/pad/regression/framework/?tags/debug_names_a_missing_field_instead_of_failing&padInclude",true);
                         padAjaxb87153839f39b20612e6b4a60ffe5a2e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/debug_redacts_the_secrets_it_shows<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/debug_redacts_the_secrets_it_shows.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/debug_redacts_the_secrets_it_shows.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $login </span><span style="color: #007700">= [ </span><span style="color: #DD0000">"user" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">, </span><span style="color: #DD0000">"password"</span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"*REDACTED*" </span><span style="color: #007700">]; </span><span style="color: #0000BB">$apiToken</span><span style="color: #007700">= </span><span style="color: #DD0000">"*REDACTED*"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>login</font>}</b><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>apiToken</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0249eb7ff1b32793ea749f894a68e9ba"></div>
+                        <script>
+                        padAjax0249eb7ff1b32793ea749f894a68e9ba = new XMLHttpRequest();
+                        padAjax0249eb7ff1b32793ea749f894a68e9ba.onreadystatechange=function() {
+                        if (padAjax0249eb7ff1b32793ea749f894a68e9ba.readyState === 4) {
+                        if (padAjax0249eb7ff1b32793ea749f894a68e9ba.status === 200) {
+                        document.getElementById("padAjax0249eb7ff1b32793ea749f894a68e9ba").innerHTML=padAjax0249eb7ff1b32793ea749f894a68e9ba.responseText;
+                        } else {
+                        document.getElementById("padAjax0249eb7ff1b32793ea749f894a68e9ba").innerHTML=padAjax0249eb7ff1b32793ea749f894a68e9ba.statusText;
+                        }
+                        }
+                        }
+                        padAjax0249eb7ff1b32793ea749f894a68e9ba.open("GET","http://localhost/pad/regression/framework/?tags/debug_redacts_the_secrets_it_shows&padInclude",true);
+                        padAjax0249eb7ff1b32793ea749f894a68e9ba.send();
                         </script>
                       </td>
                     </tr>
@@ -155,6 +281,90 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/pages - Page: request/debugged_inner<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">request/debugged_inner.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">request/debugged_inner.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $innerPlan </span><span style="color: #007700">= </span><span style="color: #DD0000">'inner plan'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;inner&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>innerPlan</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb574ee58c9bed33db544fb1d3470e382"></div>
+                        <script>
+                        padAjaxb574ee58c9bed33db544fb1d3470e382 = new XMLHttpRequest();
+                        padAjaxb574ee58c9bed33db544fb1d3470e382.onreadystatechange=function() {
+                        if (padAjaxb574ee58c9bed33db544fb1d3470e382.readyState === 4) {
+                        if (padAjaxb574ee58c9bed33db544fb1d3470e382.status === 200) {
+                        document.getElementById("padAjaxb574ee58c9bed33db544fb1d3470e382").innerHTML=padAjaxb574ee58c9bed33db544fb1d3470e382.responseText;
+                        } else {
+                        document.getElementById("padAjaxb574ee58c9bed33db544fb1d3470e382").innerHTML=padAjaxb574ee58c9bed33db544fb1d3470e382.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb574ee58c9bed33db544fb1d3470e382.open("GET","http://localhost/pad/regression/pages/?request/debugged_inner&padInclude",true);
+                        padAjaxb574ee58c9bed33db544fb1d3470e382.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/remote - Page: debugged<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">debugged.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">debugged.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A page that shows a {debug} box - to a local request only, the remote visitor never sees<br>  // one - fetched with a ttl by curl_ttl_stores_no_debug.<br><br>  </span><span style="color: #0000BB">$innerPlan </span><span style="color: #007700">= </span><span style="color: #DD0000">'inner plan'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;inner&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>innerPlan</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1ad827792e252acb2b73fefe4a982ea1"></div>
+                        <script>
+                        padAjax1ad827792e252acb2b73fefe4a982ea1 = new XMLHttpRequest();
+                        padAjax1ad827792e252acb2b73fefe4a982ea1.onreadystatechange=function() {
+                        if (padAjax1ad827792e252acb2b73fefe4a982ea1.readyState === 4) {
+                        if (padAjax1ad827792e252acb2b73fefe4a982ea1.status === 200) {
+                        document.getElementById("padAjax1ad827792e252acb2b73fefe4a982ea1").innerHTML=padAjax1ad827792e252acb2b73fefe4a982ea1.responseText;
+                        } else {
+                        document.getElementById("padAjax1ad827792e252acb2b73fefe4a982ea1").innerHTML=padAjax1ad827792e252acb2b73fefe4a982ea1.statusText;
+                        }
+                        }
+                        }
+                        padAjax1ad827792e252acb2b73fefe4a982ea1.open("GET","http://localhost/pad/regression/remote/?debugged&padInclude",true);
+                        padAjax1ad827792e252acb2b73fefe4a982ea1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -169,7 +379,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

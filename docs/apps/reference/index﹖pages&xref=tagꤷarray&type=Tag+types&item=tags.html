@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -113,6 +113,300 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/a_list_of_objects_iterates_as_rows_with_their_fields<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/a_list_of_objects_iterates_as_rows_with_their_fields.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_list_of_objects_iterates_as_rows_with_their_fields.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $decoded </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'[{"a":1,"b":"x"},{"a":2,"b":"y"}]' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$people  </span><span style="color: #007700">= [ (object) [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'P1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'age' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">30 </span><span style="color: #007700">], (object) [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'P2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'age' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">40 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$nested  </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'[{"addr":{"city":"Paris"},"tags":[{"t":1},{"t":2}]}]' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$dates   </span><span style="color: #007700">= [ new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-02 03:04:05'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) ) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">decoded</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>a</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded </font><font color="red">where=<font color="black">'</font><font color="red">$</font>a gt 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 2</font>}</b>two<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded </font><font color="red">sort=<font color="black">'</font>b DESC<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">people</font><font color="red"></font>}</b>(<b>{<font color="green"><font color="red">$</font>name</font>}</b>)<b>{/<font color="blue">people</font><font color="red"></font>}</b>|<b>{<font color="blue">nested</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>addr.city</font>}</b>:<b>{<font color="blue">tags</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b><b>{/<font color="blue">tags</font><font color="red"></font>}</b><b>{/<font color="blue">nested</font><font color="red"></font>}</b>|<b>{<font color="blue">dates</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>dates</font>}</b> <b>{/<font color="blue">dates</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa9206269f883995050b8b8e4b6ca7441"></div>
+                        <script>
+                        padAjaxa9206269f883995050b8b8e4b6ca7441 = new XMLHttpRequest();
+                        padAjaxa9206269f883995050b8b8e4b6ca7441.onreadystatechange=function() {
+                        if (padAjaxa9206269f883995050b8b8e4b6ca7441.readyState === 4) {
+                        if (padAjaxa9206269f883995050b8b8e4b6ca7441.status === 200) {
+                        document.getElementById("padAjaxa9206269f883995050b8b8e4b6ca7441").innerHTML=padAjaxa9206269f883995050b8b8e4b6ca7441.responseText;
+                        } else {
+                        document.getElementById("padAjaxa9206269f883995050b8b8e4b6ca7441").innerHTML=padAjaxa9206269f883995050b8b8e4b6ca7441.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa9206269f883995050b8b8e4b6ca7441.open("GET","http://localhost/pad/regression/framework/?data/a_list_of_objects_iterates_as_rows_with_their_fields&padInclude",true);
+                        padAjaxa9206269f883995050b8b8e4b6ca7441.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: cheatsheet<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">cheatsheet.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">cheatsheet.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sheet </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsCheatSheet </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Cheat sheet<font color="black">'</font></font>}</b><br>&lt;h1&gt;Cheat sheet&lt;/h1&gt;<br>&lt;p class="lead"&gt;The syntax of every tag, by group.&lt;/p&gt;<br><br><b>{<font color="blue">sheet</font><font color="red"></font>}</b><br>&lt;section class="section" id="<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;&lt;/div&gt;<br>  &lt;div class="cheat"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;div class="cheat-item"&gt;<br>      &lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/span&gt;<br>      &lt;pre class="code"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>syntaxHtml</font>}</b>&lt;/code&gt;<br>    &lt;/div&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">sheet</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbca679257e5b80a2d889e1baee500ca1"></div>
+                        <script>
+                        padAjaxbca679257e5b80a2d889e1baee500ca1 = new XMLHttpRequest();
+                        padAjaxbca679257e5b80a2d889e1baee500ca1.onreadystatechange=function() {
+                        if (padAjaxbca679257e5b80a2d889e1baee500ca1.readyState === 4) {
+                        if (padAjaxbca679257e5b80a2d889e1baee500ca1.status === 200) {
+                        document.getElementById("padAjaxbca679257e5b80a2d889e1baee500ca1").innerHTML=padAjaxbca679257e5b80a2d889e1baee500ca1.responseText;
+                        } else {
+                        document.getElementById("padAjaxbca679257e5b80a2d889e1baee500ca1").innerHTML=padAjaxbca679257e5b80a2d889e1baee500ca1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbca679257e5b80a2d889e1baee500ca1.open("GET","http://localhost/pad/tags/?cheatsheet&padInclude",true);
+                        padAjaxbca679257e5b80a2d889e1baee500ca1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: forms<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">forms.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">forms.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $forms </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByForm </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by form<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by form&lt;/h1&gt;<br>&lt;p class="lead"&gt;A tag is written alone, &lt;code&gt;&amp;#123;name ...&amp;#125;&lt;/code&gt;, around content,<br>&lt;code&gt;&amp;#123;name ...&amp;#125; ... &amp;#123;/name&amp;#125;&lt;/code&gt;, or either way.&lt;/p&gt;<br><br>&lt;nav class="jump" aria-label="Forms"&gt;<b>{<font color="blue">forms</font><font color="red"></font>}</b>&lt;a href="#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt;<b>{/<font color="blue">forms</font><font color="red"></font>}</b>&lt;/nav&gt;<br><br><b>{<font color="blue">forms</font><font color="red"></font>}</b><br>&lt;section class="section" id="<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b> - <b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>tag<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>tags<font color="black">'</font></font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;ul class="list"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b> &lt;a class="meta" href="?groups#<b>{<font color="green"><font color="red">$</font>group</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>groupLabel</font>}</b>&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">forms</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2305f0a264647728cbb23e0b95d604d1"></div>
+                        <script>
+                        padAjax2305f0a264647728cbb23e0b95d604d1 = new XMLHttpRequest();
+                        padAjax2305f0a264647728cbb23e0b95d604d1.onreadystatechange=function() {
+                        if (padAjax2305f0a264647728cbb23e0b95d604d1.readyState === 4) {
+                        if (padAjax2305f0a264647728cbb23e0b95d604d1.status === 200) {
+                        document.getElementById("padAjax2305f0a264647728cbb23e0b95d604d1").innerHTML=padAjax2305f0a264647728cbb23e0b95d604d1.responseText;
+                        } else {
+                        document.getElementById("padAjax2305f0a264647728cbb23e0b95d604d1").innerHTML=padAjax2305f0a264647728cbb23e0b95d604d1.statusText;
+                        }
+                        }
+                        }
+                        padAjax2305f0a264647728cbb23e0b95d604d1.open("GET","http://localhost/pad/tags/?forms&padInclude",true);
+                        padAjax2305f0a264647728cbb23e0b95d604d1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: groups<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">groups.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">groups.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by group<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by group&lt;/h1&gt;<br>&lt;p class="lead"&gt;The tags by what they are for, in <b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b> groups.&lt;/p&gt;<br><br>&lt;nav class="jump" aria-label="Groups"&gt;<b>{<font color="blue">groups</font><font color="red"></font>}</b>&lt;a href="#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt;<b>{/<font color="blue">groups</font><font color="red"></font>}</b>&lt;/nav&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;section class="section" id="<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b> - <b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>tag<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>tags<font color="black">'</font></font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;ul class="list"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/span&gt;&lt;/li&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa7943cd04a7da5fd0dba1d1dca5d4789"></div>
+                        <script>
+                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789 = new XMLHttpRequest();
+                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.onreadystatechange=function() {
+                        if (padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.readyState === 4) {
+                        if (padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.status === 200) {
+                        document.getElementById("padAjaxa7943cd04a7da5fd0dba1d1dca5d4789").innerHTML=padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.responseText;
+                        } else {
+                        document.getElementById("padAjaxa7943cd04a7da5fd0dba1d1dca5d4789").innerHTML=padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.open("GET","http://localhost/pad/tags/?groups&padInclude",true);
+                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups   </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$indexes  </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'names'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By name'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every tag from A to Z, with its one line.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'groups'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By group'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The tags by what they are for - conditions, loops, forms, charts ...' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'forms'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By form'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Single tags, tag pairs, and the tags that can be either.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'options'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By option'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every option a tag takes of its own, and the tags that take it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cheatsheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cheat sheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The syntax of every tag on one page.' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  foreach ( </span><span style="color: #0000BB">tagsCatalog </span><span style="color: #007700">() as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$tag </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">+= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">tagsExamples </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every PAD tag<font color="black">'</font></font>}</b><br>&lt;section class="hero"&gt;<br>  &lt;h1&gt;Every PAD tag&lt;/h1&gt;<br>  &lt;p class="lead"&gt;A page for each built-in tag of PAD: what it does in one line, its syntax and<br>  the options that belong to it, a longer description and live examples - every result<br>  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or<br>  search for it.&lt;/p&gt;<br>  &lt;ul class="stats"&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsCount</font>}</b>&lt;/b&gt; tags&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b>&lt;/b&gt; groups&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>exampleCount</font>}</b>&lt;/b&gt; examples&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">indexes</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">indexes</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The groups&lt;/h2&gt;<br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">groups</font><font color="red"></font>}</b><br>  &lt;section class="card"&gt;<br>    &lt;h3&gt;&lt;a href="?groups#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt; &lt;span class="count"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b>&lt;/p&gt;<br>    &lt;div class="tagcloud"&gt;<b>{<font color="blue">tags</font><font color="red"></font>}</b>&lt;a href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>" title="<b>{<font color="green"><font color="red">$</font>about</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;<b>{/<font color="blue">tags</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/section&gt;<br>  <b>{/<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb6e353252c830d41dd78b26b669feada"></div>
+                        <script>
+                        padAjaxb6e353252c830d41dd78b26b669feada = new XMLHttpRequest();
+                        padAjaxb6e353252c830d41dd78b26b669feada.onreadystatechange=function() {
+                        if (padAjaxb6e353252c830d41dd78b26b669feada.readyState === 4) {
+                        if (padAjaxb6e353252c830d41dd78b26b669feada.status === 200) {
+                        document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.responseText;
+                        } else {
+                        document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb6e353252c830d41dd78b26b669feada.open("GET","http://localhost/pad/tags/?index&padInclude",true);
+                        padAjaxb6e353252c830d41dd78b26b669feada.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: names<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">names.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">names.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $letters </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsLetters </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by name<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by name&lt;/h1&gt;<br>&lt;p class="lead"&gt;All <b>{<font color="green"><font color="red">$</font>tagsCount</font>}</b> built-in tags from A to Z.&lt;/p&gt;<br><br>&lt;nav class="jump" aria-label="Letters"&gt;<b>{<font color="blue">letters</font><font color="red"></font>}</b>&lt;a href="#letter-<b>{<font color="green"><font color="red">$</font>letter</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>letter</font>}</b>&lt;/a&gt;<b>{/<font color="blue">letters</font><font color="red"></font>}</b>&lt;/nav&gt;<br><br><b>{<font color="blue">letters</font><font color="red"></font>}</b><br>&lt;section class="section" id="letter-<b>{<font color="green"><font color="red">$</font>letter</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>letter</font>}</b>&lt;/h2&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>tag<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>tags<font color="black">'</font></font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;ul class="list"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b> &lt;a class="meta" href="?groups#<b>{<font color="green"><font color="red">$</font>group</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>groupLabel</font>}</b>&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">letters</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfce273265f70a78774822914a9a9ce11"></div>
+                        <script>
+                        padAjaxfce273265f70a78774822914a9a9ce11 = new XMLHttpRequest();
+                        padAjaxfce273265f70a78774822914a9a9ce11.onreadystatechange=function() {
+                        if (padAjaxfce273265f70a78774822914a9a9ce11.readyState === 4) {
+                        if (padAjaxfce273265f70a78774822914a9a9ce11.status === 200) {
+                        document.getElementById("padAjaxfce273265f70a78774822914a9a9ce11").innerHTML=padAjaxfce273265f70a78774822914a9a9ce11.responseText;
+                        } else {
+                        document.getElementById("padAjaxfce273265f70a78774822914a9a9ce11").innerHTML=padAjaxfce273265f70a78774822914a9a9ce11.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfce273265f70a78774822914a9a9ce11.open("GET","http://localhost/pad/tags/?names&padInclude",true);
+                        padAjaxfce273265f70a78774822914a9a9ce11.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: options<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $optionRows </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByOption </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by option<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by option&lt;/h1&gt;<br>&lt;p class="lead"&gt;Every option a tag takes of its own, and what it does there. The handling<br>options every tag takes - &lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;,<br>&lt;code&gt;rows&lt;/code&gt;, &lt;code&gt;group&lt;/code&gt; and the rest - are not listed here.&lt;/p&gt;<br><br>&lt;table class="options-table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;Option&lt;/th&gt;&lt;th scope="col"&gt;Tag&lt;/th&gt;&lt;th scope="col"&gt;Meaning&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>  <b>{<font color="blue">optionRows</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>tags</font><font color="red"></font>}</b>&lt;td class="opt" rowspan="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>option</font>}</b>&lt;/td&gt;<b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>tags</font><font color="red"></font>}</b><br>      &lt;td&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt;&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">!</font>meaning</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">optionRows</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb99371e67931e37f89ae92488c5a4bf1"></div>
+                        <script>
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1 = new XMLHttpRequest();
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1.onreadystatechange=function() {
+                        if (padAjaxb99371e67931e37f89ae92488c5a4bf1.readyState === 4) {
+                        if (padAjaxb99371e67931e37f89ae92488c5a4bf1.status === 200) {
+                        document.getElementById("padAjaxb99371e67931e37f89ae92488c5a4bf1").innerHTML=padAjaxb99371e67931e37f89ae92488c5a4bf1.responseText;
+                        } else {
+                        document.getElementById("padAjaxb99371e67931e37f89ae92488c5a4bf1").innerHTML=padAjaxb99371e67931e37f89ae92488c5a4bf1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1.open("GET","http://localhost/pad/tags/?options&padInclude",true);
+                        padAjaxb99371e67931e37f89ae92488c5a4bf1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -127,7 +421,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

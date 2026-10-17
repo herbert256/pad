@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - features
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - features
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: showcase - Page: tabs/plans_from_data<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tabs/plans_from_data.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tabs/plans_from_data.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $plans </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Starter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 9'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'about' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'for one person and a side project'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'features' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'One site'</span><span style="color: #007700">, </span><span style="color: #DD0000">'10 GB storage'</span><span style="color: #007700">, </span><span style="color: #DD0000">'E-mail support' </span><span style="color: #007700">] ],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Team'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 29'</span><span style="color: #007700">, </span><span style="color: #DD0000">'about' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'for a team that ships every week'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'features' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Ten sites'</span><span style="color: #007700">, </span><span style="color: #DD0000">'100 GB storage'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Chat support'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Daily backups' </span><span style="color: #007700">] ],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Studio'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 79'</span><span style="color: #007700">, </span><span style="color: #DD0000">'about' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'for an agency with many clients'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'features' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'Unlimited sites'</span><span style="color: #007700">, </span><span style="color: #DD0000">'1 TB storage'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Phone support'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Hourly backups'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Staging' </span><span style="color: #007700">] ]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A tab per row<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The tabs made in a loop - one per plan of the data<font color="black">,</font> its features inside.<font color="black">'</font></font>}</b><br>&lt;div style="width:100%; max-width:640px"&gt;<br>  <b>{<font color="blue">tabs</font><font color="red"></font>}</b><br>    <b>{<font color="blue">plans</font><font color="red"></font>}</b><br>      <b>{<font color="blue">tab </font><font color="red"><font color="red">$</font>name</font>}</b><br>        &lt;p&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/strong&gt; a month - <b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/p&gt;<br>        &lt;ul&gt;<b>{<font color="blue">features</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>features</font>}</b>&lt;/li&gt;<b>{/<font color="blue">features</font><font color="red"></font>}</b>&lt;/ul&gt;<br>      <b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">plans</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">tabs</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxee89fcf64986d85e568beeb1dda21f8b"></div>
+                        <script>
+                        padAjaxee89fcf64986d85e568beeb1dda21f8b = new XMLHttpRequest();
+                        padAjaxee89fcf64986d85e568beeb1dda21f8b.onreadystatechange=function() {
+                        if (padAjaxee89fcf64986d85e568beeb1dda21f8b.readyState === 4) {
+                        if (padAjaxee89fcf64986d85e568beeb1dda21f8b.status === 200) {
+                        document.getElementById("padAjaxee89fcf64986d85e568beeb1dda21f8b").innerHTML=padAjaxee89fcf64986d85e568beeb1dda21f8b.responseText;
+                        } else {
+                        document.getElementById("padAjaxee89fcf64986d85e568beeb1dda21f8b").innerHTML=padAjaxee89fcf64986d85e568beeb1dda21f8b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxee89fcf64986d85e568beeb1dda21f8b.open("GET","http://localhost/pad/showcase/?tabs/plans_from_data&padInclude",true);
+                        padAjaxee89fcf64986d85e568beeb1dda21f8b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {define} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#layout">Layouts and components</a><span>/</span><span aria-current="page">define</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>define<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes a custom tag in the template itself - what a _tags/name.pad file is, without the file.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#layout">Layouts and components</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">#parm</span><span class="hl-brc">}</span> ... <span class="hl-var">@content@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span><span class="hl-var">@content@</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">'value'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">'value'</span><span class="hl-brc">}</span> content <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span>fill<span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/name</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">define:name</span> ...<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The name of the new tag. Under the strict check it may not be a built-in tag, an application tag or a <code>{macro}</code> already.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            The body between <code>{define 'card'}</code> and <code>{/define}</code> becomes the template of a new tag, <code>{card}</code>, exactly as if it stood in <code>_tags/card.pad</code>. Defining prints nothing; every use of the tag renders the body, where the use stands and with the fields there.
+          </p>
+          <p>
+            Everything a file-based custom tag can do works in the body: <code>{#name}</code> reads a parameter of the use, <a href="index%EF%B9%96tag%EA%A4%B7parms.html"><code>{parms}</code></a> declares them (a bare name required, <code>name=default</code> filling in), <code>@content@</code> takes the content of a pair use in, and <a href="index%EF%B9%96tag%EA%A4%B7slot.html"><code>{slot}</code></a>s take named fills. A define can use itself, for rows below the current one.
+          </p>
+          <p>
+            The body is kept as written and rendered at each use, so a field in it is read at the use, not at the definition. A define exists from the point it is walked - like a <code>{content}</code> or <code>{data}</code> store - so a use above the <code>{define}</code> is an unknown tag. <code>{define:card}</code> asserts that the name is a define.
+          </p>
+          <p>
+            Under the strict check a name that is a built-in or application tag, or already a <a href="index%EF%B9%96tag%EA%A4%B7macro.html"><code>{macro}</code></a>, is an error, and so is a define without a name or without a body. Use a define for markup with a frame - content and slots; use a macro when the parameters should read as plain fields.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A card with content
+            </h3>
+            <p class="example-about">
+              The body is the tag's template: {#title} reads a parameter, @content@ takes the content in.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/define/1-card.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'defineCard'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"border:1px solid #ccc; border-radius:8px; padding:8px 12px; margin:6px 0"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">#title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span><span class="hl-var">@content@</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+
+<span class="hl-brc">{</span><span class="hl-tag">defineCard</span> <span class="hl-opt">title</span>=<span class="hl-str">'Revenue'</span><span class="hl-brc">}</span>€ <span class="hl-num">12</span>,<span class="hl-num">400</span> this month<span class="hl-brc">{</span><span class="hl-tag">/defineCard</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">defineCard</span> <span class="hl-opt">title</span>=<span class="hl-str">'Orders'</span><span class="hl-brc">}</span><span class="hl-num">86</span> new, <span class="hl-num">4</span> open<span class="hl-brc">{</span><span class="hl-tag">/defineCard</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7define%EA%A4%B71-card.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div style="border:1px solid #ccc; border-radius:8px; padding:8px 12px; margin:6px 0">
+                    <strong>Revenue</strong>
+                    <div>
+                      € 12,400 this month
+                    </div>
+                  </div>
+                  <div style="border:1px solid #ccc; border-radius:8px; padding:8px 12px; margin:6px 0">
+                    <strong>Orders</strong>
+                    <div>
+                      86 new, 4 open
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Parameters and a slot
+            </h3>
+            <p class="example-about">
+              {parms} gives a default, and a {slot} takes a fill from the use - or shows its own default.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/define/2-parms-slot.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'defineNote'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parms</span> text, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin:6px 0"</span><span class="hl-htm">&gt;</span>[<span class="hl-brc">{</span><span class="hl-var">#tone</span><span class="hl-brc">}</span>] <span class="hl-brc">{</span><span class="hl-var">#text</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'more'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;em</span><span class="hl-htm">&gt;</span>no details<span class="hl-htm">&lt;/em</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+
+<span class="hl-brc">{</span><span class="hl-tag">defineNote</span> <span class="hl-opt">text</span>=<span class="hl-str">'Backup finished'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/defineNote</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">defineNote</span> <span class="hl-opt">text</span>=<span class="hl-str">'Disk almost full'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'warning'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'more'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-num">92</span>% used<span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/defineNote</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7define%EA%A4%B72-parms-slot.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p style="margin:6px 0">
+                    [info] Backup finished <em>no details</em>
+                  </p>
+                  <p style="margin:6px 0">
+                    [warning] Disk almost full <b>92% used</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7macro.html">{macro}</a> <span class="about">A template function: declared parameters, given in order or by name, read as fields inside its body.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7parms.html">{parms}</a> <span class="about">Declares the parameters of a custom tag, with defaults, at the top of its template.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7slot.html">{slot}</a> <span class="about">A named place in a custom tag's template - and the fill a caller gives it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a> <span class="about">Keeps a piece of template under a name instead of printing it, for a later {name} to render.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7decrement.html">← {decrement}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7diagram.html">{diagram} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

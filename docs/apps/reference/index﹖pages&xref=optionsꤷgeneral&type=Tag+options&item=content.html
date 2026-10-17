@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -480,6 +480,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/content/1-reuse<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/content/1-reuse.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/content/1-reuse.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $contentStaff   </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cook' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$contentHelpers </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cas'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'driver' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One row template<font color="black">,</font> two lists<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The stored content is rendered as the body of two loops<font color="black">,</font> with the fields of each row.<font color="black">'</font></font>}</b><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>contentRow<font color="black">'</font></font>}</b>&lt;li&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt; - <b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/li&gt;<b>{/<font color="blue">content</font><font color="red"></font>}</b><br>&lt;h4&gt;Staff&lt;/h4&gt;<br>&lt;ul&gt;<b>{<font color="blue">contentStaff </font><font color="red">content=<font color="black">'</font>contentRow<font color="black">'</font></font>}</b><b>{/<font color="blue">contentStaff</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;h4&gt;Volunteers&lt;/h4&gt;<br>&lt;ul&gt;<b>{<font color="blue">contentHelpers</font><font color="red"></font>}</b><b>{<font color="blue">contentRow</font><font color="red"></font>}</b><b>{/<font color="blue">contentHelpers</font><font color="red"></font>}</b>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax89eb3faf548b92dd0f0dde7d04d24487"></div>
+                        <script>
+                        padAjax89eb3faf548b92dd0f0dde7d04d24487 = new XMLHttpRequest();
+                        padAjax89eb3faf548b92dd0f0dde7d04d24487.onreadystatechange=function() {
+                        if (padAjax89eb3faf548b92dd0f0dde7d04d24487.readyState === 4) {
+                        if (padAjax89eb3faf548b92dd0f0dde7d04d24487.status === 200) {
+                        document.getElementById("padAjax89eb3faf548b92dd0f0dde7d04d24487").innerHTML=padAjax89eb3faf548b92dd0f0dde7d04d24487.responseText;
+                        } else {
+                        document.getElementById("padAjax89eb3faf548b92dd0f0dde7d04d24487").innerHTML=padAjax89eb3faf548b92dd0f0dde7d04d24487.statusText;
+                        }
+                        }
+                        }
+                        padAjax89eb3faf548b92dd0f0dde7d04d24487.open("GET","http://localhost/pad/tags/?examples/content/1-reuse&padInclude",true);
+                        padAjax89eb3faf548b92dd0f0dde7d04d24487.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -494,7 +536,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

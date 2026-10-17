@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - logged
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - logged
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/migrate - Page: seed<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">seed.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">seed.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// padSeed runs _seeds/ in name order: the customers come from padFactory with fake data<br>  // seeded with 7, the same ten every run; the orders from plain db (), and the trigger of<br>  // a migration logs each. padSeed ( 'orders' ) runs only _seeds/02_orders.php.<br><br>  </span><span style="color: #0000BB">padMigrateFresh </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$seeded    </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">padSeed </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$customers </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array id, name, city, email from customers order by id" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$orders    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field count(*) from orders" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$logged    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array note, count(*) as n from order_log group by note order by note" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$one       </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">padSeed </span><span style="color: #007700">( </span><span style="color: #DD0000">'orders' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$orders2   </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field count(*) from orders" </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">seeded: <b>{<font color="green"><font color="red">$</font>seeded</font>}</b><br><b>{<font color="blue">customers</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>id</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>, <b>{<font color="green"><font color="red">$</font>city</font>}</b>, <b>{<font color="green"><font color="red">$</font>email</font>}</b><br><b>{/<font color="blue">customers</font><font color="red"></font>}</b>orders: <b>{<font color="green"><font color="red">$</font>orders</font>}</b><br><b>{<font color="blue">logged</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>note</font>}</b>: <b>{<font color="green"><font color="red">$</font>n</font>}</b><br><b>{/<font color="blue">logged</font><font color="red"></font>}</b>again:  <b>{<font color="green"><font color="red">$</font>one</font>}</b> - orders: <b>{<font color="green"><font color="red">$</font>orders2</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb5e5a38cb77922ac67e4fc022dbf34df"></div>
+                        <script>
+                        padAjaxb5e5a38cb77922ac67e4fc022dbf34df = new XMLHttpRequest();
+                        padAjaxb5e5a38cb77922ac67e4fc022dbf34df.onreadystatechange=function() {
+                        if (padAjaxb5e5a38cb77922ac67e4fc022dbf34df.readyState === 4) {
+                        if (padAjaxb5e5a38cb77922ac67e4fc022dbf34df.status === 200) {
+                        document.getElementById("padAjaxb5e5a38cb77922ac67e4fc022dbf34df").innerHTML=padAjaxb5e5a38cb77922ac67e4fc022dbf34df.responseText;
+                        } else {
+                        document.getElementById("padAjaxb5e5a38cb77922ac67e4fc022dbf34df").innerHTML=padAjaxb5e5a38cb77922ac67e4fc022dbf34df.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb5e5a38cb77922ac67e4fc022dbf34df.open("GET","http://localhost/pad/regression/migrate/?seed&padInclude",true);
+                        padAjaxb5e5a38cb77922ac67e4fc022dbf34df.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

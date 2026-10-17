@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: islands/_frontend
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: islands/ frontend
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=islands.html">..</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend%EA%A4%B7src.html">src/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend&amp;file=_frontend%EA%A4%B7package.json.html">package.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend&amp;file=_frontend%EA%A4%B7tsconfig.json.html">tsconfig.json</a>
+                  </li>
+                  <li class="current">vite.config.js
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _frontend/vite.config.js
+                </h3>
+                <pre><code style="color: #000000">// The build of the islands application: the components of every framework in src/, made<br>// into www/islands/build/ with a manifest - {vite 'src/main.js'} in the templates reads it.<br>//<br>//   npm install<br>//   npm run build      www/islands/build/ - what the pages load<br>//   npm run dev        the dev server: its address goes into build/hot, and {vite} asks it<br>//<br>// Each framework compiles its own files: React *.react.jsx/tsx, Solid *.solid.jsx, Vue<br>// *.vue, Svelte *.svelte; Preact needs no compiler here - its components are written with<br>// htm. PAD_ISLANDS_WWW names www/islands/ when the project is built from a copy elsewhere.<br><br>import fs from 'node:fs';<br>import path from 'node:path';<br>import { fileURLToPath } from 'node:url';<br>import { defineConfig } from 'vite';<br>import react from '@vitejs/plugin-react';<br>import vue from '@vitejs/plugin-vue';<br>import { svelte } from '@sveltejs/vite-plugin-svelte';<br>import solid from 'vite-plugin-solid';<br><br>const here = path.dirname(fileURLToPath(import.meta.url));<br>const www = process.env.PAD_ISLANDS_WWW || path.resolve(here, '../../../www/islands');<br>const outDir = path.join(www, 'build');<br><br>// The dev server's address in build/hot while it runs, gone when it stops: {vite} asks the<br>// dev server while the file is there, and the build when it is not.<br><br>function padHot() {<br>  const hot = path.join(outDir, 'hot');<br>  const clear = () =&gt; fs.rmSync(hot, { force: true });<br>  return {<br>    name: 'pad-hot',<br>    apply: 'serve',<br>    configureServer(server) {<br>      server.httpServer?.once('listening', () =&gt; {<br>        const { port } = server.httpServer.address();<br>        fs.mkdirSync(outDir, { recursive: true });<br>        fs.writeFileSync(hot, `http://localhost:${port}`);<br>      });<br>      // however the dev server stops - Ctrl-C, a kill, its own exit - the file goes with it<br>      server.httpServer?.once('close', clear);<br>      process.once('exit', clear);<br>      for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'])<br>        process.once(signal, () =&gt; process.exit());<br>    }<br>  };<br>}<br><br>export default defineConfig({<br>  root: here,<br>  base: './',<br>  plugins: [<br>    react({ include: /\.react\.[jt]sx$/ }),<br>    solid({ include: /\.solid\.jsx$/ }),<br>    vue(),<br>    svelte(),<br>    padHot()<br>  ],<br>  build: {<br>    outDir,<br>    emptyOutDir: true,<br>    manifest: true,<br>    rollupOptions: { input: [ 'src/main.js' ] }<br>  },<br>  server: { port: 5173, strictPort: true, cors: true }<br>});<br></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

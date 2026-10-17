@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {img} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">img</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>img<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Writes a picture of the application's www directory as a thumbnail of the size the page shows it at, resized once with GD.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/harbour.jpg'</span>, <span class="hl-opt">width</span>=<span class="hl-num">400</span>, <span class="hl-opt">height</span>=<span class="hl-num">300</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/dunes.jpg'</span>, <span class="hl-opt">width</span>=<span class="hl-num">300</span>, <span class="hl-opt">height</span>=<span class="hl-num">300</span>, <span class="hl-opt">fit</span>=<span class="hl-str">'contain'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'webp'</span>, <span class="hl-opt">quality</span>=<span class="hl-num">70</span>, <span class="hl-opt">alt</span>=<span class="hl-str">''</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>file</code>
+            </dt>
+            <dd>
+              The picture: a name below <code>www/&lt;application&gt;/</code> - a JPEG, PNG, GIF or WebP.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>width</code>
+            </dt>
+            <dd>
+              The width of the box in CSS pixels. With only one of width and height the picture keeps its proportion; with neither it keeps its size.
+            </dd>
+            <dt>
+              <code>height</code>
+            </dt>
+            <dd>
+              The height of the box in CSS pixels.
+            </dd>
+            <dt>
+              <code>fit</code>
+            </dt>
+            <dd>
+              <code>cover</code> (default: fill the box, cut around the centre) or <code>contain</code> (all of the picture inside the box).
+            </dd>
+            <dt>
+              <code>format</code>
+            </dt>
+            <dd>
+              <code>jpeg</code>, <code>png</code> or <code>webp</code> - default the source's, a GIF becoming a PNG.
+            </dd>
+            <dt>
+              <code>quality</code>
+            </dt>
+            <dd>
+              1 to 100 for JPEG and WebP, default 80.
+            </dd>
+            <dt>
+              <code>alt</code>
+            </dt>
+            <dd>
+              Required: the text for whoever cannot see the picture. <code>alt=''</code> marks it as decoration.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{img}</code> shows a picture of <code>www/&lt;application&gt;/</code> at the size the page needs, not the size the camera made. The first time a size is asked the picture is resized with GD (<code>tags/_lib/img.php</code>) and kept in <code>www/&lt;application&gt;/_thumbs/</code>, where the web server sends it like any other asset; every later request just writes the tag.
+          </p>
+          <p>
+            It writes <code>&lt;img class="pad-img"&gt;</code> with its <code>width</code> and <code>height</code> (no layout shift while it loads), <code>loading="lazy"</code>, <code>decoding="async"</code> and a <code>srcset</code> whose second picture is twice the size for a sharp screen - as far as the source reaches, the density then said as it is (<code>1.5x</code>), and left out under 1.2x. A picture is never made larger than its source, and a JPEG is turned upright by its EXIF orientation. <code>fit='cover'</code> fills the box and cuts around the centre; <code>fit='contain'</code> keeps the whole picture.
+          </p>
+          <p>
+            The thumbnail's file name is a hash of the picture's contents and the options, so a changed picture gets a new address (safe behind a far-future cache header) and every machine makes the same names. It is written under a temporary name and renamed into place, so two requests never see half a file.
+          </p>
+          <p>
+            <code>alt</code> is required - a picture without it is read out by its file name; <code>alt=''</code> says it is decoration. A missing <code>alt</code>, a file that is not there or is no picture, an unknown <code>fit</code> or <code>format</code> and a <code>quality</code> outside 1-100 are errors under the strict check. A <code>_thumbs/</code> directory the web server cannot write is an error too, and the original picture is written instead. While no picture exists yet, <a href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{placeholder}</a> keeps its place.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Three pictures, one box
+            </h3>
+            <p class="example-about">
+              Landscape and portrait photos cut to the same 4:3 box around their centre, each with a 2x copy.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/img/1-cover.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/harbour.jpg'</span>, <span class="hl-opt">width</span>=<span class="hl-num">176</span>, <span class="hl-opt">height</span>=<span class="hl-num">132</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Sailing boats in the harbour at dawn'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/dunes.jpg'</span>,   <span class="hl-opt">width</span>=<span class="hl-num">176</span>, <span class="hl-opt">height</span>=<span class="hl-num">132</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Sand dunes under a pale sun'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/tulips.jpg'</span>,  <span class="hl-opt">width</span>=<span class="hl-num">176</span>, <span class="hl-opt">height</span>=<span class="hl-num">132</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Rows of tulips running to a windmill'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              The whole picture, as WebP
+            </h3>
+            <p class="example-about">
+              fit=contain keeps every pixel inside the box; format= and quality= choose the file that is made.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/img/2-contain.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/dunes.jpg'</span>, <span class="hl-opt">width</span>=<span class="hl-num">260</span>, <span class="hl-opt">height</span>=<span class="hl-num">260</span>, <span class="hl-opt">fit</span>=<span class="hl-str">'contain'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'webp'</span>, <span class="hl-opt">quality</span>=<span class="hl-num">70</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Sand dunes, the full portrait picture'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">'photos/logo.png'</span>, <span class="hl-opt">width</span>=<span class="hl-num">48</span>, <span class="hl-opt">alt</span>=<span class="hl-str">''</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{placeholder}</a> <span class="about">Draws a grey image placeholder as inline SVG - crossing lines and the size or a text in the middle.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7asset.html">{asset}</a> <span class="about">The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7ignore.html">← {ignore}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - failures
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - failures
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/queue - Page: work<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">work.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">work.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Queues jobs and works them in the same request: the queues are emptied first, so every<br>  // fetch of the page starts from nothing. flaky needs three attempts and gets them - its<br>  // backoff is 0, so its retries are due at once; broken, strict and warn fail every time<br>  // and end with the failed jobs; the delayed greet waits on its queue.<br><br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'default' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'later' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'failed' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$queueHeard </span><span style="color: #007700">= [];<br><br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'greet'</span><span style="color: #007700">,  [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice' </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'flaky'</span><span style="color: #007700">,  [], </span><span style="color: #0000BB">backoff</span><span style="color: #007700">: </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'broken'</span><span style="color: #007700">, [], </span><span style="color: #0000BB">tries</span><span style="color: #007700">: </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #0000BB">backoff</span><span style="color: #007700">: </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'strict'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42 </span><span style="color: #007700">], </span><span style="color: #0000BB">tries</span><span style="color: #007700">: </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'warn'</span><span style="color: #007700">,   [], </span><span style="color: #0000BB">tries</span><span style="color: #007700">: </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'greet'</span><span style="color: #007700">,  [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob' </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'greet'</span><span style="color: #007700">,  [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Later' </span><span style="color: #007700">], </span><span style="color: #0000BB">delay</span><span style="color: #007700">: </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueue </span><span style="color: #007700">( </span><span style="color: #DD0000">'greet'</span><span style="color: #007700">,  [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Carol' </span><span style="color: #007700">], </span><span style="color: #0000BB">queue</span><span style="color: #007700">: </span><span style="color: #DD0000">'later' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$before </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueSize </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$work   </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueWork </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$after  </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueSize </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$queues </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueQueues </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$counts </span><span style="color: #007700">= </span><span style="color: #DD0000">"done </span><span style="color: #007700">{</span><span style="color: #0000BB">$work </span><span style="color: #007700">[</span><span style="color: #DD0000">'done'</span><span style="color: #007700">]}</span><span style="color: #DD0000">, retried </span><span style="color: #007700">{</span><span style="color: #0000BB">$work </span><span style="color: #007700">[</span><span style="color: #DD0000">'retried'</span><span style="color: #007700">]}</span><span style="color: #DD0000">, failed </span><span style="color: #007700">{</span><span style="color: #0000BB">$work </span><span style="color: #007700">[</span><span style="color: #DD0000">'failed'</span><span style="color: #007700">]}</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$runs   </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$job </span><span style="color: #007700">) =&gt; [ </span><span style="color: #DD0000">'job' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$job </span><span style="color: #007700">[</span><span style="color: #DD0000">'job'</span><span style="color: #007700">], </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$job </span><span style="color: #007700">[</span><span style="color: #DD0000">'status'</span><span style="color: #007700">], </span><span style="color: #DD0000">'attempts' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$job </span><span style="color: #007700">[</span><span style="color: #DD0000">'attempts'</span><span style="color: #007700">] ], </span><span style="color: #0000BB">$work </span><span style="color: #007700">[</span><span style="color: #DD0000">'jobs'</span><span style="color: #007700">] );<br>  </span><span style="color: #FF8000">// A retry that is due at once can come before or after the jobs queued with it, as the<br>  // clock ticks - the page shows them in an order of its own.<br><br>  </span><span style="color: #0000BB">usort </span><span style="color: #007700">( </span><span style="color: #0000BB">$runs</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b </span><span style="color: #007700">) =&gt; [ </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'job'</span><span style="color: #007700">], </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'attempts'</span><span style="color: #007700">] ] &lt;=&gt; [ </span><span style="color: #0000BB">$b </span><span style="color: #007700">[</span><span style="color: #DD0000">'job'</span><span style="color: #007700">], </span><span style="color: #0000BB">$b </span><span style="color: #007700">[</span><span style="color: #DD0000">'attempts'</span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">sort  </span><span style="color: #007700">( </span><span style="color: #0000BB">$queueHeard </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$failures </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$job </span><span style="color: #007700">) =&gt; [ </span><span style="color: #DD0000">'job' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$job </span><span style="color: #007700">[</span><span style="color: #DD0000">'job'</span><span style="color: #007700">], </span><span style="color: #DD0000">'attempts' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$job </span><span style="color: #007700">[</span><span style="color: #DD0000">'attempts'</span><span style="color: #007700">], </span><span style="color: #DD0000">'error' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$job </span><span style="color: #007700">[</span><span style="color: #DD0000">'error'</span><span style="color: #007700">] ], </span><span style="color: #0000BB">padQueueFailed </span><span style="color: #007700">() );<br><br>  </span><span style="color: #FF8000">// Back on the queue, with their tries afresh: two of them run once more and fail again.<br><br>  </span><span style="color: #0000BB">$retried </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueRetry </span><span style="color: #007700">( </span><span style="color: #DD0000">'all' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$again   </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueWork </span><span style="color: #007700">( </span><span style="color: #DD0000">'default'</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$againRan </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$again </span><span style="color: #007700">[</span><span style="color: #DD0000">'jobs'</span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">$left    </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueSize </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'default' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'later' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'failed' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;waiting before: <b>{<font color="green"><font color="red">$</font>before</font>}</b>, after: <b>{<font color="green"><font color="red">$</font>after</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>counts</font>}</b>&lt;/p&gt;<br>&lt;ul&gt;<br><b>{<font color="blue">runs</font><font color="red"></font>}</b>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>job</font>}</b> <b>{<font color="green"><font color="red">$</font>status</font>}</b> (attempt <b>{<font color="green"><font color="red">$</font>attempts</font>}</b>)&lt;/li&gt;<br><b>{/<font color="blue">runs</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;p&gt;heard:&lt;/p&gt;<br>&lt;ul&gt;<br><b>{<font color="blue">queueHeard</font><font color="red"></font>}</b>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>queueHeard</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">queueHeard</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;p&gt;failed:&lt;/p&gt;<br>&lt;ul&gt;<br><b>{<font color="blue">failures</font><font color="red"></font>}</b>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>job</font>}</b> after <b>{<font color="green"><font color="red">$</font>attempts</font>}</b>: <b>{<font color="green"><font color="red">$</font>error</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">failures</font><font color="red"></font>}</b>&lt;/ul&gt;<br>&lt;p&gt;queues: default <b>{<font color="green"><font color="red">$</font>queues.default.due</font>}</b> due, <b>{<font color="green"><font color="red">$</font>queues.default.delayed</font>}</b> delayed; later <b>{<font color="green"><font color="red">$</font>queues.later.due</font>}</b> due&lt;/p&gt;<br>&lt;p&gt;retried <b>{<font color="green"><font color="red">$</font>retried</font>}</b>, ran <b>{<font color="green"><font color="red">$</font>againRan</font>}</b> of them again, <b>{<font color="green"><font color="red">$</font>left</font>}</b> waiting&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax058e105b64231b1e555084567f37d9e1"></div>
+                        <script>
+                        padAjax058e105b64231b1e555084567f37d9e1 = new XMLHttpRequest();
+                        padAjax058e105b64231b1e555084567f37d9e1.onreadystatechange=function() {
+                        if (padAjax058e105b64231b1e555084567f37d9e1.readyState === 4) {
+                        if (padAjax058e105b64231b1e555084567f37d9e1.status === 200) {
+                        document.getElementById("padAjax058e105b64231b1e555084567f37d9e1").innerHTML=padAjax058e105b64231b1e555084567f37d9e1.responseText;
+                        } else {
+                        document.getElementById("padAjax058e105b64231b1e555084567f37d9e1").innerHTML=padAjax058e105b64231b1e555084567f37d9e1.statusText;
+                        }
+                        }
+                        }
+                        padAjax058e105b64231b1e555084567f37d9e1.open("GET","http://localhost/pad/regression/queue/?work&padInclude",true);
+                        padAjax058e105b64231b1e555084567f37d9e1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,48 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: ledger - Page: transactions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">transactions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">transactions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A month's transactions as one table - sorted and paged on the server by {datatable} -<br>  // narrowed to a category, an account or a word in the note. The same rows answer as CSV<br>  // (?transactions&amp;padFormat=csv) and JSON: $padExpose names them.<br><br>  </span><span style="color: #0000BB">$only     </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'category'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$from     </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'account'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$word     </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">ledgerText </span><span style="color: #007700">( </span><span style="color: #DD0000">'q' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$rows     </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$r </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">array_diff_key </span><span style="color: #007700">( </span><span style="color: #0000BB">$r</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'kind' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ), </span><span style="color: #0000BB">ledgerRows </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth</span><span style="color: #007700">, </span><span style="color: #0000BB">$only</span><span style="color: #007700">, </span><span style="color: #0000BB">$from</span><span style="color: #007700">, </span><span style="color: #0000BB">$word </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$shown    </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$sum      </span><span style="color: #007700">= </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">) ), </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$categoryList </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">+ [ </span><span style="color: #DD0000">'chosen' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$only </span><span style="color: #007700">], </span><span style="color: #0000BB">ledgerCategories </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$accountList  </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$a </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">+ [ </span><span style="color: #DD0000">'chosen' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$from </span><span style="color: #007700">], </span><span style="color: #0000BB">ledgerAccounts </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$monthName    </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerMonthName </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$csvName      </span><span style="color: #007700">= </span><span style="color: #DD0000">"ledger-</span><span style="color: #0000BB">$ledgerMonth</span><span style="color: #DD0000">.csv"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$csvQuery     </span><span style="color: #007700">= </span><span style="color: #0000BB">http_build_query </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ledgerMonth</span><span style="color: #007700">, </span><span style="color: #DD0000">'category' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$only</span><span style="color: #007700">, </span><span style="color: #DD0000">'account' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$from</span><span style="color: #007700">, </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word</span><span style="color: #007700">, </span><span style="color: #DD0000">'padFormat' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'csv' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$padExpose  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'rows' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ledgerPage </span><span style="color: #007700">= </span><span style="color: #DD0000">"Transactions, </span><span style="color: #0000BB">$monthName</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="head"&gt;<br>  &lt;h1&gt;Transactions &lt;span class="dim"&gt;<b>{<font color="green"><font color="red">$</font>monthName</font>}</b>&lt;/span&gt;&lt;/h1&gt;<br>  &lt;a class="button" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>transactions&<b>{<font color="green"><font color="red">$</font>csvQuery</font>}</b>" download="<b>{<font color="green"><font color="red">$</font>csvName</font>}</b>"&gt;⬇ CSV&lt;/a&gt;<br>&lt;/div&gt;<br><br>&lt;form class="filters" method="get"&gt;<br>  &lt;input type="hidden" name="transactions" value=""&gt;<br>  &lt;input type="hidden" name="month" value="<b>{<font color="green"><font color="red">$</font>ledgerMonth</font>}</b>"&gt;<br>  &lt;label&gt;Category<br>    &lt;select name="category"&gt;&lt;option value="0"&gt;All&lt;/option&gt;<b>{<font color="blue">categoryList</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>chosen</font>}</b> selected<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue">categoryList</font><font color="red"></font>}</b>&lt;/select&gt;<br>  &lt;/label&gt;<br>  &lt;label&gt;Account<br>    &lt;select name="account"&gt;&lt;option value="0"&gt;All&lt;/option&gt;<b>{<font color="blue">accountList</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>chosen</font>}</b> selected<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue">accountList</font><font color="red"></font>}</b>&lt;/select&gt;<br>  &lt;/label&gt;<br>  &lt;label&gt;Note &lt;input type="search" name="q" value="<b>{<font color="green"><font color="red">$</font>word</font>}</b>" placeholder="a word"&gt;&lt;/label&gt;<br>  &lt;button class="button"&gt;Show&lt;/button&gt;<br>&lt;/form&gt;<br><br>&lt;section class="card table"&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>shown gt 0</font>}</b><br>  <b>{<font color="blue">datatable </font><font color="red">data=<font color="black">'</font>rows<font color="black">'</font><font color="black">,</font> columns=<font color="black">'</font>day<font color="black">,</font> category<font color="black">,</font> account<font color="black">,</font> note<font color="black">,</font> amount<font color="black">'</font><font color="black">,</font> format="amount<font color="black">:</font>money<font color="black">,</font> day<font color="black">:</font>date(<font color="black">'</font>D j M<font color="black">'</font>)"<font color="black">,</font> totals=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> sortable<font color="black">,</font> rows=15<font color="black">,</font> striped</font>}</b><br>  <b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;p class="dim"&gt;No transactions here.&lt;/p&gt;<br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  &lt;p class="dim sum"&gt;<b>{<font color="green"><font color="red">$</font>shown</font>}</b> transactions, together <b>{<font color="green">$sum</font> <font color="black">|</font> <font color="blue">money</font>}</b>.&lt;/p&gt;<br>&lt;/section&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcfc41dcba3ff54637d93892f2161556a"></div>
+                        <script>
+                        padAjaxcfc41dcba3ff54637d93892f2161556a = new XMLHttpRequest();
+                        padAjaxcfc41dcba3ff54637d93892f2161556a.onreadystatechange=function() {
+                        if (padAjaxcfc41dcba3ff54637d93892f2161556a.readyState === 4) {
+                        if (padAjaxcfc41dcba3ff54637d93892f2161556a.status === 200) {
+                        document.getElementById("padAjaxcfc41dcba3ff54637d93892f2161556a").innerHTML=padAjaxcfc41dcba3ff54637d93892f2161556a.responseText;
+                        } else {
+                        document.getElementById("padAjaxcfc41dcba3ff54637d93892f2161556a").innerHTML=padAjaxcfc41dcba3ff54637d93892f2161556a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcfc41dcba3ff54637d93892f2161556a.open("GET","http://localhost/pad/ledger/?transactions&padInclude",true);
+                        padAjaxcfc41dcba3ff54637d93892f2161556a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: manual - Page: fragments/charts_2<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -541,85 +583,41 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/framework - Page: tags/pager_as_a_pair_hands_the_links_over_as_rows<br>
+                  App: regression/framework - Page: tags/chart_treemap_without_names_draws_a_part_per_row<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">tags/pager_as_a_pair_hands_the_links_over_as_rows.php</font>
+                        <font size="-2"></font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">tags/pager_as_a_pair_hands_the_links_over_as_rows.pad</font>
+                        <font size="-2">tags/chart_treemap_without_names_draws_a_part_per_row.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
                       </th>
                     </tr>
                     <tr>
+                      <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">100 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$pg       </span><span style="color: #007700">= </span><span style="color: #0000BB">6</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">"q"</span><span style="color: #007700">] = </span><span style="color: #DD0000">"red shoe"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>treemap<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>kb<font color="black">'</font></font>}</b><br>year,kb<br>2021,120<br>2022,340<br>2023,560<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b> <b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>pack<font color="black">'</font><font color="black">,</font> sequence=<font color="black">'</font>fibonacci<font color="black">'</font><font color="black">,</font> rows=5</font>}</b></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">page=<font color="red">$</font>pg<font color="black">,</font> rows=10</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font><font color="black">,</font> window=1</font>}</b>[<b>{<font color="green"><font color="red">$</font>kind</font>}</b> <b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{<font color="green"><font color="red">$</font>label</font>}</b>]<b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax732a070e25a5ff30c325dc29e7411ee3"></div>
+                        <div id="padAjaxe4ab4709d9cb7ec90bbbcefa13da632c"></div>
                         <script>
-                        padAjax732a070e25a5ff30c325dc29e7411ee3 = new XMLHttpRequest();
-                        padAjax732a070e25a5ff30c325dc29e7411ee3.onreadystatechange=function() {
-                        if (padAjax732a070e25a5ff30c325dc29e7411ee3.readyState === 4) {
-                        if (padAjax732a070e25a5ff30c325dc29e7411ee3.status === 200) {
-                        document.getElementById("padAjax732a070e25a5ff30c325dc29e7411ee3").innerHTML=padAjax732a070e25a5ff30c325dc29e7411ee3.responseText;
+                        padAjaxe4ab4709d9cb7ec90bbbcefa13da632c = new XMLHttpRequest();
+                        padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.onreadystatechange=function() {
+                        if (padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.readyState === 4) {
+                        if (padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.status === 200) {
+                        document.getElementById("padAjaxe4ab4709d9cb7ec90bbbcefa13da632c").innerHTML=padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.responseText;
                         } else {
-                        document.getElementById("padAjax732a070e25a5ff30c325dc29e7411ee3").innerHTML=padAjax732a070e25a5ff30c325dc29e7411ee3.statusText;
+                        document.getElementById("padAjaxe4ab4709d9cb7ec90bbbcefa13da632c").innerHTML=padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.statusText;
                         }
                         }
                         }
-                        padAjax732a070e25a5ff30c325dc29e7411ee3.open("GET","http://localhost/pad/regression/framework/?tags/pager_as_a_pair_hands_the_links_over_as_rows&padInclude",true);
-                        padAjax732a070e25a5ff30c325dc29e7411ee3.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/pager_counts_the_rows_the_options_before_the_page_left<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/pager_counts_the_rows_the_options_before_the_page_left.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/pager_counts_the_rows_the_options_before_the_page_left.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">100 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$pg       </span><span style="color: #007700">= </span><span style="color: #0000BB">6</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">"q"</span><span style="color: #007700">] = </span><span style="color: #DD0000">"red shoe"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">where=<font color="black">'</font><font color="red">$</font>products gt 70<font color="black">'</font><font color="black">,</font> page=2<font color="black">,</font> rows=10</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b><b>{<font color="blue">pager</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>kind</font>}</b> <b>{<font color="green"><font color="red">$</font>page</font>}</b>]<b>{/<font color="blue">pager</font><font color="red"></font>}</b>|<b>{<font color="blue">products </font><font color="red">page=2<font color="black">,</font> rows=10<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>products gt 95<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>products</font>}</b> <b>{/<font color="blue">products</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red">window=0</font>}</b>[<b>{<font color="green"><font color="red">$</font>page</font>}</b>]<b>{/<font color="blue">pager</font><font color="red"></font>}</b>|<b>{<font color="blue">pager </font><font color="red">query=<font color="black">'</font>p<font color="black">'</font></font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>pager</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>href</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>pager</font><font color="red"></font>}</b><b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxa8ed2c7630b739f9b242c4f2d40d269f"></div>
-                        <script>
-                        padAjaxa8ed2c7630b739f9b242c4f2d40d269f = new XMLHttpRequest();
-                        padAjaxa8ed2c7630b739f9b242c4f2d40d269f.onreadystatechange=function() {
-                        if (padAjaxa8ed2c7630b739f9b242c4f2d40d269f.readyState === 4) {
-                        if (padAjaxa8ed2c7630b739f9b242c4f2d40d269f.status === 200) {
-                        document.getElementById("padAjaxa8ed2c7630b739f9b242c4f2d40d269f").innerHTML=padAjaxa8ed2c7630b739f9b242c4f2d40d269f.responseText;
-                        } else {
-                        document.getElementById("padAjaxa8ed2c7630b739f9b242c4f2d40d269f").innerHTML=padAjaxa8ed2c7630b739f9b242c4f2d40d269f.statusText;
-                        }
-                        }
-                        }
-                        padAjaxa8ed2c7630b739f9b242c4f2d40d269f.open("GET","http://localhost/pad/regression/framework/?tags/pager_counts_the_rows_the_options_before_the_page_left&padInclude",true);
-                        padAjaxa8ed2c7630b739f9b242c4f2d40d269f.send();
+                        padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.open("GET","http://localhost/pad/regression/framework/?tags/chart_treemap_without_names_draws_a_part_per_row&padInclude",true);
+                        padAjaxe4ab4709d9cb7ec90bbbcefa13da632c.send();
                         </script>
                       </td>
                     </tr>
@@ -638,7 +636,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

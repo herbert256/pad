@@ -21,7 +21,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -35,7 +35,7 @@
             PAD Applications
           </h1>
           <p>
-            18 applications
+            29 applications
           </p>
           <table class="apps-list">
             <tr>
@@ -54,10 +54,43 @@
                 _common
               </td>
               <td>
-                Shared resources and utilities available to all PAD applications via symbolic links or includes.
+                Shared resources and utilities the engine adds to every PAD application while $padCommon is TRUE, the default.
               </td>
               <td>
                 <a href="index%EF%B9%96browse&amp;app=_common.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="index.html">admin</a>
+              </td>
+              <td>
+                The web console of the PAD installation: every application with what it has, its files and pages, the pad command from the browser, maintenance mode, queues, schedules, logs, error dumps, the mail outbox, DATA/ storage, PHP, the PAD settings, git and its own users - behind a login, this machine only by default.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=admin.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../alpine/index.html">alpine</a>
+              </td>
+              <td>
+                Alpine brings parts of a PAD page to life where they stand; PAD hands it its state as JSON and answers its requests.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=alpine.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../charts/index.html">charts</a>
+              </td>
+              <td>
+                A showcase of the `{chart}` tag: every kind of chart it draws, each with a few worked examples. The menu has a pulldown per chart family; the home page shows every example as a card with its chart drawn live. An example page has three cells - the data (JSON, YAML or PHP), the `{chart}` tag that draws it, and the result - and both source cells are read from the page's own files, so what is shown is exactly what runs. An example written as a pair, `{chart ...}` with its data (CSV, JSON, YAML or XML) between the tags, has one source cell for both. The page fits the window: the cells keep the same size on every example, so the previous and next links stay in one place.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=charts.html">edit</a>
               </td>
             </tr>
             <tr>
@@ -139,6 +172,50 @@
             </tr>
             <tr>
               <td>
+                <a href="../htmx/index.html">htmx</a>
+              </td>
+              <td>
+                htmx asks the server for a part of the page and swaps it in; PAD answers with that part alone - a {fragment} of the same template.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=htmx.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../islands/index.html">islands</a>
+              </td>
+              <td>
+                One runtime mounts components of any framework - React, Vue, Svelte, Preact, Solid - on the islands a PAD page writes; Vite builds them and {vite} links the build.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=islands.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../kanban/index.html">kanban</a>
+              </td>
+              <td>
+                A task board - cards dragged across its columns, every open window kept in step by server-sent events - on SQLite, on a server or in the browser when `pad pack kanban` runs it offline, where two windows of the installed application share one database.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=kanban.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../ledger/index.html">ledger</a>
+              </td>
+              <td>
+                A household budget - six months as charts, budgets per category, the transactions as a sortable table, CSV out and in, a quick entry posted as JSON - with its books in SQLite, built and brought up to date by its migrations, on a server or in the browser when `pad pack ledger` runs it offline.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=ledger.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <a href="../manual/index.html">manual</a>
               </td>
               <td>
@@ -157,6 +234,17 @@
               </td>
               <td>
                 <a href="index%EF%B9%96browse&amp;app=nono.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../notes/index.html">notes</a>
+              </td>
+              <td>
+                A notebook in Markdown - tags, search as you type, pinned notes, pictures and PDFs attached - with every note in one SQLite database: a file under DATA/ on a server, or in the browser when `pad pack notes` runs it offline.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=notes.html">edit</a>
               </td>
             </tr>
             <tr>
@@ -227,6 +315,17 @@
             </tr>
             <tr>
               <td>
+                <a href="../showcase/index.html">showcase</a>
+              </td>
+              <td>
+                A showcase of the tags that draw, format and interact - diagrams, maps, avatars, tables, diffs, thumbnails, tabs, puzzles and the rest - each with a few worked examples, in the frame of the charts application. The menu has a pulldown per group of tags; the home page shows every example as a card with its result rendered live. An example page has its template and, when it has one, its data side by side with the result - both read from the page's own files, so what is shown is exactly what runs.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=showcase.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html">structure</a>
               </td>
               <td>
@@ -234,6 +333,17 @@
               </td>
               <td>
                 <a href="index%EF%B9%96browse&amp;app=structure.html">edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="../tags/index.html">tags</a>
+              </td>
+              <td>
+                A page for every built-in PAD tag: its name and what it does in one line, its syntax with the options that belong to that tag (not the handling options every tag takes), a longer description, and examples - each runnable one rendered live beside its template, by the tag it documents. Over the pages stand the indexes: by name (A-Z), by group (what a tag is for), by form (single tag, pair, or either), by option (every option and the tags that take it), a cheat sheet with the syntax of every tag, and a search.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=tags.html">edit</a>
               </td>
             </tr>
             <tr>
@@ -247,6 +357,17 @@
                 <a href="index%EF%B9%96browse&amp;app=test.html">edit</a>
               </td>
             </tr>
+            <tr>
+              <td>
+                <a href="../webcomponents/index.html">webcomponents</a>
+              </td>
+              <td>
+                PAD custom tags write custom elements with their shadow root already in them - declarative shadow DOM - and small modules upgrade them in the browser.
+              </td>
+              <td>
+                <a href="index%EF%B9%96browse&amp;app=webcomponents.html">edit</a>
+              </td>
+            </tr>
           </table>
         </blockquote>
       </center>
@@ -258,7 +379,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

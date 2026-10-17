@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -72,6 +72,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: data/a_value_quoted_in_a_data_list_named_at_its_close_is_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">data/a_value_quoted_in_a_data_list_named_at_its_close_is_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/a_value_quoted_in_a_data_list_named_at_its_close_is_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// In a {data} list named on its closing tag a value written in quotes is an element's<br>  // text, and a number is the number - the content is walked before it is stored, and a<br>  // value standing bare there is refused (errors/syntax).<br><br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:strlen(12345)'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$n </span><span style="color: #007700">= </span><span style="color: #0000BB">7</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">q[<b>{<font color="blue">data</font><font color="red"></font>}</b>( '<b>{<font color="green"><font color="red">$</font>x</font>}</b>', 'b' )<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b><b>{<font color="blue">e</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>e</font>}</b>;<b>{/<font color="blue">e</font><font color="red"></font>}</b>] n[<b>{<font color="blue">data</font><font color="red"></font>}</b>( <b>{<font color="green"><font color="red">$</font>n</font>}</b>, 2 )<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b><b>{<font color="blue">f</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>f</font>}</b>;<b>{/<font color="blue">f</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc3a765261bcc5007d4b9e6831244e630"></div>
+                        <script>
+                        padAjaxc3a765261bcc5007d4b9e6831244e630 = new XMLHttpRequest();
+                        padAjaxc3a765261bcc5007d4b9e6831244e630.onreadystatechange=function() {
+                        if (padAjaxc3a765261bcc5007d4b9e6831244e630.readyState === 4) {
+                        if (padAjaxc3a765261bcc5007d4b9e6831244e630.status === 200) {
+                        document.getElementById("padAjaxc3a765261bcc5007d4b9e6831244e630").innerHTML=padAjaxc3a765261bcc5007d4b9e6831244e630.responseText;
+                        } else {
+                        document.getElementById("padAjaxc3a765261bcc5007d4b9e6831244e630").innerHTML=padAjaxc3a765261bcc5007d4b9e6831244e630.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc3a765261bcc5007d4b9e6831244e630.open("GET","http://localhost/pad/regression/framework/?data/a_value_quoted_in_a_data_list_named_at_its_close_is_text&padInclude",true);
+                        padAjaxc3a765261bcc5007d4b9e6831244e630.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: data/an_empty_list_renders_nothing<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -107,6 +149,46 @@
                         }
                         padAjaxa66c1e4a1dc9599dd7defac9211ba580.open("GET","http://localhost/pad/regression/framework/?data/an_empty_list_renders_nothing&padInclude",true);
                         padAjaxa66c1e4a1dc9599dd7defac9211ba580.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: data/pad_data_over_an_empty_store_shows_its_else<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">data/pad_data_over_an_empty_store_shows_its_else.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b>[1,2]<b>{/<font color="blue">data</font><font color="red"></font>}</b>B[<b>{<font color="blue">pad </font><font color="red">data="e"</font>}</b>x<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>empty<b>{/<font color="blue">pad</font><font color="red"></font>}</b>] E[<b>{<font color="blue">e</font><font color="red"></font>}</b>x<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>empty<b>{/<font color="blue">e</font><font color="red"></font>}</b>] H[<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>f<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>f</font>}</b><b>{/<font color="blue">pad</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfeeb4923c87d53773bd4588965b08de3"></div>
+                        <script>
+                        padAjaxfeeb4923c87d53773bd4588965b08de3 = new XMLHttpRequest();
+                        padAjaxfeeb4923c87d53773bd4588965b08de3.onreadystatechange=function() {
+                        if (padAjaxfeeb4923c87d53773bd4588965b08de3.readyState === 4) {
+                        if (padAjaxfeeb4923c87d53773bd4588965b08de3.status === 200) {
+                        document.getElementById("padAjaxfeeb4923c87d53773bd4588965b08de3").innerHTML=padAjaxfeeb4923c87d53773bd4588965b08de3.responseText;
+                        } else {
+                        document.getElementById("padAjaxfeeb4923c87d53773bd4588965b08de3").innerHTML=padAjaxfeeb4923c87d53773bd4588965b08de3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfeeb4923c87d53773bd4588965b08de3.open("GET","http://localhost/pad/regression/framework/?data/pad_data_over_an_empty_store_shows_its_else&padInclude",true);
+                        padAjaxfeeb4923c87d53773bd4588965b08de3.send();
                         </script>
                       </td>
                     </tr>
@@ -191,6 +273,88 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/the_else_of_a_level_the_handling_emptied_goes_through_the_pipe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/the_else_of_a_level_the_handling_emptied_goes_through_the_pipe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>[{"n":1},{"n":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b>A[<b>{<font color="blue">e </font><font color="red"><font color="black">|</font> upper</font>}</b>x<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">e</font><font color="red"></font>}</b>] B[<b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>n gt 9<font color="black">'</font> <font color="black">|</font> upper</font>}</b>x<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">xs</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe96968bd4bf53f39db3267a0d71ed85b"></div>
+                        <script>
+                        padAjaxe96968bd4bf53f39db3267a0d71ed85b = new XMLHttpRequest();
+                        padAjaxe96968bd4bf53f39db3267a0d71ed85b.onreadystatechange=function() {
+                        if (padAjaxe96968bd4bf53f39db3267a0d71ed85b.readyState === 4) {
+                        if (padAjaxe96968bd4bf53f39db3267a0d71ed85b.status === 200) {
+                        document.getElementById("padAjaxe96968bd4bf53f39db3267a0d71ed85b").innerHTML=padAjaxe96968bd4bf53f39db3267a0d71ed85b.responseText;
+                        } else {
+                        document.getElementById("padAjaxe96968bd4bf53f39db3267a0d71ed85b").innerHTML=padAjaxe96968bd4bf53f39db3267a0d71ed85b.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe96968bd4bf53f39db3267a0d71ed85b.open("GET","http://localhost/pad/regression/framework/?options/the_else_of_a_level_the_handling_emptied_goes_through_the_pipe&padInclude",true);
+                        padAjaxe96968bd4bf53f39db3267a0d71ed85b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_callback_runs_no_row_phase_for_the_else_branch<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_callback_runs_no_row_phase_for_the_else_branch.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_callback_runs_no_row_phase_for_the_else_branch.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An empty level and one its where= emptied show their @else@: that branch is no row, so<br>  // the callback's row phase does not run for it - init and exit do. The row phase read the<br>  // row's fields and ended the request ("Undefined variable $n").<br><br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>e<font color="black">'</font></font>}</b>[]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">e </font><font color="red">callback=<font color="black">'</font>rowfield<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">e</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sumRows</font>}</b> <b>{<font color="blue">xs </font><font color="red">callback=<font color="black">'</font>before<font color="black">'</font><font color="black">,</font> before<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>n gt 9<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sum</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax22602f73c13e1c8f3d674abc7f692c3b"></div>
+                        <script>
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b = new XMLHttpRequest();
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.onreadystatechange=function() {
+                        if (padAjax22602f73c13e1c8f3d674abc7f692c3b.readyState === 4) {
+                        if (padAjax22602f73c13e1c8f3d674abc7f692c3b.status === 200) {
+                        document.getElementById("padAjax22602f73c13e1c8f3d674abc7f692c3b").innerHTML=padAjax22602f73c13e1c8f3d674abc7f692c3b.responseText;
+                        } else {
+                        document.getElementById("padAjax22602f73c13e1c8f3d674abc7f692c3b").innerHTML=padAjax22602f73c13e1c8f3d674abc7f692c3b.statusText;
+                        }
+                        }
+                        }
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.open("GET","http://localhost/pad/regression/framework/?tags/a_callback_runs_no_row_phase_for_the_else_branch&padInclude",true);
+                        padAjax22602f73c13e1c8f3d674abc7f692c3b.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -205,7 +369,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

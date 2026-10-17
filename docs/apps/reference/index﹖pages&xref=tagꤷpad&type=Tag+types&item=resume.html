@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -252,6 +252,86 @@
                   padAjaxd6a8610b06d0b759890732890823fbce.open("GET","http://localhost/pad/sequence/?concepts/resume&padInclude",true);
                   padAjaxd6a8610b06d0b759890732890823fbce.send();
                   </script><br>
+                  <hr>
+                  App: tags - Page: examples/resume/1-steps<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/resume/1-steps.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Build a list in steps<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Three resumes rewrite the stored range one after another; the store holds the end result.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>steps<font color="black">'</font></font>}</b><br><b>{<font color="blue">resume </font><font color="red">add=100</font>}</b><br><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b><br><b>{<font color="blue">resume </font><font color="red">first=3</font>}</b><br>&lt;p&gt;<b>{<font color="blue">pull </font><font color="red">steps</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545"></div>
+                        <script>
+                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545 = new XMLHttpRequest();
+                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.onreadystatechange=function() {
+                        if (padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.readyState === 4) {
+                        if (padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.status === 200) {
+                        document.getElementById("padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545").innerHTML=padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.responseText;
+                        } else {
+                        document.getElementById("padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545").innerHTML=padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.open("GET","http://localhost/pad/tags/?examples/resume/1-steps&padInclude",true);
+                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/resume/2-filter<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/resume/2-filter.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Filter a store in place<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>keep<font color="black">,</font> prime as a resume<font color="black">:</font> the store itself now holds only the primes.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..30<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>candidates<font color="black">'</font></font>}</b><br><b>{<font color="blue">resume </font><font color="red">keep<font color="black">,</font> prime</font>}</b><br>&lt;p&gt;<b>{<font color="blue">candidates</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>candidates</font>}</b> <b>{/<font color="blue">candidates</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7ea1904b6fd989501ec4def636506d26"></div>
+                        <script>
+                        padAjax7ea1904b6fd989501ec4def636506d26 = new XMLHttpRequest();
+                        padAjax7ea1904b6fd989501ec4def636506d26.onreadystatechange=function() {
+                        if (padAjax7ea1904b6fd989501ec4def636506d26.readyState === 4) {
+                        if (padAjax7ea1904b6fd989501ec4def636506d26.status === 200) {
+                        document.getElementById("padAjax7ea1904b6fd989501ec4def636506d26").innerHTML=padAjax7ea1904b6fd989501ec4def636506d26.responseText;
+                        } else {
+                        document.getElementById("padAjax7ea1904b6fd989501ec4def636506d26").innerHTML=padAjax7ea1904b6fd989501ec4def636506d26.statusText;
+                        }
+                        }
+                        }
+                        padAjax7ea1904b6fd989501ec4def636506d26.open("GET","http://localhost/pad/tags/?examples/resume/2-filter&padInclude",true);
+                        padAjax7ea1904b6fd989501ec4def636506d26.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -266,7 +346,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {highlight} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}
+    </style>
+    <style>
+    :where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}
+    </style>
+    <style>
+    :where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">highlight</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>highlight<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-str">'lang'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/highlight</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-str">'lang'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'3, 5-7'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/highlight</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_data/products.json'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>lang</code>
+            </dt>
+            <dd>
+              The language: <code>pad</code>, <code>php</code>, <code>html</code> (<code>xml</code>, <code>svg</code>), <code>css</code>, <code>js</code> (<code>ts</code>, <code>json5</code>), <code>json</code>, <code>yaml</code>, <code>sql</code>, <code>bash</code> (<code>sh</code>) or <code>text</code>. With <code>file=</code> it defaults to the file's extension, otherwise to <code>text</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>file</code>
+            </dt>
+            <dd>
+              A file of the application to show instead of the content - never one outside it, under <code>_config/</code> or a dotfile.
+            </dd>
+            <dt>
+              <code>lines</code>
+            </dt>
+            <dd>
+              Bare option: number the lines.
+            </dd>
+            <dt>
+              <code>mark</code>
+            </dt>
+            <dd>
+              Lines to set apart: <code>'4'</code>, <code>'3, 5-7'</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{highlight 'php'}</code> ... <code>{/highlight}</code> writes its content as coloured source code: every piece HTML-escaped and wrapped in a <code>&lt;span class="hl-..."&gt;</code> - comments, strings, numbers, keywords, variables, tags, attributes, functions - inside <code>&lt;pre class="pad-highlight" data-lang="php"&gt;&lt;code&gt;</code>. It is done on the server by <code>lib/highlight.php</code>; no JavaScript library is loaded.
+          </p>
+          <p>
+            The content is taken as it stands, before the engine walks it: the braces of PHP, CSS, JSON or of PAD itself need no <a href="index%EF%B9%96tag%EA%A4%B7ignore.html"><code>{ignore}</code></a>, and a field inside is shown rather than resolved. The indent the lines share is taken off, so the sample can be indented with the template. One exception: a <code>{# comment #}</code> is gone before any tag sees it, so a PAD sample keeps none.
+          </p>
+          <p>
+            <code>file=</code> colours a file of the application instead of the content - its language from the extension unless the first parameter says otherwise. It never reads a file outside the application, under <code>_config/</code> or a dotfile; such a name, or one that is not there, is a strict error, as is a language that does not exist. <code>lines</code> numbers the lines and <code>mark</code> sets some apart.
+          </p>
+          <p>
+            The default colours are written once a page under <code>:where()</code>, following the page's <code>color-scheme</code>, so the page's own CSS wins. The <code>highlight</code> pipe does the same for a value - <code>{$query | highlight('sql')}</code> - and <a href="index%EF%B9%96tag%EA%A4%B7source.html"><code>{source}</code></a> shows the files behind a page as tabs, each coloured this way.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              PHP with numbered lines
+            </h3>
+            <p class="example-about">
+              lines numbers the lines and mark sets line 4 apart; the braces need no ignore.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/highlight/1-php.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-str">'php'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'4'</span><span class="hl-brc">}</span>
+  &lt;<span class="hl-var">?php</span>
+    function total ( <span class="hl-var">$rows</span> ) <span class="hl-brc">{</span>
+      <span class="hl-var">$sum</span> = <span class="hl-num">0</span>;
+      foreach ( <span class="hl-var">$rows</span> as <span class="hl-var">$row</span> ) <span class="hl-var">$sum</span> += <span class="hl-var">$row</span> [<span class="hl-str">'price'</span>];
+      return <span class="hl-var">$sum</span>;
+    <span class="hl-brc">}</span>
+  ?<span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/highlight</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B71-php.html">open alone</a>
+                </div>
+                <div class="result">
+                  <pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2">  <span class="hl-kwd">function</span> <span class="hl-fn">total</span> <span class="hl-pun">(</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="3">    <span class="hl-var">$sum</span> <span class="hl-pun">=</span> <span class="hl-num">0</span><span class="hl-pun">;</span></span>
+<span class="hl-line hl-mark" data-line="4">    <span class="hl-kwd">foreach</span> <span class="hl-pun">(</span> <span class="hl-var">$rows</span> <span class="hl-kwd">as</span> <span class="hl-var">$row</span> <span class="hl-pun">)</span> <span class="hl-var">$sum</span> <span class="hl-pun">+=</span> <span class="hl-var">$row</span> <span class="hl-pun">[</span><span class="hl-str">'price'</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="5">    <span class="hl-kwd">return</span> <span class="hl-var">$sum</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="7"><span class="hl-tag">?&gt;</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A PAD sample
+            </h3>
+            <p class="example-about">
+              PAD itself is shown as written: the tags and fields inside are coloured, not run.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/highlight/2-pad.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-str">'pad'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">orders</span> <span class="hl-opt">sort</span>=<span class="hl-str">'date'</span>, <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$total</span> | money<span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/orders</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/highlight</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B72-pad.html">open alone</a>
+                </div>
+                <div class="result">
+                  <pre class="pad-highlight" data-lang="pad"><code><span class="hl-brc">{</span><span class="hl-tag">orders</span> <span class="hl-opt">sort</span>=<span class="hl-str">'date'</span>, <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$total</span> | money<span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/orders</span><span class="hl-brc">}</span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              A file of the application
+            </h3>
+            <p class="example-about">
+              file= shows the translation catalog of this application, its language from the extension.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/highlight/3-file.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B73-file.html">open alone</a>
+                </div>
+                <div class="result">
+                  <pre class="pad-highlight" data-lang="json"><code><span class="hl-pun">{</span>
+  <span class="hl-key">"trans.cart.title"</span><span class="hl-pun">:</span> <span class="hl-str">"Your &lt;em&gt;shopping&lt;/em&gt; cart"</span><span class="hl-pun">,</span>
+  <span class="hl-key">"trans.cart.checkout"</span><span class="hl-pun">:</span> <span class="hl-str">"Go to checkout"</span><span class="hl-pun">,</span>
+  <span class="hl-key">"trans.cart.items"</span><span class="hl-pun">:</span> <span class="hl-str">"Your cart is empty|One item in your cart|%d items in your cart"</span><span class="hl-pun">,</span>
+  <span class="hl-key">"trans.greeting"</span><span class="hl-pun">:</span> <span class="hl-str">"Hello :name, welcome back to :place."</span>
+<span class="hl-pun">}</span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7guest.html">← {guest}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7icon.html">{icon} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

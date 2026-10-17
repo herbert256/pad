@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {field} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#database">Database</a><span>/</span><span aria-current="page">field</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>field<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Runs a SQL query on the application database and prints the single value it answers.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#database">Database</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"column from table where ..."</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from orders"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'orderCount'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>sql</code>
+            </dt>
+            <dd>
+              The query after the word SELECT - <code>"count(*) from users"</code>. The tag name is the <code>db()</code> command word, so the parameter never starts with SELECT.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              In the designer preview (<code>&amp;padSample</code>) the value of that name in the page's sample answers instead of the database; <code>&amp;padSample=capture</code> records the database's answer under it.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{field "..."}</code> runs its parameter as a query on the application database and is replaced by the one value it answers - the first column of the first row. It is the template form of <code>db ( "FIELD ..." )</code>: the tag name itself becomes the command word of <code>db()</code>, which is why the parameter starts after the SELECT - <code>{field "count(*) from orders"}</code>, not <code>{field "select count(*) ..."}</code>.
+          </p>
+          <p>
+            The query runs on the database the application's <code>$padSql*</code> settings name (read from its <code>.env</code>), MySQL or SQLite. A query that finds no row answers an empty value. The parameter is SQL text as written: a value from the request does not belong in it. Fetch such a value in the page's PHP with a placeholder - <code>db ( "FIELD name FROM users WHERE id={0}", [ $id ] )</code> - or write a named query in <code>_data/name.sql</code>, whose <code>{$name}</code> fields are bound as placeholders.
+          </p>
+          <p>
+            <code>{field}</code> shares its implementation with <a href="index%EF%B9%96tag%EA%A4%B7record.html">{record}</a> and <a href="index%EF%B9%96tag%EA%A4%B7array.html">{array}</a>; <a href="index%EF%B9%96tag%EA%A4%B7check.html">{check}</a> is the yes-or-no variant. Do not confuse it with the <code>field:</code> type prefix, which reads a variable: <code>{field:name}</code>.
+          </p>
+          <p>
+            With <code>name=</code> the tag takes part in the designer preview: on <code>?page&amp;padSample</code> the page's <code>_samples/page.json</code> answers for it, so a designer can work on the template without a database.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A count
+            </h3>
+            <p class="example-about">
+              The single value a query answers, printed in place - no SELECT in the parameter.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/field/1-count.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>There are <span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from orders where status='open'"</span><span class="hl-brc">}</span> open orders.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              With a sample name
+            </h3>
+            <p class="example-about">
+              name= lets the designer preview answer from _samples/ instead of the database.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/field/2-sample.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Customers: <span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from customers"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'customerCount'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7record.html">{record}</a> <span class="about">Runs a SQL query on the application database and renders its content with the first row's columns as fields.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7array.html">{array}</a> <span class="about">Runs a SQL query on the application database and repeats its content once per row.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7check.html">{check}</a> <span class="about">Asks the application database whether a row exists, and renders its content only when one does.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7feature.html">← {feature}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7file.html">{file} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

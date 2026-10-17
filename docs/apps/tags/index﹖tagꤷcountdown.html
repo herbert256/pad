@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {countdown} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">countdown</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>countdown<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            The time left until a moment, in words inside a time element - ticking every second in the browser when asked.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-12-31 00:00'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-var">$moment</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span>, <span class="hl-opt">past</span>=<span class="hl-str">'We are live!'</span>, live<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>moment</code>
+            </dt>
+            <dd>
+              The moment counted down to - a date in text, a Unix timestamp or a date object.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>units</code>
+            </dt>
+            <dd>
+              How many units are shown, 1 to 4 (days, hours, minutes, seconds), default 2.
+            </dd>
+            <dt>
+              <code>past</code>
+            </dt>
+            <dd>
+              The text once the moment has gone, default <code>ended</code>.
+            </dd>
+            <dt>
+              <code>live</code>
+            </dt>
+            <dd>
+              Bare option: a small script, once per page, counts down every second from the browser's clock.
+            </dd>
+            <dt>
+              <code>now</code>
+            </dt>
+            <dd>
+              Count from this moment instead of now.
+            </dd>
+            <dt>
+              <code>format</code>
+            </dt>
+            <dd>
+              The PHP date format of the full moment in the <code>title</code>, default <code>l j F Y, H:i</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{countdown '2026-12-31 00:00'}</code> writes the time left until the moment in words - <code>84 days, 3 hours</code> - inside a <code>&lt;time class="pad-countdown"&gt;</code> whose <code>datetime</code> is the moment and whose <code>title</code> is the moment in full. The words start at the largest unit that is not zero and take <code>units</code> of them, a zero unit among them left out: <code>5 minutes, 12 seconds</code>, <code>1 day</code>. Once the moment has gone, the text of <code>past=</code> stands there instead - <code>ended</code> when not given.
+          </p>
+          <p>
+            Now is <code>padNow ()</code>, so <code>padNowFreeze ()</code> holds a test still, and <code>now=</code> counts from a given moment - how the first example here stays the same on every request. <code>format=</code> is the PHP date format of the title.
+          </p>
+          <p>
+            With <code>live</code> the element gets <code>role="timer"</code> and the moment in milliseconds, and a small script - written once a page, carrying the request's nonce when <code>$padCsp</code> asks for one - counts down every second from the browser's clock, the same way the server counts. Without a script the server's words stay as they are. A moment that is no date and <code>units</code> outside 1 to 4 are strict errors.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Upcoming events
+            </h3>
+            <p class="example-about">
+              The two largest units by default, three or four when asked, and past= for an event that has started - all counted from a fixed now.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/countdown/1-events.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Jazz in the park: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-06 20:00'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">past</span>=<span class="hl-str">'Sold out'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Pottery workshop: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-08 15:20'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>City half marathon: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-12 09:30'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>New year: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2027-01-01 00:00'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 11:59:30'</span>, <span class="hl-opt">units</span>=<span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7countdown%EA%A4%B71-events.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Jazz in the park: <time class="pad-countdown" datetime="2026-10-06T20:00:00+00:00" title="Tuesday 6 October 2026, 20:00">Sold out</time>
+                    </li>
+                    <li>Pottery workshop: <time class="pad-countdown" datetime="2026-10-08T15:20:00+00:00" title="Thursday 8 October 2026, 15:20">3 hours, 20 minutes</time>
+                    </li>
+                    <li>City half marathon: <time class="pad-countdown" datetime="2026-10-12T09:30:00+00:00" title="Monday 12 October 2026, 09:30">3 days, 21 hours, 30 minutes</time>
+                    </li>
+                    <li>New year: <time class="pad-countdown" datetime="2027-01-01T00:00:00+00:00" title="Friday 1 January 2027, 00:00">84 days, 12 hours, 30 seconds</time>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A live launch counter
+            </h3>
+            <p class="example-about">
+              Three units, counting down every second in the browser - the server writes the same words first.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/countdown/2-live.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Version <span class="hl-num">3.0</span> launches in <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-12-01 10:00'</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span>, live, <span class="hl-opt">past</span>=<span class="hl-str">'We are live!'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeago.html">{timeago}</a> <span class="about">How long ago a moment was, in words, inside a time element that keeps the exact moment as its datetime and title.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{calendar}</a> <span class="about">Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7count.html">← {count}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7country.html">{country} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

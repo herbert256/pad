@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - indexes
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - indexes
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: tags - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups   </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$indexes  </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'names'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By name'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every tag from A to Z, with its one line.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'groups'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By group'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The tags by what they are for - conditions, loops, forms, charts ...' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'forms'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By form'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Single tags, tag pairs, and the tags that can be either.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'options'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By option'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every option a tag takes of its own, and the tags that take it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cheatsheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cheat sheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The syntax of every tag on one page.' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  foreach ( </span><span style="color: #0000BB">tagsCatalog </span><span style="color: #007700">() as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$tag </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">+= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">tagsExamples </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every PAD tag<font color="black">'</font></font>}</b><br>&lt;section class="hero"&gt;<br>  &lt;h1&gt;Every PAD tag&lt;/h1&gt;<br>  &lt;p class="lead"&gt;A page for each built-in tag of PAD: what it does in one line, its syntax and<br>  the options that belong to it, a longer description and live examples - every result<br>  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or<br>  search for it.&lt;/p&gt;<br>  &lt;ul class="stats"&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsCount</font>}</b>&lt;/b&gt; tags&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b>&lt;/b&gt; groups&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>exampleCount</font>}</b>&lt;/b&gt; examples&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">indexes</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">indexes</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The groups&lt;/h2&gt;<br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">groups</font><font color="red"></font>}</b><br>  &lt;section class="card"&gt;<br>    &lt;h3&gt;&lt;a href="?groups#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt; &lt;span class="count"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b>&lt;/p&gt;<br>    &lt;div class="tagcloud"&gt;<b>{<font color="blue">tags</font><font color="red"></font>}</b>&lt;a href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>" title="<b>{<font color="green"><font color="red">$</font>about</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;<b>{/<font color="blue">tags</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/section&gt;<br>  <b>{/<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb6e353252c830d41dd78b26b669feada"></div>
+                        <script>
+                        padAjaxb6e353252c830d41dd78b26b669feada = new XMLHttpRequest();
+                        padAjaxb6e353252c830d41dd78b26b669feada.onreadystatechange=function() {
+                        if (padAjaxb6e353252c830d41dd78b26b669feada.readyState === 4) {
+                        if (padAjaxb6e353252c830d41dd78b26b669feada.status === 200) {
+                        document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.responseText;
+                        } else {
+                        document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb6e353252c830d41dd78b26b669feada.open("GET","http://localhost/pad/tags/?index&padInclude",true);
+                        padAjaxb6e353252c830d41dd78b26b669feada.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

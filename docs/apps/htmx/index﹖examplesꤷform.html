@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forms without reloads - PAD + htmx</title>
+  <link rel="stylesheet" href="htmx.css">
+  <script src="htmx-app.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
+  <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
+</head>
+<body hx-headers="{&quot;X-CSRF-Token&quot;:&quot;4ade5f94e4979cffe4b4be1a8a1495ef404c8d2107a1e64fce312c149f5bced1&quot;}">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+
+    <a class="brand" href="index%EF%B9%96index.html" aria-label="PAD + htmx home">
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+      <span>PAD <em>+</em> htmx</span>
+    </a>
+
+    <nav class="menu" aria-label="Sections">
+      
+        <a href="index%EF%B9%96index.html" class="is-active" aria-current="page">Examples</a>
+      
+        <a href="index%EF%B9%96guide.html">Guide</a>
+      
+    </nav>
+
+    <a class="cart-badge" href="index%EF%B9%96examples%EA%A4%B7cart.html" aria-label="The cart">
+      🛒 <span id="cart-count">0</span>
+    </a>
+
+    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+
+  </div>
+</header>
+
+<main class="wrap main">
+<header class="example-head">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96index.html">Examples</a><span aria-hidden="true">/</span>Changing data</nav>
+  <h1><span class="example-icon" aria-hidden="true">📝</span>Forms without reloads</h1>
+  <p class="lede">A {form} with rules= posts through htmx and comes back as its own fragment - refilled with PAD&#039;s messages, or as a thank-you. The same rules are checked in the browser first.</p>
+  <div class="chips">
+    <code class="chip is-server">{form client}</code><code class="chip is-server">rules=</code><code class="chip is-server">padPosted</code>
+    <code class="chip is-client">hx-post</code><code class="chip is-client">hx-swap=&quot;outerHTML&quot;</code>
+  </div>
+</header>
+
+<section class="stage" aria-label="The example">
+  <div class="stage-label"><span class="dot"></span> Live</div>
+<label class="small switch-line"><input type="checkbox" checked data-toggle-rules="#signup form"> Check in the browser first - turn it off to see PAD's answer to a bad post</label>
+
+<div id="signup">
+
+  
+    <form method="post" hx-post="?examples/form" hx-target="#signup" class="stack" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="4ade5f94e4979cffe4b4be1a8a1495ef404c8d2107a1e64fce312c149f5bced1"><input type="hidden" name="padForm" value="signup">
+      <label for="name">Name</label><input type="text" name="name" id="name" value="" class="input">
+      <label for="email">E-mail</label><input type="email" name="email" id="email" value="" class="input">
+      <label for="age">Age</label><input type="text" name="age" id="age" value="" class="input">
+      <button>Sign up</button>
+    </form><script>
+(function () {
+  'use strict';
+  if (window.padValidate) return;
+  var numberPattern = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
+  var emailPattern = /^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i;
+  function trim(value) {
+    return typeof value === 'string' ? value.replace(/^[ \t\n\r\0\x0B]+|[ \t\n\r\0\x0B]+$/g, '') : value;
+  }
+  function empty(value) {
+    return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
+  }
+  function toNumber(value) {
+    var found = String(value).match(/^\s*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
+    return found ? parseFloat(found[0]) : 0;
+  }
+  function length(value) {
+    return Array.from(String(value)).length;
+  }
+  function email(value) {
+    return value.length <= 320 && emailPattern.test(value);
+  }
+  function integer(value) {
+    var found = value.match(/^([+-]?)(0|[1-9]\d*)$/);
+    if (!found) return false;
+    var limit = found[1] === '-' ? '9223372036854775808' : '9223372036854775807';
+    return found[2].length < limit.length || (found[2].length === limit.length && found[2] <= limit);
+  }
+  function url(value) {
+    if (!/^https?:\/\//i.test(value) || /[^A-Za-z0-9$\-_.+!*'(),{}|\\^~\[\]`<>#%";\/?:@&=]/.test(value)) return false;
+    var rest = value.replace(/^https?:\/\//i, '');
+    var authority = rest.slice(0, rest.search(/[\/?#]|$/));
+    var at = authority.lastIndexOf('@');
+    var host = authority.slice(at + 1);
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']')) {
+      var colon = host.lastIndexOf(':');
+      if (colon >= 0) {
+        var port = host.slice(colon + 1);
+        if (port.length > 5) return false;
+        if (port !== '') {
+          var number = port.match(/^[+-]?\d+/);
+          if (!number || +number[0] < 0 || +number[0] > 65535) return false;
+        }
+        host = host.slice(0, colon);
+      }
+    }
+    if (host === '') return false;
+    if (!(host.charAt(0) === '[' && host.slice(-1) === ']' && ipv6(host.slice(1, -1))) && !hostname(host)) return false;
+    if (at < 0) return true;
+    var info = authority.slice(0, at), split = info.indexOf(':');
+    return userinfo(split < 0 ? info : info.slice(0, split)) && (split < 0 || userinfo(info.slice(split + 1)));
+  }
+  function alnum(c) {
+    return /^[A-Za-z0-9]$/.test(c);
+  }
+  function hostname(host) {
+    var end = host.length;
+    if (end > 0 && host.charAt(end - 1) === '.') end--;
+    if (end > 253 || !alnum(host.charAt(0)) || host.slice(-1) === '-') return false;
+    for (var i = 0, size = 1; i < end; i++) {
+      var c = host.charAt(i);
+      if (c === '.') {
+        if (host.charAt(i + 1) === '.' || !alnum(host.charAt(i - 1)) || !alnum(host.charAt(i + 1))) return false;
+        size = 1;
+      } else {
+        if (size > 63 || (c !== '-' && !alnum(c))) return false;
+        size++;
+      }
+    }
+    return true;
+  }
+  function ipv4(text) {
+    var parts = text.split('.');
+    return parts.length === 4 && parts.every(function (one) { return /^(0|[1-9]\d{0,2})$/.test(one) && +one <= 255; });
+  }
+  function ipv6(text) {
+    if (text.indexOf(':') < 0) return false;
+    var blocks = 0, compressed = false, at = 0, end = text.length;
+    var dot = text.indexOf('.');
+    if (dot >= 0) {
+      var start = text.lastIndexOf(':', dot) + 1;
+      if (!ipv4(text.slice(start))) return false;
+      end = start;
+      if (end < 2) return false;
+      if (text.charAt(end - 2) !== ':') end--;
+      blocks = 2;
+    }
+    while (at < end) {
+      if (text.charAt(at) === ':') {
+        if (++at >= end) return false;
+        if (text.charAt(at) === ':') {
+          if (compressed) return false;
+          compressed = true;
+          blocks++;
+          if (++at === end) return blocks <= 8;
+        } else if (at - 1 === 0) return false;
+      }
+      var digits = text.slice(at, end).match(/^[0-9A-Fa-f]*/)[0].length;
+      at += digits;
+      if (digits < 1 || digits > 4 || ++blocks > 8) return false;
+    }
+    return (compressed && blocks <= 8) || blocks === 8;
+  }
+  function userinfo(text) {
+    return /^(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9][0-9A-Fa-f])*$/.test(text);
+  }
+  function date(value) {
+    var iso = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[Tt ](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+    if (iso) {
+      if (iso[4] !== undefined && (+iso[4] > 24 || +iso[5] > 59 || +(iso[6] || 0) > 60)) return false;
+      return calendarDay(+iso[1], +iso[2], +iso[3]);
+    }
+    var dmy = value.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+    if (dmy) return value.charAt(dmy[1].length) === '/' ? calendarDay(+dmy[3], +dmy[1], +dmy[2]) : calendarDay(+dmy[3], +dmy[2], +dmy[1]);
+    return /\d/.test(value);
+  }
+  function calendarDay(year, month, day) {
+    var moment = new Date(0);
+    moment.setUTCFullYear(year, month - 1, day);
+    return year > 0 && moment.getUTCFullYear() === year && moment.getUTCMonth() === month - 1 && moment.getUTCDate() === day;
+  }
+  function regex(pattern) {
+    var open = pattern.charAt(0);
+    var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
+    var end = pattern.lastIndexOf(close);
+    if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
+    var flags = pattern.slice(end + 1);
+    if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
+    var body = pattern.slice(1, end);
+    var bare = body.replace(/\\\\/g, '');
+    if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+    if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
+    if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+  }
+  function rule(name, arg, value, values, number) {
+    if (Array.isArray(value)) {
+      if (name === 'required') return value.length > 0;
+      if (name === 'in') return value.every(function (one) { return typeof one === 'string' && rule('in', arg, trim(one), values, number); });
+      return false;
+    }
+    value = String(value);
+    var size = number ? toNumber(value) : length(value);
+    switch (name) {
+      case 'required': return value !== '';
+      case 'accepted': return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0;
+      case 'email':    return email(value);
+      case 'url':      return url(value);
+      case 'numeric':  return numberPattern.test(value);
+      case 'integer':  return integer(value);
+      case 'min':      return size >= toNumber(arg);
+      case 'max':      return size <= toNumber(arg);
+      case 'in':       return arg.split(',').map(trim).indexOf(value) >= 0;
+      case 'regex':    var pattern = regex(arg); return pattern && (pattern.unicode || !/[^\x00-\x7f]/.test(value)) ? pattern.test(value) : true;
+      case 'same':     var other = values[arg]; return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
+      case 'date':     return date(value);
+    }
+    return true;
+  }
+  function message(text, label, shown) {
+    return text.replace(/:label|:n/g, function (token) { return token === ':label' ? label : shown; });
+  }
+  function field(spec, value, values, label) {
+    value = trim(value === undefined || value === null ? '' : value);
+    label = label || spec.label;
+    if (spec.rules.length && Array.isArray(value) && !spec.list) return message(spec.single, label, '');
+    for (var i = 0; i < spec.rules.length; i++) {
+      var one = spec.rules[i];
+      if (empty(value) && one[0] !== 'required' && one[0] !== 'accepted') continue;
+      if (!rule(one[0], one[1], value, values, spec.number)) return message(one[2], label, one[3]);
+    }
+    return '';
+  }
+  function check(rules, values) {
+    var errors = {};
+    Object.keys(rules || {}).forEach(function (name) {
+      var problem = field(rules[name], values[name], values);
+      if (problem) errors[name] = problem;
+    });
+    return errors;
+  }
+  function rulesOf(form) {
+    try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
+  }
+  function sent(one) {
+    return one.replace(/\r\n|\r|\n/g, '\r\n');
+  }
+  function valuesOf(form, rules) {
+    var data = new FormData(form);
+    var values = {};
+    data.forEach(function (one, name) {
+      if (typeof one === 'string') values[name] = sent(one);
+    });
+    Object.keys(rules).forEach(function (name) {
+      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
+      values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
+    });
+    return values;
+  }
+  function controlsOf(form, name) {
+    return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
+  }
+  function labelOf(form, control) {
+    if (!control || !control.id) return '';
+    var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
+    return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
+  }
+  function idOf(name, control) {
+    return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function show(form, name, text) {
+    var controls = controlsOf(form, name);
+    var last = controls[controls.length - 1];
+    if (!last) return;
+    var id = idOf(name, last) + '-error';
+    var span = document.getElementById(id);
+    controls.forEach(function (control) {
+      if (text) {
+        control.setAttribute('aria-invalid', 'true');
+        control.setAttribute('aria-describedby', id);
+      } else if (control.getAttribute('aria-describedby') === id) {
+        control.removeAttribute('aria-invalid');
+        control.removeAttribute('aria-describedby');
+      }
+    });
+    if (!text) {
+      if (span && form.contains(span)) span.remove();
+      return;
+    }
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'error';
+      span.id = id;
+      var after = last;
+      if ((last.type === 'checkbox' || last.type === 'radio') && last.nextElementSibling && last.nextElementSibling.tagName === 'LABEL')
+        after = last.nextElementSibling;
+      after.insertAdjacentElement('afterend', span);
+    }
+    span.textContent = text;
+  }
+  function banner(form, on) {
+    var text = form.getAttribute('data-pad-error');
+    var shown = form.querySelector(':scope > .error[role="alert"]');
+    if (!text) return;
+    if (on && !shown) {
+      shown = document.createElement('div');
+      shown.className = 'error';
+      shown.setAttribute('role', 'alert');
+      shown.textContent = text;
+      form.insertBefore(shown, form.firstChild);
+    } else if (!on && shown) {
+      shown.remove();
+    }
+  }
+  function checkOne(form, name) {
+    var rules = rulesOf(form);
+    if (!rules[name]) return true;
+    var values = valuesOf(form, rules);
+    var controls = controlsOf(form, name);
+    var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
+    show(form, name, problem);
+    return !problem;
+  }
+  function checkForm(form) {
+    var rules = rulesOf(form);
+    var values = valuesOf(form, rules);
+    var first = null;
+    Object.keys(rules).forEach(function (name) {
+      var controls = controlsOf(form, name);
+      var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
+      show(form, name, problem);
+      if (problem && !first) first = controls[0];
+    });
+    banner(form, !!first);
+    if (first && first.focus) first.focus();
+    return !first;
+  }
+  function ruled(target) {
+    return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
+  }
+  document.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (!form.hasAttribute || !form.hasAttribute('data-pad-rules')) return;
+    if (!checkForm(form)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+  document.addEventListener('focusout', function (event) {
+    var form = ruled(event.target);
+    if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
+      checkOne(form, event.target.name);
+  });
+  ['input', 'change'].forEach(function (type) {
+    document.addEventListener(type, function (event) {
+      var form = ruled(event.target);
+      if (form && event.target.getAttribute('aria-invalid') === 'true')
+        checkOne(form, event.target.name);
+    });
+  });
+  window.padValidate = { check: check, field: field, form: checkForm };
+})();
+</script>
+  
+
+</div>
+</section>
+
+<div class="request-log" data-request-log>
+  <div class="request-log-head"><span>Requests htmx made</span><span data-request-count></span></div>
+  <ol></ol>
+  <div class="empty">Nothing yet - use the example above, and every request it makes shows here with the part PAD answered.</div>
+</div>
+
+<section class="how">
+  <h2>How it is built</h2>
+  <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">htmx, in the browser</span></p>
+  <style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/form.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/form.php</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-htm">&lt;label</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;small switch-line&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;checkbox&quot;</span> checked <span class="hl-opt">data-toggle-rules</span>=<span class="hl-str">&quot;#signup form&quot;</span><span class="hl-htm">&gt;</span> Check in the browser first - turn it off to see PAD&#039;s answer to a bad post<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3"><span class="hl-htm">&lt;div</span> <span class="hl-opt">id</span>=<span class="hl-str">&quot;signup&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="4"><span class="hl-brc">{</span><span class="hl-tag">fragment</span> <span class="hl-str">&#039;signup&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$done</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="6">    <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;callout is-good rise&quot;</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="7">      <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span>Welcome aboard, <span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> PAD checked the post against the rules of the form and the page&#039;s PHP ran for a good one only.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8">      <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;btn-sm btn-ghost&quot;</span> <span class="hl-opt">hx-get</span>=<span class="hl-str">&quot;?examples/form&quot;</span> <span class="hl-opt">hx-target</span>=<span class="hl-str">&quot;#signup&quot;</span><span class="hl-htm">&gt;</span>Sign up someone else<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="9">    <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="10">  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="11">    <span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">&#039;signup&#039;</span>, client, error, <span class="hl-opt">hx-post</span>=<span class="hl-str">&#039;?examples/form&#039;</span>, <span class="hl-opt">hx-target</span>=<span class="hl-str">&#039;#signup&#039;</span>, <span class="hl-opt">class</span>=<span class="hl-str">&#039;stack&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="12">      <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span>, <span class="hl-opt">rules</span>=<span class="hl-str">&#039;required|max:40&#039;</span>, <span class="hl-opt">class</span>=<span class="hl-str">&#039;input&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="13">      <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">&#039;email&#039;</span>, <span class="hl-opt">type</span>=<span class="hl-str">&#039;email&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;E-mail&#039;</span>, <span class="hl-opt">rules</span>=<span class="hl-str">&#039;required|email&#039;</span>, <span class="hl-opt">class</span>=<span class="hl-str">&#039;input&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="14">      <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">&#039;age&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Age&#039;</span>, <span class="hl-opt">rules</span>=<span class="hl-str">&#039;integer|min:18&#039;</span>, <span class="hl-opt">class</span>=<span class="hl-str">&#039;input&#039;</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="15">      <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Sign up<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="16">    <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="17">  <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="18"><span class="hl-brc">{</span><span class="hl-tag">/fragment</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="19"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
+<span class="hl-line" data-line="2"></span>
+<span class="hl-line" data-line="3">  <span class="hl-com">// The rules= of form.pad checked the post before this file runs: padPosted ( &#039;signup&#039; ) is</span></span>
+<span class="hl-line" data-line="4">  <span class="hl-com">// TRUE for a post that kept them alone. htmx posts the form (hx-post) and swaps the answer</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-com">// into its place - hx-target=&quot;#signup&quot; sends HX-Target: signup, so the answer is the</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-com">// {fragment &#039;signup&#039;}: the form again, refilled, with PAD&#039;s messages beside its fields, or</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-com">// the welcome. The browser checks the same rules first (client); switch that off to see</span></span>
+<span class="hl-line" data-line="8">  <span class="hl-com">// PAD&#039;s own answer.</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10">  <span class="hl-var">$done</span> <span class="hl-pun">=</span> <span class="hl-fn">padPosted</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;signup&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="11">  <span class="hl-var">$name</span> <span class="hl-pun">=</span> <span class="hl-fn">htmxText</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="12"></span>
+<span class="hl-line" data-line="13"><span class="hl-tag">?&gt;</span></span></code></pre></div></div>
+</section>
+
+<nav class="prev-next" aria-label="More examples">
+  <a class="prev" href="index%EF%B9%96examples%EA%A4%B7edit.html"><small>Previous</small>Inline editing</a>
+  <a class="next" href="index%EF%B9%96examples%EA%A4%B7cart.html"><small>Next</small>Out-of-band updates</a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>PAD</strong> renders every part of the page &middot; <strong>htmx</strong> asks for the part that changes and swaps it in</p>
+    <p class="footer-small">htmx comes from unpkg.com &middot; the pages are in <code>apps/htmx/</code> - there is no JavaScript of the application's own but a request log</p>
+  </div>
+</footer>
+
+</body>
+</html>

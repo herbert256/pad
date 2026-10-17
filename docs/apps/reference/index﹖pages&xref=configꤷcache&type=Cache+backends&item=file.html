@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/cache_file - Page: debug<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">debug.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">debug.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A page that shows this machine something it shows nobody else - a {debug} - is not<br>  // stored: built for a local request it went into the cache, and every visitor after it<br>  // was answered with the value {debug} keeps from them. The second fetch says it was<br>  // forwarded, as a visitor's request through a proxy on this machine does. The address is<br>  // new on every run: the visitor's own copy, rightly stored, would answer the next run's<br>  // local fetch.<br><br>  </span><span style="color: #0000BB">$url </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?debugged&amp;padInclude&amp;debug=' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$local  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$remote </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$url</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'X-Forwarded-For' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'203.0.113.5' </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$debugResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'local sees it: '    </span><span style="color: #007700">. ( </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$local  </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">], </span><span style="color: #DD0000">'for this machine only' </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no' </span><span style="color: #007700">)<br>               . </span><span style="color: #DD0000">', visitor sees it: ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">str_contains </span><span style="color: #007700">( </span><span style="color: #0000BB">$remote </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">], </span><span style="color: #DD0000">'for this machine only' </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'YES' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>debugResult</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe40664f54f35f7014e4101e6bb9b5761"></div>
+                        <script>
+                        padAjaxe40664f54f35f7014e4101e6bb9b5761 = new XMLHttpRequest();
+                        padAjaxe40664f54f35f7014e4101e6bb9b5761.onreadystatechange=function() {
+                        if (padAjaxe40664f54f35f7014e4101e6bb9b5761.readyState === 4) {
+                        if (padAjaxe40664f54f35f7014e4101e6bb9b5761.status === 200) {
+                        document.getElementById("padAjaxe40664f54f35f7014e4101e6bb9b5761").innerHTML=padAjaxe40664f54f35f7014e4101e6bb9b5761.responseText;
+                        } else {
+                        document.getElementById("padAjaxe40664f54f35f7014e4101e6bb9b5761").innerHTML=padAjaxe40664f54f35f7014e4101e6bb9b5761.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe40664f54f35f7014e4101e6bb9b5761.open("GET","http://localhost/pad/regression/cache_file/?debug&padInclude",true);
+                        padAjaxe40664f54f35f7014e4101e6bb9b5761.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_file - Page: debugged<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">debugged.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">debugged.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of debug: a page with a {debug} in it, which shows its value to this<br>  // machine's own requests only.<br><br>  </span><span style="color: #0000BB">$debugValue </span><span style="color: #007700">= </span><span style="color: #DD0000">'for this machine only'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;page&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax34b6a1d2b150e83d576072442982e65e"></div>
+                        <script>
+                        padAjax34b6a1d2b150e83d576072442982e65e = new XMLHttpRequest();
+                        padAjax34b6a1d2b150e83d576072442982e65e.onreadystatechange=function() {
+                        if (padAjax34b6a1d2b150e83d576072442982e65e.readyState === 4) {
+                        if (padAjax34b6a1d2b150e83d576072442982e65e.status === 200) {
+                        document.getElementById("padAjax34b6a1d2b150e83d576072442982e65e").innerHTML=padAjax34b6a1d2b150e83d576072442982e65e.responseText;
+                        } else {
+                        document.getElementById("padAjax34b6a1d2b150e83d576072442982e65e").innerHTML=padAjax34b6a1d2b150e83d576072442982e65e.statusText;
+                        }
+                        }
+                        }
+                        padAjax34b6a1d2b150e83d576072442982e65e.open("GET","http://localhost/pad/regression/cache_file/?debugged&padInclude",true);
+                        padAjax34b6a1d2b150e83d576072442982e65e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/cache_file - Page: etaglist<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -69,6 +153,172 @@
                         }
                         padAjaxd9519ec4ad97e56fd5b1fa159631a12d.open("GET","http://localhost/pad/regression/cache_file/?etaglist&padInclude",true);
                         padAjaxd9519ec4ad97e56fd5b1fa159631a12d.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_file - Page: flush<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">flush.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flush.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A flushed page goes without an ETag - {flush} gives the ETag up with the whole body it<br>  // describes - where the headers that went out with the first part carried Etag: "", one<br>  // tag for every flushed page of the application.<br><br>  </span><span style="color: #0000BB">$flushAnswer </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?flushed&amp;padInclude&amp;flush=' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">() );<br><br>  </span><span style="color: #0000BB">$flushResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'body: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$flushAnswer </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) . </span><span style="color: #DD0000">', etag: '<br>               </span><span style="color: #007700">. ( </span><span style="color: #0000BB">array_key_exists </span><span style="color: #007700">( </span><span style="color: #DD0000">'Etag'</span><span style="color: #007700">, </span><span style="color: #0000BB">$flushAnswer </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] ) || </span><span style="color: #0000BB">array_key_exists </span><span style="color: #007700">( </span><span style="color: #DD0000">'ETag'</span><span style="color: #007700">, </span><span style="color: #0000BB">$flushAnswer </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'sent' </span><span style="color: #007700">: </span><span style="color: #DD0000">'none' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>flushResult</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85"></div>
+                        <script>
+                        padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85 = new XMLHttpRequest();
+                        padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.onreadystatechange=function() {
+                        if (padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.readyState === 4) {
+                        if (padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.status === 200) {
+                        document.getElementById("padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85").innerHTML=padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.responseText;
+                        } else {
+                        document.getElementById("padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85").innerHTML=padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.open("GET","http://localhost/pad/regression/cache_file/?flush&padInclude",true);
+                        padAjaxb5e1fbb0b6c6e4aad9182ea69d58ec85.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_file - Page: flushed<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">flushed.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b>&lt;p&gt;rest&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5662b1d6778d2452aaf06867433a992a"></div>
+                        <script>
+                        padAjax5662b1d6778d2452aaf06867433a992a = new XMLHttpRequest();
+                        padAjax5662b1d6778d2452aaf06867433a992a.onreadystatechange=function() {
+                        if (padAjax5662b1d6778d2452aaf06867433a992a.readyState === 4) {
+                        if (padAjax5662b1d6778d2452aaf06867433a992a.status === 200) {
+                        document.getElementById("padAjax5662b1d6778d2452aaf06867433a992a").innerHTML=padAjax5662b1d6778d2452aaf06867433a992a.responseText;
+                        } else {
+                        document.getElementById("padAjax5662b1d6778d2452aaf06867433a992a").innerHTML=padAjax5662b1d6778d2452aaf06867433a992a.statusText;
+                        }
+                        }
+                        }
+                        padAjax5662b1d6778d2452aaf06867433a992a.open("GET","http://localhost/pad/regression/cache_file/?flushed&padInclude",true);
+                        padAjax5662b1d6778d2452aaf06867433a992a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_file - Page: fragment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A page whose PHP picks a response fragment - from an HX-Request header, which the page<br>  // cache's key does not hold - is answered fresh for such a request and its fragment is<br>  // never stored: the HTMX swap went into the cache under the page's address, and every<br>  // browser after it got the bare fragment for the whole page; or the stored whole page<br>  // went into the swap. Two runs in a row each see both answers right; the address is new<br>  // on every run.<br><br>  </span><span style="color: #0000BB">$url </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?fragmented&amp;padInclude&amp;fragment=' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$swap  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$url</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'HX-Request' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'true' </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">$page  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$swap2 </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$url</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'HX-Request' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'true' </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$fragmentResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'swap: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$swap </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) . </span><span style="color: #DD0000">' | page: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$page </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ) . </span><span style="color: #DD0000">' | swap again: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$swap2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>fragmentResult</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5a39d121561fce358754eca45bad9e1a"></div>
+                        <script>
+                        padAjax5a39d121561fce358754eca45bad9e1a = new XMLHttpRequest();
+                        padAjax5a39d121561fce358754eca45bad9e1a.onreadystatechange=function() {
+                        if (padAjax5a39d121561fce358754eca45bad9e1a.readyState === 4) {
+                        if (padAjax5a39d121561fce358754eca45bad9e1a.status === 200) {
+                        document.getElementById("padAjax5a39d121561fce358754eca45bad9e1a").innerHTML=padAjax5a39d121561fce358754eca45bad9e1a.responseText;
+                        } else {
+                        document.getElementById("padAjax5a39d121561fce358754eca45bad9e1a").innerHTML=padAjax5a39d121561fce358754eca45bad9e1a.statusText;
+                        }
+                        }
+                        }
+                        padAjax5a39d121561fce358754eca45bad9e1a.open("GET","http://localhost/pad/regression/cache_file/?fragment&padInclude",true);
+                        padAjax5a39d121561fce358754eca45bad9e1a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/cache_file - Page: fragmented<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragmented.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragmented.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of fragment: a page that answers its fragment alone to an HTMX request - the<br>  // HX-Request header - and the whole page to everyone else, as lib/respond.php suggests.<br><br>  </span><span style="color: #007700">if ( isset ( </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'HTTP_HX_REQUEST'</span><span style="color: #007700">] ) )<br>    </span><span style="color: #0000BB">$padFragmentOnly </span><span style="color: #007700">= </span><span style="color: #DD0000">'part'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;full&lt;/p&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>part<font color="black">'</font></font>}</b>&lt;p&gt;part&lt;/p&gt;<b>{/<font color="blue">fragment</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3ee73c2ab016ab45d2d532c6ff86e520"></div>
+                        <script>
+                        padAjax3ee73c2ab016ab45d2d532c6ff86e520 = new XMLHttpRequest();
+                        padAjax3ee73c2ab016ab45d2d532c6ff86e520.onreadystatechange=function() {
+                        if (padAjax3ee73c2ab016ab45d2d532c6ff86e520.readyState === 4) {
+                        if (padAjax3ee73c2ab016ab45d2d532c6ff86e520.status === 200) {
+                        document.getElementById("padAjax3ee73c2ab016ab45d2d532c6ff86e520").innerHTML=padAjax3ee73c2ab016ab45d2d532c6ff86e520.responseText;
+                        } else {
+                        document.getElementById("padAjax3ee73c2ab016ab45d2d532c6ff86e520").innerHTML=padAjax3ee73c2ab016ab45d2d532c6ff86e520.statusText;
+                        }
+                        }
+                        }
+                        padAjax3ee73c2ab016ab45d2d532c6ff86e520.open("GET","http://localhost/pad/regression/cache_file/?fragmented&padInclude",true);
+                        padAjax3ee73c2ab016ab45d2d532c6ff86e520.send();
                         </script>
                       </td>
                     </tr>
@@ -368,16 +618,16 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/cache_file - Page: nonce<br>
+                  App: regression/cache_file - Page: nocache<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2">nonce.php</font>
+                        <font size="-2">nocache.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">nonce.pad</font>
+                        <font size="-2">nocache.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
@@ -385,232 +635,26 @@
                     </tr>
                     <tr>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A page holding the request's CSP nonce is never stored: a later hit's header would<br>  // name a nonce of its own, and the script in the stored copy would be refused. So the<br>  // script page is built fresh for each fetch, and its nonces differ - it was served from<br>  // the cache, the first visitor's nonce to everyone.<br><br>  </span><span style="color: #0000BB">$url </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?script&amp;padInclude&amp;nonce'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$two </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$nonceResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'built fresh: ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] !== </span><span style="color: #0000BB">$two </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fetches nocacheprobe twice at an address new on every run: the second fetch is a hit<br>  // of the page cache, so its build moment is the first fetch's, while its {nocache} parts<br>  // render again - the time differs - and the part inside the loop still has its row.<br><br>  </span><span style="color: #0000BB">$url </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?nocacheprobe&amp;padInclude&amp;run=' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$two </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$pattern </span><span style="color: #007700">= </span><span style="color: #DD0000">'/^built (\d+) live (\S+ \d+) rows 1=1;2=2;$/'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$okOne </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #0000BB">$pattern</span><span style="color: #007700">, </span><span style="color: #0000BB">$one</span><span style="color: #007700">, </span><span style="color: #0000BB">$partsOne </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$okTwo </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #0000BB">$pattern</span><span style="color: #007700">, </span><span style="color: #0000BB">$two</span><span style="color: #007700">, </span><span style="color: #0000BB">$partsTwo </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$cached </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$okOne </span><span style="color: #007700">and </span><span style="color: #0000BB">$okTwo </span><span style="color: #007700">and </span><span style="color: #0000BB">$partsOne </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] === </span><span style="color: #0000BB">$partsTwo </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$live   </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$okOne </span><span style="color: #007700">and </span><span style="color: #0000BB">$okTwo </span><span style="color: #007700">and </span><span style="color: #0000BB">$partsOne </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] !== </span><span style="color: #0000BB">$partsTwo </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>nonceResult</font>}</b></code></pre>
+                        <pre><code style="color: #000000">&lt;p&gt;the second fetch comes from the page cache: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>cached</font>}</b>&lt;/b&gt;&lt;/p&gt;<br>&lt;p&gt;its nocache parts render again, the one in a loop with its row: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>live</font>}</b>&lt;/b&gt;&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjaxbe2e16d3d7196eac4b8286266d4171f8"></div>
+                        <div id="padAjax46bb07c1007012956fb103cd46cbe300"></div>
                         <script>
-                        padAjaxbe2e16d3d7196eac4b8286266d4171f8 = new XMLHttpRequest();
-                        padAjaxbe2e16d3d7196eac4b8286266d4171f8.onreadystatechange=function() {
-                        if (padAjaxbe2e16d3d7196eac4b8286266d4171f8.readyState === 4) {
-                        if (padAjaxbe2e16d3d7196eac4b8286266d4171f8.status === 200) {
-                        document.getElementById("padAjaxbe2e16d3d7196eac4b8286266d4171f8").innerHTML=padAjaxbe2e16d3d7196eac4b8286266d4171f8.responseText;
+                        padAjax46bb07c1007012956fb103cd46cbe300 = new XMLHttpRequest();
+                        padAjax46bb07c1007012956fb103cd46cbe300.onreadystatechange=function() {
+                        if (padAjax46bb07c1007012956fb103cd46cbe300.readyState === 4) {
+                        if (padAjax46bb07c1007012956fb103cd46cbe300.status === 200) {
+                        document.getElementById("padAjax46bb07c1007012956fb103cd46cbe300").innerHTML=padAjax46bb07c1007012956fb103cd46cbe300.responseText;
                         } else {
-                        document.getElementById("padAjaxbe2e16d3d7196eac4b8286266d4171f8").innerHTML=padAjaxbe2e16d3d7196eac4b8286266d4171f8.statusText;
+                        document.getElementById("padAjax46bb07c1007012956fb103cd46cbe300").innerHTML=padAjax46bb07c1007012956fb103cd46cbe300.statusText;
                         }
                         }
                         }
-                        padAjaxbe2e16d3d7196eac4b8286266d4171f8.open("GET","http://localhost/pad/regression/cache_file/?nonce&padInclude",true);
-                        padAjaxbe2e16d3d7196eac4b8286266d4171f8.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/cache_file - Page: probe<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">probe.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">probe.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A body that is different on every build: nanoseconds. Two fetches answering with the<br>  // same body therefore prove the second came from the cache, not from a build.<br><br>  </span><span style="color: #0000BB">$stamp </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="purple"><font color="red">#</font> The probe prints a different number on every build - but the cache serves the same body<br>   twice, which defeats the crawl's random-word double-draw check<font color="black"></font><b><font color="black">:</font></b><font color="green"></font> its two draws agree and<br>   differ from the stored copy. So the crawl marks this page uncomparable by name instead,<br>   in getRegressionGo's list. <font color="red">#</font></font>}</b><br><b>{<font color="green"><font color="red">$</font>stamp</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc"></div>
-                        <script>
-                        padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc = new XMLHttpRequest();
-                        padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.onreadystatechange=function() {
-                        if (padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.readyState === 4) {
-                        if (padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.status === 200) {
-                        document.getElementById("padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc").innerHTML=padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.responseText;
-                        } else {
-                        document.getElementById("padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc").innerHTML=padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.statusText;
-                        }
-                        }
-                        }
-                        padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.open("GET","http://localhost/pad/regression/cache_file/?probe&padInclude",true);
-                        padAjaxf7a2bca5b87b5ffa5c8c8253c5b2e6cc.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/cache_file - Page: script<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">script.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;script nonce="<b>{<font color="blue">nonce</font><font color="red"></font>}</b>"&gt;&lt;/script&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxc35d65d13af4b05fbfd334ca2030b382"></div>
-                        <script>
-                        padAjaxc35d65d13af4b05fbfd334ca2030b382 = new XMLHttpRequest();
-                        padAjaxc35d65d13af4b05fbfd334ca2030b382.onreadystatechange=function() {
-                        if (padAjaxc35d65d13af4b05fbfd334ca2030b382.readyState === 4) {
-                        if (padAjaxc35d65d13af4b05fbfd334ca2030b382.status === 200) {
-                        document.getElementById("padAjaxc35d65d13af4b05fbfd334ca2030b382").innerHTML=padAjaxc35d65d13af4b05fbfd334ca2030b382.responseText;
-                        } else {
-                        document.getElementById("padAjaxc35d65d13af4b05fbfd334ca2030b382").innerHTML=padAjaxc35d65d13af4b05fbfd334ca2030b382.statusText;
-                        }
-                        }
-                        }
-                        padAjaxc35d65d13af4b05fbfd334ca2030b382.open("GET","http://localhost/pad/regression/cache_file/?script&padInclude",true);
-                        padAjaxc35d65d13af4b05fbfd334ca2030b382.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/cache_file - Page: stable<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">stable.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">A page that never changes</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxe11a5103c244d0cad6959bd24c8fbc8e"></div>
-                        <script>
-                        padAjaxe11a5103c244d0cad6959bd24c8fbc8e = new XMLHttpRequest();
-                        padAjaxe11a5103c244d0cad6959bd24c8fbc8e.onreadystatechange=function() {
-                        if (padAjaxe11a5103c244d0cad6959bd24c8fbc8e.readyState === 4) {
-                        if (padAjaxe11a5103c244d0cad6959bd24c8fbc8e.status === 200) {
-                        document.getElementById("padAjaxe11a5103c244d0cad6959bd24c8fbc8e").innerHTML=padAjaxe11a5103c244d0cad6959bd24c8fbc8e.responseText;
-                        } else {
-                        document.getElementById("padAjaxe11a5103c244d0cad6959bd24c8fbc8e").innerHTML=padAjaxe11a5103c244d0cad6959bd24c8fbc8e.statusText;
-                        }
-                        }
-                        }
-                        padAjaxe11a5103c244d0cad6959bd24c8fbc8e.open("GET","http://localhost/pad/regression/cache_file/?stable&padInclude",true);
-                        padAjaxe11a5103c244d0cad6959bd24c8fbc8e.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/cache_file - Page: typed<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">typed.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">typed.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A page that chose its own content type is not answered from the cache: a hit sends the<br>  // configured type, so the second fetch of a JSON page went out as text/html. Fetched<br>  // twice, it must be JSON both times.<br><br>  </span><span style="color: #0000BB">$typedOne </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?json&amp;padInclude&amp;typed' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$typedTwo </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?json&amp;padInclude&amp;typed' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$typedResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'first: '   </span><span style="color: #007700">. ( </span><span style="color: #0000BB">$typedOne </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Content-Type'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">)<br>               . </span><span style="color: #DD0000">', second: ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">$typedTwo </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Content-Type'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>typedResult</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax0e7107e97c12070cc53bbbf1227cc948"></div>
-                        <script>
-                        padAjax0e7107e97c12070cc53bbbf1227cc948 = new XMLHttpRequest();
-                        padAjax0e7107e97c12070cc53bbbf1227cc948.onreadystatechange=function() {
-                        if (padAjax0e7107e97c12070cc53bbbf1227cc948.readyState === 4) {
-                        if (padAjax0e7107e97c12070cc53bbbf1227cc948.status === 200) {
-                        document.getElementById("padAjax0e7107e97c12070cc53bbbf1227cc948").innerHTML=padAjax0e7107e97c12070cc53bbbf1227cc948.responseText;
-                        } else {
-                        document.getElementById("padAjax0e7107e97c12070cc53bbbf1227cc948").innerHTML=padAjax0e7107e97c12070cc53bbbf1227cc948.statusText;
-                        }
-                        }
-                        }
-                        padAjax0e7107e97c12070cc53bbbf1227cc948.open("GET","http://localhost/pad/regression/cache_file/?typed&padInclude",true);
-                        padAjax0e7107e97c12070cc53bbbf1227cc948.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/cache_file - Page: validators<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">validators.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">validators.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The cache's validators belong to one URL. The probe's own ETag earns a 304 from the<br>  // probe and a full answer from any other URL, and a date just before the probe was<br>  // cached is older than the cached copy, so it gets the page, not a 304.<br><br>  </span><span style="color: #0000BB">$validUrl </span><span style="color: #007700">= </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/cache_file/?probe&amp;padInclude&amp;validators'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$validWarm </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$validUrl </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$validEtag </span><span style="color: #007700">= </span><span style="color: #0000BB">$validWarm </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'Etag'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$validTime </span><span style="color: #007700">= </span><span style="color: #0000BB">filemtime </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'cache/etag/' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$validEtag</span><span style="color: #007700">, </span><span style="color: #DD0000">'"' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$validDate </span><span style="color: #007700">= </span><span style="color: #0000BB">gmdate </span><span style="color: #007700">( </span><span style="color: #DD0000">'D, d M Y H:i:s'</span><span style="color: #007700">, </span><span style="color: #0000BB">$validTime </span><span style="color: #007700">- </span><span style="color: #0000BB">1 </span><span style="color: #007700">) . </span><span style="color: #DD0000">' GMT'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$validOwn   </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$validUrl</span><span style="color: #007700">,            </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'If-None-Match'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$validEtag </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">$validOther </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$validUrl </span><span style="color: #007700">. </span><span style="color: #DD0000">'&amp;other'</span><span style="color: #007700">, </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'If-None-Match'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$validEtag </span><span style="color: #007700">] ] );<br>  </span><span style="color: #0000BB">$validOlder </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$validUrl</span><span style="color: #007700">,            </span><span style="color: #DD0000">'headers' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'If-Modified-Since' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$validDate </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$validResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'own etag: '    </span><span style="color: #007700">. </span><span style="color: #0000BB">$validOwn   </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">]<br>               . </span><span style="color: #DD0000">', other url: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$validOther </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">]<br>               . </span><span style="color: #DD0000">', older date: ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$validOlder </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>validResult</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax4713a95fb70b85c7e3fa8eef2089a692"></div>
-                        <script>
-                        padAjax4713a95fb70b85c7e3fa8eef2089a692 = new XMLHttpRequest();
-                        padAjax4713a95fb70b85c7e3fa8eef2089a692.onreadystatechange=function() {
-                        if (padAjax4713a95fb70b85c7e3fa8eef2089a692.readyState === 4) {
-                        if (padAjax4713a95fb70b85c7e3fa8eef2089a692.status === 200) {
-                        document.getElementById("padAjax4713a95fb70b85c7e3fa8eef2089a692").innerHTML=padAjax4713a95fb70b85c7e3fa8eef2089a692.responseText;
-                        } else {
-                        document.getElementById("padAjax4713a95fb70b85c7e3fa8eef2089a692").innerHTML=padAjax4713a95fb70b85c7e3fa8eef2089a692.statusText;
-                        }
-                        }
-                        }
-                        padAjax4713a95fb70b85c7e3fa8eef2089a692.open("GET","http://localhost/pad/regression/cache_file/?validators&padInclude",true);
-                        padAjax4713a95fb70b85c7e3fa8eef2089a692.send();
+                        padAjax46bb07c1007012956fb103cd46cbe300.open("GET","http://localhost/pad/regression/cache_file/?nocache&padInclude",true);
+                        padAjax46bb07c1007012956fb103cd46cbe300.send();
                         </script>
                       </td>
                     </tr>
@@ -629,7 +673,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

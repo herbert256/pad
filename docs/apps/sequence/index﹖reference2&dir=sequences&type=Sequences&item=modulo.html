@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -44,6 +44,46 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/framework Page: sequence/a_walk_that_no_longer_advances_ends<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/a_walk_that_no_longer_advances_ends.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red">modulo=7<font color="black">,</font> from=-10000000000000000000<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">even<font color="black">,</font> sole=-9223372036854775808</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">identity<font color="black">,</font> from=9223372036854775806<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0b372d8bc1ccc67695b487fe4abda84c"></div>
+                        <script>
+                        padAjax0b372d8bc1ccc67695b487fe4abda84c = new XMLHttpRequest();
+                        padAjax0b372d8bc1ccc67695b487fe4abda84c.onreadystatechange=function() {
+                        if (padAjax0b372d8bc1ccc67695b487fe4abda84c.readyState === 4) {
+                        if (padAjax0b372d8bc1ccc67695b487fe4abda84c.status === 200) {
+                        document.getElementById("padAjax0b372d8bc1ccc67695b487fe4abda84c").innerHTML=padAjax0b372d8bc1ccc67695b487fe4abda84c.responseText;
+                        } else {
+                        document.getElementById("padAjax0b372d8bc1ccc67695b487fe4abda84c").innerHTML=padAjax0b372d8bc1ccc67695b487fe4abda84c.statusText;
+                        }
+                        }
+                        }
+                        padAjax0b372d8bc1ccc67695b487fe4abda84c.open("GET","http://localhost/pad/regression/framework/?sequence/a_walk_that_no_longer_advances_ends&padInclude",true);
+                        padAjax0b372d8bc1ccc67695b487fe4abda84c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                   <hr>
                   App: regression/framework Page: sequence/fractional_parameter_modulo<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -125,6 +165,86 @@
                     </tr>
                   </table>
                   <hr>
+                  App: regression/framework Page: sequence/modulo_membership_below_one_reaches_the_positions_a_run_makes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/modulo_membership_below_one_reaches_the_positions_a_run_makes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red">modulo=0.7<font color="black">,</font> from=9000<font color="black">,</font> rows=3<font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s </font><font color="red">flag<font color="black">,</font> modulo=0.7</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">modulo=0.3<font color="black">,</font> from=5000<font color="black">,</font> rows=3<font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t </font><font color="red">flag<font color="black">,</font> modulo=0.3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax75ad0d114ade98e800f63c581e16625e"></div>
+                        <script>
+                        padAjax75ad0d114ade98e800f63c581e16625e = new XMLHttpRequest();
+                        padAjax75ad0d114ade98e800f63c581e16625e.onreadystatechange=function() {
+                        if (padAjax75ad0d114ade98e800f63c581e16625e.readyState === 4) {
+                        if (padAjax75ad0d114ade98e800f63c581e16625e.status === 200) {
+                        document.getElementById("padAjax75ad0d114ade98e800f63c581e16625e").innerHTML=padAjax75ad0d114ade98e800f63c581e16625e.responseText;
+                        } else {
+                        document.getElementById("padAjax75ad0d114ade98e800f63c581e16625e").innerHTML=padAjax75ad0d114ade98e800f63c581e16625e.statusText;
+                        }
+                        }
+                        }
+                        padAjax75ad0d114ade98e800f63c581e16625e.open("GET","http://localhost/pad/regression/framework/?sequence/modulo_membership_below_one_reaches_the_positions_a_run_makes&padInclude",true);
+                        padAjax75ad0d114ade98e800f63c581e16625e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
+                  App: regression/framework Page: sequence/rounding_and_modulo_answer_zero_without_a_sign<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">sequence/rounding_and_modulo_answer_zero_without_a_sign.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red">modulo=3<font color="black">,</font> from=-3<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">ceil=3<font color="black">,</font> from=-2<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">round=3<font color="black">,</font> from=-1<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf92a2a9ae6bb25903749335a461ced99"></div>
+                        <script>
+                        padAjaxf92a2a9ae6bb25903749335a461ced99 = new XMLHttpRequest();
+                        padAjaxf92a2a9ae6bb25903749335a461ced99.onreadystatechange=function() {
+                        if (padAjaxf92a2a9ae6bb25903749335a461ced99.readyState === 4) {
+                        if (padAjaxf92a2a9ae6bb25903749335a461ced99.status === 200) {
+                        document.getElementById("padAjaxf92a2a9ae6bb25903749335a461ced99").innerHTML=padAjaxf92a2a9ae6bb25903749335a461ced99.responseText;
+                        } else {
+                        document.getElementById("padAjaxf92a2a9ae6bb25903749335a461ced99").innerHTML=padAjaxf92a2a9ae6bb25903749335a461ced99.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf92a2a9ae6bb25903749335a461ced99.open("GET","http://localhost/pad/regression/framework/?sequence/rounding_and_modulo_answer_zero_without_a_sign&padInclude",true);
+                        padAjaxf92a2a9ae6bb25903749335a461ced99.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
+                  <hr>
                   App: sequence Page: basic/modulo<br>
                   <div id="padAjax89acec1c666d6fda3333a08f21e08363"></div>
                   <script>
@@ -183,23 +303,6 @@
                       </td>
                     </tr>
                   </table>
-                  <hr>
-                  App: sequence Page: keepRemoveFlag/modulo<br>
-                  <div id="padAjax1109ebec9b79a14ba42cfe1f2f862bfc"></div>
-                  <script>
-                  padAjax1109ebec9b79a14ba42cfe1f2f862bfc = new XMLHttpRequest();
-                  padAjax1109ebec9b79a14ba42cfe1f2f862bfc.onreadystatechange=function() {
-                  if (padAjax1109ebec9b79a14ba42cfe1f2f862bfc.readyState === 4) {
-                  if (padAjax1109ebec9b79a14ba42cfe1f2f862bfc.status === 200) {
-                  document.getElementById("padAjax1109ebec9b79a14ba42cfe1f2f862bfc").innerHTML=padAjax1109ebec9b79a14ba42cfe1f2f862bfc.responseText;
-                  } else {
-                  document.getElementById("padAjax1109ebec9b79a14ba42cfe1f2f862bfc").innerHTML=padAjax1109ebec9b79a14ba42cfe1f2f862bfc.statusText;
-                  }
-                  }
-                  }
-                  padAjax1109ebec9b79a14ba42cfe1f2f862bfc.open("GET","http://localhost/pad/sequence/?keepRemoveFlag/modulo&padInclude",true);
-                  padAjax1109ebec9b79a14ba42cfe1f2f862bfc.send();
-                  </script>
                   <hr>
                   App: sequence Page: listen<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -331,7 +434,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

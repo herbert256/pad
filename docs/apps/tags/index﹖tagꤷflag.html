@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {flag} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#sequences">Sequences</a><span>/</span><span aria-current="page">flag</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>flag<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Replaces every value of a sequence with 1 or 0: whether it belongs to a sequence type.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#sequences">Sequences</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">flag</span> <span class="hl-str">'1..10'</span>, even<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">flag</span> prime, <span class="hl-opt">from</span>=<span class="hl-num">10</span>, <span class="hl-opt">rows</span>=<span class="hl-num">12</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">flag:prime</span> <span class="hl-opt">rows</span>=<span class="hl-num">10</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/flag:prime</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">flag</span> store, prime<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>values</code>
+            </dt>
+            <dd>
+              Where the values come from: a range <code>'1..10'</code>, a stored sequence named bare, or left out - the candidates then run from <code>from</code> upward.
+            </dd>
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              The sequence type each value is tested against: <code>prime</code>, <code>even</code>, <code>square</code>, ...
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{flag '1..10', even}</code> runs a sequence in <em>flag</em> mode: every value is tested against the named type and replaced by <code>1</code> when it belongs to it and <code>0</code> when it does not - here <code>0 1 0 1 0 1 0 1 0 1</code>. Where <a href="index%EF%B9%96tag%EA%A4%B7keep.html">{keep}</a> and <a href="index%EF%B9%96tag%EA%A4%B7remove.html">{remove}</a> filter, <code>{flag}</code> keeps every position, so the flags line up with the original list. It is the same run as <code>{sequence '1..10', flag, even}</code>.
+          </p>
+          <p>
+            Because the flags are numbers, actions can count with them: <code>{flag '1..20', prime, sum}</code> is 8, the number of primes up to 20. Without a range the candidates run from <code>from</code> upward and <code>rows</code> says how many flags; a stored sequence named bare works as the source too. The prefix form <code>{flag:prime rows=10}</code> names the type in the tag and takes no range.
+          </p>
+          <p>
+            The current value is <code>{$sequence}</code> - the flag, not the original number. To show both side by side, flag a stored list and pull the store beside it, as in the example.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Flags in a row
+            </h3>
+            <p class="example-about">
+              Each of the numbers 1 to 12 marked 1 when even, 0 when odd.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/flag/1-flags.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">flag</span> <span class="hl-str">'1..12'</span>, even<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7flag%EA%A4%B71-flags.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    0 1 0 1 0 1 0 1 0 1 0 1
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Count the members
+            </h3>
+            <p class="example-about">
+              Summing the flags counts how many values belong to the type.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/flag/2-count.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Primes up to <span class="hl-num">100</span>: <span class="hl-brc">{</span><span class="hl-tag">flag</span> <span class="hl-str">'1..100'</span>, prime, sum<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Squares up to <span class="hl-num">100</span>: <span class="hl-brc">{</span><span class="hl-tag">flag</span> <span class="hl-str">'1..100'</span>, square, sum<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7flag%EA%A4%B72-count.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Primes up to 100: 25
+                  </p>
+                  <p>
+                    Squares up to 100: 10
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              Value and flag side by side
+            </h3>
+            <p class="example-about">
+              A stored list and its flags against the type prime, in a two-row table.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/flag/3-table.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'10..17'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'teens'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>n<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">pull</span> teens<span class="hl-brc">}</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pull</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>prime<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">flag</span> teens, prime<span class="hl-brc">}</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/flag</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7flag%EA%A4%B73-table.html">open alone</a>
+                </div>
+                <div class="result">
+                  <table>
+                    <tr>
+                      <th>
+                        n
+                      </th>
+                      <td>
+                        10
+                      </td>
+                      <td>
+                        11
+                      </td>
+                      <td>
+                        12
+                      </td>
+                      <td>
+                        13
+                      </td>
+                      <td>
+                        14
+                      </td>
+                      <td>
+                        15
+                      </td>
+                      <td>
+                        16
+                      </td>
+                      <td>
+                        17
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        prime
+                      </th>
+                      <td>
+                        0
+                      </td>
+                      <td>
+                        1
+                      </td>
+                      <td>
+                        0
+                      </td>
+                      <td>
+                        1
+                      </td>
+                      <td>
+                        0
+                      </td>
+                      <td>
+                        0
+                      </td>
+                      <td>
+                        0
+                      </td>
+                      <td>
+                        1
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7keep.html">{keep}</a> <span class="about">Keeps only the values of a sequence that belong to a sequence type.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7remove.html">{remove}</a> <span class="about">Removes the values of a sequence that belong to a sequence type - the inverse of keep.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7make.html">{make}</a> <span class="about">Replaces every value of a sequence with what a sequence type makes of it.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7files.html">← {files}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7flash.html">{flash} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

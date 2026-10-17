@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {guest} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#access">Users and access</a><span>/</span><span aria-current="page">guest</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>guest<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content when nobody is logged in, and its else half for a user.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#access">Users and access</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">guest</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/guest</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">guest</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/guest</span><span class="hl-brc">}</span></code></pre>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{guest}</code> renders its content when nobody is logged in to this application, and the part after its own <code>{else}</code> - or the <code>@else@</code> half - when someone is. It is <a href="index%EF%B9%96tag%EA%A4%B7auth.html">{auth}</a> turned round, without the user's row: the fields of the user are <code>{auth}</code>'s to give.
+          </p>
+          <p>
+            Like <code>{auth}</code> it never starts a session to find out: a visitor without a session cookie is a guest at once. The pair must close - a lone <code>{guest}</code> is an error under the strict check.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Only for a guest
+            </h3>
+            <p class="example-about">
+              Nobody is logged in here, so the content renders; for a user the else half would.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/guest/1-guest.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">guest</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#register"</span><span class="hl-htm">&gt;</span>Create an account<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#login"</span><span class="hl-htm">&gt;</span>log in<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#logout"</span><span class="hl-htm">&gt;</span>Log out<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/guest</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7guest%EA%A4%B71-guest.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <a href="#register">Create an account</a> or <a href="#login">log in</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A header for both
+            </h3>
+            <p class="example-about">
+              {guest} and {auth} side by side: {guest} hands over no data, {auth} hands over the user's row.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/guest/2-header.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;header</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">guest</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?login"</span><span class="hl-htm">&gt;</span>Log in<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/guest</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">auth</span><span class="hl-brc">}</span><span class="hl-htm">&lt;span</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span> <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?logout"</span><span class="hl-htm">&gt;</span>Log out<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/auth</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/header</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7auth.html">{auth}</a> <span class="about">Renders its content when a user is logged in, with the user's row as its data, and its else half for a guest.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7can.html">{can}</a> <span class="about">Renders its content when the user may do something a gate decides, and its else half when not.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7gravatar.html">← {gravatar}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7highlight.html">{highlight} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

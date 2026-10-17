@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -356,6 +356,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fw-nocache-push' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-nocache-push<font color="black">'</font></font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>A<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fw-nocache-push<font color="black">'</font></font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>&lt;a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>A<b>{/<font color="blue">cache</font><font color="red"></font>}</b>[<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7c056f7d527128c09005a5216a9bac38"></div>
+                        <script>
+                        padAjax7c056f7d527128c09005a5216a9bac38 = new XMLHttpRequest();
+                        padAjax7c056f7d527128c09005a5216a9bac38.onreadystatechange=function() {
+                        if (padAjax7c056f7d527128c09005a5216a9bac38.readyState === 4) {
+                        if (padAjax7c056f7d527128c09005a5216a9bac38.status === 200) {
+                        document.getElementById("padAjax7c056f7d527128c09005a5216a9bac38").innerHTML=padAjax7c056f7d527128c09005a5216a9bac38.responseText;
+                        } else {
+                        document.getElementById("padAjax7c056f7d527128c09005a5216a9bac38").innerHTML=padAjax7c056f7d527128c09005a5216a9bac38.statusText;
+                        }
+                        }
+                        }
+                        padAjax7c056f7d527128c09005a5216a9bac38.open("GET","http://localhost/pad/regression/framework/?tags/a_push_inside_a_nocache_part_is_made_once_on_a_hit&padInclude",true);
+                        padAjax7c056f7d527128c09005a5216a9bac38.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/a_stack_nothing_was_pushed_to_prints_nothing<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -558,41 +600,43 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: stacks/page<br>
+                  App: regression/framework - Page: tags/stack_marker_in_a_value_is_text<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2"></font>
+                        <font size="-2">tags/stack_marker_in_a_value_is_text.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">stacks/page.pad</font>
+                        <font size="-2">tags/stack_marker_in_a_value_is_text.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
                       </th>
                     </tr>
                     <tr>
-                      <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font></font>}</b>&lt;link a&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>body<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>scripts<font color="black">'</font></font>}</b>&lt;script b&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{<font color="blue">push </font><font color="red"><font color="black">'</font>styles<font color="black">'</font></font>}</b>&lt;link c&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b></code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value carrying the characters of a {stack} marker and the number of a stack is text:<br>  // the stack's scripts were written into it a second time - only a marker the tag wrote,<br>  // sealed with the installation's key, is filled.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">"\u{E0F0}" </span><span style="color: #007700">. </span><span style="color: #0000BB">crc32 </span><span style="color: #007700">( </span><span style="color: #DD0000">'scripts' </span><span style="color: #007700">) . </span><span style="color: #DD0000">"\u{E0F1}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax8376235d3bf6ac75f2cd34fe209786ab"></div>
+                        <pre><code style="color: #000000">&lt;head&gt;<b>{<font color="blue">stack </font><font color="red">"scripts"</font>}</b>&lt;/head&gt;<b>{<font color="blue">push </font><font color="red">"scripts"</font>}</b>&lt;script src="a.js"&gt;&lt;/script&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5e68d0ae0be086ed9a9af7928bba35f4"></div>
                         <script>
-                        padAjax8376235d3bf6ac75f2cd34fe209786ab = new XMLHttpRequest();
-                        padAjax8376235d3bf6ac75f2cd34fe209786ab.onreadystatechange=function() {
-                        if (padAjax8376235d3bf6ac75f2cd34fe209786ab.readyState === 4) {
-                        if (padAjax8376235d3bf6ac75f2cd34fe209786ab.status === 200) {
-                        document.getElementById("padAjax8376235d3bf6ac75f2cd34fe209786ab").innerHTML=padAjax8376235d3bf6ac75f2cd34fe209786ab.responseText;
+                        padAjax5e68d0ae0be086ed9a9af7928bba35f4 = new XMLHttpRequest();
+                        padAjax5e68d0ae0be086ed9a9af7928bba35f4.onreadystatechange=function() {
+                        if (padAjax5e68d0ae0be086ed9a9af7928bba35f4.readyState === 4) {
+                        if (padAjax5e68d0ae0be086ed9a9af7928bba35f4.status === 200) {
+                        document.getElementById("padAjax5e68d0ae0be086ed9a9af7928bba35f4").innerHTML=padAjax5e68d0ae0be086ed9a9af7928bba35f4.responseText;
                         } else {
-                        document.getElementById("padAjax8376235d3bf6ac75f2cd34fe209786ab").innerHTML=padAjax8376235d3bf6ac75f2cd34fe209786ab.statusText;
+                        document.getElementById("padAjax5e68d0ae0be086ed9a9af7928bba35f4").innerHTML=padAjax5e68d0ae0be086ed9a9af7928bba35f4.statusText;
                         }
                         }
                         }
-                        padAjax8376235d3bf6ac75f2cd34fe209786ab.open("GET","http://localhost/pad/regression/pages/?stacks/page&padInclude",true);
-                        padAjax8376235d3bf6ac75f2cd34fe209786ab.send();
+                        padAjax5e68d0ae0be086ed9a9af7928bba35f4.open("GET","http://localhost/pad/regression/framework/?tags/stack_marker_in_a_value_is_text&padInclude",true);
+                        padAjax5e68d0ae0be086ed9a9af7928bba35f4.send();
                         </script>
                       </td>
                     </tr>
@@ -611,7 +655,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

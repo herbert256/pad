@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: islands
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: islands
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_frontend.html">_frontend/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">guide.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=islands&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  guide.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + islands<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Islands of any framework&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    PAD writes the page and marks the islands; one small runtime mounts a component of any<br>    framework on each; Vite builds the components and <b>{<font color="blue">vite</font><font color="red"></font>}</b> links the build.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. The island, in the template&lt;/h2&gt;<br>&lt;p&gt;An element names its component and carries its props - the ^ sigil writes a field as JSON for the<br>   attribute - and &lt;code&gt;data-load&lt;/code&gt; says when its code is fetched. What stands inside shows<br>   until the component takes over.&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div data-island="VueCounter" data-load="visible" data-props="{^counter}"&gt;<br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>counter.start</font>}</b>&lt;/p&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;2. The registry, in the build&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;_frontend/src/main.js&lt;/code&gt; names every island and pairs it with its framework. Both are<br>   fetched by &lt;code&gt;import()&lt;/code&gt; when an island of the name is due - a page without a Vue island<br>   loads no Vue:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_frontend/src/main.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;3. An adapter per framework&lt;/h2&gt;<br>&lt;p&gt;An adapter is a dozen lines: it mounts a component on an element with props and answers how to<br>   unmount it. Each is a module of its own, so it travels with its framework:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_frontend/src/adapters/svelte.js<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;4. Talking to PAD, and to each other&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;pad-islands.js&lt;/code&gt; also exports &lt;code&gt;get(page, params)&lt;/code&gt; - the JSON of a page's<br>   &lt;code&gt;$padExpose&lt;/code&gt; - &lt;code&gt;post(page, body)&lt;/code&gt; with the session's CSRF token, and<br>   &lt;code&gt;store(name, initial)&lt;/code&gt;: state any framework subscribes to. A React island writes it, a<br>   Vue and a Svelte island show it.&lt;/p&gt;<br><br>&lt;h2&gt;5. Build and dev server&lt;/h2&gt;<br>&lt;div class="cols-2"&gt;<br>  &lt;div&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>bash<font color="black">'</font></font>}</b><br>cd apps/islands/_frontend<br>npm install<br>npm run build     # www/islands/build/ with .vite/manifest.json<br>npm run dev       # the dev server; build/hot holds its address<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;p&gt;<b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b> reads the manifest and writes the entry's CSS, its chunks as<br>       &lt;code&gt;modulepreload&lt;/code&gt; and its module script. While &lt;code&gt;npm run dev&lt;/code&gt; runs, a hook of<br>       &lt;code&gt;vite.config.js&lt;/code&gt; writes the dev server's address into &lt;code&gt;build/hot&lt;/code&gt;, and<br>       <b>{<font color="blue">vite</font><font color="red"></font>}</b> asks the dev server instead - a save in the editor shows at once.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="callout"&gt;&lt;p&gt;Each framework compiles its own files: &lt;code&gt;*.react.jsx&lt;/code&gt;, &lt;code&gt;*.solid.jsx&lt;/code&gt;, &lt;code&gt;*.vue&lt;/code&gt;,<br>   &lt;code&gt;*.svelte&lt;/code&gt;. Preact needs no compiler - its components are written with &lt;code&gt;htm&lt;/code&gt;.&lt;/p&gt;&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

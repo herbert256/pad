@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {excerpt} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-excerpt){--pad-excerpt-mark:#fde68a;--pad-excerpt-marked:#1a1a19}@supports (color:light-dark(#000,#fff)){:where(.pad-excerpt){--pad-excerpt-mark:light-dark(#fde68a,#6b5310);--pad-excerpt-marked:light-dark(#1a1a19,#fdf6dc)}}:where(.pad-excerpt mark){background:var(--pad-excerpt-mark);color:var(--pad-excerpt-marked);border-radius:3px;padding:0 2px}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">excerpt</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>excerpt<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">40</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">24</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span>, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'...'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$html</span>, <span class="hl-opt">words</span>=<span class="hl-num">30</span>, html<span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>text</code>
+            </dt>
+            <dd>
+              The text to cut.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>words</code>
+            </dt>
+            <dd>
+              The length in words, default 40. A text no longer than that stays whole.
+            </dd>
+            <dt>
+              <code>highlight</code>
+            </dt>
+            <dd>
+              Search words - a query, split at everything that is no letter or digit. The cut is centred on the first match and every match is put in a <code>&lt;mark&gt;</code>.
+            </dd>
+            <dt>
+              <code>html</code>
+            </dt>
+            <dd>
+              Bare option: the text is HTML - its tags (and the content of <code>script</code> and <code>style</code>) are dropped and its entities read before it is cut.
+            </dd>
+            <dt>
+              <code>ellipsis</code>
+            </dt>
+            <dd>
+              What stands for the text that was cut off, default <code>…</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{excerpt $body, words=24}</code> writes the first 24 words of the text and an ellipsis where it goes on - always whole words, never a word cut in half. A text no longer than <code>words</code> stays whole, without an ellipsis.
+          </p>
+          <p>
+            With <code>highlight=</code> it is a search result: the query is split into words at everything that is no letter or digit, a word matches at the start of a word whatever its case - <code>templ</code> finds <code>Templates</code> - and the whole matched word is put in a <code>&lt;mark&gt;</code>. The window of <code>words</code> words is centred on the first match and moved in where it would run past either end, with an ellipsis on each side that was cut.
+          </p>
+          <p>
+            Everything of the text is escaped piece by piece; the only markup that comes out is the <code>&lt;mark&gt;</code> around a match. For a text that is HTML - a post body, a rendered page - the <code>html</code> option drops its tags and reads its entities first, so the words counted are the words a reader sees.
+          </p>
+          <p>
+            The mark colours are <code>--pad-excerpt-mark</code> and <code>--pad-excerpt-marked</code> on <code>.pad-excerpt</code>, with <code>light-dark()</code> defaults written once a page. A <code>words</code> that is no number of 1 or more is a strict error.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A search result
+            </h3>
+            <p class="example-about">
+              Twenty words around the first match of the query, every word that starts with a search word marked.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/excerpt/1-search.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Results for <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$q</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$body</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The first twenty words, no query: <span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$body</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/excerpt/1-search.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$q</span> <span class="hl-pun">=</span> <span class="hl-str">'cache ttl'</span><span class="hl-pun">;</span>
+
+  <span class="hl-var">$body</span> <span class="hl-pun">=</span> <span class="hl-str">'Some parts of a page cost more to render than others: a list of the best selling '</span>
+        <span class="hl-pun">.</span> <span class="hl-str">'products, a menu built from the database, a report over a year of orders. The '</span>
+        <span class="hl-pun">.</span> <span class="hl-str">'fragment cache keeps the rendered text of such a section for a number of seconds and '</span>
+        <span class="hl-pun">.</span> <span class="hl-str">'serves it again on the next request without running the tags inside it. Name the '</span>
+        <span class="hl-pun">.</span> <span class="hl-str">'section, give it a ttl, and forget it when what it shows has changed.'</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7excerpt%EA%A4%B71-search.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Results for <strong>cache ttl</strong>:
+                  </p>
+                  <p></p><span class="pad-excerpt">… database, a report over a year of orders. The fragment <mark>cache</mark> keeps the rendered text of such a section for …</span>
+                  <p></p>
+                  <p>
+                    The first twenty words, no query: <span class="pad-excerpt">Some parts of a page cost more to render than others: a list of the best selling products, a menu …</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A teaser from HTML
+            </h3>
+            <p class="example-about">
+              html drops the tags and reads the entities before counting; ellipsis= sets the text for the rest.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/excerpt/2-html.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$post</span>, <span class="hl-opt">words</span>=<span class="hl-num">28</span>, html, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'[more]'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/excerpt/2-html.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$post</span> <span class="hl-pun">=</span> <span class="hl-str">"&lt;h2&gt;Charts without JavaScript&lt;/h2&gt;\n"</span>
+        <span class="hl-pun">.</span> <span class="hl-str">"&lt;p&gt;A chart is a picture, and a picture can be &lt;em&gt;drawn on the server&lt;/em&gt;. The chart tag "</span>
+        <span class="hl-pun">.</span> <span class="hl-str">"writes inline SVG: bars, lines, pies &amp;amp; forty other kinds.&lt;/p&gt;\n"</span>
+        <span class="hl-pun">.</span> <span class="hl-str">"&lt;script&gt;track ( 'teaser' );&lt;/script&gt;"</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7excerpt%EA%A4%B72-html.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <span class="pad-excerpt">Charts without JavaScript A chart is a picture, and a picture can be drawn on the server. The chart tag writes inline SVG: bars, lines, pies & forty [more]</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7diff.html">{diff}</a> <span class="about">Shows what changed between two texts - word by word in the flow of the text, or line by line in one column or side by side.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{lorem}</a> <span class="about">Placeholder text - Lorem ipsum and Latin words - in words, sentences or paragraphs, the same text for the same seed.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7exception.html">← {exception}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7exists.html">{exists} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

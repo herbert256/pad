@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_database_tag_called_as_a_function_takes_no_sql_from_a_value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_database_tag_called_as_a_function_takes_no_sql_from_a_value.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_database_tag_called_as_a_function_takes_no_sql_from_a_value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A whole statement in a variable - a request value - ran as the SQL of field().<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">"count(*) from staff where 1 = 1"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">field(<font color="red">$</font>q)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax45555d79170e4d00538ca676b944ab8f"></div>
+                        <script>
+                        padAjax45555d79170e4d00538ca676b944ab8f = new XMLHttpRequest();
+                        padAjax45555d79170e4d00538ca676b944ab8f.onreadystatechange=function() {
+                        if (padAjax45555d79170e4d00538ca676b944ab8f.readyState === 4) {
+                        if (padAjax45555d79170e4d00538ca676b944ab8f.status === 200) {
+                        document.getElementById("padAjax45555d79170e4d00538ca676b944ab8f").innerHTML=padAjax45555d79170e4d00538ca676b944ab8f.responseText;
+                        } else {
+                        document.getElementById("padAjax45555d79170e4d00538ca676b944ab8f").innerHTML=padAjax45555d79170e4d00538ca676b944ab8f.statusText;
+                        }
+                        }
+                        }
+                        padAjax45555d79170e4d00538ca676b944ab8f.open("GET","http://localhost/pad/regression/errors/?syntax/a_database_tag_called_as_a_function_takes_no_sql_from_a_value&padInclude",true);
+                        padAjax45555d79170e4d00538ca676b944ab8f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/pages - Page: db/a_database_tag_called_as_a_function_binds_a_value_put_in_as_name<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/a_database_tag_called_as_a_function_binds_a_value_put_in_as_name.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/a_database_tag_called_as_a_function_binds_a_value_put_in_as_name.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Called as a function, a database tag takes its SQL as one string written in the<br>  // expression, a value put in as $name - bound as an escaped literal, as in the tag form.<br><br>  </span><span style="color: #0000BB">$who </span><span style="color: #007700">= </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">field("phone from staff where name = <font color="red">$</font>who")</font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> . field(<font color="black">'</font>count(*) from staff where name = <font color="red">$</font>who<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax55a3c20721ae488ae750773162ce1aea"></div>
+                        <script>
+                        padAjax55a3c20721ae488ae750773162ce1aea = new XMLHttpRequest();
+                        padAjax55a3c20721ae488ae750773162ce1aea.onreadystatechange=function() {
+                        if (padAjax55a3c20721ae488ae750773162ce1aea.readyState === 4) {
+                        if (padAjax55a3c20721ae488ae750773162ce1aea.status === 200) {
+                        document.getElementById("padAjax55a3c20721ae488ae750773162ce1aea").innerHTML=padAjax55a3c20721ae488ae750773162ce1aea.responseText;
+                        } else {
+                        document.getElementById("padAjax55a3c20721ae488ae750773162ce1aea").innerHTML=padAjax55a3c20721ae488ae750773162ce1aea.statusText;
+                        }
+                        }
+                        }
+                        padAjax55a3c20721ae488ae750773162ce1aea.open("GET","http://localhost/pad/regression/pages/?db/a_database_tag_called_as_a_function_binds_a_value_put_in_as_name&padInclude",true);
+                        padAjax55a3c20721ae488ae750773162ce1aea.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/pages - Page: db/field_as_function<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -85,7 +169,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

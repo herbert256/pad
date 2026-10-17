@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -84,6 +84,48 @@
                         }
                         padAjax48a10eaa414639c6c826ebdb62c9595f.open("GET","http://localhost/pad/regression/framework/?check/miscellaneous_bool&padInclude",true);
                         padAjax48a10eaa414639c6c826ebdb62c9595f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: escaping/a_bool_value_is_a_truth_test_not_run_as_pad<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">escaping/a_bool_value_is_a_truth_test_not_run_as_pad.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">escaping/a_bool_value_is_a_truth_test_not_run_as_pad.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// {bool} from a value is that value's own truth, not the value run as PAD: $v names a<br>  // sequence tag and '1 eq 2' is an expression - run, the first would make a sequence and<br>  // the second would be FALSE - so a value kept its text and both are TRUE; '0' is FALSE.<br>  // A written-out literal second parameter is still the expression it is: 'false' is FALSE.<br><br>  </span><span style="color: #0000BB">$v </span><span style="color: #007700">= </span><span style="color: #DD0000">'sequence:fibonacci(6)'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">'1 eq 2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$w </span><span style="color: #007700">= </span><span style="color: #DD0000">'0'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="red">$</font>v</font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="red">$</font>x</font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>c<font color="black">'</font><font color="black">,</font> <font color="red">$</font>w</font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>false<font color="black">'</font></font>}</b>[<b>{<font color="blue">a</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">a</font><font color="red"></font>}</b><b>{<font color="blue">b</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">b</font><font color="red"></font>}</b><b>{<font color="blue">c</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">c</font><font color="red"></font>}</b><b>{<font color="blue">d</font><font color="red"></font>}</b>T<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>F<b>{/<font color="blue">d</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax19ccf2eb341b224be51c01d49b11eecb"></div>
+                        <script>
+                        padAjax19ccf2eb341b224be51c01d49b11eecb = new XMLHttpRequest();
+                        padAjax19ccf2eb341b224be51c01d49b11eecb.onreadystatechange=function() {
+                        if (padAjax19ccf2eb341b224be51c01d49b11eecb.readyState === 4) {
+                        if (padAjax19ccf2eb341b224be51c01d49b11eecb.status === 200) {
+                        document.getElementById("padAjax19ccf2eb341b224be51c01d49b11eecb").innerHTML=padAjax19ccf2eb341b224be51c01d49b11eecb.responseText;
+                        } else {
+                        document.getElementById("padAjax19ccf2eb341b224be51c01d49b11eecb").innerHTML=padAjax19ccf2eb341b224be51c01d49b11eecb.statusText;
+                        }
+                        }
+                        }
+                        padAjax19ccf2eb341b224be51c01d49b11eecb.open("GET","http://localhost/pad/regression/framework/?escaping/a_bool_value_is_a_truth_test_not_run_as_pad&padInclude",true);
+                        padAjax19ccf2eb341b224be51c01d49b11eecb.send();
                         </script>
                       </td>
                     </tr>
@@ -164,6 +206,46 @@
                         }
                         padAjax07a5d5ef847582b1daea939ddfea30cf.open("GET","http://localhost/pad/regression/framework/?options/bool_makes_a_flag_the_condition_of_an_if&padInclude",true);
                         padAjax07a5d5ef847582b1daea939ddfea30cf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_sandbox_lets_the_stores_it_hides_miss_quietly_in_an_expression<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandbox_lets_the_stores_it_hides_miss_quietly_in_an_expression.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxD<font color="black">'</font></font>}</b>["x"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>sbxK<font color="black">'</font></font>}</b>hello<b>{/<font color="blue">content</font><font color="red"></font>}</b><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>sbxB<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>sbxP<font color="black">'</font></font>/}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> content<font color="black">:</font>sbxK . <font color="black">'</font>!<font color="black">'</font></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> data<font color="black">:</font>sbxD . <font color="black">'</font>!<font color="black">'</font></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> flag<font color="black">:</font>sbxB . <font color="black">'</font>!<font color="black">'</font></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> pull<font color="black">:</font>sbxP . <font color="black">'</font>!<font color="black">'</font></font>}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc97d94a85b413feac95726a2ad0193b0"></div>
+                        <script>
+                        padAjaxc97d94a85b413feac95726a2ad0193b0 = new XMLHttpRequest();
+                        padAjaxc97d94a85b413feac95726a2ad0193b0.onreadystatechange=function() {
+                        if (padAjaxc97d94a85b413feac95726a2ad0193b0.readyState === 4) {
+                        if (padAjaxc97d94a85b413feac95726a2ad0193b0.status === 200) {
+                        document.getElementById("padAjaxc97d94a85b413feac95726a2ad0193b0").innerHTML=padAjaxc97d94a85b413feac95726a2ad0193b0.responseText;
+                        } else {
+                        document.getElementById("padAjaxc97d94a85b413feac95726a2ad0193b0").innerHTML=padAjaxc97d94a85b413feac95726a2ad0193b0.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc97d94a85b413feac95726a2ad0193b0.open("GET","http://localhost/pad/regression/framework/?passes/a_sandbox_lets_the_stores_it_hides_miss_quietly_in_an_expression&padInclude",true);
+                        padAjaxc97d94a85b413feac95726a2ad0193b0.send();
                         </script>
                       </td>
                     </tr>
@@ -330,6 +412,86 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/bool/1-flag<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/bool/1-flag.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A flag tested twice<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The expression is evaluated once; the flag answers in two places<font color="black">,</font> with an <font color="black">@</font>else<font color="black">@</font> part.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>stock = 3</font>}</b><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>boolInStock<font color="black">'</font></font>}</b>$stock gt 0<b>{/<font color="blue">bool</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">boolInStock</font><font color="red"></font>}</b>In stock.<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>Sold out.<b>{/<font color="blue">boolInStock</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">boolInStock</font><font color="red"></font>}</b>&lt;button&gt;Add to cart&lt;/button&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;button disabled&gt;Notify me&lt;/button&gt;<b>{/<font color="blue">boolInStock</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6a05123440795a592f496cc2ac7744b6"></div>
+                        <script>
+                        padAjax6a05123440795a592f496cc2ac7744b6 = new XMLHttpRequest();
+                        padAjax6a05123440795a592f496cc2ac7744b6.onreadystatechange=function() {
+                        if (padAjax6a05123440795a592f496cc2ac7744b6.readyState === 4) {
+                        if (padAjax6a05123440795a592f496cc2ac7744b6.status === 200) {
+                        document.getElementById("padAjax6a05123440795a592f496cc2ac7744b6").innerHTML=padAjax6a05123440795a592f496cc2ac7744b6.responseText;
+                        } else {
+                        document.getElementById("padAjax6a05123440795a592f496cc2ac7744b6").innerHTML=padAjax6a05123440795a592f496cc2ac7744b6.statusText;
+                        }
+                        }
+                        }
+                        padAjax6a05123440795a592f496cc2ac7744b6.open("GET","http://localhost/pad/tags/?examples/bool/1-flag&padInclude",true);
+                        padAjax6a05123440795a592f496cc2ac7744b6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/bool/2-value<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/bool/2-value.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>From a value<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Without content the second parameter\<font color="black">'</font>s own truth is the flag<font color="black">:</font> blank and 0 are FALSE.<font color="black">'</font></font>}</b><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>boolName<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Ann<font color="black">'</font></font>}</b><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>boolZero<font color="black">'</font><font color="black">,</font> 0</font>}</b><br><b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>boolBlank<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  &lt;li&gt;'Ann': <b>{<font color="blue">boolName</font><font color="red"></font>}</b>TRUE<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>FALSE<b>{/<font color="blue">boolName</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;0: <b>{<font color="blue">boolZero</font><font color="red"></font>}</b>TRUE<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>FALSE<b>{/<font color="blue">boolZero</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;blank: <b>{<font color="blue">boolBlank</font><font color="red"></font>}</b>TRUE<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>FALSE<b>{/<font color="blue">boolBlank</font><font color="red"></font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbc625ddf5d3c0195b5169a676d278378"></div>
+                        <script>
+                        padAjaxbc625ddf5d3c0195b5169a676d278378 = new XMLHttpRequest();
+                        padAjaxbc625ddf5d3c0195b5169a676d278378.onreadystatechange=function() {
+                        if (padAjaxbc625ddf5d3c0195b5169a676d278378.readyState === 4) {
+                        if (padAjaxbc625ddf5d3c0195b5169a676d278378.status === 200) {
+                        document.getElementById("padAjaxbc625ddf5d3c0195b5169a676d278378").innerHTML=padAjaxbc625ddf5d3c0195b5169a676d278378.responseText;
+                        } else {
+                        document.getElementById("padAjaxbc625ddf5d3c0195b5169a676d278378").innerHTML=padAjaxbc625ddf5d3c0195b5169a676d278378.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbc625ddf5d3c0195b5169a676d278378.open("GET","http://localhost/pad/tags/?examples/bool/2-value&padInclude",true);
+                        padAjaxbc625ddf5d3c0195b5169a676d278378.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -344,7 +506,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - staffAbove
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - staffAbove
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/pages - Page: db/a_read_without_select_answers_its_rows<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/a_read_without_select_answers_its_rows.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/a_read_without_select_answers_its_rows.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A read that does not start with SELECT - a WITH, a bracketed UNION, SHOW, DESCRIBE,<br>  // VALUES - answers its rows as an ARRAY does: no verb took it, so it ran and answered '',<br>  // its rows dropped without a word. A named query may start with WITH as well, where it<br>  // was refused as one that does not read.<br><br>  </span><span style="color: #0000BB">$with    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"with t as (select name from staff where salary &gt; {0}) select name from t order by name"</span><span style="color: #007700">, [ </span><span style="color: #0000BB">2000 </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">$union   </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"(select name from staff order by name limit 1) union (select 'x')" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$show    </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"show columns from staff" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$values  </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"values (1), (2)" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$with    </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$with</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$union   </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$union</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$show    </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$show</span><span style="color: #007700">, </span><span style="color: #DD0000">'Field' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$values  </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$values </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$minimum </span><span style="color: #007700">= </span><span style="color: #0000BB">2000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">with:   <b>{<font color="green"><font color="red">$</font>with</font>}</b><br>union:  <b>{<font color="green"><font color="red">$</font>union</font>}</b><br>show:   <b>{<font color="green"><font color="red">$</font>show</font>}</b><br>values: <b>{<font color="green"><font color="red">$</font>values</font>}</b><br>named:  <b>{<font color="blue">staffAbove</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffAbove</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb0b29e091e4311b85f611f381000e108"></div>
+                        <script>
+                        padAjaxb0b29e091e4311b85f611f381000e108 = new XMLHttpRequest();
+                        padAjaxb0b29e091e4311b85f611f381000e108.onreadystatechange=function() {
+                        if (padAjaxb0b29e091e4311b85f611f381000e108.readyState === 4) {
+                        if (padAjaxb0b29e091e4311b85f611f381000e108.status === 200) {
+                        document.getElementById("padAjaxb0b29e091e4311b85f611f381000e108").innerHTML=padAjaxb0b29e091e4311b85f611f381000e108.responseText;
+                        } else {
+                        document.getElementById("padAjaxb0b29e091e4311b85f611f381000e108").innerHTML=padAjaxb0b29e091e4311b85f611f381000e108.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb0b29e091e4311b85f611f381000e108.open("GET","http://localhost/pad/regression/pages/?db/a_read_without_select_answers_its_rows&padInclude",true);
+                        padAjaxb0b29e091e4311b85f611f381000e108.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

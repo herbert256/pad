@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {output} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#output">Output control</a><span>/</span><span aria-current="page">output</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>output<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Switches how the running request answers - a web page, the console, a file, a download, JSON or CSV.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#output">Output control</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'type'</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              One of <code>web</code>, <code>console</code>, <code>file</code>, <code>download</code>, <code>json</code> or <code>csv</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{output 'type'}</code> sets <code>$padOutputType</code> for the rest of the request and loads that type's settings over the current ones. It decides how the whole response is delivered once the page has finished, not what happens at the place of the tag - so it can stand anywhere in the template. It does the same as <code>$padOutputType</code> set in <code>_config/config.php</code> or in the page's PHP, from the template.
+          </p>
+          <ul>
+            <li>
+              <code>web</code> - the default: the rendered page is sent to the browser.
+            </li>
+            <li>
+              <code>console</code> - the rendered text written for the command line.
+            </li>
+            <li>
+              <code>file</code> - the rendered page is written to a file under <code>DATA/</code>, named by the <code>$padFile*</code> settings, and the request goes on with another page.
+            </li>
+            <li>
+              <code>download</code> - the rendered page is sent as an attachment, named the same way.
+            </li>
+            <li>
+              <code>json</code> and <code>csv</code> - what the template rendered is replaced by the page's data: the variables its PHP names in <code>$padExpose</code>, as one JSON object, or the first of them that is a list as CSV with a header row.
+            </li>
+          </ul>
+          <p>
+            The same JSON or CSV answer comes without the tag for <code>?page&amp;padFormat=json</code> (or <code>csv</code>) and for an <code>Accept: application/json</code> header - and then the template is not rendered at all. A page that exposes nothing has nothing to answer as JSON, and CSV needs an exposed list; both are errors.
+          </p>
+          <p>
+            A type that is not one of the six is an error, and the mode stays as it was. Because it changes the whole response, the examples here are shown but not run.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Answer JSON
+            </h3>
+            <p class="example-about">
+              The page answers the variables its PHP names in $padExpose as one JSON object; this template text is not sent.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/output/1-json.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'json'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Shown only to a reader of the template.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A download
+            </h3>
+            <p class="example-about">
+              The rendered page goes to the browser as an attachment instead of being shown.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/output/2-download.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'download'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;h1</span><span class="hl-htm">&gt;</span>Invoice <span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h1</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Total: <span class="hl-brc">{</span><span class="hl-var">$total</span> | money<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7flush.html">{flush}</a> <span class="about">Sends the page rendered so far to the browser at once, so it can load the stylesheets while a slow part below renders.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tidy.html">{tidy}</a> <span class="about">Rewrites the HTML it wraps as tidied, indented markup through PHP's tidy extension.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> <span class="about">Renders another page of the application - its PHP and its template - in place of the tag.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7open.html">← {open}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7pad.html">{pad} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

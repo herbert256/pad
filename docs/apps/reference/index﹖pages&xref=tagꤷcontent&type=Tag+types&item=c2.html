@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - c2
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - c2
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: options/tobool_and_tocontent_on_one_tag_read_the_same_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/tobool_and_tocontent_on_one_tag_read_the_same_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/tobool_and_tocontent_on_one_tag_read_the_same_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// toBool and toContent - or toData - on one tag, in either order: each reads the tag's<br>  // text, where the first left nothing for the next - a flag of FALSE, an empty store.<br><br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">xs </font><font color="red">toContent=<font color="black">'</font>c1<font color="black">'</font><font color="black">,</font> toBool=<font color="black">'</font>b1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">bool=<font color="black">'</font>b1<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>[<b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>c1</font><font color="red"></font>}</b>] <b>{<font color="blue">xs </font><font color="red">toBool=<font color="black">'</font>b2<font color="black">'</font><font color="black">,</font> toContent=<font color="black">'</font>c2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">bool=<font color="black">'</font>b2<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>[<b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>c2</font><font color="red"></font>}</b>] <b>{<font color="blue">xs </font><font color="red">toData=<font color="black">'</font>d3<font color="black">'</font><font color="black">,</font> toBool=<font color="black">'</font>b3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">bool=<font color="black">'</font>b3<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax369a06aee5f239c21f65992d9fa75f55"></div>
+                        <script>
+                        padAjax369a06aee5f239c21f65992d9fa75f55 = new XMLHttpRequest();
+                        padAjax369a06aee5f239c21f65992d9fa75f55.onreadystatechange=function() {
+                        if (padAjax369a06aee5f239c21f65992d9fa75f55.readyState === 4) {
+                        if (padAjax369a06aee5f239c21f65992d9fa75f55.status === 200) {
+                        document.getElementById("padAjax369a06aee5f239c21f65992d9fa75f55").innerHTML=padAjax369a06aee5f239c21f65992d9fa75f55.responseText;
+                        } else {
+                        document.getElementById("padAjax369a06aee5f239c21f65992d9fa75f55").innerHTML=padAjax369a06aee5f239c21f65992d9fa75f55.statusText;
+                        }
+                        }
+                        }
+                        padAjax369a06aee5f239c21f65992d9fa75f55.open("GET","http://localhost/pad/regression/framework/?options/tobool_and_tocontent_on_one_tag_read_the_same_text&padInclude",true);
+                        padAjax369a06aee5f239c21f65992d9fa75f55.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

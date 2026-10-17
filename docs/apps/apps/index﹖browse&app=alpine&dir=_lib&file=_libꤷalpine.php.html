@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: alpine/_lib
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: alpine/ lib
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=alpine.html">..</a>
+                  </li>
+                  <li class="current">alpine.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _lib/alpine.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The helpers of the application.<br>  //<br>  // alpineData     a file of _data/ as an array<br>  // alpineGroups   the groups of _data/examples.json, each with its examples - the cards<br>  // alpineExample  the entry of one example, with the ones before and after it<br>  // alpineText     a request value that is one text - a list sent for it is the default<br><br>  // A request value that is one text: its text, or the default when it came as a list - a<br>  // pasted link or a crawler's ?q[]=x - where the (string) cast warned "Array to string<br>  // conversion", an error under PAD, and the page answered 500.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">alpineText </span><span style="color: #007700">( </span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$default </span><span style="color: #007700">= </span><span style="color: #DD0000">'' </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$value </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #0000BB">$name</span><span style="color: #007700">, </span><span style="color: #0000BB">$default </span><span style="color: #007700">);<br><br>    return </span><span style="color: #0000BB">is_scalar </span><span style="color: #007700">( </span><span style="color: #0000BB">$value </span><span style="color: #007700">) ? (string) </span><span style="color: #0000BB">$value </span><span style="color: #007700">: </span><span style="color: #0000BB">$default</span><span style="color: #007700">;<br><br>  }<br><br>  function </span><span style="color: #0000BB">alpineData </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) {<br><br>    static </span><span style="color: #0000BB">$files </span><span style="color: #007700">= [];<br><br>    return </span><span style="color: #0000BB">$files </span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">] ??= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">"_data/</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">.json" </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?? [];<br><br>  }<br><br>  function </span><span style="color: #0000BB">alpineGroups </span><span style="color: #007700">() {<br><br>    </span><span style="color: #0000BB">$catalog </span><span style="color: #007700">= </span><span style="color: #0000BB">alpineData </span><span style="color: #007700">( </span><span style="color: #DD0000">'examples' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$groups  </span><span style="color: #007700">= [];<br><br>    foreach ( </span><span style="color: #0000BB">$catalog </span><span style="color: #007700">[</span><span style="color: #DD0000">'groups'</span><span style="color: #007700">] as </span><span style="color: #0000BB">$group </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$group </span><span style="color: #007700">[</span><span style="color: #DD0000">'examples'</span><span style="color: #007700">] = </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$catalog </span><span style="color: #007700">[</span><span style="color: #DD0000">'examples'</span><span style="color: #007700">], fn ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'group'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$group </span><span style="color: #007700">[</span><span style="color: #DD0000">'key'</span><span style="color: #007700">] ) );<br>      </span><span style="color: #0000BB">$group </span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]    = </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$group </span><span style="color: #007700">[</span><span style="color: #DD0000">'examples'</span><span style="color: #007700">] );<br>      </span><span style="color: #0000BB">$groups </span><span style="color: #007700">[]          = </span><span style="color: #0000BB">$group</span><span style="color: #007700">;<br>    }<br><br>    return </span><span style="color: #0000BB">$groups</span><span style="color: #007700">;<br><br>  }<br><br>  function </span><span style="color: #0000BB">alpineExample </span><span style="color: #007700">( </span><span style="color: #0000BB">$page </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$catalog </span><span style="color: #007700">= </span><span style="color: #0000BB">alpineData </span><span style="color: #007700">( </span><span style="color: #DD0000">'examples' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$list    </span><span style="color: #007700">= </span><span style="color: #0000BB">$catalog </span><span style="color: #007700">[</span><span style="color: #DD0000">'examples'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$groups  </span><span style="color: #007700">= </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$catalog </span><span style="color: #007700">[</span><span style="color: #DD0000">'groups'</span><span style="color: #007700">], </span><span style="color: #DD0000">'title'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$at      </span><span style="color: #007700">= </span><span style="color: #0000BB">array_search </span><span style="color: #007700">( </span><span style="color: #0000BB">$page</span><span style="color: #007700">, </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$list</span><span style="color: #007700">, </span><span style="color: #DD0000">'page' </span><span style="color: #007700">) );<br>    </span><span style="color: #0000BB">$none    </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'' </span><span style="color: #007700">];<br><br>    if ( </span><span style="color: #0000BB">$at </span><span style="color: #007700">=== </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">)<br>      return [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$page</span><span style="color: #007700">, </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">ucfirst </span><span style="color: #007700">( </span><span style="color: #0000BB">basename </span><span style="color: #007700">( </span><span style="color: #0000BB">$page </span><span style="color: #007700">) ), </span><span style="color: #DD0000">'icon' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'lede' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">,<br>               </span><span style="color: #DD0000">'server' </span><span style="color: #007700">=&gt; [], </span><span style="color: #DD0000">'client' </span><span style="color: #007700">=&gt; [], </span><span style="color: #DD0000">'files' </span><span style="color: #007700">=&gt; [], </span><span style="color: #DD0000">'groupTitle' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Examples'</span><span style="color: #007700">,<br>               </span><span style="color: #DD0000">'prev' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$none</span><span style="color: #007700">, </span><span style="color: #DD0000">'next' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$none </span><span style="color: #007700">];<br><br>    </span><span style="color: #0000BB">$example                </span><span style="color: #007700">= </span><span style="color: #0000BB">$list </span><span style="color: #007700">[</span><span style="color: #0000BB">$at</span><span style="color: #007700">] + [ </span><span style="color: #DD0000">'files' </span><span style="color: #007700">=&gt; [] ];<br>    </span><span style="color: #0000BB">$example </span><span style="color: #007700">[</span><span style="color: #DD0000">'groupTitle'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$groups </span><span style="color: #007700">[ </span><span style="color: #0000BB">$example </span><span style="color: #007700">[</span><span style="color: #DD0000">'group'</span><span style="color: #007700">] ] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$example </span><span style="color: #007700">[</span><span style="color: #DD0000">'prev'</span><span style="color: #007700">]       = </span><span style="color: #0000BB">$list </span><span style="color: #007700">[ </span><span style="color: #0000BB">$at </span><span style="color: #007700">- </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$none</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$example </span><span style="color: #007700">[</span><span style="color: #DD0000">'next'</span><span style="color: #007700">]       = </span><span style="color: #0000BB">$list </span><span style="color: #007700">[ </span><span style="color: #0000BB">$at </span><span style="color: #007700">+ </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ?? </span><span style="color: #0000BB">$none</span><span style="color: #007700">;<br><br>    return </span><span style="color: #0000BB">$example</span><span style="color: #007700">;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

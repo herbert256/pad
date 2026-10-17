@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tags - barcode
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - barcode
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: demo - Page: barcode<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">barcode.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">barcode.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Barcodes'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// A product list as a shop keeps it: the EAN-13 without its check digit for two of them -<br>  // the tag adds it - and with it for the others, where the tag checks it.<br><br>  </span><span style="color: #0000BB">$products </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Espresso beans, 1 kg'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ean' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'871234567890'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Oat milk, 1 l'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'ean' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'4006381333931' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Design Patterns'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'ean' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'9780201633610' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Paper filters'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'ean' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'540123456789'  </span><span style="color: #007700">],<br>  ];<br><br>  </span><span style="color: #0000BB">$parcel </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD-2026-000042'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">barcode</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; tag writes EAN-13, EAN-8, UPC-A and Code 128 barcodes<br>as inline SVG - sharp at any size and on paper, no font, no image library. A scanner or a<br>phone reads them straight from the screen.&lt;/p&gt;<br><br>&lt;h2&gt;Products - EAN-13&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Barcode&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">products</font><font color="red"></font>}</b><br>  &lt;tr&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">barcode </font><font color="red"><font color="red">$</font>ean<font color="black">,</font> height=50</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">products</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">barcode </font><font color="red"><font color="red">$</font>ean<font color="black">,</font> height=50</font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; - twelve or thirteen digits are an EAN-13;<br>given without its check digit, the tag adds it.&lt;/p&gt;<br><br>&lt;h2&gt;A shipping label - Code 128&lt;/h2&gt;<br><br>&lt;div class="label"&gt;<br>  &lt;strong&gt;PAD Demo Shop&lt;/strong&gt;&lt;br&gt;<br>  Parcel <b>{<font color="green"><font color="red">$</font>parcel</font>}</b>&lt;br&gt;<br>  <b>{<font color="blue">barcode </font><font color="red"><font color="red">$</font>parcel<font color="black">,</font> height=70</font>}</b><br>&lt;/div&gt;<br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">barcode </font><font color="red"><font color="red">$</font>parcel<font color="black">,</font> height=70</font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; - letters, digits and punctuation;<br>runs of digits are packed two to a symbol.&lt;/p&gt;<br><br>&lt;h2&gt;The other types&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Barcode&lt;/th&gt;&lt;th&gt;Tag&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;EAN-8&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>9638507<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ean8<font color="black">'</font></font>}</b>&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>9638507<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ean8<font color="black">'</font></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;UPC-A&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>03600029145<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>upca<font color="black">'</font></font>}</b>&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>03600029145<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>upca<font color="black">'</font></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Bars only, in colour&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>PAD<font color="black">'</font><font color="black">,</font> height=30<font color="black">,</font> scale=3<font color="black">,</font> plain<font color="black">,</font> color=<font color="black">'</font>#2e7d32<font color="black">'</font></font>}</b>&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>PAD<font color="black">'</font><font color="black">,</font> height=30<font color="black">,</font> scale=3<font color="black">,</font> plain<font color="black">,</font> color=<font color="black">'</font>#2e7d32<font color="black">'</font></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax831a7f9c1ebb957a4130c67e5c841c58"></div>
+                        <script>
+                        padAjax831a7f9c1ebb957a4130c67e5c841c58 = new XMLHttpRequest();
+                        padAjax831a7f9c1ebb957a4130c67e5c841c58.onreadystatechange=function() {
+                        if (padAjax831a7f9c1ebb957a4130c67e5c841c58.readyState === 4) {
+                        if (padAjax831a7f9c1ebb957a4130c67e5c841c58.status === 200) {
+                        document.getElementById("padAjax831a7f9c1ebb957a4130c67e5c841c58").innerHTML=padAjax831a7f9c1ebb957a4130c67e5c841c58.responseText;
+                        } else {
+                        document.getElementById("padAjax831a7f9c1ebb957a4130c67e5c841c58").innerHTML=padAjax831a7f9c1ebb957a4130c67e5c841c58.statusText;
+                        }
+                        }
+                        }
+                        padAjax831a7f9c1ebb957a4130c67e5c841c58.open("GET","http://localhost/pad/demo/?barcode&padInclude",true);
+                        padAjax831a7f9c1ebb957a4130c67e5c841c58.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_barcode_with_a_wrong_check_digit_is_reported<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_barcode_with_a_wrong_check_digit_is_reported.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>4006381333932<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c"></div>
+                        <script>
+                        padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c = new XMLHttpRequest();
+                        padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.onreadystatechange=function() {
+                        if (padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.readyState === 4) {
+                        if (padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.status === 200) {
+                        document.getElementById("padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c").innerHTML=padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.responseText;
+                        } else {
+                        document.getElementById("padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c").innerHTML=padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.open("GET","http://localhost/pad/regression/errors/?syntax/a_barcode_with_a_wrong_check_digit_is_reported&padInclude",true);
+                        padAjaxd4edf15b89ac6e63bdbc7a7cfc2cba5c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_field_inside_the_quoted_text_of_a_qr_code_or_barcode_is_encoded_as_itself<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_field_inside_the_quoted_text_of_a_qr_code_or_barcode_is_encoded_as_itself.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_field_inside_the_quoted_text_of_a_qr_code_or_barcode_is_encoded_as_itself.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field inside the quoted text of {qr} or {barcode} - the usual way to make a mailto:<br>  // or a code from a field - is encoded as the characters it holds, the same symbol as the<br>  // whole text in a variable gives, where the stand-ins a value travels with went into the<br>  // code: the @ of the address scanned as U+E040, and a , refused a Code 128.<br><br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #DD0000">'herbert@example.com'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$sku   </span><span style="color: #007700">= </span><span style="color: #DD0000">'A,B'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">qr </font><font color="red"><font color="black">'</font>mailto<font color="black">:</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>email</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> size=21</font>}</b><br><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>SKU-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>sku</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>code128<font color="black">'</font><font color="black">,</font> plain</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax557e92aebd709cf6f206f8f0216411e5"></div>
+                        <script>
+                        padAjax557e92aebd709cf6f206f8f0216411e5 = new XMLHttpRequest();
+                        padAjax557e92aebd709cf6f206f8f0216411e5.onreadystatechange=function() {
+                        if (padAjax557e92aebd709cf6f206f8f0216411e5.readyState === 4) {
+                        if (padAjax557e92aebd709cf6f206f8f0216411e5.status === 200) {
+                        document.getElementById("padAjax557e92aebd709cf6f206f8f0216411e5").innerHTML=padAjax557e92aebd709cf6f206f8f0216411e5.responseText;
+                        } else {
+                        document.getElementById("padAjax557e92aebd709cf6f206f8f0216411e5").innerHTML=padAjax557e92aebd709cf6f206f8f0216411e5.statusText;
+                        }
+                        }
+                        }
+                        padAjax557e92aebd709cf6f206f8f0216411e5.open("GET","http://localhost/pad/regression/framework/?tags/a_field_inside_the_quoted_text_of_a_qr_code_or_barcode_is_encoded_as_itself&padInclude",true);
+                        padAjax557e92aebd709cf6f206f8f0216411e5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/barcode_adds_the_check_digit_of_an_ean13<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/barcode_adds_the_check_digit_of_an_ean13.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>871234567890<font color="black">'</font><font color="black">,</font> height=40</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3719b70d7c57917e0e4dd491b700f41e"></div>
+                        <script>
+                        padAjax3719b70d7c57917e0e4dd491b700f41e = new XMLHttpRequest();
+                        padAjax3719b70d7c57917e0e4dd491b700f41e.onreadystatechange=function() {
+                        if (padAjax3719b70d7c57917e0e4dd491b700f41e.readyState === 4) {
+                        if (padAjax3719b70d7c57917e0e4dd491b700f41e.status === 200) {
+                        document.getElementById("padAjax3719b70d7c57917e0e4dd491b700f41e").innerHTML=padAjax3719b70d7c57917e0e4dd491b700f41e.responseText;
+                        } else {
+                        document.getElementById("padAjax3719b70d7c57917e0e4dd491b700f41e").innerHTML=padAjax3719b70d7c57917e0e4dd491b700f41e.statusText;
+                        }
+                        }
+                        }
+                        padAjax3719b70d7c57917e0e4dd491b700f41e.open("GET","http://localhost/pad/regression/framework/?tags/barcode_adds_the_check_digit_of_an_ean13&padInclude",true);
+                        padAjax3719b70d7c57917e0e4dd491b700f41e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/barcode_code128_packs_runs_of_digits<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/barcode_code128_packs_runs_of_digits.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>PAD-2026-000042<font color="black">'</font><font color="black">,</font> height=40<font color="black">,</font> plain</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc217b53302af934eb1cf76d5763553c3"></div>
+                        <script>
+                        padAjaxc217b53302af934eb1cf76d5763553c3 = new XMLHttpRequest();
+                        padAjaxc217b53302af934eb1cf76d5763553c3.onreadystatechange=function() {
+                        if (padAjaxc217b53302af934eb1cf76d5763553c3.readyState === 4) {
+                        if (padAjaxc217b53302af934eb1cf76d5763553c3.status === 200) {
+                        document.getElementById("padAjaxc217b53302af934eb1cf76d5763553c3").innerHTML=padAjaxc217b53302af934eb1cf76d5763553c3.responseText;
+                        } else {
+                        document.getElementById("padAjaxc217b53302af934eb1cf76d5763553c3").innerHTML=padAjaxc217b53302af934eb1cf76d5763553c3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc217b53302af934eb1cf76d5763553c3.open("GET","http://localhost/pad/regression/framework/?tags/barcode_code128_packs_runs_of_digits&padInclude",true);
+                        padAjaxc217b53302af934eb1cf76d5763553c3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/barcode_ean8_and_upca<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/barcode_ean8_and_upca.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>9638507<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ean8<font color="black">'</font><font color="black">,</font> height=30<font color="black">,</font> scale=1</font>}</b><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>03600029145<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>upca<font color="black">'</font><font color="black">,</font> height=30<font color="black">,</font> scale=1</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax316d4f71364e8d99038bfb80e2b828cf"></div>
+                        <script>
+                        padAjax316d4f71364e8d99038bfb80e2b828cf = new XMLHttpRequest();
+                        padAjax316d4f71364e8d99038bfb80e2b828cf.onreadystatechange=function() {
+                        if (padAjax316d4f71364e8d99038bfb80e2b828cf.readyState === 4) {
+                        if (padAjax316d4f71364e8d99038bfb80e2b828cf.status === 200) {
+                        document.getElementById("padAjax316d4f71364e8d99038bfb80e2b828cf").innerHTML=padAjax316d4f71364e8d99038bfb80e2b828cf.responseText;
+                        } else {
+                        document.getElementById("padAjax316d4f71364e8d99038bfb80e2b828cf").innerHTML=padAjax316d4f71364e8d99038bfb80e2b828cf.statusText;
+                        }
+                        }
+                        }
+                        padAjax316d4f71364e8d99038bfb80e2b828cf.open("GET","http://localhost/pad/regression/framework/?tags/barcode_ean8_and_upca&padInclude",true);
+                        padAjax316d4f71364e8d99038bfb80e2b828cf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/barcode/1-ean<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/barcode/1-ean.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>An EAN-13 with its check digit added<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Twelve digits are taken as an EAN-13; the thirteenth<font color="black">,</font> the check digit<font color="black">,</font> is computed.<font color="black">'</font></font>}</b><br><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>871234567890<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6ece80b1637e45b8ff5a4a0eb356e708"></div>
+                        <script>
+                        padAjax6ece80b1637e45b8ff5a4a0eb356e708 = new XMLHttpRequest();
+                        padAjax6ece80b1637e45b8ff5a4a0eb356e708.onreadystatechange=function() {
+                        if (padAjax6ece80b1637e45b8ff5a4a0eb356e708.readyState === 4) {
+                        if (padAjax6ece80b1637e45b8ff5a4a0eb356e708.status === 200) {
+                        document.getElementById("padAjax6ece80b1637e45b8ff5a4a0eb356e708").innerHTML=padAjax6ece80b1637e45b8ff5a4a0eb356e708.responseText;
+                        } else {
+                        document.getElementById("padAjax6ece80b1637e45b8ff5a4a0eb356e708").innerHTML=padAjax6ece80b1637e45b8ff5a4a0eb356e708.statusText;
+                        }
+                        }
+                        }
+                        padAjax6ece80b1637e45b8ff5a4a0eb356e708.open("GET","http://localhost/pad/tags/?examples/barcode/1-ean&padInclude",true);
+                        padAjax6ece80b1637e45b8ff5a4a0eb356e708.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/barcode/2-code128<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/barcode/2-code128.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Code 128 for a parcel<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Text with letters is Code 128; height and scale size the bars.<font color="black">'</font></font>}</b><br><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>PAD-2026-00042<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>code128<font color="black">'</font><font color="black">,</font> height=50<font color="black">,</font> scale=1.5</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax4e572c45f850a93a1080dc00b791c607"></div>
+                        <script>
+                        padAjax4e572c45f850a93a1080dc00b791c607 = new XMLHttpRequest();
+                        padAjax4e572c45f850a93a1080dc00b791c607.onreadystatechange=function() {
+                        if (padAjax4e572c45f850a93a1080dc00b791c607.readyState === 4) {
+                        if (padAjax4e572c45f850a93a1080dc00b791c607.status === 200) {
+                        document.getElementById("padAjax4e572c45f850a93a1080dc00b791c607").innerHTML=padAjax4e572c45f850a93a1080dc00b791c607.responseText;
+                        } else {
+                        document.getElementById("padAjax4e572c45f850a93a1080dc00b791c607").innerHTML=padAjax4e572c45f850a93a1080dc00b791c607.statusText;
+                        }
+                        }
+                        }
+                        padAjax4e572c45f850a93a1080dc00b791c607.open("GET","http://localhost/pad/tags/?examples/barcode/2-code128&padInclude",true);
+                        padAjax4e572c45f850a93a1080dc00b791c607.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/barcode/3-plain<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/barcode/3-plain.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Plain and coloured<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>plain leaves the digits out; color and background change the black on white.<font color="black">'</font></font>}</b><br><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>96385074<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ean8<font color="black">'</font><font color="black">,</font> plain<font color="black">,</font> color=<font color="black">'</font>#1a237e<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax1673b8ebfc5af8ccbc2c4793c710b5f7"></div>
+                        <script>
+                        padAjax1673b8ebfc5af8ccbc2c4793c710b5f7 = new XMLHttpRequest();
+                        padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.onreadystatechange=function() {
+                        if (padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.readyState === 4) {
+                        if (padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.status === 200) {
+                        document.getElementById("padAjax1673b8ebfc5af8ccbc2c4793c710b5f7").innerHTML=padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.responseText;
+                        } else {
+                        document.getElementById("padAjax1673b8ebfc5af8ccbc2c4793c710b5f7").innerHTML=padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.statusText;
+                        }
+                        }
+                        }
+                        padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.open("GET","http://localhost/pad/tags/?examples/barcode/3-plain&padInclude",true);
+                        padAjax1673b8ebfc5af8ccbc2c4793c710b5f7.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

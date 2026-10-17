@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {accordion} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-accordion){--pad-accordion-accent:#2a78d6;--pad-accordion-text:#1f1f1d;--pad-accordion-muted:#62615c;--pad-accordion-line:#e4e3df;--pad-accordion-hover:#f4f3f0;}@supports (color:light-dark(#000,#fff)){:where(.pad-accordion){--pad-accordion-accent:light-dark(#2a78d6,#5598e7);--pad-accordion-text:light-dark(#1f1f1d,#ecebe6);--pad-accordion-muted:light-dark(#62615c,#a9a8a0);--pad-accordion-line:light-dark(#e4e3df,#3a3a37);--pad-accordion-hover:light-dark(#f4f3f0,#242422);}}.pad-accordion{margin:0 0 1em;border-top:1px solid var(--pad-accordion-line)}.pad-accordion-item{border-bottom:1px solid var(--pad-accordion-line)}.pad-accordion-summary{display:flex;align-items:center;gap:.75em;padding:.8em .5em;cursor:pointer;list-style:none;color:var(--pad-accordion-text);font-weight:600}.pad-accordion-summary::-webkit-details-marker{display:none}.pad-accordion-summary::after{content:"";flex:none;margin-left:auto;width:.5em;height:.5em;border-right:2px solid var(--pad-accordion-muted);border-bottom:2px solid var(--pad-accordion-muted);transform:translateY(-25%) rotate(45deg);transition:transform .15s}.pad-accordion-item[open]>.pad-accordion-summary::after{transform:translateY(25%) rotate(-135deg)}.pad-accordion-summary:hover{background:var(--pad-accordion-hover)}.pad-accordion-summary:focus-visible{outline:2px solid var(--pad-accordion-accent);outline-offset:-2px;border-radius:6px}.pad-accordion-body{padding:0 .5em 1em;color:var(--pad-accordion-text)}.pad-accordion-body>:first-child{margin-top:0}.pad-accordion-body>:last-child{margin-bottom:0}@media (prefers-reduced-motion:reduce){.pad-accordion-summary::after{transition:none}}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#widgets">Widgets</a><span>/</span><span aria-current="page">accordion</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>accordion<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Items that open and close on a click, each a details element - no JavaScript.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">accordion</span> open<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>single</code>
+            </dt>
+            <dd>
+              Bare option: one item open at a time - the items share a <code>name</code>, the exclusive accordion of HTML.
+            </dd>
+            <dt>
+              <code>open</code>
+            </dt>
+            <dd>
+              The item open at first: its number from 1 or its label. Bare, <code>open</code> opens every item.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{accordion}</code> turns every <a href="index%EF%B9%96tag%EA%A4%B7tab.html"><code>{tab}</code></a> inside it into a <code>&lt;details&gt;</code> element with the tab's label as its <code>&lt;summary&gt;</code>. The browser opens and closes the items, from the keyboard as well, a screen reader hears "collapsed" or "expanded", and a find in the page opens the item it finds a match in. There is no script.
+          </p>
+          <p>
+            The items are collected the way <a href="index%EF%B9%96tag%EA%A4%B7tabs.html"><code>{tabs}</code></a> collects them, so they may come from a loop or stand in an <code>{if}</code>. Without options every item starts closed and each opens on its own.
+          </p>
+          <ul>
+            <li>
+              <code>single</code> gives the items one shared <code>name</code>: opening one closes the one that was open.
+            </li>
+            <li>
+              <code>open=</code> names the item open at the start, by its number from 1 or its label; <code>open</code> alone opens them all.
+            </li>
+          </ul>
+          <p>
+            Under the strict check an item without a label, text between the items, an accordion without items, an <code>open=</code> naming no item, and a bare <code>open</code> on a <code>single</code> accordion (which can only have one open) are errors. The colours are <code>--pad-accordion-accent</code>, <code>-text</code>, <code>-muted</code>, <code>-line</code> and <code>-hover</code> on <code>.pad-accordion</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A FAQ, one open at a time
+            </h3>
+            <p class="example-about">
+              single makes opening one question close the other; open=1 opens the first.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/accordion/1-faq.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'When will my order arrive?'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Orders placed before <span class="hl-num">22</span>:<span class="hl-num">00</span> on a working day are delivered the next day.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Can I return something?'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Yes - within <span class="hl-num">30</span> days, unused and in its box.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Is there a warranty?'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Two years on every appliance.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7accordion%EA%A4%B71-faq.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="pad-accordion" id="pad-accordion-da186468">
+                    <details class="pad-accordion-item" name="pad-accordion-da186468" open>
+                      <summary class="pad-accordion-summary">
+                        When will my order arrive?
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          Orders placed before 22:00 on a working day are delivered the next day.
+                        </p>
+                      </div>
+                    </details>
+                    <details class="pad-accordion-item" name="pad-accordion-da186468">
+                      <summary class="pad-accordion-summary">
+                        Can I return something?
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          Yes - within 30 days, unused and in its box.
+                        </p>
+                      </div>
+                    </details>
+                    <details class="pad-accordion-item" name="pad-accordion-da186468">
+                      <summary class="pad-accordion-summary">
+                        Is there a warranty?
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          Two years on every appliance.
+                        </p>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              All open, from data
+            </h3>
+            <p class="example-about">
+              A bare open opens every item; the items come from a loop.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/accordion/2-all-open.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span> open<span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">steps</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-var">$step</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$detail</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/steps</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/accordion/2-all-open.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$steps</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'step'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Order'</span><span class="hl-pun">,</span>   <span class="hl-str">'detail'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Pick the products and pay.'</span>      <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'step'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Pack'</span><span class="hl-pun">,</span>    <span class="hl-str">'detail'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'The warehouse packs the parcel.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'step'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Deliver'</span><span class="hl-pun">,</span> <span class="hl-str">'detail'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'The courier brings it to you.'</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7accordion%EA%A4%B72-all-open.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="pad-accordion" id="pad-accordion-e3724fb7">
+                    <details class="pad-accordion-item" open>
+                      <summary class="pad-accordion-summary">
+                        Order
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          Pick the products and pay.
+                        </p>
+                      </div>
+                    </details>
+                    <details class="pad-accordion-item" open>
+                      <summary class="pad-accordion-summary">
+                        Pack
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          The warehouse packs the parcel.
+                        </p>
+                      </div>
+                    </details>
+                    <details class="pad-accordion-item" open>
+                      <summary class="pad-accordion-summary">
+                        Deliver
+                      </summary>
+                      <div class="pad-accordion-body">
+                        <p>
+                          The courier brings it to you.
+                        </p>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">{tab}</a> <span class="about">One item of a tabs, accordion or carousel: its label and its content, handed to that owner.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tabs.html">{tabs}</a> <span class="about">Panels behind a row of tabs, switched by radio buttons and CSS - no JavaScript.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7carousel.html">{carousel}</a> <span class="about">Slides in a row that scrolls and snaps sideways, with arrow links and dots - no JavaScript needed.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7modal.html">{modal}</a> <span class="about">A dialog over the page with the button that opens it - works with and without JavaScript.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7while.html">← {while}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7action.html">{action} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

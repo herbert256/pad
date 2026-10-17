@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {array} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#database">Database</a><span>/</span><span aria-current="page">array</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>array<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Runs a SQL query on the application database and repeats its content once per row.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#database">Database</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">array</span> <span class="hl-str">"* from table where ..."</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/array</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">array</span> <span class="hl-str">"* from orders"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'orders'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/array</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>sql</code>
+            </dt>
+            <dd>
+              The query after the word SELECT - <code>"* from users order by name"</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              Names the level, so its properties read <code>first@orders</code>; in the designer preview (<code>&amp;padSample</code>) the sample's rows of that name answer instead of the database.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{array "..."}</code> runs its parameter as a query and makes every row it answers an occurrence of the tag: the content renders once per row, with the row's columns as fields - <code>{$name}</code>, <code>{$email}</code>. It is the template form of <code>db ( "ARRAY ..." )</code>; the tag name is the command word, so the parameter starts after the SELECT.
+          </p>
+          <p>
+            A query that answers no rows renders nothing, or the <code>@else@</code> branch when the content has one. Every handling option works on the rows as on any data - <code>first=</code>, <code>sort=</code>, <code>where=</code>, <code>page=</code> with a <a href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager}</a> after it - and the loop properties are there: <code>{first@array}</code>, <code>{current@array}</code>. Sorting and limiting are usually cheaper in the SQL itself.
+          </p>
+          <p>
+            Most pages fetch their rows in PHP instead - <code>$orders = db ( "ARRAY * FROM orders" );</code> and then <code>{orders}...{/orders}</code> - which keeps SQL out of the template and lets a request value go in through a placeholder. <code>{array}</code> is handy for a quick listing. With <code>name=</code> the rows can come from the page's sample in the designer preview.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A row per occurrence
+            </h3>
+            <p class="example-about">
+              The content renders once per row, the columns as fields.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/array/1-rows.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">array</span> <span class="hl-str">"name, city from customers order by name"</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span> - <span class="hl-brc">{</span><span class="hl-var">$city</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/array</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Options and an empty result
+            </h3>
+            <p class="example-about">
+              Handling options work on the rows; @else@ shows when there are none.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/array/2-else.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">array</span> <span class="hl-str">"number, total from orders where status='open'"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'open'</span>, <span class="hl-opt">sort</span>=<span class="hl-str">'total DESC'</span>, <span class="hl-opt">first</span>=<span class="hl-num">5</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">first@open</span><span class="hl-brc">}</span><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/first@open</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$total</span> | currency(<span class="hl-str">'EUR'</span>)<span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">last@open</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/last@open</span><span class="hl-brc">}</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>No open orders.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/array</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7record.html">{record}</a> <span class="about">Runs a SQL query on the application database and renders its content with the first row's columns as fields.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7field.html">{field}</a> <span class="about">Runs a SQL query on the application database and prints the single value it answers.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7check.html">{check}</a> <span class="about">Asks the application database whether a row exists, and renders its content only when one does.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager}</a> <span class="about">Page links for a tag written with the page option: first and last, a window round the current page, previous and next.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">← {ajax}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7assert.html">{assert} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

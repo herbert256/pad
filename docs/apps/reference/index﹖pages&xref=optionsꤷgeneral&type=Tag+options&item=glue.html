@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -151,6 +151,48 @@
                         }
                         padAjax143b63139439a835bc9638d47c6f861a.open("GET","http://localhost/pad/regression/framework/?check/options_print&padInclude",true);
                         padAjax143b63139439a835bc9638d47c6f861a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: escaping/a_value_in_the_print_formatting_options_stays_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">escaping/a_value_in_the_print_formatting_options_stays_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">escaping/a_value_in_the_print_formatting_options_stays_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $sep </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><br>  ["b","a"]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>[<b>{<font color="blue">x </font><font color="red">print<font color="black">,</font> glue=<font color="red">$</font>sep</font>}</b>][<b>{<font color="blue">x </font><font color="red">print<font color="black">,</font> quote=<font color="red">$</font>sep</font>}</b>][<b>{<font color="blue">x </font><font color="red">print<font color="black">,</font> open=<font color="red">$</font>sep<font color="black">,</font> close=<font color="red">$</font>sep</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa1c083382422b981dda101499158bca1"></div>
+                        <script>
+                        padAjaxa1c083382422b981dda101499158bca1 = new XMLHttpRequest();
+                        padAjaxa1c083382422b981dda101499158bca1.onreadystatechange=function() {
+                        if (padAjaxa1c083382422b981dda101499158bca1.readyState === 4) {
+                        if (padAjaxa1c083382422b981dda101499158bca1.status === 200) {
+                        document.getElementById("padAjaxa1c083382422b981dda101499158bca1").innerHTML=padAjaxa1c083382422b981dda101499158bca1.responseText;
+                        } else {
+                        document.getElementById("padAjaxa1c083382422b981dda101499158bca1").innerHTML=padAjaxa1c083382422b981dda101499158bca1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa1c083382422b981dda101499158bca1.open("GET","http://localhost/pad/regression/framework/?escaping/a_value_in_the_print_formatting_options_stays_text&padInclude",true);
+                        padAjaxa1c083382422b981dda101499158bca1.send();
                         </script>
                       </td>
                     </tr>
@@ -436,6 +478,46 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: options/print_formatting_written_out_reaches_the_closing_pipe<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/print_formatting_written_out_reaches_the_closing_pipe.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>pfx<font color="black">'</font></font>}</b>["b","a","c"]<b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">pfx </font><font color="red">print<font color="black">,</font> glue=<font color="black">'</font><font color="black">,</font><font color="black">'</font></font>}</b><b>{/<font color="blue">pfx </font><font color="red"><font color="black">|</font> replace(<font color="black">'</font><font color="black">,</font><font color="black">'</font><font color="black">,</font> <font color="black">'</font>;<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">pfx </font><font color="red">print<font color="black">,</font> quote=<font color="black">'</font><font color="black">|</font><font color="black">'</font><font color="black">,</font> glue=<font color="black">'</font>-<font color="black">'</font></font>}</b><b>{/<font color="blue">pfx </font><font color="red"><font color="black">|</font> replace(<font color="black">'</font><font color="black">|</font><font color="black">'</font><font color="black">,</font> <font color="black">'</font>!<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb88d7f878893bc8b236e9a6c8d98be47"></div>
+                        <script>
+                        padAjaxb88d7f878893bc8b236e9a6c8d98be47 = new XMLHttpRequest();
+                        padAjaxb88d7f878893bc8b236e9a6c8d98be47.onreadystatechange=function() {
+                        if (padAjaxb88d7f878893bc8b236e9a6c8d98be47.readyState === 4) {
+                        if (padAjaxb88d7f878893bc8b236e9a6c8d98be47.status === 200) {
+                        document.getElementById("padAjaxb88d7f878893bc8b236e9a6c8d98be47").innerHTML=padAjaxb88d7f878893bc8b236e9a6c8d98be47.responseText;
+                        } else {
+                        document.getElementById("padAjaxb88d7f878893bc8b236e9a6c8d98be47").innerHTML=padAjaxb88d7f878893bc8b236e9a6c8d98be47.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb88d7f878893bc8b236e9a6c8d98be47.open("GET","http://localhost/pad/regression/framework/?options/print_formatting_written_out_reaches_the_closing_pipe&padInclude",true);
+                        padAjaxb88d7f878893bc8b236e9a6c8d98be47.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/pages - Page: catalog/options<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -489,7 +571,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

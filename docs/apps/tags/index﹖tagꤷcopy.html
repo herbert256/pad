@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {copy} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+    <style>
+    :where(.pad-copy){--pad-copy-accent:#2a78d6;--pad-copy-text:#1f1f1d;--pad-copy-muted:#62615c;--pad-copy-line:#e4e3df;--pad-copy-surface:#f6f5f2;--pad-copy-done:#127a52;}@supports (color:light-dark(#000,#fff)){:where(.pad-copy){--pad-copy-accent:light-dark(#2a78d6,#5598e7);--pad-copy-text:light-dark(#1f1f1d,#ecebe6);--pad-copy-muted:light-dark(#62615c,#a9a8a0);--pad-copy-line:light-dark(#e4e3df,#3a3a37);--pad-copy-surface:light-dark(#f6f5f2,#232321);--pad-copy-done:light-dark(#127a52,#4fc794);}}.pad-copy{display:flex;align-items:stretch;gap:.5em;margin:0 0 1em;padding:.35em .35em .35em .9em;border:1px solid var(--pad-copy-line);border-radius:10px;background:var(--pad-copy-surface)}.pad-copy-text{flex:1;align-self:center;margin:0;overflow-x:auto;color:var(--pad-copy-text);font:.92em/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;user-select:all}.pad-copy-text code{font:inherit;background:none;padding:0}.pad-copy-button{display:none;flex:none;align-items:center;padding:.4em .9em;border:1px solid var(--pad-copy-line);border-radius:7px;background:transparent;color:var(--pad-copy-muted);font:inherit;font-size:.88em;font-weight:600;cursor:pointer}@media (scripting:enabled){.pad-copy-button{display:inline-flex}}.pad-copy-button:hover{color:var(--pad-copy-text);border-color:var(--pad-copy-muted)}.pad-copy-button:focus-visible{outline:2px solid var(--pad-copy-accent);outline-offset:2px}.pad-copy-button.is-copied{color:var(--pad-copy-done);border-color:var(--pad-copy-done)}.pad-copy-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#widgets">Widgets</a><span>/</span><span aria-current="page">copy</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>copy<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            A text in a code block with a button that copies it to the clipboard.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'text'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$value</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-opt">label</span>=<span class="hl-str">'Copy'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/copy</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>text</code>
+            </dt>
+            <dd>
+              The text to show and copy - a value, escaped. Not used by the pair form, whose content is the text.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>label</code>
+            </dt>
+            <dd>
+              The text of the button, <code>Copy</code> when not given.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{copy}</code> shows a text in a <code>&lt;pre&gt;&lt;code&gt;</code> block that selects as a whole with one click, and beside it a button that puts the text on the clipboard. The button needs scripting: a small script, written once per page (with the CSP nonce when one is asked for), copies through <code>navigator.clipboard</code>, or through the selection on a page over plain http, and says "Copied" on the button and to a screen reader. Without scripting there is no button and the text is selected and copied by hand.
+          </p>
+          <p>
+            The single tag takes the text as its first parameter - a value, so it is escaped and never read as template. As a pair the content is the text: it is rendered first, then trimmed, so fields and tags inside it are resolved - <code>{copy}padSqlDatabase={$app}.sqlite{/copy}</code>.
+          </p>
+          <p>
+            <code>label=</code> sets the text of the button. A single <code>{copy}</code> without a text is an error under the strict check. The colours are <code>--pad-copy-accent</code>, <code>-text</code>, <code>-muted</code>, <code>-line</code>, <code>-surface</code> and <code>-done</code> on <code>.pad-copy</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A command to copy
+            </h3>
+            <p class="example-about">
+              The text as a parameter - a literal, and a value with its own button label.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/copy/1-command.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Add the package:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'composer require pad/pad'</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Or start a fresh application:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$command</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/copy/1-command.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$command</span> <span class="hl-pun">=</span> <span class="hl-str">'pad new shop &amp;& pad serve 8000'</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7copy%EA%A4%B71-command.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Add the package:
+                  </p>
+                  <div class="pad-copy">
+                    <pre class="pad-copy-text" id="pad-copy-9d0816e0"><code>composer require pad/pad</code></pre><button type="button" class="pad-copy-button" data-pad-copy="pad-copy-9d0816e0" data-pad-label="Copy">Copy</button><span class="pad-copy-status" role="status"></span>
+                  </div>
+                  <script>
+                  (function () {
+                  if (window.padCopyReady) return;
+                  window.padCopyReady = true;
+                  function fallback(element) {
+                  var range = document.createRange();
+                  range.selectNodeContents(element);
+                  var selection = getSelection();
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+                  var done = document.execCommand && document.execCommand('copy');
+                  return done ? Promise.resolve() : Promise.reject(new Error('copy'));
+                  }
+                  function say(button, text, copied) {
+                  var status = button.parentNode.querySelector('.pad-copy-status');
+                  button.textContent = text;
+                  button.classList.toggle('is-copied', copied);
+                  if (status) status.textContent = copied ? 'Copied to the clipboard' : text;
+                  clearTimeout(button.padCopyTimer);
+                  button.padCopyTimer = setTimeout(function () {
+                  button.textContent = button.getAttribute('data-pad-label');
+                  button.classList.remove('is-copied');
+                  if (status) status.textContent = '';
+                  }, 2000);
+                  }
+                  document.addEventListener('click', function (e) {
+                  var button = e.target.closest && e.target.closest('button[data-pad-copy]');
+                  if (!button) return;
+                  var element = document.getElementById(button.getAttribute('data-pad-copy'));
+                  if (!element) return;
+                  var text = element.textContent;
+                  var copy = navigator.clipboard && window.isSecureContext
+                  ? navigator.clipboard.writeText(text) : fallback(element);
+                  copy.then(function () { say(button, 'Copied', true); },
+                  function () { say(button, 'Select and copy', false); });
+                  });
+                  })();
+                  </script>
+                  <p>
+                    Or start a fresh application:
+                  </p>
+                  <div class="pad-copy">
+                    <pre class="pad-copy-text" id="pad-copy-c8ee3b21"><code>pad new shop &amp;& pad serve 8000</code></pre><button type="button" class="pad-copy-button" data-pad-copy="pad-copy-c8ee3b21" data-pad-label="Copy command">Copy command</button><span class="pad-copy-status" role="status"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Rendered content
+            </h3>
+            <p class="example-about">
+              The pair form - the content renders first, so a field of the page goes into the copied text.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/copy/2-pair.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$app</span> = <span class="hl-str">'shop'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-opt">label</span>=<span class="hl-str">'Copy settings'</span><span class="hl-brc">}</span>
+<span class="hl-opt">padSqlDriver</span>=sqlite
+<span class="hl-opt">padSqlDatabase</span>=<span class="hl-brc">{</span><span class="hl-var">$app</span><span class="hl-brc">}</span>/<span class="hl-brc">{</span><span class="hl-var">$app</span><span class="hl-brc">}</span>.sqlite
+<span class="hl-brc">{</span><span class="hl-tag">/copy</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7copy%EA%A4%B72-pair.html">open alone</a>
+                </div>
+                <div class="result">
+                  <div class="pad-copy">
+                    <pre class="pad-copy-text" id="pad-copy-4475073a"><code>padSqlDriver=sqlite
+padSqlDatabase=shop/shop.sqlite</code></pre><button type="button" class="pad-copy-button" data-pad-copy="pad-copy-4475073a" data-pad-label="Copy settings">Copy settings</button><span class="pad-copy-status" role="status"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7modal.html">{modal}</a> <span class="about">A dialog over the page with the button that opens it - works with and without JavaScript.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7continue.html">← {continue}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7count.html">{count} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

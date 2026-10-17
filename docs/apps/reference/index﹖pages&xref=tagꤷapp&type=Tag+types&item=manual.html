@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -90,6 +90,46 @@
                   padAjax7ac65aac2372622ffb7918a0ead1294f.open("GET","http://localhost/pad/manual/?miscellaneous/pad&padInclude",true);
                   padAjax7ac65aac2372622ffb7918a0ead1294f.send();
                   </script><br>
+                  <hr>
+                  App: manual - Page: pages/alpine<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/alpine.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Alpine<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Alpine adds behaviour to HTML with attributes - and PAD writes that HTML. Both use braces,<br>and PAD reads every &lt;code&gt;<b>{<font color="purple">&lt;/code&gt; of a template as the start of a tag, so the state of a<br>component comes from the page's PHP as JSON instead<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;&lt;div x-data="{^profile</font>}</b>"&gt;                &lt;!-- $profile = [ 'name' =&gt; 'Ada', 'likes' =&gt; 12 ] --&gt;<br>  &lt;h2 x-text="name"&gt;&lt;/h2&gt;<br>  &lt;button @click="likes++"&gt;♥ &lt;span x-text="likes"&gt;&lt;/span&gt;&lt;/button&gt;<br>&lt;/div&gt;&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;The ^ sigil writes a field as JSON escaped for the attribute: a quote or a brace in a value<br>stays text. Three ways keep the braces apart:&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;b&gt;State from PHP&lt;/b&gt; - &lt;code&gt;x-data="{^field}"&lt;/code&gt;, as above.&lt;/li&gt;<br>  &lt;li&gt;&lt;b&gt;Components in a file&lt;/b&gt; - &lt;code&gt;Alpine.data('tabs', list =&gt; (...))&lt;/code&gt; in a script of<br>      &lt;code&gt;www/&lt;/code&gt;, called by name with PAD's data: &lt;code&gt;x-data="tabs({^tabs})"&lt;/code&gt;.<br>      Load the page's scripts before Alpine, and Alpine with &lt;code&gt;defer&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;&lt;b&gt;A space after the brace&lt;/b&gt; - &lt;code&gt;{ open: false }&lt;/code&gt; is no PAD tag; fine for a short<br>      object.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Talking back&lt;/h2&gt;<br><br>&lt;p&gt;A component asks the page that wrote it: &lt;code&gt;?page&amp;amp;padFormat=json&lt;/code&gt; answers what<br>the page's PHP names in &lt;code&gt;$padExpose&lt;/code&gt; (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>data_answers<font color="black">'</font></font>}</b>). A post carries the<br>session's token in an &lt;code&gt;X-CSRF-Token&lt;/code&gt; header, read from<br>&lt;code&gt;&lt;meta name="csrf-token" content="<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>"&gt;&lt;/code&gt;. A form's rules can live in<br>PHP for both sides - &lt;code&gt;padValidateClient ( $rules )&lt;/code&gt; for the browser,<br>&lt;code&gt;padValidate ( $rules )&lt;/code&gt; for the post (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>client_validation<font color="black">'</font></font>}</b>) - and<br>&lt;code&gt;padSse()&lt;/code&gt; streams events an &lt;code&gt;EventSource&lt;/code&gt; in &lt;code&gt;x-init&lt;/code&gt; turns into<br>state (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>server_sent_events<font color="black">'</font></font>}</b>).&lt;/p&gt;<br><br>&lt;p&gt;The Alpine application shows each of these, with its template, PHP and script:<br>&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>alpine/"&gt;alpine&lt;/a&gt;.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax644b33df2d579cff438d41e3592d22cf"></div>
+                        <script>
+                        padAjax644b33df2d579cff438d41e3592d22cf = new XMLHttpRequest();
+                        padAjax644b33df2d579cff438d41e3592d22cf.onreadystatechange=function() {
+                        if (padAjax644b33df2d579cff438d41e3592d22cf.readyState === 4) {
+                        if (padAjax644b33df2d579cff438d41e3592d22cf.status === 200) {
+                        document.getElementById("padAjax644b33df2d579cff438d41e3592d22cf").innerHTML=padAjax644b33df2d579cff438d41e3592d22cf.responseText;
+                        } else {
+                        document.getElementById("padAjax644b33df2d579cff438d41e3592d22cf").innerHTML=padAjax644b33df2d579cff438d41e3592d22cf.statusText;
+                        }
+                        }
+                        }
+                        padAjax644b33df2d579cff438d41e3592d22cf.open("GET","http://localhost/pad/manual/?pages/alpine&padInclude",true);
+                        padAjax644b33df2d579cff438d41e3592d22cf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: manual - Page: pages/comments<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -189,7 +229,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Forms<font color="black">'</font></font>}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b>, <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>}</b> write the fields of a form. When the<br>form comes back with mistakes in it, each field shows again what was typed - escaped - and<br>the message for its mistake beside it. &lt;code&gt;padValidate&lt;/code&gt; in the page's PHP finds the<br>mistakes.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b> posts back to the page and carries the session's CSRF token (see<br>  <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>csrf_protection<font color="black">'</font></font>}</b>) and its name: &lt;code&gt;padPosted ( 'contact' )&lt;/code&gt; is true when<br>  this form came back, so a page with two forms knows which one did.&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>}</b> take the field name first; &lt;code&gt;label=&lt;/code&gt; writes a<br>  label tied to the field, &lt;code&gt;value=&lt;/code&gt; the value before anything was posted, and every<br>  other item is an attribute of the field, as <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>attrs<font color="black">'</font></font>}</b> writes it - &lt;code&gt;required&lt;/code&gt;,<br>  &lt;code&gt;rows=6&lt;/code&gt;, &lt;code&gt;placeholder='...'&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A checkbox or radio is checked when the posted value is its own value; a password or<br>  file field is never refilled.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Validation&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padValidate ( $rules )&lt;/code&gt; checks the posted values and answers one message per<br>field that breaks a rule, keyed by the field - empty when all is well. A second argument<br>checks other data; a third replaces messages, per field (&lt;code&gt;'email'&lt;/code&gt;) or per field<br>and rule (&lt;code&gt;'email.required'&lt;/code&gt;):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The rules: &lt;code&gt;required&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt;, &lt;code&gt;url&lt;/code&gt;, &lt;code&gt;numeric&lt;/code&gt;,<br>&lt;code&gt;integer&lt;/code&gt;, &lt;code&gt;min:n&lt;/code&gt; and &lt;code&gt;max:n&lt;/code&gt; (a length, or a value with<br>&lt;code&gt;numeric&lt;/code&gt; or &lt;code&gt;integer&lt;/code&gt;), &lt;code&gt;in:a,b,c&lt;/code&gt;, &lt;code&gt;regex:/.../&lt;/code&gt;,<br>&lt;code&gt;same:other_field&lt;/code&gt;, &lt;code&gt;accepted&lt;/code&gt; and &lt;code&gt;date&lt;/code&gt;. An empty field is<br>checked for &lt;code&gt;required&lt;/code&gt; only. A rule name nothing knows is an error.&lt;/p&gt;<br><br>&lt;h2&gt;After a failed post&lt;/h2&gt;<br><br>&lt;p&gt;The fields of the form that came back show the message beside them, in the words of their<br>own label, tied to the field with &lt;code&gt;aria-invalid&lt;/code&gt; and<br>&lt;code&gt;aria-describedby&lt;/code&gt; so a screen reader reads them together. Here the post is<br>pretended in the PHP, the way a visitor's would arrive:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;After a post that passes, store it and send the visitor on with &lt;code&gt;padRedirect ()&lt;/code&gt;:<br>a refresh of the page they land on does not post a second time.&lt;/p&gt;<br><br>&lt;h2&gt;Rules in the template&lt;/h2&gt;<br><br>&lt;p&gt;The rules can stand on the fields themselves: &lt;code&gt;rules='required|email'&lt;/code&gt; on an<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>}</b> or a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>}</b>. They are read from the page's template before its PHP<br>runs, and a post of the form is checked against them there - &lt;code&gt;padPosted ( 'contact' )&lt;/code&gt;<br>is true only for a post that kept them, so the PHP acts on a good post alone. A post that broke<br>one renders the form again, refilled, with the messages beside the fields and the form's<br>&lt;code&gt;error=&lt;/code&gt; above them (&lt;code&gt;error&lt;/code&gt; alone says "Please correct the errors<br>below."):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_4<font color="black">'</font><font color="black">,</font> skipResult</font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;Only what is written out counts: quoted rules, on a field with a quoted name, in a<br>  <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b> with a name that posts back to its own page. Rules on a field in a snippet, a<br>  custom tag, a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>page<font color="black">'</font></font>}</b> or a layout, rules made from a variable, rules in a form with<br>  &lt;code&gt;action=&lt;/code&gt; or &lt;code&gt;method='get'&lt;/code&gt; and rules on a file field are errors -<br>  nothing would check them.&lt;/li&gt;<br>  &lt;li&gt;Every field of the posted form that has rules is checked, also one in an <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>if<font color="black">'</font></font>}</b><br>  branch that did not render. A field that is there only sometimes keeps its check in the<br>  PHP: &lt;code&gt;padValidate&lt;/code&gt; adds its messages to those of the template.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;padFormFailed ( 'contact' )&lt;/code&gt; is true when the form came back and broke its<br>  rules.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Forms<font color="black">'</font></font>}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b>, <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>}</b> write the fields of a form. When the<br>form comes back with mistakes in it, each field shows again what was typed - escaped - and<br>the message for its mistake beside it. &lt;code&gt;padValidate&lt;/code&gt; in the page's PHP finds the<br>mistakes.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b> posts back to the page and carries the session's CSRF token (see<br>  <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>csrf_protection<font color="black">'</font></font>}</b>) and its name: &lt;code&gt;padPosted ( 'contact' )&lt;/code&gt; is true when<br>  this form came back, so a page with two forms knows which one did.&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>}</b> take the field name first; &lt;code&gt;label=&lt;/code&gt; writes a<br>  label tied to the field, &lt;code&gt;value=&lt;/code&gt; the value before anything was posted, and every<br>  other item is an attribute of the field, as <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>attrs<font color="black">'</font></font>}</b> writes it - &lt;code&gt;required&lt;/code&gt;,<br>  &lt;code&gt;rows=6&lt;/code&gt;, &lt;code&gt;placeholder='...'&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A checkbox or radio is checked when the posted value is its own value; a password or<br>  file field is never refilled.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Validation&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padValidate ( $rules )&lt;/code&gt; checks the posted values and answers one message per<br>field that breaks a rule, keyed by the field - empty when all is well. A second argument<br>checks other data; a third replaces messages, per field (&lt;code&gt;'email'&lt;/code&gt;) or per field<br>and rule (&lt;code&gt;'email.required'&lt;/code&gt;):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_2<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The rules: &lt;code&gt;required&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt;, &lt;code&gt;url&lt;/code&gt;, &lt;code&gt;numeric&lt;/code&gt;,<br>&lt;code&gt;integer&lt;/code&gt;, &lt;code&gt;min:n&lt;/code&gt; and &lt;code&gt;max:n&lt;/code&gt; (a length, or a value with<br>&lt;code&gt;numeric&lt;/code&gt; or &lt;code&gt;integer&lt;/code&gt;), &lt;code&gt;in:a,b,c&lt;/code&gt;, &lt;code&gt;regex:/.../&lt;/code&gt;,<br>&lt;code&gt;same:other_field&lt;/code&gt;, &lt;code&gt;accepted&lt;/code&gt; and &lt;code&gt;date&lt;/code&gt;. An empty field is<br>checked for &lt;code&gt;required&lt;/code&gt; and &lt;code&gt;accepted&lt;/code&gt; only. A rule name nothing knows is an error.&lt;/p&gt;<br><br>&lt;h2&gt;After a failed post&lt;/h2&gt;<br><br>&lt;p&gt;The fields of the form that came back show the message beside them, in the words of their<br>own label, tied to the field with &lt;code&gt;aria-invalid&lt;/code&gt; and<br>&lt;code&gt;aria-describedby&lt;/code&gt; so a screen reader reads them together. Here the post is<br>pretended in the PHP, the way a visitor's would arrive:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;After a post that passes, store it and send the visitor on with &lt;code&gt;padRedirect ()&lt;/code&gt;:<br>a refresh of the page they land on does not post a second time.&lt;/p&gt;<br><br>&lt;h2&gt;Rules in the template&lt;/h2&gt;<br><br>&lt;p&gt;The rules can stand on the fields themselves: &lt;code&gt;rules='required|email'&lt;/code&gt; on an<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>}</b> or a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>}</b>. They are read from the page's template before its PHP<br>runs, and a post of the form is checked against them there - &lt;code&gt;padPosted ( 'contact' )&lt;/code&gt;<br>is true only for a post that kept them, so the PHP acts on a good post alone. A post that broke<br>one renders the form again, refilled, with the messages beside the fields and the form's<br>&lt;code&gt;error=&lt;/code&gt; above them (&lt;code&gt;error&lt;/code&gt; alone says "Please correct the errors<br>below."):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_4<font color="black">'</font><font color="black">,</font> skipResult</font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;Only what is written out counts: quoted rules, on a field with a quoted name, in a<br>  <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b> with a name that posts back to its own page. Rules on a field in a snippet, a<br>  custom tag, a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>page<font color="black">'</font></font>}</b> or a layout, rules made from a variable, rules in a form with<br>  &lt;code&gt;action=&lt;/code&gt; or &lt;code&gt;method='get'&lt;/code&gt; and rules on a file field are errors -<br>  nothing would check them.&lt;/li&gt;<br>  &lt;li&gt;Every field of the posted form that has rules is checked, also one in an <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>if<font color="black">'</font></font>}</b><br>  branch that did not render. A field that is there only sometimes keeps its check in the<br>  PHP: &lt;code&gt;padValidate&lt;/code&gt; adds its messages to those of the template.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;padFormFailed ( 'contact' )&lt;/code&gt; is true when the form came back and broke its<br>  rules.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax766a6cb5376f3cfba0783f41f967d73c"></div>
@@ -206,6 +246,86 @@
                         }
                         padAjax766a6cb5376f3cfba0783f41f967d73c.open("GET","http://localhost/pad/manual/?pages/forms&padInclude",true);
                         padAjax766a6cb5376f3cfba0783f41f967d73c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/htmx<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/htmx.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>htmx<font color="black">'</font></font>}</b><br><br>&lt;p&gt;htmx asks the server for a part of the page and swaps the answer in - HTML over the wire,<br>no JavaScript of your own. A PAD template already has names on its parts: every<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>fragment<font color="black">'</font></font>}</b> can be asked for alone, so the template that renders the first visit also<br>answers every question htmx asks after it.&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;&lt;input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results"&gt;<br><br>&lt;ul id="results"&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">products</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/ul&gt;&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;h2&gt;Which part answers&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;b&gt;By the target.&lt;/b&gt; htmx sends the id of the element it swaps in &lt;code&gt;HX-Target&lt;/code&gt;; a<br>      request of htmx that names no fragment itself gets the fragment called like that element,<br>      when the page has one - and the whole page when it has none.&lt;/li&gt;<br>  &lt;li&gt;&lt;b&gt;By the address.&lt;/b&gt; &lt;code&gt;&amp;amp;padFragment=rows&lt;/code&gt; names the fragment outright - for a<br>      target without an id (&lt;code&gt;hx-target="closest tr"&lt;/code&gt;, &lt;code&gt;this&lt;/code&gt;) or a part other<br>      than the target.&lt;/li&gt;<br>  &lt;li&gt;&lt;b&gt;By the PHP.&lt;/b&gt; &lt;code&gt;$padFragmentOnly = 'row'&lt;/code&gt; decides in the page's PHP. A fragment<br>      inside a loop answers with the first row it renders: narrow the rows to the one asked<br>      for.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Posts and forms&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;With &lt;code&gt;$padCsrf&lt;/code&gt; on, a post needs the session's token. A <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b> carries it;<br>      for an &lt;code&gt;hx-post&lt;/code&gt; on anything else put it on the body once:<br>      &lt;code&gt;&lt;body hx-headers="{^headers}"&gt;&lt;/code&gt; with<br>      &lt;code&gt;$headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ]&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>}</b> with &lt;code&gt;rules=&lt;/code&gt; posted through htmx comes back as its own fragment -<br>      refilled, with PAD's messages - and with &lt;code&gt;client&lt;/code&gt; the browser checks the same<br>      rules first (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>client_validation<font color="black">'</font></font>}</b>).&lt;/li&gt;<br>  &lt;li&gt;Elements of an answer marked &lt;code&gt;hx-swap-oob="true"&lt;/code&gt; go where their id is: the<br>      count in the header, a summary beside a list.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Pushed by the server&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padSse()&lt;/code&gt; (<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>server_sent_events<font color="black">'</font></font>}</b>) streams events; with htmx's sse<br>extension (&lt;code&gt;hx-ext="sse" sse-connect="?ticker"&lt;/code&gt;) every event's HTML is swapped in as<br>it arrives.&lt;/p&gt;<br><br>&lt;p&gt;The htmx application shows all of it, each example with its template and PHP:<br>&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>htmx/"&gt;htmx&lt;/a&gt; - active search, lazy loading, infinite scroll, inline<br>editing, forms, out-of-band updates and server-sent events.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax339ccecb085f389ffa7d73364487e897"></div>
+                        <script>
+                        padAjax339ccecb085f389ffa7d73364487e897 = new XMLHttpRequest();
+                        padAjax339ccecb085f389ffa7d73364487e897.onreadystatechange=function() {
+                        if (padAjax339ccecb085f389ffa7d73364487e897.readyState === 4) {
+                        if (padAjax339ccecb085f389ffa7d73364487e897.status === 200) {
+                        document.getElementById("padAjax339ccecb085f389ffa7d73364487e897").innerHTML=padAjax339ccecb085f389ffa7d73364487e897.responseText;
+                        } else {
+                        document.getElementById("padAjax339ccecb085f389ffa7d73364487e897").innerHTML=padAjax339ccecb085f389ffa7d73364487e897.statusText;
+                        }
+                        }
+                        }
+                        padAjax339ccecb085f389ffa7d73364487e897.open("GET","http://localhost/pad/manual/?pages/htmx&padInclude",true);
+                        padAjax339ccecb085f389ffa7d73364487e897.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/islands<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/islands.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Islands of any framework<font color="black">'</font></font>}</b><br><br>&lt;p&gt;An island is a place in a PAD page where a component takes over: an element naming the<br>component, its props as JSON in &lt;code&gt;data-props&lt;/code&gt;, and HTML of PAD's own inside that<br>shows until the component runs. Which framework the component is written in does not matter to<br>the page:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;&lt;div data-island="VueCounter" data-props="{^counter}"&gt;<b>{<font color="green"><font color="red">$</font>counter.start</font>}</b>&lt;/div&gt;<br>&lt;div data-island="Shelf" data-load="visible" data-props="{^shelf}"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;A small runtime in the build pairs each name with a component and its framework, and mounts<br>it - fetching the component, and its framework with it, only when an island of that name is on<br>the page and due:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;islands({<br>  VueCounter: vue(() =&gt; import('./islands/Counter.vue')),<br>  Shelf:      react(() =&gt; import('./islands/Shelf.react.jsx'))<br>});&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;data-load&lt;/code&gt; says when: &lt;code&gt;eager&lt;/code&gt; (at once), &lt;code&gt;idle&lt;/code&gt; (when the<br>      browser has nothing else to do) or &lt;code&gt;visible&lt;/code&gt; (when the island scrolls into<br>      view).&lt;/li&gt;<br>  &lt;li&gt;An adapter per framework mounts a component with props and answers how to unmount it -<br>      React, Vue, Svelte, Preact and Solid each take a dozen lines.&lt;/li&gt;<br>  &lt;li&gt;Islands of different frameworks share state through a store, and talk to PAD through the<br>      page's JSON (&lt;code&gt;$padExpose&lt;/code&gt;) and posts with the CSRF token.&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>vite<font color="black">'</font></font>}</b> builds the components; <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>vite<font color="black">'</font></font>}</b> links the build, or the dev server while<br>      it runs.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;The islands application has all of it, with the runtime, the adapters and the components<br>beside each example: &lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>islands/"&gt;islands&lt;/a&gt;. The react application does the<br>same without a build step, with Babel in the browser.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd3ff0ab04c4041dda1384d94d316bd35"></div>
+                        <script>
+                        padAjaxd3ff0ab04c4041dda1384d94d316bd35 = new XMLHttpRequest();
+                        padAjaxd3ff0ab04c4041dda1384d94d316bd35.onreadystatechange=function() {
+                        if (padAjaxd3ff0ab04c4041dda1384d94d316bd35.readyState === 4) {
+                        if (padAjaxd3ff0ab04c4041dda1384d94d316bd35.status === 200) {
+                        document.getElementById("padAjaxd3ff0ab04c4041dda1384d94d316bd35").innerHTML=padAjaxd3ff0ab04c4041dda1384d94d316bd35.responseText;
+                        } else {
+                        document.getElementById("padAjaxd3ff0ab04c4041dda1384d94d316bd35").innerHTML=padAjaxd3ff0ab04c4041dda1384d94d316bd35.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd3ff0ab04c4041dda1384d94d316bd35.open("GET","http://localhost/pad/manual/?pages/islands&padInclude",true);
+                        padAjaxd3ff0ab04c4041dda1384d94d316bd35.send();
                         </script>
                       </td>
                     </tr>
@@ -251,6 +371,46 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: manual - Page: pages/offline_applications<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/offline_applications.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Offline applications<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;pad pack&lt;/code&gt; puts a whole application - its pages, its PHP, its &lt;code&gt;www/&lt;/code&gt; files -<br>with the PAD engine and PHP compiled to WebAssembly into one directory. Opened from the disk it<br>runs in the browser tab; put on any https host it installs as an application and works offline.<br>There is no PHP server at all, and what the application writes - its SQLite database first - is<br>kept in the browser between visits.&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;pad pack --install            # once: what it packs with, in ~/.cache/pad-wasm<br>pad pack notes                # DATA/wasm/notes/<br>pad pack notes --serve        # served on http://127.0.0.1:8090/ - installable<br>pad pack notes,ledger,kanban  # several, with a launcher&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/offline_applications_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Two ways to run it&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="4"&gt;<br>  &lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;Opened from the disk&lt;/th&gt;&lt;th&gt;Served over https, or on localhost&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;Start&lt;/td&gt;&lt;td&gt;double-click &lt;code&gt;index.html&lt;/code&gt;&lt;/td&gt;&lt;td&gt;open the address; the browser offers to install it&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;PHP runs&lt;/td&gt;&lt;td&gt;in the tab&lt;/td&gt;&lt;td&gt;in the service worker, for every window&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;The pages&lt;/td&gt;&lt;td&gt;in a frame filling the window, the address after the &lt;code&gt;#&lt;/code&gt;&lt;/td&gt;&lt;td&gt;at their own addresses&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;Offline&lt;/td&gt;&lt;td&gt;always&lt;/td&gt;&lt;td&gt;after the first visit&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;Both answer every request as a server would: cookies are kept - sessions, CSRF tokens, flash<br>messages, a login - any method and header of the page's own JavaScript is passed on, an upload<br>arrives in &lt;code&gt;$_FILES&lt;/code&gt;, an answer may be binary or a download.&lt;/p&gt;<br><br>&lt;h2&gt;What is kept&lt;/h2&gt;<br><br>&lt;p&gt;Everything under &lt;code&gt;DATA/&lt;/code&gt; - SQLite databases, uploads, JSON files, sessions - is written<br>to the browser's IndexedDB after every request that changed it, and put back when the<br>application starts again. A new pack of the same applications finds that data: an application<br>that keeps its schema in &lt;code&gt;_migrations/&lt;/code&gt; and runs &lt;code&gt;padMigrate()&lt;/code&gt; when one is pending<br>brings the database a visitor kept up to date - the ledger application does.&lt;/p&gt;<br><br>&lt;h2&gt;The database&lt;/h2&gt;<br><br>&lt;p&gt;PHP in the browser has SQLite and no MySQL. An application that is SQLite already<br>(&lt;code&gt;padSqlDriver=sqlite&lt;/code&gt;, see <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>sqlite<font color="black">'</font></font>}</b>) runs as it is. One written for MySQL on its<br>server can switch for the browser in &lt;code&gt;_offline.json&lt;/code&gt;, whose &lt;code&gt;env&lt;/code&gt; the runtime passes<br>where &lt;code&gt;padEnv&lt;/code&gt; looks first:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;{<br>  "name": "Shop", "short": "Shop", "theme": "#0f766e",<br>  "icon": "icon.svg",<br>  "icons": { "192": "icon-192.png", "512": "icon-512.png" },<br>  "env": {<br>    "padSqlDriver": "sqlite",<br>    "padSqlDatabase": "shop/shop.sqlite",<br>    "padSqlSetup": "_install/schema.sql"<br>  }<br>}&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;&lt;code&gt;.env&lt;/code&gt; files are never packed: they hold a server's passwords, and whoever has the pack<br>can read it.&lt;/p&gt;<br><br>&lt;h2&gt;Import and export&lt;/h2&gt;<br><br>&lt;p&gt;The badge in a corner of every page - or &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;K&lt;/kbd&gt; - opens the<br>runtime's panel. Its Database tab browses the tables, runs SQL, exports a database as the<br>&lt;code&gt;.sqlite&lt;/code&gt; file or as SQL that builds it again, and imports either - SQLite checks what comes<br>in before it replaces anything. Its Storage tab backs up all of &lt;code&gt;DATA/&lt;/code&gt; as one zip and puts<br>such a zip back. An application can offer the same from its own pages, on a server as in the<br>browser: the database file with &lt;code&gt;padUploadSend&lt;/code&gt;, its rows as JSON or CSV with<br>&lt;code&gt;$padExpose&lt;/code&gt; - the notes application's backup page does both.&lt;/p&gt;<br><br>&lt;h2&gt;The page's own requests&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;fetch&lt;/code&gt;, &lt;code&gt;XMLHttpRequest&lt;/code&gt;, a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>live<font color="black">'</font></font>}</b> region, an <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ajax<font color="black">'</font></font>}</b>, htmx asking for a<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>fragment<font color="black">'</font></font>}</b>, an &lt;code&gt;EventSource&lt;/code&gt; - they all reach PHP in the browser. One PHP answers<br>every request of the application, so a stream that held it would hold the application:<br>&lt;code&gt;padSse&lt;/code&gt; answers one round per connection there, and &lt;code&gt;EventSource&lt;/code&gt; comes back after<br>the interval by itself, with the last event's id - see <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>server_sent_events<font color="black">'</font></font>}</b>. A page<br>that should behave differently in the browser asks &lt;code&gt;padWasm()&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/offline_applications_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Limits&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;No MySQL, and no network from PHP: <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>curl<font color="black">'</font></font>}</b>, &lt;code&gt;padCurl&lt;/code&gt;, &lt;code&gt;padPrefetch&lt;/code&gt; and a<br>      fetch of the server's own pages answer nothing offline.&lt;/li&gt;<br>  &lt;li&gt;No sodium and no intl in the build - &lt;code&gt;padEncrypt&lt;/code&gt; and the intl formatting fall back or<br>      are not there; the sequence subsystem's large tables are left out.&lt;/li&gt;<br>  &lt;li&gt;One request at a time: a page that sleeps holds the others.&lt;/li&gt;<br>  &lt;li&gt;Opened from the disk, an application's module scripts cannot import their neighbours and<br>      &lt;code&gt;document.cookie&lt;/code&gt; does not show PHP's cookies. Served over https none of this<br>      applies.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;The applications&lt;/h2&gt;<br><br>&lt;p&gt;Three applications are made to show it, each running on this server as well:&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>notes/"&gt;notes&lt;/a&gt; - Markdown notes in SQLite: search as you type, live pins,<br>      attachments, a JSON export and import, the database as a download.&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>ledger/"&gt;ledger&lt;/a&gt; - a household budget built by its migrations: charts,<br>      budgets, CSV in and out, a quick entry posted as JSON.&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>kanban/"&gt;kanban&lt;/a&gt; - a task board: drag and drop posted as JSON, fragments,<br>      every open window kept in step by server-sent events.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;&lt;code&gt;pad pack notes,ledger,kanban&lt;/code&gt; packs them together, with a launcher. How it is built -<br>the runtime, the service worker, the panel - is in &lt;code&gt;wasm/README.md&lt;/code&gt;.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe40b8211bc24fe7bf52af520fe830fcf"></div>
+                        <script>
+                        padAjaxe40b8211bc24fe7bf52af520fe830fcf = new XMLHttpRequest();
+                        padAjaxe40b8211bc24fe7bf52af520fe830fcf.onreadystatechange=function() {
+                        if (padAjaxe40b8211bc24fe7bf52af520fe830fcf.readyState === 4) {
+                        if (padAjaxe40b8211bc24fe7bf52af520fe830fcf.status === 200) {
+                        document.getElementById("padAjaxe40b8211bc24fe7bf52af520fe830fcf").innerHTML=padAjaxe40b8211bc24fe7bf52af520fe830fcf.responseText;
+                        } else {
+                        document.getElementById("padAjaxe40b8211bc24fe7bf52af520fe830fcf").innerHTML=padAjaxe40b8211bc24fe7bf52af520fe830fcf.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe40b8211bc24fe7bf52af520fe830fcf.open("GET","http://localhost/pad/manual/?pages/offline_applications&padInclude",true);
+                        padAjaxe40b8211bc24fe7bf52af520fe830fcf.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: manual - Page: pages/pad_command<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -286,6 +446,46 @@
                         }
                         padAjax6f14807736bdafd00ee40cdf2d7ea5c4.open("GET","http://localhost/pad/manual/?pages/pad_command&padInclude",true);
                         padAjax6f14807736bdafd00ee40cdf2d7ea5c4.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/pad_in_the_browser<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/pad_in_the_browser.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>PAD in the browser<font color="black">'</font></font>}</b><br><br>&lt;p&gt;PAD also runs on PHP compiled to WebAssembly, inside a browser tab, with no PAD server at<br>all. &lt;code&gt;php wasm/build.php&lt;/code&gt; bundles the engine into one file, and the page<br>&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>wasm/"&gt;wasm/&lt;/a&gt; loads PHP into the tab, writes the engine into its memory<br>and renders the template you type with the JSON data beside it - the example below, on this<br>server, is the page's sample:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pad_in_the_browser_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;PHP comes from the &lt;code&gt;@php-wasm&lt;/code&gt; packages of WordPress Playground, loaded from<br>      jsDelivr: about 20 MB, once.&lt;/li&gt;<br>  &lt;li&gt;The template can only reach the browser tab it runs in, so there is no PHP function list<br>      to keep; there is no database either, and the sequence subsystem's large tables are left<br>      out of the bundle.&lt;/li&gt;<br>  &lt;li&gt;It is experimental: &lt;code&gt;wasm/README.md&lt;/code&gt; says what was verified - the engine on the<br>      PHP 8.3, 8.4 and 8.5 WebAssembly builds, the page in Chrome - and what was not.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;A whole application runs in the browser the same way, its SQLite database kept there between<br>visits, opened from the disk or installed from an https host: <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>offline_applications<font color="black">'</font></font>}</b>.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5fb7297621898a2f8758464209ffa363"></div>
+                        <script>
+                        padAjax5fb7297621898a2f8758464209ffa363 = new XMLHttpRequest();
+                        padAjax5fb7297621898a2f8758464209ffa363.onreadystatechange=function() {
+                        if (padAjax5fb7297621898a2f8758464209ffa363.readyState === 4) {
+                        if (padAjax5fb7297621898a2f8758464209ffa363.status === 200) {
+                        document.getElementById("padAjax5fb7297621898a2f8758464209ffa363").innerHTML=padAjax5fb7297621898a2f8758464209ffa363.responseText;
+                        } else {
+                        document.getElementById("padAjax5fb7297621898a2f8758464209ffa363").innerHTML=padAjax5fb7297621898a2f8758464209ffa363.statusText;
+                        }
+                        }
+                        }
+                        padAjax5fb7297621898a2f8758464209ffa363.open("GET","http://localhost/pad/manual/?pages/pad_in_the_browser&padInclude",true);
+                        padAjax5fb7297621898a2f8758464209ffa363.send();
                         </script>
                       </td>
                     </tr>
@@ -330,6 +530,86 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: manual - Page: pages/response_fragments<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/response_fragments.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Response fragments<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. &lt;code&gt;<b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>...<b>{/<font color="blue">fragment</font><font color="red"></font>}</b>&lt;/code&gt; names such a part. A normal request renders the whole page, the fragment in its place:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/response_fragments_1<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A request that adds &lt;code&gt;&amp;amp;padFragment=order-list&lt;/code&gt; to the URL gets that fragment and nothing else - the same template serves the full page and the update:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/response_fragments_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;How it works&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;The page renders up to the end of the fragment, and the fragment's rendering - closing pipe included - is the whole response. What comes after it is not rendered at all.&lt;/li&gt;<br>  &lt;li&gt;The response is bare, like a &lt;code&gt;padInclude&lt;/code&gt; request: no wrapper, no tidy.&lt;/li&gt;<br>  &lt;li&gt;The first fragment of that name to finish rendering is the one sent. Keep a fragment unconditional and put conditions inside it: a request for a fragment that never rendered is an error under the strict check, and an empty 404 otherwise.&lt;/li&gt;<br>  &lt;li&gt;The page's PHP may decide too: &lt;code&gt;$padFragmentOnly = 'order-list';&lt;/code&gt; - for instance when the request carries an &lt;code&gt;HX-Request&lt;/code&gt; header.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;With ajax and HTMX&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">ajax </font><font color="red"><font color="black">'</font>orders<font color="black">'</font><font color="black">,</font> fragment=<font color="black">'</font>order-list<font color="black">'</font></font>}</b>&lt;/code&gt; fetches only that fragment of the page into its div.&lt;/li&gt;<br>  &lt;li&gt;HTMX: &lt;code&gt;&lt;div hx-get="?orders&amp;amp;padFragment=order-list" hx-trigger="every 5s"&gt;&lt;/code&gt; swaps in the fresh list.&lt;/li&gt;<br>  &lt;li&gt;An HTMX request needs no &lt;code&gt;padFragment&lt;/code&gt; when it swaps an element named like the fragment: &lt;code&gt;hx-target="#order-list"&lt;/code&gt; sends &lt;code&gt;HX-Target: order-list&lt;/code&gt;, and a page with a fragment of that name answers it alone. A page without one renders whole, as it would otherwise. See <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>htmx<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd7af6d6b488fa7f2ff52512ba31d99da"></div>
+                        <script>
+                        padAjaxd7af6d6b488fa7f2ff52512ba31d99da = new XMLHttpRequest();
+                        padAjaxd7af6d6b488fa7f2ff52512ba31d99da.onreadystatechange=function() {
+                        if (padAjaxd7af6d6b488fa7f2ff52512ba31d99da.readyState === 4) {
+                        if (padAjaxd7af6d6b488fa7f2ff52512ba31d99da.status === 200) {
+                        document.getElementById("padAjaxd7af6d6b488fa7f2ff52512ba31d99da").innerHTML=padAjaxd7af6d6b488fa7f2ff52512ba31d99da.responseText;
+                        } else {
+                        document.getElementById("padAjaxd7af6d6b488fa7f2ff52512ba31d99da").innerHTML=padAjaxd7af6d6b488fa7f2ff52512ba31d99da.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd7af6d6b488fa7f2ff52512ba31d99da.open("GET","http://localhost/pad/manual/?pages/response_fragments&padInclude",true);
+                        padAjaxd7af6d6b488fa7f2ff52512ba31d99da.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/server_sent_events<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/server_sent_events.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Server-sent events<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page usually answers once. With &lt;code&gt;padSse()&lt;/code&gt; in its PHP it keeps the<br>connection open and sends events while they happen - what the browser's<br>&lt;code&gt;EventSource&lt;/code&gt; reads, and what htmx's sse extension, a React or an Alpine component<br>listen to. There is no template: the stream is the whole answer.&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;<span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// ticker.php - the producer sends the events itself<br>  </span><span style="color: #0000BB">padSse </span><span style="color: #007700">( function ( </span><span style="color: #0000BB">$send</span><span style="color: #007700">, </span><span style="color: #0000BB">$lastId </span><span style="color: #007700">) {<br>    foreach ( [ </span><span style="color: #DD0000">'one'</span><span style="color: #007700">, </span><span style="color: #DD0000">'two'</span><span style="color: #007700">, </span><span style="color: #DD0000">'three' </span><span style="color: #007700">] as </span><span style="color: #0000BB">$n </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$send </span><span style="color: #007700">( </span><span style="color: #DD0000">'word'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$n</span><span style="color: #007700">, </span><span style="color: #DD0000">'word' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word </span><span style="color: #007700">], </span><span style="color: #0000BB">$n </span><span style="color: #007700">);<br>      </span><span style="color: #0000BB">sleep </span><span style="color: #007700">( </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>    }<br>  }, [ </span><span style="color: #DD0000">'retry' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3000 </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;</span>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;The browser side is a few lines, with no library:&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;const source = new EventSource('?ticker');<br>source.addEventListener('word', event =&gt; show(JSON.parse(event.data)));&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;h2&gt;On an interval&lt;/h2&gt;<br><br>&lt;p&gt;Given &lt;code&gt;every&lt;/code&gt;, PAD calls the producer itself, every so many seconds, and sends<br>what it answers as the event named by &lt;code&gt;event&lt;/code&gt;: an array goes as JSON,<br>&lt;code&gt;NULL&lt;/code&gt; sends nothing that round, &lt;code&gt;FALSE&lt;/code&gt; ends the stream.&lt;/p&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>&lt;code&gt;<span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// stats.php - a fresh number every two seconds, for at most a minute<br>  </span><span style="color: #0000BB">padSse </span><span style="color: #007700">( fn () =&gt; [ </span><span style="color: #DD0000">'orders' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"FIELD count(*) FROM orders" </span><span style="color: #007700">) ],<br>           [ </span><span style="color: #DD0000">'every' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'for' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">60</span><span style="color: #007700">, </span><span style="color: #DD0000">'event' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'stats' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;</span>&lt;/code&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;table border="1" cellpadding="4"&gt;<br>  &lt;tr&gt;&lt;th&gt;Option&lt;/th&gt;&lt;th&gt;Meaning&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;every&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Seconds between two calls of the producer; without it the producer is called once and loops itself&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;for&lt;/code&gt;&lt;/td&gt;&lt;td&gt;How long a stream with &lt;code&gt;every&lt;/code&gt; runs at most - 60 seconds unless said otherwise&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;event&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The name of the event an answer of the producer is sent as - &lt;code&gt;message&lt;/code&gt; unless said otherwise&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;retry&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Milliseconds the browser waits before it reconnects when the stream ended&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;What to know&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;$send ( $event, $data, $id )&lt;/code&gt; answers whether the visitor is still<br>      connected; a long loop stops when it says no. Text data that runs over lines goes as<br>      several &lt;code&gt;data:&lt;/code&gt; lines, which the browser joins again.&lt;/li&gt;<br>  &lt;li&gt;An event needs data: the browser drops one whose data is empty, so an event a page<br>      closes the stream on says something - &lt;code&gt;$send ( 'done', 'done' )&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;The browser reconnects by itself and sends the id of the last event it had - the<br>      producer gets it as its second argument, &lt;code&gt;padSseLastId()&lt;/code&gt; reads it anywhere.&lt;/li&gt;<br>  &lt;li&gt;The session is written and closed before the first event, so the visitor's other<br>      requests do not wait for the stream; read what the producer needs from it first.&lt;/li&gt;<br>  &lt;li&gt;A stream holds a PHP worker for as long as it runs: keep &lt;code&gt;for&lt;/code&gt; short and let<br>      the browser reconnect. Nothing of the answer is cached, compressed or buffered by PAD;<br>      &lt;code&gt;X-Accel-Buffering: no&lt;/code&gt; asks nginx not to hold the events back.&lt;/li&gt;<br>  &lt;li&gt;In the browser - an application packed by &lt;code&gt;pad pack&lt;/code&gt;, see<br>      <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>offline_applications<font color="black">'</font></font>}</b> - one PHP answers the whole tab, so a stream is one round<br>      there: the &lt;code&gt;every&lt;/code&gt; form calls its producer once and asks the browser back after<br>      the interval, a &lt;code&gt;FALSE&lt;/code&gt; with nothing sent is answered 204 and ends it, and the<br>      loop form ends at the first event sent a tenth of a second after it began.<br>      &lt;code&gt;padWasm()&lt;/code&gt; says where a page runs.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;p&gt;The htmx application streams rows of HTML that its sse extension swaps in<br>(&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>htmx/?examples/live"&gt;htmx/?examples/live&lt;/a&gt;), the Alpine application JSON<br>an &lt;code&gt;EventSource&lt;/code&gt; turns into state<br>(&lt;a href="<b>{<font color="green"><font color="red">$</font>padHost</font>}</b>alpine/?examples/live"&gt;alpine/?examples/live&lt;/a&gt;).&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5db14f6f78d840b1fb00422292a09e90"></div>
+                        <script>
+                        padAjax5db14f6f78d840b1fb00422292a09e90 = new XMLHttpRequest();
+                        padAjax5db14f6f78d840b1fb00422292a09e90.onreadystatechange=function() {
+                        if (padAjax5db14f6f78d840b1fb00422292a09e90.readyState === 4) {
+                        if (padAjax5db14f6f78d840b1fb00422292a09e90.status === 200) {
+                        document.getElementById("padAjax5db14f6f78d840b1fb00422292a09e90").innerHTML=padAjax5db14f6f78d840b1fb00422292a09e90.responseText;
+                        } else {
+                        document.getElementById("padAjax5db14f6f78d840b1fb00422292a09e90").innerHTML=padAjax5db14f6f78d840b1fb00422292a09e90.statusText;
+                        }
+                        }
+                        }
+                        padAjax5db14f6f78d840b1fb00422292a09e90.open("GET","http://localhost/pad/manual/?pages/server_sent_events&padInclude",true);
+                        padAjax5db14f6f78d840b1fb00422292a09e90.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -344,7 +624,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

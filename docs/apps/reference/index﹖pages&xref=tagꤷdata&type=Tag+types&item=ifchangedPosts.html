@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - ifchangedPosts
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - ifchangedPosts
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: tags - Page: examples/ifchanged/2-several<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/ifchanged/2-several.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Several values and <font color="black">@</font>else<font color="black">@</font><font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A change in either value renders the heading; an unchanged row renders the <font color="black">@</font>else<font color="black">@</font> part.<font color="black">'</font></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>ifchangedPosts<font color="black">'</font></font>}</b><br>year,month,post<br>2026,September,Launch<br>2026,September,First fix<br>2026,October,Autumn release<br>2027,October,Next year<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">ifchangedPosts</font><font color="red"></font>}</b><br>  &lt;li&gt;<b>{<font color="blue">ifchanged </font><font color="red"><font color="red">$</font>year<font color="black">,</font> <font color="red">$</font>month</font>}</b>&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>month</font>}</b> <b>{<font color="green"><font color="red">$</font>year</font>}</b>&lt;/strong&gt;<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&amp;mdash; same month<b>{/<font color="blue">ifchanged</font><font color="red"></font>}</b>: <b>{<font color="green"><font color="red">$</font>post</font>}</b>&lt;/li&gt;<br><b>{/<font color="blue">ifchangedPosts</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax503f1b5b537a1701723ff50b7dd1ffd6"></div>
+                        <script>
+                        padAjax503f1b5b537a1701723ff50b7dd1ffd6 = new XMLHttpRequest();
+                        padAjax503f1b5b537a1701723ff50b7dd1ffd6.onreadystatechange=function() {
+                        if (padAjax503f1b5b537a1701723ff50b7dd1ffd6.readyState === 4) {
+                        if (padAjax503f1b5b537a1701723ff50b7dd1ffd6.status === 200) {
+                        document.getElementById("padAjax503f1b5b537a1701723ff50b7dd1ffd6").innerHTML=padAjax503f1b5b537a1701723ff50b7dd1ffd6.responseText;
+                        } else {
+                        document.getElementById("padAjax503f1b5b537a1701723ff50b7dd1ffd6").innerHTML=padAjax503f1b5b537a1701723ff50b7dd1ffd6.statusText;
+                        }
+                        }
+                        }
+                        padAjax503f1b5b537a1701723ff50b7dd1ffd6.open("GET","http://localhost/pad/tags/?examples/ifchanged/2-several&padInclude",true);
+                        padAjax503f1b5b537a1701723ff50b7dd1ffd6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

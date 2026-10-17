@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tags - validator
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - validator
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: alpine - Page: examples/form<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/form.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/form.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// One list of rules for both sides. padValidate checks a post against it; for the browser<br>  // padValidateClient exports the same list, every rule with the message padValidate would<br>  // give, and {validator} in the template brings the checker that reads it. A good post is<br>  // kept in the session; the answer is JSON either way - the messages, or the new list.<br><br>  </span><span style="color: #0000BB">$rules </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|max:40'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|email'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'team'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|in:web,platform,data'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'seats' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|integer|min:1|max:8' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$people </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'alpinePeople'</span><span style="color: #007700">, [] );<br>  </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$saved  </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">);<br><br>    if ( ! </span><span style="color: #0000BB">$errors </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">array_unshift </span><span style="color: #007700">( </span><span style="color: #0000BB">$people</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'name' </span><span style="color: #007700">) ), </span><span style="color: #DD0000">'team' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'team' </span><span style="color: #007700">), </span><span style="color: #DD0000">'seats' </span><span style="color: #007700">=&gt; (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'seats' </span><span style="color: #007700">) ] );<br>      </span><span style="color: #0000BB">$saved </span><span style="color: #007700">= </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'alpinePeople'</span><span style="color: #007700">, </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$people</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">) );<br>      </span><span style="color: #0000BB">$people </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$people</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>    }<br><br>  }<br><br>  </span><span style="color: #0000BB">$start     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'rules' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padValidateClient </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">), </span><span style="color: #DD0000">'people' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$people </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'saved'</span><span style="color: #007700">, </span><span style="color: #DD0000">'errors'</span><span style="color: #007700">, </span><span style="color: #DD0000">'people' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="cols-2" x-data="signup({^start})"&gt;<br><br>  &lt;form novalidate @submit.prevent="send()" class="stack-fields"&gt;<br>    &lt;label class="label"&gt;Name &lt;input class="input" name="name" x-model="form.name" @blur="leave('name')" :class="errors.name &amp;& 'is-invalid'"&gt;&lt;/label&gt;<br>    &lt;span class="error" x-text="errors.name" x-show="errors.name" x-cloak&gt;&lt;/span&gt;<br><br>    &lt;label class="label"&gt;E-mail &lt;input class="input" name="email" type="email" x-model="form.email" @blur="leave('email')" :class="errors.email &amp;& 'is-invalid'"&gt;&lt;/label&gt;<br>    &lt;span class="error" x-text="errors.email" x-show="errors.email" x-cloak&gt;&lt;/span&gt;<br><br>    &lt;label class="label"&gt;Team<br>      &lt;select class="input" name="team" x-model="form.team" @change="leave('team')" :class="errors.team &amp;& 'is-invalid'"&gt;<br>        &lt;option value=""&gt;Choose ...&lt;/option&gt;<br>        &lt;option value="web"&gt;Web&lt;/option&gt;<br>        &lt;option value="platform"&gt;Platform&lt;/option&gt;<br>        &lt;option value="data"&gt;Data&lt;/option&gt;<br>        &lt;option value="sales"&gt;Sales - not one of the rules&lt;/option&gt;<br>      &lt;/select&gt;<br>    &lt;/label&gt;<br>    &lt;span class="error" x-text="errors.team" x-show="errors.team" x-cloak&gt;&lt;/span&gt;<br><br>    &lt;label class="label"&gt;Seats &lt;input class="input" name="seats" x-model="form.seats" @blur="leave('seats')" :class="errors.seats &amp;& 'is-invalid'"&gt;&lt;/label&gt;<br>    &lt;span class="error" x-text="errors.seats" x-show="errors.seats" x-cloak&gt;&lt;/span&gt;<br><br>    &lt;label class="small check-line"&gt;&lt;input type="checkbox" x-model="browser"&gt; Check in the browser first&lt;/label&gt;<br>    &lt;button :disabled="busy"&gt;Book&lt;/button&gt;<br>    &lt;p class="small" x-text="note" x-show="note" x-cloak&gt;&lt;/p&gt;<br>  &lt;/form&gt;<br><br>  &lt;div&gt;<br>    &lt;div class="panel-title"&gt;Booked in your session&lt;/div&gt;<br>    &lt;template x-for="(one, at) in people" :key="at"&gt;<br>      &lt;div class="card booked"&gt;&lt;strong x-text="one.name"&gt;&lt;/strong&gt; &lt;span class="badge" x-text="one.team"&gt;&lt;/span&gt; &lt;span class="muted small" x-text="one.seats + ' seats'"&gt;&lt;/span&gt;&lt;/div&gt;<br>    &lt;/template&gt;<br>    &lt;p class="muted small" x-show="people.length === 0"&gt;Nobody yet.&lt;/p&gt;<br>  &lt;/div&gt;<br><br>&lt;/div&gt;<br><br><b>{<font color="blue">validator</font><font color="red"></font>}</b><br>&lt;script src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>alpine/examples/form.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd5f162b7139797689258b4d0cffb3516"></div>
+                        <script>
+                        padAjaxd5f162b7139797689258b4d0cffb3516 = new XMLHttpRequest();
+                        padAjaxd5f162b7139797689258b4d0cffb3516.onreadystatechange=function() {
+                        if (padAjaxd5f162b7139797689258b4d0cffb3516.readyState === 4) {
+                        if (padAjaxd5f162b7139797689258b4d0cffb3516.status === 200) {
+                        document.getElementById("padAjaxd5f162b7139797689258b4d0cffb3516").innerHTML=padAjaxd5f162b7139797689258b4d0cffb3516.responseText;
+                        } else {
+                        document.getElementById("padAjaxd5f162b7139797689258b4d0cffb3516").innerHTML=padAjaxd5f162b7139797689258b4d0cffb3516.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd5f162b7139797689258b4d0cffb3516.open("GET","http://localhost/pad/alpine/?examples/form&padInclude",true);
+                        padAjaxd5f162b7139797689258b4d0cffb3516.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: react - Page: examples/feedback<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/feedback.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/feedback.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The wall is this visitor's own, kept in the session: padSession reads it, padSessionPut<br>  // writes it. A post comes from the component's fetch - with $padCsrf on in the application's<br>  // configuration it carries the session's token in an X-CSRF-Token header, or PAD answers 403<br>  // before this file runs. padValidate answers a message per field that broke its rules;<br>  // with none the message goes on the wall. The answer to the post is the JSON of $padExpose.<br>  //<br>  // One list of rules for both sides: padValidate checks the post with it, and the component<br>  // gets it as padValidateClient exports it, for the browser's checker that {validator} in<br>  // the template brings - the same rules, the same messages, before the post leaves.<br><br>  </span><span style="color: #0000BB">$rules </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|max:40'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'email'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|email'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'mood'    </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|in:happy,curious,puzzled'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|min:10|max:280' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$wall   </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'reactWall'</span><span style="color: #007700">, [] );<br>  </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$saved  </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">);<br><br>    if ( ! </span><span style="color: #0000BB">$errors </span><span style="color: #007700">) {<br><br>      </span><span style="color: #0000BB">array_unshift </span><span style="color: #007700">( </span><span style="color: #0000BB">$wall</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'name' </span><span style="color: #007700">) ),<br>                               </span><span style="color: #DD0000">'mood'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'mood' </span><span style="color: #007700">),<br>                               </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'message' </span><span style="color: #007700">) ),<br>                               </span><span style="color: #DD0000">'at'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'H:i' </span><span style="color: #007700">) ] );<br><br>      </span><span style="color: #0000BB">$wall  </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">$wall</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">12 </span><span style="color: #007700">);<br>      </span><span style="color: #0000BB">$saved </span><span style="color: #007700">= </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'reactWall'</span><span style="color: #007700">, </span><span style="color: #0000BB">$wall </span><span style="color: #007700">);<br><br>    }<br><br>  }<br><br>  </span><span style="color: #0000BB">$start     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'wall' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$wall</span><span style="color: #007700">, </span><span style="color: #DD0000">'rules' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padValidateClient </span><span style="color: #007700">( </span><span style="color: #0000BB">$rules </span><span style="color: #007700">) ];<br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'saved'</span><span style="color: #007700">, </span><span style="color: #DD0000">'errors'</span><span style="color: #007700">, </span><span style="color: #DD0000">'wall' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div data-island="FeedbackWall" data-props="{^start}"&gt;<br>  &lt;p class="island-fallback"&gt;The form needs JavaScript - it posts with fetch().&lt;/p&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">validator</font><font color="red"></font>}</b><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/feedback.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbbc96a633eaecd57c8f195ea92fd0078"></div>
+                        <script>
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078 = new XMLHttpRequest();
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078.onreadystatechange=function() {
+                        if (padAjaxbbc96a633eaecd57c8f195ea92fd0078.readyState === 4) {
+                        if (padAjaxbbc96a633eaecd57c8f195ea92fd0078.status === 200) {
+                        document.getElementById("padAjaxbbc96a633eaecd57c8f195ea92fd0078").innerHTML=padAjaxbbc96a633eaecd57c8f195ea92fd0078.responseText;
+                        } else {
+                        document.getElementById("padAjaxbbc96a633eaecd57c8f195ea92fd0078").innerHTML=padAjaxbbc96a633eaecd57c8f195ea92fd0078.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078.open("GET","http://localhost/pad/react/?examples/feedback&padInclude",true);
+                        padAjaxbbc96a633eaecd57c8f195ea92fd0078.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/validator_carries_the_nonce_the_policy_asks_for<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/validator_carries_the_nonce_the_policy_asks_for.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/validator_carries_the_nonce_the_policy_asks_for.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The checker is the engine's own script: under a policy that asks for a nonce it carries<br>  // this request's - an inline script without one would not run.<br><br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #DD0000">"script-src 'self' 'nonce'"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">validator</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax541d8d4f1091a80ad027a27cf1eab21f"></div>
+                        <script>
+                        padAjax541d8d4f1091a80ad027a27cf1eab21f = new XMLHttpRequest();
+                        padAjax541d8d4f1091a80ad027a27cf1eab21f.onreadystatechange=function() {
+                        if (padAjax541d8d4f1091a80ad027a27cf1eab21f.readyState === 4) {
+                        if (padAjax541d8d4f1091a80ad027a27cf1eab21f.status === 200) {
+                        document.getElementById("padAjax541d8d4f1091a80ad027a27cf1eab21f").innerHTML=padAjax541d8d4f1091a80ad027a27cf1eab21f.responseText;
+                        } else {
+                        document.getElementById("padAjax541d8d4f1091a80ad027a27cf1eab21f").innerHTML=padAjax541d8d4f1091a80ad027a27cf1eab21f.statusText;
+                        }
+                        }
+                        }
+                        padAjax541d8d4f1091a80ad027a27cf1eab21f.open("GET","http://localhost/pad/regression/framework/?tags/validator_carries_the_nonce_the_policy_asks_for&padInclude",true);
+                        padAjax541d8d4f1091a80ad027a27cf1eab21f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/validator_writes_the_checker_once<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/validator_writes_the_checker_once.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">validator</font><font color="red"></font>}</b><b>{<font color="blue">validator</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc00ac35363f5a02d18625fd83ebc94e9"></div>
+                        <script>
+                        padAjaxc00ac35363f5a02d18625fd83ebc94e9 = new XMLHttpRequest();
+                        padAjaxc00ac35363f5a02d18625fd83ebc94e9.onreadystatechange=function() {
+                        if (padAjaxc00ac35363f5a02d18625fd83ebc94e9.readyState === 4) {
+                        if (padAjaxc00ac35363f5a02d18625fd83ebc94e9.status === 200) {
+                        document.getElementById("padAjaxc00ac35363f5a02d18625fd83ebc94e9").innerHTML=padAjaxc00ac35363f5a02d18625fd83ebc94e9.responseText;
+                        } else {
+                        document.getElementById("padAjaxc00ac35363f5a02d18625fd83ebc94e9").innerHTML=padAjaxc00ac35363f5a02d18625fd83ebc94e9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc00ac35363f5a02d18625fd83ebc94e9.open("GET","http://localhost/pad/regression/framework/?tags/validator_writes_the_checker_once&padInclude",true);
+                        padAjaxc00ac35363f5a02d18625fd83ebc94e9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/validator/1-plain-form<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/validator/1-plain-form.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/validator/1-plain-form.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $signupRules </span><span style="color: #007700">= </span><span style="color: #0000BB">padValidateClient </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|email'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'age'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|integer|min:18' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Rules from PHP<font color="black">,</font> checked in the browser<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The page exports its rules with padValidateClient; any form carrying them in data-pad-rules is checked by the script <b><font color="black">{</font><font color="blue">validator</font><font color="red"></font><font color="black">}</font></b> writes.<font color="black">'</font></font>}</b><br>&lt;form method="get" novalidate data-pad-rules="{^signupRules}"&gt;<br>  &lt;label for="v-email"&gt;E-mail&lt;/label&gt; &lt;input name="email" id="v-email"&gt;<br>  &lt;label for="v-age"&gt;Age&lt;/label&gt; &lt;input name="age" id="v-age" type="number"&gt;<br>  &lt;button&gt;Check&lt;/button&gt;<br>&lt;/form&gt;<br><b>{<font color="blue">validator</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9631f3440ba496f68f083f7800ee2bd1"></div>
+                        <script>
+                        padAjax9631f3440ba496f68f083f7800ee2bd1 = new XMLHttpRequest();
+                        padAjax9631f3440ba496f68f083f7800ee2bd1.onreadystatechange=function() {
+                        if (padAjax9631f3440ba496f68f083f7800ee2bd1.readyState === 4) {
+                        if (padAjax9631f3440ba496f68f083f7800ee2bd1.status === 200) {
+                        document.getElementById("padAjax9631f3440ba496f68f083f7800ee2bd1").innerHTML=padAjax9631f3440ba496f68f083f7800ee2bd1.responseText;
+                        } else {
+                        document.getElementById("padAjax9631f3440ba496f68f083f7800ee2bd1").innerHTML=padAjax9631f3440ba496f68f083f7800ee2bd1.statusText;
+                        }
+                        }
+                        }
+                        padAjax9631f3440ba496f68f083f7800ee2bd1.open("GET","http://localhost/pad/tags/?examples/validator/1-plain-form&padInclude",true);
+                        padAjax9631f3440ba496f68f083f7800ee2bd1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

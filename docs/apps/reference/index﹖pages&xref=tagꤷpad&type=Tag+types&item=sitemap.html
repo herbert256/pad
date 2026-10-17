@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -191,6 +191,86 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/sitemap/1-list<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sitemap/1-list.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The pages of a directory<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A row per page<font color="black">,</font> read from the file tree - the index first<font color="black">,</font> then the pages<font color="black">,</font> then the subdirectories.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">sitemap </font><font color="red"><font color="black">'</font>examples/sitemap/site<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b>&lt;/li&gt;<b>{/<font color="blue">sitemap</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax571648e32919f67f86679b91dce597fc"></div>
+                        <script>
+                        padAjax571648e32919f67f86679b91dce597fc = new XMLHttpRequest();
+                        padAjax571648e32919f67f86679b91dce597fc.onreadystatechange=function() {
+                        if (padAjax571648e32919f67f86679b91dce597fc.readyState === 4) {
+                        if (padAjax571648e32919f67f86679b91dce597fc.status === 200) {
+                        document.getElementById("padAjax571648e32919f67f86679b91dce597fc").innerHTML=padAjax571648e32919f67f86679b91dce597fc.responseText;
+                        } else {
+                        document.getElementById("padAjax571648e32919f67f86679b91dce597fc").innerHTML=padAjax571648e32919f67f86679b91dce597fc.statusText;
+                        }
+                        }
+                        }
+                        padAjax571648e32919f67f86679b91dce597fc.open("GET","http://localhost/pad/tags/?examples/sitemap/1-list&padInclude",true);
+                        padAjax571648e32919f67f86679b91dce597fc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/sitemap/2-links<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/sitemap/2-links.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>As links<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>url is the address of each page; a directory\<font color="black">'</font>s index is the directory.<font color="black">'</font></font>}</b><br>&lt;nav&gt;<br>  <b>{<font color="blue">sitemap </font><font color="red"><font color="black">'</font>examples/sitemap/site/docs<font color="black">'</font></font>}</b>&lt;a href="<b>{<font color="green"><font color="red">$</font>url</font>}</b>"&gt;<b>{<font color="green">$page</font> <font color="black">|</font> <font color="blue">after('site/')</font>}</b>&lt;/a&gt; <b>{/<font color="blue">sitemap</font><font color="red"></font>}</b><br>&lt;/nav&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfcf20724bd31820a8f9c0792640ffe2f"></div>
+                        <script>
+                        padAjaxfcf20724bd31820a8f9c0792640ffe2f = new XMLHttpRequest();
+                        padAjaxfcf20724bd31820a8f9c0792640ffe2f.onreadystatechange=function() {
+                        if (padAjaxfcf20724bd31820a8f9c0792640ffe2f.readyState === 4) {
+                        if (padAjaxfcf20724bd31820a8f9c0792640ffe2f.status === 200) {
+                        document.getElementById("padAjaxfcf20724bd31820a8f9c0792640ffe2f").innerHTML=padAjaxfcf20724bd31820a8f9c0792640ffe2f.responseText;
+                        } else {
+                        document.getElementById("padAjaxfcf20724bd31820a8f9c0792640ffe2f").innerHTML=padAjaxfcf20724bd31820a8f9c0792640ffe2f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfcf20724bd31820a8f9c0792640ffe2f.open("GET","http://localhost/pad/tags/?examples/sitemap/2-links&padInclude",true);
+                        padAjaxfcf20724bd31820a8f9c0792640ffe2f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -205,7 +285,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

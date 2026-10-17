@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -87,6 +87,46 @@
                       Everything that changes the rendering must be in the key. Add it with <code>vary</code>: <code>{cache 'basket', vary=$userId}</code> keeps one copy per user. PHP that runs before the template - the page's own <code>.php</code> - runs on a hit too; the saving is the work done inside the section.
                     </p>
                     <h2>
+                      Parts that stay live
+                    </h2>
+                    <p>
+                      A <code>{nocache}...{/nocache}</code> part of a section renders on every request, the hit included: the section is stored with the part as its source, and the part renders again in the stored rendering. Inside a loop of the section it gets the fields of its row back.
+                    </p>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP<br>
+                          <font size="-2">fragments/cache_2.php</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML<br>
+                          <font size="-2">fragments/cache_2.pad</font>
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nocache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$visit </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue">nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>visit = 2</font>}</b><br><br><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue">nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <p>
+                            Cached: built 1 time(s), live: visit 1
+                          </p>
+                          <p>
+                            Cached: built 1 time(s), live: visit 2
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      The same works for the page cache: a page it keeps renders its <code>{nocache}</code> parts on every hit. No PHP runs on such a hit - not the page's, nor an <code>_inits.php</code> - so there a part sees the request and session values, <code>_lib</code> and the application's tags.
+                    </p>
+                    <h2>
                       Settings and housekeeping
                     </h2>
                     <ul>
@@ -94,7 +134,7 @@
                         <code>$padFragmentCache</code> - <code>'file'</code> (default, under <code>DATA/cache/fragments/</code>), <code>'apcu'</code>, or <code>FALSE</code> to render every time.
                       </li>
                       <li>
-                        <code>padFragmentForget ( 'name' )</code> drops a named section when what it shows has changed; <code>padFragmentForget ()</code> drops them all.
+                        <code>padFragmentForget ( 'name' )</code> drops a named section when what it shows has changed - one kept with <code>vary=</code> per value, <code>padFragmentForget ( 'basket', $userId )</code>; <code>padFragmentForget ()</code> drops them all.
                       </li>
                       <li>Closing pipes and end options - <code>{/cache | upper}</code>, <code>toContent</code> - run on a hit as on a fresh rendering.
                       </li>
@@ -303,6 +343,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
                         </li>
                         <li>
@@ -316,6 +359,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
                         </li>
                       </ul>
                       <h3 align="center">
@@ -373,11 +419,34 @@
                     </td>
                     <td valign="top">
                       <h3 align="center">
+                        With JavaScript
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
                         Forms and security
                       </h3>
                       <ul>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
@@ -403,7 +472,7 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
                         </li>
                         <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7template_errors.html">Template errors</a>
+                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
@@ -424,6 +493,9 @@
                           <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
                         </li>
                         <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
+                        </li>
+                        <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
                         </li>
                         <li>
@@ -440,6 +512,9 @@
                         </li>
                         <li>
                           <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
                         </li>
                       </ul>
                     </td>
@@ -458,7 +533,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

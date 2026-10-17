@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: alpine
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: alpine
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">guide.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=alpine&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  guide.pad
+                </h3>
+                <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Guide - PAD + Alpine<font color="black">'</font></font>}</b><br>&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Alpine on a PAD page&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Alpine reads attributes, PAD writes them. Both love braces - so give each its own, hand<br>    Alpine its state as JSON, and let it talk back to the page that wrote it.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br>&lt;h2&gt;1. The braces&lt;/h2&gt;<br>&lt;p&gt;PAD reads every &lt;code&gt;<b>{<font color="purple">&lt;/code&gt; of a template as the start of a tag; Alpine writes objects<br>   with them. Three ways that never collide<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;State from PHP&lt;/h3&gt;<br>    &lt;p&gt;The ^ sigil writes a field as JSON, escaped for the attribute - &lt;code&gt;x-data="{^profile</font>}</b>"&lt;/code&gt;.<br>       No brace of Alpine's in the template, and a quote in a value stays text.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;Components in a file&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;Alpine.data('tabs', ...)&lt;/code&gt; in a script of &lt;code&gt;www/&lt;/code&gt;, called by name:<br>       &lt;code&gt;x-data="tabs({^tabs})"&lt;/code&gt; - the file never meets the PAD parser.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="card"&gt;<br>    &lt;h3&gt;A space after the brace&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;x-data="{ open: false }"&lt;/code&gt; written as &lt;code&gt;{ open: false }&lt;/code&gt; -<br>       a brace with a space after it is no PAD tag. It works for a short object; prefer the other two.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;2. Load order&lt;/h2&gt;<br>&lt;p&gt;The application's scripts first, Alpine last and deferred - a page's components register<br>   themselves on &lt;code&gt;alpine:init&lt;/code&gt; before Alpine walks the page:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>html<font color="black">'</font></font>}</b><br>&lt;script src="alpine-app.js"&gt;&lt;/script&gt;                         &lt;!-- pad.get, pad.post --&gt;<br>&lt;script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"&gt;&lt;/script&gt;<br>...<br>&lt;script src="examples/search.js"&gt;&lt;/script&gt;                    &lt;!-- Alpine.data('search', ...) --&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;3. Talking back&lt;/h2&gt;<br>&lt;p&gt;A page answers JSON when asked - &lt;code&gt;?page&amp;amp;padFormat=json&lt;/code&gt; - with only what its PHP<br>   names in &lt;code&gt;$padExpose&lt;/code&gt;; the templates do not run for it. A post carries the session's<br>   token in a header, read from &lt;code&gt;&lt;meta name="csrf-token" content="<b>{<font color="blue">csrf </font><font color="red">token</font>}</b>"&gt;&lt;/code&gt;:&lt;/p&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>const answer = await pad.get('examples/search', { q: this.q });   // the JSON of $padExpose<br>const saved  = await pad.post('examples/todos', { op: 'add', text }); // X-CSRF-Token sent<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;4. One set of rules&lt;/h2&gt;<br>&lt;p&gt;Keep a form's rules in PHP: &lt;code&gt;padValidate ( $rules )&lt;/code&gt; checks the post,<br>   &lt;code&gt;padValidateClient ( $rules )&lt;/code&gt; hands them to the component, <b>{<font color="blue">validator</font><font color="red"></font>}</b> brings the<br>   checker, and &lt;code&gt;padValidate.field ( rules.email, value, form )&lt;/code&gt; answers in the server's<br>   words.&lt;/p&gt;<br><br>&lt;h2&gt;5. Events from the server&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;padSse()&lt;/code&gt; streams JSON events; an &lt;code&gt;EventSource&lt;/code&gt; opened in<br>   &lt;code&gt;x-init&lt;/code&gt; - in a component that closes it again in &lt;code&gt;destroy()&lt;/code&gt; - turns them<br>   into state.&lt;/p&gt;<br><br>&lt;div class="callout"&gt;&lt;p&gt;Values are text: whatever a visitor typed, the ^ sigil writes it as JSON escaped for the attribute,<br>   and &lt;code&gt;x-text&lt;/code&gt; puts it in as text. Avoid &lt;code&gt;x-html&lt;/code&gt; with data that is not yours.&lt;/p&gt;&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

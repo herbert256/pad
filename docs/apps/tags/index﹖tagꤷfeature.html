@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {feature} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#access">Users and access</a><span>/</span><span aria-current="page">feature</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>feature<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content while a feature flag is on for this visitor, and its else half while it is off.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#access">Users and access</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'flag'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'flag'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>flag</code>
+            </dt>
+            <dd>
+              A name in <code>$padFeatures</code>: <code>TRUE</code>, <code>FALSE</code>, a share from 0 to 1 of the visitors, or the name of a function given the user.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{feature 'search2'}</code> renders its content while the flag is on for this visitor, and the part after its own <code>{else}</code> - or the <code>@else@</code> half - while it is off. The flags are the setting <code>$padFeatures</code>, normally in <code>_config/config.php</code>, name =&gt; what decides it:
+          </p>
+          <ul>
+            <li>
+              <code>TRUE</code> or <code>FALSE</code> - on or off for everybody;
+            </li>
+            <li>a number from 0 to 1 - on for that share of the visitors, decided per visitor and the same on every visit: by a hash of the flag's name and the user's id, or for a guest a random id in a long-lived <code>padFeatureId</code> cookie;
+            </li>
+            <li>the name of a function - called with the user's row (NULL for a guest).
+            </li>
+          </ul>
+          <p>
+            <code>padFeatureOverride ( 'search2', TRUE )</code> fixes a flag for the rest of the request, whatever the setting says - for a test or a preview - and <code>padFeature ( 'search2' )</code> asks from PHP. A name that is no flag is FALSE and, under the strict check, an error.
+          </p>
+          <p>
+            A share depends on the visitor, so that example is shown, not run.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A flag on and a flag off
+            </h3>
+            <p class="example-about">
+              TRUE and FALSE in $padFeatures switch a part for everybody - normally set in _config/config.php.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/feature/1-on-off.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'newSearch'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The new search, with suggestions.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The old search.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'darkMode'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Dark mode is on.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Dark mode is not released yet.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/feature/1-on-off.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$padFeatures</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'newSearch'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">TRUE</span><span class="hl-pun">,</span> <span class="hl-str">'darkMode'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">FALSE</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7feature%EA%A4%B71-on-off.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    The new search, with suggestions.
+                  </p>
+                  <p>
+                    Dark mode is not released yet.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Fixed for a test
+            </h3>
+            <p class="example-about">
+              padFeatureOverride fixes a flag for the rest of the request - a test or a preview - whatever $padFeatures says.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/feature/2-override.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'checkout2'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;a</span> <span class="hl-opt">class</span>=<span class="hl-str">"button"</span> <span class="hl-opt">href</span>=<span class="hl-str">"#checkout2"</span><span class="hl-htm">&gt;</span>Pay in one step<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;a</span> <span class="hl-opt">class</span>=<span class="hl-str">"button"</span> <span class="hl-opt">href</span>=<span class="hl-str">"#checkout"</span><span class="hl-htm">&gt;</span>Go to the checkout<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/feature/2-override.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-fn">padFeatureOverride</span> <span class="hl-pun">(</span> <span class="hl-str">'checkout2'</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7feature%EA%A4%B72-override.html">open alone</a>
+                </div>
+                <div class="result">
+                  <a class="button" href="#checkout2">Pay in one step</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              A share of the visitors
+            </h3>
+            <p class="example-about">
+              0.25 is on for a quarter of the visitors - decided per user, or per a long-lived cookie, and the same on every visit.
+            </p>
+            <div class="example-grid is-static">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/feature/3-share.src</span>
+                </div>
+                <pre class="code"><code><span class="hl-com">{# _config/config.php: $padFeatures = [ 'search2' =&gt; 0.25, 'beta' =&gt; 'isBetaTester' ]; #}</span>
+<span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'search2'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;form</span> <span class="hl-opt">action</span>=<span class="hl-str">"?search2"</span><span class="hl-htm">&gt;</span>...<span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;form</span> <span class="hl-opt">action</span>=<span class="hl-str">"?search"</span><span class="hl-htm">&gt;</span>...<span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">feature</span> <span class="hl-str">'beta'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Thanks for testing the beta.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/feature</span><span class="hl-brc">}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7can.html">{can}</a> <span class="about">Renders its content when the user may do something a gate decides, and its else half when not.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7auth.html">{auth}</a> <span class="about">Renders its content when a user is logged in, with the user's row as its data, and its else half for a guest.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7if.html">{if}</a> <span class="about">Renders its content only when a condition holds, with elseif and else branches.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7false.html">← {false}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7field.html">{field} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

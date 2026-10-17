@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="csrf-token" content="12e21eb44f4fc1bdc45e80b34d29d529c762b6e3972997f5a105f53b9711ddc5">
+    <title>
+      Photos of the new collection · Kanban
+    </title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="kanban.css">
+    <script src="kanban.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="index%EF%B9%96index.html"><img src="icon.svg" alt="" width="30" height="30"><span>Kanban</span></a> <span class="live" id="live" hidden=""><i></i> <span>Live</span></span> <a class="button primary" href="index%EF%B9%96card.html" data-new-card="">+ New card</a>
+    </header>
+    <main>
+      <div class="narrow">
+        <p class="crumbs">
+          <a href="index%EF%B9%96index.html">← The board</a>
+        </p>
+        <h1>
+          Photos of the new collection
+        </h1>
+        <form method="post" class="card-form sheet">
+          <input type="hidden" name="padCsrfToken" value="12e21eb44f4fc1bdc45e80b34d29d529c762b6e3972997f5a105f53b9711ddc5"><input type="hidden" name="padForm" value="edit"> <label for="title">Title</label><input type="text" name="title" id="title" value="Photos of the new collection"> <label for="body">Details</label>
+          <textarea name="body" id="body" rows="6"></textarea>
+          <div class="row">
+            <div>
+              <label for="label">Label</label> <select id="label" name="label">
+                <option value="">
+                  None
+                </option>
+                <option value="feature">
+                  Feature
+                </option>
+                <option value="bug">
+                  Bug
+                </option>
+                <option value="idea" selected>
+                  Idea
+                </option>
+                <option value="chore">
+                  Chore
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="column">Column</label> <select id="column" name="column">
+                <option value="1" selected>
+                  Backlog
+                </option>
+                <option value="2">
+                  Doing
+                </option>
+                <option value="3">
+                  Review
+                </option>
+                <option value="4">
+                  Done
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="due">Due</label><input type="date" name="due" id="due" value="">
+            </div>
+          </div>
+          <div class="bar">
+            <button class="button primary">Save</button><a class="button" href="index%EF%B9%96index.html">Cancel</a>
+          </div>
+        </form>
+        <details class="danger-zone">
+          <summary>
+            Delete this card…
+          </summary>
+          <form method="post">
+            <input type="hidden" name="padCsrfToken" value="12e21eb44f4fc1bdc45e80b34d29d529c762b6e3972997f5a105f53b9711ddc5"><input type="hidden" name="padForm" value="remove"><button class="button danger">Delete “Photos of the new collection”</button>
+          </form>
+        </details>
+      </div>
+    </main>
+    <footer class="bottom">
+      Kanban runs on PHP 8.5.11, the board in DATA/kanban/kanban.sqlite. Open it in two windows: a card moved in one moves in the other.
+    </footer>
+  </body>
+</html>

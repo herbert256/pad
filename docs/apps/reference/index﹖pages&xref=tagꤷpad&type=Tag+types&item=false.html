@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -65,6 +65,46 @@
                   padAjax68bdef8b4d046f97251bdc7dc097e35e.open("GET","http://localhost/pad/manual/?content/7&padInclude",true);
                   padAjax68bdef8b4d046f97251bdc7dc097e35e.send();
                   </script><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_ternary_side_that_is_a_list_is_empty_not_a_crash<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_ternary_side_that_is_a_list_is_empty_not_a_crash.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">true </font><font color="red">? [1<font color="black">,</font>2] <font color="black">:</font> x</font>}</b>][<b>{<font color="blue">false </font><font color="red">? x <font color="black">:</font> [1<font color="black">,</font>2]</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax958e0b946af16a199465fd18485cfe6c"></div>
+                        <script>
+                        padAjax958e0b946af16a199465fd18485cfe6c = new XMLHttpRequest();
+                        padAjax958e0b946af16a199465fd18485cfe6c.onreadystatechange=function() {
+                        if (padAjax958e0b946af16a199465fd18485cfe6c.readyState === 4) {
+                        if (padAjax958e0b946af16a199465fd18485cfe6c.status === 200) {
+                        document.getElementById("padAjax958e0b946af16a199465fd18485cfe6c").innerHTML=padAjax958e0b946af16a199465fd18485cfe6c.responseText;
+                        } else {
+                        document.getElementById("padAjax958e0b946af16a199465fd18485cfe6c").innerHTML=padAjax958e0b946af16a199465fd18485cfe6c.statusText;
+                        }
+                        }
+                        }
+                        padAjax958e0b946af16a199465fd18485cfe6c.open("GET","http://localhost/pad/regression/framework/?expressions/a_ternary_side_that_is_a_list_is_empty_not_a_crash&padInclude",true);
+                        padAjax958e0b946af16a199465fd18485cfe6c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/framework - Page: options/error_is_the_alias_of_notOk_it_was_documented_as<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -347,6 +387,166 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/false/1-else<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/false/1-else.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Switched off<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The content of <b><font color="black">{</font><font color="blue">false</font><font color="red"></font><font color="black">}</font></b> is skipped; the <font color="black">@</font>else<font color="black">@</font> part renders.<font color="black">'</font></font>}</b><br><b>{<font color="blue">false</font><font color="red"></font>}</b><br>  &lt;p&gt;The new banner - not yet.&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;The old banner.&lt;/p&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax39ce310fecd40525d0aad93d800a00a6"></div>
+                        <script>
+                        padAjax39ce310fecd40525d0aad93d800a00a6 = new XMLHttpRequest();
+                        padAjax39ce310fecd40525d0aad93d800a00a6.onreadystatechange=function() {
+                        if (padAjax39ce310fecd40525d0aad93d800a00a6.readyState === 4) {
+                        if (padAjax39ce310fecd40525d0aad93d800a00a6.status === 200) {
+                        document.getElementById("padAjax39ce310fecd40525d0aad93d800a00a6").innerHTML=padAjax39ce310fecd40525d0aad93d800a00a6.responseText;
+                        } else {
+                        document.getElementById("padAjax39ce310fecd40525d0aad93d800a00a6").innerHTML=padAjax39ce310fecd40525d0aad93d800a00a6.statusText;
+                        }
+                        }
+                        }
+                        padAjax39ce310fecd40525d0aad93d800a00a6.open("GET","http://localhost/pad/tags/?examples/false/1-else&padInclude",true);
+                        padAjax39ce310fecd40525d0aad93d800a00a6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/false/2-option<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/false/2-option.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The else option<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>else= puts a stored content in place of a level that answered FALSE.<font color="black">'</font></font>}</b><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>falseNote<font color="black">'</font></font>}</b>&lt;p&gt;&lt;em&gt;Nothing to show here.&lt;/em&gt;&lt;/p&gt;<b>{/<font color="blue">content</font><font color="red"></font>}</b><br><b>{<font color="blue">false </font><font color="red">else=<font color="black">'</font>falseNote<font color="black">'</font></font>}</b><br>  &lt;p&gt;Hidden.&lt;/p&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax97d86b34e71b154110197100ba1107c6"></div>
+                        <script>
+                        padAjax97d86b34e71b154110197100ba1107c6 = new XMLHttpRequest();
+                        padAjax97d86b34e71b154110197100ba1107c6.onreadystatechange=function() {
+                        if (padAjax97d86b34e71b154110197100ba1107c6.readyState === 4) {
+                        if (padAjax97d86b34e71b154110197100ba1107c6.status === 200) {
+                        document.getElementById("padAjax97d86b34e71b154110197100ba1107c6").innerHTML=padAjax97d86b34e71b154110197100ba1107c6.responseText;
+                        } else {
+                        document.getElementById("padAjax97d86b34e71b154110197100ba1107c6").innerHTML=padAjax97d86b34e71b154110197100ba1107c6.statusText;
+                        }
+                        }
+                        }
+                        padAjax97d86b34e71b154110197100ba1107c6.open("GET","http://localhost/pad/tags/?examples/false/2-option&padInclude",true);
+                        padAjax97d86b34e71b154110197100ba1107c6.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/null/1-states<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/null/1-states.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Three states side by side<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The <font color="black">@</font>else<font color="black">@</font> part renders for <b><font color="black">{</font><font color="blue">false</font><font color="red"></font><font color="black">}</font></b> but not for <b><font color="black">{</font><font color="blue">null</font><font color="red"></font><font color="black">}</font></b>.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  &lt;li&gt;true: <b>{<font color="blue">true</font><font color="red"></font>}</b>content<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>else part<b>{/<font color="blue">true</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;false: <b>{<font color="blue">false</font><font color="red"></font>}</b>content<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>else part<b>{/<font color="blue">false</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;null: <b>{<font color="blue">null</font><font color="red"></font>}</b>content<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>else part<b>{/<font color="blue">null</font><font color="red"></font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2dd86ae89234a41a9bf5f7edcfd61b10"></div>
+                        <script>
+                        padAjax2dd86ae89234a41a9bf5f7edcfd61b10 = new XMLHttpRequest();
+                        padAjax2dd86ae89234a41a9bf5f7edcfd61b10.onreadystatechange=function() {
+                        if (padAjax2dd86ae89234a41a9bf5f7edcfd61b10.readyState === 4) {
+                        if (padAjax2dd86ae89234a41a9bf5f7edcfd61b10.status === 200) {
+                        document.getElementById("padAjax2dd86ae89234a41a9bf5f7edcfd61b10").innerHTML=padAjax2dd86ae89234a41a9bf5f7edcfd61b10.responseText;
+                        } else {
+                        document.getElementById("padAjax2dd86ae89234a41a9bf5f7edcfd61b10").innerHTML=padAjax2dd86ae89234a41a9bf5f7edcfd61b10.statusText;
+                        }
+                        }
+                        }
+                        padAjax2dd86ae89234a41a9bf5f7edcfd61b10.open("GET","http://localhost/pad/tags/?examples/null/1-states&padInclude",true);
+                        padAjax2dd86ae89234a41a9bf5f7edcfd61b10.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/null/2-option<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/null/2-option.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>null= and else=<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A NULL fires the null= option and leaves else= alone.<font color="black">'</font></font>}</b><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>nullMissing<font color="black">'</font></font>}</b>&lt;em&gt;no such thing&lt;/em&gt;<b>{/<font color="blue">content</font><font color="red"></font>}</b><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>nullEmpty<font color="black">'</font></font>}</b>&lt;em&gt;empty&lt;/em&gt;<b>{/<font color="blue">content</font><font color="red"></font>}</b><br>&lt;p&gt;null with null=: <b>{<font color="blue">null </font><font color="red">null=<font color="black">'</font>nullMissing<font color="black">'</font></font>}</b>x<b>{/<font color="blue">null</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;null with else=: <b>{<font color="blue">null </font><font color="red">else=<font color="black">'</font>nullEmpty<font color="black">'</font></font>}</b>x<b>{/<font color="blue">null</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;false with else=: <b>{<font color="blue">false </font><font color="red">else=<font color="black">'</font>nullEmpty<font color="black">'</font></font>}</b>x<b>{/<font color="blue">false</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxf7d589166d8fc94b4955de09e04d2064"></div>
+                        <script>
+                        padAjaxf7d589166d8fc94b4955de09e04d2064 = new XMLHttpRequest();
+                        padAjaxf7d589166d8fc94b4955de09e04d2064.onreadystatechange=function() {
+                        if (padAjaxf7d589166d8fc94b4955de09e04d2064.readyState === 4) {
+                        if (padAjaxf7d589166d8fc94b4955de09e04d2064.status === 200) {
+                        document.getElementById("padAjaxf7d589166d8fc94b4955de09e04d2064").innerHTML=padAjaxf7d589166d8fc94b4955de09e04d2064.responseText;
+                        } else {
+                        document.getElementById("padAjaxf7d589166d8fc94b4955de09e04d2064").innerHTML=padAjaxf7d589166d8fc94b4955de09e04d2064.statusText;
+                        }
+                        }
+                        }
+                        padAjaxf7d589166d8fc94b4955de09e04d2064.open("GET","http://localhost/pad/tags/?examples/null/2-option&padInclude",true);
+                        padAjaxf7d589166d8fc94b4955de09e04d2064.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -361,7 +561,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

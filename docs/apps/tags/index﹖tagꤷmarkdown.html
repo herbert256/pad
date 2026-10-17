@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {markdown} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#text">Text and formatting</a><span>/</span><span aria-current="page">markdown</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>markdown<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content, or the value of its parameter, as Markdown and writes the HTML.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#text">Text and formatting</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">markdown</span> <span class="hl-var">$text</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">markdown</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/markdown</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">markdown</span> html<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/markdown</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">markdown</span> ignore<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/markdown</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>text</code>
+            </dt>
+            <dd>
+              In the single form: the Markdown to write, as the <code>markdown</code> pipe reads a value.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>html</code>
+            </dt>
+            <dd>
+              Bare option: let the author's own raw HTML through - inline tags, and a block-level element or comment at the start of a line up to the next blank line. Without it raw HTML is escaped.
+            </dd>
+            <dt>
+              <code>ignore</code>
+            </dt>
+            <dd>
+              Bare option: the braces in the content are text, not tags - for code samples in the Markdown.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            As a pair, <code>{markdown}</code> renders its content first - its fields and tags resolve like anywhere else - and then reads the result as Markdown and writes the HTML. The text is dedented first, so a block indented along with the template does not turn into a code block. With a parameter instead, <code>{markdown $post.body}</code> writes the value of the parameter, the way the <code>markdown</code> pipe does.
+          </p>
+          <p>
+            The converter is built in (<code>lib/markdown.php</code>), a CommonMark subset: ATX and setext headings, paragraphs, emphasis and strong emphasis, code spans, fenced code blocks (with a <code>language-</code> class) and indented ones, bullet and ordered lists (nested, tight or loose, with a start number), links, images, autolinks, block quotes, thematic breaks, hard line breaks and backslash escapes. Reference-style links, tables and footnotes are not supported.
+          </p>
+          <h3>
+            Safety
+          </h3>
+          <p>
+            Raw HTML in the text is escaped, and a link or image whose address names a scheme other than http, https, mailto, ftp or tel - <code>javascript:</code>, <code>data:</code> - keeps only its text. The bare <code>html</code> option lets the author's own markup through; use it only for text the application wrote. The HTML made from a value stays a value: a <code>{php:getcwd}</code> in a post is shown, not run.
+          </p>
+          <h3>
+            Braces
+          </h3>
+          <p>
+            Because the content is rendered before it is read as Markdown, a <code>{</code> in it starts a tag. A code sample with braces needs the <code>ignore</code> option, which keeps the whole content as text - fields included. A pair that is never closed, and the single form without a value, are strict errors.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Markdown around fields
+            </h3>
+            <p class="example-about">
+              The fields resolve first, then the text is read as Markdown - the indent of the template does not count.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/markdown/1-pair.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$version</span> = <span class="hl-str">'3.0'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">markdown</span><span class="hl-brc">}</span>
+  ### Release notes for <span class="hl-brc">{</span><span class="hl-var">$version</span><span class="hl-brc">}</span>
+
+  - **Faster** first render
+  - Charts in *every* page
+  - See [all tags](<span class="hl-var">?names</span>) for more
+
+  <span class="hl-htm">&gt;</span> Upgrade by copying the files.
+<span class="hl-brc">{</span><span class="hl-tag">/markdown</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7markdown%EA%A4%B71-pair.html">open alone</a>
+                </div>
+                <div class="result">
+                  <h3>
+                    Release notes for 3.0
+                  </h3>
+                  <ul>
+                    <li>
+                      <strong>Faster</strong> first render
+                    </li>
+                    <li>Charts in <em>every</em> page
+                    </li>
+                    <li>See <a href="index%EF%B9%96names.html">all tags</a> for more
+                    </li>
+                  </ul>
+                  <blockquote>
+                    <p>
+                      Upgrade by copying the files.
+                    </p>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              A value as Markdown
+            </h3>
+            <p class="example-about">
+              The single form writes the value of its parameter; raw HTML in it is escaped and a javascript: link loses its address.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/markdown/2-value.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">markdown</span> <span class="hl-var">$comment</span><span class="hl-brc">}</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/markdown/2-value.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$comment</span> <span class="hl-pun">=</span> <span class="hl-str">"Thanks for the **quick** fix!\n\n"</span>
+           <span class="hl-pun">.</span> <span class="hl-str">"It works in &lt;b&gt;Firefox&lt;/b&gt; too - see [the issue](https://example.com/issues/42) "</span>
+           <span class="hl-pun">.</span> <span class="hl-str">"and [this link](javascript:alert(1))."</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7markdown%EA%A4%B72-value.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Thanks for the <strong>quick</strong> fix!
+                  </p>
+                  <p>
+                    It works in &lt;b&gt;Firefox&lt;/b&gt; too - see <a href="https://example.com/issues/42">the issue</a> and this link.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              A code sample with braces
+            </h3>
+            <p class="example-about">
+              With ignore the braces in the fenced block are text, so the template sample shows as written.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/markdown/3-ignore.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">markdown</span> ignore<span class="hl-brc">}</span>
+  Loop over the rows with a pair:
+
+  ```pad
+  <span class="hl-brc">{</span><span class="hl-tag">orders</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/orders</span><span class="hl-brc">}</span>
+  ```
+<span class="hl-brc">{</span><span class="hl-tag">/markdown</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7markdown%EA%A4%B73-ignore.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    Loop over the rows with a pair:
+                  </p>
+                  <pre><code class="language-pad">{orders}
+  &lt;li&gt;{$number}&lt;/li&gt;
+{/orders}
+</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7collection.html">{collection}</a> <span class="about">Reads a folder of Markdown files from _content/ and repeats its content once per file, the front matter as fields.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7toc.html">{toc}</a> <span class="about">A table of contents of the page from its own rendered headings, nested and linked - filled in once the page has rendered.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7map.html">← {map}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7meta.html">{meta} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

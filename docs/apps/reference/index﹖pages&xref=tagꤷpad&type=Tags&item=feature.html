@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tags - feature
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - feature
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/auth_owns_its_else_inside_an_if_and_an_if_inside_it_owns_its_own<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/auth_owns_its_else_inside_an_if_and_an_if_inside_it_owns_its_own.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/auth_owns_its_else_inside_an_if_and_an_if_inside_it_owns_its_own.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An {else} belongs to the innermost owner it stands in - {if}, {case}, {auth}, {guest},<br>  // {can}, {cannot}, {feature} - whichever of them encloses which.<br><br>  </span><span style="color: #0000BB">padLogin </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bo' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">padGate </span><span style="color: #007700">( </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$user </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$padFeatures </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'off' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b>no<b>{<font color="blue">else</font><font color="red"></font>}</b><b>{<font color="blue">guest</font><font color="red"></font>}</b>no<b>{<font color="blue">else</font><font color="red"></font>}</b>in<b>{/<font color="blue">guest</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b> | <b>{<font color="blue">auth</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b>no<b>{<font color="blue">else</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>no<b>{/<font color="blue">auth</font><font color="red"></font>}</b> | <b>{<font color="blue">case </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b><b>{<font color="blue">when </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b><b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>off<font color="black">'</font></font>}</b>no<b>{<font color="blue">else</font><font color="red"></font>}</b>off<b>{/<font color="blue">feature</font><font color="red"></font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>no<b>{/<font color="blue">case</font><font color="red"></font>}</b> | <b>{<font color="blue">can </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><b>{<font color="blue">if </font><font color="red">1 eq 1</font>}</b>x<b>{<font color="blue">else</font><font color="red"></font>}</b>no<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>not x<b>{/<font color="blue">can</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8a0d8ceb4416c178e60e4d9b482f4a34"></div>
+                        <script>
+                        padAjax8a0d8ceb4416c178e60e4d9b482f4a34 = new XMLHttpRequest();
+                        padAjax8a0d8ceb4416c178e60e4d9b482f4a34.onreadystatechange=function() {
+                        if (padAjax8a0d8ceb4416c178e60e4d9b482f4a34.readyState === 4) {
+                        if (padAjax8a0d8ceb4416c178e60e4d9b482f4a34.status === 200) {
+                        document.getElementById("padAjax8a0d8ceb4416c178e60e4d9b482f4a34").innerHTML=padAjax8a0d8ceb4416c178e60e4d9b482f4a34.responseText;
+                        } else {
+                        document.getElementById("padAjax8a0d8ceb4416c178e60e4d9b482f4a34").innerHTML=padAjax8a0d8ceb4416c178e60e4d9b482f4a34.statusText;
+                        }
+                        }
+                        }
+                        padAjax8a0d8ceb4416c178e60e4d9b482f4a34.open("GET","http://localhost/pad/regression/framework/?tags/auth_owns_its_else_inside_an_if_and_an_if_inside_it_owns_its_own&padInclude",true);
+                        padAjax8a0d8ceb4416c178e60e4d9b482f4a34.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/feature_shows_its_content_when_the_flag_is_on<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/feature_shows_its_content_when_the_flag_is_on.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/feature_shows_its_content_when_the_flag_is_on.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// TRUE, FALSE, a share - decided by the id, fixed here - and a function given the user.<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">featureCaseBeta </span><span style="color: #007700">( </span><span style="color: #0000BB">$user </span><span style="color: #007700">) { return ( </span><span style="color: #0000BB">$user </span><span style="color: #007700">[</span><span style="color: #DD0000">'role'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) == </span><span style="color: #DD0000">'beta'</span><span style="color: #007700">; }<br><br>  </span><span style="color: #0000BB">$padFeatures </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'on' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">, </span><span style="color: #DD0000">'off' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">, </span><span style="color: #DD0000">'all' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'none' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.0</span><span style="color: #007700">, </span><span style="color: #DD0000">'half' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.5</span><span style="color: #007700">, </span><span style="color: #DD0000">'beta' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'featureCaseBeta' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padLogin </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'beta' </span><span style="color: #007700">] );<br>  </span><span style="color: #0000BB">padFeatureId </span><span style="color: #007700">( </span><span style="color: #DD0000">'visitor:case' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>on<font color="black">'</font></font>}</b>on<b>{<font color="blue">else</font><font color="red"></font>}</b>off<b>{/<font color="blue">feature</font><font color="red"></font>}</b> <b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>off<font color="black">'</font></font>}</b>on<b>{<font color="blue">else</font><font color="red"></font>}</b>off<b>{/<font color="blue">feature</font><font color="red"></font>}</b> <b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>all<font color="black">'</font></font>}</b>on<b>{/<font color="blue">feature</font><font color="red"></font>}</b> <b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>none<font color="black">'</font></font>}</b>on<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>off<b>{/<font color="blue">feature</font><font color="red"></font>}</b> <b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>half<font color="black">'</font></font>}</b>on<b>{<font color="blue">else</font><font color="red"></font>}</b>off<b>{/<font color="blue">feature</font><font color="red"></font>}</b> <b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>beta<font color="black">'</font></font>}</b>beta<b>{/<font color="blue">feature</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3a17f3ff7919819bd71f439edd0941fb"></div>
+                        <script>
+                        padAjax3a17f3ff7919819bd71f439edd0941fb = new XMLHttpRequest();
+                        padAjax3a17f3ff7919819bd71f439edd0941fb.onreadystatechange=function() {
+                        if (padAjax3a17f3ff7919819bd71f439edd0941fb.readyState === 4) {
+                        if (padAjax3a17f3ff7919819bd71f439edd0941fb.status === 200) {
+                        document.getElementById("padAjax3a17f3ff7919819bd71f439edd0941fb").innerHTML=padAjax3a17f3ff7919819bd71f439edd0941fb.responseText;
+                        } else {
+                        document.getElementById("padAjax3a17f3ff7919819bd71f439edd0941fb").innerHTML=padAjax3a17f3ff7919819bd71f439edd0941fb.statusText;
+                        }
+                        }
+                        }
+                        padAjax3a17f3ff7919819bd71f439edd0941fb.open("GET","http://localhost/pad/regression/framework/?tags/feature_shows_its_content_when_the_flag_is_on&padInclude",true);
+                        padAjax3a17f3ff7919819bd71f439edd0941fb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/feature/1-on-off<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/feature/1-on-off.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/feature/1-on-off.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padFeatures </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'newSearch' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">, </span><span style="color: #DD0000">'darkMode' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A flag on and a flag off<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>TRUE and FALSE in <font color="red">$</font>padFeatures switch a part for everybody - normally set in _config/config.php.<font color="black">'</font></font>}</b><br><b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>newSearch<font color="black">'</font></font>}</b><br>  &lt;p&gt;The new search, with suggestions.&lt;/p&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;p&gt;The old search.&lt;/p&gt;<br><b>{/<font color="blue">feature</font><font color="red"></font>}</b><br><b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>darkMode<font color="black">'</font></font>}</b><br>  &lt;p&gt;Dark mode is on.&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Dark mode is not released yet.&lt;/p&gt;<br><b>{/<font color="blue">feature</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbfeb793558265389fa4b8c315a31bbeb"></div>
+                        <script>
+                        padAjaxbfeb793558265389fa4b8c315a31bbeb = new XMLHttpRequest();
+                        padAjaxbfeb793558265389fa4b8c315a31bbeb.onreadystatechange=function() {
+                        if (padAjaxbfeb793558265389fa4b8c315a31bbeb.readyState === 4) {
+                        if (padAjaxbfeb793558265389fa4b8c315a31bbeb.status === 200) {
+                        document.getElementById("padAjaxbfeb793558265389fa4b8c315a31bbeb").innerHTML=padAjaxbfeb793558265389fa4b8c315a31bbeb.responseText;
+                        } else {
+                        document.getElementById("padAjaxbfeb793558265389fa4b8c315a31bbeb").innerHTML=padAjaxbfeb793558265389fa4b8c315a31bbeb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbfeb793558265389fa4b8c315a31bbeb.open("GET","http://localhost/pad/tags/?examples/feature/1-on-off&padInclude",true);
+                        padAjaxbfeb793558265389fa4b8c315a31bbeb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/feature/2-override<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/feature/2-override.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/feature/2-override.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFeatureOverride </span><span style="color: #007700">( </span><span style="color: #DD0000">'checkout2'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Fixed for a test<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>padFeatureOverride fixes a flag for the rest of the request - a test or a preview - whatever <font color="red">$</font>padFeatures says.<font color="black">'</font></font>}</b><br><b>{<font color="blue">feature </font><font color="red"><font color="black">'</font>checkout2<font color="black">'</font></font>}</b><br>  &lt;a class="button" href="#checkout2"&gt;Pay in one step&lt;/a&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;a class="button" href="#checkout"&gt;Go to the checkout&lt;/a&gt;<br><b>{/<font color="blue">feature</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd176a7f33da507ab48b89559f27efc99"></div>
+                        <script>
+                        padAjaxd176a7f33da507ab48b89559f27efc99 = new XMLHttpRequest();
+                        padAjaxd176a7f33da507ab48b89559f27efc99.onreadystatechange=function() {
+                        if (padAjaxd176a7f33da507ab48b89559f27efc99.readyState === 4) {
+                        if (padAjaxd176a7f33da507ab48b89559f27efc99.status === 200) {
+                        document.getElementById("padAjaxd176a7f33da507ab48b89559f27efc99").innerHTML=padAjaxd176a7f33da507ab48b89559f27efc99.responseText;
+                        } else {
+                        document.getElementById("padAjaxd176a7f33da507ab48b89559f27efc99").innerHTML=padAjaxd176a7f33da507ab48b89559f27efc99.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd176a7f33da507ab48b89559f27efc99.open("GET","http://localhost/pad/tags/?examples/feature/2-override&padInclude",true);
+                        padAjaxd176a7f33da507ab48b89559f27efc99.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -319,6 +319,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/framework - Page: passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $sbxRows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] ]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>[{"id":1,"name":"Ann"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxSet<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxRows<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>][<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>][<b>{<font color="blue">sbxRows </font><font color="red">page=1<font color="black">,</font> rows=1</font>}</b>r<b>{/<font color="blue">sbxRows</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd1fc24dd95f5e487a375619f1388da23"></div>
+                        <script>
+                        padAjaxd1fc24dd95f5e487a375619f1388da23 = new XMLHttpRequest();
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.onreadystatechange=function() {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.readyState === 4) {
+                        if (padAjaxd1fc24dd95f5e487a375619f1388da23.status === 200) {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.responseText;
+                        } else {
+                        document.getElementById("padAjaxd1fc24dd95f5e487a375619f1388da23").innerHTML=padAjaxd1fc24dd95f5e487a375619f1388da23.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.open("GET","http://localhost/pad/regression/framework/?passes/a_sandbox_lets_lookup_chart_tree_and_pager_miss_the_names_it_hides&padInclude",true);
+                        padAjaxd1fc24dd95f5e487a375619f1388da23.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -333,7 +375,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

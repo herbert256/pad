@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - letters
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - letters
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: tags - Page: examples/pager/3-pair<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/pager/3-pair.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/pager/3-pair.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $letters </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'n' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markup of your own<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>As a pair the pager hands the links over as rows<font color="black">:</font> kind<font color="black">,</font> page<font color="black">,</font> label and href.<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">letters </font><font color="red">page=<font color="red">$</font>letterPage ?? 2<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>letters</font>}</b> <b>{/<font color="blue">letters</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>letters<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>href eq <font color="black">'</font><font color="black">'</font></font>}</b><br>    &lt;span style="color:#999"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/span&gt;<br>  <b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>kind eq <font color="black">'</font>current<font color="black">'</font></font>}</b><br>    &lt;strong&gt;[<b>{<font color="green"><font color="red">$</font>label</font>}</b>]&lt;/strong&gt;<br>  <b>{<font color="blue">else</font><font color="red"></font>}</b><br>    &lt;a href="<b>{<font color="green"><font color="red">$</font>href</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt;<br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Everything fits on one page.<br><b>{/<font color="blue">pager</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax24fdf8839c1a47e879321cef50752a76"></div>
+                        <script>
+                        padAjax24fdf8839c1a47e879321cef50752a76 = new XMLHttpRequest();
+                        padAjax24fdf8839c1a47e879321cef50752a76.onreadystatechange=function() {
+                        if (padAjax24fdf8839c1a47e879321cef50752a76.readyState === 4) {
+                        if (padAjax24fdf8839c1a47e879321cef50752a76.status === 200) {
+                        document.getElementById("padAjax24fdf8839c1a47e879321cef50752a76").innerHTML=padAjax24fdf8839c1a47e879321cef50752a76.responseText;
+                        } else {
+                        document.getElementById("padAjax24fdf8839c1a47e879321cef50752a76").innerHTML=padAjax24fdf8839c1a47e879321cef50752a76.statusText;
+                        }
+                        }
+                        }
+                        padAjax24fdf8839c1a47e879321cef50752a76.open("GET","http://localhost/pad/tags/?examples/pager/3-pair&padInclude",true);
+                        padAjax24fdf8839c1a47e879321cef50752a76.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: names<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">names.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">names.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $letters </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsLetters </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by name<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by name&lt;/h1&gt;<br>&lt;p class="lead"&gt;All <b>{<font color="green"><font color="red">$</font>tagsCount</font>}</b> built-in tags from A to Z.&lt;/p&gt;<br><br>&lt;nav class="jump" aria-label="Letters"&gt;<b>{<font color="blue">letters</font><font color="red"></font>}</b>&lt;a href="#letter-<b>{<font color="green"><font color="red">$</font>letter</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>letter</font>}</b>&lt;/a&gt;<b>{/<font color="blue">letters</font><font color="red"></font>}</b>&lt;/nav&gt;<br><br><b>{<font color="blue">letters</font><font color="red"></font>}</b><br>&lt;section class="section" id="letter-<b>{<font color="green"><font color="red">$</font>letter</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>letter</font>}</b>&lt;/h2&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>tag<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>tags<font color="black">'</font></font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;ul class="list"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b> &lt;a class="meta" href="?groups#<b>{<font color="green"><font color="red">$</font>group</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>groupLabel</font>}</b>&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">letters</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxfce273265f70a78774822914a9a9ce11"></div>
+                        <script>
+                        padAjaxfce273265f70a78774822914a9a9ce11 = new XMLHttpRequest();
+                        padAjaxfce273265f70a78774822914a9a9ce11.onreadystatechange=function() {
+                        if (padAjaxfce273265f70a78774822914a9a9ce11.readyState === 4) {
+                        if (padAjaxfce273265f70a78774822914a9a9ce11.status === 200) {
+                        document.getElementById("padAjaxfce273265f70a78774822914a9a9ce11").innerHTML=padAjaxfce273265f70a78774822914a9a9ce11.responseText;
+                        } else {
+                        document.getElementById("padAjaxfce273265f70a78774822914a9a9ce11").innerHTML=padAjaxfce273265f70a78774822914a9a9ce11.statusText;
+                        }
+                        }
+                        }
+                        padAjaxfce273265f70a78774822914a9a9ce11.open("GET","http://localhost/pad/tags/?names&padInclude",true);
+                        padAjaxfce273265f70a78774822914a9a9ce11.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

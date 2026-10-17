@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {cannot} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#access">Users and access</a><span>/</span><span aria-current="page">cannot</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>cannot<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Renders its content when the user may not do something a gate decides - can turned round.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#access">Users and access</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">cannot</span> <span class="hl-str">'ability'</span>, <span class="hl-var">$value</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/cannot</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">cannot</span> <span class="hl-str">'ability'</span>, <span class="hl-var">$value</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/cannot</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>ability</code>
+            </dt>
+            <dd>
+              The name of a gate defined with <code>padGate</code>.
+            </dd>
+            <dt>
+              <code>values</code>
+            </dt>
+            <dd>
+              Optional, any number: what the gate is given after the user, as for <code>{can}</code>.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{cannot}</code> is <a href="index%EF%B9%96tag%EA%A4%B7can.html">{can}</a> turned round: the content renders when the gate answers no, and the part after its own <code>{else}</code> - or the <code>@else@</code> half - when it answers yes. Everything else is the same: the first item is the ability, the others what the gate is given, an enclosing loop's name its current row.
+          </p>
+          <p>
+            A guest is refused by every gate that does not take NULL for its user, so for a guest <code>{cannot}</code> renders its content for those. An ability nobody defined counts as no - and is an error under the strict check, as with <code>{can}</code>.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              The opposite of can
+            </h3>
+            <p class="example-about">
+              The content renders when the gate says no - here for the post a guest may not read.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/cannot/1-locked.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">posts</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">cannot</span> <span class="hl-str">'read-post'</span>, <span class="hl-var">$posts</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"badge"</span><span class="hl-htm">&gt;</span>locked<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/cannot</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/posts</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                <div class="cell-head">
+                  <span>PHP</span><span class="cell-file">examples/cannot/1-locked.php</span>
+                </div>
+                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$posts</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Release notes'</span><span class="hl-pun">,</span>  <span class="hl-str">'published'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">TRUE</span><span class="hl-pun">,</span>  <span class="hl-str">'author'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">1</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Draft: roadmap'</span><span class="hl-pun">,</span> <span class="hl-str">'published'</span> <span class="hl-pun">=&gt;</span> <span class="hl-lit">FALSE</span><span class="hl-pun">,</span> <span class="hl-str">'author'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">1</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7cannot%EA%A4%B71-locked.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>Release notes
+                    </li>
+                    <li>Draft: roadmap <span class="badge">locked</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              With an else
+            </h3>
+            <p class="example-about">
+              {cannot} owns its {else} too: the part after it renders when the gate says yes.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/cannot/2-else.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$note</span> = [ <span class="hl-str">'title'</span> =<span class="hl-htm">&gt;</span> <span class="hl-str">'Minutes'</span>, <span class="hl-str">'published'</span> =<span class="hl-htm">&gt;</span> TRUE, <span class="hl-str">'author'</span> =<span class="hl-htm">&gt;</span> <span class="hl-num">7</span> ]<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">cannot</span> <span class="hl-str">'edit-post'</span>, <span class="hl-var">$note</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>You cannot change these minutes.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#edit"</span><span class="hl-htm">&gt;</span>Change the minutes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/cannot</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7cannot%EA%A4%B72-else.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    You cannot change these minutes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7can.html">{can}</a> <span class="about">Renders its content when the user may do something a gate decides, and its else half when not.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7auth.html">{auth}</a> <span class="about">Renders its content when a user is logged in, with the user's row as its data, and its else half for a guest.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7guest.html">{guest}</a> <span class="about">Renders its content when nobody is logged in, and its else half for a user.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7can.html">← {can}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7carousel.html">{carousel} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d97706">
+    <meta name="csrf-token" content="d68b94d3f7f6856fa94483363d28524a2497e813a09632b1fe875c2c1e19a4b3">
+    <title>
+      Edit: Ideas for the offline shop · Notes
+    </title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="notes.css">
+    <script src="notes.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="index%EF%B9%96index.html"><img src="icon.svg" alt="" width="28" height="28"><span>Notes</span></a>
+      <form class="search" method="get" role="search">
+        <input type="hidden" name="index" value=""> <input type="search" name="q" value="" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
+      </form>
+      <nav>
+        <a class="button primary" href="index%EF%B9%96edit.html">New note</a> <a class="button" href="index%EF%B9%96backup.html">Backup</a>
+      </nav>
+    </header>
+    <main>
+      <div class="editor">
+        <h1>
+          Edit note
+        </h1>
+        <form method="post" enctype="multipart/form-data">
+          <input type="hidden" name="padCsrfToken" value="d68b94d3f7f6856fa94483363d28524a2497e813a09632b1fe875c2c1e19a4b3"><input type="hidden" name="padForm" value="note"> <label for="title">Title</label><input type="text" name="title" id="title" value="Ideas for the offline shop" placeholder="What is it about?">
+          <div class="tabs" role="tablist" aria-label="Text">
+            <button type="button" role="tab" data-tab="write" aria-selected="true">Write</button> <button type="button" role="tab" data-tab="preview" aria-selected="false">Preview</button>
+          </div><label for="body">Text, in Markdown</label>
+          <textarea name="body" id="body" rows="16">Orders written on the market, without network, and sent in the evening.
+
+The database goes with the tablet; the **Backup** page hands it to the office as a file.</textarea>
+          <div id="preview" class="preview body" hidden=""></div><label for="tags">Tags</label><input type="text" name="tags" id="tags" value="ideas, offline" placeholder="work, ideas - separated by commas">
+          <fieldset class="colors">
+            <legend>Colour</legend> <label class="color-plain"><input type="radio" name="color" value="plain"> Plain</label><label class="color-sun"><input type="radio" name="color" value="sun"> Sun</label><label class="color-sea"><input type="radio" name="color" value="sea"> Sea</label><label class="color-mint"><input type="radio" name="color" value="mint"> Mint</label><label class="color-rose"><input type="radio" name="color" value="rose"> Rose</label><label class="color-lilac"><input type="radio" name="color" value="lilac" checked> Lilac</label>
+          </fieldset>
+          <div class="drop">
+            <span>Drop a picture, a PDF or a text file here - or choose one</span> <label for="file">Attach a file</label><input type="file" name="file" id="file" accept="image/*,application/pdf,text/plain,text/markdown,text/csv"> <span class="chosen"></span>
+          </div>
+          <div class="bar">
+            <button class="button primary">Save</button> <a class="button" href="index%EF%B9%96note&amp;id=4.html">Cancel</a> <small><kbd>Ctrl</kbd> + <kbd>S</kbd> saves</small>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="bottom">
+      Notes runs on PHP 8.5.11. Its notes live in one SQLite database.
+    </footer>
+  </body>
+</html>

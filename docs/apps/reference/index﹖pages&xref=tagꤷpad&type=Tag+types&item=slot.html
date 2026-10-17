@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -187,6 +187,48 @@
                         }
                         padAjaxc9b29741f4051cd17e5aeb8bd2c6e82c.open("GET","http://localhost/pad/regression/errors/?syntax/a_slot_stands_outside_any_custom_tag&padInclude",true);
                         padAjaxc9b29741f4051cd17e5aeb8bd2c6e82c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/a_define_is_a_custom_tag_of_the_template<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/a_define_is_a_custom_tag_of_the_template.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/a_define_is_a_custom_tag_of_the_template.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $x </span><span style="color: #007700">= </span><span style="color: #DD0000">'a&lt;b'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">define </font><font color="red"><font color="black">'</font>card<font color="black">'</font></font>}</b><b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>info<font color="black">'</font></font>}</b>&lt;div class="<b>{<font color="green"><font color="red">#</font>tone</font>}</b>"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/h2&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>foot<font color="black">'</font></font>}</b>&lt;p&gt;<b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>&lt;/p&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/div&gt;<b>{/<font color="blue">define</font><font color="red"></font>}</b><b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>One<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>foot<font color="black">'</font></font>}</b>F<b>{/<font color="blue">slot</font><font color="red"></font>}</b><b>{/<font color="blue">card</font><font color="red"></font>}</b><b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Two<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>warn<font color="black">'</font></font>}</b>two<b>{/<font color="blue">card</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxd0d886c298d9a2543250d23bae3c65f8"></div>
+                        <script>
+                        padAjaxd0d886c298d9a2543250d23bae3c65f8 = new XMLHttpRequest();
+                        padAjaxd0d886c298d9a2543250d23bae3c65f8.onreadystatechange=function() {
+                        if (padAjaxd0d886c298d9a2543250d23bae3c65f8.readyState === 4) {
+                        if (padAjaxd0d886c298d9a2543250d23bae3c65f8.status === 200) {
+                        document.getElementById("padAjaxd0d886c298d9a2543250d23bae3c65f8").innerHTML=padAjaxd0d886c298d9a2543250d23bae3c65f8.responseText;
+                        } else {
+                        document.getElementById("padAjaxd0d886c298d9a2543250d23bae3c65f8").innerHTML=padAjaxd0d886c298d9a2543250d23bae3c65f8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxd0d886c298d9a2543250d23bae3c65f8.open("GET","http://localhost/pad/regression/framework/?tags/a_define_is_a_custom_tag_of_the_template&padInclude",true);
+                        padAjaxd0d886c298d9a2543250d23bae3c65f8.send();
                         </script>
                       </td>
                     </tr>
@@ -511,6 +553,86 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: tags - Page: examples/define/2-parms-slot<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/define/2-parms-slot.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Parameters and a slot<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font><b><font color="black">{</font><font color="blue">parms</font><font color="red"></font><font color="black">}</font></b> gives a default<font color="black">,</font> and a <b><font color="black">{</font><font color="blue">slot</font><font color="red"></font><font color="black">}</font></b> takes a fill from the use - or shows its own default.<font color="black">'</font></font>}</b><br><b>{<font color="blue">define </font><font color="red"><font color="black">'</font>defineNote<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">parms </font><font color="red">text<font color="black">,</font> tone=<font color="black">'</font>info<font color="black">'</font></font>}</b><br>  &lt;p style="margin:6px 0"&gt;[<b>{<font color="green"><font color="red">#</font>tone</font>}</b>] <b>{<font color="green"><font color="red">#</font>text</font>}</b><br>    <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>more<font color="black">'</font></font>}</b>&lt;em&gt;no details&lt;/em&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">define</font><font color="red"></font>}</b><br><br><b>{<font color="blue">defineNote </font><font color="red">text=<font color="black">'</font>Backup finished<font color="black">'</font></font>}</b><b>{/<font color="blue">defineNote</font><font color="red"></font>}</b><br><b>{<font color="blue">defineNote </font><font color="red">text=<font color="black">'</font>Disk almost full<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>warning<font color="black">'</font></font>}</b><b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>more<font color="black">'</font></font>}</b>&lt;b&gt;92% used&lt;/b&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b><b>{/<font color="blue">defineNote</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax84b97630c8cb2873c6afbc678e9a7c93"></div>
+                        <script>
+                        padAjax84b97630c8cb2873c6afbc678e9a7c93 = new XMLHttpRequest();
+                        padAjax84b97630c8cb2873c6afbc678e9a7c93.onreadystatechange=function() {
+                        if (padAjax84b97630c8cb2873c6afbc678e9a7c93.readyState === 4) {
+                        if (padAjax84b97630c8cb2873c6afbc678e9a7c93.status === 200) {
+                        document.getElementById("padAjax84b97630c8cb2873c6afbc678e9a7c93").innerHTML=padAjax84b97630c8cb2873c6afbc678e9a7c93.responseText;
+                        } else {
+                        document.getElementById("padAjax84b97630c8cb2873c6afbc678e9a7c93").innerHTML=padAjax84b97630c8cb2873c6afbc678e9a7c93.statusText;
+                        }
+                        }
+                        }
+                        padAjax84b97630c8cb2873c6afbc678e9a7c93.open("GET","http://localhost/pad/tags/?examples/define/2-parms-slot&padInclude",true);
+                        padAjax84b97630c8cb2873c6afbc678e9a7c93.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: tags - Page: examples/slot/1-fill<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/slot/1-fill.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Filling the slots<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A custom tag with a title slot and a footer slot; the caller fills both<font color="black">,</font> the rest of its content goes to <font color="black">@</font>content<font color="black">@</font>.<font color="black">'</font></font>}</b><br><b>{<font color="blue">slotCard</font><font color="red"></font>}</b><br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>title<font color="black">'</font></font>}</b>Revenue<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br>  &lt;p&gt;€ 12,400 this month.&lt;/p&gt;<br>  <b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>Updated on 1 October 2026<b>{/<font color="blue">slot</font><font color="red"></font>}</b><br><b>{/<font color="blue">slotCard</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2"></div>
+                        <script>
+                        padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2 = new XMLHttpRequest();
+                        padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.onreadystatechange=function() {
+                        if (padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.readyState === 4) {
+                        if (padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.status === 200) {
+                        document.getElementById("padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2").innerHTML=padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.responseText;
+                        } else {
+                        document.getElementById("padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2").innerHTML=padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.statusText;
+                        }
+                        }
+                        }
+                        padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.open("GET","http://localhost/pad/tags/?examples/slot/1-fill&padInclude",true);
+                        padAjax11cac6fb2a45e99f17b4aa9f5da3c2d2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -525,7 +647,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

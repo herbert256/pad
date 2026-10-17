@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,90 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: ledger - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">index.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The month at a glance: what came in, what went out, what is left; six months of it as a<br>  // chart, this month's spending by category, the budgets, the accounts, the latest entries<br>  // - and a quick entry that ledger.js posts as JSON, answered by quick.php.<br><br>  </span><span style="color: #0000BB">$totals    </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerTotals </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$history   </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerHistory </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$spending  </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerSpending </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$budgets   </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerBudgets </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$accounts  </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerAccounts </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$latest    </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">ledgerRows </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">), fn ( </span><span style="color: #0000BB">$r </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'kind'</span><span style="color: #007700">] != </span><span style="color: #DD0000">'transfer' </span><span style="color: #007700">) ), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$spendable </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">ledgerCategories </span><span style="color: #007700">(), fn ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">[</span><span style="color: #DD0000">'kind'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'expense' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$monthName </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerMonthName </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$today     </span><span style="color: #007700">= </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$ledgerPage </span><span style="color: #007700">= </span><span style="color: #0000BB">$monthName</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="head"&gt;<br>  &lt;h1&gt;<b>{<font color="green"><font color="red">$</font>monthName</font>}</b>&lt;/h1&gt;<br>  &lt;span class="dim"&gt;<b>{<font color="green"><font color="red">$</font>totals.entries</font>}</b> entries&lt;/span&gt;<br>&lt;/div&gt;<br><br>&lt;section class="kpis" aria-label="This month"&gt;<br>  &lt;div class="kpi in"&gt;&lt;span&gt;Income&lt;/span&gt;&lt;b data-kpi="income"&gt;<b>{<font color="green">$totals.income</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/div&gt;<br>  &lt;div class="kpi out"&gt;&lt;span&gt;Spending&lt;/span&gt;&lt;b data-kpi="spent"&gt;<b>{<font color="green">$totals.spent</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/div&gt;<br>  &lt;div class="kpi"&gt;&lt;span&gt;Left&lt;/span&gt;&lt;b data-kpi="left"&gt;<b>{<font color="green">$totals.left</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/div&gt;<br>  &lt;div class="kpi"&gt;&lt;span&gt;Kept&lt;/span&gt;&lt;b data-kpi="kept"&gt;<b>{<font color="green"><font color="red">$</font>totals.kept</font>}</b>%&lt;/b&gt;&lt;/div&gt;<br>&lt;/section&gt;<br><br>&lt;div class="columns"&gt;<br><br>  &lt;div class="main"&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Six months&lt;/h2&gt;<br>      <b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>history<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>income<font color="black">,</font> spending<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Income and spending<font color="black">,</font> six months<font color="black">'</font></font>}</b><br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Where it went&lt;/h2&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>totals.spent gt 0</font>}</b><br>        <b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>donut<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>spending<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>category<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>spent<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Spending by category<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">else</font><font color="red"></font>}</b><br>        &lt;p class="dim"&gt;Nothing spent this month.&lt;/p&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Budgets &lt;a class="more" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>budgets<b>{<font color="green">?month</font>}</b>"&gt;Change&lt;/a&gt;&lt;/h2&gt;<br>      &lt;ul class="budgets"&gt;<br>        <b>{<font color="blue">budgets</font><font color="red"></font>}</b><br>        &lt;li class="<b>{<font color="green"><font color="red">$</font>state</font>}</b>"&gt;<br>          &lt;div class="line"&gt;&lt;span class="dot" style="background: <b>{<font color="green"><font color="red">$</font>color</font>}</b>"&gt;&lt;/span&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/b&gt;&lt;span&gt;<b>{<font color="green">$spent</font> <font color="black">|</font> <font color="blue">money</font>}</b> of <b>{<font color="green">$monthly</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>          <b>{<font color="blue">progress </font><font color="red"><font color="red">$</font>share<font color="black">,</font> max=100<font color="black">,</font> label=<font color="red">$</font>name<font color="black">,</font> color=<font color="red">$</font>tone</font>}</b><br>        &lt;/li&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>        &lt;li class="dim"&gt;No budgets yet.&lt;/li&gt;<br>        <b>{/<font color="blue">budgets</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br><br>  &lt;/div&gt;<br><br>  &lt;aside class="side"&gt;<br><br>    &lt;section class="card quick"&gt;<br>      &lt;h2&gt;Quick entry&lt;/h2&gt;<br>      <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>quick<font color="black">'</font><font color="black">,</font> action=<font color="black">'</font>?quick<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>quick-form<font color="black">'</font></font>}</b><br>        &lt;input type="hidden" name="month" value="<b>{<font color="green"><font color="red">$</font>ledgerMonth</font>}</b>"&gt;<br>        &lt;label for="q-amount"&gt;Amount&lt;/label&gt;<br>        &lt;input id="q-amount" name="amount" inputmode="decimal" placeholder="12.50" required pattern="[0-9]+([.,][0-9][0-9]?)?"&gt;<br>        &lt;label for="q-category"&gt;Category&lt;/label&gt;<br>        &lt;select id="q-category" name="category"&gt;<b>{<font color="blue">spendable</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue">spendable</font><font color="red"></font>}</b>&lt;/select&gt;<br>        &lt;label for="q-note"&gt;Note&lt;/label&gt;<br>        &lt;input id="q-note" name="note" placeholder="Coffee" maxlength="120"&gt;<br>        &lt;button class="button primary"&gt;Spend it&lt;/button&gt;<br>        &lt;p class="said" role="status"&gt;&lt;/p&gt;<br>      <b>{/<font color="blue">form</font><font color="red"></font>}</b><br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Accounts&lt;/h2&gt;<br>      &lt;ul class="accounts"&gt;<br>        <b>{<font color="blue">accounts</font><font color="red"></font>}</b>&lt;li&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/span&gt;&lt;b class="<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>balance lt 0</font>}</b>neg<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;<b>{<font color="green">$balance</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/li&gt;<b>{/<font color="blue">accounts</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Latest &lt;a class="more" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>transactions<b>{<font color="green">?month</font>}</b>"&gt;All&lt;/a&gt;&lt;/h2&gt;<br>      &lt;ul class="latest"&gt;<br>        <b>{<font color="blue">latest</font><font color="red"></font>}</b>&lt;li&gt;&lt;span class="day"&gt;<b>{<font color="green">$day</font> <font color="black">|</font> <font color="blue">date('j M')</font>}</b>&lt;/span&gt;&lt;span class="what"&gt;<b>{<font color="green"><font color="red">$</font>note</font>}</b>&lt;small&gt;<b>{<font color="green"><font color="red">$</font>category</font>}</b>&lt;/small&gt;&lt;/span&gt;&lt;b class="<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>amount lt 0</font>}</b>neg<b>{<font color="blue">else</font><font color="red"></font>}</b>pos<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/li&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;li class="dim"&gt;No entries this month.&lt;/li&gt;<b>{/<font color="blue">latest</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br><br>  &lt;/aside&gt;<br><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5a078e3f5a42f30b9db0874239bddb79"></div>
+                        <script>
+                        padAjax5a078e3f5a42f30b9db0874239bddb79 = new XMLHttpRequest();
+                        padAjax5a078e3f5a42f30b9db0874239bddb79.onreadystatechange=function() {
+                        if (padAjax5a078e3f5a42f30b9db0874239bddb79.readyState === 4) {
+                        if (padAjax5a078e3f5a42f30b9db0874239bddb79.status === 200) {
+                        document.getElementById("padAjax5a078e3f5a42f30b9db0874239bddb79").innerHTML=padAjax5a078e3f5a42f30b9db0874239bddb79.responseText;
+                        } else {
+                        document.getElementById("padAjax5a078e3f5a42f30b9db0874239bddb79").innerHTML=padAjax5a078e3f5a42f30b9db0874239bddb79.statusText;
+                        }
+                        }
+                        }
+                        padAjax5a078e3f5a42f30b9db0874239bddb79.open("GET","http://localhost/pad/ledger/?index&padInclude",true);
+                        padAjax5a078e3f5a42f30b9db0874239bddb79.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: ledger - Page: transactions<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">transactions.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">transactions.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A month's transactions as one table - sorted and paged on the server by {datatable} -<br>  // narrowed to a category, an account or a word in the note. The same rows answer as CSV<br>  // (?transactions&amp;padFormat=csv) and JSON: $padExpose names them.<br><br>  </span><span style="color: #0000BB">$only     </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'category'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$from     </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'account'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$word     </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">ledgerText </span><span style="color: #007700">( </span><span style="color: #DD0000">'q' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$rows     </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$r </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">array_diff_key </span><span style="color: #007700">( </span><span style="color: #0000BB">$r</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'kind' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ), </span><span style="color: #0000BB">ledgerRows </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth</span><span style="color: #007700">, </span><span style="color: #0000BB">$only</span><span style="color: #007700">, </span><span style="color: #0000BB">$from</span><span style="color: #007700">, </span><span style="color: #0000BB">$word </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$shown    </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$sum      </span><span style="color: #007700">= </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$rows</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">) ), </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$categoryList </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">+ [ </span><span style="color: #DD0000">'chosen' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$only </span><span style="color: #007700">], </span><span style="color: #0000BB">ledgerCategories </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$accountList  </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$a </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">+ [ </span><span style="color: #DD0000">'chosen' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$a </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$from </span><span style="color: #007700">], </span><span style="color: #0000BB">ledgerAccounts </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$monthName    </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerMonthName </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$csvName      </span><span style="color: #007700">= </span><span style="color: #DD0000">"ledger-</span><span style="color: #0000BB">$ledgerMonth</span><span style="color: #DD0000">.csv"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$csvQuery     </span><span style="color: #007700">= </span><span style="color: #0000BB">http_build_query </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ledgerMonth</span><span style="color: #007700">, </span><span style="color: #DD0000">'category' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$only</span><span style="color: #007700">, </span><span style="color: #DD0000">'account' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$from</span><span style="color: #007700">, </span><span style="color: #DD0000">'q' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word</span><span style="color: #007700">, </span><span style="color: #DD0000">'padFormat' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'csv' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$padExpose  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'rows' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ledgerPage </span><span style="color: #007700">= </span><span style="color: #DD0000">"Transactions, </span><span style="color: #0000BB">$monthName</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="head"&gt;<br>  &lt;h1&gt;Transactions &lt;span class="dim"&gt;<b>{<font color="green"><font color="red">$</font>monthName</font>}</b>&lt;/span&gt;&lt;/h1&gt;<br>  &lt;a class="button" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>transactions&<b>{<font color="green"><font color="red">$</font>csvQuery</font>}</b>" download="<b>{<font color="green"><font color="red">$</font>csvName</font>}</b>"&gt;⬇ CSV&lt;/a&gt;<br>&lt;/div&gt;<br><br>&lt;form class="filters" method="get"&gt;<br>  &lt;input type="hidden" name="transactions" value=""&gt;<br>  &lt;input type="hidden" name="month" value="<b>{<font color="green"><font color="red">$</font>ledgerMonth</font>}</b>"&gt;<br>  &lt;label&gt;Category<br>    &lt;select name="category"&gt;&lt;option value="0"&gt;All&lt;/option&gt;<b>{<font color="blue">categoryList</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>chosen</font>}</b> selected<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue">categoryList</font><font color="red"></font>}</b>&lt;/select&gt;<br>  &lt;/label&gt;<br>  &lt;label&gt;Account<br>    &lt;select name="account"&gt;&lt;option value="0"&gt;All&lt;/option&gt;<b>{<font color="blue">accountList</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>chosen</font>}</b> selected<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue">accountList</font><font color="red"></font>}</b>&lt;/select&gt;<br>  &lt;/label&gt;<br>  &lt;label&gt;Note &lt;input type="search" name="q" value="<b>{<font color="green"><font color="red">$</font>word</font>}</b>" placeholder="a word"&gt;&lt;/label&gt;<br>  &lt;button class="button"&gt;Show&lt;/button&gt;<br>&lt;/form&gt;<br><br>&lt;section class="card table"&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>shown gt 0</font>}</b><br>  <b>{<font color="blue">datatable </font><font color="red">data=<font color="black">'</font>rows<font color="black">'</font><font color="black">,</font> columns=<font color="black">'</font>day<font color="black">,</font> category<font color="black">,</font> account<font color="black">,</font> note<font color="black">,</font> amount<font color="black">'</font><font color="black">,</font> format="amount<font color="black">:</font>money<font color="black">,</font> day<font color="black">:</font>date(<font color="black">'</font>D j M<font color="black">'</font>)"<font color="black">,</font> totals=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> sortable<font color="black">,</font> rows=15<font color="black">,</font> striped</font>}</b><br>  <b>{<font color="blue">else</font><font color="red"></font>}</b><br>  &lt;p class="dim"&gt;No transactions here.&lt;/p&gt;<br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  &lt;p class="dim sum"&gt;<b>{<font color="green"><font color="red">$</font>shown</font>}</b> transactions, together <b>{<font color="green">$sum</font> <font color="black">|</font> <font color="blue">money</font>}</b>.&lt;/p&gt;<br>&lt;/section&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcfc41dcba3ff54637d93892f2161556a"></div>
+                        <script>
+                        padAjaxcfc41dcba3ff54637d93892f2161556a = new XMLHttpRequest();
+                        padAjaxcfc41dcba3ff54637d93892f2161556a.onreadystatechange=function() {
+                        if (padAjaxcfc41dcba3ff54637d93892f2161556a.readyState === 4) {
+                        if (padAjaxcfc41dcba3ff54637d93892f2161556a.status === 200) {
+                        document.getElementById("padAjaxcfc41dcba3ff54637d93892f2161556a").innerHTML=padAjaxcfc41dcba3ff54637d93892f2161556a.responseText;
+                        } else {
+                        document.getElementById("padAjaxcfc41dcba3ff54637d93892f2161556a").innerHTML=padAjaxcfc41dcba3ff54637d93892f2161556a.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcfc41dcba3ff54637d93892f2161556a.open("GET","http://localhost/pad/ledger/?transactions&padInclude",true);
+                        padAjaxcfc41dcba3ff54637d93892f2161556a.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: regression/errors - Page: syntax/date_names_a_change_it_cannot_read<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -67,6 +151,214 @@
                         }
                         padAjax5ee7dffe5caa08f9b936d72cb96be942.open("GET","http://localhost/pad/regression/errors/?syntax/date_names_a_change_it_cannot_read&padInclude",true);
                         padAjax5ee7dffe5caa08f9b936d72cb96be942.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_built_in_written_as_a_call_reads_its_first_argument<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_built_in_written_as_a_call_reads_its_first_argument.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>s = <font color="black">'</font>hello<font color="black">'</font></font>}</b>[<b>{<font color="blue">echo </font><font color="red">trim(<font color="black">'</font>  a  <font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">upper(<font color="red">$</font>s)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">left(<font color="red">$</font>s<font color="black">,</font> 2)</font>}</b>][<b>{<font color="blue">if </font><font color="red">upper(<font color="red">$</font>s) eq <font color="black">'</font>HELLO<font color="black">'</font></font>}</b>T<b>{<font color="blue">else</font><font color="red"></font>}</b>F<b>{/<font color="blue">if</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> . upper(<font color="red">$</font>s)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">date(<font color="black">'</font>Y<font color="black">'</font><font color="black">,</font> 0)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> replace(<font color="black">'</font>l<font color="black">'</font><font color="black">,</font> upper(<font color="black">'</font>x<font color="black">'</font>))</font>}</b>][<b>{<font color="blue">echo </font><font color="red">substr(<font color="red">$</font>s<font color="black">,</font> 0<font color="black">,</font> 3)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> left(2)</font>}</b>][<b>{<font color="green">$s</font> <font color="black">|</font> <font color="blue">left(3)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxff7fe9d42b560e17faec7ee77eac4f29"></div>
+                        <script>
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29 = new XMLHttpRequest();
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29.onreadystatechange=function() {
+                        if (padAjaxff7fe9d42b560e17faec7ee77eac4f29.readyState === 4) {
+                        if (padAjaxff7fe9d42b560e17faec7ee77eac4f29.status === 200) {
+                        document.getElementById("padAjaxff7fe9d42b560e17faec7ee77eac4f29").innerHTML=padAjaxff7fe9d42b560e17faec7ee77eac4f29.responseText;
+                        } else {
+                        document.getElementById("padAjaxff7fe9d42b560e17faec7ee77eac4f29").innerHTML=padAjaxff7fe9d42b560e17faec7ee77eac4f29.statusText;
+                        }
+                        }
+                        }
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29.open("GET","http://localhost/pad/regression/framework/?expressions/a_built_in_written_as_a_call_reads_its_first_argument&padInclude",true);
+                        padAjaxff7fe9d42b560e17faec7ee77eac4f29.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: expressions/a_date_object_is_its_text_to_operators_and_text_pipes<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">expressions/a_date_object_is_its_text_to_operators_and_text_pipes.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">expressions/a_date_object_is_its_text_to_operators_and_text_pipes.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A date object a page's PHP leaves is its text - Y-m-d H:i:s, as {$d} writes it - to an<br>  // operator, a pipe that takes text and a query value: compared as an object it stood above<br>  // every string, and | upper, . and {?d} ended the page on a TypeError.<br><br>  </span><span style="color: #0000BB">$d </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime </span><span style="color: #007700">( </span><span style="color: #DD0000">'2020-01-02 03:04:05' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">lt[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>d lt <font color="black">'</font>2030-01-01<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>] gt[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>d gt <font color="black">'</font>2030-01-01<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>] eq[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>d eq <font color="black">'</font>2020-01-02 03<font color="black">:</font>04<font color="black">:</font>05<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>] [<b>{<font color="green">$d</font> <font color="black">|</font> <font color="blue">upper</font>}</b>] [<b>{<font color="green">$d</font> <font color="black">|</font> <font color="blue">left(10)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>d . <font color="black">'</font> UTC<font color="black">'</font></font>}</b>] [<b>{<font color="green">$d</font> <font color="black">|</font> <font color="blue">date('Y')</font>}</b>] [<b>{<font color="green">?d</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0627b0187ec837a9c9f33aa0790ab375"></div>
+                        <script>
+                        padAjax0627b0187ec837a9c9f33aa0790ab375 = new XMLHttpRequest();
+                        padAjax0627b0187ec837a9c9f33aa0790ab375.onreadystatechange=function() {
+                        if (padAjax0627b0187ec837a9c9f33aa0790ab375.readyState === 4) {
+                        if (padAjax0627b0187ec837a9c9f33aa0790ab375.status === 200) {
+                        document.getElementById("padAjax0627b0187ec837a9c9f33aa0790ab375").innerHTML=padAjax0627b0187ec837a9c9f33aa0790ab375.responseText;
+                        } else {
+                        document.getElementById("padAjax0627b0187ec837a9c9f33aa0790ab375").innerHTML=padAjax0627b0187ec837a9c9f33aa0790ab375.statusText;
+                        }
+                        }
+                        }
+                        padAjax0627b0187ec837a9c9f33aa0790ab375.open("GET","http://localhost/pad/regression/framework/?expressions/a_date_object_is_its_text_to_operators_and_text_pipes&padInclude",true);
+                        padAjax0627b0187ec837a9c9f33aa0790ab375.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/a_date_modifier_starts_its_day_where_summer_time_begins_at_midnight<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/a_date_modifier_starts_its_day_where_summer_time_begins_at_midnight.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/a_date_modifier_starts_its_day_where_summer_time_begins_at_midnight.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Cairo's summer time began at midnight on 28 April 2023 - that day had no 00:00;<br>  // 1682672400 is noon on it.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'Africa/Cairo'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1682672400 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>1 jan<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1682672400 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>1 jan +5 hours<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1682672400 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Feb 5 -1 hour<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1682672400 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>+1 day<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1682672400 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>midnight<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaea70bcd3c4548210684d01fc73b8e28"></div>
+                        <script>
+                        padAjaxaea70bcd3c4548210684d01fc73b8e28 = new XMLHttpRequest();
+                        padAjaxaea70bcd3c4548210684d01fc73b8e28.onreadystatechange=function() {
+                        if (padAjaxaea70bcd3c4548210684d01fc73b8e28.readyState === 4) {
+                        if (padAjaxaea70bcd3c4548210684d01fc73b8e28.status === 200) {
+                        document.getElementById("padAjaxaea70bcd3c4548210684d01fc73b8e28").innerHTML=padAjaxaea70bcd3c4548210684d01fc73b8e28.responseText;
+                        } else {
+                        document.getElementById("padAjaxaea70bcd3c4548210684d01fc73b8e28").innerHTML=padAjaxaea70bcd3c4548210684d01fc73b8e28.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaea70bcd3c4548210684d01fc73b8e28.open("GET","http://localhost/pad/regression/framework/?functions/a_date_modifier_starts_its_day_where_summer_time_begins_at_midnight&padInclude",true);
+                        padAjaxaea70bcd3c4548210684d01fc73b8e28.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/a_date_modifier_with_a_date_and_a_relative_time_keeps_the_time<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/a_date_modifier_with_a_date_and_a_relative_time_keeps_the_time.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/a_date_modifier_with_a_date_and_a_relative_time_keeps_the_time.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// 1700000000 is 22:13 UTC on 14 November 2023.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>1 jan +5 hours<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>2024-02-03 +90 minutes<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Feb 5 -1 hour<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>1 jan<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxe48eaaa1070841fd1e74743bc44c5a25"></div>
+                        <script>
+                        padAjaxe48eaaa1070841fd1e74743bc44c5a25 = new XMLHttpRequest();
+                        padAjaxe48eaaa1070841fd1e74743bc44c5a25.onreadystatechange=function() {
+                        if (padAjaxe48eaaa1070841fd1e74743bc44c5a25.readyState === 4) {
+                        if (padAjaxe48eaaa1070841fd1e74743bc44c5a25.status === 200) {
+                        document.getElementById("padAjaxe48eaaa1070841fd1e74743bc44c5a25").innerHTML=padAjaxe48eaaa1070841fd1e74743bc44c5a25.responseText;
+                        } else {
+                        document.getElementById("padAjaxe48eaaa1070841fd1e74743bc44c5a25").innerHTML=padAjaxe48eaaa1070841fd1e74743bc44c5a25.statusText;
+                        }
+                        }
+                        }
+                        padAjaxe48eaaa1070841fd1e74743bc44c5a25.open("GET","http://localhost/pad/regression/framework/?functions/a_date_modifier_with_a_date_and_a_relative_time_keeps_the_time&padInclude",true);
+                        padAjaxe48eaaa1070841fd1e74743bc44c5a25.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/a_date_modifier_without_a_time_starts_its_day<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/a_date_modifier_without_a_time_starts_its_day.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/a_date_modifier_without_a_time_starts_its_day.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// 1700000000 is 22:13 UTC on 14 November 2023.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>1 jan<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>2024-02-03<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Feb 5<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>+1 week<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1700000000 <font color="black">|</font> date(<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">'</font><font color="black">,</font> <font color="black">'</font>1 jan 2020 10<font color="black">:</font>00<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxa2c6b7dd5d898ea5df6bb0201699318f"></div>
+                        <script>
+                        padAjaxa2c6b7dd5d898ea5df6bb0201699318f = new XMLHttpRequest();
+                        padAjaxa2c6b7dd5d898ea5df6bb0201699318f.onreadystatechange=function() {
+                        if (padAjaxa2c6b7dd5d898ea5df6bb0201699318f.readyState === 4) {
+                        if (padAjaxa2c6b7dd5d898ea5df6bb0201699318f.status === 200) {
+                        document.getElementById("padAjaxa2c6b7dd5d898ea5df6bb0201699318f").innerHTML=padAjaxa2c6b7dd5d898ea5df6bb0201699318f.responseText;
+                        } else {
+                        document.getElementById("padAjaxa2c6b7dd5d898ea5df6bb0201699318f").innerHTML=padAjaxa2c6b7dd5d898ea5df6bb0201699318f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxa2c6b7dd5d898ea5df6bb0201699318f.open("GET","http://localhost/pad/regression/framework/?functions/a_date_modifier_without_a_time_starts_its_day&padInclude",true);
+                        padAjaxa2c6b7dd5d898ea5df6bb0201699318f.send();
                         </script>
                       </td>
                     </tr>
@@ -272,41 +564,85 @@
                     </tr>
                   </table><br>
                   <hr>
-                  App: regression/pages - Page: functions/date<br>
+                  App: regression/framework - Page: functions/the_date_pipe_writes_the_timezone_the_page_set<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
                       <th bgcolor="#DDDDDD">
                         PHP<br>
-                        <font size="-2"></font>
+                        <font size="-2">functions/the_date_pipe_writes_the_timezone_the_page_set.php</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         HTML<br>
-                        <font size="-2">functions/date.pad</font>
+                        <font size="-2">functions/the_date_pipe_writes_the_timezone_the_page_set.pad</font>
                       </th>
                       <th bgcolor="#DDDDDD">
                         Result
                       </th>
                     </tr>
                     <tr>
-                      <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">#</font> this page prints the clock, so its answer is different every second - the crawl reads the<br>   word random here and stops comparing it. The pages suite asserts its shape instead. <font color="red">#</font></font>}</b><br><b>{<font color="blue">echo </font><font color="red">date</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">772345654 <font color="black">|</font> date </font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">date (<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font>)</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">772345654 <font color="black">|</font> date (<font color="black">'</font>Y-m-d H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font>)</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">date (<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>tomorrow<font color="black">'</font>)</font>}</b> &lt;br&gt;<br><b>{<font color="blue">echo </font><font color="red">date (<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>yesterday<font color="black">'</font>)</font>}</b> &lt;br&gt;</code></pre>
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page sets its own timezone; 1700000000 is 22:13:20 UTC on 14 November 2023.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'Asia/Tokyo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$t           </span><span style="color: #007700">= </span><span style="color: #0000BB">1700000000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                       </td>
                       <td style="vertical-align:top">
-                        <div id="padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19"></div>
+                        <pre><code style="color: #000000">[<b>{<font color="green">$t</font> <font color="black">|</font> <font color="purple">date('Y-m-d H</font><font color="black">:</font><font color="blue">i')</font>}</b>][<b>{<font color="green">$t</font> <font color="black">|</font> <font color="purple">date('Y-m-d H</font><font color="black">:</font><font color="blue">i', 'midnight')</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2023-11-15 07<font color="black">:</font>13<font color="black">:</font>20<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>U<font color="black">'</font>)</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax3969b260204138912248fb5553ee14f2"></div>
                         <script>
-                        padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19 = new XMLHttpRequest();
-                        padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.onreadystatechange=function() {
-                        if (padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.readyState === 4) {
-                        if (padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.status === 200) {
-                        document.getElementById("padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19").innerHTML=padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.responseText;
+                        padAjax3969b260204138912248fb5553ee14f2 = new XMLHttpRequest();
+                        padAjax3969b260204138912248fb5553ee14f2.onreadystatechange=function() {
+                        if (padAjax3969b260204138912248fb5553ee14f2.readyState === 4) {
+                        if (padAjax3969b260204138912248fb5553ee14f2.status === 200) {
+                        document.getElementById("padAjax3969b260204138912248fb5553ee14f2").innerHTML=padAjax3969b260204138912248fb5553ee14f2.responseText;
                         } else {
-                        document.getElementById("padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19").innerHTML=padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.statusText;
+                        document.getElementById("padAjax3969b260204138912248fb5553ee14f2").innerHTML=padAjax3969b260204138912248fb5553ee14f2.statusText;
                         }
                         }
                         }
-                        padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.open("GET","http://localhost/pad/regression/pages/?functions/date&padInclude",true);
-                        padAjax62d1e1a5245c4d5ea6e37fa67ed1bb19.send();
+                        padAjax3969b260204138912248fb5553ee14f2.open("GET","http://localhost/pad/regression/framework/?functions/the_date_pipe_writes_the_timezone_the_page_set&padInclude",true);
+                        padAjax3969b260204138912248fb5553ee14f2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// time and timestamp are the date pipe under other names: a date object of another zone<br>  // than the application's is the moment it holds to them too, not its wall-clock text.<br>  // 03:04:05 at +05:00 is 22:04:05 UTC the day before.<br><br>  </span><span style="color: #0000BB">$padTimezone </span><span style="color: #007700">= </span><span style="color: #DD0000">'UTC'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$d </span><span style="color: #007700">= new </span><span style="color: #0000BB">DateTime </span><span style="color: #007700">( </span><span style="color: #DD0000">'2020-01-02 03:04:05+05:00' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">date[<b>{<font color="green">$d</font> <font color="black">|</font> <font color="purple">date('Y-m-d H</font><font color="black">:</font><font color="blue">i')</font>}</b>] time[<b>{<font color="green">$d</font> <font color="black">|</font> <font color="purple">time('Y-m-d H</font><font color="black">:</font><font color="blue">i')</font>}</b>] timestamp[<b>{<font color="green">$d</font> <font color="black">|</font> <font color="blue">timestamp('U')</font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax5bc64767f57e7270fc469f569830b6b3"></div>
+                        <script>
+                        padAjax5bc64767f57e7270fc469f569830b6b3 = new XMLHttpRequest();
+                        padAjax5bc64767f57e7270fc469f569830b6b3.onreadystatechange=function() {
+                        if (padAjax5bc64767f57e7270fc469f569830b6b3.readyState === 4) {
+                        if (padAjax5bc64767f57e7270fc469f569830b6b3.status === 200) {
+                        document.getElementById("padAjax5bc64767f57e7270fc469f569830b6b3").innerHTML=padAjax5bc64767f57e7270fc469f569830b6b3.responseText;
+                        } else {
+                        document.getElementById("padAjax5bc64767f57e7270fc469f569830b6b3").innerHTML=padAjax5bc64767f57e7270fc469f569830b6b3.statusText;
+                        }
+                        }
+                        }
+                        padAjax5bc64767f57e7270fc469f569830b6b3.open("GET","http://localhost/pad/regression/framework/?functions/the_time_and_timestamp_pipes_take_a_date_object_as_its_moment&padInclude",true);
+                        padAjax5bc64767f57e7270fc469f569830b6b3.send();
                         </script>
                       </td>
                     </tr>
@@ -325,7 +661,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

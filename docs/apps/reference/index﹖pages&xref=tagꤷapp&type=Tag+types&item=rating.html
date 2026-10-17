@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - rating
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - rating
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: webcomponents - Page: examples/rating<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/rating.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/rating.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The votes are the session's: product id =&gt; [ the sum, the count ], started from a few<br>  // votes of others. The rating of a product is the visitor's own last vote; a click posts<br>  // the product and the stars, and the answer is the new average ($padExpose).<br><br>  </span><span style="color: #0000BB">$products </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Aurora Headphones'</span><span style="color: #007700">, </span><span style="color: #DD0000">'emoji' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'🎧' </span><span style="color: #007700">],<br>                [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Tactile Keyboard'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'emoji' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'⌨️' </span><span style="color: #007700">],<br>                [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ember Desk Lamp'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'emoji' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'💡' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$votes </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'wcVotes'</span><span style="color: #007700">, [ </span><span style="color: #0000BB">1 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'sum' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">18</span><span style="color: #007700">, </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">'mine' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">],<br>                                     </span><span style="color: #0000BB">2 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'sum' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'mine' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">],<br>                                     </span><span style="color: #0000BB">3 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'sum' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">,  </span><span style="color: #DD0000">'count' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'mine' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #FF8000">// Asked for its JSON without a vote, the page answers no rating; a vote for a product it<br>  // does not have is a 404 - where both were a 500, the one for a $rating never set, the<br>  // other for the votes of product 99.<br><br>  </span><span style="color: #0000BB">$rating </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$id    </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'id'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$value </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'value'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br><br>    if ( ! isset ( </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ) )<br>      </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404</span><span style="color: #007700">, </span><span style="color: #DD0000">'There is no such product' </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$value </span><span style="color: #007700">&gt;= </span><span style="color: #0000BB">1 </span><span style="color: #007700">and </span><span style="color: #0000BB">$value </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5 </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'sum'</span><span style="color: #007700">]  += </span><span style="color: #0000BB">$value </span><span style="color: #007700">- </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'mine'</span><span style="color: #007700">];<br>      </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'count'</span><span style="color: #007700">] += </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'mine'</span><span style="color: #007700">] ? </span><span style="color: #0000BB">0 </span><span style="color: #007700">: </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>      </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'mine'</span><span style="color: #007700">]  = </span><span style="color: #0000BB">$value</span><span style="color: #007700">;<br>      </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'wcVotes'</span><span style="color: #007700">, </span><span style="color: #0000BB">$votes </span><span style="color: #007700">);<br>    }<br><br>    </span><span style="color: #0000BB">$rating </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'average' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'sum'</span><span style="color: #007700">] / </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'count'</span><span style="color: #007700">] ), </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>                </span><span style="color: #DD0000">'votes'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] [</span><span style="color: #DD0000">'count'</span><span style="color: #007700">] ];<br><br>  }<br><br>  foreach ( </span><span style="color: #0000BB">$products </span><span style="color: #007700">as </span><span style="color: #0000BB">$at </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$product </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$products </span><span style="color: #007700">[</span><span style="color: #0000BB">$at</span><span style="color: #007700">] += [ </span><span style="color: #DD0000">'mine'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[ </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] ] [</span><span style="color: #DD0000">'mine'</span><span style="color: #007700">],<br>                         </span><span style="color: #DD0000">'average' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[ </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] ] [</span><span style="color: #DD0000">'sum'</span><span style="color: #007700">] / </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[ </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] ] [</span><span style="color: #DD0000">'count'</span><span style="color: #007700">], </span><span style="color: #0000BB">1 </span><span style="color: #007700">),<br>                         </span><span style="color: #DD0000">'votes'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$votes </span><span style="color: #007700">[ </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] ] [</span><span style="color: #DD0000">'count'</span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'rating' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div class="grid"&gt;<br><b>{<font color="blue">products</font><font color="red"></font>}</b><br>  &lt;div class="card product"&gt;<br>    &lt;span class="product-emoji"&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b>&lt;/span&gt;<br>    &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;<br>    <b>{<font color="blue">rating </font><font color="red">name=<font color="red">$</font>id<font color="black">,</font> value=<font color="red">$</font>mine<font color="black">,</font> average=<font color="red">$</font>average<font color="black">,</font> votes=<font color="red">$</font>votes</font>}</b><br>  &lt;/div&gt;<br><b>{/<font color="blue">products</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;script type="module" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>webcomponents/elements/rating.js"&gt;&lt;/script&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxcfbe64c4e6532016d6975e2fbde01531"></div>
+                        <script>
+                        padAjaxcfbe64c4e6532016d6975e2fbde01531 = new XMLHttpRequest();
+                        padAjaxcfbe64c4e6532016d6975e2fbde01531.onreadystatechange=function() {
+                        if (padAjaxcfbe64c4e6532016d6975e2fbde01531.readyState === 4) {
+                        if (padAjaxcfbe64c4e6532016d6975e2fbde01531.status === 200) {
+                        document.getElementById("padAjaxcfbe64c4e6532016d6975e2fbde01531").innerHTML=padAjaxcfbe64c4e6532016d6975e2fbde01531.responseText;
+                        } else {
+                        document.getElementById("padAjaxcfbe64c4e6532016d6975e2fbde01531").innerHTML=padAjaxcfbe64c4e6532016d6975e2fbde01531.statusText;
+                        }
+                        }
+                        }
+                        padAjaxcfbe64c4e6532016d6975e2fbde01531.open("GET","http://localhost/pad/webcomponents/?examples/rating&padInclude",true);
+                        padAjaxcfbe64c4e6532016d6975e2fbde01531.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

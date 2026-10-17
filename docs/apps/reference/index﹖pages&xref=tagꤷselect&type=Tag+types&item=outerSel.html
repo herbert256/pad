@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -73,6 +73,48 @@
                       </td>
                     </tr>
                   </table><br>
+                  <hr>
+                  App: regression/errors - Page: syntax/a_nested_view_needs_a_relation_beside_its_where<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">syntax/a_nested_view_needs_a_relation_beside_its_where.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">syntax/a_nested_view_needs_a_relation_beside_its_where.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A view's declared where holds no value of the outer row, so a view nested in a table<br>  // it has no relation to - not even through its base - lists the same rows under every<br>  // row of it. The check missed it because the declared where made the where non-empty.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'outerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'richSel'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'where' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'salary &gt; 2000' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">outerSel</font><font color="red"></font>}</b><b>{<font color="blue">richSel</font><font color="red"></font>}</b>x<b>{/<font color="blue">richSel</font><font color="red"></font>}</b><b>{/<font color="blue">outerSel</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax7b3ff060a7c3e53d164db00de5bdbc5c"></div>
+                        <script>
+                        padAjax7b3ff060a7c3e53d164db00de5bdbc5c = new XMLHttpRequest();
+                        padAjax7b3ff060a7c3e53d164db00de5bdbc5c.onreadystatechange=function() {
+                        if (padAjax7b3ff060a7c3e53d164db00de5bdbc5c.readyState === 4) {
+                        if (padAjax7b3ff060a7c3e53d164db00de5bdbc5c.status === 200) {
+                        document.getElementById("padAjax7b3ff060a7c3e53d164db00de5bdbc5c").innerHTML=padAjax7b3ff060a7c3e53d164db00de5bdbc5c.responseText;
+                        } else {
+                        document.getElementById("padAjax7b3ff060a7c3e53d164db00de5bdbc5c").innerHTML=padAjax7b3ff060a7c3e53d164db00de5bdbc5c.statusText;
+                        }
+                        }
+                        }
+                        padAjax7b3ff060a7c3e53d164db00de5bdbc5c.open("GET","http://localhost/pad/regression/errors/?syntax/a_nested_view_needs_a_relation_beside_its_where&padInclude",true);
+                        padAjax7b3ff060a7c3e53d164db00de5bdbc5c.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                 </center>
               </td>
             </tr>
@@ -87,7 +129,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

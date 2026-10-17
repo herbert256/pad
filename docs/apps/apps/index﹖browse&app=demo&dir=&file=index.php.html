@@ -30,7 +30,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -66,6 +66,18 @@
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=barcode.pad.html">barcode.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=barcode.php.html">barcode.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=calendar.pad.html">calendar.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=calendar.php.html">calendar.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=clock.pad.html">clock.pad</a>
                   </li>
                   <li>
@@ -87,9 +99,21 @@
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.php.html">guestbook.php</a>
                   </li>
                   <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=highlight.pad.html">highlight.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=highlight.php.html">highlight.php</a>
+                  </li>
+                  <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.pad.html">index.pad</a>
                   </li>
                   <li class="current">index.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=qr.pad.html">qr.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=qr.php.html">qr.php</a>
                   </li>
                   <li>
                     <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todo.pad.html">todo.pad</a>
@@ -106,7 +130,7 @@
                 <h3>
                   index.php
                 </h3>
-                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Welcome to PAD Demo'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$examples </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Guestbook'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A simple guestbook where visitors can leave messages'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?guestbook' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Todo List'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A task manager to add, complete, and delete tasks'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?todo'      </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Contact Form'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A contact form with validation'</span><span style="color: #007700">,                       </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?contact'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Page Counter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A visitor counter that tracks page views'</span><span style="color: #007700">,             </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?counter'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Clock'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Display current date and time'</span><span style="color: #007700">,                        </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?clock'     </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Welcome to PAD Demo'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$examples </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Guestbook'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A simple guestbook where visitors can leave messages'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?guestbook' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Todo List'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A task manager to add, complete, and delete tasks'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?todo'      </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Contact Form'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A contact form with validation'</span><span style="color: #007700">,                       </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?contact'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Page Counter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A visitor counter that tracks page views'</span><span style="color: #007700">,             </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?counter'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Clock'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Display current date and time'</span><span style="color: #007700">,                        </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?clock'     </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'QR Codes'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Any text as a QR code in inline SVG - type it, scan it'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?qr'        </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Barcodes'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'EAN-13, EAN-8, UPC-A and Code 128 as inline SVG'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?barcode'   </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Calendar'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A month with its events, and a mini calendar of your own markup'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?calendar' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Highlight'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'desc' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Source code in nine languages coloured on the server'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?highlight' </span><span style="color: #007700">],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
               </div>
             </div>
           </div>
@@ -120,7 +144,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

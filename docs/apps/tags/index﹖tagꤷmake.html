@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {make} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#sequences">Sequences</a><span>/</span><span aria-current="page">make</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>make<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Replaces every value of a sequence with what a sequence type makes of it.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#sequences">Sequences</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">add</span>=<span class="hl-num">10</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">add</span>=<span class="hl-num">10</span>, <span class="hl-opt">multiply</span>=<span class="hl-num">2</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..6'</span>, prime<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">make:fibonacci</span> <span class="hl-opt">rows</span>=<span class="hl-num">8</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/make:fibonacci</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">make</span> store, square<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>values</code>
+            </dt>
+            <dd>
+              Where the values come from: a range <code>'1..5'</code>, a stored sequence named bare, or a sequence type to generate.
+            </dd>
+            <dt>
+              <code>type</code>
+            </dt>
+            <dd>
+              The sequence type applied to each value. An arithmetic type takes its operand as an option - <code>add=10</code>, <code>multiply=2</code>, <code>modulo=7</code>; a type like <code>prime</code> or <code>square</code> turns n into its nth term.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{make '1..5', add=10}</code> runs a sequence in <em>make</em> mode: every value is replaced by what the named type makes of it - here <code>11 12 13 14 15</code>. The arithmetic types take their operand as the option's value (<code>add</code>, <code>subtract</code>, <code>multiply</code>, <code>divide</code>, <code>modulo</code>, <code>exponentiation</code>, ...); other types turn a position into a term, so <code>{make '1..6', prime}</code> is the first six primes and <code>{make '1..5', square}</code> is <code>1 4 9 16 25</code>. It is the same run as <code>{sequence '1..5', make, add=10}</code>.
+          </p>
+          <p>
+            Several makes apply in the order written: <code>{make '1..5', add=10, multiply=2}</code> adds first and doubles after, <code>22 24 26 28 30</code>. A stored sequence named bare works as the source - the store itself is not changed; to rewrite it in place use <a href="index%EF%B9%96tag%EA%A4%B7resume.html">{resume}</a>.
+          </p>
+          <p>
+            <em>Make</em> is the default mode of a sequence run, so with only a type <code>{make:fibonacci rows=8}</code> simply generates that sequence, the same as <code>{sequence fibonacci, rows=8}</code>. Compare <a href="index%EF%B9%96tag%EA%A4%B7keep.html">{keep}</a>, <a href="index%EF%B9%96tag%EA%A4%B7remove.html">{remove}</a> and <a href="index%EF%B9%96tag%EA%A4%B7flag.html">{flag}</a>, the other three play modes.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              Arithmetic on a range
+            </h3>
+            <p class="example-about">
+              One make, then two applied in the order written.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/make/1-arithmetic.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-opt">add</span>=<span class="hl-num">10</span>: <span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">add</span>=<span class="hl-num">10</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-opt">add</span>=<span class="hl-num">10</span>, <span class="hl-opt">multiply</span>=<span class="hl-num">2</span>: <span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">add</span>=<span class="hl-num">10</span>, <span class="hl-opt">multiply</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-opt">modulo</span>=<span class="hl-num">3</span>: <span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..9'</span>, <span class="hl-opt">modulo</span>=<span class="hl-num">3</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7make%EA%A4%B71-arithmetic.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    add=10: 11 12 13 14 15
+                  </p>
+                  <p>
+                    add=10, multiply=2: 22 24 26 28 30
+                  </p>
+                  <p>
+                    modulo=3: 1 2 0 1 2 0 1 2 0
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              Positions into terms
+            </h3>
+            <p class="example-about">
+              A type that computes terms turns each number n into its nth term.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/make/2-nth-term.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>prime:  <span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..8'</span>, prime<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>square: <span class="hl-brc">{</span><span class="hl-tag">make</span> <span class="hl-str">'1..8'</span>, square<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/make</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The default mode, with only a type: <span class="hl-brc">{</span><span class="hl-tag">make:fibonacci</span> <span class="hl-opt">rows</span>=<span class="hl-num">8</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/make:fibonacci</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7make%EA%A4%B72-nth-term.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    prime: 2 3 5 7 11 13 17 19
+                  </p>
+                  <p>
+                    square: 1 4 9 16 25 36 49 64
+                  </p>
+                  <p>
+                    The default mode, with only a type: 0 1 1 2 3 5 8 13
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7keep.html">{keep}</a> <span class="about">Keeps only the values of a sequence that belong to a sequence type.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7remove.html">{remove}</a> <span class="about">Removes the values of a sequence that belong to a sequence type - the inverse of keep.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7flag.html">{flag}</a> <span class="about">Replaces every value of a sequence with 1 or 0: whether it belongs to a sequence type.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7resume.html">{resume}</a> <span class="about">Transforms the sequence pushed last, in place, through an action or a play.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7mail.html">← {mail}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7map.html">{map} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

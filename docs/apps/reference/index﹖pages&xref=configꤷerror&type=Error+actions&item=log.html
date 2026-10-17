@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -69,6 +69,46 @@
                         }
                         padAjax85323184a1aa9a77249cf4b93d6a4fb0.open("GET","http://localhost/pad/regression/error_log/?boom&padInclude",true);
                         padAjax85323184a1aa9a77249cf4b93d6a4fb0.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_log - Page: curl<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">curl.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">[<b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//regression/error_log/?nosuchpage&amp;padInclude<font color="black">'</font></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>failed<b>{/<font color="blue">curl</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax506294ff2d1af07f3eb14ab628aeb8f7"></div>
+                        <script>
+                        padAjax506294ff2d1af07f3eb14ab628aeb8f7 = new XMLHttpRequest();
+                        padAjax506294ff2d1af07f3eb14ab628aeb8f7.onreadystatechange=function() {
+                        if (padAjax506294ff2d1af07f3eb14ab628aeb8f7.readyState === 4) {
+                        if (padAjax506294ff2d1af07f3eb14ab628aeb8f7.status === 200) {
+                        document.getElementById("padAjax506294ff2d1af07f3eb14ab628aeb8f7").innerHTML=padAjax506294ff2d1af07f3eb14ab628aeb8f7.responseText;
+                        } else {
+                        document.getElementById("padAjax506294ff2d1af07f3eb14ab628aeb8f7").innerHTML=padAjax506294ff2d1af07f3eb14ab628aeb8f7.statusText;
+                        }
+                        }
+                        }
+                        padAjax506294ff2d1af07f3eb14ab628aeb8f7.open("GET","http://localhost/pad/regression/error_log/?curl&padInclude",true);
+                        padAjax506294ff2d1af07f3eb14ab628aeb8f7.send();
                         </script>
                       </td>
                     </tr>
@@ -156,6 +196,48 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/error_log - Page: restarted<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">restarted.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">restarted.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The restart page answers a bare 500 under this action - and so would a restart loop<br>  // that ran on until PHP's time limit, its stack or its memory ended it: the failure the<br>  // guard exists to prevent. A 500 within five seconds told the two apart only by chance -<br>  // a loop without the guard answered as fast on a smaller stack. The guard's own trace<br>  // does: every restart runs the request's start again, which sends the padReqID cookie<br>  // once more, and the guard stops it after twenty - twenty-one cookies, read off the<br>  // socket as they came.<br><br>  </span><span style="color: #0000BB">$url  </span><span style="color: #007700">= </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #0000BB">$padApp </span><span style="color: #007700">. </span><span style="color: #DD0000">'/?restart&amp;padInclude' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$sock </span><span style="color: #007700">= </span><span style="color: #0000BB">fsockopen </span><span style="color: #007700">( </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">], </span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'port'</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">80</span><span style="color: #007700">, </span><span style="color: #0000BB">$errno</span><span style="color: #007700">, </span><span style="color: #0000BB">$errstr</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">fwrite </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock</span><span style="color: #007700">, </span><span style="color: #DD0000">"GET </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">]}</span><span style="color: #DD0000">?</span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'query'</span><span style="color: #007700">]}</span><span style="color: #DD0000"> HTTP/1.1\r\nHost: </span><span style="color: #007700">{</span><span style="color: #0000BB">$url </span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">]}</span><span style="color: #DD0000">\r\nConnection: close\r\n\r\n" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$head </span><span style="color: #007700">= </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">"\r\n\r\n"</span><span style="color: #007700">, </span><span style="color: #0000BB">stream_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">), </span><span style="color: #0000BB">2 </span><span style="color: #007700">) [</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">fclose </span><span style="color: #007700">( </span><span style="color: #0000BB">$sock </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$verdict </span><span style="color: #007700">= ( </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'#^HTTP/\S+ 500#'</span><span style="color: #007700">, </span><span style="color: #0000BB">$head </span><span style="color: #007700">) and </span><span style="color: #0000BB">preg_match_all </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^Set-Cookie: padReqID=/mi'</span><span style="color: #007700">, </span><span style="color: #0000BB">$head </span><span style="color: #007700">) == </span><span style="color: #0000BB">21 </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'NO'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;the restart loop ended by its guard after twenty restarts, with a 500: <b>{<font color="green"><font color="red">$</font>verdict</font>}</b>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb53881fe607b0cb94c59ca1aa904d226"></div>
+                        <script>
+                        padAjaxb53881fe607b0cb94c59ca1aa904d226 = new XMLHttpRequest();
+                        padAjaxb53881fe607b0cb94c59ca1aa904d226.onreadystatechange=function() {
+                        if (padAjaxb53881fe607b0cb94c59ca1aa904d226.readyState === 4) {
+                        if (padAjaxb53881fe607b0cb94c59ca1aa904d226.status === 200) {
+                        document.getElementById("padAjaxb53881fe607b0cb94c59ca1aa904d226").innerHTML=padAjaxb53881fe607b0cb94c59ca1aa904d226.responseText;
+                        } else {
+                        document.getElementById("padAjaxb53881fe607b0cb94c59ca1aa904d226").innerHTML=padAjaxb53881fe607b0cb94c59ca1aa904d226.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb53881fe607b0cb94c59ca1aa904d226.open("GET","http://localhost/pad/regression/error_log/?restarted&padInclude",true);
+                        padAjaxb53881fe607b0cb94c59ca1aa904d226.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/error_log - Page: strict<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -191,6 +273,132 @@
                         }
                         padAjaxc58b35f505bfc802a315d445e9992b63.open("GET","http://localhost/pad/regression/error_log/?strict&padInclude",true);
                         padAjaxc58b35f505bfc802a315d445e9992b63.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_log - Page: unguarded<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">unguarded.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">unguarded.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With the try guards off a throwable reaches PHP's exception handler, after which PHP<br>  // ends the request whatever the handler does: the action records it and the request<br>  // ends as a failure - it ended on an empty 200, a blank page that said all was well.<br><br>  </span><span style="color: #0000BB">$padErrorTry </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;before&lt;/p&gt;<b>{<font color="blue">exception </font><font color="red"><font color="black">'</font>thrown with the guards off<font color="black">'</font></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2"></div>
+                        <script>
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2 = new XMLHttpRequest();
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.onreadystatechange=function() {
+                        if (padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.readyState === 4) {
+                        if (padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.status === 200) {
+                        document.getElementById("padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2").innerHTML=padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.responseText;
+                        } else {
+                        document.getElementById("padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2").innerHTML=padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.open("GET","http://localhost/pad/regression/error_log/?unguarded&padInclude",true);
+                        padAjaxbed8dcd6535a6ba0d2b9f43ec4617af2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_log - Page: upload_dir<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">upload_dir.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">upload_dir.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// padUpload checks the directory it is to store in before it stores anything: under this<br>  // action, which carries on after an error, a name that is no plain directory name is<br>  // reported and the file refused. It was reported and then used, so a directory built from<br>  // a request value - "users/$name" with a name of ../../www/x - put the visitor's file<br>  // wherever the name pointed.<br><br>  </span><span style="color: #0000BB">$uploadDirCurl </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/error_log/?upload_dir_take&amp;padInclude'</span><span style="color: #007700">,<br>                               </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'f' </span><span style="color: #007700">=&gt; new </span><span style="color: #0000BB">CURLFile </span><span style="color: #007700">( </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'upload_dir_take.pad'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text/plain'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x.txt' </span><span style="color: #007700">) ] ] );<br><br>  </span><span style="color: #0000BB">$uploadDir </span><span style="color: #007700">= </span><span style="color: #0000BB">$uploadDirCurl </span><span style="color: #007700">[</span><span style="color: #DD0000">'result'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$uploadDirCurl </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>uploadDir</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8f80d9dfbe388a1a78546ca52cb07b98"></div>
+                        <script>
+                        padAjax8f80d9dfbe388a1a78546ca52cb07b98 = new XMLHttpRequest();
+                        padAjax8f80d9dfbe388a1a78546ca52cb07b98.onreadystatechange=function() {
+                        if (padAjax8f80d9dfbe388a1a78546ca52cb07b98.readyState === 4) {
+                        if (padAjax8f80d9dfbe388a1a78546ca52cb07b98.status === 200) {
+                        document.getElementById("padAjax8f80d9dfbe388a1a78546ca52cb07b98").innerHTML=padAjax8f80d9dfbe388a1a78546ca52cb07b98.responseText;
+                        } else {
+                        document.getElementById("padAjax8f80d9dfbe388a1a78546ca52cb07b98").innerHTML=padAjax8f80d9dfbe388a1a78546ca52cb07b98.statusText;
+                        }
+                        }
+                        }
+                        padAjax8f80d9dfbe388a1a78546ca52cb07b98.open("GET","http://localhost/pad/regression/error_log/?upload_dir&padInclude",true);
+                        padAjax8f80d9dfbe388a1a78546ca52cb07b98.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/error_log - Page: upload_dir_take<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">upload_dir_take.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">upload_dir_take.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of upload_dir: padUpload asked to store under a directory name it does not<br>  // take, and what became of the file sent.<br><br>  </span><span style="color: #0000BB">$takeRecord </span><span style="color: #007700">= </span><span style="color: #0000BB">padUpload </span><span style="color: #007700">( </span><span style="color: #DD0000">'f'</span><span style="color: #007700">, </span><span style="color: #0000BB">dir</span><span style="color: #007700">: </span><span style="color: #DD0000">'not a plain name' </span><span style="color: #007700">);<br><br>  if ( </span><span style="color: #0000BB">$takeRecord </span><span style="color: #007700">=== </span><span style="color: #0000BB">NULL </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$takeResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'nothing sent'</span><span style="color: #007700">;<br>  elseif ( </span><span style="color: #0000BB">$takeRecord </span><span style="color: #007700">=== </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$takeResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'refused'</span><span style="color: #007700">;<br>  else {<br>    </span><span style="color: #0000BB">$takeResult </span><span style="color: #007700">= </span><span style="color: #DD0000">'stored in ' </span><span style="color: #007700">. </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">$takeRecord </span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">] );<br>    @</span><span style="color: #0000BB">unlink </span><span style="color: #007700">( </span><span style="color: #0000BB">$takeRecord </span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">] );<br>    @</span><span style="color: #0000BB">rmdir </span><span style="color: #007700">( </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">$takeRecord </span><span style="color: #007700">[</span><span style="color: #DD0000">'path'</span><span style="color: #007700">] ) );<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>takeResult</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxeb2c44e11a16432edb7f851e6dc8a190"></div>
+                        <script>
+                        padAjaxeb2c44e11a16432edb7f851e6dc8a190 = new XMLHttpRequest();
+                        padAjaxeb2c44e11a16432edb7f851e6dc8a190.onreadystatechange=function() {
+                        if (padAjaxeb2c44e11a16432edb7f851e6dc8a190.readyState === 4) {
+                        if (padAjaxeb2c44e11a16432edb7f851e6dc8a190.status === 200) {
+                        document.getElementById("padAjaxeb2c44e11a16432edb7f851e6dc8a190").innerHTML=padAjaxeb2c44e11a16432edb7f851e6dc8a190.responseText;
+                        } else {
+                        document.getElementById("padAjaxeb2c44e11a16432edb7f851e6dc8a190").innerHTML=padAjaxeb2c44e11a16432edb7f851e6dc8a190.statusText;
+                        }
+                        }
+                        }
+                        padAjaxeb2c44e11a16432edb7f851e6dc8a190.open("GET","http://localhost/pad/regression/error_log/?upload_dir_take&padInclude",true);
+                        padAjaxeb2c44e11a16432edb7f851e6dc8a190.send();
                         </script>
                       </td>
                     </tr>
@@ -338,7 +546,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[{php:hypot(1)}] &lt;p&gt;the page around the handler still renders&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>intdiv </font><font color="red">1<font color="black">,</font> 0</font>}</b>] &lt;p&gt;the page around the handler still renders&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax935baa9d040261fccf5d1df8ea6a9c6b"></div>
@@ -378,7 +586,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>fb<font color="black">'</font></font>}</b>the not-ok half<b>{/<font color="blue">content</font><font color="red"></font>}</b>[{php:hypot(1) notOk='fb'}] &lt;p&gt;and the page renders on&lt;/p&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>fb<font color="black">'</font></font>}</b>the not-ok half<b>{/<font color="blue">content</font><font color="red"></font>}</b>[<b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>intdiv </font><font color="red">1<font color="black">,</font> 0<font color="black">,</font> notOk=<font color="black">'</font>fb<font color="black">'</font></font>}</b>] &lt;p&gt;and the page renders on&lt;/p&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjaxa33b80b5467658ba97be4c13fba9a11b"></div>
@@ -439,126 +647,6 @@
                       </td>
                     </tr>
                   </table><br>
-                  <hr>
-                  App: regression/try_log - Page: once/index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">once/index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;p&gt;the page below the lib still renders&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax199ca01b4240ccc6bd24ae0cd08467c4"></div>
-                        <script>
-                        padAjax199ca01b4240ccc6bd24ae0cd08467c4 = new XMLHttpRequest();
-                        padAjax199ca01b4240ccc6bd24ae0cd08467c4.onreadystatechange=function() {
-                        if (padAjax199ca01b4240ccc6bd24ae0cd08467c4.readyState === 4) {
-                        if (padAjax199ca01b4240ccc6bd24ae0cd08467c4.status === 200) {
-                        document.getElementById("padAjax199ca01b4240ccc6bd24ae0cd08467c4").innerHTML=padAjax199ca01b4240ccc6bd24ae0cd08467c4.responseText;
-                        } else {
-                        document.getElementById("padAjax199ca01b4240ccc6bd24ae0cd08467c4").innerHTML=padAjax199ca01b4240ccc6bd24ae0cd08467c4.statusText;
-                        }
-                        }
-                        }
-                        padAjax199ca01b4240ccc6bd24ae0cd08467c4.open("GET","http://localhost/pad/regression/try_log/?once/index&padInclude",true);
-                        padAjax199ca01b4240ccc6bd24ae0cd08467c4.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/try_log - Page: tag<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tag.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">boomtag</font><font color="red"></font>}</b>] &lt;p&gt;the page around the tag still renders&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax30bf70c6fe895400af86c6c805b0c114"></div>
-                        <script>
-                        padAjax30bf70c6fe895400af86c6c805b0c114 = new XMLHttpRequest();
-                        padAjax30bf70c6fe895400af86c6c805b0c114.onreadystatechange=function() {
-                        if (padAjax30bf70c6fe895400af86c6c805b0c114.readyState === 4) {
-                        if (padAjax30bf70c6fe895400af86c6c805b0c114.status === 200) {
-                        document.getElementById("padAjax30bf70c6fe895400af86c6c805b0c114").innerHTML=padAjax30bf70c6fe895400af86c6c805b0c114.responseText;
-                        } else {
-                        document.getElementById("padAjax30bf70c6fe895400af86c6c805b0c114").innerHTML=padAjax30bf70c6fe895400af86c6c805b0c114.statusText;
-                        }
-                        }
-                        }
-                        padAjax30bf70c6fe895400af86c6c805b0c114.open("GET","http://localhost/pad/regression/try_log/?tag&padInclude",true);
-                        padAjax30bf70c6fe895400af86c6c805b0c114.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/try_log - Page: var<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">var.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>v = 5</font>/}</b>[<b>{<font color="green">$v</font> <font color="black">|</font> <font color="purple">php</font><font color="black">:</font><font color="blue">intdiv(<font color="black"><b>@</b></font>, 0)</font>}</b>] &lt;p&gt;the page around the variable still renders&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxfaf92e9ff5ea77c2b320980ffd919676"></div>
-                        <script>
-                        padAjaxfaf92e9ff5ea77c2b320980ffd919676 = new XMLHttpRequest();
-                        padAjaxfaf92e9ff5ea77c2b320980ffd919676.onreadystatechange=function() {
-                        if (padAjaxfaf92e9ff5ea77c2b320980ffd919676.readyState === 4) {
-                        if (padAjaxfaf92e9ff5ea77c2b320980ffd919676.status === 200) {
-                        document.getElementById("padAjaxfaf92e9ff5ea77c2b320980ffd919676").innerHTML=padAjaxfaf92e9ff5ea77c2b320980ffd919676.responseText;
-                        } else {
-                        document.getElementById("padAjaxfaf92e9ff5ea77c2b320980ffd919676").innerHTML=padAjaxfaf92e9ff5ea77c2b320980ffd919676.statusText;
-                        }
-                        }
-                        }
-                        padAjaxfaf92e9ff5ea77c2b320980ffd919676.open("GET","http://localhost/pad/regression/try_log/?var&padInclude",true);
-                        padAjaxfaf92e9ff5ea77c2b320980ffd919676.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
                 </center>
               </td>
             </tr>
@@ -573,7 +661,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

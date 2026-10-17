@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Parms functions - hrtime
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Parms functions - hrtime
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/framework - Page: tags/chart_heatmap_takes_time_by_its_cells<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/chart_heatmap_takes_time_by_its_cells.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/chart_heatmap_takes_time_by_its_cells.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A heatmap's time goes by the cells it has, not by every pair of a row and a column:<br>  // 20,000 rows of a cell each - each its own row and column - took ten seconds.<br><br>  </span><span style="color: #0000BB">$cells </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">20000</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$cells </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'r' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"r</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"c</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$i </span><span style="color: #007700">% </span><span style="color: #0000BB">7 </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>heatmap<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>cells<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>r<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font> <font color="black">|</font> strlen</font>}</b> <b>{<font color="blue">echo </font><font color="red">hrtime(TRUE) - <font color="red">$</font>start lt 3e9 ? <font color="black">'</font>in time<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>too slow<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxee93604dd55adffe1ae40d51ab8dd61f"></div>
+                        <script>
+                        padAjaxee93604dd55adffe1ae40d51ab8dd61f = new XMLHttpRequest();
+                        padAjaxee93604dd55adffe1ae40d51ab8dd61f.onreadystatechange=function() {
+                        if (padAjaxee93604dd55adffe1ae40d51ab8dd61f.readyState === 4) {
+                        if (padAjaxee93604dd55adffe1ae40d51ab8dd61f.status === 200) {
+                        document.getElementById("padAjaxee93604dd55adffe1ae40d51ab8dd61f").innerHTML=padAjaxee93604dd55adffe1ae40d51ab8dd61f.responseText;
+                        } else {
+                        document.getElementById("padAjaxee93604dd55adffe1ae40d51ab8dd61f").innerHTML=padAjaxee93604dd55adffe1ae40d51ab8dd61f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxee93604dd55adffe1ae40d51ab8dd61f.open("GET","http://localhost/pad/regression/framework/?tags/chart_heatmap_takes_time_by_its_cells&padInclude",true);
+                        padAjaxee93604dd55adffe1ae40d51ab8dd61f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/chart_sankey_takes_time_by_its_links<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/chart_sankey_takes_time_by_its_links.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/chart_sankey_takes_time_by_its_links.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The flows into a sankey node are looked up by its name, not searched for in every link<br>  // per node: 10,000 nodes and 20,000 links took six seconds.<br><br>  </span><span style="color: #0000BB">$flows </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">10000</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ ) {<br>    </span><span style="color: #0000BB">$flows </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'s' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"a</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"b</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$flows </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'s' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"b</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'c' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">% </span><span style="color: #0000BB">100 </span><span style="color: #007700">), </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>sankey<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>flows<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>s<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>t<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> height=2000 <font color="black">|</font> strlen</font>}</b> <b>{<font color="blue">echo </font><font color="red">hrtime(TRUE) - <font color="red">$</font>start lt 3e9 ? <font color="black">'</font>in time<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>too slow<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxbe3e7208a4017233227c843d129593be"></div>
+                        <script>
+                        padAjaxbe3e7208a4017233227c843d129593be = new XMLHttpRequest();
+                        padAjaxbe3e7208a4017233227c843d129593be.onreadystatechange=function() {
+                        if (padAjaxbe3e7208a4017233227c843d129593be.readyState === 4) {
+                        if (padAjaxbe3e7208a4017233227c843d129593be.status === 200) {
+                        document.getElementById("padAjaxbe3e7208a4017233227c843d129593be").innerHTML=padAjaxbe3e7208a4017233227c843d129593be.responseText;
+                        } else {
+                        document.getElementById("padAjaxbe3e7208a4017233227c843d129593be").innerHTML=padAjaxbe3e7208a4017233227c843d129593be.statusText;
+                        }
+                        }
+                        }
+                        padAjaxbe3e7208a4017233227c843d129593be.open("GET","http://localhost/pad/regression/framework/?tags/chart_sankey_takes_time_by_its_links&padInclude",true);
+                        padAjaxbe3e7208a4017233227c843d129593be.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

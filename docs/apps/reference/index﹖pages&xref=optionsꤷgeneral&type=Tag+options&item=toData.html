@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -209,6 +209,130 @@
                     </tr>
                   </table><br>
                   <hr>
+                  App: regression/framework - Page: options/tobool_and_tocontent_on_one_tag_read_the_same_text<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">options/tobool_and_tocontent_on_one_tag_read_the_same_text.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/tobool_and_tocontent_on_one_tag_read_the_same_text.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// toBool and toContent - or toData - on one tag, in either order: each reads the tag's<br>  // text, where the first left nothing for the next - a flag of FALSE, an empty store.<br><br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">xs </font><font color="red">toContent=<font color="black">'</font>c1<font color="black">'</font><font color="black">,</font> toBool=<font color="black">'</font>b1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">bool=<font color="black">'</font>b1<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>[<b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>c1</font><font color="red"></font>}</b>] <b>{<font color="blue">xs </font><font color="red">toBool=<font color="black">'</font>b2<font color="black">'</font><font color="black">,</font> toContent=<font color="black">'</font>c2<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">bool=<font color="black">'</font>b2<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b>[<b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>c2</font><font color="red"></font>}</b>] <b>{<font color="blue">xs </font><font color="red">toData=<font color="black">'</font>d3<font color="black">'</font><font color="black">,</font> toBool=<font color="black">'</font>b3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red">bool=<font color="black">'</font>b3<font color="black">'</font></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>N<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax369a06aee5f239c21f65992d9fa75f55"></div>
+                        <script>
+                        padAjax369a06aee5f239c21f65992d9fa75f55 = new XMLHttpRequest();
+                        padAjax369a06aee5f239c21f65992d9fa75f55.onreadystatechange=function() {
+                        if (padAjax369a06aee5f239c21f65992d9fa75f55.readyState === 4) {
+                        if (padAjax369a06aee5f239c21f65992d9fa75f55.status === 200) {
+                        document.getElementById("padAjax369a06aee5f239c21f65992d9fa75f55").innerHTML=padAjax369a06aee5f239c21f65992d9fa75f55.responseText;
+                        } else {
+                        document.getElementById("padAjax369a06aee5f239c21f65992d9fa75f55").innerHTML=padAjax369a06aee5f239c21f65992d9fa75f55.statusText;
+                        }
+                        }
+                        }
+                        padAjax369a06aee5f239c21f65992d9fa75f55.open("GET","http://localhost/pad/regression/framework/?options/tobool_and_tocontent_on_one_tag_read_the_same_text&padInclude",true);
+                        padAjax369a06aee5f239c21f65992d9fa75f55.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: options/todata_of_a_level_on_its_else_stores_no_row<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">options/todata_of_a_level_on_its_else_stores_no_row.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>users<font color="black">'</font></font>}</b>[{"name":"a","admin":0}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">users </font><font color="red">where=<font color="black">'</font><font color="red">$</font>admin eq 1<font color="black">'</font><font color="black">,</font> toData=<font color="black">'</font>admins<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>No admins<b>{/<font color="blue">users</font><font color="red"></font>}</b>[<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>admins<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>,<b>{/<font color="blue">pad</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8dc4742ac7292786dfc0b7a98d2a7934"></div>
+                        <script>
+                        padAjax8dc4742ac7292786dfc0b7a98d2a7934 = new XMLHttpRequest();
+                        padAjax8dc4742ac7292786dfc0b7a98d2a7934.onreadystatechange=function() {
+                        if (padAjax8dc4742ac7292786dfc0b7a98d2a7934.readyState === 4) {
+                        if (padAjax8dc4742ac7292786dfc0b7a98d2a7934.status === 200) {
+                        document.getElementById("padAjax8dc4742ac7292786dfc0b7a98d2a7934").innerHTML=padAjax8dc4742ac7292786dfc0b7a98d2a7934.responseText;
+                        } else {
+                        document.getElementById("padAjax8dc4742ac7292786dfc0b7a98d2a7934").innerHTML=padAjax8dc4742ac7292786dfc0b7a98d2a7934.statusText;
+                        }
+                        }
+                        }
+                        padAjax8dc4742ac7292786dfc0b7a98d2a7934.open("GET","http://localhost/pad/regression/framework/?options/todata_of_a_level_on_its_else_stores_no_row&padInclude",true);
+                        padAjax8dc4742ac7292786dfc0b7a98d2a7934.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: regression/framework - Page: tags/cease_leaves_a_two_pass_tags_end_pass<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/cease_leaves_a_two_pass_tags_end_pass.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/cease_leaves_a_two_pass_tags_end_pass.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'c' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">items </font><font color="red">toData=<font color="black">'</font>kept<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">cease</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">items</font><font color="red"></font>}</b>[<b>{<font color="blue">kept</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">kept</font><font color="red"></font>}</b>]</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxb4a5f7891b75f039c74d58783c229363"></div>
+                        <script>
+                        padAjaxb4a5f7891b75f039c74d58783c229363 = new XMLHttpRequest();
+                        padAjaxb4a5f7891b75f039c74d58783c229363.onreadystatechange=function() {
+                        if (padAjaxb4a5f7891b75f039c74d58783c229363.readyState === 4) {
+                        if (padAjaxb4a5f7891b75f039c74d58783c229363.status === 200) {
+                        document.getElementById("padAjaxb4a5f7891b75f039c74d58783c229363").innerHTML=padAjaxb4a5f7891b75f039c74d58783c229363.responseText;
+                        } else {
+                        document.getElementById("padAjaxb4a5f7891b75f039c74d58783c229363").innerHTML=padAjaxb4a5f7891b75f039c74d58783c229363.statusText;
+                        }
+                        }
+                        }
+                        padAjaxb4a5f7891b75f039c74d58783c229363.open("GET","http://localhost/pad/regression/framework/?tags/cease_leaves_a_two_pass_tags_end_pass&padInclude",true);
+                        padAjaxb4a5f7891b75f039c74d58783c229363.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
                   App: regression/framework - Page: tags/storing_the_walk_and_iterating_the_store_puts_them_back<br>
                   <table border="1" cellpadding="10" cellspacing="0">
                     <tr>
@@ -302,7 +426,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>

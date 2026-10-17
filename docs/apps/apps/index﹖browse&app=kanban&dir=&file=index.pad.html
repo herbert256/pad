@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Browse: kanban
+    </title>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: kanban
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_install.html">_install/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=_tests.html">_tests/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=_exits.pad.html">_exits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=_offline.json.html">_offline.json</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=card.pad.html">card.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=card.php.html">card.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=events.pad.html">events.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=events.php.html">events.php</a>
+                  </li>
+                  <li class="current">index.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=move.pad.html">move.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=kanban&amp;dir=&amp;file=move.php.html">move.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  index.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;div class="board-head"&gt;<br>  &lt;h1&gt;Offline shop&lt;/h1&gt;<br>  &lt;span class="dim"&gt;<b>{<font color="green"><font color="red">$</font>cardTotal</font>}</b> cards&lt;/span&gt;<br>&lt;/div&gt;<br><br>&lt;div class="board" id="board" data-version="<b>{<font color="green"><font color="red">$</font>version</font>}</b>"&gt;<br><br>  &lt;div class="columns" id="columns"&gt;<br>    <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>columns<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">board</font><font color="red"></font>}</b><br>    &lt;section class="column<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>over</font>}</b> over<b>{/<font color="blue">if</font><font color="red"></font>}</b>" data-column="<b>{<font color="green"><font color="red">$</font>id</font>}</b>" aria-labelledby="column-<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>      &lt;h2 id="column-<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;span class="count"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>wip gt 0</font>}</b> / <b>{<font color="green"><font color="red">$</font>wip</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/span&gt;&lt;/h2&gt;<br>      &lt;div class="cards" data-drop="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>        <b>{<font color="blue"><font color="purple">level</font><font color="black"><b>:</b></font>cards</font><font color="red"></font>}</b><br>        &lt;article class="card label-<b>{<font color="green"><font color="red">$</font>label</font>}</b>" draggable="true" data-card="<b>{<font color="green"><font color="red">$</font>id</font>}</b>" data-due="<b>{<font color="green"><font color="red">$</font>due</font>}</b>" tabindex="0"&gt;<br>          &lt;a class="title" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>card&amp;id=<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/a&gt;<br>          <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>excerpt</font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>excerpt</font>}</b>&lt;/p&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>          &lt;footer&gt;<br>            <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>label</font>}</b>&lt;span class="chip"&gt;<b>{<font color="green"><font color="red">$</font>labelName</font>}</b>&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>            <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>due</font>}</b>&lt;time datetime="<b>{<font color="green"><font color="red">$</font>due</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>dueShown</font>}</b>&lt;/time&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>            &lt;span class="moves"&gt;<br>              <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>left</font>}</b>&lt;button type="button" data-move="<b>{<font color="green"><font color="red">$</font>left</font>}</b>" aria-label="Move <b>{<font color="green"><font color="red">$</font>title</font>}</b> to <b>{<font color="green"><font color="red">$</font>leftName</font>}</b>" title="To <b>{<font color="green"><font color="red">$</font>leftName</font>}</b>"&gt;←&lt;/button&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>              <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>right</font>}</b>&lt;button type="button" data-move="<b>{<font color="green"><font color="red">$</font>right</font>}</b>" aria-label="Move <b>{<font color="green"><font color="red">$</font>title</font>}</b> to <b>{<font color="green"><font color="red">$</font>rightName</font>}</b>" title="To <b>{<font color="green"><font color="red">$</font>rightName</font>}</b>"&gt;→&lt;/button&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>            &lt;/span&gt;<br>          &lt;/footer&gt;<br>        &lt;/article&gt;<br>        <b>{/<font color="blue"><font color="purple">level</font><font color="black"><b>:</b></font>cards</font><font color="red"></font>}</b><br>      &lt;/div&gt;<br>    &lt;/section&gt;<br>    <b>{/<font color="blue">board</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>  &lt;aside class="feed" aria-labelledby="feed-title"&gt;<br>    &lt;h2 id="feed-title"&gt;Activity&lt;/h2&gt;<br>    &lt;ol class="activity" id="activity"&gt;<br>      <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>activity<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">activity</font><font color="red"></font>}</b>&lt;li&gt;&lt;time datetime="<b>{<font color="green"><font color="red">$</font>at</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>when</font>}</b>&lt;/time&gt;<b>{<font color="green"><font color="red">$</font>what</font>}</b>&lt;/li&gt;<b>{/<font color="blue">activity</font><font color="red"></font>}</b><br>      <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>    &lt;/ol&gt;<br>  &lt;/aside&gt;<br><br>&lt;/div&gt;<br><br>&lt;dialog id="new-card" aria-labelledby="new-card-title"<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>cardFailed</font>}</b> open<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<br>  <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>card<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>card-form<font color="black">'</font><font color="black">,</font> error=<font color="black">'</font>The card was not added - see the fields below.<font color="black">'</font></font>}</b><br>    &lt;h2 id="new-card-title"&gt;New card&lt;/h2&gt;<br>    <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>title<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Title<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>100<font color="black">'</font><font color="black">,</font> autofocus</font>}</b><br>    <b>{<font color="blue">textarea </font><font color="red"><font color="black">'</font>body<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Details<font color="black">'</font><font color="black">,</font> rows=4<font color="black">,</font> rules=<font color="black">'</font>max<font color="black">:</font>2000<font color="black">'</font></font>}</b><br>    &lt;label for="new-label"&gt;Label&lt;/label&gt;<br>    &lt;select id="new-label" name="label"&gt;&lt;option value=""&gt;None&lt;/option&gt;<b>{<font color="blue">labelList</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>key</font>}</b>"<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>chosen</font>}</b> selected<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue">labelList</font><font color="red"></font>}</b>&lt;/select&gt;<br>    &lt;div class="bar"&gt;&lt;button class="button primary"&gt;Add to Backlog&lt;/button&gt;&lt;button class="button" type="button" data-close&gt;Cancel&lt;/button&gt;&lt;/div&gt;<br>  <b>{/<font color="blue">form</font><font color="red"></font>}</b><br>&lt;/dialog&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a> | <a href="index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - bookings
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - bookings
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: tags - Page: examples/decrement/1-countdown<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">examples/decrement/1-countdown.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">examples/decrement/1-countdown.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $bookings </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'guest' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'guest' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'guest' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cleo' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'guest' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dirk' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Places left<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each booking takes one place off; when none are left the next guests go on the waiting list.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>places = 3</font>}</b><br>&lt;ul&gt;<br><b>{<font color="blue">bookings</font><font color="red"></font>}</b><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>places eq 0</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>guest</font>}</b>: waiting list&lt;/li&gt;<b>{<font color="blue">continue</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  <b>{<font color="blue">decrement </font><font color="red"><font color="red">$</font>places</font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>guest</font>}</b>: booked, <b>{<font color="green"><font color="red">$</font>places</font>}</b> left&lt;/li&gt;<br><b>{/<font color="blue">bookings</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxc261b91825bea3bbae980fd730572cb3"></div>
+                        <script>
+                        padAjaxc261b91825bea3bbae980fd730572cb3 = new XMLHttpRequest();
+                        padAjaxc261b91825bea3bbae980fd730572cb3.onreadystatechange=function() {
+                        if (padAjaxc261b91825bea3bbae980fd730572cb3.readyState === 4) {
+                        if (padAjaxc261b91825bea3bbae980fd730572cb3.status === 200) {
+                        document.getElementById("padAjaxc261b91825bea3bbae980fd730572cb3").innerHTML=padAjaxc261b91825bea3bbae980fd730572cb3.responseText;
+                        } else {
+                        document.getElementById("padAjaxc261b91825bea3bbae980fd730572cb3").innerHTML=padAjaxc261b91825bea3bbae980fd730572cb3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxc261b91825bea3bbae980fd730572cb3.open("GET","http://localhost/pad/tags/?examples/decrement/1-countdown&padInclude",true);
+                        padAjaxc261b91825bea3bbae980fd730572cb3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

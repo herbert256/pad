@@ -1,0 +1,241 @@
+
+
+<p><code>pad pack</code> puts a whole application - its pages, its PHP, its <code>www/</code> files -
+with the PAD engine and PHP compiled to WebAssembly into one directory. Opened from the disk it
+runs in the browser tab; put on any https host it installs as an application and works offline.
+There is no PHP server at all, and what the application writes - its SQLite database first - is
+kept in the browser between visits.</p>
+
+
+<pre><code>pad pack --install            # once: what it packs with, in ~/.cache/pad-wasm
+pad pack notes                # DATA/wasm/notes/
+pad pack notes --serve        # served on http://127.0.0.1:8090/ - installable
+pad pack notes,ledger,kanban  # several, with a launcher</code></pre>
+
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+        
+          <tr>
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"> </font>
+            </th>
+          </tr>
+        
+        <tr>
+          <td style="vertical-align:top"> </td>       
+        </tr>
+      
+
+      
+        
+          <tr>
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/offline_applications_1.pad</font>
+            </th>
+          </tr>
+        
+        <tr>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">diagram </font><font color="red">direction=<font color="black">'</font>TB<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>How a packed application answers<font color="black">'</font></font>}</b><br>  P([A page, its fetch, its EventSource]) --&gt; W[The service worker - or, from the disk, the page around the frame]<br>  W --&gt; R[The runtime: pad-app.js]<br>  R --&gt;|a www file| B[(The bundle)]<br>  R --&gt;|a page| H[PHP as WebAssembly, the PAD engine]<br>  H --&gt; S[(SQLite under DATA)]<br>  S -.-&gt;|after each request| I[(IndexedDB)]<br><b>{/<font color="blue">diagram</font><font color="red"></font>}</b></code></pre></td>
+        </tr>
+      
+
+      
+        
+          <tr>
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          </tr>
+        
+        <tr>
+          <td style="vertical-align:top">
+  <!-- PAD: VERTICAL -->
+<svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-e421fa5a-title pad-chart-e421fa5a-desc" width="341" height="562" viewBox="0 0 341 562"><title id="pad-chart-e421fa5a-title">How a packed application answers</title><desc id="pad-chart-e421fa5a-desc">A page, its fetch, its EventSource → The service worker - or, from the disk, the page around the frame; The service worker - or, from the disk, the page around the frame → The runtime: pad-app.js; The runtime: pad-app.js → The bundle (a www file); The runtime: pad-app.js → PHP as WebAssembly, the PAD engine (a page); PHP as WebAssembly, the PAD engine → SQLite under DATA; SQLite under DATA → IndexedDB (after each request)</desc><style>:where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}</style><style>:where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}</style><g class="pc-mark"><title>A page, its fetch, its EventSource → The service worker - or, from the disk, the page around the frame</title><path class="pd-edge" d="M147.8,60L147.8,97"/><path class="pd-head" d="M147.8,104L143.3,95L152.3,95Z"/></g><g class="pc-mark"><title>The service worker - or, from the disk, the page around the frame → The runtime: pad-app.js</title><path class="pd-edge" d="M147.8,168L147.8,205"/><path class="pd-head" d="M147.8,212L143.3,203L152.3,203Z"/></g><g class="pc-mark"><title>The runtime: pad-app.js → The bundle (a www file)</title><path class="pd-edge" d="M140.8,246L140.8,278Q140.8,286 132.8,286L68,286Q61,286 61,293L61,300"/><path class="pd-head" d="M61,307L56.5,298L65.5,298Z"/></g><g class="pc-mark"><title>The runtime: pad-app.js → PHP as WebAssembly, the PAD engine (a page)</title><path class="pd-edge" d="M154.8,246L154.8,258Q154.8,266 162.8,266L226.5,266Q234.5,266 234.5,274L234.5,299"/><path class="pd-head" d="M234.5,306L230,297L239,297Z"/></g><g class="pc-mark"><title>PHP as WebAssembly, the PAD engine → SQLite under DATA</title><path class="pd-edge" d="M234.5,354L234.5,391"/><path class="pd-head" d="M234.5,398L230,389L239,389Z"/></g><g class="pc-mark"><title>SQLite under DATA → IndexedDB (after each request)</title><path class="pd-edge pd-dashed" d="M234.5,444L234.5,497"/><path class="pd-head" d="M234.5,504L230,495L239,495Z"/></g><rect class="pd-plate" x="71.4" y="277" width="78" height="18" rx="3"/><text x="110.4" y="290" text-anchor="middle">a www file</text><rect class="pd-plate" x="179.6" y="257" width="50" height="18" rx="3"/><text x="204.6" y="270" text-anchor="middle">a page</text><rect class="pd-plate" x="167.5" y="465" width="134" height="18" rx="3"/><text x="234.5" y="478" text-anchor="middle">after each request</text><rect class="pd-node" x="52.8" y="12" width="190" height="48" rx="24"/><text x="147.8" y="32" text-anchor="middle"><tspan x="147.8">A page, its fetch, its</tspan><tspan x="147.8" dy="16">EventSource</tspan></text><rect class="pd-node" x="49.8" y="104" width="196" height="64" rx="4"/><text x="147.8" y="124" text-anchor="middle"><tspan x="147.8">The service worker - or,</tspan><tspan x="147.8" dy="16">from the disk, the page</tspan><tspan x="147.8" dy="16">around the frame</tspan></text><rect class="pd-node" x="53.3" y="212" width="189" height="34" rx="4"/><text x="147.8" y="233" text-anchor="middle"><tspan x="147.8">The runtime: pad-app.js</tspan></text><path class="pd-node pd-circle" d="M12,313a49,6 0 0,0 98,0a49,6 0 0,0 -98,0V347a49,6 0 0,0 98,0V313"/><text x="61" y="339" text-anchor="middle"><tspan x="61">The bundle</tspan></text><rect class="pd-node" x="140" y="306" width="189" height="48" rx="4"/><text x="234.5" y="326" text-anchor="middle"><tspan x="234.5">PHP as WebAssembly, the</tspan><tspan x="234.5" dy="16">PAD engine</tspan></text><path class="pd-node pd-circle" d="M161,404a73.5,6 0 0,0 147,0a73.5,6 0 0,0 -147,0V438a73.5,6 0 0,0 147,0V404"/><text x="234.5" y="430" text-anchor="middle"><tspan x="234.5">SQLite under DATA</tspan></text><path class="pd-node pd-circle" d="M189,510a45.5,6 0 0,0 91,0a45.5,6 0 0,0 -91,0V544a45.5,6 0 0,0 91,0V510"/><text x="234.5" y="536" text-anchor="middle"><tspan x="234.5">IndexedDB</tspan></text></svg>
+
+
+</td>
+        </tr>
+      
+
+  
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Two ways to run it</h2>
+
+<table border="1" cellpadding="4">
+  <tr><th></th><th>Opened from the disk</th><th>Served over https, or on localhost</th></tr>
+  <tr><td>Start</td><td>double-click <code>index.html</code></td><td>open the address; the browser offers to install it</td></tr>
+  <tr><td>PHP runs</td><td>in the tab</td><td>in the service worker, for every window</td></tr>
+  <tr><td>The pages</td><td>in a frame filling the window, the address after the <code>#</code></td><td>at their own addresses</td></tr>
+  <tr><td>Offline</td><td>always</td><td>after the first visit</td></tr>
+</table>
+
+<p>Both answer every request as a server would: cookies are kept - sessions, CSRF tokens, flash
+messages, a login - any method and header of the page's own JavaScript is passed on, an upload
+arrives in <code>$_FILES</code>, an answer may be binary or a download.</p>
+
+<h2>What is kept</h2>
+
+<p>Everything under <code>DATA/</code> - SQLite databases, uploads, JSON files, sessions - is written
+to the browser's IndexedDB after every request that changed it, and put back when the
+application starts again. A new pack of the same applications finds that data: an application
+that keeps its schema in <code>_migrations/</code> and runs <code>padMigrate()</code> when one is pending
+brings the database a visitor kept up to date - the ledger application does.</p>
+
+<h2>The database</h2>
+
+<p>PHP in the browser has SQLite and no MySQL. An application that is SQLite already
+(<code>padSqlDriver=sqlite</code>, see <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>) runs as it is. One written for MySQL on its
+server can switch for the browser in <code>_offline.json</code>, whose <code>env</code> the runtime passes
+where <code>padEnv</code> looks first:</p>
+
+
+<pre><code>{
+  "name": "Shop", "short": "Shop", "theme": "#0f766e",
+  "icon": "icon.svg",
+  "icons": { "192": "icon-192.png", "512": "icon-512.png" },
+  "env": {
+    "padSqlDriver": "sqlite",
+    "padSqlDatabase": "shop/shop.sqlite",
+    "padSqlSetup": "_install/schema.sql"
+  }
+}</code></pre>
+
+
+<p><code>.env</code> files are never packed: they hold a server's passwords, and whoever has the pack
+can read it.</p>
+
+<h2>Import and export</h2>
+
+<p>The badge in a corner of every page - or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> - opens the
+runtime's panel. Its Database tab browses the tables, runs SQL, exports a database as the
+<code>.sqlite</code> file or as SQL that builds it again, and imports either - SQLite checks what comes
+in before it replaces anything. Its Storage tab backs up all of <code>DATA/</code> as one zip and puts
+such a zip back. An application can offer the same from its own pages, on a server as in the
+browser: the database file with <code>padUploadSend</code>, its rows as JSON or CSV with
+<code>$padExpose</code> - the notes application's backup page does both.</p>
+
+<h2>The page's own requests</h2>
+
+<p><code>fetch</code>, <code>XMLHttpRequest</code>, a <b>{live}</b> region, an <b>{ajax}</b>, htmx asking for a
+<b>{fragment}</b>, an <code>EventSource</code> - they all reach PHP in the browser. One PHP answers
+every request of the application, so a stream that held it would hold the application:
+<code>padSse</code> answers one round per connection there, and <code>EventSource</code> comes back after
+the interval by itself, with the last event's id - see <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>. A page
+that should behave differently in the browser asks <code>padWasm()</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+        
+          <tr>
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/offline_applications_2.php </font>
+            </th>
+          </tr>
+        
+        <tr>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// padWasm() is TRUE on PHP compiled to WebAssembly - in<br>  // a browser, an application packed by pad pack - and<br>  // FALSE on a server.<br><br>  </span><span style="color: #0000BB">$where </span><span style="color: #007700">= </span><span style="color: #0000BB">padWasm </span><span style="color: #007700">() ? </span><span style="color: #DD0000">'in this browser' </span><span style="color: #007700">: </span><span style="color: #DD0000">'on the server'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$mail  </span><span style="color: #007700">= </span><span style="color: #0000BB">padWasm </span><span style="color: #007700">() ? </span><span style="color: #DD0000">'kept until the application is online'<br>                      </span><span style="color: #007700">: </span><span style="color: #DD0000">'sent at once'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>       
+        </tr>
+      
+
+      
+        
+          <tr>
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/offline_applications_2.pad</font>
+            </th>
+          </tr>
+        
+        <tr>
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;This page runs <b>{<font color="green"><font color="red">$</font>where</font>}</b>: a message written here is <b>{<font color="green"><font color="red">$</font>mail</font>}</b>.&lt;/p&gt;</code></pre></td>
+        </tr>
+      
+
+      
+        
+          <tr>
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          </tr>
+        
+        <tr>
+          <td style="vertical-align:top">
+  <!-- PAD: VERTICAL -->
+<p>This page runs on the server: a message written here is sent at once.</p>
+
+
+</td>
+        </tr>
+      
+
+  
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Limits</h2>
+
+<ul>
+  <li>No MySQL, and no network from PHP: <b>{curl}</b>, <code>padCurl</code>, <code>padPrefetch</code> and a
+      fetch of the server's own pages answer nothing offline.</li>
+  <li>No sodium and no intl in the build - <code>padEncrypt</code> and the intl formatting fall back or
+      are not there; the sequence subsystem's large tables are left out.</li>
+  <li>One request at a time: a page that sleeps holds the others.</li>
+  <li>Opened from the disk, an application's module scripts cannot import their neighbours and
+      <code>document.cookie</code> does not show PHP's cookies. Served over https none of this
+      applies.</li>
+</ul>
+
+<h2>The applications</h2>
+
+<p>Three applications are made to show it, each running on this server as well:</p>
+
+<ul>
+  <li><a href="../notes/index.html">notes</a> - Markdown notes in SQLite: search as you type, live pins,
+      attachments, a JSON export and import, the database as a download.</li>
+  <li><a href="../ledger/index.html">ledger</a> - a household budget built by its migrations: charts,
+      budgets, CSV in and out, a quick entry posted as JSON.</li>
+  <li><a href="../kanban/index.html">kanban</a> - a task board: drag and drop posted as JSON, fragments,
+      every open window kept in step by server-sent events.</li>
+</ul>
+
+<p><code>pad pack notes,ledger,kanban</code> packs them together, with a launcher. How it is built -
+the runtime, the service worker, the panel - is in <code>wasm/README.md</code>.</p>

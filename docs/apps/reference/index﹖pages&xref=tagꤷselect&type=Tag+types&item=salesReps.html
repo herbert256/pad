@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      PAD - Reference - Tag types - salesReps
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - salesReps
+          </h1>
+          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <hr>
+                  App: regression/pages - Page: select/demo/a_nested_view_follows_its_base_relation<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">select/demo/a_nested_view_follows_its_base_relation.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/demo/a_nested_view_follows_its_base_relation.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A virtual table nested in a related table is related to it through its base: a view of<br>  // the employees inside {offices} lists the employees of that office. Only the outer<br>  // tag's base= chain was walked, so every office listed every sales rep of the view, and<br>  // a view without a where of its own ended the page on a missing relation.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'officeCode' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'salesReps'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'where' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"jobTitle like 'Sales%'"</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffOf'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'officeCode'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">offices </font><font color="red">order=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><br><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b> reps:  <b>{<font color="blue">salesReps</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b> <b>{/<font color="blue">salesReps</font><font color="red"></font>}</b><br><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b> staff: <b>{<font color="blue">staffOf</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b> <b>{/<font color="blue">staffOf</font><font color="red"></font>}</b><br><b>{/<font color="blue">offices</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax2d4b7ac12a988703c273d7fefe1bac06"></div>
+                        <script>
+                        padAjax2d4b7ac12a988703c273d7fefe1bac06 = new XMLHttpRequest();
+                        padAjax2d4b7ac12a988703c273d7fefe1bac06.onreadystatechange=function() {
+                        if (padAjax2d4b7ac12a988703c273d7fefe1bac06.readyState === 4) {
+                        if (padAjax2d4b7ac12a988703c273d7fefe1bac06.status === 200) {
+                        document.getElementById("padAjax2d4b7ac12a988703c273d7fefe1bac06").innerHTML=padAjax2d4b7ac12a988703c273d7fefe1bac06.responseText;
+                        } else {
+                        document.getElementById("padAjax2d4b7ac12a988703c273d7fefe1bac06").innerHTML=padAjax2d4b7ac12a988703c273d7fefe1bac06.statusText;
+                        }
+                        }
+                        }
+                        padAjax2d4b7ac12a988703c273d7fefe1bac06.open("GET","http://localhost/pad/regression/pages/?select/demo/a_nested_view_follows_its_base_relation&padInclude",true);
+                        padAjax2d4b7ac12a988703c273d7fefe1bac06.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

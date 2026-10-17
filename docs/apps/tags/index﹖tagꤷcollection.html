@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {collection} · PAD tags
+    </title>
+    <link rel="stylesheet" href="tags.css">
+    <script src="tags.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
+        <nav class="menu" aria-label="Indexes">
+          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+        </nav>
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
+        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+      </div>
+    </header>
+    <main class="page">
+      <article class="tag">
+        <nav class="crumbs" aria-label="Where you are">
+          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#database">Database</a><span>/</span><span aria-current="page">collection</span>
+        </nav>
+        <header class="tag-head">
+          <h1>
+            <span class="brace">{</span>collection<span class="brace">}</span>
+          </h1>
+          <p class="tag-about">
+            Reads a folder of Markdown files from _content/ and repeats its content once per file, the front matter as fields.
+          </p>
+          <p class="chips">
+            <a class="chip" href="index%EF%B9%96groups.html#database">Database</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+          </p>
+        </header>
+        <section class="block" aria-labelledby="syntax">
+          <h2 id="syntax">
+            Syntax
+          </h2>
+          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'name'</span>, <span class="hl-opt">slug</span>=<span class="hl-var">$slug</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'name'</span>, html<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span></code></pre>
+          <h3>
+            Parameters
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>name</code>
+            </dt>
+            <dd>
+              The collection: the directory <code>_content/name/</code>, looked up like a <code>_data</code> file - the page's directory first, then its parents, then <code>_common</code>.
+            </dd>
+          </dl>
+          <h3>
+            Options
+          </h3>
+          <dl class="defs">
+            <dt>
+              <code>slug</code>
+            </dt>
+            <dd>
+              Only the file of that name (without <code>.md</code>). A slug that names no file, or is not a plain file name, gives no rows - the <code>@else@</code> branch.
+            </dd>
+            <dt>
+              <code>html</code>
+            </dt>
+            <dd>
+              Bare option: raw HTML in the Markdown bodies is let through. By default it is escaped.
+            </dd>
+          </dl>
+        </section>
+        <section class="block prose" aria-labelledby="description">
+          <h2 id="description">
+            Description
+          </h2>
+          <p>
+            <code>{collection 'blog'}</code> turns the Markdown files of <code>_content/blog/</code> into rows - a small flat-file CMS. Each <code>.md</code> file is one occurrence: the keys of its front matter (YAML between two <code>---</code> lines) are its fields, and three more are added: <code>slug</code> (the file name without <code>.md</code>), <code>body</code> (the Markdown written as HTML by the <a href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> renderer) and <code>source</code> (the Markdown text as it was).
+          </p>
+          <p>
+            The body is HTML, so print it raw with <code>{!body}</code> - <code>{$body}</code> would escape it. Raw HTML written in the Markdown itself is escaped unless the tag has the <code>html</code> option, which is meant for files the site's own authors write.
+          </p>
+          <p>
+            The rows come in file name order; every handling option works on them - <code>sort='date DESC'</code>, <code>first=10</code>, <code>where='$draft ne 1'</code>, <code>page=</code> with a <a href="index%EF%B9%96tag%EA%A4%B7pager.html">{pager}</a>. For the page that shows one post, <code>slug=$slug</code> reads that file alone; a slug that names no file gives no rows, so the <code>@else@</code> branch can say "not found".
+          </p>
+          <p>
+            The directory is looked up like a <code>_data</code> file: the page's own directory, then each parent up to the application root, then the <code>_common</code> application. A collection without a name, or one that has no directory, is an error under the strict check. From PHP, <code>padCollection ( 'blog' )</code> gives the same rows.
+          </p>
+        </section>
+        <section class="block" aria-labelledby="examples">
+          <h2 id="examples">
+            Examples
+          </h2>
+          <div class="example" id="example-1">
+            <h3>
+              A folder of Markdown as rows
+            </h3>
+            <p class="example-about">
+              Each file of _content/collectionBooks/ is a row - its front matter as fields, its text as body.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/collection/1-list.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">sort</span>=<span class="hl-str">'year'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h4</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;small</span><span class="hl-htm">&gt;</span>(<span class="hl-brc">{</span><span class="hl-var">$year</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$author</span><span class="hl-brc">}</span>)<span class="hl-htm">&lt;/small</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/h4</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-var">!body</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7collection%EA%A4%B71-list.html">open alone</a>
+                </div>
+                <div class="result">
+                  <h4>
+                    The Hobbit <small>(1937, J.R.R. Tolkien)</small>
+                  </h4>
+                  <p>
+                    A comfortable hobbit is talked into an <em>adventure</em> - and a dragon.
+                  </p>
+                  <h4>
+                    Solaris <small>(1961, Stanisław Lem)</small>
+                  </h4>
+                  <p>
+                    A station orbits an ocean that may be thinking.
+                  </p>
+                  <ul>
+                    <li>a planet
+                    </li>
+                    <li>a mystery
+                    </li>
+                  </ul>
+                  <h4>
+                    Dune <small>(1965, Frank Herbert)</small>
+                  </h4>
+                  <p>
+                    A desert planet, a spice everyone wants and a family <strong>caught</strong> in the middle.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-2">
+            <h3>
+              One file by its slug
+            </h3>
+            <p class="example-about">
+              slug= picks a single file; a slug that names none shows the else branch.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/collection/2-slug.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">slug</span>=<span class="hl-str">'solaris'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> - file <span class="hl-brc">{</span><span class="hl-var">$slug</span><span class="hl-brc">}</span>.md<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$source</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">slug</span>=<span class="hl-str">'missing'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>There is no book named missing.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7collection%EA%A4%B72-slug.html">open alone</a>
+                </div>
+                <div class="result">
+                  <p>
+                    <strong>Solaris</strong> - file solaris.md
+                  </p>
+                  <pre>A station orbits an ocean that may be thinking.
+
+- a planet
+- a mystery</pre>
+                  <p>
+                    There is no book named missing.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example" id="example-3">
+            <h3>
+              With handling options
+            </h3>
+            <p class="example-about">
+              where, sort and first work on the rows as on any data.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Template</span><span class="cell-file">examples/collection/3-options.pad</span>
+                </div>
+                <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">collection</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">where</span>=<span class="hl-str">'$year lt 1965'</span>, <span class="hl-opt">sort</span>=<span class="hl-str">'title DESC'</span>, <span class="hl-opt">first</span>=<span class="hl-num">1</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> - <span class="hl-brc">{</span><span class="hl-var">$year</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/collection</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7collection%EA%A4%B73-options.html">open alone</a>
+                </div>
+                <div class="result">
+                  <ul>
+                    <li>The Hobbit - 1937
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="block" aria-labelledby="see">
+          <h2 id="see">
+            See also
+          </h2>
+          <ul class="list">
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7array.html">{array}</a> <span class="about">Runs a SQL query on the application database and repeats its content once per row.</span>
+            </li>
+            <li>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7files.html">{files}</a> <span class="about">Scans a directory and iterates its entries, with path, file, ext, item and dir for each.</span>
+            </li>
+          </ul>
+        </section>
+        <nav class="prevnext" aria-label="Other tags">
+          <a href="index%EF%B9%96tag%EA%A4%B7code.html">← {code}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7content.html">{content} →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="foot">
+      <p>
+        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+      </p>
+    </footer>
+  </body>
+</html>

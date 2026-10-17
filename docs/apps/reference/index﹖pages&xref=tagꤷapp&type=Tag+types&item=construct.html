@@ -14,7 +14,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
@@ -31,6 +31,46 @@
             <tr>
               <td>
                 <center>
+                  <hr>
+                  App: manual - Page: pages/collections<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/collections.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown collections<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A folder of Markdown files is a data source - a small flat-file CMS. The files live in<br>&lt;code&gt;_content/&lt;name&gt;/&lt;/code&gt;, and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>collection<font color="black">'</font></font>}</b> iterates them: each file is a<br>row, the keys of its front matter (YAML between two &lt;code&gt;---&lt;/code&gt; lines) are its fields,<br>and three are added - &lt;code&gt;slug&lt;/code&gt;, the file name without &lt;code&gt;.md&lt;/code&gt;;<br>&lt;code&gt;body&lt;/code&gt;, the Markdown written as HTML; and &lt;code&gt;source&lt;/code&gt;, the Markdown as it<br>was.&lt;/p&gt;<br><br>&lt;p&gt;This manual has a folder &lt;code&gt;_content/news/&lt;/code&gt; with two files. The newest first:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;One post&lt;/h2&gt;<br><br>&lt;p&gt;A list links to the page of a post with its slug - &lt;code&gt;?news/post&amp;amp;slug=<b>{<font color="green"><font color="red">$</font>slug</font>}</b>&lt;/code&gt; -<br>and that page names it with the &lt;code&gt;slug&lt;/code&gt; option. A slug that names no file gives no<br>rows, so the <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part answers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_2<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;body&lt;/code&gt; is HTML; print it raw with &lt;code&gt;<b>{<font color="green"><font color="red">!</font>body</font>}</b>&lt;/code&gt;. Raw HTML in a file is escaped unless the tag has the &lt;code&gt;html&lt;/code&gt; option.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and the other handling options work on the rows as on any data.&lt;/li&gt;<br>  &lt;li&gt;The folder is looked up like a &lt;code&gt;_data&lt;/code&gt; file: the page's directory, its parents, then &lt;code&gt;_common&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;In PHP, &lt;code&gt;padCollection('news')&lt;/code&gt; gives the same rows.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax85793968e31469c16e870763297dce26"></div>
+                        <script>
+                        padAjax85793968e31469c16e870763297dce26 = new XMLHttpRequest();
+                        padAjax85793968e31469c16e870763297dce26.onreadystatechange=function() {
+                        if (padAjax85793968e31469c16e870763297dce26.readyState === 4) {
+                        if (padAjax85793968e31469c16e870763297dce26.status === 200) {
+                        document.getElementById("padAjax85793968e31469c16e870763297dce26").innerHTML=padAjax85793968e31469c16e870763297dce26.responseText;
+                        } else {
+                        document.getElementById("padAjax85793968e31469c16e870763297dce26").innerHTML=padAjax85793968e31469c16e870763297dce26.statusText;
+                        }
+                        }
+                        }
+                        padAjax85793968e31469c16e870763297dce26.open("GET","http://localhost/pad/manual/?pages/collections&padInclude",true);
+                        padAjax85793968e31469c16e870763297dce26.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
                   <hr>
                   App: manual - Page: pages/components<br>
                   <table border="1" cellpadding="10" cellspacing="0">
@@ -50,7 +90,7 @@
                     <tr>
                       <td style="vertical-align:top"></td>
                       <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Components<font color="black">:</font> slots and declared parameters<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A tag of your own with a &lt;code&gt;.pad&lt;/code&gt; template is a component: the caller's content goes where the template writes <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>. Named slots give it more than one place for content, and &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt; says which parameters it takes. The card below is &lt;code&gt;_tags/card.pad&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">source </font><font color="red"><font color="black">'</font>_tags/card.pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Slots&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>...<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;/code&gt;. The rest of the content goes to <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>  &lt;li&gt;In the template, the content of a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; is its default, rendered when the caller gave no fill. &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>/}</b>&lt;/code&gt; in the caller's content is an empty fill.&lt;/li&gt;<br>  &lt;li&gt;A default holding <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> is a frame: &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;&amp;#64;content&amp;#64;&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; renders the frame round the fill, and nothing - or its <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part - when there is no fill.&lt;/li&gt;<br>  &lt;li&gt;A fill is the caller's text: it renders with the caller's variables, and a &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; or a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Every use has its own&lt;/h2&gt;<br><br>&lt;p&gt;The fills belong to one use of the tag, so a card inside a card keeps its own footer:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Declared parameters&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b>&lt;/code&gt; at the top of the template declares the parameters: a name alone is required, &lt;code&gt;name=default&lt;/code&gt; fills in what the caller left out. Both read as &lt;code&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: &lt;code&gt;<b>{<font color="blue">card </font><font color="red">titel=<font color="black">'</font>x<font color="black">'</font></font>}</b>&lt;/code&gt; is reported by name.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Components<font color="black">:</font> slots and declared parameters<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A tag of your own with a &lt;code&gt;.pad&lt;/code&gt; template is a component: the caller's content goes where the template writes <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>. Named slots give it more than one place for content, and &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt; says which parameters it takes. The card below is &lt;code&gt;_tags/card.pad&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">source </font><font color="red"><font color="black">'</font>_tags/card.pad<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_1<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Slots&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>...<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; pair standing directly in the content of the tag is a fill: it is taken out of the content and goes where the template has its &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;/code&gt;. The rest of the content goes to <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b>.&lt;/li&gt;<br>  &lt;li&gt;In the template, the content of a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; is its default, rendered when the caller gave no fill. &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>header<font color="black">'</font></font>/}</b>&lt;/code&gt; in the caller's content is an empty fill.&lt;/li&gt;<br>  &lt;li&gt;A default holding <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> is a frame: &lt;code&gt;<b>{<font color="blue">slot </font><font color="red"><font color="black">'</font>footer<font color="black">'</font></font>}</b>&lt;small&gt;&amp;#64;content&amp;#64;&lt;/small&gt;<b>{/<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; renders the frame round the fill, and nothing - or its <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> part - when there is no fill.&lt;/li&gt;<br>  &lt;li&gt;A fill is the caller's text: it renders with the caller's variables, and a &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; or a &lt;code&gt;<b>{<font color="blue">slot</font><font color="red"></font>}</b>&lt;/code&gt; inside it belongs to the caller's tag - which is how a template passes a slot of its own on to a tag it uses.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Every use has its own&lt;/h2&gt;<br><br>&lt;p&gt;The fills belong to one use of the tag, so a card inside a card keeps its own footer:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Declared parameters&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="blue">parms </font><font color="red">title<font color="black">,</font> tone=<font color="black">'</font>plain<font color="black">'</font></font>}</b>&lt;/code&gt; at the top of the template declares the parameters: a name alone is required, &lt;code&gt;name=default&lt;/code&gt; fills in what the caller left out. Both read as &lt;code&gt;<b>{<font color="green"><font color="red">#</font>title</font>}</b>&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A required parameter left out is an error, and so - under the strict check - is a parameter the tag does not declare: &lt;code&gt;<b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>x<font color="black">'</font><font color="black">,</font> titel=<font color="black">'</font>y<font color="black">'</font></font>}</b>&lt;/code&gt; is reported by name.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Components written in the template&lt;/h2&gt;<br><br>&lt;p&gt;A component used on one page only needs no file of its own. &lt;code&gt;<b>{<font color="blue">define </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>}</b>...<b>{/<font color="blue">define</font><font color="red"></font>}</b>&lt;/code&gt; writes it in the template: from there on &lt;code&gt;<b>{<font color="blue">name</font><font color="red"></font>}</b>&lt;/code&gt; renders the body as &lt;code&gt;_tags/name.pad&lt;/code&gt; would - &lt;code&gt;<b>{<font color="blue">parms</font><font color="red"></font>}</b>&lt;/code&gt;, &lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt;, <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>content<font color="black">'</font></font>}</b> and slots work alike.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A &lt;code&gt;<b>{<font color="blue">macro</font><font color="red"></font>}</b>&lt;/code&gt; is called the way a function is: its parameters are declared on it - a name alone required, &lt;code&gt;name=default&lt;/code&gt; filling in - given in their order or by name, and read as fields, &lt;code&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/components_4<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;Both render at every use, in its place and with its fields; both can use themselves, for the rows below the current one.&lt;/li&gt;<br>  &lt;li&gt;A define or macro exists from the point it is walked, as a &lt;code&gt;<b>{<font color="blue">content</font><font color="red"></font>}</b>&lt;/code&gt; store does: a use before it is an unknown tag.&lt;/li&gt;<br>  &lt;li&gt;A macro given too many values, missing a required one, or given a name it does not declare is an error.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                       </td>
                       <td style="vertical-align:top">
                         <div id="padAjax9517814ba2f06ae79791a85fe3038659"></div>
@@ -187,6 +227,46 @@
                         }
                         padAjaxfda41bad6558712c743275ec15c0503e.open("GET","http://localhost/pad/manual/?pages/else&padInclude",true);
                         padAjaxfda41bad6558712c743275ec15c0503e.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </table><br>
+                  <hr>
+                  App: manual - Page: pages/flash_messages<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/flash_messages.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Flash messages<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A page that takes a post redirects the browser to a plain page, so a refresh cannot post<br>twice - and then the page the browser lands on has to say what happened. A flash message<br>carries that: &lt;code&gt;padFlash ( 'Thanks, your message was sent.' )&lt;/code&gt; before the<br>&lt;code&gt;padRedirect ()&lt;/code&gt;, and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>flash<font color="black">'</font></font>}</b> on the page it leads to.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/flash_messages_1<font color="black">'</font></font>}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>flash<font color="black">'</font></font>}</b> renders its content once per message, with &lt;code&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/code&gt;<br>  and &lt;code&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/code&gt;; without a message the <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> half renders.<br>  &lt;code&gt;<b>{<font color="blue">flash </font><font color="red"><font color="black">'</font>error<font color="black">'</font></font>}</b>&lt;/code&gt; shows the messages of that type only.&lt;/li&gt;<br>  &lt;li&gt;The type is the second argument of &lt;code&gt;padFlash&lt;/code&gt;, &lt;code&gt;info&lt;/code&gt; when it is<br>  left out.&lt;/li&gt;<br>  &lt;li&gt;A message lives exactly one request after the one that flashed it - the redirect's<br>  destination - and is gone after that, shown or not. A page that flashes and renders itself<br>  shows it at once, as here.&lt;/li&gt;<br>  &lt;li&gt;The message is kept in the session, which starts on demand. A small<br>  &lt;code&gt;padFlash&lt;/code&gt; cookie tells the next request that there is something to take, so the<br>  pages that never flash do not open the session at all.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxdd10d9e408f4b79e60626e77ab98041d"></div>
+                        <script>
+                        padAjaxdd10d9e408f4b79e60626e77ab98041d = new XMLHttpRequest();
+                        padAjaxdd10d9e408f4b79e60626e77ab98041d.onreadystatechange=function() {
+                        if (padAjaxdd10d9e408f4b79e60626e77ab98041d.readyState === 4) {
+                        if (padAjaxdd10d9e408f4b79e60626e77ab98041d.status === 200) {
+                        document.getElementById("padAjaxdd10d9e408f4b79e60626e77ab98041d").innerHTML=padAjaxdd10d9e408f4b79e60626e77ab98041d.responseText;
+                        } else {
+                        document.getElementById("padAjaxdd10d9e408f4b79e60626e77ab98041d").innerHTML=padAjaxdd10d9e408f4b79e60626e77ab98041d.statusText;
+                        }
+                        }
+                        }
+                        padAjaxdd10d9e408f4b79e60626e77ab98041d.open("GET","http://localhost/pad/manual/?pages/flash_messages&padInclude",true);
+                        padAjaxdd10d9e408f4b79e60626e77ab98041d.send();
                         </script>
                       </td>
                     </tr>
@@ -359,7 +439,7 @@
         <tr>
           <td>
             <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
             <hr style="margin:2; border: 1px solid black; width:100%">
           </td>
         </tr>
