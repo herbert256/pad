@@ -375,6 +375,20 @@
     if ( is_numeric ( $p1 ) != is_numeric ( $p2 ) )
       return [];
 
+    // A letter range runs from one letter to another, a single character at each end: 'x..ab',
+    // 'aa..ad' or 'a..é' - an end of more than one byte - ended the request on PHP's "ord():
+    // Providing a string that is not one byte long is deprecated". Strict mode names it; the
+    // lenient walk has no values for it, as for '1..z'.
+
+    if ( ! is_numeric ( $p1 ) and ( strlen ( $p1 ) != 1 or strlen ( $p2 ) != 1 ) ) {
+
+      if ( $padCheckSyntax )
+        padError ( "the range '" . trim ( $input ) . "' needs a single letter at each end" );
+
+      return [];
+
+    }
+
     $increment = abs ( $increment );
 
     // A step wider than the two ends are apart cannot be taken even once, which range() calls
