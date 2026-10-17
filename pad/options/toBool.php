@@ -12,7 +12,7 @@
 
   if     ( $padNull [$pad]  ) $padBoolStore [$padStoreName] = FALSE;
   elseif ( $padElse [$pad]  ) $padBoolStore [$padStoreName] = FALSE;
-  elseif ( trim ( $padContent ) != '' ) $padBoolStore [$padStoreName] = TRUE;
+  elseif ( trim ( $padStoreText ??= $padContent ) != '' ) $padBoolStore [$padStoreName] = TRUE;
   else                                  $padBoolStore [$padStoreName] = FALSE;
 
   $padContent = '';

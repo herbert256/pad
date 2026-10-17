@@ -29,6 +29,12 @@
   elseif ( $padOptions == 'app'      ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'appEnd'   ) $padContent = $padResult [$pad];
 
+  // The storing options - toBool, toContent, toData - each take the text and leave none
+  // behind; the first keeps what it took here, so the next one written on the tag reads the
+  // same text: toContent then toBool stored a flag of FALSE, toBool then toContent nothing.
+
+  $padStoreText = NULL;
+
   foreach ( $padPrm [$pad] as $padOptionName => $padV )
 
     if ( in_array ( $padOptionName, $padOptionsWalk )

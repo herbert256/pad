@@ -10,7 +10,7 @@
 
   $padStoreName = $padPrm [$pad] ['toContent'];
 
-  $padContentStore [$padStoreName] = $padContent;
+  $padContentStore [$padStoreName] = $padStoreText ??= $padContent;
 
   $padContent = '';
 
