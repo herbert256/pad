@@ -24,6 +24,21 @@
 
   }
 
+  // The expression is the template's own text, a quoted string on the tag: where=$f took a
+  // whole condition from a variable, and a request value with php:abs(-3) in it ran PHP. A
+  // value goes into it as $name, which compares the value and stays one; a field spliced
+  // into the quotes goes in as a string of the expression (padSpliceQuote, lib/level.php).
+
+  if ( $padProtectValues ) {
+
+    $padWhereOrg = (string) ( $padPrmOrg ?? '' );
+    $padWhereOrg = trim ( str_contains ( $padWhereOrg, '=' ) ? substr ( $padWhereOrg, strpos ( $padWhereOrg, '=' ) + 1 ) : $padWhereOrg );
+
+    if ( ! is_string ( padMetaLiteral ( $padWhereOrg ) ) )
+      return padError ( "where= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
+
+  }
+
   $padWhereKeep = $padCurrent [$pad] ?? [];
 
   foreach ( $padData [$pad] as $padWhereKey => $padWhereRow ) {

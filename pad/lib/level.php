@@ -274,16 +274,34 @@ function padSplitOnUnquotedColon ( $str ) {
     if ( ! $field or ctype_space ( $inside [0] ) or $inside [0] == '"' or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
       return $value;
 
-    $quote = '';
+    $quote   = '';
+    $quoteAt = 0;
 
     for ( $i = 0, $len = strlen ( $inside ); $i < $len; $i++ )
       if ( $quote ) {
         if     ( $inside [$i] == '\\'   ) $i++;
         elseif ( $inside [$i] == $quote ) $quote = '';
-      } elseif ( $inside [$i] == "'" or $inside [$i] == '"' )
-        $quote = $inside [$i];
+      } elseif ( $inside [$i] == "'" or $inside [$i] == '"' ) {
+        $quote   = $inside [$i];
+        $quoteAt = $i;
+      }
 
-    return $quote ? $value : "'$value'";
+    if ( $quote === '' )
+      return "'$value'";
+
+    // Inside the quoted expression of where= - where='$n eq {$f}' - the option's text is
+    // evaluated again for every row, and a value standing in it bare became part of that
+    // expression: a request value 2 or $n eq php:abs(-3) called PHP. It goes in as a string
+    // of the expression, in the other quote, unless it stands in one already; its own quotes
+    // are protected, so it closes neither.
+
+    if ( preg_match ( '/(^|[\s,])where\s*=\s*$/', substr ( $inside, 0, $quoteAt ) ) ) {
+      $other = ( $quote == "'" ) ? '"' : "'";
+      if ( substr_count ( substr ( $inside, $quoteAt + 1 ), $other ) % 2 == 0 )
+        return $other . $value . $other;
+    }
+
+    return $value;
 
   }
 

@@ -144,6 +144,9 @@ Keeps the rows for which an expression holds - on any data, not only on Select t
 - A PAD expression, written quoted so it reaches the handler as text and is evaluated once
   per row. The row's fields come before every other name; the page's variables are there
   as usual.
+- The expression is the template's own text: `where=$cond` is refused, a value goes in as
+  `$name` (`where='$total gt $minimum'`), and a field spliced into the quotes -
+  `where='$status eq {$s}'` - is compared as a string, never run as part of the expression.
 
 **Examples:**
 ```html
