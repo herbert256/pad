@@ -40,6 +40,11 @@
 
   }
 
+  if ( $padCheckSyntax )
+    foreach ( $padGroupKeys as $padGroupKey )
+      if ( ! padHandFieldSeen ( $padData [$pad], $padGroupKey ) )
+        return padError ( "the group field '$padGroupKey' is in no row" );
+
   // The aggregates, in the order they were written on the tag: that order decides which of
   // two aggregates of one field keeps the field's own name.
 

@@ -39,4 +39,18 @@
 
   }
 
+  // Whether any row holds the field a sort or a group names - under the strict check a name
+  // no row has is a typo, which sorted nothing and folded every row into one group in
+  // silence. A field some rows lack still sorts and groups as empty.
+
+  function padHandFieldSeen ( $rows, $field ) {
+
+    foreach ( $rows as $row )
+      if ( ! is_array ( $row ) or array_key_exists ( $field, $row ) )
+        return TRUE;
+
+    return ! count ( $rows );
+
+  }
+
 ?>

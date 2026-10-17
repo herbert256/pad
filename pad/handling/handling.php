@@ -74,6 +74,14 @@
     $padHandParm = $padPrmValue;
     $padHandCnt  = ( $padHandParm === TRUE or ! ctype_digit ( (string) $padHandParm ) ) ? 1 : $padHandParm;
 
+    // A count that is no whole number - first='abc', rows=-2 - was taken as 1 or as none in
+    // silence. A page value that is no number is the first page, as documented, and random
+    // takes one as a single draw; start, end, slice and splice take negative offsets.
+
+    if ( $padCheckSyntax and in_array ( $padPrmName, [ 'first', 'last', 'rows', 'row' ], TRUE )
+         and $padHandParm !== TRUE and (string) $padHandParm !== '' and ! ctype_digit ( (string) $padHandParm ) )
+      padError ( "the $padPrmName option takes a count, a whole number - not '" . padMakeSafe ( (string) $padHandParm, 20 ) . "'" );
+
     if ( $padInfo )
       include PAD . 'events/handling.php';
 

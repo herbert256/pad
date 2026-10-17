@@ -54,6 +54,9 @@
         padError ( "the sort option has no flag named '$padV2'" );
     }
 
+    if ( $padCheckSyntax and ! padHandFieldSeen ( $padData [$pad], $padSortField ) )
+      return padError ( "the sort field '$padSortField' is in no row" );
+
     $padSortColumn = [];
 
     foreach ( $padData [$pad] as $padV3 )
