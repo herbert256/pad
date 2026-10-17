@@ -57,7 +57,7 @@
         if ( file_exists ( PA . "$padUnreadName.php" )                            ) continue;
         if ( file_exists ( PT . $padUnreadName )                                  ) continue;
         if ( isset ( $GLOBALS ['pqStore'] [$padUnreadName] )                      ) continue;
-        if ( file_exists ( PAD . "sequence/options/types/$padUnreadName.php" )    ) continue;
+        if ( pqOption ( $padUnreadName, $padPrm [$pad] [$padUnreadName] ?? TRUE ) ) continue;
         if ( in_array ( $padUnreadName, [ 'sequence', 'pull', 'action' ] )        ) continue;
       }
 

@@ -189,6 +189,22 @@
 
   }
 
+  // Whether a tag option is one the subsystem reads: a name with a file in options/types/.
+  // The files of store, single and operation only keep the names from a store (exits/store/
+  // check.php): bare, they are words of the spelling a store's tag is written in - {mySequence
+  // store} in apps/sequence/check/store.pad - but nothing reads a value given to one, and
+  // excused as an option {sequence '1..5', store='nums'} kept no store while the strict check
+  // let it pass, where stor='nums' is named.
+
+  function pqOption ( $option, $value = TRUE ) {
+
+    if ( ! file_exists ( PQ . "options/types/$option.php" ) )
+      return FALSE;
+
+    return ( $value === TRUE or ! in_array ( $option, [ 'store', 'single', 'operation' ] ) );
+
+  }
+
   function pqDone ( $option, &$array ) {
 
     $key = array_search ( $option, $array );
