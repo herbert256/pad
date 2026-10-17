@@ -18,9 +18,14 @@
     return;
 
   $padSortArgs   = [];
-  $padSortFields = padExplode($padPrm [$pad] ['sort'], ';');
 
-  if ( $padPrm [$pad] ['sort'] === TRUE or ! count ($padSortFields)) {
+  // The value of this sort - the walk hands every handler its own option, and a sort before
+  // a group and another after it each sort on what they say: read from $padPrm, both sorted
+  // on the last one written.
+
+  $padSortFields = ( $padHandParm === TRUE ) ? [] : padExplode ( (string) $padHandParm, ';' );
+
+  if ( $padHandParm === TRUE or ! count ($padSortFields)) {
     $padSortFields = [];
     foreach ($padData [$pad] as $padV1) {
       foreach ($padV1 as $padK2 => $padV2)
