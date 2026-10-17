@@ -39,7 +39,11 @@
     if ( $check )
       return $default;
 
-    if ( ! file_exists ( $file ) )
+    // An engine or application file is looked for through padFileExists, kept for the second
+    // (lib/checks.php) - every tag asks for the .pad half of its file pair, most have none.
+    // A file under DATA is looked for on disk each time: a request writes and reads it back.
+
+    if ( ! ( str_starts_with ( $file, DATA ) ? file_exists ( $file ) : padFileExists ( $file ) ) )
       return $default;
 
     if ( $padInfo )
