@@ -1,7 +1,7 @@
 <?php
 
   // {gravatar $email} - the Gravatar picture of an e-mail address as an <img>, by
-  // lib/gravatar.php: the address goes out only as its SHA-256 hash, lazily loaded and with
+  // tags/_lib/gravatar.php: the address goes out only as its SHA-256 hash, lazily loaded and with
   // no referrer. size= is the width and height in pixels (default 64), default= what
   // Gravatar shows for an address it does not know - mp (default), identicon, monsterid,
   // wavatar, retro, robohash, blank, 404 or an https:// image address - and alt= the text

@@ -1883,7 +1883,7 @@ error under the strict check, naming the icons close to it (`did you mean arrow-
 ---
 
 ### gravatar
-The Gravatar picture of an e-mail address as an `<img>` (`lib/gravatar.php`) - only the
+The Gravatar picture of an e-mail address as an `<img>` (`tags/_lib/gravatar.php`) - only the
 SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG drawn on the
 server and no request to a third party at all.
 
