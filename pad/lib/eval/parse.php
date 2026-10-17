@@ -82,11 +82,38 @@
     if ( $one == '>' and in_array($next, ['.','@'] ) )             return TRUE;
     if ( $one == '@' and ctype_alpha($next) )                      return TRUE;
     if ( $one == '@' and $next == '-' and ctype_digit($next2) )    return TRUE;
+
+    // A level number as the target - $name@1 - as the {$name@1} form reads it. The @ ended
+    // the name there: $name@1 was the field, the placeholder and a 1 run together, x1, a
+    // value always true in a condition.
+
+    if ( $one == '@' and ctype_digit($next) )                      return TRUE;
     if ( $one == '<' and ctype_digit($next) and $prev == '.' )     return TRUE;
     if ( $one == '>' and ctype_digit($next) and $prev == '.' )     return TRUE;
     if ( $one == '-' and in_array($prev, ['.','@'] ) )             return TRUE;
 
     return FALSE;
+
+  }
+
+  // A positional step at the end of a path - $u.tags.1> is the first from the end, .3< the
+  // third from the start - as the {$u.tags.1>} form reads it: a < or > after a dot and digits
+  // where the path ends - the end of the text, a | ) ] , or a space with no value after it.
+  // It ended the name and stood as an operator with nothing on its right. Followed by a value
+  // it stays the comparison: $a.1>3, $a.1 > $b.
+
+  function padEvalParseStep ( $one, $name, $rest ) {
+
+    if ( ( $one != '<' and $one != '>' ) or ! preg_match ( '/\.\d+$/', $name ) )
+      return FALSE;
+
+    if ( $rest === '' or preg_match ( '/^[|)\],.]/', $rest ) )
+      return TRUE;
+
+    if ( ! ctype_space ( $rest [0] ) )
+      return FALSE;
+
+    return ! preg_match ( '/^\s*[0-9$\'"(+\-.@!]/', $rest );
 
   }
 
@@ -261,7 +288,8 @@
       $prev  = (isset($result [$i] [0]) and $result [$i] [0]) ? substr($result [$i] [0],-1) : '';
 
       if ( $is_var )
-        if ( padEvalParseValid ( $one, $next, $next2, $prev )  ) {
+        if ( padEvalParseValid ( $one, $next, $next2, $prev )
+             or padEvalParseStep ( $one, $result[$i][0], implode ( '', array_slice ( $input, $key + 1, 40 ) ) ) ) {
           $result[$i][0] .= $one;
           continue;
         } else {
