@@ -206,12 +206,17 @@
     // (loosely - a cast value is the same value). By the columns alone, a key => label map, a
     // heading list or a settings array that merely shared their names was one record after
     // any RECORD of the request: [ 'officeCode' => 'Number', 'city' => 'City' ] iterated as
-    // one occurrence with three fields, where it is three.
+    // one occurrence with three fields, where it is three. Exactly the row's columns, in its
+    // order, is the row too, whatever the values: a record whose every value the page
+    // formatted - totals given two decimals, a name a capital - or that had none was lost.
 
     foreach ( $padDataSetRecord ?? [] as $row ) {
 
       if ( array_diff_key ( $row, $input ) )
         continue;
+
+      if ( array_keys ( $input ) === array_keys ( $row ) )
+        return TRUE;
 
       foreach ( $row as $key => $value )
         if ( $value !== NULL and $value !== '' and is_scalar ( $input [$key] ) and $input [$key] == $value )
