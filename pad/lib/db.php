@@ -522,14 +522,17 @@
 
       }, $sql );
 
-    // A WITH reads when no write stands in it - the replay's test of a statement
-    // (lib/replay.php) - and db() answers its rows.
+    // A WITH reads when neither its main statement nor one of its named selects writes - the
+    // replay's test of a statement (lib/replay.php) - and db() answers its rows. The refusal
+    // names the write; it said the query "starts with 'with'", which is no reason.
 
     $verb = strtolower ( strtok ( ltrim ( $sql ), " \t\r\n" ) );
 
-    if ( ! in_array ( $verb, [ 'select', 'array', 'record', 'field', 'check', 'with' ] )
-         or ( $verb == 'with' and padReplayWrites ( $sql ) ) )
+    if ( ! in_array ( $verb, [ 'select', 'array', 'record', 'field', 'check', 'with' ] ) )
       return padError ( "the named query " . basename ( $file ) . " must read - it starts with '" . padMakeSafe ( $verb, 20 ) . "'" );
+
+    if ( $verb == 'with' and padReplayWrites ( $sql, $write ) )
+      return padError ( "the named query " . basename ( $file ) . " must read - its WITH holds the write '$write'" );
 
     return db ( trim ( $sql ), $vars );
 

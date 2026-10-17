@@ -156,9 +156,10 @@
   // The verb is the first word after any comments in front of it - /* ... */, and -- or #
   // to the end of the line - and a WITH in front of a statement is looked through to the
   // write it leads up to. The first word as written was the verb: a /* note */ update, or
-  // a WITH ... DELETE, went to the database during a replay.
+  // a WITH ... DELETE, went to the database during a replay. $write is given the write word
+  // found, '' for none.
 
-  function padReplayWrites ( $sql ) {
+  function padReplayWrites ( $sql, &$write = NULL ) {
 
     $writes = [ 'insert', 'update', 'delete', 'replace', 'truncate', 'load', 'create',
                 'drop', 'alter', 'rename', 'grant', 'revoke', 'call', 'lock' ];
@@ -174,9 +175,141 @@
     $verb = strtolower ( (string) strtok ( $sql, " \t\n\r(" ) );
 
     if ( $verb == 'with' )
-      return (bool) preg_match ( '/\b(' . implode ( '|', $writes ) . ')\b/i', $sql );
+      $write = padReplayWithWrite ( $sql, $writes );
+    else
+      $write = in_array ( $verb, $writes ) ? $verb : '';
 
-    return in_array ( $verb, $writes );
+    return $write !== '';
+
+  }
+
+  // The write a statement starting with WITH makes, or '' when it only reads: the first word
+  // of its main statement, after the list of named selects, or of one of those - where any
+  // write word anywhere was one, so a WITH calling replace() or holding 'update' in a literal
+  // was a write, and a named query refused. Quoted text and comments are skipped, read as
+  // MySQL reads them and as SQLite does - a backslash escape and # or not - and a write in
+  // either reading is a write. A statement the walk cannot follow, or with another after a
+  // semicolon, is a write when a write word stands in it at all, as before.
+
+  function padReplayWithWrite ( $sql, $writes ) {
+
+    if ( ! preg_match ( '/\b(' . implode ( '|', $writes ) . ')\b/i', $sql, $match ) )
+      return '';
+
+    $any = strtolower ( $match [1] );
+
+    foreach ( [ TRUE, FALSE ] as $mysql ) {
+
+      // The words, a ' for each quoted text, and the characters ( ) , ; - the rest is left out.
+
+      $tokens = [];
+      $depth  = 0;
+      $len    = strlen ( $sql );
+
+      for ( $i = 0; $i < $len; $i++ ) {
+
+        $char = $sql [$i];
+
+        if ( $end = padDbComment ( $sql, $i, $mysql ) ) {
+          $i = $end - 1;
+          continue;
+        }
+
+        if ( $char == "'" or $char == '"' or $char == '`' ) {
+
+          for ( $i++; $i < $len and $sql [$i] != $char; $i++ )
+            if ( $mysql and $sql [$i] == '\\' )
+              $i++;
+
+          if ( $i >= $len )
+            return $any;
+
+          $tokens [] = "'";
+
+        } elseif ( preg_match ( '/\G[A-Za-z_\x80-\xFF][A-Za-z0-9_$\x80-\xFF]*/', $sql, $word, 0, $i ) ) {
+
+          $tokens [] = strtolower ( $word [0] );
+          $i        += strlen ( $word [0] ) - 1;
+
+        } elseif ( strpos ( '(),;', $char ) !== FALSE ) {
+
+          $tokens [] = $char;
+
+          if ( $char == '(' )
+            $depth++;
+          elseif ( $char == ')' and --$depth < 0 )
+            return $any;
+
+        }
+
+      }
+
+      $semi = array_search ( ';', $tokens, TRUE );
+
+      if ( $depth or ( $semi !== FALSE and $semi < count ( $tokens ) - 1 ) )
+        return $any;
+
+      // with [recursive] name [( columns )] as [not] [materialized] ( select ... ) [, ...] main
+
+      $at = ( ( $tokens [1] ?? '' ) == 'recursive' ) ? 2 : 1;
+
+      while ( TRUE ) {
+
+        if ( in_array ( $tokens [$at++] ?? '', [ '', '(', ')', ',', ';' ] ) )
+          return $any;
+
+        if ( ( $tokens [$at] ?? '' ) == '(' )
+          $at = padReplayClose ( $tokens, $at );
+
+        if ( ( $tokens [$at++] ?? '' ) != 'as' )
+          return $any;
+
+        if ( ( $tokens [$at] ?? '' ) == 'not'          ) $at++;
+        if ( ( $tokens [$at] ?? '' ) == 'materialized' ) $at++;
+
+        if ( ( $tokens [$at] ?? '' ) != '(' )
+          return $any;
+
+        for ( $first = $at; $tokens [$first] == '('; $first++ ) ;
+
+        if ( in_array ( $tokens [$first], $writes ) )
+          return $tokens [$first];
+
+        $at = padReplayClose ( $tokens, $at );
+
+        if ( ( $tokens [$at] ?? '' ) != ',' )
+          break;
+
+        $at++;
+
+      }
+
+      while ( ( $tokens [$at] ?? '' ) == '(' )
+        $at++;
+
+      if ( ! isset ( $tokens [$at] ) )
+        return $any;
+
+      if ( in_array ( $tokens [$at], $writes ) )
+        return $tokens [$at];
+
+    }
+
+    return '';
+
+  }
+
+  // The position after the ) that closes the ( at $at - the brackets are balanced.
+
+  function padReplayClose ( $tokens, $at ) {
+
+    for ( $depth = 0; isset ( $tokens [$at] ); $at++ )
+      if ( $tokens [$at] == '(' )
+        $depth++;
+      elseif ( $tokens [$at] == ')' and --$depth == 0 )
+        return $at + 1;
+
+    return $at;
 
   }
 
