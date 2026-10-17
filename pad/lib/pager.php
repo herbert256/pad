@@ -135,13 +135,16 @@
 
   function padPagerHref ( $query, $page ) {
 
-    global $padGo, $padStartPage, $padPageAsked;
+    global $padGo, $padStartPage, $padPageAsked, $padPageKey;
 
     $keep  = [];
-    $first = array_key_first ( $_GET );
+
+    // The bare key that named the page - ?products - is no value of it; on a clean URL the
+    // path names the page, and a first bare ?paged is a value the link keeps: taken for the
+    // page's name, it was dropped from every link.
 
     foreach ( $_GET as $key => $value )
-      if     ( $key === $first and $value === '' ) continue;
+      if     ( (string) $key === (string) ( $padPageKey ?? '' ) and $value === '' ) continue;
       elseif ( (string) $key === $query          ) continue;
       elseif ( str_starts_with ( (string) $key, 'pad' ) ) continue;
       else   $keep [$key] = $value;
