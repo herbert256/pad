@@ -402,9 +402,15 @@
   // part of the condition, while an honest value holding a comma, = or @ was rewritten and
   // never matched.
 
+  //
+  // On SQLite a number, and a numeral, goes in as the number, as db()'s bare placeholders
+  // have it (padDbLiteral): a column declared without a type has no affinity, so the text
+  // '2' never equals the integer 2 there, and {boards $id=2} found no board and every
+  // board's nested topics came out empty.
+
   function padSelectWhereAdd  (&$where, $field, $value) {
 
-    $add = padSelectField ($field) . ' = ' . "'";
+    $add = padSelectField ($field) . ' = ';
 
     if ( strpos ( $where, $add ) !== FALSE )
       return;
@@ -412,7 +418,12 @@
     if ($where) $where .= ' and ';
     else        $where  = 'where ';
 
-    $where .= $add . padSelectEscape ($value) . "'";
+    $connect = padDbApp ();
+
+    if ( $connect instanceof PDO and is_scalar ( $value ) )
+      $where .= $add . padDbLiteral ( $connect, $value );
+    else
+      $where .= $add . "'" . padSelectEscape ($value) . "'";
 
   }
 
