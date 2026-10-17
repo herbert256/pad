@@ -162,6 +162,11 @@
       $padBase [$pad] = $padFalse;
       $padData [$pad] = padDefaultData ();
 
+      // The @else@ content goes through the opening tag's pipe too, as above and as it does
+      // for a tag that came back empty: {xs where='$n gt 9' | upper}x@else@none{/xs} said none.
+
+      include PAD . 'level/pipes/before.php';
+
     }
 
     if ( ! $padHandRecover and padTagParm ( 'demand' ) )
