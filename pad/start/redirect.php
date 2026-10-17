@@ -14,8 +14,8 @@
        and ! str_contains ( $padParm, '&' )
        and ! str_starts_with ( $padParm, '?' )
        and ! str_starts_with ( $padParm, '/' )
-       and ! padPageCheck ( $padParm ) )
-    padError ( "there is no page named '$padParm' for {redirect}" );
+       and ! padPageCheck ( strtok ( $padParm, '#' ) ) )
+    padError ( "there is no page named '" . strtok ( $padParm, '#' ) . "' for {redirect}" );
 
   // An absolute address - http:// or https:// - is where the browser goes, as written: the
   // tag's target is a URL (TAGS.md) and the check above lets one leave the application. It
