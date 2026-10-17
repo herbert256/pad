@@ -258,21 +258,35 @@
 
   }
 
-  // The engine's names among $vars, as a set to test with isset - for the loops that sift
-  // the whole symbol table, where even a memoised call per name was most of the work of a
-  // page. Only names not seen before are classified; the set grows with them.
+  // The variables of $vars that are no engine names - what a tag compares before and after
+  // its PHP half runs (types/_go/tag.php), and the globals group of the @ subsystem. Sifting
+  // the whole symbol table name by name, even memoised, was most of the work of a page; the
+  // engine's names, the large part of some 450 globals, now go in one array_diff_key of
+  // PHP's own, and only what is left - the application's 10 to 40 and a name never seen
+  // before - is looked at, each name classified once for the request.
+  //
+  // The answer holds the values, never references: inside a function-driven pass every
+  // global is bound by reference (start/pad/function.php), and array_diff_key keeps a
+  // reference as it is - a snapshot would follow the variable it was meant to remember.
+  // The loop over what is left copies each value, as a loop over the whole table did.
 
-  function padEngineNames ( $vars ) {
+  function padAppVars ( $vars ) {
 
-    static $seen = [], $engine = [];
+    static $engine = [], $app = [];
 
-    foreach ( array_diff_key ( $vars, $seen ) as $name => $unused ) {
-      $seen [$name] = TRUE;
-      if ( padEngineName ( (string) $name ) )
+    $out = [];
+
+    foreach ( array_diff_key ( $vars, $engine ) as $name => $value )
+      if ( isset ( $app [$name] ) )
+        $out [$name] = $value;
+      elseif ( padEngineName ( (string) $name ) )
         $engine [$name] = TRUE;
-    }
+      else {
+        $app [$name] = TRUE;
+        $out [$name] = $value;
+      }
 
-    return $engine;
+    return $out;
 
   }
 

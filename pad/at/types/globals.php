@@ -12,7 +12,7 @@
   // $_SERVER and {$input<>x.input.password} into the engine's last fetch; with those keys
   // not in the array no step reaches them, {$_SERVER.HTTP_HOST@globals} included.
 
-  $padGlobalsApp = array_diff_key ( $GLOBALS, padEngineNames ( $GLOBALS ) );
+  $padGlobalsApp = padAppVars ( $GLOBALS );
 
   if ( isset ( $GLOBALS ['padMailLast'] ) )
     $padGlobalsApp ['padMailLast'] = $GLOBALS ['padMailLast'];
