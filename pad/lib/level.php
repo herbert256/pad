@@ -267,6 +267,16 @@ function padSplitOnUnquotedColon ( $str ) {
 
     }
 
+    // What goes into a tag's text from here on is kept for the request - a value that could
+    // do more than name a word or a number, one with an operator, a quote or a call in it -
+    // so the eval sequence can refuse an expression that holds one outside its own strings
+    // (sequence/types/eval/loop.php), whatever spelling of the eval sequence it stood in: a
+    // guard that recognised each one let eval(2, '@ * {$q}') and {sequence eval, '@ * {$q}'}
+    // run the value's php:abs(-3).
+
+    if ( preg_match ( '/[^\w\s]/u', $value ) )
+      $GLOBALS ['padSpliceValues'] [$value] = TRUE;
+
     // A { followed by whitespace or a double quote opens no tag (padWhiteCheck), so the
     // value stands in text: literal JSON, {"id": {$id}}, had quotes put round it; a value
     // glued as above stands as it was too. A tag's answer is quoted nowhere.
@@ -319,8 +329,9 @@ function padSplitOnUnquotedColon ( $str ) {
   // Whether a splice stands in an expression the engine evaluates - $head the tag's text up to
   // the splice or up to the quote it stands in, $text what that quote holds before it - and
   // which one, for the refusal: the where= and eval= options, the item of {eval} (written
-  // sequence:eval, make:eval ... too), the parameter of sequence:eval() in an expression, and
-  // the text after eval| in make=, keep=, remove= and flag=. In any case, as a file system that
+  // sequence:eval, make:eval ... too) and of {sequence eval, ...}, the parameter of
+  // sequence:eval() - or eval() - in an expression, and the text after eval| in make=, keep=,
+  // remove= and flag=. The eval sequence itself refuses what no spelling here catches. In any case, as a file system that
   // ignores case finds the option or tag for WHERE= and Eval= as well: those passed the guard
   // and their value ran.
 
@@ -335,7 +346,10 @@ function padSplitOnUnquotedColon ( $str ) {
     if ( preg_match ( '/^\s*eval\s*\|/i', $text ) )
       return 'eval|';
 
-    if ( preg_match_all ( '/sequence:eval\s*\(/i', $head, $match, PREG_OFFSET_CAPTURE ) ) {
+    if ( preg_match ( '/^((pad|sequence):)?sequence\s(.*[\s,])?eval\s*,(.*,)?\s*$/is', $head ) )
+      return '{sequence eval}';
+
+    if ( preg_match_all ( '/(?<![\w$:])(?:sequence:)?eval\s*\(/i', $head, $match, PREG_OFFSET_CAPTURE ) ) {
       $rest = substr ( $head, end ( $match [0] ) [1] + strlen ( end ( $match [0] ) [0] ) );
       $rest = preg_replace ( '/\'[^\'\\\\]*(\\\\.[^\'\\\\]*)*\'|"[^"\\\\]*(\\\\.[^"\\\\]*)*"/s', '', $rest );
       while ( preg_match ( '/\([^()]*\)/', $rest ) )

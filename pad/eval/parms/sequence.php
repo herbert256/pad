@@ -30,9 +30,10 @@
 
     // The parameter of sequence:eval(3, '@ * 2') is a string the template wrote, which the
     // eval type runs (sequence/types/eval/loop.php) - one from a value, sequence:eval(3, $q),
-    // it refuses.
+    // it refuses. Only for the eval type: a literal of sequence:repeat(2, '...') let the same
+    // text from a value run in sequence:eval(2, $q).
 
-    if ( ( $padEvalLiteral [1] ?? FALSE ) and is_string ( $parm [1] ?? NULL ) )
+    if ( strtolower ( $name ) == 'eval' and ( $padEvalLiteral [1] ?? FALSE ) and is_string ( $parm [1] ?? NULL ) )
       $GLOBALS ['pqEvalArguments'] [ $parm [1] ] = TRUE;
 
     return include PQ . 'start/eval/sequence.php';

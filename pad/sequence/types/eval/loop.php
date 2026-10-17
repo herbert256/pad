@@ -39,6 +39,29 @@
 
   }
 
+  // A value spliced into the expression - kept by padSpliceQuote (lib/level.php) - stands in
+  // it only as a string of it: outside the expression's own strings it is part of the code,
+  // the request value's php:abs(-3) called, in any spelling a guard there did not know.
+
+  $pqEvalKey = count ( $GLOBALS ['padSpliceValues'] ?? [] ) . ':' . $pqParm;
+
+  if ( is_string ( $pqParm ) and ! isset ( $GLOBALS ['pqEvalSpliced'] [$pqEvalKey] ) ) {
+
+    $pqEvalCode = preg_replace ( '/\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"/s', '', $pqParm );
+
+    $GLOBALS ['pqEvalSpliced'] [$pqEvalKey] = FALSE;
+
+    foreach ( array_keys ( $GLOBALS ['padSpliceValues'] ?? [] ) as $pqEvalOne )
+      if ( str_contains ( $pqEvalCode, (string) $pqEvalOne ) )
+        $GLOBALS ['pqEvalSpliced'] [$pqEvalKey] = TRUE;
+
+  }
+
+  if ( $GLOBALS ['pqEvalSpliced'] [$pqEvalKey] ?? FALSE ) {
+    padError ( "a value spliced into the expression of the eval sequence is part of its code: put it in as \$name" );
+    return '';
+  }
+
   return padEval ( $pqParm, $pqLoop );
 
 ?>
