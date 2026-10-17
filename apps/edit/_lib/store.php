@@ -164,6 +164,13 @@
   // ---------------------------------------------------------------------------------------
   // History: before a save overwrites a file, its old text goes into the file's history
   // directory as <microtime>-<user>.txt; the oldest go when there are more than $keep.
+  //
+  // Owner only, the directory 0700 and each version 0600, whatever the file itself was: the
+  // old text of a .env closed to the machine's other users was kept as 0644 in a 0755
+  // directory, one more readable copy of its password with every save. The directory is
+  // closed before anything is written into it, so the temporary file editWrite makes there
+  // as the umask has it is not readable for that moment either; one made open before is
+  // closed with its next version.
   // ---------------------------------------------------------------------------------------
 
   function editHistoryDir ( $base, $app, $root, $path ) {
@@ -176,13 +183,18 @@
 
     $dir = editHistoryDir ( $base, $app, $root, $path );
 
+    if ( ! is_dir ( $dir ) and ! @mkdir ( $dir, 0700, TRUE ) and ! is_dir ( $dir ) )
+      editFail ( 'the history directory could not be made: ' . editLastError () );
+
+    @chmod ( $dir, 0700 );
+
     if ( ! is_file ( $dir . 'meta.json' ) )
       editJsonWrite ( $dir . 'meta.json', [ 'app' => $app, 'root' => $root, 'path' => $path ] );
 
     $id = sprintf ( '%.6f', microtime ( TRUE ) );
     $id = str_replace ( '.', '', $id ) . '-' . editUserName ( $user ?: 'cli' );
 
-    editWrite ( "$dir$id.txt", $text );
+    editWrite ( "$dir$id.txt", $text, 0600 );
 
     $list = editHistoryList ( $base, $app, $root, $path );
 

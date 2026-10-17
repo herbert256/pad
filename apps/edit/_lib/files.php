@@ -172,9 +172,10 @@
   }
 
   // Atomic: the new text goes into a temporary file beside the old one, which is renamed
-  // over it. The file keeps its permissions; a new one gets the engine's $padFileMode.
+  // over it. The file keeps its permissions; a new one gets the engine's $padFileMode - or
+  // $mode, for a file of the editor's own that is nobody else's to read.
 
-  function editWrite ( $file, $text ) {
+  function editWrite ( $file, $text, $mode = NULL ) {
 
     global $padFileMode;
 
@@ -183,7 +184,7 @@
     if ( ! is_dir ( $dir ) and ! @mkdir ( $dir, 0755, TRUE ) )
       editFail ( 'the directory could not be made' );
 
-    $mode = file_exists ( $file ) ? ( fileperms ( $file ) & 0777 ) : ( $padFileMode ?? 0644 );
+    $mode ??= file_exists ( $file ) ? ( fileperms ( $file ) & 0777 ) : ( $padFileMode ?? 0644 );
     $temp = "$dir/.edit-" . bin2hex ( random_bytes ( 6 ) ) . '.tmp';
 
     if ( @file_put_contents ( $temp, $text ) === FALSE )
