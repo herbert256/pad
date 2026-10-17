@@ -6,6 +6,9 @@
   // This is what makes padError(), padFileGet(), db(), padTagParm() and the rest available
   // to the engine, to application _lib/ code and to templates. It runs second in
   // inits/inits.php, immediately after the constants, because everything later calls into it.
+  //
+  // The code of one built-in tag is not here but in tags/_lib/<tag>.php, which types/pad.php
+  // includes when a page uses the tag.
 
   $padLibDirectory = new RecursiveDirectoryIterator ( PAD . 'lib' );
   $padLibIterator  = new RecursiveIteratorIterator  ( $padLibDirectory );

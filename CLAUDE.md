@@ -1803,6 +1803,10 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
   `padValidStore`, `padStrPad`) and the tokens of each clean expression (`padEvalParsed`) are
   kept for the request; the @else@ pair scan runs only when an `@else@` is there. Nothing is
   kept between requests - the template is still rescanned each pass (no AST)
+- **Tag code on use**: `pad/lib/` is loaded on every request; the functions of one built-in
+  tag stand in `pad/tags/_lib/<tag>.php`, which `types/pad.php` includes the first time a
+  page uses the tag (a tag sharing another's code includes that file itself). What the
+  engine, a pipe, a documented PHP helper or a page calls stays in `pad/lib/`
 
 ---
 

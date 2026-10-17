@@ -9,7 +9,8 @@
   // padAppPageCheck, padAppIncludeCheck, padAppTagCheck, padAppFunctionCheck, and the
   // same idea for padScriptCheck, padCallBackCheck, padOptionCheck and padOptionEndCheck. padCommonCheck and
   // its two helpers look in the _common application instead; padCheck is the primitive
-  // that accepts either a .pad or a .php file.
+  // that accepts either a .pad or a .php file, padTagLib whether a built-in tag has code
+  // of its own to load.
   //
   // padContentType sniffs a data block and names its format - list, json, yaml, xml, pad,
   // html, range, curl, file, else csv - and may trim $content to the part it recognised.
@@ -50,6 +51,18 @@
   function padCheck ( $check ) {
 
     return ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ); 
+
+  }
+
+  // Whether a built-in tag has code of its own in tags/_lib/<tag>.php - the functions only
+  // that tag calls, which pad/lib/ would load on every request. types/pad.php asks for every
+  // built-in tag it runs and includes the file the first time; the answer is kept per name.
+
+  function padTagLib ( $tag ) {
+
+    static $known = [];
+
+    return $known [$tag] ??= file_exists ( PAD . "tags/_lib/$tag.php" );
 
   }
 
