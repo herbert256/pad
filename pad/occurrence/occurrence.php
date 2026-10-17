@@ -20,7 +20,10 @@
   // imported: the callback ended the request on "Undefined variable". There the phase goes
   // through padCallbackBeforeXxx, which lifts the application's globals in and back out.
 
-  if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
+  // The @else@ branch of an empty level is no row of its data, so the row phase does not run
+  // for it - init and exit still do: a callback reading a field of its row ended the request.
+
+  if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) and ! $padElse [$pad] )
     if ( $GLOBALS ['padStrFunCnt'] ?? 0 )
       padCallbackBeforeXxx ( 'row' );
     else

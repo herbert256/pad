@@ -9,8 +9,11 @@
 
   padCallbackBeforeXxx ('init');
 
-  foreach ( $padData [$pad] as $padK => $padV)
-    padCallbackBeforeRow ( $padData [$pad] [$padK] );
+  // The @else@ stand-in of an empty level is no row (occurrence/occurrence.php says why).
+
+  if ( ! $padElse [$pad] )
+    foreach ( $padData [$pad] as $padK => $padV)
+      padCallbackBeforeRow ( $padData [$pad] [$padK] );
 
   padCallbackBeforeXxx ('exit');
 
