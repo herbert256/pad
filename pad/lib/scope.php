@@ -6,7 +6,11 @@
   // padSetGlobalLvl / padSetGlobalOcc  publish $var (level) and %var (occurrence) values
   //                   into $GLOBALS, first recording in $padSaveLvl/$padSaveOcc what was
   //                   there before, or in $padDeleteLvl/$padDeleteOcc that there was
-  //                   nothing. padValidVar keeps engine names out
+  //                   nothing. padValidVar keeps engine names out. The caller of a set of
+  //                   names says whether each is a global already - a NULL one too - as
+  //                   found for the whole set at once: array_key_exists on $GLOBALS copies
+  //                   the symbol table, some 450 globals, and it ran twice for every field
+  //                   of every row
   // padResetLvl / padResetOcc  undo exactly that when the level or occurrence ends, which
   //                   is what makes nesting and shadowing work
   //
@@ -65,7 +69,7 @@
 
   }
 
-  function padSetGlobalLvl ( $name, $value ) {
+  function padSetGlobalLvl ( $name, $value, $exists = NULL ) {
 
     if ( ! padValidVar($name) )
       return;
@@ -75,10 +79,12 @@
 
     global $pad, $padSaveLvl, $padDeleteLvl;
 
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveLvl [$pad]) )
+    $exists ??= isset ( $GLOBALS [$name] ) || array_key_exists ( $name, $GLOBALS );
+
+    if ( $exists and ! array_key_exists ($name, $padSaveLvl [$pad]) )
       $padSaveLvl [$pad] [$name] = $GLOBALS [$name];
 
-    if ( ! array_key_exists ($name,  $GLOBALS) )
+    if ( ! $exists )
       $padDeleteLvl [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
@@ -87,7 +93,7 @@
 
   }
 
-  function padSetGlobalOcc ( $name, $value ) {
+  function padSetGlobalOcc ( $name, $value, $exists = NULL ) {
 
     if ( ! padValidVar($name) )
       return;
@@ -97,10 +103,12 @@
 
     global $pad, $padSaveOcc, $padDeleteOcc;
 
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveOcc [$pad]) )
+    $exists ??= isset ( $GLOBALS [$name] ) || array_key_exists ( $name, $GLOBALS );
+
+    if ( $exists and ! array_key_exists ($name, $padSaveOcc [$pad]) )
       $padSaveOcc [$pad] [$name] = $GLOBALS [$name];
 
-    if ( ! array_key_exists ($name,  $GLOBALS) )
+    if ( ! $exists )
       $padDeleteOcc [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
