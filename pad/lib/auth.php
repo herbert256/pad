@@ -384,9 +384,11 @@
   // 'hash' or 'pass_hash' went into the session, {auth} and the dumps, and a new password
   // left every remember-me cookie valid. A name is judged by its words - split on _ and -
   // and where the case changes - so a secret's word anywhere makes it one (recovery_key,
-  // otp_backup_codes, pin_hash, remember_hash, apiKey), unless its last word marks a flag, a
-  // time, a count or an address: email_hash (a Gravatar's, public), hashtag, otp_enabled,
-  // otp_last_used, recovery_email and pin_code_sent are ordinary fields of the row.
+  // otp_backup_codes, pin_hash, remember_hash, apiKey), and so does a word that is two of them
+  // written together (pincode, totpseed, recoverycodes, pwdhash, userpwd, PINCode), unless
+  // its last word marks a flag, a time, a count or an address: email_hash (a Gravatar's,
+  // public), hashtag, otp_enabled, otp_last_used, recovery_email and pin_code_sent are
+  // ordinary fields of the row.
 
   function padAuthSecret ( $name, $value = NULL ) {
 
@@ -400,6 +402,7 @@
       foreach ( $words as $i => $word )
         if ( in_array ( $word, [ 'pass', 'pwd', 'hash', 'salt', 'otp', 'totp', 'pin', 'recovery', 'backup' ], TRUE )
              or preg_match ( '/password|passwd|passphrase|passcode|secret|token|apikey|privatekey/', $word )
+             or preg_match ( '/^(pin|t?otp)(codes?|hash|seed|keys?)$|^recovery(codes?|keys?)$|^(pwd|pass)hash$|.pwd$|.hash$/', $word )
              or ( $word === 'key' and in_array ( $words [$i - 1] ?? '', [ 'api', 'app', 'private', 'recovery', 'secret', 'encryption' ], TRUE ) ) )
           return TRUE;
 
