@@ -2064,7 +2064,7 @@ the strict check.
 
 ### lorem
 Placeholder text: "Lorem ipsum dolor sit amet, ..." and then Latin words, the same text on
-every request for the same seed (`lib/lorem.php`).
+every request for the same seed (`tags/_lib/lorem.php`).
 
 ```html
 <h2>{lorem words=4}</h2>

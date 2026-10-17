@@ -1,6 +1,6 @@
 <?php
 
-  // {lorem words=50} - placeholder text, lib/lorem.php: "Lorem ipsum dolor sit amet, ..."
+  // {lorem words=50} - placeholder text, tags/_lib/lorem.php: "Lorem ipsum dolor sit amet, ..."
   // and then Latin words picked by a seeded sequence, so the text is the same on every
   // request until seed= asks for another. words= gives so many words as sentences,
   // sentences= so many sentences, paragraphs= so many <p> paragraphs - of sentences=
