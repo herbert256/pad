@@ -93,7 +93,9 @@
 
   // The script only acts in a browser without invoker commands, and for an address that
   // names a dialog. A click whose target is the dialog itself fell on the backdrop: the
-  // frame inside covers the whole box.
+  // frame inside covers the whole box. A dialog that closes takes its id off the address:
+  // the address kept it, and a second click on a link to the dialog changed nothing, so no
+  // hashchange came and the dialog stayed shut.
 
   function padModalScript () {
 
@@ -121,6 +123,12 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
   else arrived();
   window.addEventListener('hashchange', arrived);
+  document.addEventListener('close', function (e) {
+    var dialog = e.target, id = '';
+    if (!dialog.matches || !dialog.matches('dialog.pad-modal')) return;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+  }, true);
 })();
 SCRIPT );
 

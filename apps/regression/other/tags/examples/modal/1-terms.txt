@@ -25,4 +25,10 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
   else arrived();
   window.addEventListener('hashchange', arrived);
+  document.addEventListener('close', function (e) {
+    var dialog = e.target, id = '';
+    if (!dialog.matches || !dialog.matches('dialog.pad-modal')) return;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+  }, true);
 })();</script>
