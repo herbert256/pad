@@ -218,6 +218,15 @@ function padSplitOnUnquotedColon ( $str ) {
     $before = substr ( $padOut [$pad], $start - $window, $window );
     $open   = strrpos ( $before, '{' );
 
+    // A { that opens no tag - followed by whitespace or a double quote, as padWhiteCheck
+    // reads it - is passed over to the one before it, as the scanner passes it over: inside
+    // a quoted parameter, {echo '{"q": ' . {$q} . '}'}, it was taken for the tag's own brace,
+    // the value judged to stand in text and left bare, and a request value's php:abs(-3) ran
+    // as part of the {echo}.
+
+    while ( $open !== FALSE and $open < $window - 1 and ( ctype_space ( $before [$open + 1] ) or $before [$open + 1] == '"' ) )
+      $open = $open ? strrpos ( $before, '{', $open - $window - 1 ) : FALSE;
+
     // No tag opens within the window: text, or the far part of a tag's parameters longer than
     // the window - where='...' of 4 KB - which nothing here can tell apart. Kept, so the
     // evaluators still refuse it as part of their code (padSpliceInCode): it went in bare and
