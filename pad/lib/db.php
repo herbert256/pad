@@ -751,6 +751,13 @@
 
   function padDbTrailingComment ( $sql, $mysql ) {
 
+    // A statement with no comment opener in it has no trailing comment: walked byte by byte
+    // all the same, every RECORD, FIELD and CHECK paid for its length - a 229 KB FIELD eight
+    // times its own time.
+
+    if ( ! str_contains ( $sql, '--' ) and ! str_contains ( $sql, '/*' ) and ! ( $mysql and str_contains ( $sql, '#' ) ) )
+      return FALSE;
+
     $quote = '';
     $cut   = FALSE;
     $len   = strlen ( $sql );
