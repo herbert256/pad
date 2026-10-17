@@ -242,6 +242,11 @@
     if ($command == 'select')
       $command = 'array';
 
+    // A trailing semicolon ends a statement of one row: the limit added below went after it.
+
+    if ( in_array ( $command, [ 'check', 'record', 'field' ] ) )
+      $rest = preg_replace ( '/\s*;\s*$/', '', $rest );
+
     // A statement with nothing to run - db(''), or a verb alone: {field ''} is db('field ') -
     // is not sent. The verb alone ended the request on a PHP undefined array key, and an
     // empty statement on the ValueError mysqli_query and PDO::query throw for one.
@@ -251,13 +256,29 @@
     // One row is all a check, a record or a field reads, so the limit is added - unless the
     // statement ends in a limit of its own: "record * from orders order by date desc limit
     // 1" became "... limit 1 limit 0,1", an SQL syntax error, as did a select with
-    // htmlAttrJson='record' and rows=.
+    // htmlAttrJson='record' and rows=. It goes in front of a locking clause that ends the
+    // statement - FOR UPDATE, FOR SHARE, LOCK IN SHARE MODE - which MySQL wants last, and
+    // on a line of its own in a statement with a line comment, which would swallow it:
+    // "record name from staff where name = {0} for update" was "... for update limit 0,1",
+    // a syntax error, and "check staff where salary > 0 -- any" counted every row.
 
-    $limit = preg_match ( '/\blimit\s+\d+(\s*,\s*\d+|\s+offset\s+\d+)?\s*;?\s*$/i', $rest ) ? '' : ' limit 0,1';
+    $limit = $lock = '';
 
-    if     ( $command == 'check'  )  $sql = 'select 1 from ' . $rest . $limit;
-    elseif ( $command == 'record' )  $sql = 'select '        . $rest . $limit;
-    elseif ( $command == 'field'  )  $sql = 'select '        . $rest . $limit;
+    if ( in_array ( $command, [ 'check', 'record', 'field' ] ) ) {
+
+      if ( preg_match ( '/\s(for\s+(update|share)\b[^()\'"`;]*|lock\s+in\s+share\s+mode\s*)$/i', $rest, $match, PREG_OFFSET_CAPTURE ) ) {
+        $lock = $match [0] [0];
+        $rest = substr ( $rest, 0, $match [0] [1] );
+      }
+
+      if ( ! preg_match ( '/\blimit\s+\d+(\s*,\s*\d+|\s+offset\s+\d+)?\s*$/i', $rest ) )
+        $limit = preg_match ( '/--|#/', $rest ) ? "\n limit 0,1" : ' limit 0,1';
+
+    }
+
+    if     ( $command == 'check'  )  $sql = 'select 1 from ' . $rest . $limit . $lock;
+    elseif ( $command == 'record' )  $sql = 'select '        . $rest . $limit . $lock;
+    elseif ( $command == 'field'  )  $sql = 'select '        . $rest . $limit . $lock;
     elseif ( $command == 'array'  )  $sql = 'select '        . $rest;
 
     $_SQL [] = $sql;
