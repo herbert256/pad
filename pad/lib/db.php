@@ -676,7 +676,9 @@
   // a count after LIMIT, OFFSET or FETCH, a column position in an ORDER BY or GROUP BY list
   // - it takes no quoted literal, so there numeric text is the number it says. SQLite
   // compares a text column with a number as text, and a quoted '3' against count(*) is
-  // never equal, so it keeps the number.
+  // never equal, so it keeps the number - but only a numeral SQLite gives back as the same
+  // text (padDbNumeral): 007 is the integer 7, so the code '007' found the row of code '7'
+  // and the zip '01234' was stored as '1234'.
 
   function padDbLiteral ( $connect, $value, $number = FALSE ) {
 
@@ -694,10 +696,29 @@
     if ( is_int ( $value ) or is_float ( $value ) )
       return (string) $value;
 
-    if ( ( $number or $connect instanceof PDO ) and preg_match ( '/^-?\d+(\.\d+)?$/', (string) $value ) )
+    if ( $number and preg_match ( '/^-?\d+(\.\d+)?$/', (string) $value ) )
+      return (string) $value;
+
+    if ( $connect instanceof PDO and padDbNumeral ( (string) $value ) )
       return (string) $value;
 
     return "'" . padDbEscape ( $connect, $value, "'" ) . "'";
+
+  }
+
+  // Numeric text that reads back as itself once it is a number: 42, -7, 1.5 - not 007,
+  // 01234, 1.10, -0 or a number too long for an integer, which SQLite would store and
+  // compare as another text.
+
+  function padDbNumeral ( $text ) {
+
+    if ( preg_match ( '/^-?[0-9]+$/', $text ) )
+      return (string) (int) $text === $text;
+
+    if ( preg_match ( '/^-?[0-9]+\.[0-9]+$/', $text ) )
+      return (string) (float) $text === $text;
+
+    return FALSE;
 
   }
 

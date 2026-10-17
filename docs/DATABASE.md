@@ -36,7 +36,9 @@ matched every name), except where MySQL wants a number - after `LIMIT`, `OFFSET`
 `FETCH FIRST`/`NEXT`, as a window frame's bound (`ROWS BETWEEN {0} PRECEDING`), and as an item
 of an `ORDER BY` or `GROUP BY` list written in the statement (not in a raw `{x…}` key), where numeric text is
 a column position, so a request value there must name one of the selected columns (`'9'` on a
-three-column select is an SQL error); SQLite keeps it a number. An array written bare becomes a list. Placeholders are
+three-column select is an SQL error); SQLite keeps it a number when the number reads back as
+the same text - `'42'`, `'1.5'` - and text otherwise, so `'007'`, `'01234'` and `'1.10'` keep
+their zeros. An array written bare becomes a list. Placeholders are
 filled in one pass, so a value holding `{1}` stays as written. Keys starting with `x` are
 inserted raw - a deliberate escape hatch for SQL the code builds itself, never for input.
 ```php
