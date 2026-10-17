@@ -9,6 +9,11 @@
   // A GET - a crawl, pad lint - is answered with the error, not refused: there is nothing
   // to do for it, and nothing wrong with asking.
 
+  // The guard's rule again, here: a moved _guard.php must not open the calls (editLoggedIn).
+
+  if ( ! editLoggedIn () )
+    padRefuse ( 403, 'Forbidden' );
+
   $ok    = FALSE;
   $error = '';
   $data  = NULL;

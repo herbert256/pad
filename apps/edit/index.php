@@ -5,6 +5,15 @@
   // travel in the page; the limits are this server's own, so an upload too large for PHP is
   // refused in the browser before it is sent.
 
+  // The guard's rule again, here: a moved _guard.php must not hand out the page and its
+  // token (editLoggedIn).
+
+  if ( ! editAllowed () )
+    padRefuse ( 403, 'Forbidden' );
+
+  if ( ! editLoggedIn () )
+    padRedirect ( 'login', editAppAsked () );
+
   $editBoot = [
     'user'      => (string) $editUser,
     'monaco'    => $editMonaco,

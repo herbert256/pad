@@ -20,7 +20,7 @@
   if ( $padPage == 'login' )
     return TRUE;
 
-  if ( editUserValid ( editStore (), $editUser, $editStamp ) )
+  if ( editLoggedIn () )
     return TRUE;
 
   if ( $padPage == 'api' )

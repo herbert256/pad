@@ -13,6 +13,8 @@
   //              the call's file in _api/ runs in a function of its own, with every PHP
   //              warning turned into an exception, so whatever goes wrong comes back as the
   //              call's error in the JSON answer, never as PAD's HTML error page
+  // editLoggedIn the whole rule - this machine and a valid login - which _guard.php asks and
+  //              the two entry points, api.php and index.php, ask again
   // editAppAsked the application a link asked for, kept through the login
   // editBody     the call's arguments: the JSON body as it was sent - not trimmed, a file's
   //              whitespace is its own - or, for an upload, the form fields
@@ -33,6 +35,19 @@
       return ! $editHosts or editHostNamed ( $hosts );
 
     return padLoopback () and editHostNamed ( $hosts );
+
+  }
+
+  // The machine rule and a login that still holds. _guard.php is a file of the tree the
+  // editor moves and trashes like any other: dragged onto a folder, no question asked, it
+  // let every machine in, with no login, to the files and the terminal - so api.php and
+  // index.php ask this themselves as well. $cli is for the tests.
+
+  function editLoggedIn ( $cli = PHP_SAPI === 'cli' ) {
+
+    global $editUser, $editStamp;
+
+    return $cli or ( editAllowed () and editUserValid ( editStore (), $editUser, $editStamp ) );
 
   }
 
