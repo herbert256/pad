@@ -516,9 +516,14 @@
 
   function padTimelineColumn ( $events, $groups, $title, $width ) {
 
+    // The column is as wide as the widest line it holds - a span's end date with the '– '
+    // in front of it too: measured on the first date alone, the cut below made every end
+    // date "– Jun 1, 20…".
+
     $dateW = 0;
     foreach ( $events as $event )
-      $dateW = max ( $dateW, padChartWidth ( $event [1] === NULL ? $event [6] : explode ( ' – ', $event [6] ) [0] ) );
+      foreach ( ( $event [1] === NULL ) ? [ $event [6] ] : explode ( ' – ', $event [6] ) as $i => $date )
+        $dateW = max ( $dateW, padChartWidth ( ( $i ? '– ' : '' ) . $date ) );
 
     $dateW = min ( 170, max ( 50, $dateW ) ) + 16;
     $lineX = $dateW + 12;
