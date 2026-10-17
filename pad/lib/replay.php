@@ -198,6 +198,12 @@
 
     $any = strtolower ( $match [1] );
 
+    // MySQL runs what an executable comment holds - /*!update*/ - which the walk skips as a
+    // comment: a statement with one is a write when a write word stands in it at all.
+
+    if ( str_contains ( $sql, '/*!' ) )
+      return $any;
+
     foreach ( [ TRUE, FALSE ] as $mysql ) {
 
       // The words, a ' for each quoted text, and the characters ( ) , ; - the rest is left out.
