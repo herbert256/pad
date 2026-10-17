@@ -13,7 +13,8 @@
   //           and a scratch application with its {img} thumbnails, srcset and {video} poster
   //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
   //           without an answer and --record writing it, a pattern over a page of 1.6 MB, a
-  //           pattern that cannot be run, a long line cut - and of regression/site, whose
+  //           pattern that cannot be run, a long line cut, bodies that read as a pattern or
+  //           a status recorded as the pattern of that body - and of regression/site, whose
   //           test pages no URL reaches
   //   types   a page's variables and JSON answer as TypeScript, its sample captured first,
   //           to standard output and to the file --out names
@@ -164,9 +165,25 @@
     file_put_contents ( "$tests/wide.pad",  '{$wide}' );
     file_put_contents ( "$tests/wide.txt",  'z' );
 
+    // a body that reads as another answer form - /pad/demo/ and /a+/ as patterns, HTTP 200
+    // as a status - is recorded as the pattern of that exact body: it passes for it, and /a+/
+    // passes for no other page with an a in it
+
+    mkdir ( "$tests/rec", 0755, TRUE );
+
+    file_put_contents ( "$tests/rec/path.pad",   '/pad/demo/' );
+    file_put_contents ( "$tests/rec/plus.pad",   '/a+/' );
+    file_put_contents ( "$tests/rec/status.pad", "HTTP 200\nok" );
+
     list ( $codeT1, $outT1 ) = cliCheckRun ( [ 'test', 'shop' ],              $env );
     list ( $codeT2, $outT2 ) = cliCheckRun ( [ 'test', 'shop', '--record' ],  $env );
     list ( $codeT3, $outT3 ) = cliCheckRun ( [ 'test', 'regression/site' ] );
+
+    list ( $codeT4, $outT4 ) = cliCheckRun ( [ 'test', 'shop', 'rec' ], $env );
+
+    file_put_contents ( "$tests/rec/plus.pad", 'a' );
+
+    list ( $codeT5 ) = cliCheckRun ( [ 'test', 'shop', 'rec/plus' ], $env );
 
     $hidden = padCurl ( $padHost . 'regression/site/?_tests/about&padInclude' ) ['result'] ?? '';
 
@@ -182,6 +199,8 @@
               and $codeT2 === 1 and str_contains ( $outT2, 'made  fresh' )
               and trim ( (string) @file_get_contents ( "$tests/fresh.txt" ) ) == 'fresh'
               and $codeT3 === 0 and str_contains ( $outT3, '4 tests, 0 failed' )
+              and $codeT4 === 0 and str_contains ( $outT4, '3 tests, 0 failed' )
+              and $codeT5 === 1
               and $hidden == '404' ) ? 'yes' : 'NO';
 
     // migrate and seed - the scratch application gets an SQLite database under the scratch

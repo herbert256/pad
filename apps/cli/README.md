@@ -78,7 +78,9 @@ pad help                           # the list
   the framework's suites use. Each test page renders bare, in a process of its own, with
   every `{assert}` checked; no URL reaches `_tests/`. A test without an answer counts against
   the run until `--record` writes it from what the page renders now (an existing answer is
-  never overwritten). `./ci.sh` runs `pad test --all --brief` as its `apptests` line.
+  never overwritten; output that would read as a `/regex/` or an `HTTP` line is written as the
+  pattern of exactly that output). `./ci.sh` runs `pad test --all --brief` as its `apptests`
+  line.
 
   ```
   shop

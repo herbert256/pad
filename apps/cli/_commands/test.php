@@ -13,7 +13,8 @@
   // process of its own (pad render with PAD_TEST), with every {assert} in it, and in the
   // pages it brings in, checked: a false one fails the test. A test without an answer
   // counts against the run; --record writes the missing answers from what the pages
-  // render now, and never overwrites one. [name] runs one test, or the tests of one
+  // render now - a body that would read as a pattern or a status line as the pattern of
+  // exactly that body - and never overwrites one. [name] runs one test, or the tests of one
   // directory of _tests/.
   //
   // pad test --all runs the tests of every application that has a _tests/ directory;
@@ -76,7 +77,7 @@
       if ( ! file_exists ( $testFile ) ) {
 
         if ( $testRecord ) {
-          file_put_contents ( $testFile, str_starts_with ( $testStatus, '2' ) ? $testBody : "HTTP $testStatus" );
+          file_put_contents ( $testFile, str_starts_with ( $testStatus, '2' ) ? testExact ( $testBody ) : "HTTP $testStatus" );
           $testLines [] = "  made  $testName - its answer recorded in _tests/$testName.txt";
           continue;
         }
@@ -205,6 +206,19 @@
       return testMatch ( $want, $body );
 
     return $want === $body;
+
+  }
+
+  // The recorded answer of a body: the body itself, or - when it would read as another form,
+  // a pattern between slashes or a status line first - the pattern of exactly that body. It
+  // was written as it stood: /pad/demo/ became the pattern /pad/ with the modifiers demo/ and
+  // failed for ever, /a+/ passed for any page with an a in it.
+
+  function testExact ( $body ) {
+
+    $other = ( ( strlen ( $body ) > 1 and $body [0] == '/' and str_ends_with ( $body, '/' ) ) or str_starts_with ( $body, 'HTTP ' ) );
+
+    return $other ? '/^' . preg_quote ( $body, '/' ) . '\z/' : $body;
 
   }
 

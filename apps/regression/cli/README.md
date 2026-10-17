@@ -13,16 +13,17 @@ one with its template position and a near name, and leaves its bracketed route `
 assets copied - and a scratch application with the thumbnails of its `{img}`, their `srcset`
 and a `{video}` poster pointing into the copy; `test` runs the scratch application's `_tests` -
 a pass, a failing `{assert}`, a test without an answer that `--record` then writes, a pattern
-over a page of 1.6 MB, a pattern that cannot be run, a long line of a failure cut - and those
-of `regression/site`, whose test pages no URL reaches; `types` writes a page's variables and
-JSON answer as TypeScript, its sample captured first, to standard output and to `--out`;
-`migrate` makes a migration with `--new` in the scratch application, on an SQLite file under
-its `DATA/`, shows it with `--pretend`, runs it and a seeder with `--seed`, lists it with
-`--status`, fails a rollback without a down and a `--fresh` without `--force`, refuses a
-`--fresh --pretend` with the tables kept; `seed` runs the seeder by its name without the `01_`;
-`down` takes the scratch application down for maintenance, its record keeping the secret's
-hash, lists it, and `up` brings it back. The crawl compares the verdict, so a command that
-stops behaving turns its yes into a NO.
+over a page of 1.6 MB, a pattern that cannot be run, a long line of a failure cut, bodies that
+read as a pattern or a status recorded as the pattern of exactly that body - and those of
+`regression/site`, whose test pages no URL reaches; `types` writes a page's variables and JSON
+answer as TypeScript, its sample captured first, to standard output and to `--out`; `migrate`
+makes a migration with `--new` in the scratch application, on an SQLite file under its `DATA/`,
+shows it with `--pretend`, runs it and a seeder with `--seed`, lists it with `--status`, fails
+a rollback without a down and a `--fresh` without `--force`, refuses a `--fresh --pretend` with
+the tables kept; `seed` runs the seeder by its name without the `01_`; `down` takes the scratch
+application down for maintenance, its record keeping the secret's hash, lists it, and `up`
+brings it back. The crawl compares the verdict, so a command that stops behaving turns its yes
+into a NO.
 
 ## Files
 
