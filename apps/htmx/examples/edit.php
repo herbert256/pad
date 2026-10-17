@@ -53,4 +53,11 @@
 
   }
 
+  // An id the session does not hold - a stale or made-up request - has no row to answer: a
+  // 404, which htmx swaps nothing for, where the empty loop rendered no {fragment 'row'} and
+  // the answer was a 500, "there is no fragment named 'row' on this page".
+
+  if ( $id and ! $rows )
+    padAbort ( 404, 'There is no such contact' );
+
 ?>
