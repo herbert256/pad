@@ -1,7 +1,7 @@
 <?php
 
   // {chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'} - a chess position
-  // as inline SVG, lib/chess.php. The first parameter is the position in FEN; only its
+  // as inline SVG, tags/_lib/chess.php. The first parameter is the position in FEN; only its
   // placement is needed, the other fields are checked when written. flip turns the board
   // so Black plays up, highlight='e2, e4' marks squares and arrow='e2-e4, g8-f6' draws
   // arrows - the last move, a plan, a threat. size= is the width and height in pixels

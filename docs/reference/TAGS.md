@@ -1912,7 +1912,7 @@ A missing address, an unknown default or fallback is an error under the strict c
 
 ### chess
 A chess position from FEN as inline SVG - the board, the pieces drawn as shapes of PAD's own
-(no font, no image), the coordinates, marked squares and arrows (`lib/chess.php`).
+(no font, no image), the coordinates, marked squares and arrows (`tags/_lib/chess.php`).
 
 ```html
 {chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'}
