@@ -4,6 +4,8 @@
   // whose name it is, where the Democratic Republic of the Congo listed it as an alias and,
   // read first, took it - a map of Congo's figures coloured its neighbour.
 
+  include_once PAD . 'tags/_lib/map.php';
+
   $codes = implode ( ' ', array_map ( 'padMapCode', [ 'Congo', 'DR Congo', 'Congo-Brazzaville', 'COD' ] ) );
 
 ?>

@@ -7,7 +7,7 @@
   //   {map 'world', data='sales', key='country', value='amount'}
   //   {map 'europe', data='visitors', title='Visitors per country'}
   //
-  // The outlines are lib/map/world.json: Natural Earth's 1:50m admin-0 countries (public
+  // The outlines are tags/_lib/map/world.json: Natural Earth's 1:50m admin-0 countries (public
   // domain, naturalearthdata.com) as world-atlas@2.0.2 publishes them (ISC licence), turned
   // from TopoJSON into SVG paths in the Natural Earth projection, each under its ISO 3166
   // alpha-2 code with its alpha-3 code and English names (codes and names from
@@ -31,7 +31,7 @@
 
     if ( $countries === NULL ) {
 
-      $countries = json_decode ( file_get_contents ( PAD . 'lib/map/world.json' ), TRUE ) ['countries'];
+      $countries = json_decode ( file_get_contents ( PAD . 'tags/_lib/map/world.json' ), TRUE ) ['countries'];
       $index     = [];
 
       // The codes and the own names first, the aliases after them: an alias never takes a

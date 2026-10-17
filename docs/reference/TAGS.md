@@ -2443,7 +2443,7 @@ unknown type, direction or edges value are errors under the strict check.
 
 ### map
 A choropleth map as inline SVG - every country coloured by a value of its row, drawn on the
-server from Natural Earth's outlines (`lib/map.php`, `lib/map/world.json`) - no JavaScript,
+server from Natural Earth's outlines (`tags/_lib/map.php`, `tags/_lib/map/world.json`) - no JavaScript,
 no tiles, no remote service.
 
 ```html

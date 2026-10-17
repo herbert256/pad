@@ -1,7 +1,7 @@
 <?php
 
   // {map 'world', data='sales', key='country', value='amount'} - a choropleth map as inline
-  // SVG, drawn by lib/map.php from Natural Earth's country outlines. The first parameter is
+  // SVG, drawn by tags/_lib/map.php from Natural Earth's country outlines. The first parameter is
   // the view: world (the default), europe, africa, asia, north-america, south-america or
   // oceania. data= names the rows as for {chart} - a {data} store, a page array or a _data
   // file - and as a pair the content is the rows, JSON, YAML, XML or CSV:
