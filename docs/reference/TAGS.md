@@ -2004,7 +2004,7 @@ check.
 
 ### diff
 What changed between two texts - word by word in the flow of the text, or line by line in
-one column or side by side - with `<del>` and `<ins>` marked and styled (`lib/diff.php`).
+one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
 
 ```html
 {diff $draft, $final}
