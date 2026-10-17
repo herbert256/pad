@@ -228,6 +228,11 @@
         if ($rows < 1) $rows = 10;
         if ($page < 1) $page = 1;
 
+        // A page from the request past PHP_INT_MAX / rows made the offset a float, written
+        // 1.844674407371E+19 - an SQL syntax error a visitor could raise at will. Held there,
+        // it is a page past the last, as any page too high is.
+
+        $page   = min ( $page, intdiv ( PHP_INT_MAX, $rows ) );
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";
 
