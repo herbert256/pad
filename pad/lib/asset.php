@@ -81,7 +81,11 @@
       return NULL;
     }
 
-    $name = trim ( $file );
+    // The name as the characters it holds (padParmText): a field written inside the quoted
+    // name - {img 'photos/{$file}'} - came with the stand-in of its @ and HTML-escaped, and
+    // logo@2x.png or Zürich.jpg was refused as no file name.
+
+    $name = trim ( padParmText ( $file ) );
 
     // Letters of any script and spaces too - a camera's "IMG 2041.jpg", a designer's
     // "Zürich.jpg" - as the address is written with every part of it encoded; the check below
