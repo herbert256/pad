@@ -3,26 +3,25 @@
 ## Introduction
 
 Regression test for `apps/cli/pad`, the command-line tool. The verdict runs the command in
-child processes and asserts each of its promises: `render` writes a page - with request
-values given as `name=value` - and refuses an unknown application; `new` makes an
-application and a page in a scratch `PAD_HOME` under `DATA/` (its engine and `_common`
-linked to the real ones), refuses to overwrite, and the new page renders; `lint` lists the
-pages of `lintme/`, the broken one with its template position and a near name, and
-leaves its bracketed route `[id]` out; `serve`
-answers a page from the server it starts on a free port; `export` writes the
-`regression/site` fixture as static files, its links rewritten - from a subdirectory too -
-its assets copied - and a scratch application with the thumbnails of its `{img}`, their
-`srcset` and a `{video}` poster pointing into the copy; `test` runs the scratch application's `_tests` - a pass, a failing
-`{assert}`, a test without an answer that `--record` then writes - and those of
-`regression/site`, whose test pages no URL reaches; `types` writes a page's variables and JSON
-answer as TypeScript, its sample captured first, to standard output and to `--out`; `migrate`
-makes a migration with `--new` in the scratch application, on an SQLite file under its
-`DATA/`, shows it with `--pretend`, runs it and a seeder with `--seed`, lists it with
-`--status`, fails a rollback without a down and a `--fresh` without `--force`; `seed` runs
-the seeder by its name without the `01_`; `down` takes the scratch application down for
-maintenance - its record keeps the secret's hash - lists it, and `up` brings it back. The
-crawl compares the verdict,
-so a command that stops behaving turns its yes into a NO.
+child processes and asserts each of its promises: `render` writes a page - with request values
+given as `name=value` - and refuses an unknown application; `new` makes an application and a
+page in a scratch `PAD_HOME` under `DATA/` (its engine and `_common` linked to the real ones),
+refuses to overwrite, and the new page renders; `lint` lists the pages of `lintme/`, the broken
+one with its template position and a near name, and leaves its bracketed route `[id]` out;
+`serve` answers a page from the server it starts on a free port; `export` writes the
+`regression/site` fixture as static files, its links rewritten - from a subdirectory too - its
+assets copied - and a scratch application with the thumbnails of its `{img}`, their `srcset`
+and a `{video}` poster pointing into the copy; `test` runs the scratch application's `_tests` -
+a pass, a failing `{assert}`, a test without an answer that `--record` then writes - and those
+of `regression/site`, whose test pages no URL reaches; `types` writes a page's variables and
+JSON answer as TypeScript, its sample captured first, to standard output and to `--out`;
+`migrate` makes a migration with `--new` in the scratch application, on an SQLite file under
+its `DATA/`, shows it with `--pretend`, runs it and a seeder with `--seed`, lists it with
+`--status`, fails a rollback without a down and a `--fresh` without `--force`, refuses a
+`--fresh --pretend` with the tables kept; `seed` runs the seeder by its name without the `01_`;
+`down` takes the scratch application down for maintenance - its record keeps the secret's
+hash - lists it, and `up` brings it back. The crawl compares the verdict, so a command that
+stops behaving turns its yes into a NO.
 
 ## Files
 

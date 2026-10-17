@@ -39,6 +39,13 @@
   if ( isset ( $migrateOpts ['fresh'] ) and ! isset ( $migrateOpts ['force'] ) )
     return cliFail ( "migrate: --fresh drops every table of $migrateApp's database - add --force to do it" );
 
+  // A fresh run cannot be shown without being done - what it sends depends on the tables it
+  // drops first - so --pretend with it is refused, before the database is reached: it ran
+  // padMigrateFresh for real, every table dropped, and ended on a PHP error.
+
+  if ( isset ( $migrateOpts ['fresh'] ) and isset ( $migrateOpts ['pretend'] ) )
+    return cliFail ( "migrate: --pretend cannot show a fresh run - --fresh drops the tables, then runs every migration" );
+
   // --new needs no database: a file is written, that is all.
 
   if ( isset ( $migrateOpts ['new'] ) )

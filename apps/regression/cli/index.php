@@ -18,7 +18,7 @@
   //           to standard output and to the file --out names
   //   migrate a migration made by --new in the scratch application, on an SQLite file under
   //           its DATA: --pretend shows it, --seed runs it and the seeder, --status lists it,
-  //           a rollback without a down fails, --fresh wants --force
+  //           a rollback without a down fails, --fresh wants --force and refuses --pretend
   //   seed    the scratch application's seeder, named without its 01_
   //   down    maintenance of the scratch application: the record with the secret's hash,
   //           the list of what is down, up removing it, an unknown application refused
@@ -191,6 +191,22 @@
     list ( $codeM5, $outM5 ) = cliCheckRun ( [ 'seed', 'shop', 'notes' ],                 $env );
     list ( $codeM6, $outM6 ) = cliCheckRun ( [ 'migrate', 'shop', '--rollback' ],         $env );
     list ( $codeM7 )         = cliCheckRun ( [ 'migrate', 'shop', '--fresh' ],            $env );
+
+    // --pretend runs nothing, --fresh included: refused before the database is reached, the
+    // seeded notes still there - the tables were dropped for real and the run ended on a PHP
+    // error
+
+    $notes = function () use ( $home ) {
+      try { return (int) ( new PDO ( "sqlite:$home/DATA/shop.sqlite" ) ) -> query ( 'select count(*) from notes' ) -> fetchColumn (); }
+      catch ( Throwable $e ) { return -1; }
+    };
+
+    $notesBefore = $notes ();
+
+    list ( $codeM9, , $errM9 ) = cliCheckRun ( [ 'migrate', 'shop', '--fresh', '--force', '--pretend' ], $env );
+
+    $notesAfter = $notes ();
+
     list ( $codeM8, $outM8 ) = cliCheckRun ( [ 'migrate', 'shop', '--fresh', '--force' ], $env );
 
     $migrate = ( $codeM1 === 0 and preg_match ( '#^apps/shop/_migrations/\d{4}_\d{2}_\d{2}_\d{6}_create_notes\.sql$#', trim ( $outM1 ) )
@@ -199,6 +215,8 @@
                  and $codeM4 === 0 and preg_match ( '/yes  1      \S+_create_notes/', $outM4 )
                  and $codeM6 === 1
                  and $codeM7 === 1
+                 and $codeM9 === 1 and str_contains ( $errM9, '--pretend cannot show a fresh run' )
+                 and $notesBefore > 0 and $notesAfter === $notesBefore
                  and $codeM8 === 0 and str_contains ( $outM8, 'migrated' ) ) ? 'yes' : 'NO';
 
     $seed = ( $codeM5 === 0 and trim ( $outM5 ) == 'seeded      01_notes' ) ? 'yes' : 'NO';
