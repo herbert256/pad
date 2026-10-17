@@ -18,7 +18,21 @@
     $now  = '';
     $skip = FALSE;
 
-    foreach ( $input as $key => $one ) {
+    // A run of characters that are none of , ' " \ ( ) [ ] changes nothing but $now, and is
+    // added to it at once - a loop in PHP over every character of every tag's parameters was
+    // a fiftieth of a page's time. A skip (a backslash's) always stands before one of them.
+
+    $length = strlen ( $parms );
+
+    for ( $key = 0; $key < $length; $key++ ) {
+
+      if ( ! $skip and ( $run = strcspn ( $parms, ",'\"\\()[]", $key ) ) ) {
+        $now .= substr ( $parms, $key, $run );
+        $key += $run - 1;
+        continue;
+      }
+
+      $one = $input [$key];
 
       if ( $skip ) {
         $now .= $one;
@@ -144,7 +158,7 @@
 
     foreach ( $output as $item )
       if ( preg_match ( '/^\s*(\'[^\']*\'|"[^"]*"|\$[A-Za-z][\w.]*|-?\d+(?:\.\d+)?)\s+([A-Za-z][A-Za-z0-9_]*)\s*$/D', $item, $match )
-           and ( file_exists ( PAD . "options/{$match [2]}.php" ) or padOptionCheck ( $match [2] ) ) ) {
+           and ( padFileExists ( PAD . "options/{$match [2]}.php" ) or padOptionCheck ( $match [2] ) ) ) {
         $split [] = $match [1];
         $split [] = $match [2];
       } else
