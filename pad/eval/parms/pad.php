@@ -36,10 +36,20 @@
   // A date object is its text to a function that takes text (padDateText); date, ago and
   // localDate take the moment itself, and so do time and timestamp, the date function under
   // other names: as text a moment of another zone was read in the application's zone and
-  // came out hours off.
+  // came out hours off. A test of a date object against date objects - $d in ($e), $d range
+  // ($e, $f) - reads those as text too, in the zone of the value, so one moment is one text:
+  // they stayed objects, and a text never equalled or lay between them.
 
-  if ( ! in_array ( $name, [ 'date', 'time', 'timestamp', 'ago', 'localDate' ], TRUE ) )
+  if ( ! in_array ( $name, [ 'date', 'time', 'timestamp', 'ago', 'localDate' ], TRUE ) ) {
+
+    if ( $value instanceof DateTimeInterface and is_array ( $parm ) )
+      foreach ( $parm as $padDateKey => $padDateOne )
+        if ( $padDateOne instanceof DateTimeInterface )
+          $parm [$padDateKey] = DateTime::createFromInterface ( $padDateOne )->setTimezone ( $value->getTimezone () )->format ( 'Y-m-d H:i:s' );
+
     $value = padDateText ( $value );
+
+  }
 
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
                   'mid'     => 1, 'substr'     => 1, 'left'     => 1,

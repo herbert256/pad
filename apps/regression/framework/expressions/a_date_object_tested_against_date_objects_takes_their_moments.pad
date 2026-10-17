@@ -1,0 +1,1 @@
+{set $d = php:date_create('2020-01-02 03:04:05+00:00')}{set $e = php:date_create('2020-01-02 08:04:05+05:00')}{set $f = php:date_create('2020-01-03 00:00:00+00:00')}a[{if $d eq $e}eq{else}ne{/if}] b[{if $d in ($e)}in{else}notin{/if}] c[{if $d range ($e, $f)}r{else}nr{/if}] d[{if $f in ($d, 'x')}in{else}notin{/if}]
