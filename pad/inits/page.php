@@ -105,7 +105,7 @@
 
   // A page that is not there is a 404, the visitor's request rather than a server fault -
   // it was a 500 boot error. The name is shown to this machine's own requests only
-  // (padNotFound, lib/errorPage.php).
+  // (padNotFound, error/_lib/errorPage.php).
   //
   // It waits for the configuration when the answer could be another: the application has
   // an error page for it (_errors/404.pad), which only a configured request can render, or
@@ -116,6 +116,9 @@
 
   // Only a well-formed name waits: it becomes the stand-in page the configuration and the
   // plain PHP of a $padNoNo application see, so a name with .. in it is answered at once.
+
+  if ( ! $padRouteFound )
+    include_once PAD . 'error/_lib/errorPage.php';
 
   if ( ! $padRouteFound and ( padErrorPageFileAny ( 404 ) or padMaintenanceFileExists () )
        and preg_match ( '#^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$#D', $padPage )

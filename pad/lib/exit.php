@@ -103,11 +103,13 @@
   // before inits/parms.php has taken the $padSessionVars names in, and writing the globals
   // back then would empty every one of them - a stale form would log the visitor out.
   //
-  // An application with an error page for the status - _errors/403.pad, lib/errorPage.php -
+  // An application with an error page for the status - _errors/403.pad, error/_lib/errorPage.php -
   // answers with that page instead, the line as its $message; rendered first, as the
   // buffers it would otherwise land in are emptied after.
 
   function padRefuse ( $stop, $text ) {
+
+    include_once PAD . 'error/_lib/errorPage.php';
 
     $page = padErrorPageRender ( $stop, $text );
 

@@ -10,6 +10,8 @@
 
   if ( $padMaintenanceDown ) {
 
+    include_once PAD . 'error/_lib/errorPage.php';
+
     if ( padErrorPageFile ( 503 ) )
       include PAD . 'inits/level.php';
 

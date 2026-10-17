@@ -58,8 +58,10 @@
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
     // A visitor gets the application's own page for a failure when it has one -
-    // _errors/500.pad (lib/errorPage.php) - with the request id in $id, the report on disk;
+    // _errors/500.pad (error/_lib/errorPage.php) - with the request id in $id, the report on disk;
     // this machine keeps the full report. A page that fails itself leaves the plain line.
+
+    include_once PAD . 'error/_lib/errorPage.php';
 
     if ( ! padLocal () and padErrorPageFile ( 500 ) ) {
 

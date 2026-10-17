@@ -31,6 +31,10 @@
   // padNotFound         the 404 of a page that is not there - inits/page.php, after the
   //                     configuration (inits/notFound.php) when the application has a page
   //                     for it
+  //
+  // Read only when a request is answered that way: inits/page.php for a page no route
+  // found, inits/notFound.php, inits/maintenance.php, padRefuse (lib/exit.php) and a
+  // visitor's 500 (lib/dump.php) include this file first.
 
   function padErrorPageFile ( $status ) {
 

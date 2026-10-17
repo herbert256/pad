@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Regression test for `$padErrorPages` (pad/lib/errorPage.php): an application with an
+Regression test for `$padErrorPages` (pad/error/_lib/errorPage.php): an application with an
 `_errors/` directory answers a request that cannot go on with its own page, keeping the
 status. The index fetches every kind and shows status, content type and body: a page that is
 not there (also `?sitemap.xml` and `?up` with those answers off, and `_errors/404` itself,

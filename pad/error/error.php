@@ -43,7 +43,7 @@
 
   }
 
-  // While an error page renders (lib/errorPage.php) a PHP error is that page's failure,
+  // While an error page renders (error/_lib/errorPage.php) a PHP error is that page's failure,
   // thrown back to it, never a report of its own - which would ask for an error page again.
 
   function padErrorHandler ( $type, $error, $file, $line ) {

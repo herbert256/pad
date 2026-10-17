@@ -5,9 +5,11 @@
   // and has answered 503 by now - or the sitemap or the health check is off and the
   // application has no page of that name (inits/sitemap.php, inits/health.php). The error
   // page renders on the root level, opened for it here; without one the answer is the
-  // plain line (padNotFound, lib/errorPage.php).
+  // plain line (padNotFound, error/_lib/errorPage.php).
 
   if ( $padNotFound !== '' ) {
+
+    include_once PAD . 'error/_lib/errorPage.php';
 
     if ( padErrorPageFile ( 404 ) )
       include PAD . 'inits/level.php';

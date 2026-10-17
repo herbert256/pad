@@ -10,7 +10,7 @@
   //
   // pad down writes DATA/maintenance/<app>.json; while it is there the application is down.
   // The answer is the application's error page for 503 when it has one (_errors/503.pad,
-  // lib/errorPage.php) with the message as $message, else the message as one plain line -
+  // error/_lib/errorPage.php) with the message as $message, else the message as one plain line -
   // 'Service Unavailable' when none was given. It is never cached, and it comes before the
   // page cache and before any of the application runs (inits/maintenance.php), for a page
   // that is not there as well. A request asking ?<secret> - the address of the application

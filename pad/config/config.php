@@ -281,7 +281,7 @@
   $padMailFrom      = '';
   $padMailKeep      = 100;
 
-  // Custom error pages (lib/errorPage.php): TRUE renders _errors/<status>.pad of the
+  // Custom error pages (error/_lib/errorPage.php): TRUE renders _errors/<status>.pad of the
   // application - 404, 403, 500, 503 - when it has one, inside its own _errors/_inits.pad
   // when there is one; FALSE keeps the plain text answers.
 
