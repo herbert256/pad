@@ -151,6 +151,13 @@ async function main() {
     const singleClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips the tags that are never a pair', singleClosers.join(',') === 'items', singleClosers);
 
+    // a tag written both ways that is a pair as often as not - {highlight}, {true} - is one
+    const bothUri = uri('orders.pad').replace('orders.pad', 'both.pad');
+    notify('textDocument/didOpen', { textDocument: { uri: bothUri, languageId: 'pad', version: 1, text: '{items}\n{highlight "pad"}<p>x</p>\n{true}yes\n{/' } });
+    r = await request('textDocument/completion', { textDocument: { uri: bothUri }, position: { line: 3, character: 2 } });
+    const bothClosers = (r.result || []).map((c) => c.label);
+    expect('close-tag completion offers a tag written both ways, as a pair as often as not', bothClosers.join(',') === 'true,highlight,items', bothClosers);
+
     // whitespace control: {~items~} opens a pair and {~/orders~} closes one, the ~ just
     // inside the brace taking the whitespace on that side
     const tildeUri = uri('orders.pad').replace('orders.pad', 'tilde.pad');

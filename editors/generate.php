@@ -60,8 +60,12 @@
   // language server, the VS Code kit and the Sublime kit offers none of them after {/. A tag's
   // form is the one the tags application records on its page (apps/tags/tag/<name>.php,
   // $tagForm), and of the tags written both ways those nearly always written alone count as
-  // single too. The kits kept this list by hand, three copies that stopped at highlight:
-  // {items}{icon 'x'}{/ offered icon first, and VS Code's PAD: Close Tag wrote {/icon}.
+  // single too - calendar and sparkline, a pair in a third of their uses or fewer. The kits
+  // kept this list by hand, three copies that stopped at highlight: {items}{icon 'x'}{/
+  // offered icon first, and VS Code's PAD: Close Tag wrote {/icon}. A tag written as a pair at
+  // least as often as alone is no single: true, false, null, highlight and chart stood here,
+  // and after {items}{highlight 'pad'}<p>x</p> a {/ offered items alone, Close Tag writing
+  // {/items} with the highlight still open.
 
   function generateSingles ( $root, $tags ) {
 
@@ -71,7 +75,7 @@
       if ( preg_match ( '/\$tagForm\s*=\s*\'single\'/', (string) @file_get_contents ( "$root/apps/tags/tag/$tag.php" ) ) )
         $singles [] = $tag;
 
-    return array_merge ( $singles, [ 'calendar', 'chart', 'false', 'highlight', 'null', 'sparkline', 'true' ] );
+    return array_merge ( $singles, [ 'calendar', 'sparkline' ] );
 
   }
 
