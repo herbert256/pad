@@ -286,6 +286,15 @@ function padSplitOnUnquotedColon ( $str ) {
         $quoteAt = $i;
       }
 
+    // A value standing bare as the whole of where= - where={$cond} - would be the per-row
+    // expression itself once quoted: a request value with php:abs(-3) in it ran PHP. That is
+    // a whole condition from a value, which where.php refuses for where=$cond as well.
+
+    if ( $quote === '' and preg_match ( '/(^|[\s,])where\s*=\s*$/', $inside ) ) {
+      padError ( "where= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
+      return "''";
+    }
+
     if ( $quote === '' )
       return "'$value'";
 
