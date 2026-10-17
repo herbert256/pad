@@ -22,10 +22,14 @@
   // a fixed or given list end with their data, as inits/limits.php leaves their candidates
   // unbounded, so time does not cut them either - nor a range or a list a type builds whole
   // ('build'), which inits/limits.php gives all its rows as it gives a given list: cut, a
-  // slow request answered {sequence '1..200000', count} with the values it reached.
+  // slow request answered {sequence '1..200000', count} with the values it reached. A range
+  // with a play is held to the budget still: each of its terms costs what the play costs,
+  // and {sequence '1..4000', make, fibonacci} ran 22 seconds, a longer range into PHP's time
+  // limit and a 500.
 
   if ( $pqTries > $pqTry
-       or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) and hrtime ( TRUE ) > $pqTriesUntil ) ) {
+       or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given' ] )
+            and ( $pqBuild != 'build' or count ( $pqPlays ) ) and hrtime ( TRUE ) > $pqTriesUntil ) ) {
     $pqTriesOut = TRUE;
     return FALSE;
   }
