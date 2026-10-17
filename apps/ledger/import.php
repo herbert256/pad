@@ -4,7 +4,8 @@
   // naming day, amount, category (and account and note when there are any). A category not
   // known yet is made, as spending when its amounts are below zero; a day that is no date -
   // digits are read year first or day first, 02/09/2026 is 2 September (ledgerImportDay) -
-  // or an amount that is no number, skips the row and says which.
+  // an amount that is no number, or more cells than the first row names (ledgerCsv), skips
+  // the row and says which.
 
   $report = [];
 
@@ -15,14 +16,25 @@
     if ( $upload ) {
 
       $handle  = fopen ( $upload ['path'], 'r' );
-      [ $header, $rows ] = ledgerCsv ( $handle );
+      [ $header, $rows, $refused ] = ledgerCsv ( $handle );
+      $lines   = $rows + $refused;
       $added   = 0;
       $account = (int) db ( "FIELD id FROM accounts ORDER BY id LIMIT 1" );
+
+      ksort ( $lines );
 
       if ( ! in_array ( 'day', $header ) or ! in_array ( 'amount', $header ) or ! in_array ( 'category', $header ) )
         $report [] = [ 'line' => 1, 'said' => 'The first row must name the columns day, amount and category' ];
 
-      else foreach ( $rows as $line => $row ) {
+      else foreach ( $lines as $line => $row ) {
+
+        // A line refused as it was read - more cells than the first row names - is reported
+        // in its place among the rows.
+
+        if ( is_string ( $row ) ) {
+          $report [] = [ 'line' => $line, 'said' => $row ];
+          continue;
+        }
 
         $amount = str_replace ( [ ',', '€', ' ', '−' ], [ '.', '', '', '-' ], (string) $row ['amount'] );
         $day    = ledgerImportDay ( $row ['day'] );

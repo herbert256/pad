@@ -210,13 +210,17 @@
   // The rows of an imported CSV file: the header's names in lower case, then each line as
   // those names, with its line number - an empty line is no row. fgetcsv answers [ NULL ]
   // for one, and the trim that was to skip it took NULL: the import ended in an error after
-  // the rows above it were booked.
+  // the rows above it were booked. A line with more cells than the header names is no row
+  // either but a refusal, by its line number: its values no longer stand under their names
+  // - an amount written -23,40 without quotes is two cells - and cutting it to the header's
+  // length booked -23 on a category "40", the category as the note.
 
   function ledgerCsv ( $handle ) {
 
-    $header = array_map ( fn ( $h ) => strtolower ( trim ( (string) $h, " \t\n\r\0\x0B\xEF\xBB\xBF" ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
-    $rows   = [];
-    $line   = 1;
+    $header  = array_map ( fn ( $h ) => strtolower ( trim ( (string) $h, " \t\n\r\0\x0B\xEF\xBB\xBF" ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
+    $rows    = [];
+    $refused = [];
+    $line    = 1;
 
     while ( ( $cells = fgetcsv ( $handle, escape: '' ) ) !== FALSE ) {
 
@@ -225,11 +229,16 @@
       if ( count ( $cells ) == 1 and trim ( (string) $cells [0] ) === '' )
         continue;
 
-      $rows [$line] = array_combine ( $header, array_pad ( array_slice ( $cells, 0, count ( $header ) ), count ( $header ), '' ) );
+      if ( count ( $cells ) > count ( $header ) ) {
+        $refused [$line] = 'skipped - ' . count ( $cells ) . ' cells where the first row names ' . count ( $header ) . ' - an amount like -23,40 needs quotes: "-23,40"';
+        continue;
+      }
+
+      $rows [$line] = array_combine ( $header, array_pad ( $cells, count ( $header ), '' ) );
 
     }
 
-    return [ $header, $rows ];
+    return [ $header, $rows, $refused ];
 
   }
 
