@@ -12,9 +12,11 @@
   if ( $pqEntry == 'direct' )
     return;
 
-  foreach ( $GLOBALS as $padK => $padV )
-    if ( str_starts_with ( $padK, 'pq') )
-      if ( $padK != 'pqStore' and ! str_starts_with ( $padK, 'pqSet') and $padK != 'pqEntry' )
-        unset ( $GLOBALS [$padK] );
+  // The pq names are picked from the names of the symbol table by preg_grep, where a loop in
+  // PHP tested each of some 450 globals for the prefix on every sequence a page ran.
+
+  foreach ( preg_grep ( '/^pq/', array_keys ( $GLOBALS ) ) as $padK )
+    if ( $padK != 'pqStore' and ! str_starts_with ( $padK, 'pqSet') and $padK != 'pqEntry' )
+      unset ( $GLOBALS [$padK] );
 
 ?>
