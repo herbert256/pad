@@ -167,18 +167,20 @@
     } elseif ( $days < 1 and $high > $low ) {
 
       // A span of hours - a day's programme - is ticked on round hours or minutes: the
-      // midnights of the day steps lay outside it, and the axis had no tick at all.
+      // midnights of the day steps lay outside it, and the axis had no tick at all. A span
+      // of a few minutes or seconds - a build and its deploy - is ticked on single minutes
+      // or round seconds: no five-minute boundary lay in it, and it had no tick either.
 
-      $step = 720;
-      foreach ( [ 5, 10, 15, 30, 60, 120, 180, 360, 720 ] as $try )
-        if ( $days * 1440 / $try <= $room ) {
+      $step = 43200;
+      foreach ( [ 1, 2, 5, 10, 15, 30, 60, 120, 300, 600, 900, 1800, 3600, 7200, 10800, 21600, 43200 ] as $try )
+        if ( $days * 86400 / $try <= $room ) {
           $step = $try;
           break;
         }
 
-      $t    = $start->modify ( '+' . ( (int) ceil ( ( $low - $start->getTimestamp () ) / ( $step * 60 ) ) * $step ) . ' minutes' );
-      $next = "+$step minutes";
-      $form = 'H:i';
+      $t    = $start->modify ( '+' . ( (int) ceil ( ( $low - $start->getTimestamp () ) / $step ) * $step ) . ' seconds' );
+      $next = "+$step seconds";
+      $form = ( $step < 60 ) ? 'H:i:s' : 'H:i';
 
     } else {
 
