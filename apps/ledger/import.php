@@ -14,22 +14,15 @@
     if ( $upload ) {
 
       $handle  = fopen ( $upload ['path'], 'r' );
-      $header  = array_map ( fn ( $h ) => strtolower ( trim ( $h, " \t\n\r\0\x0B\xEF\xBB\xBF" ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
-      $line    = 1;
+      [ $header, $rows ] = ledgerCsv ( $handle );
       $added   = 0;
       $account = (int) db ( "FIELD id FROM accounts ORDER BY id LIMIT 1" );
 
       if ( ! in_array ( 'day', $header ) or ! in_array ( 'amount', $header ) or ! in_array ( 'category', $header ) )
         $report [] = [ 'line' => 1, 'said' => 'The first row must name the columns day, amount and category' ];
 
-      else while ( ( $cells = fgetcsv ( $handle, escape: '' ) ) !== FALSE ) {
+      else foreach ( $rows as $line => $row ) {
 
-        $line++;
-
-        if ( count ( $cells ) == 1 and trim ( $cells [0] ) === '' )
-          continue;
-
-        $row    = array_combine ( $header, array_pad ( array_slice ( $cells, 0, count ( $header ) ), count ( $header ), '' ) );
         $amount = str_replace ( [ ',', '€', ' ', '−' ], [ '.', '', '', '-' ], (string) $row ['amount'] );
         $day    = date ( 'Y-m-d', strtotime ( (string) $row ['day'] ) ?: 0 );
 

@@ -183,6 +183,32 @@
 
   }
 
+  // The rows of an imported CSV file: the header's names in lower case, then each line as
+  // those names, with its line number - an empty line is no row. fgetcsv answers [ NULL ]
+  // for one, and the trim that was to skip it took NULL: the import ended in an error after
+  // the rows above it were booked.
+
+  function ledgerCsv ( $handle ) {
+
+    $header = array_map ( fn ( $h ) => strtolower ( trim ( (string) $h, " \t\n\r\0\x0B\xEF\xBB\xBF" ) ), fgetcsv ( $handle, escape: '' ) ?: [] );
+    $rows   = [];
+    $line   = 1;
+
+    while ( ( $cells = fgetcsv ( $handle, escape: '' ) ) !== FALSE ) {
+
+      $line++;
+
+      if ( count ( $cells ) == 1 and trim ( (string) $cells [0] ) === '' )
+        continue;
+
+      $rows [$line] = array_combine ( $header, array_pad ( array_slice ( $cells, 0, count ( $header ) ), count ( $header ), '' ) );
+
+    }
+
+    return [ $header, $rows ];
+
+  }
+
   function ledgerMoney ( $amount ) {
 
     return ( $amount < 0 ? '−' : '' ) . '€ ' . number_format ( abs ( (float) $amount ), 2, '.', ',' );
