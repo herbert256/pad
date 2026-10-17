@@ -150,15 +150,20 @@
 
   // The sections being kept round this level are not kept after all - what a {pdf} in one
   // makes is the answer of the request, and on a hit its handler did not run: the first
-  // request got the document, every later one the page's HTML.
+  // request got the document, every later one the page's HTML. Up to a {nocache} round the
+  // level: that part renders again on a hit, the caller with it, so the sections round the
+  // part are kept - a {poll} in a {nocache} kept no section round it at all.
 
   function padFragmentKeepNot () {
 
-    global $pad, $padFragment;
+    global $pad, $padFragment, $padTag, $padType;
 
-    for ( $i = $pad; $i >= 0; $i-- )
+    for ( $i = $pad; $i >= 0; $i-- ) {
       if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] )
         $padFragment [$i] ['keep'] = FALSE;
+      if ( ( $padTag [$i] ?? '' ) == 'nocache' and ( $padType [$i] ?? '' ) == 'pad' )
+        break;
+    }
 
   }
 
