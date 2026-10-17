@@ -7,8 +7,9 @@
   //
   // The expression is the template's own text, as where= is (handling/types/where.php): one
   // of the tag's items written as a quoted string - eval='@ * 2', {eval '@ + 1'},
-  // make='eval|@ * 2'. From a value - eval=$q, {eval $q}, make=$q holding 'eval|...' - a
-  // request value with php:php_uname('s') in it ran PHP. A value goes into it as $name.
+  // make='eval|@ * 2', sequence:eval(3, '@ * 2') in an expression (eval/parms/sequence.php).
+  // From a value - eval=$q, {eval $q}, make=$q holding 'eval|...' - a request value with
+  // php:php_uname('s') in it ran PHP. A value goes into it as $name.
 
   $pqEvalLevel = $GLOBALS ['pad'];
 
@@ -31,7 +32,7 @@
 
     }
 
-    if ( ! $GLOBALS ['pqEvalLiterals'] [$pqEvalLevel] [$pqParm] ) {
+    if ( ! $GLOBALS ['pqEvalLiterals'] [$pqEvalLevel] [$pqParm] and ! isset ( $GLOBALS ['pqEvalArguments'] [$pqParm] ) ) {
       padError ( "eval= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
       return '';
     }

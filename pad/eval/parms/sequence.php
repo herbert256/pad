@@ -28,6 +28,13 @@
     $pqSetAction = $name;
     $pqSetParms  = $parm;
 
+    // The parameter of sequence:eval(3, '@ * 2') is a string the template wrote, which the
+    // eval type runs (sequence/types/eval/loop.php) - one from a value, sequence:eval(3, $q),
+    // it refuses.
+
+    if ( ( $padEvalLiteral [1] ?? FALSE ) and is_string ( $parm [1] ?? NULL ) )
+      $GLOBALS ['pqEvalArguments'] [ $parm [1] ] = TRUE;
+
     return include PQ . 'start/eval/sequence.php';
 
   }
