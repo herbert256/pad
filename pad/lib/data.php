@@ -209,22 +209,93 @@
     // one occurrence with three fields, where it is three. Exactly the row's columns, in its
     // order, is the row too, whatever the values: a record whose every value the page
     // formatted - totals given two decimals, a name a capital - or that had none was lost.
+    // The rows are kept by their columns (padDataKeepRecord), so this is a test per column
+    // list, not per row read: a page that read its orders one RECORD at a time made every
+    // padData of an associative array after it walk the thousand rows kept.
 
-    foreach ( $padDataSetRecord ?? [] as $row ) {
+    foreach ( $padDataSetRecord ?? [] as $set ) {
 
-      if ( array_diff_key ( $row, $input ) )
+      if ( array_diff_key ( $set ['columns'], $input ) )
         continue;
 
-      if ( array_keys ( $input ) === array_keys ( $row ) )
+      if ( array_keys ( $input ) === array_keys ( $set ['columns'] ) )
         return TRUE;
 
-      foreach ( $row as $key => $value )
-        if ( $value !== NULL and $value !== '' and is_scalar ( $input [$key] ) and $input [$key] == $value )
+      foreach ( $set ['values'] as $key => $values )
+        if ( is_scalar ( $input [$key] ) and isset ( $values [ padDataLoose ( $input [$key] ) ] ) )
           return TRUE;
 
     }
 
     return FALSE;
+
+  }
+
+  // Keeps a row db() answered for RECORD, for padDataIsRecord: with the other rows of its
+  // column list, and for each column the values its rows held, counted - NULL and '' are no
+  // value to know a row by. The last thousand rows, about: the oldest of the column list
+  // read first goes.
+
+  function padDataKeepRecord ( $row ) {
+
+    global $padDataSetRecord, $padDataSetRecordRows;
+
+    $list = implode ( "\x1F", array_keys ( $row ) );
+    $id   = md5 ( serialize ( $row ) );
+
+    if ( isset ( $padDataSetRecord [$list] ['rows'] [$id] ) )
+      return;
+
+    $padDataSetRecord [$list] ['columns'] ??= array_fill_keys ( array_keys ( $row ), TRUE );
+    $padDataSetRecord [$list] ['values']  ??= [];
+
+    $keep = [];
+
+    foreach ( $row as $key => $value )
+      if ( $value !== NULL and $value !== '' and is_scalar ( $value ) ) {
+        $loose = padDataLoose ( $value );
+        $padDataSetRecord [$list] ['values'] [$key] [$loose] = ( $padDataSetRecord [$list] ['values'] [$key] [$loose] ?? 0 ) + 1;
+        $keep [$key] = $loose;
+      }
+
+    $padDataSetRecord [$list] ['rows'] [$id] = $keep;
+
+    if ( ( $padDataSetRecordRows = ( $padDataSetRecordRows ?? 0 ) + 1 ) <= 1000 )
+      return;
+
+    $list = array_key_first ( $padDataSetRecord );
+    $id   = array_key_first ( $padDataSetRecord [$list] ['rows'] );
+
+    foreach ( $padDataSetRecord [$list] ['rows'] [$id] as $key => $loose )
+      if ( --$padDataSetRecord [$list] ['values'] [$key] [$loose] < 1 )
+        unset ( $padDataSetRecord [$list] ['values'] [$key] [$loose] );
+
+    unset ( $padDataSetRecord [$list] ['rows'] [$id] );
+
+    if ( ! $padDataSetRecord [$list] ['rows'] )
+      unset ( $padDataSetRecord [$list] );
+
+    $padDataSetRecordRows--;
+
+  }
+
+  // A value as the key it is loosely equal under, as == has it: a number, or numeric text, as
+  // the number it is - 7, '7', '007', 7.0 and '7.00' are one - other text as itself.
+
+  function padDataLoose ( $value ) {
+
+    if ( is_bool ( $value ) )
+      $value = (int) $value;
+
+    if ( ! is_numeric ( $value ) )
+      return "s$value";
+
+    $value = $value + 0;
+
+    if ( is_float ( $value ) and $value == floor ( $value ) and abs ( $value ) < 9.2e18 )
+      $value = (int) $value;
+
+    return 'n' . ( is_int ( $value ) ? $value : sprintf ( '%.17g', $value ) );
 
   }
 

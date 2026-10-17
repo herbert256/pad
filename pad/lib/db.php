@@ -223,7 +223,7 @@
 
   function padDbPart2 ( $padSqlConnect, $sql, $vars, $event = FALSE ) {
 
-    global $_SQL, $pad, $padDataSetRecord, $padInfo, $padPrm;
+    global $_SQL, $pad, $padInfo, $padPrm;
 
     $input = $sql;
 
@@ -344,12 +344,9 @@
         $return = $fields;
 
         // The row itself is kept, for padDataIsRecord to know it again - its columns alone
-        // made any array of the page holding those keys a record. The last thousand rows.
+        // made any array of the page holding those keys a record (lib/data.php).
 
-        $padDataSetRecord [ md5 ( serialize ( $fields ) ) ] = $fields;
-
-        if ( count ( $padDataSetRecord ) > 1000 )
-          array_shift ( $padDataSetRecord );
+        padDataKeepRecord ( $fields );
       }
     elseif ( $command == 'array' and $asWritten and ! $run ['set'] )
       $return = ( $asWritten == 'with' ) ? $rows : '';
