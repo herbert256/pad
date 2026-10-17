@@ -8,6 +8,11 @@
   // value being split on '|' into sequence name and parameter; carrying no value it only
   // sets $pqPlay, the kind that the sequence-named options after it inherit. Any other
   // option naming a real sequence type is registered as a play of the current kind.
+  //
+  // A valued play is that one play: the kind it sets for plays/add.php is put back after
+  // it, where it stayed, and the options after it played as it did - in {sequence '1..10',
+  // keep='even', multiply=3} multiply=3 kept the multiples of 3 and answered 6, where
+  // written before keep= it is the make play that gives 6 12 18 24 30.
 
   // Only a tag's run has options to read. A run started from an expression has its call's
   // arguments and nothing else, and reading the level here gave it the plays of the tag it
@@ -22,7 +27,8 @@
     elseif ( $padPrmKind != 'option'           ) continue;
 
     if ( pqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
-      $pqPlay = $padPrmName;
+      $pqPlaySave = $pqPlay;
+      $pqPlay     = $padPrmName;
       padSplit ( '|', $padPrmValue, $padPrmName, $padPrmValue );
 
       // A type named without a |parameter plays as its bare option does, with TRUE: left at
@@ -40,10 +46,12 @@
 
       if ( ! pqSeq ( $padPrmName ) ) {
         padError ( "$pqPlay='$padPrmName' is not a sequence type" );
+        $pqPlay = $pqPlaySave;
         continue;
       }
 
       include PQ . 'plays/add.php';
+      $pqPlay = $pqPlaySave;
       continue;
     }
 
