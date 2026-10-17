@@ -293,7 +293,7 @@
 
   $padHealth = FALSE;
 
-  // Cross-origin requests (lib/cors.php): [] sends no CORS header. Set, e.g.
+  // Cross-origin requests (inits/_lib/cors.php): [] sends no CORS header. Set, e.g.
   // [ 'origins' => [ 'https://app.example.com' ], 'methods' => [ 'GET', 'POST' ],
   //   'headers' => [ 'Content-Type' ], 'credentials' => FALSE, 'maxAge' => 600 ],
   // a request from a listed origin gets the Access-Control-* headers and a preflight

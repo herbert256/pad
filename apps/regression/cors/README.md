@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Regression test for `$padCors` (pad/lib/cors.php). The index fetches the data page as other
+Regression test for `$padCors` (pad/inits/_lib/cors.php). The index fetches the data page as other
 origins would and shows the CORS headers of every answer: the listed origin gets itself back
 with credentials, the exposed header and `Vary: Origin`; another origin, or none, gets no
 Access-Control header; a preflight is answered 204 at once - with the methods, headers and
