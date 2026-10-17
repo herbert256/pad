@@ -239,6 +239,7 @@ Always prefer named sequences for clarity:
 {echo '' | sequence:fibonacci(8)}     13 - the eighth Fibonacci number
 {echo '' | sequence:prime(8)}         19
 {if sequence:square(6) eq 36}...      the term reads as a value
+{echo '' | sequence:add(3, 10)}       13 - a second argument is the type's parameter: add=10
 ```
 
 The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a list instead,

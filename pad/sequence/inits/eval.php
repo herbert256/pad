@@ -22,6 +22,17 @@
 
   $pqParm = TRUE;
 
+  // A second argument is the type's parameter - sequence:add(3, 10) is the third term of
+  // add=10, 13 - which inits/init.php then hands the type's own init.php as a tag's would be.
+  // It was dropped in silence, and the answer was the term of add=1: 4, and power(3, 2) 1.
+  // A third one has no place, and the strict check says so.
+
+  if ( count ( $pqSetParms ) > 1 )
+    $pqParm = $pqSetParms [1];
+
+  if ( count ( $pqSetParms ) > 2 and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
+    padError ( "sequence:$pqSeq() takes a position and a parameter, not " . count ( $pqSetParms ) . " arguments" );
+
   // A position counts from 1 and is a whole number, as element= takes one. 0, -3 and 2.7 were
   // cut down to a whole number of at least 1, so sequence:prime(0) answered 2, the first
   // prime, and sequence:fibonacci(2.7) the second term; they have no term, and the strict

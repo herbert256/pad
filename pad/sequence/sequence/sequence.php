@@ -21,7 +21,16 @@
   include PQ . 'inits/vars.php';
   include PQ . 'inits/eval.php';
   include PQ . 'build/inits.php';
+
+  // The position is the run's length, whatever the type's init.php makes of its parameter -
+  // loop reads it as a row count, and sequence:loop(3, 5) answered the fifth term.
+
+  $pqPositionRows = $pqRows;
+
   include PQ . 'inits/init.php';
+
+  $pqRows = $pqPositionRows;
+
   include PQ . 'plays/inits.php';
   include PQ . 'inits/limits.php';
   include PQ . 'actions/inits.php';
