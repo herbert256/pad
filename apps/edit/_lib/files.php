@@ -240,10 +240,39 @@
     if ( file_exists ( $to ) or is_link ( $to ) )
       editFail ( "'" . basename ( $to ) . "' exists already" );
 
-    if ( is_dir ( $from ) and str_starts_with ( "$to/", rtrim ( $from, '/' ) . '/' ) )
+    if ( is_dir ( $from ) and ( str_starts_with ( "$to/", rtrim ( $from, '/' ) . '/' ) or editInside ( dirname ( $to ), $from ) ) )
       editFail ( 'a directory cannot be copied into itself' );
 
     editCopyTree ( $from, $to );
+
+  }
+
+  // Whether $path is $dir or lies inside it, asked of the disk: parts/old on a volume that
+  // ignores case, or link/old with link a symbolic link to Parts, is inside Parts there,
+  // where the paths as text are not - Parts copied to either walked into what it had just
+  // made, 242 levels deep until the path was too long. Every existing directory from $path
+  // up is compared with $dir by device and inode.
+
+  function editInside ( $path, $dir ) {
+
+    $id = @stat ( $dir );
+
+    if ( ! $id )
+      return FALSE;
+
+    for ( $probe = $path; ; $probe = $up ) {
+
+      $at = @stat ( $probe );
+
+      if ( $at and $at ['dev'] === $id ['dev'] and $at ['ino'] === $id ['ino'] )
+        return TRUE;
+
+      $up = dirname ( $probe );
+
+      if ( $up === $probe )
+        return FALSE;
+
+    }
 
   }
 
@@ -257,10 +286,14 @@
       return;
     }
 
+    // What is copied is read before the copy is made, so it never walks into itself.
+
+    $names = scandir ( $from );
+
     if ( ! is_dir ( $to ) and ! @mkdir ( $to, 0755, TRUE ) )
       editFail ( 'the copy failed: ' . editLastError () );
 
-    foreach ( scandir ( $from ) as $name )
+    foreach ( $names as $name )
       if ( $name != '.' and $name != '..' and ! is_link ( "$from/$name" ) )
         editCopyTree ( "$from/$name", "$to/$name" );
 
