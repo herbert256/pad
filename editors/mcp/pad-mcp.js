@@ -92,6 +92,11 @@ function checkPage(page) {
         throw new Error(`'${page}' is not a page name - ?orders, ?admin/users`);
 }
 
+// A page name as editors/render.php reads it: the slashes at its end left off.
+function pageName(page) {
+    return page === undefined ? undefined : page.replace(/\/+$/, '');
+}
+
 let serial = 0;
 
 // A page name no file has and no other call uses at the same moment.
@@ -111,9 +116,13 @@ function unique(prefix) {
 // code      a PHP file prepend.php runs at the end of the request, in the booted application
 // host      the base the request says it came on, for a page that fetches its own server
 async function render(a, tree = CURRENT) {
-    const { app, page, query, trace } = a;
+    const { app, query, trace } = a;
     appPath(app, tree.apps);
-    checkPage(page);
+    checkPage(a.page);
+    // The page as render.php takes it, without a slash at the end: products/ was split into
+    // products and an empty segment, which the route of products/[id].pad took as its value -
+    // the data rendered a page the same name without data does not.
+    const page = pageName(a.page);
     if (a.data !== undefined && (a.data === null || typeof a.data !== 'object' || Array.isArray(a.data)))
         throw new Error('data must be a JSON object, its keys the variables: {"name": "Ann", "rows": [{"n": 1}]}');
     let name = page || (a.template !== undefined ? VIRTUAL : 'index');
@@ -432,7 +441,7 @@ function describe(result, source) {
 // 'staff' has no template of its own". A name no file has may be served by a bracketed
 // route, products/42 by products/[id].pad (routePage) - that file is the template then.
 function pageTemplate(app, page, apps = appsDir) {
-    const name = page || 'index';
+    const name = pageName(page) || 'index';
     const dir = appPath(app, apps);
     const base = path.join(dir, ...name.split('/'));
     for (const [file, as] of [[base + '.pad', name], [base + '.html', name], [path.join(base, 'index.pad'), name + '/index'], [path.join(base, 'index.html'), name + '/index']])

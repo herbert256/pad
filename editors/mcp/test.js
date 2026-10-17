@@ -172,6 +172,8 @@ async function main() {
         expect('pad_render gives the data to the template of a bracketed route the page names, products/[id].pad for products/42', !r.error && r.text.trim() === '<p>Product 7</p>', r);
         r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', data: { year: '2026', title: 'Hi' } });
         expect('pad_render gives the data to a route in a bracketed directory, blog/[year]/[slug].pad', !r.error && r.text.trim() === '<p>2026: Hi</p>', r);
+        r = await call('pad_render', { app: 'shop', page: 'products/', data: { id: 'I' } });
+        expect('pad_render with data takes products/ for products, as without data - not for the route products/[id] with an empty value', r.error && !r.text.includes('Product I') && r.text.includes("the page 'products' has no template of its own"), r);
         r = await call('pad_check', { app: 'shop', page: 'products/42', data: {} });
         expect('pad_check with data places an error of a routed page in its template', r.text.includes("Field '$id' not found") && r.text.includes('tag: {$id}, line 1'), r);
         r = await call('pad_render', { app: 'shop', template: '{$x}', data: [1, 2] });
