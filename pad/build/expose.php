@@ -42,6 +42,8 @@
   if ( ! $padExposeFormat )
     return;
 
+  include_once PAD . 'build/_lib/expose.php';
+
   // CSV is a table: a request for it where the page has no list is the visitor's to hear
   // about, where the csv type set in the configuration is the author's (exits/output/csv.php).
 

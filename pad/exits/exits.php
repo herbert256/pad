@@ -88,6 +88,9 @@
   // handed the empty rendering of the templates a data answer skips, and the JSON or CSV
   // went out past it.
 
+  if ( $padOutputType == 'json' or $padOutputType == 'csv' )
+    include_once PAD . 'build/_lib/expose.php';
+
   if ( $padOutputType == 'json' )
     $padOutput = padExposeJson ();
   elseif ( $padOutputType == 'csv' )
