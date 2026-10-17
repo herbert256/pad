@@ -51,8 +51,12 @@
 
     preg_match_all ( '/\{(?:pad:)?pdf(?=[\s}])[^}]*\}/', (string) ( $GLOBALS ['padBase'] [0] ?? '' ), $found );
 
+    // Only the bare option is a preview - {pdf preview}, {pdf file='x', preview}: the word in a
+    // title or a file name, or preview=$draft that may be false, took the document for a
+    // preview and sent the head of the page in front of its bytes.
+
     foreach ( $found [0] as $tag )
-      if ( ! preg_match ( '/\bpreview\b/', $tag ) )
+      if ( ! preg_match ( '/(?:^\{\S+|,)\s*preview\s*(?=[,}|])/', $tag ) )
         return TRUE;
 
     return FALSE;
