@@ -525,8 +525,13 @@
         continue;
       }
 
+      // A backslash escapes the next character on MySQL only: SQLite has no backslash escape,
+      // so 'C:\' is a whole literal there, and the quote that ends it was taken for an
+      // escaped one - the rest of the statement counted as quoted, no $name in it was bound,
+      // and SQLite read $n as a parameter of its own, NULL. padDbPlaceholders does the same.
+
       if ( $quote ) {
-        if ( $char == '\\' and $i + 1 < $len ) { $out .= $char . $sql [++$i]; continue; }
+        if ( $mysql and $char == '\\' and $i + 1 < $len ) { $out .= $char . $sql [++$i]; continue; }
         if ( $char == $quote ) $quote = '';
       } elseif ( $char == "'" or $char == '"' or $char == '`' )
         $quote = $char;
