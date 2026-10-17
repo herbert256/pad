@@ -5,7 +5,7 @@
   // JSON ($padExpose) - with the month it went into; without JavaScript the form posts here
   // and the page goes back to the overview of that month. Today in the month shown, or the
   // month's last day when that is gone by - today from the newest month, the overview's, also
-  // when a new month has no transactions yet.
+  // when a new month has no transactions yet or the newest is ahead of today.
 
   $booked = FALSE;
   $error  = '';

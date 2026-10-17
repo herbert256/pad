@@ -299,11 +299,13 @@
   // that month is gone by - and today when the month shown is the newest one with
   // transactions, the overview's own: a new month has none until something is booked in it,
   // so the overview showed the month before, and every quick entry of the new month was
-  // booked on that month's last day.
+  // booked on that month's last day. A month ahead of today is not gone by either: with
+  // November's rent booked ahead the overview shows November all October, and today's
+  // spending was booked on November 30.
 
   function ledgerQuickDay ( $month, $newest, $today ) {
 
-    if ( str_starts_with ( $today, $month ) or ( $month === $newest and substr ( $today, 0, 7 ) > $month ) )
+    if ( $month >= substr ( $today, 0, 7 ) or $month === $newest )
       return $today;
 
     return date ( 'Y-m-t', strtotime ( "$month-01" ) );
