@@ -229,7 +229,14 @@
     if ( (int) $count < 1 and ! $once )
       return [];
 
-    if ( $dups or $count > count ( $array ) or $once )
+    // Without duplicates a member is drawn once at most, so a count past the members draws
+    // them all: it went over to the draw with repeats, and {sequence '1..5', randomize=6}
+    // answered 3 3 4 4 2 1 - two members twice and 5 not at all.
+
+    if ( ! $dups and ! $once and $count > count ( $array ) )
+      $count = count ( $array );
+
+    if ( $dups or $once )
       return pqRandomDups ( $array, $count, $order, $once );
     else
       return pqRandomKeys ( $array, $count, $order );

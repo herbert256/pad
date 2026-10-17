@@ -19,10 +19,11 @@ generation itself. They are covered in [SEQUENCES.md](SEQUENCES.md) and
 ```
 
 `shuffle` reorders every value. `randomize` *picks*: bare it draws as many as there are, so
-it looks like a shuffle, but `randomize=3` draws three. Three options change how it draws:
+it looks like a shuffle, but `randomize=3` draws three - and more than there are draws them
+all, each once. Three options change how it draws:
 
 - `orderly` - the drawn values keep the order they had, instead of coming out shuffled
-- `duplicates` - a value may be drawn more than once
+- `duplicates` - a value may be drawn more than once, so `randomize=9` of five values draws nine
 - `atLeastOnce` - every value is drawn at least once before any is drawn twice, which
   implies `duplicates`. Asking for fewer than there are cannot satisfy that, and the count
   gives way: `randomize=2, atLeastOnce` over five values returns all five

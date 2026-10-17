@@ -1,0 +1,6 @@
+{sequence '1..5', push='s'}
+a[{sequence '1..5', randomize=9, sort}{$sequence} {/sequence}]
+b[{sequence '1..5', randomize=6, count}{$sequence}{/sequence}]
+c[{sequence '1..3', randomize=4, orderly}{$sequence} {/sequence}]
+d[{pull:s randomize=9, sort}{$sequence} {/pull:s}]
+e[{sequence '1..3', randomize=5, duplicates, count}{$sequence}{/sequence}]
