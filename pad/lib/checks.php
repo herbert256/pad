@@ -54,15 +54,25 @@
 
   }
 
-  // Whether a built-in tag has code of its own in tags/_lib/<tag>.php - the functions only
-  // that tag calls, which pad/lib/ would load on every request. types/pad.php asks for every
-  // built-in tag it runs and includes the file the first time; the answer is kept per name.
+  // The file of a built-in tag's own code, tags/_lib/<tag>.php - the functions only that tag
+  // calls, which pad/lib/ would load on every request - or FALSE when it has none.
+  // types/pad.php asks for every built-in tag it runs and includes the file the first time.
+  // The answer is the file under its name on disk, whatever the case the tag was written in:
+  // on a file system that ignores case {Tabs} is the tabs tag, and include_once of
+  // tags/_lib/Tabs.php after tab.php's tags/_lib/tabs.php - or {avatar} and {Avatar} - ended
+  // the page on "Cannot redeclare function".
 
   function padTagLib ( $tag ) {
 
-    static $known = [];
+    static $files = NULL;
 
-    return $known [$tag] ??= file_exists ( PAD . "tags/_lib/$tag.php" );
+    if ( $files === NULL ) {
+      $files = [];
+      foreach ( glob ( PAD . 'tags/_lib/*.php' ) ?: [] as $file )
+        $files [ strtolower ( basename ( $file, '.php' ) ) ] = $file;
+    }
+
+    return $files [ strtolower ( $tag ) ] ?? FALSE;
 
   }
 

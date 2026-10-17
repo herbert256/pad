@@ -7,8 +7,8 @@
   // time the tag runs - pad/lib/ is loaded on every request, used or not. A tag that shares
   // code with another includes that one's file itself.
 
-  if ( padTagLib ( $padTag [$pad] ) )
-    include_once PAD . 'tags/_lib/' . $padTag [$pad] . '.php';
+  if ( $padTagLib = padTagLib ( $padTag [$pad] ) )
+    include_once $padTagLib;
 
   $padTagGo = PAD . 'tags/' . $padTag [$pad];
 
