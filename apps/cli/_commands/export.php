@@ -66,7 +66,9 @@
 
   // The links of one exported page, rewritten for the static copy: href, src, action, the
   // poster of a {video} and each address of a srcset - the 1x and 2x thumbnails of an {img}
-  // kept the server's /app/_thumbs/ addresses, where the copy has them at _thumbs/.
+  // kept the server's /app/_thumbs/ addresses, where the copy has them at _thumbs/ - and of
+  // the imagesrcset of a <link rel="preload">, a srcset by another name that a page one
+  // directory down sent to the root's addresses.
 
   function exportLinks ( $html, $page, $pages, $app ) {
 
@@ -77,7 +79,7 @@
 
     return preg_replace_callback (
 
-      '/\b(href|src|action|poster|srcset)(\s*=\s*)(["\'])(.*?)\3/is',
+      '/\b(href|src|action|poster|srcset|imagesrcset)(\s*=\s*)(["\'])(.*?)\3/is',
 
       function ( $m ) use ( $bases, $pages, $from ) {
 
@@ -88,7 +90,7 @@
 
         $text = html_entity_decode ( $m [4], ENT_QUOTES | ENT_HTML5 );
 
-        if ( strtolower ( $m [1] ) == 'srcset' )
+        if ( in_array ( strtolower ( $m [1] ), [ 'srcset', 'imagesrcset' ] ) )
           $url = exportSrcset ( $text, $bases, $pages, $from );
         elseif ( ( $url = exportUrl ( $text, $bases, $pages, $from ) ) === NULL )
           return $m [0];

@@ -317,14 +317,15 @@
     // a srcset whose addresses hold a comma - a Cloudinary path, a data: URI - on a page one
     // directory down: each address is the run up to whitespace, so the outside ones stay as
     // written and only the application's own gets its ../ - split at every comma, the
-    // addresses came apart, ", " and ../ written into them
+    // addresses came apart, ", " and ../ written into them; the imagesrcset of a preload is
+    // a srcset too, and was left as the root's addresses
 
     $cloudinary = 'https://res.cloudinary.com/demo/image/upload/w_400,c_fill/s.jpg 1x, https://res.cloudinary.com/demo/image/upload/w_800,c_fill/s.jpg 2x';
     $dataUri    = 'data:image/gif;base64,R0lGODlhAQABAAAAACw= 1x,photos/p.png 2x';
 
     mkdir ( "$home/apps/gallery/docs", 0755, TRUE );
     file_put_contents ( "$home/apps/gallery/docs/intro.pad",
-      "<img src=\"https://res.cloudinary.com/demo/image/upload/s.jpg\" srcset=\"$cloudinary\" alt=\"c\">\n<img src=\"photos/p.png\" srcset=\"$dataUri\" alt=\"d\">" );
+      "<link rel=\"preload\" as=\"image\" imagesrcset=\"photos/p.png 1x, photos/q.png 2x\">\n<img src=\"https://res.cloudinary.com/demo/image/upload/s.jpg\" srcset=\"$cloudinary\" alt=\"c\">\n<img src=\"photos/p.png\" srcset=\"$dataUri\" alt=\"d\">" );
 
     list ( $codeG2 ) = cliCheckRun ( [ 'export', 'gallery', "$home/gallery-copy" ], $env );
 
@@ -336,7 +337,8 @@
                    and is_file ( "$home/gallery-copy/{$thumbs [1]}" ) and is_file ( "$home/gallery-copy/{$thumbs [2]}" )
                    and preg_match ( '#poster="photos/p\.png\?v=[0-9a-f]+"#', $pic )
                    and str_contains ( $intro, "srcset=\"$cloudinary\"" )
-                   and str_contains ( $intro, 'srcset="data:image/gif;base64,R0lGODlhAQABAAAAACw= 1x,../photos/p.png 2x"' ) );
+                   and str_contains ( $intro, 'srcset="data:image/gif;base64,R0lGODlhAQABAAAAACw= 1x,../photos/p.png 2x"' )
+                   and str_contains ( $intro, 'imagesrcset="../photos/p.png 1x, ../photos/q.png 2x"' ) );
 
     padDeleteDataDir ( $home );
 
