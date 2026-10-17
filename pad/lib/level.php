@@ -335,15 +335,17 @@ function padSplitOnUnquotedColon ( $str ) {
   // and their value ran.
 
   // What goes into a tag's text is kept for the request when it could call code or read a
-  // variable - a (, a $ or a : in it - so an evaluator of a tag's text can refuse an
-  // expression that holds it outside its own strings (padSpliceInCode), whatever spelling it
-  // stood in: a guard that recognised each spelling let eval(2, '@ * {$q}') and {sequence
-  // eval, '@ * {$q}'} run the value's php:abs(-3). A value of a word, a number or operators
-  // only is not kept: a - printed in a tag's parameters made eval='@ - 1' a refusal.
+  // variable - a name of two letters or more and anything beside it, a space included - so an
+  // evaluator of a tag's text can refuse an expression that holds it outside its own strings
+  // (padSpliceInCode), whatever spelling it stood in: a guard that recognised each spelling let
+  // eval(2, '@ * {$q}') and {sequence eval, '@ * {$q}'} run the value's php:abs(-3). A bare
+  // name calls a function as well - strlen 5 - so a ( or a : is not needed for that. A single
+  // word, a number or operators alone are not kept: a - printed in a tag's parameters made
+  // eval='@ - 1' a refusal.
 
   function padSpliceRecord ( $value ) {
 
-    if ( is_string ( $value ) and strpbrk ( $value, '($:' ) !== FALSE )
+    if ( is_string ( $value ) and preg_match ( '/[a-z_]{2}/i', $value ) and preg_match ( '/[^\w]/u', $value ) )
       $GLOBALS ['padSpliceValues'] [$value] = TRUE;
 
   }
