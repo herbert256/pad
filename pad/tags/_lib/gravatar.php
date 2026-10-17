@@ -14,7 +14,7 @@
   //
   // Showing the picture asks a third party for it, and with it the visitor's IP address.
   // fallback='avatar' (or 'identicon') does not: it answers the {avatar} (or {identicon})
-  // SVG of lib/avatar.php instead, drawn on the server - for a page under a privacy policy
+  // SVG of tags/_lib/avatar.php instead, drawn on the server - for a page under a privacy policy
   // that allows no outside requests, or a test without network.
 
   const PAD_GRAVATAR_DEFAULTS = [ 'mp', 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank', '404' ];
@@ -34,9 +34,11 @@
     // The local stand-ins: the initials of the alt text - the person's name - or of the
     // address before its @, and the identicon of the address.
 
-    if ( $fallback == 'avatar' )
+    if ( $fallback == 'avatar' ) {
+      include_once PAD . 'tags/_lib/avatar.php';
       return padAvatar ( ( trim ( (string) $alt ) !== '' ) ? $alt : $email, $size, 'circle',
                          ( trim ( (string) $alt ) !== '' ) ? $alt : 'Avatar' );
+    }
 
     if ( $fallback == 'identicon' )
       return padIdenticon ( $email, $size, ( trim ( (string) $alt ) !== '' ) ? $alt : 'Avatar' );

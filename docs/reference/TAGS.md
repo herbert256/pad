@@ -1712,7 +1712,7 @@ Tags that draw, format and interact - the showcase application has an example of
 ---
 
 ### avatar
-An initials avatar as inline SVG - drawn on the server (`lib/avatar.php`), no image, no
+An initials avatar as inline SVG - drawn on the server (`tags/_lib/avatar.php`), no image, no
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html

@@ -1,6 +1,6 @@
 <?php
 
-  // {avatar 'Herbert Jebbink'} - an initials avatar as inline SVG, drawn by lib/avatar.php.
+  // {avatar 'Herbert Jebbink'} - an initials avatar as inline SVG, drawn by tags/_lib/avatar.php.
   // The first parameter is the name: its first and last word give the letters, a hash of it
   // the colour, so the same name looks the same everywhere. size= is the width and height in
   // pixels (default 48), shape= circle (default) or square - with rounded corners - and
