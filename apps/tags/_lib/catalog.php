@@ -95,9 +95,16 @@
 
   }
 
-  // The examples of a tag: [ page or file, title, about, run ].
+  // The examples of a tag: [ page or file, title, about, run ] - kept for the request: the
+  // index counts every tag's examples and its rows count them again, two globs and a read of
+  // every example file per tag each time, two thirds of the index page.
 
   function tagsExamples ( $name ) {
+
+    static $memo = [];
+
+    if ( isset ( $memo [$name] ) )
+      return $memo [$name];
 
     $examples = [];
     $files    = array_merge ( glob ( APP . "examples/$name/*.pad" ), glob ( APP . "examples/$name/*.src" ) );
@@ -116,7 +123,7 @@
 
     }
 
-    return $examples;
+    return $memo [$name] = $examples;
 
   }
 
