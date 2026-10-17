@@ -1059,7 +1059,7 @@ PAD has two approaches for database access:
 // $padRelations['posts']['users'] = ['key' => 'user_id'];
 ```
 
-Declaring `$padSelect` activates the select subsystem (`pad/lib/select.php`, type handler `pad/types/select.php`) which can conflict with direct SQL and cause infinite loops. See [DATABASE.md](DATABASE.md) for the full Select reference.
+Declaring `$padSelect` activates the select subsystem (`pad/select/_lib/select.php`, type handler `pad/types/select.php`) which can conflict with direct SQL and cause infinite loops. See [DATABASE.md](DATABASE.md) for the full Select reference.
 
 ### Pipe Functions
 PAD pipe functions come from two sources:

@@ -7,6 +7,8 @@
   // With the htmlAttrJson option the rows come back as one HTML-attribute-safe JSON string
   // instead, for handing a table straight to a React component.
 
+  include_once PAD . 'select/_lib/select.php';
+
   if ( ! padTagParm ( 'htmlAttrJson' ) )
     return padSelect ( $padTag [$pad] );
 
