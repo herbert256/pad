@@ -2396,7 +2396,7 @@ answers the bytes.
 
 ### diagram
 A flowchart or a sequence diagram from a few lines of text in the content, written the
-Mermaid way and laid out on the server as inline SVG (`lib/diagram.php`) - no JavaScript.
+Mermaid way and laid out on the server as inline SVG (`tags/_lib/diagram.php`) - no JavaScript.
 
 ```html
 {diagram}

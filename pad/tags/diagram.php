@@ -1,7 +1,7 @@
 <?php
 
   // {diagram}...{/diagram} - a flowchart or a sequence diagram from a few lines of text in
-  // the content, laid out on the server by lib/diagram.php and written as inline SVG. The
+  // the content, laid out on the server by tags/_lib/diagram.php and written as inline SVG. The
   // lines are written the Mermaid way:
   //
   //   {diagram direction='LR'}             {diagram type='sequence'}
