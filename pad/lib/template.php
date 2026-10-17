@@ -424,18 +424,52 @@
     // lenient walk keeps the first $padSeqMaxTries values.
 
     $max   = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
-    $count = $increment ? floor ( $span / $increment ) + 1 : 1;
+    $count = $increment ? floor ( $span / $increment + 1e-9 ) + 1 : 1;
 
     if ( is_numeric ( $p1 ) and $count > $max ) {
 
       if ( $padCheckSyntax )
         padError ( "the range '" . trim ( $input ) . "' has $count values, more than the $max a range may have" );
 
-      $p2 = $p1 + ( ( $p2 >= $p1 ) ? 1 : -1 ) * ( $max - 1 ) * $increment;
+      $p2    = $p1 + ( ( $p2 >= $p1 ) ? 1 : -1 ) * ( $max - 1 ) * $increment;
+      $count = $max;
+
+    }
+
+    // A range with a fraction in it - in an end or in the step - is counted here, each value
+    // the decimal it stands for, rounded to the decimals written: range() counts in binary,
+    // where 0.3 / 0.1 is 2.9999999999999996, so '0..0.3' by 0.1 lost its 0.3, '0..0.7' had 7
+    // values, and its fourth value was 0.30000000000000004, which {if $sequence eq 0.3} never
+    // met.
+
+    if ( is_numeric ( $p1 ) and ( fmod ( $p1 + 0, 1 ) or fmod ( $p2 + 0, 1 ) or fmod ( $increment, 1 ) ) ) {
+
+      $decimals = max ( padRangeDecimals ( $p1 ), padRangeDecimals ( $p2 ), padRangeDecimals ( $increment ) );
+      $sign     = ( $p2 >= $p1 ) ? 1 : -1;
+      $values   = [];
+
+      for ( $i = 0; $i < $count; $i++ )
+        $values [] = round ( $p1 + $sign * $i * $increment, $decimals );
+
+      return $values;
 
     }
 
     return range ( $p1, $p2, $increment );
+
+  }
+
+  // The decimals a number of a range is written with - 0.25 two, 3 none, 1e-3 the fourteen a
+  // float holds surely.
+
+  function padRangeDecimals ( $number ) {
+
+    $text = (string) $number;
+
+    if ( stripos ( $text, 'e' ) !== FALSE )
+      return 14;
+
+    return str_contains ( $text, '.' ) ? strlen ( rtrim ( substr ( $text, strpos ( $text, '.' ) + 1 ), '0' ) ) : 0;
 
   }
 
