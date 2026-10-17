@@ -18,6 +18,35 @@
   // Names for invented fields come from padDataName: the name= parameter, else
   // $padForceDataName, toData=, or the tag's own name.
 
+  // The numbers of YAML 1.2, as yaml_parse callbacks: libyaml reads YAML 1.1, where every
+  // n:nn is base 60 and a leading 0 octal - an agenda's 9:30 was 570, 12:00 was 720, the zip
+  // code 02134 was 1116, 1_000 was 1000. A number is written in the YAML 1.2 forms only;
+  // anything else stays the text written, and so does a number with a leading 0, which would
+  // lose that 0. Used by data/yaml.php and the front matter of a collection.
+
+  function padYamlNumbers () {
+
+    return [
+
+      'tag:yaml.org,2002:int'   => function ( $value ) {
+        $value = (string) $value;
+        if ( preg_match ( '/^[-+]?(0|[1-9][0-9]*)$/D', $value ) ) return $value + 0;
+        if ( preg_match ( '/^0x[0-9a-fA-F]+$/D',        $value ) ) return hexdec ( $value );
+        return $value;
+      },
+
+      'tag:yaml.org,2002:float' => function ( $value ) {
+        $value = (string) $value;
+        if ( preg_match ( '/^[-+]?(\.[0-9]+|(0|[1-9][0-9]*)(\.[0-9]*)?)([eE][-+]?[0-9]+)?$/D', $value ) ) return (float) $value;
+        if ( preg_match ( '/^[-+]?\.(inf|Inf|INF)$/D', $value ) ) return ( $value [0] == '-' ) ? -INF : INF;
+        if ( preg_match ( '/^\.(nan|NaN|NAN)$/D',       $value ) ) return NAN;
+        return $value;
+      }
+
+    ];
+
+  }
+
   function padData ( $input, $type='', $name='' ) {
 
     if     ( $input === NULL           ) $data = [];

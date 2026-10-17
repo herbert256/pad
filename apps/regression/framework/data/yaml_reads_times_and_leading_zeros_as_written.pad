@@ -1,0 +1,16 @@
+{data 'agenda'}
+---
+- what: Standup
+  time: 9:30
+  zip: 02134
+  count: 1_000
+  n: 42
+  price: 3.25
+- what: Lunch
+  time: 12:00
+  zip: 10115
+  count: 0x1F
+  n: -7
+  price: .5
+{/data}
+{agenda}{$what} {$time} {$zip} {$count} {echo $n + 1} {echo $price * 2}; {/agenda}

@@ -119,7 +119,7 @@
 
     if ( function_exists ( 'yaml_parse' ) ) {
       set_error_handler ( function () { return TRUE; } );
-      $meta = yaml_parse ( "---\n$yaml\n" );
+      $meta = yaml_parse ( "---\n$yaml\n", 0, $ndocs, padYamlNumbers () );
       restore_error_handler ();
     } else
       $meta = padFrontMatterLines ( $yaml );
@@ -228,8 +228,8 @@
     if ( in_array ( $lower, [ 'true', 'yes', 'on' ] ) )   return TRUE;
     if ( in_array ( $lower, [ 'false', 'no', 'off' ] ) )  return FALSE;
     if ( in_array ( $lower, [ 'null', '~', '' ] ) )       return NULL;
-    if ( preg_match ( '/^-?[0-9]+$/', $value ) )          return (int) $value;
-    if ( preg_match ( '/^-?[0-9]*\.[0-9]+$/', $value ) )  return (float) $value;
+    if ( preg_match ( '/^[-+]?(0|[1-9][0-9]*)$/D', $value ) )                return $value + 0;
+    if ( preg_match ( '/^[-+]?(\.[0-9]+|(0|[1-9][0-9]*)\.[0-9]*)$/D', $value ) ) return (float) $value;
 
     return $value;
 
