@@ -9,7 +9,8 @@
   //           bracketed route [id] left out - no URL names it
   //   serve   a page fetched from the server it starts, on a free port
   //   export  the regression/site fixture as static files: page links turned into relative
-  //           .html files, from a subdirectory too, the assets copied, the outside link kept
+  //           .html files, from a subdirectory too, the assets copied, the outside link kept;
+  //           and a scratch application with its {img} thumbnails, srcset and {video} poster
   //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
   //           without an answer and --record writing it - and of regression/site, whose
   //           test pages no URL reaches
@@ -245,6 +246,28 @@
     $schedule = ( $codeQ5 === 0 and str_contains ( $outQ5, '0 3 * * *' ) and str_contains ( $outQ5, '2026-10-13 03:00' )
                   and $codeQ6 === 0 and preg_match ( '/done\s+note/', $outQ6 ) ) ? 'yes' : 'NO';
 
+    // export of a scratch application with an {img} and a {video} poster: the thumbnails
+    // of www/<app>/_thumbs/ go along with the copy, src and srcset both pointing into it, and
+    // the poster is the relative path to the picture's copy - the srcset kept the server's
+    // /gallery/_thumbs/ addresses, of a directory the copy did not have
+
+    list ( $codeG1 ) = cliCheckRun ( [ 'new', 'gallery' ], $env );
+
+    mkdir ( "$home/www/gallery/photos", 0755, TRUE );
+    imagepng ( imagecreatetruecolor ( 400, 200 ), "$home/www/gallery/photos/p.png" );
+    file_put_contents ( "$home/www/gallery/clip.mp4", '' );
+    file_put_contents ( "$home/apps/gallery/pic.pad",
+      "<p>{img 'photos/p.png', width=100, height=50, alt='p'}</p>\n{video 'clip.mp4', title='Clip', poster='photos/p.png'}" );
+
+    list ( $codeG2 ) = cliCheckRun ( [ 'export', 'gallery', "$home/gallery-copy" ], $env );
+
+    $pic = (string) @file_get_contents ( "$home/gallery-copy/pic.html" );
+
+    $exportImg = ( $codeG1 === 0 and $codeG2 === 0
+                   and preg_match ( '#src="(_thumbs/[0-9a-f]{16}\.png)" srcset="\1 1x, (_thumbs/[0-9a-f]{16}\.png) 2x"#', $pic, $thumbs )
+                   and is_file ( "$home/gallery-copy/{$thumbs [1]}" ) and is_file ( "$home/gallery-copy/{$thumbs [2]}" )
+                   and preg_match ( '#poster="photos/p\.png\?v=[0-9a-f]+"#', $pic ) );
+
     padDeleteDataDir ( $home );
 
     // pack - what it refuses before node is asked: an application that is not there, a
@@ -307,7 +330,8 @@
     $indexHost = (string) @file_get_contents ( "$dirHost/index.html" );
 
     $export = ( $export == 'yes' and $codeE2 === 0
-                and substr_count ( $indexHost, 'href="about.html"' ) == 2 ) ? 'yes' : 'NO';
+                and substr_count ( $indexHost, 'href="about.html"' ) == 2
+                and $exportImg ) ? 'yes' : 'NO';
 
     padDeleteDataDir ( $dirHost );
 

@@ -12,7 +12,7 @@
   // static, so a link with them lands on the page as it renders without them. The assets
   // are what www/<app>/ holds beside the entry point - stylesheets, scripts, images, data
   // files - copied less the .php files, the _ and . names, and the directories that are
-  // applications of their own.
+  // applications of their own; _thumbs/, the thumbnails {img} made, goes along.
   //
   // A page that fails, or answers with nothing (a redirect), is reported and left out. Exit
   // status 1 when any page failed. PAD_HOST, when set, is the server the pages render
@@ -64,7 +64,9 @@
   return $exportFailed ? 1 : 0;
 
 
-  // The links of one exported page, rewritten for the static copy.
+  // The links of one exported page, rewritten for the static copy: href, src, action, the
+  // poster of a {video} and each address of a srcset - the 1x and 2x thumbnails of an {img}
+  // kept the server's /app/_thumbs/ addresses, where the copy has them at _thumbs/.
 
   function exportLinks ( $html, $page, $pages, $app ) {
 
@@ -75,7 +77,7 @@
 
     return preg_replace_callback (
 
-      '/\b(href|src|action)(\s*=\s*)(["\'])(.*?)\3/is',
+      '/\b(href|src|action|poster|srcset)(\s*=\s*)(["\'])(.*?)\3/is',
 
       function ( $m ) use ( $bases, $pages, $from ) {
 
@@ -84,60 +86,83 @@
         // and img/a&amp;b.png or style.css?v=1&amp;t=2 became a&amp;amp;b.png, a file the copy
         // does not have.
 
-        $url  = html_entity_decode ( $m [4], ENT_QUOTES | ENT_HTML5 );
-        $rest = NULL;
+        $text = html_entity_decode ( $m [4], ENT_QUOTES | ENT_HTML5 );
 
-        foreach ( $bases as $base )
-          if ( str_starts_with ( $url, $base ) or $url === rtrim ( $base, '/' ) ) {
-            $rest = (string) substr ( $url, strlen ( $base ) );
-            break;
+        if ( strtolower ( $m [1] ) == 'srcset' ) {
+
+          $set = [];
+
+          foreach ( preg_split ( '/\s*,\s*/', trim ( $text ) ) as $one ) {
+            $parts  = preg_split ( '/\s+/', $one, 2 );
+            $set [] = ( exportUrl ( $parts [0], $bases, $pages, $from ) ?? $parts [0] ) . ( isset ( $parts [1] ) ? ' ' . $parts [1] : '' );
           }
 
-        // Not the application's own absolute or root-relative form: a scheme, a //host, a
-        // path from another root, a bare #anchor - left as they are. A plain relative link
-        // is relative to the application's root, which is where the web serves its pages.
+          $url = implode ( ', ', $set );
 
-        if ( $rest === NULL ) {
-          if ( $url === '' or $url [0] == '#' or $url [0] == '/' or preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $url ) )
-            return $m [0];
-          $rest = $url;
-        }
+        } elseif ( ( $url = exportUrl ( $text, $bases, $pages, $from ) ) === NULL )
+          return $m [0];
 
-        list ( $rest, $anchor ) = array_pad ( explode ( '#', $rest, 2 ), 2, NULL );
-        $anchor = ( $anchor === NULL ) ? '' : "#$anchor";
-
-        if ( $rest === '' or $rest === './' or str_starts_with ( $rest, '?' ) ) {
-
-          $target = ( $rest === '' or $rest === './' ) ? 'index' : substr ( $rest, 1 );
-          $target = preg_split ( '/[&=]/', $target ) [0];
-          $target = ( $target === '' ) ? 'index' : trim ( $target, '/' );
-
-          if     ( in_array ( $target,          $pages, TRUE ) ) $file = "$target.html";
-          elseif ( in_array ( "$target/index",  $pages, TRUE ) ) $file = "$target/index.html";
-          else   return $m [0];
-
-        } else {
-
-          // A path that names a page is that page's copy - the clean form $padCleanUrls has
-          // $padGo write, /app/about and /app/about&x=1, which the router reads as the page
-          // about (lib/route.php): it was taken for a file named about, which the copy does
-          // not have. Any other path is a file of the application.
-
-          $page = trim ( preg_split ( '/[?&]/', $rest ) [0], '/' );
-
-          if     ( $page !== '' and in_array ( $page,         $pages, TRUE ) ) $file = "$page.html";
-          elseif ( $page !== '' and in_array ( "$page/index", $pages, TRUE ) ) $file = "$page/index.html";
-          else   $file = $rest;
-
-        }
-
-        return $m [1] . $m [2] . $m [3] . htmlspecialchars ( exportRelative ( $from, $file ) . $anchor, ENT_QUOTES ) . $m [3];
+        return $m [1] . $m [2] . $m [3] . htmlspecialchars ( $url, ENT_QUOTES ) . $m [3];
 
       },
 
       $html
 
     );
+
+  }
+
+  // One address of an exported page as the static copy has it, NULL for one left as it is.
+
+  function exportUrl ( $url, $bases, $pages, $from ) {
+
+    $rest = NULL;
+
+    foreach ( $bases as $base )
+      if ( str_starts_with ( $url, $base ) or $url === rtrim ( $base, '/' ) ) {
+        $rest = (string) substr ( $url, strlen ( $base ) );
+        break;
+      }
+
+    // Not the application's own absolute or root-relative form: a scheme, a //host, a
+    // path from another root, a bare #anchor - left as they are. A plain relative link
+    // is relative to the application's root, which is where the web serves its pages.
+
+    if ( $rest === NULL ) {
+      if ( $url === '' or $url [0] == '#' or $url [0] == '/' or preg_match ( '/^[a-z][a-z0-9+.-]*:/i', $url ) )
+        return NULL;
+      $rest = $url;
+    }
+
+    list ( $rest, $anchor ) = array_pad ( explode ( '#', $rest, 2 ), 2, NULL );
+    $anchor = ( $anchor === NULL ) ? '' : "#$anchor";
+
+    if ( $rest === '' or $rest === './' or str_starts_with ( $rest, '?' ) ) {
+
+      $target = ( $rest === '' or $rest === './' ) ? 'index' : substr ( $rest, 1 );
+      $target = preg_split ( '/[&=]/', $target ) [0];
+      $target = ( $target === '' ) ? 'index' : trim ( $target, '/' );
+
+      if     ( in_array ( $target,          $pages, TRUE ) ) $file = "$target.html";
+      elseif ( in_array ( "$target/index",  $pages, TRUE ) ) $file = "$target/index.html";
+      else   return NULL;
+
+    } else {
+
+      // A path that names a page is that page's copy - the clean form $padCleanUrls has
+      // $padGo write, /app/about and /app/about&x=1, which the router reads as the page
+      // about (lib/route.php): it was taken for a file named about, which the copy does
+      // not have. Any other path is a file of the application.
+
+      $page = trim ( preg_split ( '/[?&]/', $rest ) [0], '/' );
+
+      if     ( $page !== '' and in_array ( $page,         $pages, TRUE ) ) $file = "$page.html";
+      elseif ( $page !== '' and in_array ( "$page/index", $pages, TRUE ) ) $file = "$page/index.html";
+      else   $file = $rest;
+
+    }
+
+    return exportRelative ( $from, $file ) . $anchor;
 
   }
 
@@ -162,7 +187,10 @@
 
     foreach ( scandir ( $dir ) as $file ) {
 
-      if ( str_starts_with ( $file, '.' ) or str_starts_with ( $file, '_' ) )
+      // The thumbnails {img} made while the pages rendered go along: www/<app>/_thumbs/ is
+      // the one _ name the copy needs - left out, every {img} of the copy had no picture.
+
+      if ( str_starts_with ( $file, '.' ) or ( str_starts_with ( $file, '_' ) and ( $file != '_thumbs' or $prefix !== '' ) ) )
         continue;
 
       if ( is_dir ( "$dir/$file" ) ) {
