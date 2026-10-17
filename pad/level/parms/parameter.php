@@ -27,7 +27,12 @@
   // The {tag ? true : false} option form is level/ternary.php's to read: its sides are not
   // an expression of their own, and evaluated as one they now made an inline ternary.
 
-  if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set' ] ) or padParmsRaw ()
+  // {echo}, {if}, {case}, {while} and {until} evaluate the text they were written with
+  // themselves, and nothing reads their parameter's value: evaluated here as well, an
+  // expression ran twice - a php: call in it twice, {echo php:usleep(100000)} took twice
+  // as long, one padFlash call left two messages.
+
+  if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set', 'echo', 'if', 'case', 'while', 'until' ] ) or padParmsRaw ()
        or str_starts_with ( ltrim ( $padOpt [$pad] [0] ?? '' ), '?' ) )
     $padPrmEval     = $padPrmOne;
   else
