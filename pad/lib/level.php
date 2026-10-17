@@ -318,7 +318,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
     if ( padSpliceExpression ( substr ( $inside, 0, $quoteAt ), substr ( $inside, $quoteAt + 1 ) ) ) {
       $other = ( $quote == "'" ) ? '"' : "'";
-      if ( substr_count ( substr ( $inside, $quoteAt + 1 ), $other ) % 2 == 0 )
+      if ( ! padSpliceInString ( substr ( $inside, $quoteAt + 1 ), $quote ) )
         return $other . $value . $other;
     }
 
@@ -334,6 +334,28 @@ function padSplitOnUnquotedColon ( $str ) {
   // remove= and flag=. The eval sequence itself refuses what no spelling here catches. In any case, as a file system that
   // ignores case finds the option or tag for WHERE= and Eval= as well: those passed the guard
   // and their value ran.
+
+  // Whether a splice stands inside a string of the expression - $text the quoted option up to
+  // it, read as the expression will read it once the option's own quote is unescaped, each
+  // quote closing only a string it opened. The other quote was counted, and a string of it
+  // written before the splice - where='$s ne \'"\' and $n eq {$q}' - made the value seem to
+  // stand in one: it went in bare and ran.
+
+  function padSpliceInString ( $text, $quote ) {
+
+    $text = str_replace ( '\\' . $quote, $quote, $text );
+    $in   = '';
+
+    for ( $i = 0, $len = strlen ( $text ); $i < $len; $i++ )
+      if ( $in ) {
+        if     ( $text [$i] == '\\' ) $i++;
+        elseif ( $text [$i] == $in  ) $in = '';
+      } elseif ( $text [$i] == "'" or $text [$i] == '"' )
+        $in = $text [$i];
+
+    return $in !== '';
+
+  }
 
   function padSpliceExpression ( $head, $text = '' ) {
 
