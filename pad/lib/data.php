@@ -152,7 +152,10 @@
   //
   // An object that says what its data is - jsonSerialize - is that data, as json_encode
   // writes it: read by its public properties, a model that leaves its password hash out of
-  // its JSON had it written by {^user}, the JSON x-data="{^user}" hands the browser.
+  // its JSON had it written by {^user}, the JSON x-data="{^user}" hands the browser. One
+  // whose jsonSerialize answers itself - return $this - is its public properties, as
+  // json_encode writes it: met again on its way down, it stayed an object, and {me}..{/me}
+  // was no tag at all.
 
   function padDataObject ( $value, $above = [] ) {
 
@@ -166,7 +169,8 @@
       $above [$id] = TRUE;
 
       if ( $value instanceof JsonSerializable ) {
-        $value = $value -> jsonSerialize ();
+        $json  = $value -> jsonSerialize ();
+        $value = ( $json === $value ) ? get_object_vars ( $value ) : $json;
         if ( is_object ( $value ) )
           return padDataObject ( $value, $above );
       } else
