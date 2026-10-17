@@ -52,7 +52,10 @@
 
   if ( $padFilesRecursive ) {
     $padFilesDirectory = new RecursiveDirectoryIterator ( $padFilesScan );
-    $padFilesIterator  = new RecursiveIteratorIterator  ( $padFilesDirectory );
+    // A recursive scan lists the files; asked for directories only it lists those, which
+    // the default mode, the leaves alone, never reached - onlyDirs answered nothing.
+
+    $padFilesIterator  = new RecursiveIteratorIterator  ( $padFilesDirectory, $padFilesOnlyDirs ? RecursiveIteratorIterator::SELF_FIRST : RecursiveIteratorIterator::LEAVES_ONLY );
   } else {
     $padFilesDirectory = new DirectoryIterator ( $padFilesScan      );
     $padFilesIterator  = new IteratorIterator  ( $padFilesDirectory );
@@ -74,7 +77,10 @@
     if ( $padFilesOnlyDirs        and ! $padFilesFile->isDir()                      ) continue;
     if ( $padFilesMask            and ! fnmatch ( $padFilesMask, $padFilesName    ) ) continue;
     if ( $padFilesExclude         and   fnmatch ( $padFilesExclude, $padFilesName ) ) continue;
-    if ( ! $padFilesIncludeHidden and   $padFilesName [0] == '.'                    ) continue;
+    // Hidden is any part of the path below the scanned directory that starts with a dot, so
+    // a recursive scan lists nothing inside .git or .secret either, unless includeHidden.
+
+    if ( ! $padFilesIncludeHidden and preg_match ( '#(^|/)\.#', substr ( $padFilesFile->getPathname (), strlen ( rtrim ( $padFilesScan, '/' ) ) + 1 ) ) ) continue;
 
     $padFiles ['path']  = $padFilesFile->getPathname();
     $padFiles ['file']  = $padFilesFile->getFilename();
