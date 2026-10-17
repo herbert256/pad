@@ -8,13 +8,19 @@
   // chosen handler leaves its outcome in $now, which replaces the operator token as a plain
   // VAL, after which padEvalOpr() is re-entered to fold the next operator in the segment.
 
-  // A date object is its text to an operator (padDateText): compared as an object it stood
-  // above every string.
-
-  $left  = padDateText ( $left  ?? NULL );
-  $right = padDateText ( $right ?? NULL );
-
   $opr = $result [$b] [0];
+
+  // A date object is its text to an operator (padDateText): compared as an object it stood
+  // above every string. Two date objects compared with each other are the moments they hold,
+  // as PHP compares them: as text 03:04 UTC came before 05:00+05:00, midnight UTC, and one
+  // moment written in two zones was not equal to itself.
+
+  if ( ! ( in_array ( $opr, [ 'LT', 'LE', 'EQ', 'GE', 'GT', 'NE' ], TRUE )
+           and ( $left  ?? NULL ) instanceof DateTimeInterface
+           and ( $right ?? NULL ) instanceof DateTimeInterface ) ) {
+    $left  = padDateText ( $left  ?? NULL );
+    $right = padDateText ( $right ?? NULL );
+  }
 
   // The operator as the template wrote it - >= rather than GE - for the messages of the
   // array forms (the tokeniser and padEvalAfter keep the spelling in [2]).
