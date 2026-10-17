@@ -994,7 +994,9 @@
 
         $w = padDiagramWidth ( $label ) + 8;
 
-        // Half way, else a little before or after where another label stands there.
+        // Half way, else a little before or after where another label or a loop stands there:
+        // stepped aside from the first loop it met, a label that only neared a loop's turn half
+        // way along was pushed below it and on past other labels, far from its edge.
 
         $clash = function ( $x, $y ) use ( &$labels, $curves, $w ) {
           foreach ( array_merge ( $curves, array_values ( $labels ) ) as $one ) {
@@ -1018,7 +1020,7 @@
         } else
           foreach ( [ 0.5, 0.35, 0.65, 0.22, 0.78, 0.5 ] as $part ) {
             list ( $x, $y ) = padDiagramMiddle ( $paths [$e], $part );
-            if ( ! ( $other = $clash ( $x, $y ) ) or $other [4] == 'loop' )
+            if ( ! ( $other = $clash ( $x, $y ) ) )
               break;
           }
 
