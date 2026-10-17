@@ -12,7 +12,10 @@
   //
   // An EAN or UPC number is given with or without its check digit: without it, it is
   // added; with it, it is checked. Code 128 switches to its double-density digit set C for
-  // a run of four or more digits, and to set B for the rest.
+  // a run of four or more digits, and to set B for the rest. The text is escaped as {qr}
+  // escapes it, padQrAttr of tags/_lib/qr.php.
+
+  include_once PAD . 'tags/_lib/qr.php';
 
   const PAD_EAN_L = [ '0001101', '0011001', '0010011', '0111101', '0100011', '0110001', '0101111', '0111011', '0110111', '0001011' ];
   const PAD_EAN_G = [ '0100111', '0110011', '0011011', '0100001', '0011101', '0111001', '0000101', '0010001', '0001001', '0010111' ];

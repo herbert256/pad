@@ -991,7 +991,7 @@ Code: `pad/lib/chart.php` (bar, line, sparkline) and `pad/lib/chart/` (the other
 
 ### QR codes and barcodes
 ```
-{qr 'https://example.com/order/42'}            # inline SVG, encoded on the server (lib/qr.php)
+{qr 'https://example.com/order/42'}            # inline SVG, encoded on the server (tags/_lib/qr.php)
 {qr $url, size=200, level='H', title='Scan'}   # level L, M (default), Q, H; color=, background=
 {barcode '871234567890'}                       # EAN-13 (check digit added); type= ean8, upca, code128
 {barcode $parcel, type='code128', height=70}   # scale= module width, plain = no digits under the bars

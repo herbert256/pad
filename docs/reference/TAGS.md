@@ -1343,7 +1343,7 @@ default, scaled to its own minimum and maximum.
 ---
 
 ### qr
-A QR code as inline SVG - encoded on the server (`lib/qr.php`), no image library, no remote
+A QR code as inline SVG - encoded on the server (`tags/_lib/qr.php`), no image library, no remote
 service, no JavaScript.
 
 ```html
