@@ -34,10 +34,17 @@
     $file = editPath ( editRootApp ( $app, $one ['root'] ), $one ['root'], $one ['path'] );
     $text = (string) @file_get_contents ( $file );
 
-    if ( str_contains ( $text, "\0" ) or ! mb_check_encoding ( $text, 'UTF-8' ) or ! preg_match ( $pattern, $text ) )
+    // The file is matched as a whole first, to skip it at once - with m, since the lines are
+    // matched one by one below and ^ and $ mean a line's start and end: without it ^\s*function
+    // found a match on a file's first line only, and the file was skipped. A line's \r is no
+    // part of it.
+
+    if ( str_contains ( $text, "\0" ) or ! mb_check_encoding ( $text, 'UTF-8' ) or ! preg_match ( $pattern . 'm', str_replace ( "\r\n", "\n", $text ) ) )
       continue;
 
     foreach ( explode ( "\n", $text ) as $i => $line ) {
+
+      $line = rtrim ( $line, "\r" );
 
       if ( ! preg_match_all ( $pattern, $line, $all, PREG_OFFSET_CAPTURE ) )
         continue;
