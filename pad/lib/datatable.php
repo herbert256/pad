@@ -175,7 +175,7 @@
 
   function padDatatableHref ( $set, $drop = [] ) {
 
-    global $padGo, $padStartPage;
+    global $padGo, $padStartPage, $padPageAsked;
 
     $keep  = [];
     $first = array_key_first ( $_GET );
@@ -186,7 +186,12 @@
       elseif ( str_starts_with ( (string) $key, 'pad' ) ) continue;
       else   $keep [$key] = $value;
 
-    return $padGo . $padStartPage . '&' . http_build_query ( $keep + $set );
+    // The name the page was asked by - products/42 - not the file that answers it,
+    // products/[id], which no link reaches.
+
+    $asked = ( $padPageAsked ?? '' ) !== '' ? $padPageAsked : $padStartPage;
+
+    return $padGo . implode ( '/', array_map ( 'rawurlencode', explode ( '/', $asked ) ) ) . '&' . http_build_query ( $keep + $set );
 
   }
 

@@ -25,4 +25,5 @@ of the request would write its old value back over the session.
 | `rootroute.php/pad` | A bare query key on a clean URL stays a value of the path's page beside the root route |
 | `[lang]/about.pad`, `langroute.php/pad` | A bracketed directory at the root: `?nl/about` on a clean URL names its page, a single `?nl` stays a value |
 | `encoded.php/pad` | An encoded `%26` in a path segment stays in the segment; a real `&` starts the tail |
+| `pagerroute.php/pad` | The `{pager}` of a routed page (`products/42?paged=1`) links to `products/42`, and its next page renders |
 | `_config/config.php` | Switches `$padCleanUrls` on, declares the session variable `member`, `_common` off |

@@ -6,4 +6,8 @@
   if ( isset ( $back ) )
     padRedirect ();
 
+  // Asked with ?paged, the page shows a list in pages of two with its {pager} (pagerroute).
+
+  $pagedList = isset ( $paged );
+
 ?>

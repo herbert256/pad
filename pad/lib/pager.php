@@ -135,7 +135,7 @@
 
   function padPagerHref ( $query, $page ) {
 
-    global $padGo, $padStartPage;
+    global $padGo, $padStartPage, $padPageAsked;
 
     $keep  = [];
     $first = array_key_first ( $_GET );
@@ -148,7 +148,12 @@
 
     $keep [$query] = $page;
 
-    return $padGo . $padStartPage . '&' . http_build_query ( $keep );
+    // The name the page was asked by - products/42 - not the file that answers it,
+    // products/[id], which no link reaches.
+
+    $asked = ( $padPageAsked ?? '' ) !== '' ? $padPageAsked : $padStartPage;
+
+    return $padGo . implode ( '/', array_map ( 'rawurlencode', explode ( '/', $asked ) ) ) . '&' . http_build_query ( $keep );
 
   }
 
