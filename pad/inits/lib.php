@@ -11,7 +11,9 @@
   // with took a quarter of a small page's time, the files themselves far less.
   //
   // The code of one built-in tag is not here but in tags/_lib/<tag>.php, which types/pad.php
-  // includes when a page uses the tag.
+  // includes when a page uses the tag; the code of one engine feature - the health check,
+  // the toolbar, the error pages, a dump - is in the _lib/ of the directory where the
+  // feature starts, included when it runs.
 
   $padLibDirs = [ PAD . 'lib' ];
 

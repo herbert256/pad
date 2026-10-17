@@ -67,7 +67,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | inits/ | Framework initialization and bootstrapping |
 | install/ | Installation scripts for database and web server |
 | level/ | Tag processing and scope management |
-| lib/ | Core utility functions (database, file, HTTP, etc.) |
+| lib/ | Core utility functions (database, file, HTTP, etc.), loaded on every request - the code of one tag is `tags/_lib/<tag>.php`, of one engine feature the `_lib/` of its directory, included when it runs |
 | occurrence/ | Template iteration tracking and state management |
 | options/ | Tag options processing (quote, glue, toData, etc.) |
 | properties/ | Tag property accessors (first@, last@, count@, etc.) |
