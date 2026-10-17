@@ -2,9 +2,10 @@
 
   // The login - and, while DATA/edit/users.json holds nobody, the making of the first user,
   // which only this machine may do - the loopback address naming one of this machine's own
-  // names (editThisMachine), whatever $editRemote opens: there is no default password to
-  // guess. Five tries a minute per address. The password is read as it was posted -
-  // padRequest and padValidate trim, and a space at the end of a password is part of it.
+  // names or a name $editHosts lists (editThisMachine), whatever $editRemote opens: there is
+  // no default password to guess. Five tries a minute per address. The password is read as
+  // it was posted - padRequest and padValidate trim, and a space at the end of a password is
+  // part of it.
 
   $loginSetup = editUsers ( editStore () ) ? 0 : 1;
   $loginError = '';

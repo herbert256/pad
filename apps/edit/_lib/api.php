@@ -16,8 +16,8 @@
   // editLoggedIn the whole rule - this machine and a valid login - which _guard.php asks and
   //              the two entry points, api.php and index.php, ask again
   // editThisMachine the request is this machine's own: from the loopback address, nothing
-  //              forwarded, naming one of this machine's own names - what only may make the
-  //              first user (login.php), opened up or not
+  //              forwarded, naming one of this machine's own names or one $editHosts lists -
+  //              what only may make the first user (login.php), opened up or not
   // editAppAsked the application a link asked for, kept through the login
   // editBody     the call's arguments: the JSON body as it was sent - not trimmed, a file's
   //              whitespace is its own - or, for an upload, the form fields
@@ -60,11 +60,12 @@
   // $editRemote on and no host listed it takes any Host, and the loopback address alone was
   // taken for this machine - a page on another site whose name rebinds to 127.0.0.1, posting
   // from the developer's own browser, made the first user with its own password, and with it
-  // had the terminal.
+  // had the terminal. A name the owner listed in $editHosts - pad.test for a local
+  // development name - is this machine's as well: the rebinding page names one of its own.
 
   function editThisMachine () {
 
-    return padLoopback () and editHostNamed ( editOwnHosts );
+    return padLoopback () and editHostNamed ( array_merge ( editOwnHosts, (array) ( $GLOBALS ['editHosts'] ?? [] ) ) );
 
   }
 
