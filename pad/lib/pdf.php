@@ -408,13 +408,16 @@
       }
 
       // A link that holds a picture alone - a linked logo - is the picture, the link over it,
-      // where the picture was its alt text.
+      // where the picture was its alt text. A picture the document cannot draw - a PNG, an
+      // SVG, a remote one - stays the alt text in the line, as a link: taken as a picture it
+      // became a grey [alt] of its own with no link, a paragraph broken round it.
 
-      if ( $name == 'a' and ( $only = padPdfOnlyImage ( $child ) ) ) {
+      if ( $name == 'a' and ( $only = padPdfOnlyImage ( $child ) )
+           and ( $file = padPdfImageData ( trim ( $only->getAttribute ( 'src' ) ) ) ) !== NULL ) {
         padPdfParagraph ( $doc, $runs, $ctx );
         $runs = [];
         $href = trim ( $child->getAttribute ( 'href' ) );
-        padPdfImage ( $doc, $only, $ctx, preg_match ( '#^(https?://|mailto:)#i', $href ) ? $href : '' );
+        padPdfImage ( $doc, $only, $ctx, preg_match ( '#^(https?://|mailto:)#i', $href ) ? $href : '', $file );
         continue;
       }
 
@@ -1234,9 +1237,9 @@
   // Pictures: a JPEG goes into the document as it is.
   // ------------------------------------------------------------------------------------
 
-  function padPdfImage ( &$doc, $el, $ctx, $link = '' ) {
+  function padPdfImage ( &$doc, $el, $ctx, $link = '', $file = NULL ) {
 
-    $file = padPdfImageData ( trim ( $el->getAttribute ( 'src' ) ) );
+    $file = $file ?? padPdfImageData ( trim ( $el->getAttribute ( 'src' ) ) );
     $alt  = trim ( $el->getAttribute ( 'alt' ) );
 
     if ( $file === NULL ) {
