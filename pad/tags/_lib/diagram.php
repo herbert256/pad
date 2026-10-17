@@ -957,8 +957,13 @@
     // the loop, one over the other for further loops: on the middle line it was read as that
     // edge's label, and the edge's own label, stepping aside, covered its arrowhead.
 
+    // The loop itself is in the way of a label as well - [ x, y, width, half height ] around
+    // its curve: with the loop's label above it, the label of the edge leaving the node on the
+    // loop's side was put half way along that edge, on the loop's turn, and the loop seemed to
+    // run into "yes" and out again.
+
     $side   = ( $direction == 'RL' ) ? -1 : 1;
-    $loops  = $labels = [];
+    $loops  = $labels = $curves = [];
 
     foreach ( $edges as $e => list ( $a, $b, $label ) )
       if ( $a === $b ) {
@@ -966,8 +971,9 @@
         $n          = $nodes [$a];
         $far        = $n ['x'] + $side * ( $n ['w'] / 2 + 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ) );
         $boxes []   = [ min ( $n ['x'], $far ), $n ['y'] - 28 - 6 * $k, max ( $n ['x'], $far ), $n ['y'] + 28 + 6 * $k ];
+        list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
+        $curves []  = [ $x + $r * 0.375, $n ['y'], abs ( $r ) * 0.75, 15 + 2 * $k, 'loop' ];
         if ( $label !== '' ) {
-          list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
           $w              = padDiagramWidth ( $label ) + 8;
           $labels [$e]    = $vertical ? [ $x + $r * 0.75 + $side * $w / 2, $n ['y'], $w ]
                                       : [ $x + $side * $w / 2, $n ['y'] - 28 - 21 * $k, $w ];
@@ -990,10 +996,13 @@
 
         // Half way, else a little before or after where another label stands there.
 
-        $clash = function ( $x, $y ) use ( &$labels, $w ) {
-          foreach ( $labels as list ( $ox, $oy, $ow ) )
-            if ( abs ( $ox - $x ) < ( $ow + $w ) / 2 + 2 and abs ( $oy - $y ) < 20 )
-              return [ $ox, $oy, $ow ];
+        $clash = function ( $x, $y ) use ( &$labels, $curves, $w ) {
+          foreach ( array_merge ( $curves, array_values ( $labels ) ) as $one ) {
+            list ( $ox, $oy, $ow ) = $one;
+            $oh = $one [3] ?? 9;
+            if ( abs ( $ox - $x ) < ( $ow + $w ) / 2 + 2 and abs ( $oy - $y ) < $oh + 11 )
+              return [ $ox, $oy, $ow, $oh, $one [4] ?? '' ];
+          }
           return NULL;
         };
 
@@ -1009,7 +1018,7 @@
         } else
           foreach ( [ 0.5, 0.35, 0.65, 0.22, 0.78, 0.5 ] as $part ) {
             list ( $x, $y ) = padDiagramMiddle ( $paths [$e], $part );
-            if ( ! ( $other = $clash ( $x, $y ) ) )
+            if ( ! ( $other = $clash ( $x, $y ) ) or $other [4] == 'loop' )
               break;
           }
 
@@ -1017,13 +1026,13 @@
         // the next one in the way, on the same side, until it stands free: moved once, it
         // could land on a label moved there before, and the two were written on one spot.
 
-        for ( $step = 0, $sign = 0; $other and $step <= count ( $labels ); $step++ ) {
+        for ( $step = 0, $sign = 0; $other and $step <= count ( $labels ) + count ( $curves ); $step++ ) {
           if ( $vertical ) {
             $sign = $sign ?: ( $x >= $other [0] ? 1 : -1 );
             $x    = $other [0] + $sign * ( ( $other [2] + $w ) / 2 + 4 );
           } else {
             $sign = $sign ?: ( $y >= $other [1] ? 1 : -1 );
-            $y    = $other [1] + $sign * 21;
+            $y    = $other [1] + $sign * ( $other [3] + 12 );
           }
           $other = $clash ( $x, $y );
         }
