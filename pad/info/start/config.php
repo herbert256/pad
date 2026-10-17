@@ -5,8 +5,9 @@
   // is empty, so a normal request pays nothing.
   //
   // Raises the nesting counter $padInfoCnt, loads the shared helpers, defaults every unset
-  // switch to FALSE (padInfoSet, pad/lib/info.php) and starts each enabled mode. $padInfoStarted
-  // tells lib/exit.php that info/end/config.php still has to run at the end of the request.
+  // switch to FALSE (padInfoSet, info/_lib/_lib.php) and starts each enabled mode.
+  // $padInfoStarted tells lib/exit.php that info/end/config.php still has to run at the end
+  // of the request.
 
   if ( ! $padInfo )
     return;
