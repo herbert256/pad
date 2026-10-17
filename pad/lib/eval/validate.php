@@ -139,16 +139,23 @@
         return padEvalValidateError ( "an empty pipe segment", $eval );
 
       if ( $idx == 0 and ! $pipe       ) continue;   // in a general expression the head is a value
-      if ( count ( $tokens ) != 1     ) continue;   // an expression judges itself in the stages after
 
       // A signed number standing alone after a | is the missing-space form of the
       // arithmetic pipe: {echo $x | +1} replaces the value with the literal +1 where
       // {echo $x | + 1} adds one. It can only be that mistake, so it is named as one.
 
-      if ( preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
+      if ( count ( $tokens ) == 1 and preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
         return padEvalValidateError ( "a pipe operator needs a space before its operand - write '| + 1', not '| " . $tokens [0] [0] . "'", $eval );
 
       if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
+
+      // The head word of a segment is judged however much follows it - {echo $s | lft 2}
+      // printed lft2, {echo $s | uppr . 'x'} upprx. One called like a function is named by
+      // the check of calls below; a segment that places the value with @ writes its words as
+      // text around it - {echo 'x' | zz@yy} is zzxyy.
+
+      if ( count ( $tokens ) > 1 and $tokens [1] [1] == 'open' ) continue;
+      if ( in_array ( '$$', array_column ( $tokens, 1 ), TRUE ) ) continue;
 
       $word = $tokens [0] [0];
 
