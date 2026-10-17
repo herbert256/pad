@@ -6,7 +6,7 @@
   // needed - a small script (CSP nonce) only keeps the page still and marks the current dot.
   // No autoplay. label= names the carousel for a screen reader ('Carousel' when not given); a
   // slide's label is its caption. tags/_lib/carousel.php; the {tab}s are collected as {tabs}
-  // collects them, lib/tabs.php.
+  // collects them, tags/_lib/tabs.php.
 
   if ( $padWalk [$pad] == 'start' ) {
 

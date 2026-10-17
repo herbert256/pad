@@ -14,7 +14,9 @@
   // one that was open. open= names the item open at first, by its number from 1 or its
   // label; open without a value opens them all, which a single accordion cannot.
   //
-  // The items are collected the way {tabs} collects its tabs - lib/tabs.php.
+  // The items are collected the way {tabs} collects its tabs - tags/_lib/tabs.php.
+
+  include_once PAD . 'tags/_lib/tabs.php';
 
   function padAccordion ( $items, $single, $open ) {
 

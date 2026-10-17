@@ -5,6 +5,8 @@
   // of the first set's second tab - and in a nested set a label then pointed at the outer
   // set's wrapper and its tab could not be clicked.
 
+  include_once PAD . 'tags/_lib/tabs.php';
+
   $items = [ [ 'label' => 'A', 'content' => 'a' ], [ 'label' => 'B', 'content' => 'b' ] ];
   $html  = padUnprotect ( padTabs ( $items, 1 ) . padTabs ( $items, 1 ) );
 

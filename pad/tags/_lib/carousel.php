@@ -23,7 +23,9 @@
   // scroll the row alone, and the dot of the slide in view - also one reached by swiping -
   // is marked, aria-current for a screen reader.
   //
-  // The items are collected the way {tabs} collects its tabs - lib/tabs.php.
+  // The items are collected the way {tabs} collects its tabs - tags/_lib/tabs.php.
+
+  include_once PAD . 'tags/_lib/tabs.php';
 
   function padCarousel ( $items, $label ) {
 

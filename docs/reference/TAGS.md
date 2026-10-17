@@ -2093,7 +2093,7 @@ check.
 
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
-showing the panel of the checked one (`lib/tabs.php`). The items are `{tab}` pairs, which
+showing the panel of the checked one (`tags/_lib/tabs.php`). The items are `{tab}` pairs, which
 `{accordion}` and `{carousel}` take as well.
 
 ```html

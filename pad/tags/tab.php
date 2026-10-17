@@ -2,9 +2,11 @@
 
   // {tab 'Overview'} ... {/tab} - one item of the {tabs}, {accordion} or {carousel} it
   // stands in: its label and its content, rendered and handed to that owner instead of
-  // printed here (lib/tabs.php). It may stand deeper than directly inside - in an {if}, or
+  // printed here (tags/_lib/tabs.php). It may stand deeper than directly inside - in an {if}, or
   // in a loop that makes a tab per row. A tab of a set or an accordion needs its label; a
   // slide of a carousel may go without, its label is its caption.
+
+  include_once PAD . 'tags/_lib/tabs.php';
 
   if ( $padWalk [$pad] == 'start' ) {
 
