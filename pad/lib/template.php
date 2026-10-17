@@ -370,10 +370,19 @@
       $increment = 1;
 
     // '1..z' asks for a range between a number and a letter, which has no meaning; both ends
-    // have to be of one kind, and if they are not there are no values to answer with.
+    // have to be of one kind, and if they are not there are no values to answer with. Strict
+    // mode names it, as it names a missing end - '1..3;7' and '7;1..3', a list with a range in
+    // it, split there too, and all three answered nothing in silence.
 
-    if ( is_numeric ( $p1 ) != is_numeric ( $p2 ) )
+    if ( is_numeric ( $p1 ) != is_numeric ( $p2 ) ) {
+
+      if ( $padCheckSyntax )
+        padError ( "the range '" . trim ( $input ) . "' has ends of two kinds"
+                 . ( str_contains ( (string) $input, ';' ) ? " - a list cannot hold a range" : '' ) );
+
       return [];
+
+    }
 
     // A letter range runs from one letter to another, a single character at each end: 'x..ab',
     // 'aa..ad' or 'a..é' - an end of more than one byte - ended the request on PHP's "ord():
