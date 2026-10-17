@@ -255,6 +255,11 @@
 
   // Kept per name for the request, like padValidStore: every nested pass sifts the whole
   // symbol table through it twice.
+  //
+  // What the response has issued stays issued whichever pass issued it - the CSRF token's
+  // record, the CSP nonce, the flash messages taken out: rolled back at a sandbox's end, a
+  // cached section kept one visitor's token for the next, the script nonce differed from the
+  // header's, and a flash shown inside a {code} showed again outside it.
 
   function padStrPad ( $field ) {
 
@@ -267,7 +272,7 @@
       if ( ! str_starts_with ( $field, 'padStr' ) )
         if ( ! in_array ( $field, padStrSto) )
           if ( ! in_array ( $field, padLevelVars) )
-            if ( $field != 'padInfoCnt' and $field != 'padInfoTraceId' and $field != 'padToolbarData' )
+            if ( ! in_array ( $field, [ 'padInfoCnt', 'padInfoTraceId', 'padToolbarData', 'padCsrfIssued', 'padNonce', 'padFlashNow' ], TRUE ) )
               return $memo [$field] = TRUE;
 
     return $memo [$field] = FALSE;
