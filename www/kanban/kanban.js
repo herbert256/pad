@@ -78,10 +78,12 @@
     }
   }
 
-  // Due dates gone by, by this browser's clock.
+  // Due dates gone by, by this browser's clock - its own day, where toISOString's is the day
+  // in Greenwich: in New York at 9 pm a card due today was late already.
 
   function markLate() {
-    const today = new Date().toISOString().slice(0, 10);
+    const now   = new Date();
+    const today = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
     for (const time of document.querySelectorAll('.card time[datetime]'))
       time.classList.toggle('late', time.getAttribute('datetime') < today && !time.closest('[data-column="4"]'));
   }
