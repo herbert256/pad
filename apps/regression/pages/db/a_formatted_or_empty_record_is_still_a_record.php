@@ -1,16 +1,19 @@
 <?php
 
-  // A RECORD stays one row when the page formats every value it shows - the totals given a comma and
-  // two decimals, a name given a capital - and when none of its columns holds a value: it
-  // has the columns of the row db() answered, in their order. It was known only by a column
-  // still holding the answered value, so each became one occurrence per column, holding its
-  // value under the tag's name, and {$total} was not found.
+  // A RECORD whose columns all came back empty stays one row; one whose every value the page
+  // formats - the totals given a comma and two decimals, a name a capital - is handed over as
+  // a list of one row, [ $totals ], and is that row; and a heading list holding exactly a
+  // record's column names in their order, [ 'name' => 'Name', 'salary' => 'Salary' ], stays
+  // a list of its values: taken for the record, {$labels} inside it ended the page.
 
   $totals = db ( "record sum(salary) as total, avg(salary) as average from staff" );
-  $totals = array_map ( fn ( $value ) => number_format ( (float) $value, 2 ), $totals );
+  $totals = [ array_map ( fn ( $value ) => number_format ( (float) $value, 2 ), $totals ) ];
 
-  $bob           = db ( "record name from staff where name = 'bob'" );
+  $bob           = db ( "record name, salary from staff where name = 'bob'" );
   $bob ['name']  = ucfirst ( $bob ['name'] );
+  $bob           = [ $bob ];
+
+  $labels = [ 'name' => 'Name', 'salary' => 'Salary' ];
 
   $profile = db ( "record '' as bio, NULL as website from staff where name = 'bob'" );
 

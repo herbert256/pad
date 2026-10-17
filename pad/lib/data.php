@@ -206,9 +206,11 @@
     // (loosely - a cast value is the same value). By the columns alone, a key => label map, a
     // heading list or a settings array that merely shared their names was one record after
     // any RECORD of the request: [ 'officeCode' => 'Number', 'city' => 'City' ] iterated as
-    // one occurrence with three fields, where it is three. Exactly the row's columns, in its
-    // order, is the row too, whatever the values: a record whose every value the page
-    // formatted - totals given two decimals, a name a capital - or that had none was lost.
+    // one occurrence with three fields, where it is three - also when the names came in the
+    // row's own order, [ 'name' => 'Name', 'salary' => 'Salary' ], the commonest heading list.
+    // Exactly the row's columns with every value empty is the row too: a record that had
+    // none. A record whose every value the page formatted cannot be told from such a list;
+    // handed over as a list of one row - [ $totals ] - it is the row it was.
     // The rows are kept by their columns (padDataKeepRecord), so this is a test per column
     // list, not per row read: a page that read its orders one RECORD at a time made every
     // padData of an associative array after it walk the thousand rows kept.
@@ -218,7 +220,7 @@
       if ( array_diff_key ( $set ['columns'], $input ) )
         continue;
 
-      if ( array_keys ( $input ) === array_keys ( $set ['columns'] ) )
+      if ( array_keys ( $input ) === array_keys ( $set ['columns'] ) and ! array_filter ( $input, fn ( $value ) => $value !== NULL and $value !== '' ) )
         return TRUE;
 
       foreach ( $set ['values'] as $key => $values )
