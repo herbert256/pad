@@ -21,6 +21,17 @@ Multiple functions can be chained:
 {echo $name | trim | upper | left(10)}
 ```
 
+Where nothing is piped in - at the head of an expression, or as an argument of another
+call - a function written as a call reads its first argument as the value, as PHP's
+functions do; `date` keeps PHP's order, the format first and then the moment:
+
+```
+{if left($code, 2) eq 'NL'} ... {/if}
+{echo 'Hello ' . upper($name)}
+{echo $text | replace('x', upper($y))}
+{echo date('Y', $created)}
+```
+
 ---
 
 ## String Extraction (Delimiter-Based)

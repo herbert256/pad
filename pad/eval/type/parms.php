@@ -12,6 +12,8 @@
   // Without parentheses the type takes the next token as its argument - but only a value:
   // {if now gt 5} handed gt to now and compared nothing, always true.
 
+  $padEvalCalled = ( $result [$k] [3] != 0 );
+
   if ( $result [$k] [3] == 0 ) {
     $padEvalNextKey = padEvalNextKey ( $result, $k );
     $result [$k] [3] = ( $padEvalNextKey and $padEvalNextKey <= $end
@@ -57,11 +59,38 @@
 
   }
 
-  if ( $b >= $start and $result [$b] [1] == 'VAL' and ! $padEvalInCall ) {
+  $padEvalPiped = ( $b >= $start and $result [$b] [1] == 'VAL' and ! $padEvalInCall );
+
+  if ( $padEvalPiped ) {
     $value = $result [$b] [0];
     unset ($result [$b]);
   } else
     $value = $myself;
+
+  // A built-in written as a call where nothing is piped into it - at the head of an
+  // expression that is no pipe body (eval/eval.php), or as an argument of another call -
+  // reads its first argument as the value, as PHP's functions of those names read theirs:
+  // {echo upper($s)}, {if left($code, 2) eq 'NL'}, replace('l', upper('x')). The value was
+  // the segment's empty one and the argument went unread: {echo trim('  a  ')} printed
+  // nothing, upper($s) eq 'HELLO' was false, and inside replace the outer pipe's value was
+  // upper-cased instead of the 'x'. date keeps PHP's order - the format, then the moment:
+  // date('Y', 0) is 1970. A pipe - {$s | left(2)} - still hands its value in.
+
+  if ( $kind == 'pad' and $padEvalCalled and $count and ! $padEvalPiped
+       and ( $padEvalInCall or ( $GLOBALS ['padEvalHead'] ?? FALSE ) ) ) {
+
+    if ( in_array ( $name, [ 'date', 'time', 'timestamp' ] ) ) {
+      $value = $parm [1] ?? '';
+      if ( is_numeric ( $value ) )
+        $value = new DateTimeImmutable ( '@' . (int) $value );
+      unset ( $parm [1] );
+      $parm = array_values ( $parm );
+    } else
+      $value = array_shift ( $parm );
+
+    $count = count ( $parm );
+
+  }
 
   // A kind that is only ever a tag - select, common, keep, make, remove - has no handler
   // here; that died on a raw missing include. Strict mode names it, the lenient walk

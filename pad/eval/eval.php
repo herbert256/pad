@@ -45,8 +45,18 @@
   padEvalTrace ( 'after', $result ); $_eval_after [] = $result;
   padEvalPipes ( $result, $pipes );
 
-  foreach ( $pipes as $one )
+  // $padEvalHead tells eval/type/parms.php that nothing is piped into the segment: the head
+  // of an expression that is no pipe body. Kept per evaluation, as a call inside a segment
+  // may evaluate an expression of its own.
+
+  $padEvalHeadWas = $GLOBALS ['padEvalHead'] ?? FALSE;
+
+  foreach ( $pipes as $padEvalSegment => $one ) {
+    $GLOBALS ['padEvalHead'] = ( $padEvalSegment == 0 and ! $pipe );
     $value = padEvalResult ( $one, $value, $eval );
+  }
+
+  $GLOBALS ['padEvalHead'] = $padEvalHeadWas;
 
   return $value;
 
