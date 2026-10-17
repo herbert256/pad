@@ -80,8 +80,16 @@
         $when = trim ( preg_replace ( '/\b(?:mon|tue|tues|wed|thu|thur|thurs|fri|sat|sun)(?:day|sday|nesday|rsday|urday)?\b\.?,?\s*/i', '', $when ) );
     }
 
+    // A date written without a zone is read in UTC, its wall clock as it stands: read in the
+    // application's timezone, a clock time in the hour that zone skips moved an hour on -
+    // 2026-03-29 02:30 in Amsterdam was 03:30 - and where the summer starts at midnight a
+    // plain date became 01:00 of its day, a moment instead of a day.
+
+    $zoned = ctype_digit ( $when ) || ! empty ( $parts ['is_localtime'] );
+
     try {
-      $moment = ctype_digit ( $when ) ? new DateTimeImmutable ( "@$when" ) : new DateTimeImmutable ( $when, padDateZone () );
+      $moment = ctype_digit ( $when ) ? new DateTimeImmutable ( "@$when" )
+                                      : new DateTimeImmutable ( $when, $zoned ? padDateZone () : new DateTimeZone ( 'UTC' ) );
     } catch ( Throwable $e ) {
       return FALSE;
     }
@@ -89,7 +97,7 @@
     // The local wall clock read again as UTC - not through gmmktime, whose rule for a year
     // of two digits put 0079-08-24 in 1979.
 
-    $local = $moment->setTimezone ( padDateZone () );
+    $local = $zoned ? $moment->setTimezone ( padDateZone () ) : $moment;
 
     // A moment past the year 9999 - a millisecond timestamp, 1760000000000 - is no day a
     // calendar shows: written back as 57742-03-07 it was read as 2002.
