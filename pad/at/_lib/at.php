@@ -382,8 +382,12 @@
 
     global $padInfo;
 
+    // Only option, parameter and variable read a name behind them - {variable.x@items}. For
+    // any other a second name is a path into a field named like the property: $data.title,
+    // $count.total and $name.first answered the level's data, row count and name.
+
     if     ( count ( $names ) == 1 ) $parm = '';
-    elseif ( count ( $names ) == 2 ) $parm = end ($names);
+    elseif ( count ( $names ) == 2 and in_array ( reset ( $names ), [ 'option', 'parameter', 'variable' ], TRUE ) ) $parm = end ($names);
     else                             return INF;
 
     $name = reset ( $names );
