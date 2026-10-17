@@ -178,6 +178,12 @@ async function main() {
         expect('pad_render with data keeps the value the route binds, $id = 42 of products/42, as ?products/42&padSample does', !r.error && r.text.trim() === '<p>Product 42</p>', r);
         r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', data: { title: 'Hi' } });
         expect('pad_render with data keeps the value a bracketed directory binds, $year = 2026 of blog/2026/hello', !r.error && r.text.trim() === '<p>2026: Hi</p>', r);
+        r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', template: '[{$year}|{$slug}]', data: { year: 'Y1', slug: 'the-slug' } });
+        expect('pad_render with data and a template renders a routed page in a bracketed directory with the data', !r.error && r.text.trim() === '[Y1|the-slug]', r);
+        r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', template: '[{$year}|{$slug}]', data: {} });
+        expect('pad_render with data and a template keeps the values the route binds', !r.error && r.text.trim() === '[2026|hello]', r);
+        r = await call('pad_render', { app: 'shop', page: 'admin', template: '{badge} {$who}', data: { who: 'Ann' } });
+        expect('pad_render with data and a template for a directory renders in that directory, as without data', !r.error && r.text.includes('<b>admin</b>') && r.text.includes('Ann'), r);
         r = await call('pad_check', { app: 'shop', page: 'products/42', data: {} });
         expect('pad_check with data passes a routed page whose field the route binds', !r.error && r.text.startsWith('ok'), r);
         r = await call('pad_check', { app: 'shop', page: 'blog/2026/hello', data: {} });

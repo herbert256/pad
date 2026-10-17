@@ -134,12 +134,17 @@ async function render(a, tree = CURRENT) {
     // ?products/42&padSample has it.
     let routed = {};
     if (a.data !== undefined) {
+        // A directory's index renders in that directory, a routed page in the directory of
+        // its bracketed file: the sample is named there - for a template given in its place
+        // too. Named from the page as asked, blog/2026/mcpData... stood in a directory no file
+        // has, so the route blog/[year]/[slug] took the made-up name for its slug and looked
+        // for the sample under [slug].
+        const own = page !== undefined || template === undefined ? pageTemplate(app, page, tree.apps) : { text: '' };
         if (template === undefined) {
-            // A directory's index renders in that directory, a routed page in the directory of
-            // its bracketed file: the sample is named there.
-            const own = pageTemplate(app, page, tree.apps);
             if (!own.text) throw new Error(`the page '${name}' has no template of its own to give the data to`);
             template = own.text;
+        }
+        if (own.text) {
             name = own.page;
             routed = own.vars;
         }
