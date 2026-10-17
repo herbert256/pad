@@ -910,13 +910,19 @@
         $boxes [] = [ $x - $node ['w'] / 2, $y - $node ['h'] / 2, $x + $node ['w'] / 2, $y + $node ['h'] / 2 ];
       }
 
+    // A loop stands on the side its rank's flow goes on to - the right, in RL the left - where
+    // the room for it is kept: in RL it was drawn on the right, under the node before, and
+    // the room kept on the left stood empty.
+
+    $side  = ( $direction == 'RL' ) ? -1 : 1;
     $loops = [];
 
     foreach ( $edges as $e => list ( $a, $b, $label ) )
       if ( $a === $b ) {
         $k          = $loops [$a] = ( $loops [$a] ?? -1 ) + 1;
         $n          = $nodes [$a];
-        $boxes []   = [ $n ['x'], $n ['y'] - 28 - 6 * $k, $n ['x'] + $n ['w'] / 2 + 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ), $n ['y'] + 28 + 6 * $k ];
+        $far        = $n ['x'] + $side * ( $n ['w'] / 2 + 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ) );
+        $boxes []   = [ min ( $n ['x'], $far ), $n ['y'] - 28 - 6 * $k, max ( $n ['x'], $far ), $n ['y'] + 28 + 6 * $k ];
       }
 
     $loops = [];
@@ -1002,7 +1008,8 @@
 
       if ( $a === $b ) {
 
-        // A loop on the right of its node, a wider one for every further loop there.
+        // A loop on the right of its node - in RL on the left - a wider one for every further
+        // loop there.
 
         $k  = $loops [$a] = ( $loops [$a] ?? -1 ) + 1;
         $n  = $nodes [$a];
@@ -1010,15 +1017,15 @@
         // in from the tip, a decision of more than a few words had the loop and its label
         // inside it, hidden by its fill.
 
-        $x  = $n ['x'] + ( $n ['shape'] == 'diamond' ? $n ['w'] / 2 * max ( 0, 1 - 16 / max ( 1, $n ['h'] ) ) : $n ['w'] / 2 );
+        $x  = $n ['x'] + $side * ( $n ['shape'] == 'diamond' ? $n ['w'] / 2 * max ( 0, 1 - 16 / max ( 1, $n ['h'] ) ) : $n ['w'] / 2 );
         $y  = $n ['y'];
-        $r  = 34 + 22 * $k;
-        $d  = 'M' . $X ( $x ) . ',' . $Y ( $y - 8 ) . 'C' . $X ( $x + $r ) . ',' . $Y ( $y - 28 - 6 * $k ) . ' ' . $X ( $x + $r ) . ',' . $Y ( $y + 28 + 6 * $k ) . ' ' . $X ( $x + 6 ) . ',' . $Y ( $y + 10 );
+        $r  = $side * ( 34 + 22 * $k );
+        $d  = 'M' . $X ( $x ) . ',' . $Y ( $y - 8 ) . 'C' . $X ( $x + $r ) . ',' . $Y ( $y - 28 - 6 * $k ) . ' ' . $X ( $x + $r ) . ',' . $Y ( $y + 28 + 6 * $k ) . ' ' . $X ( $x + 6 * $side ) . ',' . $Y ( $y + 10 );
         $svg .= "<g class=\"pc-mark\">$tip<path class=\"$class\" d=\"$d\"/>"
-              . ( $arrow ? padDiagramHead ( [ $x + 12, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style ) : '' ) . '</g>';
+              . ( $arrow ? padDiagramHead ( [ $x + 12 * $side, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style ) : '' ) . '</g>';
 
         if ( $label !== '' )
-          $svg .= '<text x="' . $X ( $x + $r * 0.75 + 4 ) . '" y="' . $Y ( $y + 4 ) . '">' . padChartAttr ( $label ) . '</text>';
+          $svg .= '<text x="' . $X ( $x + $r * 0.75 + 4 * $side ) . '" y="' . $Y ( $y + 4 ) . '"' . ( $side < 0 ? ' text-anchor="end"' : '' ) . '>' . padChartAttr ( $label ) . '</text>';
 
         continue;
 
