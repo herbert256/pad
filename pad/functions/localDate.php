@@ -6,7 +6,7 @@
   // date and time are styles - none, short, medium, long, full - with medium and none as the
   // defaults: localDate('long', 'short') is a long date with a short time. A first argument
   // that is no style word is an ICU pattern instead: localDate('d MMMM y'). The value is a
-  // Unix timestamp or a date in text; empty is now. Without PHP's intl extension the answer
+  // Unix timestamp, a date in text or a date object; empty is now. Without PHP's intl extension the answer
   // is date('Y-m-d'), with ' H:i' when a time style was asked for.
   //
   // The timezone is the application's as the call finds it (padDateZone, lib/date.php): a
@@ -22,7 +22,7 @@
   $padLdDate   = strtolower ( trim ( (string) ( $parm [0] ?? '' ) ) ) ?: 'medium';
   $padLdTime   = strtolower ( trim ( (string) ( $parm [1] ?? '' ) ) ) ?: 'none';
   $padLdLocale = padLocaleOf ( $parm [2] ?? '' );
-  $padLdStamp  = padLocaleTime ( $value );
+  $padLdStamp  = ( $value instanceof DateTimeInterface ) ? $value->getTimestamp () : padLocaleTime ( $value );
 
   if ( $padLdStamp === NULL )
     return '';

@@ -115,10 +115,20 @@
     if ( is_float ( $value ) and is_nan ( $value ) and $type == 2 )
       $value = NULL;
 
-    if     ($type ==  1) $return = ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
-    elseif ($type ==  2) $return = ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
-    elseif ($type ==  3) $return = ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
-    elseif ($type ==  4) $return = ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? []    : $value;
+    // A date object is a value - the moment {timeago}, {countdown}, ago and date take as it
+    // is - and an object that writes itself as text is that text. Both were no field at all:
+    // {timeago $created} with a DateTime from the page's PHP answered "there is no field named
+    // '$created'". Any other object stays neither a value nor a list.
+
+    if ( $value instanceof Stringable and ! $value instanceof DateTimeInterface and ( $type == 1 or $type == 2 ) )
+      $value = (string) $value;
+
+    $scalar = ( is_scalar ( $value ) or $value instanceof DateTimeInterface );
+
+    if     ($type ==  1) $return = ( $value !== NULL and ( $value === INF or ! $scalar ) ) ? FALSE : TRUE;
+    elseif ($type ==  2) $return = ( $value === NULL or    $value === INF or ! $scalar   ) ? ''    : $value;
+    elseif ($type ==  3) $return = ( $value === NULL or    $value === INF or   $scalar   ) ? FALSE : TRUE;
+    elseif ($type ==  4) $return = ( $value === NULL or    $value === INF or   $scalar   ) ? []    : $value;
     elseif ($type ==  5) $return = ( $value === INF                                                ) ? FALSE : TRUE;
     elseif ($type ==  6) $return = ( $value === INF                                                ) ? ''    : $value;
     elseif ($type ==  7) $return = ( $value === INF                                                ) ? FALSE : TRUE;

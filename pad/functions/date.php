@@ -20,7 +20,11 @@
 
   $padDateZone = padDateZone ();
 
-  if ( ! $value )
+  // A date object - a DateTime the page's PHP left - is the moment it holds.
+
+  if ( $value instanceof DateTimeInterface )
+    $value = $value->getTimestamp ();
+  elseif ( ! $value )
     $value = time ();
   elseif ( ! is_numeric ( $value ) ) {
     $padDateText = $value;

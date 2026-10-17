@@ -98,7 +98,9 @@
         // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
 
         if ( $padCheckSyntax and ! $coalesce and ! padFieldCheck ( $one[0] ) and ! padStrHidden ( $one[0] ) )
-          if ( padArrayCheck ( $one[0] ) )
+          if ( padFieldObject ( $one[0] ) )
+            padError ( "Expression error: the field '\${$one[0]}' is an object, not a value" );
+          elseif ( padArrayCheck ( $one[0] ) )
             padError ( "Expression error: the field '\${$one[0]}' is a list, not a value" );
           else
             padError ( "Expression error: there is no field named '\${$one[0]}'" );
@@ -130,6 +132,21 @@
         $result[$k][0] = hex2bin ( ( strlen ( $one[0] ) % 2 ? '0' : '' ) . $one[0] );
 
       }
+
+  }
+
+  // Whether a field that is no value holds an object - a stdClass record, a model - so that
+  // the report names it as what it is rather than as a field that does not exist. A date
+  // object and one that writes itself as text are values (padField) and never get here.
+
+  function padFieldObject ( $name ) {
+
+    if ( str_contains ( $name, ':' ) )
+      return FALSE;
+
+    $raw = ( str_contains ( $name, '@' ) or str_contains ( $name, '.' ) ) ? padFieldAt ( $name, 0 ) : padFieldLevel ( $name, 2 );
+
+    return is_object ( $raw );
 
   }
 

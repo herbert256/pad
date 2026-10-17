@@ -368,6 +368,10 @@ Functions for working with dates and timestamps.
 - One parameter: Uses provided format string
 - Two parameters: Format + `strtotime` modifier (e.g., '+1 day')
 
+The value is a Unix timestamp, a date in text or a date object - a `DateTime` the page's PHP
+left (`date`, `localDate` and `ago` take it, as `{timeago}` and `{countdown}` do). A date object
+no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
+
 ### Examples
 
 ```
@@ -527,7 +531,7 @@ number with a fraction is reported; a value that is not a number goes through un
 {echo '2026-10-04' | ago}        → 'yesterday' on 5 October 2026
 ```
 
-The value is a Unix timestamp or a date in text; now is the one `padNowFreeze` fixed, when a
+The value is a Unix timestamp, a date in text or a date object; now is the one `padNowFreeze` fixed, when a
 page froze the clock. Under ten seconds is `just now`, then seconds, minutes and hours; from a
 day on the calendar counts - `yesterday`, days, weeks, months, years. An empty value answers
 empty; a value that is no date answers empty too, and the strict check names it.

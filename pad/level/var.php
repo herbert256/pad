@@ -89,6 +89,10 @@
   // sent the author hunting a typo that was not there.
 
   if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax
+       and in_array ( $padFirst, [ '$', '?', '!' ], TRUE ) and padFieldObject ( $padFld ) )
+    padError ( "the field '$padFirst$padFld' is an object, not a value" );
+
+  if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax
        and in_array ( $padFirst, [ '$', '?', '!' ], TRUE ) and padArrayCheck ( $padFld ) )
     padError ( "the field '$padFirst$padFld' is a list, not a value" );
 
@@ -114,6 +118,12 @@
 
   if ( $padVarOpts )
     $padVal = padEval ( $padVarOpts, $padVal, TRUE );
+
+  // A date object the pipes did not turn into text - {$created} alone - is written as the
+  // moment it holds (padField lets it through as a value, for the pipes that take it).
+
+  if ( $padVal instanceof DateTimeInterface )
+    $padVal = $padVal->format ( 'Y-m-d H:i:s' );
 
   // The markdown and highlight pipes answer HTML that is safe by construction - they
   // escaped the raw HTML of the value - so a field whose last pipe is one of them skips the
