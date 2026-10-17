@@ -1,6 +1,6 @@
 <?php
 
-  // {source} - the files behind a page as tabs, coloured on the server (lib/sources.php):
+  // {source} - the files behind a page as tabs, coloured on the server (tags/_lib/source.php):
   // the page asked for, or the one named first, with its template and PHP, then the files
   // files= adds - 'a/b.php, www:app.js', www: one in the application's www/ directory - or
   // only= those files alone, a text with commas either way.

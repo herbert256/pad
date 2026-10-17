@@ -17,10 +17,13 @@
   // closed root, focus for shadowrootdelegatesfocus - and inlines the stylesheets css= names
   // as one <style> at the start of the root: a shadow root takes no styles from the page, and
   // a <style> written into a template would have its braces read as PAD tags. The files follow
-  // the rule of {source}: a file of the application, or www: one in its www/ directory.
+  // the rule of {source}: a file of the application, or www: one in its www/ directory -
+  // padSourceList and padSourcePath of tags/_lib/source.php.
   //
   // padShadowOpen  the opening template tag with its <style>
   // padShadowCss   the text of the stylesheets, read once a request each
+
+  include_once PAD . 'tags/_lib/source.php';
 
   function padShadowOpen ( $css, $mode, $focus ) {
 

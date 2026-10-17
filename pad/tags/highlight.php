@@ -16,6 +16,8 @@
 
   if ( $padHighlightFile !== '' ) {
 
+    include_once PAD . 'tags/_lib/source.php';
+
     $padHighlightApp  = realpath ( APP );
     $padHighlightPath = realpath ( APP . ltrim ( $padHighlightFile, '/' ) );
 
