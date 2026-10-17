@@ -194,15 +194,50 @@
       return editMarker ( $text, $line, editUnits ( $before ) + 1, editUnits ( (string) ( $template ['tag'] ?? '' ) ), $message, 'pad' );
     }
 
-    // In another file of this application - a wrapper, a snippet: said in the message, and
-    // given to the browser, which offers to open it there.
+    // In another file - a snippet the page includes, its wrapper, a .pad custom tag: said in
+    // the message, and given to the browser, which offers to open it there when it is a file
+    // of this application. The marker goes on this file's own tag that brought it in, the
+    // first of the engine's includers (file:line:column, innermost first) that is this file
+    // - line 1 when none is, as the language server does. The text search below found the
+    // snippet's tag where this file held the same text, the {$lost} of an {if} branch that
+    // never runs, instead of the {lost} that included it.
 
     $other = NULL;
+    $real  = $where !== '' ? realpath ( $where ) : FALSE;
 
-    if ( $template and $where !== '' and str_starts_with ( (string) realpath ( $where ), realpath ( $appDir ) . '/' ) ) {
-      $other   = [ 'path' => substr ( (string) realpath ( $where ), strlen ( realpath ( $appDir ) ) + 1 ),
+    if ( $template and $real !== FALSE and $real !== realpath ( $file ) and (int) ( $template ['line'] ?? 0 ) > 0 ) {
+
+      $home    = realpath ( editHome () );
+      $appReal = realpath ( $appDir );
+
+      if ( $appReal !== FALSE and str_starts_with ( $real, "$appReal/" ) ) {
+        $other = [ 'path' => substr ( $real, strlen ( $appReal ) + 1 ),
                    'line' => (int) $template ['line'], 'column' => (int) ( $template ['column'] ?? 1 ) ];
-      $message .= ' - in ' . $other ['path'] . ':' . $other ['line'];
+        $shown = $other ['path'];
+      } else
+        $shown = str_starts_with ( $real, "$home/" ) ? substr ( $real, strlen ( $home ) + 1 ) : $real;
+
+      $message .= ' - in ' . $shown . ':' . (int) $template ['line'];
+
+      if ( ! $fromSource )
+        foreach ( is_array ( $template ['included'] ?? NULL ) ? $template ['included'] : [] as $by ) {
+          if ( ! preg_match ( '/^(.*):(\d+):(\d+)$/', (string) $by, $m ) )
+            continue;
+          $byFile = str_starts_with ( $m [1], '/' ) ? $m [1] : editHome () . '/' . $m [1];
+          if ( realpath ( $byFile ) !== realpath ( $file ) )
+            continue;
+          $spot = editSpot ( $text, (int) $m [2], (int) $m [3], '' );
+          if ( $spot ) {
+            $marker = editMarker ( $text, (int) $m [2], $spot [0], $spot [1], $message, 'pad' );
+            $marker ['other'] = $other;
+            return $marker;
+          }
+        }
+
+      $marker = editMarker ( $text, 1, 0, 0, $message, 'pad' );
+      $marker ['other'] = $other;
+      return $marker;
+
     } elseif ( ! empty ( $json ['file'] ) and str_starts_with ( (string) realpath ( $json ['file'] ), realpath ( $appDir ) . '/' )
                and realpath ( $json ['file'] ) !== realpath ( $file ) ) {
       $other   = [ 'path' => substr ( (string) realpath ( $json ['file'] ), strlen ( realpath ( $appDir ) ) + 1 ),
@@ -254,6 +289,32 @@
     $marker ['other'] = $other;
 
     return $marker;
+
+  }
+
+  // A place the engine names in a text - a line, and a column counted in characters - as
+  // [ column, width ] in the editor's units (editUnits): the width the tag's when the line
+  // holds it there, else the name or the {tag} that starts there - pad-lsp.js's spot().
+  // NULL when the text has no such line.
+
+  function editSpot ( $text, $line, $column, $tag ) {
+
+    $lines = explode ( "\n", (string) $text );
+
+    if ( $line < 1 or $line > count ( $lines ) )
+      return NULL;
+
+    $before = mb_substr ( $lines [ $line - 1 ], 0, max ( 0, $column - 1 ) );
+    $rest   = substr ( $lines [ $line - 1 ], strlen ( $before ) );
+
+    if ( $tag !== '' and str_starts_with ( $rest, $tag ) )
+      $width = editUnits ( $tag );
+    elseif ( preg_match ( '/^[$!#&?^]?[A-Za-z_][\w:.@-]*/', $rest, $m ) or preg_match ( '/^\{[^{}\n]*\}/', $rest, $m ) )
+      $width = editUnits ( $m [0] );
+    else
+      $width = 1;
+
+    return [ editUnits ( $before ) + 1, $width ];
 
   }
 
