@@ -25,13 +25,17 @@
 
   // A number option of a tag that draws - size=, stroke= - or its default, named under the
   // strict check: '1.5em', 'small' and 'large' were drawn at the 8px minimum without a word,
-  // where the same tags name every other option they cannot use.
+  // where the same tags name every other option they cannot use. A number written with px,
+  // the unit it is in - size='32px' - is that number: it was drawn at 32 before the check.
 
   function padWidgetNumber ( $tag, $option, $default ) {
 
     global $padCheckSyntax;
 
     $value = padTagParm ( $option, $default );
+
+    if ( is_string ( $value ) )
+      $value = preg_replace ( '/\s*px\s*$/i', '', $value );
 
     if ( is_numeric ( $value ) and is_finite ( (float) $value ) )
       return $value + 0;
