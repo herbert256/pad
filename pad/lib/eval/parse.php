@@ -68,7 +68,13 @@
   function padEvalParseValid ( $one, $next, $next2, $prev ) {
 
     if ( preg_match('/^[a-zA-Z0-9\x80-\xff]$/D', $one) )           return TRUE;
-    if ( in_array($one, ['_',':'] ) )                              return TRUE;
+    if ( $one == '_' )                                             return TRUE;
+
+    // A : continues the name only before the name it prefixes - $items:name. Before anything
+    // else it is the ternary's: $a ? $b:$c looked for a field named b: where $a ? 'x':'y'
+    // and $a ? $b : $c were read right.
+
+    if ( $one == ':' and preg_match('/^[a-zA-Z_\x80-\xff]/', $next) ) return TRUE;
     if ( $one == '.' and preg_match('/^[a-zA-Z0-9_\x80-\xff]/', $next ) ) return TRUE;
     if ( $one == '.' and in_array($next, ['<','>','*'] ) )         return TRUE;
     if ( $one == '*' and in_array($next, ['.','@'] ) )             return TRUE;
