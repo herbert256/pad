@@ -92,7 +92,7 @@
     $padRouteFound = $padRouteFound ?: [ 'page' => $padSitemapAsk, 'vars' => [] ];
   }
 
-  // ?up is the health check's (lib/health.php) on the same terms: the application's own page
+  // ?up is the health check's (inits/_lib/health.php) on the same terms: the application's own page
   // of that name wins, and whether the engine answers waits for the configuration, in
   // $padHealthAsk for inits/health.php.
 

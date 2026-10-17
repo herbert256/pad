@@ -287,7 +287,7 @@
 
   $padErrorPages = TRUE;
 
-  // The health check (lib/health.php): TRUE answers ?up - 200 with a small JSON body when
+  // The health check (inits/_lib/health.php): TRUE answers ?up - 200 with a small JSON body when
   // the checks pass, 503 when one fails - for a load balancer or an uptime monitor, when
   // the application has no page of that name.
 

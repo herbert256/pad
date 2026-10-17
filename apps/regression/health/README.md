@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Regression test for `$padHealth` (pad/lib/health.php): `?up` answers JSON - 200 and
+Regression test for `$padHealth` (pad/inits/_lib/health.php): `?up` answers JSON - 200 and
 `"status":"ok"` when every check passes, 503 and `"fail"` when one does. The checks are
 DATA/ being writable, the database answering (an SQLite database in memory) and the
 application's own `_health.php`. The index fetches it passing, with the application's check
