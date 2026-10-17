@@ -2,7 +2,7 @@
 
   // {video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'} - a
   // YouTube or Vimeo video as its poster with a play button, the player's iframe loaded only
-  // when it is pressed, from youtube-nocookie.com or with Vimeo's dnt=1 (lib/video.php):
+  // when it is pressed, from youtube-nocookie.com or with Vimeo's dnt=1 (tags/_lib/video.php):
   // nothing of the video site runs before the visitor asks for it. Without script the poster
   // links to the video on its own site. The addresses it knows: youtube.com/watch?v=,
   // youtu.be/, /shorts/ (upright), /embed/, vimeo.com/<id>, player.vimeo.com/video/<id>.

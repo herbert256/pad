@@ -2316,7 +2316,7 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 
 ### video
 A YouTube or Vimeo video as its poster with a play button; the player's iframe is loaded
-only when the button is pressed (`lib/video.php`) - nothing of the video site runs before the
+only when the button is pressed (`tags/_lib/video.php`) - nothing of the video site runs before the
 visitor asks for it. A file of `www/<application>/` is a `<video>` element.
 
 ```html
