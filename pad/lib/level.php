@@ -267,15 +267,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
     }
 
-    // What goes into a tag's text from here on is kept for the request - a value that could
-    // do more than name a word or a number, one with an operator, a quote or a call in it -
-    // so the eval sequence can refuse an expression that holds one outside its own strings
-    // (sequence/types/eval/loop.php), whatever spelling of the eval sequence it stood in: a
-    // guard that recognised each one let eval(2, '@ * {$q}') and {sequence eval, '@ * {$q}'}
-    // run the value's php:abs(-3).
-
-    if ( preg_match ( '/[^\w\s]/u', $value ) )
-      $GLOBALS ['padSpliceValues'] [$value] = TRUE;
+    padSpliceRecord ( $value );
 
     // A { followed by whitespace or a double quote opens no tag (padWhiteCheck), so the
     // value stands in text: literal JSON, {"id": {$id}}, had quotes put round it; a value
@@ -334,6 +326,43 @@ function padSplitOnUnquotedColon ( $str ) {
   // remove= and flag=. The eval sequence itself refuses what no spelling here catches. In any case, as a file system that
   // ignores case finds the option or tag for WHERE= and Eval= as well: those passed the guard
   // and their value ran.
+
+  // What goes into a tag's text is kept for the request when it could call code or read a
+  // variable - a (, a $ or a : in it - so an evaluator of a tag's text can refuse an
+  // expression that holds it outside its own strings (padSpliceInCode), whatever spelling it
+  // stood in: a guard that recognised each spelling let eval(2, '@ * {$q}') and {sequence
+  // eval, '@ * {$q}'} run the value's php:abs(-3). A value of a word, a number or operators
+  // only is not kept: a - printed in a tag's parameters made eval='@ - 1' a refusal.
+
+  function padSpliceRecord ( $value ) {
+
+    if ( is_string ( $value ) and strpbrk ( $value, '($:' ) !== FALSE )
+      $GLOBALS ['padSpliceValues'] [$value] = TRUE;
+
+  }
+
+  // Whether an expression about to be evaluated - the eval sequence's, a where=, a format= of
+  // {datatable} - holds a value kept by padSpliceRecord outside the expression's own strings,
+  // where it is part of the code.
+
+  function padSpliceInCode ( $expression ) {
+
+    static $memo = [];
+
+    $key = count ( $GLOBALS ['padSpliceValues'] ?? [] ) . ':' . $expression;
+
+    if ( isset ( $memo [$key] ) )
+      return $memo [$key];
+
+    $code = preg_replace ( '/\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"/s', '', (string) $expression );
+
+    foreach ( array_keys ( $GLOBALS ['padSpliceValues'] ?? [] ) as $one )
+      if ( str_contains ( $code, (string) $one ) )
+        return $memo [$key] = TRUE;
+
+    return $memo [$key] = FALSE;
+
+  }
 
   // Whether a splice stands inside a string of the expression - $text the quoted option up to
   // it, read as the expression will read it once the option's own quote is unescaped, each
