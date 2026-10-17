@@ -2,7 +2,9 @@
 
   // {branch} ... {/branch} inside a {tree}: renders its content only when the current row
   // of the tree has children - the <ul> around a {recurse} - and its @else@ part for a
-  // leaf. See lib/tree.php.
+  // leaf. See tags/_lib/tree.php.
+
+  include_once PAD . 'tags/_lib/tree.php';
 
   if ( ! $padPair [$pad] and $padCheckSyntax )
     padError ( "the pair {branch} never closes" );

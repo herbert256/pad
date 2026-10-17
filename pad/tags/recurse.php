@@ -6,7 +6,9 @@
   //
   // The new level is named as the tree is, so depth@tree, first@tree and count@tree speak of
   // the list being rendered, and it carries the tree's sort, where and reverse along, so the
-  // children are ordered and filtered as their parents were. See lib/tree.php.
+  // children are ordered and filtered as their parents were. See tags/_lib/tree.php.
+
+  include_once PAD . 'tags/_lib/tree.php';
 
   $padTreeLvl = padTreeLevel ( $pad - 1 );
 

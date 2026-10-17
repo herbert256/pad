@@ -3,7 +3,7 @@
   // {tree 'menu', children='items'} ... {/tree}: renders its body for every row of a tree,
   // and inside the body {recurse} renders the same body again for the current row's
   // children - {branch} ... {/branch} only when the row has any. depth@tree is 1 for these
-  // rows and one more per {recurse}. See lib/tree.php.
+  // rows and one more per {recurse}. See tags/_lib/tree.php.
   //
   // The rows are named by the first parameter or by data= - a {data} block, a stored
   // sequence, an array of the page or an enclosing row, a _data/ file (padNamedRows in
