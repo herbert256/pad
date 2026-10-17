@@ -1,7 +1,7 @@
 <?php
 
   // {case $value}{when 'a'}...{when 'b', 'c'}...{/case} keeps only the branch whose {when}
-  // matches - any of the values a when lists, padCaseWhen in lib/case.php.
+  // matches - any of the values a when lists, padCaseWhen in tags/_lib/case.php.
   //
   // The branches are not levels of their own: the tag chops its content up itself. The
   // first parameter is evaluated from its unparsed text to give the basis, then each
