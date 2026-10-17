@@ -42,13 +42,13 @@
 
 </div>
 
-<dialog id="new-card" aria-labelledby="new-card-title">
-  {form 'card', class='card-form'}
+<dialog id="new-card" aria-labelledby="new-card-title"{if $cardFailed} open{/if}>
+  {form 'card', class='card-form', error='The card needs a title of at most 100 characters.'}
     <h2 id="new-card-title">New card</h2>
     {input 'title', label='Title', rules='required|max:100', autofocus}
     {textarea 'body', label='Details', rows=4, rules='max:2000'}
     <label for="new-label">Label</label>
-    <select id="new-label" name="label"><option value="">None</option>{labelList}<option value="{$key}">{$name}</option>{/labelList}</select>
+    <select id="new-label" name="label"><option value="">None</option>{labelList}<option value="{$key}"{if $chosen} selected{/if}>{$name}</option>{/labelList}</select>
     <div class="bar"><button class="button primary">Add to Backlog</button><button class="button" type="button" data-close>Cancel</button></div>
   {/form}
 </dialog>

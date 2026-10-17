@@ -26,6 +26,8 @@
   if (dialog && opener) {
     opener.addEventListener('click', event => { event.preventDefault(); dialog.showModal(); });
     dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+    // A card that came back with a message is shown again, as the modal it was.
+    if (dialog.open) { dialog.close(); dialog.showModal(); }
   }
 
   const board   = document.getElementById('board');

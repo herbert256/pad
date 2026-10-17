@@ -21,6 +21,12 @@
   $activity = kanbanActivity ();
   $version  = kanbanVersion ();
   $cardTotal = array_sum ( array_column ( $board, 'count' ) );
-  $labelList = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name ], array_keys ( kanbanLabels () ), kanbanLabels () );
+  // A card that came back - no title, or one too long - opens the dialog again, with its
+  // message and the label that was chosen: the message stood in the closed dialog, and the
+  // board reloaded without a word.
+
+  $cardFailed = padFormFailed ( 'card' );
+  $cardLabel  = $cardFailed ? (string) padRequest ( 'label', '' ) : '';
+  $labelList  = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name, 'chosen' => $key === $cardLabel ], array_keys ( kanbanLabels () ), kanbanLabels () );
 
 ?>
