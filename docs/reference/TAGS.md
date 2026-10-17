@@ -1742,7 +1742,7 @@ No name, or another shape, is an error under the strict check.
 
 ### identicon
 A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a SHA-256
-hash of the value (`lib/identicon.php`): every account its own picture, nothing sent anywhere.
+hash of the value (`tags/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
 {identicon $email}

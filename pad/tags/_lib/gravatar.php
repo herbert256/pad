@@ -40,8 +40,10 @@
                          ( trim ( (string) $alt ) !== '' ) ? $alt : 'Avatar' );
     }
 
-    if ( $fallback == 'identicon' )
+    if ( $fallback == 'identicon' ) {
+      include_once PAD . 'tags/_lib/identicon.php';
       return padIdenticon ( $email, $size, ( trim ( (string) $alt ) !== '' ) ? $alt : 'Avatar' );
+    }
 
     $alt = ( trim ( (string) $alt ) !== '' ) ? trim ( (string) $alt ) : 'Avatar';
 
