@@ -59,13 +59,16 @@
   // The tags that never open a pair, marked single in the lists: the close-tag help of the
   // language server, the VS Code kit and the Sublime kit offers none of them after {/. A tag's
   // form is the one the tags application records on its page (apps/tags/tag/<name>.php,
-  // $tagForm), and of the tags written both ways those nearly always written alone count as
-  // single too - calendar and sparkline, a pair in a third of their uses or fewer. The kits
-  // kept this list by hand, three copies that stopped at highlight: {items}{icon 'x'}{/
-  // offered icon first, and VS Code's PAD: Close Tag wrote {/icon}. A tag written as a pair at
-  // least as often as alone is no single: true, false, null, highlight and chart stood here,
-  // and after {items}{highlight 'pad'}<p>x</p> a {/ offered items alone, Close Tag writing
-  // {/items} with the highlight still open.
+  // $tagForm), and of the tags written both ways the help guesses the commoner form: those
+  // written as a pair in fewer than half of their uses in apps/ count as single - sparkline
+  // 13%, jsonview 25%, map 33%, calendar 36%, copy 37%, pager 42%, markdown 45%, datatable
+  // 47%. The kits kept this list by hand, three copies that stopped at highlight:
+  // {items}{icon 'x'}{/ offered icon first, and VS Code's PAD: Close Tag wrote {/icon}. A tag
+  // written as a pair at least as often as alone is no single: true, false, null, highlight
+  // and chart stood here, and after {items}{highlight 'pad'}<p>x</p> a {/ offered items alone,
+  // Close Tag writing {/items} with the highlight still open. The rule said a pair in a third
+  // of the uses or fewer, and left map and jsonview out: after {items}{map 'europe'}{jsonview
+  // $r} a {/ offered jsonview and map first.
 
   function generateSingles ( $root, $tags ) {
 
@@ -75,7 +78,7 @@
       if ( preg_match ( '/\$tagForm\s*=\s*\'single\'/', (string) @file_get_contents ( "$root/apps/tags/tag/$tag.php" ) ) )
         $singles [] = $tag;
 
-    return array_merge ( $singles, [ 'calendar', 'sparkline' ] );
+    return array_merge ( $singles, [ 'calendar', 'copy', 'datatable', 'jsonview', 'map', 'markdown', 'pager', 'sparkline' ] );
 
   }
 

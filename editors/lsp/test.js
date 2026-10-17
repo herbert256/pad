@@ -158,6 +158,14 @@ async function main() {
     const bothClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion offers a tag written both ways, as a pair as often as not', bothClosers.join(',') === 'true,highlight,items', bothClosers);
 
+    // a tag written both ways that is alone more often than a pair - {map}, {jsonview},
+    // {pager} - is no close-tag candidate: the rule stopped at a third and left them out
+    const aloneUri = uri('orders.pad').replace('orders.pad', 'alone.pad');
+    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{items}\n{map 'europe', data='sales'}{jsonview $r}{pager 'items'}\n{/" } });
+    r = await request('textDocument/completion', { textDocument: { uri: aloneUri }, position: { line: 2, character: 2 } });
+    const aloneClosers = (r.result || []).map((c) => c.label);
+    expect('close-tag completion skips a tag written both ways that is alone more often than not', aloneClosers.join(',') === 'items', aloneClosers);
+
     // whitespace control: {~items~} opens a pair and {~/orders~} closes one, the ~ just
     // inside the brace taking the whitespace on that side
     const tildeUri = uri('orders.pad').replace('orders.pad', 'tilde.pad');
