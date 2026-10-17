@@ -14,6 +14,13 @@
   $pqFixed  = $pqResult;
   $pqResult = [];
 
+  // The sampled terms are the run's terms, and what each one was before the plays is
+  // recorded again as it is drawn: the ordered pass's record stayed, and {fibonacci
+  // randomly, rows=5} gave {$fibonacci} 0 1 1 2 3, the first terms of that pass, beside a
+  // {$sequence} of the draws.
+
+  $pqOrgHit = [];
+
   $pqSeq      = '';
   $pqBuild    = 'pull';
   $pqRandomly = TRUE;

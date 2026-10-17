@@ -48,6 +48,8 @@
   $pqPlaysHit   = [];
   $pqActionsHit = [];
   $pqOrgHit     = [];
+  $pqRowAt      = [];
+  $pqResultBuilt = [];
 
   include PQ . 'inits/parms.php';
   include PQ . 'inits/set.php';
