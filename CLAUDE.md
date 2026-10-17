@@ -1800,9 +1800,14 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - **Array-Indexed Levels**: Nesting tracked via `$padVariable[$pad]` pattern
 - **15+ Years Production**: Stable, battle-tested codebase
 - **Request-level memos**: which global names are the engine's (`padAppVars`,
-  `padValidStore`, `padStrPad`) and the tokens of each clean expression (`padEvalParsed`) are
-  kept for the request; the @else@ pair scan runs only when an `@else@` is there. Nothing is
-  kept between requests - the template is still rescanned each pass (no AST)
+  `padStrPadVars`, `padValidStore`, `padStrPad`) and the tokens of each clean expression
+  (`padEvalParsed`) are kept for the request, whether an engine or application file is there
+  (`padFileExists`) for the second; the @else@ pair scan runs only when an `@else@` is there.
+  Nothing is kept between requests - the template is still rescanned each pass (no AST)
+- **`$GLOBALS` as a whole is a copy**: since PHP 8.1 `array_key_exists ( $x, $GLOBALS )`,
+  `foreach ( $GLOBALS ...)` and any function handed `$GLOBALS` copy the symbol table - some
+  450 globals in a page run. A hot path tests `isset ( $GLOBALS [$x] )` first and sifts the
+  table with `padAppVars`/`padStrPadVars`, whose answers hold values, never references
 - **Code on use**: `pad/lib/` is loaded on every request (read with `scandir`); the functions
   of one built-in tag stand in `pad/tags/_lib/<tag>.php`, which `types/pad.php` includes the
   first time a page uses the tag (a tag sharing another's code includes that file itself),
