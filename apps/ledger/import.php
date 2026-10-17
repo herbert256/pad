@@ -2,7 +2,8 @@
 
   // Transactions from a CSV file - a bank's export, or this application's own: a header row
   // naming day, amount, category (and account and note when there are any). A category not
-  // known yet is made, as spending when its amounts are below zero; a day that is no date,
+  // known yet is made, as spending when its amounts are below zero; a day that is no date -
+  // digits are read year first or day first, 02/09/2026 is 2 September (ledgerImportDay) -
   // or an amount that is no number, skips the row and says which.
 
   $report = [];
@@ -24,10 +25,10 @@
       else foreach ( $rows as $line => $row ) {
 
         $amount = str_replace ( [ ',', '€', ' ', '−' ], [ '.', '', '', '-' ], (string) $row ['amount'] );
-        $day    = date ( 'Y-m-d', strtotime ( (string) $row ['day'] ) ?: 0 );
+        $day    = ledgerImportDay ( $row ['day'] );
 
-        if ( ! strtotime ( (string) $row ['day'] ) or ! is_numeric ( $amount ) ) {
-          $report [] = [ 'line' => $line, 'said' => 'skipped - no day or no amount' ];
+        if ( $day === NULL or ! is_numeric ( $amount ) ) {
+          $report [] = [ 'line' => $line, 'said' => $day === NULL ? 'skipped - no day like 2026-09-02 or 02/09/2026' : 'skipped - no amount' ];
           continue;
         }
 

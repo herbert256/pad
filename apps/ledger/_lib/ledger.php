@@ -209,6 +209,30 @@
 
   }
 
+  // The day of an imported row as Y-m-d, or NULL when it cannot be read surely. strtotime
+  // read 02/09/2026 the American way, as 9 February, and skipped 13/09/2026: a European
+  // bank's export - the form of the euro amounts this ledger keeps - went into the wrong
+  // months without a word. A day of digits is read year first (2026-09-02) or day first
+  // (02/09/2026, 2.9.2026, 02-09-2026), a time behind it left out; one with the name of a
+  // month as strtotime reads it.
+
+  function ledgerImportDay ( $text ) {
+
+    $text = trim ( (string) $text );
+
+    if ( preg_match ( '/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})(?:[ T][0-9:.]+)?$/D', $text, $m ) )
+      [ , $year, $month, $day ] = $m;
+    elseif ( preg_match ( '/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})(?:[ T][0-9:.]+)?$/D', $text, $m ) )
+      [ , $day, $month, $year ] = $m;
+    elseif ( preg_match ( '/[a-z]/i', $text ) and ( $time = strtotime ( $text ) ) )
+      return date ( 'Y-m-d', $time );
+    else
+      return NULL;
+
+    return checkdate ( (int) $month, (int) $day, (int) $year ) ? sprintf ( '%04d-%02d-%02d', $year, $month, $day ) : NULL;
+
+  }
+
   function ledgerMoney ( $amount ) {
 
     return ( $amount < 0 ? '−' : '' ) . '€ ' . number_format ( abs ( (float) $amount ), 2, '.', ',' );
