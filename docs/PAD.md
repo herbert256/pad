@@ -758,7 +758,7 @@ $padSqlPassword
 - Set `$padToolbar = 'local'` for a collapsible debug toolbar at the foot of every local web
   page: time and memory, the levels and the tag tree, the SQL statements, page and fragment
   cache, the template files read, the application's variables and the session
-  (`pad/lib/toolbar.php`); never shown to a visitor, a `&padInclude` fragment or the page cache
+  (`pad/exits/_lib/toolbar.php`); never shown to a visitor, a `&padInclude` fragment or the page cache
 - Set `$padReload = 'local'` in `_config/config.php` for live reload: a local page polls
   `?page&padReload` for the newest file time under the application, its `www/` directory and
   `_common` (`'engine'`: `pad/` too) and reloads itself when a file is saved

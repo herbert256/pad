@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Regression test for `$padToolbar` (pad/lib/toolbar.php). The sample page switches the
+Regression test for `$padToolbar` (pad/exits/_lib/toolbar.php). The sample page switches the
 toolbar on and reads the database once; the verdict fetches it three ways and asserts that a
 local whole page carries the bar - before `</body>`, with the tag tree, the SQL statement and
 the template file - while a bare fragment (`&padInclude`) and a request that says it was

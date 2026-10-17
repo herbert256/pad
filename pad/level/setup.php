@@ -105,7 +105,9 @@
   if ( $padInfo )
     include PAD . 'events/setup.php';
 
-  if ( $padToolbar )
+  if ( $padToolbar ) {
+    include_once PAD . 'exits/_lib/toolbar.php';
     padToolbarLevel ();
+  }
 
 ?>

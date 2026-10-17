@@ -60,7 +60,7 @@
 
     $entry = padFragmentGet ( $padFragment [$pad] ['key'] );
 
-    // Counted for the debug toolbar (lib/toolbar.php).
+    // Counted for the debug toolbar (exits/_lib/toolbar.php).
 
     $padToolbarData [ ( $entry === FALSE ) ? 'fragmentMiss' : 'fragmentHit' ] =
       ( $padToolbarData [ ( $entry === FALSE ) ? 'fragmentMiss' : 'fragmentHit' ] ?? 0 ) + 1;

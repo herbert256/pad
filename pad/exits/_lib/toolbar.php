@@ -15,7 +15,11 @@
   // padToolbarOn     whether this request gets the bar
   // padToolbarLevel  called by level/setup.php for every level opened: one row of the tree
   // padToolbarAdd    exits/output.php hands the finished page over; the bar goes in before
-  //                  its last </body>, or at the end (padOutputAdd, shared with live reload)
+  //                  its last </body>, or at the end (padOutputAdd in lib/output.php,
+  //                  shared with live reload)
+  //
+  // Read only with $padToolbar on: level/setup.php and exits/output.php include this file
+  // before they call it.
   //
   // The state lives in $padToolbarData, which a nested pass ({page}, {code}) does not put
   // back to what it was before - lib/checks.php keeps it out of that snapshot - so the
@@ -59,31 +63,6 @@
 
     if ( padToolbarOn () )
       padOutputAdd ( padToolbarHtml () );
-
-  }
-
-  // What a development helper adds to a page on its way out - the toolbar, the live reload
-  // script: only to a web page answering 200 as text/html, before its last </body> or at
-  // the end. A page from the page cache may still be gzipped; the addition goes into the
-  // page itself, and the writer then sees a plain body. The answer to a live event is no
-  // page but the inside of one region (lib/live.php): the script swaps it in, and every
-  // event put another toolbar into the region.
-
-  function padOutputAdd ( $html ) {
-
-    global $padOutput, $padStop, $padContentType, $padCacheStop, $padCacheServerGzip;
-
-    if ( $padStop != 200 or ! str_starts_with ( (string) $padContentType, 'text/html' ) or padLive () !== '' )
-      return;
-
-    if ( $padCacheStop == 200 and $padCacheServerGzip ) {
-      $padOutput          = padUnzip ( $padOutput );
-      $padCacheServerGzip = FALSE;
-    }
-
-    $at = strripos ( $padOutput, '</body>' );
-
-    $padOutput = ( $at === FALSE ) ? $padOutput . $html : substr_replace ( $padOutput, $html, $at, 0 );
 
   }
 

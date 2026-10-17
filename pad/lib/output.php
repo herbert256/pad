@@ -19,6 +19,8 @@
   //                      down by how long this request has already taken
   // padAcceptsEncoding   whether an Accept-Encoding header allows a content coding, read
   //                      with its quality values
+  // padOutputAdd         what the debug toolbar and the live reload script add to a page
+  //                      on its way out
 
   function padWebSend ( $stop ) {
 
@@ -269,6 +271,31 @@
 
     if ( (string) $padEtag !== '' )
       padHeader ('Etag: '        . '"' . $padEtag . ( $gzip ? '-gzip' : '' ) . '"');
+
+  }
+
+  // What a development helper adds to a page on its way out - the toolbar, the live reload
+  // script: only to a web page answering 200 as text/html, before its last </body> or at
+  // the end. A page from the page cache may still be gzipped; the addition goes into the
+  // page itself, and the writer then sees a plain body. The answer to a live event is no
+  // page but the inside of one region (lib/live.php): the script swaps it in, and every
+  // event put another toolbar into the region.
+
+  function padOutputAdd ( $html ) {
+
+    global $padOutput, $padStop, $padContentType, $padCacheStop, $padCacheServerGzip;
+
+    if ( $padStop != 200 or ! str_starts_with ( (string) $padContentType, 'text/html' ) or padLive () !== '' )
+      return;
+
+    if ( $padCacheStop == 200 and $padCacheServerGzip ) {
+      $padOutput          = padUnzip ( $padOutput );
+      $padCacheServerGzip = FALSE;
+    }
+
+    $at = strripos ( $padOutput, '</body>' );
+
+    $padOutput = ( $at === FALSE ) ? $padOutput . $html : substr_replace ( $padOutput, $html, $at, 0 );
 
   }
 
