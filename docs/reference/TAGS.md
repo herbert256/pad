@@ -2351,7 +2351,7 @@ with `light-dark()` steps on `.pad-video`. An address that is no known video and
 
 ### pdf
 What the content renders, sent as a PDF instead of the page - a writer in plain PHP
-(`lib/pdf.php`): PDF 1.4, the standard fonts every reader has, no library, no browser.
+(`tags/_lib/pdf.php`): PDF 1.4, the standard fonts every reader has, no library, no browser.
 
 ```html
 {pdf file='invoice-2026-114', size='A4'}

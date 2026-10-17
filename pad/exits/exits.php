@@ -62,10 +62,12 @@
 
   $padOutput = padTocFill ( $padOutput );
 
-  // A page with a {pdf} answers the document of what it rendered instead (lib/pdf.php).
+  // A page with a {pdf} answers the document of what it rendered instead (tags/_lib/pdf.php).
 
-  if ( padPdfAsked () )
+  if ( padPdfAsked () ) {
+    include_once PAD . 'tags/_lib/pdf.php';
     $padOutput = padPdfAnswer ( $padOutput );
+  }
 
   // The development check of the finished HTML - duplicate ids, images without alt, fields
   // without a label, broken ?page links - for a local request that asks for it, on what the

@@ -1,7 +1,7 @@
 <?php
 
   // {pdf file='invoice-114'} ... {/pdf} - what the content renders, sent as a PDF instead of
-  // the page (lib/pdf.php): a pure PHP writer, the standard fonts, the HTML of a document -
+  // the page (tags/_lib/pdf.php): a pure PHP writer, the standard fonts, the HTML of a document -
   // headings, paragraphs, lists, tables, JPEG pictures. file= names the download (else the
   // page), download sends it as an attachment instead of showing it, size= A4 (default),
   // Letter, A5 or Legal, landscape turns the page, font= helvetica (default), times or

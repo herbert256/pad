@@ -4,6 +4,8 @@
   // ?invoice=114 names the page invoice and hands it $invoice = 114, and its links asked
   // ?invoice&padPdf= - the document of no invoice. A bare key stays out, as before.
 
+  include_once PAD . 'tags/_lib/pdf.php';
+
   $saved = [ $_GET, $padPageAsked ];
 
   $open = function ( $get ) {

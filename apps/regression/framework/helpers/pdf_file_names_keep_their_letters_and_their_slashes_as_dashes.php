@@ -4,6 +4,8 @@
   // but ASCII went - Überblick was berblick.pdf, 発注書 document.pdf - and a slash of it is a
   // dash, where it threw away all before it: invoice-2026/114 was 114.pdf.
 
+  include_once PAD . 'tags/_lib/pdf.php';
+
   $names = implode ( ' | ', array_map ( 'padPdfName', [ 'Factuur Müller', 'Überblick', '発注書', 'invoice-2026/114', '../../etc/passwd' ] ) );
 
 ?>
