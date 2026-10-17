@@ -395,9 +395,12 @@
       // rowid: an insert that inserted nothing - INSERT OR IGNORE of a duplicate, an empty
       // INSERT ... SELECT - an upsert that updated, or an insert into a WITHOUT ROWID table
       // answered the id of an earlier insert, of another table even. Unmoved, there is no
-      // new id, and the insert answers its row count, as MySQL's does without one.
+      // new id, and the insert answers its row count, as MySQL's does without one. It is
+      // set to a mark no row has first (padDbSqliteMark): compared with the id as it stood,
+      // a new row given the same id as the insert before it - an order and its first line,
+      // an id handed out again after the last row was deleted - answered 1, its row count.
 
-      $before = ( $command == 'insert' ) ? $connect->lastInsertId () : '';
+      $before = ( $command == 'insert' ) ? padDbSqliteMark ( $connect ) : '';
 
       $query = $connect->query ( $sql );
 
@@ -439,6 +442,21 @@
       $run ['id'] = mysqli_insert_id ( $connect );
 
     return $run;
+
+  }
+
+  // Sets the SQLite connection's last insert id to a rowid no row has - the smallest there
+  // is - by putting that row in a table of the connection's own temporary database, and
+  // answers it; when that cannot be done, the last insert id as it stands.
+
+  function padDbSqliteMark ( $connect ) {
+
+    $mark = 'insert or replace into temp.pad_insert_id (rowid) values (-9223372036854775808)';
+
+    if ( $connect->exec ( $mark ) === FALSE and $connect->exec ( 'create temp table if not exists pad_insert_id (x)' ) !== FALSE )
+      $connect->exec ( $mark );
+
+    return $connect->lastInsertId ();
 
   }
 
