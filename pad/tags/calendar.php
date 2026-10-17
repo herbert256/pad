@@ -30,13 +30,19 @@
 
   $padCalendarDates = $padCalendarTexts = [];
 
-  foreach ( $padCalendarNames as $padCalendarName ) {
-    $padCalendarFirst = padChartRow ( reset ( $padCalendarRows ) );
-    if ( padChartStamp ( $padCalendarFirst [$padCalendarName] ) !== FALSE )
-      $padCalendarDates [] = $padCalendarName;
+  // A date object of the page's PHP is a date field too, in its place among the fields: the
+  // guess took text fields only, and a calendar of such rows without date= showed no event
+  // at all, the text dates of the other rows neither.
+
+  foreach ( padChartRow ( reset ( $padCalendarRows ) ?: [] ) as $padCalendarName => $padCalendarField )
+    if ( $padCalendarField instanceof DateTimeInterface )
+      $padCalendarDates [] = (string) $padCalendarName;
+    elseif ( ! in_array ( (string) $padCalendarName, $padCalendarNames, TRUE ) )
+      continue;
+    elseif ( padChartStamp ( $padCalendarField ) !== FALSE )
+      $padCalendarDates [] = (string) $padCalendarName;
     else
-      $padCalendarTexts [] = $padCalendarName;
-  }
+      $padCalendarTexts [] = (string) $padCalendarName;
 
   $padCalendarUsed  = [];
   $padCalendarDate  = padChartPick ( 'date',  $padCalendarDates, $padCalendarUsed );

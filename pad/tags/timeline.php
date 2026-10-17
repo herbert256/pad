@@ -36,8 +36,13 @@
 
   $padTimelineDates = $padTimelineYears = $padTimelineTexts = [];
 
+  // A date object of the page's PHP is a date field too: read only when date= named it, a
+  // timeline of such rows without date= found no date and failed.
+
   foreach ( padChartRow ( reset ( $padTimelineRows ) ?: [] ) as $padTimelineKey => $padTimelineField )
-    if ( is_scalar ( $padTimelineField ) and ! is_numeric ( $padTimelineField ) and padTimelineDate ( $padTimelineField ) !== FALSE )
+    if ( $padTimelineField instanceof DateTimeInterface )
+      $padTimelineDates [] = (string) $padTimelineKey;
+    elseif ( is_scalar ( $padTimelineField ) and ! is_numeric ( $padTimelineField ) and padTimelineDate ( $padTimelineField ) !== FALSE )
       $padTimelineDates [] = (string) $padTimelineKey;
     elseif ( is_scalar ( $padTimelineField ) and preg_match ( '/^\d{1,4}$/', trim ( (string) $padTimelineField ) ) and padTimelineDate ( $padTimelineField ) !== FALSE )
       $padTimelineYears [] = (string) $padTimelineKey;
