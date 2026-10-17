@@ -5,7 +5,7 @@
   // with their percentages. The form posts in the background through a {live} region, or as
   // a plain form with scripting off; the votes are kept in DATA/poll/<app>/<name>.json under
   // a lock. title= is the question (the name, readable, when not given), button= the
-  // button's text ('Vote'), results shows the results before a vote too. lib/poll.php.
+  // button's text ('Vote'), results shows the results before a vote too. tags/_lib/poll.php.
 
   // A {cache} section round it is not kept (padFragmentKeepNot): the poll is this visitor's -
   // the form or, once voted, the results - and on a hit its handler did not run, so no

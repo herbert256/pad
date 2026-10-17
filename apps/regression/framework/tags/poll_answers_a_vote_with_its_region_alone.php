@@ -5,6 +5,8 @@
   // same answer posted without the region is the form of a browser without scripting: the
   // whole page comes back, the results in it.
 
+  include_once PAD . 'tags/_lib/poll.php';
+
   @unlink ( padPollFile ( 'fw-form' ) );
 
   $pollUrl = $padHost . 'regression/framework/?tags/poll_shows_its_answers_as_a_form_before_a_vote&padInclude';

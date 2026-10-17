@@ -2247,7 +2247,7 @@ A `{copy}` without a text is an error under the strict check.
 
 ### poll
 A vote among a few answers, once per visitor, and then the results as bars with their
-percentages - built on a `{live}` region, and a plain form without scripting (`lib/poll.php`).
+percentages - built on a `{live}` region, and a plain form without scripting (`tags/_lib/poll.php`).
 
 ```html
 {poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'}
