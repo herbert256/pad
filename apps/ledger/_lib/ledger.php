@@ -256,17 +256,21 @@
   // read 02/09/2026 the American way, as 9 February, and skipped 13/09/2026: a European
   // bank's export - the form of the euro amounts this ledger keeps - went into the wrong
   // months without a word. A day of digits is read year first (2026-09-02) or day first
-  // (02/09/2026, 2.9.2026, 02-09-2026), a time behind it left out; one with the name of a
+  // (02/09/2026, 2.9.2026, 02-09-2026) or year first without separators (20260902), a time
+  // behind it left out with its zone (10:15:00 +0200, T23:30:00Z); one with the name of a
   // month as strtotime reads it.
 
   function ledgerImportDay ( $text ) {
 
-    $text = trim ( (string) $text );
+    $text  = trim ( (string) $text );
+    $clock = '(?:[ T][0-9:.]+(?:\s*(?:Z|[+-]\d\d:?\d\d))?)?';
 
-    if ( preg_match ( '/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})(?:[ T][0-9:.]+)?$/D', $text, $m ) )
+    if ( preg_match ( '/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})' . $clock . '$/D', $text, $m ) )
       [ , $year, $month, $day ] = $m;
-    elseif ( preg_match ( '/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})(?:[ T][0-9:.]+)?$/D', $text, $m ) )
+    elseif ( preg_match ( '/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})' . $clock . '$/D', $text, $m ) )
       [ , $day, $month, $year ] = $m;
+    elseif ( preg_match ( '/^(\d{4})(\d\d)(\d\d)$/D', $text, $m ) )
+      [ , $year, $month, $day ] = $m;
     elseif ( preg_match ( '/[a-z]/i', $text ) and ( $time = strtotime ( $text ) ) )
       return date ( 'Y-m-d', $time );
     else
