@@ -1,6 +1,6 @@
 <?php
 
-  // {excerpt $text, words=40, highlight=$q} - a text cut to whole words, lib/excerpt.php: an
+  // {excerpt $text, words=40, highlight=$q} - a text cut to whole words, tags/_lib/excerpt.php: an
   // ellipsis where the text goes on, the cut centred on the first match of the highlight=
   // words - a search query, split into words - and every match in a <mark>. words= is the
   // length (default 40), ellipsis= what stands for the rest (…). html takes the text as

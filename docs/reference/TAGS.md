@@ -2034,7 +2034,7 @@ once per page. A missing second text is an error under the strict check.
 
 ### excerpt
 A long text cut to whole words with an ellipsis, centred on the first match of the search
-words when given, every match in a `<mark>` (`lib/excerpt.php`).
+words when given, every match in a `<mark>` (`tags/_lib/excerpt.php`).
 
 ```html
 {excerpt $post, words=40}
