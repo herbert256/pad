@@ -174,8 +174,14 @@ async function main() {
         expect('pad_render gives the data to a route in a bracketed directory, blog/[year]/[slug].pad', !r.error && r.text.trim() === '<p>2026: Hi</p>', r);
         r = await call('pad_render', { app: 'shop', page: 'products/', data: { id: 'I' } });
         expect('pad_render with data takes products/ for products, as without data - not for the route products/[id] with an empty value', r.error && !r.text.includes('Product I') && r.text.includes("the page 'products' has no template of its own"), r);
+        r = await call('pad_render', { app: 'shop', page: 'products/42', data: { other: 'x' } });
+        expect('pad_render with data keeps the value the route binds, $id = 42 of products/42, as ?products/42&padSample does', !r.error && r.text.trim() === '<p>Product 42</p>', r);
+        r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', data: { title: 'Hi' } });
+        expect('pad_render with data keeps the value a bracketed directory binds, $year = 2026 of blog/2026/hello', !r.error && r.text.trim() === '<p>2026: Hi</p>', r);
         r = await call('pad_check', { app: 'shop', page: 'products/42', data: {} });
-        expect('pad_check with data places an error of a routed page in its template', r.text.includes("Field '$id' not found") && r.text.includes('tag: {$id}, line 1'), r);
+        expect('pad_check with data passes a routed page whose field the route binds', !r.error && r.text.startsWith('ok'), r);
+        r = await call('pad_check', { app: 'shop', page: 'blog/2026/hello', data: {} });
+        expect('pad_check with data places an error of a routed page in its template', r.text.includes("Field '$title' not found") && r.text.includes('tag: {$title}, line 1'), r);
         r = await call('pad_render', { app: 'shop', template: '{$x}', data: [1, 2] });
         expect('pad_render refuses data that is no object', r.error && r.text.includes('data must be a JSON object'), r);
         const samples = path.join(home, 'DATA', 'samples', 'shop');

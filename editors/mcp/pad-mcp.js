@@ -128,6 +128,11 @@ async function render(a, tree = CURRENT) {
     let name = page || (a.template !== undefined ? VIRTUAL : 'index');
     let template = a.template !== undefined ? String(a.template) : undefined;
     let sample = null;
+    // The values a route binds - 42 of products/42 for products/[id].pad - are the sample's
+    // too, under the data's own: as the made-up name of the data render, the page was no
+    // longer reached by that path, and {$id} was not found where the engine's own preview of
+    // ?products/42&padSample has it.
+    let routed = {};
     if (a.data !== undefined) {
         if (template === undefined) {
             // A directory's index renders in that directory, a routed page in the directory of
@@ -136,12 +141,13 @@ async function render(a, tree = CURRENT) {
             if (!own.text) throw new Error(`the page '${name}' has no template of its own to give the data to`);
             template = own.text;
             name = own.page;
+            routed = own.vars;
         }
         const dir = name.includes('/') ? name.slice(0, name.lastIndexOf('/') + 1) : '';
         name = dir + (a.dataName || unique('mcpData'));
         sample = path.join(tree.home, 'DATA', 'samples', ...app.split('/'), ...name.split('/')) + '.json';
         fs.mkdirSync(path.dirname(sample), { recursive: true });
-        fs.writeFileSync(sample, JSON.stringify(a.data));
+        fs.writeFileSync(sample, JSON.stringify(Object.assign({}, routed, a.data)));
     }
     const bare = a.bare !== undefined ? !!a.bare : a.template !== undefined;
     const asked = [String(query || '').replace(/^\?/, ''), bare ? 'padInclude' : '', sample ? 'padSample' : ''].filter(Boolean).join('&');
@@ -439,37 +445,39 @@ function describe(result, source) {
 // the name of a directory - its index.pad or index.html, ?staff being staff/index.pad. Only
 // the first two were read, and the data of pad_render was refused for such a page: "the page
 // 'staff' has no template of its own". A name no file has may be served by a bracketed
-// route, products/42 by products/[id].pad (routePage) - that file is the template then.
+// route, products/42 by products/[id].pad (routePage) - that file is the template then,
+// and vars the values the route binds, { id: '42' }.
 function pageTemplate(app, page, apps = appsDir) {
     const name = pageName(page) || 'index';
     const dir = appPath(app, apps);
     const base = path.join(dir, ...name.split('/'));
     for (const [file, as] of [[base + '.pad', name], [base + '.html', name], [path.join(base, 'index.pad'), name + '/index'], [path.join(base, 'index.html'), name + '/index']])
-        if (isFile(file)) return { text: readText(file), page: as };
+        if (isFile(file)) return { text: readText(file), page: as, vars: {} };
     const routed = routePage(dir, name.split('/'));
     if (routed) {
-        const at = path.join(dir, ...routed.split('/'));
+        const at = path.join(dir, ...routed.page.split('/'));
         for (const file of [at + '.pad', at + '.html'])
-            if (isFile(file)) return { text: readText(file), page: routed };
+            if (isFile(file)) return { text: readText(file), page: routed.page, vars: routed.vars };
     }
-    return { text: '', page: name };
+    return { text: '', page: name, vars: {} };
 }
 
 // The page of an application a bracketed route serves for the segments of a name, as
 // pad/lib/route.php (padRouteWalk) finds it: a literal segment first - a page, a directory's
 // index, a directory to go on in - then a [name] page, a [name] directory, a [name+] page
-// taking the rest; the bracketed names in sorted order. null when none does.
-function routePage(dir, segments, prefix = '') {
+// taking the rest; the bracketed names in sorted order - with the values it binds, a name
+// bound first kept. null when none does.
+function routePage(dir, segments, prefix = '', vars = {}) {
     const [segment, ...rest] = segments;
     const last = rest.length === 0;
     const literal = /^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(segment);
     const here = path.join(dir, ...prefix.split('/').filter(Boolean));
     const exists = (base) => ['.php', '.pad', '.html'].some((ext) => isFile(base + ext));
     if (last) {
-        if (literal && exists(path.join(here, segment))) return prefix + segment;
-        if (literal && isDir(path.join(here, segment)) && exists(path.join(here, segment, 'index'))) return prefix + segment + '/index';
+        if (literal && exists(path.join(here, segment))) return { page: prefix + segment, vars };
+        if (literal && isDir(path.join(here, segment)) && exists(path.join(here, segment, 'index'))) return { page: prefix + segment + '/index', vars };
     } else if (literal && isDir(path.join(here, segment))) {
-        const found = routePage(dir, rest, prefix + segment + '/');
+        const found = routePage(dir, rest, prefix + segment + '/', vars);
         if (found) return found;
     }
     const names = { pages: [], dirs: [], rests: [] };
@@ -483,16 +491,17 @@ function routePage(dir, segments, prefix = '') {
         const list = m[2] && isPage ? names.rests : !m[2] && isDirectory ? names.dirs : !m[2] && isPage ? names.pages : null;
         if (list && !list.includes(m[1])) list.push(m[1]);
     }
-    if (last && names.pages.length) return prefix + '[' + names.pages[0] + ']';
+    const bind = (name, value) => Object.assign({ [name]: value }, vars);
+    if (last && names.pages.length) return { page: prefix + '[' + names.pages[0] + ']', vars: bind(names.pages[0], segment) };
     for (const name of names.dirs) {
         if (last) {
-            if (exists(path.join(here, '[' + name + ']', 'index'))) return prefix + '[' + name + ']/index';
+            if (exists(path.join(here, '[' + name + ']', 'index'))) return { page: prefix + '[' + name + ']/index', vars: bind(name, segment) };
             continue;
         }
-        const found = routePage(dir, rest, prefix + '[' + name + ']/');
+        const found = routePage(dir, rest, prefix + '[' + name + ']/', bind(name, segment));
         if (found) return found;
     }
-    if (names.rests.length) return prefix + '[' + names.rests[0] + '+]';
+    if (names.rests.length) return { page: prefix + '[' + names.rests[0] + '+]', vars: bind(names.rests[0], segments.join('/')) };
     return null;
 }
 
