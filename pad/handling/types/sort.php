@@ -59,6 +59,34 @@
     foreach ( $padData [$pad] as $padV3 )
       $padSortColumn [] = is_array ( $padV3 ) ? ( $padV3 [$padSortField] ?? '' ) : '';
 
+    // LOCALE_STRING sorts as the application's locale orders words - adam, Émile, Zoe - by
+    // the ranks intl's Collator gives the column: PHP's own flag follows setlocale, which
+    // nothing sets, and sorted by bytes, É after z.
+
+    if ( ( $padSortFlags & SORT_LOCALE_STRING ) == SORT_LOCALE_STRING and class_exists ( 'Collator' ) ) {
+
+      $padSortCollator = new Collator ( (string) ( $GLOBALS ['padLocale'] ?? 'en' ) ?: 'en' );
+      $padSortOrder    = array_map ( 'strval', $padSortColumn );
+      $padSortCollator->asort ( $padSortOrder );
+
+      $padSortRank = [];
+      $padSortPrev = NULL;
+      $padSortNth  = 0;
+
+      foreach ( $padSortOrder as $padSortAt => $padSortValue ) {
+        if ( $padSortPrev === NULL or $padSortCollator->compare ( $padSortValue, $padSortPrev ) != 0 )
+          $padSortNth++;
+        $padSortRank [$padSortAt] = $padSortNth;
+        $padSortPrev = $padSortValue;
+      }
+
+      ksort ( $padSortRank );
+
+      $padSortColumn = array_values ( $padSortRank );
+      $padSortFlags  = SORT_NUMERIC;
+
+    }
+
     $padSortArgs [] = $padSortColumn;
 
     if ($padSortSort)
