@@ -64,11 +64,14 @@
   // column is, and a caller passing one straight in - the select subsystem does, for a row
   // whose relation field is empty - would otherwise end the request on str_replace().
 
+  // In any case: a closing pipe over text an {ignore} kept - | upper - turned &open; into
+  // &OPEN;, and the page printed CONST A &EQ; &OPEN;X: 1&CLOSE; for const a = {x: 1}.
+
   function padUnescape ( $string ) {
 
-    return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&else;' ],
-                         [ '{',     '}',      '|',      '=',   ',',      '@',    '@else@' ],
-                         $string ?? '' );
+    return str_ireplace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&else;' ],
+                          [ '{',     '}',      '|',      '=',   ',',      '@',    '@else@' ],
+                          $string ?? '' );
   }
 
   // A brace the opening pipe masked (level/pipes/before.php, padPipeMask) is a brace of the
