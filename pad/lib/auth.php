@@ -382,14 +382,26 @@
   // The fields kept out of the session and signed into the cookie instead: by their names,
   // and any value PHP knows as a password hash, whatever its column is called - a hash in
   // 'hash' or 'pass_hash' went into the session, {auth} and the dumps, and a new password
-  // left every remember-me cookie valid. A name is a secret's as a whole word, not for a
-  // part of it: email_hash (a Gravatar's, public), hashtag, otp_enabled, recovery_email
-  // and pin_code_sent were dropped from the session and padUser answered NULL for them.
+  // left every remember-me cookie valid. A name is judged by its words - split on _ and -
+  // and where the case changes - so a secret's word anywhere makes it one (recovery_key,
+  // otp_backup_codes, pin_hash, remember_hash, apiKey), unless its last word marks a flag, a
+  // time, a count or an address: email_hash (a Gravatar's, public), hashtag, otp_enabled,
+  // otp_last_used, recovery_email and pin_code_sent are ordinary fields of the row.
 
   function padAuthSecret ( $name, $value = NULL ) {
 
-    if ( preg_match ( '/pass(word|wd|phrase|code)|^pass$|pass_?hash|^hash$|pwd|secret|token|^pin$|^pin_?code$|api_?key|private_?key|^t?otp(_?(secret|seed|key))?$|recovery_?codes?/i', (string) $name ) )
-      return TRUE;
+    $words = array_map ( 'strtolower', preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])/', (string) $name, -1, PREG_SPLIT_NO_EMPTY ) );
+    $last  = end ( $words );
+
+    $public = ( strtolower ( (string) $name ) === 'email_hash'
+                or in_array ( $last, [ 'enabled', 'disabled', 'sent', 'at', 'on', 'used', 'count', 'email', 'date', 'time', 'set' ], TRUE ) );
+
+    if ( ! $public )
+      foreach ( $words as $i => $word )
+        if ( in_array ( $word, [ 'pass', 'pwd', 'hash', 'salt', 'otp', 'totp', 'pin', 'recovery', 'backup' ], TRUE )
+             or preg_match ( '/password|passwd|passphrase|passcode|secret|token|apikey|privatekey/', $word )
+             or ( $word === 'key' and in_array ( $words [$i - 1] ?? '', [ 'api', 'app', 'private', 'recovery', 'secret', 'encryption' ], TRUE ) ) )
+          return TRUE;
 
     return is_string ( $value ) and $value !== '' and ( password_get_info ( $value ) ['algo'] ?? NULL ) !== NULL;
 
