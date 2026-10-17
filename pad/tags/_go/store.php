@@ -79,6 +79,16 @@
     elseif ( $padStoreValue and is_string ( $padStoreList ) and padContentType ( $padStoreList ) == 'list' ) {
       padError ( "the data value reads as a PAD list, whose elements would run as expressions" );
       $padStoreData = [];
+    } elseif ( is_string ( $padStoreList ) and padContentType ( $padStoreList ) == 'list' and padSpliceInCode ( $padStoreList ) ) {
+
+      // The content walked before it is stored - the name on the closing tag, {data}( {$x} )
+      // {/data 'e'} - holds its fields' values, and a value standing bare among the elements
+      // ran as one of their expressions: a request value php:strlen(12345) stored 5. Written
+      // in quotes, ( '{$x}' ), it is an element's text (lib/level.php padSpliceInCode).
+
+      padError ( "a value spliced into a {data} list would run as an expression: put it in quotes, ( '{\$x}' ), or hand it over as data=\$x" );
+      $padStoreData = [];
+
     } else
       $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
 
