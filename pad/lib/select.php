@@ -731,7 +731,13 @@
 
   }
 
-  function padSelectGetDB ($table) {
+  // A virtual table takes what it does not declare from its base, which is resolved the
+  // same way, so a view of a view reaches the table at the end of the chain, and their
+  // wheres both hold. Only the direct base was read: with no db of its own there, the view
+  // selected from a table named after the middle view - "Table 'demo.sales' doesn't exist".
+  // $seen ends a chain that comes back to a table already in it.
+
+  function padSelectGetDB ( $table, $seen = [] ) {
 
     global $padSelect;
 
@@ -739,11 +745,22 @@
       return [ 'db' => $table ];
 
     $parms = $padSelect [$table];
+    $base  = $parms ['base'] ?? NULL;
 
-    if ( isset($parms['base']) and isset($padSelect [$parms['base']]) )
-      foreach($padSelect [$parms['base']] as $key => $value)
-        if ( ! isset($parms[$key]) )
-          $parms[$key] = $value;
+    if ( is_string ( $base ) and isset ( $padSelect [$base] ) and $base !== $table and ! in_array ( $base, $seen, TRUE ) ) {
+
+      $inherit = padSelectGetDB ( $base, array_merge ( $seen, [ $table ] ) );
+
+      if ( isset ( $parms ['where'] ) and ( $inherit ['where'] ?? '' ) !== '' and $parms ['where'] !== '' )
+        $parms ['where'] = '(' . $inherit ['where'] . ') and (' . $parms ['where'] . ')';
+
+      unset ( $inherit ['base'] );
+
+      foreach ( $inherit as $key => $value )
+        if ( ! isset ( $parms [$key] ) )
+          $parms [$key] = $value;
+
+    }
 
     if ( ! isset ( $parms ['db'] ) )
       if ( isset($parms['base']) )
