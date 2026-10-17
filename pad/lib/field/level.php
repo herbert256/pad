@@ -20,6 +20,21 @@
   // whether the value is present and NULL. A candidate of the wrong shape is skipped and
   // the search continues. INF comes back when nothing matched at all.
 
+  // An object asked for as a list - a stdClass record, an ArrayObject, an iterator, a
+  // generator - is the array it holds, as padData reads one it is handed (padDataObject):
+  // {user}{$name}{/user} over a stdClass was "there is no tag named 'user'". A date and an
+  // object with __toString stay values. A generator runs once, so its array takes its place.
+
+  function padFieldListOf ( $work, $type ) {
+
+    if ( ( $type == 3 or $type == 4 ) and is_object ( $work )
+         and ! $work instanceof DateTimeInterface and ! $work instanceof Stringable )
+      return padDataObject ( $work );
+
+    return $work;
+
+  }
+
   function padFieldLevel ( $field, $type ) {
 
     global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padLvlFunVar;
@@ -42,7 +57,8 @@
     for ( $i=$pad; $i; $i-- ) {
 
       if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
-        $work = $padCurrent [$i] [$field];
+        $work = padFieldListOf ( $padCurrent [$i] [$field], $type );
+        if ( $padCurrent [$i] [$field] instanceof Generator ) $padCurrent [$i] [$field] = $work;
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
@@ -54,7 +70,8 @@
     }
 
     if ( array_key_exists ( $field, $GLOBALS ) ) {
-      $work = $GLOBALS [$field];
+      $work = padFieldListOf ( $GLOBALS [$field], $type );
+      if ( $GLOBALS [$field] instanceof Generator ) $GLOBALS [$field] = $work;
       if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
       if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
