@@ -1827,7 +1827,7 @@ an unknown colour or size is an error under the strict check.
 
 ### rating
 A score as stars (or hearts) in inline SVG - whole ones filled, a part of one clipped to the
-score, the score said in words (`lib/rating.php`).
+score, the score said in words (`tags/_lib/rating.php`).
 
 ```html
 {rating 4.5, max=5}

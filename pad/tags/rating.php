@@ -1,6 +1,6 @@
 <?php
 
-  // {rating 4.5} - a score as stars, inline SVG by lib/rating.php: the whole ones filled, a
+  // {rating 4.5} - a score as stars, inline SVG by tags/_lib/rating.php: the whole ones filled, a
   // half or any other part of one clipped to the score, and the score in words for a screen
   // reader - "4.5 out of 5", or label= instead. max= is the number of stars (default 5, at
   // most 20), size= their height in pixels (default 20) and icon= star (default) or heart.
