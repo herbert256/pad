@@ -61,7 +61,9 @@
     // in 1990, tomorrow a moment that moved on every request and 2026-02-30 the 2nd of March.
 
     // A weekday the date names - Mon, 12 Oct 2026, as RSS, mail and HTTP write one - moves
-    // nothing and is no reason to refuse it; any other relative part is.
+    // nothing and is no reason to refuse it; any other relative part is - a count of working
+    // days too, which date_parse keeps beside it as weekdays: 2026-10-12 +2 weekdays was
+    // read as the 14th.
 
     // The weekday is left out of what is read - the date decides: a weekday that was not
     // that of the date moved the event to the next such day, Tue, 12 Oct 2026 to the 13th.
@@ -69,8 +71,8 @@
     if ( ! ctype_digit ( $when ) ) {
       $parts    = date_parse ( $when );
       $relative = $parts ['relative'] ?? [];
-      $weekday  = isset ( $relative ['weekday'] ) || isset ( $relative ['weekdays'] );
-      unset ( $relative ['weekday'], $relative ['weekdays'] );
+      $weekday  = isset ( $relative ['weekday'] );
+      unset ( $relative ['weekday'] );
       if ( $parts ['error_count'] or $parts ['warning_count'] or array_filter ( $relative )
            or $parts ['year'] === FALSE or $parts ['month'] === FALSE or $parts ['day'] === FALSE )
         return FALSE;
