@@ -1,0 +1,2 @@
+{sequence '1..40000', push='a'/}{sequence '2..40000', increment=2, push='b'/}{sequence '1;1.0;2;3', push='c'/}{sequence '1;2.0;2;4', push='d'/}
+[{pull:a merge='b', count}{$sequence}{/pull:a}] [{pull:b merge='a', last=3}{$sequence} {/pull:b}] [{pull:c merge='d'}{$sequence} {/pull:c}] [{pull:c combine='d'}{$sequence} {/pull:c}]
