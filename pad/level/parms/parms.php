@@ -31,7 +31,14 @@
 
       include PAD . 'level/parms/variable.php';
 
-    elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare and ! padParmsRaw () )
+    // The first item of {if}, {while}, {until}, {case} and {echo} is their whole expression,
+    // and a bare word there is that expression - a constant, false, null - not a flag option
+    // of the tag: {if false} set the option false, which the condition then read as TRUE and
+    // rendered its content; {while false} ran its 10000 rounds, {echo PHP_VERSION} printed 1.
+
+    elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare and ! padParmsRaw ()
+             and ! ( $padPrmValue === '' and ! count ( $padParms [$pad] ) and ( $padType [$pad] ?? '' ) == 'pad'
+                     and in_array ( $padTag [$pad], [ 'if', 'while', 'until', 'case', 'echo' ], TRUE ) ) )
 
       include PAD . 'level/parms/option.php';
 
