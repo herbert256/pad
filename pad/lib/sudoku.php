@@ -26,9 +26,16 @@
 
     // A line of a drawn grid between its bands - ------+-------+------ - is no row: its
     // dashes were read as 38 empty cells. A line of dashes alone is one when it holds a +,
-    // or more than the nine a row of empty cells has.
+    // or more dashes than the nine a row of empty cells has - counted without the spaces
+    // and bars between them, which made - - - | - - - | - - -, a row with no given, a band
+    // line. The line ends of a posted textarea are \r\n, and the \r kept a band line from
+    // ending where the test looked for its end.
 
-    $text  = preg_replace ( '/^[ \t]*(?=[-+=| \t]*\+|[-=| \t]{10,}[ \t]*$)[-+=| \t]+$/m', '', (string) $text );
+    $text  = str_replace ( "\r", '', (string) $text );
+    $text  = preg_replace_callback ( '/^[-+=| \t]+$/m',
+               fn ( $line ) => ( strpos ( $line [0], '+' ) !== FALSE
+                                 or strlen ( preg_replace ( '/[^-=]/', '', $line [0] ) ) > 9 ) ? '' : $line [0],
+               $text );
     $text  = preg_replace ( '/[\s|+]+/', '', $text );
     $cells = [];
 
