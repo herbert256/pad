@@ -33,15 +33,22 @@
 
   function padAtValue ( $field, $cor=0 ) {
 
-    global $padDataStore, $padForceDataName, $padForceTagName, $pqStore;
+    global $padDataStore, $padForceDataName, $padForceTagName, $pqStore, $padEvalBusy;
 
     padSplit ( '@', $field, $before, $after );
 
     $names = padExplode ( $before, '.' );
     $name  = reset ($names);
 
-    $padForceTagName  = $name;
-    $padForceDataName = $name;
+    // The head of the path names the level only when the reference is the tag itself -
+    // {rows@data}...{/rows@data}, {at 'x.y@z'}. A reference inside an expression reads a
+    // value: the parameter of {if $draft.id} named its level 'draft', the level's value
+    // then stood in $draft for the content, and {$draft.title} there was not found.
+
+    if ( ! ( $padEvalBusy ?? 0 ) ) {
+      $padForceTagName  = $name;
+      $padForceDataName = $name;
+    }
 
     if ( str_contains($field, '@*') )
       return padAtValueAny ( $field, $cor);
