@@ -10,7 +10,7 @@
   if ( padRequestIs ( 'POST' ) ) {
 
     $id = (int) padRequest ( 'id', 0 );
-    $op = (string) padRequest ( 'op', '' );
+    $op = islandsText ( 'op' );
 
     if ( $op == 'add' and in_array ( $id, array_column ( islandsData ( 'products' ), 'id' ) ) )
       $counts [$id] = ( $counts [$id] ?? 0 ) + 1;

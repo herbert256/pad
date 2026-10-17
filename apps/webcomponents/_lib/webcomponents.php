@@ -5,6 +5,19 @@
   // wcData     a file of _data/ as an array
   // wcGroups   the groups of _data/examples.json, each with its examples - the cards
   // wcExample  the entry of one example, with the ones before and after it
+  // wcText     a request value that is one text - a list sent for it is the default
+
+  // A request value that is one text: its text, or the default when it came as a list - a
+  // pasted link or a crawler's ?size[]=m - where the (string) cast warned "Array to string
+  // conversion", an error under PAD, and the page answered 500.
+
+  function wcText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
 
   function wcData ( $name ) {
 

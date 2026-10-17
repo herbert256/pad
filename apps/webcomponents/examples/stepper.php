@@ -14,7 +14,7 @@
   }
 
   $qty      = (int) padRequest ( 'qty', 2 );
-  $size     = (string) padRequest ( 'size', '' );
+  $size     = wcText ( 'size' );
   $qtyError = $errors ['qty'] ?? '';
 
 ?>

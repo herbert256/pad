@@ -42,9 +42,9 @@
       continue;
 
     if ( $errors )
-      $contact = array_replace ( $contact, [ 'name'  => (string) padRequest ( 'name' ),
-                                             'email' => (string) padRequest ( 'email' ),
-                                             'city'  => (string) padRequest ( 'city' ) ] );
+      $contact = array_replace ( $contact, [ 'name'  => htmxText ( 'name' ),
+                                             'email' => htmxText ( 'email' ),
+                                             'city'  => htmxText ( 'city' ) ] );
 
     $rows [] = $contact + [ 'editing'  => ( $id and $mode == 'edit' ),
                             'errName'  => $errors ['name']  ?? '',

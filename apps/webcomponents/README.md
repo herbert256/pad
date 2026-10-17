@@ -30,7 +30,7 @@ PAD custom tags write custom elements with their shadow root already in them - d
 apps/webcomponents/
 ├── _config/config.php     # $padCommon and $padTidy off, $padCsrf on
 ├── _data/                 # examples.json (the catalogue), nav
-├── _lib/webcomponents.php # wcData, wcGroups, wcExample
+├── _lib/webcomponents.php # wcData, wcGroups, wcExample, wcText
 ├── _tags/                 # card.pad, tabs.pad, rating.pad, stepper.pad - the elements as PAD tags
 ├── index, guide
 └── examples/

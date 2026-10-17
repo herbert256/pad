@@ -9,6 +9,19 @@
   //                list - what examples/_inits.pad and _exits.pad put round the page
   // reactCart      the cart a session holds - product id => quantity - as the islands show
   //                it: lines with name, price and quantity, the count and the total
+  // reactText      a request value that is one text - a list sent for it is the default
+
+  // A request value that is one text: its text, or the default when it came as a list - a
+  // pasted link or a crawler's ?q[]=x - where the (string) cast warned "Array to string
+  // conversion", an error under PAD, and the page answered 500.
+
+  function reactText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
 
   function reactData ( $name ) {
 

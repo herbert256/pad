@@ -37,7 +37,7 @@ theme switch and the switch that turns the browser's check of a form off.
 apps/htmx/
 ├── _config/config.php     # $padCommon off, $padCsrf on
 ├── _data/                 # examples.json (the catalogue), products, contacts, sales, nav
-├── _lib/htmx.php          # htmxData, htmxGroups, htmxExample, htmxCart
+├── _lib/htmx.php          # htmxData, htmxGroups, htmxExample, htmxCart, htmxText
 ├── _include/cartSummary.pad
 ├── _inits.pad, _inits.php # the page: htmx and its sse extension, the menu, the cart count
 ├── index, guide           # the examples, and how PAD answers htmx

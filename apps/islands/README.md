@@ -58,7 +58,7 @@ at `www/islands/` when the project is built from a copy elsewhere.
 apps/islands/
 ├── _config/config.php     # $padCommon and $padTidy off, $padCsrf on, $padViteBuild
 ├── _data/                 # examples.json (the catalogue), products, nav
-├── _lib/islands.php       # islandsData, islandsGroups, islandsExample, islandsCart, islandsWeight
+├── _lib/islands.php       # islandsData, islandsGroups, islandsExample, islandsCart, islandsWeight, islandsText
 ├── _frontend/             # the Vite project: package.json, vite.config.js, src/
 ├── _inits.pad, _inits.php # the page: {vite 'src/main.js', react}, the menu
 ├── index, guide

@@ -5,6 +5,19 @@
   // alpineData     a file of _data/ as an array
   // alpineGroups   the groups of _data/examples.json, each with its examples - the cards
   // alpineExample  the entry of one example, with the ones before and after it
+  // alpineText     a request value that is one text - a list sent for it is the default
+
+  // A request value that is one text: its text, or the default when it came as a list - a
+  // pasted link or a crawler's ?q[]=x - where the (string) cast warned "Array to string
+  // conversion", an error under PAD, and the page answered 500.
+
+  function alpineText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
 
   function alpineData ( $name ) {
 

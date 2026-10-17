@@ -32,7 +32,7 @@ tag either, for a short object: `x-data="{ open: false }"`.
 apps/alpine/
 ├── _config/config.php     # $padCommon off, $padTidy off, $padCsrf on
 ├── _data/                 # examples.json (the catalogue), products, todos, nav
-├── _lib/alpine.php        # alpineData, alpineGroups, alpineExample
+├── _lib/alpine.php        # alpineData, alpineGroups, alpineExample, alpineText
 ├── _inits.pad, _inits.php # the page: the csrf-token meta, alpine-app.js, then Alpine deferred
 ├── index, guide           # the examples, and Alpine on a PAD page
 └── examples/              # one page per example, with _inits/_exits round them

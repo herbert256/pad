@@ -14,7 +14,7 @@
   if ( $posted ) {
 
     $id    = (int) padRequest ( 'id', 0 );
-    $op    = (string) padRequest ( 'op', '' );
+    $op    = htmxText ( 'op' );
     $stock = array_column ( $products, 'stock', 'id' );
 
     if ( $op == 'clear' ) {

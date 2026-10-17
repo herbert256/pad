@@ -4,7 +4,7 @@
   // asks the same page with padFormat=json, and the same PHP answers - the templates never
   // run for that request, and only $result leaves the server ($padExpose).
 
-  $q = trim ( (string) padRequest ( 'q', '' ) );
+  $q = trim ( alpineText ( 'q' ) );
 
   $found = array_values ( array_filter ( alpineData ( 'products' ), fn ( $product ) =>
              $q === '' or stripos ( $product ['name'] . ' ' . $product ['category'] . ' ' . $product ['blurb'], $q ) !== FALSE ) );

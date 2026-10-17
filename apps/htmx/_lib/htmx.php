@@ -6,6 +6,19 @@
   // htmxGroups    the groups of _data/examples.json, each with its examples - the cards
   // htmxExample   the entry of one example, with the ones before and after it
   // htmxCart      the cart a session holds - product id => quantity - with names and total
+  // htmxText      a request value that is one text - a list sent for it is the default
+
+  // A request value that is one text: its text, or the default when it came as a list - a
+  // pasted link or a crawler's ?q[]=x - where the (string) cast warned "Array to string
+  // conversion", an error under PAD, and the page answered 500.
+
+  function htmxText ( $name, $default = '' ) {
+
+    $value = padRequest ( $name, $default );
+
+    return is_scalar ( $value ) ? (string) $value : $default;
+
+  }
 
   function htmxData ( $name ) {
 

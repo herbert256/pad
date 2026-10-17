@@ -8,6 +8,6 @@
   // PAD's own answer.
 
   $done = padPosted ( 'signup' );
-  $name = (string) padRequest ( 'name', '' );
+  $name = htmxText ( 'name' );
 
 ?>
