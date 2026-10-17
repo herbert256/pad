@@ -449,6 +449,10 @@ Use printf format specifiers for number formatting:
 {echo $nbr | %+d}           # With sign: +42
 ```
 
+A format is one pipe segment like any other, anywhere in the chain - it runs to the next
+`|`: `{echo $price | * 1.21 | %.2f | . ' EUR'}`. A `%` that opens no conversion is the
+modulo operator: `{echo $n | % 3}`.
+
 ### Common Format Specifiers
 
 | Specifier | Description |

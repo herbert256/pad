@@ -8,8 +8,8 @@
   // Kinds produced here: VAL (quoted string, number, hex payload), OPR (operator), '$'
   // (field), '&' (tag), '#' (option), '$$' (the @ placeholder holding the piped value),
   // pipe, open/close for ( ), a-open/a-close for [ ], hex, and 'other' for a bare word
-  // that only padEvalAfter can classify. An expression starting with % is not tokenised
-  // at all - it is kept whole as a printf format for padEvalValue.
+  // that only padEvalAfter can classify. A pipe segment starting with a printf conversion is
+  // not tokenised at all - it is kept whole as a format for padEvalValue.
   //
   // The two predicates decide where a $name ends: padEvalParseStart says whether the
   // character after $ can open a name, padEvalParseValid whether a character continues
@@ -119,19 +119,106 @@
 
   }
 
-  function padEvalParse (&$result, $eval ) {
+  // The pipe segments of an expression, each [ text, whether it is a format ], when one of
+  // them is a printf format (padEvalFormat) - FALSE when none is. A segment ends at a | that
+  // stands outside a string, where the tokeniser cuts it; a format runs to the next |
+  // whatever it holds, %'*10s pads with a quote.
 
-    $result = [];
+  function padEvalFormatSegments ( $text ) {
 
-    $input = trim ($eval);
+    $segments = [];
+    $formats  = FALSE;
+    $len      = strlen ( $text );
+    $from     = 0;
 
-    // A whole expression that opens with a printf conversion is a format (padEvalFormat).
+    while ( TRUE ) {
 
-    if ( padEvalFormat ( $input ) ) {
-      $result [100] [0] = $input;
-      $result [100] [1] = '%';
+      if ( padEvalFormat ( substr ( $text, $from ) ) ) {
+
+        $end     = strpos ( $text, '|', $from );
+        $end     = ( $end === FALSE ) ? $len : $end;
+        $formats = TRUE;
+
+        $segments [] = [ substr ( $text, $from, $end - $from ), TRUE ];
+
+      } else {
+
+        $quote = '';
+
+        for ( $end = $from; $end < $len; $end++ ) {
+
+          $one = $text [$end];
+
+          if     ( $one == '\\' )                  $end++;
+          elseif ( $quote and $one == $quote )     $quote = '';
+          elseif ( $quote )                        continue;
+          elseif ( $one == "'" or $one == '"' )    $quote = $one;
+          elseif ( $one == '|' )                   break;
+
+        }
+
+        $end = min ( $end, $len );
+
+        $segments [] = [ substr ( $text, $from, $end - $from ), FALSE ];
+
+      }
+
+      if ( $end >= $len )
+        break;
+
+      $from = $end + 1;
+
+    }
+
+    return $formats ? $segments : FALSE;
+
+  }
+
+  // A pipe segment that opens with a printf conversion is a format: one '%' token, which
+  // padEvalValue fills with the segment's input. It was judged once, on the whole text, so a
+  // format was a format only as the whole pipe: {echo $p | * 1.21 | %.2f} took the % of the
+  // last segment for the modulo operator, and {echo $n | %05.2f | trim} printed the trim as
+  // part of the format, "05.00 | trim". The other segments are tokenised as they always were.
+
+  function padEvalParse ( &$result, $eval ) {
+
+    $segments = padEvalFormatSegments ( padUnescape ( $eval ) );
+
+    if ( $segments === FALSE ) {
+      padEvalParseText ( $result, $eval );
       return;
     }
+
+    $result = [];
+    $key    = 0;
+
+    foreach ( $segments as $n => list ( $text, $format ) ) {
+
+      if ( $n ) {
+        $key += 100;
+        $result [$key] = [ '|', 'pipe' ];
+      }
+
+      if ( $format ) {
+        $key += 100;
+        $result [$key] = [ trim ( $text ), '%' ];
+        continue;
+      }
+
+      padEvalParseText ( $part, $text );
+
+      foreach ( $part as $token ) {
+        $key += 100;
+        $result [$key] = $token;
+      }
+
+    }
+
+  }
+
+  function padEvalParseText ( &$result, $eval ) {
+
+    $result = [];
 
     $input  = str_split ( padUnescape($eval) );
     $is_hex = $is_var = $is_prm = $is_tag = $is_str = $is_quote = $is_num = $is_other = FALSE;

@@ -6,8 +6,9 @@
   //
   // Three things are checked, each pinpointed by the position at which it goes wrong: that
   // every ' and " string is closed, and that ( ) and [ ] are balanced and correctly nested.
-  // Nothing else is judged here - the tokeniser and the stages after it read the rest. A %
-  // printf format is kept whole by the tokeniser and so is skipped here as well.
+  // Nothing else is judged here - the tokeniser and the stages after it read the rest. A
+  // pipe segment that is a % printf format is kept whole by the tokeniser and so is skipped
+  // here as well.
   //
   // Position is one-based over the expression as the tokeniser sees it - padUnescape()d, so
   // a brace that travelled as an entity is counted as the one character it becomes - and in
@@ -20,10 +21,22 @@
 
   function padEvalValidate ( $eval ) {
 
-    if ( padEvalFormat ( $eval ) )
-      return TRUE;
-
     $text = padUnescape ( $eval );
+
+    // A format segment is no expression - %'*10s pads with a quote - and is blanked, its
+    // length kept so the positions named after it stay true.
+
+    $segments = padEvalFormatSegments ( $text );
+
+    if ( $segments !== FALSE ) {
+
+      $text = '';
+
+      foreach ( $segments as $n => list ( $part, $format ) )
+        $text .= ( $n ? '|' : '' ) . ( $format ? str_repeat ( ' ', strlen ( $part ) ) : $part );
+
+    }
+
     $len  = strlen ( $text );
 
     // A position is counted in bytes on the way and named in characters (padEvalValidateAt).
