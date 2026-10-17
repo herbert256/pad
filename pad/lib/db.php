@@ -365,6 +365,14 @@
 
     if ( $connect instanceof PDO ) {
 
+      // SQLite's last insert id is the connection's, moved only by a row that got a new
+      // rowid: an insert that inserted nothing - INSERT OR IGNORE of a duplicate, an empty
+      // INSERT ... SELECT - an upsert that updated, or an insert into a WITHOUT ROWID table
+      // answered the id of an earlier insert, of another table even. Unmoved, there is no
+      // new id, and the insert answers its row count, as MySQL's does without one.
+
+      $before = ( $command == 'insert' ) ? $connect->lastInsertId () : '';
+
       $query = $connect->query ( $sql );
 
       if ( $query === FALSE )
@@ -378,7 +386,7 @@
 
       $run ['first'] = $run ['all'] [0] ?? NULL;
 
-      if ( $command == 'insert' )
+      if ( $command == 'insert' and $connect->lastInsertId () !== $before )
         $run ['id'] = (int) $connect->lastInsertId ();
 
       return $run;

@@ -322,7 +322,10 @@ padSqlSetup=_install/schema.sql            # CREATE TABLE ... INSERT ... - run o
 Everything above works alike on both: the `db()` verbs and their result shapes (`field`,
 `record`, `array`, `check`, `insert` answering the new id, `update`/`delete` the rows
 touched), the `{0}` placeholders, the database tags, named `_data/*.sql` queries and the
-Select subsystem. The placeholders escape the way the driver needs - SQLite doubles a quote
+Select subsystem. An insert that gives no row a new id - an ignored duplicate, an empty
+`INSERT ... SELECT` - answers its row count, 0, on both; on SQLite so does an upsert that
+updated (MySQL answers the updated row's id there), and a multi-row insert answers the last
+new id where MySQL answers the first. The placeholders escape the way the driver needs - SQLite doubles a quote
 and has no backslash escape, so a value can never end its literal early. The build runs
 under a lock into a file of its own that is renamed into place, so a second request never
 sees a half-built database. The SQL itself is the database's own dialect: `||` instead of
