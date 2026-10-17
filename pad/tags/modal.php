@@ -5,7 +5,7 @@
   // browser has them, a small script (CSP nonce) where it has not, and a link with a
   // :target overlay where scripting is off. The name is the dialog's id - pad-modal-terms;
   // title= heads the dialog and names it, button= is the button's text ('Open' when not
-  // given). lib/modal.php.
+  // given). tags/_lib/modal.php.
   //
   // Like {live} it runs twice: the content renders first, then the end walk puts it in the
   // dialog.

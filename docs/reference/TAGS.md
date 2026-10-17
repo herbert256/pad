@@ -2154,7 +2154,7 @@ a loop. The browser opens and closes an item, from the keyboard too, a screen re
 
 ### modal
 A dialog over the page - an HTML `<dialog>` with the content, and the button that opens it
-(`lib/modal.php`).
+(`tags/_lib/modal.php`).
 
 ```html
 {modal 'terms', title='Terms of sale', button='Read the terms'}
