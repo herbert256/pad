@@ -6,7 +6,9 @@
   // row's first field other than the key; no matching row answers '', so a fallback reads
   // {echo $id | lookup('customers', 'id', 'name') | ?? 'unknown'}. The set is a {data}
   // block, an array of the page or a _data/ file, indexed once per request - padLookup in
-  // lib/lookup.php.
+  // functions/_lib/lookup.php.
+
+  include_once PAD . 'functions/_lib/lookup.php';
 
   if ( ! $count or trim ( (string) $parm [0] ) === '' ) {
 

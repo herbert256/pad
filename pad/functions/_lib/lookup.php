@@ -1,6 +1,7 @@
 <?php
 
-  // Rows by name, and the lookup pipe function that finds one of them by a key.
+  // Rows by name, and the lookup pipe function that finds one of them by a key - read by the
+  // lookup pipe (functions/lookup.php) and by {tree} (tags/tree.php) when a page uses them.
   //
   // padNamedRows  the rows a name stands for: a {data} block, a stored sequence, an array of
   //               the page or of an enclosing row, or a _data/ file - in that order; NULL

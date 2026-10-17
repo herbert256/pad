@@ -7,7 +7,7 @@
   //
   // The rows are named by the first parameter or by data= - a {data} block, a stored
   // sequence, an array of the page or an enclosing row, a _data/ file (padNamedRows in
-  // lib/lookup.php); children names the
+  // functions/_lib/lookup.php); children names the
   // field that holds a row's children, 'children' when not given. The body is the content
   // as written - without the @else@ part, which shows when there are no rows at all.
 
@@ -25,6 +25,8 @@
     return FALSE;
 
   }
+
+  include_once PAD . 'functions/_lib/lookup.php';
 
   $padTreeRows = padNamedRows ( $padTreeName );
 
