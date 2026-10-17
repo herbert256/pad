@@ -785,6 +785,24 @@
       return '';
     }
 
+    // Ordering the ranks weighs every pair of edges between two neighbouring ranks against
+    // each other, time with the square of their number: & joins names by the hundred, and
+    // one line of 1.9 KB - A1 & ... & A150 --> B1 & ... & B150, 22,500 edges, no rank crossed
+    // - took 80 seconds. The squares add up to no more than 2,500 edges between two ranks
+    // make, about a second.
+
+    $between = [];
+
+    foreach ( $edges as list ( $a, $b ) )
+      for ( $r = min ( $rankOf [$a], $rankOf [$b] ); $r < max ( $rankOf [$a], $rankOf [$b] ); $r++ )
+        $between [$r] = ( $between [$r] ?? 0 ) + 1;
+
+    if ( array_sum ( array_map ( fn ( $count ) => $count * $count, $between ) ) > 2500 * 2500 ) {
+      padError ( 'the diagram is too large to lay out: ' . max ( $between ) . ' of its edges run between the same two ranks, '
+               . array_sum ( $between ) . ' between all of them - ordering that many takes too long, 2500 between two ranks at most - draw it in parts' );
+      return '';
+    }
+
     foreach ( $edges as list ( $a, $b, $label ) )
       if ( $label !== '' and $a !== $b ) {
         $r    = min ( $rankOf [$a], $rankOf [$b] );
