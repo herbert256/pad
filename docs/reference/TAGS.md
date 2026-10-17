@@ -2622,7 +2622,7 @@ moment in milliseconds; the script counts the same way and carries this request'
 
 ### timeago
 How long ago a moment was, in words, inside a `<time>` with the moment as its `datetime` and, in
-full, as its `title` (`lib/timeago.php`) - the `ago` pipe's words with the semantic element.
+full, as its `title` (`tags/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
 {timeago $created}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
