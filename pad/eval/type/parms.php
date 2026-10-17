@@ -37,6 +37,26 @@
     if ( $padEvalKey < $k and ( $padEvalTok [1] ?? '' ) == 'TYPE' and ( $padEvalTok [3] ?? 0 ) > $k )
       $padEvalInCall = TRUE;
 
+  // A test written infix may be denied the way SQL and Python write it - $s not in ('a', 'b'),
+  // $name not like 'A%': the value before the not is the test's input, and the not, left
+  // standing, denies the test's answer. The test took the not's place as its input - the
+  // segment's empty value - and the value and the denied empty test ran together as text,
+  // a1, true for every row.
+
+  if ( $kind == 'pad' and in_array ( $name, padEval_tests ) and ! $padEvalInCall
+       and $b >= $start and $result [$b] [1] == 'OPR' and $result [$b] [0] === 'NOT' ) {
+
+    $padEvalNotBefore = FALSE;
+
+    foreach ( $result as $padEvalKey => $padEvalTok )
+      if ( $padEvalKey >= $start and $padEvalKey < $b )
+        $padEvalNotBefore = $padEvalKey;
+
+    if ( $padEvalNotBefore !== FALSE and $result [$padEvalNotBefore] [1] == 'VAL' )
+      $b = $padEvalNotBefore;
+
+  }
+
   if ( $b >= $start and $result [$b] [1] == 'VAL' and ! $padEvalInCall ) {
     $value = $result [$b] [0];
     unset ($result [$b]);

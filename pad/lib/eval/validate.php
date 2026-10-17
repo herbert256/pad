@@ -160,6 +160,16 @@
            and in_array ( $tokens [$n+1] [1] ?? 'end', [ 'end', 'pipe', 'close', 'a-close' ] ) )
         return padEvalValidateError ( "the operator '" . ( $token [2] ?? $token [0] ) . "' has nothing on its right", $eval );
 
+    // A not after a value denies the test that follows it - $s not in ('a', 'b'), not like,
+    // not matches, not range (eval/type/parms.php). Before anything else it is a mistake:
+    // $a not $b ran the value and the denied one together as text, true whatever they held.
+
+    foreach ( $tokens as $n => $token )
+      if ( $token [1] == 'other' and strtoupper ( $token [0] ) == 'NOT' and $n > 0
+           and padEvalParseAfterValue ( $tokens, $n - 1 )
+           and ! ( ( $tokens [$n+1] [1] ?? '' ) == 'other' and in_array ( strtolower ( $tokens [$n+1] [0] ), padEval_tests ) ) )
+        return padEvalValidateError ( "a 'not' after a value denies a test - write \$a not in (...), not like, not matches or not range, or put it in front: not \$a eq \$b", $eval );
+
     // A word called like a function - zzzq(2) - must name one, wherever it stands. Taken for
     // the word itself it was joined to its arguments: {echo $x | zzzq(2)} printed zzzq2 and
     // {if zzzq(1) eq 1} compared that, where {echo $x | zzzq} is named as no pipe function.

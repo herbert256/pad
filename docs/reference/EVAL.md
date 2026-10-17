@@ -148,6 +148,12 @@ piped value is the condition: `{$n | ? 'some' : 'none'}`.
 `a ?? b` answers `a` unless it is empty - `''`, NULL, an empty list, a missing field - and
 then `b`; a `$field` standing before `??` may be missing under the strict check.
 
+The tests `in`, `like`, `matches`, `range`, `between` and `contains` are pipe functions that
+read infix as well, the value on their left their input: `$s in ('a', 'b')`. A `not` between
+the value and the test denies the test, as SQL writes it - `$s not in ('a', 'b')`,
+`$name not like 'A%'`; a `not` after a value with no test behind it is an error under the
+strict check (put it in front: `not $a eq $b`).
+
 ### Operator Processing (`lib/eval/operations.php`)
 
 The `padEvalOpr()` function:

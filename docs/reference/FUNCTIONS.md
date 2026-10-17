@@ -265,6 +265,13 @@ The tests read infix in a condition as well - the value on the left is their inp
 {if $age range (18, 65)} ... {/if}
 ```
 
+A `not` between the value and the test denies it, as SQL writes it:
+
+```
+{orders where='$status not in ("cancelled", "refunded")'} ... {/orders}
+{if $name not like 'A%'} ... {/if}
+```
+
 ### default
 
 `default(fallback)` answers the value, or the fallback when it is empty - `''`, NULL or an
