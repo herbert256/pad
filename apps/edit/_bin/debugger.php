@@ -15,7 +15,8 @@
   //
   // One request at a time is debugged: a second one that arrives meanwhile is let go at
   // once (detach) and runs as if no debugger were there; so is a request of the editor
-  // itself. The editor asks for the state with a sequence number and is answered as soon
+  // itself. A connection to the Xdebug port is debugged only once its init has said what it
+  // is - any process of this machine can connect there. The editor asks for the state with a sequence number and is answered as soon
   // as the state is newer, or after eight seconds - a long poll. Unasked for twenty
   // minutes and with no request held, the debugger ends itself.
   //
@@ -30,6 +31,13 @@
   //   quit
 
   require __DIR__ . '/../_lib/dbgp.php';
+
+  // The most a packet of the request, or a line of the editor, may hold; the most a
+  // connection may send before its init; how many seconds it has to send that init.
+
+  const dbgMaxPacket = 64 * 1024 * 1024;
+  const dbgMaxInit   = 64 * 1024;
+  const dbgWaitInit  = 5;
 
   error_reporting ( E_ALL );
   set_time_limit ( 0 );
@@ -75,7 +83,7 @@
   $xdBuffer = '';
   $tid      = 0;
   $pending  = [];      // transaction id => callback
-  $others   = [];      // requests being let go: [ socket, buffer ]
+  $others   = [];      // connections not debugged - no init yet, or let go: [ socket, buffer, since ]
   $clients  = [];      // editor connections: id => [ socket, buffer ]
   $waiters  = [];      // editor connections waiting for a newer state: [ socket, since, until ]
   $asked    = time ();
@@ -483,13 +491,9 @@
         if ( ! $new )
           continue;
 
-        if ( $xd )
-          $others [ (int) $new ] = [ $new, '' ];
-        else {
-          $xd       = $new;
-          $xdBuffer = '';
-          stream_set_blocking ( $xd, FALSE );
-        }
+        stream_set_blocking ( $new, FALSE );
+
+        $others [ (int) $new ] = [ $new, '', time () ];
 
         continue;
 
@@ -521,35 +525,73 @@
         foreach ( dbgpFrames ( $xdBuffer ) as $xml )
           dbgFromXdebug ( $xml );
 
+        // A packet's length is what the other side says it is: "999999999999\0" and the
+        // rest kept coming grew the buffer until the debugger ran out of memory.
+
+        if ( $xd and strlen ( $xdBuffer ) > dbgMaxPacket ) {
+          dbgLog ( 'the request sent a packet larger than ' . ( dbgMaxPacket >> 20 ) . ' MB - let go' );
+          dbgEnd ();
+        }
+
         continue;
 
       }
 
       if ( isset ( $others [ (int) $socket ] ) ) {
 
-        // a second request: read its init, then let it go - or the editor's own request
+        // A connection to the Xdebug port, read until its first packet. It is the request
+        // debugged when that is an init and no request is debugged yet; any other is let go
+        // - a second request, the editor's own, or what is no request at all. The first
+        // connection was taken for the request at once, before it had said anything: one
+        // that never did held the one slot, and every request after it was let go.
 
         $key  = (int) $socket;
         $data = @fread ( $socket, 65536 );
 
         if ( $data === '' or $data === FALSE ) {
-          @fclose ( $socket );
-          unset ( $others [$key] );
+          if ( feof ( $socket ) ) {
+            @fclose ( $socket );
+            unset ( $others [$key] );
+          }
           continue;
         }
 
         $others [$key] [1] .= $data;
 
         foreach ( dbgpFrames ( $others [$key] [1] ) as $xml ) {
+
           $init = dbgpParse ( $xml );
-          if ( $init and $init->getName () === 'init' and ! str_contains ( (string) $init ['fileuri'], '/www/edit/' ) ) {
+          $rest = $others [$key] [1];
+          $mine = ( $init and $init->getName () === 'init' );
+          $edit = ( $mine and str_contains ( (string) $init ['fileuri'], '/www/edit/' ) );
+
+          unset ( $others [$key] );
+
+          if ( $mine and ! $xd ) {
+            $xd       = $socket;
+            $xdBuffer = $rest;
+            dbgInit ( $init );
+            break;
+          }
+
+          if ( $mine and ! $edit ) {
             dbgLog ( 'another request ran on without stopping: ' . dbgpPath ( (string) $init ['fileuri'] ) );
             dbgChanged ();
           }
+
           @fwrite ( $socket, dbgpCommand ( 'detach', 1 ) );
           @fclose ( $socket );
-          unset ( $others [$key] );
+
           break;
+
+        }
+
+        // An init is a few hundred bytes; what keeps sending without ever making one is
+        // no request.
+
+        if ( isset ( $others [$key] ) and strlen ( $others [$key] [1] ) > dbgMaxInit ) {
+          @fclose ( $socket );
+          unset ( $others [$key] );
         }
 
         continue;
@@ -577,11 +619,23 @@
           stream_set_blocking ( $socket, TRUE );
           $asked = time ();
           dbgCommand ( $socket, json_decode ( $line, TRUE ) );
+        } elseif ( strlen ( $clients [$key] [1] ) > dbgMaxPacket ) {
+          @fclose ( $socket );
+          unset ( $clients [$key] );
         }
 
       }
 
     }
+
+    // Xdebug sends its init as soon as it has connected: a connection still silent after a
+    // few seconds is none of its.
+
+    foreach ( $others as $key => [ $socket, $buffer, $since ] )
+      if ( time () - $since >= dbgWaitInit ) {
+        @fclose ( $socket );
+        unset ( $others [$key] );
+      }
 
     foreach ( $waiters as $i => [ $socket, $since, $until ] )
       if ( $since < $S ['seq'] or time () >= $until ) {
