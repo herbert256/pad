@@ -8,7 +8,8 @@
   // field with a link for the event. sunday starts the weeks on Sunday instead of Monday.
   //
   // Written as a single tag it answers a table: the month - with links to its neighbours
-  // when no parameter fixes it - a column per weekday, a cell per day with its events. Written as a pair it hands the
+  // when no parameter fixes it, or the parameter holds the month the request asked for - a
+  // column per weekday, a cell per day with its events. Written as a pair it hands the
   // weeks over as rows instead - week, and days: date, day, weekday, month, other, today,
   // weekend, count, events and class - for markup of the template's own.
 
@@ -47,6 +48,11 @@
   if ( $padPair [$pad] )
     return $padCalendarWeeks;
 
-  return padCalendarHtml ( $padCalendarMonth, $padCalendarWeeks, $padCalendarTitle, $padCalendarLink, $padCalendarQuery, trim ( (string) $padParm ) === '' );
+  // The links stay for a parameter that holds the month the request asked for - {calendar
+  // $month}, the request value the links set - as following them changes it: dropped for
+  // every parameter, such a calendar could no longer leave the month it showed.
+
+  return padCalendarHtml ( $padCalendarMonth, $padCalendarWeeks, $padCalendarTitle, $padCalendarLink, $padCalendarQuery,
+                           trim ( (string) $padParm ) === '' or $padCalendarMonth === $padCalendarAsked );
 
 ?>
