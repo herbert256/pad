@@ -4,7 +4,9 @@
 // base64-encoded, so JSON cannot mangle it.
 //
 //   pad/                the engine, without the sequence subsystem's large tables (the OEIS
-//                       sqlite database and the generated lists over 64 KB - 79 of its 82 MB)
+//                       sqlite database and the generated lists over 64 KB - 79 of its 82 MB);
+//                       a large file of the rest - the emoji names, the map outlines - is code
+//                       or data a tag cannot do without, and goes in
 //   apps/<app>/         each application of the pack, its files up to 16 MB each
 //   apps/_common/       the shared application
 //   www/<app>/          its stylesheets, scripts and pictures, without the PHP entry point
@@ -20,7 +22,7 @@ import { fileURLToPath } from 'url';
 
 export const home = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 
-const ENGINE_MAX = 65536;
+const TABLE_MAX  = 65536;
 const APP_MAX    = 16 * 1048576;
 const NEVER      = new Set(['.DS_Store', 'node_modules', '_frontend', '.git']);
 
@@ -39,7 +41,7 @@ export function collect(apps) {
       if (info.isDirectory()) { walk(path, max, keep); continue; }
       if (!keep(key)) continue;
       if (name === '.env' || name.startsWith('.env.') || name.endsWith('.env')) { skipped.push(key); continue; }
-      if (key.startsWith('pad/') && (name.endsWith('.sqlite') || info.size > max)) { left++; continue; }
+      if (key.startsWith('pad/') && (name.endsWith('.sqlite') || (key.startsWith('pad/sequence/') && info.size > TABLE_MAX))) { left++; continue; }
       if (info.size > max) { skipped.push(key); continue; }
       add(key, readFileSync(path));
     }
@@ -50,7 +52,7 @@ export function collect(apps) {
     if (Buffer.from(text, 'utf8').equals(bytes)) files[key] = text; else base64[key] = bytes.toString('base64');
   }
 
-  walk(join(home, 'pad'), ENGINE_MAX);
+  walk(join(home, 'pad'), APP_MAX);
   for (const app of apps) {
     walk(join(home, 'apps', app), APP_MAX);
     walk(join(home, 'www', app), APP_MAX, key => !key.endsWith('.php'));

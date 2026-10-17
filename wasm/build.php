@@ -6,7 +6,8 @@
   //
   // Left out are the sequence subsystem's large tables - the OEIS sqlite database and the
   // generated lists over 64 KB - which make up 79 of the engine's 82 MB; the sequences that
-  // read them do not work in the browser, everything else does. A file that is not UTF-8 is
+  // read them do not work in the browser, everything else does - a large file elsewhere, the
+  // emoji names or the map outlines of a tag, goes in. A file that is not UTF-8 is
   // carried base64-encoded, so JSON cannot mangle it.
   //
   //   php wasm/build.php            writes www/wasm/pad-bundle.json
@@ -25,7 +26,7 @@
     $path = str_replace ( '\\', '/', $one->getPathname () );
     $name = substr ( $path, strlen ( $home ) + 1 );
 
-    if ( str_ends_with ( $name, '.sqlite' ) or $one->getSize () > 65536 or basename ( $name ) == '.DS_Store' ) {
+    if ( str_ends_with ( $name, '.sqlite' ) or ( str_starts_with ( $name, 'pad/sequence/' ) and $one->getSize () > 65536 ) or basename ( $name ) == '.DS_Store' ) {
       $left++;
       continue;
     }

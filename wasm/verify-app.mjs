@@ -63,6 +63,9 @@ const get  = (url, headers) => pad.request('GET', url, undefined, headers);
 const post = (url, body, headers) => pad.request('POST', url, body, headers);
 const call = (path, method = 'GET', body, headers) => pad.handle({ method, url: `http://localhost/_pad/${path}`, body, headers: Object.assign({ 'x-pad-runtime': '1' }, headers) });
 
+check('the engine: a tag\'s code and data over 64 KB are carried - the emoji names, the map outlines',
+  pad.php.fileExists('/pad/pad/tags/_lib/emoji.php') && pad.php.fileExists('/pad/pad/tags/_lib/map/world.json'));
+
 // ---- demo: pages, a post with its token, the 403 and 404 of a server ------------------
 
 if (!only || only === 'demo') {
