@@ -289,32 +289,62 @@ function padSplitOnUnquotedColon ( $str ) {
     // A value standing bare as the whole of where= - where={$cond} - would be the per-row
     // expression itself once quoted: a request value with php:abs(-3) in it ran PHP. That is
     // a whole condition from a value, which where.php refuses for where=$cond as well - and
-    // the same for a sequence's eval= (sequence/types/eval/loop.php). In any case, as a file
-    // system that ignores case finds the option for WHERE= and Eval= as well: those passed
-    // the guard and their value ran.
+    // the same for the expression of the eval sequence (sequence/types/eval/loop.php), in each
+    // of its spellings: eval=, {eval {$q}}, sequence:eval(2, {$q}).
 
-    if ( $quote === '' and preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/i', $inside, $padSpliceOpt ) ) {
-      $padSpliceOpt [2] = strtolower ( $padSpliceOpt [2] );
-      padError ( "{$padSpliceOpt[2]}= is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
+    if ( $quote === '' and $padSpliceWhat = padSpliceExpression ( $inside ) ) {
+      padError ( "$padSpliceWhat is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
       return "''";
     }
 
     if ( $quote === '' )
       return "'$value'";
 
-    // Inside the quoted expression of where= or eval= - where='$n eq {$f}' - the option's text is
-    // evaluated again for every row, and a value standing in it bare became part of that
-    // expression: a request value 2 or $n eq php:abs(-3) called PHP. It goes in as a string
-    // of the expression, in the other quote, unless it stands in one already; its own quotes
-    // are protected, so it closes neither.
+    // Inside the quoted expression of where= or of the eval sequence - where='$n eq {$f}',
+    // {eval '@ * {$q}'}, make='eval|@ * {$q}' - the text is evaluated again for every row, and
+    // a value standing in it bare became part of that expression: a request value 2 or $n eq
+    // php:abs(-3) called PHP. It goes in as a string of the expression, in the other quote,
+    // unless it stands in one already; its own quotes are protected, so it closes neither.
 
-    if ( preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/i', substr ( $inside, 0, $quoteAt ) ) ) {
+    if ( padSpliceExpression ( substr ( $inside, 0, $quoteAt ), substr ( $inside, $quoteAt + 1 ) ) ) {
       $other = ( $quote == "'" ) ? '"' : "'";
       if ( substr_count ( substr ( $inside, $quoteAt + 1 ), $other ) % 2 == 0 )
         return $other . $value . $other;
     }
 
     return $value;
+
+  }
+
+  // Whether a splice stands in an expression the engine evaluates - $head the tag's text up to
+  // the splice or up to the quote it stands in, $text what that quote holds before it - and
+  // which one, for the refusal: the where= and eval= options, the item of {eval} (written
+  // sequence:eval, make:eval ... too), the parameter of sequence:eval() in an expression, and
+  // the text after eval| in make=, keep=, remove= and flag=. In any case, as a file system that
+  // ignores case finds the option or tag for WHERE= and Eval= as well: those passed the guard
+  // and their value ran.
+
+  function padSpliceExpression ( $head, $text = '' ) {
+
+    if ( preg_match ( '/(^|[\s,])(where|eval)\s*=\s*$/i', $head, $match ) )
+      return strtolower ( $match [2] ) . '=';
+
+    if ( preg_match ( '/^((pad|sequence|make|keep|remove|flag):)?eval\s(.*,)?\s*$/is', $head ) )
+      return '{eval}';
+
+    if ( preg_match ( '/^\s*eval\s*\|/i', $text ) )
+      return 'eval|';
+
+    if ( preg_match_all ( '/sequence:eval\s*\(/i', $head, $match, PREG_OFFSET_CAPTURE ) ) {
+      $rest = substr ( $head, end ( $match [0] ) [1] + strlen ( end ( $match [0] ) [0] ) );
+      $rest = preg_replace ( '/\'[^\'\\\\]*(\\\\.[^\'\\\\]*)*\'|"[^"\\\\]*(\\\\.[^"\\\\]*)*"/s', '', $rest );
+      while ( preg_match ( '/\([^()]*\)/', $rest ) )
+        $rest = preg_replace ( '/\([^()]*\)/', '', $rest );
+      if ( ! str_contains ( $rest, ')' ) and str_contains ( $rest, ',' ) )
+        return 'sequence:eval()';
+    }
+
+    return '';
 
   }
 
