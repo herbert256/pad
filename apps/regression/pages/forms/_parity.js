@@ -34,7 +34,9 @@ const document = {
 
 function formOf(one) {
   const entries = [];
-  Object.keys(one.data).forEach(name => [].concat(one.data[name]).forEach(value => entries.push([name, value])));
+  // A textarea's value in FormData holds its line breaks as LF; the post carries them as
+  // CR LF, which is what the server - and so the case's data - sees.
+  Object.keys(one.data).forEach(name => [].concat(one.data[name]).forEach(value => entries.push([name, typeof value === 'string' ? value.replace(/\r\n/g, '\n') : value])));
   const names = [...new Set(Object.keys(one.client).concat(Object.keys(one.data)))];
   const elements = names.map(name => ({ name, id: name, type: 'text', focus() {}, setAttribute() {}, getAttribute() { return null; },
                                         removeAttribute() {}, insertAdjacentElement() {} }));

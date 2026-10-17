@@ -61,6 +61,8 @@
     [ 'slug',     'regex:/^[[:alnum:]-]+$/',  [ 'slug' => 'abc-1' ] ],
     [ 'code',     'regex:/^[^]]+$/',          [ 'code' => 'abc' ] ],
     [ 'code',     'regex:/^[]a-z]+$/',        [ 'code' => 'a]b' ] ],
+    [ 'notes',    'min:4',                    [ 'notes' => "a\r\nb" ] ],
+    [ 'notes',    'max:3',                    [ 'notes' => "a\r\nb" ] ],
     [ 'confirm',  'same:password',            [ 'password' => 'secret', 'confirm' => 'secret' ] ],
     [ 'confirm',  'same:password',            [ 'password' => 'secret', 'confirm' => 'secrets' ] ],
     [ 'name',     'required',                 [ 'name' => "\u{00A0}" ] ],

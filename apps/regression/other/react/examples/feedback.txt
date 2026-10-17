@@ -186,14 +186,17 @@
   function rulesOf(form) {
     try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
   }
+  function sent(one) {
+    return one.replace(/\r\n|\r|\n/g, '\r\n');
+  }
   function valuesOf(form, rules) {
     var data = new FormData(form);
     var values = {};
     data.forEach(function (one, name) {
-      if (typeof one === 'string') values[name] = one;
+      if (typeof one === 'string') values[name] = sent(one);
     });
     Object.keys(rules).forEach(function (name) {
-      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; });
+      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
       values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
     });
     return values;

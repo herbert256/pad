@@ -270,14 +270,20 @@
 
   // Every field of the form, as the post carries it - the other field of same: has no rules
   // of its own, and read as empty it refused every confirmation that matched.
+  // A textarea's line breaks are LF in FormData and CR LF in the post the server counts:
+  // counted as one, min:n blocked a form the server takes and max:n let one through.
+  function sent(one) {
+    return one.replace(/\r\n|\r|\n/g, '\r\n');
+  }
+
   function valuesOf(form, rules) {
     var data = new FormData(form);
     var values = {};
     data.forEach(function (one, name) {
-      if (typeof one === 'string') values[name] = one;
+      if (typeof one === 'string') values[name] = sent(one);
     });
     Object.keys(rules).forEach(function (name) {
-      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; });
+      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
       values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
     });
     return values;

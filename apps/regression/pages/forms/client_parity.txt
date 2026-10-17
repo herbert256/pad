@@ -1355,6 +1355,52 @@
             }
         },
         {
+            "field": "notes",
+            "data": {
+                "notes": "a\r\nb"
+            },
+            "server": "",
+            "client": {
+                "notes": {
+                    "label": "Notes",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min",
+                            "4",
+                            ":label must be at least :n characters",
+                            "4"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "notes",
+            "data": {
+                "notes": "a\r\nb"
+            },
+            "server": "Notes must be at most 3 characters",
+            "client": {
+                "notes": {
+                    "label": "Notes",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max",
+                            "3",
+                            ":label must be at most :n characters",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "confirm",
             "data": {
                 "password": "secret",
