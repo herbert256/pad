@@ -25,17 +25,28 @@
   function padSudokuCells ( $text ) {
 
     // A line of a drawn grid between its bands - ------+-------+------ - is no row: its
-    // dashes were read as 38 empty cells. A line of dashes alone is one when it holds a +,
-    // or more dashes than the nine a row of empty cells has - counted without the spaces
-    // and bars between them, which made - - - | - - - | - - -, a row with no given, a band
-    // line. The line ends of a posted textarea are \r\n, and the \r kept a band line from
-    // ending where the test looked for its end.
+    // dashes were read as 38 empty cells. A line of dashes alone is one when it holds a +
+    // or a = - no cell is written with either - or more dashes than the nine a row of empty
+    // cells has, counted without the spaces and bars between them, which made - - - | - - -
+    // | - - -, a row with no given, a band line. The line ends of a posted textarea are
+    // \r\n, and the \r kept a band line from ending where the test looked for its end.
 
     $text  = str_replace ( "\r", '', (string) $text );
     $text  = preg_replace_callback ( '/^[-+=| \t]+$/m',
-               fn ( $line ) => ( strpos ( $line [0], '+' ) !== FALSE
-                                 or strlen ( preg_replace ( '/[^-=]/', '', $line [0] ) ) > 9 ) ? '' : $line [0],
+               fn ( $line ) => ( strpbrk ( $line [0], '+=' ) !== FALSE or substr_count ( $line [0], '-' ) > 9 ) ? '' : $line [0],
                $text );
+
+    // A line of nine dashes is a row of empty cells, or the band line of a compact grid as
+    // wide as its rows - ---|---|--- under 53.|.7.|... - and the count of cells tells which:
+    // band lines when the grid has 81 without such lines and more with them, where they were
+    // read as rows, 99 cells.
+
+    $count = fn ( $text ) => strlen ( preg_replace ( '/[\s|+]+/', '', $text ) );
+    $bare  = preg_replace ( '/^[-| \t]+$/m', '', $text );
+
+    if ( $count ( $text ) > 81 and $count ( $bare ) == 81 )
+      $text = $bare;
+
     $text  = preg_replace ( '/[\s|+]+/', '', $text );
     $cells = [];
 
