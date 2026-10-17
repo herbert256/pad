@@ -10,7 +10,8 @@
   //   serve   a page fetched from the server it starts, on a free port
   //   export  the regression/site fixture as static files: page links turned into relative
   //           .html files, from a subdirectory too, the assets copied, the outside link kept;
-  //           and a scratch application with its {img} thumbnails, srcset and {video} poster
+  //           and a scratch application with its {img} thumbnails, srcset and {video} poster,
+  //           and a srcset whose addresses hold a comma kept whole
   //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
   //           without an answer and --record writing it, a pattern over a page of 1.6 MB, a
   //           pattern that cannot be run, a long line cut, bodies that read as a pattern or
@@ -313,14 +314,29 @@
     file_put_contents ( "$home/apps/gallery/pic.pad",
       "<p>{img 'photos/p.png', width=100, height=50, alt='p'}</p>\n{video 'clip.mp4', title='Clip', poster='photos/p.png'}" );
 
+    // a srcset whose addresses hold a comma - a Cloudinary path, a data: URI - on a page one
+    // directory down: each address is the run up to whitespace, so the outside ones stay as
+    // written and only the application's own gets its ../ - split at every comma, the
+    // addresses came apart, ", " and ../ written into them
+
+    $cloudinary = 'https://res.cloudinary.com/demo/image/upload/w_400,c_fill/s.jpg 1x, https://res.cloudinary.com/demo/image/upload/w_800,c_fill/s.jpg 2x';
+    $dataUri    = 'data:image/gif;base64,R0lGODlhAQABAAAAACw= 1x,photos/p.png 2x';
+
+    mkdir ( "$home/apps/gallery/docs", 0755, TRUE );
+    file_put_contents ( "$home/apps/gallery/docs/intro.pad",
+      "<img src=\"https://res.cloudinary.com/demo/image/upload/s.jpg\" srcset=\"$cloudinary\" alt=\"c\">\n<img src=\"photos/p.png\" srcset=\"$dataUri\" alt=\"d\">" );
+
     list ( $codeG2 ) = cliCheckRun ( [ 'export', 'gallery', "$home/gallery-copy" ], $env );
 
-    $pic = (string) @file_get_contents ( "$home/gallery-copy/pic.html" );
+    $pic   = (string) @file_get_contents ( "$home/gallery-copy/pic.html" );
+    $intro = (string) @file_get_contents ( "$home/gallery-copy/docs/intro.html" );
 
     $exportImg = ( $codeG1 === 0 and $codeG2 === 0
                    and preg_match ( '#src="(_thumbs/[0-9a-f]{16}\.png)" srcset="\1 1x, (_thumbs/[0-9a-f]{16}\.png) 2x"#', $pic, $thumbs )
                    and is_file ( "$home/gallery-copy/{$thumbs [1]}" ) and is_file ( "$home/gallery-copy/{$thumbs [2]}" )
-                   and preg_match ( '#poster="photos/p\.png\?v=[0-9a-f]+"#', $pic ) );
+                   and preg_match ( '#poster="photos/p\.png\?v=[0-9a-f]+"#', $pic )
+                   and str_contains ( $intro, "srcset=\"$cloudinary\"" )
+                   and str_contains ( $intro, 'srcset="data:image/gif;base64,R0lGODlhAQABAAAAACw= 1x,../photos/p.png 2x"' ) );
 
     padDeleteDataDir ( $home );
 

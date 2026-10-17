@@ -88,18 +88,9 @@
 
         $text = html_entity_decode ( $m [4], ENT_QUOTES | ENT_HTML5 );
 
-        if ( strtolower ( $m [1] ) == 'srcset' ) {
-
-          $set = [];
-
-          foreach ( preg_split ( '/\s*,\s*/', trim ( $text ) ) as $one ) {
-            $parts  = preg_split ( '/\s+/', $one, 2 );
-            $set [] = ( exportUrl ( $parts [0], $bases, $pages, $from ) ?? $parts [0] ) . ( isset ( $parts [1] ) ? ' ' . $parts [1] : '' );
-          }
-
-          $url = implode ( ', ', $set );
-
-        } elseif ( ( $url = exportUrl ( $text, $bases, $pages, $from ) ) === NULL )
+        if ( strtolower ( $m [1] ) == 'srcset' )
+          $url = exportSrcset ( $text, $bases, $pages, $from );
+        elseif ( ( $url = exportUrl ( $text, $bases, $pages, $from ) ) === NULL )
           return $m [0];
 
         return $m [1] . $m [2] . $m [3] . htmlspecialchars ( $url, ENT_QUOTES ) . $m [3];
@@ -109,6 +100,55 @@
       $html
 
     );
+
+  }
+
+  // The addresses of a srcset rewritten, everything around them - the descriptors, the
+  // commas and the spaces - kept as written. The candidates come apart as the HTML parser
+  // takes them: whitespace and commas, then the address - the run of characters up to
+  // whitespace, a comma at its end ending the candidate - then its descriptors up to the
+  // next comma outside parentheses. Split at every comma, an address holding one - a
+  // Cloudinary .../w_400,c_fill/sample.jpg, a data: URI - came apart, ", " written in it
+  // and, on a page one directory down, ../ put in front of its second half.
+
+  function exportSrcset ( $text, $bases, $pages, $from ) {
+
+    $out = '';
+    $at  = 0;
+    $end = strlen ( $text );
+
+    while ( $at < $end ) {
+
+      $skip = strspn ( $text, " \t\n\r\f,", $at );
+      $out .= substr ( $text, $at, $skip );
+      $at  += $skip;
+
+      if ( $at >= $end )
+        break;
+
+      $length = strcspn ( $text, " \t\n\r\f", $at );
+      $url    = rtrim ( substr ( $text, $at, $length ), ',' );
+      $commas = $length - strlen ( $url );
+      $out   .= ( exportUrl ( $url, $bases, $pages, $from ) ?? $url ) . str_repeat ( ',', $commas );
+      $at    += $length;
+
+      if ( $commas )
+        continue;
+
+      for ( $stop = $at, $inside = FALSE; $stop < $end; $stop++ )
+        if ( $text [$stop] == '(' )
+          $inside = TRUE;
+        elseif ( $text [$stop] == ')' )
+          $inside = FALSE;
+        elseif ( $text [$stop] == ',' and ! $inside )
+          break;
+
+      $out .= substr ( $text, $at, $stop - $at );
+      $at   = $stop;
+
+    }
+
+    return $out;
 
   }
 
