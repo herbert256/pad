@@ -255,9 +255,25 @@
       $command = 'array';
 
     // A trailing semicolon ends a statement of one row: the limit added below went after it.
+    // A comment that ends the statement is taken off first, and put back at its end: the
+    // semicolon, the statement's own limit and its lock were looked for at the end of the
+    // text with the comment, so "... limit 1 -- the one row" and "...; -- the one" got the
+    // limit below on a line after the comment, an SQL syntax error.
 
-    if ( in_array ( $command, [ 'check', 'record', 'field' ] ) )
+    $comment = '';
+
+    if ( in_array ( $command, [ 'check', 'record', 'field' ] ) ) {
+
+      $cut = padDbTrailingComment ( $rest, ! ( $padSqlConnect instanceof PDO ) );
+
+      if ( $cut !== FALSE ) {
+        $comment = ' ' . trim ( substr ( $rest, $cut ) );
+        $rest    = rtrim ( substr ( $rest, 0, $cut ) );
+      }
+
       $rest = preg_replace ( '/\s*;\s*$/', '', $rest );
+
+    }
 
     // A statement with nothing to run - db(''), or a verb alone: {field ''} is db('field ') -
     // is not sent. The verb alone ended the request on a PHP undefined array key, and an
@@ -288,9 +304,9 @@
 
     }
 
-    if     ( $command == 'check'  )  $sql = 'select 1 from ' . $rest . $limit . $lock;
-    elseif ( $command == 'record' )  $sql = 'select '        . $rest . $limit . $lock;
-    elseif ( $command == 'field'  )  $sql = 'select '        . $rest . $limit . $lock;
+    if     ( $command == 'check'  )  $sql = 'select 1 from ' . $rest . $limit . $lock . $comment;
+    elseif ( $command == 'record' )  $sql = 'select '        . $rest . $limit . $lock . $comment;
+    elseif ( $command == 'field'  )  $sql = 'select '        . $rest . $limit . $lock . $comment;
     elseif ( $command == 'array' and ! $asWritten ) $sql = 'select ' . $rest;
 
     $_SQL [] = $sql;
@@ -723,6 +739,47 @@
     }
 
     return 0;
+
+  }
+
+  // Where the comments that end a statement start - after that offset there are comments and
+  // white space only - or FALSE when it does not end in a comment. Quoted text is skipped,
+  // with a backslash escape on MySQL ($mysql), as padDbPlaceholders reads it.
+
+  function padDbTrailingComment ( $sql, $mysql ) {
+
+    $quote = '';
+    $cut   = FALSE;
+    $len   = strlen ( $sql );
+
+    for ( $i = 0; $i < $len; $i++ ) {
+
+      $char = $sql [$i];
+
+      if ( $quote ) {
+        if     ( $mysql and $char == '\\' ) $i++;
+        elseif ( $char == $quote          ) $quote = '';
+        continue;
+      }
+
+      if ( $end = padDbComment ( $sql, $i, $mysql ) ) {
+        if ( $cut === FALSE )
+          $cut = $i;
+        $i = $end - 1;
+        continue;
+      }
+
+      if ( ctype_space ( $char ) )
+        continue;
+
+      $cut = FALSE;
+
+      if ( $char == "'" or $char == '"' or $char == '`' )
+        $quote = $char;
+
+    }
+
+    return $quote ? FALSE : $cut;
 
   }
 
