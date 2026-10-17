@@ -50,7 +50,26 @@
 
   function padCheck ( $check ) {
 
-    return ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ); 
+    return ( padFileExists ( "$check.pad" ) or padFileExists ( "$check.php" ) );
+
+  }
+
+  // Whether a file is there, the answer kept: a tag's name is looked for as a .pad and a .php
+  // in _tags, _include and _options of every directory up to the application root, and the
+  // answer is most often no - which PHP keeps nowhere, so each look was a call to the file
+  // system, some twenty for every tag a page uses. The answers are dropped when the second
+  // turns, so a worker or a stream that runs for minutes sees a file added or removed.
+
+  function padFileExists ( $file ) {
+
+    static $memo = [], $at = 0;
+
+    if ( ( $now = time () ) != $at ) {
+      $memo = [];
+      $at   = $now;
+    }
+
+    return $memo [$file] ??= file_exists ( $file );
 
   }
 
@@ -126,7 +145,7 @@
       return FALSE;
 
     foreach ( padDirs () as $value )
-      if ( file_exists ( APP2 . $value . "_options/$check.php" ) )
+      if ( padFileExists ( APP2 . $value . "_options/$check.php" ) )
         return APP2 . $value . "_options/$check.php";
 
     return FALSE;
@@ -143,7 +162,7 @@
       return FALSE;
 
     foreach ( padDirs () as $value )
-      if ( file_exists ( APP2 . $value . "_options/end/$check.php" ) )
+      if ( padFileExists ( APP2 . $value . "_options/end/$check.php" ) )
         return APP2 . $value . "_options/end/$check.php";
 
     return FALSE;
