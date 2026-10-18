@@ -42,19 +42,14 @@
 
       }
 
-    // A field standing before ?? may be missing - that is what the operator is for.
+    // A field standing before ?? may be missing - that is what the operator is for. The two
+    // tokens after a field are read where a field stands; they were gathered for every token.
 
     $keys = array_keys ( $result );
-    $next = [];
-
-    $after = [];
 
     foreach ( $keys as $n => $k ) {
-      $next  [$k] = $result [ $keys [$n+1] ?? -1 ] ?? NULL;
-      $after [$k] = $result [ $keys [$n+2] ?? -1 ] ?? NULL;
-    }
 
-    foreach ($result as $k => $one)
+      $one = $result [$k];
 
       if ( $one[1] == 'other' ) {
 
@@ -89,10 +84,13 @@
         // the {$x | ...} form lets through (level/var.php): {echo $x | default('-')} named the
         // field missing where {$x | default('-')} printed the dash.
 
-        $coalesce = ( ( ( $next [$k] [1] ?? '' ) == 'OPR' and ( $next [$k] [0] ?? '' ) == '??' )
-                      or ( ( $next [$k] [1] ?? '' ) == 'pipe'
-                           and ( ( ( $after [$k] [1] ?? '' ) == 'OPR' and ( $after [$k] [0] ?? '' ) == '??' )
-                                 or ( in_array ( $after [$k] [1] ?? '', [ 'TYPE', 'other' ], TRUE ) and in_array ( $after [$k] [0] ?? '', [ 'default', 'optional' ], TRUE ) ) ) ) );
+        $next  = $result [ $keys [$n+1] ?? -1 ] ?? NULL;
+        $after = $result [ $keys [$n+2] ?? -1 ] ?? NULL;
+
+        $coalesce = ( ( ( $next [1] ?? '' ) == 'OPR' and ( $next [0] ?? '' ) == '??' )
+                      or ( ( $next [1] ?? '' ) == 'pipe'
+                           and ( ( ( $after [1] ?? '' ) == 'OPR' and ( $after [0] ?? '' ) == '??' )
+                                 or ( in_array ( $after [1] ?? '', [ 'TYPE', 'other' ], TRUE ) and in_array ( $after [0] ?? '', [ 'default', 'optional' ], TRUE ) ) ) ) );
 
         // $$x reads the field whose name the field x holds (parse.php). The name must be an
         // application field or a path into one, as {$$x} has it (padValueName, level/var.php):
@@ -157,6 +155,8 @@
         $result[$k][0] = hex2bin ( ( strlen ( $one[0] ) % 2 ? '0' : '' ) . $one[0] );
 
       }
+
+    }
 
   }
 
