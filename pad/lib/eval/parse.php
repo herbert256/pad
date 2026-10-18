@@ -342,6 +342,14 @@
 
       }
 
+      // A quote, a bracket, a pipe or a sigil opens a token of its own, so a number, a hex
+      // payload, an option or a tag reference being read ends there - their branches below
+      // never see the character. The next digit was read on into the token just made: (2).5
+      // put the .5 on the ) and printed 2, and (1 + 2)3 lost its 3.
+
+      if ( ! $is_str and ! $is_quote and in_array ( $one, [ "'", '"', '|', '(', ')', '[', ']', '@', '$' ], TRUE ) )
+        $is_num = $is_hex = $is_prm = $is_tag = FALSE;
+
       if ($one=="'" and ! $is_quote) {
 
         if (!$is_str) {
