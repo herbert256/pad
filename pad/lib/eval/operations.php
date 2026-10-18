@@ -21,12 +21,30 @@
 
   function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    if ( padEvalTernary ( $result, $myself, $start, $end ) )
-      return;
+    // Each preparatory pass runs only when the range holds what it works on (padEvalOprScan)
+    // - most ranges hold no ?, no two operators side by side and no call - and the range is
+    // read again only after a pass that changed it. Each pass read the whole range itself.
 
-    padEvalDouble ( $result, $myself, $start, $end ); padEvalTrace ( 'double2', $result );
-    padEvalCheck  ( $result, $myself, $start, $end ); padEvalTrace ( 'check2', $result );
-    padEvalType   ( $result, $myself, $start, $end ); padEvalTrace ( 'type2', $result );
+    $scan = padEvalOprScan ( $result, $start, $end );
+
+    if ( $scan ['?'] ) {
+      if ( padEvalTernary ( $result, $myself, $start, $end ) )
+        return;
+      $scan = padEvalOprScan ( $result, $start, $end );
+    }
+
+    if ( $scan ['pair'] ) {
+      padEvalDouble ( $result, $myself, $start, $end ); padEvalTrace ( 'double2', $result );
+      $scan = padEvalOprScan ( $result, $start, $end );
+    }
+
+    if ( $scan ['opr'] and $scan ['count'] <= 2 ) {
+      padEvalCheck ( $result, $myself, $start, $end ); padEvalTrace ( 'check2', $result );
+    }
+
+    if ( $scan ['type'] ) {
+      padEvalType ( $result, $myself, $start, $end ); padEvalTrace ( 'type2', $result );
+    }
 
     // The range's keys and the operators in it, read once: a group none of whose operators
     // stands in the range has nothing to apply, and the keys do not change between groups -
@@ -104,6 +122,41 @@
       }
 
     }
+
+  }
+
+  // What the preparatory passes of padEvalOpr look for in the range: the tokens counted,
+  // whether an operator is there, a ? (padEvalTernary), two operators side by side the second
+  // of which is no prefix (padEvalDouble's own test), a typed reference or call (padEvalType).
+
+  function padEvalOprScan ( $result, $start, $end ) {
+
+    $scan = [ 'count' => 0, 'opr' => FALSE, '?' => FALSE, 'pair' => FALSE, 'type' => FALSE ];
+    $prev = FALSE;
+
+    foreach ( $result as $k => $t ) {
+
+      if ( $k < $start ) continue;
+      if ( $k > $end   ) break;
+
+      $scan ['count']++;
+
+      $opr = ( $t [1] == 'OPR' );
+
+      if ( $opr ) {
+        $scan ['opr'] = TRUE;
+        if ( $t [0] === '?' )
+          $scan ['?'] = TRUE;
+        if ( $prev and ! in_array ( $t [0], padEval_one ) )
+          $scan ['pair'] = TRUE;
+      } elseif ( $t [1] == 'TYPE' )
+        $scan ['type'] = TRUE;
+
+      $prev = $opr;
+
+    }
+
+    return $scan;
 
   }
 
