@@ -156,8 +156,8 @@
 
   // The pipe segments of an expression, each [ text, whether it is a format ], when one of
   // them is a printf format (padEvalFormat) - FALSE when none is. A segment ends at a | that
-  // stands outside a string, where the tokeniser cuts it - not at a || - and a format runs
-  // to the next | whatever it holds, %'*10s pads with a quote.
+  // stands outside a string and outside brackets, where padEvalPipes cuts - not at a || -
+  // and a format runs to the next | whatever it holds, %'*10s pads with a quote.
 
   function padEvalFormatSegments ( $text ) {
 
@@ -179,6 +179,7 @@
       } else {
 
         $quote = '';
+        $depth = 0;
 
         for ( $end = $from; $end < $len; $end++ ) {
 
@@ -188,8 +189,10 @@
           elseif ( $quote and $one == $quote )     $quote = '';
           elseif ( $quote )                        continue;
           elseif ( $one == "'" or $one == '"' )    $quote = $one;
+          elseif ( $one == '(' or $one == '[' )    $depth++;
+          elseif ( $one == ')' or $one == ']' )    $depth--;
           elseif ( substr ( $text, $end, 2 ) == '||' ) $end++;      // the or operator
-          elseif ( $one == '|' )                   break;
+          elseif ( $one == '|' and $depth <= 0 )   break;
 
         }
 

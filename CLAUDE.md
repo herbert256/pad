@@ -537,6 +537,8 @@ up to the root). The event's values are the hook's local variables; page variabl
 
 {$name | upper}                   # A field tag pipes too - {echo} is for literals
 {echo $value | +1}                # WRONG - needs space before 1
+{echo ($price | round) * 2}       # A pipe inside ( ) or [ ] belongs to that group
+{echo php:max(1, $n | + 1)}       #   - to that argument of a call
 ```
 
 ### Lookups Between Data Sets

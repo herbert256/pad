@@ -7,7 +7,40 @@
 
   function padEvalValue( &$result, $value ) {
 
+    // An @ in a part after a pipe of a group's own - ($s | @ . '!') - is the value piped into
+    // that part, which padEvalPiped puts in when it runs the group; the stack says, per open
+    // bracket, whether a pipe of it stood before the token in the argument the token is in.
+
+    $levels = [];
+    $inside = 0;
+
     foreach ( $result as $key => $val ) {
+
+      $kind = $val [1];
+
+      if ( $kind == 'open' or $kind == 'a-open' ) {
+        $levels [] = FALSE;
+        continue;
+      }
+
+      if ( $kind == 'close' or $kind == 'a-close' ) {
+        if ( array_pop ( $levels ) )
+          $inside--;
+        continue;
+      }
+
+      if ( $levels and ! empty ( $val ['arg'] ) and end ( $levels ) ) {
+        $levels [ array_key_last ( $levels ) ] = FALSE;
+        $inside--;
+      }
+
+      if ( $kind == 'pipe' and $levels and ! end ( $levels ) ) {
+        $levels [ array_key_last ( $levels ) ] = TRUE;
+        $inside++;
+      }
+
+      if ( $inside )
+        continue;
 
       if ( $val [1] == '$$' ) {
         $result [$key] [0] = $value;

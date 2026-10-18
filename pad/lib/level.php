@@ -15,7 +15,8 @@
   // padCommentCheck / padCommentGo  a {#...#} comment, dropped from the output
   //
   // Quote-aware splitters used while parsing a tag: padPipeSplit cuts at the first | that
-  // is not inside quotes - a || is the or operator, never a pipe - and
+  // is not inside quotes or brackets - a || is the or operator, never a pipe, and a | in
+  // ( ) or [ ] is a pipe of that group's own (lib/eval/pipes.php) - and
   // padSplitOnUnquotedColon does the same for the type prefix.
   //
   // padFindContinueBreak resolves the target of {continue}, {cease} and {break}: a level
@@ -111,6 +112,7 @@ function padSplitOnUnquotedColon ( $str ) {
     $inDouble = false;
     $length   = strlen($input);
     $splitPos = null;
+    $depth    = 0;
 
     for ($i = 0; $i < $length; $i++) {
 
@@ -125,9 +127,15 @@ function padSplitOnUnquotedColon ( $str ) {
             $inSingle = !$inSingle;
         } elseif ($ch === '"' && !$inSingle) {
             $inDouble = !$inDouble;
-        } elseif ($ch === '|' && !$inSingle && !$inDouble && ($input[$i + 1] ?? '') === '|') {
+        } elseif ($inSingle || $inDouble) {
+            continue;
+        } elseif ($ch === '(' || $ch === '[') {
+            $depth++;
+        } elseif ($ch === ')' || $ch === ']') {
+            $depth--;
+        } elseif ($ch === '|' && ($input[$i + 1] ?? '') === '|') {
             $i++;     // || is the or operator of the expression, no pipe
-        } elseif ($ch === '|' && !$inSingle && !$inDouble) {
+        } elseif ($ch === '|' && $depth <= 0) {
             $splitPos = $i;
             break;
         }

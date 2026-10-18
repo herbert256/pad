@@ -8,21 +8,33 @@
   // key => value pair one keyed element (padEvalArrayItems).
   // Then it recurses to pick up the next pair, which is why it returns immediately after
   // handling one. $start/$end bound the scan when called from within another group.
+  //
+  // A list that stands after a pipe of a group around it - ($n | [@, 1]) - is left to be
+  // built with that pipe's part (padEvalPipePart), as padEvalOpnCls leaves a group.
 
   function padEvalArray ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    $open = FALSE;
+    $opens = [];
+    $piped = FALSE;
 
     foreach ( $result as $key => $value ) {
 
       if ( $key < $start ) continue;
       if ( $key > $end   ) break;
 
+      if ( $value [1] == 'pipe' )
+        $piped = TRUE;
+
       if ( $value [1] == 'a-open' ) {
 
-        $open = $key;
+        $opens [] = $key;
 
       } elseif ( $value [1] == 'a-close' ) {
+
+        $open = array_pop ( $opens );
+
+        if ( $piped and $open !== NULL and padEvalPipePart ( $result, $start, $open ) )
+          continue;
 
         $result [$open] [0] = [];
         $result [$open] [1] = 'VAL';
@@ -30,6 +42,7 @@
 
                                                            padEvalTrace ( 'array3',  $result );
         padEvalOpnCls ( $result, $myself, $open+1, $key ); padEvalTrace ( 'opncls2', $result );
+        padEvalPiped  ( $result, $myself, $open+1, $key ); padEvalTrace ( 'piped1',  $result );
         padEvalOpr    ( $result, $myself, $open+1, $key ); padEvalTrace ( 'opr1',    $result );
 
         $items = [];

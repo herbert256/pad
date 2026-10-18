@@ -262,10 +262,15 @@
     // A : belongs to a ? before it in its segment - the inline ternary's. On its own it was
     // left over beside the value: $a : 'b' was "More than one result back".
 
-    $open = 0;
+    $open  = 0;
+    $depth = 0;
 
     foreach ( $tokens as $token )
-      if ( $token [1] == 'pipe' )
+      if ( in_array ( $token [1], [ 'open', 'a-open' ], TRUE ) )
+        $depth++;
+      elseif ( in_array ( $token [1], [ 'close', 'a-close' ], TRUE ) )
+        $depth--;
+      elseif ( $token [1] == 'pipe' and $depth <= 0 )
         $open = 0;
       elseif ( $token [1] == 'OPR' and $token [0] === '?' )
         $open++;
