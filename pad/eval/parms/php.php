@@ -21,6 +21,26 @@
   if ( $padPhpRefused = padPhpCallables ( $name, $parm ) )
     return padError ( $padPhpRefused );
 
-  return call_user_func_array ($name, $parm);
+  // Arguments the function will not take - the wrong type or number, a value out of its
+  // range, a division by zero - are named as the template's mistake under the strict check,
+  // with a word on the piped value when the call left it out, and empty in the lenient walk.
+  // PHP's error went up raw: a "CATCH:" report, or an uncaught one with $padErrorTry off.
+
+  try {
+
+    return call_user_func_array ($name, $parm);
+
+  } catch ( TypeError | ValueError | ArithmeticError $padPhpError ) {
+
+    global $padCheckSyntax;
+
+    if ( $padCheckSyntax )
+      padError ( "the PHP function '$name' refused its arguments: " . $padPhpError->getMessage ()
+                 . ( ( $parm and is_scalar ( $value ) and $value !== '' and ! in_array ( $value, $parm, TRUE ) )
+                     ? " - a php: call with arguments is handed no piped value, @ puts it in its place" : '' ) );
+
+    return '';
+
+  }
 
 ?>
