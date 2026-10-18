@@ -827,7 +827,7 @@ outlives it.
 | `lt`, `<` | Less than |
 | `ge`, `>=` | Greater or equal |
 | `le`, `<=` | Less or equal |
-| `and`, `or` | Logical operators |
+| `and` (`&&`), `or` (`\|\|`) | Logical operators |
 | `range (a, b)` | Value in range |
 
 ### Common Pipe Functions

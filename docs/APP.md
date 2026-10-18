@@ -1598,8 +1598,8 @@ Output: `Alice, Bob, Charlie`
 | `lt`, `<` | Less than |
 | `ge`, `>=` | Greater or equal |
 | `le`, `<=` | Less or equal |
-| `and` | Logical AND |
-| `or` | Logical OR |
+| `and`, `&&` | Logical AND |
+| `or`, `\|\|` | Logical OR |
 | `range (a, b)` | Value in range |
 
 ### Common Pipe Functions

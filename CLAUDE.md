@@ -1215,8 +1215,8 @@ See the following files for complete reference documentation:
 | `lt`, `<` | Less than |
 | `ge`, `>=` | Greater or equal |
 | `le`, `<=` | Less or equal |
-| `and` | Logical AND |
-| `or` | Logical OR |
+| `and`, `&&` | Logical AND |
+| `or`, `\|\|` | Logical OR |
 | `range (a, b)` | Value in range |
 | `in ('a', 'b')` | Value in a list |
 | `like 'A%'` | SQL LIKE match |

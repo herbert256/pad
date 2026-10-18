@@ -15,7 +15,8 @@
   // padCommentCheck / padCommentGo  a {#...#} comment, dropped from the output
   //
   // Quote-aware splitters used while parsing a tag: padPipeSplit cuts at the first | that
-  // is not inside quotes, padSplitOnUnquotedColon does the same for the type prefix.
+  // is not inside quotes - a || is the or operator, never a pipe - and
+  // padSplitOnUnquotedColon does the same for the type prefix.
   //
   // padFindContinueBreak resolves the target of {continue}, {cease} and {break}: a level
   // name, a negative offset, an absolute level number, or by default the nearest enclosing
@@ -124,6 +125,8 @@ function padSplitOnUnquotedColon ( $str ) {
             $inSingle = !$inSingle;
         } elseif ($ch === '"' && !$inSingle) {
             $inDouble = !$inDouble;
+        } elseif ($ch === '|' && !$inSingle && !$inDouble && ($input[$i + 1] ?? '') === '|') {
+            $i++;     // || is the or operator of the expression, no pipe
         } elseif ($ch === '|' && !$inSingle && !$inDouble) {
             $splitPos = $i;
             break;

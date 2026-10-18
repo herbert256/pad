@@ -155,8 +155,8 @@
 
   // The pipe segments of an expression, each [ text, whether it is a format ], when one of
   // them is a printf format (padEvalFormat) - FALSE when none is. A segment ends at a | that
-  // stands outside a string, where the tokeniser cuts it; a format runs to the next |
-  // whatever it holds, %'*10s pads with a quote.
+  // stands outside a string, where the tokeniser cuts it - not at a || - and a format runs
+  // to the next | whatever it holds, %'*10s pads with a quote.
 
   function padEvalFormatSegments ( $text ) {
 
@@ -187,6 +187,7 @@
           elseif ( $quote and $one == $quote )     $quote = '';
           elseif ( $quote )                        continue;
           elseif ( $one == "'" or $one == '"' )    $quote = $one;
+          elseif ( substr ( $text, $end, 2 ) == '||' ) $end++;      // the or operator
           elseif ( $one == '|' )                   break;
 
         }
@@ -396,6 +397,24 @@
       if ($is_str or $is_quote) {
 
         $result [$i] [0] .= $one;
+
+        continue;
+
+      }
+
+      // && and || are and and or, as PHP and JavaScript write them; [2] keeps the spelling
+      // for a message to name. && was a word of its own, read as the text it is, so $a && 0
+      // was the text 1&&0 - true - and || two pipes around nothing.
+
+      if ( ( $one == '&' and $next == '&' ) or ( $one == '|' and $next == '|' ) ) {
+
+        $i += 100;
+        $result [$i] [0] = ( $one == '&' ) ? 'AND' : 'OR';
+        $result [$i] [1] = 'OPR';
+        $result [$i] [2] = $one . $next;
+
+        $is_other = FALSE;
+        $skip     = 1;
 
         continue;
 
