@@ -1,0 +1,10 @@
+{table}
+{demo}{echo php:strlen('abc')}{/demo}
+{demo}{echo php:str_repeat('ab', 3)}{/demo}
+{demo}{echo 'abc' | php:strrev}{/demo}
+{demo}{echo php:number_format(1234567.891, 2)}{/demo}
+{demo}{echo 1234.5 | php:number_format(@, 2, ',', '.')}{/demo}
+{demo}{echo php:str_pad('7', 3, '0', STR_PAD_LEFT)}{/demo}
+{demo}{echo php:max(3, 9, 4)} {echo php:min([3, 9, 4])}{/demo}
+{demo}{echo ucfirst('word')} {echo 'word' | ucfirst}{/demo}
+{/table}

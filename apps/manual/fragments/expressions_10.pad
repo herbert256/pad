@@ -1,0 +1,6 @@
+{define 'gross'}{parms net, vat=21}{echo #net * (1 + #vat / 100) | %.2f}{/define}
+<p>{gross net=100} and {gross net=100, vat=9}</p>
+{data 'steps'}["plan", "build", "ship"]{/data}
+{steps}
+  <p>{echo &current . ' of ' . &count}: {$steps}{echo last@steps ? ' - the last one' : ''}</p>
+{/steps}
