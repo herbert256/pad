@@ -60,8 +60,13 @@
 
   }
 
+  // A {$x} is read once: a field with a value is there, and only an empty answer - which a
+  // field that is missing, a list or an object gives as well - is looked up again to be
+  // checked. Every {$x} was looked up to be checked and again to be read, a dotted path
+  // through the at-subsystem twice.
+
   if     ( $padFldRefused   ) $padFldChk = FALSE;
-  elseif ( $padFirst == '$' ) $padFldChk = padFieldCheck ( $padFld );
+  elseif ( $padFirst == '$' ) $padFldChk = ( ( $padVal = padFieldValue ( $padFld ) ) !== '' or padFieldCheck ( $padFld ) );
   elseif ( $padFirst == '?' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '!' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '#' ) $padFldChk = padOptCheck   ( $padFld );
@@ -100,7 +105,7 @@
     padError ( "Field '$padFirst$padFld' not found" );
 
   if     ( $padFldRefused   ) $padVal = '';
-  elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
+  elseif ( $padFirst == '$' ) ;                                   // read above
   elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
   elseif ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
   elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
