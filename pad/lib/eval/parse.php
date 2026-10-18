@@ -625,9 +625,13 @@
         $signed = ( ( $back >= 0 and $input [$back] == ',' ) or ! padEvalParseAfterValue ( $result, $i ) );
       }
 
+      // A . before a digit opens a number - .5 - only where no value stands before it, as
+      // with the signs: after one it is the concatenation. 'a'.1 was the two values 'a' and
+      // .1 run together, a.1, and (2).5 printed 2.5 where (2) . 5 printed 25.
+
       if ( ! $is_num  and
            (      ctype_digit($one)
-             or ( $one == '.' and ctype_digit($next) )
+             or ( $one == '.' and ctype_digit($next) and ! padEvalParseAfterValue ( $result, $i ) )
              or ( $signed and $one == '-' and ctype_digit($next) )
              or ( $signed and $one == '-' and $next == '.' and ctype_digit($next2) )
              or ( $signed and $one == '+' and ctype_digit($next) )
