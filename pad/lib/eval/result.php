@@ -13,11 +13,22 @@
 
   function padEvalResult ( $result, $value, $eval ) {
 
-    padEvalValue  ( $result, $value );  padEvalTrace ( 'value1', $result );
-    padEvalArray  ( $result, $value );  padEvalTrace ( 'array1', $result );
-    padEvalOpnCls ( $result, $value );  padEvalTrace ( 'opncls1', $result );
-    padEvalOpr    ( $result, $value );  padEvalTrace ( 'opr3', $result );
-    padEvalMulti  ( $result );          padEvalTrace ( 'multi1', $result );
+    // A pass runs when the segment holds what it works on - an @ or a format, a [, a (,
+    // values left side by side - which one look at the kinds tells; each pass read every
+    // token of every segment to find out.
+
+    $kinds = array_flip ( array_column ( $result, 1 ) );
+
+    if ( isset ( $kinds ['$$'] ) or isset ( $kinds ['%'] ) ) padEvalValue  ( $result, $value );
+                                                              padEvalTrace  ( 'value1', $result );
+    if ( isset ( $kinds ['a-open'] ) )                         padEvalArray  ( $result, $value );
+                                                              padEvalTrace  ( 'array1', $result );
+    if ( isset ( $kinds ['open'] ) )                           padEvalOpnCls ( $result, $value );
+                                                              padEvalTrace  ( 'opncls1', $result );
+                                                              padEvalOpr    ( $result, $value );
+                                                              padEvalTrace  ( 'opr3', $result );
+    if ( count ( $result ) > 1 )                               padEvalMulti  ( $result );
+                                                              padEvalTrace  ( 'multi1', $result );
 
     $key = array_key_first ($result);
 
