@@ -233,9 +233,10 @@
     // Two operators that each want a value on both sides cannot stand side by side after a
     // value where there is no pipe value to borrow - one segment that is no pipe body, as for
     // a dangling operator below: the first was applied to the empty value alone and the rest
-    // ran on as text, $n eq eq 3 printed 3 and $n + * 3 printed 30. In a pipe the missing
-    // operand is the piped value - {echo 50 | '"' . . '"'} quotes it. === and !== are read as
-    // == or != and then =, and are named as the PHP spellings they are wherever they stand.
+    // ran on as text, $n eq eq 3 printed 3 and $n + * 3 printed 30. In a pipe the first of
+    // the two works on the piped value on both sides (eval/actions/alone.php) - {echo 50 |
+    // '"' . . '"'} is "5050", a form regression/common misc/eval shows. === and !== are read
+    // as == or != and then =, and are named as the PHP spellings they are wherever they stand.
 
     $alone = ( ! $pipe and count ( $segments ) == 1 );
 

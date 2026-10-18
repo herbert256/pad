@@ -439,8 +439,9 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
 - a comparison or logical operator - or `??` - with nothing on its left or its right, where no
   pipe value stands in for it; an arithmetic one is not named: `{echo 5 *}` answers 0
 - two operators side by side after a value, where no pipe value stands in for the operand
-  between them - `$n + * 3`, `$n eq eq 3`; in a pipe the missing operand is the piped value,
-  `{echo 50 | '"' . . '"'}` quotes it
+  between them - `$n + * 3`, `$n eq eq 3`; in a pipe the first of the two works on the piped
+  value on both sides - `{echo 50 | '"' . . '"'}` is `"5050"`, the regression/common page
+  misc/eval shows the form
 - `===` and `!==`, named as the PHP spellings they are - `eq` (`==`) and `ne` (`!=`) compare
 - a word of punctuation alone - `&`, `~`, `^`, `;` - and a `:` with no `?` before it
 - a `=>` outside a `[ ]` list
