@@ -28,15 +28,37 @@
     padEvalCheck  ( $result, $myself, $start, $end ); padEvalTrace ( 'check2', $result );
     padEvalType   ( $result, $myself, $start, $end ); padEvalTrace ( 'type2', $result );
 
+    // The range's keys and the operators in it, read once: a group none of whose operators
+    // stands in the range has nothing to apply, and the keys do not change between groups -
+    // an operator applied returns at once. They were read again for each of the twelve
+    // groups, on every call, and a call is made for every operator applied.
+
+    $keys = [];
+    $oprs = [];
+
+    foreach ( $result as $k => $t ) {
+      if ( $k < $start ) continue;
+      if ( $k > $end   ) break;
+      $keys [] = $k;
+      if ( $t [1] == 'OPR' )
+        $oprs [ $t [0] ] = TRUE;
+    }
+
+    if ( ! $oprs )
+      return;
+
     foreach ( padEval_groups as $group ) {
 
-      $keys = [];
+      $present = FALSE;
 
-      foreach ( $result as $k => $t ) {
-        if ( $k < $start ) continue;
-        if ( $k > $end   ) break;
-        $keys [] = $k;
-      }
+      foreach ( $group as $opr )
+        if ( isset ( $oprs [$opr] ) ) {
+          $present = TRUE;
+          break;
+        }
+
+      if ( ! $present )
+        continue;
 
       $order = array_keys ( $keys );
 
