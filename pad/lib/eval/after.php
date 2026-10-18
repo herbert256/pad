@@ -97,13 +97,8 @@
         // A field that holds a list is there, and is no value here - $x reads a scalar. It
         // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
 
-        if ( $padCheckSyntax and ! $coalesce and ! padFieldCheck ( $one[0] ) and ! padStrHidden ( $one[0] ) )
-          if ( padFieldObject ( $one[0] ) )
-            padError ( "Expression error: the field '\${$one[0]}' is an object, not a value" );
-          elseif ( padArrayCheck ( $one[0] ) )
-            padError ( "Expression error: the field '\${$one[0]}' is a list, not a value" );
-          else
-            padError ( "Expression error: there is no field named '\${$one[0]}'" );
+        if ( $padCheckSyntax and ! $coalesce )
+          padEvalFieldReport ( $one[0], '$' . $one[0] );
 
         $result[$k][1] = 'VAL';
         $result[$k][0] = padFieldValue ( $one[0] );
@@ -132,6 +127,24 @@
         $result[$k][0] = hex2bin ( ( strlen ( $one[0] ) % 2 ? '0' : '' ) . $one[0] );
 
       }
+
+  }
+
+  // Under the strict check: a field that is no value named as what it is - an object, a
+  // list, or not there - with the field as the template spelled it, $x or field:x. A name a
+  // sandbox hid misses quietly (padStrHidden).
+
+  function padEvalFieldReport ( $name, $spelled ) {
+
+    if ( padFieldCheck ( $name ) or padStrHidden ( $name ) )
+      return;
+
+    if ( padFieldObject ( $name ) )
+      padError ( "Expression error: the field '$spelled' is an object, not a value" );
+    elseif ( padArrayCheck ( $name ) )
+      padError ( "Expression error: the field '$spelled' is a list, not a value" );
+    else
+      padError ( "Expression error: there is no field named '$spelled'" );
 
   }
 
