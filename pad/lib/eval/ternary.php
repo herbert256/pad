@@ -9,7 +9,8 @@
   // condition and the branch not taken are dropped and what is left is reduced in their
   // place. With nothing written before the ?, the condition is the piped value:
   // {$count | ? 'some' : 'none'}. The condition counts as PAD counts a value - an array when
-  // it has elements, anything else by PHP's truth.
+  // it has elements, anything else by PHP's truth. With no then branch - $title ?: 'none' -
+  // a true condition is the answer itself.
   //
   // Every field of both branches was resolved before this stage, so under the strict check
   // a missing field in the branch not taken is still reported.
@@ -119,23 +120,39 @@
 
     $true = is_array ( $cond ) ? count ( $cond ) > 0 : (bool) $cond;
 
-    unset ( $result [ $keys [$q] ] );
+    // With nothing between the ? and the : - cond ?: else, as PHP has it - a true condition
+    // is the answer itself, standing where the ? stood. It was a branch reported empty, while
+    // a false one went on to the else: $n ?: 5 was an error for 3 and 5 for 0.
+
+    $elvis = ( $c == $q + 1 );
+
+    if ( $elvis and $true )
+      $result [ $keys [$q] ] = [ $cond, 'VAL' ];
+    else
+      unset ( $result [ $keys [$q] ] );
+
     unset ( $result [ $keys [$c] ] );
 
     for ( $n = $q + 1; $n < $to; $n++ )
       if ( ( $true and $n > $c ) or ( ! $true and $n < $c ) )
         unset ( $result [ $keys [$n] ] );
 
-    if ( ! $true and $c + 1 >= $to or $true and $c == $q + 1 ) {
+    // An else with nothing in it is reported whichever branch is taken - the other branch's
+    // fields are checked as well - and leaves nothing to reduce when it is the one taken.
+
+    if ( $c + 1 >= $to ) {
       if ( $padCheckSyntax )
         padError ( "a branch of an inline ternary is empty" );
-      return TRUE;
+      if ( ! $true )
+        return TRUE;
     }
 
     // The branch taken starts the argument now, for a ternary nested in it: f(1, $a ? 2 : $b
     // ? 3 : 4) read 1 $b as the condition of the second.
 
-    if ( $from )
+    if ( $from and $elvis and $true )
+      $result [ $keys [$q] ] ['arg'] = TRUE;
+    elseif ( $from )
       foreach ( $result as $k => $t )
         if ( $k > $keys [$q] ) {
           $result [$k] ['arg'] = TRUE;

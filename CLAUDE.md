@@ -1223,6 +1223,7 @@ See the following files for complete reference documentation:
 | `matches '/re/'` | Regular expression match (a backslash written `\\`) |
 | `a ?? b` | `a`, or `b` when `a` is empty or a missing field |
 | `c ? a : b` | Inline ternary - `{echo $n gt 1 ? 'items' : 'item'}` |
+| `a ?: b` | `a` when it is true, else `b` - `{echo $title ?: 'Untitled'}` |
 
 ---
 
