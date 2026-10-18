@@ -62,9 +62,14 @@
 
     global $padCheckSyntax;
 
+    // Written as a call with nothing piped in, its first argument was the value it works on
+    // (eval/type/parms.php) - and the count is of the arguments after it, which the message
+    // says: replace('a', 'b') was told it wants 2 parameters, and had written two.
+
     if ( $padCheckSyntax )
       padError ( "the function '$name' wants " . $padFnNeeds [$name]
-                      . " parameter" . ( $padFnNeeds [$name] > 1 ? 's' : '' ) );
+                      . " parameter" . ( $padFnNeeds [$name] > 1 ? 's' : '' )
+                      . ( ( $padEvalShifted ?? FALSE ) ? " after the value it works on - written as a call its first argument is that value: $name(\$value, ...)" : '' ) );
 
     return $value;
 

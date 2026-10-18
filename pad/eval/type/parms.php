@@ -115,8 +115,12 @@
   // upper-cased instead of the 'x'. date keeps PHP's order - the format, then the moment:
   // date('Y', 0) is 1970. A pipe - {$s | left(2)} - still hands its value in.
 
+  $padEvalShifted = FALSE;
+
   if ( $kind == 'pad' and $padEvalCalled and $count and ! $padEvalPiped
        and ( $padEvalInCall or ( $GLOBALS ['padEvalHead'] ?? FALSE ) ) ) {
+
+    $padEvalShifted = TRUE;
 
     if ( in_array ( $name, [ 'date', 'time', 'timestamp' ] ) ) {
       $value = $parm [1] ?? '';
