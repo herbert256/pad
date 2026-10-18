@@ -16,7 +16,7 @@
   //
   // Quote-aware splitters used while parsing a tag: padPipeSplit cuts at the first | that
   // is not inside quotes or brackets - a || is the or operator, never a pipe, and a | in
-  // ( ) or [ ] is a pipe of that group's own (lib/eval/pipes.php) - and
+  // ( ) or [ ] is a pipe of that group's own (lib/eval/tree.php) - and
   // padSplitOnUnquotedColon does the same for the type prefix.
   //
   // padFindContinueBreak resolves the target of {continue}, {cease} and {break}: a level

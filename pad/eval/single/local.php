@@ -5,8 +5,8 @@
   // application directory chain and then _common and trying the known data extensions, and both
   // load it the same way, padDataFileData() being the function types/local.php inlines.
   //
-  // What comes back is an array, which is a value an expression can hold since the three files
-  // in eval/go/ deal with arrays. It used to return the literal string 'todo', so local:staff.xml
+  // What comes back is an array, which is a value an expression can hold since the operators
+  // deal with arrays (padEvalApply). It used to return the literal string 'todo', so local:staff.xml
   // came out as todoxml.
   //
   // Write the name without its extension here. Inside an expression a '.' is the concatenation

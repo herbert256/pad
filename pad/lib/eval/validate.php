@@ -234,7 +234,7 @@
     // value where there is no pipe value to borrow - one segment that is no pipe body, as for
     // a dangling operator below: the first was applied to the empty value alone and the rest
     // ran on as text, $n eq eq 3 printed 3 and $n + * 3 printed 30. In a pipe the first of
-    // the two works on the piped value on both sides (eval/actions/alone.php) - {echo 50 |
+    // the two works on the piped value on both sides (lib/eval/tree.php) - {echo 50 |
     // '"' . . '"'} is "5050", a form regression/common misc/eval shows. === and !== are read
     // as == or != and then =, and are named as the PHP spellings they are wherever they stand.
 
@@ -282,7 +282,7 @@
         return padEvalValidateError ( "a : with no ? before it - the inline ternary is cond ? then : else", $eval );
 
     // A not after a value denies the test that follows it - $s not in ('a', 'b'), not like,
-    // not matches, not range (eval/type/parms.php). Before anything else it is a mistake:
+    // not matches, not range (lib/eval/tree.php). Before anything else it is a mistake:
     // $a not $b ran the value and the denied one together as text, true whatever they held.
 
     foreach ( $tokens as $n => $token )

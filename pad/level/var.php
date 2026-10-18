@@ -90,7 +90,7 @@
 
   // A field that holds a list, written where {$x} wants a value, is named as what it is,
   // not reported missing - the field is there - the way the expression form does
-  // (lib/eval/after.php): {$items} with $items an array said "Field '$items' not found" and
+  // (lib/eval/run.php): {$items} with $items an array said "Field '$items' not found" and
   // sent the author hunting a typo that was not there.
 
   if ( ! $padFldRefused and ! $padFldChk and ! $padVarFallback and $padCheckSyntax

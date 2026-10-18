@@ -5,20 +5,15 @@
   //
   // Under the strict check a field that is no value is named, as {field:x} as a tag and $x in
   // an expression name it (padEvalFieldReport) - unless ?? follows, which is there for a field
-  // that may be missing. {echo field:nope} printed nothing where {field:nope} was an error.
+  // that may be missing ($padEvalCoalesce, padEvalLook). {echo field:nope} printed nothing
+  // where {field:nope} was an error.
 
   global $padCheckSyntax;
 
   $padFieldValue = padFieldValue ($name);
 
-  if ( $padCheckSyntax and $padFieldValue === '' ) {
-
-    $padFieldNext = padEvalNextKey ( $result, $k );
-
-    if ( ! ( $padFieldNext and $result [$padFieldNext] [1] == 'OPR' and $result [$padFieldNext] [0] === '??' ) )
-      padEvalFieldReport ( $name, "field:$name" );
-
-  }
+  if ( $padCheckSyntax and $padFieldValue === '' and ! $padEvalCoalesce )
+    padEvalFieldReport ( $name, "field:$name" );
 
   return $padFieldValue;
 

@@ -10,8 +10,8 @@
   //                   (used for _data/ files)
   // padStrFun         the full form, taking the sandbox/reset/clean flags plus a function
   //                   name; start/pad/parms.php calls it for {start function=...}
-  // padFunctionAsTag  runs a pipe function as if it were a tag, by handing a synthetic
-  //                   tag/value list to padEvalType; used by types/function.php
+  // padFunctionAsTag  runs a pipe function as if it were a tag, through the evaluator's
+  //                   own call (padEvalCall); used by types/function.php
   // padTagAsFunction  the reverse - wraps value and parameters as {tag ...}value{/tag}
   //                   and renders it with padCode, so a tag can be used in a pipe
 
@@ -80,31 +80,20 @@
 
   function padFunctionAsTag ( $name, $myself, $parm ) {
 
-    $k = 100;
+    $kind = padTypeFunction ( $name );
 
-    $result [$k] [0] = $name;
-    $result [$k] [1] = 'TYPE';
-    $result [$k] [2] = padTypeFunction ( $name );
-    $result [$k] [3] = 0;
+    if ( $kind and file_exists ( PAD . "eval/single/$kind.php" ) )
+      return padEvalLook ( $kind, $name );
+
+    // [0] holds the tag's parameters as written; the ones after it are the function's.
+
+    $args = [];
 
     foreach ( $parm as $key => $val )
-      if ( $key > 0 ) {
-        $k = $k + 100;
-        $result [$k] [0] = $val;;
-        $result [$k] [1] = 'VAL';
-      }
+      if ( $key > 0 )
+        $args [] = $val;
 
-    // [3] is where the parameters end; left at 0 the type took only the next token, so
-    // {substr 0, 2} and {replace 'a','x'} lost every parameter after the first.
-
-    if ( $k > 100 )
-      $result [100] [3] = $k + 1;
-
-    padEvalType ( $result, $myself );
-
-    $start = array_key_first ( $result );
-
-    return $result [$start] [0];
+    return padEvalCall ( $kind, $name, $myself, $args );
 
   }
 

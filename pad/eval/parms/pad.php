@@ -63,7 +63,7 @@
     global $padCheckSyntax;
 
     // Written as a call with nothing piped in, its first argument was the value it works on
-    // (eval/type/parms.php) - and the count is of the arguments after it, which the message
+    // (padEvalCallNode) - and the count is of the arguments after it, which the message
     // says: replace('a', 'b') was told it wants 2 parameters, and had written two.
 
     if ( $padCheckSyntax )
