@@ -118,9 +118,10 @@
   // the later stages judge on their own terms.
   //
   // A clean answer is kept for the request when the text alone decides it - every bare word
-  // in it an operator word (padEvalCheckPure): a loop judges the same text once per row. A
-  // word that may name a function, a tag or a constant is looked up where the expression
-  // stands, so such an expression is judged every time, as one that failed is.
+  // in it an operator word, a prefixed name or a built-in function, which is one wherever the
+  // expression stands (padEvalCheckPure): a loop judges the same text once per row. A word
+  // that may name an application function, a tag or a constant is looked up where the
+  // expression stands, so such an expression is judged every time, as one that failed is.
 
   function padEvalCheckPipes ( $result, $eval, $pipe = FALSE ) {
 
@@ -144,7 +145,9 @@
   function padEvalCheckPure ( $result ) {
 
     foreach ( $result as $token )
-      if ( $token [1] == 'other' and ! in_array ( strtoupper ( $token [0] ), padEval_txt ) and ! isset ( padEval_alt [ $token [0] ] ) )
+      if ( $token [1] == 'other' and ! in_array ( strtoupper ( $token [0] ), padEval_txt ) and ! isset ( padEval_alt [ $token [0] ] )
+           and ! str_contains ( $token [0], ':' )
+           and ! ( preg_match ( '/^[a-zA-Z][a-zA-Z0-9_]*$/D', $token [0] ) and padFileExists ( PAD . "functions/{$token[0]}.php" ) ) )
         return FALSE;
 
     return TRUE;
