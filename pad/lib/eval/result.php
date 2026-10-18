@@ -31,7 +31,15 @@
       if ( ! $padCheckSyntax )
         return '';
 
-      if     ( count($result) < 1        ) padError ("No result back: $eval");
+      // Values side by side are joined as text (padEvalMulti), so those left over hold a
+      // list, which joins nothing - named as that, where it was "More than one result back";
+      // and an empty ( ) as holding nothing, where it was "No result back".
+
+      $padEvalVals = count ( array_filter ( $result, fn ( $one ) => $one [1] == 'VAL' ) );
+
+      if     ( count($result) < 1        ) padError ("Expression error: there is no value in '" . trim ( $eval ) . "'");
+      elseif ( count($result) > 1 and $padEvalVals == count ( $result ) )
+                                           padError ("Expression error: a list and another value stand side by side with no operator between them: $eval");
       elseif ( count($result) > 1        ) padError ("More than one result back: $eval");
       elseif ( $result[$key][1] != 'VAL' ) padError ("Result is not a value: $eval");
 
