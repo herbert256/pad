@@ -15,6 +15,30 @@
   if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 
+  // The commonest expressions - a number, a string with no quote or backslash in it, a plain
+  // $field - come once per row and per parameter, and answer here what the pipeline answers
+  // for them: the number and the string as written, the field after the strict check
+  // padEvalAfter gives it. Not in a pipe body, where a signed number alone is named as an
+  // operator missing its space, nor while the trace records the stages.
+
+  if ( ! $pipe and is_string ( $eval ) and ! ( $GLOBALS ['padEvalTrace'] ?? FALSE ) ) {
+
+    $padEvalFirst = $eval [0] ?? '';
+
+    if ( ( ctype_digit ( $padEvalFirst ) or $padEvalFirst == '-' ) and preg_match ( '/^-?\d+(\.\d+)?$/D', $eval ) )
+      return $eval;
+
+    if ( ( $padEvalFirst == "'" or $padEvalFirst == '"' ) and preg_match ( '/^(\'[^\'\\\\]*\'|"[^"\\\\]*")$/D', $eval ) )
+      return padUnescape ( substr ( $eval, 1, -1 ) );
+
+    if ( $padEvalFirst == '$' and preg_match ( '/^\$([a-zA-Z_][a-zA-Z0-9_]*)$/D', $eval, $padEvalField ) ) {
+      if ( $GLOBALS ['padCheckSyntax'] )
+        padEvalFieldReport ( $padEvalField [1], $eval );
+      return padFieldValue ( $padEvalField [1] );
+    }
+
+  }
+
   // A malformed expression is reported here, in the source's own terms, before the
   // tokeniser can turn it into something obscure downstream. A reported fault ends the
   // evaluation with an empty value. padEvalParsed (lib/eval/parse.php) validates and
