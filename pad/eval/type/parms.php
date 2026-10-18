@@ -138,12 +138,16 @@
 
   $padEvalShifted = FALSE;
 
-  if ( $kind == 'pad' and $padEvalCalled and $count and ! $padEvalPiped
+  // An application's function written so - exclaim('ab') - reads its argument the same way:
+  // its file is handed $value and $parm as a built-in's is, and got the empty value with the
+  // argument as a parameter, ab answered !.
+
+  if ( in_array ( $kind, [ 'pad', 'app', 'function' ], TRUE ) and $padEvalCalled and $count and ! $padEvalPiped
        and ( $padEvalInCall or ( $GLOBALS ['padEvalHead'] ?? FALSE ) ) ) {
 
     $padEvalShifted = TRUE;
 
-    if ( in_array ( $name, [ 'date', 'time', 'timestamp' ] ) ) {
+    if ( $kind != 'app' and in_array ( $name, [ 'date', 'time', 'timestamp' ] ) ) {
       $value = $parm [1] ?? '';
       if ( is_numeric ( $value ) )
         $value = new DateTimeImmutable ( '@' . (int) $value );
