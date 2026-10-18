@@ -58,6 +58,27 @@
   // segment's empty value - and the value and the denied empty test ran together as text,
   // a1, true for every row.
 
+  // The typed references are reduced from the right, so the one a test stands after -
+  // array:rows contains 2, field:n in (1, 2), bool:open not in (1) - is still a TYPE token when
+  // the test is made. One that takes no parameters (eval/single/) is reduced first, in place:
+  // the test was handed the segment's empty value, and the reference was left beside its
+  // answer, a list and a value side by side.
+
+  if ( $padEvalTestArg and $b >= $padEvalArgFrom ) {
+
+    $padEvalLeft = $b;
+
+    if ( $result [$b] [1] == 'OPR' and $result [$b] [0] === 'NOT' )
+      foreach ( $result as $padEvalKey => $padEvalTok )
+        if ( $padEvalKey >= $padEvalArgFrom and $padEvalKey < $b )
+          $padEvalLeft = $padEvalKey;
+
+    if ( $result [$padEvalLeft] [1] == 'TYPE' and ( $result [$padEvalLeft] [3] ?? 0 ) == 0
+         and file_exists ( PAD . "eval/single/{$result[$padEvalLeft][2]}.php" ) )
+      padEvalOpr ( $result, $myself, $padEvalLeft, $padEvalLeft );
+
+  }
+
   if ( $padEvalTestArg
        and $b >= $padEvalArgFrom and $result [$b] [1] == 'OPR' and $result [$b] [0] === 'NOT' ) {
 
