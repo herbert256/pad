@@ -53,8 +53,12 @@
   // The trace snapshots live in globals, which padEvalTrace fills; this file runs inside
   // padEval, where the bare names were locals and the reset never reached them.
 
-  $GLOBALS ['_eval']      = [];
-  $GLOBALS ['_eval_last'] = [];
+  global $padEvalTrace;
+
+  if ( $padEvalTrace ) {
+    $GLOBALS ['_eval']      = [];
+    $GLOBALS ['_eval_last'] = [];
+  }
 
   padEvalTrace ( 'parse', $result ); $_eval_parse [] = $result;
 
