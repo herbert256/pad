@@ -193,6 +193,51 @@
       elseif ( $token [1] == 'arrow' and end ( $open ) !== 'a-open' )
         return padEvalValidateError ( "a => pairs a key with its value inside a [ ] list only", $eval );
 
+    // Two operators that each want a value on both sides cannot stand side by side after a
+    // value where there is no pipe value to borrow - one segment that is no pipe body, as for
+    // a dangling operator below: the first was applied to the empty value alone and the rest
+    // ran on as text, $n eq eq 3 printed 3 and $n + * 3 printed 30. In a pipe the missing
+    // operand is the piped value - {echo 50 | '"' . . '"'} quotes it. === and !== are read as
+    // == or != and then =, and are named as the PHP spellings they are wherever they stand.
+
+    $alone = ( ! $pipe and count ( $segments ) == 1 );
+
+    foreach ( $tokens as $n => $token )
+      if ( $n and padEvalBinary ( $token ) and padEvalBinary ( $tokens [$n+1] ?? [ '', 'end' ] )
+           and padEvalParseAfterValue ( $tokens, $n - 1 ) ) {
+
+        $one = $token [2] ?? strtolower ( $token [0] );
+        $two = $tokens [$n+1] [2] ?? strtolower ( $tokens [$n+1] [0] );
+
+        if ( $two == '=' and in_array ( $one, [ '==', '!=' ], TRUE ) )
+          return padEvalValidateError ( "'$one=' is no operator - " . ( $one == '==' ? 'eq (==)' : 'ne (!=)' )
+                                        . " compares two values", $eval );
+
+        if ( $alone )
+          return padEvalValidateError ( "the operators '$one' and '$two' stand side by side - a value is missing between them", $eval );
+
+      }
+
+    // A word that is nothing but punctuation - & ~ ^ ; ` and the like - is no part of an
+    // expression; it was read as text and joined to its neighbours: $n & 1 printed 3&1.
+
+    foreach ( $tokens as $token )
+      if ( $token [1] == 'other' and preg_match ( '/^[^a-zA-Z0-9_\x80-\xff]+$/', $token [0] ) )
+        return padEvalValidateError ( "'{$token[0]}' is no operator or value", $eval );
+
+    // A : belongs to a ? before it in its segment - the inline ternary's. On its own it was
+    // left over beside the value: $a : 'b' was "More than one result back".
+
+    $open = 0;
+
+    foreach ( $tokens as $token )
+      if ( $token [1] == 'pipe' )
+        $open = 0;
+      elseif ( $token [1] == 'OPR' and $token [0] === '?' )
+        $open++;
+      elseif ( $token [1] == 'OPR' and $token [0] === ':' and ! $open-- )
+        return padEvalValidateError ( "a : with no ? before it - the inline ternary is cond ? then : else", $eval );
+
     // A not after a value denies the test that follows it - $s not in ('a', 'b'), not like,
     // not matches, not range (eval/type/parms.php). Before anything else it is a mistake:
     // $a not $b ran the value and the denied one together as text, true whatever they held.
@@ -262,16 +307,33 @@
   }
 
   // Whether a parse token is a two-sided comparison or logical operator - the ones a dangling
-  // operand is a mistake for. The words and their symbol spellings both count; the unary NOT
-  // and the arithmetic operators, which the pipe forms lean on, do not.
+  // operand is a mistake for. The words and their symbol spellings both count, and ?? - $x ??
+  // answered $x and ?? $x the piped value or $x; the unary NOT and the arithmetic operators,
+  // which the pipe forms lean on, do not.
 
   function padEvalComparison ( $token ) {
 
-    $compare = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'OR', 'XOR' ];
+    $compare = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'OR', 'XOR', '??' ];
 
     if ( $token [1] == 'other' and in_array ( strtoupper ( $token [0] ), $compare ) ) return TRUE;
     if ( $token [1] == 'other' and isset ( padEval_alt [ $token [0] ] )             ) return TRUE;
     if ( $token [1] == 'OPR'   and in_array ( $token [0], $compare )                ) return TRUE;
+
+    return FALSE;
+
+  }
+
+  // Whether a parse token is an operator with a value on either side: the arithmetic ones,
+  // the concatenation, the comparisons and logical ones in words or symbols, ?? - not the
+  // unary NOT, ! and signs, nor the ternary's ? and :.
+
+  function padEvalBinary ( $token ) {
+
+    if ( $token [1] == 'OPR' )
+      return in_array ( $token [0], [ '**', '*', '/', '%', '+', '-', '.', 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', '??' ], TRUE );
+
+    if ( $token [1] == 'other' )
+      return in_array ( strtoupper ( $token [0] ), [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR' ], TRUE );
 
     return FALSE;
 
