@@ -164,8 +164,14 @@
 
     global $padCheckSyntax;
 
+    // Named for what it is: a kind that only tags have, or no kind at all - a:b said "a a:
+    // can not be used inside an expression".
+
     if ( $padCheckSyntax )
-      padError ( "a $kind: can not be used inside an expression" );
+      if ( padValid ( $kind ) and file_exists ( PAD . "types/$kind.php" ) )
+        padError ( "Expression error: the prefix '$kind:' belongs to tags and can not be used inside an expression - $kind:$name" );
+      else
+        padError ( "Expression error: there is no prefix '$kind:' - $kind:$name" );
 
     return '';
 
