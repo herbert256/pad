@@ -15,6 +15,10 @@ The main entry point is `eval.php`:
 if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and file_exists ( PAD . "functions/$eval.php" ) )
   return include PAD . 'eval/fast.php';
 
+// The commonest expressions answer at once - outside a pipe body and the trace: a number
+// (24, -5, 1.5) as written, a string with no quote or backslash in it, a plain $field after
+// the strict check padEvalAfter gives it
+
 // Full evaluation pipeline
 $result = padEvalParsed ( $eval );                 // Step 1: Validate and parse into tokens (kept per request)
 if ( ! padEvalCheckPipes ( $result, $eval, $pipe ) )  // the pipe functions named must exist
@@ -45,17 +49,19 @@ The `padEvalParse()` function tokenizes the expression into an array of tokens. 
 | `VAL` | Literal value | `'hello'`, `123`, `3.14` |
 | `OPR` | Operator | `+`, `-`, `*`, `LT`, `AND` |
 | `$` | Variable reference | `$name` |
+| `$$n` | The field another field names - one round of indirection | `$$pick` |
 | `&` | Property of the current tag | `&current` |
 | `#` | Option/parameter reference | `#option` |
 | `$$` | The `@` placeholder - the piped value | `@`, `$$` |
 | `prop` | Property reference | `first@items`, `current@` |
 | `%` | A whole expression that is a printf format | `%05.2f` |
 | `TYPE` | Typed value accessor | `field:name`, `data:key` |
-| `pipe` | Pipe separator | `\|` |
+| `pipe` | Pipe separator - outside brackets it cuts the expression, inside ( ) or [ ] it belongs to the group | `\|` |
 | `open` | Open parenthesis | `(` |
 | `close` | Close parenthesis | `)` |
 | `a-open` | Array open bracket | `[` |
 | `a-close` | Array close bracket | `]` |
+| `arrow` | A key and its value in a list | `=>` |
 | `hex` | Hexadecimal value | `0xFF` |
 | `other` | Unrecognized (becomes constant or type) | `TRUE`, `fieldname` |
 
@@ -66,7 +72,10 @@ The `padEvalParse()` function tokenizes the expression into an array of tokens. 
 - Hexadecimal numbers: `0xFF`
 - Scientific notation: `1.5E-10`
 - Negative numbers: `-42`
-- Two-character operators: `**`, `<=`, `>=`, `==`, `<>`, `!=`
+- Two-character operators: `**`, `<=`, `>=`, `==`, `<>`, `!=`, `&&`, `||`, `??`, `=>`
+- A `.` before a digit is a number - `.5` - only where no value stands before it; after one it is
+  the concatenation: `'a'.1` is `a1`
+- A quote, a bracket, a pipe or a sigil ends the number before it: `(1 + 2)3` is `33`
 
 ### Step 2: Type Resolution (`lib/eval/after.php`)
 
@@ -89,6 +98,8 @@ The `padEvalAfter()` function processes the parsed tokens:
 | `>=` | `GE` |
 | `=` or `==` | `EQ` |
 | `<>` or `!=` | `NE` |
+| `&&` | `AND` |
+| `\|\|` | `OR` |
 
 ### Step 3: Pipe Splitting (`lib/eval/pipes.php`)
 
@@ -100,13 +111,20 @@ $name | trim | upper
 
 Becomes three segments that are evaluated left-to-right, with each result passed to the next.
 
+Only a pipe outside brackets cuts the expression. One inside `( )` or `[ ]` belongs to that
+group - to its argument in a call, to its item in a list - and `padEvalPiped()` runs it where
+the group is reduced: `($n | + 1) * 2`, `upper($s | trim)`, `php:max(1, $n | + 1)`,
+`[$n | + 1, 2]`. The part before the group's first pipe takes the segment's value, each part
+after it the answer of the one before; an `@` there is the value piped into that part, and a
+group standing after the pipe is reduced with its part: `($n | (@ | * 2))` is `$n * 2`.
+
 ### Step 4: Expression Evaluation (`lib/eval/result.php`)
 
 The `padEvalResult()` function evaluates each pipe segment:
 
 ```php
 padEvalValue  ( $result, $value );  // Inject pipe input value
-padEvalArray  ( $result, $value );  // Handle array access [index]
+padEvalArray  ( $result, $value );  // [ ] lists, key => value pairs too
 padEvalOpnCls ( $result, $value );  // Handle parentheses
 padEvalOpr    ( $result, $value );  // Execute operators
 padEvalMulti  ( $result );          // Handle multiple expressions
@@ -143,7 +161,16 @@ Weaker than all of them is the inline ternary `cond ? then : else`, resolved by
 `padEvalTernary()` (`lib/eval/ternary.php`) before any operator group: the first `?` of a
 range splits it at its own `:` (a nested `?` takes the next one), the condition is reduced
 alone, and only the chosen branch is reduced after it. Nothing before the `?` means the
-piped value is the condition: `{$n | ? 'some' : 'none'}`.
+piped value is the condition: `{$n | ? 'some' : 'none'}`. With no then branch - `$title ?:
+'Untitled'`, as PHP has it - a true condition is the answer itself. An else with nothing in it
+is an error whichever branch is taken.
+
+A `[ ]` list takes keys written with `=>`: `[ 'title' => 'Minutes', 'n' => $n + 1 ]`, mixed
+with plain items as PHP mixes them (`padEvalArrayItems()`, `lib/eval/array.php`); a `=>`
+outside a list, with no key or no value, is an error.
+
+`$$x` reads the field whose name the field `x` holds, as `{$$x}` does: the name must be an
+application field or a path into one - one of the engine's globals reads nothing.
 
 `a ?? b` answers `a` unless it is empty - `''`, NULL, an empty list, a missing field - and
 then `b`; a `$field` standing before `??` may be missing under the strict check.
@@ -347,17 +374,17 @@ eval/
 ```
 lib/eval/
 ├── after.php       # Post-parse type resolution
-├── array.php       # Array access handling
+├── array.php       # [ ] lists, key => value pairs
 ├── check.php       # Validation checks
 ├── const.php       # Operator constants and precedence
 ├── double.php      # Double operand handling
 ├── eval.php        # Evaluation utilities
 ├── multi.php       # Multi-expression handling
 ├── nextKey.php     # Next key finder
-├── openClose.php   # Parentheses handling
+├── openClose.php   # Parentheses handling, which group waits for a pipe's part
 ├── operations.php  # Main operator processing
 ├── parse.php       # Expression parser
-├── pipes.php       # Pipe splitting
+├── pipes.php       # Pipe splitting, and the pipes of a group (padEvalPiped)
 ├── reduce.php      # An array reduced to the one value an operator needs
 ├── result.php      # Result computation
 ├── ternary.php     # The inline ternary cond ? a : b
@@ -408,16 +435,32 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
   inside a quoted expression `{users where='$admin eq 1)'}` gives "the ) at position 12 closes
   nothing that was opened"; written bare in a tag's parameters, `{echo 1 + 2)}`, the parameter
   split reports it first: "Closing ) without an opening ("
-- a pipe function that does not exist
-- a comparison or logical operator with nothing on its left or its right - an arithmetic one
-  is not named: `{echo 5 *}` answers 0, `{if 5 + eq 1}` holds
+- a pipe function that does not exist, a word called like a function that names none
+- a comparison or logical operator - or `??` - with nothing on its left or its right, where no
+  pipe value stands in for it; an arithmetic one is not named: `{echo 5 *}` answers 0
+- two operators side by side after a value, where no pipe value stands in for the operand
+  between them - `$n + * 3`, `$n eq eq 3`; in a pipe the missing operand is the piped value,
+  `{echo 50 | '"' . . '"'}` quotes it
+- `===` and `!==`, named as the PHP spellings they are - `eq` (`==`) and `ne` (`!=`) compare
+- a word of punctuation alone - `&`, `~`, `^`, `;` - and a `:` with no `?` before it
+- a `=>` outside a `[ ]` list
+- a `not` after a value with no test behind it
 - a pipe operator written without its space - `| +1` for `| + 1`
 
 While it runs:
-- "there is no field named '$x'" - a missing field (`lib/eval/after.php`)
+- "there is no field named '$x'" - a missing field (`lib/eval/after.php`), also as `field:x` and
+  as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ..."
 - "'a' is not a number for +", "a division by zero in /" - arithmetic
 - "the ? of an inline ternary has no :", "a branch of an inline ternary is empty" (`lib/eval/ternary.php`)
-- "No result back", "More than one result back", "Result is not a value" - an expression that reduced to no single value
+- "the key 'a' of a list has no value after its =>", "a => in a list with no key before it"
+- "the function 'replace' wants 2 parameters", with "after the value it works on" for a
+  built-in written as a call, whose first argument is that value
+- "the PHP function 'str_pad' refused its arguments: ..." - a wrong type or number, a value
+  out of range, a division by zero, with a word on the piped value a call with arguments is
+  not handed (`eval/parms/php.php`)
+- "there is no value in '( )'", "a list and another value stand side by side with no operator
+  between them", "More than one result back", "Result is not a value" - an expression that
+  reduced to no single value
 - "Unsupported \\ char" - Invalid escape sequence
 - "Escape \\ char only allowed inside a string"
 
@@ -425,4 +468,5 @@ With the check off nothing is reported, and the evaluator answers what it can: a
 no number counts as 0 (`'a' + 1` is 1), a missing field is empty (`$nope + 1` is 1), an unknown
 escape loses its backslash (`'a\qb'` is `aqb`), a ternary without its `:` keeps what it has
 (`1 ? 'a'` is `1a`), and an expression that cannot be reduced - an unclosed bracket, a
-division by zero - answers `''`.
+division by zero, a PHP function refusing its arguments, a mistake the check before parsing
+names - answers `''`.

@@ -1412,6 +1412,11 @@ expression in the source's own terms, naming the exact fault and its position:
 - a comparison operator missing an operand where no pipe value can stand in for it —
   `{if $x eq}` → *the operator 'eq' has nothing on its right*
 - an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
+- what an expression cannot mean — `{if $x === 1}` → *'===' is no operator - eq (==) compares
+  two values*; `$n + * 3` → *the operators '+' and '*' stand side by side*; `3 & 1` → *'&' is
+  no operator or value*
+- a PHP function refusing its arguments — `{echo 'ab' | php:str_pad(8, '*')}` → *the PHP
+  function 'str_pad' refused its arguments: ... @ puts it in its place*
 
 With the check off nothing is reported: a value that is no number counts as 0 (`'a' + 1` is 1),
 a missing field is empty, and what cannot be reduced at all - an unclosed bracket - is empty.
