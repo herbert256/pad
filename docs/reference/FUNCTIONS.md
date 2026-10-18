@@ -285,8 +285,8 @@ A `not` between the value and the test denies it, as SQL writes it:
 
 ### default
 
-`default(fallback)` answers the value, or the fallback when it is empty - `''`, NULL or an
-empty list (0 is a value). A field piped into it may be missing under the strict check:
+`default(fallback)` answers the value, or the fallback when it is empty - `''`, NULL, FALSE
+or an empty list (0 is a value). A field piped into it may be missing under the strict check:
 
 ```
 {$title | default('Untitled')}

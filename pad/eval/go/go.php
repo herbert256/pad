@@ -27,11 +27,13 @@
 
   $oprWritten = $result [$b] [2] ?? $opr;
 
-  // The empty-coalescing operator: the left value unless it is empty - '', NULL, an empty
-  // list or a field that is not there - and then the right one. 0 is a value.
+  // The empty-coalescing operator: the left value unless it is empty - '', NULL, FALSE, an
+  // empty list or a field that is not there - and then the right one. 0 is a value. FALSE
+  // writes as nothing and the default function, the operator's function form, took it for
+  // empty, where FALSE ?? 'x' answered FALSE and printed nothing.
 
   if ( $opr == '??' )
-    $now = ( $left === NULL or $left === '' or $left === [] ) ? $right : $left;
+    $now = ( $left === NULL or $left === '' or $left === FALSE or $left === [] ) ? $right : $left;
 
   elseif ( in_array ( $opr, padEval_one ) ) {
     if     ( ! is_array ( $right ) ) include PAD . 'eval/go/singleVar.php';

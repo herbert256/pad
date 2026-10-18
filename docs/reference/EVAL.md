@@ -172,7 +172,7 @@ outside a list, with no key or no value, is an error.
 `$$x` reads the field whose name the field `x` holds, as `{$$x}` does: the name must be an
 application field or a path into one - one of the engine's globals reads nothing.
 
-`a ?? b` answers `a` unless it is empty - `''`, NULL, an empty list, a missing field - and
+`a ?? b` answers `a` unless it is empty - `''`, NULL, FALSE, an empty list, a missing field - and
 then `b`; a `$field` standing before `??` may be missing under the strict check.
 
 The tests `in`, `like`, `matches`, `range`, `between` and `contains` are pipe functions that
