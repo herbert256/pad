@@ -6,11 +6,11 @@
   // [0] => text, [1] => kind, and later stages add [2]/[3] for typed references.
   //
   // Kinds produced here: VAL (quoted string, number, hex payload), OPR (operator), '$'
-  // (field), '&' (tag), '#' (option), '$$' (the @ placeholder holding the piped value),
-  // pipe, open/close for ( ), a-open/a-close for [ ], arrow for the => of a list, hex, and
-  // 'other' for a bare word that only padEvalAfter can classify. A pipe segment starting with
-  // a printf conversion is not tokenised at all - it is kept whole as a format for
-  // padEvalValue.
+  // (field), '$$n' (the field another one names), '&' (tag), '#' (option), '$$' (the @
+  // placeholder holding the piped value), pipe, open/close for ( ), a-open/a-close for [ ],
+  // arrow for the => of a list, hex, and 'other' for a bare word that only padEvalAfter can
+  // classify. A pipe segment starting with a printf conversion is not tokenised at all - it
+  // is kept whole as a format for padEvalValue.
   //
   // The two predicates decide where a $name ends: padEvalParseStart says whether the
   // character after $ can open a name, padEvalParseValid whether a character continues
@@ -130,7 +130,7 @@
 
     $kind = $result [$i] [1];
 
-    if ( in_array ( $kind, [ 'VAL', '$', '&', '#', '$$', 'close', 'a-close', 'hex', 'prop' ] ) )
+    if ( in_array ( $kind, [ 'VAL', '$', '$$n', '&', '#', '$$', 'close', 'a-close', 'hex', 'prop' ] ) )
       return TRUE;
 
     if ( $kind == 'other' ) {
@@ -528,6 +528,24 @@
         $result[$i][1] = '$$';
 
         $is_other = FALSE;
+
+        continue;
+
+      }
+
+      // $$ before a name is one round of indirection, as {$$x} has it: the field whose name
+      // the field x holds (padEvalAfter). It was the placeholder followed by the word x, which
+      // read as x itself - {echo $$pick} printed the name, not the value it names.
+
+      if ( $one == '$' and $next == '$' and preg_match ( '/^[a-zA-Z_\x80-\xff]/', $next2 ) ) {
+
+        $is_var   = TRUE;
+        $is_other = FALSE;
+        $skip     = 2;
+
+        $i += 100;
+        $result[$i][1] = '$$n';
+        $result[$i][0] = $next2;
 
         continue;
 

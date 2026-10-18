@@ -79,7 +79,7 @@
 
         }
 
-      } elseif ( $one[1] == '$' ) {
+      } elseif ( $one[1] == '$' or $one[1] == '$$n' ) {
 
         // With the strict syntax check on, a field that does not exist is named rather
         // than read as empty - the discipline {$x} already keeps at level/var.php, here
@@ -94,14 +94,44 @@
                            and ( ( ( $after [$k] [1] ?? '' ) == 'OPR' and ( $after [$k] [0] ?? '' ) == '??' )
                                  or ( in_array ( $after [$k] [1] ?? '', [ 'TYPE', 'other' ], TRUE ) and in_array ( $after [$k] [0] ?? '', [ 'default', 'optional' ], TRUE ) ) ) ) );
 
+        // $$x reads the field whose name the field x holds (parse.php). The name must be an
+        // application field or a path into one, as {$$x} has it (padValueName, level/var.php):
+        // a value naming one of the engine's globals reads nothing.
+
+        $name = $one[0];
+        $via  = '';
+
+        if ( $one[1] == '$$n' ) {
+
+          if ( $padCheckSyntax and ! $coalesce )
+            padEvalFieldReport ( $one[0], '$' . $one[0] );
+
+          $name = padFieldValue ( $one[0] );
+          $name = ( is_scalar ( $name ) and ! is_bool ( $name ) ) ? (string) $name : '';
+          $via  = " (the name \$\${$one[0]} holds)";
+
+          if ( ! padValueName ( $name ) ) {
+
+            if ( $padCheckSyntax and ! $coalesce and ! padStrHidden ( $one[0] ) )
+              padError ( "Expression error: the name '" . padMakeSafe ( $name, 40 ) . "' that \$\${$one[0]} takes from a value is no application variable" );
+
+            $result[$k][1] = 'VAL';
+            $result[$k][0] = '';
+
+            continue;
+
+          }
+
+        }
+
         // A field that holds a list is there, and is no value here - $x reads a scalar. It
         // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
 
         if ( $padCheckSyntax and ! $coalesce )
-          padEvalFieldReport ( $one[0], '$' . $one[0] );
+          padEvalFieldReport ( $name, '$' . $name, $via );
 
         $result[$k][1] = 'VAL';
-        $result[$k][0] = padFieldValue ( $one[0] );
+        $result[$k][0] = padFieldValue ( $name );
 
       } elseif ( $one[1] == 'prop' ) {
 
@@ -131,20 +161,20 @@
   }
 
   // Under the strict check: a field that is no value named as what it is - an object, a
-  // list, or not there - with the field as the template spelled it, $x or field:x. A name a
-  // sandbox hid misses quietly (padStrHidden).
+  // list, or not there - with the field as the template spelled it, $x or field:x, and $via
+  // saying where the name came from. A name a sandbox hid misses quietly (padStrHidden).
 
-  function padEvalFieldReport ( $name, $spelled ) {
+  function padEvalFieldReport ( $name, $spelled, $via = '' ) {
 
     if ( padFieldCheck ( $name ) or padStrHidden ( $name ) )
       return;
 
     if ( padFieldObject ( $name ) )
-      padError ( "Expression error: the field '$spelled' is an object, not a value" );
+      padError ( "Expression error: the field '$spelled'$via is an object, not a value" );
     elseif ( padArrayCheck ( $name ) )
-      padError ( "Expression error: the field '$spelled' is a list, not a value" );
+      padError ( "Expression error: the field '$spelled'$via is a list, not a value" );
     else
-      padError ( "Expression error: there is no field named '$spelled'" );
+      padError ( "Expression error: there is no field named '$spelled'$via" );
 
   }
 
