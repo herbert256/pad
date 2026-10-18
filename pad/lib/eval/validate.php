@@ -116,8 +116,42 @@
   // and, ...) is the unary-with-the-piped-value form; an explicit type:name is checked
   // where it resolves, and already reports itself. Everything longer is an expression that
   // the later stages judge on their own terms.
+  //
+  // A clean answer is kept for the request when the text alone decides it - every bare word
+  // in it an operator word (padEvalCheckPure): a loop judges the same text once per row. A
+  // word that may name a function, a tag or a constant is looked up where the expression
+  // stands, so such an expression is judged every time, as one that failed is.
 
   function padEvalCheckPipes ( $result, $eval, $pipe = FALSE ) {
+
+    static $clean = [];
+
+    $key = ( $pipe ? 'p' : 'e' ) . $eval;
+
+    if ( isset ( $clean [$key] ) )
+      return TRUE;
+
+    if ( ! padEvalCheckTokens ( $result, $eval, $pipe ) )
+      return FALSE;
+
+    if ( count ( $clean ) < 4000 and padEvalCheckPure ( $result ) )
+      $clean [$key] = TRUE;
+
+    return TRUE;
+
+  }
+
+  function padEvalCheckPure ( $result ) {
+
+    foreach ( $result as $token )
+      if ( $token [1] == 'other' and ! in_array ( strtoupper ( $token [0] ), padEval_txt ) and ! isset ( padEval_alt [ $token [0] ] ) )
+        return FALSE;
+
+    return TRUE;
+
+  }
+
+  function padEvalCheckTokens ( $result, $eval, $pipe ) {
 
     $seg      = 0;
     $segments = [ 0 => [] ];
