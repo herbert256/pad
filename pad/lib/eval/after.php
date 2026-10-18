@@ -124,12 +124,14 @@
 
         // A field that holds a list is there, and is no value here - $x reads a scalar. It
         // was reported as a field that does not exist: {if $items eq 'a'} with $items set.
-
-        if ( $padCheckSyntax and ! $coalesce )
-          padEvalFieldReport ( $name, '$' . $name, $via );
+        // Only an empty answer can be such a field: one with a value is there, and is not
+        // looked up a second time to be checked (padEvalFieldReport).
 
         $result[$k][1] = 'VAL';
         $result[$k][0] = padFieldValue ( $name );
+
+        if ( $padCheckSyntax and ! $coalesce and $result[$k][0] === '' )
+          padEvalFieldReport ( $name, '$' . $name, $via );
 
       } elseif ( $one[1] == 'prop' ) {
 
@@ -163,6 +165,8 @@
   // Under the strict check: a field that is no value named as what it is - an object, a
   // list, or not there - with the field as the template spelled it, $x or field:x, and $via
   // saying where the name came from. A name a sandbox hid misses quietly (padStrHidden).
+  // A caller that read the value first need ask only when it was empty: padFieldValue
+  // answers a value for every field padFieldCheck passes, but an empty one.
 
   function padEvalFieldReport ( $name, $spelled, $via = '' ) {
 

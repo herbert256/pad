@@ -9,7 +9,9 @@
 
   global $padCheckSyntax;
 
-  if ( $padCheckSyntax ) {
+  $padFieldValue = padFieldValue ($name);
+
+  if ( $padCheckSyntax and $padFieldValue === '' ) {
 
     $padFieldNext = padEvalNextKey ( $result, $k );
 
@@ -18,6 +20,6 @@
 
   }
 
-  return padFieldValue ($name);
+  return $padFieldValue;
 
 ?>

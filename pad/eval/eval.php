@@ -32,9 +32,10 @@
       return padUnescape ( substr ( $eval, 1, -1 ) );
 
     if ( $padEvalFirst == '$' and preg_match ( '/^\$([a-zA-Z_][a-zA-Z0-9_]*)$/D', $eval, $padEvalField ) ) {
-      if ( $GLOBALS ['padCheckSyntax'] )
+      $padEvalValue = padFieldValue ( $padEvalField [1] );
+      if ( $GLOBALS ['padCheckSyntax'] and $padEvalValue === '' )
         padEvalFieldReport ( $padEvalField [1], $eval );
-      return padFieldValue ( $padEvalField [1] );
+      return $padEvalValue;
     }
 
   }
