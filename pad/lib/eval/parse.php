@@ -7,9 +7,10 @@
   //
   // Kinds produced here: VAL (quoted string, number, hex payload), OPR (operator), '$'
   // (field), '&' (tag), '#' (option), '$$' (the @ placeholder holding the piped value),
-  // pipe, open/close for ( ), a-open/a-close for [ ], hex, and 'other' for a bare word
-  // that only padEvalAfter can classify. A pipe segment starting with a printf conversion is
-  // not tokenised at all - it is kept whole as a format for padEvalValue.
+  // pipe, open/close for ( ), a-open/a-close for [ ], arrow for the => of a list, hex, and
+  // 'other' for a bare word that only padEvalAfter can classify. A pipe segment starting with
+  // a printf conversion is not tokenised at all - it is kept whole as a format for
+  // padEvalValue.
   //
   // The two predicates decide where a $name ends: padEvalParseStart says whether the
   // character after $ can open a name, padEvalParseValid whether a character continues
@@ -759,6 +760,26 @@
       // the word beside them: $x<=3 became the text 5<=3, always true, and $x<3 a field
       // named x<3. Spelled as padEval_alt has them, the two-character forms first; [2]
       // keeps the spelling the template wrote, for the strict check to name (validate.php).
+
+      // => pairs a key with its value in a [ ] list, as PHP writes it - padEvalArray builds
+      // the list. The token after it starts the value, as the one after a comma starts an
+      // item, so a ternary there is that value alone. Read as = and > it compared the key with
+      // nothing, and [ 'a' => 1 ] was the list 'a', ''.
+
+      if ( $one == '=' and $next == '>' ) {
+
+        $i += 100;
+        $result [$i] [0] = '=>';
+        $result [$i] [1] = 'arrow';
+
+        $commas [] = $i;
+
+        $is_other = FALSE;
+        $skip     = 1;
+
+        continue;
+
+      }
 
       if ( in_array ( $one, [ '<', '>', '=' ] ) ) {
 

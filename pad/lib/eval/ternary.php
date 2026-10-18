@@ -86,8 +86,10 @@
         break;
       }
 
+    // The => of a list item ends the else branch as well: the ternary is the key alone.
+
     for ( $n = $c + 1; $n < count ( $keys ); $n++ )
-      if ( padEvalTernaryArg ( $result, $keys, $n ) ) {
+      if ( padEvalTernaryArg ( $result, $keys, $n ) or $result [ $keys [$n] ] [1] == 'arrow' ) {
         $to = $n;
         break;
       }

@@ -180,6 +180,19 @@
            and in_array ( $tokens [$n+1] [1] ?? 'end', [ 'end', 'pipe', 'close', 'a-close' ] ) )
         return padEvalValidateError ( "the operator '" . ( $token [2] ?? $token [0] ) . "' has nothing on its right", $eval );
 
+    // A => pairs a key with its value inside a [ ] list (padEvalArrayItems); anywhere else it
+    // has no list to go in, and 'a' => 1 was "More than one result back".
+
+    $open = [];
+
+    foreach ( $tokens as $token )
+      if ( in_array ( $token [1], [ 'open', 'a-open' ], TRUE ) )
+        $open [] = $token [1];
+      elseif ( in_array ( $token [1], [ 'close', 'a-close' ], TRUE ) )
+        array_pop ( $open );
+      elseif ( $token [1] == 'arrow' and end ( $open ) !== 'a-open' )
+        return padEvalValidateError ( "a => pairs a key with its value inside a [ ] list only", $eval );
+
     // A not after a value denies the test that follows it - $s not in ('a', 'b'), not like,
     // not matches, not range (eval/type/parms.php). Before anything else it is a mistake:
     // $a not $b ran the value and the denied one together as text, true whatever they held.

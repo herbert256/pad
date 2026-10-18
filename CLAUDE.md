@@ -1039,6 +1039,8 @@ Every one is rendered on the server; the `showcase` application has examples of 
 {set $name = 'Alice'}              # Assign string
 {set $count = 0}                   # Assign number
 {set $total = $price * $qty}       # Assign expression
+{set $tags = ['a', 'b']}           # Assign a list
+{set $user = ['name' => 'Ann', 'age' => 42]}   # A list with keys - {$user.name}
 ```
 
 ### Level vs Occurrence Variables
