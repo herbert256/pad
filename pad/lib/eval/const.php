@@ -1,19 +1,18 @@
 <?php
 
-  // The evaluator's operator tables, shared by the tokeniser, the checks and the parser.
+  // The evaluator's operator tables, shared by the scanner, the checks and the parser.
   //
   //   padEval_precedence  every operator; a word not in this list is a candidate function
   //                       name
   //   padEval_bp          the binding power of each operator with a value on both sides,
   //                       which the parser (lib/eval/tree.php) applies
-  //   padEval_1           single-character operators the tokeniser recognises
-  //   padEval_2           two-character operators, tested before the single-character ones
+  //   padEval_1           single-character operators the scanner recognises - and ** as two
   //   padEval_txt         word operators, matched case-insensitively
   //   padEval_alt         symbol spellings mapped onto their word form, so <, <=, =, ==,
   //                       <> and != all reduce to LT/LE/EQ/NE
   //   padEval_one         the prefix operators, which take one value on their right. NEG and
   //                       POS are the signs before a value that is no digit (-$x, -(...));
-  //                       only the tokeniser makes them, never a word
+  //                       only the scanner makes them, never a word
   //   padEval_tests       the pipe functions that read infix as a test
 
   const padEval_precedence = [
@@ -49,7 +48,6 @@
   ];
 
   const padEval_1   = [ '!', '+', '-', '*', '/', '%', '.' ];
-  const padEval_2   = [ '**'];
   const padEval_txt = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', 'NOT' ];
   const padEval_one = [ 'NOT', '!', 'NEG', 'POS' ];
 

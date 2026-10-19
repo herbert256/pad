@@ -40,11 +40,11 @@
   }
 
   // A malformed expression is reported here, in the source's own terms, before the
-  // tokeniser can turn it into something obscure downstream. A reported fault ends the
-  // evaluation with an empty value. padEvalParsed (lib/eval/parse.php) validates and
-  // tokenises, and keeps the tokens of a clean expression for the rest of the request.
+  // scanner can turn it into something obscure downstream. A reported fault ends the
+  // evaluation with an empty value. padEvalTokens (lib/eval/scan.php) validates and
+  // scans, and keeps the tokens of a clean expression for the rest of the request.
 
-  $padEvalTokens = padEvalParsed ( $eval );
+  $padEvalTokens = padEvalTokens ( $eval );
 
   if ( $padEvalTokens === FALSE )
     return '';

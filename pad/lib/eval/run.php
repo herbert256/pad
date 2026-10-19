@@ -120,6 +120,13 @@
 
         return $me;
 
+      case 'seq':
+
+        foreach ( $node [1] as $one )
+          padEvalNode ( $one, $me, $leaf );
+
+        return padEvalNode ( $node [2], $me, $leaf );
+
       // Reported under the strict check; the lenient walk goes on with what is there.
 
       case 'err':

@@ -1,6 +1,6 @@
 <?php
 
-  // The evaluator's parser: the tokens of an expression (lib/eval/parse.php) become a tree,
+  // The evaluator's parser: the tokens of an expression (lib/eval/scan.php) become a tree,
   // which lib/eval/run.php evaluates. The grammar, weakest first:
   //
   //   expression  segment ( | segment )*        a | outside brackets - each segment's answer
@@ -44,6 +44,7 @@
   //                           its value (the head of an expression, or inside a call)
   //   look kind, name, coalesce                a reference that takes no arguments
   //   pipe parts              a pipeline inside brackets, NULL for an empty part
+  //   seq  nodes, node        the nodes read and left out, then the node
   //   err  messages, node     reported where it is evaluated, then the node (or empty)
   //   none text               a range with no value in it
   //   more text               what is left beside a value no operator can take
@@ -475,18 +476,23 @@
 
   }
 
-  // The values of a range of items. A binary operator closing the range takes everything
-  // before it as its left side and the piped value as its right one - {echo 5 | 2 + 3 *} is
-  // 25 - and a prefix one closing it works on the piped value alone.
+  // The values of a range of items. Of two operators side by side - the second one with a
+  // value on both sides - the first takes the piped value on both sides and stands as a
+  // value: {echo 50 | '"' . . '"'} is "5050". A binary operator closing the range takes
+  // everything before it as its left side and the piped value as its right one - {echo 5 |
+  // 2 + 3 *} is 25 - and a prefix one closing it works on the piped value alone, what
+  // stands before it read and left out; after a lone binary operator, + !, it is named.
 
   function padEvalTreeValues ( $items, $ctx ) {
 
     $count = count ( $items );
-    $last  = $items [ $count - 1 ] ?? [ '' ];
-    $end   = $count;
 
-    if ( $count > 1 and $last [0] == 'o' )
-      $end--;
+    for ( $n = 0; $n < $count - 1; $n++ )
+      if ( $items [$n] [0] == 'o' and padEvalTreeBinary ( $items, $n + 1 ) )
+        $items [$n] = [ 'a', padEvalTreeAlone ( $items [$n] ) ];
+
+    $last = $items [ $count - 1 ] ?? [ '' ];
+    $end  = ( $count > 1 and $last [0] == 'o' ) ? $count - 1 : $count;
 
     $nodes = [];
     $pos   = 0;
@@ -497,18 +503,27 @@
     if ( $end == $count )
       return $nodes;
 
-    if ( count ( $nodes ) != 1 )
+    if ( count ( $nodes ) != 1 or ( $end == 1 and padEvalTreeBinary ( $items, 0 ) ) )
       return [ [ 'more', $ctx ['text'] ] ];
 
     if ( isset ( padEval_bp [ $last [1] ] ) )
       return [ [ 'bin', $last [1], $nodes [0], [ 'me' ], $last [2] ] ];
 
-    return [ [ 'un', $last [1], [ 'me' ], $last [2] ] ];
+    return [ [ 'seq', $nodes, [ 'un', $last [1], [ 'me' ], $last [2] ] ] ];
 
   }
 
-  // Whether an item is an operator with a value on both sides - one that a value must
-  // precede, so that the operator before it has none on its right.
+  // An operator with nothing to work on but the piped value.
+
+  function padEvalTreeAlone ( $item ) {
+
+    return isset ( padEval_bp [ $item [1] ] )
+      ? [ 'bin', $item [1], [ 'me' ], [ 'me' ], $item [2] ]
+      : [ 'un',  $item [1], [ 'me' ], $item [2] ];
+
+  }
+
+  // Whether an item is an operator with a value on both sides.
 
   function padEvalTreeBinary ( $items, $pos ) {
 
@@ -530,20 +545,22 @@
 
       $left = padEvalTreeCall ( $item, NULL, $items, $pos, $end, $ctx );
 
-    elseif ( $item [0] == 'o' ) {
+    elseif ( $item [0] == 'o' and $pos >= $end )
 
-      // An operator where a value should be: what it lacks is the piped value - alone, when
-      // nothing follows it or another operator with a value on both sides does.
+      $left = padEvalTreeAlone ( $item );
 
-      $alone = ( $pos >= $end or padEvalTreeBinary ( $items, $pos ) );
-      $op    = $item [1];
+    elseif ( $item [0] == 'o' and isset ( padEval_bp [ $item [1] ] ) )
 
-      if ( isset ( padEval_bp [$op] ) )
-        $left = [ 'bin', $op, [ 'me' ], $alone ? [ 'me' ] : padEvalTreeExpr ( $items, $pos, padEval_bp [$op] - ( $op == '**' ), $end, $ctx ), $item [2] ];
-      else
-        $left = [ 'un', $op, $alone ? [ 'me' ] : padEvalTreeExpr ( $items, $pos, $op == 'NOT' ? 50 : 110, $end, $ctx ), $item [2] ];
+      // A binary operator where a value should be: its left side is the piped value -
+      // {echo 10 | - 3} is 7.
 
-    } else
+      $left = [ 'bin', $item [1], [ 'me' ], padEvalTreeExpr ( $items, $pos, padEval_bp [ $item [1] ] - ( $item [1] == '**' ), $end, $ctx ), $item [2] ];
+
+    elseif ( $item [0] == 'o' )
+
+      $left = [ 'un', $item [1], padEvalTreeExpr ( $items, $pos, $item [1] == 'NOT' ? 50 : 110, $end, $ctx ), $item [2] ];
+
+    else
 
       $left = [ 'more', $ctx ['text'] ];
 
@@ -555,7 +572,7 @@
 
         $bp = padEval_bp [ $item [1] ];
 
-        if ( $bp <= $min or padEvalTreeBinary ( $items, $pos + 1 ) )
+        if ( $bp <= $min )
           break;
 
         $pos++;

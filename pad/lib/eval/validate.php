@@ -1,16 +1,16 @@
 <?php
 
   // Stage zero of the evaluator: a structural check of the raw expression before the
-  // tokeniser runs, so a mistake in the source is reported as itself rather than surfacing
+  // scanner runs, so a mistake in the source is reported as itself rather than surfacing
   // later as a baffling "More than one result back" or a silently swallowed string.
   //
   // Three things are checked, each pinpointed by the position at which it goes wrong: that
   // every ' and " string is closed, and that ( ) and [ ] are balanced and correctly nested.
-  // Nothing else is judged here - the tokeniser and the stages after it read the rest. A
-  // pipe segment that is a % printf format is kept whole by the tokeniser and so is skipped
+  // Nothing else is judged here - the scanner and the stages after it read the rest. A
+  // pipe segment that is a % printf format is kept whole by the scanner and so is skipped
   // here as well.
   //
-  // Position is one-based over the expression as the tokeniser sees it - padUnescape()d, so
+  // Position is one-based over the expression as the scanner sees it - padUnescape()d, so
   // a brace that travelled as an entity is counted as the one character it becomes - and in
   // characters, not bytes: after an é every position named was one too far. Inside a
   // string a backslash escapes the next character, so \' and \" do not close it; a quote of
@@ -100,7 +100,7 @@
 
   }
 
-  // A second, token-level check, run after the tokeniser has split the expression: the
+  // A second, token-level check, run after the scanner has split the expression: the
   // word that follows a | must name a pipe function (or a tag, which the type system can
   // apply as one). Without this a misspelled function is silently taken for a bare constant
   // - {echo $x | uppr} quietly returns the word "uppr" rather than the upper-cased value -
@@ -205,7 +205,7 @@
 
     }
 
-    // A sign the tokeniser read as NEG or POS - after an operator, a bracket or a comma - has
+    // A sign the scanner read as NEG or POS - after an operator, a bracket or a comma - has
     // a value of its own to work on and never borrows the piped one: with nothing behind it
     // it is a mistake, {echo $a + -}, which answered 5 + 0 without a word since the sign
     // became an operator of its own.
@@ -242,7 +242,7 @@
 
     foreach ( $tokens as $n => $token )
       if ( $n and padEvalBinary ( $token ) and padEvalBinary ( $tokens [$n+1] ?? [ '', 'end' ] )
-           and padEvalParseAfterValue ( $tokens, $n - 1 ) ) {
+           and padEvalAfterValue ( $tokens, $n - 1 ) ) {
 
         $one = $token [2] ?? strtolower ( $token [0] );
         $two = $tokens [$n+1] [2] ?? strtolower ( $tokens [$n+1] [0] );
@@ -287,7 +287,7 @@
 
     foreach ( $tokens as $n => $token )
       if ( $token [1] == 'other' and strtoupper ( $token [0] ) == 'NOT' and $n > 0
-           and padEvalParseAfterValue ( $tokens, $n - 1 )
+           and padEvalAfterValue ( $tokens, $n - 1 )
            and ! ( ( $tokens [$n+1] [1] ?? '' ) == 'other' and in_array ( strtolower ( $tokens [$n+1] [0] ), padEval_tests ) ) )
         return padEvalValidateError ( "a 'not' after a value denies a test - write \$a not in (...), not like, not matches or not range, or put it in front: not \$a eq \$b", $eval );
 
