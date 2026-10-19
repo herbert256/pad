@@ -49,6 +49,15 @@
   if ( $padEvalTokens === FALSE )
     return '';
 
+  // The trace keeps the stages of the last evaluation, in globals padEvalTrace fills.
+
+  global $padEvalTrace;
+
+  if ( $padEvalTrace ) {
+    $GLOBALS ['_eval']      = [];
+    $GLOBALS ['_eval_last'] = [];
+  }
+
   padEvalTrace ( 'tokens', $padEvalTokens );
 
   // A word standing alone after a | must be a pipe function, not a silently-swallowed

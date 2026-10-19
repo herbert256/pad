@@ -445,10 +445,9 @@ pad/
 │   └── end.php          # Level completion
 │
 ├── eval/                # Expression evaluation
-│   ├── eval.php         # Main evaluator (the parser is lib/eval/parse.php)
-│   ├── actions/         # Operator actions
-│   ├── go/              # Operator execution
-│   └── single/          # Type resolvers
+│   ├── eval.php         # Main evaluator (scanner, parser and evaluator in lib/eval/)
+│   ├── parms/           # Calls with arguments - built-in, app, php:, tag, sequence
+│   └── single/          # Lookups without arguments - field:, data:, array: ...
 │
 ├── types/               # Tag type handlers (25)
 ├── tags/                # Template tags (90+)

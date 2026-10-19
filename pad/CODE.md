@@ -7,8 +7,9 @@
 > `inits/fast.php` (the deserialization of section 1) and `level/eval.php` no longer exist,
 > script arguments go through `escapeshellarg()` and the name through `padValidName()`,
 > `padStrSto` and `padLevelVars` are defined in `inits/const.php`, the error channel answers
-> only the command line and this machine's own unforwarded requests, and the engine has grown
-> to 1,142 PHP files. Read it as history, not as a description of the current code - the
+> only the command line and this machine's own unforwarded requests, the tokeniser of section 5
+> of the code smells is a scanner of small functions (`lib/eval/scan.php`) feeding a parser
+> that builds a tree, and the engine has grown to 1,142 PHP files. Read it as history, not as a description of the current code - the
 > audits that recorded what was found and fixed after it stand in the git history under
 > `docs/audit/`.
 

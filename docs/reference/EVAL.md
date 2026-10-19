@@ -1,271 +1,234 @@
 # PAD Evaluation Subsystem
 
-This document explains in detail how the PAD expression evaluation subsystem works.
+This document explains how the PAD expression evaluator works.
 
 ## Overview
 
-The eval subsystem is responsible for parsing and evaluating expressions in PAD templates. When you write `{echo $variable + 5 | trim}` in a PAD template, this subsystem handles the parsing, variable resolution, operator execution, and pipe processing.
+The evaluator turns the text of an expression - `{echo $price * 1.1 | round}`, the condition
+of an `{if}`, a `where=` option - into a value. It works in four steps:
+
+```
+text ── validate ── scan ── parse ── evaluate ── value
+        (shape)     tokens   tree     with the value piped in
+```
+
+The tokens of a clean expression and its tree are kept for the request, so a loop that
+evaluates the same text once per row scans and parses it once; each evaluation then reads
+the expression's fields and walks the tree.
+
+| File | Does |
+|------|------|
+| `lib/eval/eval.php` | `padEval`, `padEvalBool`, `padEvalNumber`, `padEvalTrace` - the public face |
+| `eval/eval.php` | The entry: fast paths, then validate, scan, check, parse, evaluate |
+| `lib/eval/validate.php` | The checks before parsing: brackets, strings, words, operands |
+| `lib/eval/scan.php` | The scanner: the text as tokens |
+| `lib/eval/tree.php` | The parser: the tokens as a tree |
+| `lib/eval/run.php` | The evaluator: the tree as a value, the operators, calls and lookups |
+| `lib/eval/const.php` | The operator tables and binding powers |
+| `eval/parms/<kind>.php` | A call with arguments - a built-in, an application's function, `php:`, a tag ... |
+| `eval/single/<kind>.php` | A lookup without arguments - `field:`, `data:`, `array:` ... |
+| `eval/fast.php` | An expression that is only the name of a built-in pipe function |
 
 ## Entry Point
 
-The main entry point is `eval.php`:
+`padEval ( $eval, $value, $pipe )` reaches `eval/eval.php` through the try guard
+(`try/eval/eval.php`). `$value` is the value piped in; `$pipe` says the text is a pipe body -
+what `{$x | ...}` or a tag pipe applies - whose head is a function as well.
 
 ```php
-// Fast path: if expression is a plain name of a built-in pipe function, use optimized path
-if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and file_exists ( PAD . "functions/$eval.php" ) )
-  return include PAD . 'eval/fast.php';
+// A plain name of a built-in pipe function: eval/fast.php calls it directly
+// A number, a quoted string without quote or backslash, a plain $field: answered at once
 
-// The commonest expressions answer at once - outside a pipe body and the trace: a number
-// (24, -5, 1.5) as written, a string with no quote or backslash in it, a plain $field after
-// the strict check padEvalAfter gives it
-
-// Full evaluation pipeline
-$result = padEvalParsed ( $eval );                 // Step 1: Validate and parse into tokens (kept per request)
-if ( ! padEvalCheckPipes ( $result, $eval, $pipe ) )  // the pipe functions named must exist
-  return '';
-padEvalAfter ( $result );          // Step 2: Resolve types and operators
-padEvalPipes ( $result, $pipes );  // Step 3: Split on pipe operators
-
-foreach ( $pipes as $one )
-  $value = padEvalResult ( $one, $value, $eval );  // Step 4: Evaluate each pipe segment
-
-return $value;
+$tokens = padEvalTokens ( $eval );                  // validate and scan, kept per request
+if ( $tokens === FALSE ) return '';                 // the validation named the fault
+if ( ! padEvalCheckPipes ( $tokens, $eval, $pipe ) ) return '';
+$tree = padEvalTreeGet ( $tokens, $eval, $pipe );   // parse, kept per request
+return padEvalSegments ( $tree, $value );           // the leaves, then the segments
 ```
 
-## Evaluation Pipeline
+## Step 1: Validation (`lib/eval/validate.php`)
 
-### Step 1: Parsing (`lib/eval/parse.php`)
+Before anything is scanned, `padEvalValidate` checks that every string is closed and that
+`( )` and `[ ]` are balanced and nested, naming the position in characters. After scanning,
+`padEvalCheckPipes` judges the tokens: a word after a `|` must name a function, an operator
+needs its operands where no piped value stands in, `===`, a lone `:`, a `=>` outside a list,
+punctuation words, a `not` that denies no test. A text that passed is not judged again in
+the request when its words alone decide it.
 
-The `padEvalParse()` function tokenizes the expression into an array of tokens. Each token is an array with:
-- `[0]` = The value/name
-- `[1]` = The type (VAL, OPR, $, &, #, TYPE, pipe, open, close, etc.)
-- `[2]` = Additional type info (for TYPE tokens)
-- `[3]` = Parameter end position (for function calls)
+## Step 2: Scanning (`lib/eval/scan.php`)
 
-**Token Types:**
+`padEvalScan` splits off the pipe segments that are a printf format (`%05.2f`) and
+`padEvalScanText` reads the rest, each kind of token with a function of its own. A token is
+`[0]` its text or value and `[1]` its kind:
 
-| Type | Meaning | Example |
+| Kind | Meaning | Example |
 |------|---------|---------|
-| `VAL` | Literal value | `'hello'`, `123`, `3.14` |
-| `OPR` | Operator | `+`, `-`, `*`, `LT`, `AND` |
-| `$` | Variable reference | `$name` |
-| `$$n` | The field another field names - one round of indirection | `$$pick` |
-| `&` | Property of the current tag | `&current` |
-| `#` | Option/parameter reference | `#option` |
-| `$$` | The `@` placeholder - the piped value | `@`, `$$` |
-| `prop` | Property reference | `first@items`, `current@` |
-| `%` | A whole expression that is a printf format | `%05.2f` |
-| `TYPE` | Typed value accessor | `field:name`, `data:key` |
-| `pipe` | Pipe separator - outside brackets it cuts the expression, inside ( ) or [ ] it belongs to the group | `\|` |
-| `open` | Open parenthesis | `(` |
-| `close` | Close parenthesis | `)` |
-| `a-open` | Array open bracket | `[` |
-| `a-close` | Array close bracket | `]` |
-| `arrow` | A key and its value in a list | `=>` |
-| `hex` | Hexadecimal value | `0xFF` |
-| `other` | Unrecognized (becomes constant or type) | `TRUE`, `fieldname` |
+| `VAL` | A number, or a quoted string (`'lit' => TRUE`) | `'hello'`, `123`, `1.5E-10`, `4..10` |
+| `OPR` | An operator, `[2]` as written when it is a symbol | `+`, `**`, `LT` (from `<`), `AND` (from `&&`), `NEG` |
+| `$` | A field | `$name`, `$user.name`, `$items@2` |
+| `$$n` | The field another field names | `$$pick` |
+| `prop` | A property and its target | `first@items`, `current@` |
+| `&` | A property of the tag | `&current` |
+| `#` | An option of the tag | `#title` |
+| `$$` | The `@` placeholder - the value piped in | `@`, `$$` |
+| `hex` | The digits of a hex value | `0x41` |
+| `other` | A bare word - an operator word, a function, a reference, a constant | `and`, `upper`, `php:strlen`, `TRUE` |
+| `pipe` `open` `close` `a-open` `a-close` `arrow` | `\|` `(` `)` `[` `]` `=>` | |
+| `%` | A whole pipe segment that is a printf format | `%05.2f` |
 
-**Parsing Features:**
+Whitespace and commas end a token and are dropped; the token after a comma inside brackets,
+and after a `=>`, carries `'arg' => TRUE`.
 
-- String literals with single (`'`) or double (`"`) quotes
-- Escape sequences: `\n`, `\r`, `\t`, `\\`, `\'`, `\"`
-- Hexadecimal numbers: `0xFF`
-- Scientific notation: `1.5E-10`
-- Negative numbers: `-42`
-- Two-character operators: `**`, `<=`, `>=`, `==`, `<>`, `!=`, `&&`, `||`, `??`, `=>`
-- A `.` before a digit is a number - `.5` - only where no value stands before it; after one it is
-  the concatenation: `'a'.1` is `a1`
-- A quote, a bracket, a pipe or a sigil ends the number before it: `(1 + 2)3` is `33`
+- Strings take `'` or `"`, with the escapes `\n` `\r` `\t` `\\` `\'` `\"`
+- A `.` before a digit opens a number - `.5` - only where no value stands before it; after
+  one it is the concatenation: `'a'.1` is `a1`
+- A `-` or `+` before a number is its sign only where no value stands before it: `5 -3` is a
+  subtraction, `5 * -3` keeps the sign. Before anything else it is the prefix `NEG` or
+  `POS` where an operator, a bracket or a comma stands before it - `5 * -$b`; at the head
+  of an expression or a pipe segment it is the operator whose left side is the piped value
+- A field's name runs on as far as the at-syntax allows: dotted paths, `name@tag`, prefixes
+  with `:`, the `<`, `>` and `*` of a path - `$u.tags.1>` is the first tag from the end
 
-### Step 2: Type Resolution (`lib/eval/after.php`)
+## Step 3: Parsing (`lib/eval/tree.php`)
 
-The `padEvalAfter()` function processes the parsed tokens:
-
-1. **Resolve typed references** - Tokens like `field:name` become TYPE tokens
-2. **Resolve operators** - Text operators (`LT`, `AND`) and alternates (`<` → `LT`)
-3. **Resolve variables** - `$var` tokens get their values from `padFieldValue()`
-4. **Resolve tags** - `&tag` tokens get values from `padTagValue()`
-5. **Resolve options** - `#opt` tokens get values from `padOptValue()`
-6. **Resolve hex** - `0xFF` converts to binary
-
-**Operator Alternates:**
-
-| Symbol | Becomes |
-|--------|---------|
-| `<` | `LT` |
-| `<=` | `LE` |
-| `>` | `GT` |
-| `>=` | `GE` |
-| `=` or `==` | `EQ` |
-| `<>` or `!=` | `NE` |
-| `&&` | `AND` |
-| `\|\|` | `OR` |
-
-### Step 3: Pipe Splitting (`lib/eval/pipes.php`)
-
-The `padEvalPipes()` function splits the token stream at pipe (`|`) operators:
+The grammar, weakest first:
 
 ```
-$name | trim | upper
+expression  segment ( | segment )*        each segment's answer is the input of the next
+segment     a printf format, or a range
+range       values ? range? : range       the inline ternary; its condition is one value
+            values                        values side by side are joined as text
+value       operators by binding power, prefix operators, calls
+primary     a literal, $field, @, ( arguments ), [ list ], a call, a lookup
 ```
 
-Becomes three segments that are evaluated left-to-right, with each result passed to the next.
+What a bare word is depends on where the expression stands: `padEvalWords` asks
+`padTypeFunction` (or reads the `type:` prefix written) whether it names a function, a tag,
+a field, a data store ... A word that names nothing is a constant (`padConstant`). A tree is
+kept per text, per pipe body and per what its words name.
 
-Only a pipe outside brackets cuts the expression. One inside `( )` or `[ ]` belongs to that
-group - to its argument in a call, to its item in a list - and `padEvalPiped()` runs it where
-the group is reduced: `($n | + 1) * 2`, `upper($s | trim)`, `php:max(1, $n | + 1)`,
-`[$n | + 1, 2]`. The part before the group's first pipe takes the segment's value, each part
-after it the answer of the one before; an `@` there is the value piped into that part, and a
-group standing after the pipe is reduced with its part: `($n | (@ | * 2))` is `$n * 2`.
+### Binding power
 
-### Step 4: Expression Evaluation (`lib/eval/result.php`)
+The operators with a value on both sides, strongest first - those of one power are taken
+left to right, except `**`, which binds right to left (`2 ** 3 ** 2` is `2 ** 9`):
 
-The `padEvalResult()` function evaluates each pipe segment:
+| Power | Operators |
+|-------|-----------|
+| 130 | a call after a value - `$s upper` - takes that value as its input |
+| 120 | `**` |
+| 110 | the prefix `!`, `-`, `+` - `-$b ** 2` is `-($b ** 2)`, `2 ** -$b` is `2 ** (-$b)` |
+| 100 | `*` `/` `%` |
+| 90 | `+` `-` |
+| 80 | `.` |
+| 75 | the tests `in`, `like`, `matches`, `range`, `between`, `contains` written after a value |
+| 70 | `lt` `le` `gt` `ge` (`<` `<=` `>` `>=`) |
+| 60 | `eq` `ne` (`=` `==` `!=` `<>`) |
+| 50 | the prefix `not` - `not $a eq $b` denies the comparison |
+| 40 | `and` (`&&`) |
+| 30 | `xor` |
+| 20 | `or` (`\|\|`) |
+| 10 | `??` |
 
-```php
-padEvalValue  ( $result, $value );  // Inject pipe input value
-padEvalArray  ( $result, $value );  // [ ] lists, key => value pairs too
-padEvalOpnCls ( $result, $value );  // Handle parentheses
-padEvalOpr    ( $result, $value );  // Execute operators
-padEvalMulti  ( $result );          // Handle multiple expressions
-```
+Weaker than all of them is the inline ternary `cond ? then : else`: the first `?` of a range
+splits it at its own `:` (a nested `?` takes the next one), so `a ? b : c ? d : e` is
+`a ? b : (c ? d : e)`. Nothing before the `?` means the piped value is the condition:
+`{$n | ? 'some' : 'none'}`. With no then branch - `$title ?: 'Untitled'` - a true condition
+is the answer itself.
 
-## Operator Execution
+### What an operator lacks, the piped value stands in for
 
-### Operator Precedence (`lib/eval/const.php`)
+- An operator where a value should be takes the piped value as its left side:
+  `{echo 10 | - 3}` is 7, `{echo $x | * 2 + 1}` is `$x * 2 + 1`
+- One operator closing a range takes everything before it as its left side and the piped
+  value as its right one: `{echo 5 | 2 + 3 *}` is 25
+- Of two operators side by side the first takes the piped value on both sides and stands as
+  a value: `{echo 50 | '"' . . '"'}` is `"5050"`; an operator alone squares the value -
+  `{echo 5 | *}` is 25
+- A prefix operator alone works on the piped value: `{$flag | !}`
 
-Operators bind in these groups, strongest first. The operators of one group bind equally
-and are applied left to right - `10 - 2 + 3` is 11, `12 / 2 * 3` is 18 - except `**`,
-which binds right to left: `2 ** 3 ** 2` is `2 ** 9`, 512. A sign before a value and `!`
-bind weaker than `**`, as in PHP - `-$b ** 2` and `-3 ** 2` are -9 - and a sign or `!` that
-opens the right operand of `**` belongs to that operand: `2 ** -$b` is `2 ** (-$b)`:
+### Calls and tests
 
-```php
-const padEval_groups = [
-  [ '**' ],                         // Power
-  [ '!', 'NEG', 'POS' ],            // NOT and the signs (unary)
-  [ '*', '/', '%' ],                // Multiplication
-  [ '+', '-' ],                     // Addition
-  [ '.' ],                          // String concatenation
-  [ 'LT', 'LE', 'GT', 'GE' ],       // Ordering
-  [ 'EQ', 'NE' ],                   // Equality
-  [ 'NOT' ],                        // NOT (word form) - not $a eq $b denies the comparison
-  [ 'AND' ],
-  [ 'XOR' ],
-  [ 'OR' ],
-  [ '??' ],                         // empty-coalescing
-];
-```
+- A function with brackets takes its arguments from them; without them it takes the one
+  value right after it, when one follows: `$s like 'h%'`
+- Written after a value, a call takes that value as its input - `$s upper`; a test takes the
+  arithmetic and the concatenation on its left: `$n + 1 range (9, 9)`. A `not` between the
+  value and a test denies the test: `$s not in ('a', 'b')`
+- A built-in written as a call with nothing piped into it - at the head of an expression
+  that is no pipe body, or as an argument of another call - reads its first argument as the
+  value: `{echo upper($s)}`, `replace('l', upper('x'))`, and an application's function the
+  same: `exclaim('ab')`. `date` keeps PHP's order: `date('Y', 0)` is 1970
+- A lookup - `field:x`, `data:rows`, a bare word naming a field - takes no arguments
 
-Weaker than all of them is the inline ternary `cond ? then : else`, resolved by
-`padEvalTernary()` (`lib/eval/ternary.php`) before any operator group: the first `?` of a
-range splits it at its own `:` (a nested `?` takes the next one), the condition is reduced
-alone, and only the chosen branch is reduced after it. Nothing before the `?` means the
-piped value is the condition: `{$n | ? 'some' : 'none'}`. With no then branch - `$title ?:
-'Untitled'`, as PHP has it - a true condition is the answer itself. An else with nothing in it
-is an error whichever branch is taken.
+### Brackets and lists
 
-A `[ ]` list takes keys written with `=>`: `[ 'title' => 'Minutes', 'n' => $n + 1 ]`, mixed
-with plain items as PHP mixes them (`padEvalArrayItems()`, `lib/eval/array.php`); a `=>`
-outside a list, with no key or no value, is an error.
+An argument of `( )` and an item of `[ ]` is a range of its own: a comma ends it, a `=>`
+ends the key of a list item. With a `|` of its own it is a pipeline whose head takes the
+segment's value: `($n | + 1) * 2`, `upper($s | trim)`, `[$n | + 1, 2]`; an `@` after that
+pipe is the value piped into its part. Values left side by side in `( )` stand side by side
+where the brackets stood; after a function they are its arguments.
 
-`$$x` reads the field whose name the field `x` holds, as `{$$x}` does: the name must be an
-application field or a path into one - one of the engine's globals reads nothing.
+A `[ ]` list takes keys written with `=>` - `[ 'title' => 'Minutes', 'n' => $n + 1 ]` - mixed
+with plain items as PHP mixes them (`padEvalArrayItems`).
 
-`a ?? b` answers `a` unless it is empty - `''`, NULL, FALSE, an empty list, a missing field - and
-then `b`; a `$field` standing before `??` may be missing under the strict check.
+### Nodes
 
-The tests `in`, `like`, `matches`, `range`, `between` and `contains` are pipe functions that
-read infix as well, the value on their left their input: `$s in ('a', 'b')`. A `not` between
-the value and the test denies the test, as SQL writes it - `$s not in ('a', 'b')`,
-`$name not like 'A%'`; a `not` after a value with no test behind it is an error under the
-strict check (put it in front: `not $a eq $b`).
+A node is a list, its kind first:
 
-### Operator Processing (`lib/eval/operations.php`)
+| Kind | Holds |
+|------|-------|
+| `lit` | a value written in the template, and whether it was a quoted string |
+| `leaf` | a token read before the tree: a field, an option, a property, a hex value, a constant |
+| `me` | the value piped in - `@` |
+| `fmt` | a printf format |
+| `un` / `bin` | an operator and its operand(s), and how it was written |
+| `tern` | condition, then (`NULL` for `?:`), else (`NULL` when empty) |
+| `join` | values side by side |
+| `list` | the entries of a `[ ]` list |
+| `call` | kind, name, input, arguments, brackets, whether a built-in reads its first argument |
+| `look` | kind, name, and whether it stands before `??` |
+| `pipe` | the parts of a pipeline inside brackets |
+| `seq` | nodes read and left out, then a node |
+| `err` / `none` / `more` | a fault reported where it is evaluated |
 
-The `padEvalOpr()` function:
+## Step 4: Evaluation (`lib/eval/run.php`)
 
-1. Scans tokens for operators in precedence order
-2. Finds operands (left and/or right values)
-3. Dispatches to appropriate action handler
+`padEvalSegments` reads the leaves of the expression first, in the order written
+(`padEvalLeaves`) - so under the strict check a missing field is named even in the branch a
+ternary does not take - and then evaluates each segment with the previous one's answer as
+its input. `padEvalNode` walks the tree: the branch a ternary does not take is left alone,
+both sides of the other operators are evaluated.
 
-**Action Types:**
+### Operators (`padEvalApply`)
 
-| Action | File | Description |
-|--------|------|-------------|
-| `single` | `actions/single.php` | Unary operator with right operand |
-| `singleRight` | `actions/singleRight.php` | Unary with operator to the right |
-| `double` | `actions/double.php` | Binary operator with both operands |
-| `doubleLeft` | `actions/doubleLeft.php` | Binary with missing left operand |
-| `doubleRight` | `actions/doubleRight.php` | Binary with missing right operand |
-| `alone` | `actions/alone.php` | Operator with implicit operands |
+| Left | Right | Function |
+|------|-------|----------|
+| - | any | `padEvalUnary` - `!` and `not` answer `'1'` or `''`, the signs a number |
+| scalar | scalar | `padEvalScalar` |
+| array | array | `padEvalArrays` |
+| array / scalar | scalar / array | `padEvalMixed` |
 
-### Operator Execution (`go/go.php`)
+- The comparisons and the logical operators answer `1` for true and `''` for false; a
+  boolean compares as PAD writes it, TRUE as 1 and FALSE as empty
+- `.` concatenates; the arithmetic reads each operand as the number it spells
+  (`padEvalNumber`) - text that is no number is an error under the strict check, 0 in the
+  lenient walk
+- `??` answers the left value unless it is empty - `''`, NULL, FALSE, an empty list, a
+  missing field - and then the right one
+- An array meets a scalar as one value: a list of one is that value, a list of numbers their
+  sum against a number; the logical operators read an array's truth. Two arrays compare whole
+  and are otherwise reduced to the sum of their leaves, or the leaves run together
+- A date object is its text to an operator, except two dates compared with each other
+- A NAN answer is empty
 
-Based on operand types, dispatches to:
+### Calls and lookups
 
-| Left | Right | Handler |
-|------|-------|---------|
-| scalar | scalar | `go/doubleVarVar.php` |
-| array | scalar | `go/doubleArrVar.php` |
-| scalar | array | `go/doubleVarArr.php` |
-| array | array | `go/doubleArrArr.php` |
-| - | scalar | `go/singleVar.php` |
-| - | array | `go/singleArr.php` |
+A call goes to `padEvalCall ( $kind, $name, $value, $parm )`, which includes
+`eval/parms/$kind.php` with `$value`, `$parm` and `$count` in scope; a lookup goes to
+`padEvalLook`, which includes `eval/single/$kind.php` with `$name`.
 
-### Binary Operations (`go/doubleVarVar.php`)
+### Single kinds (`single/`)
 
-```php
-// Comparison operators - return '1' or ''
-if ( $opr == 'LT' )  $now = ($left <  $right) ? 1 : '';
-if ( $opr == 'LE' )  $now = ($left <= $right) ? 1 : '';
-if ( $opr == 'EQ' )  $now = ($left == $right) ? 1 : '';
-if ( $opr == 'GE' )  $now = ($left >= $right) ? 1 : '';
-if ( $opr == 'GT' )  $now = ($left >  $right) ? 1 : '';
-if ( $opr == 'NE' )  $now = ($left != $right) ? 1 : '';
-
-// Logical operators
-if ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
-if ( $opr == 'OR' )  $now = ($left OR  $right) ? 1 : '';
-if ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : '';
-
-// String concatenation
-if ( $opr == '.' )   $now = $left . $right;
-
-// Arithmetic (with automatic int/float detection)
-if ( $opr == '+' )   $now = $left + $right;
-if ( $opr == '-' )   $now = $left - $right;
-if ( $opr == '*' )   $now = $left * $right;
-if ( $opr == '/' )   $now = $left / $right;
-if ( $opr == '%' )   $now = $left % $right;
-```
-
-### Unary Operations (`go/singleVar.php`)
-
-```php
-// NOT operator - inverts truthiness
-$now = ( $right ) ? '' : '1';
-```
-
-## Type Handlers
-
-### Type Resolution (`type/type.php`)
-
-When a TYPE token is encountered:
-
-```php
-$kind = $result[$k][2];  // e.g., 'field', 'data', 'property'
-$name = $result[$k][0];  // e.g., 'username'
-
-if ( file_exists ( PAD . "eval/single/$kind.php" ) )
-  $value = include PAD . 'eval/type/single.php';  // Simple type
-else
-  $value = include PAD . 'eval/type/parms.php';   // Type with parameters
-```
-
-### Simple Types (`single/`)
-
-| Type | File | Returns |
+| Kind | File | Returns |
 |------|------|---------|
 | `field` | `single/field.php` | `padFieldValue($name)` |
 | `data` | `single/data.php` | `$GLOBALS['padDataStore'][$name]` |
@@ -282,11 +245,9 @@ else
 | `local` | `single/local.php` | A `_data/` file's data |
 | `include` | `single/include.php` | An `_include/` snippet, rendered |
 
-### Parameterized Types (`parms/`)
+### Kinds with parameters (`parms/`)
 
-Types that accept parameters:
-
-| Type | File | Description |
+| Kind | File | Description |
 |------|------|-------------|
 | `tag` | `parms/tag.php` | Tag as function: `padTagAsFunction($name, $value, $parm)` |
 | `pad` | `parms/pad.php` | A built-in pipe function, `functions/$name.php`, after its parameter count is checked |
@@ -297,125 +258,27 @@ Types that accept parameters:
 | `script` | `parms/script.php` | A `_scripts/` script |
 | `sequence` | `parms/sequence.php` | Sequence generator |
 
-## Fast Path (`fast.php`)
+## Fast Paths
 
-For simple expressions that are just function names (e.g., `trim`), the fast path bypasses full parsing:
+An expression that is only the name of a built-in pipe function goes to `eval/fast.php`,
+which calls the function through `eval/parms/pad.php`. A number, a quoted string with no
+quote or backslash in it, and a plain `$field` are answered in `eval/eval.php` before any
+scanning - outside a pipe body, and not while the trace records.
 
-```php
-$kind  = 'pad';
-$name  = $eval;
-$count = 0;
-$parm  = [];
+## Tracing
 
-if ( $padInfo )
-  include PAD . 'events/functionsFast.php';  // Tracing
+With `$padEvalTrace` on, `padEvalTrace` records the tokens and the tree of each evaluation
+in `$_eval`.
 
-return include PAD . 'eval/parms/pad.php';   // The function, through the parameter-count check
-```
-
-## Directory Structure
-
-```
-eval/
-├── eval.php              # Main entry point
-├── fast.php              # Fast path for simple functions
-│
-├── actions/              # Operator action handlers
-│   ├── alone.php         # Operator with implicit operands
-│   ├── double.php        # Binary operator
-│   ├── doubleLeft.php    # Binary with missing left
-│   ├── doubleRight.php   # Binary with missing right
-│   ├── single.php        # Unary operator
-│   └── singleRight.php   # Unary with right operator
-│
-├── go/                   # Operator execution
-│   ├── go.php            # Dispatch based on operand types
-│   ├── doubleVarVar.php  # scalar OP scalar
-│   ├── doubleArrVar.php  # array OP scalar
-│   ├── doubleVarArr.php  # scalar OP array
-│   ├── doubleArrArr.php  # array OP array
-│   ├── singleVar.php     # OP scalar
-│   └── singleArr.php     # OP array
-│
-├── parms/                # Parameterized type handlers
-│   ├── action.php        # Sequence action
-│   ├── app.php           # Application function (_functions/)
-│   ├── function.php      # Any function kind
-│   ├── pad.php           # Built-in pipe function
-│   ├── php.php           # PHP function
-│   ├── script.php        # Script from _scripts/
-│   ├── sequence.php      # Sequence generator
-│   └── tag.php           # Tag as function
-│
-├── single/               # Simple type handlers
-│   ├── array.php         # Array access
-│   ├── bool.php          # Bool store
-│   ├── constant.php      # PHP constant
-│   ├── content.php       # Content store
-│   ├── data.php          # Data store
-│   ├── field.php         # Field/variable
-│   ├── flag.php          # Bool store, strict
-│   ├── include.php       # Include content
-│   ├── level.php         # Array field of an enclosing row
-│   ├── local.php         # A _data/ file
-│   ├── object.php        # Application global as array
-│   ├── parm.php          # Parameter value
-│   ├── property.php      # Property value
-│   └── pull.php          # Stored sequence
-│
-└── type/                 # Type dispatch
-    ├── parms.php         # Parameterized type handler
-    ├── single.php        # Simple type handler
-    └── type.php          # Type dispatch entry
-```
-
-## Supporting Library (`lib/eval/`)
-
-```
-lib/eval/
-├── after.php       # Post-parse type resolution
-├── array.php       # [ ] lists, key => value pairs
-├── check.php       # Validation checks
-├── const.php       # Operator constants and precedence
-├── double.php      # Double operand handling
-├── eval.php        # Evaluation utilities
-├── multi.php       # Multi-expression handling
-├── nextKey.php     # Next key finder
-├── openClose.php   # Parentheses handling, which group waits for a pipe's part
-├── operations.php  # Main operator processing
-├── parse.php       # Expression parser
-├── pipes.php       # Pipe splitting, and the pipes of a group (padEvalPiped)
-├── reduce.php      # An array reduced to the one value an operator needs
-├── result.php      # Result computation
-├── ternary.php     # The inline ternary cond ? a : b
-├── types.php       # Type utilities
-├── validate.php    # The check before parsing - brackets, strings, functions, operands
-└── value.php       # Value handling
-```
-
-## Example Evaluation
+## Example
 
 Expression: `$price * 1.1 | round`
 
-1. **Parse**: `[$price, $] [*, OPR] [1.1, VAL] [|, pipe] [round, other]`
-
-2. **After**: `[123.45, VAL] [*, OPR] [1.1, VAL] [|, pipe] [round, TYPE]`
-
-3. **Pipes**: Split into `[123.45 * 1.1]` and `[round]`
-
-4. **Evaluate first segment**:
-   - Find `*` operator
-   - Get left=123.45, right=1.1
-   - Execute: 123.45 * 1.1 = 135.795
-   - Result: `[135.795, VAL]`
-
-5. **Evaluate second segment**:
-   - Input value: 135.795
-   - round TYPE token
-   - Call round function
-   - Result: 136
-
-6. **Final result**: `136`
+1. **Scan**: `[price, $] [*, OPR] [1.1, VAL] [|, pipe] [round, other]`
+2. **Words**: `round` names the built-in function - kind `pad`
+3. **Parse**: two segments - `bin(*, leaf $price, lit 1.1)` and `call(pad, round)`
+4. **Evaluate**: the leaf `$price` is read (123.45); the first segment is 135.795, which is
+   the input of the second: `round` answers 136
 
 ## Boolean Handling
 
@@ -423,8 +286,6 @@ The comparison and logical operators answer `1` for true and `''` for false. A v
 tested for truth as PHP tests it:
 - **False**: `''`, `'0'`, `0`, NULL, FALSE and an empty array
 - **True**: everything else - an array when it has elements
-
-This allows natural use in string contexts while maintaining logical operations.
 
 ## Error Handling
 
@@ -449,10 +310,11 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
 - a pipe operator written without its space - `| +1` for `| + 1`
 
 While it runs:
-- "there is no field named '$x'" - a missing field (`lib/eval/after.php`), also as `field:x` and
+- "there is no field named '$x'" - a missing field (`padEvalLeaves`), also as `field:x` and
   as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ..."
 - "'a' is not a number for +", "a division by zero in /" - arithmetic
-- "the ? of an inline ternary has no :", "a branch of an inline ternary is empty" (`lib/eval/ternary.php`)
+- "the ? of an inline ternary has no :", "a branch of an inline ternary is empty", "the
+  condition of an inline ternary is not one value"
 - "the key 'a' of a list has no value after its =>", "a => in a list with no key before it"
 - "the function 'replace' wants 2 parameters", with "after the value it works on" for a
   built-in written as a call, whose first argument is that value
@@ -460,8 +322,7 @@ While it runs:
   out of range, a division by zero, with a word on the piped value a call with arguments is
   not handed (`eval/parms/php.php`)
 - "there is no value in '( )'", "a list and another value stand side by side with no operator
-  between them", "More than one result back", "Result is not a value" - an expression that
-  reduced to no single value
+  between them", "More than one result back" - an expression that reduced to no single value
 - "Unsupported \\ char" - Invalid escape sequence
 - "Escape \\ char only allowed inside a string"
 

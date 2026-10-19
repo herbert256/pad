@@ -9,10 +9,11 @@
   //                turn a thrown error into a PAD error rather than a fatal
   //   padEvalBool  the same, reduced to TRUE/FALSE - used by {if}, {while} and friends.
   //                An array counts as TRUE when it is non-empty
-  //   padEvalTrace records the token array after each stage of the pipeline in $_eval,
-  //                skipping stages that changed nothing, for debugging the evaluator
+  //   padEvalTrace records the tokens and the tree of an evaluation in $_eval, for
+  //                debugging the evaluator
   //
-  // The helper functions that make up the pipeline are the siblings of this file.
+  // The stages are the siblings of this file: validate.php, scan.php (the tokens),
+  // tree.php (the parser) and run.php (the evaluator).
 
   function padEvalTrace ( $type, $result ) {
 
