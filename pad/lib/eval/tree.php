@@ -633,6 +633,8 @@
   }
 
   // A call: its arguments in brackets, or else the one value right after it, when one does.
+  // A test after it tests its answer - {$s | lower in ('a', 'b')} - where it was the
+  // argument the function left unread, tested on the piped value.
 
   function padEvalTreeCall ( $item, $input, $items, &$pos, $end, $ctx ) {
 
@@ -640,7 +642,7 @@
 
     if ( $args === NULL ) {
       $args = [];
-      if ( $pos < $end and in_array ( $items [$pos] [0], [ 'a', 'c' ], TRUE ) )
+      if ( $pos < $end and ( $items [$pos] [0] == 'a' or ( $items [$pos] [0] == 'c' and ! $items [$pos] [4] ) ) )
         $args [] = padEvalTreeExpr ( $items, $pos, 129, $end, $ctx );
     }
 
