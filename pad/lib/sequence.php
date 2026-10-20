@@ -304,6 +304,26 @@
 
   }
 
+  // The term at position $n of a type built by position - a play asks an order type for it -
+  // from the terms made for the request under pqTermsKey (), made again for twice as many
+  // when $n is past them; FALSE when the type has no term there. A type whose terms can come
+  // out otherwise another time is made afresh each time, as before.
+
+  function pqNth ( $seq, $parm, $n ) {
+
+    $key  = pqTermsKey ( $seq, 'nth', $parm );
+    $made = ( $key !== '' ) ? pqTermsMade ( $key ) : [];
+
+    if ( count ( $made ) < $n ) {
+      $made = pqTerms ( $seq, $parm, [ 'to' => max ( $n, 2 * count ( $made ) ) ] );
+      if ( $key !== '' )
+        pqTermsMade ( $key, $made );
+    }
+
+    return $made [$n - 1] ?? FALSE;
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( is_string ( $action ) and isset ( pqNames ( PA ) ["$action.php"] ) )
