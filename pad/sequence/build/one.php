@@ -49,6 +49,13 @@
     return FALSE;
   if ( $pqRandomly   ) $pqLoop = include PQ . 'build/randomly/randomly.php';
 
+  // The position in the list a term comes from - the fixed iterator's, or the one a random
+  // draw from a store picked - kept beside the term in $pqResultAt, so the columns and the
+  // destructive actions of a pull know which entry of the store each term is.
+
+  if ( $pqRandomly and pqStore ( $pqBuild ) )
+    $pqAt = $pqRandomlyRand;
+
   // A function type computes the term at a position, and a position is a whole number: at
   // from=2.5 bell read the undefined row 2.5 of its triangle and ended the request. It is
   // handed as the integer it is, however written: from=3.0, '+3' or '3e0' reached bell and
@@ -124,8 +131,9 @@
   if ( $pqBuild == 'order' and $pqLoop < $pqOrderFrom )
     return TRUE;
 
-  $pqResult [] = $pq;
-  $pqOrgHit [] = $pqOrgSet;
+  $pqResult   [] = $pq;
+  $pqOrgHit   [] = $pqOrgSet;
+  $pqResultAt [] = $pqAt ?? NULL;
 
   if ( $pqUnique )
     $pqUniqueSeen [$pqUniqueKey] = TRUE;

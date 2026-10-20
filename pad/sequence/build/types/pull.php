@@ -25,6 +25,11 @@
 
   }
 
+  // The store as it was pulled, which the pulled-store column shows - a shift or pop, or a
+  // push of this run, rewrites $pqStore before the columns are made.
+
+  $pqPulled = $pqFixed;
+
   include PQ . 'build/types/type/fixed.php';
 
 ?>

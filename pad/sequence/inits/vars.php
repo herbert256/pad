@@ -50,6 +50,8 @@
   $pqOrgHit     = [];
   $pqRowAt      = [];
   $pqResultBuilt = [];
+  $pqResultAt    = [];
+  $pqPulled      = [];
   $pqUniqueSeen  = [];
 
   include PQ . 'inits/parms.php';

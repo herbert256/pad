@@ -9,10 +9,19 @@
   if ( ! $pqPull                         ) return;
   if ( ! isset ( $padSeqData [$pqPull] ) ) return;
 
-  foreach ( $padData [$pad] as $padK1 => $padV1 )
-    if ( $pqRowAt [$padK1] !== FALSE and isset ( $padSeqData [$pqPull] [ $pqRowAt [$padK1] ] ) )
-      foreach ( $padSeqData [$pqPull] [ $pqRowAt [$padK1] ] as $padK2 => $padV2 )
+  // The rows are those of the store position of each row's term, $pqResultAt - read by the
+  // term's position among the results, a pull that left terms out (keep, remove, from=,
+  // increment=) gave its rows the columns of the store's first terms.
+
+  foreach ( $padData [$pad] as $padK1 => $padV1 ) {
+
+    $pqChainAt = ( $pqRowAt [$padK1] !== FALSE ) ? ( $pqResultAt [ $pqRowAt [$padK1] ] ?? NULL ) : NULL;
+
+    if ( $pqChainAt !== NULL and isset ( $padSeqData [$pqPull] [$pqChainAt] ) )
+      foreach ( $padSeqData [$pqPull] [$pqChainAt] as $padK2 => $padV2 )
         if ( ! isset ( $padData [$pad] [$padK1] [$padK2] ) )
           $padData [$pad] [$padK1] [$padK2] = $padV2;
+
+  }
 
 ?>

@@ -31,6 +31,8 @@
     if ( $pqKey < $pqFrom - 1 ) continue;
     if ( $pqKey > $pqTo - 1   ) break;
 
+    $pqAt = $pqKey;
+
     if ( ! include PQ . 'build/one.php')
       break;
 

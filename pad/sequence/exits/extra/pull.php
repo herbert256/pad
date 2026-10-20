@@ -9,10 +9,20 @@
   if ( ! $pqPull )
     return;
 
-  foreach ( $padData [$pad] as $padK => $padV )
-    if ( $pqRowAt [$padK] !== FALSE and isset ( $pqStore [$pqPull] [ $pqRowAt [$padK] ] ) )
-      $padData [$pad] [$padK] [$pqPull] = $pqStore [$pqPull] [ $pqRowAt [$padK] ];
+  // The value is read at the store position of the row's term ($pqResultAt) in the store as it
+  // was pulled ($pqPulled): read at the term's position among the results, in the store as the
+  // run left it, a keep or from= gave every row a value of the store's first entries, and after
+  // a shift, a pop or push= the value of another term.
+
+  foreach ( $padData [$pad] as $padK => $padV ) {
+
+    $pqPullAt = ( $pqRowAt [$padK] !== FALSE ) ? ( $pqResultAt [ $pqRowAt [$padK] ] ?? NULL ) : NULL;
+
+    if ( $pqPullAt !== NULL and isset ( $pqPulled [$pqPullAt] ) )
+      $padData [$pad] [$padK] [$pqPull] = $pqPulled [$pqPullAt];
     elseif ( $pqRowAt [$padK] !== FALSE or ! isset ( $padV [$pqPull] ) )
       $padData [$pad] [$padK] [$pqPull] = 'n/a';
+
+  }
 
 ?>

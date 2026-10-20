@@ -45,6 +45,7 @@
   while ( $pqGo <= $pqTo ) {
 
     $pqLoop = $pqGo;
+    $pqAt   = NULL;
 
     if ( ! include PQ . 'build/one.php')
       break;
