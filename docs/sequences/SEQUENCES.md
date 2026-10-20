@@ -55,17 +55,33 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-A type, a store or an action can be named by a value too - `{sequence $type, rows=5}` - and
-a second parameter after it is that one's first parameter, as it is after a name the tag
-gives: `{keep $type, '1..10'}` with `$type` 'prime' is `{keep:prime '1..10'}`, the primes of
-1 to 10. Written after a count, a range or a list, a second parameter naming a type plays on
-it as the option of that name does: `{keep '1..10', $type}` is `{keep '1..10', prime}`. A
-parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}` - is reported by the
-strict check.
-
 Names are written as they are spelled, on every machine: `{Keep '1..10', prime}`,
 `{Flag:even}` and `sequence:Prime(3)` are no tag, type or sequence, as on a file system that
 tells case apart.
+
+### Positional parameters
+
+The parameters written without a name are read in the order written, each by what it stands
+beside:
+
+- The first parameter of a type or an action the tag or its prefix names is that one's own
+  when it is its kind of value - `{multiply 3}`, `{first 3}`; see
+  [ACTIONS.md](ACTIONS.md#type-prefixes-for-sequences) for the actions.
+- Otherwise its shape tells: a range `'1..10'`, a `';'` list `'5;2;8'` or a list `[5, 2, 8]`
+  is the values the tag runs over, and a number how many rows - `{sequence 5}`. Beside a store
+  the tag pulls the store is the values, and a list is the values of a play over it, as a
+  `';'` list is: `{keep:a [2, 3]}` keeps the terms of a that are 2 or 3, as `{keep:a '2;3'}`
+  does. An action that takes stores takes the list, though - the one the tag names, or else
+  the first one written as an option: `{a:append [7, 8]}` and `{pull:a append, [7, 8]}` are
+  `{pull:a append=[7, 8]}`.
+- A name is the store, the type or the action it names - `{sequence $type, rows=5}`.
+- A second parameter after one that named what to run is that one's first parameter, as it
+  is after a name the tag gives: `{keep $type, '1..10'}` with `$type` 'prime' is
+  `{keep:prime '1..10'}`, the primes of 1 to 10. Written after a count, a range or a list, a
+  second parameter naming a type plays on it as the option of that name does:
+  `{keep '1..10', $type}` is `{keep '1..10', prime}`.
+- A parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}` - is reported by
+  the strict check.
 
 ## Sequence Types (122)
 

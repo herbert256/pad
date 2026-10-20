@@ -17,10 +17,16 @@
   // A list is the values themselves - {sequence [3, 1, 2], sort} - which the list type takes
   // as written. It was cast to text and ended the request on "Array to string conversion".
 
-  // Only where no store is pulled. Beside one - named by the prefix, the tag or an option, or
-  // the store a {pull} takes - the store is the values, and the list is the parameter of an
-  // action that takes stores, as append=[7, 8] is, and named for anything else: it took the
-  // store's place, {action:append a, [7, 8]} and {pull:a [7, 8]} answered 7 8, a never read.
+  // Beside a store pulled - named by the prefix, the tag or an option, or the store a {pull}
+  // takes - the list is the parameter of an action that takes stores, as append=[7, 8] is:
+  // the action the prefix or the tag names, or else the first one written as a bare option,
+  // whose value it becomes - {pull:a append, [7, 8]} is {pull:a append=[7, 8]}. It took the
+  // store's place, {action:append a, [7, 8]} answered 7 8, a never read, and an action written
+  // as an option ended the page on "a list as a parameter that nothing reads".
+  //
+  // Without such an action it is the values of a play over the store, as a ';' list is -
+  // find/add.php makes the list type one: {keep:a [2,3,9]} keeps the terms of a that are 2, 3
+  // or 9, as {keep:a '2;3;9'} does, where the strict check refused it.
 
   if ( ! $pqSeq and is_array ( $pqFindParm ) ) {
 
@@ -30,18 +36,34 @@
       if ( $pqFindOne ['padPrmKind'] == 'option' and isset ( $pqStore [ $pqFindOne ['padPrmName'] ] ) )
         $pqFindStore = TRUE;
 
-    if ( ! $pqFindStore ) {
+    $pqFindTaker = NULL;
+
+    if ( $pqFindStore and $pqAction
+         and ( padFileExists ( PQ . "actions/double/$pqAction" ) or padFileExists ( PQ . "actions/merge/$pqAction" ) ) )
+      $pqFindTaker = 'tag';
+
+    elseif ( $pqFindStore )
+      foreach ( $padParms [$pad] as $pqFindAt => $pqFindOne )
+        if ( $pqFindTaker === NULL and $pqFindOne ['padPrmKind'] == 'option' and $pqFindOne ['padPrmValue'] === TRUE
+             and pqAction ( $pqFindOne ['padPrmName'] )
+             and ( padFileExists ( PQ . 'actions/double/' . $pqFindOne ['padPrmName'] )
+                   or padFileExists ( PQ . 'actions/merge/' . $pqFindOne ['padPrmName'] ) ) )
+          $pqFindTaker = $pqFindAt;
+
+    if ( $pqFindTaker === 'tag' )
+
+      $pqActionParm = pqActionList ( $pqAction, $pqFindParm ) ?? '';
+
+    elseif ( $pqFindTaker !== NULL )
+
+      $padParms [$pad] [$pqFindTaker] ['padPrmValue'] = $pqFindParm;
+
+    else {
 
       $pqSeq  = 'list';
       $pqParm = $pqFindParm;
 
-    } elseif ( $pqAction and ( padFileExists ( PQ . "actions/double/$pqAction" ) or padFileExists ( PQ . "actions/merge/$pqAction" ) ) )
-
-      $pqActionParm = pqActionList ( $pqAction, $pqFindParm ) ?? '';
-
-    elseif ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-
-      padError ( "the tag {" . $padTag [$pad] . "} was given a list as a parameter that nothing reads" );
+    }
 
     $pqFindParm = '';
 
