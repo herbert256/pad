@@ -12,6 +12,12 @@
   // An option of the tag's own action is its parameter, not a second mention: {a:shift shift=3}
   // ran shift twice, the first time with a count of 1, so it showed 1 and took 1 out of the
   // store. The action keeps the first place, with the option's value.
+  //
+  // So is an action= whose first '|' segment names it, the same one mention written the other
+  // way: {a:shift action='shift|3'} ran shift with a count of 1 and then with 3, showed 1 and
+  // took only 1 out of the store, {a:reverse action='reverse'} reversed twice and gave the
+  // store as it was, and {a:splice action='splice|1|2'} ended on "splice= takes an offset,
+  // not ''".
 
   $pqActionFront = '';
 
@@ -22,7 +28,10 @@
 
     if ( $pqActionParm === '' and $pqEntry == 'tag' )
       foreach ( $padParms [$pad] as $padV )
-        if ( $padV ['padPrmKind'] == 'option' and $padV ['padPrmName'] == $pqAction )
+        if ( $padV ['padPrmKind'] == 'option'
+             and ( $padV ['padPrmName'] == $pqAction
+                   or ( $padV ['padPrmName'] == 'action' and is_string ( $padV ['padPrmValue'] )
+                        and ( padExplode ( $padV ['padPrmValue'], '|' ) [0] ?? '' ) === $pqAction ) ) )
           $pqActionFront = $pqAction;
 
     if ( ! $pqActionFront )
