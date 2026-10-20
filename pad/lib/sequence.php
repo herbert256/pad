@@ -209,13 +209,16 @@
 
   }
 
-  // What a name is already, when a store may not take it: a type, a sequence tag, a sequence
-  // option, an action or a PAD option - the resolver in lib/type.php could no longer tell the
-  // store from it. '' when the name is free.
+  // What a name is already, when a store may not take it: a number, a type, a sequence tag, a
+  // sequence option, an action or a PAD option - the resolver in lib/type.php could no longer
+  // tell the store from it, and a store named 3 took the place of the number 3 as a
+  // parameter: after push='3', add=3 added the store's terms and slice=3 ended the request on
+  // array_slice's TypeError. '' when the name is free.
 
   function pqStoreTaken ( $name ) {
 
-    if     ( pqSeq ( $name )                                    ) return 'a Sequence name';
+    if     ( is_numeric ( $name )                               ) return 'a number';
+    elseif ( pqSeq ( $name )                                    ) return 'a Sequence name';
     elseif ( padFileExists ( PQ . "start/tags/$name.php" )      ) return 'a Sequence tag';
     elseif ( padFileExists ( PQ . "options/types/$name.php" )   ) return 'a Sequence option name';
     elseif ( pqAction ( $name )                                 ) return 'an Action name';

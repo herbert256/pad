@@ -40,6 +40,14 @@
   $pqPull      = $pqParms ['pull']     ?? '';
   $pqPush      = $pqParms ['push']     ?? '';
 
+  // A store is named by a name, not a number (pqStoreTaken): push='0' was taken for no push and
+  // the terms went under 'default' in silence.
+
+  if ( is_string ( $pqPush ) and is_numeric ( $pqPush ) ) {
+    padError ( "push= takes the name of a store, not the number '$pqPush'" );
+    $pqPush = '';
+  }
+
   // Every named parameter the run consumes is read right here, so it is marked read right
   // here - the strict unread-option sweep looks for the mark.
 
