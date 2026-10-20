@@ -578,6 +578,14 @@
 
   }
 
+  // The build a type runs when none is named: its own file of the build asked for, else the
+  // first of these it has. The order makes a type's way of producing its terms its default -
+  // a loop, a recurrence, a formula of the position, a list - before a bool.php predicate, so
+  // a type that is generated some other way can also have a membership test, as golomb and
+  // kolakoski do, without its terms being made by walking the values instead: were bool.php
+  // placed before the recurrence, golomb's would make {sequence golomb} the run of the numbers
+  // that belong to it, 1 2 3 4 for 1 2 2 3.
+
   function pqBuild ( $check, $for='' ) {
 
     if ( $check == 'pull' )
@@ -591,11 +599,11 @@
 
     if     ( padFileExists ( PT . "$check/loop.php")      ) return 'loop';
     elseif ( padFileExists ( PT . "$check/make.php")      ) return 'make';
-    elseif ( padFileExists ( PT . "$check/function.php")  ) return 'function';
-    elseif ( padFileExists ( PT . "$check/bool.php")      ) return 'bool';
     elseif ( padFileExists ( PT . "$check/order.php")     ) return 'order';
+    elseif ( padFileExists ( PT . "$check/function.php")  ) return 'function';
     elseif ( padFileExists ( PT . "$check/build.php")     ) return 'build';
     elseif ( padFileExists ( PT . "$check/fixed.php")     ) return 'fixed';
+    elseif ( padFileExists ( PT . "$check/bool.php")      ) return 'bool';
     elseif ( padFileExists ( PT . "$check/generated.php") ) return 'generated';
     else                                                    return 'unknown';
 
