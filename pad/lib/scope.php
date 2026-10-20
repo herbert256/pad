@@ -189,9 +189,11 @@
 
   function padTagParm ($parm, $default='') {
 
-    global $pad, $padPrm, $padProtectValues, $padType;
+    global $pad, $padPrm, $padProtectValues, $padType, $padDone;
 
-    padDone ($parm);
+    // padDone's mark, written here: some seven of these for every tag a page runs.
+
+    $padDone [$pad] [$parm] = TRUE;
 
     if ( ! isset ( $padPrm [$pad] [$parm] ) )
       return $default;

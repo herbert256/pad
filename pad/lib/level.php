@@ -114,7 +114,16 @@ function padSplitOnUnquotedColon ( $str ) {
     $splitPos = null;
     $depth    = 0;
 
+    // A run of characters that are none of \ ' " ( ) [ ] | changes nothing - inside quotes
+    // or out - and is stepped over at once, as padParseOptions does: the loop looked at
+    // every character of every tag's text in PHP.
+
     for ($i = 0; $i < $length; $i++) {
+
+        $i += strcspn($input, "\\'\"()[]|", $i);
+
+        if ($i >= $length)
+            break;
 
         $ch = $input[$i];
 

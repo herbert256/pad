@@ -22,9 +22,10 @@
   foreach ( $padCurrent [$pad] as $padK => $padV )
     $padSetTmp [$padK] = $padV;
 
-  // Which of the names are globals already is found for the row at once (lib/scope.php).
+  // Which of the names are globals already is found for the row at once (lib/scope.php):
+  // the row's few names looked up in the symbol table, not its some 450 entries in the row.
 
-  $padSetHave = $padSetTmp ? array_intersect_key ( $GLOBALS, $padSetTmp ) : [];
+  $padSetHave = $padSetTmp ? array_intersect_key ( $padSetTmp, $GLOBALS ) : [];
 
   foreach ( $padSetTmp as $padK => $padV )
     padSetGlobalOcc ( $padK, $padV, array_key_exists ( $padK, $padSetHave ) );

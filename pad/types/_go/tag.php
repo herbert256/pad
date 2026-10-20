@@ -19,30 +19,52 @@
   // own: a call per global, twice per tag, was half the time of a page full of tags (todo
   // #45), and a loop over all some 450 of them in PHP, twice per tag, still a fifth.
 
-  $padTagDepth = ( $padTagDepth ?? 0 ) + 1;
-
-  $padTagBefore [$padTagDepth] = padAppVars ( $GLOBALS );
+  // A tag without a PHP half runs no code that could set a variable, and is not compared.
 
   $padCall = "$padTagGo.php";
-  include PAD . 'call/ob.php';
 
-  // The variables the tag's PHP half added or changed are published to $padLvlFunVar,
-  // where the function group of the @ subsystem reads them - the store level/function.php
-  // fills for a template driven by a PHP function, and the callbacks fill per phase. The
-  // storable-name filter keeps the engine's own pad-prefixed names out.
+  if ( ! padFileExists ( $padCall ) and ! ( $GLOBALS ['padInfo'] ?? FALSE ) ) {
 
-  $padTagAfter = padAppVars ( get_defined_vars () );
+    include PAD . 'call/ob.php';
 
-  foreach ( $padTagAfter as $padK => $padV )
-    if ( ! array_key_exists ( $padK, $padTagBefore [$padTagDepth] )
-         or $padTagBefore [$padTagDepth] [$padK] !== $padV )
-      $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
+  } else {
 
-  unset ( $padTagAfter );
+    $padTagDepth = ( $padTagDepth ?? 0 ) + 1;
 
-  unset ( $padTagBefore [$padTagDepth] );
+    $padTagBefore [$padTagDepth] = padAppVars ( $GLOBALS );
 
-  $padTagDepth--;
+    include PAD . 'call/ob.php';
+
+    // The variables the tag's PHP half added or changed are published to $padLvlFunVar,
+    // where the function group of the @ subsystem reads them - the store level/function.php
+    // fills for a template driven by a PHP function, and the callbacks fill per phase. The
+    // storable-name filter keeps the engine's own pad-prefixed names out.
+    //
+    // At global scope - a page run - the variables here are the globals, and the copy of
+    // $GLOBALS is a third of what get_defined_vars took for the same table; inside a pass a
+    // PHP function drives (start/pad/function.php) they are that function's locals. A name
+    // set here is a global only at global scope - no global of the name is ever left behind
+    // for that function to have bound.
+
+    $padTagScope  = TRUE;
+    $padTagGlobal = isset ( $GLOBALS ['padTagScope'] );
+
+    unset ( $padTagScope );
+
+    $padTagAfter = padAppVars ( $padTagGlobal ? $GLOBALS : get_defined_vars () );
+
+    foreach ( $padTagAfter as $padK => $padV )
+      if ( ! array_key_exists ( $padK, $padTagBefore [$padTagDepth] )
+           or $padTagBefore [$padTagDepth] [$padK] !== $padV )
+        $GLOBALS ['padLvlFunVar'] [ $GLOBALS ['pad'] ] [$padK] = $padV;
+
+    unset ( $padTagAfter );
+
+    unset ( $padTagBefore [$padTagDepth] );
+
+    $padTagDepth--;
+
+  }
 
   $padTagContent = $padCallOB . padFileGet ("$padTagGo.pad");
 

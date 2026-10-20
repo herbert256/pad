@@ -57,6 +57,13 @@
   $padPos       = $padEnd [$pad];
   $padPairCheck = '';
 
+  // With no {tag of the name between the tag and a closer, there is nothing in between to
+  // balance: no opener, and no closer either - every closer passed over before it was a
+  // longer name's, {/iffy} for if, which neither count reads. That text was cut out and
+  // counted for every closer of every pair, most of them with no opener in between.
+
+  $padPairOpen = strpos ( $padOut [$pad], '{' . $padPairTag, $padEnd [$pad] + 1 );
+
   while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
 
     $padPos = strpos($padOut [$pad] , '{/' . $padPairTag, ++$padPos);
@@ -64,12 +71,13 @@
     if ($padPos === FALSE)
       return;
 
-    $padBaseBase = substr($padOut [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
-
-    if ( padOpenCloseCountOne ( $padBaseBase, $padPairTag) )
+    if ( $padPairOpen === FALSE or $padPairOpen > $padPos
+         or padOpenCloseCountOne ( substr ( $padOut [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1 ), $padPairTag ) )
       $padPairCheck = substr($padOut [$pad], $padPos + strlen($padPairTag) + 2, 1);
 
   }
+
+  $padBaseBase = substr($padOut [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
 
   include PAD . 'level/pair.php';
 
