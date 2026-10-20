@@ -22,6 +22,7 @@
   include PQ . 'build/given.php';
 
   $pqMaxTries = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+  $pqRowsGiven = ( $pqRows !== NULL and $pqRows !== '' );
 
   if ( $pqPull or $pqBuild == 'fixed' or $pqBuild == 'given' ) {
     if ( ! $pqTry  ) $pqTry  = PHP_INT_MAX ;
@@ -51,21 +52,29 @@
 
   $pqRows = (int) $pqRows;
 
-  // A page past the first makes the terms of the pages before it too, which exits/page.php
-  // takes off again: page=3, rows=10 makes 30 terms and shows the last ten. A page that is no
-  // whole number from 1 up is named, and the first page shown.
+  // page= pages through the terms as the page option pages through the rows of a data tag
+  // (handling/types/page.php): rows= is the page's size, 10 when it is not given, and a page
+  // below 1, or one that is no number, is page 1. exits/page.php takes the terms of the other
+  // pages off again and books the page for a {pager} with the number of terms there are: a
+  // range, a list, a store or a type made in one go is made whole for it, any other run up to
+  // the page after the one shown, so the pager has a next page while the type goes on. Rows
+  // were every term of a run with an end of its own, {sequence '1..30', page=2} showed all
+  // thirty, page=0 and page='x' ended the page under the strict check where they are a data
+  // tag's first page, and {pager 'sequence'} found no paged tag.
 
   $pqPageSkip = 0;
+  $pqPageSize = NULL;
 
-  if ( $pqPage !== '' and $pqPage !== TRUE ) {
+  if ( $pqPage !== '' ) {
 
-    if ( ! pqBoolWhole ( $pqPage ) or $pqPage < 1 ) {
-      if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-        padError ( "page= takes a page from 1 up, not '" . ( is_scalar ( $pqPage ) ? $pqPage : 'a list' ) . "'" );
-    } elseif ( $pqPage > 1 and $pqRows < PHP_INT_MAX ) {
-      $pqPageSkip = (int) min ( ( (int) $pqPage - 1 ) * (float) $pqRows, PHP_INT_MAX - $pqRows );
-      $pqRows    += $pqPageSkip;
-    }
+    $pqPage     = is_scalar ( $pqPage ) ? max ( 1, (int) $pqPage ) : 1;
+    $pqPageSize = $pqRowsGiven ? $pqRows : 10;
+    $pqPageSkip = (int) min ( ( $pqPage - 1 ) * (float) $pqPageSize, PHP_INT_MAX );
+
+    if ( $pqPull or in_array ( $pqBuild, [ 'build', 'given', 'fixed' ] ) )
+      $pqRows = PHP_INT_MAX;
+    else
+      $pqRows = (int) min ( ( $pqPage + 1 ) * (float) $pqPageSize, PHP_INT_MAX );
 
   }
 
