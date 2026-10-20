@@ -11,22 +11,29 @@
   $pqOrder     = [];
   $pqOrderFrom = $pqFrom;
 
-  // The terms before from= are worked out only to feed the recurrence - they are not
-  // candidates offered - yet each passes build/one.php and counts as a try. skip= and try=
-  // count candidates offered, as every other build counts them from from=, so both move on
-  // by the terms worked through first: {sequence fibonacci, from=5, skip=1} skipped nothing,
-  // from=5, try=3 found nothing, and the default try limit ran out before from=15000 of
-  // golomb was reached. The ceiling every run has stays.
+  // The positions offered are the ones from= and increment= name, as for every type that
+  // counts its terms: from= on, a step of increment= - drawn anew at every step when it is
+  // random, '1...3'. $pqOrderNext is the next one, build/one.php holds back every other term
+  // and takes it back off the try count, so skip= and try= count the positions offered.
+  // increment= was set to 1 whatever was asked, {sequence fibonacci, increment=2} gave every
+  // term, and a random increment stepped the walk itself, which left holes in the history the
+  // recurrence reads - "Undefined array key 1". A position below 1 has no term, so the first
+  // one offered is the first of the steps at 1 or above.
+  //
+  // The terms worked out are held to the ceiling every run has, $pqOrderMost, the try limit
+  // no longer counting the ones held back.
 
-  $pqOrderBefore = max ( 0, (int) $pqOrderFrom - 1 );
+  $pqOrderInc    = max ( 1, (int) $pqInc );
+  $pqOrderRandom = $pqRandomInc;
+  $pqOrderNext   = $pqOrderFrom;
+  $pqOrderMost   = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
 
-  if ( is_numeric ( $pqSkip ) and $pqSkip > 0 )
-    $pqSkip += $pqOrderBefore;
+  while ( $pqOrderNext < 1 )
+    $pqOrderNext += $pqOrderRandom ? max ( 1, (int) pqRandomParm3 ( $pqOrderRandom ) ) : $pqOrderInc;
 
-  $pqTry = min ( $pqTry + $pqOrderBefore, $GLOBALS ['padSeqMaxTries'] ?? 1000000 );
-
-  $pqFrom = 1;
-  $pqInc  = 1;
+  $pqRandomInc = FALSE;
+  $pqFrom      = 1;
+  $pqInc       = 1;
 
   include PQ . 'build/types/type/loop.php';
 

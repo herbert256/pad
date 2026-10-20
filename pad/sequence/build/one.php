@@ -112,8 +112,23 @@
   // accepted, a rejected term left a hole the next one read - {sequence fibonacci, keep,
   // even} ended on an undefined key.
 
-  if ( $pqBuild == 'order' )
+  if ( $pqBuild == 'order' ) {
+
     $pqOrder [] = $pqOrgSet;
+
+    if ( count ( $pqOrder ) > $pqOrderMost ) {
+      $pqTriesOut = TRUE;
+      return FALSE;
+    }
+
+    if ( $pqLoop != $pqOrderNext ) {
+      $pqTries--;
+      return TRUE;
+    }
+
+    $pqOrderNext += $pqOrderRandom ? max ( 1, (int) pqRandomParm3 ( $pqOrderRandom ) ) : $pqOrderInc;
+
+  }
 
   if ( count ( $pqPlays ) ) {
     include PQ . 'plays/plays.php';
@@ -139,8 +154,7 @@
   if ( $pqUnique and isset ( $pqUniqueSeen [$pqUniqueKey] ) ) return TRUE;
   if ( $pqSkip and $pqTries <= $pqSkip )                    return TRUE;
 
-  if ( $pqBuild == 'order' and $pqLoop < $pqOrderFrom )
-    return TRUE;
+
 
   $pqResult   [] = $pq;
   $pqOrgHit   [] = $pqOrgSet;
