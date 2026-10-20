@@ -5,8 +5,8 @@
   // {remove nand=p} and {flag nand=p} ask. Generation itself goes through loop.php, which
   // pqBuild() prefers.
   //
-  // The complement of x is what n AND p would have to be, so the submask test of and/bool.php
-  // is applied to it.
+  // The complement of x is what n AND p would have to be, so and/bool.php is asked about it
+  // - the submask test and its edges.
 
   function pqBoolNand ( $x, $p ) {
 
@@ -18,7 +18,9 @@
 
     $y = ~ $x;
 
-    return ( ( $y & $p ) === $y and $y >= 0 );
+    include_once PT . 'and/bool.php';
+
+    return pqBoolAnd ( $y, $p );
 
   }
 

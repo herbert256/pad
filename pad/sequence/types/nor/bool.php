@@ -5,8 +5,8 @@
   // {remove nor=p} and {flag nor=p} ask. Generation itself goes through loop.php, which
   // pqBuild() prefers.
   //
-  // The complement of x is what n OR p would have to be, so the covering test of or/bool.php
-  // is applied to it.
+  // The complement of x is what n OR p would have to be, so or/bool.php is asked about it
+  // - the covering test and its edges.
 
   function pqBoolNor ( $x, $p ) {
 
@@ -18,7 +18,9 @@
 
     $y = ~ $x;
 
-    return ( ( $y | $p ) === $y and $y >= 1 );
+    include_once PT . 'or/bool.php';
+
+    return pqBoolOr ( $y, $p );
 
   }
 
