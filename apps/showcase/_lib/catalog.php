@@ -25,7 +25,15 @@
   function showcaseCatalog () {
 
     $groups = array_fill_keys ( array_keys ( showcaseGroups () ), [] );
-    $dirs   = glob ( APP . '*/_about.txt' );
+    $dirs   = [];
+
+    // The directories and their examples come from the listings the engine keeps between
+    // requests (padDirList), as the globs */_about.txt and <tag>/*.pad found them: every
+    // page read the application's directory and each tag's again.
+
+    foreach ( padDirList ( APP ) ?: [] as $entry )
+      if ( $entry [0] != '.' and file_exists ( APP . "$entry/_about.txt" ) )
+        $dirs [] = APP . "$entry/_about.txt";
 
     sort ( $dirs );
 
@@ -39,7 +47,11 @@
         $group = array_key_last ( $groups );
 
       $examples = [];
-      $pages    = glob ( APP . "$tag/*.pad" );
+      $pages    = [];
+
+      foreach ( padDirList ( APP . $tag ) ?: [] as $entry )
+        if ( $entry [0] != '.' and str_ends_with ( $entry, '.pad' ) )
+          $pages [] = APP . "$tag/$entry";
 
       sort ( $pages );
 

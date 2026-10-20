@@ -9,7 +9,7 @@
 
   $tagsFrame    = $padPage;
   $tagsCount    = count ( tagsCatalog () );
-  $tagsGroupCnt = count ( tagsByGroup () );
+  $tagsGroupCnt = count ( array_unique ( array_column ( tagsCatalog (), 'group' ) ) );
   $tagsSearch   = '';
 
   $tagsMenu = [];

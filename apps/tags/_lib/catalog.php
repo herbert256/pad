@@ -65,9 +65,7 @@
       return $catalog;
 
     $catalog = [];
-    $files   = glob ( APP . 'tag/*.php' );
-
-    sort ( $files );
+    $files   = tagsFiles ( 'tag', [ '.php' ] );
 
     foreach ( $files as $file )
       if ( basename ( $file ) [0] != '_' )
@@ -107,7 +105,7 @@
       return $memo [$name];
 
     $examples = [];
-    $files    = array_merge ( glob ( APP . "examples/$name/*.pad" ), glob ( APP . "examples/$name/*.src" ) );
+    $files    = tagsFiles ( "examples/$name", [ '.pad', '.src' ] );
 
     usort ( $files, fn ( $a, $b ) => strcmp ( basename ( $a ), basename ( $b ) ) );
 
@@ -124,6 +122,39 @@
     }
 
     return $memo [$name] = $examples;
+
+  }
+
+  // The files of a directory of the application with one of the extensions, as the globs
+  // tag/*.php and examples/<name>/*.pad found them - sorted, no dot files - from the listing
+  // the engine keeps between requests (padDirList): every page read the 287 entries of tag/,
+  // and an index the examples directory of every tag twice.
+
+  function tagsFiles ( $dir, $extensions ) {
+
+    $files = [];
+
+    if ( ! is_dir ( APP . $dir ) )
+      return $files;
+
+    foreach ( padDirList ( APP . $dir ) ?: [] as $file )
+      if ( $file [0] != '.' )
+        foreach ( $extensions as $extension )
+          if ( str_ends_with ( $file, $extension ) )
+            $files [] = APP . "$dir/$file";
+
+    sort ( $files );
+
+    return $files;
+
+  }
+
+  // How many examples a tag has - what an index row shows - without reading each one's
+  // first line for its title, which only the tag's own page shows.
+
+  function tagsExampleCount ( $name ) {
+
+    return count ( tagsFiles ( "examples/$name", [ '.pad', '.src' ] ) );
 
   }
 
@@ -256,7 +287,7 @@
              'group'      => $tag ['group'],
              'groupLabel' => tagsGroups () [ $tag ['group'] ] [0],
              'form'       => $tag ['form'],
-             'examples'   => count ( tagsExamples ( $tag ['name'] ) ) ];
+             'examples'   => tagsExampleCount ( $tag ['name'] ) ];
 
   }
 
