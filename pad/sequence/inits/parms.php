@@ -55,6 +55,17 @@
     $pqPush = '';
   }
 
+  // A name is no list either: push=[1,2] and build=[1,2] ended the request on "Array to string
+  // conversion", name=[1,2] on "Cannot access offset of type array", toData=[1,2] on substr ()'s
+  // TypeError, and pull=[1,2] - under the lenient walk - on "Array to string conversion".
+
+  foreach ( [ 'name' => 'pqName', 'push' => 'pqPush', 'pull' => 'pqPull', 'toData' => 'pqToData', 'build' => 'pqBuildName' ]
+            as $pqParmOne => $pqParmVar )
+    if ( is_array ( $$pqParmVar ) ) {
+      padError ( "$pqParmOne= takes a name, not a list" );
+      $$pqParmVar = '';
+    }
+
   // Every named parameter the run consumes is read right here, so it is marked read right
   // here - the strict unread-option sweep looks for the mark.
 

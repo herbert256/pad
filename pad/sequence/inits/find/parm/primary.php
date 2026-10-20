@@ -6,9 +6,11 @@
   // Clears $pqFindParm once placed, leaving the case where both are known - or neither - to
   // find/parm/parm.php at the end of find/.
 
-  // A 0 is a parameter like any other - {loop 0} - so the test is for nothing given.
+  // A 0 is a parameter like any other - {loop 0} - so the test is for nothing given. A list is
+  // given too: cast to text it ended the request on "Array to string conversion" - {prime
+  // [3,5,7]}, {keep:prime [1,2,3,4,5]}, {add [1,2]}.
 
-  if ( (string) $pqFindParm !== '' and $pqSeq and ! $pqAction )
+  if ( ( is_array ( $pqFindParm ) or (string) $pqFindParm !== '' ) and $pqSeq and ! $pqAction )
     if ( padFileExists ( PT . "$pqSeq/flags/parm" ) ) {
       $pqParm     = $pqFindParm;
       $pqFindParm = '';
@@ -22,7 +24,7 @@
   // the rest: {sum 's'} summed the default 1..10 and answered 55, {sum 'abc'} as well, and
   // {action:first 'nums'} ended on "first= takes a count, not 'nums'".
 
-  if ( (string) $pqFindParm !== '' and ! $pqSeq and $pqAction )
+  if ( ( is_array ( $pqFindParm ) or (string) $pqFindParm !== '' ) and ! $pqSeq and $pqAction )
     if ( padFileExists ( PQ . "actions/double/$pqAction" ) or padFileExists ( PQ . "actions/merge/$pqAction" )
          or ( padFileExists ( PQ . "actions/parm/$pqAction" ) and ! ( is_string ( $pqFindParm ) and isset ( $pqStore [$pqFindParm] ) ) ) ) {
       $pqActionParm = $pqFindParm;
