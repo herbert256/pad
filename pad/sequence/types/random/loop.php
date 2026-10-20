@@ -11,8 +11,12 @@
   // sequence, or the first pass of randomly=) is sampled instead; failing that a value is
   // drawn from the window init.php set up, snapped onto the increment grid when the
   // increment is not 1.
+  //
+  // A parameter of 0 is none, however it is spelled: '0.0', '-0' and '00' are true, and as a
+  // one-in-0 chance every draw passed - {sequence '1..3', make, random='0.0'} handed each value
+  // back where random=0 draws.
 
-  if ( $pqParm ) {
+  if ( is_numeric ( $pqParm ) ? $pqParm != 0 : $pqParm ) {
 
     if ( str_contains ( $pqParm, '%' ) ) {
       $pqRandomPerc = str_replace ('%', '', $pqParm);
