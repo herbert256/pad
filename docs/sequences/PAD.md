@@ -119,7 +119,7 @@ Transform and analyze sequences:
 - **combine.php** - Merge sequences
 
 **Ordering**
-- **order/keys.php**, **order/values.php** - Order by keys or values
+- **order/order.php**, **order/keys.php** - Put the survivors of minimum and maximum back in the order they had, by key
 - **negative/keys.php**, **negative/values.php** - Negative ordering
 
 **Structure**
@@ -168,7 +168,7 @@ Configure sequence generation:
 - **pull.php**, **push.php** - Stack operations
 
 **Special**
-- **both.php** - Both keys and values
+- **both.php** - How many trim takes off each end
 - **count.php** - Count mode
 - **randomly.php** - Random mode
 

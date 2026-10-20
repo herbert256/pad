@@ -66,6 +66,11 @@ removed, and what stays in the store is the remainder:
 {pull:nums}{$sequence} {/pull:nums}           # the store now holds 3 4 5 6 7 8 9 10
 ```
 
+A pull written as a single tag stores what it made back under the store's name, whatever
+the action - `{pull:nums first=2/}` leaves `nums` holding 1 2, `{pull:nums reverse/}` leaves
+it reversed - as `{resume}` does. Written as a pair, `{pull:nums first=2}...{/pull:nums}`, it
+leaves the store as it was, and only `shift` and `pop` take values out.
+
 ## Negative Selection (Invert)
 
 ```
