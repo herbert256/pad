@@ -69,7 +69,8 @@ removed, and what stays in the store is the remainder:
 A pull written as a single tag stores what it made back under the store's name, whatever
 the action - `{pull:nums first=2/}` leaves `nums` holding 1 2, `{pull:nums reverse/}` leaves
 it reversed - as `{resume}` does. Written as a pair, `{pull:nums first=2}...{/pull:nums}`, it
-leaves the store as it was, and only `shift` and `pop` take values out.
+leaves the store as it was, and only `shift` and `pop` take values out. `push='x'`, `name='x'`
+and `toData='x'` on a shift or pop keep what the tag shows, the part removed.
 
 ## Negative Selection (Invert)
 
