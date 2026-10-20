@@ -244,7 +244,9 @@ Always prefer named sequences for clarity:
 
 The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a list instead,
 because a list is what an action produces; `{echo '' | sequence:sum([1,2,3]) . ''}` prints it
-(6), where a pipe that ends on the list itself is an error.
+(6), where a pipe that ends on the list itself prints nothing. A value piped in without
+arguments is the call's argument: `{echo 5 | sequence:fibonacci}` is the fifth term, 3, and
+`([1,2,3] | sequence:sum) . ''` is 6.
 
 **Some sequences need `sequence:` prefix:**
 ```
