@@ -30,6 +30,18 @@
   $pqWalkEnd   = count ( $pqWalkTerms );
   $pqWalkAt    = -1;
 
+  // What is asked of every candidate and holds for the whole walk is settled before it, as the
+  // build, its plays and its pull stay what they are while it walks: whether the build hands
+  // the candidate over as it is ($pqWalkStore), whether the walk is held to the time a run has
+  // ($pqWalkClock, see below), whether its values are given ($pqGiven, below), and the function
+  // a bool or a function build calls. Worked out for every candidate - pqStore () twice, two
+  // in_array () and the name made with ucfirst () - they took a tenth of a candidate's time.
+
+  $pqWalkStore = pqStore ( $pqBuild );
+  $pqWalkClock = ( count ( $pqPlays ) or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) ) );
+  $pqWalkCall  = ( $pqBuild == 'bool' ) ? 'pqBool' . ucfirst ( $pqSeq ) : ( ( $pqBuild == 'function' ) ? 'pq' . ucfirst ( $pqSeq ) : '' );
+  $pqGiven     = in_array ( $pqBuild, [ 'build', 'pull', 'given' ] );
+
   while ( TRUE ) {
 
     if ( $pqWalkList ) {
@@ -96,8 +108,7 @@
         break 2;
       }
 
-      if ( ( count ( $pqPlays ) or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) ) )
-           and hrtime ( TRUE ) > $pqTriesUntil ) {
+      if ( $pqWalkClock and hrtime ( TRUE ) > $pqTriesUntil ) {
         $pqTriesOut = $pqTimeOut = TRUE;
         break 2;
       }
@@ -124,7 +135,7 @@
       // draw from a store picked - kept beside the term in $pqResultAt, so the columns and the
       // destructive actions of a pull know which entry of the store each term is.
 
-      if ( $pqRandomly and pqStore ( $pqBuild ) )
+      if ( $pqRandomly and $pqWalkStore )
         $pqAt = $pqRandomlyRand;
 
       // A function type computes the term at a position, and a position is a whole number: at
@@ -132,9 +143,9 @@
       // handed as the integer it is, however written: from=3.0, '+3' or '3e0' reached bell and
       // newmanConway as the text, and the row or term they kept under 3 was read under "3.0".
 
-          if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
-      elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
-      elseif ($pqBuild == 'function')  $pq = pqBoolWhole ( $pqLoop ) ? ( 'pq' . ucfirst($pqSeq) ) ( (int) ( $pqLoop + 0 ) ) : FALSE;
+          if ( $pqWalkStore           )  $pq = $pqLoop;
+      elseif ($pqBuild == 'bool'    )  $pq = $pqWalkCall ( $pqLoop, $pqParm );
+      elseif ($pqBuild == 'function')  $pq = pqBoolWhole ( $pqLoop ) ? $pqWalkCall ( (int) ( $pqLoop + 0 ) ) : FALSE;
       elseif ($pqBuild == 'position')  $pq = pqBoolWhole ( $pqLoop ) ? pqPosition ( $pqSeq, $pqParm, (int) ( $pqLoop + 0 ) ) : FALSE;
       elseif ($pqBuild == 'check'   )  $pq = include PQ . "build/mode.php";
       elseif ($pqBuild == 'loop'    )  $pq = include PT . "$pqSeq/loop.php";
@@ -153,9 +164,7 @@
       //
       // A value a list, a store or an action's array hands over is given, not computed: it is
       // passed on as it was written, where 1e20 in a list ended the run there - only a play
-      // over it computes a term.
-
-      $pqGiven = in_array ( $pqBuild, [ 'build', 'pull', 'given' ] );
+      // over it computes a term. $pqGiven, settled before the walk, says which.
 
       // -2^63 as a float is an overflow too, a term rounded to it, as 2^63 is on the other side:
       // tested with <, subtract=9223372036854775800 from=-10 printed -9.2233720368548E+18 twice.
