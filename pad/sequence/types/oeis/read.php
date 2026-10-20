@@ -49,7 +49,12 @@
     $pqOeisRow = $pqOeisGet->execute ()->fetchArray ( SQLITE3_NUM );
 
     $pqOeisLast  = $a;
-    $pqOeisTerms = ( $pqOeisRow === FALSE )
+
+    // A row is a sequence of whole numbers or none: the table's row for A375613 holds the
+    // closing tag of the PHP file it was converted from, and adding 0 to it ended the request
+    // on a TypeError. regenerate.php leaves such a row out.
+
+    $pqOeisTerms = ( $pqOeisRow === FALSE or ! preg_match ( '/^-?[0-9]+(,-?[0-9]+)*$/', $pqOeisRow [0] ) )
                  ? []
                  : array_map ( function ( $pqOeisOne ) { return $pqOeisOne + 0; },
                                explode ( ',', $pqOeisRow [0] ) );

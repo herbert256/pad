@@ -51,7 +51,11 @@
 
     $pqOeisTerms = trim ( substr ( $pqOeisLine, 9 ), " ,\r\n" );
 
-    if ( $pqOeisTerms === '' )
+    // A line whose terms are not all whole numbers is no sequence the table can hold: the
+    // conversion from the PHP table left the row A375613 holding the PHP closing tag, and
+    // every read of it ended the request on "Unsupported operand types".
+
+    if ( $pqOeisTerms === '' or ! preg_match ( '/^-?[0-9]+(,-?[0-9]+)*$/', $pqOeisTerms ) )
       continue;
 
     $pqOeisPut->reset ();
