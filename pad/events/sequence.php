@@ -15,6 +15,6 @@
         padInfoXref ( 'sequence', $pqInfoKey, $pqInfoVal2 );
 
   if ( $padInfoTrace and $padInfoTraceSequence )
-    padInfoTrace ( 'sequence', $pqSeq, $pqResult );
+    padInfoTrace ( 'sequence', $pqSeq, array_values ( $pqResult ) );
 
 ?>
