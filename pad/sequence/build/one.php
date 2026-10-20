@@ -121,6 +121,12 @@
       return FALSE;
     }
 
+    // A position offered between two whole ones - a fractional increment= - has no term, and
+    // the next one is offered instead.
+
+    while ( $pqOrderNext < $pqLoop )
+      $pqOrderNext += $pqOrderRandom ? max ( 1, (int) pqRandomParm3 ( $pqOrderRandom ) ) : $pqOrderInc;
+
     if ( $pqLoop != $pqOrderNext ) {
       $pqTries--;
       return TRUE;
