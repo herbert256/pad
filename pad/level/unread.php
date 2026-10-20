@@ -54,8 +54,8 @@
       // min/max option pair, or the subsystem's own mode words - readers of their own.
 
       if ( $padTagSeq [$pad] ) {
-        if ( file_exists ( PA . "$padUnreadName.php" )                            ) continue;
-        if ( file_exists ( PT . $padUnreadName )                                  ) continue;
+        if ( pqAction ( $padUnreadName )                                          ) continue;
+        if ( pqSeq ( $padUnreadName )                                             ) continue;
         if ( isset ( $GLOBALS ['pqStore'] [$padUnreadName] )                      ) continue;
         if ( pqOption ( $padUnreadName, $padPrm [$pad] [$padUnreadName] ?? TRUE ) ) continue;
         if ( in_array ( $padUnreadName, [ 'sequence', 'pull', 'action' ] )        ) continue;

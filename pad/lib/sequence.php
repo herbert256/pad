@@ -366,7 +366,7 @@
 
   function pqOption ( $option, $value = TRUE ) {
 
-    if ( ! padFileExists ( PQ . "options/types/$option.php" ) )
+    if ( ! is_string ( $option ) or ! isset ( pqNames ( PQ . 'options/types' ) ["$option.php"] ) )
       return FALSE;
 
     return ( $value === TRUE or ! in_array ( $option, [ 'store', 'single', 'operation' ] ) );

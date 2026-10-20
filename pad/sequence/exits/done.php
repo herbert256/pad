@@ -11,8 +11,8 @@
     return;
 
   foreach ( $padPrm [$pad] as $padK => $padV )
-        if ( pqOption ( $padK, $padV )                    ) padDone ( $padK );
-    elseif ( padFileExists ( PA . "$padK.php"               ) ) padDone ( $padK );
-    elseif ( padFileExists ( PT . "$padK"                   ) ) padDone ( $padK );
+        if ( pqOption ( $padK, $padV ) ) padDone ( $padK );
+    elseif ( pqAction ( $padK )        ) padDone ( $padK );
+    elseif ( pqSeq    ( $padK )        ) padDone ( $padK );
 
 ?>
