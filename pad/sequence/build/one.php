@@ -27,9 +27,12 @@
   // and {sequence '1..4000', make, fibonacci} ran 22 seconds, a longer range into PHP's time
   // limit and a 500.
 
+  // A pulled store, a fixed or a given list with a play is held to it as the range is: with
+  // {pull:s make, golomb} over 2000 stored positions the play ran 11 to 17 seconds.
+
   if ( $pqTries > $pqTry
-       or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given' ] )
-            and ( $pqBuild != 'build' or count ( $pqPlays ) ) and hrtime ( TRUE ) > $pqTriesUntil ) ) {
+       or ( ( count ( $pqPlays ) or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) ) )
+            and hrtime ( TRUE ) > $pqTriesUntil ) ) {
     $pqTriesOut = TRUE;
     return FALSE;
   }

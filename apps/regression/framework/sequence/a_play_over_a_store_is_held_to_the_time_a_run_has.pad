@@ -1,0 +1,1 @@
+{sequence '1..20000', push='s'/}[{pull:s make, eval='@*2', count}{if $sequence lt 20000}cut{else}whole{/if}{/pull:s}][{sequence '1..20000', count}{$sequence}{/sequence}]
