@@ -18,6 +18,17 @@
   $pqRandomStart = ( $pqMin == PHP_INT_MIN ) ? 1 : $pqMin;
   $pqRandomEnd   = $pqMax;
 
+  // The draws are whole numbers, from the whole numbers inside the window: rand () took a
+  // fractional minimal= or maximal= as written and ended the request on PHP's "Implicit
+  // conversion from float-string to int loses precision". minimal= and maximal= themselves
+  // still bound the terms as given.
+
+  if ( is_numeric ( $pqRandomStart ) and $pqRandomStart > PHP_INT_MIN )
+    $pqRandomStart = (int) ceil ( $pqRandomStart );
+
+  if ( is_numeric ( $pqRandomEnd ) and $pqRandomEnd < PHP_INT_MAX )
+    $pqRandomEnd = (int) floor ( $pqRandomEnd );
+
   // An increment below 1 makes no steps - the loop never starts on one - and divided by
   // nothing here: {sequence random, increment=0} ended the request instead of answering
   // nothing, and so did random as a play under a run with that increment.
