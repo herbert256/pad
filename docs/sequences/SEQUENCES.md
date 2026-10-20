@@ -63,6 +63,10 @@ it as the option of that name does: `{keep '1..10', $type}` is `{keep '1..10', p
 parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}` - is reported by the
 strict check.
 
+Names are written as they are spelled, on every machine: `{Keep '1..10', prime}`,
+`{Flag:even}` and `sequence:Prime(3)` are no tag, type or sequence, as on a file system that
+tells case apart.
+
 ## Sequence Types (122)
 
 ### Mathematical Sequences

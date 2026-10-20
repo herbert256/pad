@@ -183,6 +183,13 @@
     if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
       return FALSE;
 
+    // The entries in start/types/ are named as they are written on disk, as the types and the
+    // actions are (pqNames in lib/sequence.php): asked of a file system that ignores case,
+    // {Flag:even '1..4'} found start/types/flag.php and ran as make - 2 2 4 4 - where a Linux
+    // server has no type named Flag.
+
+    $entry = pqNames ( PQ . 'start/types' );
+
     if ( $type == 'action' and pqAction ( $item )                           ) return 'action';
     if ( $item == 'action' and pqAction ( $type )                           ) return 'action';
 
@@ -192,14 +199,14 @@
     if ( isset ( $pqStore [$type] ) and pqSeq ( $item )                       ) return 'make';
     if ( isset ( $pqStore [$item] ) and pqSeq ( $type )                       ) return 'make';
 
-    if ( isset ( $pqStore [$type] ) and file_exists ( PQ . "start/types/$item.php")       ) return $item;
-    if ( isset ( $pqStore [$item] ) and file_exists ( PQ . "start/types/$type.php")       ) return $type;
+    if ( isset ( $pqStore [$type] ) and isset ( $entry ["$item.php"] )      ) return $item;
+    if ( isset ( $pqStore [$item] ) and isset ( $entry ["$type.php"] )      ) return $type;
 
-    if ( pqSeq ( $item )    and file_exists ( PQ . "start/types/$type.php")  ) return $type;
-    if ( pqSeq ( $type )    and file_exists ( PQ . "start/types/$item.php")  ) return $item;
+    if ( pqSeq ( $item )    and isset ( $entry ["$type.php"] )              ) return $type;
+    if ( pqSeq ( $type )    and isset ( $entry ["$item.php"] )              ) return $item;
 
-    if ( pqAction ( $item ) and file_exists ( PQ . "start/types/$type.php") ) return $type;
-    if ( pqAction ( $type ) and file_exists ( PQ . "start/types/$item.php") ) return $item;
+    if ( pqAction ( $item ) and isset ( $entry ["$type.php"] )              ) return $type;
+    if ( pqAction ( $type ) and isset ( $entry ["$item.php"] )              ) return $item;
 
     return FALSE;
 
