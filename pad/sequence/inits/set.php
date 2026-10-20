@@ -43,13 +43,19 @@
 
   if ( $pqEntry == 'tag' and $pqTag == 'resume' ) {
 
+    // A number right after a bare option of an action that counts is its value, as on the
+    // other sequence tags: {resume first, 2} looked for a store named 2.
+
+    include PQ . 'inits/find/parm/option.php';
+
     $pqResumeOf = ( is_string ( $pqPull ) and isset ( $pqStore [$pqPull] ) ) ? $pqPull : '';
 
     foreach ( $padParms [$pad] as $pqResumeOne )
       if ( ! $pqResumeOf and $pqResumeOne ['padPrmKind'] == 'option' and isset ( $pqStore [ $pqResumeOne ['padPrmName'] ] ) )
         $pqResumeOf = $pqResumeOne ['padPrmName'];
 
-    $pqResumeFirst = $padOpt [$pad] [1] ?? '';
+    $pqResumeFirst = isset ( $pqFindTaken [1] ) ? '' : ( $padOpt [$pad] [1] ?? '' );
+    $pqResumeNamed = '';
 
     if ( ! $pqResumeOf and is_string ( $pqResumeFirst ) and isset ( $pqStore [$pqResumeFirst] ) ) {
       $pqResumeOf    = $pqResumeFirst;
@@ -63,6 +69,40 @@
          and ! isset ( $pqStore [$pqResumeFirst] ) and pqAction ( $pqResumeFirst ) ) {
       $pqAction      = $pqResumeFirst;
       $pqResumeFirst = '';
+      $pqResumeNamed = 'action';
+    }
+
+    // The parameters past the first are read as on the other sequence tags,
+    // inits/find/parm/second.php: after an action, its kind of parameter (parm/kind.php);
+    // a name of an action is the action when none is named yet - after a store, {resume 's',
+    // 'reverse'} - and the option of that name when one is (parm/as.php); what is left is named
+    // by the strict check. Nothing read them: {resume 'first', 2} kept one term of the store,
+    // {resume 's', 'reverse'} left it as it was, both without a word.
+
+    foreach ( $padOpt [$pad] as $pqFindAt => $pqFindParm ) {
+
+      if ( $pqFindAt < 2 or isset ( $pqFindTaken [$pqFindAt] ) or ( ! is_array ( $pqFindParm ) and (string) $pqFindParm === '' ) )
+        continue;
+
+      $pqFindPlace = $pqFindAt;
+      $pqFindKind  = FALSE;
+
+      if ( $pqResumeNamed == 'action' )
+        include PQ . 'inits/find/parm/kind.php';
+
+      $pqResumeNamed = '';
+
+      if ( $pqFindKind )
+        $pqActionParm = is_array ( $pqFindParm ) ? ( pqActionList ( $pqAction, $pqFindParm ) ?? '' ) : $pqFindParm;
+      elseif ( ! $pqAction and pqAction ( $pqFindParm ) ) {
+        $pqAction      = $pqFindParm;
+        $pqResumeNamed = 'action';
+      } elseif ( pqAction ( $pqFindParm ) )
+        include PQ . 'inits/find/parm/as.php';
+      elseif ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+        padError ( "the tag {resume} was given "
+                 . ( is_array ( $pqFindParm ) ? "a list as a parameter" : "a parameter '$pqFindParm'" ) . " that nothing reads" );
+
     }
 
     // A name given that is no store - pull='typo', a first parameter 'typo' or 3 - is still the
