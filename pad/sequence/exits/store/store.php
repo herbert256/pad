@@ -20,8 +20,14 @@
 
   if ( $padPair [$pad] and ! $pqPush ) {
 
-    if ( is_string ( $pqNameGiven ) and ! pqStoreTaken ( $pqNameGiven ) )
+    // Kept with its rows, as every store is, for the columns a later pull chains in: without
+    // them {pull:s} after {sequence '1..3', add=10, name='s'}{/sequence} had no {$range}.
+
+    if ( is_string ( $pqNameGiven ) and ! pqStoreTaken ( $pqNameGiven ) ) {
       $pqStore [$pqNameGiven] = array_values ( $pqResult );
+      $pqStored   = TRUE;
+      $pqStoredAs = $pqNameGiven;
+    }
 
     return;
 

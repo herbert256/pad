@@ -17,6 +17,18 @@
   include PQ . 'build/build.php';
   include PQ . 'exits/actions.php';
   include PQ . 'exits/store/set.php';
+
+  // The rows of the store as {resume} leaves it, made as a tag's are and kept by
+  // exits/extra/set.php for the next pull to chain in: the rows of the store before the
+  // resume stayed, and {resume reverse} gave 16 the columns of 11. The resume tag itself shows
+  // nothing, so its level's data is put back as it was.
+
+  $pqResumeData = $padData [$pad] ?? NULL;
+
+  include PQ . 'exits/return/return.php';
+  include PQ . 'exits/extra/extra.php';
+
+  $padData [$pad] = $pqResumeData;
   include PQ . 'exits/done.php';
   include PQ . 'exits/info.php';
 
