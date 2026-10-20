@@ -5,6 +5,11 @@
   // keeping keys, then goes through actions/order/order.php so the survivors come back
   // out in the sequence's original order rather than sorted.
 
+  // A count past the length keeps all of it, as first= and last= do: past the integer range
+  // the count reached array_slice () as the text it was and ended the request on its TypeError.
+
+  $pqActionCnt = (int) min ( (float) $pqActionCnt, count ( $pqResult ) );
+
   asort ( $pqResult );
 
   if ( $pqAction == 'minimum' )
