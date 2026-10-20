@@ -20,6 +20,10 @@
   // pqZero turns the float -0 that rounds a small negative value, and that fmod gives for a
   // negative multiple, into 0: printed, it read -0.
 
+  // In whole numbers when both are whole - % keeps the sign of the dividend, as fmod does -
+  // where fmod lost the last digits past 2^53.
+  if ( pqBoolWhole ( $pqLoop ) and pqBoolWhole ( $pqParm ) and $pqParm !== TRUE )
+    return (int) $pqLoop % (int) $pqParm;
   return pqZero ( fmod ( $pqLoop, $pqParm ) );
 
 ?>

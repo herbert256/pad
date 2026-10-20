@@ -21,6 +21,7 @@
 
   $pqFloorBy = abs ( $pqParm );
 
-  return pqZero ( floor ( $pqLoop / $pqFloorBy ) * $pqFloorBy );
+  // In whole numbers when both are whole, pqFloorMultiple.
+  return pqZero ( pqFloorMultiple ( $pqLoop, $pqFloorBy ) );
 
 ?>

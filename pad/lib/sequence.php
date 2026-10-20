@@ -724,6 +724,46 @@
 
   }
 
+  // $x rounded down, and to the nearest - half away from 0, as round () rounds - to a multiple
+  // of $p, in whole numbers when both are whole and $p is above 0, else through floats as
+  // floor ( $x / $p ) * $p and round ( $x / $p ) * $p: the float quotient lost the last digits
+  // past 2^53, and from 15 digits the terms of floor, round and ceil printed in E-notation.
+  // A bare parameter holds TRUE, the 1 it is read as.
+
+  function pqFloorMultiple ( $x, $p ) {
+
+    if ( $p === TRUE )
+      $p = 1;
+
+    if ( ! pqBoolWhole ( $x ) or ! pqBoolWhole ( $p ) or $p <= 0 )
+      return floor ( $x / $p ) * $p;
+
+    $x = (int) $x;
+    $p = (int) $p;
+
+    return $x - ( ( $x % $p ) + $p ) % $p;
+
+  }
+
+  function pqRoundMultiple ( $x, $p ) {
+
+    if ( $p === TRUE )
+      $p = 1;
+
+    if ( ! pqBoolWhole ( $x ) or ! pqBoolWhole ( $p ) or $p <= 0 )
+      return round ( $x / $p ) * $p;
+
+    $x    = (int) $x;
+    $p    = (int) $p;
+    $rest = $x % $p;
+
+    if ( 2 * abs ( $rest ) < $p )
+      return $x - $rest;
+
+    return $x - $rest + ( $x < 0 ? - $p : $p );
+
+  }
+
   // Whether $x is a term of the figurate sequence n(an - b)/d, n from 0 up: n is about the
   // square root of dx/a, so the root is taken once and the whole n next to it are tried
   // with the exact pqProduct the type generates with. Generated up to the candidate

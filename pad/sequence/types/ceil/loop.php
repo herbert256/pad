@@ -26,6 +26,7 @@
 
   $pqCeilBy = abs ( $pqParm );
 
-  return pqZero ( ceil ( $pqLoop / $pqCeilBy ) * $pqCeilBy );
+  // In whole numbers when both are whole, pqCeilMultiple.
+  return pqZero ( pqCeilMultiple ( $pqLoop, $pqCeilBy ) );
 
 ?>

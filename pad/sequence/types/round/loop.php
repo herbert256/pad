@@ -16,6 +16,8 @@
   // pqZero turns the float -0 that rounds a small negative value, and that fmod gives for a
   // negative multiple, into 0: printed, it read -0.
 
-  return pqZero ( round ( $pqLoop / $pqParm ) * $pqParm );
+  // A multiple of -10 is one of 10, the nearest either way. In whole numbers when both are
+  // whole, pqRoundMultiple.
+  return pqZero ( pqRoundMultiple ( $pqLoop, abs ( $pqParm === TRUE ? 1 : $pqParm ) ) );
 
 ?>
