@@ -13,7 +13,7 @@
     $pqInfo ['builds']    [] = $pqBuild;
   }
 
-  if ( str_contains ( $pqParm, '..' ) and $pqSeq != 'range' ) {
+  if ( is_string ( $pqParm ) and str_contains ( $pqParm, '..' ) and $pqSeq != 'range' ) {
     $pqRandomParm = $pqParm;
     pqRandomParm ( $pqParm );
   } else

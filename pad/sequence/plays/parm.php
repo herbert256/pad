@@ -20,7 +20,7 @@
   if ( $pqParm === NULL )
     return NULL;
 
-  if ( str_contains ( $pqParm, '..' ) and $pqSeq != 'range' )
+  if ( is_string ( $pqParm ) and str_contains ( $pqParm, '..' ) and $pqSeq != 'range' )
     pqRandomParm ( $pqParm );
 
   return $pqParm;

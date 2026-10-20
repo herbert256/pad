@@ -39,7 +39,7 @@
     $pqBuild = 'pull';
   }
 
-  if ( str_contains ( $pqInc, '...' ) ) {
+  if ( is_string ( $pqInc ) and str_contains ( $pqInc, '...' ) ) {
     $pqRandomInc = $pqInc;
     $pqInc = pqRandomParm3 ( $pqRandomInc );
   } else

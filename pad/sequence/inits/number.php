@@ -28,6 +28,15 @@
   if ( is_numeric ( $pqParm ) )
     return;
 
+  // A list is no number either: str_contains () ended the request on its TypeError. The
+  // lenient walk carries on with the bare type.
+
+  if ( ! is_scalar ( $pqParm ) ) {
+    padError ( "The $pqSeq sequence needs a number as its parameter, not a list" );
+    $pqParm = TRUE;
+    return;
+  }
+
   // Two parameters are not numbers yet and are not the type's to refuse. A range is drawn
   // from once per term by build/parm.php, and a stored sequence hands over one of its terms
   // per term through build/store.php - build/vars.php recognises both, but that runs after

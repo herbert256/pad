@@ -23,8 +23,28 @@
 
       $pqActionParm = $padV ['padPrmValue'];
 
+      // Only an option that can be an action is read as one: from=[1] and every other option
+      // went through the explode below, and a list ended the request on its TypeError.
+
+      if ( $padV ['padPrmName'] != 'action' and ! pqAction ( $padV ['padPrmName'] ) )
+        continue;
+
       if ( $pqActionParm === TRUE )
         $pqActionParm = '';
+
+      // A list given to an action - intersection=b, b a store written bare and so its values,
+      // or a list of an expression - is acted with as a store is: it is kept under an
+      // __action__ name for the run, as actions/set.php keeps the lists of an expression's
+      // action, and actions/actions.php drops it afterwards.
+
+      if ( is_array ( $pqActionParm ) and $padV ['padPrmName'] != 'action' ) {
+        $pqActionStore            = '__action__' . padRandomString ();
+        $pqStore [$pqActionStore] = array_values ( $pqActionParm );
+        $pqActionParm             = $pqActionStore;
+      }
+
+      if ( ! is_scalar ( $pqActionParm ) )
+        continue;
 
       $pqActionList = padExplode ( $pqActionParm, '|' );
 

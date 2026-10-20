@@ -14,7 +14,16 @@
   // A 0 is a count like any other - {sequence $n} with $n 0 asks for no values - so the
   // tests below are for 'nothing given', not for falsy.
 
-  if ( $pqSeq or (string) $pqFindParm === '' )
+  // A list is the values themselves - {sequence [3, 1, 2], sort} - which the list type takes
+  // as written. It was cast to text and ended the request on "Array to string conversion".
+
+  if ( ! $pqSeq and is_array ( $pqFindParm ) ) {
+    $pqSeq      = 'list';
+    $pqParm     = $pqFindParm;
+    $pqFindParm = '';
+  }
+
+  if ( $pqSeq or is_array ( $pqFindParm ) or (string) $pqFindParm === '' )
     return;
 
   if ( strpos( $pqFindParm, '..' ) ) {
