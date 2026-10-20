@@ -9,6 +9,7 @@
   // pqDivisorList  every divisor of a whole number, rising
   // pqSigmaOf      the sum of the divisors of a whole number - past the integer range the
   //                float it overflows to
+  // pqAbundance    the sign of that sum less 2n - 1 abundant, 0 perfect, -1 deficient
 
   include_once PT . 'prime/bool.php';
 
@@ -120,6 +121,35 @@
     }
 
     return $sigma;
+
+  }
+
+  // Whether the divisors of n below n add up to more than n (1), to n (0) or to less (-1),
+  // exactly over the whole integer range. While the sum of all the divisors is an integer its
+  // part below n, sigma - n, is compared with n, and neither passes the range. Once the sum
+  // overflows it is past PHP_INT_MAX, and so past 2n for an n up to PHP_INT_MAX / 2; above that
+  // the divisors below n are added to -n one by one, which stays inside the range until it
+  // passes 0. pqSigmaOf ( $n ) > 2 * $n compared a float past the range with another: 2^62,
+  // whose sum is PHP_INT_MAX and whose 2n the float 2^63, was neither abundant nor deficient,
+  // and so was 2^31 * 4294967291, whose sum 2n + 4 rounds to 2n.
+
+  function pqAbundance ( $n ) {
+
+    $sigma = pqSigmaOf ( $n );
+
+    if ( is_int ( $sigma ) )
+      return $sigma - $n <=> $n;
+
+    if ( $n <= intdiv ( PHP_INT_MAX, 2 ) )
+      return 1;
+
+    $sum = -$n;
+
+    foreach ( pqDivisorList ( $n ) as $d )
+      if ( $d < $n and ( $sum += $d ) > 0 )
+        return 1;
+
+    return $sum <=> 0;
 
   }
 
