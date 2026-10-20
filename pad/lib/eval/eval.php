@@ -70,7 +70,9 @@
 
   // $padEvalBusy counts the evaluations in flight. padAtSetTag() reads it: an @ reference
   // resolving inside an expression must not mark the level the expression belongs to, and
-  // this is what tells that situation apart from a reference standing as a tag.
+  // this is what tells that situation apart from a reference standing as a tag. A throw that
+  // goes out of the evaluation - the try guard off, as it is while an error hook runs -
+  // closes it as well: the count stayed one up for the rest of the request.
 
   function padEval ( $eval, $value='', $pipe=FALSE ) {
 
@@ -78,11 +80,11 @@
 
     $padEvalBusy = ( $padEvalBusy ?? 0 ) + 1;
 
-    $padEvalValue = include PAD . 'try/eval/eval.php';
-
-    $padEvalBusy--;
-
-    return $padEvalValue;
+    try {
+      return include PAD . 'try/eval/eval.php';
+    } finally {
+      $padEvalBusy--;
+    }
 
   }
 
