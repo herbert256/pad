@@ -80,9 +80,9 @@ beside:
   the first one written as an option: `{a:append [7, 8]}` and `{pull:a append, [7, 8]}` are
   `{pull:a append=[7, 8]}` - and so the name of another store there: `{pull:a intersection,
   'b'}` is `{pull:a intersection='b'}`.
-- A name is the store, the type or the action it names - `{sequence $type, rows=5}` - and an
-  action named while the tag runs one already is the option of that name: `{sum 'reverse'}`
-  is `{sum reverse}`.
+- A name is the store, the type or the action it names - `{sequence $type, rows=5}` - and a
+  type or an action named while the tag runs one already is the option of that name:
+  `{prime 'even'}` is `{prime even}`, `{sum 'reverse'}` is `{sum reverse}`.
 - A parameter after one that named what to run is that one's first parameter, as it is
   after a name the tag gives: `{keep $type, '1..10'}` with `$type` 'prime' is
   `{keep:prime '1..10'}`, the primes of 1 to 10, and `{pull 's', 'shift', 2}` is

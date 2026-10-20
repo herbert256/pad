@@ -44,7 +44,19 @@
 
     include PQ . 'inits/find/parm/as.php';
 
-  else
+  // A type named while the tag's own is settled plays on it, as the option of that name does -
+  // plays/add.php, as find/add.php adds one: {reverse 'prime', 'even'} and {prime 'even'} ended
+  // on "The prime sequence takes no parameter, and 'even' is no count, range or list of it",
+  // where {prime even} gives the even of each prime.
+
+  elseif ( pqSeq ( $pqFindParm ) ) {
+
+    $padPrmName  = $pqFindParm;
+    $padPrmValue = TRUE;
+
+    include PQ . 'plays/add.php';
+
+  } else
 
     return;
 

@@ -95,17 +95,6 @@
       include PQ . 'inits/find/parm/name.php';
       include PQ . 'inits/find/parm/store.php';
 
-      if ( $pqSeq and pqSeq ( $pqFindParm ) ) {
-
-        $padPrmName  = $pqFindParm;
-        $padPrmValue = TRUE;
-
-        include PQ . 'plays/add.php';
-
-        $pqFindParm = '';
-
-      }
-
     }
 
     $pqFindSecond = FALSE;
