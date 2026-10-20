@@ -63,7 +63,7 @@
 
     $GLOBALS ['pqPlayGiven'] = ( $pqGiven and $pqLoop === $pqOrgSet );
 
-    if ( is_float ( $pqPlayValue ) and ( is_nan ( $pqPlayValue ) or $pqPlayValue < PHP_INT_MIN or $pqPlayValue >= PHP_INT_MAX ) )
+    if ( is_float ( $pqPlayValue ) and ( is_nan ( $pqPlayValue ) or $pqPlayValue <= PHP_INT_MIN or $pqPlayValue >= PHP_INT_MAX ) )
       $pq = FALSE;
     else
       $pq = include PQ . "plays/play/$pqBuild.php";
@@ -71,9 +71,9 @@
     if ( $pqPlay == 'make' and is_float ( $pq ) and is_nan ( $pq ) )
       $pq = FALSE;
 
-    if ( $pqPlay == 'make' and is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) {
+    if ( $pqPlay == 'make' and is_float ( $pq ) and ( $pq <= PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) {
       $pq         = FALSE;
-      $pqPlaysOut = TRUE;
+      $pqPlaysOut = ! $pqRandomly;
       break;
     }
 

@@ -89,7 +89,12 @@
 
   $pqGiven = in_array ( $pqBuild, [ 'build', 'pull', 'given' ] );
 
-  if ( ! $pqGiven and is_float ( $pq ) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+  // -2^63 as a float is an overflow too, a term rounded to it, as 2^63 is on the other side:
+  // tested with <, subtract=9223372036854775800 from=-10 printed -9.2233720368548E+18 twice.
+  // A random draw past the range is a draw lost, not the end of the run - every later draw
+  // may fit, and {sequence power=2, randomly, to=100, rows=5} gave 0 to 5 rows.
+
+  if ( ! $pqGiven and is_float ( $pq ) and ( $pq <= PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return (bool) $pqRandomly;
 
   // A term that is no number at all - the square root exponentiation=0.5 takes of a negative
   // value - is no term: printed, PHP ended the request on the NAN coerced to a string. Not a
@@ -118,7 +123,7 @@
   // them - 100000000000000000000 - and ended the list on 9223372036854775807 or 2^63, so
   // {sequence '9223372036854775808;1'} showed its first value alone.
 
-  if ( ( ! $pqGiven or $pq !== $pqOrgSet ) and is_float ($pq) and ( $pq < PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return FALSE;
+  if ( ( ! $pqGiven or $pq !== $pqOrgSet ) and is_float ($pq) and ( $pq <= PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) return (bool) $pqRandomly;
   if ( is_float ($pq)   and is_nan ( $pq )   ) return TRUE;
   if ( $pqMin !== PHP_INT_MIN and is_numeric ($pq) and $pq < $pqMin ) return TRUE;
   if ( $pqMax !== PHP_INT_MAX and is_numeric ($pq) and $pq > $pqMax ) return TRUE;
