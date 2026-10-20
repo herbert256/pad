@@ -8,8 +8,14 @@
 
   function pqBoolMoserdebruijn ( $n, $p=0 ) {
 
-    if ( ! pqBoolWhole ( $n ) or $n < 1 )
+    // 0 is the term at position 0, which the type makes - turned down, the run made a 0 its
+    // own test denied.
+
+    if ( ! pqBoolWhole ( $n ) or $n < 0 )
       return FALSE;
+
+    if ( $n == 0 )
+      return TRUE;
 
     return ( (int) $n & 0x2AAAAAAAAAAAAAAA ) == 0;
 

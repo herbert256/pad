@@ -1,7 +1,7 @@
 <?php
 
-  // Membership test for the kynea sequence, 7, 23, 79, 287, ...: (2^n + 1)^2 - 2 for a whole
-  // n from 1 up. The terms about quadruple at every step, so the n that could make x are
+  // Membership test for the kynea sequence, 2, 7, 23, 79, ...: (2^n + 1)^2 - 2 for a whole
+  // n from 0 up. The terms about quadruple at every step, so the n that could make x are
   // walked until a term passes it - 31 of them at the most, the last term inside the integer
   // range. build/check.php asks it for {keep kynea}, {remove kynea} and {flag kynea}.
   //
@@ -9,12 +9,14 @@
 
   function pqBoolKynea ( $x, $p=0 ) {
 
-    if ( ! pqBoolWhole ( $x ) or $x < 7 )
+    // From n = 0, whose term 2 the type makes at position 0.
+
+    if ( ! pqBoolWhole ( $x ) or $x < 2 )
       return FALSE;
 
     $x = (int) $x;
 
-    for ( $n = 1; $n <= 31; $n++ ) {
+    for ( $n = 0; $n <= 31; $n++ ) {
 
       $term = ( ( 1 << $n ) + 1 ) ** 2 - 2;
 

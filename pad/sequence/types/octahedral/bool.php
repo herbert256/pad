@@ -1,7 +1,7 @@
 <?php
 
   // Membership test for the octahedral sequence, 1, 6, 19, 44, 85, ...: n(2n^2 + 1)/3 for a
-  // whole n from 1 up. That is about 2n^3 / 3, so the cube root of 3x/2 gives n give or take
+  // whole n from 0 up. That is about 2n^3 / 3, so the cube root of 3x/2 gives n give or take
   // one, and the whole n next to it are tried with the exact pqProduct the type generates
   // with. build/check.php asks it for {keep octahedral}, {remove octahedral} and {flag
   // octahedral}; without it the check generated the sequence up to the candidate, stopped at
@@ -10,8 +10,14 @@
 
   function pqBoolOctahedral ( $n, $p=0 ) {
 
-    if ( ! pqBoolWhole ( $n ) or $n < 1 )
+    // 0 is the term at position 0, which the type makes - turned down, the run made a 0 its
+    // own test denied.
+
+    if ( ! pqBoolWhole ( $n ) or $n < 0 )
       return FALSE;
+
+    if ( $n == 0 )
+      return TRUE;
 
     $n    = (int) $n;
     $root = (int) ( ( 1.5 * $n ) ** ( 1 / 3 ) );

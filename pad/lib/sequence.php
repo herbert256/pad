@@ -724,16 +724,20 @@
 
   }
 
-  // Whether $x is a term of the figurate sequence n(an - b)/d, n from 1 up: n is about the
+  // Whether $x is a term of the figurate sequence n(an - b)/d, n from 0 up: n is about the
   // square root of dx/a, so the root is taken once and the whole n next to it are tried
   // with the exact pqProduct the type generates with. Generated up to the candidate
   // instead, the membership check stopped at the million-candidate ceiling and answered no
-  // past it - 10^16 was no square.
+  // past it - 10^16 was no square. 0 is the term at position 0, which the types make: it was
+  // turned down, and {sequence pentagonal, from=0} made a 0 its own test denied.
 
   function pqBoolFigurate ( $x, $a, $b, $d ) {
 
-    if ( ! pqBoolWhole ( $x ) or $x < 1 )
+    if ( ! pqBoolWhole ( $x ) or $x < 0 )
       return FALSE;
+
+    if ( $x == 0 )
+      return TRUE;
 
     $x = (int) $x;
     $n = (int) sqrt ( $d * (float) $x / $a );
