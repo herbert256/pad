@@ -31,6 +31,14 @@
     if ( padInsideOther ()         ) return;
     if ( $padPage != $padStartPage ) return;
 
+    // A built-in tag is filed under the name its file has. On a file system that ignores case a
+    // tag written in another case - {Keep}, which the errors suite writes to show it is no tag
+    // on a server that tells case apart - reached pad/tags/keep.php, and filed as Keep.txt it
+    // took the place of keep.txt: the index of tags listed Keep and lost keep.
+
+    if ( $dir1 == 'tag' and $dir2 == 'pad' and ! isset ( pqNames ( PAD . 'tags' ) ["$dir3.php"] ) )
+      return;
+
     if ( $dir1 == 'tag'       and $dir2 != 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions' and $dir2 != 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
