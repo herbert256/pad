@@ -57,6 +57,7 @@
       if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
   elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
   elseif ($pqBuild == 'function')  $pq = pqBoolWhole ( $pqLoop ) ? ( 'pq' . ucfirst($pqSeq) ) ( (int) ( $pqLoop + 0 ) ) : FALSE;
+  elseif ($pqBuild == 'position')  $pq = pqBoolWhole ( $pqLoop ) ? pqPosition ( $pqSeq, $pqParm, (int) ( $pqLoop + 0 ) ) : FALSE;
   elseif ($pqBuild == 'check'   )  $pq = include PQ . "build/mode.php";
   elseif ($pqBuild == 'loop'    )  $pq = include PT . "$pqSeq/loop.php";
   elseif ($pqBuild == 'make'    )  $pq = include PT . "$pqSeq/make.php";

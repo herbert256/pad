@@ -15,6 +15,12 @@
   // natural end only when it is reached: those runs, an explicit try= and every other run
   // stop at $padSeqMaxTries candidates at the most.
 
+  // The build= override comes first: the limits are those of the strategy that runs. Applied
+  // after them, build='bool' on a range kept the unbounded count of a list and walked the
+  // values until the time a run has was up.
+
+  include PQ . 'build/given.php';
+
   $pqMaxTries = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
 
   if ( $pqPull or $pqBuild == 'fixed' or $pqBuild == 'given' ) {

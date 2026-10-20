@@ -180,6 +180,35 @@
 
   }
 
+  // The value at position $n of a type whose terms are the values its bool.php test accepts -
+  // what build='function' gives such a type, the position build. The values are made by the
+  // type's own build, walked from 1, and kept for the request per type and parameter; asked
+  // past what was made, the walk is made again for twice as many - from the position asked
+  // for, so a walk to the ceiling is made only for a position past the last term there is.
+  // A position the walk cannot
+  // reach in the candidates and the time a run has answers a float past the integer range,
+  // which ends the run as an overflowed term does - strong has four terms, and asked for a
+  // fifth it would walk to the ceiling for every position after it.
+
+  function pqPosition ( $seq, $parm, $n ) {
+
+    static $made = [];
+
+    if ( $n < 1 )
+      return FALSE;
+
+    $key = $seq . '|' . pqCheckParm ( $parm );
+
+    if ( ! isset ( $made [$key] ) or ( count ( $made [$key] [1] ) < $n and ! $made [$key] [0] ) ) {
+      $want         = max ( $n, 2 * count ( $made [$key] [1] ?? [] ) );
+      $terms        = pqTerms ( $seq, $parm, [ 'rows' => $want, 'try' => $GLOBALS ['padSeqMaxTries'] ?? 1000000 ] );
+      $made [$key]  = [ count ( $terms ) < $want, $terms ];
+    }
+
+    return $made [$key] [1] [$n - 1] ?? (float) PHP_INT_MAX * 2;
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( $action and padFileExists ( PA . "$action.php" ) )
