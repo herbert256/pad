@@ -389,6 +389,16 @@
 
   function padEvalApply ( $opr, $left, $right, $written ) {
 
+    // The empty-coalescing operator: the left value unless it is empty - '', NULL, FALSE, an
+    // empty list or a field that is not there - and then the right one. 0 is a value. Either
+    // is answered as it is: a date object made text here lost its zone, and the date pipe
+    // after it read the text in the application's zone - hours off.
+
+    if ( $opr == '??' ) {
+      $now = padEvalEmpty ( $left ) ? $right : $left;
+      return ( is_float ( $now ) and is_nan ( $now ) ) ? '' : $now;
+    }
+
     // A date object is its text to an operator (padDateText): compared as an object it stood
     // above every string. Two date objects compared with each other are the moments they
     // hold, as PHP compares them.
@@ -399,12 +409,7 @@
       $right = padDateText ( $right );
     }
 
-    // The empty-coalescing operator: the left value unless it is empty - '', NULL, FALSE, an
-    // empty list or a field that is not there - and then the right one. 0 is a value.
-
-    if ( $opr == '??' )
-      $now = ( $left === NULL or $left === '' or $left === FALSE or $left === [] ) ? $right : $left;
-    elseif ( in_array ( $opr, padEval_one ) )
+    if ( in_array ( $opr, padEval_one ) )
       $now = padEvalUnary ( $opr, $right );
     elseif ( ! is_array ( $left ) and ! is_array ( $right ) )
       $now = padEvalScalar ( $opr, $left, $right );
@@ -420,6 +425,15 @@
       $now = '';
 
     return $now;
+
+  }
+
+  // Whether a value is empty to a fallback - ?? and default: '', NULL, FALSE or an empty
+  // list. 0 and '0' are values.
+
+  function padEvalEmpty ( $value ) {
+
+    return $value === NULL or $value === '' or $value === FALSE or $value === [];
 
   }
 
