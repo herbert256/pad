@@ -274,17 +274,19 @@
 
   }
 
-  // The terms kept under a key of pqTermsKey (), or with $terms given, keeps them when they
-  // are more than were kept.
+  // What was made under a key of pqTermsKey (): the terms, and as far as the walk got - 'end',
+  // why it came up short of what it was asked, '' when it did not; 'next', the candidate a
+  // walk of the values goes on from, and 'tries', the candidates it has tested. With $made
+  // given, keeps that when it holds as many terms as were kept or more.
 
-  function pqTermsMade ( $key, $terms = NULL ) {
+  function pqTermsMade ( $key, $made = NULL ) {
 
-    static $made = [];
+    static $kept = [];
 
-    if ( $terms !== NULL and count ( $terms ) > count ( $made [$key] ?? [] ) )
-      $made [$key] = $terms;
+    if ( $made !== NULL and count ( $made ['terms'] ) >= count ( $kept [$key] ['terms'] ?? [] ) )
+      $kept [$key] = $made;
 
-    return $made [$key] ?? [];
+    return $kept [$key] ?? [ 'terms' => [], 'end' => '', 'next' => NULL, 'tries' => 0 ];
 
   }
 
@@ -342,12 +344,12 @@
   function pqNth ( $seq, $parm, $n ) {
 
     $key  = pqTermsKey ( $seq, 'nth', $parm );
-    $made = ( $key !== '' ) ? pqTermsMade ( $key ) : [];
+    $made = ( $key !== '' ) ? pqTermsMade ( $key ) ['terms'] : [];
 
     if ( count ( $made ) < $n ) {
       $made = pqTerms ( $seq, $parm, [ 'to' => max ( $n, 2 * count ( $made ) ) ] );
       if ( $key !== '' )
-        pqTermsMade ( $key, $made );
+        pqTermsMade ( $key, [ 'terms' => $made, 'end' => '', 'next' => NULL, 'tries' => 0 ] );
     }
 
     return $made [$n - 1] ?? FALSE;

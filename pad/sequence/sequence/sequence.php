@@ -35,13 +35,6 @@
   include PQ . 'inits/limits.php';
   include PQ . 'actions/inits.php';
 
-  // The terms a position lookup made are kept for the request, per type and parameter, so a
-  // later lookup at or below them is answered from them, and one past them makes twice as
-  // many: made afresh for every lookup, one per row was quadratic - {sequence '1..400'}{echo
-  // sequence:prime($sequence)}{/sequence} took 27 seconds. Not for a type that draws at
-  // random or evaluates an expression, a parameter drawn per term or naming a store, nor
-  // under {info}, which records every run (pqTermsKey in lib/sequence.php).
-
   // A type with a formula of its position - function.php - answers every position from the
   // formula, as {sequence square, from=500000, rows=1} does: it is the term the walk makes
   // there, square's loop.php makes its terms through it, and prime's is the nth of the values
@@ -83,26 +76,77 @@
 
   }
 
+  // The terms a position lookup made are kept for the request, per type and parameter, so a
+  // later lookup at or below them is answered from them: made afresh for every lookup, one
+  // per row was quadratic - {sequence '1..400'}{echo sequence:happy($sequence)}{/sequence}
+  // walked from 1 four hundred times. Not for a type that draws at random or evaluates an
+  // expression, a parameter drawn per term or naming a store, nor under {info}, which records
+  // every run (pqTermsKey in lib/sequence.php).
+  //
+  // A walk that came up short of what it was asked - the type ends, or the candidates or the
+  // time a run has ran out - is as far as the request reaches, and is kept with the reason: a
+  // lookup past it is named at once, where it walked to the ceiling or the clock again on
+  // every call, {sequence '1..8'}{echo sequence:strong($sequence)} {/sequence} five seconds a
+  // row under the lenient walk. A lookup past the terms kept goes on from the candidate after
+  // the last one when the type tests the values it walks - a bool type, strong, happy - for
+  // the terms missing only, with what is left of the candidates; any other walk is made again
+  // for twice as many. Made again for twice as many, the walk of strong, which has four terms,
+  // ran to the ceiling for six: sequence:strong(4) after sequence:strong(3) took 23 times what
+  // it takes alone.
+
   $pqTermsKey   = ( $pqRows >= 1 ) ? pqTermsKey ( $pqSeq, $pqBuild, $pqParm ) : '';
   $pqTermsAsked = $pqRows;
+  $pqTermsTry   = $pqTry;
+  $pqTermsKept  = [];
+  $pqTermsTries = 0;
 
   if ( $pqTermsKey !== '' ) {
 
     $pqTermsMade = pqTermsMade ( $pqTermsKey );
 
-    if ( count ( $pqTermsMade ) >= $pqRows )
-      return $pqTermsMade [ $pqRows - 1 ];
+    if ( count ( $pqTermsMade ['terms'] ) >= $pqRows )
+      return $pqTermsMade ['terms'] [ $pqRows - 1 ];
 
-    $pqRows = max ( $pqRows, 2 * count ( $pqTermsMade ) );
+    if ( $pqTermsMade ['end'] !== '' ) {
+      if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+        padError ( "sequence:$pqSeq($pqRows) cannot be reached: the sequence gives "
+                 . count ( $pqTermsMade ['terms'] ) . " terms within " . $pqTermsMade ['end'] );
+      return '';
+    }
+
+    if ( $pqTermsMade ['next'] !== NULL ) {
+      $pqTermsKept  = $pqTermsMade ['terms'];
+      $pqTermsTries = $pqTermsMade ['tries'];
+      $pqFrom       = $pqTermsMade ['next'];
+      $pqTry        = max ( 0, $pqTry - $pqTermsTries );
+      $pqRows       = $pqRows - count ( $pqTermsKept );
+    } else
+      $pqRows = max ( $pqRows, 2 * count ( $pqTermsMade ['terms'] ) );
 
   }
 
   include PQ . 'build/build.php';
 
-  if ( $pqTermsKey !== '' ) {
-    pqTermsMade ( $pqTermsKey, array_values ( $pqResult ) );
-    $pqRows = $pqTermsAsked;
-  }
+  // Within what a walk came up short: the time a run has - build/one.php marks it - the
+  // candidates it may test, or the range of a type that ends. The clock was reported as the
+  // candidates: under load sequence:strong(5) gave "3 terms within 1000000 candidates" after
+  // five seconds.
+
+  $pqTermsEnd = ( count ( $pqResult ) >= $pqRows ) ? ''
+              : ( ( ( $pqTimeOut ?? FALSE ) ? "the " . ( $GLOBALS ['padSeqMaxSeconds'] ?? 5 ) . " seconds a run has"
+              : ( $pqTriesOut ? "$pqTermsTry candidates" : "its range" ) ) );
+
+  $pqResult = array_merge ( $pqTermsKept, array_values ( $pqResult ) );
+
+  if ( $pqTermsKey !== '' )
+    pqTermsMade ( $pqTermsKey, [
+      'terms' => $pqResult,
+      'end'   => $pqTermsEnd,
+      'next'  => ( $pqTermsEnd === '' and $pqBuild == 'bool' ) ? $pqLoop + $pqInc : NULL,
+      'tries' => $pqTermsTries + $pqTries
+    ] );
+
+  $pqRows = $pqTermsAsked;
 
   // The term asked for, or nothing: answering the last term found gave sequence:prime(1230)
   // as 9973, the 1229th prime, and sequence:fibonacci(100) as the 93rd term, the last that
@@ -113,18 +157,14 @@
 
   if ( count ( $pqResult ) < $pqRows ) {
 
-    // Within what: the time a run has - build/one.php marks it - the candidates it may test,
-    // or the range of a type that ends. The clock was reported as the candidates: under load
-    // sequence:strong(5) gave "3 terms within 1000000 candidates" after five seconds.
-
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-      padError ( "sequence:$pqSeq($pqRows) cannot be reached: the sequence gives " . count ( $pqResult ) . " terms within "
-               . ( ( $pqTimeOut ?? FALSE ) ? "the " . ( $GLOBALS ['padSeqMaxSeconds'] ?? 5 ) . " seconds a run has"
-                 : ( $pqTriesOut ? "$pqTry candidates" : "its range" ) ) );
+      padError ( "sequence:$pqSeq($pqRows) cannot be reached: the sequence gives " . count ( $pqResult )
+               . " terms within $pqTermsEnd" );
 
     return '';
 
   }
+
   include PQ . 'exits/exit.php';
   include PQ . 'exits/actions.php';
   include PQ . 'exits/done.php';
