@@ -8,12 +8,41 @@
   // term is one step on from the last one kept and the "is it new" question is an isset.
   // Each term rebuilt the whole history and searched it with in_array, on the order of m^3
   // for m terms: {sequence recaman, rows=6000} took 16 seconds and sequence:recaman(6000) ran
-  // into the time limit. Membership tests take the route through the precomputed table in
-  // generated.php. A position between two whole ones has no term.
+  // into the time limit. The kept terms are pqRecamanMade()'s, which bool.php asks as well. A
+  // position between two whole ones has no term.
+
+  function &pqRecamanMade () {
+
+    static $made = [ 'terms' => [ 0 ], 'seen' => [ 0 => TRUE ] ];
+
+    return $made;
+
+  }
+
+  // Makes the terms up to position $n.
+
+  function pqRecamanUpTo ( $n ) {
+
+    $made  = &pqRecamanMade ();
+    $terms = &$made ['terms'];
+    $seen  = &$made ['seen'];
+
+    for ( $i = count ( $terms ); $i < $n; $i++ ) {
+
+      $curr = $terms [$i - 1] - $i;
+
+      if ( $curr < 0 or isset ( $seen [$curr] ) )
+        $curr = $terms [$i - 1] + $i;
+
+      $terms []      = $curr;
+      $seen  [$curr] = TRUE;
+
+    }
+
+  }
 
 function pqRecaman($n)
 {
-  static $terms = [ 0 ], $seen = [ 0 => TRUE ];
 
   // A position past $padSeqMaxTries, the ceiling a run walks to, is not made: the history
   // for it outgrew the memory a request has - from=100000000 asked for gigabytes and ended
@@ -34,22 +63,10 @@ function pqRecaman($n)
   if ( $n < 1 )
     return FALSE;
 
-  if($n == 1)
-    return 0;
+  pqRecamanUpTo ( $n );
 
-  for ( $i = count ( $terms ); $i < $n; $i++ ) {
+  return pqRecamanMade () ['terms'] [$n - 1];
 
-    $curr = $terms [$i - 1] - $i;
-
-    if ( $curr < 0 or isset ( $seen [$curr] ) )
-      $curr = $terms [$i - 1] + $i;
-
-    $terms []      = $curr;
-    $seen  [$curr] = TRUE;
-
-  }
-
-  return $terms [$n - 1];
 }
 
 ?>
