@@ -14,6 +14,15 @@
   // nothing returns 1 from include - so sequence:nosuchtype(3) answered 1, which is a number a
   // sequence could plausibly have produced.
 
+  // A value piped in is the call's argument when it is written without one: [1,2,3] |
+  // sequence:sum is the sum of the list and 5 | sequence:fibonacci the fifth term, where the
+  // piped value was dropped and the call made over nothing - 0 for both.
+
+  if ( ! $count and $value !== NULL and $value !== '' ) {
+    $parm  = [ $value ];
+    $count = 1;
+  }
+
   if ( pqAction ( $name ) ) {
 
     $pqSetAction = $name;
