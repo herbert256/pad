@@ -42,13 +42,19 @@
   // random or evaluates an expression, a parameter drawn per term or naming a store, nor
   // under {info}, which records every run (pqTermsKey in lib/sequence.php).
 
-  // A position past the ceiling of candidates no walk reaches; a type with a formula of its
-  // position - function.php - answers it from the formula, as {sequence square,
-  // from=2000000, rows=1} does: sequence:square(2000000) was "cannot be reached". Within the
-  // ceiling the walk answers, as the type is built.
+  // A type with a formula of its position - function.php - answers every position from the
+  // formula, as {sequence square, from=500000, rows=1} does: it is the term the walk makes
+  // there, square's loop.php makes its terms through it, and prime's is the nth of the values
+  // its test accepts. Taken past the ceiling of candidates only, a walk answered below it, a
+  // term at a time through the build, which the five seconds a run has cut off from some
+  // 60,000 terms on - sequence:square(500000) and sequence:totient(300000) were "cannot be
+  // reached" where sequence:square(1000001) answered at once - and prime's walk reached the
+  // 78498 primes of its million candidates, so sequence:prime(100000) was unreachable too
+  // where the formula answers 1299709.
 
-  if ( $pqRows > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) and padFileExists ( PT . "$pqSeq/function.php" ) ) {
+  if ( $pqRows >= 1 and padFileExists ( PT . "$pqSeq/function.php" ) ) {
 
+    include PQ . 'build/vars.php';
     include PQ . 'build/include.php';
 
     $pqTerm = ( 'pq' . ucfirst ( $pqSeq ) ) ( $pqRows );
@@ -58,6 +64,8 @@
         padError ( "sequence:$pqSeq($pqRows) cannot be reached: the type makes no term there inside the integer range" );
       return '';
     }
+
+    include PQ . 'exits/info.php';
 
     return $pqTerm;
 
