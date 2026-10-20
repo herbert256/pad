@@ -20,6 +20,18 @@
   if ( (string) $pqActionParm === '' )
     $pqActionCnt = count ( $pqResult );
 
+  // Drawn with repeats a count has no ceiling of its own, and randomize=10000000, duplicates
+  // ended the request on the memory limit: it is held to the ceiling every run has, and the
+  // strict check names a count past it.
+
+  $pqRandomMost = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+
+  if ( ( $pqRandomDuplicates or $pqRandomOnce ) and $pqActionCnt > $pqRandomMost ) {
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( "randomize= draws $pqRandomMost values at the most, not $pqActionCnt" );
+    $pqActionCnt = $pqRandomMost;
+  }
+
   $pqResult = pqRandom ( $pqResult, $pqActionCnt, $pqRandomOrderly, $pqRandomDuplicates, $pqRandomOnce );
 
 ?>
