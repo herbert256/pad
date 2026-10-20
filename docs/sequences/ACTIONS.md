@@ -295,11 +295,14 @@ generation options, and the arithmetic and bitwise entries above are plays.
 | `action:` | Sequence action | `{action:reverse}` |
 
 An action named by the tag takes its first parameter as its own when it is the action's kind
-of parameter - a store or a list for `append`, `merge`, `sort` and the others that take one,
-a count for `first`, `shift` and the others that count. Any other store named there is the
-store acted on: `{sum 'nums'}`, `{action:sum $name}` and `{action:first 'nums'}` act on nums,
-as `{pull:nums sum}` does. A parameter an action that takes none cannot read - `{sum 'abc'}`
-with no store abc - is reported by the strict check.
+of parameter - the name of a store or a list for `append`, `merge`, `sort` and the others that
+take stores, and for `first`, `shift` and the others that count a count (an offset for `slice`
+and `splice`): anything but the name of a store or a type. Anything else is read as any first
+parameter is. A store or a type it names is what the action runs over: `{sum 'nums'}`,
+`{action:sum $name}` and `{action:first 'nums'}` act on nums, as `{pull:nums sum}` does, and
+`{reverse 'prime'}` reverses the primes, as `{prime reverse}` does. A number is how many rows:
+`{append 5}` is `{sequence 5, append}`, as `{sum 5}` is `{sequence 5, sum}`. What none of it
+reads - `{sum 'abc'}` or `{reverse 'abc'}` with no store abc - is reported by the strict check.
 
 ## See Also
 

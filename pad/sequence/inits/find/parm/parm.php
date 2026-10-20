@@ -4,19 +4,23 @@
   // pull have all been resolved and both a type and an action may be in play.
   //
   // A type that declares flags/parm - one that genuinely takes an argument, such as multiply
-  // or repeat - claims it first; then an action from actions/double/ or actions/parm/, which
-  // are the actions that need one; otherwise whichever of the two is set gets it.
+  // or repeat - claims it first; then the action, when it is the action's kind of parameter
+  // (parm/kind.php); what neither takes is named by parm/none.php. An action of actions/double/
+  // or merge/ took any parameter, a store or not: {reverse 'abc'} and {append 'abc'} reversed
+  // and appended nothing, without a word.
 
   if ( ! is_array ( $pqFindParm ) and (string) $pqFindParm === '' )
     return;
 
+  $pqFindKind = FALSE;
+
+  if ( $pqAction )
+    include PQ . 'inits/find/parm/kind.php';
+
       if ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;
-  elseif ( $pqAction and padFileExists ( PQ . "actions/double/$pqAction") ) $pqActionParm = $pqFindParm;
-  elseif ( $pqAction and padFileExists ( PQ . "actions/parm/$pqAction")   ) $pqActionParm = $pqFindParm;
-  elseif ( $pqSeq                                                         ) include PQ . 'inits/find/parm/none.php';
-  elseif ( $pqAction and padFileExists ( PQ . "actions/merge/$pqAction")  ) $pqActionParm = $pqFindParm;
-  elseif ( $pqAction                                                      ) include PQ . 'inits/find/parm/none.php';
-  else                                                                      return;
+  elseif ( $pqFindKind                                              ) $pqActionParm = $pqFindParm;
+  elseif ( $pqSeq or $pqAction                                      ) include PQ . 'inits/find/parm/none.php';
+  else                                                                return;
 
   // Placed, it is no longer left over - parm/second.php reads what is.
 

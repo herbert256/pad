@@ -65,7 +65,8 @@ The parameters written without a name are read in the order written, each by wha
 beside:
 
 - The first parameter of a type or an action the tag or its prefix names is that one's own
-  when it is its kind of value - `{multiply 3}`, `{first 3}`; see
+  when it is its kind of value - `{multiply 3}`, `{first 3}`, `{append 's'}` - and read as
+  below when it is not: `{reverse 'prime'}` reverses the primes; see
   [ACTIONS.md](ACTIONS.md#type-prefixes-for-sequences) for the actions.
 - Otherwise its shape tells: a range `'1..10'`, a `';'` list `'5;2;8'` or a list `[5, 2, 8]`
   is the values the tag runs over, and a number how many rows - `{sequence 5}`. Beside a store

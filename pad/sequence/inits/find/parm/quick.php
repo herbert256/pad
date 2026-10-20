@@ -9,7 +9,11 @@
   //
   // The guards protect that last reading: it applies only to a numeric value that really was
   // the tag's first positional parameter, and never when the type declares flags/parm or the
-  // action is one of actions/double/ or actions/parm/, since then the parameter is theirs.
+  // action is one of actions/parm/, since then the parameter is theirs. A number is no store
+  // and no list, so for an action of actions/double/ it is the count as for any other - {append
+  // 5} is {sequence 5, append}, as {sum 5} is {sequence 5, sum} - where append took it for a
+  // store's name, skipped it and appended to the default 1..10; splice, whose first place is
+  // an offset, is in actions/parm/ too.
 
   // A 0 is a count like any other - {sequence $n} with $n 0 asks for no values - so the
   // tests below are for 'nothing given', not for falsy.
@@ -91,7 +95,6 @@
   elseif ( ! is_numeric ( $pqFindParm )                                   ) return;
   elseif ( ! $pqFindPositional                                            ) return;
   elseif ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) return;
-  elseif ( $pqAction and padFileExists ( PQ . "actions/double/$pqAction") ) return;
   elseif ( $pqAction and padFileExists ( PQ . "actions/parm/$pqAction")   ) return;
 
   $pqSeq      = 'loop';
