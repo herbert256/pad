@@ -340,19 +340,27 @@
   // from the terms made for the request under pqTermsKey (), made again for twice as many
   // when $n is past them; FALSE when the type has no term there. A type whose terms can come
   // out otherwise another time is made afresh each time, as before.
+  //
+  // The terms are asked by count, with the ceiling of candidates, as pqPosition () asks them:
+  // asked to= the position, a type that tests or steps through values - a play with
+  // build='order' - made the terms up to the value n, and {sequence '1..6', make, multiple=3,
+  // build='order'} answered nothing, step=3 only 1. A walk that came up short is all there
+  // is, and is not made again for a later position.
 
   function pqNth ( $seq, $parm, $n ) {
 
     $key  = pqTermsKey ( $seq, 'nth', $parm );
-    $made = ( $key !== '' ) ? pqTermsMade ( $key ) ['terms'] : [];
+    $made = ( $key !== '' ) ? pqTermsMade ( $key ) : [ 'terms' => [], 'end' => '' ];
 
-    if ( count ( $made ) < $n ) {
-      $made = pqTerms ( $seq, $parm, [ 'to' => max ( $n, 2 * count ( $made ) ) ] );
+    if ( count ( $made ['terms'] ) < $n and $made ['end'] === '' ) {
+      $want  = max ( $n, 2 * count ( $made ['terms'] ) );
+      $terms = pqTerms ( $seq, $parm, [ 'rows' => $want, 'try' => $GLOBALS ['padSeqMaxTries'] ?? 1000000 ] );
+      $made  = [ 'terms' => $terms, 'end' => ( count ( $terms ) < $want ) ? 'short' : '', 'next' => NULL, 'tries' => 0 ];
       if ( $key !== '' )
-        pqTermsMade ( $key, [ 'terms' => $made, 'end' => '', 'next' => NULL, 'tries' => 0 ] );
+        pqTermsMade ( $key, $made );
     }
 
-    return $made [$n - 1] ?? FALSE;
+    return $made ['terms'] [$n - 1] ?? FALSE;
 
   }
 
