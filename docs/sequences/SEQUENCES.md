@@ -241,8 +241,11 @@ The arithmetic and bitwise types, `eval` and `loop` make a term at every positio
 them, 0 and below included - `{sequence add=3, from=0}` is 3, 4, 5 - but their membership
 tests, which `keep`, `remove` and `flag` ask, count the positions from 1, where a run starts
 by default: a value is a member when a position of 1 or more makes it, so
-`{sequence '3;4', flag, add=3}` flags 0 1, and the 3 that position 0 made is none. A play over
-another sequence's terms - `{make add=3}` - is arithmetic on whatever value it is handed.
+`{sequence '3;4', flag, add=3}` flags 0 1, and the 3 that position 0 made is none. `multiple`
+is the exception: it walks the values themselves, as `step` does, and its test takes every
+multiple of N, 0 and the negative ones included - `{sequence '-6..3', keep, multiple=3}` is
+-6, -3, 0, 3, where `multiply=3` keeps 3 alone. A play over another sequence's terms -
+`{make add=3}` - is arithmetic on whatever value it is handed.
 
 ### Generation
 
