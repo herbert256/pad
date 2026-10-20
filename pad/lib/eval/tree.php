@@ -117,13 +117,25 @@
 
     $p = [ 'tok' => $tokens, 'word' => $words, 'match' => [] ];
 
-    $open = [];
+    // Each opening bracket and its closing one. The validation saw them balanced, but the
+    // scanner drops a backslash outside a string with the character after it - (\) holds no
+    // ) - and what cannot be reduced answers empty, as an unclosed bracket does; the
+    // scanner reported the backslash. A bracket with no end walked the expression again
+    // from its start, without end.
+
+    $open   = [];
+    $broken = FALSE;
 
     foreach ( $tokens as $i => $one )
       if ( $one [1] == 'open' or $one [1] == 'a-open' )
         $open [] = $i;
-      elseif ( $one [1] == 'close' or $one [1] == 'a-close' )
+      elseif ( ( $one [1] == 'close' or $one [1] == 'a-close' ) and $open )
         $p ['match'] [ array_pop ( $open ) ] = $i;
+      elseif ( $one [1] == 'close' or $one [1] == 'a-close' )
+        $broken = TRUE;
+
+    if ( $open or $broken )
+      return [ 'segments' => [ [ 'err', [], NULL ] ], 'leaves' => [] ];
 
     $leaves = [];
 
