@@ -80,8 +80,8 @@ Whitespace and commas end a token and are dropped; the token after a comma insid
 and after a `=>`, carries `'arg' => TRUE`.
 
 - Strings take `'` or `"`, with the escapes `\n` `\r` `\t` `\\` `\'` `\"`
-- A `.` before a digit opens a number - `.5` - only where no value stands before it; after
-  one it is the concatenation: `'a'.1` is `a1`
+- A `.` before a digit opens a number - `.5` - after a comma or where no value stands
+  before it; after a value it is the concatenation: `'a'.1` is `a1`, `[1, .5]` is 1 and .5
 - A `-` or `+` before a number is its sign only where no value stands before it: `5 -3` is a
   subtraction, `5 * -3` keeps the sign. Before anything else it is the prefix `NEG` or
   `POS` where an operator, a bracket or a comma stands before it - `5 * -$b`; at the head
@@ -149,7 +149,8 @@ is the answer itself.
 ### Calls and tests
 
 - A function with brackets takes its arguments from them; without them it takes the one
-  value right after it, when one follows: `$s like 'h%'`
+  value right after it, when one follows: `$s like 'h%'`. A test after it is no argument -
+  it tests the function's answer: `{$s | lower in ('a', 'b')}`
 - Written after a value, a call takes that value as its input - `$s upper`; a test takes the
   arithmetic and the concatenation on its left: `$n + 1 range (9, 9)`. A `not` between the
   value and a test denies the test: `$s not in ('a', 'b')`
