@@ -19,6 +19,7 @@
 
   $pqTries      = 0;
   $pqTriesOut   = FALSE;
+  $pqTimeOut    = FALSE;
   $pqTriesUntil = $GLOBALS ['padSeqMaxSeconds'] ?? 5;
 
   // The deadline of $padSeqMaxSeconds, a float: cast to an integer, INF or 1e10 seconds
