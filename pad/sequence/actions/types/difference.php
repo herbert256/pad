@@ -9,7 +9,13 @@
   // no store was named - or when the one named was never pushed, which doubled the sequence
   // the same way: {sequence '1..3', difference='nope'} answered 1 2 3 1 2 3.
 
-  if ( ! $pqActionParm or ! isset ( $pqStore [$pqActionParm] ) )
+  $pqDifferenceAny = FALSE;
+
+  foreach ( $pqActionList as $pqDifferenceName )
+    if ( isset ( $pqStore [$pqDifferenceName] ) )
+      $pqDifferenceAny = TRUE;
+
+  if ( ! $pqDifferenceAny )
     return;
 
   $pqTmp = $pqResult;
