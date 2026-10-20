@@ -23,8 +23,16 @@
     // Kept with its rows, as every store is, for the columns a later pull chains in: without
     // them {pull:s} after {sequence '1..3', add=10, name='s'}{/sequence} had no {$range}.
 
+    // A pair named after the store it pulls, that shifts or pops from it, keeps what is left of
+    // that store, as exits/store/set.php keeps it for the same pair without name=: the shifted
+    // values were written over it, and {pull:s name='s', shift} over 1..5 left s holding 1, with
+    // the rows of the remainder beside it.
+
     if ( is_string ( $pqNameGiven ) and ! pqStoreTaken ( $pqNameGiven ) ) {
-      $pqStore [$pqNameGiven] = array_values ( $pqResult );
+      if ( $pqStoreUpdated and $pqNameGiven == $pqPull )
+        $pqStore [$pqNameGiven] = array_values ( $pqStore [$pqPull] );
+      else
+        $pqStore [$pqNameGiven] = array_values ( $pqResult );
       $pqStored   = TRUE;
       $pqStoredAs = $pqNameGiven;
     }

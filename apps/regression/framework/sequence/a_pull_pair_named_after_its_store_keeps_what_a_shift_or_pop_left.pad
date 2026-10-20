@@ -1,0 +1,1 @@
+[{sequence '1..5', push='s'}{pull:s name='s', shift}{$s}{/pull:s}|{pull:s}{$s} {/pull:s}][{sequence '1..5', push='t'}{pull:t name='t', pop=2}{$t}{/pull:t}|{pull:t}{$t} {/pull:t}][{sequence '1..5', add=10, push='u'}{pull:u name='u', shift}{$u}{/pull:u}|{pull:u}{$u}:{$range} {/pull:u}]
