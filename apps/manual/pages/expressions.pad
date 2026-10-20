@@ -186,8 +186,8 @@ comparison; <code>!</code> binds as tightly as a sign, so <code>!$a eq $b</code>
 
 <h3>A default: ??</h3>
 
-<p><code>a ?? b</code> answers <code>a</code> unless it is empty - <code>''</code>, NULL, an
-empty list - or a field that does not exist; then it answers <code>b</code>. A 0 is a value
+<p><code>a ?? b</code> answers <code>a</code> unless it is empty - <code>''</code>, NULL, FALSE,
+an empty list - or a field that does not exist; then it answers <code>b</code>. A 0 is a value
 and stays. A field in front of <code>??</code> may be missing, also under the strict check:
 giving it a default is what the operator is for. In a pipe it takes the piped value, and the
 <code>default</code> function does the same:</p>
