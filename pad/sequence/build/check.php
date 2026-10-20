@@ -159,10 +159,20 @@
   // million terms for its first value, which '@ * 2' reaches at position 4.6 * 10^18, and
   // spent the five seconds a run has under load, answering one flag of two; eval='abc' the same
   // for terms that are no numbers at all.
+  //
+  // That estimate decides only for a value past the ceiling, whose walk was the million terms:
+  // a value within it is looked for as far as itself, as before, a walk its size bounds. Asked
+  // for every value, the estimate turned members down - a line a * n + b with b above 0 is
+  // projected past where it gets there, stairs wider than the reach stand still over what was
+  // made, and an expression may turn after its first terms - so {sequence '15000;50000;100000',
+  // keep, eval='@ + 1'} kept 15000 alone, ceil=20000 kept none of 40000 and 60000, and
+  // eval='@ le 10000 ? @ * 3 : @ + 1' turned 20002 down.
 
   $pqCheckDefault = $GLOBALS ['padSeqDefaultTries'] ?? 10000;
   $pqCheckDraw    = in_array ( $pqSeq, [ 'chance', 'random' ] );
-  $pqCheckFar     = is_numeric ( $pqLoop ) ? (int) min ( abs ( (float) $pqLoop ), $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) : 0;
+  $pqCheckMost    = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+  $pqCheckFar     = is_numeric ( $pqLoop ) ? (int) min ( abs ( (float) $pqLoop ), $pqCheckMost ) : 0;
+  $pqCheckWithin  = ( is_numeric ( $pqLoop ) and abs ( (float) $pqLoop ) <= $pqCheckMost );
   $pqCheckTo      = $pqCheckDraw ? $pqCheckFar : max ( $pqCheckFar, $pqCheckDefault );
 
   while ( ( $pqCheckTerms [$pqCheckKey] ['to'] ?? 0 ) < $pqCheckTo
@@ -170,7 +180,7 @@
 
     $pqCheckMade = $pqCheckTerms [$pqCheckKey] ['to'] ?? 0;
 
-    if ( $pqCheckDraw )
+    if ( $pqCheckDraw or $pqCheckWithin )
       $pqCheckNext = $pqCheckTo;
     elseif ( $pqCheckMade < $pqCheckDefault )
       $pqCheckNext = $pqCheckDefault;
