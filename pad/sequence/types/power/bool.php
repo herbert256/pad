@@ -37,7 +37,9 @@
     $k = (int) round ( log ( abs ( $x ) ) / log ( abs ( $y ) ) );
 
     for ( $i = max ( 1, $k - 1 ); $i <= $k + 1; $i++ )
-      if ( $y ** $i == $x )
+      // A power past the integer range is no term - the run ends at it - though as a float it
+      // compares equal to the integers just below 2^63: 2 ** 63 took 9223372036854775807.
+      if ( ! ( is_float ( $y ** $i ) and pqBoolWhole ( $x ) and abs ( $y ** $i ) >= PHP_INT_MAX ) and $y ** $i == $x )
         return TRUE;
 
     return FALSE;

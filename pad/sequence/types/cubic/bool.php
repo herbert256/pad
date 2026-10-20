@@ -21,7 +21,9 @@
     $root = (int) round ( $n ** ( 1 / 3 ) );
 
     for ( $i = max ( 1, $root - 1 ); $i <= $root + 1; $i++ )
-      if ( $i ** 3 == $n )
+      // A cube past the integer range is a float that compares equal to the integers just below
+      // 2^63 - 2097152 ** 3 made 9223372036854775807 a cube - and is no term: the run ends at it.
+      if ( is_int ( $i ** 3 ) and $i ** 3 == $n )
         return TRUE;
 
     return FALSE;
