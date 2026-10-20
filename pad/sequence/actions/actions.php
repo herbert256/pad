@@ -15,7 +15,11 @@
   //
   // The __action__ stores actions/set.php parks array parameters in are dropped afterwards:
   // they are named only in the parameter of the action that has now run, and $pqStore
-  // outlives the run, so leaving them there grew it by one entry per direct call.
+  // outlives the run, so leaving them there grew it by one entry per direct call. Only the
+  // ones this run's actions name: every __action__ store went, so an expression's action run
+  // inside a tag's build - sequence:sort([1,2]) in an eval= - dropped the lists the tag's own
+  // actions were given, append=[9, 8] appended nothing and intersection=[3, 4] ended the page
+  // on "'__action__7VjajPJV' is none".
 
   if ( ! count ( $pqActions ) )
     return;
@@ -64,8 +68,9 @@
 
   }
 
-  foreach ( $pqStore as $pqStoreKey => $pqStoreOne )
-    if ( str_starts_with ( $pqStoreKey, '__action__' ) )
-      unset ( $pqStore [$pqStoreKey] );
+  foreach ( $pqActions as [ $pqAction, $pqActionParm ] )
+    foreach ( padExplode ( $pqActionParm, '|' ) as $pqStoreKey )
+      if ( str_starts_with ( $pqStoreKey, '__action__' ) )
+        unset ( $pqStore [$pqStoreKey] );
 
 ?>
