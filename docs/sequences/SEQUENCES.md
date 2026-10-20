@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (95)
+## Sequence Types (102)
 
 ### Mathematical Sequences
 
@@ -83,6 +83,9 @@ the listing starts differs.
 - `emirp` - Emirp primes (primes that are different primes when reversed)
 - `strong` - Strong numbers / factorions, equal to the sum of the factorials of their own digits (1, 2, 145, 40585) - not the strong primes; 40585 lies beyond the default 10,000 candidates, `try=100000` reaches it
 - `semiprime` - Semiprimes (products of exactly two primes)
+- `twinPrime` - Both primes of every twin pair, two apart (3, 5, 7, 11, 13, 17, 19, 29, 31, ...)
+- `sophieGermain` - Primes p for which 2p + 1 is prime too (2, 3, 5, 11, 23, 29, 41, ...)
+- `safePrime` - Primes p for which (p - 1) / 2 is prime too (5, 7, 11, 23, 47, 59, ...)
 
 ### Figurate Numbers
 
@@ -134,13 +137,15 @@ the listing starts differs.
 
 `digitSum`, `digitalRoot` and `reversal` are functions of the position, from n = 1;
 `narcissistic` and `automorphic` are lists - all of them a PHP integer holds, so their
-membership tests are exact.
+membership tests are exact; `evil` and `odious` count the binary digits.
 
 - `digitSum` - The sum of the digits of n (1, 2, ..., 9, 1, 2, ...)
 - `digitalRoot` - The digit sum taken again until one digit is left (1, 2, ..., 9, 1, 2, ...)
 - `reversal` - n with its digits reversed (1, 2, ..., 9, 1, 11, 21, ...)
 - `narcissistic` - Armstrong numbers, the sum of their digits each to the power of their length (1, ..., 9, 153, 370, 371, 407, 1634, ...)
 - `automorphic` - Numbers whose square ends in the number itself (0, 1, 5, 6, 25, 76, 376, 625, ...)
+- `evil` - Numbers with an even number of ones in binary (3, 5, 6, 9, 10, 12, 15, ...)
+- `odious` - Numbers with an odd number of ones in binary (1, 2, 4, 7, 8, 11, 13, ...)
 
 ### Number Theory
 
@@ -160,6 +165,8 @@ Pollard's rho through gmp, so a number of 19 digits is factored in well under a 
 - `sphenic` - Products of three different primes (30, 42, 66, 70, 78, ...)
 - `carmichael` - Carmichael numbers, the composites Fermat's test cannot tell from primes (561, 1105, 1729, ...) - seven below the default 10,000 candidates, `try=` reaches more
 - `amicable` - Both numbers of every amicable pair, each the sum of the other's proper divisors (220, 284, 1184, 1210, ...)
+- `hamming` - Regular numbers, with no prime factor above 5 (1, 2, 3, 4, 5, 6, 8, 9, 10, 12, ...)
+- `perfectPower` - Powers m^k with k of 2 or more (1, 4, 8, 9, 16, 25, 27, 32, ...)
 
 ### Arithmetic Operations
 
