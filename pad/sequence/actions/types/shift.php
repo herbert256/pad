@@ -23,12 +23,12 @@
   // position the build recorded, $pqResultAt. A total under such a key is no term of the
   // store: {pull:a sum, pop} took the first entry, whose key the total had. When an action
   // before rebuilt every key - combine, merge - each value takes the first term the build
-  // made with that value that is still in the store, so a play before it counts as well:
-  // matched against the store's own values, {pull:a add=10, combine='b', shift=3} took
-  // nothing. The terms as built are indexed by value once: looked for by a walk over the
-  // store for every term, a shift of 20,000 took seconds, four times as long per doubling. A
-  // term from elsewhere, a store append= added, takes nothing. Several destructive actions in
-  // one run take from the store in turn, $pqStoreTakenAt.
+  // made with that value that is still in the store, a pop the last, so a play before it
+  // counts as well: matched against the store's own values, {pull:a add=10, combine='b',
+  // shift=3} took nothing. The terms as built are indexed by value once: looked for by a
+  // walk over the store for every term, a shift of 20,000 took seconds, four times as long
+  // per doubling. A term from elsewhere, a store append= added, takes nothing. Several
+  // destructive actions in one run take from the store in turn, $pqStoreTakenAt.
 
   // A store that was never pushed has nothing to take out: the pull build has said so under
   // the strict check, and under the lenient walk the shift read the undefined key and ended
@@ -68,9 +68,15 @@
 
     }
 
+    // A shift takes the first term made with a value, a pop the last, each from its own end
+    // of the store: a value's terms are listed with the one to take next at the end, where
+    // array_pop takes it. pop took the first, as shift does - after a = 2 1 2, {pull:a
+    // combine='b', pop=1} showed the last 2 and took the first, leaving 1 2 for 2 1 - and
+    // array_shift renumbered the rest of the list at every take.
+
     if ( $pqShiftFree === NULL ) {
       $pqShiftFree = [];
-      foreach ( $pqResultBuilt as $pqShiftMade => $pqShiftValue )
+      foreach ( ( $pqAction == 'shift' ) ? array_reverse ( $pqResultBuilt, TRUE ) : $pqResultBuilt as $pqShiftMade => $pqShiftValue )
         $pqShiftFree [ pqValueKey ( $pqShiftValue ) ] [] = $pqShiftMade;
     }
 
@@ -78,7 +84,7 @@
 
     while ( $pqShiftFree [$pqShiftKey] ?? [] ) {
 
-      $pqShiftAt = $pqResultAt [ array_shift ( $pqShiftFree [$pqShiftKey] ) ] ?? NULL;
+      $pqShiftAt = $pqResultAt [ array_pop ( $pqShiftFree [$pqShiftKey] ) ] ?? NULL;
 
       if ( $pqShiftAt !== NULL and ! isset ( $pqStoreTakenAt [$pqShiftAt] ) ) {
         $pqStoreTakenAt [$pqShiftAt] = TRUE;
