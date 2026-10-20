@@ -81,8 +81,8 @@ beside:
   `{keep:prime '1..10'}`, the primes of 1 to 10. Written after a count, a range or a list, a
   second parameter naming a type plays on it as the option of that name does:
   `{keep '1..10', $type}` is `{keep '1..10', prime}`.
-- A parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}` - is reported by
-  the strict check.
+- A parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}`, a second store
+  `{a:sum 'b'}` beside the store a the tag pulls - is reported by the strict check.
 
 ## Sequence Types (122)
 
