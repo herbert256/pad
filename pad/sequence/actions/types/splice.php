@@ -15,12 +15,17 @@
 
   // The offset and a length are whole numbers - splice=2.5 or '1|1.5' ended the request on
   // PHP's deprecation of the fraction - and only the store comes in third or in second place.
+  // A list given as splice=[1, 2] is parked under an __action__ name as a replacement would
+  // be, and is named as the list it is: the message quoted the parked name, a new one every
+  // request.
 
   if ( ! pqBoolWhole ( $pqActionList [0] ?? '' )
        or ( count ( $pqActionList ) > 1 and is_numeric ( $pqActionList [1] ) and ! pqBoolWhole ( $pqActionList [1] ) )
        or ( count ( $pqActionList ) > 2 and ! pqBoolWhole ( $pqActionList [1] ) ) ) {
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-      padError ( "splice= takes an offset, not '" . implode ( '|', $pqActionList ) . "'" );
+      padError ( str_starts_with ( (string) ( $pqActionList [0] ?? '' ), '__action__' )
+                 ? "splice= takes an offset, not a list"
+                 : "splice= takes an offset, not '" . implode ( '|', $pqActionList ) . "'" );
     return;
   }
 
