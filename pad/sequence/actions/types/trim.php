@@ -6,9 +6,14 @@
   // both was left at zero. both is applied first, to each end, then any left and right
   // are taken off on top of that.
 
-  $pqTrimBoth  = $padPrm [$pad] ['both']  ?? 0;
-  $pqTrimLeft  = $padPrm [$pad] ['left']  ?? 0;
-  $pqTrimRight = $padPrm [$pad] ['right'] ?? 0;
+  // Options of the tag's own run only: an action from an expression - sequence:trim([..]) in an
+  // eval= - read the tag the expression stands in, right=1 of it took a value off the list.
+
+  $pqTrimTag   = ( $pqEntry == 'tag' ) ? $padPrm [$pad] : [];
+
+  $pqTrimBoth  = $pqTrimTag ['both']  ?? 0;
+  $pqTrimLeft  = $pqTrimTag ['left']  ?? 0;
+  $pqTrimRight = $pqTrimTag ['right'] ?? 0;
 
   // A count is a whole number: trim=1.5 and both=2.5 ended the request on PHP's deprecation
   // of a fractional offset, and right='x' on string * int, inside pqTruncate(). Strict mode
