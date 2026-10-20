@@ -34,7 +34,34 @@
   include PQ . 'plays/inits.php';
   include PQ . 'inits/limits.php';
   include PQ . 'actions/inits.php';
+
+  // The terms a position lookup made are kept for the request, per type and parameter, so a
+  // later lookup at or below them is answered from them, and one past them makes twice as
+  // many: made afresh for every lookup, one per row was quadratic - {sequence '1..400'}{echo
+  // sequence:prime($sequence)}{/sequence} took 27 seconds. Not for a type that draws at
+  // random or evaluates an expression, a parameter drawn per term or naming a store, nor
+  // under {info}, which records every run (pqTermsKey in lib/sequence.php).
+
+  $pqTermsKey   = ( $pqRows >= 1 ) ? pqTermsKey ( $pqSeq, $pqBuild, $pqParm ) : '';
+  $pqTermsAsked = $pqRows;
+
+  if ( $pqTermsKey !== '' ) {
+
+    $pqTermsMade = pqTermsMade ( $pqTermsKey );
+
+    if ( count ( $pqTermsMade ) >= $pqRows )
+      return $pqTermsMade [ $pqRows - 1 ];
+
+    $pqRows = max ( $pqRows, 2 * count ( $pqTermsMade ) );
+
+  }
+
   include PQ . 'build/build.php';
+
+  if ( $pqTermsKey !== '' ) {
+    pqTermsMade ( $pqTermsKey, array_values ( $pqResult ) );
+    $pqRows = $pqTermsAsked;
+  }
 
   // The term asked for, or nothing: answering the last term found gave sequence:prime(1230)
   // as 9973, the 1229th prime, and sequence:fibonacci(100) as the 93rd term, the last that
@@ -59,6 +86,6 @@
 
   $pqEvalResult = array_values ( $pqResult );
 
-  return end ( $pqEvalResult );
+  return $pqEvalResult [ $pqRows - 1 ];
 
 ?>

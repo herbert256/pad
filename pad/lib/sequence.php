@@ -225,6 +225,43 @@
 
   }
 
+  // The key the terms of a position lookup - sequence:prime(5) - are kept under, or '' when
+  // they cannot be: a type that draws at random or evaluates an expression gives other terms
+  // another time, a parameter written as a range is drawn per term, and one naming a store
+  // follows what the store holds now. {info} records every run, so under it nothing is kept.
+
+  function pqTermsKey ( $seq, $build, $parm ) {
+
+    if ( $GLOBALS ['padInfo'] ?? FALSE )
+      return '';
+
+    if ( in_array ( $seq, [ 'random', 'chance', 'eval' ] ) )
+      return '';
+
+    if ( ! is_scalar ( $parm ) )
+      return '';
+
+    if ( is_string ( $parm ) and ( str_contains ( $parm, '..' ) or isset ( $GLOBALS ['pqStore'] [$parm] ) ) )
+      return '';
+
+    return "$seq|$build|" . pqCheckParm ( $parm );
+
+  }
+
+  // The terms kept under a key of pqTermsKey (), or with $terms given, keeps them when they
+  // are more than were kept.
+
+  function pqTermsMade ( $key, $terms = NULL ) {
+
+    static $made = [];
+
+    if ( $terms !== NULL and count ( $terms ) > count ( $made [$key] ?? [] ) )
+      $made [$key] = $terms;
+
+    return $made [$key] ?? [];
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( $action and padFileExists ( PA . "$action.php" ) )
