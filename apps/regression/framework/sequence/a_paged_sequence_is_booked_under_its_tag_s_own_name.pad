@@ -1,0 +1,1 @@
+[{keep '1..12', even, page=2, rows=3}{$sequence} {/keep}{pager 'keep'}{$kind}:{$page} {/pager}][{make:square page=2, rows=5}{$sequence} {/make:square}{pager 'make'}{$kind}:{$page} {/pager}]{sequence '1..20', push='s'/}[{pull 's', page=2, rows=5}{$sequence} {/pull}{pager 'pull'}{$kind}:{$page} {/pager}][{pull:s page=3, rows=5}{$s} {/pull:s}{pager 'pull'}{$kind}:{$page} {/pager}]
