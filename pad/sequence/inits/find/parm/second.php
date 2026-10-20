@@ -26,7 +26,7 @@
 
   foreach ( $padOpt [$pad] as $pqFindAt => $pqFindParm ) {
 
-    if ( $pqFindAt < 2 or ( ! is_array ( $pqFindParm ) and (string) $pqFindParm === '' ) )
+    if ( $pqFindAt < 2 or isset ( $pqFindTaken [$pqFindAt] ) or ( ! is_array ( $pqFindParm ) and (string) $pqFindParm === '' ) )
       continue;
 
     if ( ! $pqFindLeft and $pqFindAt == 2 and $pqFindNamed ) {

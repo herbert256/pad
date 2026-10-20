@@ -15,6 +15,7 @@
   // Leaves $pqSeq, $pqPull, $pqAction, $pqParm and $pqActionParm for build/ and actions/.
 
   include PQ . 'inits/find/parm/inits.php';
+  include PQ . 'inits/find/parm/option.php';
   include PQ . 'inits/find/prefix.php';
   include PQ . 'inits/find/tag.php';
   include PQ . 'inits/find/parm/quick.php';

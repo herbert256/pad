@@ -64,6 +64,10 @@ tells case apart.
 The parameters written without a name are read in the order written, each by what it stands
 beside:
 
+- A number written right after an option that names a type taking a parameter or an action
+  that counts, the option written bare, is that option's value: `{sequence add, 3}` is
+  `{sequence add=3}`, `{sequence '1..9', first, 2}` is `{sequence '1..9', first=2}` and
+  `{pull:a shift, 2}` is `{pull:a shift=2}`.
 - The first parameter of a type or an action the tag or its prefix names is that one's own
   when it is its kind of value - `{multiply 3}`, `{first 3}`, `{append 's'}` - and read as
   below when it is not: `{reverse 'prime'}` reverses the primes; see
