@@ -408,6 +408,64 @@
 
   }
 
+  // The key of a value in an index of pqIndex (): an integer as it is - the terms of the
+  // tables and of most lists are integers - anything else as pqValueKey () spells it, which
+  // spells an integer as the same key.
+
+  function pqIndexKey ( $value ) {
+
+    return is_int ( $value ) ? $value : pqValueKey ( $value );
+
+  }
+
+  // An index of a list of terms: the key of each value, pqIndexKey (), with the position it
+  // first stands at, from 1. Asked with isset () it answers what in_array () answered over
+  // the list, without walking it.
+
+  function pqIndex ( $list ) {
+
+    $index = [];
+
+    foreach ( array_values ( $list ) as $at => $value )
+      $index [ pqIndexKey ( $value ) ] ??= $at + 1;
+
+    return $index;
+
+  }
+
+  // How a type answers the membership question of build/check.php - 'bool', 'fixed',
+  // 'build', 'table' or 'terms' - settled once a request: the files of a type do not change
+  // under it. Its generated.php is loaded here, so the answer does not depend on whether a
+  // build loaded it first.
+
+  function pqCheckKind ( $seq ) {
+
+    static $kinds = [];
+
+    if ( isset ( $kinds [$seq] ) )
+      return $kinds [$seq];
+
+    if ( file_exists ( PT . "$seq/generated.php" ) )
+      include_once PT . "$seq/generated.php";
+
+    if     ( file_exists ( PT . "$seq/bool.php" )                           ) $kind = 'bool';
+    elseif ( file_exists ( PT . "$seq/fixed.php" )                          ) $kind = 'fixed';
+    elseif ( file_exists ( PT . "$seq/build.php" )                          ) $kind = 'build';
+    elseif ( defined ( "PAD$seq" ) and count ( constant ( "PAD$seq" ) )     ) $kind = 'table';
+    else                                                                      $kind = 'terms';
+
+    return $kinds [$seq] = $kind;
+
+  }
+
+  // A parameter as part of a key: its text, or for a list its serialized form.
+
+  function pqCheckParm ( $parm ) {
+
+    return is_scalar ( $parm ) ? (string) $parm : serialize ( $parm );
+
+  }
+
   // A float -0 made 0, any other number as it is - what x + 0 did for the arithmetic of a
   // sequence type, until PHP's optimizer, sure of a float, took x + 0 for x and dropped it:
   // under OPcache without Xdebug {sequence modulo=3, from=-3} printed -0 again.
