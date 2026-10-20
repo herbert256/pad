@@ -16,7 +16,12 @@
 
   $pqSkipNow   = 0;
   $pqSkipCount = 0;
-  $pqTry       = PHP_INT_MAX;
+  // A list ends with its data, so its candidates are not counted - unless the tag counts them
+  // itself: try= is a limit every run has, and {sequence '1..100', keep, prime, try=10} gave
+  // all 25 primes where the same over a loop gives 2 3 5 7.
+
+  if ( ! isset ( $pqParms ['try'] ) )
+    $pqTry = PHP_INT_MAX;
   $pqFixed     = array_values ( $pqFixed );
 
   foreach ( $pqFixed as $pqKey => $pqLoop ) {
