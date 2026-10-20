@@ -10,6 +10,13 @@
   if ( ! $pqNegative )
     return;
 
+  // An action that collapses the sequence into one value selects nothing, so there is nothing
+  // to invert and the value stands: the total took the first term's key, and "not selected"
+  // was every term but the first - {sequence '1..6', sum, negative} gave 2 3 4 5 6.
+
+  if ( in_array ( $pqAction, [ 'sum', 'product', 'average', 'median', 'count', 'distinct' ] ) )
+    return;
+
   $pqActionEnd = $pqResult;
   $pqResult    = [];
 
