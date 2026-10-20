@@ -62,9 +62,14 @@
 
     // A loop that tests the values - emirp, multiple, with a bool.php beside it - walks values
     // too, and takes the position build as a bool type does: build='function' on emirp gave
-    // the emirps from the value 3 on, 13 17, where the 3rd and 4th are 31 37.
+    // the emirps from the value 3 on, 13 17, where the 3rd and 4th are 31 37. And so does a
+    // type that steps its walk itself, pqStepType (): step=3 with build='function', from=2,
+    // to=4 gave the value 2, where its 2nd to 4th terms are 4 7 10, and a play of step, even or
+    // odd was its loop or its nudge to the next member, even over 2 3 4 answering 2 4 4 for
+    // 4 6 8.
 
-    if ( $pqBuildName == 'bool' or ( $pqBuildName == 'loop' and padFileExists ( PT . "$pqBuildSeq/bool.php" ) ) )
+    if ( $pqBuildName == 'bool' or ( $pqBuildName == 'loop' and padFileExists ( PT . "$pqBuildSeq/bool.php" ) )
+                                or pqStepType ( $pqBuildSeq ) )
       $pqBuildName = 'position';
 
   }

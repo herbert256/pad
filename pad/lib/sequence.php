@@ -325,6 +325,19 @@
 
   }
 
+  // Whether a type steps its walk itself: its init.php sets the increment - even and odd
+  // double it, multiple and step take their parameter - so the values its loop walks are not
+  // its positions.
+
+  function pqStepType ( $seq ) {
+
+    static $steps = [];
+
+    return $steps [$seq] ??= ( padFileExists ( PT . "$seq/init.php" )
+                               and preg_match ( '/\$pqInc\s*=[^=]/', file_get_contents ( PT . "$seq/init.php" ) ) );
+
+  }
+
   function pqParmTerm ( $seq, $parm ) {
 
     if ( $parm === TRUE or is_numeric ( $parm ) or ! pqNumberType ( $seq ) )
