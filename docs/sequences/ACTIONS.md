@@ -286,6 +286,13 @@ generation options, and the arithmetic and bitwise entries above are plays.
 | `pull:` | Stored sequence | `{pull:mySeq}` |
 | `action:` | Sequence action | `{action:reverse}` |
 
+An action named by the tag takes its first parameter as its own when it is the action's kind
+of parameter - a store or a list for `append`, `merge`, `sort` and the others that take one,
+a count for `first`, `shift` and the others that count. Any other store named there is the
+store acted on: `{sum 'nums'}`, `{action:sum $name}` and `{action:first 'nums'}` act on nums,
+as `{pull:nums sum}` does. A parameter an action that takes none cannot read - `{sum 'abc'}`
+with no store abc - is reported by the strict check.
+
 ## See Also
 
 - [SEQUENCES.md](SEQUENCES.md) - Sequence types and generation

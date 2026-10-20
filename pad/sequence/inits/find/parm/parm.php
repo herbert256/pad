@@ -14,7 +14,8 @@
   elseif ( $pqAction and padFileExists ( PQ . "actions/double/$pqAction") ) $pqActionParm = $pqFindParm;
   elseif ( $pqAction and padFileExists ( PQ . "actions/parm/$pqAction")   ) $pqActionParm = $pqFindParm;
   elseif ( $pqSeq                                                         ) include PQ . 'inits/find/parm/none.php';
-  elseif ( $pqAction                                                      ) $pqActionParm = $pqFindParm;
+  elseif ( $pqAction and padFileExists ( PQ . "actions/merge/$pqAction")  ) $pqActionParm = $pqFindParm;
+  elseif ( $pqAction                                                      ) include PQ . 'inits/find/parm/none.php';
   else                                                                      return;
 
   // Placed, it is no longer left over - parm/second.php reads what is.
