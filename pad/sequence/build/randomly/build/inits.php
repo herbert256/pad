@@ -32,17 +32,27 @@
 
   $pqRows = PHP_INT_MAX;
 
-  // The bounds and unique judge the terms the plays make, so with plays put aside they go
-  // aside too, and the second pass applies them after the plays: applied to the terms before
-  // them, maximal=15 with make, subtract=10 never drew the 21 that makes 11.
+  // The bounds, stop= and unique judge the terms the plays make, so with plays put aside they
+  // go aside too, and the second pass applies them after the plays: applied to the terms
+  // before them, maximal=15 with make, subtract=10 never drew the 21 that makes 11, and
+  // stop=10 with make, negation ended the first pass at 13, so -21 and -34 were never drawn.
 
-  $pqBoundsRandomly = [ $pqMin, $pqMax, $pqUnique ];
+  $pqBoundsRandomly = [ $pqMin, $pqMax, $pqUnique, $pqStop ];
 
   if ( count ( $pqPlaysRandomly ) ) {
     $pqMin    = PHP_INT_MIN;
     $pqMax    = PHP_INT_MAX;
     $pqUnique = '';
+    $pqStop   = PHP_INT_MAX;
   }
+
+  // A run that stop= alone bounded - inits/limits.php gives it the ceiling of candidates - has
+  // no end in the first pass once stop= is aside, and makes the window of the default try
+  // count, as a run without stop= does: walked to the ceiling, {sequence happy, randomly,
+  // stop=50, make, add=10} took a second for the first pass.
+
+  if ( $pqStop != $pqBoundsRandomly [3] and $pqTo == PHP_INT_MAX and ! isset ( $pqParms ['try'] ) )
+    $pqTry = min ( $pqTry, $GLOBALS ['padSeqDefaultTries'] ?? 10000 );
 
   $pqRandomly      = FALSE;
   $pqRandomlyBuild = TRUE;

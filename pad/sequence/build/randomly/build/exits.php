@@ -39,7 +39,7 @@
   $pqRows  = $pqRowsRandomly;
   $pqPlays = $pqPlaysRandomly;
 
-  [ $pqMin, $pqMax, $pqUnique ] = $pqBoundsRandomly;
+  [ $pqMin, $pqMax, $pqUnique, $pqStop ] = $pqBoundsRandomly;
 
   // The pass walks a list the first pass made, as a pull walks a store, and is not held to the
   // time the first pass may have used up: it answered nothing when that pass ran out of time.
