@@ -225,6 +225,13 @@ complement their result run negative.
 - `nor=N` - Bitwise NOR (with N = 3: -4, -4, -4, -8, ...)
 - `xnor=N` - Bitwise XNOR (with N = 3: -3, -2, -1, -8, ...)
 
+The arithmetic and bitwise types, `eval` and `loop` make a term at every position a run gives
+them, 0 and below included - `{sequence add=3, from=0}` is 3, 4, 5 - but their membership
+tests, which `keep`, `remove` and `flag` ask, count the positions from 1, where a run starts
+by default: a value is a member when a position of 1 or more makes it, so
+`{sequence '3;4', flag, add=3}` flags 0 1, and the 3 that position 0 made is none. A play over
+another sequence's terms - `{make add=3}` - is arithmetic on whatever value it is handed.
+
 ### Generation
 
 - `range` - Range (e.g., `'1..10'`)
