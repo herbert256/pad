@@ -59,10 +59,22 @@
 
     $pqTerm = ( 'pq' . ucfirst ( $pqSeq ) ) ( $pqRows );
 
+    // A position the formula has no term for is named with the reason: a type made in order
+    // only as far as the ceiling a run walks to answers past it as an overflow does, and
+    // sequence:prime(2000000) said "the type makes no term there inside the integer range" of
+    // the 2,000,000th prime, 32452843.
+
     if ( $pqTerm === FALSE or ( is_float ( $pqTerm ) and ( is_nan ( $pqTerm ) or $pqTerm <= PHP_INT_MIN or $pqTerm >= PHP_INT_MAX ) ) ) {
+
       if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-        padError ( "sequence:$pqSeq($pqRows) cannot be reached: the type makes no term there inside the integer range" );
+        padError ( "sequence:$pqSeq($pqRows) cannot be reached: "
+                 . ( ( $pqTerm === FALSE ) ? "the type has no term there"
+                 : ( ( $pqRows > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) and pqCeilingType ( $pqSeq ) )
+                     ? "the type is made no further than position " . ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) . ", the ceiling a run walks to"
+                     : "the type makes no term there inside the integer range" ) ) );
+
       return '';
+
     }
 
     include PQ . 'exits/info.php';
@@ -101,9 +113,14 @@
 
   if ( count ( $pqResult ) < $pqRows ) {
 
+    // Within what: the time a run has - build/one.php marks it - the candidates it may test,
+    // or the range of a type that ends. The clock was reported as the candidates: under load
+    // sequence:strong(5) gave "3 terms within 1000000 candidates" after five seconds.
+
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-      padError ( "sequence:$pqSeq($pqRows) cannot be reached: the sequence gives "
-               . count ( $pqResult ) . " terms within " . ( $pqTriesOut ? "$pqTry candidates" : "its range" ) );
+      padError ( "sequence:$pqSeq($pqRows) cannot be reached: the sequence gives " . count ( $pqResult ) . " terms within "
+               . ( ( $pqTimeOut ?? FALSE ) ? "the " . ( $GLOBALS ['padSeqMaxSeconds'] ?? 5 ) . " seconds a run has"
+                 : ( $pqTriesOut ? "$pqTry candidates" : "its range" ) ) );
 
     return '';
 

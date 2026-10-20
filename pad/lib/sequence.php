@@ -209,6 +209,29 @@
 
   }
 
+  // Whether a type with a formula of its position makes its terms no further than the ceiling
+  // a run walks to, $padSeqMaxTries - prime, recaman, newmanConway and vanEck make them in
+  // order and answer a position past it with the float past the integer range an overflow
+  // answers. Asked for its first term under a ceiling of 0, such a type answers that float
+  // too, where a type that only overflows answers the term.
+
+  function pqCeilingType ( $seq ) {
+
+    static $types = [];
+
+    if ( isset ( $types [$seq] ) )
+      return $types [$seq];
+
+    $ceiling = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+
+    $GLOBALS ['padSeqMaxTries'] = 0;
+    $first = ( 'pq' . ucfirst ( $seq ) ) ( 1 );
+    $GLOBALS ['padSeqMaxTries'] = $ceiling;
+
+    return $types [$seq] = ( is_float ( $first ) and $first >= PHP_INT_MAX );
+
+  }
+
   // What a name is already, when a store may not take it: a number, a type, a sequence tag, a
   // sequence option, an action or a PAD option - the resolver in lib/type.php could no longer
   // tell the store from it, and a store named 3 took the place of the number 3 as a

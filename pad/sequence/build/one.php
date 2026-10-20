@@ -30,10 +30,19 @@
   // A pulled store, a fixed or a given list with a play is held to it as the range is: with
   // {pull:s make, golomb} over 2000 stored positions the play ran 11 to 17 seconds.
 
-  if ( $pqTries > $pqTry
-       or ( ( count ( $pqPlays ) or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) ) )
-            and hrtime ( TRUE ) > $pqTriesUntil ) ) {
+  // Out of time is marked apart, $pqTimeOut, so a position lookup that could not reach its
+  // term says which ended it: the clock was reported as the candidate cap, and
+  // sequence:strong(5) said "the sequence gives 3 terms within 1000000 candidates" where the
+  // five seconds had ended the walk before 40585, the fourth.
+
+  if ( $pqTries > $pqTry ) {
     $pqTriesOut = TRUE;
+    return FALSE;
+  }
+
+  if ( ( count ( $pqPlays ) or ( ! $pqPull and ! in_array ( $pqBuild, [ 'fixed', 'given', 'build' ] ) ) )
+       and hrtime ( TRUE ) > $pqTriesUntil ) {
+    $pqTriesOut = $pqTimeOut = TRUE;
     return FALSE;
   }
 
