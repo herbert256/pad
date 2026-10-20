@@ -19,11 +19,11 @@
   // was evaluated inside: {sequence 5, make, eval='sequence:square(@)'} re-ran its own eval
   // in every inner run, until the stack gave out.
 
-  foreach ( ( $pqEntry == 'tag' ) ? $padParms [$pad] : [] as $padStartOption ) {
+  foreach ( ( $pqEntry == 'tag' ) ? $padParms [$pad] : [] as $pqPlaysAt => $padStartOption ) {
 
     extract ( $padStartOption );
 
-        if ( in_array ( $padPrmName, $pqDone ) ) continue;
+        if ( $pqPlaysAt === ( $pqSeqAt ?? NULL ) ) continue;
     elseif ( $padPrmKind != 'option'           ) continue;
 
     if ( pqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {

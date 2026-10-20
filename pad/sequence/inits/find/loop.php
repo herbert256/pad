@@ -18,13 +18,19 @@
 
   }
 
-  foreach ( $padParms [$pad] as $padParmsOne )  {
+  // The option taken is remembered by its place, $pqSeqAt, so the plays pass skips that one
+  // option and no other of the same name - a later square in {sequence square, make, square}
+  // is the play it is written as, where every option of the name was skipped and the run gave
+  // the squares themselves.
+
+  foreach ( $padParms [$pad] as $pqParmsAt => $padParmsOne )  {
 
     extract ( $padParmsOne );
 
     if ( ! $pqPull and ! $pqSeq and pqSeq ( $padPrmName ) ) {
 
       $pqDone [] = $padPrmName;
+      $pqSeqAt   = $pqParmsAt;
       $pqSeq     = $padPrmName;
       $pqParm    = $padPrmValue;
 
