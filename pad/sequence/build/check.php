@@ -127,6 +127,11 @@
     $pqCheckTerms [$pqCheckKey] = [ $pqCheckTo, pqIndex ( pqTerms ( $pqSeq, $pqParm, [ 'to' => $pqCheckTo ] ) ) ];
   }
 
-  return ( $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] ?? PHP_INT_MAX ) <= max ( 1, (int) $pqLoop );
+  // A value the terms do not hold is no member at any position: a stand-in of PHP_INT_MAX for
+  // its position was no larger than the position of the value PHP_INT_MAX itself, and every
+  // such type took 9223372036854775807 for a member - repeat=3, ceil=3, eval='@ * 2'.
+
+  return isset ( $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] )
+         and $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] <= max ( 1, (int) $pqLoop );
 
 ?>
