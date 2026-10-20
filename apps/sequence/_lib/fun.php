@@ -48,16 +48,23 @@
   // The OEIS table the oeis type reads (pad/sequence/types/oeis/oeis.sqlite) is searched
   // for an entry holding the first twelve terms in a row, at its start or a few terms in:
   // PAD's catalan starts 1, 2, 5 where A000108 starts 1, 1, 2, 5. Of the entries that
-  // match, an early one that starts with them wins, else the lowest - the classic entry is
-  // the old one. A search can scan
-  // the whole table, so the answers are kept in DATA/sequence/oeis.json, keyed by the terms.
+  // match and go on as the rest of the terms do, an early one that starts with them wins,
+  // else the lowest - the classic entry is the old one. A search can scan the whole table,
+  // so the answers are kept in DATA/sequence/oeis.json, keyed by all the terms.
+  //
+  // An entry that parts from the terms after the twelfth is not theirs: digitalRoot linked
+  // the digit sums A007953, which go on 9, 10 where the digital roots go on 9, 1, hamming
+  // A014866, which goes on 20, 21 where the 5-smooth numbers go on 20, 24, and polite A062506,
+  // which leaves 23 out. Keyed by the first twelve terms alone, those answers stood in the
+  // kept file for good.
 
   function seqFunOeis ( $terms ) {
 
-    $terms = array_slice ( array_values ( $terms ), 0, 12 );
+    $terms = array_values ( $terms );
+    $first = array_slice ( $terms, 0, 12 );
     $key   = implode ( ',', $terms );
 
-    if ( count ( $terms ) < 6 or count ( array_unique ( $terms ) ) < 2 )
+    if ( count ( $first ) < 6 or count ( array_unique ( $first ) ) < 2 )
       return 0;
 
     $cache = json_decode ( padFileGet ( 'sequence/oeis.json', '{}' ), TRUE ) ?: [];
@@ -65,7 +72,7 @@
     if ( isset ( $cache [$key] ) )
       return $cache [$key];
 
-    $cache [$key] = seqFunOeisSearch ( $key );
+    $cache [$key] = seqFunOeisSearch ( implode ( ',', $first ), $terms );
 
     padFilePut ( 'sequence/oeis.json', json_encode ( $cache, JSON_PRETTY_PRINT ) );
 
@@ -73,7 +80,7 @@
 
   }
 
-  function seqFunOeisSearch ( $list ) {
+  function seqFunOeisSearch ( $list, $terms ) {
 
     if ( ! class_exists ( 'SQLite3' ) or ! file_exists ( PT . 'oeis/oeis.sqlite' ) )
       return 0;
@@ -92,9 +99,12 @@
 
       $at = strpos ( ",$row[1],", ",$list," );
 
+      if ( $at === FALSE or ! seqFunOeisAgrees ( substr ( $row [1], $at ), $terms ) )
+        continue;
+
       if ( $at === 0 and ! $start )
         $start = $row [0];
-      elseif ( $at !== FALSE and substr_count ( substr ( $row [1], 0, $at ), ',' ) <= 6 and ! $later )
+      elseif ( substr_count ( substr ( $row [1], 0, $at ), ',' ) <= 6 and ! $later )
         $later = $row [0];
 
     }
@@ -110,6 +120,26 @@
       return $start;
 
     return $later;
+
+  }
+
+  // Whether an entry's terms, from where the first twelve matched, are the terms as far as the
+  // entry holds them and the terms are whole numbers - a term past the integer range is a
+  // float, written otherwise than the entry writes it.
+
+  function seqFunOeisAgrees ( $entry, $terms ) {
+
+    foreach ( explode ( ',', $entry ) as $i => $term ) {
+
+      if ( ! isset ( $terms [$i] ) or ! is_int ( $terms [$i] ) )
+        return TRUE;
+
+      if ( $term !== (string) $terms [$i] )
+        return FALSE;
+
+    }
+
+    return TRUE;
 
   }
 
