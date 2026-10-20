@@ -108,14 +108,25 @@
   // the same as before - is the value among the first $pqLoop terms - which the index
   // answers with the first position it holds for the value.
 
+  // Terms that can come out otherwise another time - a type that draws at random or evaluates
+  // an expression, a parameter naming a store or drawn from a range (pqTermsKey) - are kept for
+  // this run only, under a pq* name inits/clear.php drops when the next tag starts: kept for
+  // the request, {sequence '1..12', keep, eval='@*$n'} in a loop over $n kept the first $n's
+  // multiples every time, and keep, chance=2 repeated one random pick.
+
+  if ( pqTermsKey ( $pqSeq, '', $pqParm ) === '' )
+    $pqCheckTerms = &$pqCheckRun;
+  else
+    $pqCheckTerms = &$padSeqCheckList;
+
   $pqCheckKey = $pqSeq . '|' . pqCheckParm ( $pqParm );
   $pqCheckTo  = max ( 1, (int) $pqLoop );
 
-  if ( ! isset ( $padSeqCheckList [$pqCheckKey] ) or $padSeqCheckList [$pqCheckKey] [0] < $pqCheckTo ) {
-    $pqCheckTo = max ( $pqCheckTo, 2 * ( $padSeqCheckList [$pqCheckKey] [0] ?? 0 ) );
-    $padSeqCheckList [$pqCheckKey] = [ $pqCheckTo, pqIndex ( pqTerms ( $pqSeq, $pqParm, [ 'to' => $pqCheckTo ] ) ) ];
+  if ( ! isset ( $pqCheckTerms [$pqCheckKey] ) or $pqCheckTerms [$pqCheckKey] [0] < $pqCheckTo ) {
+    $pqCheckTo = max ( $pqCheckTo, 2 * ( $pqCheckTerms [$pqCheckKey] [0] ?? 0 ) );
+    $pqCheckTerms [$pqCheckKey] = [ $pqCheckTo, pqIndex ( pqTerms ( $pqSeq, $pqParm, [ 'to' => $pqCheckTo ] ) ) ];
   }
 
-  return ( $padSeqCheckList [$pqCheckKey] [1] [$pqCheckAt] ?? PHP_INT_MAX ) <= max ( 1, (int) $pqLoop );
+  return ( $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] ?? PHP_INT_MAX ) <= max ( 1, (int) $pqLoop );
 
 ?>
