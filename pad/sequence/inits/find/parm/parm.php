@@ -17,9 +17,14 @@
   if ( $pqAction )
     include PQ . 'inits/find/parm/kind.php';
 
+  // Beside a store pulled with neither, a name is named too: {pull:s 'abc'} and {pull:s reverse,
+  // 'abc'} dropped it without a word. A number there is left as it was, the parameter of the
+  // type the tag plays with - {make add=3, mySequence, 3} - parm/inits.php.
+
       if ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;
   elseif ( $pqFindKind                                              ) $pqActionParm = $pqFindParm;
   elseif ( $pqSeq or $pqAction                                      ) include PQ . 'inits/find/parm/none.php';
+  elseif ( $pqPull and ! is_numeric ( $pqFindParm )                 ) include PQ . 'inits/find/parm/none.php';
   else                                                                return;
 
   // Placed, it is no longer left over - parm/second.php reads what is.

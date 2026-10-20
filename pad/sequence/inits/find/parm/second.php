@@ -15,8 +15,9 @@
 
   // A first one nothing placed is put back afterwards for find/default.php, which names it
   // when the run found nothing else to run - and then the others are left to it: read in its
-  // place, {sequence 'xyz', 'prime'} ran the primes. Beside a store pulled the first is
-  // dropped, as before - {make add=3, mySequence, 3} - and the others are only named.
+  // place, {sequence 'xyz', 'prime'} ran the primes. Beside a store pulled only a number can
+  // be left, dropped as before - {make add=3, mySequence, 3}, parm/parm.php - and the others
+  // are only named.
 
   $pqFindFirst = $pqFindParm;
   $pqFindLeft  = ( is_array ( $pqFindFirst ) or (string) $pqFindFirst !== '' );

@@ -15,6 +15,8 @@
 
     if ( $pqPull and is_string ( $pqFindParm ) and isset ( $pqStore [$pqFindParm] ) )
       padError ( "the tag {" . $padTag [$pad] . "} pulls the store $pqPull, and '$pqFindWhat' is a second store, which nothing reads" );
+    elseif ( ! $pqSeq and ! $pqAction )
+      padError ( "the tag {" . $padTag [$pad] . "} pulls the store $pqPull, and '$pqFindWhat' is a parameter nothing reads" );
     elseif ( $pqSeq )
       padError ( "The $pqSeq sequence takes no parameter, and '$pqFindWhat' is no count, range or list of it" );
     elseif ( padFileExists ( PQ . "actions/parm/$pqAction" ) )
