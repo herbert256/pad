@@ -16,6 +16,13 @@
   if ( $pqParm === NULL or $pqParm === FALSE or $pqParm === '' or $pqParm === TRUE )
     $pqParm = $padParm ?? '';
 
+  // A random increment, increment='1...5', is drawn again at every step: the range is then
+  // made in steps of 1 and the fixed iterator takes the steps it draws, as for a list. Made
+  // with the first draw and the increment marked done, the whole range had one step.
+
+  if ( $pqRandomInc )
+    return padGetRange ( $pqParm, 1 );
+
   $pqDone [] = 'increment';
 
   return padGetRange ( $pqParm,  $pqInc );
