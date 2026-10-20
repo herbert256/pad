@@ -15,7 +15,7 @@
 
   if ( ( $pqTag == 'pull' or $pqType == 'pull' ) and ! $pqPull ) {
 
-    if ( (string) $pqFindParm !== '' ) {
+    if ( ! is_array ( $pqFindParm ) and (string) $pqFindParm !== '' ) {
       $pqPull      = $pqFindParm;
       $pqFindParm  = '';
       $pqFindNamed = TRUE;
