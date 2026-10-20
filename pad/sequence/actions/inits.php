@@ -1,7 +1,7 @@
 <?php
 
-  // Collects the actions to run into $pqActions, keyed by action name with the raw
-  // parameter string as the value. It starts from the $pqAction/$pqActionParm pair that
+  // Collects the actions to run into $pqActions, a list of [ name, raw parameter string ]
+  // in the order written, a repeated action once per mention. It starts from the $pqAction/$pqActionParm pair that
   // inits/find/ recognised in the tag name itself, then adds every tag option whose name
   // is a known action (a file in PA); the explicit action='name|parm' form takes its name
   // from the first '|' segment. Valueless options arrive as TRUE and become ''. The name
@@ -11,7 +11,7 @@
   if ( $pqAction )  {
     if ( $pqActionParm === TRUE )
       $pqActionParm = '';
-    $pqActions [$pqAction] = $pqActionParm;
+    $pqActions [] = [ $pqAction, $pqActionParm ];
   }
 
   // A tag's options only - see plays/inits.php: an expression's run took the surrounding
@@ -51,7 +51,7 @@
       $pqAction = ( $padV ['padPrmName'] == 'action' ) ? array_shift ( $pqActionList ) : $padV ['padPrmName'];
 
       if ( padValidName ( $pqAction ) and pqAction ( $pqAction ) )
-        $pqActions [$pqAction] = implode ( '|', $pqActionList );
+        $pqActions [] = [ $pqAction, implode ( '|', $pqActionList ) ];
 
     }
 

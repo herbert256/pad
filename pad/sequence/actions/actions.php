@@ -22,7 +22,12 @@
 
   include PQ . 'actions/assoc.php';
 
-  foreach ( $pqActions as $pqAction => $pqActionParm ) {
+  // The actions are a list in the order written, each one run once per mention: kept as a map
+  // by name, {sequence '1..5', reverse, sort, reverse} ran reverse once, with its last value,
+  // at the place of the first - where the strict check excuses a repeated action because it
+  // applies once per mention. The columns of $pqActionsHit stay one per name.
+
+  foreach ( $pqActions as [ $pqAction, $pqActionParm ] ) {
 
     $pqActionStart = $pqResult;
     $pqActionList  = padExplode ( $pqActionParm, '|' );

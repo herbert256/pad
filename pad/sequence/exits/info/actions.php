@@ -4,7 +4,7 @@
   // on the sequence alone, actions/double/ ones combine it with a second sequence or store.
   // Reads $pqActions, appends to $pqInfo['actions/single'] and $pqInfo['actions/double'].
 
-  foreach ( $pqActions as $pqAction => $pqActionParm ) {
+  foreach ( $pqActions as [ $pqAction, $pqActionParm ] ) {
 
     if ( file_exists ( PQ . "actions/single/$pqAction" ) )
       $pqInfo ['actions/single'] [] = $pqAction;
