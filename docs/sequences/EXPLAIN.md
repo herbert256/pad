@@ -64,13 +64,9 @@ The subsystem supports different build strategies (`build/types/`):
 Iterates from `$pqFrom` to `$pqTo`, calling the sequence's `loop.php` file for each value:
 
 ```php
-$pqGo = $pqFrom;
-while ( $pqGo <= $pqTo ) {
-  $pqLoop = $pqGo;
-  if ( ! include PQ . 'build/one.php' )
-    break;
-  $pqGo = $pqGo + $pqInc;
-}
+$pqGo   = $pqFrom;
+$pqWalk = 'loop';
+include PQ . 'build/one.php';   // the walk: $pqLoop = $pqGo, ..., $pqGo += $pqInc
 ```
 
 ### 2. Fixed Build (`build/types/fixed.php`)
@@ -79,12 +75,8 @@ Uses a pre-computed array from the sequence's `fixed.php` file:
 
 ```php
 $pqFixed = include PT . "$pqSeq/fixed.php";
-foreach ( $pqFixed as $pqKey => $pqLoop ) {
-  // Filter by from/to range
-  if ( $pqKey < $pqFrom - 1 ) continue;
-  if ( $pqKey > $pqTo - 1 ) break;
-  include PQ . 'build/one.php';
-}
+$pqWalk  = 'fixed';
+include PQ . 'build/one.php';   // the walk: each entry, from/to selecting a slice of the list
 ```
 
 ### 3. Bool Build (`build/types/bool.php`)
@@ -129,11 +121,13 @@ Retrieves a previously stored sequence.
 
 ## Value Generation (`build/one.php`)
 
-For each iteration:
+`build/one.php` is the walk itself, included once by the iterator: a loop over the
+candidates, each settled in a `do { ... } while ( FALSE )` block - `break` goes on to the
+next candidate, `break 2` ends the build. For each candidate:
 
 ```php
 $pqTries++;
-if ( $pqTries > $pqTry ) return FALSE;  // Max attempts reached
+if ( $pqTries > $pqTry ) break 2;  // Max attempts reached
 
 // Generate value based on build type
 if     ( pqStore($pqBuild) )    $pq = $pqLoop;
@@ -147,23 +141,25 @@ elseif ( $pqBuild == 'order' )  $pq = include PT . "$pqSeq/order.php";
 // Apply filters (plays)
 if ( count($pqPlays) ) {
   include PQ . 'plays/plays.php';
-  if ( $pq === FALSE ) return TRUE;  // Filtered out, continue
+  if ( $pq === FALSE ) break;  // Filtered out, next candidate
 }
 
 // Apply constraints
-if ( $pq < $pqMin ) return TRUE;          // Below minimum
-if ( $pq > $pqMax ) return TRUE;          // Above maximum
-if ( $pqUnique && in_array($pq, $pqResult) ) return TRUE;  // Duplicate
+if ( $pq < $pqMin ) break;                // Below minimum
+if ( $pq > $pqMax ) break;                // Above maximum
+if ( $pqUnique and isset ( $pqUniqueSeen [pqValueKey($pq)] ) ) break;  // Duplicate
 
 // Add to result
 $pqResult[] = $pq;
 
 // Check stop conditions
-if ( $pq >= $pqStop ) return FALSE;
-if ( count($pqResult) >= $pqRows ) return FALSE;
-
-return TRUE;  // Continue iteration
+if ( $pq >= $pqStop ) break 2;
+if ( count($pqResult) >= $pqRows ) break 2;
 ```
+
+It was a file the iterators included for every candidate, and an include costs what binding
+each variable the file names to the scope costs - some 320 ns a candidate for the 38 it names,
+most of what a candidate of a plain list took.
 
 ## Sequence Types
 

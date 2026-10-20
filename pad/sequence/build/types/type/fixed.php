@@ -24,29 +24,11 @@
     $pqTry = PHP_INT_MAX;
   $pqFixed     = array_values ( $pqFixed );
 
-  foreach ( $pqFixed as $pqKey => $pqLoop ) {
+  // The walk itself is in build/one.php, which offers the entries one by one: it was this
+  // file's own foreach, including build/one.php for every candidate.
 
-    if ( $pqSkipNow ) {
-      $pqSkipCount++;
-      if ( $pqSkipCount < $pqInc )
-        continue;
-      $pqSkipCount = $pqSkipNow = 0;
-    }
+  $pqWalk = 'fixed';
 
-    if ( $pqKey < $pqFrom - 1 ) continue;
-    if ( $pqKey > $pqTo - 1   ) break;
-
-    $pqAt = $pqKey;
-
-    if ( ! include PQ . 'build/one.php')
-      break;
-
-    if ( $pqRandomInc )
-      $pqInc = pqRandomParm3 ( $pqRandomInc );
-
-    if ( $pqInc > 1 and ! in_array ( 'increment', $pqDone ) )
-      $pqSkipNow = 1;
-
-  }
+  include PQ . 'build/one.php';
 
 ?>

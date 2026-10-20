@@ -4,7 +4,7 @@
   // value to build/one.php as a candidate.
   //
   // Shared by every computed strategy - loop, make, bool, function, check and order.
-  // Stops as soon as build/one.php returns FALSE: rows= filled, the stop= value reached,
+  // Stops as soon as build/one.php ends the walk: rows= filled, the stop= value reached,
   // or the try limit exhausted. A random increment (increment=a...b) is re-rolled after
   // every candidate.
   //
@@ -40,31 +40,12 @@
 
   include PQ . 'build/randomly/init.php';
 
-  $pqGo = $pqFrom;
+  // The walk itself is in build/one.php, which offers the counter's values one by one: it was
+  // this file's own loop, including build/one.php for every candidate.
 
-  while ( $pqGo <= $pqTo ) {
+  $pqGo   = $pqFrom;
+  $pqWalk = 'loop';
 
-    $pqLoop = $pqGo;
-    $pqAt   = NULL;
-
-    if ( ! include PQ . 'build/one.php')
-      break;
-
-    if ( $pqRandomInc )
-      $pqInc = pqRandomParm3 ( $pqRandomInc );
-
-    // Out past the integer range a float no longer moves when the step is added - -1e19 + 1
-    // is -1e19 - and the walk offered the same candidate again until the try limit, so
-    // {sequence modulo=7, from=-10000000000000000000, rows=3} answered -3 -3 -3. A walk that
-    // does not advance has nothing more to offer. A random increment drawn as 0 stands still
-    // by intent, and is no such walk: ended there, increment='0...2' answered a term or two
-    // where it asked for eight.
-
-    if ( $pqInc >= 1 and $pqGo + $pqInc <= $pqGo )
-      break;
-
-    $pqGo = $pqGo + $pqInc;
-
-  }
+  include PQ . 'build/one.php';
 
 ?>
