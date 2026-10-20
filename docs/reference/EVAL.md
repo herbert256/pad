@@ -261,8 +261,9 @@ A call goes to `padEvalCall ( $kind, $name, $value, $parm )`, which includes
 
 ## Fast Paths
 
-An expression that is only the name of a built-in pipe function goes to `eval/fast.php`,
-which calls the function through `eval/parms/pad.php`. A number, a quoted string with no
+An expression that is only the name of a built-in pipe function - one the application has
+no function of that name in place of - goes to `eval/fast.php`, which calls the function
+through `eval/parms/pad.php`. A number, a quoted string with no
 quote or backslash in it, and a plain `$field` are answered in `eval/eval.php` before any
 scanning - outside a pipe body. None of them is taken while the trace records.
 

@@ -21,9 +21,13 @@
   }
 
   // Only a plain name takes the fast path: the expression text went into the include path
-  // as it was, so ../ reached any .php file under the engine.
+  // as it was, so ../ reached any .php file under the engine. And only a built-in no function
+  // of the application's own stands in for: {$s | upper} ran PAD's upper where {$s | upper()}
+  // and the rest of the language ran the application's, which comes first (padTypeFunction).
+  // An error page rendered before the application is set up has none to look for.
 
-  if ( ! $padEvalTrace and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" ) )
+  if ( ! $padEvalTrace and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" )
+       and ! ( defined ( 'APP2' ) and padAppFunctionCheck ( $eval ) ) )
     return include PAD . 'eval/fast.php';
 
   // The commonest expressions - a number, a string with no quote or backslash in it, a plain
