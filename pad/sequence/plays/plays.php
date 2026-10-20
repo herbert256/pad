@@ -63,6 +63,12 @@
 
     $GLOBALS ['pqPlayGiven'] = ( $pqGiven and $pqLoop === $pqOrgSet );
 
+    // The play's answer is set against the value it was handed, $pqPlayIn: a make.php that
+    // moves the candidate it is handed - even's $pqLoop++ - left the compare with its own
+    // moved value, and keep even with build='make' kept 2 2 4 4 6 6, remove kept nothing.
+
+    $pqPlayIn = $pqLoop;
+
     if ( is_float ( $pqPlayValue ) and ( is_nan ( $pqPlayValue ) or $pqPlayValue <= PHP_INT_MIN or $pqPlayValue >= PHP_INT_MAX ) )
       $pq = FALSE;
     else
@@ -77,19 +83,20 @@
       break;
     }
 
-    if     ( $pqPlay == 'make'   and $pq === TRUE   ) $pq = $pqLoop;
+    if     ( $pqPlay == 'make'   and $pq === TRUE   ) $pq = $pqPlayIn;
 
-    elseif ( $pqPlay == 'keep'   and $pq === TRUE   ) $pq = $pqLoop;
-    elseif ( $pqPlay == 'keep'   and $pq != $pqLoop ) $pq = FALSE;
+    elseif ( $pqPlay == 'keep'   and $pq === TRUE   ) $pq = $pqPlayIn;
+    elseif ( $pqPlay == 'keep'   and $pq != $pqPlayIn ) $pq = FALSE;
 
     elseif ( $pqPlay == 'remove' and $pq === TRUE   ) $pq = FALSE;
-    elseif ( $pqPlay == 'remove' and $pq === FALSE  ) $pq = $pqLoop;
-    elseif ( $pqPlay == 'remove' and $pq == $pqLoop ) $pq = FALSE;
+    elseif ( $pqPlay == 'remove' and $pq === FALSE  ) $pq = $pqPlayIn;
+    elseif ( $pqPlay == 'remove' and $pq == $pqPlayIn ) $pq = FALSE;
+    elseif ( $pqPlay == 'remove'                      ) $pq = $pqPlayIn;
 
     elseif ( $pqPlay == 'flag'   and $pq === TRUE   ) $pq = 1;
     elseif ( $pqPlay == 'flag'   and $pq === FALSE  ) $pq = 0;
-    elseif ( $pqPlay == 'flag'   and $pq == $pqLoop ) $pq = 1;
-    elseif ( $pqPlay == 'flag'   and $pq != $pqLoop ) $pq = 0;
+    elseif ( $pqPlay == 'flag'   and $pq == $pqPlayIn ) $pq = 1;
+    elseif ( $pqPlay == 'flag'   and $pq != $pqPlayIn ) $pq = 0;
 
     $pqPlaysSet [$pqSeq] = $pq;
 
