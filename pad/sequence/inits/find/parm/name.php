@@ -17,7 +17,10 @@
   // What it named is kept in $pqFindNamed - store, type or action - for parm/second.php,
   // which reads the next parameter as that one's first.
 
-  if ( ! $pqPull and isset ( $pqStore [$pqFindParm] ) ) {
+  // The store the tag pulls, named again, is that store: {pull:s 's'} was named as a second
+  // store nothing reads.
+
+  if ( ( ! $pqPull or $pqPull === $pqFindParm ) and isset ( $pqStore [$pqFindParm] ) ) {
 
     $pqPull      = $pqFindParm;
     $pqFindNamed = 'store';
