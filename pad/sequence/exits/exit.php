@@ -4,7 +4,7 @@
   // types/<$pqSeq>/exit.php when that type provides one. Runs before any action is applied,
   // so the type still sees $pqResult exactly as it built it.
 
-  if ( file_exists ( PT . "$pqSeq/exit.php" ) )
+  if ( padFileExists ( PT . "$pqSeq/exit.php" ) )
     include PT . "$pqSeq/exit.php";
 
 ?>

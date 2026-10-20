@@ -8,7 +8,7 @@
   // A name that is not a store is skipped: merging one in took it as an array and ended
   // the request, so a mistyped sort='b' cost the page rather than the union.
 
-  if ( count ( $pqActionList ) and file_exists ( PQ . "actions/merge/$pqAction" ) )
+  if ( count ( $pqActionList ) and padFileExists ( PQ . "actions/merge/$pqAction" ) )
     foreach ( $pqActionList as $pqMerge )
       if ( isset ( $pqStore [$pqMerge] ) )
         $pqResult = array_merge ( $pqResult, $pqStore [$pqMerge] );

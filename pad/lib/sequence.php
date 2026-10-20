@@ -132,7 +132,7 @@
 
   function pqSeq ( $seq  ) {
 
-    if ( is_string ( $seq ) and preg_match ( '/^[A-Za-z][A-Za-z0-9]*$/', $seq ) and is_dir ( PT . $seq ) )
+    if ( is_string ( $seq ) and preg_match ( '/^[A-Za-z][A-Za-z0-9]*$/', $seq ) and padFileExists ( PT . $seq ) )
       return TRUE;
     else
       return FALSE;
@@ -182,7 +182,7 @@
 
   function pqAction ( $action  ) {
 
-    if ( $action and file_exists ( PA . "$action.php" ) )
+    if ( $action and padFileExists ( PA . "$action.php" ) )
       return TRUE;
     else
       return FALSE;
@@ -198,7 +198,7 @@
 
   function pqOption ( $option, $value = TRUE ) {
 
-    if ( ! file_exists ( PQ . "options/types/$option.php" ) )
+    if ( ! padFileExists ( PQ . "options/types/$option.php" ) )
       return FALSE;
 
     return ( $value === TRUE or ! in_array ( $option, [ 'store', 'single', 'operation' ] ) );
@@ -445,14 +445,14 @@
     if ( isset ( $kinds [$seq] ) )
       return $kinds [$seq];
 
-    if ( file_exists ( PT . "$seq/generated.php" ) )
+    if ( padFileExists ( PT . "$seq/generated.php" ) )
       include_once PT . "$seq/generated.php";
 
-    if     ( file_exists ( PT . "$seq/bool.php" )                           ) $kind = 'bool';
-    elseif ( file_exists ( PT . "$seq/fixed.php" )                          ) $kind = 'fixed';
-    elseif ( file_exists ( PT . "$seq/build.php" )                          ) $kind = 'build';
-    elseif ( defined ( "PAD$seq" ) and count ( constant ( "PAD$seq" ) )     ) $kind = 'table';
-    else                                                                      $kind = 'terms';
+    if     ( padFileExists ( PT . "$seq/bool.php" )                           ) $kind = 'bool';
+    elseif ( padFileExists ( PT . "$seq/fixed.php" )                          ) $kind = 'fixed';
+    elseif ( padFileExists ( PT . "$seq/build.php" )                          ) $kind = 'build';
+    elseif ( defined ( "PAD$seq" ) and count ( constant ( "PAD$seq" ) )       ) $kind = 'table';
+    else                                                                        $kind = 'terms';
 
     return $kinds [$seq] = $kind;
 
@@ -586,18 +586,18 @@
     if ( $for == 'keep' or $for == 'remove' or $for == 'flag' )
       return 'check';
 
-    if ( file_exists ( PT . "$check/$for.php" ) )
+    if ( padFileExists ( PT . "$check/$for.php" ) )
       return $for;
 
-    if     ( file_exists ( PT . "$check/loop.php")      ) return 'loop';
-    elseif ( file_exists ( PT . "$check/make.php")      ) return 'make';
-    elseif ( file_exists ( PT . "$check/function.php")  ) return 'function';
-    elseif ( file_exists ( PT . "$check/bool.php")      ) return 'bool';
-    elseif ( file_exists ( PT . "$check/order.php")     ) return 'order';
-    elseif ( file_exists ( PT . "$check/build.php")     ) return 'build';
-    elseif ( file_exists ( PT . "$check/fixed.php")     ) return 'fixed';
-    elseif ( file_exists ( PT . "$check/generated.php") ) return 'generated';
-    else                                                  return 'unknown';
+    if     ( padFileExists ( PT . "$check/loop.php")      ) return 'loop';
+    elseif ( padFileExists ( PT . "$check/make.php")      ) return 'make';
+    elseif ( padFileExists ( PT . "$check/function.php")  ) return 'function';
+    elseif ( padFileExists ( PT . "$check/bool.php")      ) return 'bool';
+    elseif ( padFileExists ( PT . "$check/order.php")     ) return 'order';
+    elseif ( padFileExists ( PT . "$check/build.php")     ) return 'build';
+    elseif ( padFileExists ( PT . "$check/fixed.php")     ) return 'fixed';
+    elseif ( padFileExists ( PT . "$check/generated.php") ) return 'generated';
+    else                                                    return 'unknown';
 
   }
 

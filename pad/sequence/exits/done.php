@@ -12,7 +12,7 @@
 
   foreach ( $padPrm [$pad] as $padK => $padV )
         if ( pqOption ( $padK, $padV )                    ) padDone ( $padK );
-    elseif ( file_exists ( PA . "$padK.php"               ) ) padDone ( $padK );
-    elseif ( file_exists ( PT . "$padK"                   ) ) padDone ( $padK );
+    elseif ( padFileExists ( PA . "$padK.php"               ) ) padDone ( $padK );
+    elseif ( padFileExists ( PT . "$padK"                   ) ) padDone ( $padK );
 
 ?>

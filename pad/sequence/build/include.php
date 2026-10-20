@@ -6,9 +6,9 @@
   // optional, each include_once - which is where pqBoolXxx(), pqXxx() and the precomputed
   // PADxxx constant come from. Called by build/build.php and by plays/add.php.
 
-  if ( file_exists ( PT . "$pqSeq/bool.php" )      ) include_once PT . "$pqSeq/bool.php";
-  if ( file_exists ( PT . "$pqSeq/check.php" )     ) include_once PT . "$pqSeq/check.php";
-  if ( file_exists ( PT . "$pqSeq/function.php" )  ) include_once PT . "$pqSeq/function.php";
-  if ( file_exists ( PT . "$pqSeq/generated.php" ) ) include_once PT . "$pqSeq/generated.php";
+  if ( padFileExists ( PT . "$pqSeq/bool.php" )      ) include_once PT . "$pqSeq/bool.php";
+  if ( padFileExists ( PT . "$pqSeq/check.php" )     ) include_once PT . "$pqSeq/check.php";
+  if ( padFileExists ( PT . "$pqSeq/function.php" )  ) include_once PT . "$pqSeq/function.php";
+  if ( padFileExists ( PT . "$pqSeq/generated.php" ) ) include_once PT . "$pqSeq/generated.php";
 
 ?>

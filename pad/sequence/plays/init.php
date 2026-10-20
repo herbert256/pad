@@ -9,7 +9,7 @@
   // reads its parameter as a row count) cannot disturb the main sequence it is filtering:
   // {pull ..., flag, loop=4} over 25 values gave four rows, and an explicit rows= lost.
 
-  if ( ! file_exists ( PT . "$pqSeq/init.php" ) )
+  if ( ! padFileExists ( PT . "$pqSeq/init.php" ) )
     return;
 
   $pqParmSave = $pqParm;
