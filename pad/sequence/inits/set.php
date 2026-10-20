@@ -30,7 +30,11 @@
 
   $pqNameGiven = $pqName;
 
-  if ( $pqTag == 'resume' or $pqPull === TRUE ) {
+  // Only the tag's own run: a run started from an expression inside {resume} is that
+  // expression's - sequence:prime(3) in {resume add=sequence:prime(3)} built the store
+  // pushed last and answered its third value, 3.
+
+  if ( ( $pqEntry == 'tag' and $pqTag == 'resume' ) or $pqPull === TRUE ) {
     $pqPull  = $padLastPush;
     $pqBuild = 'pull';
   }
