@@ -243,6 +243,24 @@
       if ( $pqUnique and isset ( $pqUniqueSeen [$pqUniqueKey] ) ) break;
       if ( $pqSkip and $pqTries <= $pqSkip )                    break;
 
+      // The first pass of randomly over a type built by bool, function or order, with its plays
+      // put aside - build/randomly/build/inits.php, which arms $pqRandomlyStop with the stop= put
+      // aside with them - ends where the ordered run with the plays ends: they are run over the
+      // term for that test alone, before the term is added as they are, and the pass ends on the
+      // term they make reaching stop=, or on a play that ends the run. Without it the window was
+      // the default try count, nearly every term of it past stop= once played, so the second pass
+      // ended on its first draw - {sequence happy, randomly, stop=50, make, add=10} was one value
+      // out of 10,000, as was add=0, which changes nothing.
+
+      if ( $pqRandomlyStop !== PHP_INT_MAX ) {
+        $pqRandomlyKeep    = $pq;
+        $pqPlays           = $pqPlaysRandomly;
+        include PQ . 'plays/plays.php';
+        $pqPlays           = [];
+        $pqRandomlyStopped = ( $pqPlaysOut or ( is_numeric ( $pq ) and $pq >= $pqRandomlyStop ) );
+        $pq                = $pqRandomlyKeep;
+      }
+
       $pqResult   [] = $pq;
       $pqOrgHit   [] = $pqOrgSet;
       $pqResultAt [] = $pqAt ?? NULL;
@@ -254,6 +272,7 @@
         $pqPlaysHit [] = $pqPlaysSet;
 
       if ( $pqStop !== PHP_INT_MAX and is_numeric ($pq) and $pq >= $pqStop ) break 2;
+      if ( $pqRandomlyStop !== PHP_INT_MAX and $pqRandomlyStopped ) break 2;
       if ( count($pqResult) >= $pqRows )              break 2;
 
     } while ( FALSE );

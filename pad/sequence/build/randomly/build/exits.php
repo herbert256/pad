@@ -22,9 +22,10 @@
 
   $pqOrgHit = [];
 
-  $pqSeq      = '';
-  $pqBuild    = 'pull';
-  $pqRandomly = TRUE;
+  $pqSeq          = '';
+  $pqBuild        = 'pull';
+  $pqRandomly     = TRUE;
+  $pqRandomlyStop = PHP_INT_MAX;
 
   // The ordered pass has applied the window already - from, to, skip and the increment
   // shaped the list now in $pqFixed - so the sampling pass takes that list whole. Applied a

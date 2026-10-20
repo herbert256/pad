@@ -15,6 +15,7 @@
   // twice - a make=negation came back positive.
 
   $pqRandomlyBuild = FALSE;
+  $pqRandomlyStop  = PHP_INT_MAX;
 
   if ( ! $pqRandomly )                                        return;
   if ( ! in_array ( $pqBuild, ['function','bool','order'] ) ) return;
@@ -46,13 +47,21 @@
     $pqStop   = PHP_INT_MAX;
   }
 
-  // A run that stop= alone bounded - inits/limits.php gives it the ceiling of candidates - has
-  // no end in the first pass once stop= is aside, and makes the window of the default try
-  // count, as a run without stop= does: walked to the ceiling, {sequence happy, randomly,
-  // stop=50, make, add=10} took a second for the first pass.
+  // The first pass still ends where the ordered run with the plays ends: build/one.php runs
+  // them over each term to see whether the term they make reaches the stop= put aside,
+  // $pqRandomlyStop. A run that stop= alone bounded - inits/limits.php gives it the
+  // ceiling of candidates - makes no more than the window of the default try count, as a run
+  // without stop= does, should no played term reach it: walked to the ceiling, {sequence
+  // happy, randomly, stop=50, make, negation} took a second for the first pass.
 
-  if ( $pqStop != $pqBoundsRandomly [3] and $pqTo == PHP_INT_MAX and ! isset ( $pqParms ['try'] ) )
-    $pqTry = min ( $pqTry, $GLOBALS ['padSeqDefaultTries'] ?? 10000 );
+  if ( $pqStop != $pqBoundsRandomly [3] ) {
+
+    $pqRandomlyStop = $pqBoundsRandomly [3];
+
+    if ( $pqTo == PHP_INT_MAX and ! isset ( $pqParms ['try'] ) )
+      $pqTry = min ( $pqTry, $GLOBALS ['padSeqDefaultTries'] ?? 10000 );
+
+  }
 
   $pqRandomly      = FALSE;
   $pqRandomlyBuild = TRUE;
