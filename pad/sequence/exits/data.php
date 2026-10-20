@@ -11,6 +11,9 @@
   if ( $pqPull and $pqStoreUpdated )
     $padDataStore [$pqToData] = padData ( $pqStore [$pqPull], '', $pqToData );
   else
-    $padDataStore [$pqToData] = padData ( $pqResult,              '', $pqToData );
+    $padDataStore [$pqToData] = padData ( array_values ( $pqResult ), '', $pqToData );
+
+  // The terms renumbered: after an action they still had the 'x' keys actions/assoc.php marks
+  // them with for order/ and negative/, and the data set's keys read x2 x1 x0.
 
 ?>
