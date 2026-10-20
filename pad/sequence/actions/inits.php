@@ -1,7 +1,8 @@
 <?php
 
-  // Collects the actions to run into $pqActions, a list of [ name, raw parameter string ]
-  // in the order written, a repeated action once per mention. It starts from the $pqAction/$pqActionParm pair that
+  // Collects the actions to run into $pqActions, a list of [ name, raw parameter string ] in
+  // the order written, a repeated action once per mention. It starts from the
+  // $pqAction/$pqActionParm pair that
   // inits/find/ recognised in the tag name itself, then adds every tag option whose name
   // is a known action (a file in PA); the explicit action='name|parm' form takes its name
   // from the first '|' segment. Valueless options arrive as TRUE and become ''. The name
@@ -38,9 +39,9 @@
       // action, and actions/actions.php drops it afterwards.
 
       if ( is_array ( $pqActionParm ) and $padV ['padPrmName'] != 'action' ) {
-        $pqActionStore            = '__action__' . padRandomString ();
-        $pqStore [$pqActionStore] = array_values ( $pqActionParm );
-        $pqActionParm             = $pqActionStore;
+        $pqActionParm = pqActionList ( $padV ['padPrmName'], $pqActionParm );
+        if ( $pqActionParm === NULL )
+          continue;
       }
 
       if ( ! is_scalar ( $pqActionParm ) )

@@ -1,0 +1,1 @@
+[{echo php:implode(',', sequence:merge([1,2], [4]))}][{sequence '1..5', push='a'/}{sequence '4..8', push='b'/}{pull:a intersection=b}{$sequence} {/pull:a}][{echo php:implode(',', sequence:sum([1,2,3]))}][{sequence '1..3', append=[7,8]}{$sequence} {/sequence}]

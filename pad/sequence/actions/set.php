@@ -17,6 +17,16 @@
 
    if ( is_array ( $pqFirst )  ) {
 
+    // The values acted on are values: a list among them ended the request on "Array to
+    // string conversion" in dedup, distinct, merge and the rest.
+
+    foreach ( $pqFirst as $pqFirstOne )
+      if ( ! is_scalar ( $pqFirstOne ) ) {
+        padError ( "$pqAction() acts on a list of values, not a list of lists" );
+        $pqFirst = array_filter ( $pqFirst, 'is_scalar' );
+        break;
+      }
+
     $pqBuild = 'given';
     $pqFixed = $pqFirst;
 
@@ -31,9 +41,10 @@
 
     if ( is_array ( $pqV ) ) {
 
-      $pqT            = "__action__" . padRandomString ();
-      $pqStore [$pqT] = array_values ( $pqV );
-      $pqActionParm  .= $pqT . '|';
+      $pqT = pqActionList ( $pqAction, $pqV );
+
+      if ( $pqT !== NULL )
+        $pqActionParm .= $pqT . '|';
 
     } else
 

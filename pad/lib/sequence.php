@@ -348,6 +348,35 @@
 
   }
 
+  // A list an action is given as its parameter - from an expression, sequence:merge([1,2],
+  // [4]), or as a tag's option, intersection=b - is kept as a store under an __action__ name
+  // for the run, and that name is what the action reads. Only an action that takes stores
+  // (actions/double/, actions/merge/) takes one, and only a list of values: any other action
+  // was handed the random name and said "first= takes a count, not '__action__xV1nsEup'", a
+  // message of another text every request, and a list of lists ended the request on "Array to
+  // string conversion". NULL, after the error, when the list is no parameter of the action.
+
+  function pqActionList ( $action, $list ) {
+
+    foreach ( $list as $one )
+      if ( ! is_scalar ( $one ) ) {
+        padError ( "$action= takes a list of values, not a list of lists" );
+        return NULL;
+      }
+
+    if ( ! padFileExists ( PQ . "actions/double/$action" ) and ! padFileExists ( PQ . "actions/merge/$action" ) ) {
+      padError ( "$action= takes no list" );
+      return NULL;
+    }
+
+    $name = '__action__' . padRandomString ();
+
+    $GLOBALS ['pqStore'] [$name] = array_values ( $list );
+
+    return $name;
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( is_string ( $action ) and isset ( pqNames ( PA ) ["$action.php"] ) )
