@@ -97,6 +97,33 @@
 
   }
 
+  // The length of a format that opens at $at, a pipe part inside brackets - ($p | %.2f),
+  // php:strlen($n | %05d), [$a | %02d, $b | %02d] - or 0 when none does. It runs to the |,
+  // the comma or the bracket that ends its part; brackets inside it are its text. Read as an
+  // expression the % was the modulo operator: (1.25 | %.1f) divided by zero.
+
+  function padEvalFormatLength ( $text, $at ) {
+
+    if ( ! preg_match ( "/^%(?:\\d+\\$)?(?:[-+ 0]|'.)*\\d*(?:\\.\\d+)?[bcdeEfFgGhHosuxX%]/", substr ( $text, $at ), $match ) )
+      return 0;
+
+    $len   = strlen ( $text );
+    $depth = 0;
+
+    for ( $end = $at + strlen ( $match [0] ); $end < $len; $end++ ) {
+
+      $one = $text [$end];
+
+      if     ( $one == '(' or $one == '[' )                $depth++;
+      elseif ( ( $one == ')' or $one == ']' ) and $depth ) $depth--;
+      elseif ( in_array ( $one, [ ')', ']', ',', '|' ] ) ) break;
+
+    }
+
+    return $end - $at;
+
+  }
+
   // The pipe segments of an expression, each [ text, whether it is a format ], when one of
   // them is a printf format (padEvalFormat) - FALSE when none is. A segment ends at a | that
   // stands outside a string and outside brackets, where padEvalPipes cuts - not at a || -
@@ -215,6 +242,21 @@
 
         $tok [] = [ '|', 'pipe' ];
         $at++;
+
+        // A part inside brackets that is a printf format is one token, as a segment is.
+
+        if ( $depth > 0 ) {
+
+          for ( $from = $at; $from < $len and ctype_space ( $in [$from] ); $from++ ) ;
+
+          $flen = padEvalFormatLength ( $in, $from );
+
+          if ( $flen ) {
+            $tok [] = [ rtrim ( substr ( $in, $from, $flen ) ), '%' ];
+            $at     = $from + $flen;
+          }
+
+        }
 
       } elseif ( $one == '(' or $one == '[' ) {
 

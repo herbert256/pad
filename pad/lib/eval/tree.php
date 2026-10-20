@@ -446,9 +446,14 @@
     // built-in called there takes it - ucfirst(($s | left(2))). A message names the whole
     // expression, where it quoted nothing: "there is no value in ''".
 
+    // A part that is a printf format (padEvalFormatLength) formats the value piped into it.
+
     foreach ( $cuts as $n => $cut ) {
-      $parts [] = ( $cut > $from ) ? padEvalTreeRange ( $p, $from, $cut, ( $n ? [ 'head' => FALSE, 'call' => FALSE ] : [] ) + $ctx ) : NULL;
-      $from     = $cut + 1;
+      if ( $n and $cut == $from + 1 and $p ['tok'] [$from] [1] == '%' )
+        $parts [] = [ 'fmt', $p ['tok'] [$from] [0] ];
+      else
+        $parts [] = ( $cut > $from ) ? padEvalTreeRange ( $p, $from, $cut, ( $n ? [ 'head' => FALSE, 'call' => FALSE ] : [] ) + $ctx ) : NULL;
+      $from = $cut + 1;
     }
 
     return [ [ 'pipe', $parts ] ];

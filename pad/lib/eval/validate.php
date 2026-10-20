@@ -65,6 +65,22 @@
         continue;
       }
 
+      // A format after a | inside brackets is skipped as a format segment is blanked:
+      // ($n | %'*5d) pads with a quote.
+
+      if ( $one == '|' and ( $text [$i+1] ?? '' ) == '|' ) {
+        $i++;
+        continue;
+      }
+
+      if ( $one == '|' and $stack ) {
+        for ( $from = $i + 1; $from < $len and ctype_space ( $text [$from] ); $from++ ) ;
+        $flen = padEvalFormatLength ( $text, $from );
+        if ( $flen )
+          $i = $from + $flen - 1;
+        continue;
+      }
+
       if ( $one == '(' or $one == '[' ) {
         $stack [] = [ $one, $at ];
         continue;
