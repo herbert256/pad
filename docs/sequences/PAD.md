@@ -232,8 +232,9 @@ the predicate is what `keep`, `remove` and `flag` ask.
   value once. A type without a `bool.php` is asked through its membership check.
 - `build='function'` gives the term at each position, so `from` and `to` count terms:
   `{sequence happy, build='function', from=5, to=8}` gives the 5th to 8th happy numbers,
-  `19 23 28 31`. A type that tests values, or steps through them by itself - `step`,
-  `even`, `odd` - has its nth value found by walking them, kept for the rest of the request:
+  `19 23 28 31`. A type that tests values has its nth value found by walking them, kept for
+  the rest of the request; one that steps through them by itself - `step`, `even`, `odd`,
+  `multiple` - has it worked out from its first terms, at any position:
   `{sequence step=3, build='function', from=2, to=4}` gives `4 7 10`.
 
 ### Storage and Reuse

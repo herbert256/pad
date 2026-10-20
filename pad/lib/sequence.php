@@ -192,12 +192,30 @@
 
   function pqPosition ( $seq, $parm, $n ) {
 
-    static $made = [];
+    static $made = [], $steps = [];
 
     if ( $n < 1 )
       return FALSE;
 
     $key = $seq . '|' . pqCheckParm ( $parm );
+
+    // A type that steps its walk itself - even, odd, step, multiple: pqStepType () - over a
+    // number or none makes whole terms a fixed step apart, so the term at a position is worked
+    // out from its first three: walked by count, a position past the ceiling of candidates was
+    // past the walk, and {sequence even, build='function', from=1000000, rows=3} gave 2000000
+    // alone after a second, from=3000000 nothing. A step past the integer range answers the
+    // float an overflow does.
+
+    if ( pqStepType ( $seq ) and ( is_numeric ( $parm ) or in_array ( $parm, [ TRUE, FALSE, NULL, '' ], TRUE ) ) ) {
+
+      $steps [$key] ??= pqTerms ( $seq, $parm, [ 'rows' => 3 ] );
+
+      [ $one, $two, $three ] = $steps [$key] + [ NULL, NULL, NULL ];
+
+      if ( is_int ( $one ) and is_int ( $two ) and is_int ( $three ) and $three - $two == $two - $one )
+        return $one + ( $n - 1 ) * ( $two - $one );
+
+    }
 
     if ( ! isset ( $made [$key] ) or ( count ( $made [$key] [1] ) < $n and ! $made [$key] [0] ) ) {
       $want         = max ( $n, 2 * count ( $made [$key] [1] ?? [] ) );
