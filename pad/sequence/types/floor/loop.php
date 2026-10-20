@@ -10,7 +10,11 @@
   if ( ! is_numeric ( $pqLoop ) )
     return FALSE;
 
-  if ( ! $pqParm )
+  // A parameter that is 0 - spelled 0, '0.0', '-0' or '00' - is read as 1. ! $pqParm let the
+  // strings '0.0', '-0' and '00' through, which are true, and {sequence floor='-0'} ended the
+  // request on "Division by zero" where floor=0 gives 1 2 3.
+
+  if ( is_numeric ( $pqParm ) ? $pqParm == 0 : ! $pqParm )
     $pqParm = 1;
 
   // pqZero turns the float -0 into 0: printed, it read -0. It comes of a float 0 - a listed

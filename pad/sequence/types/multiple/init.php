@@ -11,7 +11,10 @@
 
   include PQ . 'inits/number.php';
 
-  if ( is_numeric ( $pqParm ) and ! $pqParm )
+  // A 0 spelled '0.0', '-0' or '00' is the zero it is: ! $pqParm let those strings through, and
+  // {sequence multiple='0.0'} ended the request on "Division by zero".
+
+  if ( is_numeric ( $pqParm ) and $pqParm == 0 )
     return padError ( 'The multiple sequence needs a step of 1 or more' );
 
   // Only a parameter that is already a number can set the range up. One written as a range

@@ -10,7 +10,10 @@
 
   function pqBoolMultiple ( $n, $p=0 ) {
 
-    if ( ! is_numeric ( $n ) or ! $p )
+    // A step of 0 - spelled 0, '0.0', '-0' or '00' - has no multiples: ! $p let those strings
+    // through, and the division below ended the request on "Division by zero".
+
+    if ( ! is_numeric ( $n ) or ( is_numeric ( $p ) ? $p == 0 : ! $p ) )
       return FALSE;
 
     // In whole numbers when both are whole and the step is above 0, as pqCeilMultiple makes

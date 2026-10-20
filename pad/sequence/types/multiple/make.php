@@ -14,7 +14,11 @@
   // A step of 0 - a store's term handed over as the parameter - makes no term, as in loop.php:
   // rounded up to a multiple of nothing, the request ended on "Division by zero".
 
-  if ( ! $pqParm )
+  // A parameter that is 0 - spelled 0, '0.0', '-0' or '00' - makes no term. ! $pqParm let the
+  // strings '0.0', '-0' and '00' through, which are true, and {sequence '1..3', make, multiple='0.0'}
+  // ended the request on "Division by zero".
+
+  if ( is_numeric ( $pqParm ) ? $pqParm == 0 : ! $pqParm )
     return FALSE;
 
   return pqCeilMultiple ( $pqLoop, $pqParm );
