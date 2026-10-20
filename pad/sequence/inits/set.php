@@ -114,7 +114,11 @@
   pqNumber ( 'try',       $pqTry,  0           );
   pqNumber ( 'stop',      $pqStop, PHP_INT_MAX );
   pqNumber ( 'skip',      $pqSkip, 0           );
-  pqNumber ( 'minimal',   $pqMin,  PHP_INT_MIN );
-  pqNumber ( 'maximal',   $pqMax,  PHP_INT_MAX );
+
+  // min= and max= are named as they are written: a bare max was reported as "maximal= takes a
+  // number, not ''".
+
+  pqNumber ( isset ( $pqParms ['minimal'] ) ? 'minimal' : 'min', $pqMin, PHP_INT_MIN );
+  pqNumber ( isset ( $pqParms ['maximal'] ) ? 'maximal' : 'max', $pqMax, PHP_INT_MAX );
 
 ?>

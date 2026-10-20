@@ -55,6 +55,19 @@
     $pqPush = '';
   }
 
+  // name= and toData= as well: name='0' and toData='0' were taken for no name, the terms went
+  // under 'default' and nothing was published, in silence, where name='7' is named.
+
+  if ( is_numeric ( $pqName ) ) {
+    padError ( "Store name '$pqName' can not be equal to a number" );
+    $pqName = '';
+  }
+
+  if ( is_numeric ( $pqToData ) ) {
+    padError ( "toData= takes the name of a data set, not the number '$pqToData'" );
+    $pqToData = '';
+  }
+
   // A name is no list either: push=[1,2] and build=[1,2] ended the request on "Array to string
   // conversion", name=[1,2] on "Cannot access offset of type array", toData=[1,2] on substr ()'s
   // TypeError, and pull=[1,2] - under the lenient walk - on "Array to string conversion".
