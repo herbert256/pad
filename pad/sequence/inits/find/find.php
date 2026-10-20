@@ -21,6 +21,7 @@
   include PQ . 'inits/find/parm/primary.php';
   include PQ . 'inits/find/loop.php';
   include PQ . 'inits/find/pull.php';
+  include PQ . 'inits/find/parm/name.php';
   include PQ . 'inits/find/parm/parm.php';
 
   if     ( ! $pqPull and ! $pqSeq ) include PQ . 'inits/find/default.php';
