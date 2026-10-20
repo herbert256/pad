@@ -18,8 +18,11 @@
   $pqTo   = $pqParms ['to']        ?? PHP_INT_MAX ;
   $pqSole = $pqParms ['sole']      ?? 0           ;
 
-  $pqMin  = $pqParms ['minimal']   ?? PHP_INT_MIN ;
-  $pqMax  = $pqParms ['maximal']   ?? PHP_INT_MAX ;
+  // min= and max= are the short spellings of minimal= and maximal=: they were accepted and
+  // read by nothing, so {sequence random, min=1, max=6} drew from the whole integer range.
+
+  $pqMin  = $pqParms ['minimal']   ?? $pqParms ['min'] ?? PHP_INT_MIN ;
+  $pqMax  = $pqParms ['maximal']   ?? $pqParms ['max'] ?? PHP_INT_MAX ;
 
   $pqInc  = $pqParms ['increment'] ?? 1           ;
   $pqRows = $pqParms ['rows']      ?? NULL        ;
@@ -41,7 +44,7 @@
   // here - the strict unread-option sweep looks for the mark.
 
   if ( $pqEntry == 'tag' )
-    foreach ( [ 'from', 'to', 'sole', 'minimal', 'maximal', 'increment', 'rows', 'try',
+    foreach ( [ 'from', 'to', 'sole', 'minimal', 'maximal', 'min', 'max', 'increment', 'rows', 'try',
                 'stop', 'skip', 'randomly', 'unique', 'name', 'build', 'toData',
                 'negative', 'pull', 'push' ] as $pqParmOne )
       if ( isset ( $pqParms [$pqParmOne] ) )
