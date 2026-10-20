@@ -167,7 +167,8 @@
   }
 
   // Whether the field at $i may be missing: one before ?? - that is what the operator is for -
-  // or piped into ?? or into default or optional, as the {$x | ...} form lets it.
+  // or piped into ?? or into default or optional, with a prefix or without, as the
+  // {$x | ...} form lets it.
 
   function padEvalTreeCoalesce ( $tokens, $i ) {
 
@@ -180,8 +181,12 @@
     if ( $next [1] != 'pipe' )
       return FALSE;
 
+    // The function as named after a prefix: | pad:default('x') as | default('x').
+
+    $exp = padExplode ( (string) ( $after [0] ?? '' ), ':' );
+
     return ( $after [1] == 'OPR' and $after [0] === '??' )
-        or ( $after [1] == 'other' and in_array ( $after [0], [ 'default', 'optional' ], TRUE ) );
+        or ( $after [1] == 'other' and in_array ( end ( $exp ), [ 'default', 'optional' ], TRUE ) and count ( $exp ) <= 2 );
 
   }
 
