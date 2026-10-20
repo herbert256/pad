@@ -19,6 +19,16 @@
   // store as it was, and {a:splice action='splice|1|2'} ended on "splice= takes an offset,
   // not ''".
 
+  // The rows kept beside the store the run pulls, as they are before it builds: the columns
+  // the chain gives its rows and the rows a shift or pop of its own leaves the store with are
+  // read from them, by the store positions the build pulled (exits/extra/chain.php and set.php),
+  // as the store's values are read from $pqPulled. Read afterwards from $padSeqData, a shift of
+  // the same store in an expression the build ran rewrote them under it, and {pull:a eval='@ +
+  // php:count(sequence:shift("a")) * 0'}{$add}{/pull:a} ended on "Field '$add' not found".
+
+  $pqPulledRows = ( ( is_string ( $pqPull ) or is_int ( $pqPull ) ) and isset ( $padSeqData [$pqPull] ) )
+                ? $padSeqData [$pqPull] : NULL;
+
   $pqActionFront = '';
 
   if ( $pqAction )  {

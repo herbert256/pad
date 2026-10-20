@@ -13,16 +13,19 @@
   //
   // A store this run wrote ($pqStored, under $pqStoredAs) keeps the rows the run shows - unless
   // it is the store taken from, whose rows are the remainder's.
+  //
+  // The rows left are read from the rows the run pulled, $pqPulledRows, as the store's values
+  // are rebuilt from $pqPulled (actions/types/shift.php).
 
   if ( $pqStoreUpdated ) {
 
-    if ( isset ( $padSeqData [$pqPull] ) ) {
+    if ( $pqPulledRows !== NULL and isset ( $padSeqData [$pqPull] ) ) {
 
       $pqChainLeft = [];
 
       foreach ( $pqPulled as $pqChainAt => $pqChainValue )
         if ( ! isset ( $pqStoreTakenAt [$pqChainAt] ) )
-          $pqChainLeft [] = $padSeqData [$pqPull] [$pqChainAt] ?? [];
+          $pqChainLeft [] = $pqPulledRows [$pqChainAt] ?? [];
 
       $padSeqData [$pqPull] = $pqChainLeft;
 
