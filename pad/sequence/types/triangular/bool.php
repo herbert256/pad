@@ -10,11 +10,19 @@
   // a float holds: past 10^16 the neighbours of a triangular number were triangular too -
   // 500000000499999999 and 500000000500000001 beside 500000000500000000. The only file in
   // the type, so pqBuild() runs the whole range through it.
+  //
+  // 0 is the term for k = 0, A000217's first, as pqBoolFigurate takes it for the other
+  // figurate types and pronic: turned down, {sequence '0;1;3', flag, triangular} answered
+  // 0 1 1 where pronic, square and pentagonal flag their 0, and {sequence triangular, from=0}
+  // began on 1 where pronic and square begin on 0.
 
 function pqBoolTriangular ($num) {
 
-    if ( ! pqBoolWhole ( $num ) or $num < 1 )
+    if ( ! pqBoolWhole ( $num ) or $num < 0 )
         return false;
+
+    if ( $num == 0 )
+        return true;
 
     $num  = (int) $num;
     $root = (int) sqrt ( 2 * (float) $num );
