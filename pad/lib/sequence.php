@@ -558,9 +558,12 @@
   }
 
   // The key a value is told apart by, for a set of the values seen: a number by the number it
-  // spells - 1, '1', '1.0' and 1.0 are one value, as in_array () takes them - anything else
-  // by its text. unique and merge looked every value up in all the values kept so far, and
-  // the run took time with the square of its length.
+  // spells - 1, '1', '1.0' and 1.0 are one value, as in_array () takes them - a fraction as it
+  // prints, anything else by its text. unique and merge looked every value up in all the
+  // values kept so far, and the run took time with the square of its length. One key for
+  // unique, merge, dedup, distinct and the membership checks: merge told a computed
+  // 0.30000000000000004 from a listed 0.3 by all 17 digits and printed 0.3 0.3, where dedup
+  // took the two, which print alike, for one value.
 
   function pqValueKey ( $value ) {
 
@@ -572,7 +575,7 @@
     if ( is_float ( $value ) and floor ( $value ) == $value and $value >= PHP_INT_MIN and $value < PHP_INT_MAX )
       $value = (int) $value;
 
-    return is_float ( $value ) ? sprintf ( '%.17g', $value ) : (string) $value;
+    return (string) $value;
 
   }
 
