@@ -59,6 +59,15 @@
       }
     }
 
+  // A push= that names the store resumed, or a bare push, keeps the terms where they are
+  // written back already, and makes that store the one pushed last, as push='u' makes u and
+  // as {pull:s reverse, push='s'/} makes s: after {sequence '1..5', push='s'} and {sequence
+  // '1..3', push='t'}, {resume s, reverse, push='s'} left t the store pushed last, and a bare
+  // {pull} gave 1 2 3.
+
+  if ( $pqPush === TRUE or ( is_string ( $pqPush ) and $pqPush !== '' and $pqPush == $pqPull ) )
+    $pqResumeLast = $pqPull;
+
   include PQ . 'exits/data.php';
 
   $padLastPush = $pqResumeLast;
