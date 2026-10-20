@@ -19,6 +19,47 @@
 
   $pqPageTotal = count ( $pqResult );
 
+  // A list nothing can turn a term down from was made up to the end of the page shown only
+  // (inits/limits.php, $pqPageCount): when that filled the run, the terms of the rest of it are
+  // counted here, without making them, as the fixed iterator would offer them and build/one.php
+  // keep them - from= to to= in steps of an increment the type did not take itself, skip= first
+  // candidates left out, a FALSE or a NAN no term, and in a type's own list (fixed) the first
+  // value past the integer range the end. Made one by one to count them, a range of 100,000
+  // took seconds for a page of ten.
+
+  if ( $pqPageCount and $pqPageTotal >= $pqRows and is_array ( $pqFixed ) ) {
+
+    $pqPageList  = array_values ( $pqFixed );
+    $pqPageAt    = max ( 0, (int) ceil ( $pqFrom - 1 ) );
+    $pqPageLast  = min ( count ( $pqPageList ) - 1, floor ( $pqTo - 1 ) );
+    $pqPageStep  = ( $pqInc > 1 and ! in_array ( 'increment', $pqDone ) ) ? (int) ceil ( $pqInc ) : 1;
+    $pqPageGiven = in_array ( $pqBuild, [ 'build', 'pull', 'given' ] );
+    $pqPageTries = 0;
+    $pqPageTotal = 0;
+
+    for ( ; $pqPageAt <= $pqPageLast; $pqPageAt += $pqPageStep ) {
+
+      $pqPageOne = $pqPageList [$pqPageAt];
+
+      $pqPageTries++;
+
+      if ( $pqPageOne === FALSE )
+        continue;
+
+      if ( is_float ( $pqPageOne ) ) {
+        if ( ! $pqPageGiven and ( $pqPageOne <= PHP_INT_MIN or $pqPageOne >= PHP_INT_MAX ) )
+          break;
+        if ( is_nan ( $pqPageOne ) )
+          continue;
+      }
+
+      if ( $pqPageTries > $pqSkip )
+        $pqPageTotal++;
+
+    }
+
+  }
+
   $pqResult   = array_slice ( $pqResult,   $pqPageSkip, $pqPageSize );
   $pqOrgHit   = array_slice ( $pqOrgHit,   $pqPageSkip, $pqPageSize );
   $pqPlaysHit = array_slice ( $pqPlaysHit, $pqPageSkip, $pqPageSize );

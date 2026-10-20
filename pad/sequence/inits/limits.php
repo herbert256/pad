@@ -55,15 +55,25 @@
   // page= pages through the terms as the page option pages through the rows of a data tag
   // (handling/types/page.php): rows= is the page's size, 10 when it is not given, and a page
   // below 1, or one that is no number, is page 1. exits/page.php takes the terms of the other
-  // pages off again and books the page for a {pager} with the number of terms there are: a
-  // range, a list, a store or a type made in one go is made whole for it, any other run up to
-  // the page after the one shown, so the pager has a next page while the type goes on. Rows
+  // pages off again and books the page for a {pager} with the number of terms there are. Rows
   // were every term of a run with an end of its own, {sequence '1..30', page=2} showed all
   // thirty, page=0 and page='x' ended the page under the strict check where they are a data
   // tag's first page, and {pager 'sequence'} found no paged tag.
+  //
+  // A range, a list, a store or a type made in one go, where nothing can turn a term down - no
+  // play, unique, min=, max=, stop=, try=, randomly= or random increment, no parameter drawn or
+  // read from a store per term - is made up to the end of the page shown, and exits/page.php
+  // counts the terms of the rest of the list for the pager without making them,
+  // $pqPageCount. Any other run is made up to the end of the page after the one shown, so the
+  // pager has a next page while there are more terms: the pager of such a run knows the pages
+  // made. Every term of the list was made to count them: {sequence '1..100000', page=2,
+  // rows=10} took five to nine seconds where it takes a tenth, '1..1000000' a minute, and with a
+  // play the five seconds a run has cut the walk, so the pager of {sequence '1..100000', keep,
+  // even, page=2, rows=10} ended at page 1758 of 5000.
 
-  $pqPageSkip = 0;
-  $pqPageSize = NULL;
+  $pqPageSkip  = 0;
+  $pqPageSize  = NULL;
+  $pqPageCount = FALSE;
 
   // A page past the integer range is a page past the end, as page=1e30 written out is, and
   // one below it the first page: cast, page=$n with $n 10 ** 30 ended the page on "The float
@@ -79,10 +89,15 @@
     $pqPageSize = $pqRowsGiven ? $pqRows : 10;
     $pqPageSkip = ( ( $pqPage - 1 ) * (float) $pqPageSize >= PHP_INT_MAX ) ? PHP_INT_MAX : ( $pqPage - 1 ) * $pqPageSize;
 
-    if ( $pqPull or in_array ( $pqBuild, [ 'build', 'given', 'fixed' ] ) )
-      $pqRows = PHP_INT_MAX;
-    else
-      $pqRows = ( ( $pqPage + 1 ) * (float) $pqPageSize >= PHP_INT_MAX ) ? PHP_INT_MAX : ( $pqPage + 1 ) * $pqPageSize;
+    $pqPageCount = ( ( $pqPull or in_array ( $pqBuild, [ 'build', 'given', 'fixed' ] ) )
+                     and ! count ( $pqPlays ) and ! $pqUnique and ! $pqRandomly and ! $pqRandomInc
+                     and $pqMin === PHP_INT_MIN and $pqMax === PHP_INT_MAX and $pqStop === PHP_INT_MAX
+                     and ! isset ( $pqParms ['try'] )
+                     and ! ( is_string ( $pqParm ) and $pqParm !== ''
+                             and ( ( str_contains ( $pqParm, '..' ) and $pqSeq != 'range' ) or isset ( $pqStore [$pqParm] ) ) ) );
+
+    $pqPageEnd = $pqPageCount ? $pqPage : $pqPage + 1;
+    $pqRows    = ( $pqPageEnd * (float) $pqPageSize >= PHP_INT_MAX ) ? PHP_INT_MAX : $pqPageEnd * $pqPageSize;
 
   }
 

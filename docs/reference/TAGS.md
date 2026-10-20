@@ -545,7 +545,9 @@ window around the current one, gaps, previous and next.
 number of rows the options written before `page` left; the pager reads that, so it comes
 after the tag (strict mode names a pager without its paged tag). Links are `$padGo` plus the
 requested page plus the request's other query values with the page value set - the
-engine's `pad*` switches left out. As a single tag it answers
+engine's `pad*` switches left out. A sequence written with `page=` books its own page: every
+term of a range, a list or a store is counted, and of any other run the pages made, up to the
+one after the page shown (see [sequences](../sequences/PAD.md)). As a single tag it answers
 `<nav class="pager" aria-label="Pagination">` with `<a>` links, the current page marked
 `aria-current="page"`, a missing previous/next as a disabled `<span>`; the labels
 `pager.label`, `pager.previous` and `pager.next` come from the `_lang/` catalog when it has

@@ -190,7 +190,7 @@ Configure sequence generation:
 - **from/to**: Define range boundaries - see "What from and to count" below
 - **increment**: Step size between values, 1 or more - a range (`'0..1'`) also counts in a step below 1
 - **rows**: Limit number of results
-- **page**: One page of the terms, as on a data tag - `rows` is the page's size, 10 when not given, a page below 1 or no number is page 1, and `{pager 'sequence'}` - or the name of the type, the store or the tag, `{pager 'prime'}`, `{pager 'keep'}`, or the `name=` given - writes the links to the other pages
+- **page**: One page of the terms, as on a data tag - `rows` is the page's size, 10 when not given, a page below 1 or no number is page 1, and `{pager 'sequence'}` - or the name of the type, the store or the tag, `{pager 'prime'}`, `{pager 'keep'}`, or the `name=` given - writes the links to the other pages. The pager of a range, a list or a store counts all its terms, made only up to the page shown; of any other run - a type, or a list with a play, `unique`, `min`/`max`, `stop`, `try` or `randomly` - it knows the pages made, up to the one after the page shown, so it has a next page while there are more
 - **stop**: Maximum value constraint
 - **skip**: Skip the first N candidates offered, not the first N kept
 - **try**: Attempt limits for validation
