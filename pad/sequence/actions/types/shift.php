@@ -19,11 +19,16 @@
   // store lost its own first or last N whatever the run made of it before, so {pull:a reverse,
   // shift=2} showed 6 5 and took 1 and 2 out, and {pull:a keep='even', shift=2} showed 2 4 and
   // took 1 and 2. A term the build made from an entry still has the 'x' key actions/assoc.php
-  // gave it, and its entry is the store position the build recorded, $pqResultAt; when an
-  // action before rebuilt every key - combine, merge - each value takes the first entry
-  // holding it that is still in the store. A term from elsewhere, a store append= added,
-  // takes nothing. Several destructive actions in one run take from the store in turn,
-  // $pqStoreTakenAt.
+  // gave it and the value the build gave it, $pqResultBuilt, and its entry is the store
+  // position the build recorded, $pqResultAt. A total under such a key is no term of the
+  // store: {pull:a sum, pop} took the first entry, whose key the total had. When an action
+  // before rebuilt every key - combine, merge - each value takes the first term the build
+  // made with that value that is still in the store, so a play before it counts as well:
+  // matched against the store's own values, {pull:a add=10, combine='b', shift=3} took
+  // nothing. The terms as built are indexed by value once: looked for by a walk over the
+  // store for every term, a shift of 20,000 took seconds, four times as long per doubling. A
+  // term from elsewhere, a store append= added, takes nothing. Several destructive actions in
+  // one run take from the store in turn, $pqStoreTakenAt.
 
   // A store that was never pushed has nothing to take out: the pull build has said so under
   // the strict check, and under the lenient walk the shift read the undefined key and ended
@@ -36,6 +41,7 @@
   $pqStoreTakenAt = $pqStoreTakenAt ?? [];
 
   $pqShiftKeyed = FALSE;
+  $pqShiftFree  = NULL;
 
   foreach ( $pqResult as $padK => $padV )
     if ( is_string ( $padK ) and str_starts_with ( $padK, 'x' ) )
@@ -48,7 +54,12 @@
       if ( ! is_string ( $padK ) or ! str_starts_with ( $padK, 'x' ) )
         continue;
 
-      $pqShiftAt = $pqResultAt [ (int) substr ( $padK, 1 ) ] ?? NULL;
+      $pqShiftMade = (int) substr ( $padK, 1 );
+
+      if ( ! array_key_exists ( $pqShiftMade, $pqResultBuilt ) or $pqResultBuilt [$pqShiftMade] !== $padV )
+        continue;
+
+      $pqShiftAt = $pqResultAt [$pqShiftMade] ?? NULL;
 
       if ( $pqShiftAt !== NULL )
         $pqStoreTakenAt [$pqShiftAt] = TRUE;
@@ -57,11 +68,24 @@
 
     }
 
-    foreach ( $pqPulled as $pqShiftAt => $pqShiftValue )
-      if ( ! isset ( $pqStoreTakenAt [$pqShiftAt] ) and pqValueKey ( $pqShiftValue ) === pqValueKey ( $padV ) ) {
+    if ( $pqShiftFree === NULL ) {
+      $pqShiftFree = [];
+      foreach ( $pqResultBuilt as $pqShiftMade => $pqShiftValue )
+        $pqShiftFree [ pqValueKey ( $pqShiftValue ) ] [] = $pqShiftMade;
+    }
+
+    $pqShiftKey = pqValueKey ( $padV );
+
+    while ( $pqShiftFree [$pqShiftKey] ?? [] ) {
+
+      $pqShiftAt = $pqResultAt [ array_shift ( $pqShiftFree [$pqShiftKey] ) ] ?? NULL;
+
+      if ( $pqShiftAt !== NULL and ! isset ( $pqStoreTakenAt [$pqShiftAt] ) ) {
         $pqStoreTakenAt [$pqShiftAt] = TRUE;
         break;
       }
+
+    }
 
   }
 
