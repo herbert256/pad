@@ -15,5 +15,10 @@
   elseif ( $pqAction and padFileExists ( PQ . "actions/parm/$pqAction")   ) $pqActionParm = $pqFindParm;
   elseif ( $pqSeq                                                         ) include PQ . 'inits/find/parm/none.php';
   elseif ( $pqAction                                                      ) $pqActionParm = $pqFindParm;
+  else                                                                      return;
+
+  // Placed, it is no longer left over - parm/second.php reads what is.
+
+  $pqFindParm = '';
 
 ?>

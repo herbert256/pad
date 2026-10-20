@@ -55,6 +55,14 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
+A type, a store or an action can be named by a value too - `{sequence $type, rows=5}` - and
+a second parameter after it is that one's first parameter, as it is after a name the tag
+gives: `{keep $type, '1..10'}` with `$type` 'prime' is `{keep:prime '1..10'}`, the primes of
+1 to 10. Written after a count, a range or a list, a second parameter naming a type plays on
+it as the option of that name does: `{keep '1..10', $type}` is `{keep '1..10', prime}`. A
+parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}` - is reported by the
+strict check.
+
 ## Sequence Types (122)
 
 ### Mathematical Sequences

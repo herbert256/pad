@@ -5,6 +5,12 @@
 
   $pqFindParm = $padOpt [$pad] [1];
 
+  // Whether that parameter named what the tag runs - parm/name.php, a {pull}'s store in
+  // find/pull.php - so that a second one is the first parameter of what it named
+  // (parm/second.php).
+
+  $pqFindNamed = FALSE;
+
   // Whether that parameter is the tag's own, a count or a range of the tag: written before any
   // type, store or action the tag names. Only the first item could be: {sequence name='i', 5}
   // took the 5 for no count and reported it as "is not a sequence type". Written after a type,

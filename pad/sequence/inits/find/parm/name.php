@@ -31,6 +31,7 @@
 
     return;
 
-  $pqFindParm = '';
+  $pqFindParm  = '';
+  $pqFindNamed = TRUE;
 
 ?>

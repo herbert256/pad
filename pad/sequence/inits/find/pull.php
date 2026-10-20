@@ -16,8 +16,9 @@
   if ( ( $pqTag == 'pull' or $pqType == 'pull' ) and ! $pqPull ) {
 
     if ( (string) $pqFindParm !== '' ) {
-      $pqPull     = $pqFindParm;
-      $pqFindParm = '';
+      $pqPull      = $pqFindParm;
+      $pqFindParm  = '';
+      $pqFindNamed = TRUE;
     } else
       $pqPull = $padLastPush;
 
