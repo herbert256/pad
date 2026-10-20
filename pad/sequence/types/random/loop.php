@@ -30,9 +30,25 @@
   if ( is_array ( $pqFixed ) and count ( $pqFixed ) )
      return $pqFixed [ array_rand ( $pqFixed, 1) ];
 
+  // In a window wider than PHP_INT_MAX the steps drawn can pass the range where the term they
+  // land on does not, and they are added a part at a time that stays inside it: multiplied out
+  // at once they overflowed to a float, and the term came out rounded off the grid.
+
   if ( $pqInc != 1 ) {
-    $pqRandomRand = rand ( 0, $pqRandomSteps ) * $pqInc;
-    return $pqRandomStart + $pqRandomRand;
+
+    $pqRandomStep = rand ( 0, $pqRandomSteps );
+    $pqRandomBy   = $pqInc + 0;
+
+    if ( ! is_int ( $pqRandomStart ) or ! is_int ( $pqRandomBy ) or $pqRandomStep <= intdiv ( PHP_INT_MAX, $pqRandomBy ) )
+      return $pqRandomStart + $pqRandomStep * $pqRandomBy;
+
+    for ( $pqRandomTerm = $pqRandomStart; $pqRandomStep > 0; $pqRandomStep -= $pqRandomPart ) {
+      $pqRandomPart  = min ( $pqRandomStep, intdiv ( PHP_INT_MAX, $pqRandomBy ) );
+      $pqRandomTerm += $pqRandomPart * $pqRandomBy;
+    }
+
+    return $pqRandomTerm;
+
   }
 
   return rand ( $pqRandomStart, $pqRandomEnd );
