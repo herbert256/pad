@@ -540,14 +540,23 @@ function pqBoolEven($n, $p=0) {
 }
 
 function pqBoolTriangular($num) {
-  // Uses quadratic formula to check if n*(n+1)/2 = num
-  $c = (-2 * $num);
-  $d = 1 - (4 * $c);
-  if ($d < 0) return false;
-  $root = (-1 + sqrt($d)) / 2;
-  return ($root > 0 && floor($root) == $root);
+  // 0 and k(k+1)/2 for a whole k: k is about the square root of 2n, and the whole numbers
+  // next to it are tried exactly - solved as a quadratic in floating point, the neighbours
+  // of a triangular number past 10^16 came out triangular too
+  if ( ! pqBoolWhole ( $num ) or $num < 0 )
+    return false;
+  if ( $num == 0 )
+    return true;
+  $num  = (int) $num;
+  $root = (int) sqrt ( 2 * (float) $num );
+  for ( $k = max ( 1, $root - 1 ); $k <= $root + 1; $k++ )
+    if ( ( ( $k % 2 ) ? $k * intdiv ( $k + 1, 2 ) : intdiv ( $k, 2 ) * ( $k + 1 ) ) == $num )
+      return true;
+  return false;
 }
 ```
+
+The functions in `pad/sequence/types/<type>/bool.php` are the ones that run.
 
 ## State Variables
 
