@@ -34,7 +34,7 @@ The sequence module (internally prefixed with `pq`) enables templates to generat
 
 ### Sequence Types (types/)
 
-102 mathematical and number theory sequences, including:
+111 mathematical and number theory sequences, including:
 
 **Arithmetic Sequences**
 - **add**, **multiply**, **divide**, **subtract**, **modulo** - Basic operations

@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (102)
+## Sequence Types (111)
 
 ### Mathematical Sequences
 
@@ -86,6 +86,8 @@ the listing starts differs.
 - `twinPrime` - Both primes of every twin pair, two apart (3, 5, 7, 11, 13, 17, 19, 29, 31, ...)
 - `sophieGermain` - Primes p for which 2p + 1 is prime too (2, 3, 5, 11, 23, 29, 41, ...)
 - `safePrime` - Primes p for which (p - 1) / 2 is prime too (5, 7, 11, 23, 47, 59, ...)
+- `primorial` - Products of the first n primes (2, 6, 30, 210, 2310, ...) - fifteen inside the integer range
+- `fermat` - Fermat numbers 2^(2^n) + 1 (3, 5, 17, 257, 65537, 4294967297) - all six a PHP integer holds
 
 ### Figurate Numbers
 
@@ -105,6 +107,10 @@ the listing starts differs.
 - `heptadecagonal` - Heptadecagonal numbers (1, 17, 48, 94, 155, ...)
 - `enneadecagonal` - Enneadecagonal numbers (1, 19, 54, 106, 175, ...)
 - `icosihenagonal` - Icosihenagonal numbers (1, 21, 60, 118, 195, ...)
+- `pentatope` - Pentatope numbers, n(n+1)(n+2)(n+3)/24 (1, 5, 15, 35, 70, ...)
+- `star` - Star numbers, 6n(n-1) + 1 (1, 13, 37, 73, 121, ...)
+- `centeredSquare` - Centered square numbers, 2n(n-1) + 1 (1, 5, 13, 25, 41, ...)
+- `centeredHexagonal` - Centered hexagonal numbers, 3n(n-1) + 1 (1, 7, 19, 37, 61, ...)
 
 ### Filters
 
@@ -130,6 +136,9 @@ the listing starts differs.
 - `recaman` - Recaman sequence (0, 1, 3, 6, 2, 7, 13, 20, ...)
 - `sylvester` - Sylvester sequence (2, 3, 7, 43, 1807, ...)
 - `cullen` - Cullen numbers, n*2^n+1 (3, 9, 25, 65, 161, ...)
+- `woodall` - Woodall numbers, n*2^n-1 (1, 7, 23, 63, 159, ...)
+- `thabit` - Thabit numbers, 3*2^n-1 (2, 5, 11, 23, 47, 95, ...)
+- `repunit` - Repunits, n ones in a row (1, 11, 111, 1111, ...)
 - `xpadovan` - Padovan sequence (1, 1, 1, 2, 2, 3, 4, 5, ...)
 - `caterer` - Lazy caterer's sequence (2, 4, 7, 11, 16, 22, ...)
 
