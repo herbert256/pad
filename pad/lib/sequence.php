@@ -209,6 +209,22 @@
 
   }
 
+  // What a name is already, when a store may not take it: a type, a sequence tag, a sequence
+  // option, an action or a PAD option - the resolver in lib/type.php could no longer tell the
+  // store from it. '' when the name is free.
+
+  function pqStoreTaken ( $name ) {
+
+    if     ( pqSeq ( $name )                                    ) return 'a Sequence name';
+    elseif ( padFileExists ( PQ . "start/tags/$name.php" )      ) return 'a Sequence tag';
+    elseif ( padFileExists ( PQ . "options/types/$name.php" )   ) return 'a Sequence option name';
+    elseif ( pqAction ( $name )                                 ) return 'an Action name';
+    elseif ( padFileExists ( PAD . "options/$name.php" )        ) return 'a PAD option name';
+
+    return '';
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( $action and padFileExists ( PA . "$action.php" ) )
