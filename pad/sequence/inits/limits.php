@@ -43,6 +43,12 @@
   if ( $pqRows === NULL or $pqRows === '' )
     $pqRows = $padSeqDefaultRows;
 
+  // A count past the integer range is as many as there are: cast, it ended the request on
+  // "The float 1.0E+30 is not representable as an int" - {sequence $n} with $n 10 ** 30.
+
+  if ( is_numeric ( $pqRows ) and ( $pqRows >= PHP_INT_MAX or $pqRows <= PHP_INT_MIN ) )
+    $pqRows = ( $pqRows > 0 ) ? PHP_INT_MAX : 0;
+
   $pqRows = (int) $pqRows;
 
 ?>
