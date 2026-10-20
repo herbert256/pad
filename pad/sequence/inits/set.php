@@ -15,9 +15,12 @@
   // each drawn on their own below and the single value came out a range, or nothing.
 
   pqRandomParm ( $pqSole );
-  pqNumber     ( 'sole', $pqSole, 0 );
+  pqNumber     ( 'sole', $pqSole, NULL );
 
-  if ( $pqSole )
+  // 0 is a value like any other - flag:even sole=0 asks about 0 - where it was taken for no
+  // sole= at all and the whole default run came back.
+
+  if ( $pqSole !== NULL )
     $pqFrom = $pqTo = $pqSole;
 
   $pqType   = $padType   [$pad];

@@ -16,7 +16,7 @@
 
   $pqFrom = $pqParms ['from']      ?? 1           ;
   $pqTo   = $pqParms ['to']        ?? PHP_INT_MAX ;
-  $pqSole = $pqParms ['sole']      ?? 0           ;
+  $pqSole = $pqParms ['sole']      ?? NULL        ;
 
   // min= and max= are the short spellings of minimal= and maximal=: they were accepted and
   // read by nothing, so {sequence random, min=1, max=6} drew from the whole integer range.
