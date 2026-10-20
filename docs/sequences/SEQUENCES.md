@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (83)
+## Sequence Types (88)
 
 ### Mathematical Sequences
 
@@ -129,6 +129,18 @@ the listing starts differs.
 - `cullen` - Cullen numbers, n*2^n+1 (3, 9, 25, 65, 161, ...)
 - `xpadovan` - Padovan sequence (1, 1, 1, 2, 2, 3, 4, 5, ...)
 - `caterer` - Lazy caterer's sequence (2, 4, 7, 11, 16, 22, ...)
+
+### Digits
+
+`digitSum`, `digitalRoot` and `reversal` are functions of the position, from n = 1;
+`narcissistic` and `automorphic` are lists - all of them a PHP integer holds, so their
+membership tests are exact.
+
+- `digitSum` - The sum of the digits of n (1, 2, ..., 9, 1, 2, ...)
+- `digitalRoot` - The digit sum taken again until one digit is left (1, 2, ..., 9, 1, 2, ...)
+- `reversal` - n with its digits reversed (1, 2, ..., 9, 1, 11, 21, ...)
+- `narcissistic` - Armstrong numbers, the sum of their digits each to the power of their length (1, ..., 9, 153, 370, 371, 407, 1634, ...)
+- `automorphic` - Numbers whose square ends in the number itself (0, 1, 5, 6, 25, 76, 376, 625, ...)
 
 ### Number Theory
 
