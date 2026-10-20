@@ -443,10 +443,11 @@
     $from  = $a;
 
     // A part after a | has its value piped in, as a segment of the expression has: a
-    // built-in called there takes it - ucfirst(($s | left(2))).
+    // built-in called there takes it - ucfirst(($s | left(2))). A message names the whole
+    // expression, where it quoted nothing: "there is no value in ''".
 
     foreach ( $cuts as $n => $cut ) {
-      $parts [] = ( $cut > $from ) ? padEvalTreeRange ( $p, $from, $cut, ( $n ? [ 'head' => FALSE, 'call' => FALSE ] : [] ) + [ 'text' => '' ] + $ctx ) : NULL;
+      $parts [] = ( $cut > $from ) ? padEvalTreeRange ( $p, $from, $cut, ( $n ? [ 'head' => FALSE, 'call' => FALSE ] : [] ) + $ctx ) : NULL;
       $from     = $cut + 1;
     }
 
