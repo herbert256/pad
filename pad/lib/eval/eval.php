@@ -4,7 +4,9 @@
   // under lib/.
   //
   //   padEval      evaluates the expression text $eval against the incoming pipe value
-  //                $value and returns the result. The pipeline itself lives in
+  //                $value and returns the result - $pipe when the text is a pipe body,
+  //                $fallback when the caller hands the answer to a fallback, so a field
+  //                that is the whole answer may be missing. The pipeline itself lives in
   //                eval/eval.php, entered through try/try.php so that $padErrorTry can
   //                turn a thrown error into a PAD error rather than a fatal
   //   padEvalBool  the same, reduced to TRUE/FALSE - used by {if}, {while} and friends.
@@ -74,7 +76,7 @@
   // goes out of the evaluation - the try guard off, as it is while an error hook runs -
   // closes it as well: the count stayed one up for the rest of the request.
 
-  function padEval ( $eval, $value='', $pipe=FALSE ) {
+  function padEval ( $eval, $value='', $pipe=FALSE, $fallback=FALSE ) {
 
     global $padEvalBusy;
 

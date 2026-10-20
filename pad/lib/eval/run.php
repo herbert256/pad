@@ -17,7 +17,7 @@
 
   // The fields, options, properties, hex values and constants of the expression, read in the
   // order written. Under the strict check a field that is not there is named - except one
-  // that may be missing (padEvalTreeCoalesce) - and one holding a list or an object is named
+  // that may be missing (padEvalTreeMissing) - and one holding a list or an object is named
   // as what it is.
 
   function padEvalLeaves ( $leaves ) {
@@ -365,7 +365,8 @@
   }
 
   // A reference that takes no arguments - field:x, data:rows, array:items, a bare word naming
-  // a field ... - by its handler in eval/single/. $padEvalCoalesce says it stands before ??.
+  // a field ... - by its handler in eval/single/. $padEvalCoalesce says it may be missing, its
+  // value going into a fallback (padEvalTreeMissing).
 
   function padEvalLook ( $kind, $name, $padEvalCoalesce = FALSE ) {
 

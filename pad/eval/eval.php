@@ -29,8 +29,9 @@
   // The commonest expressions - a number, a string with no quote or backslash in it, a plain
   // $field - come once per row and per parameter, and answer here what the pipeline answers
   // for them: the number and the string as written, the field after the strict check
-  // padEvalLeaves gives it. Not in a pipe body, where a signed number alone is named as an
-  // operator missing its space, nor while the trace records the stages.
+  // padEvalLeaves gives it - none when its caller hands it to a fallback. Not in a pipe body,
+  // where a signed number alone is named as an operator missing its space, nor while the
+  // trace records the stages.
 
   if ( ! $pipe and is_string ( $eval ) and ! $padEvalTrace ) {
 
@@ -44,7 +45,7 @@
 
     if ( $padEvalFirst == '$' and preg_match ( '/^\$([a-zA-Z_][a-zA-Z0-9_]*)$/D', $eval, $padEvalField ) ) {
       $padEvalValue = padFieldValue ( $padEvalField [1] );
-      if ( $GLOBALS ['padCheckSyntax'] and $padEvalValue === '' )
+      if ( $GLOBALS ['padCheckSyntax'] and $padEvalValue === '' and ! $fallback )
         padEvalFieldReport ( $padEvalField [1], $eval );
       return $padEvalValue;
     }
@@ -74,7 +75,7 @@
   // The tree of the expression (lib/eval/tree.php), kept for the request, is evaluated with
   // the value piped in (lib/eval/run.php).
 
-  $padEvalTree = padEvalTreeGet ( $padEvalTokens, $eval, $pipe );
+  $padEvalTree = padEvalTreeGet ( $padEvalTokens, $eval, $pipe, $fallback );
 
   padEvalTrace ( 'tree', $padEvalTree );
 

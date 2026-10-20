@@ -21,21 +21,13 @@
   // read it as "render my content", which an {echo} has none of: {echo $flag} and
   // {echo php:is_numeric('5')} printed nothing.
 
-  // A field the tag's pipe lets be missing - | default('-'), | ?? '-', | optional - is no
-  // error, as it is not in {$x | default('-')} (level/var.php): {echo $x | default('-')}
-  // named the field missing.
+  // A field the tag's pipe lets be missing - | default('-'), | pad:default('-'), | ?? '-',
+  // | optional - is no error, as it is not in {$x | default('-')} (level/var.php) and in
+  // ($x | default('-')): {echo $x | default('-')} named the field missing. Only the field
+  // that is the whole answer: the strict check was off for all of it, and {echo 7 / 0 |
+  // default('x')} answered x, {echo $missing + 1 | default('x')} 1.
 
-  $padEchoLenient = ( $padCheckSyntax and preg_match ( '/^\s*(optional|default\b|\?\?)/', $padPipeBefore [$pad] ?? '' ) );
-
-  if ( $padEchoLenient )
-    $padCheckSyntax = FALSE;
-
-  try {
-    $padEchoValue = padEval ( $padOpt [$pad] [0] );
-  } finally {
-    if ( $padEchoLenient )
-      $padCheckSyntax = TRUE;
-  }
+  $padEchoValue = padEval ( $padOpt [$pad] [0], '', FALSE, padEvalFallbackPipe ( $padPipeBefore [$pad] ?? '' ) );
 
   // A list or a date object is a value the tag's pipe takes as it is - {echo [3, 1, 2] |
   // php:max}, {echo php:explode(',', $tags) | php:count}, {echo $created | ago} - and a date

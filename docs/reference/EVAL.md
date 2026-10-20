@@ -186,7 +186,7 @@ A node is a list, its kind first:
 | `join` | values side by side |
 | `list` | the entries of a `[ ]` list |
 | `call` | kind, name, input, arguments, brackets, whether a built-in reads its first argument |
-| `look` | kind, name, and whether it stands before `??` |
+| `look` | kind, name, and whether it may be missing - its value going into a fallback |
 | `pipe` | the parts of a pipeline inside brackets |
 | `seq` | nodes read and left out, then a node |
 | `err` / `none` / `more` | a fault reported where it is evaluated |
@@ -313,7 +313,12 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
 
 While it runs:
 - "there is no field named '$x'" - a missing field (`padEvalLeaves`), also as `field:x` and
-  as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ..."
+  as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ...".
+  A field whose value goes straight into a fallback may be missing (`padEvalTreeMissing`):
+  the left side of `??`, the value piped into `default` or `optional` - with a prefix too -
+  brackets around it or not, and the whole answer of an `{echo}` whose tag pipe begins with
+  one (`padEvalFallbackPipe`). A field that is part of more - `$x + 1 | default(0)`,
+  `'a' . $x ?? 'b'` - is no fallback's, and is named
 - "'a' is not a number for +", "a division by zero in /" - arithmetic
 - "the ? of an inline ternary has no :", "a branch of an inline ternary is empty", "the
   condition of an inline ternary is not one value"
