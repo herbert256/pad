@@ -6,8 +6,9 @@
   //
   // Loaded by sequence/build/include.php whenever this sequence is built, then read
   // by sequence/plays/play/order.php (term at index, PADstrong[$pqLoop-1]) and by
-  // sequence/build/check.php (in_array membership test), so those paths answer from
-  // the table instead of recomputing the term. Data only - no logic here.
+  // sequence/build/check.php (membership through an index of it, for a type without a
+  // test of its own), so those paths answer from the table instead of recomputing the
+  // term. Data only - no logic here.
 
   const PADstrong = [1,2,145,40585];
 
