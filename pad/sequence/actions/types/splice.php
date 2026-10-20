@@ -18,15 +18,38 @@
   // A list given as splice=[1, 2] is parked under an __action__ name as a replacement would
   // be, and is named as the list it is: the message quoted the parked name, a new one every
   // request.
+  //
+  // A list in the second or third place is named as a list too, the places as written: only
+  // the first was, and sequence:splice([1,2,3,4,5], 1, [9], 2) said "splice= takes an offset,
+  // not '1|__action__cKDNPVUQ|2'".
 
   if ( ! pqBoolWhole ( $pqActionList [0] ?? '' )
        or ( count ( $pqActionList ) > 1 and is_numeric ( $pqActionList [1] ) and ! pqBoolWhole ( $pqActionList [1] ) )
        or ( count ( $pqActionList ) > 2 and ! pqBoolWhole ( $pqActionList [1] ) ) ) {
-    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-      padError ( str_starts_with ( (string) ( $pqActionList [0] ?? '' ), '__action__' )
-                 ? "splice= takes an offset, not a list"
-                 : "splice= takes an offset, not '" . implode ( '|', $pqActionList ) . "'" );
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) {
+
+      $pqSpliceLists = FALSE;
+      $pqSpliceShown = [];
+
+      foreach ( $pqActionList as $pqSpliceOne )
+        if ( str_starts_with ( (string) $pqSpliceOne, '__action__' ) ) {
+          $pqSpliceLists    = TRUE;
+          $pqSpliceShown [] = 'a list';
+        } else
+          $pqSpliceShown [] = "'$pqSpliceOne'";
+
+      if ( ! $pqSpliceLists )
+        padError ( "splice= takes an offset, not '" . implode ( '|', $pqActionList ) . "'" );
+      elseif ( count ( $pqActionList ) == 1 )
+        padError ( "splice= takes an offset, not a list" );
+      else
+        padError ( "splice= takes an offset and a length, not " . implode ( ', ', $pqSpliceShown ) );
+
+    }
+
     return;
+
   }
 
   if ( count ( $pqActionList ) == 1 )
