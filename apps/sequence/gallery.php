@@ -9,7 +9,7 @@
   foreach ( seqFunTypes () as $type ) {
 
     $terms = seqFunTerms ( $type, 24 );
-    $oeis  = seqFunOeis ( $terms );
+    $oeis  = seqFunOeis ( $terms, $type );
 
     $drawn [] = [
       'type'  => $type,

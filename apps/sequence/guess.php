@@ -23,7 +23,7 @@
   $rest     = implode ( ', ', array_slice ( $terms, 8 ) );
   $answered = ( isset ( $guess ) and is_string ( $guess ) and trim ( $guess ) !== '' ) ? 1 : 0;
   $right    = ( $answered and trim ( $guess ) === (string) $next ) ? 1 : 0;
-  $oeis     = seqFunOeis ( $terms );
+  $oeis     = seqFunOeis ( $terms, $type );
   $oeis     = $oeis ? sprintf ( 'A%06d', $oeis ) : '';
 
 ?>

@@ -9,7 +9,8 @@
   //                  random ones left out - the gallery draws each of them
   // seqFunGuessable  the well-known ones the game picks from
   // seqFunTerms      the first terms of a type, as numbers
-  // seqFunOeis       the A-number of the OEIS entry these terms come from, 0 for none
+  // seqFunOeis       the A-number of the OEIS entry these terms - of this type - come from,
+  //                  0 for none
   // seqFunNotes      the terms as notes: MIDI numbers, five octaves up from C2
   // seqFunNoteName   C4, F#3 ... for a MIDI number
   // seqFunWav        the notes as a WAV file in a data: URI, for an <audio> element - the
@@ -58,7 +59,16 @@
   // which leaves 23 out. Keyed by the first twelve terms alone, those answers stood in the
   // kept file for good.
 
-  function seqFunOeis ( $terms ) {
+  // A type whose terms several old entries hold a few terms in is named outright: the even
+  // numbers are A005843 (2n, its one term in front n = 0), where the search took A004275,
+  // which holds 1 among them (0, 1, 2, 4, 6, ...), the lowest of the entries that agree.
+
+  function seqFunOeis ( $terms, $type = '' ) {
+
+    $named = [ 'even' => 5843 ];
+
+    if ( isset ( $named [$type] ) )
+      return $named [$type];
 
     $terms = array_values ( $terms );
     $first = array_slice ( $terms, 0, 12 );

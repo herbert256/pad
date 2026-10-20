@@ -15,7 +15,7 @@
     $type = 'recaman';
 
   $terms = seqFunTerms ( $type, 32 );
-  $oeis  = seqFunOeis ( $terms );
+  $oeis  = seqFunOeis ( $terms, $type );
   $oeis  = $oeis ? sprintf ( 'A%06d', $oeis ) : '';
   $list  = implode ( ', ', $terms );
   $notes = implode ( ' ', array_map ( 'seqFunNoteName', seqFunNotes ( $terms ) ) );
