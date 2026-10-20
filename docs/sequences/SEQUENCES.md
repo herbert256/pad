@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (80)
+## Sequence Types (83)
 
 ### Mathematical Sequences
 
@@ -129,6 +129,18 @@ the listing starts differs.
 - `cullen` - Cullen numbers, n*2^n+1 (3, 9, 25, 65, 161, ...)
 - `xpadovan` - Padovan sequence (1, 1, 1, 2, 2, 3, 4, 5, ...)
 - `caterer` - Lazy caterer's sequence (2, 4, 7, 11, 16, 22, ...)
+
+### Number Theory
+
+The terms of `totient`, `divisors` and `sigma` are a function of the position, from n = 1;
+their membership tests - `{keep totient}` and the rest - ask whether some n gives the value,
+which for `totient` and `sigma` is searched among the divisors of the value: the n can stand
+far past the value itself. The prime factors come from trial division and, past 10,000,
+Pollard's rho through gmp, so a number of 19 digits is factored in well under a second.
+
+- `totient` - Euler's totient, how many numbers up to n share no factor with it (1, 1, 2, 2, 4, 2, 6, 4, ...)
+- `divisors` - The number of divisors of n (1, 2, 2, 3, 2, 4, 2, 4, 3, ...)
+- `sigma` - The sum of the divisors of n (1, 3, 4, 7, 6, 12, 8, 15, 13, ...)
 
 ### Arithmetic Operations
 
