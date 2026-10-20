@@ -132,7 +132,7 @@
 
   function pqSeq ( $seq  ) {
 
-    if ( is_string ( $seq ) and preg_match ( '/^[A-Za-z][A-Za-z0-9]*$/', $seq ) and padFileExists ( PT . $seq ) )
+    if ( is_string ( $seq ) and preg_match ( '/^[A-Za-z][A-Za-z0-9]*$/', $seq ) and isset ( pqNames ( PT ) [$seq] ) )
       return TRUE;
     else
       return FALSE;
@@ -262,9 +262,24 @@
 
   }
 
+  // The names in a directory of the subsystem - the types in PT, the actions in PA - as they
+  // are written on disk, read once a request. A type or an action is named exactly: asked of
+  // the file system, a case-insensitive one - macOS, Windows - took {sequence Prime} for the
+  // prime type, included types/Prime/bool.php after types/prime/bool.php and ended the request
+  // on "Cannot redeclare function pqBoolPrime()", and sequence:Fibonacci(8) answered 13 where
+  // a Linux server says there is no such type.
+
+  function pqNames ( $dir ) {
+
+    static $names = [];
+
+    return $names [$dir] ??= array_flip ( array_diff ( scandir ( $dir ) ?: [], [ '.', '..' ] ) );
+
+  }
+
   function pqAction ( $action  ) {
 
-    if ( $action and padFileExists ( PA . "$action.php" ) )
+    if ( is_string ( $action ) and isset ( pqNames ( PA ) ["$action.php"] ) )
       return TRUE;
     else
       return FALSE;

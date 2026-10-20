@@ -84,8 +84,8 @@
     elseif ( padDataFileName    ( $item                          ) ) return 'local';
     elseif ( padScriptCheck     ( $item                          ) ) return 'script';
     elseif ( padPhpAllowed      ( $item                          ) ) return 'php';
-    elseif ( padFileExists      ( PT . $item                     ) ) return 'sequence';
-    elseif ( padFileExists      ( PA . "$item.php" ) ) return 'action';
+    elseif ( pqSeq              ( $item                          ) ) return 'sequence';
+    elseif ( pqAction           ( $item                          ) ) return 'action';
 
     return FALSE;
 
@@ -149,8 +149,8 @@
     elseif ( padDataFileName    ( $item                          ) and $type == 'local'    ) return $type;
     elseif ( padScriptCheck     ( $item                          ) and $type == 'script'   ) return $type;
     elseif ( function_exists    ( strstr ( "$item(", '(', TRUE ) ) and $type == 'php'      ) return $type;
-    elseif ( padFileExists      ( PT . $item                     ) and $type == 'sequence' ) return $type;
-    elseif ( padFileExists      ( PA . "$item.php"               ) and $type == 'action'   ) return $type;
+    elseif ( pqSeq              ( $item                          ) and $type == 'sequence' ) return $type;
+    elseif ( pqAction           ( $item                          ) and $type == 'action'   ) return $type;
     elseif ( padTypeFunction    ( $item, 0                       ) and $type == 'function' ) return $type;
 
     return FALSE;
@@ -183,23 +183,23 @@
     if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
       return FALSE;
 
-    if ( $type == 'action' and padFileExists ( PA . "$item.php" )                           ) return 'action';
-    if ( $item == 'action' and padFileExists ( PA . "$type.php" )                           ) return 'action';
+    if ( $type == 'action' and pqAction ( $item )                           ) return 'action';
+    if ( $item == 'action' and pqAction ( $type )                           ) return 'action';
 
-    if ( isset ( $pqStore [$type] ) and padFileExists ( PA . "$item.php")                   ) return 'action';
-    if ( isset ( $pqStore [$item] ) and padFileExists ( PA . "$type.php")                   ) return 'action';
+    if ( isset ( $pqStore [$type] ) and pqAction ( $item )                   ) return 'action';
+    if ( isset ( $pqStore [$item] ) and pqAction ( $type )                   ) return 'action';
 
-    if ( isset ( $pqStore [$type] ) and padFileExists ( PT . "$item")                       ) return 'make';
-    if ( isset ( $pqStore [$item] ) and padFileExists ( PT . "$type")                       ) return 'make';
+    if ( isset ( $pqStore [$type] ) and pqSeq ( $item )                       ) return 'make';
+    if ( isset ( $pqStore [$item] ) and pqSeq ( $type )                       ) return 'make';
 
     if ( isset ( $pqStore [$type] ) and file_exists ( PQ . "start/types/$item.php")       ) return $item;
     if ( isset ( $pqStore [$item] ) and file_exists ( PQ . "start/types/$type.php")       ) return $type;
 
-    if ( padFileExists ( PT . "$item" )    and file_exists ( PQ . "start/types/$type.php")  ) return $type;
-    if ( padFileExists ( PT . "$type" )    and file_exists ( PQ . "start/types/$item.php")  ) return $item;
+    if ( pqSeq ( $item )    and file_exists ( PQ . "start/types/$type.php")  ) return $type;
+    if ( pqSeq ( $type )    and file_exists ( PQ . "start/types/$item.php")  ) return $item;
 
-    if ( padFileExists ( PA . "$item.php" ) and file_exists ( PQ . "start/types/$type.php") ) return $type;
-    if ( padFileExists ( PA . "$type.php" ) and file_exists ( PQ . "start/types/$item.php") ) return $item;
+    if ( pqAction ( $item ) and file_exists ( PQ . "start/types/$type.php") ) return $type;
+    if ( pqAction ( $type ) and file_exists ( PQ . "start/types/$item.php") ) return $item;
 
     return FALSE;
 

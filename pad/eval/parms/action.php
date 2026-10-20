@@ -10,7 +10,7 @@
   // {action:reverse} worked as a tag while the expression form ended the request on a missing
   // include.
 
-  if ( ! file_exists ( PA . "$name.php" ) ) {
+  if ( ! pqAction ( $name ) ) {
 
     global $padCheckSyntax;
 

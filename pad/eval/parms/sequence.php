@@ -14,7 +14,7 @@
   // nothing returns 1 from include - so sequence:nosuchtype(3) answered 1, which is a number a
   // sequence could plausibly have produced.
 
-  if ( file_exists ( PAD . "sequence/actions/types/$name.php" ) ) {
+  if ( pqAction ( $name ) ) {
 
     $pqSetAction = $name;
     $pqSetParms  = $parm;
@@ -23,7 +23,7 @@
 
   }
 
-  if ( file_exists ( PAD . "sequence/types/$name" ) ) {
+  if ( pqSeq ( $name ) ) {
 
     $pqSetAction = $name;
     $pqSetParms  = $parm;
