@@ -10,8 +10,15 @@
   if ( ! pqBoolWhole ( $pqLoop ) )
     return FALSE;
 
-  $pqTmp = include PT . "$pqSeq/build.php";
+  // The list is made once per sequence and parameter, under the key build/check.php keeps
+  // its index under, pqListKey (): made for every candidate, the list type filtered the whole
+  // of a list=pull:b for each value a make play was handed, with the square of its length.
 
-  return ( isset ( $pqTmp [$pqLoop-1]) ) ? $pqTmp [$pqLoop-1] : FALSE;
+  $pqPlayKey = pqListKey ( 'build', $pqSeq, $pqParm, $pqInc, $padParm ?? '' );
+
+  if ( ! isset ( $padSeqPlayList [$pqPlayKey] ) )
+    $padSeqPlayList [$pqPlayKey] = include PT . "$pqSeq/build.php";
+
+  return ( isset ( $padSeqPlayList [$pqPlayKey] [$pqLoop-1]) ) ? $padSeqPlayList [$pqPlayKey] [$pqLoop-1] : FALSE;
 
 ?>

@@ -48,12 +48,11 @@
 
   // A list a type returns whole is made from its parameter - list and range, oeis by its
   // A-number - and a range also from the increment and the tag's own first parameter, so
-  // the index is kept per all of those.
+  // the index is kept per all of those, under the key pqListKey () keeps for them.
 
   if ( $pqCheckKind == 'fixed' or $pqCheckKind == 'build' ) {
 
-    $pqCheckKey = $pqCheckKind . '|' . $pqSeq . '|' . pqCheckParm ( $pqParm ) . '|' . pqCheckParm ( $pqInc )
-                . '|' . pqCheckParm ( $padParm ?? '' );
+    $pqCheckKey = pqListKey ( $pqCheckKind, $pqSeq, $pqParm, $pqInc, $padParm ?? '' );
 
     if ( ! isset ( $padSeqCheckIndex [$pqCheckKey] ) )
       $padSeqCheckIndex [$pqCheckKey] = pqIndex ( include PT . "$pqSeq/$pqCheckKind.php" );

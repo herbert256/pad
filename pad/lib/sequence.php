@@ -730,6 +730,33 @@
 
   }
 
+  // The key of the list a type returns whole - its fixed.php or build.php - made from its
+  // parameter, the increment and the tag's own first parameter, as build/check.php and the
+  // plays keep it. Kept for the last ones asked, which are compared by identity, at once for
+  // the same list: made for every candidate, the list of list=pull:b was serialized into the
+  // key each time, and a keep over its 10,000 values took 1.7 seconds.
+
+  function pqListKey ( $kind, $seq, $parm, $inc, $first ) {
+
+    static $last = [];
+
+    $for = [ $kind, $seq, $parm, $inc, $first ];
+
+    foreach ( $last as [ $was, $key ] )
+      if ( $was === $for )
+        return $key;
+
+    $key = "$kind|$seq|" . pqCheckParm ( $parm ) . '|' . pqCheckParm ( $inc ) . '|' . pqCheckParm ( $first );
+
+    $last [] = [ $for, $key ];
+
+    if ( count ( $last ) > 8 )
+      array_shift ( $last );
+
+    return $key;
+
+  }
+
   // A float -0 made 0, any other number as it is - what x + 0 did for the arithmetic of a
   // sequence type, until PHP's optimizer, sure of a float, took x + 0 for x and dropped it:
   // under OPcache without Xdebug {sequence modulo=3, from=-3} printed -0 again.
