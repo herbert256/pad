@@ -15,6 +15,12 @@
   $pqParms      = [];
   $pqFirst      = pqActionArray ( $pqSetParms );
 
+  // A number is a value to act on, a list of one: no store is named by a number, and 5 |
+  // sequence:sum ended on "there is no stored sequence named '5'".
+
+  if ( is_int ( $pqFirst ) or is_float ( $pqFirst ) or ( is_string ( $pqFirst ) and is_numeric ( $pqFirst ) ) )
+    $pqFirst = [ $pqFirst ];
+
    if ( is_array ( $pqFirst )  ) {
 
     // The values acted on are values: a list among them ended the request on "Array to

@@ -19,11 +19,19 @@
   // piped value was dropped and the call made over nothing - 0 for both.
 
   if ( ! $count and $value !== NULL and $value !== '' ) {
-    $parm  = [ $value ];
-    $count = 1;
+    $parm   = [ $value ];
+    $count  = 1;
+    $pqPiped = TRUE;
   }
 
   if ( pqAction ( $name ) ) {
+
+    // A single value piped into an action that is no list and names no store has nothing to
+    // act on and passes through, as action: lets it: 'z' | sequence:reverse ended on "there is
+    // no stored sequence named 'z'", and 5 | sequence:sum on the same for '5'.
+
+    if ( ( $pqPiped ?? FALSE ) and ! pqActionPiped ( $value ) )
+      return $value;
 
     $pqSetAction = $name;
     $pqSetParms  = $parm;

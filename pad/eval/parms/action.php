@@ -18,9 +18,18 @@
 
   }
 
-  // The first argument is what the action runs over, so with no arguments at all there is
-  // nothing to act on and the piped value passes through untouched. This used to answer ''
-  // - swallowing its input, which is the one thing a pipe must never do to a value.
+  // The first argument is what the action runs over. A value piped in is that argument when
+  // the call is written without one, as eval/parms/sequence.php takes it: [3,1,2] |
+  // action:sort passed the list through unsorted while [3,1,2] | sequence:sort sorted it, and
+  // so is the name of a store. Another single value - 'z' | action:reverse - has nothing to
+  // act on, and passes through untouched, as it does with nothing piped and no arguments: it
+  // used to answer '', swallowing its input, which is the one thing a pipe must never do to
+  // a value.
+
+  if ( ! $count and pqActionPiped ( $value ) ) {
+    $parm  = [ $value ];
+    $count = 1;
+  }
 
   if ( ! $count )
     return $value;

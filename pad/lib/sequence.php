@@ -356,6 +356,15 @@
   // message of another text every request, and a list of lists ended the request on "Array to
   // string conversion". NULL, after the error, when the list is no parameter of the action.
 
+  // Whether a value piped into an action is something to act on: a list, or the name of a
+  // store.
+
+  function pqActionPiped ( $value ) {
+
+    return is_array ( $value ) or ( is_string ( $value ) and isset ( $GLOBALS ['pqStore'] [$value] ) );
+
+  }
+
   function pqActionList ( $action, $list ) {
 
     foreach ( $list as $one )
