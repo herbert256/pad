@@ -65,16 +65,24 @@
   $pqPageSkip = 0;
   $pqPageSize = NULL;
 
+  // A page past the integer range is a page past the end, as page=1e30 written out is, and
+  // one below it the first page: cast, page=$n with $n 10 ** 30 ended the page on "The float
+  // 1.0E+30 is not representable as an int". The terms before the page are counted in a float
+  // and kept below the range for the same reason.
+
   if ( $pqPage !== '' ) {
+
+    if ( is_numeric ( $pqPage ) and ( $pqPage >= PHP_INT_MAX or $pqPage <= PHP_INT_MIN ) )
+      $pqPage = ( $pqPage > 0 ) ? PHP_INT_MAX : 1;
 
     $pqPage     = is_scalar ( $pqPage ) ? max ( 1, (int) $pqPage ) : 1;
     $pqPageSize = $pqRowsGiven ? $pqRows : 10;
-    $pqPageSkip = (int) min ( ( $pqPage - 1 ) * (float) $pqPageSize, PHP_INT_MAX );
+    $pqPageSkip = ( ( $pqPage - 1 ) * (float) $pqPageSize >= PHP_INT_MAX ) ? PHP_INT_MAX : ( $pqPage - 1 ) * $pqPageSize;
 
     if ( $pqPull or in_array ( $pqBuild, [ 'build', 'given', 'fixed' ] ) )
       $pqRows = PHP_INT_MAX;
     else
-      $pqRows = (int) min ( ( $pqPage + 1 ) * (float) $pqPageSize, PHP_INT_MAX );
+      $pqRows = ( ( $pqPage + 1 ) * (float) $pqPageSize >= PHP_INT_MAX ) ? PHP_INT_MAX : ( $pqPage + 1 ) * $pqPageSize;
 
   }
 

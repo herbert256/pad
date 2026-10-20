@@ -9,6 +9,10 @@
   // the tag, as the page option books a data tag's (padPagerKeep in lib/pager.php), under the
   // names the rows answer to - the name= given, else sequence, the name of the type or the
   // store and the tag's own - and not for {resume}, which shows nothing.
+  //
+  // The size booked is the one the run paged with, $pqPageSize, and the page the one it showed:
+  // rows= as written was booked, 10 for {prime 5, page=2}, whose page of five had a pager
+  // without a next page, and PHP's cast of a rows= past the integer range ended the page.
 
   if ( $pqPageSize === NULL )
     return;
@@ -36,7 +40,7 @@
   foreach ( array_unique ( $pqPageNames ) as $pqPageOne )
     if ( is_scalar ( $pqPageOne ) and (string) $pqPageOne !== '' ) {
       $padName [$pad] = $pqPageOne;
-      padPagerKeep ( $pqPageTotal );
+      padPagerKeep ( $pqPageTotal, $pqPageSize, $pqPage );
     }
 
   $padName [$pad] = $pqPageName;

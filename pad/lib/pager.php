@@ -10,7 +10,11 @@
   //                is not in the rows: its count statement is booked instead and run only
   //                when a pager asks. The request value the links set is the one the page
   //                option was written with - page=$pg makes them set pg - and 'page'
-  //                otherwise.
+  //                otherwise. A sequence, which pages its terms itself (sequence/exits/
+  //                page.php), hands over the page and the page's size it used: the size
+  //                of {prime 5, page=2} is its count, 5, where rows= read 10, and a rows=
+  //                past the integer range, which the run took as every term, ended the
+  //                page on PHP's cast of it.
   // padPagerBook   books one level's page, and keeps it with every fragment-cache section
   //                rendering round it, so a hit books it again
   // padPagerItems  the links of one booked level as rows: previous, the numbers - the first,
@@ -27,7 +31,7 @@
   // Every app wrote its own previous and next links from the page option's numbers; the
   // handling step knew the total and the current page and kept them to itself.
 
-  function padPagerKeep ( $total ) {
+  function padPagerKeep ( $total, $rows = NULL, $page = NULL ) {
 
     global $pad, $padPrm, $padParms, $padName, $padDone, $padPagerCount, $padPagerRows, $padFragment;
 
@@ -47,8 +51,8 @@
       return;
 
     padPagerBook ( $padName [$pad], [
-      'page'  => max ( 1, (int) ( $padPrm [$pad] ['page'] ?? 1 ) ),
-      'rows'  => $limit ? (int) ( $padPagerRows [$pad] ?? 10 ) : (int) ( $padPrm [$pad] ['rows'] ?? 10 ),
+      'page'  => $page ?? max ( 1, (int) ( $padPrm [$pad] ['page'] ?? 1 ) ),
+      'rows'  => $rows ?? ( $limit ? (int) ( $padPagerRows [$pad] ?? 10 ) : (int) ( $padPrm [$pad] ['rows'] ?? 10 ) ),
       'total' => $limit ? NULL : $total,
       'count' => $limit ? ( $padPagerCount [$pad] ?? '' ) : '',
       'query' => $query
