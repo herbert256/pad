@@ -25,6 +25,15 @@
     $most = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
     $made = &pqRecamanMade ();
 
+    // The term at position n is n steps of 1, 2, ..., n from the 0 the sequence starts at, so
+    // it is at most n(n+1)/2: a value past what the last of the $padSeqMaxTries positions a run
+    // walks can be is no term it reaches, and is answered so at once. Made toward it, the test
+    // walked the whole million terms first, and {sequence '1000000000000;5', flag, recaman}
+    // took 22 ms where it takes 1.
+
+    if ( ! isset ( $made ['seen'] [$x] ) and $x > $most * ( $most + 1 ) / 2 )
+      return FALSE;
+
     while ( ! isset ( $made ['seen'] [$x] ) and count ( $made ['terms'] ) < $most )
       pqRecamanUpTo ( min ( $most, max ( 1024, 2 * count ( $made ['terms'] ) ) ) );
 
