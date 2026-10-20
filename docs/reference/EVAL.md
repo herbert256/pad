@@ -264,12 +264,13 @@ A call goes to `padEvalCall ( $kind, $name, $value, $parm )`, which includes
 An expression that is only the name of a built-in pipe function goes to `eval/fast.php`,
 which calls the function through `eval/parms/pad.php`. A number, a quoted string with no
 quote or backslash in it, and a plain `$field` are answered in `eval/eval.php` before any
-scanning - outside a pipe body, and not while the trace records.
+scanning - outside a pipe body. None of them is taken while the trace records.
 
 ## Tracing
 
-With `$padEvalTrace` on, `padEvalTrace` records the tokens and the tree of each evaluation
-in `$_eval`.
+With `$padEvalTrace` on, `padEvalTrace` records the expression, the tokens and the tree of
+the last evaluation in `$_eval` - begun anew by each one, so an expression the validation
+refused leaves its text alone there.
 
 ## Example
 

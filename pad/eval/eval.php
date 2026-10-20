@@ -8,10 +8,22 @@
   // tree and the tree evaluated, segment by segment, each segment taking the previous one's
   // result as its input. Returns the final value.
 
+  // The trace keeps the stages of the evaluation, in globals padEvalTrace fills - begun
+  // here with the expression, so one the validation refuses is no trace of the one before
+  // it. The fast paths are left aside while it records.
+
+  global $padEvalTrace;
+
+  if ( $padEvalTrace ) {
+    $GLOBALS ['_eval']      = [];
+    $GLOBALS ['_eval_last'] = [];
+    padEvalTrace ( 'expression', $eval );
+  }
+
   // Only a plain name takes the fast path: the expression text went into the include path
   // as it was, so ../ reached any .php file under the engine.
 
-  if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" ) )
+  if ( ! $padEvalTrace and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 
   // The commonest expressions - a number, a string with no quote or backslash in it, a plain
@@ -20,7 +32,7 @@
   // padEvalLeaves gives it. Not in a pipe body, where a signed number alone is named as an
   // operator missing its space, nor while the trace records the stages.
 
-  if ( ! $pipe and is_string ( $eval ) and ! ( $GLOBALS ['padEvalTrace'] ?? FALSE ) ) {
+  if ( ! $pipe and is_string ( $eval ) and ! $padEvalTrace ) {
 
     $padEvalFirst = $eval [0] ?? '';
 
@@ -48,15 +60,6 @@
 
   if ( $padEvalTokens === FALSE )
     return '';
-
-  // The trace keeps the stages of the last evaluation, in globals padEvalTrace fills.
-
-  global $padEvalTrace;
-
-  if ( $padEvalTrace ) {
-    $GLOBALS ['_eval']      = [];
-    $GLOBALS ['_eval_last'] = [];
-  }
 
   padEvalTrace ( 'tokens', $padEvalTokens );
 
