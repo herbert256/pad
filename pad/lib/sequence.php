@@ -183,8 +183,8 @@
   // The value at position $n of a type whose terms are the values its bool.php test accepts -
   // what build='function' gives such a type, the position build. The values are made by the
   // type's own build, walked from 1, and kept for the request per type and parameter; asked
-  // past what was made, the walk is made again for twice as many - from the position asked
-  // for, so a walk to the ceiling is made only for a position past the last term there is.
+  // past what was made, the walk is extended as pqTermsCount () has it - so a walk to the
+  // ceiling is made only for a position past the last term there is.
   // A position the walk cannot
   // reach in the candidates and the time a run has answers a float past the integer range,
   // which ends the run as an overflowed term does - strong has four terms, and asked for a
@@ -217,13 +217,44 @@
 
     }
 
-    if ( ! isset ( $made [$key] ) or ( count ( $made [$key] [1] ) < $n and ! $made [$key] [0] ) ) {
-      $want         = max ( $n, 2 * count ( $made [$key] [1] ?? [] ) );
-      $terms        = pqTerms ( $seq, $parm, [ 'rows' => $want, 'try' => $GLOBALS ['padSeqMaxTries'] ?? 1000000 ] );
-      $made [$key]  = [ count ( $terms ) < $want, $terms ];
+    $made [$key] = pqTermsCount ( $seq, $parm, $n, $made [$key] ?? [ 'terms' => [], 'end' => '', 'next' => NULL, 'tries' => 0 ] );
+
+    return $made [$key] ['terms'] [$n - 1] ?? (float) PHP_INT_MAX * 2;
+
+  }
+
+  // The terms of a type as far as the $n-th, asked by count with the ceiling of candidates -
+  // what pqPosition () and pqNth () look a position up in - from what was made, $made as
+  // pqTermsMade () holds it, extended when $n is past its terms and its walk did not come up
+  // short. A type built by bool walks the values from 1 and its terms are the ones its test
+  // accepts, so its walk goes on from the candidate after the last term for the terms missing
+  // only, with what is left of the candidates, as sequence/sequence.php does for a lookup; any
+  // other walk is made again for twice as many. Made again from 1 for every doubling, each walk
+  // with the five seconds of its own, {sequence '1..100', make, amicable, build='order'} took
+  // seven seconds, past the run's five, and its count was where the clock stopped the last.
+
+  function pqTermsCount ( $seq, $parm, $n, $made ) {
+
+    if ( count ( $made ['terms'] ) >= $n or $made ['end'] !== '' )
+      return $made;
+
+    $most = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+
+    if ( $made ['next'] !== NULL ) {
+      $want  = $n - count ( $made ['terms'] );
+      $left  = $most - $made ['tries'];
+      $terms = ( $left > 0 ) ? pqTerms ( $seq, $parm, [ 'rows' => $want, 'from' => $made ['next'], 'try' => $left ] ) : [];
+      $all   = array_merge ( $made ['terms'], $terms );
+    } else {
+      $want  = max ( $n, 2 * count ( $made ['terms'] ) );
+      $terms = $all = pqTerms ( $seq, $parm, [ 'rows' => $want, 'try' => $most ] );
     }
 
-    return $made [$key] [1] [$n - 1] ?? (float) PHP_INT_MAX * 2;
+    $short = ( count ( $terms ) < $want );
+    $last  = end ( $all );
+    $walk  = ( ! $short and is_int ( $last ) and pqBuild ( $seq, 'loop' ) == 'bool' );
+
+    return [ 'terms' => $all, 'end' => $short ? 'short' : '', 'next' => $walk ? $last + 1 : NULL, 'tries' => $walk ? $last : 0 ];
 
   }
 
@@ -368,8 +399,8 @@
   }
 
   // The term at position $n of a type built by position - a play asks an order type for it -
-  // from the terms made for the request under pqTermsKey (), made again for twice as many
-  // when $n is past them; FALSE when the type has no term there. A type whose terms can come
+  // from the terms made for the request under pqTermsKey (), extended by pqTermsCount () when
+  // $n is past them; FALSE when the type has no term there. A type whose terms can come
   // out otherwise another time is made afresh each time, as before.
   //
   // The terms are asked by count, with the ceiling of candidates, as pqPosition () asks them:
@@ -381,12 +412,10 @@
   function pqNth ( $seq, $parm, $n ) {
 
     $key  = pqTermsKey ( $seq, 'nth', $parm );
-    $made = ( $key !== '' ) ? pqTermsMade ( $key ) : [ 'terms' => [], 'end' => '' ];
+    $made = pqTermsMade ( $key );
 
     if ( count ( $made ['terms'] ) < $n and $made ['end'] === '' ) {
-      $want  = max ( $n, 2 * count ( $made ['terms'] ) );
-      $terms = pqTerms ( $seq, $parm, [ 'rows' => $want, 'try' => $GLOBALS ['padSeqMaxTries'] ?? 1000000 ] );
-      $made  = [ 'terms' => $terms, 'end' => ( count ( $terms ) < $want ) ? 'short' : '', 'next' => NULL, 'tries' => 0 ];
+      $made = pqTermsCount ( $seq, $parm, $n, $made );
       if ( $key !== '' )
         pqTermsMade ( $key, $made );
     }
