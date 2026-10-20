@@ -8,10 +8,12 @@
 
   // A 0 is a parameter like any other - {loop 0} - so the test is for nothing given.
 
-  if ( (string) $pqFindParm !== '' and $pqSeq and ! $pqAction ) {
-    $pqParm     = $pqFindParm;
-    $pqFindParm = '';
-  }
+  if ( (string) $pqFindParm !== '' and $pqSeq and ! $pqAction )
+    if ( padFileExists ( PT . "$pqSeq/flags/parm" ) ) {
+      $pqParm     = $pqFindParm;
+      $pqFindParm = '';
+    } else
+      include PQ . 'inits/find/parm/count.php';
 
   if ( (string) $pqFindParm !== '' and ! $pqSeq and $pqAction ) {
     $pqActionParm = $pqFindParm;

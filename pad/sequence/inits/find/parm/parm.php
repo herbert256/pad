@@ -13,7 +13,7 @@
       if ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;
   elseif ( $pqAction and padFileExists ( PQ . "actions/double/$pqAction") ) $pqActionParm = $pqFindParm;
   elseif ( $pqAction and padFileExists ( PQ . "actions/parm/$pqAction")   ) $pqActionParm = $pqFindParm;
-  elseif ( $pqSeq                                                         ) $pqParm       = $pqFindParm;
+  elseif ( $pqSeq                                                         ) include PQ . 'inits/find/parm/none.php';
   elseif ( $pqAction                                                      ) $pqActionParm = $pqFindParm;
 
 ?>
