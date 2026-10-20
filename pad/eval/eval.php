@@ -26,7 +26,7 @@
   // and the rest of the language ran the application's, which comes first (padTypeFunction).
   // An error page rendered before the application is set up has none to look for.
 
-  if ( ! $padEvalTrace and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" )
+  if ( ! $padEvalTrace and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFunctionBuiltIn ( $eval )
        and ! ( defined ( 'APP2' ) and padAppFunctionCheck ( $eval ) ) )
     return include PAD . 'eval/fast.php';
 

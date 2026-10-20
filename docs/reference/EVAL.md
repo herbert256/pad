@@ -104,8 +104,11 @@ primary     a literal, $field, @, ( arguments ), [ list ], a call, a lookup
 
 What a bare word is depends on where the expression stands: `padEvalWords` asks
 `padTypeFunction` (or reads the `type:` prefix written) whether it names a function, a tag,
-a field, a data store ... A word that names nothing is a constant (`padConstant`). A tree is
-kept per text, per pipe body and per what its words name.
+a field, a data store ... A word that names nothing is a constant (`padConstant`). A
+built-in function is its file's name in its own case - `upper`, `afterLast` - also where the
+file system ignores case (`padFunctionBuiltIn`): `Upper` is no pipe function, and `DATE` is
+PHP's. A tree is kept per text, per pipe body, per fallback after it and per what its words
+name.
 
 ### Binding power
 

@@ -13,7 +13,7 @@
   // on a PHP warning in either mode. Named under the strict check, empty in the lenient
   // walk, as an unknown pipe function is.
 
-  if ( ! padFileExists ( PAD . "functions/$name.php" ) ) {
+  if ( ! padFunctionBuiltIn ( $name ) ) {
 
     global $padCheckSyntax;
 

@@ -174,7 +174,7 @@
     foreach ( $result as $token )
       if ( $token [1] == 'other' and ! in_array ( strtoupper ( $token [0] ), padEval_txt ) and ! isset ( padEval_alt [ $token [0] ] )
            and ! str_contains ( $token [0], ':' )
-           and ! ( preg_match ( '/^[a-zA-Z][a-zA-Z0-9_]*$/D', $token [0] ) and padFileExists ( PAD . "functions/{$token[0]}.php" ) ) )
+           and ! ( preg_match ( '/^[a-zA-Z][a-zA-Z0-9_]*$/D', $token [0] ) and padFunctionBuiltIn ( $token [0] ) ) )
         return FALSE;
 
     return TRUE;
