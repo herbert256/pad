@@ -6,7 +6,7 @@
   // them compiles none of it.
   //
   // pqFactors      the prime factors of a whole number from 1 up, as [ prime => exponent ]
-  // pqDivisorList  every divisor of a whole number, rising
+  // pqDivisorList  every divisor of a whole number, rising - from its factors when they are given
   // pqSigmaOf      the sum of the divisors of a whole number - past the integer range the
   //                float it overflows to
   // pqAbundance    the sign of that sum less 2n - 1 abundant, 0 perfect, -1 deficient
@@ -85,11 +85,11 @@
 
   }
 
-  function pqDivisorList ( $n ) {
+  function pqDivisorList ( $n, $factors = NULL ) {
 
     $divisors = [ 1 ];
 
-    foreach ( pqFactors ( $n ) as $p => $e ) {
+    foreach ( $factors ?? pqFactors ( $n ) as $p => $e ) {
 
       $more = [];
 

@@ -8,6 +8,13 @@
   // terms of the first positions could not answer it: the n of a totient can stand far past
   // the value itself.
   //
+  // What is left of x at a step of the search is a totient again, so a part that is odd and
+  // more than 1 is none, and the step ends there. It walked the divisors of x for that part as
+  // for any other, and the search meets many - a value of 19 digits has some twenty thousand
+  // such divisors and the search twenty thousand steps, so totient membership of
+  // 8433817304974261200 took more than a second, and a flag over four such values ran into the
+  // time a run has after the second.
+  //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 
   include_once PQ . '_lib/factors.php';
@@ -38,6 +45,9 @@
 
     if ( $m == 1 )
       return TRUE;
+
+    if ( $m % 2 )
+      return FALSE;
 
     foreach ( $steps as $d ) {
 
