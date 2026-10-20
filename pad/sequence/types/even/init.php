@@ -25,7 +25,9 @@
 
   // fmod, as from= doubled may have left the integer range - % ended the request on the float.
 
-  if ( fmod ( $pqFrom, 2 ) )
+  // An integer's parity by %: fmod reads an integer past 2^53 as the float next to it.
+
+  if ( is_int ( $pqFrom ) ? $pqFrom % 2 != 0 : fmod ( $pqFrom, 2 ) )
     $pqFrom++;
 
 ?>

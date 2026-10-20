@@ -13,7 +13,8 @@
       return FALSE;
 
 
-    return 2 * $n -1;
+    // n + (n - 1), whole while the term fits - 2n is past the range for the term PHP_INT_MAX.
+    return (int) $n + ( (int) $n - 1 );
 
   }
 

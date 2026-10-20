@@ -26,7 +26,7 @@
     // range: answered as such it ends the build, where n + bits(n) became a float that decbin()
     // ended the request on.
 
-    if ( $n > PHP_INT_MAX - 128 )
+    if ( $n > PHP_INT_MAX - 63 )
       return (float) PHP_INT_MAX * 2;
 
     return $n + $bits ( $n + $bits ( $n ) );

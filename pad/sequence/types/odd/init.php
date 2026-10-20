@@ -16,14 +16,20 @@
   if ( $pqInc >= 1 )
     $pqInc = 2 * $pqInc;
 
-  $pqFrom = $pqFrom * 2 - 1;
+  // 2n - 1 as n + (n - 1), whole while the term fits: 2n is 2^63, past the range, for the
+  // position whose term is PHP_INT_MAX itself, and the run made none.
+
+  $pqFrom = pqBoolWhole ( $pqFrom ) ? (int) $pqFrom + ( (int) $pqFrom - 1 ) : $pqFrom * 2 - 1;
 
   if ( $pqTo != PHP_INT_MAX )
-    $pqTo = $pqTo * 2 - 1;
+    $pqTo = pqBoolWhole ( $pqTo ) ? (int) $pqTo + ( (int) $pqTo - 1 ) : $pqTo * 2 - 1;
 
   // fmod, as from= doubled may have left the integer range - % ended the request on the float.
 
-  if ( ! fmod ( $pqFrom, 2 ) )
+  // An integer's parity by %: fmod reads an integer past 2^53 as the float next to it, and
+  // from=4503599627370497 - the odd number 9007199254740993 - was taken for even and skipped.
+
+  if ( is_int ( $pqFrom ) ? $pqFrom % 2 == 0 : ! fmod ( $pqFrom, 2 ) )
     $pqFrom++;
 
 ?>
