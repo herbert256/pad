@@ -301,7 +301,11 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
   split reports it first: "Closing ) without an opening ("
 - a pipe function that does not exist, a word called like a function that names none
 - a comparison or logical operator - or `??` - with nothing on its left or its right, where no
-  pipe value stands in for it; an arithmetic one is not named: `{echo 5 *}` answers 0
+  pipe value stands in for it, at either end of the expression or of a group, an argument or
+  a list item in it - `(1 eq)`, `php:max(1, 2 gt)`; an arithmetic one is not named: `{echo 5
+  *}` answers 0
+- a comma with no argument before it - `php:pow(2,,3)`, `[,1]`; one before the closing
+  bracket is a trailing comma, as in PHP
 - two operators side by side after a value, where no pipe value stands in for the operand
   between them - `$n + * 3`, `$n eq eq 3`; in a pipe the first of the two works on the piped
   value on both sides - `{echo 50 | '"' . . '"'}` is `"5050"`, the regression/common page
@@ -310,7 +314,8 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
 - a word of punctuation alone - `&`, `~`, `^`, `;` - and a `:` with no `?` before it
 - a `=>` outside a `[ ]` list
 - a `not` after a value with no test behind it
-- a pipe operator written without its space - `| +1` for `| + 1`
+- a pipe operator written without its space - `| +1` for `| + 1`, also in brackets: `($n |
+  -1)`
 
 While it runs:
 - "there is no field named '$x'" - a missing field (`padEvalLeaf`), also as `field:x` and

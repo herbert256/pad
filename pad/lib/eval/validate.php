@@ -44,6 +44,7 @@
     $quote   = '';    // the open quote character, '' when outside a string
     $quoteAt = 0;     // where that string opened
     $stack   = [];    // the open ( and [ still waiting to close, each [ char, position ]
+    $before  = '';    // the last character outside a string that is no space
 
     for ( $i = 0; $i < $len; $i++ ) {
 
@@ -59,11 +60,21 @@
 
       }
 
+      if ( ! ctype_space ( $one ) )
+        [ $prior, $before ] = [ $before, $one ];
+
       if ( $one == "'" or $one == '"' ) {
         $quote   = $one;
         $quoteAt = $at;
         continue;
       }
+
+      // A comma with no argument before it - php:pow(2,,3), [,1] - left a hole the scanner
+      // closed: pow(2,,3) was pow(2, 3), 8. A comma before the bracket that closes is PHP's
+      // trailing comma and stands.
+
+      if ( $one == ',' and in_array ( $prior, [ ',', '(', '[' ], TRUE ) )
+        return padEvalValidateError ( "the , at position " . padEvalValidateAt ( $text, $at ) . " has no argument before it", $text );
 
       // A format after a | inside brackets is skipped as a format segment is blanked:
       // ($n | %'*5d) pads with a quote.
@@ -197,10 +208,14 @@
       // arithmetic pipe: {echo $x | +1} replaces the value with the literal +1 where
       // {echo $x | + 1} adds one. It can only be that mistake, so it is named as one. A
       // quoted string is the value the pipe puts in place, whatever it spells: {echo 10 |
-      // '-1'} was named as the missing space.
+      // '-1'} was named as the missing space. Alone is also alone in brackets - ($n | +1),
+      // [$n | +1, 2] - which ended the part there and was +1.
 
-      if ( count ( $tokens ) == 1 and empty ( $tokens [0] ['lit'] ) and preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
-        return padEvalValidateError ( "a pipe operator needs a space before its operand - write '| + 1', not '| " . $tokens [0] [0] . "'", $eval );
+      $alone = ( count ( $tokens ) == 1 or in_array ( $tokens [1] [1], [ 'close', 'a-close' ], TRUE ) or ! empty ( $tokens [1] ['arg'] ) );
+
+      if ( $alone and empty ( $tokens [0] ['lit'] ) and preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
+        return padEvalValidateError ( "a pipe operator needs a space before its operand - write '| " . $tokens [0] [0] [0] . " " . substr ( $tokens [0] [0], 1 )
+                                      . "', not '| " . $tokens [0] [0] . "'", $eval );
 
       if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
 
@@ -324,25 +339,59 @@
 
     // A comparison or logical operator needs a value on both sides. When one is missing the
     // evaluator borrows the pipe value for it, which is the point of {echo $x | + 1} - so
-    // the check is made only where there is no pipe value to borrow: a single-segment
-    // expression that is not itself a pipe body. There a leading or trailing eq, ne, and,
-    // or the rest is a mistake - {if $x eq} - not a shorthand, and is named as one.
+    // the check is made only where there is no pipe value to borrow: an expression with no
+    // | anywhere that is not itself a pipe body. There a leading or trailing eq, ne, and, or
+    // the rest is a mistake - {if $x eq} - not a shorthand, and is named as one: at either
+    // end of the expression, and of each group, argument and list item in it - (1 eq) and
+    // php:max(1, 2 gt) borrowed the empty value and answered what that made.
 
     if ( ! $pipe and count ( $segments ) == 1 and $segments [0] ) {
 
-      $tokens = array_values ( $segments [0] );
-      $first  = $tokens [0];
-      $last   = $tokens [ count ( $tokens ) - 1 ];
+      $ranges = [ [ NULL, NULL ] ];
 
-      // Named as the template wrote it: $x >= named the operator GE.
+      foreach ( $tokens as $token ) {
 
-      if ( padEvalComparison ( $first ) )
-        return padEvalValidateError ( "the operator '" . ( $first [2] ?? $first [0] ) . "' has nothing on its left", $eval );
+        if ( ! empty ( $token ['arg'] ) or $token [1] == 'arrow' or in_array ( $token [1], [ 'close', 'a-close' ], TRUE ) )
+          if ( ! padEvalCheckRange ( array_pop ( $ranges ), $eval ) )
+            return FALSE;
+          elseif ( $token [1] != 'close' and $token [1] != 'a-close' )
+            $ranges [] = [ NULL, NULL ];
 
-      if ( count ( $tokens ) > 1 and padEvalComparison ( $last ) )
-        return padEvalValidateError ( "the operator '" . ( $last [2] ?? $last [0] ) . "' has nothing on its right", $eval );
+        if ( $token [1] == 'arrow' )
+          continue;
+
+        $last = count ( $ranges ) - 1;
+
+        $ranges [$last] [0] ??= $token;
+        $ranges [$last] [1]   = $token;
+
+        if ( in_array ( $token [1], [ 'open', 'a-open' ], TRUE ) )
+          $ranges [] = [ NULL, NULL ];
+
+      }
+
+      if ( ! padEvalCheckRange ( end ( $ranges ), $eval ) )
+        return FALSE;
 
     }
+
+    return TRUE;
+
+  }
+
+  // The first and the last token of a range: neither may be a comparison, a lone one being
+  // named as having nothing on its left. Named as the template wrote it: $x >= named the
+  // operator GE.
+
+  function padEvalCheckRange ( $range, $eval ) {
+
+    [ $first, $last ] = $range;
+
+    if ( $first and padEvalComparison ( $first ) )
+      return padEvalValidateError ( "the operator '" . ( $first [2] ?? $first [0] ) . "' has nothing on its left", $eval );
+
+    if ( $last and $last !== $first and padEvalComparison ( $last ) )
+      return padEvalValidateError ( "the operator '" . ( $last [2] ?? $last [0] ) . "' has nothing on its right", $eval );
 
     return TRUE;
 
