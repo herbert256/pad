@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (111)
+## Sequence Types (122)
 
 ### Mathematical Sequences
 
@@ -66,13 +66,22 @@ sequence to be mistaken for one, so a typo went unnoticed:
 - `catalan` - Catalan numbers (1, 2, 5, 14, 42, 132, ...)
 - `bell` - Bell numbers (1, 2, 5, 15, 52, 203, ...)
 - `perrin` - Perrin numbers (3, 0, 2, 3, 2, 5, ...)
+- `factorial` - Factorials n! (1, 2, 6, 24, 120, 720, ...)
+- `jacobsthal` - Jacobsthal numbers, J(n) = J(n-1) + 2J(n-2) (1, 1, 3, 5, 11, 21, 43, ...)
+- `leonardo` - Leonardo numbers, L(n) = L(n-1) + L(n-2) + 1 (1, 1, 3, 5, 9, 15, 25, ...)
+- `narayana` - Narayana's cows, a(n) = a(n-1) + a(n-3) (1, 1, 1, 2, 3, 4, 6, 9, ...)
+- `motzkin` - Motzkin numbers, the ways to draw chords that do not cross (1, 2, 4, 9, 21, 51, ...)
+- `partition` - The ways to write n as a sum of whole numbers (1, 2, 3, 5, 7, 11, 15, 22, ...)
+- `derangement` - The orders of n things that leave none in its place (0, 1, 2, 9, 44, 265, ...)
 
 Where a sequence is conventionally listed with a leading term for n = 0, PAD starts at
 n = 1 and does not produce it: `lucas` begins at 1 rather than 2, `pell` omits its leading 0,
 `catalan` and `bell` their leading 1, `caterer` its leading 1 and `moserdebruijn` its leading 0,
-and `gould` is shifted the same way. `fibonacci`, `tribonacci`, `perrin` and `recaman` do
-include their n = 0 term. Every value produced is a genuine member either way - only where
-the listing starts differs.
+and `gould` is shifted the same way - as are `factorial`, `jacobsthal`, `motzkin`, `partition`
+and `derangement`, whose n = 0 term stands at position 0, before the first a run makes.
+`fibonacci`, `tribonacci`, `perrin`, `recaman`, `leonardo` and `narayana` do include their
+n = 0 term. Every value produced is a genuine member either way - only where the listing
+starts differs.
 
 ### Prime-Related
 
@@ -141,6 +150,10 @@ the listing starts differs.
 - `repunit` - Repunits, n ones in a row (1, 11, 111, 1111, ...)
 - `xpadovan` - Padovan sequence (1, 1, 1, 2, 2, 3, 4, 5, ...)
 - `caterer` - Lazy caterer's sequence (2, 4, 7, 11, 16, 22, ...)
+- `vanEck` - Van Eck's sequence, how far back the last term was seen before (0, 0, 1, 0, 2, 0, 2, 2, 1, 6, ...)
+- `stern` - Stern's diatomic sequence, a(2n) = a(n) and a(2n+1) = a(n) + a(n+1) (1, 1, 2, 1, 3, 2, 3, 1, ...)
+- `thueMorse` - The Thue-Morse sequence, the parity of the binary ones of n (1, 1, 0, 1, 0, 0, 1, ...)
+- `collatz` - The steps n takes to reach 1 by halving or 3n + 1 (0, 1, 7, 2, 5, 8, 16, ...)
 
 ### Digits
 

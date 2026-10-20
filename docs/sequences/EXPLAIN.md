@@ -4,7 +4,7 @@ This document explains in detail how the PAD sequence generation subsystem works
 
 ## Overview
 
-The sequence subsystem generates mathematical sequences like prime numbers, Fibonacci numbers, triangular numbers, and many more. It supports 111 different sequence types, filtering, transformations, and various output actions.
+The sequence subsystem generates mathematical sequences like prime numbers, Fibonacci numbers, triangular numbers, and many more. It supports 122 different sequence types, filtering, transformations, and various output actions.
 
 ## Entry Point
 
@@ -167,7 +167,7 @@ return TRUE;  // Continue iteration
 
 ## Sequence Types
 
-The 111 sequence types are organized in `types/` with this structure:
+The 122 sequence types are organized in `types/` with this structure:
 
 ```
 types/
@@ -474,12 +474,12 @@ sequence/
 ├── options/             # Option handlers
 │   └── types/           # Option types
 │
-└── types/               # 111 sequence types
+└── types/               # 122 sequence types
     ├── add/
     ├── and/
     ├── antiprime/
     ├── bell/
-    ... (111 types total)
+    ... (122 types total)
 ```
 
 ## Example Usage

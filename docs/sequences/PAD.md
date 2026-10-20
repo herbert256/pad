@@ -34,7 +34,7 @@ The sequence module (internally prefixed with `pq`) enables templates to generat
 
 ### Sequence Types (types/)
 
-111 mathematical and number theory sequences, including:
+122 mathematical and number theory sequences, including:
 
 **Arithmetic Sequences**
 - **add**, **multiply**, **divide**, **subtract**, **modulo** - Basic operations
@@ -56,19 +56,29 @@ The sequence module (internally prefixed with `pq`) enables templates to generat
 - **pell** - Pell numbers
 - **perrin** - Perrin sequence
 - **golomb**, **kolakoski** - Self-describing sequences
+- **factorial**, **partition**, **derangement**, **motzkin** - Counting sequences
+- **jacobsthal**, **leonardo**, **narayana** - Linear recurrences
 
 **Polygonal Numbers**
 - **triangular**, **square**, **pentagonal**, **hexagonal**, **heptagonal**, **octagonal**
 - **decagonal**, **heptadecagonal**, **enneadecagonal**, **icosihenagonal**
 - **gnomonic**, **pronic**
+- **star**, **centeredSquare**, **centeredHexagonal** - Centered numbers
 
 **3D Figurate Numbers**
 - **tetrahedral**, **octahedral**, **caterer**
+- **pentatope** - The fourth dimension
 
 **Other Sequences**
 - **recaman**, **sylvester**, **newmanConway** - Recursive sequences
+- **vanEck**, **stern**, **thueMorse**, **collatz** - Self-referring and binary sequences
 - **mersenne**, **cullen**, **kynea** - Named after mathematicians
+- **woodall**, **thabit**, **fermat**, **repunit**, **primorial** - More named forms
 - **perfect**, **powerful**, **polite**, **harshad**, **kaprekar** - Special properties
+- **totient**, **divisors**, **sigma** - Divisor functions
+- **abundant**, **deficient**, **squarefree**, **smith**, **sphenic**, **carmichael**, **amicable** - Properties of the factors
+- **hamming**, **perfectPower**, **twinPrime**, **sophieGermain**, **safePrime** - Smooth numbers, powers, prime pairs
+- **digitSum**, **digitalRoot**, **reversal**, **narcissistic**, **automorphic**, **evil**, **odious** - Digits and bits
 - **oeis** - Reference OEIS sequences
 
 **Utilities**
