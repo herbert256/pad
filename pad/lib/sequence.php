@@ -756,13 +756,21 @@
 
   }
 
+  // The digits of a whole number in reverse order. They are taken off with intdiv (): the
+  // float division by 10 lost the last digits past 2^53, and 99999999999999999 was no
+  // palindrome. A reversal past the integer range is the float it overflows to, which no whole
+  // number equals.
+
   function padTypeReverse ( $x ) {
 
-   $rev = 0;
+    if ( pqBoolWhole ( $x ) )
+      $x = (int) $x;
+
+    $rev = 0;
 
     while ($x > 0) {
       $rev = ($rev  * 10) + $x % 10;
-      $x = (int) ($x / 10);
+      $x   = is_int ( $x ) ? intdiv ( $x, 10 ) : (int) ( $x / 10 );
     }
 
     return $rev;

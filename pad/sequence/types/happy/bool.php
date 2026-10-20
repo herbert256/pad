@@ -16,7 +16,7 @@
     if ( ! pqBoolWhole ( $num ) or $num < 1 )
       return FALSE;
 
-    $n = $num;
+    $n = (int) $num;
 
     while ($n != 1 && $n != 4)
       $n = pqBoolHappyGo ($n);
@@ -32,7 +32,8 @@
     while ($num > 0) {
         $rem = $num % 10;
         $sum = $sum + ($rem * $rem);
-        $num = intval($num / 10);
+        // intdiv (): the float division by 10 lost the last digits past 2^53.
+        $num = intdiv ( $num, 10 );
     }
 
     return $sum;

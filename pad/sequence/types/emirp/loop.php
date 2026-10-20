@@ -13,19 +13,12 @@
   // trial-division fallback that type carries applies here too - without it a missing gmp
   // extension let every candidate through and the sequence quietly became the plain range.
 
-  include_once PT . 'prime/bool.php';
+  // The test is bool.php's: a reversal past the integer range is no prime the engine can name,
+  // where the (int) of it ended the request on "not representable as an int" - {sequence
+  // emirp, from=1000000000000000070}.
 
-  if ( ! pqBoolPrime ( $pqLoop ) )
-    return FALSE;
+  include_once PT . 'emirp/bool.php';
 
-  $padReverse = (int) padTypeReverse ( $pqLoop );
-
-  if ( $padReverse == $pqLoop )
-    return FALSE;
-
-  if ( ! pqBoolPrime ( $padReverse ) )
-    return FALSE;
-
-  return TRUE;
+  return pqBoolEmirp ( $pqLoop );
 
 ?>
