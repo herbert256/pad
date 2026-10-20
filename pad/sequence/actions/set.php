@@ -17,9 +17,30 @@
 
   // A number is a value to act on, a list of one: no store is named by a number, and 5 |
   // sequence:sum ended on "there is no stored sequence named '5'".
+  //
+  // So is every number written right after it, for an action that takes neither a count nor
+  // a store to act with: the values of sequence:sum(1, 2, 3) are 1, 2 and 3, as PHP's max(1,
+  // 2, 3) reads its arguments - only the first was a value, the others a parameter sum drops,
+  // and it answered [1] without a word; sort(3, 1, 2) answered [3], average(2, 4) [2]. A
+  // number names no store, so sort, reverse and dedup, which fold stores in, read them as
+  // values too; an action that takes a count or a store to act with - first, shift,
+  // intersection, append - has it after its first value, sequence:first(5, 2).
 
-  if ( is_int ( $pqFirst ) or is_float ( $pqFirst ) or ( is_string ( $pqFirst ) and is_numeric ( $pqFirst ) ) )
+  $pqSetNumbers = ( ! padFileExists ( PQ . "actions/parm/$pqAction" )
+                    and ! padFileExists ( PQ . "actions/double/$pqAction" ) );
+
+  if ( is_int ( $pqFirst ) or is_float ( $pqFirst ) or ( is_string ( $pqFirst ) and is_numeric ( $pqFirst ) ) ) {
+
     $pqFirst = [ $pqFirst ];
+
+    foreach ( $pqSetNumbers ? $pqSetParms : [] as $pqV )
+      if ( is_int ( $pqV ) or is_float ( $pqV ) or ( is_string ( $pqV ) and is_numeric ( $pqV ) ) ) {
+        $pqFirst [] = $pqV;
+        array_shift ( $pqSetParms );
+      } else
+        break;
+
+  }
 
    if ( is_array ( $pqFirst )  ) {
 
@@ -43,6 +64,12 @@
 
   }
 
+  // A parameter given to an action that takes none - sum, count, average - is named by the
+  // strict check, as a list given to one is ("sum= takes no list") and as the tag form names it
+  // (inits/find/parm/none.php): sequence:sum([1, 2], 3) answered [3] without a word.
+
+  $pqSetNone = ( $pqSetNumbers and ! padFileExists ( PQ . "actions/merge/$pqAction" ) );
+
   foreach ( $pqSetParms as $pqV )
 
     if ( is_array ( $pqV ) ) {
@@ -52,8 +79,14 @@
       if ( $pqT !== NULL )
         $pqActionParm .= $pqT . '|';
 
-    } else
+    } else {
+
+      if ( $pqSetNone and $pqV !== NULL and $pqV !== '' and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
+        padError ( "The $pqAction action takes no parameter after the values it acts on, and '"
+                 . ( is_scalar ( $pqV ) ? $pqV : gettype ( $pqV ) ) . "' is one" );
 
       $pqActionParm .= $pqV . '|';
+
+    }
 
 ?>

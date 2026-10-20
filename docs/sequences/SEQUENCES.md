@@ -329,7 +329,11 @@ The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a li
 because a list is what an action produces; `{echo '' | sequence:sum([1,2,3]) . ''}` prints it
 (6), where a pipe that ends on the list itself prints nothing. A value piped in without
 arguments is the call's argument: `{echo 5 | sequence:fibonacci}` is the fifth term, 3, and
-`([1,2,3] | sequence:sum) . ''` is 6.
+`([1,2,3] | sequence:sum) . ''` is 6. Numbers written one after another are the values too, for
+an action that takes no count and no store to act with: `sequence:sum(1, 2, 3)` is the sum of
+the three and `sequence:sort(3, 1, 2)` sorts them, where `sequence:first(5, 2)` reads the 2 as
+its count; a parameter given to an action that takes none - `sequence:sum([1, 2], 3)` - is an
+error under the strict check.
 
 **Some sequences need `sequence:` prefix:**
 ```
