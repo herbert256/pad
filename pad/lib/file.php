@@ -52,7 +52,13 @@
     if ( $GLOBALS ['padCoverageRun'] ?? '' )
       padCoverageFile ( $file );
 
-    if ( is_dir ($file) or ! is_readable ( $file ) )
+    // One stat says whether it is a file and when it last changed; an unreadable file fails
+    // the read itself. That stat went with an is_dir and an is_readable - the access check
+    // half the time of the read on this Mac.
+
+    $stat = @stat ( $file );
+
+    if ( ! $stat or ( $stat ['mode'] & 0170000 ) == 0040000 )
       return $default;
 
     // A template file is noted for the source map, which matches a level's text against
@@ -61,7 +67,21 @@
     if ( str_ends_with ( $file, '.pad' ) or str_ends_with ( $file, '.html' ) )
       padSrcRead ( $file );
 
-    return file_get_contents ($file);
+    // An engine or application file is read once for the request and kept with its time and
+    // size, read again when either changed: a page of examples read _common's table.pad 58
+    // times, 351 reads of 66 files. A file under DATA is read each time - a request writes
+    // it and reads it back within the second.
+
+    static $memo = [];
+
+    if ( str_starts_with ( $file, DATA ) )
+      $data = @file_get_contents ( $file );
+    elseif ( isset ( $memo [$file] ) and $memo [$file] [0] === $stat ['mtime'] and $memo [$file] [1] === $stat ['size'] )
+      return $memo [$file] [2];
+    elseif ( ( $data = @file_get_contents ( $file ) ) !== FALSE )
+      $memo [$file] = [ $stat ['mtime'], $stat ['size'], $data ];
+
+    return $data === FALSE ? $default : $data;
 
   }
 
@@ -73,24 +93,17 @@
   // with readdir, each handle closed before the walk goes on - the iterators kept theirs
   // open while a page nested, nine deep, until the process ran out of them - and with one
   // lstat per entry, where the iterator objects took more for every directory of every pass.
+  //
+  // The entries of each directory come from padDirRaw, which keeps them between requests
+  // (lib/dirs.php): every {page} and example builds its page again and walked the _lib of
+  // each directory for it - a page of 45 examples read the same directories 92 times.
 
   function padDirFiles ( $dir ) {
 
     $files = [];
 
-    if ( ! ( $handle = @opendir ( $dir ) ) )
-      return $files;
-
-    $entries = [];
-
-    while ( ( $entry = readdir ( $handle ) ) !== FALSE )
-      if ( $entry !== '.' and $entry !== '..' )
-        $entries [] = $entry;
-
-    closedir ( $handle );
-
-    foreach ( $entries as $entry )
-      if ( @filetype ( "$dir/$entry" ) === 'dir' )
+    foreach ( padDirRaw ( $dir ) as [ $entry, $isDir ] )
+      if ( $isDir )
         array_push ( $files, ...padDirFiles ( "$dir/$entry" ) );
       else
         $files [] = "$dir/$entry";

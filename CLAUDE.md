@@ -1813,14 +1813,17 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - **Request-level memos**: which global names are the engine's (`padAppVars`,
   `padStrPadVars`, `padValidStore`, `padStrPad`), the tokens of each clean expression
   (`padEvalTokens`) and its tree (`padEvalTreeGet`) are kept for the request, whether an
-  engine or application file is there (`padFileExists`) for the second; the @else@ pair scan
-  runs only when an `@else@` is there.
-  Nothing is kept between requests - the template is still rescanned each pass (no AST)
+  engine or application file is there (`padFileExists`, `padCheck`, `padAppCheck`) for the
+  second, the text of an engine or application file (`padFileGet`) for the request while
+  its time and size stand; the @else@ pair scan runs only when an `@else@` is there.
+  Between requests only directory listings are kept (`lib/dirs.php`: `padDirList`,
+  `padDirRaw` - `DATA/cache/dirs/`, checked against the directory's inode and times) -
+  the template is still rescanned each pass (no AST)
 - **`$GLOBALS` as a whole is a copy**: since PHP 8.1 `array_key_exists ( $x, $GLOBALS )`,
   `foreach ( $GLOBALS ...)` and any function handed `$GLOBALS` copy the symbol table - some
   450 globals in a page run. A hot path tests `isset ( $GLOBALS [$x] )` first and sifts the
   table with `padAppVars`/`padStrPadVars`, whose answers hold values, never references
-- **Code on use**: `pad/lib/` is loaded on every request (read with `scandir`); the functions
+- **Code on use**: `pad/lib/` is loaded on every request (its listing kept by `padDirList`); the functions
   of one built-in tag stand in `pad/tags/_lib/<tag>.php`, which `types/pad.php` includes the
   first time a page uses the tag (a tag sharing another's code includes that file itself),
   and those of one engine feature in the `_lib/` of the directory where it starts - health,

@@ -8,17 +8,21 @@
   // inits/inits.php, immediately after the constants, because everything later calls into it.
   //
   // The directories are read with scandir: the RecursiveDirectoryIterator it walked them
-  // with took a quarter of a small page's time, the files themselves far less.
+  // with took a quarter of a small page's time, the files themselves far less. And the
+  // listings are kept between requests (lib/dirs.php, loaded first for it): reading the three
+  // directories still took three times what including the 110 files does.
   //
   // The code of one built-in tag is not here but in tags/_lib/<tag>.php, which types/pad.php
   // includes when a page uses the tag; the code of one engine feature - the health check,
   // the toolbar, the error pages, a dump - is in the _lib/ of the directory where the
   // feature starts, included when it runs.
 
+  include_once PAD . 'lib/dirs.php';
+
   $padLibDirs = [ PAD . 'lib' ];
 
   while ( $padLibDir = array_shift ( $padLibDirs ) )
-    foreach ( scandir ( $padLibDir ) as $padLibOne )
+    foreach ( padDirList ( $padLibDir ) as $padLibOne )
       if ( str_ends_with ( $padLibOne, '.php' ) )
         include_once "$padLibDir/$padLibOne";
       elseif ( $padLibOne [0] != '.' and is_dir ( "$padLibDir/$padLibOne" ) )

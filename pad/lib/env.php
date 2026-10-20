@@ -123,10 +123,13 @@
 
     $files [$file] = [];
 
-    if ( ! is_file ( $file ) or ! is_readable ( $file ) )
+    // A file that cannot be read fails the read itself: the access check before it took
+    // half the time of the read, for each of the two or three files every request reads.
+
+    if ( ! is_file ( $file ) )
       return [];
 
-    $text = file_get_contents ( $file );
+    $text = @file_get_contents ( $file );
 
     if ( $text === FALSE )
       return [];

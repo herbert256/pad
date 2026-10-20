@@ -22,6 +22,16 @@
 
     global $padDir;
 
+    // Kept per directory for the request: the lookups behind every tag ask for it.
+
+    static $memo = [];
+
+    return $memo [ (string) $padDir ] ??= padDirsMake ( (string) $padDir );
+
+  }
+
+  function padDirsMake ( $padDir ) {
+
     $padIncDirs  = padExplode ( $padDir, '/' );
     $padIncDir   = '';
     $padIncCheck = [];
@@ -105,6 +115,27 @@
     if ( ! is_string ( $check ) or $check === '' or str_contains ( $check, "\0" ) or str_contains ( $check, '\\' )
          or in_array ( '..', explode ( '/', $check ), TRUE ) )
       return '';
+
+    // Kept like padAppCheck, for the page's directory and until the second turns: the
+    // expression evaluator asks it for every bare word it classifies, eight names in each
+    // directory up to the root.
+
+    static $memo = [], $at = 0;
+
+    if ( ( $now = time () ) != $at ) {
+      $memo = [];
+      $at   = $now;
+    }
+
+    $key = ( $GLOBALS ['padDir'] ?? '' ) . "\0" . ( $padCommon ? 1 : 0 ) . "\0$check";
+
+    return $memo [$key] ??= padDataFileFind ( $check );
+
+  }
+
+  function padDataFileFind ( $check ) {
+
+    global $padCommon;
 
     foreach ( padDirs () as $key => $value ) {
 

@@ -38,19 +38,46 @@
   function padAppTagCheck         ( $check ) { return padAppCheck ( "_tags/$check"             ); }
   function padAppFunctionCheck    ( $check ) { return padAppCheck ( "_functions/$check"        ); }
 
+  // The answer is kept for the page's directory, and dropped when the second turns as the
+  // padFileExists answers it is made of are: a page asked it some 1,700 times, a .pad and a
+  // .php for every directory up to the root each time.
+
   function padAppCheck ( $check ) {
 
-    foreach ( padDirs () as $value )
-      if ( padCheck ( APP2 . "$value$check" ) ) 
-        return $value . $check ;
+    static $memo = [], $at = 0;
 
-    return FALSE;
+    if ( ( $now = time () ) != $at ) {
+      $memo = [];
+      $at   = $now;
+    }
+
+    $key = ( $GLOBALS ['padDir'] ?? '' ) . "\0$check";
+
+    if ( isset ( $memo [$key] ) )
+      return $memo [$key];
+
+    foreach ( padDirs () as $value )
+      if ( padCheck ( APP2 . "$value$check" ) )
+        return $memo [$key] = $value . $check ;
+
+    return $memo [$key] = FALSE;
 
   }
 
+  // Kept as padFileExists keeps what it is made of, and dropped with it when the second
+  // turns: every tag's name is checked in _tags and _include of the applications and in the
+  // engine's tags, two lookups and two names put together each time.
+
   function padCheck ( $check ) {
 
-    return ( padFileExists ( "$check.pad" ) or padFileExists ( "$check.php" ) );
+    static $memo = [], $at = 0;
+
+    if ( ( $now = time () ) != $at ) {
+      $memo = [];
+      $at   = $now;
+    }
+
+    return $memo [$check] ??= ( padFileExists ( "$check.pad" ) or padFileExists ( "$check.php" ) );
 
   }
 
@@ -86,11 +113,12 @@
     static $files = NULL;
 
     // Read with scandir, a fifth of what glob took for the same names - once per request,
-    // and every request runs a built-in tag.
+    // and every request runs a built-in tag - and that listing kept between requests
+    // (lib/dirs.php).
 
     if ( $files === NULL ) {
       $files = [];
-      foreach ( scandir ( PAD . 'tags/_lib' ) ?: [] as $file )
+      foreach ( padDirList ( PAD . 'tags/_lib' ) ?: [] as $file )
         if ( str_ends_with ( $file, '.php' ) )
           $files [ strtolower ( substr ( $file, 0, -4 ) ) ] = PAD . "tags/_lib/$file";
     }
@@ -103,27 +131,43 @@
   // name was a prefix of a glob, so any name a script's started with was that script: an
   // unknown {b} ran _scripts/backup.sh instead of being no tag at all. The answer is the
   // file itself, which the callers' glob hands back as it is.
+  //
+  // Kept like padAppCheck, for the page's directory and until the second turns: the
+  // expression evaluator asks it for every bare word it classifies, a glob in each
+  // directory up to the root each time.
 
   function padScriptCheck ( $check ) {
 
+    static $memo = [], $at = 0;
+
     if ( ! padValidName ( $check ) )
       return FALSE;
+
+    if ( ( $now = time () ) != $at ) {
+      $memo = [];
+      $at   = $now;
+    }
+
+    $key = ( $GLOBALS ['padDir'] ?? '' ) . "\0$check";
+
+    if ( isset ( $memo [$key] ) )
+      return $memo [$key];
 
     foreach ( padDirs () as $value ) {
 
       $script = APP2 . $value . "_scripts/$check";
 
       if ( is_file ( $script ) )
-        return $script;
+        return $memo [$key] = $script;
 
       $found = glob ( "$script.*" );
 
       if ( $found )
-        return $found [0];
+        return $memo [$key] = $found [0];
 
     }
 
-    return FALSE;
+    return $memo [$key] = FALSE;
 
   }
 
