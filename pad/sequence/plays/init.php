@@ -28,6 +28,12 @@
 
   include PT . "$pqSeq/init.php";
 
+  // A type whose init.php reads an empty parameter as the bare type - inits/number.php - plays
+  // with that, where the play kept the empty text and did its arithmetic with it.
+
+  if ( ( $padPrmValue === '' or $padPrmValue === NULL ) and $pqParm === TRUE )
+    $padPrmValue = TRUE;
+
   $pqParm = $pqParmSave;
   $pqInc  = $pqIncSave;
   $pqFrom = $pqFromSave;

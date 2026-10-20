@@ -13,7 +13,16 @@
   // have always had. A type with a further rule of its own - divide cannot take 0 - adds it
   // after including this.
 
-  if ( $pqParm === '' or $pqParm === TRUE or $pqParm === NULL )
+  // An empty parameter is one not given - add=$x with $x empty, sequence:add(3, '') - as an
+  // empty rows= is: the bare type's TRUE. Left as it was, the type did its arithmetic with the
+  // empty text and ended the request on "Unsupported operand types: int + string", or divide
+  // and multiple answered nothing where the bare type counts 1 2 3. plays/init.php hands the
+  // TRUE on to the play the parameter belongs to.
+
+  if ( $pqParm === '' or $pqParm === NULL )
+    $pqParm = TRUE;
+
+  if ( $pqParm === TRUE )
     return;
 
   if ( is_numeric ( $pqParm ) )

@@ -9,4 +9,9 @@
     elseif ( pqSeq ( $pqPrefix )            ) $pqSeq    = $pqPrefix;
     elseif ( pqAction ( $pqPrefix )         ) $pqAction = $pqPrefix;
 
+  // A type the prefix names is the bare type, as find/tag.php has it for the tag's name.
+
+  if ( $pqPrefix and $pqSeq === $pqPrefix and $pqParm === '' )
+    $pqParm = TRUE;
+
 ?>
