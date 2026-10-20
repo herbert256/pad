@@ -47,6 +47,9 @@
 
   if ( $pqParmStore and $pqParm === NULL )
     return FALSE;
+
+  if ( ( $pqRandomParm or $pqParmStore ) and ! pqParmTerm ( $pqSeq, $pqParm ) )
+    return FALSE;
   if ( $pqRandomly   ) $pqLoop = include PQ . 'build/randomly/randomly.php';
 
   // The position in the list a term comes from - the fixed iterator's, or the one a random

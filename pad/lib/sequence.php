@@ -277,6 +277,33 @@
 
   }
 
+  // Whether the parameter a run hands a type for one term - a term of a store named as the
+  // parameter, a draw of a range written as it - is one the type can take: a number, or the
+  // bare type's TRUE, for a type whose init.php asks for a number (inits/number.php). That
+  // check looks at the parameter as written, once, and lets a store's name and a range
+  // through; the terms they hand over were taken as they came, and add='s' over a store
+  // holding a word, or add='a..z', ended the request on "Unsupported operand types". FALSE,
+  // after the error, ends the run at that term.
+
+  function pqParmTerm ( $seq, $parm ) {
+
+    static $numeric = [];
+
+    if ( $parm === TRUE or is_numeric ( $parm ) )
+      return TRUE;
+
+    $numeric [$seq] ??= ( padFileExists ( PT . "$seq/init.php" )
+                          and str_contains ( file_get_contents ( PT . "$seq/init.php" ), "include PQ . 'inits/number.php'" ) );
+
+    if ( ! $numeric [$seq] )
+      return TRUE;
+
+    padError ( "The $seq sequence needs a number as its parameter, not '" . ( is_scalar ( $parm ) ? $parm : 'a list' ) . "'" );
+
+    return FALSE;
+
+  }
+
   function pqAction ( $action  ) {
 
     if ( is_string ( $action ) and isset ( pqNames ( PA ) ["$action.php"] ) )

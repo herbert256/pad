@@ -40,7 +40,7 @@
     // A parameter store that has run out - plays/parm.php - turns the candidate down and
     // raises $pqPlaysOut, which build/one.php reads as the end of the run.
 
-    if ( $pqParm === NULL ) {
+    if ( $pqParm === NULL or ! pqParmTerm ( $pqSeq, $pqParm ) ) {
       $pq         = FALSE;
       $pqPlaysOut = TRUE;
       break;

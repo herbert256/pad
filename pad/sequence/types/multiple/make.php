@@ -11,6 +11,12 @@
   if ( ! is_numeric ( $pqLoop ) )
     return FALSE;
 
+  // A step of 0 - a store's term handed over as the parameter - makes no term, as in loop.php:
+  // rounded up to a multiple of nothing, the request ended on "Division by zero".
+
+  if ( ! $pqParm )
+    return FALSE;
+
   return pqCeilMultiple ( $pqLoop, $pqParm );
 
 ?>
