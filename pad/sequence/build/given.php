@@ -27,7 +27,12 @@
   // and {sequence eval='@*$n', build='position'} in a loop over 2 and 3 gave the multiples of
   // 2 twice.
 
-  if ( ! padValidName ( $pqBuildName ) or ! file_exists ( PQ . "$pqBuildDir$pqBuildName.php" ) or $pqBuildName == 'position' ) {
+  // The file is looked for among the names written on disk, pqNames (): asked of a file system
+  // that ignores case, build='Bool' found build/types/bool.php, and build/one.php, which knows
+  // the names as they are written, made no term and ended the request on "Undefined variable
+  // $pq" - {sequence happy, build='Bool'}, {sequence square, build='Function'}.
+
+  if ( ! padValidName ( $pqBuildName ) or ! isset ( pqNames ( PQ . $pqBuildDir ) ["$pqBuildName.php"] ) or $pqBuildName == 'position' ) {
     padError ( "there is no build strategy named '$pqBuildName'" );
     return;
   }
@@ -88,7 +93,7 @@
   $pqBuildFree [] = 'position';
 
   if ( $pqBuildSeq and ! in_array ( $pqBuildName, $pqBuildFree )
-                   and ! file_exists ( PT . "$pqBuildSeq/$pqBuildName.php" ) ) {
+                   and ! isset ( pqNames ( PT . "$pqBuildSeq/" ) ["$pqBuildName.php"] ) ) {
     padError ( "the $pqBuildSeq sequence has no build strategy named '$pqBuildName'" );
     return;
   }
