@@ -7,9 +7,15 @@
   // Sets $pqStored, which tells exits/extra/set.php to keep the rows for chaining. Also
   // included straight from sequence/sequence/resume.php.
 
-  if ( $pqStoreUpdated ) $pqStore [$padLastPush] = array_values ( $pqStore [$pqPull] );
-  else                   $pqStore [$padLastPush] = array_values ( $pqResult );
+  // The remainder only for the store it was taken from - a run without push=, or a bare push
+  // back over the pulled store. Under a name of its own, push= keeps what the tag shows, as it
+  // does for every run: it kept the remainder, and {pull:nums shift=2, push='x'} showed 1 2 and
+  // stored 3 4 5 6 under x, the shifted values nowhere.
 
-  $pqStored = TRUE;
+  if ( $pqStoreUpdated and $padLastPush == $pqPull ) $pqStore [$padLastPush] = array_values ( $pqStore [$pqPull] );
+  else                                               $pqStore [$padLastPush] = array_values ( $pqResult );
+
+  $pqStored   = TRUE;
+  $pqStoredAs = $padLastPush;
 
 ?>

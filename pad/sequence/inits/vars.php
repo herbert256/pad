@@ -15,6 +15,7 @@
   $pqFixed        = FALSE;
   $pqStoreUpdated = FALSE;
   $pqStored       = FALSE;
+  $pqStoredAs     = '';
 
   $pqTries      = 0;
   $pqTriesOut   = FALSE;
@@ -51,6 +52,7 @@
   $pqRowAt      = [];
   $pqResultBuilt = [];
   $pqResultAt    = [];
+  $pqStoreTakenAt = [];
   $pqPulled      = [];
   $pqUniqueSeen  = [];
 
