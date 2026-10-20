@@ -43,7 +43,7 @@ $tokens = padEvalTokens ( $eval );                  // validate and scan, kept p
 if ( $tokens === FALSE ) return '';                 // the validation named the fault
 if ( ! padEvalCheckPipes ( $tokens, $eval, $pipe ) ) return '';
 $tree = padEvalTreeGet ( $tokens, $eval, $pipe );   // parse, kept per request
-return padEvalSegments ( $tree, $value );           // the leaves, then the segments
+return padEvalSegments ( $tree, $value );           // the segments, each leaf read where reached
 ```
 
 ## Step 1: Validation (`lib/eval/validate.php`)
@@ -104,8 +104,11 @@ primary     a literal, $field, @, ( arguments ), [ list ], a call, a lookup
 
 What a bare word is depends on where the expression stands: `padEvalWords` asks
 `padTypeFunction` (or reads the `type:` prefix written) whether it names a function, a tag,
-a field, a data store ... A word that names nothing is a constant (`padConstant`). A tree is
-kept per text, per pipe body and per what its words name.
+a field, a data store ... A word that names nothing is a constant (`padConstant`). A
+built-in function is its file's name in its own case - `upper`, `afterLast` - also where the
+file system ignores case (`padFunctionBuiltIn`): `Upper` is no pipe function, and `DATE` is
+PHP's. A tree is kept per text, per pipe body, per fallback after it and per what its words
+name.
 
 ### Binding power
 
@@ -178,7 +181,7 @@ A node is a list, its kind first:
 | Kind | Holds |
 |------|-------|
 | `lit` | a value written in the template, and whether it was a quoted string |
-| `leaf` | a token read before the tree: a field, an option, a property, a hex value, a constant |
+| `leaf` | a field, an option, a property, a hex value, a constant - read where the walk reaches it |
 | `me` | the value piped in - `@` |
 | `fmt` | a printf format |
 | `un` / `bin` | an operator and its operand(s), and how it was written |
@@ -186,18 +189,18 @@ A node is a list, its kind first:
 | `join` | values side by side |
 | `list` | the entries of a `[ ]` list |
 | `call` | kind, name, input, arguments, brackets, whether a built-in reads its first argument |
-| `look` | kind, name, and whether it stands before `??` |
+| `look` | kind, name, and whether it may be missing - its value going into a fallback |
 | `pipe` | the parts of a pipeline inside brackets |
 | `seq` | nodes read and left out, then a node |
 | `err` / `none` / `more` | a fault reported where it is evaluated |
 
 ## Step 4: Evaluation (`lib/eval/run.php`)
 
-`padEvalSegments` reads the leaves of the expression first, in the order written
-(`padEvalLeaves`) - so under the strict check a missing field is named even in the branch a
-ternary does not take - and then evaluates each segment with the previous one's answer as
-its input. `padEvalNode` walks the tree: the branch a ternary does not take is left alone,
-both sides of the other operators are evaluated.
+`padEvalSegments` evaluates each segment with the previous one's answer as its input.
+`padEvalNode` walks the tree and reads a leaf where it gets to it (`padEvalLeaf`): the branch
+a ternary does not take is left alone, fields in it included, and so is the right side of
+`and`, `or` and `??` when the left one decides - `0 and tick()` calls nothing, `'ok' ?? 7 /
+0` is `ok`. Both sides of the other operators are evaluated, the left one first.
 
 ### Operators (`padEvalApply`)
 
@@ -261,15 +264,17 @@ A call goes to `padEvalCall ( $kind, $name, $value, $parm )`, which includes
 
 ## Fast Paths
 
-An expression that is only the name of a built-in pipe function goes to `eval/fast.php`,
-which calls the function through `eval/parms/pad.php`. A number, a quoted string with no
+An expression that is only the name of a built-in pipe function - one the application has
+no function of that name in place of - goes to `eval/fast.php`, which calls the function
+through `eval/parms/pad.php`. A number, a quoted string with no
 quote or backslash in it, and a plain `$field` are answered in `eval/eval.php` before any
-scanning - outside a pipe body, and not while the trace records.
+scanning - outside a pipe body. None of them is taken while the trace records.
 
 ## Tracing
 
-With `$padEvalTrace` on, `padEvalTrace` records the tokens and the tree of each evaluation
-in `$_eval`.
+With `$padEvalTrace` on, `padEvalTrace` records the expression, the tokens and the tree of
+the last evaluation in `$_eval` - begun anew by each one, so an expression the validation
+refused leaves its text alone there.
 
 ## Example
 
@@ -299,7 +304,11 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
   split reports it first: "Closing ) without an opening ("
 - a pipe function that does not exist, a word called like a function that names none
 - a comparison or logical operator - or `??` - with nothing on its left or its right, where no
-  pipe value stands in for it; an arithmetic one is not named: `{echo 5 *}` answers 0
+  pipe value stands in for it, at either end of the expression or of a group, an argument or
+  a list item in it - `(1 eq)`, `php:max(1, 2 gt)`; an arithmetic one is not named: `{echo 5
+  *}` answers 0
+- a comma with no argument before it - `php:pow(2,,3)`, `[,1]`; one before the closing
+  bracket is a trailing comma, as in PHP
 - two operators side by side after a value, where no pipe value stands in for the operand
   between them - `$n + * 3`, `$n eq eq 3`; in a pipe the first of the two works on the piped
   value on both sides - `{echo 50 | '"' . . '"'}` is `"5050"`, the regression/common page
@@ -308,11 +317,17 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
 - a word of punctuation alone - `&`, `~`, `^`, `;` - and a `:` with no `?` before it
 - a `=>` outside a `[ ]` list
 - a `not` after a value with no test behind it
-- a pipe operator written without its space - `| +1` for `| + 1`
+- a pipe operator written without its space - `| +1` for `| + 1`, also in brackets: `($n |
+  -1)`
 
 While it runs:
-- "there is no field named '$x'" - a missing field (`padEvalLeaves`), also as `field:x` and
-  as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ..."
+- "there is no field named '$x'" - a missing field (`padEvalLeaf`), also as `field:x` and
+  as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ...".
+  A field whose value goes straight into a fallback may be missing (`padEvalTreeMissing`):
+  the left side of `??`, the value piped into `default` or `optional` - with a prefix too -
+  brackets around it or not, and the whole answer of an `{echo}` whose tag pipe begins with
+  one (`padEvalFallbackPipe`). A field that is part of more - `$x + 1 | default(0)`,
+  `'a' . $x ?? 'b'` - is no fallback's, and is named
 - "'a' is not a number for +", "a division by zero in /" - arithmetic
 - "the ? of an inline ternary has no :", "a branch of an inline ternary is empty", "the
   condition of an inline ternary is not one value"

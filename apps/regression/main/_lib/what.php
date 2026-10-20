@@ -107,6 +107,7 @@
       'file/done'                 => 'The page a file-output request lands on, reporting the name it was handed',
       'file/index'                => 'Output type file: the page is written to disk and the request restarts on file/done',
       'functions/date'            => 'The date function over a timestamp, a format and a strtotime modifier',
+      'override/a_bare_built_in_name_runs_the_application_s_own_function' => 'An application function named as a built-in one stands in for it, also as a bare pipe name',
       'hello/index'               => 'The smallest page pair there is, and the one redirect and restart land on',
       'misc/eval'                 => 'The evaluator over the forms the manual shows - precedence, the @ placeholder, pipes',
       'misc/local'                => 'Reading a file from _data/ by name, in each format padData() accepts',

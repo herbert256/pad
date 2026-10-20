@@ -8,19 +8,36 @@
   // tree and the tree evaluated, segment by segment, each segment taking the previous one's
   // result as its input. Returns the final value.
 
-  // Only a plain name takes the fast path: the expression text went into the include path
-  // as it was, so ../ reached any .php file under the engine.
+  // The trace keeps the stages of the evaluation, in globals padEvalTrace fills - begun
+  // here with the expression, so one the validation refuses is no trace of the one before
+  // it. The fast paths are left aside while it records.
 
-  if ( preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFileExists ( PAD . "functions/$eval.php" ) )
+  global $padEvalTrace;
+
+  if ( $padEvalTrace ) {
+    $GLOBALS ['_eval']      = [];
+    $GLOBALS ['_eval_last'] = [];
+    padEvalTrace ( 'expression', $eval );
+  }
+
+  // Only a plain name takes the fast path: the expression text went into the include path
+  // as it was, so ../ reached any .php file under the engine. And only a built-in no function
+  // of the application's own stands in for: {$s | upper} ran PAD's upper where {$s | upper()}
+  // and the rest of the language ran the application's, which comes first (padTypeFunction).
+  // An error page rendered before the application is set up has none to look for.
+
+  if ( ! $padEvalTrace and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $eval ) and padFunctionBuiltIn ( $eval )
+       and ! ( defined ( 'APP2' ) and padAppFunctionCheck ( $eval ) ) )
     return include PAD . 'eval/fast.php';
 
   // The commonest expressions - a number, a string with no quote or backslash in it, a plain
   // $field - come once per row and per parameter, and answer here what the pipeline answers
   // for them: the number and the string as written, the field after the strict check
-  // padEvalLeaves gives it. Not in a pipe body, where a signed number alone is named as an
-  // operator missing its space, nor while the trace records the stages.
+  // padEvalLeaf gives it - none when its caller hands it to a fallback. Not in a pipe body,
+  // where a signed number alone is named as an operator missing its space, nor while the
+  // trace records the stages.
 
-  if ( ! $pipe and is_string ( $eval ) and ! ( $GLOBALS ['padEvalTrace'] ?? FALSE ) ) {
+  if ( ! $pipe and is_string ( $eval ) and ! $padEvalTrace ) {
 
     $padEvalFirst = $eval [0] ?? '';
 
@@ -32,7 +49,7 @@
 
     if ( $padEvalFirst == '$' and preg_match ( '/^\$([a-zA-Z_][a-zA-Z0-9_]*)$/D', $eval, $padEvalField ) ) {
       $padEvalValue = padFieldValue ( $padEvalField [1] );
-      if ( $GLOBALS ['padCheckSyntax'] and $padEvalValue === '' )
+      if ( $GLOBALS ['padCheckSyntax'] and $padEvalValue === '' and ! $fallback )
         padEvalFieldReport ( $padEvalField [1], $eval );
       return $padEvalValue;
     }
@@ -49,15 +66,6 @@
   if ( $padEvalTokens === FALSE )
     return '';
 
-  // The trace keeps the stages of the last evaluation, in globals padEvalTrace fills.
-
-  global $padEvalTrace;
-
-  if ( $padEvalTrace ) {
-    $GLOBALS ['_eval']      = [];
-    $GLOBALS ['_eval_last'] = [];
-  }
-
   padEvalTrace ( 'tokens', $padEvalTokens );
 
   // A word standing alone after a | must be a pipe function, not a silently-swallowed
@@ -71,7 +79,7 @@
   // The tree of the expression (lib/eval/tree.php), kept for the request, is evaluated with
   // the value piped in (lib/eval/run.php).
 
-  $padEvalTree = padEvalTreeGet ( $padEvalTokens, $eval, $pipe );
+  $padEvalTree = padEvalTreeGet ( $padEvalTokens, $eval, $pipe, $fallback );
 
   padEvalTrace ( 'tree', $padEvalTree );
 

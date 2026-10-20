@@ -180,17 +180,19 @@ PHP's <code>===</code> and <code>!==</code> are not there. A comparison answers
 <code>&amp;&amp;</code>, <code>||</code> and <code>!</code> as their symbols. The word
 <code>not</code> binds weaker than the comparisons, so <code>not $a eq $b</code> denies the
 comparison; <code>!</code> binds as tightly as a sign, so <code>!$a eq $b</code> compares
-<code>!$a</code> with <code>$b</code>.</p>
+<code>!$a</code> with <code>$b</code>. <code>and</code> and <code>or</code> stop at a left
+side that decides: <code>$n gt 0 and 10 / $n gt 1</code> never divides by zero.</p>
 
 {example 'fragments/expressions_17'}
 
 <h3>A default: ??</h3>
 
-<p><code>a ?? b</code> answers <code>a</code> unless it is empty - <code>''</code>, NULL, an
-empty list - or a field that does not exist; then it answers <code>b</code>. A 0 is a value
+<p><code>a ?? b</code> answers <code>a</code> unless it is empty - <code>''</code>, NULL, FALSE,
+an empty list - or a field that does not exist; then it answers <code>b</code>. A 0 is a value
 and stays. A field in front of <code>??</code> may be missing, also under the strict check:
-giving it a default is what the operator is for. In a pipe it takes the piped value, and the
-<code>default</code> function does the same:</p>
+giving it a default is what the operator is for. The right side is worked out only when it
+is wanted. In a pipe it takes the piped value, and the <code>default</code> function does
+the same:</p>
 
 {example 'fragments/expressions_18'}
 

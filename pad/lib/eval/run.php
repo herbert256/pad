@@ -1,88 +1,82 @@
 <?php
 
   // The evaluator proper: walks the tree lib/eval/tree.php made of an expression, with the
-  // value piped in. eval/eval.php reads the expression's leaves first (padEvalLeaves) and
-  // runs the segments in turn, each one's answer the input of the next (padEvalSegments).
+  // value piped in, running the segments in turn, each one's answer the input of the next
+  // (padEvalSegments). $leaf holds what the tree's leaves are, each read when the walk gets
+  // to it (padEvalLeaf).
 
   function padEvalSegments ( $tree, $value ) {
 
-    $leaf = padEvalLeaves ( $tree ['leaves'] );
-
     foreach ( $tree ['segments'] as $segment )
-      $value = padEvalNode ( $segment, $value, $leaf );
+      $value = padEvalNode ( $segment, $value, $tree ['leaves'] );
 
     return $value;
 
   }
 
-  // The fields, options, properties, hex values and constants of the expression, read in the
-  // order written. Under the strict check a field that is not there is named - except one
-  // that may be missing (padEvalTreeCoalesce) - and one holding a list or an object is named
-  // as what it is.
+  // A field, option, property, hex value or constant of the expression, read where the walk
+  // reaches it - not in a branch a ternary does not take, nor on the right of an and, or or
+  // ?? the left side decides, which were all read first, in the order written: {echo 1 ?
+  // 'yes' : $missing} named the missing field, and a field read after a function that set
+  // it gave its value from before. Under the strict check a field that is not there is named
+  // - except one that may be missing (padEvalTreeMissing) - and one holding a list or an
+  // object is named as what it is.
 
-  function padEvalLeaves ( $leaves ) {
+  function padEvalLeaf ( $leaf ) {
 
     global $padCheckSyntax;
 
-    $leaf = [];
+    [ $one, $coalesce ] = $leaf;
 
-    foreach ( $leaves as $i => [ $one, $coalesce ] ) {
+    switch ( $one [1] ) {
 
-      switch ( $one [1] ) {
+      case 'other': return padConstant ( $one [0] );
+      case 'prop':  return padPropertyValue ( $one [0] );
+      case '&':     return padTagValue ( $one [0], 1 );
+      case '#':     return padOptValue ( $one [0], 1 );
 
-        case 'other': $leaf [$i] = padConstant ( $one [0] );       break;
-        case 'prop':  $leaf [$i] = padPropertyValue ( $one [0] );  break;
-        case '&':     $leaf [$i] = padTagValue ( $one [0], 1 );    break;
-        case '#':     $leaf [$i] = padOptValue ( $one [0], 1 );    break;
+      // An odd number of digits has its high nibble left out, as 0xABC is 0x0ABC.
 
-        // An odd number of digits has its high nibble left out, as 0xABC is 0x0ABC.
+      case 'hex':   return hex2bin ( ( strlen ( $one [0] ) % 2 ? '0' : '' ) . $one [0] );
 
-        case 'hex':   $leaf [$i] = hex2bin ( ( strlen ( $one [0] ) % 2 ? '0' : '' ) . $one [0] ); break;
+    }
 
-        default:
+    $name = $one [0];
+    $via  = '';
 
-          $name = $one [0];
-          $via  = '';
+    // $$x reads the field whose name the field x holds. The name must be an application
+    // field or a path into one, as {$$x} has it (padValueName): a value naming one of the
+    // engine's globals reads nothing.
 
-          // $$x reads the field whose name the field x holds. The name must be an application
-          // field or a path into one, as {$$x} has it (padValueName): a value naming one of
-          // the engine's globals reads nothing.
+    if ( $one [1] == '$$n' ) {
 
-          if ( $one [1] == '$$n' ) {
+      if ( $padCheckSyntax and ! $coalesce )
+        padEvalFieldReport ( $one [0], '$' . $one [0] );
 
-            if ( $padCheckSyntax and ! $coalesce )
-              padEvalFieldReport ( $one [0], '$' . $one [0] );
+      $name = padFieldValue ( $one [0] );
+      $name = ( is_scalar ( $name ) and ! is_bool ( $name ) ) ? (string) $name : '';
+      $via  = " (the name \$\${$one[0]} holds)";
 
-            $name = padFieldValue ( $one [0] );
-            $name = ( is_scalar ( $name ) and ! is_bool ( $name ) ) ? (string) $name : '';
-            $via  = " (the name \$\${$one[0]} holds)";
+      if ( ! padValueName ( $name ) ) {
 
-            if ( ! padValueName ( $name ) ) {
+        if ( $padCheckSyntax and ! $coalesce and ! padStrHidden ( $one [0] ) )
+          padError ( "Expression error: the name '" . padMakeSafe ( $name, 40 ) . "' that \$\${$one[0]} takes from a value is no application variable" );
 
-              if ( $padCheckSyntax and ! $coalesce and ! padStrHidden ( $one [0] ) )
-                padError ( "Expression error: the name '" . padMakeSafe ( $name, 40 ) . "' that \$\${$one[0]} takes from a value is no application variable" );
-
-              $leaf [$i] = '';
-
-              break;
-
-            }
-
-          }
-
-          // Only an empty answer can be a field that is not there: one with a value is not
-          // looked up a second time to be checked.
-
-          $leaf [$i] = padFieldValue ( $name );
-
-          if ( $padCheckSyntax and ! $coalesce and $leaf [$i] === '' )
-            padEvalFieldReport ( $name, '$' . $name, $via );
+        return '';
 
       }
 
     }
 
-    return $leaf;
+    // Only an empty answer can be a field that is not there: one with a value is not looked
+    // up a second time to be checked.
+
+    $value = padFieldValue ( $name );
+
+    if ( $padCheckSyntax and ! $coalesce and $value === '' )
+      padEvalFieldReport ( $name, '$' . $name, $via );
+
+    return $value;
 
   }
 
@@ -93,10 +87,25 @@
     switch ( $node [0] ) {
 
       case 'lit':  return $node [1];
-      case 'leaf': return $leaf [ $node [1] ];
+      case 'leaf': return padEvalLeaf ( $leaf [ $node [1] ] );
       case 'me':   return $me;
 
-      case 'bin':  return padEvalApply ( $node [1], padEvalNode ( $node [2], $me, $leaf ), padEvalNode ( $node [3], $me, $leaf ), $node [4] );
+      // and, or and ?? leave their right side alone when the left one decides: 0 and
+      // tick() calls nothing, 'ok' ?? 7 / 0 is ok - where both sides were worked out first.
+
+      case 'bin':
+
+        $left = padEvalNode ( $node [2], $me, $leaf );
+
+        if ( $node [1] == 'AND' or $node [1] == 'OR' ) {
+          $true = is_array ( $left ) ? count ( $left ) > 0 : (bool) padDateText ( $left );
+          if ( $node [1] == 'AND' and ! $true ) return '';
+          if ( $node [1] == 'OR'  and   $true ) return 1;
+        } elseif ( $node [1] == '??' and ! padEvalEmpty ( $left ) )
+          return padEvalApply ( '??', $left, '', $node [4] );
+
+        return padEvalApply ( $node [1], $left, padEvalNode ( $node [3], $me, $leaf ), $node [4] );
+
       case 'un':   return padEvalApply ( $node [1], NULL, padEvalNode ( $node [2], $me, $leaf ), $node [3] );
 
       case 'call': return padEvalCallNode ( $node, $me, $leaf );
@@ -218,12 +227,22 @@
 
   // A segment that is a printf format: the value piped in, formatted - a date object as its
   // text. A format sprintf cannot fill with the one value - %s and %s, a conversion it does
-  // not know - is named under the strict check and empty in the lenient walk.
+  // not know - is named under the strict check and empty in the lenient walk, and so is a
+  // list or an object handed to it: [1] | %s ended the page on PHP's "Array to string
+  // conversion" in either mode, and [1, 2] | %d answered 1.
 
   function padEvalFormatted ( $format, $value ) {
 
+    $value = padDateText ( $value );
+
+    if ( is_array ( $value ) or ( is_object ( $value ) and ! $value instanceof Stringable ) ) {
+      if ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "the format '" . padMakeSafe ( $format, 40 ) . "' is handed " . ( is_array ( $value ) ? 'a list' : 'an object' ) . ", not a value" );
+      return '';
+    }
+
     try {
-      return sprintf ( $format, padDateText ( $value ) );
+      return sprintf ( $format, $value );
     } catch ( ValueError | ArgumentCountError $padEvalFormatError ) {
       if ( $GLOBALS ['padCheckSyntax'] )
         padError ( "the format '" . padMakeSafe ( $format, 40 ) . "' is not one sprintf can fill with the one value" );
@@ -365,7 +384,8 @@
   }
 
   // A reference that takes no arguments - field:x, data:rows, array:items, a bare word naming
-  // a field ... - by its handler in eval/single/. $padEvalCoalesce says it stands before ??.
+  // a field ... - by its handler in eval/single/. $padEvalCoalesce says it may be missing, its
+  // value going into a fallback (padEvalTreeMissing).
 
   function padEvalLook ( $kind, $name, $padEvalCoalesce = FALSE ) {
 
@@ -389,6 +409,16 @@
 
   function padEvalApply ( $opr, $left, $right, $written ) {
 
+    // The empty-coalescing operator: the left value unless it is empty - '', NULL, FALSE, an
+    // empty list or a field that is not there - and then the right one. 0 is a value. Either
+    // is answered as it is: a date object made text here lost its zone, and the date pipe
+    // after it read the text in the application's zone - hours off.
+
+    if ( $opr == '??' ) {
+      $now = padEvalEmpty ( $left ) ? $right : $left;
+      return ( is_float ( $now ) and is_nan ( $now ) ) ? '' : $now;
+    }
+
     // A date object is its text to an operator (padDateText): compared as an object it stood
     // above every string. Two date objects compared with each other are the moments they
     // hold, as PHP compares them.
@@ -399,12 +429,7 @@
       $right = padDateText ( $right );
     }
 
-    // The empty-coalescing operator: the left value unless it is empty - '', NULL, FALSE, an
-    // empty list or a field that is not there - and then the right one. 0 is a value.
-
-    if ( $opr == '??' )
-      $now = ( $left === NULL or $left === '' or $left === FALSE or $left === [] ) ? $right : $left;
-    elseif ( in_array ( $opr, padEval_one ) )
+    if ( in_array ( $opr, padEval_one ) )
       $now = padEvalUnary ( $opr, $right );
     elseif ( ! is_array ( $left ) and ! is_array ( $right ) )
       $now = padEvalScalar ( $opr, $left, $right );
@@ -420,6 +445,15 @@
       $now = '';
 
     return $now;
+
+  }
+
+  // Whether a value is empty to a fallback - ?? and default: '', NULL, FALSE or an empty
+  // list. 0 and '0' are values.
+
+  function padEvalEmpty ( $value ) {
+
+    return $value === NULL or $value === '' or $value === FALSE or $value === [];
 
   }
 

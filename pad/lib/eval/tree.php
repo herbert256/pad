@@ -25,13 +25,14 @@
   //
   // A bare word is what it names where the expression stands - a function, a lookup such as
   // a field or a data store, or else a constant - so a tree depends on that too, and is kept
-  // for the request per text, per pipe body and per what its words name (padEvalTreeGet).
+  // for the request per text, per pipe body, per fallback after it and per what its words
+  // name (padEvalTreeGet).
   //
   // The nodes are lists, their kind first:
   //
   //   lit  value, literal     a value written in the template; literal for a quoted string
-  //   leaf token              a field, an option, a property, a constant ... read once per
-  //                           evaluation, before the tree (padEvalLeaves)
+  //   leaf token              a field, an option, a property, a constant ... read where the
+  //                           walk reaches it (padEvalLeaf)
   //   me                      the value piped in, @
   //   fmt  format             a segment that is a printf format
   //   un   op, operand, as written
@@ -42,7 +43,7 @@
   //   call kind, name, input, arguments, brackets, first  - input NULL for none, first when
   //                           a built-in called with brackets reads its first argument as
   //                           its value (the head of an expression, or inside a call)
-  //   look kind, name, coalesce                a reference that takes no arguments
+  //   look kind, name, missable                a reference that takes no arguments
   //   pipe parts              a pipeline inside brackets, NULL for an empty part
   //   seq  nodes, node        the nodes read and left out, then the node
   //   err  messages, node     reported where it is evaluated, then the node (or empty)
@@ -91,13 +92,13 @@
 
   // The tree of an expression and the tokens read before it, kept for the request.
 
-  function padEvalTreeGet ( $tokens, $eval, $pipe ) {
+  function padEvalTreeGet ( $tokens, $eval, $pipe, $fallback = FALSE ) {
 
     static $trees = [];
 
     [ $words, $sig ] = padEvalWords ( $tokens );
 
-    $key = ( $pipe ? 'p' : 'e' ) . $sig . "\x1f" . $eval;
+    $key = ( $pipe ? 'p' : 'e' ) . ( $fallback ? 'f' : '' ) . $sig . "\x1f" . $eval;
 
     if ( isset ( $trees [$key] ) )
       return $trees [$key];
@@ -105,15 +106,16 @@
     if ( count ( $trees ) >= 4000 )
       $trees = [];
 
-    return $trees [$key] = padEvalTree ( $tokens, $words, $eval, $pipe );
+    return $trees [$key] = padEvalTree ( $tokens, $words, $eval, $pipe, $fallback );
 
   }
 
-  // The segments of the expression, and the tokens that are read before the tree is: every
-  // field, option, property, hex value and constant of the expression, in the order written -
-  // a field in the branch the ternary does not take is checked as well.
+  // The segments of the expression, and its leaves: every field, option, property, hex value
+  // and constant, by the position of its token, each read where the walk reaches it
+  // (padEvalLeaf). With $fallback the answer goes into a fallback the caller applies
+  // (padEvalTreeMissing).
 
-  function padEvalTree ( $tokens, $words, $eval, $pipe ) {
+  function padEvalTree ( $tokens, $words, $eval, $pipe, $fallback = FALSE ) {
 
     $p = [ 'tok' => $tokens, 'word' => $words, 'match' => [] ];
 
@@ -141,7 +143,7 @@
 
     foreach ( $tokens as $i => $one )
       if ( in_array ( $one [1], [ '$', '$$n', 'prop', '&', '#', 'hex' ], TRUE ) )
-        $leaves [$i] = [ [ $one [0], $one [1] ], padEvalTreeCoalesce ( $tokens, $i ) ];
+        $leaves [$i] = [ [ $one [0], $one [1] ], FALSE ];
       elseif ( $one [1] == 'other' and ! $words [$i] and ! in_array ( strtoupper ( $one [0] ), padEval_txt ) )
         $leaves [$i] = [ [ $one [0], 'other' ], FALSE ];
 
@@ -162,31 +164,168 @@
 
     }
 
+    $miss     = [];
+    $segments = padEvalTreeMissing ( $segments, $fallback, $miss );
+
+    foreach ( $miss as $i => $true )
+      if ( isset ( $leaves [$i] ) )
+        $leaves [$i] [1] = TRUE;
+
     return [ 'segments' => $segments, 'leaves' => $leaves ];
 
   }
 
-  // Whether the field at $i may be missing: one before ?? - that is what the operator is for -
-  // or piped into ?? or into default or optional, with a prefix or without, as the
-  // {$x | ...} form lets it.
+  // The lookups whose value goes straight into a fallback may be missing - that is what the
+  // fallback is for: the left side of ??, the value piped into default or optional, with a
+  // prefix or without - and with $fallback the answer of the whole expression, which {echo}
+  // hands to the fallback of its tag's pipe. Brackets around one do not matter: ($x) ??
+  // 'none' as $x ?? 'none', where the ) after the field hid the ?? from the token after it. A
+  // lookup that is part of more - $x + 1 ?? 0, 'a' . $x ?? 'b' - is no fallback's, and is
+  // named when it is not there. The fields of $miss are marked so for padEvalLeaf, a
+  // reference without arguments on its own node.
 
-  function padEvalTreeCoalesce ( $tokens, $i ) {
+  function padEvalTreeMissing ( $segments, $fallback, &$miss ) {
 
-    $next  = $tokens [$i+1] ?? [ '', '' ];
-    $after = $tokens [$i+2] ?? [ '', '' ];
+    $segments = padEvalTreeMissingParts ( $segments, $miss );
 
-    if ( $next [1] == 'OPR' and $next [0] === '??' )
-      return TRUE;
+    $last = array_key_last ( $segments );
 
-    if ( $next [1] != 'pipe' )
-      return FALSE;
+    if ( $fallback and $last !== NULL )
+      $segments [$last] = padEvalTreeMay ( $segments [$last], $miss );
 
-    // The function as named after a prefix: | pad:default('x') as | default('x').
+    return $segments;
 
-    $exp = padExplode ( (string) ( $after [0] ?? '' ), ':' );
+  }
 
-    return ( $after [1] == 'OPR' and $after [0] === '??' )
-        or ( $after [1] == 'other' and in_array ( end ( $exp ), [ 'default', 'optional' ], TRUE ) and count ( $exp ) <= 2 );
+  // The parts of a pipeline: one with a fallback after it may be missing.
+
+  function padEvalTreeMissingParts ( $parts, &$miss ) {
+
+    foreach ( $parts as $n => $part )
+      if ( $n and $part and $parts [$n-1] and padEvalTreeFallback ( $part ) )
+        $parts [$n-1] = padEvalTreeMay ( $parts [$n-1], $miss );
+
+    foreach ( $parts as $n => $part )
+      if ( $part )
+        $parts [$n] = padEvalTreeMissingNode ( $part, $miss );
+
+    return $parts;
+
+  }
+
+  // The nodes below $node, the left side of each ?? and the parts of each pipeline in them.
+
+  function padEvalTreeMissingNode ( $node, &$miss ) {
+
+    switch ( $node [0] ) {
+
+      case 'bin':
+
+        if ( $node [1] == '??' )
+          $node [2] = padEvalTreeMay ( $node [2], $miss );
+
+        $node [2] = padEvalTreeMissingNode ( $node [2], $miss );
+        $node [3] = padEvalTreeMissingNode ( $node [3], $miss );
+
+        break;
+
+      case 'un':
+
+        $node [2] = padEvalTreeMissingNode ( $node [2], $miss );
+
+        break;
+
+      case 'call':
+
+        if ( $node [3] )
+          $node [3] = padEvalTreeMissingNode ( $node [3], $miss );
+
+        foreach ( $node [4] as $n => $arg )
+          $node [4] [$n] = padEvalTreeMissingNode ( $arg, $miss );
+
+        break;
+
+      case 'tern':
+
+        foreach ( [ 1, 2, 3 ] as $n )
+          if ( $node [$n] )
+            $node [$n] = padEvalTreeMissingNode ( $node [$n], $miss );
+
+        break;
+
+      case 'join':
+      case 'seq':
+
+        foreach ( $node [1] as $n => $one )
+          $node [1] [$n] = padEvalTreeMissingNode ( $one, $miss );
+
+        if ( $node [0] == 'seq' )
+          $node [2] = padEvalTreeMissingNode ( $node [2], $miss );
+
+        break;
+
+      case 'list':
+
+        foreach ( $node [1] as $n => $entry )
+          if ( $entry [0] == 'v' )
+            $node [1] [$n] [1] = padEvalTreeMissingNode ( $entry [1], $miss );
+
+        break;
+
+      case 'pipe':
+
+        $node [1] = padEvalTreeMissingParts ( $node [1], $miss );
+
+        break;
+
+      case 'err':
+
+        if ( $node [2] )
+          $node [2] = padEvalTreeMissingNode ( $node [2], $miss );
+
+        break;
+
+    }
+
+    return $node;
+
+  }
+
+  // A lookup that may be missing: a field, or a reference without arguments - field:x.
+
+  function padEvalTreeMay ( $node, &$miss ) {
+
+    if ( $node [0] == 'leaf' )
+      $miss [ $node [1] ] = TRUE;
+    elseif ( $node [0] == 'look' )
+      $node [3] = TRUE;
+
+    return $node;
+
+  }
+
+  // Whether a part of a pipeline is a fallback for the value piped into it: default or
+  // optional - the built-in, the application's or by function: - or a ?? with nothing on its
+  // left.
+
+  function padEvalTreeFallback ( $node ) {
+
+    if ( $node [0] == 'bin' )
+      return $node [1] == '??' and $node [2] === [ 'me' ];
+
+    return $node [0] == 'call' and $node [3] === NULL
+       and in_array ( $node [2], [ 'default', 'optional' ], TRUE )
+       and in_array ( $node [1], [ 'pad', 'app', 'function' ], TRUE );
+
+  }
+
+  // Whether the text of a pipe begins with a fallback, by the same rule - what {echo} and
+  // {$x} read of the pipe a tag carries, before any of it is evaluated: | default('-'),
+  // | pad:default('-'), | ?? '-', | optional.
+
+  function padEvalFallbackPipe ( $text ) {
+
+    return (bool) preg_match ( '/^\s*(\?\?|((pad|app|function):)?(default|optional)\b)/', (string) $text );
 
   }
 
@@ -393,7 +532,7 @@
         $single [$type] ??= file_exists ( PAD . "eval/single/$type.php" );
 
         if ( $single [$type] )
-          $items [] = [ 'a', [ 'look', $type, $name, padEvalTreeCoalesce ( $p ['tok'], $i ) ] ];
+          $items [] = [ 'a', [ 'look', $type, $name, FALSE ] ];
         else
           $items [] = [ 'c', $type, $name, NULL, $type == 'pad' and in_array ( $name, padEval_tests ) ];
 
@@ -446,9 +585,14 @@
     // built-in called there takes it - ucfirst(($s | left(2))). A message names the whole
     // expression, where it quoted nothing: "there is no value in ''".
 
+    // A part that is a printf format (padEvalFormatLength) formats the value piped into it.
+
     foreach ( $cuts as $n => $cut ) {
-      $parts [] = ( $cut > $from ) ? padEvalTreeRange ( $p, $from, $cut, ( $n ? [ 'head' => FALSE, 'call' => FALSE ] : [] ) + $ctx ) : NULL;
-      $from     = $cut + 1;
+      if ( $n and $cut == $from + 1 and $p ['tok'] [$from] [1] == '%' )
+        $parts [] = [ 'fmt', $p ['tok'] [$from] [0] ];
+      else
+        $parts [] = ( $cut > $from ) ? padEvalTreeRange ( $p, $from, $cut, ( $n ? [ 'head' => FALSE, 'call' => FALSE ] : [] ) + $ctx ) : NULL;
+      $from = $cut + 1;
     }
 
     return [ [ 'pipe', $parts ] ];

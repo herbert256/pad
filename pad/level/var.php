@@ -77,9 +77,10 @@
   // off it resolves to empty, the same lenient contract expressions keep.
 
   // A pipe that supplies the value for an empty field - optional, default(...), ?? - is
-  // the author saying the field may be missing.
+  // the author saying the field may be missing, with a prefix too: pad:default(...)
+  // (padEvalFallbackPipe).
 
-  $padVarFallback = preg_match ( '/^(optional|default\b|\?\?)/', $padVarOpts );
+  $padVarFallback = padEvalFallbackPipe ( $padVarOpts );
 
   // Inside a sandbox the field that holds the name may be one the sandbox hid - it reads as
   // empty, so the name is refused - and that miss is the isolation's, let through quietly as

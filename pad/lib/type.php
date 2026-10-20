@@ -108,7 +108,7 @@
     // trim and ucwords are such names.
 
     if ( $common == 'php' and $goFunction
-         and ( padAppFunctionCheck ( $type ) or padFileExists ( PAD . "functions/$type.php" ) ) )
+         and ( padAppFunctionCheck ( $type ) or padFunctionBuiltIn ( $type ) ) )
       return 'function';
 
     if ( $common )
@@ -157,11 +157,33 @@
 
   }
 
+  // Whether $name is a built-in pipe function: a file in PAD/functions/ of exactly that name.
+  // A file system that ignores case found DATE and LEFT as well - a template that worked on
+  // such a machine failed on one that does not - and the rules kept by a function's name
+  // missed them there: DATE('Y', 0) took 'Y' for the moment and answered 0, LEFT ran past its
+  // parameter check into a PHP warning. Where the engine's directory ignores case its
+  // listing says, read once per request.
+
+  function padFunctionBuiltIn ( $name ) {
+
+    static $exact = NULL;
+
+    if ( ! padFileExists ( PAD . "functions/$name.php" ) )
+      return FALSE;
+
+    $exact ??= file_exists ( PAD . 'FUNCTIONS/' )
+      ? array_flip ( str_replace ( '.php', '', preg_grep ( '/\.php$/', scandir ( PAD . 'functions' ) ) ) )
+      : [];
+
+    return ! $exact or isset ( $exact [$name] );
+
+  }
+
   function padTypeFunction ( $type, $goTag=1 ) {
 
         if ( ! padValid          ( $type                       ) ) return FALSE;
     elseif ( padAppFunctionCheck ( $type                       ) ) return 'app';
-    elseif ( padFileExists       ( PAD . "functions/$type.php" ) ) return 'pad';
+    elseif ( padFunctionBuiltIn  ( $type                       ) ) return 'pad';
 
     $common = padTypeCommon ( $type );
     if ( $common )
