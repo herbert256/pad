@@ -757,6 +757,98 @@
 
   }
 
+  // The terms of a type as far as position $to, for build/check.php to look in: their index,
+  // pqIndex (), the first term, and what pqCheckReach () reads of the numbers among them - the
+  // lowest, the highest, the one halfway and the last, and whether they never go down or never
+  // go up, every term a number.
+
+  function pqTermsIndex ( $seq, $parm, $to ) {
+
+    $terms   = pqTerms ( $seq, $parm, [ 'to' => $to ] );
+    $numbers = array_values ( array_filter ( $terms, 'is_numeric' ) );
+    $count   = count ( $numbers );
+    $rising  = $falling = ( $count == count ( $terms ) );
+
+    for ( $i = 1; ( $rising or $falling ) and $i < $count; $i++ ) {
+      if ( $numbers [$i] < $numbers [$i - 1] ) $rising  = FALSE;
+      if ( $numbers [$i] > $numbers [$i - 1] ) $falling = FALSE;
+    }
+
+    return [
+      'to'      => $to,
+      'index'   => pqIndex ( $terms ),
+      'first'   => array_slice ( $terms, 0, 1 ),
+      'low'     => $count ? min ( $numbers ) : NULL,
+      'high'    => $count ? max ( $numbers ) : NULL,
+      'half'    => $count ? [ intdiv ( $count, 2 ), $numbers [ max ( 0, intdiv ( $count, 2 ) - 1 ) ] ] : NULL,
+      'last'    => $count ? [ $count, $numbers [$count - 1] ] : NULL,
+      'rising'  => $rising,
+      'falling' => $falling
+    ];
+
+  }
+
+  // How far terms made as far as they are - pqTermsIndex () - are made on to look for $value,
+  // within position $to, or 0 when it is not looked for further: a value between the numbers
+  // made may stand at any later position, and is looked for as far as $to, as before - unless
+  // the terms never go down, or never go up, when it would stand among them already; one past
+  // all of them only while the terms head for it, as far as the position they reach it at when
+  // they grow as they grow over the second half of what was made - as a power of the position,
+  // so a square or a fourth power is seen to come there. A value past terms that are no
+  // numbers, that stand still or turn back, or that climb too slowly - '@ * 2' gets to
+  // 9223372036854775807 at position 4.6 * 10^18 - is not looked for on.
+
+  function pqCheckReach ( $made, $value, $to ) {
+
+    if ( ! is_numeric ( $value ) or $made ['last'] === NULL )
+      return 0;
+
+    if ( $value >= $made ['low'] and $value <= $made ['high'] )
+      return ( $made ['rising'] or $made ['falling'] ) ? 0 : $to;
+
+    $sign = ( $value > $made ['high'] ) ? 1 : -1;
+
+    [ $at,  $half ] = $made ['half'];
+    [ $end, $last ] = $made ['last'];
+
+    $half  = $sign * $half;
+    $last  = $sign * $last;
+    $value = $sign * $value;
+
+    if ( $last <= $half or $at < 1 or $end <= $at )
+      return 0;
+
+    if ( $half <= 0 )
+      return $to;
+
+    $reach = $end * ( $value / $last ) ** ( log ( $end / $at ) / log ( $last / $half ) );
+
+    return ( $reach <= $to ) ? (int) ceil ( $reach ) : 0;
+
+  }
+
+  // The key the terms of an eval= expression are kept under for the request, or '' when they
+  // are made for the run: an expression of the value, numbers, strings and operators alone
+  // gives the same terms every time. One with a field gives others for another value of it,
+  // and a function - which may draw at random - a property or an option of the tag may answer
+  // otherwise another time.
+
+  function pqEvalKey ( $eval ) {
+
+    if ( ! is_string ( $eval ) or ( $tokens = padEvalTokens ( $eval ) ) === FALSE )
+      return '';
+
+    foreach ( $tokens as $token )
+      if ( $token [1] == 'other' ) {
+        if ( ! in_array ( strtoupper ( $token [0] ), padEval_txt ) and ! in_array ( strtolower ( $token [0] ), padEval_tests ) )
+          return '';
+      } elseif ( ! in_array ( $token [1], [ 'VAL', 'OPR', '$$', 'open', 'close', 'a-open', 'a-close', 'pipe', 'arrow', 'hex', '%' ] ) )
+        return '';
+
+    return "eval|$eval";
+
+  }
+
   // A float -0 made 0, any other number as it is - what x + 0 did for the arithmetic of a
   // sequence type, until PHP's optimizer, sure of a float, took x + 0 for x and dropped it:
   // under OPcache without Xdebug {sequence modulo=3, from=-3} printed -0 again.

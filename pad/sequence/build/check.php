@@ -115,21 +115,72 @@
   // this run only, under a pq* name inits/clear.php drops when the next tag starts: kept for
   // the request, {sequence '1..12', keep, eval='@*$n'} in a loop over $n kept the first $n's
   // multiples every time, and keep, chance=2 repeated one random pick.
+  //
+  // An expression of the value, numbers, strings and operators alone gives the same terms
+  // every time, and they are kept for the request under its text, pqEvalKey (): kept for the
+  // run only, {sequence '1..20', name='i'}{sequence '1..5', keep, eval='@*2'} made the 10,000
+  // terms of '@*2' twenty times. A run still asks the expression for its first term, which is
+  // where eval/loop.php checks where its text came from, and makes the terms again when that
+  // one differs. The key is made once a run.
 
-  if ( pqTermsKey ( $pqSeq, '', $pqParm ) === '' )
-    $pqCheckTerms = &$pqCheckRun;
+  if ( $pqSeq == 'eval' and is_string ( $pqParm ) and ! ( $GLOBALS ['padInfo'] ?? FALSE ) )
+    $pqCheckKey = $pqCheckEval [$pqParm] ??= pqEvalKey ( $pqParm );
   else
+    $pqCheckKey = '';
+
+  if ( $pqCheckKey !== '' ) {
+
     $pqCheckTerms = &$padSeqCheckList;
 
-  $pqCheckKey = $pqSeq . '|' . pqCheckParm ( $pqParm );
-  $pqCheckTo  = is_numeric ( $pqLoop ) ? (int) min ( abs ( (float) $pqLoop ), $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) : 0;
-  $pqCheckTo  = max ( $pqCheckTo, $GLOBALS ['padSeqDefaultTries'] ?? 10000 );
+    if ( isset ( $pqCheckTerms [$pqCheckKey] ) and ! isset ( $pqCheckFirst [$pqCheckKey] ) ) {
+      $pqCheckFirst [$pqCheckKey] = TRUE;
+      if ( pqTerms ( $pqSeq, $pqParm, [ 'to' => 1 ] ) !== $pqCheckTerms [$pqCheckKey] ['first'] )
+        unset ( $pqCheckTerms [$pqCheckKey] );
+    }
 
-  if ( ! isset ( $pqCheckTerms [$pqCheckKey] ) or $pqCheckTerms [$pqCheckKey] [0] < $pqCheckTo ) {
-    $pqCheckTo = max ( $pqCheckTo, 2 * ( $pqCheckTerms [$pqCheckKey] [0] ?? 0 ) );
-    $pqCheckTerms [$pqCheckKey] = [ $pqCheckTo, pqIndex ( pqTerms ( $pqSeq, $pqParm, [ 'to' => $pqCheckTo ] ) ) ];
+  } else {
+
+    if ( pqTermsKey ( $pqSeq, '', $pqParm ) === '' )
+      $pqCheckTerms = &$pqCheckRun;
+    else
+      $pqCheckTerms = &$padSeqCheckList;
+
+    $pqCheckKey = $pqSeq . '|' . pqCheckParm ( $pqParm );
+
   }
 
-  return isset ( $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] );
+  // How far: a draw - chance, random - is a term or not at its own position, so its terms are
+  // made as far as the value, where the reach a run has by default made 10,000 draws for every
+  // tag however short its list - a keep of five values with chance=2 took twenty times what it
+  // took before. Any other type as far as the value and at least that reach, extended by
+  // doubling; and past the reach toward a value beyond every term made only while the terms,
+  // growing as they grow at the end of what was made, can get to it within the ceiling of
+  // candidates (pqCheckReach): {sequence '9223372036854775807;4', flag, eval='@ * 2'} made a
+  // million terms for its first value, which '@ * 2' reaches at position 4.6 * 10^18, and
+  // spent the five seconds a run has under load, answering one flag of two; eval='abc' the same
+  // for terms that are no numbers at all.
+
+  $pqCheckDefault = $GLOBALS ['padSeqDefaultTries'] ?? 10000;
+  $pqCheckDraw    = in_array ( $pqSeq, [ 'chance', 'random' ] );
+  $pqCheckFar     = is_numeric ( $pqLoop ) ? (int) min ( abs ( (float) $pqLoop ), $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) : 0;
+  $pqCheckTo      = $pqCheckDraw ? $pqCheckFar : max ( $pqCheckFar, $pqCheckDefault );
+
+  while ( ( $pqCheckTerms [$pqCheckKey] ['to'] ?? 0 ) < $pqCheckTo
+          and ! isset ( $pqCheckTerms [$pqCheckKey] ['index'] [$pqCheckAt] ) ) {
+
+    $pqCheckMade = $pqCheckTerms [$pqCheckKey] ['to'] ?? 0;
+
+    if ( $pqCheckDraw )
+      $pqCheckNext = $pqCheckTo;
+    elseif ( $pqCheckMade < $pqCheckDefault )
+      $pqCheckNext = $pqCheckDefault;
+    elseif ( ! ( $pqCheckNext = pqCheckReach ( $pqCheckTerms [$pqCheckKey], $pqLoop, $pqCheckTo ) ) )
+      break;
+
+    $pqCheckTerms [$pqCheckKey] = pqTermsIndex ( $pqSeq, $pqParm, max ( $pqCheckNext, 2 * $pqCheckMade ) );
+
+  }
+
+  return isset ( $pqCheckTerms [$pqCheckKey] ['index'] [$pqCheckAt] );
 
 ?>
