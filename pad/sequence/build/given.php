@@ -22,7 +22,12 @@
 
   $pqBuildDir = $pqBuildPlay ? 'plays/play/' : 'build/types/';
 
-  if ( ! padValidName ( $pqBuildName ) or ! file_exists ( PQ . "$pqBuildDir$pqBuildName.php" ) ) {
+  // position is the build build='function' turns into for a type that tests values, not a name
+  // to write: written, it reached eval and chance, whose terms its memo keeps for the request,
+  // and {sequence eval='@*$n', build='position'} in a loop over 2 and 3 gave the multiples of
+  // 2 twice.
+
+  if ( ! padValidName ( $pqBuildName ) or ! file_exists ( PQ . "$pqBuildDir$pqBuildName.php" ) or $pqBuildName == 'position' ) {
     padError ( "there is no build strategy named '$pqBuildName'" );
     return;
   }
