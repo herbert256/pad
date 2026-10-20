@@ -59,6 +59,14 @@
           continue;
       }
 
+      // action= names an action, as action='nope' is named when it names none: a list was
+      // dropped without a word, {sequence '1..6', action=['sort']} answered 1 2 3 4 5 6.
+
+      if ( is_array ( $pqActionParm ) ) {
+        padError ( "action= takes the name of an action, not a list" );
+        continue;
+      }
+
       if ( ! is_scalar ( $pqActionParm ) )
         continue;
 
