@@ -54,6 +54,12 @@
       if ( padValidName ( $pqAction ) and pqAction ( $pqAction ) )
         $pqActions [] = [ $pqAction, implode ( '|', $pqActionList ) ];
 
+      // A name action= gives has to be an action, as make='x' has to be a type: action='nope'
+      // and action='../x' were dropped without a word.
+
+      elseif ( $padV ['padPrmName'] == 'action' and $padV ['padPrmValue'] !== TRUE )
+        padError ( "action='" . ( is_scalar ( $pqAction ) ? $pqAction : '' ) . "' is not a sequence action" );
+
     }
 
 ?>
