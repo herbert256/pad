@@ -25,7 +25,7 @@ See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for
 | [PAD.md](PAD.md) | Framework internals - execution flow, level system, configuration |
 | [REACT.md](REACT.md) | React integration patterns - static/dynamic data, file organization |
 | [reference/](reference/README.md) | Reference documentation - tags, functions, options, properties |
-| [sequences/](sequences/README.md) | Sequence subsystem - 80+ mathematical sequences and transformations |
+| [sequences/](sequences/README.md) | Sequence subsystem - 120+ mathematical sequences and transformations |
 
 
 ## License

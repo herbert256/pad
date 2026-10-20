@@ -280,7 +280,7 @@ See [DATABASE.md](DATABASE.md) for the `db()` command words and the Select subsy
 
 ### Sequence Subsystem
 
-80+ mathematical sequences with transformations:
+120+ mathematical sequences with transformations:
 ```
 {fibonacci rows=10}{$fibonacci} {/fibonacci}
 {sequence '1..10', push='nums'}

@@ -13,7 +13,7 @@ sequence/
 ├── _inits.pad       # Sequence wrapper
 ├── _inits.php       # Sequence initialization
 ├── _lib/            # Sequence libraries
-├── basic/           # Basic sequence examples (80+ sequences)
+├── basic/           # Basic sequence examples (120+ sequences)
 ├── check/           # Sequence validation tests
 ├── concepts/        # Sequence concept documentation
 ├── keepRemoveFlag/  # Filter flag examples
@@ -34,7 +34,7 @@ sequence/
 
 ## Features
 
-- **80+ mathematical sequences**: Fibonacci, primes, triangular, etc.
+- **120+ mathematical sequences**: Fibonacci, primes, triangular, etc.
 - **Sequence actions**: Transform, filter, combine sequences
 - **Interactive examples**: Live sequence generation
 - **Type demonstrations**: Various sequence types and patterns
@@ -52,8 +52,11 @@ sequence/
 - Primes and their kin: prime, composite, emirp, semiprime, mersenne, perfect
 - Fibonacci, Lucas, Pell, Perrin, Tribonacci, Catalan, Bell sequences
 - Figurate numbers: triangular, square, pentagonal, hexagonal, tetrahedral ...
-- Powers: power, exponentiation, cubic, biquadratic
-- And many more mathematical sequences - eighty types in all
+- Powers: power, exponentiation, cubic, biquadratic, perfectPower
+- Number theory: totient, divisors, sigma, abundant, smith, carmichael, amicable ...
+- Digits and bits: digitSum, reversal, narcissistic, automorphic, evil, odious, thueMorse
+- Counting: factorial, partition, derangement, motzkin, catalan
+- And many more mathematical sequences - 122 types in all
 
 ## Access
 
