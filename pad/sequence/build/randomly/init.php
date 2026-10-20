@@ -19,7 +19,11 @@
 
   if ( pqStore ( $pqBuild ) ) {
 
-    $pqRandomlyStart = $pqFrom - 1;
+    // The first entry the fixed iterator offers, a whole index inside the list: from=0, a
+    // negative or a fractional from= drew index -1 or 0.5 and ended the request on "Undefined
+    // array key -1" or the float's deprecation as a key.
+
+    $pqRandomlyStart = max ( 0, (int) ceil ( $pqFrom - 1 ) );
     $pqRandomlyEnd   = $pqTo   - 1;
 
     if ( $pqRandomlyEnd > count ( $pqFixed ) - 1 )
@@ -38,7 +42,14 @@
   // 1 or more, the step the fixed iterator takes itself: increment=0 divided by nothing here
   // and ended the request, and increment=0.5 drew the entry at index 1.5.
 
+  // A range the type built has taken the increment itself (types/range/build.php marks it
+  // done, as type/fixed.php reads it), so its list is walked a step of 1: stepped again,
+  // {sequence '1..20', randomly, increment=5} drew from the first entry of 1 6 11 16 only.
+
   $pqRandomlyInc = pqStore ( $pqBuild ) ? max ( 1, (int) ceil ( $pqInc ) ) : $pqInc;
+
+  if ( pqStore ( $pqBuild ) and in_array ( 'increment', $pqDone ) )
+    $pqRandomlyInc = 1;
 
   $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqRandomlyInc );
 
