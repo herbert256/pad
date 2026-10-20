@@ -667,11 +667,20 @@
 
   }
 
-  // A parameter as part of a key: its text, or for a list its serialized form.
+  // A parameter as part of a key: a number or a text by its text, a list by its serialized
+  // form, and the bare option's TRUE - FALSE and NULL too - by a mark of its own, each kind
+  // behind a letter so no text can spell another kind's key. TRUE was its text, '1', the key
+  // of the parameter 1, where range and repeat read the bare TRUE otherwise: after
+  // sequence:repeat(2) sequence:repeat(2, 1) answered 2 where it is 1, and keep, range=1 after
+  // keep, range kept 1 2 3 4 5 where it keeps 1.
 
   function pqCheckParm ( $parm ) {
 
-    return is_scalar ( $parm ) ? (string) $parm : serialize ( $parm );
+    if     ( $parm === TRUE  ) return 'T';
+    elseif ( $parm === FALSE ) return 'F';
+    elseif ( $parm === NULL  ) return 'N';
+    elseif ( is_scalar ( $parm ) ) return 's' . $parm;
+    else                           return 'a' . serialize ( $parm );
 
   }
 
