@@ -35,18 +35,28 @@
   include PQ . 'exits/return/return.php';
   include PQ . 'exits/extra/extra.php';
 
+  $pqResumeRows   = $padData [$pad];
   $padData [$pad] = $pqResumeData;
 
   // push= and name= keep the terms under a name of their own as well, and toData= publishes
   // them, as on any sequence tag: {resume} took the three without a word and did none of them.
+  //
+  // With the rows the run shows, as a pull's push= keeps them, and a push= is the store pushed
+  // last: the terms alone were kept, {pull:u} after {resume reverse, push='u'} had none of the
+  // chained columns - under the strict check "Field '$range' not found" - and a bare {pull}
+  // after {resume a, add=10, push='c'} pulled the store pushed before it.
 
-  foreach ( [ $pqPush, $pqNameGiven ] as $pqResumeAs )
+  foreach ( [ $pqPush, $pqNameGiven ] as $pqResumeAt => $pqResumeAs )
     if ( is_string ( $pqResumeAs ) and $pqResumeAs !== '' and $pqResumeAs != $pqPull ) {
       $pqResumeTaken = pqStoreTaken ( $pqResumeAs );
       if ( $pqResumeTaken )
         padError ( "Store name '$pqResumeAs' can not be equal to $pqResumeTaken" );
-      else
-        $pqStore [$pqResumeAs] = array_values ( $pqResult );
+      else {
+        $pqStore    [$pqResumeAs] = array_values ( $pqResult );
+        $padSeqData [$pqResumeAs] = $pqResumeRows;
+        if ( $pqResumeAt == 0 )
+          $pqResumeLast = $pqResumeAs;
+      }
     }
 
   include PQ . 'exits/data.php';

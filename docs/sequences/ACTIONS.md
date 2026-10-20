@@ -205,7 +205,9 @@ Applies transformations to a stored sequence without pulling it:
 It resumes the store pushed last, or the one it names - `{resume 'mySeq', reverse}`,
 `{resume mySeq, reverse}` or `pull='mySeq'`. A name that is no store is reported, as
 `{pull:typo}` reports it, and no other store is touched. A quoted action name is that action:
-`{resume 'reverse'}` is `{resume reverse}`.
+`{resume 'reverse'}` is `{resume reverse}`. `push='u'` and `name='u'` keep the result under u
+as well, with the columns a later `{pull:u}` chains in, and after `push='u'` u is the store
+pushed last.
 
 ## Sequence Plays (keep, remove, make, flag)
 
