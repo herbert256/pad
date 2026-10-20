@@ -9,10 +9,25 @@
   // goes into an include path, so it must be a plain name before it is looked up - with
   // ../ in it, action= reached any .php on disk.
 
+  // An option of the tag's own action is its parameter, not a second mention: {a:shift shift=3}
+  // ran shift twice, the first time with a count of 1, so it showed 1 and took 1 out of the
+  // store. The action keeps the first place, with the option's value.
+
+  $pqActionFront = '';
+
   if ( $pqAction )  {
+
     if ( $pqActionParm === TRUE )
       $pqActionParm = '';
-    $pqActions [] = [ $pqAction, $pqActionParm ];
+
+    if ( $pqActionParm === '' and $pqEntry == 'tag' )
+      foreach ( $padParms [$pad] as $padV )
+        if ( $padV ['padPrmKind'] == 'option' and $padV ['padPrmName'] == $pqAction )
+          $pqActionFront = $pqAction;
+
+    if ( ! $pqActionFront )
+      $pqActions [] = [ $pqAction, $pqActionParm ];
+
   }
 
   // A tag's options only - see plays/inits.php: an expression's run took the surrounding
@@ -51,7 +66,12 @@
 
       $pqAction = ( $padV ['padPrmName'] == 'action' ) ? array_shift ( $pqActionList ) : $padV ['padPrmName'];
 
-      if ( padValidName ( $pqAction ) and pqAction ( $pqAction ) )
+      if ( padValidName ( $pqAction ) and pqAction ( $pqAction ) and $pqAction === $pqActionFront ) {
+        array_unshift ( $pqActions, [ $pqAction, implode ( '|', $pqActionList ) ] );
+        $pqActionFront = '';
+      }
+
+      elseif ( padValidName ( $pqAction ) and pqAction ( $pqAction ) )
         $pqActions [] = [ $pqAction, implode ( '|', $pqActionList ) ];
 
       // A name action= gives has to be an action, as make='x' has to be a type: action='nope'
