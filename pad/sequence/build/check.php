@@ -102,11 +102,14 @@
 
   }
 
-  // The terms up to the candidate's position, generated once per sequence and parameter and
-  // extended by doubling: keep and remove asked for a fresh nested run for every candidate,
-  // quadratic over a long list. Kept under a pad* name for the reason above. The question is
-  // the same as before - is the value among the first $pqLoop terms - which the index
-  // answers with the first position it holds for the value.
+  // The terms as far as the larger of the candidate and the reach a run has by default,
+  // $padSeqDefaultTries, generated once per sequence and parameter and extended by doubling -
+  // keep and remove asked for a fresh nested run for every candidate, quadratic over a long
+  // list - and the value is a member at whatever position it stands. Kept under a pad* name
+  // for the reason above. The question was whether the value is among the first $pqLoop
+  // terms, which holds only for a sequence that climbs a whole number at a time:
+  // eval='100 - @' makes 1 at position 99 and was denied it, eval='@ % 4' its 0 at position
+  // 4, and step=2.5 answered 3.5 by the order the values were asked in.
 
   // Terms that can come out otherwise another time - a type that draws at random or evaluates
   // an expression, a parameter naming a store or drawn from a range (pqTermsKey) - are kept for
@@ -120,18 +123,14 @@
     $pqCheckTerms = &$padSeqCheckList;
 
   $pqCheckKey = $pqSeq . '|' . pqCheckParm ( $pqParm );
-  $pqCheckTo  = max ( 1, (int) $pqLoop );
+  $pqCheckTo  = is_numeric ( $pqLoop ) ? (int) min ( abs ( (float) $pqLoop ), $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) : 0;
+  $pqCheckTo  = max ( $pqCheckTo, $GLOBALS ['padSeqDefaultTries'] ?? 10000 );
 
   if ( ! isset ( $pqCheckTerms [$pqCheckKey] ) or $pqCheckTerms [$pqCheckKey] [0] < $pqCheckTo ) {
     $pqCheckTo = max ( $pqCheckTo, 2 * ( $pqCheckTerms [$pqCheckKey] [0] ?? 0 ) );
     $pqCheckTerms [$pqCheckKey] = [ $pqCheckTo, pqIndex ( pqTerms ( $pqSeq, $pqParm, [ 'to' => $pqCheckTo ] ) ) ];
   }
 
-  // A value the terms do not hold is no member at any position: a stand-in of PHP_INT_MAX for
-  // its position was no larger than the position of the value PHP_INT_MAX itself, and every
-  // such type took 9223372036854775807 for a member - repeat=3, ceil=3, eval='@ * 2'.
-
-  return isset ( $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] )
-         and $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] <= max ( 1, (int) $pqLoop );
+  return isset ( $pqCheckTerms [$pqCheckKey] [1] [$pqCheckAt] );
 
 ?>
