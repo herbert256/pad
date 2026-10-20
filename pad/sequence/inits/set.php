@@ -51,10 +51,35 @@
 
     $pqResumeFirst = $padOpt [$pad] [1] ?? '';
 
-    if ( ! $pqResumeOf and is_string ( $pqResumeFirst ) and isset ( $pqStore [$pqResumeFirst] ) )
-      $pqResumeOf = $pqResumeFirst;
+    if ( ! $pqResumeOf and is_string ( $pqResumeFirst ) and isset ( $pqStore [$pqResumeFirst] ) ) {
+      $pqResumeOf    = $pqResumeFirst;
+      $pqResumeFirst = '';
+    }
 
-    $pqPull  = $pqResumeOf ?: $padLastPush;
+    // A first parameter that names an action is that action, as it is on a pull since
+    // inits/find/parm/name.php: {resume 'reverse'} left the store as it was.
+
+    if ( is_string ( $pqResumeFirst ) and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $pqResumeFirst )
+         and ! isset ( $pqStore [$pqResumeFirst] ) and pqAction ( $pqResumeFirst ) ) {
+      $pqAction      = $pqResumeFirst;
+      $pqResumeFirst = '';
+    }
+
+    // A name given that is no store - pull='typo', a first parameter 'typo' or 3 - is still the
+    // store asked for, and build/types/pull.php names the miss as it does for {pull:typo}; only
+    // a resume that names none takes the store pushed last. The miss fell back to it without a
+    // word: {resume pull='typo', reverse} reversed the store pushed last.
+
+    if ( $pqResumeOf === '' ) {
+      if ( is_string ( $pqPull ) and $pqPull !== '' )
+        $pqResumeOf = $pqPull;
+      elseif ( is_array ( $pqResumeFirst ) )
+        padError ( "{resume} takes the name of a store, not a list" );
+      elseif ( $pqResumeFirst !== '' and $pqResumeFirst !== TRUE and $pqResumeFirst !== NULL )
+        $pqResumeOf = (string) $pqResumeFirst;
+    }
+
+    $pqPull  = ( $pqResumeOf !== '' ) ? $pqResumeOf : $padLastPush;
     $pqBuild = 'pull';
 
   } elseif ( $pqPull === TRUE ) {

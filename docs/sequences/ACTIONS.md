@@ -202,6 +202,11 @@ Applies transformations to a stored sequence without pulling it:
 {pull:mySeq}{$sequence} {/pull:mySeq}
 ```
 
+It resumes the store pushed last, or the one it names - `{resume 'mySeq', reverse}`,
+`{resume mySeq, reverse}` or `pull='mySeq'`. A name that is no store is reported, as
+`{pull:typo}` reports it, and no other store is touched. A quoted action name is that action:
+`{resume 'reverse'}` is `{resume reverse}`.
+
 ## Sequence Plays (keep, remove, make, flag)
 
 Filter or transform sequences based on sequence types:
