@@ -227,12 +227,22 @@
 
   // A segment that is a printf format: the value piped in, formatted - a date object as its
   // text. A format sprintf cannot fill with the one value - %s and %s, a conversion it does
-  // not know - is named under the strict check and empty in the lenient walk.
+  // not know - is named under the strict check and empty in the lenient walk, and so is a
+  // list or an object handed to it: [1] | %s ended the page on PHP's "Array to string
+  // conversion" in either mode, and [1, 2] | %d answered 1.
 
   function padEvalFormatted ( $format, $value ) {
 
+    $value = padDateText ( $value );
+
+    if ( is_array ( $value ) or ( is_object ( $value ) and ! $value instanceof Stringable ) ) {
+      if ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "the format '" . padMakeSafe ( $format, 40 ) . "' is handed " . ( is_array ( $value ) ? 'a list' : 'an object' ) . ", not a value" );
+      return '';
+    }
+
     try {
-      return sprintf ( $format, padDateText ( $value ) );
+      return sprintf ( $format, $value );
     } catch ( ValueError | ArgumentCountError $padEvalFormatError ) {
       if ( $GLOBALS ['padCheckSyntax'] )
         padError ( "the format '" . padMakeSafe ( $format, 40 ) . "' is not one sprintf can fill with the one value" );
