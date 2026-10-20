@@ -15,6 +15,8 @@
   $pqSeq   = $padPrmName;
   $pqBuild = pqBuild ( $pqSeq, $pqPlay );
 
+  pqParmList ( $pqSeq, $padPrmValue );
+
   include PQ . 'build/include.php';
   include PQ . "plays/init.php";
 

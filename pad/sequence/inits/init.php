@@ -11,6 +11,8 @@
   $pqInitTo   = $pqTo;
   $pqInitInc  = $pqInc;
 
+  pqParmList ( $pqSeq, $pqParm );
+
   if ( $pqSeq and padFileExists ( PT . "$pqSeq/init.php" ) )
     include PT . "$pqSeq/init.php";
 

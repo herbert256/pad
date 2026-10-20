@@ -288,17 +288,21 @@
   // holding a word, or add='a..z', ended the request on "Unsupported operand types". FALSE,
   // after the error, ends the run at that term.
 
-  function pqParmTerm ( $seq, $parm ) {
+  // Whether a type does arithmetic with its parameter: its init.php asks for a number through
+  // inits/number.php.
+
+  function pqNumberType ( $seq ) {
 
     static $numeric = [];
 
-    if ( $parm === TRUE or is_numeric ( $parm ) )
-      return TRUE;
+    return $numeric [$seq] ??= ( padFileExists ( PT . "$seq/init.php" )
+                                 and str_contains ( file_get_contents ( PT . "$seq/init.php" ), "include PQ . 'inits/number.php'" ) );
 
-    $numeric [$seq] ??= ( padFileExists ( PT . "$seq/init.php" )
-                          and str_contains ( file_get_contents ( PT . "$seq/init.php" ), "include PQ . 'inits/number.php'" ) );
+  }
 
-    if ( ! $numeric [$seq] )
+  function pqParmTerm ( $seq, $parm ) {
+
+    if ( $parm === TRUE or is_numeric ( $parm ) or ! pqNumberType ( $seq ) )
       return TRUE;
 
     padError ( "The $seq sequence needs a number as its parameter, not '" . ( is_scalar ( $parm ) ? $parm : 'a list' ) . "'" );
@@ -324,6 +328,23 @@
     }
 
     return $made [$n - 1] ?? FALSE;
+
+  }
+
+  // A list as the parameter of a type: only the list type takes one, as its values. Any other
+  // type is named under the error, and carries on as the bare type - chance=[2, 3], random=,
+  // eval=, range= ended the request on a str_contains, preg_match or explode TypeError, and
+  // and=[2, 3] or oeis=[2, 3] read the list as the number 1 in silence.
+
+  function pqParmList ( $seq, &$parm ) {
+
+    if ( ! is_array ( $parm ) or $seq == 'list' )
+      return;
+
+    padError ( "The $seq sequence needs " . ( pqNumberType ( $seq ) ? 'a number' : 'a single value' )
+             . " as its parameter, not a list" );
+
+    $parm = TRUE;
 
   }
 
