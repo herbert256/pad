@@ -26,13 +26,16 @@
   if ( $pqSeq or is_array ( $pqFindParm ) or (string) $pqFindParm === '' )
     return;
 
-  if ( strpos( $pqFindParm, '..' ) ) {
+  // Anywhere in the text: at its start the range lacks its first end, '..5', which padGetRange
+  // names, where strpos () read 0 as no '..' and the range was reported as no sequence type.
+
+  if ( str_contains ( $pqFindParm, '..' ) ) {
     $pqSeq      = 'range';
     $pqParm     = $pqFindParm;
     $pqFindParm = '';
   }
 
-  if ( strpos( $pqFindParm, ';' ) ) {
+  if ( str_contains ( $pqFindParm, ';' ) ) {
     $pqSeq      = 'list';
     $pqParm     = $pqFindParm;
     $pqFindParm = '';
@@ -40,8 +43,7 @@
 
       if ( (string) $pqFindParm === ''                                    ) return;
   elseif ( ! is_numeric ( $pqFindParm )                                   ) return;
-  elseif ( ! isset ( $padParms [$pad] [0] ['padPrmKind'] )                ) return;
-  elseif ( $padParms [$pad] [0] ['padPrmKind'] != 'parm'                  ) return;
+  elseif ( ! $pqFindPositional                                            ) return;
   elseif ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) return;
   elseif ( $pqAction and padFileExists ( PQ . "actions/double/$pqAction") ) return;
   elseif ( $pqAction and padFileExists ( PQ . "actions/parm/$pqAction")   ) return;

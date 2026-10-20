@@ -8,7 +8,7 @@
   // gave ten primes and {keep:prime '1..10'} the first ten primes, in silence. Anything else
   // is left for parm/name.php and parm/parm.php.
 
-  if ( is_numeric ( $pqFindParm ) and ( $padParms [$pad] [0] ['padPrmKind'] ?? '' ) == 'parm' ) {
+  if ( is_numeric ( $pqFindParm ) and $pqFindPositional ) {
 
     $pqRows     = $pqFindParm;
     $pqFindParm = '';
