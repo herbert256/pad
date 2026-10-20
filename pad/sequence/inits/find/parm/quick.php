@@ -47,12 +47,12 @@
       $pqFindTaker = 'tag';
 
     elseif ( $pqFindStore )
-      foreach ( $padParms [$pad] as $pqFindAt => $pqFindOne )
+      foreach ( $padParms [$pad] as $pqFindIdx => $pqFindOne )
         if ( $pqFindTaker === NULL and $pqFindOne ['padPrmKind'] == 'option' and $pqFindOne ['padPrmValue'] === TRUE
              and pqAction ( $pqFindOne ['padPrmName'] )
              and ( padFileExists ( PQ . 'actions/double/' . $pqFindOne ['padPrmName'] )
                    or padFileExists ( PQ . 'actions/merge/' . $pqFindOne ['padPrmName'] ) ) )
-          $pqFindTaker = $pqFindAt;
+          $pqFindTaker = $pqFindIdx;
 
     if ( $pqFindTaker === 'tag' )
 

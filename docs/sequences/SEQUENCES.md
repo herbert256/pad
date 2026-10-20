@@ -78,7 +78,8 @@ beside:
   `';'` list is: `{keep:a [2, 3]}` keeps the terms of a that are 2 or 3, as `{keep:a '2;3'}`
   does. An action that takes stores takes the list, though - the one the tag names, or else
   the first one written as an option: `{a:append [7, 8]}` and `{pull:a append, [7, 8]}` are
-  `{pull:a append=[7, 8]}`.
+  `{pull:a append=[7, 8]}` - and so the name of another store there: `{pull:a intersection,
+  'b'}` is `{pull:a intersection='b'}`.
 - A name is the store, the type or the action it names - `{sequence $type, rows=5}` - and an
   action named while the tag runs one already is the option of that name: `{sum 'reverse'}`
   is `{sum reverse}`.

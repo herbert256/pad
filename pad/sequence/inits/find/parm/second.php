@@ -93,6 +93,7 @@
         include PQ . 'inits/find/parm/quick.php';
 
       include PQ . 'inits/find/parm/name.php';
+      include PQ . 'inits/find/parm/store.php';
 
       if ( $pqSeq and pqSeq ( $pqFindParm ) ) {
 

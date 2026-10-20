@@ -17,6 +17,12 @@
   if ( $pqAction )
     include PQ . 'inits/find/parm/kind.php';
 
+  if ( ! $pqFindKind )
+    include PQ . 'inits/find/parm/store.php';
+
+  if ( ! is_array ( $pqFindParm ) and (string) $pqFindParm === '' )
+    return;
+
   // Beside a store pulled with neither, a name is named too: {pull:s 'abc'} and {pull:s reverse,
   // 'abc'} dropped it without a word. A number there is left as it was, the parameter of the
   // type the tag plays with - {make add=3, mySequence, 3} - parm/inits.php.
