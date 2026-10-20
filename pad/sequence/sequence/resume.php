@@ -16,6 +16,12 @@
   include PQ . 'inits/limits.php';
   include PQ . 'build/build.php';
   include PQ . 'exits/actions.php';
+  // The store resumed is the one written back - $padLastPush for exits/store/set.php while it
+  // runs - and the store pushed last stays the one it was.
+
+  $pqResumeLast = $padLastPush;
+  $padLastPush  = $pqPull;
+
   include PQ . 'exits/store/set.php';
 
   // The rows of the store as {resume} leaves it, made as a tag's are and kept by
@@ -29,6 +35,22 @@
   include PQ . 'exits/extra/extra.php';
 
   $padData [$pad] = $pqResumeData;
+
+  // push= and name= keep the terms under a name of their own as well, and toData= publishes
+  // them, as on any sequence tag: {resume} took the three without a word and did none of them.
+
+  foreach ( [ $pqPush, $pqNameGiven ] as $pqResumeAs )
+    if ( is_string ( $pqResumeAs ) and $pqResumeAs !== '' and $pqResumeAs != $pqPull ) {
+      $pqResumeTaken = pqStoreTaken ( $pqResumeAs );
+      if ( $pqResumeTaken )
+        padError ( "Store name '$pqResumeAs' can not be equal to $pqResumeTaken" );
+      else
+        $pqStore [$pqResumeAs] = array_values ( $pqResult );
+    }
+
+  include PQ . 'exits/data.php';
+
+  $padLastPush = $pqResumeLast;
   include PQ . 'exits/done.php';
   include PQ . 'exits/info.php';
 

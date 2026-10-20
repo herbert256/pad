@@ -37,7 +37,27 @@
   // expression's - sequence:prime(3) in {resume add=sequence:prime(3)} built the store
   // pushed last and answered its third value, 3.
 
-  if ( ( $pqEntry == 'tag' and $pqTag == 'resume' ) or $pqPull === TRUE ) {
+  // {resume} takes a store it names - pull='s', an option s, a first parameter 's' - and the
+  // store pushed last otherwise: the store named was passed over, and {resume s, reverse}
+  // reversed the last push.
+
+  if ( $pqEntry == 'tag' and $pqTag == 'resume' ) {
+
+    $pqResumeOf = ( is_string ( $pqPull ) and isset ( $pqStore [$pqPull] ) ) ? $pqPull : '';
+
+    foreach ( $padParms [$pad] as $pqResumeOne )
+      if ( ! $pqResumeOf and $pqResumeOne ['padPrmKind'] == 'option' and isset ( $pqStore [ $pqResumeOne ['padPrmName'] ] ) )
+        $pqResumeOf = $pqResumeOne ['padPrmName'];
+
+    $pqResumeFirst = $padOpt [$pad] [1] ?? '';
+
+    if ( ! $pqResumeOf and is_string ( $pqResumeFirst ) and isset ( $pqStore [$pqResumeFirst] ) )
+      $pqResumeOf = $pqResumeFirst;
+
+    $pqPull  = $pqResumeOf ?: $padLastPush;
+    $pqBuild = 'pull';
+
+  } elseif ( $pqPull === TRUE ) {
     $pqPull  = $padLastPush;
     $pqBuild = 'pull';
   }
