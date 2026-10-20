@@ -1,0 +1,1 @@
+[{sequence '1..3', add=10, name='s'}{/sequence}{pull:s}{$sequence}:{$range}:{$add} {/pull:s}]{sequence '1..6', add=10, push='nums'}{/sequence}[{resume reverse}{pull:nums}{$sequence}:{$range}:{$add} {/pull:nums}]{sequence '1..6', add=10, push='nums'}{/sequence}[{resume shift=2}{pull:nums}{$sequence}:{$range}:{$add} {/pull:nums}]

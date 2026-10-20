@@ -1,0 +1,5 @@
+<p>{echo $nickname ?? 'no nickname'}</p>
+<p>{echo $count ?? 'no count'}</p>
+<p>{echo $surname ?? 'no surname'}</p>
+<p>{echo $surname ?? $nickname ?? 'nothing at all'}</p>
+<p>{$nickname | ?? 'anonymous'} - {$nickname | default('anonymous')}</p>

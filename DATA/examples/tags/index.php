@@ -10,6 +10,6 @@
 
   $exampleCount = 0;
   foreach ( tagsCatalog () as $name => $tag )
-    $exampleCount += count ( tagsExamples ( $name ) );
+    $exampleCount += tagsExampleCount ( $name );
 
 ?>

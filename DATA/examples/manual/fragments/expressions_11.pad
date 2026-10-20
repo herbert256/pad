@@ -1,0 +1,5 @@
+{set $book = [ 'title' => 'Minutes', 'pages' => 2 * 120 ]}
+<p>{$book.title}: {$book.pages} pages</p>
+{set $primes = [2, 3, 5, 7]}
+<p>{primes}{$primes} {/primes}</p>
+<p>{echo php:implode(' + ', [1, 2, 3]) . ' = ' . php:array_sum([1, 2, 3])}</p>

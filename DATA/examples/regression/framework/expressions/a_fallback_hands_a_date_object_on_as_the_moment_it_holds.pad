@@ -1,0 +1,1 @@
+[{echo $moment | date('U')}][{echo ($moment ?? 'none') | date('U')}][{echo ($nothing ?? $moment) | date('U')}][{echo $moment | default('x') | date('U')}][{$moment | optional | date('U')}][{echo [$moment ?? 'none'] | php:count}]

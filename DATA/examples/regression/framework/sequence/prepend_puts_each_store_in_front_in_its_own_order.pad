@@ -1,0 +1,1 @@
+{sequence '1..3', push='a'/}{sequence '7;8', push='b'/}{sequence '4;5', push='c'/}[{pull:a prepend='b'}{$sequence} {/pull:a}][{pull:a prepend='b|c'}{$sequence} {/pull:a}][{pull:a reverse, prepend='b', minimum=2}{$sequence} {/pull:a}][{pull:a prepend='nope'}{$sequence} {/pull:a}]

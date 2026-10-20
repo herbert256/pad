@@ -1,0 +1,1 @@
+{set $n = 3/}{set $s = 'ab'/}[{echo ($n | + 1) * 2}][{echo upper(' hi ' | trim)}][{if ($n | + 1) eq 4}y{/if}][{echo php:max(1, $n | + 1)}][{echo php:implode(',', [$n | + 1, $n])}][{$s | php:str_pad(@ | upper, 4, '*')}][{echo $s | (@ | upper) . @}][{echo ($n | (@ | * 2))}]

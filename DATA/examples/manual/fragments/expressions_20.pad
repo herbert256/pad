@@ -1,0 +1,6 @@
+{data 'cart'}
+  [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]
+{/data}
+{cart}
+  <p>{$qty} {echo $qty eq 1 ? $item : $item . 's'}{echo $qty ? '' : ' - sold out'}</p>
+{/cart}

@@ -1,0 +1,9 @@
+{data 'orders'}
+  [ {"nr": 1, "state": "paid",      "customer": "Ada"},
+    {"nr": 2, "state": "cancelled", "customer": "Alan"},
+    {"nr": 3, "state": "sent",      "customer": "Bob"},
+    {"nr": 4, "state": "sent",      "customer": "Alice"} ]
+{/data}
+{orders where='$state not in ("cancelled", "refunded") and $customer like "A%"'}
+  <p>{$nr}: {$customer}, {$state}</p>
+{/orders}

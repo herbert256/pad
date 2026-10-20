@@ -1,0 +1,8 @@
+{data 'colors'}["red", "green", "blue"]{/data}
+{set $nums = [4, 8, 15]}
+{set $title = 'Prefixes'}
+<p>{echo constant:PHP_INT_SIZE}</p>
+<p>{echo php:count(data:colors)}</p>
+<p>{echo php:count(array:nums)} numbers, together {echo array:nums + 0}</p>
+<p>{echo php:str_repeat('=', 5)}</p>
+<p>{echo field:title | upper}</p>

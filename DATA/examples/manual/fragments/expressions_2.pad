@@ -1,0 +1,6 @@
+{data 'stock'}
+  [ {"item": "pen", "qty": 12}, {"item": "ink", "qty": 0}, {"item": "pad", "qty": 5} ]
+{/data}
+{stock where='$qty gt 0', %order = 20 - $qty}
+  <p>{$item}: {$qty} in stock, order {$order}</p>
+{/stock}

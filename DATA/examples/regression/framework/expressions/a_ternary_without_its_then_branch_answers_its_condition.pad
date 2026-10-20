@@ -1,0 +1,1 @@
+{set $n = 3/}{set $z = 0/}[{echo $n ?: 5}][{echo $z ?: 5}][{echo '' ?: $z ?: 'c'}][{$n | ?: 'none'}][{$z | ?: 'none'}][{echo php:str_repeat($z ?: 'ab', 2)}]
