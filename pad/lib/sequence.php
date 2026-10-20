@@ -770,6 +770,13 @@
   // floor ( $x / $p ) * $p and round ( $x / $p ) * $p: the float quotient lost the last digits
   // past 2^53, and from 15 digits the terms of floor, round and ceil printed in E-notation.
   // A bare parameter holds TRUE, the 1 it is read as.
+  //
+  // The floor takes the remainder off, and a whole $p more when the remainder is below 0, so
+  // no sum passes the integer range on the way: ( $x % $p ) + $p did once the remainder and
+  // the parameter together passed PHP_INT_MAX, and the % of that float ended the request -
+  // {sequence floor=9223372036854775807} on "The float 9.223372036854776E+18 is not
+  // representable as an int". Only a floor below PHP_INT_MIN leaves the range now, as the
+  // float that ends the run.
 
   function pqFloorMultiple ( $x, $p ) {
 
@@ -779,10 +786,11 @@
     if ( ! pqBoolWhole ( $x ) or ! pqBoolWhole ( $p ) or $p <= 0 )
       return floor ( $x / $p ) * $p;
 
-    $x = (int) $x;
-    $p = (int) $p;
+    $x    = (int) $x;
+    $p    = (int) $p;
+    $rest = $x % $p;
 
-    return $x - ( ( $x % $p ) + $p ) % $p;
+    return $rest < 0 ? $x - $rest - $p : $x - $rest;
 
   }
 
