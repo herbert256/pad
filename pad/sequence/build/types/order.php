@@ -37,10 +37,30 @@
     return;
   }
 
+  // A random increment by the largest step it can be drawn, as type/loop.php has it: one whose
+  // largest step is below 1 is no walk, and the run takes the else branch as square does,
+  // where it was taken for steps of 1 - {sequence fibonacci, increment='0...0'} and
+  // increment='-3...-1' gave 0 1 1.
+
+  if ( $pqRandomInc ) {
+    padSplit ( '...', $pqRandomInc, $pqOrderLow, $pqOrderHigh );
+    if ( max ( (int) $pqOrderLow, (int) $pqOrderHigh ) < 1 )
+      return;
+  }
+
   $pqOrderInc    = $pqInc;
   $pqOrderRandom = $pqRandomInc;
   $pqOrderNext   = $pqOrderFrom;
   $pqOrderMost   = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+
+  // A random step is a whole step too - max ( 1, (int) ... ) of a draw - so from a fractional
+  // from= no position is ever whole either, and it is told before the first position at 1 or
+  // above is worked out, which starts a random walk on a whole one: left to the walk, golomb
+  // from=2.5 with increment='1...3' held a million terms back for none, and from=-2.5 gave
+  // terms at the whole positions its start was moved to, where increment=1 gives none.
+
+  if ( ( $pqOrderRandom or floor ( $pqOrderInc ) == $pqOrderInc ) and floor ( $pqOrderNext ) != $pqOrderNext )
+    return;
 
   // The first position offered at 1 or above is worked out, not stepped to: one step at a time,
   // from=-2000000000 spent the five seconds a run has before its first term and from=-1e20,
@@ -72,9 +92,6 @@
       $pqOrderNext = 1;
 
   }
-
-  if ( ! $pqOrderRandom and floor ( $pqOrderInc ) == $pqOrderInc and floor ( $pqOrderNext ) != $pqOrderNext )
-    return;
 
   $pqRandomInc = FALSE;
   $pqFrom      = 1;
