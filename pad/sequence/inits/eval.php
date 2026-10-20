@@ -33,6 +33,15 @@
   if ( count ( $pqSetParms ) > 2 and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
     padError ( "sequence:$pqSeq() takes a position and a parameter, not " . count ( $pqSetParms ) . " arguments" );
 
+  // Only a type that takes one - flags/parm - reads a parameter, and the strict check names one
+  // given to any other, as inits/find/parm/none.php names it for the tag: sequence:prime(3,
+  // 'abc') answered the third prime and sequence:fibonacci(5, '1..3') the fifth term, in silence.
+
+  elseif ( count ( $pqSetParms ) > 1 and $pqParm !== '' and $pqParm !== NULL
+           and ! padFileExists ( PT . "$pqSeq/flags/parm" ) and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
+    padError ( "sequence:$pqSeq() takes a position only: the $pqSeq sequence takes no parameter, not '"
+             . ( is_scalar ( $pqParm ) ? $pqParm : 'a list' ) . "'" );
+
   // A position counts from 1 and is a whole number, as element= takes one. 0, -3 and 2.7 were
   // cut down to a whole number of at least 1, so sequence:prime(0) answered 2, the first
   // prime, and sequence:fibonacci(2.7) the second term; they have no term, and the strict
