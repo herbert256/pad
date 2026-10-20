@@ -179,9 +179,11 @@
 
       // A signed number standing alone after a | is the missing-space form of the
       // arithmetic pipe: {echo $x | +1} replaces the value with the literal +1 where
-      // {echo $x | + 1} adds one. It can only be that mistake, so it is named as one.
+      // {echo $x | + 1} adds one. It can only be that mistake, so it is named as one. A
+      // quoted string is the value the pipe puts in place, whatever it spells: {echo 10 |
+      // '-1'} was named as the missing space.
 
-      if ( count ( $tokens ) == 1 and preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
+      if ( count ( $tokens ) == 1 and empty ( $tokens [0] ['lit'] ) and preg_match ( '/^[+\-]\d/', (string) ( $tokens [0] [0] ?? '' ) ) )
         return padEvalValidateError ( "a pipe operator needs a space before its operand - write '| + 1', not '| " . $tokens [0] [0] . "'", $eval );
 
       if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
