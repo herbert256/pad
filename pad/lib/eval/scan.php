@@ -475,8 +475,9 @@
 
   }
 
-  // Whether a number starts at $at: a digit, a . before a digit where no value stands before
-  // it - after one it is the concatenation, 'a'.1 is a1 - or a sign before either.
+  // Whether a number starts at $at: a digit, a . before a digit after a comma or where no
+  // value stands before it - after one it is the concatenation, 'a'.1 is a1, and [1, .5]
+  // was [1 . 5] - or a sign before either.
 
   function padEvalScanNumbered ( $in, $at, $tok ) {
 
@@ -488,7 +489,7 @@
       return TRUE;
 
     if ( $one == '.' )
-      return ctype_digit ( $next ) and ! padEvalAfterValue ( $tok, count ( $tok ) - 1 );
+      return ctype_digit ( $next ) and padEvalScanSign ( $in, $at, $tok );
 
     return ( $one == '-' or $one == '+' )
        and ( ctype_digit ( $next ) or ( $next == '.' and ctype_digit ( $next2 ) ) )
@@ -496,8 +497,8 @@
 
   }
 
-  // Whether the - or + at $at is a sign: after a comma - mid(2, -1) - or where no value
-  // stands before it.
+  // Whether the - + or . at $at opens a number: after a comma - mid(2, -1) - or where no
+  // value stands before it.
 
   function padEvalScanSign ( $in, $at, $tok ) {
 
