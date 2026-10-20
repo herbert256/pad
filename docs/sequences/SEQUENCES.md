@@ -55,7 +55,7 @@ sequence to be mistaken for one, so a typo went unnoticed:
 {sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
-## Sequence Types (88)
+## Sequence Types (95)
 
 ### Mathematical Sequences
 
@@ -144,15 +144,22 @@ membership tests are exact.
 
 ### Number Theory
 
-The terms of `totient`, `divisors` and `sigma` are a function of the position, from n = 1;
-their membership tests - `{keep totient}` and the rest - ask whether some n gives the value,
-which for `totient` and `sigma` is searched among the divisors of the value: the n can stand
-far past the value itself. The prime factors come from trial division and, past 10,000,
+The terms of `totient`, `divisors` and `sigma` are a function of the position, from n = 1,
+and their membership tests - `{keep totient}` and the rest - ask whether some n gives the
+value, which for `totient` and `sigma` is searched among the divisors of the value: the n can
+stand far past the value itself. The others are the numbers that have the property. The prime factors come from trial division and, past 10,000,
 Pollard's rho through gmp, so a number of 19 digits is factored in well under a second.
 
 - `totient` - Euler's totient, how many numbers up to n share no factor with it (1, 1, 2, 2, 4, 2, 6, 4, ...)
 - `divisors` - The number of divisors of n (1, 2, 2, 3, 2, 4, 2, 4, 3, ...)
 - `sigma` - The sum of the divisors of n (1, 3, 4, 7, 6, 12, 8, 15, 13, ...)
+- `abundant` - Numbers whose proper divisors add up to more than themselves (12, 18, 20, 24, 30, ...)
+- `deficient` - Numbers whose proper divisors add up to less than themselves (1, 2, 3, 4, 5, 7, 8, ...)
+- `squarefree` - Numbers no square above 1 divides (1, 2, 3, 5, 6, 7, 10, 11, ...)
+- `smith` - Composite numbers whose digit sum equals that of their prime factors (4, 22, 27, 58, 85, ...)
+- `sphenic` - Products of three different primes (30, 42, 66, 70, 78, ...)
+- `carmichael` - Carmichael numbers, the composites Fermat's test cannot tell from primes (561, 1105, 1729, ...) - seven below the default 10,000 candidates, `try=` reaches more
+- `amicable` - Both numbers of every amicable pair, each the sum of the other's proper divisors (220, 284, 1184, 1210, ...)
 
 ### Arithmetic Operations
 
