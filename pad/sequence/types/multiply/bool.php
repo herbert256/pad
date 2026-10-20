@@ -17,8 +17,15 @@
     // In whole numbers when both are whole, as pqBoolMultiple asks: divided in floating point,
     // odd numbers past 2^54 came out terms of multiply=2.
 
-    if ( pqBoolWhole ( $n ) and pqBoolWhole ( $p ) and $p !== TRUE )
+    // PHP_INT_MIN of multiply=-1 would stand at position 2^63, past the integer range, and is
+    // no term: PHP_INT_MIN % -1 is 0, and intdiv ended the request on "Division of PHP_INT_MIN
+    // by -1 is not an integer" - {sequence '-9223372036854775808;5', flag, multiply=-1}.
+
+    if ( pqBoolWhole ( $n ) and pqBoolWhole ( $p ) and $p !== TRUE ) {
+      if ( (int) $n == PHP_INT_MIN and (int) $p == -1 )
+        return FALSE;
       return ( (int) $n % (int) $p == 0 and intdiv ( (int) $n, (int) $p ) >= 1 );
+    }
 
     return pqBoolPosition ( $n / $p );
 
