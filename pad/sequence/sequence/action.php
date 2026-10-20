@@ -19,6 +19,13 @@
   include PQ . 'inits/limits.php';
   include PQ . 'build/build.php';
   include PQ . 'exits/actions.php';
+
+  // A shift or pop takes the rows of the terms it took out of the store's kept rows, as a
+  // tag's does: the store kept them all, and after sequence:shift('a', 2) the next {pull:a}
+  // gave each term left the columns of the term two places before it. No store is written
+  // here, so exits/extra/set.php does only that.
+
+  include PQ . 'exits/extra/set.php';
   include PQ . 'exits/done.php';
   include PQ . 'exits/info.php';
 

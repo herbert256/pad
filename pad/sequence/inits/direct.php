@@ -9,7 +9,7 @@
 
   $pqEntry = 'direct';
 
-  global $pqStore;
+  global $pqStore, $padSeqData;
   global $pad, $padPrm, $padType, $padTag, $padPrefix, $padLastPush;
   global $padData, $padParms, $padInfo, $padDataStore, $padSeqDefaultRows, $padSeqDefaultTries, $padSeqMaxTries;
 

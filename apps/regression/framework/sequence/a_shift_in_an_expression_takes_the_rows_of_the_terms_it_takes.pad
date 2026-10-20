@@ -1,0 +1,1 @@
+[{sequence '1..6', add=10, push='a'/}{echo php:implode(',', sequence:shift('a', 2))}|{pull:a}{$sequence}:{$add} {/pull:a}][{sequence '1..6', add=10, push='b'/}{echo php:implode(',', sequence:pop('b', 2))}|{pull:b}{$sequence}:{$add} {/pull:b}]
