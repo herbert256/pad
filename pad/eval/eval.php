@@ -33,7 +33,7 @@
   // The commonest expressions - a number, a string with no quote or backslash in it, a plain
   // $field - come once per row and per parameter, and answer here what the pipeline answers
   // for them: the number and the string as written, the field after the strict check
-  // padEvalLeaves gives it - none when its caller hands it to a fallback. Not in a pipe body,
+  // padEvalLeaf gives it - none when its caller hands it to a fallback. Not in a pipe body,
   // where a signed number alone is named as an operator missing its space, nor while the
   // trace records the stages.
 

@@ -31,8 +31,8 @@
   // The nodes are lists, their kind first:
   //
   //   lit  value, literal     a value written in the template; literal for a quoted string
-  //   leaf token              a field, an option, a property, a constant ... read once per
-  //                           evaluation, before the tree (padEvalLeaves)
+  //   leaf token              a field, an option, a property, a constant ... read where the
+  //                           walk reaches it (padEvalLeaf)
   //   me                      the value piped in, @
   //   fmt  format             a segment that is a printf format
   //   un   op, operand, as written
@@ -110,10 +110,10 @@
 
   }
 
-  // The segments of the expression, and the tokens that are read before the tree is: every
-  // field, option, property, hex value and constant of the expression, in the order written -
-  // a field in the branch the ternary does not take is checked as well. With $fallback the
-  // answer goes into a fallback the caller applies (padEvalTreeMissing).
+  // The segments of the expression, and its leaves: every field, option, property, hex value
+  // and constant, by the position of its token, each read where the walk reaches it
+  // (padEvalLeaf). With $fallback the answer goes into a fallback the caller applies
+  // (padEvalTreeMissing).
 
   function padEvalTree ( $tokens, $words, $eval, $pipe, $fallback = FALSE ) {
 
@@ -181,7 +181,7 @@
   // hands to the fallback of its tag's pipe. Brackets around one do not matter: ($x) ??
   // 'none' as $x ?? 'none', where the ) after the field hid the ?? from the token after it. A
   // lookup that is part of more - $x + 1 ?? 0, 'a' . $x ?? 'b' - is no fallback's, and is
-  // named when it is not there. The fields of $miss are marked so for padEvalLeaves, a
+  // named when it is not there. The fields of $miss are marked so for padEvalLeaf, a
   // reference without arguments on its own node.
 
   function padEvalTreeMissing ( $segments, $fallback, &$miss ) {

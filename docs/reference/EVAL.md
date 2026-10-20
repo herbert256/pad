@@ -43,7 +43,7 @@ $tokens = padEvalTokens ( $eval );                  // validate and scan, kept p
 if ( $tokens === FALSE ) return '';                 // the validation named the fault
 if ( ! padEvalCheckPipes ( $tokens, $eval, $pipe ) ) return '';
 $tree = padEvalTreeGet ( $tokens, $eval, $pipe );   // parse, kept per request
-return padEvalSegments ( $tree, $value );           // the leaves, then the segments
+return padEvalSegments ( $tree, $value );           // the segments, each leaf read where reached
 ```
 
 ## Step 1: Validation (`lib/eval/validate.php`)
@@ -178,7 +178,7 @@ A node is a list, its kind first:
 | Kind | Holds |
 |------|-------|
 | `lit` | a value written in the template, and whether it was a quoted string |
-| `leaf` | a token read before the tree: a field, an option, a property, a hex value, a constant |
+| `leaf` | a field, an option, a property, a hex value, a constant - read where the walk reaches it |
 | `me` | the value piped in - `@` |
 | `fmt` | a printf format |
 | `un` / `bin` | an operator and its operand(s), and how it was written |
@@ -193,11 +193,11 @@ A node is a list, its kind first:
 
 ## Step 4: Evaluation (`lib/eval/run.php`)
 
-`padEvalSegments` reads the leaves of the expression first, in the order written
-(`padEvalLeaves`) - so under the strict check a missing field is named even in the branch a
-ternary does not take - and then evaluates each segment with the previous one's answer as
-its input. `padEvalNode` walks the tree: the branch a ternary does not take is left alone,
-both sides of the other operators are evaluated.
+`padEvalSegments` evaluates each segment with the previous one's answer as its input.
+`padEvalNode` walks the tree and reads a leaf where it gets to it (`padEvalLeaf`): the branch
+a ternary does not take is left alone, fields in it included, and so is the right side of
+`and`, `or` and `??` when the left one decides - `0 and tick()` calls nothing, `'ok' ?? 7 /
+0` is `ok`. Both sides of the other operators are evaluated, the left one first.
 
 ### Operators (`padEvalApply`)
 
@@ -313,7 +313,7 @@ runs, `lib/eval/validate.php` reads the expression and names the fault and its p
 - a pipe operator written without its space - `| +1` for `| + 1`
 
 While it runs:
-- "there is no field named '$x'" - a missing field (`padEvalLeaves`), also as `field:x` and
+- "there is no field named '$x'" - a missing field (`padEvalLeaf`), also as `field:x` and
   as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ...".
   A field whose value goes straight into a fallback may be missing (`padEvalTreeMissing`):
   the left side of `??`, the value piped into `default` or `optional` - with a prefix too -
