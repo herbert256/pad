@@ -5,11 +5,20 @@
 
   $pqFindParm = $padOpt [$pad] [1];
 
+  // The place of the parameter find/ is reading, in $padOpt - parm/second.php moves it on.
+
+  $pqFindPlace = 1;
+
   // Whether that parameter named what the tag runs - parm/name.php, a {pull}'s store in
   // find/pull.php - so that a second one is the first parameter of what it named
   // (parm/second.php).
 
   $pqFindNamed = FALSE;
+
+  // Whether a name of an action is read as the option of that name, parm/as.php, rather than
+  // as the action the tag runs - parm/second.php sets it after a count, a range or a list.
+
+  $pqFindAsOption = FALSE;
 
   // Whether that parameter is the tag's own, a count or a range of the tag: written before any
   // type, store or action the tag names. Only the first item could be: {sequence name='i', 5}

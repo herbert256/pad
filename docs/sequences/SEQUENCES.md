@@ -79,12 +79,17 @@ beside:
   does. An action that takes stores takes the list, though - the one the tag names, or else
   the first one written as an option: `{a:append [7, 8]}` and `{pull:a append, [7, 8]}` are
   `{pull:a append=[7, 8]}`.
-- A name is the store, the type or the action it names - `{sequence $type, rows=5}`.
-- A second parameter after one that named what to run is that one's first parameter, as it
-  is after a name the tag gives: `{keep $type, '1..10'}` with `$type` 'prime' is
-  `{keep:prime '1..10'}`, the primes of 1 to 10. Written after a count, a range or a list, a
-  second parameter naming a type plays on it as the option of that name does:
-  `{keep '1..10', $type}` is `{keep '1..10', prime}`.
+- A name is the store, the type or the action it names - `{sequence $type, rows=5}` - and an
+  action named while the tag runs one already is the option of that name: `{sum 'reverse'}`
+  is `{sum reverse}`.
+- A parameter after one that named what to run is that one's first parameter, as it is
+  after a name the tag gives: `{keep $type, '1..10'}` with `$type` 'prime' is
+  `{keep:prime '1..10'}`, the primes of 1 to 10, and `{pull 's', 'shift', 2}` is
+  `{pull:s shift=2}`. One written after a count, a range or a list - or one what the name
+  runs does not take - that names a type or an action is read as the option of that name,
+  in the order written: `{keep '1..10', $type}` is `{keep '1..10', prime}`, `{reverse '1..5',
+  'sum'}` is `{reverse '1..5', sum}` and `{sequence 'prime', 3, 'reverse'}` is
+  `{prime 3, reverse}`.
 - A parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}`, `{pull:s 'abc'}`,
   a second store `{a:sum 'b'}` beside the store a the tag pulls - is reported by the strict
   check.

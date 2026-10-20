@@ -28,7 +28,7 @@
     include PQ . 'inits/find/parm/kind.php';
 
     if ( $pqFindKind ) {
-      $pqActionParm = $pqFindParm;
+      $pqActionParm = is_array ( $pqFindParm ) ? ( pqActionList ( $pqAction, $pqFindParm ) ?? '' ) : $pqFindParm;
       $pqFindParm   = '';
     }
 

@@ -18,7 +18,7 @@
     if ( ! is_array ( $pqFindParm ) and (string) $pqFindParm !== '' ) {
       $pqPull      = $pqFindParm;
       $pqFindParm  = '';
-      $pqFindNamed = TRUE;
+      $pqFindNamed = 'store';
     } else
       $pqPull = $padLastPush;
 

@@ -22,6 +22,7 @@
   // type the tag plays with - {make add=3, mySequence, 3} - parm/inits.php.
 
       if ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;
+  elseif ( $pqFindKind and is_array ( $pqFindParm )                  ) $pqActionParm = pqActionList ( $pqAction, $pqFindParm ) ?? '';
   elseif ( $pqFindKind                                              ) $pqActionParm = $pqFindParm;
   elseif ( $pqSeq or $pqAction                                      ) include PQ . 'inits/find/parm/none.php';
   elseif ( $pqPull and ! is_numeric ( $pqFindParm )                 ) include PQ . 'inits/find/parm/none.php';

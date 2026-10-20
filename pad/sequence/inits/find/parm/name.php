@@ -14,24 +14,40 @@
   if ( ! is_string ( $pqFindParm ) or ! preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $pqFindParm ) )
     return;
 
-  if ( ! $pqPull and isset ( $pqStore [$pqFindParm] ) )
+  // What it named is kept in $pqFindNamed - store, type or action - for parm/second.php,
+  // which reads the next parameter as that one's first.
 
-    $pqPull = $pqFindParm;
+  if ( ! $pqPull and isset ( $pqStore [$pqFindParm] ) ) {
 
-  elseif ( ! $pqSeq and pqSeq ( $pqFindParm ) ) {
+    $pqPull      = $pqFindParm;
+    $pqFindNamed = 'store';
 
-    $pqSeq  = $pqFindParm;
-    $pqParm = TRUE;
+  } elseif ( ! $pqSeq and pqSeq ( $pqFindParm ) ) {
 
-  } elseif ( ! $pqAction and pqAction ( $pqFindParm ) )
+    $pqSeq       = $pqFindParm;
+    $pqParm      = TRUE;
+    $pqFindNamed = 'type';
 
-    $pqAction = $pqFindParm;
+  } elseif ( ! $pqAction and ! $pqFindAsOption and pqAction ( $pqFindParm ) ) {
+
+    $pqAction    = $pqFindParm;
+    $pqFindNamed = 'action';
+
+  // An action named while the tag's own is settled - or, $pqFindAsOption, after a count, a
+  // range or a list, where parm/second.php reads a name as the option of that name - is read
+  // as that option, parm/as.php, after the options written before it, and names nothing the
+  // next parameter is the first one of: {reverse '1..5', 'sum'} and {action:reverse s, $a}
+  // with $a 'sum' ended on "a parameter 'sum' that nothing reads", where {reverse '1..5', sum}
+  // gives 15, and {sequence '1..5', sort, 'reverse'} reversed before it sorted.
+
+  } elseif ( pqAction ( $pqFindParm ) )
+
+    include PQ . 'inits/find/parm/as.php';
 
   else
 
     return;
 
-  $pqFindParm  = '';
-  $pqFindNamed = TRUE;
+  $pqFindParm = '';
 
 ?>
