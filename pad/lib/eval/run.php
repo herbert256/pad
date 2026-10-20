@@ -179,14 +179,15 @@
 
   }
 
-  // Values side by side are joined as text. A list among them joins nothing, and is named.
+  // Values side by side are joined as text - a date object as its text (padDateText). A list
+  // among them joins nothing, and is named.
 
   function padEvalJoin ( $node, $me, $leaf ) {
 
     $values = [];
 
     foreach ( $node [1] as $one )
-      $values [] = padEvalNode ( $one, $me, $leaf );
+      $values [] = padDateText ( padEvalNode ( $one, $me, $leaf ) );
 
     foreach ( $values as $value )
       if ( is_array ( $value ) ) {
@@ -215,14 +216,14 @@
 
   }
 
-  // A segment that is a printf format: the value piped in, formatted. A format sprintf cannot
-  // fill with the one value - %s and %s, a conversion it does not know - is named under the
-  // strict check and empty in the lenient walk.
+  // A segment that is a printf format: the value piped in, formatted - a date object as its
+  // text. A format sprintf cannot fill with the one value - %s and %s, a conversion it does
+  // not know - is named under the strict check and empty in the lenient walk.
 
   function padEvalFormatted ( $format, $value ) {
 
     try {
-      return sprintf ( $format, $value );
+      return sprintf ( $format, padDateText ( $value ) );
     } catch ( ValueError | ArgumentCountError $padEvalFormatError ) {
       if ( $GLOBALS ['padCheckSyntax'] )
         padError ( "the format '" . padMakeSafe ( $format, 40 ) . "' is not one sprintf can fill with the one value" );
@@ -543,7 +544,7 @@
     if ( in_array ( $opr, [ 'AND', 'OR', 'XOR' ] ) )
       $array = count ( $array ) > 0;
     elseif ( count ( $array ) == 1 )
-      $array = reset ( $array );
+      $array = padDateText ( reset ( $array ) );
     elseif ( padEvalNumeric ( $array ) and is_numeric ( $other ) )
       $array = array_sum ( $array );
     else {
@@ -577,7 +578,7 @@
 
     $flat = [];
 
-    array_walk_recursive ( $array, function ( $one ) use ( &$flat ) { $flat [] = $one; } );
+    array_walk_recursive ( $array, function ( $one ) use ( &$flat ) { $flat [] = padDateText ( $one ); } );
 
     if ( padEvalNumeric ( $flat ) )
       return array_sum ( $flat );
