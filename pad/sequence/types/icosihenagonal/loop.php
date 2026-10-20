@@ -1,15 +1,15 @@
 <?php
 
   // Build strategy 'loop' for the icosihenagonal sequence: each term is the nth twenty-one
-  // sided figurate number, n(19n - 17)/2 - 1, 21, 60, 118, 195, 291, ... The other polygonal
-  // types define a pqXxx() function; this one computes the term inline from $pqLoop.
+  // sided figurate number, n(19n - 17)/2 - 1, 21, 60, 118, 195, 291, ...
+  //
+  // The term is the formula of the position in function.php, pqIcosihenagonal(), which also answers
+  // build='function' and sequence:icosihenagonal(n) past a walk's reach. A value that is no whole number of
+  // 0 or more - a word or a fraction in the list a make play is handed, a position below the
+  // first - has no term there.
 
-  // A position below the first one, or between two, has no term: the formula answered there
-  // with numbers that are no terms of the sequence - pentagonal at -2 and -1 gave 7 and 2.
+  include_once PT . 'icosihenagonal/function.php';
 
-  if ( ! pqBoolWhole ( $pqLoop ) or $pqLoop < 0 )
-    return FALSE;
-
-  return pqProduct ( [ $pqLoop, 19 * $pqLoop - 17 ], 2 );
+  return pqIcosihenagonal ( $pqLoop );
 
 ?>

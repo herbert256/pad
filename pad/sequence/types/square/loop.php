@@ -1,16 +1,14 @@
 <?php
 
   // Loop build for square: the loop value squared, so 1, 4, 9, 16, 25, 36, ...
+  //
+  // The term is the formula of the position in function.php, pqSquare(), which also answers
+  // build='function' and sequence:square(n) past a walk's reach. A value that is no whole number of
+  // 0 or more - a word or a fraction in the list a make play is handed, a position below the
+  // first - has no term there.
 
-  // A value that is no number has no term here - a word in the list a make play is handed
-  // ended the request on the arithmetic.
+  include_once PT . 'square/function.php';
 
-  // A position below the first one, 0, or between two, has no term, as for every type that
-  // counts its terms: square at -2 gave 4 and cubic -8, which its own test denied.
-
-  if ( ! pqBoolWhole ( $pqLoop ) or $pqLoop < 0 )
-    return FALSE;
-
-  return $pqLoop * $pqLoop;
+  return pqSquare ( $pqLoop );
 
 ?>

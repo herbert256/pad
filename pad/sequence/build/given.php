@@ -55,16 +55,21 @@
 
     $pqBuildName = pqBuild ( $pqBuildSeq, 'loop' );
 
-    if ( $pqBuildName == 'bool' )
+    // A loop that tests the values - emirp, multiple, with a bool.php beside it - walks values
+    // too, and takes the position build as a bool type does: build='function' on emirp gave
+    // the emirps from the value 3 on, 13 17, where the 3rd and 4th are 31 37.
+
+    if ( $pqBuildName == 'bool' or ( $pqBuildName == 'loop' and padFileExists ( PT . "$pqBuildSeq/bool.php" ) ) )
       $pqBuildName = 'position';
 
   }
 
   // A walk of the values tests every candidate the tag asked for, as inits/check/sequence.php
-  // has it for keep, remove and flag: the window the type's init.php reshaped for its own
-  // generation - even doubles from and to - goes back to what was given.
+  // has it for keep, remove and flag, and a walk of the positions offers every position it
+  // was asked for: the window the type's init.php reshaped for its own generation - even
+  // doubles from and to, multiple steps by its parameter - goes back to what was given.
 
-  if ( ! $pqBuildPlay and ( $pqBuildName == 'check' or $pqBuildName == 'bool' ) ) {
+  if ( ! $pqBuildPlay and in_array ( $pqBuildName, [ 'check', 'bool', 'position' ] ) ) {
     $pqFrom = $pqInitFrom ?? $pqFrom;
     $pqTo   = $pqInitTo   ?? $pqTo;
     $pqInc  = $pqInitInc  ?? $pqInc;
