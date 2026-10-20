@@ -50,7 +50,11 @@
     $pqFindNamed    = FALSE;
     $pqFindAsOption = FALSE;
 
-    if ( $pqFindAfter == 'action' ) {
+    // An action's kind of parameter is read after the shape of the value for the second, as
+    // parm/quick.php reads it before parm/primary.php: a list there is the values, {sequence
+    // 'reverse', [1, 2, 3]} as {reverse [1, 2, 3]}.
+
+    if ( $pqFindAfter == 'action' and ! $pqFindSecond ) {
 
       include PQ . 'inits/find/parm/kind.php';
 

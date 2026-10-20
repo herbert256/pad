@@ -1,11 +1,11 @@
 <?php
 
-  // Whether the leftover first parameter is the kind of parameter the action $pqAction takes,
-  // in $pqFindKind - the one rule parm/primary.php and parm/parm.php give an action its
-  // parameter by. An action that counts - actions/parm/, splice's offset among them - takes a
-  // value that names no store and no type: a count, 'pos|len', both. An action that takes
-  // stores - actions/double/ and merge/ - takes a list or the name of a store, 'a|b' for two.
-  // An action that takes none takes nothing.
+  // Whether the parameter $pqFindParm is the kind of parameter the action $pqAction takes, in
+  // $pqFindKind - the one rule parm/primary.php, parm/parm.php, parm/second.php and {resume}'s
+  // inits/set.php give an action its parameter by. An action that counts - actions/parm/,
+  // splice's offset among them - takes a value that names no store and no type: a count,
+  // 'pos|len', both. An action that takes stores - actions/double/ and merge/ - takes a list
+  // or the name of a store, 'a|b' for two. An action that takes none takes nothing.
   //
   // What the action does not take is read as any first parameter is: a store or a type it
   // names is the run's, parm/name.php, a number is how many rows, parm/quick.php, and what is
