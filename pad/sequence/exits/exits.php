@@ -8,6 +8,7 @@
   //
   // Net effect: $pqResult becomes $padData[$pad], the rows the tag iterates over.
 
+  include PQ . 'exits/page.php';
   include PQ . 'exits/exit.php';
   include PQ . 'exits/actions.php';
   include PQ . 'exits/store/store.php';

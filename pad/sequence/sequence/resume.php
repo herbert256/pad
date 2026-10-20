@@ -15,6 +15,7 @@
   include PQ . 'actions/inits.php';
   include PQ . 'inits/limits.php';
   include PQ . 'build/build.php';
+  include PQ . 'exits/page.php';
   include PQ . 'exits/actions.php';
   // The store resumed is the one written back - $padLastPush for exits/store/set.php while it
   // runs - and the store pushed last stays the one it was.

@@ -31,6 +31,13 @@
   $pqStop = $pqParms ['stop']      ?? PHP_INT_MAX ;
   $pqSkip = $pqParms ['skip']      ?? 0           ;
 
+  // page= pages through the terms as it pages through the rows of a data tag, rows= being
+  // the page's size (inits/limits.php, exits/page.php). It is a start option of every tag,
+  // and the sequence's own handling left it to nothing: {sequence '1..10', page=2, rows=3}
+  // gave 1 2 3 in silence.
+
+  $pqPage      = ( $pqEntry == 'tag' ) ? ( $pqParms ['page'] ?? '' ) : '';
+
   $pqRandomly  = $pqParms ['randomly'] ?? '';
   $pqUnique    = $pqParms ['unique']   ?? '';
   $pqName      = $pqParms ['name']     ?? '';
@@ -53,7 +60,7 @@
 
   if ( $pqEntry == 'tag' )
     foreach ( [ 'from', 'to', 'sole', 'minimal', 'maximal', 'min', 'max', 'increment', 'rows', 'try',
-                'stop', 'skip', 'randomly', 'unique', 'name', 'build', 'toData',
+                'stop', 'skip', 'randomly', 'unique', 'name', 'build', 'toData', 'page',
                 'negative', 'pull', 'push' ] as $pqParmOne )
       if ( isset ( $pqParms [$pqParmOne] ) )
         padDone ( $pqParmOne );

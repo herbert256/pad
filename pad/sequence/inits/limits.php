@@ -51,4 +51,22 @@
 
   $pqRows = (int) $pqRows;
 
+  // A page past the first makes the terms of the pages before it too, which exits/page.php
+  // takes off again: page=3, rows=10 makes 30 terms and shows the last ten. A page that is no
+  // whole number from 1 up is named, and the first page shown.
+
+  $pqPageSkip = 0;
+
+  if ( $pqPage !== '' and $pqPage !== TRUE ) {
+
+    if ( ! pqBoolWhole ( $pqPage ) or $pqPage < 1 ) {
+      if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+        padError ( "page= takes a page from 1 up, not '" . ( is_scalar ( $pqPage ) ? $pqPage : 'a list' ) . "'" );
+    } elseif ( $pqPage > 1 and $pqRows < PHP_INT_MAX ) {
+      $pqPageSkip = (int) min ( ( (int) $pqPage - 1 ) * (float) $pqRows, PHP_INT_MAX - $pqRows );
+      $pqRows    += $pqPageSkip;
+    }
+
+  }
+
 ?>
