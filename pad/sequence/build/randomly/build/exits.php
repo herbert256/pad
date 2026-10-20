@@ -43,8 +43,12 @@
 
   // The pass walks a list the first pass made, as a pull walks a store, and is not held to the
   // time the first pass may have used up: it answered nothing when that pass ran out of time.
+  // Nor to the candidates it used up: try= has bounded the search of the first pass, and the
+  // count it left let the second pass draw none - {sequence happy, randomly, try=1000,
+  // rows=3} took its else branch.
 
   $pqTriesUntil = INF;
+  $pqTries      = 0;
 
   include PQ . 'build/types/type/fixed.php';
 
