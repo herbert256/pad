@@ -28,7 +28,13 @@ function pqRecaman($n)
   if ( $n > ( $GLOBALS ['padSeqMaxTries'] ?? 1000000 ) )
     return (float) PHP_INT_MAX * 2;
 
-  if($n <= 1)
+  // The first term, 0, stands at position 1: a position below it has no term, where every
+  // position from 0 down answered 0.
+
+  if ( $n < 1 )
+    return FALSE;
+
+  if($n == 1)
     return 0;
 
   for ( $i = count ( $terms ); $i < $n; $i++ ) {

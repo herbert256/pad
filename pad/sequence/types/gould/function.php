@@ -14,6 +14,12 @@
 
   function pqGould ($n) {
 
+    // Position 1 is row 0: a position below it, or between two, has no term. The count of
+    // n - 1 stayed at zero there and every position from 0 down answered 1.
+
+    if ( ! pqBoolWhole ( $n ) or $n < 1 )
+      return FALSE;
+
     $bits = 0;
 
     for ( $i = $n - 1; $i > 0; $i >>= 1 )

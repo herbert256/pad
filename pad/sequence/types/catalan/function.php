@@ -29,6 +29,12 @@
 
   function pqCatalan ( $n ) {
 
+    // C(0) = 1 is the first Catalan number: a position below it, or between two, has no term.
+    // The loop was not entered there and every negative position answered 1.
+
+    if ( ! pqBoolWhole ( $n ) or $n < 0 )
+      return FALSE;
+
     $c = 1;
 
     for ( $i = 1; $i <= $n; $i++ ) {

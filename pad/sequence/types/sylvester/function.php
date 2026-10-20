@@ -12,6 +12,12 @@
 
   function pqSylvester ($n) {
 
+    // The sequence starts at a(1) = 2: a position below it, or between two, has no term. The
+    // loop was not entered there and every position from 0 down answered 2.
+
+    if ( ! pqBoolWhole ( $n ) or $n < 1 )
+      return FALSE;
+
     $a = 1;
 
     $ans = 2;
