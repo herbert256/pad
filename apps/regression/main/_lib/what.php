@@ -65,6 +65,8 @@
       'flush/a_toc_above_a_flush_lists_the_headings_below_it' => 'A {toc} in the part a {flush} would send holds every flush back: the toc lists the headings below it, no marker goes out',
       'format/a_text_that_is_no_utf8_is_kept_in_a_json_answer' => 'A value with a byte that is no UTF-8 is kept in a JSON answer, the byte as U+FFFD - never null',
       'format/latin'              => 'The fixture of format/a_text_that_is_no_utf8_is_kept_in_a_json_answer, fetched bare: its page',
+      'format/a_csv_answer_of_a_record_or_of_objects_is_a_table' => 'A CSV answer of a record holding a list is one row, and of json_decode objects a row per object',
+      'format/records'            => 'The fixture of format/a_csv_answer_of_a_record_or_of_objects_is_a_table, fetched bare: its page',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',
       'sse/headers'               => 'A stream as the browser gets it: text/event-stream, no-cache, no proxy buffering, and the last id back as a header or query value with its line break taken out',

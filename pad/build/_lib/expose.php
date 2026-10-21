@@ -59,8 +59,11 @@
   }
 
   // The first exposed array is the list - total and the other scalars beside it have no
-  // place in a table. A record on its own (keys that are names, values that are not
-  // arrays) is one row; a list of plain values is one column named after the variable.
+  // place in a table. A record on its own (keys that are names, not every value a row) is
+  // one row, a list in it a cell of JSON; a list of plain values is one column named after
+  // the variable. A row that is an object - json_decode's - is its properties, as the JSON
+  // answer shows it. A record holding a list was taken for rows, a line per value under the
+  // header order,0,1, and objects were one column of their JSON.
 
   function padExposeList () {
 
@@ -69,10 +72,14 @@
       if ( ! is_array ( $value ) )
         continue;
 
-      $rows = ( ! array_is_list ( $value ) and ! count ( array_filter ( $value, 'is_array' ) ) ) ? [ $value ] : $value;
+      $rowish = fn ( $one ) => is_array ( $one ) or is_object ( $one );
+
+      $rows = ( ! array_is_list ( $value ) and count ( array_filter ( $value, $rowish ) ) < count ( $value ) ) ? [ $value ] : $value;
 
       foreach ( $rows as $key => $row )
-        if ( ! is_array ( $row ) )
+        if ( is_object ( $row ) )
+          $rows [$key] = get_object_vars ( $row );
+        elseif ( ! is_array ( $row ) )
           $rows [$key] = [ $name => $row ];
 
       return $rows;
