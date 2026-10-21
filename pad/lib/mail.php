@@ -27,7 +27,8 @@
   //
   // With $options ['queue'] - TRUE, or a queue's name - padMail queues the mail instead
   // (lib/queue.php): pad work renders and sends it, in the application, with the variables
-  // handed over - the page's own are not there then.
+  // handed over - the page's own are not there then. The template is looked up when the
+  // mail is queued, and the worker looks from the directory of the page that queued it.
   //
   // padMail          builds, renders and sends one message - its parts, from the template
   //                  to the transport, are tags/_lib/mail.php, read when it builds one
@@ -45,8 +46,24 @@
 
       unset ( $options ['queue'] );
 
+      // The template is found here, from the page's directory, as a mail sent at once finds
+      // it, and the directory goes with the job: the worker - pad work, whose page is the
+      // application's root - looks from there (padQueueMail). Left to the worker, a template
+      // in shop/_mail/ queued from shop/send, or a misspelt name, was a job id here and a job
+      // failing "there is no mail template named 'order'" there.
+
+      if ( (string) $template !== '' ) {
+
+        include_once PAD . 'tags/_lib/mail.php';
+
+        if ( ! padMailTemplate ( (string) $template ) )
+          return padError ( "there is no mail template named '" . padMakeSafe ( $template, 60 ) . "' in _mail/" );
+
+      }
+
       return padQueue ( '@mail', [ 'to'      => $to,      'template' => (string) $template, 'subject' => $subject,
-                                   'vars'    => $vars,    'options'  => $options ], queue: $queue );
+                                   'vars'    => $vars,    'options'  => $options,
+                                   'dir'     => (string) ( $GLOBALS ['padDir'] ?? '' ) ], queue: $queue );
 
     }
 

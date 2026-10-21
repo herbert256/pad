@@ -316,8 +316,7 @@
     try {
 
       if ( $job === '@mail' )
-        $result = padMail ( $data ['to'] ?? '', $data ['template'] ?? '', $data ['subject'] ?? '',
-                            (array) ( $data ['vars'] ?? [] ), (array) ( $data ['options'] ?? [] ) );
+        $result = padQueueMail ( $data );
       else
         $result = padQueueInclude ( $file, $data, $record );
 
@@ -347,6 +346,35 @@
       padEventError ( "PAD: the job '$job' failed: $error", $where [0] ?: ( $file ?: __FILE__ ), $where [1] );
 
     return [ 'ok' => $ok, 'error' => $error, 'ms' => $ms ];
+
+  }
+
+  // A queued mail (lib/mail.php) renders as from the page that queued it: its template and
+  // the tags and snippets in it are looked up from that page's directory, kept in the job -
+  // the worker's own page is the application's root.
+
+  function padQueueMail ( $data ) {
+
+    global $padDir;
+
+    $was = $padDir ?? '';
+    $dir = trim ( (string) ( $data ['dir'] ?? '' ), '/' );
+
+    if ( $dir !== '' and ( str_contains ( "/$dir/", '/../' ) or ! is_dir ( APP . $dir ) ) )
+      $dir = '';
+
+    $padDir = $dir;
+
+    try {
+
+      return padMail ( $data ['to'] ?? '', $data ['template'] ?? '', $data ['subject'] ?? '',
+                       (array) ( $data ['vars'] ?? [] ), (array) ( $data ['options'] ?? [] ) );
+
+    } finally {
+
+      $padDir = $was;
+
+    }
 
   }
 
