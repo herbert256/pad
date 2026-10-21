@@ -11,7 +11,11 @@ behind the parameters, so a macro used inside a loop can read the row as well.</
 
 <p>A pair use hands its content to <code>&#64;content&#64;</code>, and
 <a href="?tag/slot"><code>&#123;slot&#125;</code></a>s work as in a
-<a href="?tag/define"><code>&#123;define&#125;</code></a>. A macro can call itself. A value given
+<a href="?tag/define"><code>&#123;define&#125;</code></a>. The content renders in the body, on
+the macro's one row, so there too a parameter stands in front of a field of the same name round
+the use: in <code>&#123;rows&#125;&#123;entry 'x'&#125;&#123;$label&#125;&#123;/entry&#125;&#123;/rows&#125;</code>
+the <code>&#123;$label&#125;</code> is the parameter, <code>&#123;$label@rows&#125;</code> the
+row's own. A macro can call itself. A value given
 to a macro is text, never template, as every value is. <code>&#123;macro:entry&#125;</code>
 asserts that the name is a macro.</p>
 

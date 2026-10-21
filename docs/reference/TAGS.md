@@ -2870,7 +2870,10 @@ A template function: declared parameters, given in their order or by name, read 
 `name=default` fills in - the default is evaluated where the macro is used. A use gives values
 in their order, by name, or both; inside the body each is a field (`{$label}`) of the macro's
 one row, and the fields around the use stay visible behind them. `@content@` takes a pair's
-content in, `{slot}`s work as in a `{define}`, and a macro can call itself. A value given to a
+content in, `{slot}`s work as in a `{define}`, and a macro can call itself. The content - and a
+slot fill - renders in the body, on that one row: a parameter stands in front of a field of the
+same name around the use there too, so in `{rows}{entry 'x'}{$label}{/entry}{/rows}` the
+`{$label}` is the parameter; `{$label@rows}` names the row's own. A value given to a
 macro is text, never template - as every value is. Under the strict check a required parameter
 left out, more values than parameters, a named parameter the macro does not declare, and a
 parameter named like an option every tag takes (`sort`, `first`, `content` ...) are errors.
