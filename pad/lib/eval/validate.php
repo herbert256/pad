@@ -199,7 +199,8 @@
   // in it an operator word, a prefixed name or a built-in function, which is one wherever the
   // expression stands (padEvalCheckPure): a loop judges the same text once per row. A word
   // that may name an application function, a tag or a constant is looked up where the
-  // expression stands, so such an expression is judged every time, as one that failed is.
+  // expression stands, so such an expression is judged every time, as one that failed is. A
+  // text of more than 1 KB is not kept either (padEvalTokens).
 
   function padEvalCheckPipes ( $result, $eval, $pipe = FALSE ) {
 
@@ -213,7 +214,7 @@
     if ( ! padEvalCheckTokens ( $result, $eval, $pipe ) )
       return FALSE;
 
-    if ( count ( $clean ) < 4000 and padEvalCheckPure ( $result ) )
+    if ( count ( $clean ) < 4000 and strlen ( $eval ) <= 1024 and padEvalCheckPure ( $result ) )
       $clean [$key] = TRUE;
 
     return TRUE;

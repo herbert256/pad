@@ -34,7 +34,10 @@
   // Only what came through clean is kept - an expression the validation refused answers
   // FALSE and is checked again next time, so it is reported as often as it is written; and
   // the scanner's own complaints are about a backslash, so an expression holding one is
-  // never kept.
+  // never kept. Nor is a text of more than 1 KB, which no hand-written expression reaches: a
+  // value spliced into a loop's expression - {echo {$body} | php:strlen} - makes a text of its
+  // own per row, which never comes back, and the memos of the scanner, the tree and the pipe
+  // check held 2000 rows of 20 KB five times over, 284 MB at the peak.
 
   function padEvalTokens ( $eval ) {
 
@@ -48,7 +51,7 @@
 
     $tokens = padEvalScan ( $eval );
 
-    if ( ! str_contains ( $eval, '\\' ) and count ( $memo ) < 4000 )
+    if ( ! str_contains ( $eval, '\\' ) and count ( $memo ) < 4000 and strlen ( $eval ) <= 1024 )
       $memo [$eval] = $tokens;
 
     return $tokens;

@@ -90,7 +90,8 @@
 
   }
 
-  // The tree of an expression and the tokens read before it, kept for the request.
+  // The tree of an expression and the tokens read before it, kept for the request - not for a
+  // text of more than 1 KB, a value spliced in that never comes back (padEvalTokens).
 
   function padEvalTreeGet ( $tokens, $eval, $pipe, $fallback = FALSE ) {
 
@@ -102,6 +103,9 @@
 
     if ( isset ( $trees [$key] ) )
       return $trees [$key];
+
+    if ( strlen ( $eval ) > 1024 )
+      return padEvalTree ( $tokens, $words, $eval, $pipe, $fallback );
 
     if ( count ( $trees ) >= 4000 )
       $trees = [];

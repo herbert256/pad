@@ -1,0 +1,1 @@
+{rows}{echo {$body} | php:strlen | ''}{/rows}[{echo php:memory_get_usage() - $before lt 16000000 ? 'bounded' : 'kept'}]
