@@ -492,9 +492,28 @@
 
   }
 
+  // One element that is no array makes the data one record, its elements the fields - but
+  // not in a list of rows: [{"n":1},{"n":2},null] was one occurrence holding the whole list
+  // and {$n} "not found". In a list whose keys are numbers, with a row among its elements, a
+  // null is no row and a plain value is a row of its own, as in a list of values. A record
+  // has names for its fields.
+
   function padDataChkCheckRecord ($data,$name) {
 
     $result = $data;
+
+    if ( $result and ! array_filter ( array_keys ( $result ), 'is_string' )
+         and array_filter ( $result, 'is_array' ) and ! padDataIsRecord ( $result ) ) {
+
+      foreach ( $result as $k => $v )
+        if ( $v === NULL )
+          unset ( $result [$k] );
+        elseif ( ! is_array ( $v ) )
+          $result [$k] = [ padDataName ( $name ) => $v ];
+
+      return $result;
+
+    }
 
     foreach ($result as $k => $v)
       if ( ! is_array($v) ) {
