@@ -50,9 +50,10 @@
 
     $pqOeisLast  = $a;
 
-    // A row is a sequence of whole numbers or none: the table's row for A375613 holds the
-    // closing tag of the PHP file it was converted from, and adding 0 to it ended the request
-    // on a TypeError. regenerate.php leaves such a row out.
+    // A row is a sequence of whole numbers or none: the row for A375613, the last of the PHP
+    // file the table was converted from, held that file's closing tag, and adding 0 to it ended
+    // the request on a TypeError. The row holds its terms now; regenerate.php leaves such a
+    // row out, and one that gets in all the same reads as no sequence.
 
     $pqOeisTerms = ( $pqOeisRow === FALSE or ! preg_match ( '/^-?[0-9]+(,-?[0-9]+)*$/', $pqOeisRow [0] ) )
                  ? []

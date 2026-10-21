@@ -53,7 +53,8 @@
 
     // A line whose terms are not all whole numbers is no sequence the table can hold: the
     // conversion from the PHP table left the row A375613 holding the PHP closing tag, and
-    // every read of it ended the request on "Unsupported operand types".
+    // every read of it ended the request on "Unsupported operand types" - the row was given
+    // the terms oeis.org has for it on 21 October 2026.
 
     if ( $pqOeisTerms === '' or ! preg_match ( '/^-?[0-9]+(,-?[0-9]+)*$/', $pqOeisTerms ) )
       continue;
