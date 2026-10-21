@@ -180,7 +180,15 @@
         continue;
       }
 
-      padAttrsOne ( $out, $name, padAttrsValue ( $expr ) );
+      // A value written in the template is its text, escaped once as it is written: a field
+      // inside a quoted value - title='Delete {$name}' - comes escaped by its sanitize step
+      // and with its stand-ins, and escaped again it showed its entities as text, Q&amp;amp;A
+      // Zo&amp;euml;. padParmText gives the text it holds (lib/encoding.php). The values an
+      // array brings are data and keep every entity they hold as text, above.
+
+      $value = padAttrsValue ( $expr );
+
+      padAttrsOne ( $out, $name, is_string ( $value ) ? padParmText ( $value ) : $value );
 
     }
 
@@ -245,7 +253,11 @@
 
     }
 
-    return htmlspecialchars ( padUnprotectQuotes ( implode ( ' ', array_unique ( $out ) ) ), ENT_QUOTES, 'UTF-8' );
+    // An entity a field's sanitize step put in a quoted name - {classes '{$c}'} - is left as
+    // it is, the way the sanitize chain leaves one: escaped twice, a&b was class="a&amp;amp;b".
+    // A class list is no address and runs nothing, so an entity in it stays harmless text.
+
+    return htmlspecialchars ( padUnprotectQuotes ( implode ( ' ', array_unique ( $out ) ) ), ENT_QUOTES, 'UTF-8', FALSE );
 
   }
 
