@@ -374,6 +374,15 @@ function padSplitOnUnquotedColon ( $str ) {
         $quoteAt = $i;
       }
 
+    // A value standing in SQL the template writes, outside a quoted literal of it - the SQL
+    // of {field}, {record}, {array}, {check}, the having=, fields= ... of a select table - is
+    // SQL: refused (padDbSplice, lib/db.php).
+
+    if ( $padSpliceWhat = padDbSplice ( $inside, $quote, $quoteAt ) ) {
+      padError ( $padSpliceWhat );
+      return "''";
+    }
+
     // A value standing bare as the whole of where= - where={$cond} - would be the per-row
     // expression itself once quoted: a request value with php:abs(-3) in it ran PHP. That is
     // a whole condition from a value, which where.php refuses for where=$cond as well - and

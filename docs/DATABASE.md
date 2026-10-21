@@ -72,7 +72,10 @@ The SQL is the template's own: one quoted string, never an expression or a varia
 `{field "x from t where city = '" . $city . "'"}` and `{field $q}` are refused. A value goes
 in as `$name`, written bare: it is bound as a quoted, escaped literal of that variable (a
 number as a number, an array as a list), as in the select's `where=`. Inside a loop a field
-of the row is a variable too. `{$name}` there splices text instead and does not match.
+of the row is a variable too. `{$name}` there splices the value's text before the tag reads
+its SQL: outside a quoted literal of the SQL it would be SQL and is refused - a plain number
+excepted - and inside one (`name = '{$who}'`) it is text whose quotes and backslashes reach
+the database as PAD's inert stand-ins, so such a value does not match.
 
 ```
 {field "phone from staff where name = $who"}
@@ -221,7 +224,9 @@ strings in the template; `where=$cond` is refused, and so is a `fields=`, `db=`,
 `where=`/`having=` as a quoted, escaped literal of that application variable (a number as a
 number, an array as a list - numeric text is text on MySQL, as for `db()`), in
 `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
-else. `{$name}` there splices text into your SQL instead - use `$name`. Keys bound on the tag
+else. `{$name}` there splices the value's text instead - in `having=`, `order=` and `group=`
+refused outside a quoted literal of the SQL (a plain number excepted), in `fields=`, `db=`,
+`join=` and `union=` refused - use `$name`. Keys bound on the tag
 (`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
 On every other data - a `{array}` query, JSON, page PHP - `where=` and `group=` are the handling
 options instead: a PAD expression per row, and grouping with subtotals in the template (see

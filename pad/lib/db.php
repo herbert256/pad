@@ -557,7 +557,79 @@
           return padError ( "the SQL of {" . $padTag [$pad] . "} is the template's own: give it as a quoted string, and put a value in it as \$name" );
       }
 
-    return padSelectBind ( (string) ( $padOpt [$pad] [1] ?? '' ), FALSE, '{' . $padTag [$pad] . '}' );
+    // A value spliced in with {$n} is resolved before the tag reads its parameter, so the
+    // literal test above never sees it: padSpliceQuote refuses one standing outside a quoted
+    // literal of the SQL (padDbSplice, below), and what that cannot place - a tag's answer,
+    // {echo $n}, lands bare in the SQL as well - is caught here when it was kept as a spliced
+    // value (padSpliceInCode, lib/level.php) and stands outside the SQL's quoted literals.
+
+    $sql = (string) ( $padOpt [$pad] [1] ?? '' );
+
+    if ( padSpliceInCode ( $sql ) )
+      return padError ( "the SQL of {" . $padTag [$pad] . "} is the template's own: a value spliced into it outside a quoted literal is SQL - put it in as \$name" );
+
+    return padSelectBind ( $sql, FALSE, '{' . $padTag [$pad] . '}' );
+
+  }
+
+  // Whether a value spliced into a tag's text stands in SQL the template writes, outside a
+  // quoted literal of that SQL - and the refusal if so, for padSpliceQuote (lib/level.php),
+  // which hands it $inside, the tag's text from its { up to the splice, and the quote open
+  // there with where it opened. The value is no plain number: one stands as itself.
+  //
+  // The SQL of a database tag - {field "x from t where id = {$n}"}, field("...") in an
+  // expression, the whole of it bare, {field {$q}} - and having=, order=, group=, fields=,
+  // db=, join= and union= of a declared select table took the value as SQL: ?n=0 union
+  // select user() read any table, the single word ?n=id made id = id and every row came
+  // back, and {field {$q}} was quoted into one string the tag took for the template's own
+  // SQL. Inside a quoted literal of the SQL - name = '{$who}' - a value is text, its quotes
+  // PAD's inert stand-ins. where= of a select is left to padSpliceExpression, which quotes
+  // a value there as a string of the expression it takes it for.
+
+  function padDbSplice ( $inside, $quote, $quoteAt ) {
+
+    global $padSelect;
+
+    $head = ( $quote === '' ) ? $inside : substr ( $inside, 0, $quoteAt );
+
+    if ( preg_match ( '/^\s*(?:pad:)?(field|record|array|check)\s+$/i', $head, $match ) )
+      $what = 'the SQL of {' . strtolower ( $match [1] ) . '} is the template\'s own';
+    elseif ( preg_match ( '/(?<![\w$:.@])(field|record|array|check)\s*\(\s*$/i', $head, $match ) )
+      $what = 'the SQL of ' . strtolower ( $match [1] ) . '() is the template\'s own';
+    elseif ( preg_match ( '/^(select:)?([A-Za-z_][\w-]*)(\s.*)?[\s,](having|order|group|fields|db|join|union)\s*=\s*$/is', $head, $match )
+             and ( $match [1] or isset ( $padSelect [$match [2]] ) ) )
+      $what = strtolower ( $match [4] ) . '= is SQL the template writes';
+    else
+      return '';
+
+    // fields=, db=, join= and union= bind no $name: no value goes into them at all.
+
+    if ( isset ( $match [4] ) and in_array ( strtolower ( $match [4] ), [ 'fields', 'db', 'join', 'union' ] ) )
+      return "$what: a value spliced into it is SQL";
+
+    $refuse = "$what: a value spliced into it outside a quoted literal is SQL - put it in as \$name";
+
+    if ( $quote === '' )
+      return $refuse;
+
+    // The SQL up to the splice, as the database reads it once the parameter's own quote is
+    // unescaped: a comment is skipped as a whole, an apostrophe in it opening nothing, and a
+    // backslash escapes in a literal on MySQL only (padDbComment, padDbPlaceholders).
+
+    $sql   = str_replace ( '\\' . $quote, $quote, substr ( $inside, $quoteAt + 1 ) );
+    $mysql = ( $GLOBALS ['padSqlDriver'] ?? 'mysql' ) !== 'sqlite';
+    $in    = '';
+
+    for ( $i = 0, $len = strlen ( $sql ); $i < $len; $i++ )
+      if ( $in ) {
+        if     ( $mysql and $sql [$i] == '\\' ) $i++;
+        elseif ( $sql [$i] == $in             ) $in = '';
+      } elseif ( $sql [$i] == "'" or $sql [$i] == '"' )
+        $in = $sql [$i];
+      elseif ( $end = padDbComment ( $sql, $i, $mysql ) )
+        $i = $end - 1;
+
+    return ( $in === '' ) ? $refuse : '';
 
   }
 
