@@ -29,7 +29,10 @@
   // An integer's parity by %: fmod reads an integer past 2^53 as the float next to it, and
   // from=4503599627370497 - the odd number 9007199254740993 - was taken for even and skipped.
 
-  if ( is_int ( $pqFrom ) ? $pqFrom % 2 == 0 : ! fmod ( $pqFrom, 2 ) )
+  // A start past the float range has no parity: fmod ( INF, 2 ) is NAN, which PHP 8.5 refuses
+  // as a truth - from=1e400 ended the request on "unexpected NAN value was coerced to bool".
+
+  if ( is_int ( $pqFrom ) ? $pqFrom % 2 == 0 : ( is_finite ( $pqFrom ) and ! fmod ( $pqFrom, 2 ) ) )
     $pqFrom++;
 
 ?>

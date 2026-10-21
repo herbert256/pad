@@ -25,9 +25,12 @@
 
   // fmod, as from= doubled may have left the integer range - % ended the request on the float.
 
-  // An integer's parity by %: fmod reads an integer past 2^53 as the float next to it.
+  // An integer's parity by %: fmod reads an integer past 2^53 as the float next to it. A
+  // start past the float range has none: fmod ( INF, 2 ) is NAN, which PHP 8.5 refuses as a
+  // truth - from=1e400 ended the request on "unexpected NAN value was coerced to bool" where
+  // every other type answers an empty run.
 
-  if ( is_int ( $pqFrom ) ? $pqFrom % 2 != 0 : fmod ( $pqFrom, 2 ) )
+  if ( is_int ( $pqFrom ) ? $pqFrom % 2 != 0 : ( is_finite ( $pqFrom ) and fmod ( $pqFrom, 2 ) ) )
     $pqFrom++;
 
 ?>
