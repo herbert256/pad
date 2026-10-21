@@ -259,8 +259,11 @@
       $type = 'json';
     elseif ( substr($content, 0, 1) == '(')
       $type = 'json';
-    elseif ( substr($content, -1) == ')')
-      $type = 'json';
+
+    // A closing parenthesis at the very end said JSON: CSV whose last cell was Amsterdam (NL)
+    // or an amount (100) ended the page "JSON conversion error". JSONP - cb({...}), cb([...])
+    // - is told by its ({ and ([ below, its callback cut off.
+
     else
       $type = '';
 
