@@ -117,7 +117,12 @@
     $at    = 0;
     $pairs = [];
 
-    while ( preg_match ( '#<(textarea|template|[a-z][a-z0-9]*-[a-z0-9._-]*)(?=[\s/>])[^>]*>#i', $data, $open, PREG_OFFSET_CAPTURE, $at ) ) {
+    // The open tag runs past a > inside a quoted value - <template x-if="n > 0">,
+    // placeholder="more > less" - as the browser reads it: ended at that >, the hold began
+    // in the middle of the value, and Tidy took the value as running to the next quote, the
+    // whole rest of the page written out as escaped text inside it.
+
+    while ( preg_match ( '#<(textarea|template|[a-z][a-z0-9]*-[a-z0-9._-]*)(?=[\s/>])(?:[^>"\']++|"[^"]*+"|\'[^\']*+\')*+>#i', $data, $open, PREG_OFFSET_CAPTURE, $at ) ) {
 
       $name = strtolower ( $open [1] [0] );
       $from = $open [0] [1] + strlen ( $open [0] [0] );
@@ -160,7 +165,9 @@
     $pairs = [];
     $stack = [];
 
-    preg_match_all ( '#<(/?)' . preg_quote ( $name, '#' ) . '(?=[\s/>])[^>]*>#i', $data, $tags, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+    // Past a > inside a quoted value, as padTidyHold reads the open tag.
+
+    preg_match_all ( '#<(/?)' . preg_quote ( $name, '#' ) . '(?=[\s/>])(?:[^>"\']++|"[^"]*+"|\'[^\']*+\')*+>#i', $data, $tags, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
 
     foreach ( $tags as $tag ) {
 
