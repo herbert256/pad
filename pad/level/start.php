@@ -79,13 +79,19 @@
 
   }
 
-  if ( padOpenCloseOk ( $padBase[$pad], '@end@') )
+  // A level left without rows - the handling options took them all, with no else= and no
+  // @else@ to stand in - renders nothing, as a tag that came back empty does
+  // (handling/handling.php): its prelude and coda stay out with its body. They rendered on a
+  // stand-in row, {items where='$n gt 5'}H@start@R@end@F{/items} printing HF where an empty
+  // list printed nothing.
+
+  if ( count ( $padData [$pad] ) and padOpenCloseOk ( $padBase[$pad], '@end@') )
     include PAD . 'level/start_end/end1.php';
 
   if ( $padInfo )
     include PAD . 'events/levelStart.php';
 
-  if ( padOpenCloseOk ( $padBase[$pad], '@start@') )
+  if ( count ( $padData [$pad] ) and padOpenCloseOk ( $padBase[$pad], '@start@') )
     return include PAD . 'level/start_end/start1.php';
 
   // The base is tested against '' rather than for truth: a level whose whole template is the
