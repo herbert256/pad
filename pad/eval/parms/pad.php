@@ -92,6 +92,35 @@
 
   }
 
+  // And more than it reads is named too: {echo ',a,' | trim(',')} - the character list PHP's
+  // trim takes - trimmed only white space, and left(1, 2) cut one character, in silence.
+  // in takes any number; a function not listed here takes what it reads.
+
+  $padFnTakes = [ 'abbreviate' => 1, 'after'     => 1, 'afterLast'  => 1, 'ago'          => 1,
+                  'before'     => 1, 'beforeLast'=> 1, 'between'    => 2, 'bold'         => 0,
+                  'bytes'      => 1, 'capitalize'=> 0, 'close'      => 0, 'contains'     => 1,
+                  'currency'   => 2, 'cut'       => 1, 'date'       => 2, 'default'      => 1,
+                  'emoji'      => 0, 'encodeHigh'=> 0, 'escape'     => 1, 'exists'       => 0,
+                  'highlight'  => 1, 'html'      => 0, 'ignore'     => 0, 'left'         => 1,
+                  'like'       => 1, 'localDate' => 3, 'lookup'     => 3, 'lower'        => 0,
+                  'markdown'   => 0, 'matches'   => 1, 'max_len'    => 1, 'mid'          => 2,
+                  'nbsp'       => 0, 'now'       => 0, 'open'       => 0, 'optional'     => 0,
+                  'ordinal'    => 0, 'range'     => 2, 'replace'    => 2, 'right'        => 1,
+                  'sanitize'   => 0, 'slashes'   => 0, 'slug'       => 1, 'stripLow'     => 0,
+                  'stripslashes' => 0, 'substr'  => 2, 'tag'        => 0, 'time'         => 2,
+                  'timestamp'  => 2, 'trans'     => 1, 'trim'       => 0, 'truncate'     => 2,
+                  'ucwords'    => 0, 'upper'     => 0, 'url'        => 0, 'white'        => 0 ];
+
+  // An empty one is not counted - a function written as a tag with none, {upper}ab{/upper},
+  // is handed the empty parameter list of the tag - nor the value itself, which upper(@)
+  // writes where the function works on: {echo 'pad' | @ . ' ' . upper(@)}.
+
+  $padFnGiven = count ( array_filter ( (array) $parm, fn ( $one ) => $one !== '' and $one !== NULL and $one !== $value ) );
+
+  if ( isset ( $padFnTakes [$name] ) and $padFnGiven > $padFnTakes [$name] and $GLOBALS ['padCheckSyntax'] )
+    padError ( "the function '$name' takes " . ( $padFnTakes [$name] ? $padFnTakes [$name] . " parameter" . ( $padFnTakes [$name] > 1 ? 's' : '' ) : 'no parameters' )
+                    . ", not $padFnGiven" );
+
   // A field inside a quoted literal - {echo 'Re: {$subject}' | url} - reaches the function
   // with its syntax characters as the stand-ins of padProtect (lib/encoding.php), which the
   // page's exit puts back: url wrote %EE%80%AC for the comma, escape('js') \uE02C, and
