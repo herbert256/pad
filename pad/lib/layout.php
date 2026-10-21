@@ -53,7 +53,7 @@
     if ( $extends !== FALSE ) {
 
       $page     = '';
-      $frame    = padLayoutNoted ( padLayoutUnmask ( padLayoutChain ( $text, $extends, $masks, $page ), $masks ) );
+      $frame    = padLayoutNoted ( padLayoutUnmask ( padLayoutChain ( $text, $extends, $masks, $page ), padLayoutIgnored ( $masks ) ) );
       $template = padLayoutUnmask ( $page, $masks );
 
       return;
@@ -69,7 +69,7 @@
         $text = substr ( $text, 0, $pair ['start'] ) . substr ( $text, $pair ['end'] );
 
     $none     = [];
-    $frame    = padLayoutUnmask ( $outer, $masks );
+    $frame    = padLayoutUnmask ( $outer, padLayoutIgnored ( $masks ) );
     $template = padLayoutUnmask ( padLayoutFill ( $text, [], $none ), $masks );
 
   }
@@ -563,6 +563,22 @@
       }
 
     return $text;
+
+  }
+
+  // The set-aside texts with an @page@ inside an {ignore} as text the frame's @page@ is not -
+  // the @ as its stand-in, which the page's exit turns back: build/build.php puts the page in
+  // every @page@ of the frame, and since a layout is the frame, one written in an {ignore} of
+  // the layout, or of a block the page overrides, got the page's whole build text, its
+  // {padBuild for="..."} wrapper and raw template.
+
+  function padLayoutIgnored ( $masks ) {
+
+    foreach ( $masks as $index => $mask )
+      if ( str_starts_with ( $mask, '{ignore}' ) and str_contains ( $mask, '@page@' ) )
+        $masks [$index] = str_replace ( '@page@', strtr ( '@page@', [ '@' => padProtectMap () ['@'] ] ), $mask );
+
+    return $masks;
 
   }
 
