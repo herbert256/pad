@@ -11,7 +11,7 @@
 
   include_once PAD . 'functions/_lib/grapheme.php';
 
-  if ( padGraphemeLength ( $value ) > $padMaxLen )
+  if ( padGraphemeLonger ( $value, $padMaxLen ) )
     return padGraphemeCut ( $value, 0, $padMaxLen );
   else
     return $value;

@@ -12,7 +12,7 @@
 
   include_once PAD . 'functions/_lib/grapheme.php';
 
-  if ( padGraphemeLength ( $value ) <= $length )
+  if ( ! padGraphemeLonger ( $value, $length ) )
     return $value;
 
   $room = $length - padGraphemeLength ( $ellipsis );
