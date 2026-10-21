@@ -11,10 +11,12 @@
   // A request qualifies when it is a GET, its output goes to the web, it answered 200, and it
   // brought no cookie but PAD's own two ids: a request carrying a session, a login or any other
   // state cannot be replayed faithfully - the replay comes without cookies - so it is not
-  // recorded at all. One URL is one case: a later answer to the same app and query string
-  // replaces the earlier one. A case is DATA/replay/<store>/<md5>.json, holding the app, the
-  // query, the host it was recorded under, the status, the content type and the body - and
-  // for a clean URL, /shop/products/42, the path below the entry point that named the page.
+  // recorded at all, and neither is an answer holding a token its request made, a CSRF token
+  // or a CSP nonce, which the replay gets anew. One URL is one case: a later answer to the
+  // same app and query string replaces the earlier one. A case is
+  // DATA/replay/<store>/<md5>.json, holding the app, the query, the host it was recorded
+  // under, the status, the content type and the body - and for a clean URL,
+  // /shop/products/42, the path below the entry point that named the page.
   //
   // A replay fetches each case again with padReplay added - a switch only this machine can
   // throw, which also keeps the replay itself from being recorded - and compares status and
@@ -57,7 +59,8 @@
 
   function padReplayRecord ( $stop ) {
 
-    global $padApp, $padCacheServerGzip, $padCacheStop, $padContentType, $padHost, $padOutput;
+    global $padApp, $padCacheServerGzip, $padCacheStop, $padContentType, $padHost, $padOutput,
+           $padSesID, $padReqID, $padCsrfIssued, $padNonce;
 
     if ( $stop != 200 )
       return;
@@ -69,6 +72,16 @@
 
     $query = padReplayQuery ( $_SERVER ['QUERY_STRING'] ?? '' );
     $body  = ( $padCacheStop == 200 and $padCacheServerGzip ) ? padUnzip ( $padOutput ) : $padOutput;
+
+    // An answer holding a token its request made - the session's CSRF token every {form}
+    // writes, the CSP nonce, PAD's session or request id - cannot be replayed faithfully
+    // either: the replay gets a new one, and the case was reported changed on every replay,
+    // an accepted answer too, while the store kept the visitor's token on disk. It is not
+    // recorded, as the page cache does not store it (lib/cache.php padCacheStorable).
+
+    foreach ( [ $padSesID ?? '', $padReqID ?? '', $padCsrfIssued ?? '', $padNonce ?? '' ] as $token )
+      if ( $token !== '' and str_contains ( $body, $token ) )
+        return;
 
     padReplaySave ( $store, [
       'app'    => $padApp,
