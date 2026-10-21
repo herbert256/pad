@@ -53,6 +53,19 @@
 
         $value = $GLOBALS [$name];
 
+        // A field of an enclosing row is published as a variable with its NULL made ''
+        // (padSetGlobalOcc, lib/scope.php): bound as '', a row whose boss is NULL found the
+        // row whose key is the empty text - on MySQL an integer key 0. The row of the nearest
+        // level that holds the name, as padFieldLevel reads it, gives the NULL back.
+
+        if ( $value === '' )
+          for ( $lvl = $GLOBALS ['pad'] ?? 0; $lvl > 0; $lvl-- )
+            if ( is_array ( $GLOBALS ['padCurrent'] [$lvl] ?? NULL ) and array_key_exists ( $name, $GLOBALS ['padCurrent'] [$lvl] ) ) {
+              if ( $GLOBALS ['padCurrent'] [$lvl] [$name] === NULL )
+                $value = NULL;
+              break;
+            }
+
         // An array is a list of literals, as in a bare db() placeholder - name in ($names) -
         // where it was escaped as one literal, 'jim,bob', which matched nothing, and on SQLite
         // was cast to text with an "Array to string conversion"; in order= or group= it holds

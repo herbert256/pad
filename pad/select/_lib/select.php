@@ -390,9 +390,8 @@
 
   // The field of the enclosing select's current row that the relation is followed by. A
   // row without it - the outer tag's fields= left it out - ended the request on a PHP
-  // undefined array key from inside the engine; it is named for what it is now, and the
-  // condition compares with an empty value, as the warning left it under the continuing
-  // error actions.
+  // undefined array key from inside the engine; it is named for what it is now, and under
+  // the continuing error actions the condition compares with NULL and relates to no row.
 
   function padSelectOuterValue ( $data, $field, $outer ) {
 
@@ -430,7 +429,12 @@
 
     $connect = padDbApp ();
 
-    if ( $connect instanceof PDO and is_scalar ( $value ) )
+    // A NULL of the enclosing row relates to no row, as a join on it does: written as the
+    // empty text, it found the row whose key is '' - on MySQL an integer key 0.
+
+    if ( $value === NULL )
+      $where .= $add . 'NULL';
+    elseif ( $connect instanceof PDO and is_scalar ( $value ) )
       $where .= $add . padDbLiteral ( $connect, $value );
     else
       $where .= $add . "'" . padSelectEscape ($value) . "'";
