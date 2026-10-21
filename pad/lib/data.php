@@ -256,10 +256,25 @@
 
     $text = (string) $text;
 
-    if ( str_contains ( $text, "\n" ) and preg_match_all ( '/^([ \t]*)\S/m', $text, $indents ) ) {
-      $cut = min ( array_map ( 'strlen', $indents [1] ) );
-      if ( $cut )
-        $text = preg_replace ( '/^[ \t]{0,' . $cut . '}/m', '', $text );
+    // The indent is measured and cut per line, with no counted quantifier: one of more than
+    // 65535 blanks, {0,70000}, was past PCRE's limit, and preg_replace's warning ended the
+    // page - for a posted value or a fetched answer of that shape too.
+
+    if ( str_contains ( $text, "\n" ) ) {
+
+      $lines = explode ( "\n", $text );
+      $cut   = NULL;
+
+      foreach ( $lines as $line )
+        if ( trim ( $line ) !== '' )
+          $cut = min ( $cut ?? PHP_INT_MAX, strspn ( $line, " \t" ) );
+
+      if ( $cut ) {
+        foreach ( $lines as $at => $line )
+          $lines [$at] = substr ( $line, min ( $cut, strspn ( $line, " \t" ) ) );
+        $text = implode ( "\n", $lines );
+      }
+
     }
 
     $text = trim ( $text );
