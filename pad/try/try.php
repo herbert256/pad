@@ -33,6 +33,12 @@
     while ( ob_get_level () > $padTryLevel )
       ob_end_clean ();
 
+    // A guard's refusal ends the guard, not the request: build/guards.php catches it
+    // (padGuardNestedRefuse, lib/gate.php).
+
+    if ( $padTryException instanceof padGuardRefusal )
+      throw $padTryException;
+
     return include PAD . "try/catch/$padTry";
 
   }

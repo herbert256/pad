@@ -122,15 +122,18 @@
   // The private helpers.
   // ------------------------------------------------------------------------------------
 
-  // Whether a refusal stands in the _guard.php of a page a {page} tag includes - then it is
-  // that guard's refusal (build/guards.php reads it), and TRUE.
+  // In the _guard.php of a page a {page} tag includes, a refusal ends that guard: thrown as
+  // padGuardRefusal, which build/guards.php catches as the guard's refusal - the part renders
+  // as nothing. Returning FALSE let the guard's own code after the call run as a guest:
+  // $member = padUser (); $member ['role'] ended the public page with a PHP error. FALSE
+  // anywhere else - the caller redirects or answers 403 as before.
 
   function padGuardNestedRefuse () {
 
     if ( empty ( $GLOBALS ['padGuardNested'] ) or empty ( $GLOBALS ['padGuardRunning'] ) )
       return FALSE;
 
-    return $GLOBALS ['padGuardRefusal'] = TRUE;
+    throw new padGuardRefusal ();
 
   }
 
@@ -183,5 +186,7 @@
     return padAttrsValue ( $expr );
 
   }
+
+  class padGuardRefusal extends Exception {}
 
 ?>

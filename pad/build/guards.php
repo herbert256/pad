@@ -20,14 +20,21 @@
     if ( ! padFileExists ( $padCall ) )
       continue;
 
-    // padAuthRequire and padAuthorize refuse through $padGuardRefusal in the guard of a page
-    // a {page} tag includes (padGuardNestedRefuse, lib/gate.php), where they would send the
-    // whole request away.
+    // padAuthRequire and padAuthorize refuse the guard of a page a {page} tag includes by
+    // throwing padGuardRefusal (padGuardNestedRefuse, lib/gate.php), where they would send the
+    // whole request away: the guard ends there, its output buffer with it.
 
     $padGuardRefusal = FALSE;
     $padGuardRunning = TRUE;
+    $padGuardLevel   = ob_get_level ();
 
-    include PAD . 'call/_call.php';
+    try {
+      include PAD . 'call/_call.php';
+    } catch ( padGuardRefusal $padGuardThrown ) {
+      while ( ob_get_level () > $padGuardLevel )
+        ob_end_clean ();
+      $padGuardRefusal = TRUE;
+    }
 
     $padGuardRunning = FALSE;
 
