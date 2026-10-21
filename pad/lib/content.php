@@ -163,6 +163,27 @@
 
   }
 
+  // A level has one @else@, the separator of its two halves. A second one at the depth of
+  // the first separates nothing - the false half printed it as text, {none}A@else@B@else@C
+  // {/none} showing B@else@C - and strict mode names it, where level/split.php and
+  // build/split.php cut at the first. $pos is the first, $pairs the pair list it was
+  // placed with.
+
+  function padElseSecond ( $text, $pos, $pairs ) {
+
+    $pos = strpos ( $text, '@else@', $pos + 6 );
+
+    while ( $pos !== FALSE ) {
+
+      if ( padOpenCloseCount ( substr ( $text, 0, $pos ), $pairs ) )
+        return padError ( "a tag has one @else@ - a second one stands beside the first" );
+
+      $pos = strpos ( $text, '@else@', $pos + 1 );
+
+    }
+
+  }
+
   function padContentElse ( $input, &$before, &$after ) {
 
     $pos  = strpos ( $input, '@else@' );

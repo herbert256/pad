@@ -18,10 +18,11 @@
   // - the engine stops seeing PAD markup in it - and the content of {data}, which is read as
   // data: an @else@ there is part of that text, not a branch of the tag. Cut off, it was
   // gone - {ignore}a@else@b{/ignore} printed a, {markdown ignore} lost the rest of a sentence
-  // that showed the marker, and {data 'd'}["a@else@b"]{/data} failed as JSON. {highlight}
-  // puts its sample back together itself (tags/highlight.php).
+  // that showed the marker, and {data 'd'}["a@else@b"]{/data} failed as JSON. A {highlight}
+  // sample is code shown as it stands, left whole here too - it was put back together by
+  // tags/highlight.php, and a second @else@ in it would read as one too many.
 
-  if ( ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], [ 'ignore', 'data' ] ) )
+  if ( ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], [ 'ignore', 'data', 'highlight' ] ) )
        or isset ( $padPrm [$pad] ['ignore'] ) )
     return;
 
@@ -42,6 +43,8 @@
   while ( $padPos !== FALSE) {
 
     if  ( padOpenCloseCount ( substr ( $padSplitText, 0, $padPos ), $padOpenClose) ) {
+      if ( $padCheckSyntax )
+        padElseSecond ( $padSplitText, $padPos, $padOpenClose );
       $padFalse = substr ( $padBase [$pad], $padPos+6  );
       $padBase  [$pad] = substr ( $padBase [$pad], 0, $padPos );
       $padFalseSplit = TRUE;

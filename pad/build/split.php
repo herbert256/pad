@@ -23,6 +23,8 @@
   while ( $padPos !== FALSE) {
 
     if  ( padOpenCloseCount ( substr ( $padSplitText, 0, $padPos ), $padOpenClose) ) {
+      if ( $padCheckSyntax )
+        padElseSecond ( $padSplitText, $padPos, $padOpenClose );
       $padBuildFalse = substr ( $padBuildTrue, $padPos+6  );
       $padBuildTrue  = substr ( $padBuildTrue, 0, $padPos );
       if ( $padInfo )
