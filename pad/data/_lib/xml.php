@@ -12,8 +12,7 @@
   //   padXmlToArraySpaced    the same walk for a document with prefixed names, which takes
   //                          the elements and attributes of every namespace
   //   padXmlToArrayCheck     folds those '_children' entries up into their parent (a name
-  //                          clash gets a _ suffix) and unwraps single-element lists, but for
-  //                          an element that repeats in a sibling row
+  //                          clash gets a _ suffix) and unwraps single-element lists
   //
   // Every element name is kept as a list so repeated tags iterate naturally in templates.
 
@@ -210,30 +209,14 @@
 
   }
 
-  // A text element that repeats is a list in every sibling row, not only in the ones that have
-  // more than one of it: a one-element list was unwrapped to its value wherever it stood, so
-  // an order with two items held a list and an order with one a plain value, and
-  // {item}{$item},{/item} iterated the letters' row of that value - "cc," for a single c.
-  // $keep names the elements that repeat in a sibling of the row whose children these are;
-  // a field that stands once in every row stays a value.
-
-  function padXmlToArrayCheck ( $arr, $keep = [] ) {
-
-    $multi = [];
-
-    foreach ( $arr as $key => $val )
-      if ( is_int ( $key ) and is_array ( $val ) and is_array ( $val ['_children'] ?? NULL ) )
-        foreach ( $val ['_children'] as $name => $list )
-          if ( is_array ( $list ) and count ( $list ) > 1 )
-            $multi [$name] = TRUE;
+  function padXmlToArrayCheck ( $arr ) {
 
     foreach ( $arr as $key => $val )
       if ( is_array ($val) )
-        if ( count($val) == 1 and isset ($val[0]) and ! is_array ($val[0]) and ! isset ( $keep [$key] ) )
+        if ( count($val) == 1 and isset ($val[0]) and ! is_array ($val[0]) )
           $arr [$key] = $val [0];
         else
-          $arr [$key] = padXmlToArrayCheck ( $arr [$key],
-                                             is_int ( $key ) ? $multi : ( $key === '_children' ? $keep : [] ) );
+          $arr [$key] = padXmlToArrayCheck ( $arr [$key] );
 
     foreach ( $arr as $key => $val )
       if ( $key == '_children') {
