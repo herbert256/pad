@@ -154,20 +154,30 @@
       do $padStoreOwn = preg_replace ( '/\{[^{}]*\}/', ' ', $padStoreOwn, -1, $padStoreHits );
       while ( $padStoreHits );
 
-      preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', $padStoreOwn ), $padStoreOwnNames );
-      preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', (string) $padStoreSource ), $padStoreNames );
-
-      $padStoreCalls = array_filter ( array_diff ( $padStoreNames [0], $padStoreOwnNames [0] ),
-        fn ( $name ) => ! in_array ( strtolower ( $name ), [ 'true', 'false', 'null' ] )
-                        and ( padTypeFunction ( $name ) or defined ( $name ) ) );
+      // The names are looked up only for an expression of the author's: values alone are
+      // their text's truth, and each distinct word of a long text was asked of the
+      // functions, tags and constants first - {bool}{$body}{/bool 'b'} over 8000 words took
+      // five times as long as {bool 'b', $body}.
 
       if ( trim ( $padStoreOwn ) === '' )
         $padStoreData = ! in_array ( trim ( (string) $padStoreSource ), [ '', '0' ], TRUE );
-      elseif ( $padStoreCalls or padSpliceInCode ( $padStoreSource ) ) {
-        padError ( "a value spliced into a {bool} expression would run as part of it: put it in quotes, '{\$x}' eq 'Ann', or take its own truth with {bool 'name', \$x}" );
-        $padStoreData = FALSE;
-      } else
-        $padStoreData = padMakeFlag ( $padStoreSource );
+
+      else {
+
+        preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', $padStoreOwn ), $padStoreOwnNames );
+        preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', (string) $padStoreSource ), $padStoreNames );
+
+        $padStoreCalls = array_filter ( array_unique ( array_diff ( $padStoreNames [0], $padStoreOwnNames [0] ) ),
+          fn ( $name ) => ! in_array ( strtolower ( $name ), [ 'true', 'false', 'null' ] )
+                          and ( padTypeFunction ( $name ) or defined ( $name ) ) );
+
+        if ( $padStoreCalls or padSpliceInCode ( $padStoreSource ) ) {
+          padError ( "a value spliced into a {bool} expression would run as part of it: put it in quotes, '{\$x}' eq 'Ann', or take its own truth with {bool 'name', \$x}" );
+          $padStoreData = FALSE;
+        } else
+          $padStoreData = padMakeFlag ( $padStoreSource );
+
+      }
 
     } else
       $padStoreData = padMakeFlag ( $padStoreSource );
