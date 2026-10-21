@@ -320,21 +320,25 @@
     // looked for in the key only, as the value of a key line may hold any text - 'city:
     // Paris, France' was read as CSV, one row whose field was named 'city: Paris'. A first
     // line with a comma after its key is a CSV header just as well - Weight: kg,Height: cm,
-    // Name - so it is YAML only when the line behind it is YAML too: indented, an item, or
-    // a key line; behind a CSV header stands a row of cells.
+    // Name - so it is YAML only when the line behind it is YAML too: indented deeper, an
+    // item, or a key line; behind a CSV header stands a row of cells. Deeper is measured
+    // against the indent the lines behind the first share: a {data} block is written
+    // indented in its template, and the text comes trimmed - the first line has lost its
+    // indent where the others kept it, and every indented CSV header with a word: cell read
+    // as YAML, the page ending on a YAML parse error.
 
     if ( str_contains ( $content, "\n" ) ) {
-      $lines = preg_split ( '/\n/', trim ( preg_replace ( '/^(\s*#[^\n]*\n)+/', '', $content ) ) );
-      $line  = $lines [0];
-      $next  = '';
-      foreach ( array_slice ( $lines, 1 ) as $one )
-        if ( trim ( $one ) !== '' and ! str_starts_with ( trim ( $one ), '#' ) ) {
-          $next = rtrim ( $one );
-          break;
-        }
+      $lines = [];
+      foreach ( preg_split ( '/\r?\n/', $content ) as $one )
+        if ( trim ( $one ) !== '' and ! str_starts_with ( trim ( $one ), '#' ) )
+          $lines [] = rtrim ( $one );
+      $line   = ltrim ( $lines [0] ?? '' );
+      $next   = ltrim ( $lines [1] ?? '' );
+      $rest   = array_map ( fn ( $one ) => strspn ( $one, " \t" ), array_slice ( $lines, 1 ) );
+      $deeper = ( $rest and $rest [0] > min ( $rest ) );
       if ( preg_match ( '/^-(\s|$)/', $line )
         or ( preg_match ( '/^[\w"\'][^:,]*:(\s|$)/', $line )
-             and ( ! str_contains ( $line, ',' ) or preg_match ( '/^(\s|-(\s|$)|[\w"\'][^:]*:(\s|$))/', $next ) ) ) )
+             and ( ! str_contains ( $line, ',' ) or $deeper or preg_match ( '/^(-(\s|$)|[\w"\'][^:]*:(\s|$))/', $next ) ) ) )
         return 'yaml';
     }
 
