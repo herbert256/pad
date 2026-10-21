@@ -151,14 +151,17 @@
     // value, a space, and the name of an engine or application option. The evaluator read
     // the two as a value piped into the function of that name, so ignore('rawJson') named
     // the store and the option never applied. A word that names no option stays that pipe:
-    // {echo 'abc' upper} is ABC. The data handlers (handling/types) are left out on purpose:
+    // {echo 'abc' upper} is ABC. An application option with only an end-phase file -
+    // _options/end/shout.php - is an option as well: {data 'd' shout} was "a comma is
+    // missing", where {data 'd' frame}, which has both files, worked. The data handlers
+    // (handling/types) are left out on purpose:
     // trim, left, right and reverse are pipe functions as well, and {echo $x trim} pipes.
 
     $split = [];
 
     foreach ( $output as $item )
       if ( preg_match ( '/^\s*(\'[^\']*\'|"[^"]*"|\$[A-Za-z][\w.]*|-?\d+(?:\.\d+)?)\s+([A-Za-z][A-Za-z0-9_]*)\s*$/D', $item, $match )
-           and ( padFileExists ( PAD . "options/{$match [2]}.php" ) or padOptionCheck ( $match [2] ) ) ) {
+           and ( padFileExists ( PAD . "options/{$match [2]}.php" ) or padOptionCheck ( $match [2] ) or padOptionEndCheck ( $match [2] ) ) ) {
         $split [] = $match [1];
         $split [] = $match [2];
       } else

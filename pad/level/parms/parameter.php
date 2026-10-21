@@ -9,6 +9,13 @@
   // the wrong thing. A word that IS a known option is the documented space form - {data
   // 'rawJson' ignore} - and passes; the condition tags stay out entirely, their one
   // parameter being a whole expression where quotes and words mix legitimately.
+  //
+  // Any other word after a value is a pipe (TAGS.md) - {echo 'abc' upper} - so a word the
+  // evaluator reads as one passes too: an application's pipe function or a PHP function the
+  // template may call, as the built-in ones did - {echo 'abc' shout} and {echo 'abc' strrev}
+  // were "a comma is missing" where {echo $x shout} worked. And an application option with
+  // only its end-phase file, _options/end/name.php, is an option as much as one with an
+  // _options/ file is (padParseOptions splits it off).
 
   if ( $padCheckSyntax and ! padParmsRaw ()
        and ! in_array ( $padTag [$pad], [ 'if', 'elseif', 'while', 'until', 'case', 'when' ] )
@@ -16,7 +23,10 @@
        and ! file_exists ( PAD . "options/" . $padPrmShape [2] . ".php" )
        and ! file_exists ( PAD . "handling/types/" . $padPrmShape [2] . ".php" )
        and ! file_exists ( PAD . "functions/" . $padPrmShape [2] . ".php" )
-       and ! padOptionCheck ( $padPrmShape [2] ) )
+       and ! padOptionCheck ( $padPrmShape [2] )
+       and ! padOptionEndCheck ( $padPrmShape [2] )
+       and ! padAppFunctionCheck ( $padPrmShape [2] )
+       and ! padPhpAllowed ( $padPrmShape [2] ) )
     padError ( "a comma is missing between parameters: " . trim ( $padPrmOne ) );
 
   // {increment}, {decrement} and {set} address their words by name and never read them
