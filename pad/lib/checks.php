@@ -318,13 +318,23 @@
     // list item ('- name: a') or a mapping key ('name: a', 'rows:') read as CSV, one column
     // named after the whole first line. A CSV header has its commas, a key none: the comma is
     // looked for in the key only, as the value of a key line may hold any text - 'city:
-    // Paris, France' was read as CSV, one row whose field was named 'city: Paris'.
+    // Paris, France' was read as CSV, one row whose field was named 'city: Paris'. A first
+    // line with a comma after its key is a CSV header just as well - Weight: kg,Height: cm,
+    // Name - so it is YAML only when the line behind it is YAML too: indented, an item, or
+    // a key line; behind a CSV header stands a row of cells.
 
     if ( str_contains ( $content, "\n" ) ) {
-      $line = trim ( preg_replace ( '/^(\s*#[^\n]*\n)+/', '', $content ) );
-      $line = strtok ( $line, "\n" );
+      $lines = preg_split ( '/\n/', trim ( preg_replace ( '/^(\s*#[^\n]*\n)+/', '', $content ) ) );
+      $line  = $lines [0];
+      $next  = '';
+      foreach ( array_slice ( $lines, 1 ) as $one )
+        if ( trim ( $one ) !== '' and ! str_starts_with ( trim ( $one ), '#' ) ) {
+          $next = rtrim ( $one );
+          break;
+        }
       if ( preg_match ( '/^-(\s|$)/', $line )
-        or preg_match ( '/^[\w"\'][^:,]*:(\s|$)/', $line ) )
+        or ( preg_match ( '/^[\w"\'][^:,]*:(\s|$)/', $line )
+             and ( ! str_contains ( $line, ',' ) or preg_match ( '/^(\s|-(\s|$)|[\w"\'][^:]*:(\s|$))/', $next ) ) ) )
         return 'yaml';
     }
 
