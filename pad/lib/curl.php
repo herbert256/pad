@@ -54,9 +54,11 @@
       // A URL is read as one - padFileGet roots a relative path under DATA and refuses the
       // // of a scheme, so every fetch used to come back as an empty 200.
 
-      $result = str_contains ( $output ['url'], '://' )
-              ? file_get_contents ( $output ['url'] )
-              : padFileGet ( $output ['url'], FALSE );
+      if ( str_contains ( $output ['url'], '://' ) ) {
+        [ $url, $context ] = padNoCurlContext ( $output ['url'], $output ['options'] );
+        $result = file_get_contents ( $url, FALSE, $context );
+      } else
+        $result = padFileGet ( $output ['url'], FALSE );
 
       if ( $result === FALSE )
         return padCurlError ( $output, 'padNoCurl: nothing read' );
@@ -77,6 +79,69 @@
     $output ['type']   = padContentType ( $output ['data'] );
 
     return $output;
+
+  }
+
+  // What padCurlBuild set for the fetch, as the stream context file_get_contents takes: the
+  // method and body of a post, the cookies, the headers - X-PAD-Remote among them - the
+  // credentials, the agent and the time-out. And the pin of a fetch of this site, CONNECT_TO
+  // (lib/paths.php padSelfConnect): the address connected to is the pinned one, the URL's
+  // name goes along as the Host header and, over https, as the name the certificate must
+  // carry; a redirect is not followed, as it would leave the pin. Without ext-curl the URL
+  // was read as it stood - its host made of the visitor's Host header, so Host:
+  // 169.254.169.254 had every SELF://, {get} and {page app=} fetch from there - as a GET
+  // with none of the rest.
+
+  function padNoCurlContext ( $url, $options ) {
+
+    $headers = $options ['HTTPHEADER'] ?? [];
+    $http    = [ 'method'          => empty ( $options ['POST'] ) ? 'GET' : 'POST',
+                 'timeout'         => $options ['TIMEOUT'] ?? 120,
+                 'follow_location' => empty ( $options ['FOLLOWLOCATION'] ) ? 0 : 1,
+                 'max_redirects'   => ( $options ['MAXREDIRS'] ?? 5 ) + 1 ];
+    $ssl     = [];
+
+    if ( isset ( $options ['USERAGENT'] ) )
+      $http ['user_agent'] = $options ['USERAGENT'];
+
+    if ( isset ( $options ['COOKIE'] ) )
+      $headers [] = 'Cookie: ' . $options ['COOKIE'];
+
+    if ( isset ( $options ['USERPWD'] ) )
+      $headers [] = 'Authorization: Basic ' . base64_encode ( $options ['USERPWD'] );
+
+    if ( isset ( $options ['POSTFIELDS'] ) ) {
+      $http ['content'] = is_array ( $options ['POSTFIELDS'] ) ? http_build_query ( $options ['POSTFIELDS'] ) : (string) $options ['POSTFIELDS'];
+      if ( ! preg_grep ( '/^content-type\s*:/i', $headers ) )
+        $headers [] = 'Content-Type: application/x-www-form-urlencoded';
+    }
+
+    $parts = parse_url ( $url );
+    $host  = strtolower ( trim ( $parts ['host'] ?? '', '[]' ) );
+    $port  = $parts ['port'] ?? ( strtolower ( $parts ['scheme'] ?? '' ) == 'https' ? 443 : 80 );
+
+    foreach ( (array) ( $options ['CONNECT_TO'] ?? [] ) as $pin ) {
+
+      if ( ! preg_match ( '/^(\[[^\]]*\]|[^:]*):(\d*):(\[[^\]]*\]|[^:]*):(\d*)$/', (string) $pin, $to ) )
+        continue;
+
+      if ( ( $to [1] !== '' and strtolower ( trim ( $to [1], '[]' ) ) !== $host ) or ( $to [2] !== '' and (int) $to [2] != $port ) )
+        continue;
+
+      $headers []                = 'Host: ' . $parts ['host'] . ( isset ( $parts ['port'] ) ? ':' . $parts ['port'] : '' );
+      $ssl ['peer_name']         = $host;
+      $http ['follow_location']  = 0;
+
+      $url = $parts ['scheme'] . '://' . ( $to [3] !== '' ? $to [3] : $parts ['host'] ) . ':' . ( $to [4] !== '' ? $to [4] : $port )
+           . ( $parts ['path'] ?? '' ) . ( isset ( $parts ['query'] ) ? '?' . $parts ['query'] : '' );
+
+      break;
+
+    }
+
+    $http ['header'] = $headers;
+
+    return [ $url, stream_context_create ( [ 'http' => $http, 'ssl' => $ssl ] ) ];
 
   }
 
