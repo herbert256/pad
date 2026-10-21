@@ -831,8 +831,10 @@ Edge rules:
   `NULL` never expires; a number is seconds from now (`padNow`, so a frozen clock counts) and
   must be above 0; a `DateInterval` is added to now; anything else is read by `padDateParse`
   (`'+2 days'`, `'2026-12-31 23:59'`) and must lie in the future. Values that are no array,
-  `padExpires` or `padSignature` among them, a lifetime of 0 or less, a moment passed or no
-  moment at all are reported and answer `''`.
+  `padExpires` or `padSignature` among them, a value whose name the request reads back as
+  another (PHP makes a dot, a space or an unmatched `[` in a name an `_`: `user.name` arrives
+  as `user_name`), a lifetime of 0 or less or NAN, a moment passed or no moment at all are
+  reported and answer `''`.
 - **What is signed.** The application, the page as asked (`$padPageAsked` - `products/42`, not
   `products/[id]`) and every query value but `padSignature`, sorted by name at every depth -
   the host and the form of the address are not, so a link holds behind a proxy and in the

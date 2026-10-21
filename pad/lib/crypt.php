@@ -191,6 +191,22 @@
         return '';
       }
 
+    // A value whose name the request reads back as another - PHP makes a dot or a space in
+    // a name an _, and an unmatched [ too: user.name arrives as user_name - makes a link
+    // that is never valid, the request holding other values than the signature was made
+    // over: it was mailed without a word and every visitor found it expired. Each value
+    // goes through the query string and back, as the request will read it.
+
+    foreach ( $vars as $name => $value ) {
+      $sent = padCryptQuery ( [ $name => $value ] );
+      @parse_str ( $sent, $back );
+      if ( padCryptQuery ( $back ) !== $sent ) {
+        padError ( "padSignedUrl: the request reads the value name '" . padMakeSafe ( (string) $name, 40 )
+                 . "' back as another - PHP makes a dot, a space or an unmatched [ in a name an _ - so the link would never be valid" );
+        return '';
+      }
+    }
+
     if ( $expires !== NULL ) {
 
       $now = padNow ();
