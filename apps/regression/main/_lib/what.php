@@ -63,6 +63,8 @@
       'fragments/helpers'         => 'The fixture for fragments/a_fragment_answers_without_the_developer_helpers: the three helpers on, a fragment with an image the output check names - fetched bare, its panel follows the page',
       'live/a_posting_form_in_a_live_answer_keeps_its_csrf_token' => 'A posting form in a {live} region under $padCsrf carries the token in the answer to an event as in the page',
       'live/form'                 => 'The fixture of live/a_posting_form_in_a_live_answer_keeps_its_csrf_token, fetched bare: the region, its form with the token',
+      'flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered' => 'An @tidy@ below a {flush} is taken out and tidy does not run over the rest - one document, as rendered',
+      'flush/tidybelow'           => 'The fixture of flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered, fetched bare: the page, the marker gone',
       'flush/a_tidy_marker_above_a_flush_is_taken_out' => 'An @tidy@ in the part a {flush} sends early is taken out, as from the rest of the page',
       'flush/a_toc_above_a_flush_lists_the_headings_below_it' => 'A {toc} in the part a {flush} would send holds every flush back: the toc lists the headings below it, no marker goes out',
       'format/a_text_that_is_no_utf8_is_kept_in_a_json_answer' => 'A value with a byte that is no UTF-8 is kept in a JSON answer, the byte as U+FFFD - never null',

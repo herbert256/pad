@@ -34,6 +34,13 @@
   if ( ! str_starts_with ( strtolower ( trim ( $padContentType ?? '' ) ), 'text/html' ) )
     return;
 
+  // A page that flushed (lib/flush.php) has sent its head already: what is left is the rest
+  // of the page, which goes as it rendered - the marker below the flush ran tidy over it as
+  // if it were a whole page, and a second <!DOCTYPE html><html><head> followed the head.
+
+  if ( isset ( $GLOBALS ['padFlushRaw'] ) )
+    return;
+
   include PAD . 'config/tidy.php';
 
   if ( $padTidy or $padTidyMarked )
