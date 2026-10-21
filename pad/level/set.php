@@ -14,4 +14,10 @@
 
   unset ( $padSetHave );
 
+  // From here on the level's variables are globals, and a lookup reads them there - where a
+  // {set} inside the level may have changed them. Until now they were only the values the
+  // parameters registered, which lib/field/level.php answers itself (padFieldLevel).
+
+  $padSetDone [$pad] = TRUE;
+
 ?>

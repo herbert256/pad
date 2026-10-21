@@ -49,7 +49,7 @@
   function padFieldLevel ( $field, $type ) {
 
     global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padLvlFunVar;
-    global $padSetOcc, $padSetLvl;
+    global $padSetOcc, $padSetLvl, $padSetDone;
 
     if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
       $idx = $pad + $field;
@@ -79,7 +79,16 @@
       }
 
       if ( isset ( $padSetOcc [$i] [$field] ) ) return $GLOBALS [$field] ;
-      if ( isset ( $padSetLvl [$i] [$field] ) ) return $GLOBALS [$field] ;
+
+      // A level variable is a global once level/set.php has published it, and read there, as a
+      // {set} inside the level may have changed it since. While the level's parameters are
+      // still being parsed it is not yet: its value is the one registered here. Read from
+      // $GLOBALS then, the second item of {set $a = 1, $b = $a + 1} ended the page on PHP's
+      // "Undefined global variable $a", and {set $title = 'Orders', $heading = $title . ' list'}
+      // on a page with a $title of its own read that old one.
+
+      if ( isset ( $padSetLvl [$i] [$field] ) )
+        return ( $padSetDone [$i] ?? TRUE ) ? $GLOBALS [$field] : $padSetLvl [$i] [$field];
 
     }
 

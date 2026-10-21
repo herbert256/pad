@@ -27,6 +27,7 @@
 
   $padSetLvl     [$pad] = [];
   $padSetOcc     [$pad] = [];
+  $padSetDone    [$pad] = FALSE;
 
   $padOpt        [$pad] [0] = $padTagOpts;
 
