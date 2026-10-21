@@ -7,6 +7,7 @@
   //                       false content, depending on whether the tag hit
   // padContentSet         wraps one string around the other where @content@ appears, and
   //                       falls back to merge='top' (default), 'bottom' or 'replace'
+  // padContentFill        puts the fill at every @content@ of the text's own level
   // padContentElse        finds the @else@ that sits outside any nested tag pair
   // padContentBeforeAfter the same search for @content@, returning the text either side
   //
@@ -26,15 +27,15 @@
 
   function padContentSet ( $base, $new ) {
 
-    $check = padContentBeforeAfter ( $new,  $before, $after );
+    $set = padContentFill ( $new, $base );
 
-    if ( $check )
-      return $before . $base . $after;
+    if ( $set !== FALSE )
+      return $set;
 
-    $check = padContentBeforeAfter ( $base,  $before, $after );
+    $set = padContentFill ( $base, $new );
 
-    if ( $check )
-      return $before . $new . $after;
+    if ( $set !== FALSE )
+      return $set;
 
     $merge = padTagParm ( 'merge', 'top' );
 
@@ -126,6 +127,27 @@
     }
 
     return $text;
+
+  }
+
+  // Every @content@ of the text's own level takes the fill - a template may show the content
+  // in more than one place, <a>@content@</a><b>@content@</b>. Only the first was filled, and
+  // the strict check then blamed the second as one that "nothing merges content into". FALSE
+  // when the text has none.
+
+  function padContentFill ( $text, $fill ) {
+
+    if ( ! padContentBeforeAfter ( $text, $before, $after ) )
+      return FALSE;
+
+    $out = $before . $fill;
+
+    while ( padContentBeforeAfter ( $after, $before, $rest ) ) {
+      $out  .= $before . $fill;
+      $after = $rest;
+    }
+
+    return $out . $after;
 
   }
 

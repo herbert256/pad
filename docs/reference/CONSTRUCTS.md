@@ -82,7 +82,8 @@ Content merge placeholder for inserting content into parent templates.
   strict check stops it ("an @content@ stands where nothing merges content into it")
 - Content before `@content@` becomes the prefix
 - Content after `@content@` becomes the suffix
-- Child content is inserted at the `@content@` position
+- Child content is inserted at the `@content@` position - at every one the template has at
+  its own level, `<a>@content@</a><b>@content@</b>` showing it twice
 
 **Merge Options** (`merge=`, when neither side holds an `@content@`):
 - `merge="top"` - the merged content above the tag's own (the default)
