@@ -22,8 +22,12 @@
 
   // The @else@ branch of an empty level is no row of its data, so the row phase does not run
   // for it - init and exit still do: a callback reading a field of its row ended the request.
+  // Neither is the one stand-in row an @start@ prelude or an @end@ coda renders on, which
+  // level/start_end/ marks with $padSectionRows: the phase ran five times for three rows, and
+  // one reading $n ended the request.
 
-  if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) and ! $padElse [$pad] )
+  if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) and ! $padElse [$pad]
+       and ! isset ( $padSectionRows [$pad] ) )
     if ( $GLOBALS ['padStrFunCnt'] ?? 0 )
       padCallbackBeforeXxx ( 'row' );
     else
