@@ -69,10 +69,15 @@
   // tells nothing about the visitor, and padLoopback takes a request carrying it for a
   // forwarded one. Whatever the address: deciding by it missed 0.0.0.0, ::ffff:7f00:1, a
   // name resolving to ::1 alone and a site that redirects here, and cost a DNS lookup.
+  //
+  // A page pad export renders is this machine's here, though padLocalView keeps the
+  // developer's helpers out of its copy: what the page fetches of its own site at build time
+  // is the copy's content. Sent as a visitor's, the manual's template_errors - whose example
+  // fetches the JSON error report only this machine gets - failed the export.
 
   function padSelfFetchHeaders () {
 
-    return padLocalView () ? [] : [ 'X-PAD-Remote' => '1' ];
+    return padLocal () ? [] : [ 'X-PAD-Remote' => '1' ];
 
   }
 
