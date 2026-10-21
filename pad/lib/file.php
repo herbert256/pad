@@ -10,7 +10,7 @@
   //              creating the directory with $padDirMode and the file with $padFileMode if
   //              needed, encoding arrays and objects as JSON, and locking the write; never
   //              a name the web server would run (.php ...) or read as configuration
-  //              (.htaccess, .user.ini)
+  //              (.htaccess, .user.ini, web.config)
   // padFileCheck the shared path guard: absolute, no .., no //, no control characters. It
   //              returns a message on rejection and '' when the path is acceptable
   //
@@ -140,13 +140,18 @@
     // write - may: by the name alone, padFilePut ( 'examples/' . $name ) from any page wrote
     // a .php there. The engine's own markers (.purged, .swept) are no configuration; {file}
     // refuses every name that starts with a dot besides.
+    //
+    // Windows - home/home.php runs PAD there - stores a name without the blanks and dots that
+    // end it, and name::$DATA is its main stream: report.php with a blank behind it, or
+    // report.php::$DATA, was written as report.php. So is web.config, the configuration IIS
+    // reads from any directory it serves.
 
     $name    = substr ( $file, strlen ( DATA ) );
     $harvest = ( str_starts_with ( $name, 'examples/' )
                  and padCorrectPath ( debug_backtrace ( DEBUG_BACKTRACE_IGNORE_ARGS, 1 ) [0] ['file'] ?? '' ) === APPS . 'examples/_lib/build.php' );
 
     if ( ! $harvest
-         and preg_match ( '/\.(php\d*|phtml|pht|phar|phps)(\.|\/|$)|(^|\/)\.(htaccess|htpasswd|user\.ini)$/i', $name ) )
+         and preg_match ( '/\.(php\d*|phtml|pht|phar|phps)([.\s:\/]|$)|(^|\/)(\.(htaccess|htpasswd|user\.ini)|web\.config)[.\s]*(::\$data)?$/i', $name ) )
       return padError ( "padFilePut writes no '$name' - a name the web server would run or read as its own configuration" );
 
     if ( $padInfo )

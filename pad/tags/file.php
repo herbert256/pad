@@ -33,9 +33,11 @@
   // AddHandler reads x.php.txt - or read as its own configuration - .htaccess, .user.ini,
   // any part that starts with a dot. DATA lies under the docroot in the documented layout,
   // and a template that took the name or the extension from the request - an export as
-  // ext=$type - wrote a page the visitor could then run.
+  // ext=$type - wrote a page the visitor could then run. Windows stores a name without the
+  // blanks and dots that end it, and name::$DATA is its main stream - ext='php ' and
+  // ext='php::$DATA' wrote shell.php there - and IIS reads a web.config in any directory.
 
-  if ( preg_match ( '/(^|\/)\.|\.(php\d*|phtml|pht|phar|phps)(\.|\/|$)/i', $padFileNamed ) ) {
+  if ( preg_match ( '/(^|\/)\.|\.(php\d*|phtml|pht|phar|phps)([.\s:\/]|$)|(^|\/)web\.config[.\s]*(::\$data)?$/i', $padFileNamed ) ) {
     padError ( "the {file} writes no '" . padMakeSafe ( $padFileNamed, 80 ) . "' - a name the web server would run or read as its own configuration" );
     $padContent = '';
     return FALSE;
