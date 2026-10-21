@@ -42,10 +42,16 @@
 
   }
 
+  // count and rows are the names a group gives its own count and its own rows: grouped on a
+  // field of that name, the group's count took the value's place - {xs group='count'} showed
+  // 1 for every group and the values grouped on were nowhere.
+
   if ( $padCheckSyntax )
     foreach ( $padGroupKeys as $padGroupKey )
       if ( ! padHandFieldSeen ( $padData [$pad], $padGroupKey ) )
         return padError ( "the group field '$padGroupKey' is in no row" );
+      elseif ( in_array ( $padGroupKey, [ 'count', 'rows' ], TRUE ) )
+        return padError ( "group='$padGroupKey' names a field each group sets itself - its count of rows and its rows are count and rows" );
 
   // The aggregates, in the order they were written on the tag: that order decides which of
   // two aggregates of one field keeps the field's own name.
@@ -117,6 +123,13 @@
       $padGroupValue = padGroupAggregate ( $padGroupFun, array_column ( $padGroup ['rows'], $padGroupField ) );
 
       $padGroup [ $padGroupFun . '_' . $padGroupField ] = $padGroupValue;
+
+      // An aggregate of a field named count or rows has only its joined name, sum_rows: under
+      // its own name it took the place of the group's count or of its rows - sum='rows' made
+      // the rows a number, and {rows}...{/rows} failed on it.
+
+      if ( in_array ( $padGroupField, [ 'count', 'rows' ], TRUE ) )
+        continue;
 
       if ( ! isset ( $padGroupOwn [$padGroupField] ) or $padGroupOwn [$padGroupField] == $padGroupFun ) {
         $padGroup [$padGroupField] = $padGroupValue;

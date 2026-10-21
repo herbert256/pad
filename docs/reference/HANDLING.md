@@ -502,7 +502,9 @@ fields and the group's own rows as nested data.
 
 The aggregate is stored under the field's own name - `{$total}` - and under the aggregate
 joined to it - `{$sum_total}`, `{$avg_total}`, `{$min_total}`, `{$max_total}` - so one field
-can be summed and averaged at once; the own name holds the aggregate written first.
+can be summed and averaged at once; the own name holds the aggregate written first. A field
+named `count` or `rows` keeps only the joined name - `{$sum_rows}` - as those two names are the
+group's own; grouping on such a field is an error under the strict check.
 
 **Examples:**
 ```html
