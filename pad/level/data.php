@@ -22,6 +22,25 @@
 
   $padData [$pad] = padData ( $padData [$pad] );
 
+  // An array that holds no rows once it is read - a page's ['results' => []], the empty
+  // answer of an API kept in a variable - is a tag that came back empty, as [] itself is:
+  // judged by the array as the tag answered it, the level was a hit that iterated nothing,
+  // so neither its @else@ nor else= showed. Judged again as the empty answer, its template
+  // is settled again too - the @else@ branch, or what else= put in place.
+
+  if ( $padArray [$pad] and ! count ( $padData [$pad] ) ) {
+
+    $padTagResult = [];
+
+    include PAD . 'level/flags.php';
+    include PAD . 'level/base.php';
+    include PAD . 'level/pipes/before.php';
+
+    if ( $padElse [$pad] )
+      $padData [$pad] = padData ( padDefaultData () );
+
+  }
+
   // The data may be a copy of another level's array - {data@users} hands back the whole set
   // the enclosing {users} loop is on - and a PHP array copy keeps the internal pointer where
   // the original stood, so occurrence/init.php read key() from the middle and the pair

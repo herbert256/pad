@@ -513,6 +513,14 @@
 
     $result = $data;
 
+    // An empty list in the wrapper is no rows, as a filled one is its rows: {"results": []},
+    // what an API answers when it found nothing, stayed the wrapper - one row with no fields,
+    // no @else@, and {$n} in it "not found". Only under a name: [ [] ] is one empty row, and
+    // [ 999 => [] ] the default data.
+
+    if ( count ( $result ) == 1 and is_string ( array_key_first ( $result ) ) and $result [array_key_first ( $result )] === [] )
+      return [];
+
     if ( count($result) == 1 and is_array($result[array_key_first($result)]) ) {
 
       $idx=0;
