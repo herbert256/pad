@@ -50,6 +50,7 @@
       'request/a_request_value_never_decides_what_a_tag_is' => 'Request values named like a constant, a sequence, a _data file, a pipe or PHP function the template writes as a tag or a pipe: each stays what the template wrote, a page variable and a name nothing else claims stay fields',
       'request/tagnames'          => 'The fixture for request/a_request_value_never_decides_what_a_tag_is, fetched bare: what the template means by each name',
       'request/statuses'          => 'A missing page answers 404, and a status the page sets with http_response_code() stands',
+      'request/a_redirect_carries_a_list_as_the_query_writes_it' => 'The values padRedirect and {redirect} carry go into the query as padUrl writes them - a list as ids[0]=1&ids[1]=2, a NULL left out, a name with & encoded',
       'request/a_redirect_to_a_name_with_a_line_break_encodes_it' => 'A line break in the page name padRedirect is handed from the request percent-encoded in a 302 - no header added, no 500',
       'request/gone'              => 'The fixture for request/statuses: a page that answers 410 itself',
       'request/redirect'          => 'A redirecting page, seen unfollowed - status and destination - and followed to where it lands',

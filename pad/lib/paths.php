@@ -182,14 +182,28 @@
   // The pair goes into the query, in front of a #fragment: behind it, padRedirect ( 'index#top',
   // [ 'x' => 1 ] ) sent ?index#top&x=1, the value - and padAddIds' ids - part of the
   // fragment, which never reaches the server.
+  //
+  // A list goes in as the query writes one - ids[0]=1&ids[1]=2, as padUrl and {get} write it
+  // (http_build_query) - and a NULL or an empty list not at all: urlencode took text only,
+  // and padRedirect ( 'other', [ 'ids' => [ 1, 2 ] ] ), {redirect 'other', $ids = ['a', 'b']}
+  // or a visitor's ?v[]=x carried on ended the request in a TypeError. The name is encoded
+  // too, so a & or = in it no longer splits the pair.
 
   function padAddGet ($url, $key, $val ) {
 
     list ( $url, $hash ) = array_pad ( explode ( '#', (string) $url, 2 ), 2, NULL );
 
+    if ( is_array ( $val ) or ( is_object ( $val ) and ! $val instanceof Stringable ) or $val === NULL )
+      $pair = http_build_query ( [ $key => $val ] );
+    else
+      $pair = urlencode ( (string) $key ) . '=' . urlencode ( (string) $val );
+
+    if ( $pair === '' )
+      return $url . ( $hash === NULL ? '' : "#$hash" );
+
     $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
 
-    return $url . $str . $key . '=' . urlencode($val) . ( $hash === NULL ? '' : "#$hash" );
+    return $url . $str . $pair . ( $hash === NULL ? '' : "#$hash" );
 
   }
 
