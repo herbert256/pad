@@ -4,13 +4,9 @@
   // store): returns $padDataStore [name] for the level to iterate. Arrays are put there by the
   // toData option.
   //
-  // With the print option the print construct is appended to the content first, so the array
-  // can be listed without writing a tag body.
-
-  if ( padTagParm ('print') ) {
-    $padGetName = padTagParm ('print');
-    include PAD . 'options/print.php';
-  }
+  // The print option is the start walk's, as on any other tag (options/_go/options.php): run
+  // here, before that walk, it came before ignore whatever the order, and ignore wrapped its
+  // {&firstFieldValue} - {xs ignore, print} printed that text for every row.
 
   return $padDataStore [$padTag [$pad]];
 

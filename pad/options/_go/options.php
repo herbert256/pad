@@ -35,7 +35,15 @@
 
   $padStoreText = NULL;
 
-  foreach ( $padPrm [$pad] as $padOptionName => $padV )
+  // The start options run in the order the phase lists them - ignore before print - whatever
+  // the order they were written in: ignore wraps the text it finds, and run after print it
+  // wrapped print's {&firstFieldValue} too, so {xs print, ignore} printed that text for every
+  // row. The other phases keep the written order - tidy, toContent stores the tidied text.
+
+  $padOptionsNames = ( $padOptions == 'start' ) ? array_intersect ( $padOptionsWalk, array_keys ( $padPrm [$pad] ) )
+                                                : array_keys ( $padPrm [$pad] );
+
+  foreach ( $padOptionsNames as $padOptionName )
 
     if ( in_array ( $padOptionName, $padOptionsWalk )
          and ( ! padIsDone ( $padOptionName )
