@@ -29,7 +29,7 @@
 
   if ( $padContentFirst ) {
     padContentElse ( include PAD . 'options/content.php', $padContentTrue, $padContentFalse );
-    $padContent = padContentSet ( $padContent, $padContentTrue );
+    $padContent = padContentBranches ( $padContent, $padContentTrue, $padTag [$pad] == 'case' );
     if ( $padContentFalse !== '' )
       $padFalse = padContentSet ( $padFalse, $padContentFalse );
   }

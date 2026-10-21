@@ -219,6 +219,49 @@
 
   }
 
+  // content= on a tag that chooses among branches - an {if}, a {case}, a condition tag -
+  // whose own content frames it, {if $x, content='c'}<b>@content@</b>{/if}: the frame goes
+  // round each branch of the stored text, the part behind each of its own {else}, {elseif}
+  // or {when}, so whichever the tag keeps is framed whole. Put in at the one @content@, the
+  // stored yes{else}no made <b>yes{else}no</b>, and the tag kept <b>yes or no</b> - the
+  // frame's two halves in its two branches. For a {case} the text before its first {when}
+  // stays as it is: it never renders. Without branch tags, or with a stored text that frames
+  // the tag's own, it is padContentSet as for any tag.
+
+  function padContentBranches ( $base, $new, $case ) {
+
+    if ( padContentFill ( $new, '' ) !== FALSE or padContentFill ( $base, '' ) === FALSE )
+      return padContentSet ( $base, $new );
+
+    $words = $case ? 'when[\s}]|else\}' : 'elseif[\s}]|else\}';
+
+    preg_match_all ( '/\{(?:' . $words . ')/', $new, $found, PREG_OFFSET_CAPTURE );
+
+    $out  = '';
+    $last = 0;
+
+    foreach ( $found [0] as list ( $tag, $at ) ) {
+
+      if ( $at < $last or ! padElseFree ( substr ( $new, 0, $at ) ) )
+        continue;
+
+      $part = substr ( $new, $last, $at - $last );
+      $out .= ( $case and $last == 0 ) ? $part : padContentFill ( $base, $part );
+
+      padBranchText ( $new, $at, 1, $end );
+
+      $out .= substr ( $new, $at, $end - $at + 1 );
+      $last = $end + 1;
+
+    }
+
+    if ( $last == 0 )
+      return padContentSet ( $base, $new );
+
+    return $out . padContentFill ( $base, substr ( $new, $last ) );
+
+  }
+
   function padContentElse ( $input, &$before, &$after ) {
 
     $pos  = strpos ( $input, '@else@' );
