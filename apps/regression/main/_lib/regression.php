@@ -509,8 +509,8 @@
       'name'   => $name,
       'url'    => $url,
       'what'   => getSuiteWhat ( $app, $name ),
-      'want'   => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $expect ) ),
-      'got'    => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $got    ) ),
+      'want'   => ( $status == 'ok' ) ? '' : getSuiteShown ( $expect ),
+      'got'    => ( $status == 'ok' ) ? '' : getSuiteShown ( $got    ),
       'status' => $status,
       'failed' => ( $status == 'FAILED' ) ? 1 : 0,
       'count'  => getSuiteCount ( $name, $expect )
@@ -564,6 +564,25 @@
   // body - the last two insisting on a healthy response, because a fragment surviving
   // inside an error dump must not pass a test that meant to assert a working page.
   // Returns the verdict and what got should say about it.
+
+  // What a failed row keeps of a body: escaped as the overview renders it, and cut at 64 KB.
+  // A page that died on PHP's time limit came back as an error report of 127 MB, kept whole:
+  // the framework overview that shows it ran out of its gigabyte, and the regression suite
+  // failed on that index. 64 KB holds all but a handful of the stored answers whole, so the
+  // place where want and got part - which pad_test names - stays in what is kept. Cut at a
+  // character, not inside one.
+
+  function getSuiteShown ( $text ) {
+
+    $text = (string) $text;
+
+    if ( strlen ( $text ) > 65536 )
+      $text = mb_strcut ( $text, 0, 65536, 'UTF-8' ) . "\n... cut - " . strlen ( $text ) . ' bytes in all';
+
+    return padEscape ( htmlspecialchars ( $text ) );
+
+  }
+
 
   function getSuiteCompare ( $expect, $got, $code, $body ) {
 
@@ -959,8 +978,8 @@
       $tests [] = [
         'name'   => $name,
         'url'    => $url,
-        'want'   => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $expect ) ),
-        'got'    => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $got    ) ),
+        'want'   => ( $status == 'ok' ) ? '' : getSuiteShown ( $expect ),
+        'got'    => ( $status == 'ok' ) ? '' : getSuiteShown ( $got    ),
         'status' => $status,
         'failed' => ( $status == 'FAILED' ) ? 1 : 0
       ];
