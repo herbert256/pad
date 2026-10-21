@@ -38,7 +38,7 @@
     $name = is_string ( $level ) ? strtolower ( trim ( $level ) ) : '';
 
     if ( ! in_array ( $name, padLogLevels (), TRUE ) ) {
-      padError ( "padLog: there is no log level named '" . padMakeSafe ( is_scalar ( $level ) ? (string) $level : get_debug_type ( $level ), 40 )
+      padError ( "padLog: there is no log level named '" . padMakeSafe ( is_scalar ( $level ) ? padStrText ( $level, 'padLog', FALSE ) : get_debug_type ( $level ), 40 )
                  . "' - the levels are " . implode ( ', ', padLogLevels () ) );
       return FALSE;
     }
@@ -69,8 +69,8 @@
     $line = $now->format ( 'Y-m-d H:i:s' ) . ' ' . strtoupper ( $name ) . ' ' . $text;
 
     if ( $context )
-      $line .= ' ' . json_encode ( $context, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-                                           | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+      $line .= ' ' . json_encode ( padLogFinite ( $context ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+                                                         | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
 
     // CR and LF are not the only line breaks a reader of the log sees: a vertical tab, a form
     // feed, NEL and the Unicode line and paragraph separators end a line for Python's
@@ -135,16 +135,39 @@
     if ( $value instanceof Throwable )
       return get_class ( $value ) . ': ' . $value->getMessage ();
 
+    // NAN is the text NAN, as padStrText writes it: (string) NAN is a PHP 8.5 warning, and
+    // a ratio logged as $a / $b ended the page the log line must never end.
+
     if ( is_int ( $value ) or is_float ( $value ) or $value instanceof Stringable )
-      return (string) $value;
+      return padStrText ( $value, 'padLog', FALSE );
 
     if ( $value instanceof DateTimeInterface )
       return $value->format ( 'Y-m-d H:i:s' );
 
-    $json = json_encode ( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-                                | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+    $json = json_encode ( padLogFinite ( $value ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+                                                 | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR );
 
     return ( $json === FALSE ) ? get_debug_type ( $value ) : $json;
+
+  }
+
+  // JSON has no INF or NAN: its partial output wrote them 0, a value no reader of the log
+  // tells from a real 0. They are written as their text, at any depth of an array.
+
+  function padLogFinite ( $value, $depth = 0 ) {
+
+    if ( is_float ( $value ) and ! is_finite ( $value ) )
+      return padStrText ( $value, 'padLog', FALSE );
+
+    if ( is_array ( $value ) and $depth < 512 )
+      foreach ( $value as $key => $one )
+        if ( is_array ( $one ) or is_float ( $one ) ) {
+          $new = padLogFinite ( $one, $depth + 1 );
+          if ( $new !== $one )
+            $value [$key] = $new;
+        }
+
+    return $value;
 
   }
 

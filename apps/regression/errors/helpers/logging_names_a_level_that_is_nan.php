@@ -1,0 +1,5 @@
+<?php
+
+  padLog ( 'x', NAN );
+
+?>
