@@ -908,60 +908,62 @@
     $failed = 0;
     $new    = 0;
 
-    // Nine hundred independent GETs, so they go a window at a time through padCurlMulti,
-    // and the answers are judged in order as before.
+    // Some two thousand independent GETs, twelve in flight through padCurlMulti - one
+    // window rolling over the whole list, a slow case keeping one slot busy while the rest go
+    // on - and the answers judged in order as before. In chunks of 48, each chunk waited for
+    // its slowest case before the next began: a 17-second sequence case held eleven slots
+    // idle, and the suite took 45 seconds where its cases fetch in 19.
 
-    foreach ( array_chunk ( getFrameworkList (), 48 ) as $chunk ) {
+    set_time_limit ( 600 );
 
-      set_time_limit ( 60 );
+    $names = getFrameworkList ();
+    $urls  = [];
 
-      $urls = [];
+    foreach ( $names as $i => $name )
+      $urls [$i] = getFrameworkUrl ( $name );
 
-      foreach ( $chunk as $i => $name )
-        $urls [$i] = getFrameworkUrl ( $name );
+    $fetched = padCurlMulti ( array_map ( 'getSuiteFetchInput', $urls ) );
 
-      $fetched = padCurlMulti ( array_map ( 'getSuiteFetchInput', $urls ) );
+    set_time_limit ( 60 );
 
-      foreach ( $chunk as $i => $name ) {
+    foreach ( $names as $i => $name ) {
 
-        $url  = $urls [$i];
-        $want = getFrameworkDir () . "$name.txt";
-        $curl = $fetched [$i] ?? [ 'data' => '', 'result' => '999' ];
+      $url  = $urls [$i];
+      $want = getFrameworkDir () . "$name.txt";
+      $curl = $fetched [$i] ?? [ 'data' => '', 'result' => '999' ];
 
-        $got  = trim ( preg_replace ( '/\n\s*/', '', $curl ['data'] ) );
-        $code = $curl ['result'];
+      $got  = trim ( preg_replace ( '/\n\s*/', '', $curl ['data'] ) );
+      $code = $curl ['result'];
 
-        if ( ! file_exists ( $want ) ) {
+      if ( ! file_exists ( $want ) ) {
 
-          $status = 'new';
-          $expect = '';
+        $status = 'new';
+        $expect = '';
 
-        } else {
+      } else {
 
-          $expect = trim ( padFileGet ( $want ) );
+        $expect = trim ( padFileGet ( $want ) );
 
-          list ( $ok, $got ) = getSuiteCompare ( $expect, $got, $code, $curl ['data'] );
+        list ( $ok, $got ) = getSuiteCompare ( $expect, $got, $code, $curl ['data'] );
 
-          $status = $ok ? 'ok' : 'FAILED';
-
-        }
-
-        $total++;
-        $groups [ substr ( $name, 0, strpos ( $name, '/' ) ) ] = TRUE;
-
-        if ( $status == 'FAILED' ) $failed++;
-        if ( $status == 'new'    ) $new++;
-
-        $tests [] = [
-          'name'   => $name,
-          'url'    => $url,
-          'want'   => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $expect ) ),
-          'got'    => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $got    ) ),
-          'status' => $status,
-          'failed' => ( $status == 'FAILED' ) ? 1 : 0
-        ];
+        $status = $ok ? 'ok' : 'FAILED';
 
       }
+
+      $total++;
+      $groups [ substr ( $name, 0, strpos ( $name, '/' ) ) ] = TRUE;
+
+      if ( $status == 'FAILED' ) $failed++;
+      if ( $status == 'new'    ) $new++;
+
+      $tests [] = [
+        'name'   => $name,
+        'url'    => $url,
+        'want'   => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $expect ) ),
+        'got'    => ( $status == 'ok' ) ? '' : padEscape ( htmlspecialchars ( $got    ) ),
+        'status' => $status,
+        'failed' => ( $status == 'FAILED' ) ? 1 : 0
+      ];
 
     }
 

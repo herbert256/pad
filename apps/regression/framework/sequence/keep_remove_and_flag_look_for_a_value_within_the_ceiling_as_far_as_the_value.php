@@ -5,4 +5,10 @@
 
   $padSeqDefaultTries = 100;
 
+  // The walks run far - a second or more of candidates - and the gate fetches twelve cases at
+  // once: the five seconds a sequence has by default ran out on a busy machine and the
+  // answer came back short. The budget is not what this case asserts.
+
+  $padSeqMaxSeconds = 60;
+
 ?>

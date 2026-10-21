@@ -53,6 +53,32 @@ esac
 # runs this gate eleven times inside one request, under PHP's time limit.
 [ -n "$CI_TRIGGER" ] || while [ "$(date +%s)" -eq "$started" ]; do sleep 0.05; done
 
+# The tooling checks further down need neither the suites nor the server, so they run beside
+# the suites: started here, each into a file of its own, and read after the verdict in their
+# own order - a minute of suites and twenty seconds of tooling one after the other became
+# the minute alone. The applications' own tests stay after the suites: kanban, ledger and
+# notes write their databases, which the Other suite's crawl reads. The rig skips them all.
+
+tooling=""
+
+if [ -z "$CI_SUITES" ]; then
+
+  tooling=$(mktemp -d "${TMPDIR:-/tmp}/pad-ci.XXXXXX")
+  trap 'rm -rf "$tooling"' EXIT
+
+  ( php "$padHome/editors/generate.php" --check > "$tooling/editors" 2>&1; echo $? > "$tooling/editors.rc" ) &
+
+  if command -v node > /dev/null 2>&1; then
+    for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js claude:editors/claude/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js wasm:wasm/verify-app.mjs; do
+      name="${tool%%:*}"
+      args=""
+      [ "$name" = wasm ] && args="--brief"
+      ( node "$padHome/${tool#*:}" $args > "$tooling/$name" 2>&1; echo $? > "$tooling/$name.rc" ) &
+    done
+  fi
+
+fi
+
 status=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 600 "$trigger&ciRun=$run")
 
 case "$status" in
@@ -134,9 +160,11 @@ done
 # failing suite. The gate's own test rig, which doctors the results directory, skips it.
 
 if [ -z "$CI_SUITES" ]; then
-  if php "$padHome/editors/generate.php" --check; then
+  wait
+  if [ "$(cat "$tooling/editors.rc")" = 0 ]; then
     printf '%-12s %s\n' editors "completion lists match pad/"
   else
+    cat "$tooling/editors" >&2
     exit=1
   fi
 fi
@@ -152,13 +180,13 @@ fi
 # node - a machine without it cannot run the tooling either, and says so instead of failing.
 
 if [ -z "$CI_SUITES" ]; then
-  for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js claude:editors/claude/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js; do
+  for tool in lsp mcp claude treesitter validate; do
     if ! command -v node > /dev/null 2>&1; then
-      printf '%-12s %s\n' "${tool%%:*}" "skipped - node is not installed"
-    elif out=$(node "$padHome/${tool#*:}" 2>&1); then
-      printf '%-12s %s\n' "${tool%%:*}" "$out"
+      printf '%-12s %s\n' "$tool" "skipped - node is not installed"
+    elif [ "$(cat "$tooling/$tool.rc")" = 0 ]; then
+      printf '%-12s %s\n' "$tool" "$(cat "$tooling/$tool")"
     else
-      printf '%s\n' "$out" >&2
+      cat "$tooling/$tool" >&2
       exit=1
     fi
   done
@@ -173,8 +201,8 @@ if [ -z "$CI_SUITES" ]; then
   if ! command -v node > /dev/null 2>&1; then
     printf '%-12s %s\n' wasm "skipped - node is not installed"
   else
-    wasm=$(node "$padHome/wasm/verify-app.mjs" --brief 2>&1)
-    case $? in
+    wasm=$(cat "$tooling/wasm")
+    case $(cat "$tooling/wasm.rc") in
       0|2) printf '%-12s %s\n' wasm "$wasm" ;;
       *)   printf '%s\n' "$wasm" >&2; exit=1 ;;
     esac
