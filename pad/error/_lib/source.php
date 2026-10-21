@@ -501,12 +501,28 @@
 
     if ( defined ( 'APP2' ) and function_exists ( 'padDirs' ) )
       foreach ( padDirs () as $one )
-        $files = array_merge ( $files, glob ( APP2 . $one . "$sub/*.{php,pad}", GLOB_BRACE ) ?: [] );
+        $files = array_merge ( $files, padErrorNamesIn ( APP2 . $one . $sub ) );
 
     if ( defined ( 'COMMON' ) )
-      $files = array_merge ( $files, glob ( COMMON . "$sub/*.{php,pad}", GLOB_BRACE ) ?: [] );
+      $files = array_merge ( $files, padErrorNamesIn ( COMMON . $sub ) );
 
     return array_map ( fn ( $file ) => pathinfo ( $file, PATHINFO_FILENAME ), $files );
+
+  }
+
+  // The .php and .pad files of an application directory, listed rather than globbed: the
+  // directory of a bracketed route - blog/[year]/ - is a character class to glob(), and the
+  // tags of its _tags/ were never offered (or a sibling's, blog/y/, were).
+
+  function padErrorNamesIn ( $dir ) {
+
+    $files = [];
+
+    foreach ( is_dir ( $dir ) ? ( scandir ( $dir ) ?: [] ) : [] as $file )
+      if ( $file [0] != '.' and in_array ( pathinfo ( $file, PATHINFO_EXTENSION ), [ 'php', 'pad' ], TRUE ) )
+        $files [] = $file;
+
+    return $files;
 
   }
 
