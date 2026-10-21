@@ -92,13 +92,21 @@
   // A tag opens with a { that a name, a sigil or a slash follows, and ends at the } that
   // brings the brace depth back - a parameter may hold a tag of its own, {echo {$x}}. One
   // that never closes ends the search: what follows stays as it is.
+  //
+  // The text is read once and written once, the tags that hold an @ written over as they
+  // are passed - rewriting the whole text for each of them made the search grow with the
+  // size times the tags, 139 ms for a template of 375 KB full of {current@items}. Where the
+  // next @ stands is kept, so a tag without one costs no search either.
 
   function padMarkerInTags ( $text ) {
 
-    $at  = 0;
-    $len = strlen ( $text );
+    $out  = '';
+    $last = 0;
+    $at   = 0;
+    $len  = strlen ( $text );
+    $mark = strpos ( $text, '@' );
 
-    while ( ( $at = strpos ( $text, '{', $at ) ) !== FALSE ) {
+    while ( $mark !== FALSE and ( $at = strpos ( $text, '{', $at ) ) !== FALSE ) {
 
       if ( ! preg_match ( '/\G\{[\/A-Za-z_$!#&?^@]/', $text, $match, 0, $at ) ) {
         $at++;
@@ -116,17 +124,21 @@
       if ( $i >= $len )
         break;
 
-      $tag = substr ( $text, $at, $i - $at + 1 );
+      if ( $mark < $at )
+        $mark = strpos ( $text, '@', $at );
 
-      if ( str_contains ( $tag, '@' ) )
-        $text = substr_replace ( $text, preg_replace_callback ( '/@(else|content|start|end)@/',
-                  fn ( $m ) => str_repeat ( ' ', strlen ( $m [0] ) ), $tag ), $at, strlen ( $tag ) );
+      if ( $mark !== FALSE and $mark < $i ) {
+        $out .= substr ( $text, $last, $at - $last )
+              . preg_replace_callback ( '/@(else|content|start|end)@/', fn ( $m ) => str_repeat ( ' ', strlen ( $m [0] ) ),
+                                        substr ( $text, $at, $i - $at + 1 ) );
+        $last = $i + 1;
+      }
 
       $at = $i + 1;
 
     }
 
-    return $text;
+    return $last ? $out . substr ( $text, $last ) : $text;
 
   }
 
