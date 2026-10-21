@@ -56,8 +56,11 @@
     // An answer of '' is a tag that produced nothing, as FALSE is: level/flags.php takes it
     // for else, so the @else@ half, else=, notOk= and demand see it. Turned into TRUE with
     // every other value, {e}T@else@F{/e} over an empty $e showed T and {e demand} passed.
+    // A tag that printed something, or has a template of its own, did produce something
+    // whatever it answers: an application tag whose PHP ends in return '' - keeping the 1
+    // of a bare include out of the page - lost its template, and one that echoed its output.
 
-    if ( $padTagResult !== '' )
+    if ( $padTagResult !== '' or $padTagContent !== '' )
       $padTagResult = TRUE;
 
   }
