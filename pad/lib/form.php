@@ -40,6 +40,7 @@
   // did both for four fields.
 
   const padFormName = 'padForm';
+  const padFormAt   = 'padFormAt';
 
   const padValidateRules = [ 'required', 'accepted', 'email', 'url', 'numeric', 'integer',
                              'min', 'max', 'in', 'regex', 'same', 'date' ];
@@ -340,7 +341,8 @@
   }
 
   // Where a field's value comes back from, or NULL when its form did not come back: the
-  // post when this request posted - the field's own {form}, when it stands in a named one -
+  // post when this request posted - the field's own {form}, when it stands in a named one,
+  // and of the forms of that name the one that was sent -
   // and for a {form method='get'} the query string once it holds more than the page's
   // name and the engine's own switches: a search box keeps what was asked. The page's name
   // is the query string's first name only when the query string names the page: on a clean
@@ -361,7 +363,10 @@
       return $asked ? $_GET : NULL;
     }
 
-    return padFormCameBack ( $form ['name'] ?? '' ) ? $_POST : NULL;
+    if ( ! padFormCameBack ( $form ['name'] ?? '' ) )
+      return NULL;
+
+    return ( ! $form or $form ['name'] === '' or (string) ( $_POST [padFormAt] ?? '1' ) === (string) $form ['at'] ) ? $_POST : NULL;
 
   }
 
@@ -679,7 +684,7 @@
 
   function padFormOpen () {
 
-    global $padFormStack, $padFormErrors, $padUploadErrors;
+    global $padFormStack, $padFormErrors, $padUploadErrors, $padFormSeen;
 
     [ $name, $take, $attrs ] = padFormItems ( 'form', [ 'method', 'error', 'client' ] );
 
@@ -691,14 +696,26 @@
     // {form} with an action= on another site handed the session's token to that site, which
     // could then post as the visitor here.
 
+    // A form of a name met before in this page - one per row of a list - carries which of
+    // them it is, the second and later ones: only the one that was sent refills and shows
+    // the messages (padFormSource). Every inline rename form of a list came back refilled
+    // from the one post, each row's hidden id the posted row's, and a save from another row
+    // changed the posted record.
+
+    $at = 1;
+
     if ( $method == 'post' ) {
       if ( padCsrfFormPosts ( $open ) )
         $open .= padCsrfField ();
-      if ( $name !== '' )
+      if ( $name !== '' ) {
+        $at = $padFormSeen [$name] = ( $padFormSeen [$name] ?? 0 ) + 1;
         $open .= '<input type="hidden" name="' . padFormName . '" value="' . padFormEscape ( $name ) . '">';
+        if ( $at > 1 )
+          $open .= '<input type="hidden" name="' . padFormAt . '" value="' . $at . '">';
+      }
     }
 
-    $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open, 'client' => $client !== '' ];
+    $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open, 'client' => $client !== '', 'at' => $at ];
 
     $error = $take ['error'] ?? NULL;
     $error = ( $error === TRUE ) ? padFormErrorText : $error;
@@ -1036,9 +1053,10 @@
 
   function padFormPost () {
 
-    global $padFormChecked;
+    global $padFormChecked, $padFormSeen;
 
     $padFormChecked = [];
+    $padFormSeen    = [];
 
     $form = $_POST [padFormName] ?? NULL;
 
