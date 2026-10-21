@@ -75,7 +75,11 @@ number as a number, an array as a list), as in the select's `where=`. Inside a l
 of the row is a variable too. `{$name}` there splices the value's text before the tag reads
 its SQL: outside a quoted literal of the SQL it would be SQL and is refused - a plain number
 excepted - and inside one (`name = '{$who}'`) it is text whose quotes and backslashes reach
-the database as PAD's inert stand-ins, so such a value does not match.
+the database as PAD's inert stand-ins, so such a value does not match. Only a `'...'` literal
+holds it as text: inside `"..."` - a name on SQLite and on MySQL under ANSI_QUOTES - it is
+refused too. Only a value written as `{$name}` is guarded this way: a tag's answer written into
+the SQL - `{echo $x}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
+request value never goes into a query that way; put it in as `$name`.
 
 ```
 {field "phone from staff where name = $who"}

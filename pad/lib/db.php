@@ -559,16 +559,14 @@
 
     // A value spliced in with {$n} is resolved before the tag reads its parameter, so the
     // literal test above never sees it: padSpliceQuote refuses one standing outside a quoted
-    // literal of the SQL (padDbSplice, below), and what that cannot place - a tag's answer,
-    // {echo $n}, lands bare in the SQL as well - is caught here when it was kept as a spliced
-    // value (padSpliceInCode, lib/level.php) and stands outside the SQL's quoted literals.
+    // literal of the SQL at the splice, where it knows where the value lands (padDbSplice,
+    // below). A tag's answer written into the SQL - {echo $n} - is the template's SQL, as
+    // DATABASE.md says. A test of the whole SQL against every value the request spliced
+    // anywhere refused a tag with nothing spliced in it: "Sorted by {$sort}" with name desc
+    // printed above {array "... order by name desc"}, a guestbook entry reading from staff
+    // above {field "count(*) from staff"}.
 
-    $sql = (string) ( $padOpt [$pad] [1] ?? '' );
-
-    if ( padSpliceInCode ( $sql ) )
-      return padError ( "the SQL of {" . $padTag [$pad] . "} is the template's own: a value spliced into it outside a quoted literal is SQL - put it in as \$name" );
-
-    return padSelectBind ( $sql, FALSE, '{' . $padTag [$pad] . '}' );
+    return padSelectBind ( (string) ( $padOpt [$pad] [1] ?? '' ), FALSE, '{' . $padTag [$pad] . '}' );
 
   }
 

@@ -476,14 +476,6 @@
       if ( $org !== '' and ! is_numeric ( $org ) and ! is_string ( padMetaLiteral ( $org ) ) )
         return padError ( "$part= is SQL the template writes: give it as a quoted string, and put a value in it as \$name" );
 
-      // A value spliced in with {$n} is resolved before the tag reads its options: one kept as
-      // a spliced value (padSpliceInCode, lib/level.php) outside the option's quoted literals
-      // is SQL - padSpliceQuote refuses what it can place itself (padDbSplice, lib/db.php),
-      // this catches a tag's answer, {echo $n}, landing there bare too.
-
-      if ( padSpliceInCode ( $prm [$part] ) )
-        return padError ( "$part= is SQL the template writes: a value spliced into it outside a quoted literal is SQL - put it in as \$name" );
-
       $prm [$part] = padSelectBind ( $prm [$part], in_array ( $part, [ 'order', 'group' ] ) );
 
       if ( $prm [$part] === FALSE )
@@ -512,9 +504,6 @@
 
       if ( $org !== '' and ! is_numeric ( $org ) and ! is_string ( padMetaLiteral ( $org ) ) )
         return padError ( "$part= is SQL the template writes: give it as a quoted string" );
-
-      if ( is_string ( $prm [$part] ) and padSpliceInCode ( $prm [$part] ) )
-        return padError ( "$part= is SQL the template writes: a value spliced into it is SQL" );
 
     }
 
