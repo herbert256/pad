@@ -281,7 +281,13 @@
     $start = $moment->setTime ( 0, 0, 0, 0 );
     $end   = $from->setTime ( 0, 0, 0, 0 );
     $span  = $future ? $end->diff ( $start ) : $start->diff ( $end );
-    $days  = max ( 1, (int) $span->days );
+    $days  = (int) $span->days;
+
+    // A day past the hours on the same calendar day is the 25-hour day summer time ends:
+    // 00:10 and 23:50 of it lie 24 hours and 40 minutes apart, and are hours apart still -
+    // a count of at least 1 day called that same day yesterday, or tomorrow.
+
+    if ( $days == 0 ) return padDateAgoText ( intdiv ( $seconds, 3600 ), 'hour', $future );
 
     if ( $days == 1 ) return $future ? 'tomorrow' : 'yesterday';
     if ( $days < 7  ) return padDateAgoText ( $days, 'day', $future );
