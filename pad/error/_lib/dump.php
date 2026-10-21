@@ -57,7 +57,16 @@
 
     padEmptyBuffers ( $padIgnored );
 
-    if ( $padOutputType == 'web' )
+    // A request that asked for the page's data (inits/client.php) - its output type is still
+    // web while the page's PHP runs - gets the line a json or csv answer gets: plain text,
+    // without the closing tags that end a broken HTML page.
+
+    $padDumpData = in_array ( $GLOBALS ['padClientFormat'] ?? '', [ 'json', 'csv' ], TRUE );
+
+    if ( $padDumpData and ! padLocal () and ! headers_sent () )
+      header ( 'Content-Type: text/plain; charset=UTF-8' );
+
+    if ( $padOutputType == 'web' and ! $padDumpData )
       for ($i = 1; $i <= 25; $i++)
           echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 

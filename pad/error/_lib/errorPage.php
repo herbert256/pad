@@ -44,6 +44,14 @@
     if ( ( $GLOBALS ['padOutputType'] ?? 'web' ) != 'web' )
       return '';
 
+    // A request that asked for the page's data - ?padFormat=json, an Accept that prefers
+    // JSON or CSV (inits/client.php) - is a json or csv answer, though build/expose.php
+    // switches the output type only once the page's PHP has run, and that PHP is what fails:
+    // a fetch() that asked for JSON got the HTML page to parse.
+
+    if ( in_array ( $GLOBALS ['padClientFormat'] ?? '', [ 'json', 'csv' ], TRUE ) )
+      return '';
+
     return padErrorPageFileAny ( $status );
 
   }

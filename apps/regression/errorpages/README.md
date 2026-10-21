@@ -23,6 +23,7 @@ page sees its own values, never the row of a loop the request failed in.
 | `admin/_guard.php`, `admin/panel.pad` | A guard that refuses |
 | `slow.php`, `gone.php`, `teapot.php` | `padAbort` with 429, 410 and 418 |
 | `broken.pad` | A page that fails: the 500 page |
+| `brokendata.php/pad` | A page that exposes its data and fails in its PHP: asked for the data, the plain line |
 | `memory.php` | A page that runs out of memory: the 500 page, the report on disk bounded |
 | `rowbroken.php/pad` | A page that fails inside a loop whose rows have an id and a status: the 500 page shows the request's |
 | `rowgone.php/pad`, `_tags/refuse.php` | `padAbort` (410) from a tag inside a loop whose row has a status and a message: the 4xx page shows the refusal's |
