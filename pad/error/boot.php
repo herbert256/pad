@@ -168,6 +168,7 @@
 
     $where = function_exists ( 'padErrorTemplate' ) ? padSrcReport ( padErrorTemplate ( (string) $error ) ) : '';
     $where = $where ? "\n\n$where" : '';
+    $error = padRedactText ( (string) $error );
 
     if ( PHP_SAPI === 'cli' ) {
 
@@ -199,7 +200,7 @@
       // page name is the query key as sent - and a newline in it wrote a second, forged
       // [PAD] line. Control characters become spaces here, before lib's padMakeSafe exists.
 
-      $error = preg_replace ( '/[\x00-\x1F\x7F]+/', ' ', (string) $error );
+      $error = preg_replace ( '/[\x00-\x1F\x7F]+/', ' ', padRedactText ( (string) $error ) );
 
       $where = ( $file !== '' ) ? "$file:$line " : '';
 

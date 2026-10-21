@@ -157,7 +157,10 @@
     $where = function_exists ( 'padErrorTemplate' ) ? padErrorTemplate ( (string) $error ) : NULL;
     $where = isset ( $where ['file'] ) ? ' - ' . $where ['file'] . ':' . $where ['line'] . ':' . $where ['column'] : '';
 
-    error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( $error ) . $where, 4 );
+    // The message as the rest of a report shows values (padRedactText, error/claude.php): a
+    // failed {curl} quotes its address, and a login in it went to the log in clear.
+
+    error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( padRedactText ( (string) $error ) ) . $where, 4 );
 
   }
 

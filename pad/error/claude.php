@@ -271,7 +271,10 @@
 
       padClaudeFields ( $app, $pad, $php, $seq );
 
-      $claude ['error']    = $error;
+      // The message too, as every value of the report: a failed {curl} quotes its address,
+      // and a login in it was the one place the report had it in clear.
+
+      $claude ['error']    = padRedactText ( (string) $error );
       $claude ['file']     = $file;
       $claude ['line']     = $line;
 

@@ -80,7 +80,7 @@
     // The message whole, on one line: a cut at 100 characters left the engine's file and
     // line and hardly anything of what went wrong.
 
-    echo padMakeSafe ( "Error: $info" );
+    echo padMakeSafe ( 'Error: ' . padRedactText ( $info ) );
 
     if ( $where = padSrcReport ( padErrorTemplate ( $info ) ) )
       echo "\n\n$where";
@@ -134,11 +134,14 @@
 
     global $padExceptionText;
 
+    // The message as the rest of the report shows values (padRedactText, error/claude.php):
+    // a failed {curl} quotes its address, and a login in it stood in clear in _ERROR.html.
+
     if ( ! $info and isset ( $padExceptionText ) )
-      echo ( "<hr><b>" . $padExceptionText . "</b><hr><br>" );
+      echo ( "<hr><b>" . htmlentities ( padRedactText ( $padExceptionText ) ) . "</b><hr><br>" );
 
     if ( trim($info) )
-      echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" );
+      echo ( "<hr><b>" . htmlentities ( padRedactText ( $info ) ) . "</b><hr><br>" );
 
     padDumpTemplate ( $info ?: ( $padExceptionText ?? '' ) );
 
