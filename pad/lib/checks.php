@@ -241,15 +241,14 @@
       $type = 'yaml';
     elseif ( substr ( $content, 0, 5) == '<?xml')
       $type = 'xml';
-    elseif ( substr ( $content, 0, 1 ) == '<' and strpos ( $content, '<!DOCTYPE') !== FALSE ) {
-      $open   = strpos  ($content, '<!DOCTYPE');
-      $close  = strpos  ($content, '>', $open);
-      $check  = stripos ($content, 'pad', $open);
-      if ($check !== FALSE and $check < $close )
-        $type = 'pad';
-      else
-        $type = 'xml';
-    }
+
+    // A document with a DOCTYPE is XML, whatever the DOCTYPE says. One holding the letters
+    // 'pad' anywhere - notepad.dtd, iPad, padding - was given the type 'pad', which has no
+    // reader: "there is no data type named 'pad'", or a failed include with the strict check
+    // off.
+
+    elseif ( substr ( $content, 0, 1 ) == '<' and strpos ( $content, '<!DOCTYPE') !== FALSE )
+      $type = 'xml';
     elseif ( substr ($content, 0, 5) == '<html' )
       $type = 'html';
     elseif ( substr($content, 0, 1) == '<')
