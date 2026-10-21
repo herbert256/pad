@@ -21,6 +21,14 @@
 
   $padData  [$pad] = padDefaultData ();
 
+  // The one empty row is a stand-in, not a row the tag found: handling/handling.php leaves it
+  // alone. It knew a stand-in by $padElse, which is cleared just above, so a where, sort or
+  // group beside else=, notOk=, error= or null= ran on it - and under the strict check failed
+  // {e where='$n gt 1', else='nobody'} on an empty list with "there is no field named '$n'".
+  // Kept as the level's id: a level that later takes this depth is another one.
+
+  $padHandStoodIn [$pad] = $padLevelId [$pad];
+
   if ( isset ( $padPrm [$pad] ['content']) )
     unset ( $padPrm [$pad] ['content'] );
 

@@ -1,0 +1,2 @@
+{content 'none'}nobody{/content}{content 'oops'}bad{/content}
+where:[{e where='$n gt 1', else='none'}{$n}{/e}] sort:[{e sort='n', notOk='oops'}{$n}{/e}] group:[{e group='n', else='none'}{$n}{/e}] error:[{e where='$n gt 1', sort='n', error='oops'}{$n}{/e}] null:[{u where='$n gt 1', null='none'}{$n}{/u}] paged:[{e page=1, rows=2, else='none'}{$n}{/e}]

@@ -27,9 +27,13 @@
   // stand-in level/data.php gives it to render the @else@ branch once. Handled, a where read
   // fields no row has - strict mode failed {orders where='$status eq 1'}...@else@ on an empty
   // list with "there is no field named '$status'" - and a group folded the stand-in into a
-  // group of one, so the @else@ branch read a count of 1.
+  // group of one, so the @else@ branch read a count of 1. The same holds for a level whose
+  // else=, notOk=, error= or null= stood in with its content - options/_go/reset.php gave it
+  // that one row too, and cleared $padElse doing so.
 
-  foreach ( ( $padElse [$pad] ? [] : $padParms [$pad] ) as $padHand ) {
+  $padHandStand = ( $padElse [$pad] or ( $padHandStoodIn [$pad] ?? 0 ) === $padLevelId [$pad] );
+
+  foreach ( ( $padHandStand ? [] : $padParms [$pad] ) as $padHand ) {
 
     extract ( $padHand );
 
