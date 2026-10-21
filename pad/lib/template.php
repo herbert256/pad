@@ -235,13 +235,15 @@
   // on the closer. Counting only {tag and a space, or {tag}, left a nested {pad:if ...} or
   // an {if written over two lines unseen, and its {else}, {elseif or {when was taken for
   // the enclosing tag's: a valid template ended in an error, and with the strict check off
-  // the wrong half showed - a guest saw what {auth} keeps for the logged in.
+  // the wrong half showed - a guest saw what {auth} keeps for the logged in. A pipe may follow
+  // the name of an opening as well, {guest|upper}, which the tag parser reads as the tag: only
+  // the closer counted it, and the {else} of such a pair inside an {if} was the if's.
 
   function padPairBalanced ( $string, $tag ) {
 
     $tag = preg_quote ( $tag, '/' );
 
-    return preg_match_all ( '/\{(?:pad:)?' . $tag . '[\s}]/', $string )
+    return preg_match_all ( '/\{(?:pad:)?' . $tag . '[\s}|]/', $string )
         == preg_match_all ( '/\{\/(?:pad:)?' . $tag . '[\s}|]/', $string );
 
   }
