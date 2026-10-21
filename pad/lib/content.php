@@ -192,10 +192,11 @@
     $pos  = strpos ( $input, '@content@' );
     $text = ( $pos === FALSE ) ? '' : padMarkerText ( $input );
     $pos  = ( $pos === FALSE ) ? FALSE : strpos ( $text, '@content@' );
+    $own  = ( $pos === FALSE ) ? [] : padContentPairs ( $text );
 
     while ( $pos !== FALSE) {
 
-      if  ( padContentOwn ( substr ( $text, 0, $pos ) ) ) {
+      if  ( padContentOwn ( $own, $pos ) ) {
         $before = substr ( $input, 0, $pos );
         $after  = substr ( $input, $pos+9  );
         return TRUE;
@@ -209,20 +210,52 @@
 
   }
 
-  // Whether an @content@ after this text is the text's own: not inside an open {content} or
-  // {slot} pair, whose frame it is, nor inside a {define} or {macro} written in the template -
-  // that tag's own marker, filled where it is used - nor inside an {ignore} or {highlight}
-  // sample, where it is text to show. Loops and conditions stay transparent: the content goes
-  // in where the template puts it. A nested define's marker took the caller's content, and a
+  // Whether an @content@ at this place is the text's own: not inside a {content} or {slot}
+  // pair, whose frame it is, nor inside a {define} or {macro} written in the template - that
+  // tag's own marker, filled where it is used - nor inside an {ignore} or {highlight} sample,
+  // where it is text to show. Loops and conditions stay transparent: the content goes in
+  // where the template puts it. A nested define's marker took the caller's content, and a
   // sample explaining @content@ printed the caller's template as its source.
 
-  function padContentOwn ( $text ) {
+  function padContentOwn ( $pairs, $pos ) {
 
-    foreach ( [ 'content', 'slot', 'define', 'macro', 'ignore', 'highlight' ] as $tag )
-      if ( ! padOpenCloseCountOne ( $text, $tag ) )
+    foreach ( $pairs as list ( $from, $to ) )
+      if ( $from < $pos and $pos < $to )
         return FALSE;
 
     return TRUE;
+
+  }
+
+  // Where those pairs stand in the text: a closing tag pairs with the nearest opening tag
+  // before it that has none yet, as the engine pairs them, and an opening tag left over is a
+  // single tag that opens nothing - {highlight file='orders.pad'}, a {slot 'title'} with no
+  // default. Counted as openers in front of the marker, as the balance of the pairs counts
+  // them, they took the template's own @content@ for one inside a sample or a slot, and the
+  // tag failed "an @content@ stands where nothing merges content into it".
+
+  function padContentPairs ( $text ) {
+
+    $pairs = [];
+
+    preg_match_all ( '/\{(\/?)(content|slot|define|macro|ignore|highlight)(?=[\s}|])/', $text, $tags,
+                     PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+
+    $open = [];
+
+    foreach ( $tags as $tag ) {
+
+      $name = $tag [2] [0];
+
+      if ( $tag [1] [0] === '' ) {
+        if ( ! padOpenSelfClosing ( $text, $tag [2] [1] + strlen ( $name ) ) )
+          $open [$name] [] = $tag [0] [1];
+      } elseif ( ! empty ( $open [$name] ) )
+        $pairs [] = [ array_pop ( $open [$name] ), $tag [0] [1] ];
+
+    }
+
+    return $pairs;
 
   }
 
