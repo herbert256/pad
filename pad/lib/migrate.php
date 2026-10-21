@@ -368,6 +368,13 @@
 
       foreach ( padMigrateSplit ( $part, ! ( $connect instanceof PDO ) ) as $number => $statement ) {
 
+        // An SQLite dump - what sqlite3's .dump writes - opens with BEGIN TRANSACTION and
+        // ends with COMMIT. The step is a transaction already, and SQLite refused the file's
+        // own: "cannot start a transaction within a transaction" at its second line.
+
+        if ( $connect instanceof PDO and preg_match ( '/^(begin(\s+(deferred|immediate|exclusive))?|commit|end)(\s+transaction)?$/iD', $statement ) )
+          continue;
+
         $error = padMigrateExec ( $connect, $statement );
 
         if ( $error !== '' ) {
