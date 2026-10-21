@@ -847,7 +847,6 @@ List files in a directory with filtering options.
 - `base`: what the directory is relative to - `app` (the application), `data` (DATA/), `pad`
   (the path as given); otherwise the filesystem root. Whatever the base, the directory must
   lie inside the applications, the engine or DATA
-- `group`: Group results by item name
 
 **Returns:** Array with `path`, `file`, `ext`, `item`, `dir` for each entry
 
