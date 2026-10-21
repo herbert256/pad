@@ -14,7 +14,7 @@
   // Both searches use padOpenCloseCount from lib/template.php to skip markers that belong
   // to an inner tag, so nesting cannot be broken by a marker in a child. An @content@
   // inside a {slot} pair is that slot's frame for its fill (tags/slot.php), not the place
-  // the tag's own content goes.
+  // the tag's own content goes; padContentOwn says which pairs an @content@ belongs to.
 
   function padContentMerge ( &$true, &$false, $new, $condition ) {
 
@@ -183,8 +183,7 @@
 
     while ( $pos !== FALSE) {
 
-      if  ( padOpenCloseCountOne ( substr ( $text, 0, $pos ), 'content' )
-            and padOpenCloseCountOne ( substr ( $text, 0, $pos ), 'slot' ) ) {
+      if  ( padContentOwn ( substr ( $text, 0, $pos ) ) ) {
         $before = substr ( $input, 0, $pos );
         $after  = substr ( $input, $pos+9  );
         return TRUE;
@@ -195,6 +194,23 @@
     }
 
     return FALSE;
+
+  }
+
+  // Whether an @content@ after this text is the text's own: not inside an open {content} or
+  // {slot} pair, whose frame it is, nor inside a {define} or {macro} written in the template -
+  // that tag's own marker, filled where it is used - nor inside an {ignore} or {highlight}
+  // sample, where it is text to show. Loops and conditions stay transparent: the content goes
+  // in where the template puts it. A nested define's marker took the caller's content, and a
+  // sample explaining @content@ printed the caller's template as its source.
+
+  function padContentOwn ( $text ) {
+
+    foreach ( [ 'content', 'slot', 'define', 'macro', 'ignore', 'highlight' ] as $tag )
+      if ( ! padOpenCloseCountOne ( $text, $tag ) )
+        return FALSE;
+
+    return TRUE;
 
   }
 
