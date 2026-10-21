@@ -90,12 +90,14 @@
   // Whether the PHP this request ran in the page's own scope - the configuration, the guards,
   // _inits.php, the page, _exits.php - names the variable: $name, or $GLOBALS ['name']. The
   // files of the _ directories - _lib, _tags, _functions, _callbacks ... - hold functions and
-  // tags, whose $date is a local of their own. The names are read once, and again when more
-  // files were included since.
+  // tags, whose $date is a local of their own. The names are gathered again when more files
+  // were included since - which the first use of every kind of tag does - each file's read
+  // from its tokens once: read again for every gathering, a page of 2000 lines with a bare
+  // tag of a request value's name ran the tokenizer 30 times over it.
 
   function padTypePageNamed ( $item ) {
 
-    static $names = [], $seen = 0, $root = NULL;
+    static $names = [], $seen = 0, $root = NULL, $byFile = [];
 
     $files = get_included_files ();
 
@@ -108,7 +110,7 @@
       foreach ( $files as $file )
         if ( str_starts_with ( $file, $root )
              and ! preg_match ( '#(^|/)_(?!config/|common/)[^/]*/#', substr ( $file, strlen ( $root ) ) ) )
-          $names += padTypePageVars ( file_get_contents ( $file ) );
+          $names += $byFile [$file] ??= padTypePageVars ( file_get_contents ( $file ) );
 
     }
 
@@ -131,6 +133,7 @@
     $params = 0;
     $string = FALSE;
     $global = FALSE;
+    $use    = FALSE;
     $before = NULL;
     $tokens = token_get_all ( (string) $code );
 
@@ -166,8 +169,14 @@
         continue;
       }
 
-      if ( $string )
+      // A variable read in a string of the page's own scope is the page's: "Orders of $date",
+      // {$date} and ${date} in it.
+
+      if ( $string ) {
+        if ( ! $bodies and $id === T_VARIABLE )      $names [ substr ( $token [1], 1 ) ] = TRUE;
+        if ( ! $bodies and $id === T_STRING_VARNAME ) $names [ $token [1] ]              = TRUE;
         continue;
+      }
 
       // A function, a closure, a class: its parameters and its body are its own. An arrow
       // function's parameters are its own, its expression reads the page's.
@@ -181,6 +190,19 @@
 
       if ( $wait and $id === ';' ) {
         $wait = FALSE;
+        continue;
+      }
+
+      // A closure of the page's scope takes the variables of its use ( ) from there.
+
+      if ( $wait and ! $bodies and $id === T_USE ) {
+        $use = TRUE;
+        continue;
+      }
+
+      if ( $use ) {
+        if ( $id === ')' )        $use = FALSE;
+        if ( $id === T_VARIABLE ) $names [ substr ( $token [1], 1 ) ] = TRUE;
         continue;
       }
 
@@ -198,8 +220,10 @@
       if ( $id === T_GLOBAL ) { $global = TRUE;  continue; }
       if ( $id === ';' )      { $global = FALSE; continue; }
 
-      if ( $id !== T_VARIABLE or $wait or ( $bodies and ! $global ) )
+      if ( $id !== T_VARIABLE )
         continue;
+
+      // $GLOBALS ['name'] is the page's variable wherever it stands, in a function too.
 
       $name = substr ( $token [1], 1 );
 
@@ -210,6 +234,9 @@
           $names [ substr ( $next [1] [1], 1, -1 ) ] = TRUE;
         continue;
       }
+
+      if ( $wait or ( $bodies and ! $global ) )
+        continue;
 
       $names [$name] = TRUE;
 
