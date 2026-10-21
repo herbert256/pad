@@ -65,8 +65,18 @@
   }
 
   // The page and the layouts it extends, most derived first, each loaded and its {extends}
-  // taken out: their top-level blocks become the overrides, what is left of each goes into
-  // the @page@ of the one it extends, and the blocks of the result are resolved.
+  // taken out: their top-level blocks become the overrides, the blocks of the root layout
+  // are resolved, and what is left of each goes into the @page@ of the one it extends.
+  //
+  // The blocks are filled first and the rests placed after, each @page@ marked with the
+  // layout that wrote it: a layout writes its @page@ inside a block it overrides as often
+  // as outside one - base.pad {block 'body'}@page@{/block}, its section layout overriding
+  // 'body' with <aside>...</aside><main>@page@</main>. Placed before the blocks were
+  // filled, the section's rest took the base's @page@ in the default 'body' loses, the
+  // page's rest found none left and went in front of <html>, and the section's own @page@
+  // came out as the text "@page@". A rest goes into the first @page@ that is left of the
+  // layout it extends - or of the one that layout extends, when it has none - and a rest
+  // of nothing but white space, a layout of blocks only, leaves that @page@ to the next.
 
   function padLayoutChain ( $text, $extends, &$masks ) {
 
@@ -104,35 +114,53 @@
 
     }
 
-    $root = array_pop ( $chain );
-    $defs = [];
+    $root  = array_pop ( $chain );
+    $last  = count ( $chain );
+    $defs  = [];
+    $rests = [];
+    $used  = [];
 
-    foreach ( $chain as $one ) {
+    foreach ( $chain as $level => $one ) {
 
-      $blocks = padLayoutBlocks ( $one ['text'], TRUE );
+      $own    = padLayoutHoles ( $one ['text'], $level );
+      $blocks = padLayoutBlocks ( $own, TRUE );
 
-      foreach ( padLayoutDefs ( $one ['text'], $one ['name'] ) as $block => $list )
+      foreach ( padLayoutDefs ( $own, $one ['name'] ) as $block => $list )
         $defs [$block] [] = [ 'content' => $list [0] ['content'], 'from' => $one ['name'] ];
 
-      $rest = $one ['text'];
-
       foreach ( array_reverse ( $blocks ) as $pair )
-        $rest = substr ( $rest, 0, $pair ['start'] ) . substr ( $rest, $pair ['end'] );
+        $own = substr ( $own, 0, $pair ['start'] ) . substr ( $own, $pair ['end'] );
 
-      $rests [] = $rest;
+      $rests [$level] = $own;
 
     }
 
-    $composed = $root ['text'];
+    $composed = padLayoutFill ( padLayoutHoles ( $root ['text'], $last ), $defs, $used, TRUE );
 
-    foreach ( array_reverse ( $rests ?? [] ) as $rest )
-      if ( str_contains ( $composed, '@page@' ) )
-        $composed = preg_replace ( '/@page@/', str_replace ( [ '\\', '$' ], [ '\\\\', '\\$' ], $rest ), $composed, 1 );
+    for ( $level = $last - 1; $level >= 0; $level-- ) {
+
+      $rest = padLayoutFill ( $rests [$level], $defs, $used, TRUE );
+      $hole = FALSE;
+
+      for ( $up = $level + 1; $up <= $last and $hole === FALSE; $up++ )
+        if ( str_contains ( $composed, padLayoutHole ( $up ) ) )
+          $hole = padLayoutHole ( $up );
+
+      if ( $hole !== FALSE ) {
+        if ( padLayoutBlank ( $rest, $masks ) )
+          $rest .= $hole;
+        $at       = strpos ( $composed, $hole );
+        $composed = substr ( $composed, 0, $at ) . $rest . substr ( $composed, $at + strlen ( $hole ) );
+      }
       elseif ( trim ( $rest ) !== '' )
         $composed = trim ( $rest ) . $composed;
 
-    $used     = [];
-    $composed = padLayoutFill ( $composed, $defs, $used, TRUE );
+    }
+
+    // A @page@ nothing went into is empty - the page's own stays the text it was.
+
+    $composed = str_replace ( padLayoutHole ( 0 ), '@page@', $composed );
+    $composed = preg_replace ( '/\x{E0FA}\d+\x{E0FB}/u', '', $composed );
 
     if ( $GLOBALS ['padCheckSyntax'] )
       foreach ( $defs as $block => $list )
@@ -140,6 +168,33 @@
           padError ( "the block '$block' of " . $list [0] ['from'] . " overrides nothing - '" . $root ['name'] . "' has no block of that name" );
 
     return $composed;
+
+  }
+
+  // The @page@ of a template in the chain as the mark of its place there - 0 the page, 1
+  // the layout it extends, and so on.
+
+  function padLayoutHoles ( $text, $level ) {
+
+    return str_replace ( '@page@', padLayoutHole ( $level ), $text );
+
+  }
+
+  function padLayoutHole ( $level ) {
+
+    return "\u{E0FA}$level\u{E0FB}";
+
+  }
+
+  // Whether a rest is nothing but white space and comments - a comment is set aside by
+  // padLayoutMask, and a layout opening with one explaining it holds no text of its own.
+
+  function padLayoutBlank ( $text, $masks ) {
+
+    $text = preg_replace_callback ( '/\x{E0F2}(\d+)\x{E0F3}/u', fn ( $match ) =>
+      preg_match ( '/^\{(#|--)/', $masks [ (int) $match [1] ] ?? '' ) ? '' : $match [0], $text );
+
+    return trim ( $text ) === '';
 
   }
 
