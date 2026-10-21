@@ -27,9 +27,20 @@
   set_exception_handler      ( 'padBootException' );
   register_shutdown_function ( 'padBootShutdown'  );
 
+  // The caller's file and line from the nearest frame that has them, as padError takes them
+  // (lib/error.php): a call back from one of PHP's own functions has none in its frame.
+
   function padBootError ( $error ) {
 
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    $file = '';
+    $line = 0;
+
+    foreach ( debug_backtrace ( DEBUG_BACKTRACE_IGNORE_ARGS, 3 ) as $frame )
+      if ( isset ( $frame ['file'] ) ) {
+        $file = $frame ['file'];
+        $line = $frame ['line'] ?? 0;
+        break;
+      }
 
     padBootStop ( $error, $file, $line );
 

@@ -32,7 +32,7 @@
 
   function padError ($error) {
 
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    [ $file, $line ] = padErrorCaller ();
 
     padErrorHook ( 'PAD: ' . $error, $file, $line );
 
@@ -69,7 +69,7 @@
 
     global $padErrorAt;
 
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    [ $file, $line ] = padErrorCaller ();
 
     padErrorHook ( 'PAD: ' . $error, $file, $line );
 
@@ -82,6 +82,21 @@
     }
 
     return FALSE;
+
+  }
+
+  // The file and line padError and padErrorAt were called from: the nearest frame that has
+  // them. Called back by one of PHP's own functions - array_map ( 'padError', ... ),
+  // call_user_func, a usort or a padRescue handler - the frame of the call has none, and the
+  // report was "Undefined variable $file" in this file, the application's message nowhere.
+
+  function padErrorCaller () {
+
+    foreach ( debug_backtrace ( DEBUG_BACKTRACE_IGNORE_ARGS, 4 ) as $index => $frame )
+      if ( $index and isset ( $frame ['file'] ) )
+        return [ $frame ['file'], $frame ['line'] ?? 0 ];
+
+    return [ '', 0 ];
 
   }
 
