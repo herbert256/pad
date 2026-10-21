@@ -15,6 +15,13 @@
 
   $padData [$padNextPadLevel] = [];
 
+  // In the @start@ prelude the loop stands on the one row the prelude renders on, and its own
+  // rows wait for the body in $padStartData (level/start_end/start1.php): they are emptied
+  // too, so no row follows - restored untouched, every one of them rendered after the break.
+
+  if ( $padStartBase [$padNextPadLevel] ?? '' )
+    $padStartData [$padNextPadLevel] = [];
+
   // Only a {while}/{until}, which loops while its walk is 'next', needs the walk cleared.
   // A two-pass tag - {markdown}, {tidy}, {form}, toData and the rest - carries 'end' for the
   // pass that post-processes its result, and clearing that dropped the pass: {cease} inside

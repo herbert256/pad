@@ -62,13 +62,18 @@ function padSplitOnUnquotedColon ( $str ) {
   // a property pair such as {notFirst@items}, a {spaceless}, a {fragment}, a snippet, a
   // custom tag: each is a new level on every row of the loop around it, and what asks for
   // "the loop" - {ifchanged}'s memory, a property without a target - looks past it.
+  //
+  // A loop rendering its @start@ prelude or its @end@ coda stands on such an occurrence as
+  // well, with its rows kept aside ($padSectionRows, level/start_end/): it is still the loop
+  // - looked past, a {break} in a prelude found no loop around it.
 
   function padLevelInRow ( $lvl ) {
 
-    global $padData, $padTag;
+    global $padData, $padTag, $padSectionRows;
 
     return padIsDefaultData ( $padData [$lvl] ?? [] )
-       and ! in_array ( $padTag [$lvl] ?? '', [ 'while', 'until' ] );
+       and ! in_array ( $padTag [$lvl] ?? '', [ 'while', 'until' ] )
+       and ! isset ( $padSectionRows [$lvl] );
 
   }
 

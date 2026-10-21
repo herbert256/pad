@@ -1,0 +1,4 @@
+A[{rows}<ul>{if count@rows gt 1}too many{break}{/if}@start@<li>{$a}</li>@end@</ul>{/rows}]
+B[{rows}<ul>{cease}@start@<li>{$a}</li>@end@</ul>{/rows}]
+C[{rows}<ul>@start@<li>{$a}</li>@end@{if 1}{current@}/{count@}{/if}</ul>{/rows}]
+D[{set $i = 0}{while $i lt 3}<ul>{cease}@start@<li>{$i}</li>{increment $i}@end@</ul>{/while}]

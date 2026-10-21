@@ -41,6 +41,13 @@
   if ( $padWalk [$padCeaseLevel] == 'next' )
     $padWalk [$padCeaseLevel] = '';
 
+  // In the @start@ prelude no row has begun: the loop's rows wait for the body in
+  // $padStartData (level/start_end/start1.php), and a cease there asks for none of them - they
+  // were restored untouched and every one rendered. The prelude finishes, the coda follows.
+
+  if ( $padStartBase [$padCeaseLevel] ?? '' )
+    $padStartData [$padCeaseLevel] = [];
+
   return TRUE;
 
 ?>
