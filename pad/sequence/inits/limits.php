@@ -74,6 +74,7 @@
   $pqPageSkip  = 0;
   $pqPageSize  = NULL;
   $pqPageCount = FALSE;
+  $pqPageWhole = NULL;
 
   // A page past the integer range is a page past the end, as page=1e30 written out is, and
   // one below it the first page: cast, page=$n with $n 10 ** 30 ended the page on "The float
@@ -98,6 +99,12 @@
 
     $pqPageEnd = $pqPageCount ? $pqPage : $pqPage + 1;
     $pqRows    = ( $pqPageEnd * (float) $pqPageSize >= PHP_INT_MAX ) ? PHP_INT_MAX : $pqPageEnd * $pqPageSize;
+
+    // The run an action written before page= acts on (inits/page.php): every term of a run
+    // with an end of its own, as many as the page's of any other.
+
+    $pqPageWhole = ( $pqPull or $pqStop != PHP_INT_MAX or $pqTo != PHP_INT_MAX or in_array ( $pqBuild, [ 'build', 'given', 'fixed' ] ) )
+                 ? PHP_INT_MAX : $pqRows;
 
   }
 

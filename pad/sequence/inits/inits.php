@@ -19,5 +19,6 @@
   include PQ . 'inits/check/check.php';
   include PQ . 'inits/limits.php';
   include PQ . 'actions/inits.php';
+  include PQ . 'inits/page.php';
 
 ?>

@@ -60,10 +60,17 @@
 
   }
 
-  $pqResult   = array_slice ( $pqResult,   $pqPageSkip, $pqPageSize );
-  $pqOrgHit   = array_slice ( $pqOrgHit,   $pqPageSkip, $pqPageSize );
-  $pqPlaysHit = array_slice ( $pqPlaysHit, $pqPageSkip, $pqPageSize );
-  $pqResultAt = array_slice ( $pqResultAt, $pqPageSkip, $pqPageSize );
+  // Cut among the actions (actions/actions.php), the page is one of what they left: the rows
+  // find their terms in the whole build by the keys actions/assoc.php gave them, so what the
+  // build kept beside each term stays whole.
+
+  $pqResult = array_slice ( $pqResult, $pqPageSkip, $pqPageSize );
+
+  if ( ! $pqPageCut ) {
+    $pqOrgHit   = array_slice ( $pqOrgHit,   $pqPageSkip, $pqPageSize );
+    $pqPlaysHit = array_slice ( $pqPlaysHit, $pqPageSkip, $pqPageSize );
+    $pqResultAt = array_slice ( $pqResultAt, $pqPageSkip, $pqPageSize );
+  }
 
   if ( $pqTag == 'resume' )
     return;

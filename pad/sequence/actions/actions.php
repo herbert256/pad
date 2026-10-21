@@ -31,7 +31,15 @@
   // at the place of the first - where the strict check excuses a repeated action because it
   // applies once per mention. The columns of $pqActionsHit stay one per name.
 
+  // The page is cut where page= stands among the actions, $pqPageCut (inits/page.php): after
+  // the actions written before it, before the ones after it.
+
+  $pqActionNth = 0;
+
   foreach ( $pqActions as [ $pqAction, $pqActionParm ] ) {
+
+    if ( $pqPageCut and $pqActionNth++ == $pqPageCut )
+      include PQ . 'exits/page.php';
 
     $pqActionStart = $pqResult;
     $pqActionList  = padExplode ( $pqActionParm, '|' );
@@ -67,6 +75,9 @@
     $pqActionsHit [$pqAction] = array_values ( $pqResult );
 
   }
+
+  if ( $pqPageCut and $pqPageCut >= count ( $pqActions ) )
+    include PQ . 'exits/page.php';
 
   foreach ( $pqActions as [ $pqAction, $pqActionParm ] )
     foreach ( padExplode ( $pqActionParm, '|' ) as $pqStoreKey )

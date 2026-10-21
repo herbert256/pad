@@ -31,6 +31,11 @@
 
   $pqActionFront = '';
 
+  // How many of the actions stand before page= - an action of the tag's name stands before
+  // every option - for actions/actions.php to cut the page there (inits/page.php).
+
+  $pqPageCut = NULL;
+
   if ( $pqAction )  {
 
     if ( $pqActionParm === TRUE )
@@ -55,6 +60,9 @@
   foreach ( ( $pqEntry == 'tag' ) ? $padParms [$pad] : [] as $padV )
 
     if ( $padV ['padPrmKind'] == 'option' ) {
+
+      if ( $padV ['padPrmName'] == 'page' and $pqPageCut === NULL )
+        $pqPageCut = count ( $pqActions ) + ( $pqActionFront ? 1 : 0 );
 
       $pqActionParm = $padV ['padPrmValue'];
 
@@ -108,5 +116,7 @@
         padError ( "action='" . ( is_scalar ( $pqAction ) ? $pqAction : '' ) . "' is not a sequence action" );
 
     }
+
+  $pqPageCut = (int) $pqPageCut;
 
 ?>
