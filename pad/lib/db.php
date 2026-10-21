@@ -614,7 +614,10 @@
 
     // The SQL up to the splice, as the database reads it once the parameter's own quote is
     // unescaped: a comment is skipped as a whole, an apostrophe in it opening nothing, and a
-    // backslash escapes in a literal on MySQL only (padDbComment, padDbPlaceholders).
+    // backslash escapes in a literal on MySQL only (padDbComment, padDbPlaceholders). Only a
+    // '...' literal holds a value as text: "..." is a name on SQLite and on MySQL under
+    // ANSI_QUOTES - name = "{$who}" with ?who=name picked the column and every row came back -
+    // so a splice inside one stands in the SQL and is refused.
 
     $sql   = str_replace ( '\\' . $quote, $quote, substr ( $inside, $quoteAt + 1 ) );
     $mysql = ( $GLOBALS ['padSqlDriver'] ?? 'mysql' ) !== 'sqlite';
@@ -624,12 +627,12 @@
       if ( $in ) {
         if     ( $mysql and $sql [$i] == '\\' ) $i++;
         elseif ( $sql [$i] == $in             ) $in = '';
-      } elseif ( $sql [$i] == "'" or $sql [$i] == '"' )
+      } elseif ( $sql [$i] == "'" or $sql [$i] == '"' or $sql [$i] == '`' )
         $in = $sql [$i];
       elseif ( $end = padDbComment ( $sql, $i, $mysql ) )
         $i = $end - 1;
 
-    return ( $in === '' ) ? $refuse : '';
+    return ( $in === "'" ) ? '' : $refuse;
 
   }
 
