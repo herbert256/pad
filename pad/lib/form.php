@@ -131,7 +131,7 @@
 
     foreach ( $rules as $field => $list ) {
 
-      $list   = is_array ( $list ) ? $list : explode ( '|', (string) $list );
+      $list   = is_array ( $list ) ? $list : padValidateSplit ( $list );
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
       $value  = padFormFind ( $data, $field ) [1] ?? '';
       $value  = is_string ( $value ) ? trim ( $value ) : $value;
@@ -189,6 +189,54 @@
     $padFormErrors = array_replace ( $padFormErrors, $errors );
 
     return $errors;
+
+  }
+
+  // A rules text split into its rules at the |, except inside the pattern of a regex: rule,
+  // which runs to its closing delimiter and its flags: regex:/^(S|M|L)$/ was cut at its
+  // alternation and refused as "No ending delimiter '/' found", so no pattern holding a
+  // choice could be written in rules= or in a text handed to padValidate.
+
+  function padValidateSplit ( $text ) {
+
+    $text  = (string) $text;
+    $len   = strlen ( $text );
+    $rules = [];
+    $at    = 0;
+
+    while ( $at <= $len ) {
+
+      $bar = strpos ( $text, '|', $at );
+      $end = ( $bar === FALSE ) ? $len : $bar;
+
+      if ( preg_match ( '/\G\s*regex\s*:\s*/i', $text, $head, 0, $at ) ) {
+
+        $open  = $at + strlen ( $head [0] );
+        $delim = $text [$open] ?? '';
+        $close = [ '(' => ')', '{' => '}', '[' => ']', '<' => '>' ] [$delim] ?? $delim;
+
+        if ( $delim !== '' and ! ctype_alnum ( $delim ) and ! ctype_space ( $delim ) and $delim !== '\\' ) {
+
+          for ( $i = $open + 1; $i < $len and $text [$i] !== $close; $i++ )
+            if ( $text [$i] === '\\' )
+              $i++;
+
+          if ( $i < $len ) {
+            for ( $i++; $i < $len and ctype_alpha ( $text [$i] ); $i++ ) ;
+            $bar = strpos ( $text, '|', $i );
+            $end = ( $bar === FALSE ) ? $len : $bar;
+          }
+
+        }
+
+      }
+
+      $rules [] = substr ( $text, $at, $end - $at );
+      $at       = $end + 1;
+
+    }
+
+    return $rules;
 
   }
 
@@ -861,7 +909,7 @@
 
     foreach ( $rules as $field => $list ) {
 
-      $list   = is_array ( $list ) ? $list : explode ( '|', (string) $list );
+      $list   = is_array ( $list ) ? $list : padValidateSplit ( $list );
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
       $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
       $one    = [];
@@ -1078,7 +1126,7 @@
     if ( $tag == 'input' and strtolower ( (string) padFormRulesLiteral ( $items ['take'] ['type'] ?? "''" ) ) == 'file' )
       return padError ( "the rules of $where are never checked - a file field is checked by padUpload" );
 
-    foreach ( explode ( '|', $list ) as $whole ) {
+    foreach ( padValidateSplit ( $list ) as $whole ) {
       $rule = strtolower ( trim ( explode ( ':', $whole, 2 ) [0] ) );
       if ( $rule !== '' and ! in_array ( $rule, padValidateRules, TRUE ) )
         return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padValidateRules ) );

@@ -107,6 +107,8 @@
     [ 'code',     'regex:/^{[a-z]+}$/',       [ 'code' => '{ab}' ] ],
     [ 'code',     'regex:/^{[a-z]+}$/',       [ 'code' => 'ab' ] ],
     [ 'code',     'regex:/^[{,]\{,2}$/',      [ 'code' => ',{,2}' ] ],
+    [ 'size',     'required|regex:/^(S|M|L)$/', [ 'size' => 'M' ] ],
+    [ 'size',     'required|regex:/^(S|M|L)$/', [ 'size' => 'X' ] ],
   ];
 
   $parity = [];

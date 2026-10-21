@@ -2462,6 +2462,64 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "size",
+            "data": {
+                "size": "M"
+            },
+            "server": "",
+            "client": {
+                "size": {
+                    "label": "Size",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "regex",
+                            "/^(S|M|L)$/",
+                            ":label is not valid",
+                            "/^(S|M|L)$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "size",
+            "data": {
+                "size": "X"
+            },
+            "server": "Size is not valid",
+            "client": {
+                "size": {
+                    "label": "Size",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "regex",
+                            "/^(S|M|L)$/",
+                            ":label is not valid",
+                            "/^(S|M|L)$/"
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }
