@@ -30,6 +30,15 @@
 
   // Strict pre-scan of the branches: a {when} standing behind the {else} never answers,
   // and a {when} repeating an earlier value never answers either - the first one does.
+  //
+  // Only a value written out - a quoted string, a number, true or false (padMetaLiteral) -
+  // can be written twice. A {when} holding a field, a call or an operator answers what it
+  // answers for this row: comparing those values made the same page pass for one row and
+  // die on the next - {case true}{when $n gt 100}...{when $n gt 10}... was "the {when '1'}
+  // is written twice" for n=500 and "the {when ''}" for n=5, and {when $home}{when $work}
+  // when both held the same town. Nor is such a {when} evaluated here: the match below
+  // evaluates the ones it reaches, and a call in one behind the answering branch ran here
+  // although it is never reached.
 
   if ( $padCheckSyntax ) {
 
@@ -50,7 +59,12 @@
 
         $padCasePos = strpos ( $padContent, '}', $padCaseScan );
 
-        foreach ( padCaseWhenValues ( substr ( $padContent, $padCaseScan+6, $padCasePos-($padCaseScan+6) ) ) as $padCaseVal ) {
+        foreach ( padParseOptions ( substr ( $padContent, $padCaseScan+6, $padCasePos-($padCaseScan+6) ) ) as $padCaseOne ) {
+
+          if ( padMetaLiteral ( $padCaseOne ) === NULL )
+            continue;
+
+          $padCaseVal = padEval ( $padCaseOne );
 
           if ( in_array ( $padCaseVal, $padCaseSeen, TRUE ) )
             padError ( "the {when '" . $padCaseVal . "'} is written twice - the first one answers" );
