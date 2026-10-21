@@ -315,24 +315,100 @@
 
   }
 
+  // Every global, of a bounded size: a global can hold a whole page, the list of every value
+  // the request spliced, the memory kept in reserve for the boot net - a page that died on
+  // PHP's time limit answered a body of 31 MB, and the suite overview that showed it ran out
+  // of its gigabyte. Each global has 64 KB, the report 4 MB, and the application's own
+  // variables come first, so what the page set is there whole and the engine's take what is
+  // left. Bounded before the redaction walks it: that walk itself ran out of memory on the
+  // spliced values.
+
   function padClaudeFields ( &$app, &$pad, &$php, &$seq ) {
 
     $seq = $php = $pad = $app = [];
 
-    foreach ($GLOBALS as $key => $value) {
+    $room   = 4 << 20;
+    $values = padRedactValues ();
 
-      $value = padRedact ( $value, $key );
+    foreach ( [ FALSE, TRUE ] as $engine )
 
-      if ( substr($key, 0, 3)  == 'pad' )
-        $pad [$key] = $value;
-      elseif ( substr($key, 0, 2)  == 'pq' )
-        $seq [$key] = $value;
-      elseif ( substr($key, 0, 1)  == '_' )
-        $php [$key] = $value;
-      else
-        $app [$key] = $value;
+      foreach ( $GLOBALS as $key => $value ) {
+
+        if ( $engine !== ( str_starts_with ( $key, 'pad' ) or str_starts_with ( $key, 'pq' ) or str_starts_with ( $key, '_' ) ) )
+          continue;
+
+        $left  = min ( 65536, max ( 0, $room ) );
+        $own   = $left;
+        $value = padRedact ( padClaudeBound ( $value, 0, $left, $values ), $key );
+        $room -= $own - $left;
+
+        if ( substr($key, 0, 3)  == 'pad' )
+          $pad [$key] = $value;
+        elseif ( substr($key, 0, 2)  == 'pq' )
+          $seq [$key] = $value;
+        elseif ( substr($key, 0, 1)  == '_' )
+          $php [$key] = $value;
+        else
+          $app [$key] = $value;
+
+      }
+
+  }
+
+  // A value as the report shows it, within $room bytes: a text of more than 4 KB is cut, an
+  // array shows 100 entries and 6 levels, an object its public properties and its class, and
+  // once the room is spent what follows says only what it was. A text is redacted before it
+  // is cut - cut first, a secret's value standing across the cut went past the redaction
+  // with its first half.
+
+  function padClaudeBound ( $value, $depth, &$room, $values ) {
+
+    if ( is_string ( $value ) ) {
+
+      $length = strlen ( $value );
+
+      if ( $length <= 4096 and $room >= $length ) {
+        $room -= $length;
+        return $value;
+      }
+
+      $keep  = max ( 0, min ( 4096, $room ) );
+      $room -= $keep;
+
+      return substr ( padRedactText ( substr ( $value, 0, $keep + 512 ), $values ), 0, $keep ) . " *** cut - $length bytes ***";
 
     }
+
+    if ( is_object ( $value ) )
+      $value = [ '*class*' => get_class ( $value ) ] + get_object_vars ( $value );
+
+    if ( ! is_array ( $value ) ) {
+      $room -= 16;
+      return $value;
+    }
+
+    $count = count ( $value );
+
+    if ( $depth >= 6 or $room <= 0 )
+      return "*** array of $count ***";
+
+    $bound = [];
+    $shown = 0;
+
+    foreach ( $value as $key => $item ) {
+
+      if ( $shown == 100 or $room <= 0 ) {
+        $bound ['*more*'] = '*** ' . ( $count - $shown ) . ' more ***';
+        break;
+      }
+
+      $room -= strlen ( (string) $key ) + 8;
+      $bound [$key] = padClaudeBound ( $item, $depth + 1, $room, $values );
+      $shown++;
+
+    }
+
+    return $bound;
 
   }
 
