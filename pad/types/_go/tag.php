@@ -33,7 +33,22 @@
 
     $padTagBefore [$padTagDepth] = padAppVars ( $GLOBALS );
 
+    // The PHP half of an application or _common tag reads its parameters and options - in
+    // $padParm, $padOpt and $padPrm - from copies with { } and | as stand-ins where they came
+    // from a value, and the engine has its own back afterwards (lib/options.php,
+    // padAppHandOver).
+
+    if ( padAppLevel () ) {
+      $padAppHand [$padTagDepth] = [ padAppHandOver (), $pad ];
+      $padParm                   = $padOpt [$pad] [1] ?? '';
+    }
+
     include PAD . 'call/ob.php';
+
+    if ( isset ( $padAppHand [$padTagDepth] ) ) {
+      padAppHandBack ( ...$padAppHand [$padTagDepth] );
+      unset ( $padAppHand [$padTagDepth] );
+    }
 
     // The variables the tag's PHP half added or changed are published to $padLvlFunVar,
     // where the function group of the @ subsystem reads them - the store level/function.php

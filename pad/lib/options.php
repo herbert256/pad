@@ -169,14 +169,21 @@
   }
 
   // A value handed to the application's own PHP - a parameter or option of an application or
-  // _common tag, as the tag reads it from $padParm, $padOpt [$pad] or $padPrm [$pad], and
-  // the value of an option the application implements in _options/ or _options/end/, its
-  // $padGetName - has { } and | as inert stand-ins, the way padTagParm hands it; quotes stay
-  // real, for htmlspecialchars. What such code echoes or writes into $padContent is template
-  // source: padTagParm protected only the reads through it, so {echoparm $v} echoing $padParm
-  // ran a visitor's {php:getcwd}, and {xs mark=$w} on a built-in tag, through the documented
-  // _options/end/wrap.php pattern, did the same. The stand-ins are restored when the page is
-  // written out. padAppLevel says whether the level is such a tag.
+  // _common tag, as the tag's PHP reads it from $padParm, $padOpt [$pad] or $padPrm [$pad],
+  // and the value of an option the application implements in _options/ or _options/end/, its
+  // $padGetName - has { } and | as inert stand-ins when it came from a value, the way
+  // padTagParm hands it; quotes stay real, for htmlspecialchars. What such code echoes or
+  // writes into $padContent is template source: padTagParm protected only the reads through
+  // it, so {echoparm $v} echoing $padParm ran a visitor's {php:getcwd}, and {xs mark=$w} on a
+  // built-in tag, through the documented _options/end/wrap.php pattern, did the same. The
+  // stand-ins are restored when the page is written out.
+  //
+  // What the template wrote out - {props '{"a":"x"}'}, mark='b' - is the author's text and
+  // stays as written (padAppLiteral); a value spliced into the quotes comes with stand-ins of
+  // its own. And only the PHP gets the copies: padAppHandOver swaps them in around the
+  // include of the tag's PHP half (types/_go/tag.php) and padAppHandBack puts the engine's
+  // values back, so the engine's own options - where= with a pipe - and a .pad component's
+  // {#title} read the text they were given.
 
   function padAppValue ( $value ) {
 
@@ -194,6 +201,68 @@
     global $pad, $padType;
 
     return in_array ( $padType [$pad] ?? '', [ 'app', 'common' ], TRUE );
+
+  }
+
+  function padAppLiteral ( $text ) {
+
+    $read = padMetaLiteral ( $text );
+
+    return is_string ( $read ) or is_int ( $read ) or is_float ( $read ) or is_bool ( $read );
+
+  }
+
+  // The copies padAppHandOver hands the tag's PHP, with the values they stand for: the
+  // parameters by position in $padOpt, the options by name in $padPrm.
+
+  function padAppHandOver () {
+
+    global $pad, $padOpt, $padPrm, $padParms;
+
+    $hand = [ 'opt' => [], 'prm' => [] ];
+
+    foreach ( $padParms [$pad] ?? [] as $one ) {
+
+      if ( $one ['padPrmKind'] == 'parm' )
+        [ $kind, $list, $text ] = [ 'opt', 'padOpt', $one ['padPrmOrg'] ];
+      elseif ( $one ['padPrmKind'] == 'option' )
+        [ $kind, $list, $text ] = [ 'prm', 'padPrm', explode ( '=', (string) $one ['padPrmOrg'], 2 ) [1] ?? '' ];
+      else
+        continue;
+
+      $name = $one ['padPrmName'];
+
+      if ( ! isset ( $GLOBALS [$list] [$pad] [$name] ) or ! is_string ( $GLOBALS [$list] [$pad] [$name] ) or padAppLiteral ( $text ) )
+        continue;
+
+      $copy = padAppValue ( $GLOBALS [$list] [$pad] [$name] );
+
+      if ( $copy === $GLOBALS [$list] [$pad] [$name] )
+        continue;
+
+      $hand [$kind] [$name]            = [ $GLOBALS [$list] [$pad] [$name], $copy ];
+      $GLOBALS [$list] [$pad] [$name] = $copy;
+
+    }
+
+    return $hand;
+
+  }
+
+  // A copy the tag left as it was handed is the engine's value again; one the tag set itself
+  // stays what it set.
+
+  function padAppHandBack ( $hand, $idx ) {
+
+    global $padOpt, $padPrm;
+
+    foreach ( $hand ['opt'] as $name => [ $value, $copy ] )
+      if ( ( $padOpt [$idx] [$name] ?? NULL ) === $copy )
+        $padOpt [$idx] [$name] = $value;
+
+    foreach ( $hand ['prm'] as $name => [ $value, $copy ] )
+      if ( ( $padPrm [$idx] [$name] ?? NULL ) === $copy )
+        $padPrm [$idx] [$name] = $value;
 
   }
 

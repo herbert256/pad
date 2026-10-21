@@ -32,14 +32,9 @@
   // expression ran twice - a php: call in it twice, {echo php:usleep(100000)} took twice
   // as long, one padFlash call left two messages.
 
-  // The parameter of an application or _common tag reaches its PHP as $padParm and in
-  // $padOpt, with { } and | as stand-ins (padAppValue, lib/options.php).
-
   if ( in_array ( $padTag [$pad], [ 'increment', 'decrement', 'set', 'echo', 'if', 'case', 'while', 'until' ] ) or padParmsRaw ()
        or str_starts_with ( ltrim ( $padOpt [$pad] [0] ?? '' ), '?' ) )
     $padPrmEval     = $padPrmOne;
-  elseif ( padAppLevel () )
-    $padPrmEval     = padAppValue ( padEval ( $padPrmOne ) );
   else
     $padPrmEval     = padEval ( $padPrmOne );
 

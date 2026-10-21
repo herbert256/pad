@@ -8,7 +8,7 @@
   // those with one in _options/end/ in $padOptionsAppEnd [$pad] for options/_go/appEnd.php
   // to run on the rendered result as the level closes.
 
-  $padOptionApp   = padAppLevel ();
+  $padOptionApp   = FALSE;
   $padOptionCheck = padOptionCheck ( $padPrmName );
 
   if ( $padOptionCheck ) {
@@ -54,11 +54,11 @@
 
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 
-  // An option of an application or _common tag, and one the application implements itself in
-  // _options/, reaches the application's PHP with { } and | as stand-ins (padAppValue,
-  // lib/options.php) - in $padPrm and as the option handler's $padGetName.
+  // An option the application implements itself in _options/ reaches its handler, as
+  // $padGetName, with { } and | as stand-ins when it came from a value (padAppValue,
+  // lib/options.php); what the template wrote out is the author's text.
 
-  if ( $padOptionApp )
+  if ( $padOptionApp and ! padAppLiteral ( $padPrmValue ) )
     $padPrm [$pad] [$padPrmName] = padAppValue ( $padPrm [$pad] [$padPrmName] );
 
   $padParmsSetType  = 'option';
