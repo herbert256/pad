@@ -117,6 +117,38 @@
 
   }
 
+  // What {set}, {increment} and {decrement} write. A plain field is read from the row of the
+  // nearest level that holds it before $GLOBALS (padFieldLevel), so a write to $GLOBALS alone
+  // changed nothing the template saw when the row of a loop around held the name - inside
+  // {rows} over rows holding n, {decrement $n} left {$n} as it was and {while $n gt 0} on it
+  // ran to its ceiling. The row's field takes the new value as well, and so does the value
+  // that row's level put aside to restore when the row ends (padSetGlobalOcc): the write
+  // outlives the loop, as an assignment does - it was put back, and one the row had made
+  // from nothing was deleted.
+
+  function padSetField ( $name, $value ) {
+
+    global $pad, $padCurrent, $padSaveOcc, $padDeleteOcc;
+
+    $GLOBALS [$name] = $value;
+
+    for ( $i = $pad; $i > 0; $i-- )
+      if ( is_array ( $padCurrent [$i] ?? NULL ) and array_key_exists ( $name, $padCurrent [$i] ) ) {
+
+        $padCurrent [$i] [$name] = $value;
+
+        if ( in_array ( $name, $padDeleteOcc [$i] ?? [], TRUE ) )
+          $padDeleteOcc [$i] = array_values ( array_diff ( $padDeleteOcc [$i], [ $name ] ) );
+
+        if ( isset ( $padSaveOcc [$i] ) )
+          $padSaveOcc [$i] [$name] = $value;
+
+        return;
+
+      }
+
+  }
+
   function padResetLvl () {
 
     global $pad, $padSaveLvl, $padDeleteLvl;

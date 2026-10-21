@@ -19,8 +19,11 @@
   if ( $padCheckSyntax and ! count ( $padSetLvl [$pad] ) )
     padError ( "the {set} assigns nothing - it speaks in \$name = value pairs" );
 
+  // Written with padSetField (lib/scope.php): a name the row of a loop around holds is that
+  // row's field too - {rows}{set $n = $n - 1}{$n}{/rows} printed the row's n unchanged.
+
   foreach ( $padSetLvl [$pad] as $padSetName => $padSetValue )
-    $GLOBALS [$padSetName] = $padSetValue;
+    padSetField ( $padSetName, $padSetValue );
 
   $padSaveLvl [$pad] = $padDeleteLvl [$pad] = [];
 

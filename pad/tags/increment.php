@@ -21,13 +21,16 @@
   // - and a number counts on. PHP's own ++ raised a deprecation on an empty or worded
   // string, and threw on an array, and either ended the request with a 500; a value that
   // is no number is now named.
+  //
+  // The count is written with padSetField (lib/scope.php): a name the row of a loop around
+  // holds is that row's field too, which {$n} reads.
 
   $padCounter = $GLOBALS [$padField] ?? NULL;
 
   if ( $padCounter === NULL or $padCounter === '' )
-    $GLOBALS [$padField] = 1;
+    padSetField ( $padField, 1 );
   elseif ( is_numeric ( $padCounter ) )
-    $GLOBALS [$padField] = $padCounter + 1;
+    padSetField ( $padField, $padCounter + 1 );
   else {
     padError ( "{increment} counts a number, and \$$padField is not one" );
     return FALSE;
