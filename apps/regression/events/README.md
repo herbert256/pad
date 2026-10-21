@@ -24,4 +24,5 @@ can show what the error hook kept.
 | `curl.php/pad` | Fetches a page of this application and a port nothing listens on |
 | `output.pad`, `sub/output.pad` | Carry the marker the output hooks replace |
 | `outputdata.php/pad`, `outputjson.php/pad` | A page exposing the marker as data, and the page that asks it for JSON: the hook sees the JSON |
+| `a_flush_never_sends_past_the_output_hook.pad` | The marker above and below a `{flush}`: the hook sees the page whole, so the flush sends nothing early |
 | `_config/config.php` | The `'ignore'` action, the demo database, `_common` off |

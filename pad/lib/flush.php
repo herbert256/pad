@@ -25,6 +25,10 @@
   // the post of a live region (lib/live.php) - flushes nothing: what goes out is that part
   // alone, and the head of the page a flush above it sent went in front of it, into the
   // element an HTMX swap or a live event replaces.
+  //
+  // Nor does a page an application's _events/output.php sees (lib/events.php): the hook is
+  // handed the page as it will go out, whole, and may change any of it - the part a flush
+  // sent went out past it, so a hook that redacted a word redacted it below the flush only.
 
   function padFlushCan () {
 
@@ -36,7 +40,8 @@
              and $padCacheStop != 200
              and (string) $padFragmentOnly === ''
              and padLive () === ''
-             and ! padFlushDocument () );
+             and ! padFlushDocument ()
+             and ! padEventCheck ( 'output' ) );
 
   }
 

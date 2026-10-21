@@ -117,8 +117,8 @@ or the name of an app function that gets the message (SMTP through a library).
 browser loads the stylesheets while a slow part below renders. It switches off tidy, whole-body
 gzip, the ETag/304, `Content-Length` and the page cache for the request; it stands at the top
 level of the page or wrapper (strict mode says so elsewhere) and does nothing in a page
-rendered by `{page}`, for a non-web output type, or in a request answered with one fragment or
-live region.
+rendered by `{page}`, for a non-web output type, in an application with an `_events/output.php`
+hook (which sees the page whole), or in a request answered with one fragment or live region.
 
 ## Server-sent events
 
