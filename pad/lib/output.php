@@ -232,6 +232,11 @@
   // the way would hand that visitor's Set-Cookie to the next one. The gzip body has an ETag
   // of its own, the identity one with -gzip behind it - the two bodies shared one, which a
   // cache may not mix - and Last-Modified says when the page was made, where nothing did.
+  //
+  // So is the answer to a visitor with an identity - a cookie of their own, a session, an
+  // Authorization header (padCacheIdentity, lib/cache.php): the page cache builds it fresh
+  // because it may be theirs alone, and it went out public with an s-maxage, so a shared
+  // cache kept "Hello Ann" and handed it to every visitor after her.
 
   function padWebCacheHeaders ( $gzip = FALSE ) {
 
@@ -248,7 +253,7 @@
     else
       $age = 0;
 
-    if ( $padCacheProxyAge and ! $cookie ) {
+    if ( $padCacheProxyAge and ! $cookie and ! padCacheIdentity () ) {
       $type = 'public';
       $sage = $padCacheProxyAge - ($_SERVER['REQUEST_TIME'] - $padTime);
     } else {
