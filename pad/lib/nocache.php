@@ -73,12 +73,74 @@
       if ( is_array ( $padCurrent [$i] ?? NULL ) )
         $row = array_merge ( $row, $padCurrent [$i] );
 
-    $padNocacheSource [] = [ 'source' => $source, 'row' => $row ];
+    $padNocacheSource [] = [ 'source' => $source, 'row' => $row, 'vars' => padNocacheVars ( $source, $row ) ];
 
     $number = array_key_last ( $padNocacheSource );
     $token  = padNocacheToken ();
 
     return [ "<!--padNocache $token $number-->", "<!--/padNocache $token $number-->" ];
+
+  }
+
+  // A variable the cached text set before the part - a {set} in the loop round it, the
+  // counter of a {while}, an {increment} - is no field of a row, and on a hit the tags that
+  // set it are stored text that never runs: the part ended the page on "Field '$t' not
+  // found", or printed whatever value a later line of the page had left. So the
+  // application variables the part's source names are compared with what they were when
+  // the caching began - after the page's PHP for the page cache (build/build.php), where
+  // the outermost section round the part started rendering for a fragment
+  // (padFragmentHit) - and those the cached text set or changed are kept with the part, to
+  // be set again as it renders on a hit (tags/nocache.php), as they stood on the miss. As
+  // variables, not as fields of its row, which would stand in front of what the part sets
+  // itself: {nocache}{set $u = $n * 2}{$u}{/nocache} in a loop then printed the row
+  // before's value. One that is as it was is left out: the PHP that set it runs again on a
+  // hit of a section, and the part reads it fresh. Only plain values are kept - the entry
+  // is stored serialized.
+
+  function padNocacheVars ( $source, $row ) {
+
+    global $pad, $padFragment;
+
+    $before = $GLOBALS ['padNocacheVars'] ?? NULL;
+
+    if ( $before === NULL )
+      for ( $i = 0; $i < $pad; $i++ )
+        if ( is_array ( $padFragment [$i] ['vars'] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
+          $before = $padFragment [$i] ['vars'];
+          break;
+        }
+
+    $vars = [];
+
+    if ( $before === NULL or ! preg_match_all ( '/\$([A-Za-z_][A-Za-z0-9_]*)/', $source, $names ) )
+      return $vars;
+
+    foreach ( array_unique ( $names [1] ) as $name )
+      if ( ! array_key_exists ( $name, $row ) and isset ( $GLOBALS [$name] ) and ! padEngineName ( $name )
+           and ( ! array_key_exists ( $name, $before ) or $before [$name] !== $GLOBALS [$name] )
+           and padNocachePlain ( $GLOBALS [$name] ) )
+        $vars [$name] = $GLOBALS [$name];
+
+    return $vars;
+
+  }
+
+  function padNocachePlain ( $value ) {
+
+    if ( is_scalar ( $value ) )
+      return TRUE;
+
+    if ( ! is_array ( $value ) )
+      return FALSE;
+
+    $plain = TRUE;
+
+    array_walk_recursive ( $value, function ( $one ) use ( &$plain ) {
+      if ( $one !== NULL and ! is_scalar ( $one ) )
+        $plain = FALSE;
+    } );
+
+    return $plain;
 
   }
 
@@ -130,7 +192,7 @@
 
   // A stored text made a template again: the text protected, a {nocache} pair of each
   // source where its placeholder stands - named by a key of this entry, under which its row
-  // waits in $padNocacheRows for tags/nocache.php.
+  // and its variables wait in $padNocacheRows for tags/nocache.php.
 
   function padNocacheTemplate ( $text, $kept ) {
 
@@ -145,7 +207,10 @@
       if ( $index % 2 ) {
         $part = $sources [ (int) $part ] ?? [];
         $name = "$key-" . count ( $padNocacheRows ?? [] );
-        $padNocacheRows [$name] = is_array ( $part ['row'] ?? NULL ) ? $part ['row'] : [];
+        $padNocacheRows [$name] = [
+          'row'  => is_array ( $part ['row']  ?? NULL ) ? $part ['row']  : [],
+          'vars' => is_array ( $part ['vars'] ?? NULL ) ? $part ['vars'] : []
+        ];
         $out .= "{nocache '$name'}" . ( $part ['source'] ?? '' ) . '{/nocache}';
       } else
         $out .= padProtect ( $part );

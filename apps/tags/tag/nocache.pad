@@ -7,8 +7,10 @@ the stored rendering with each part rendered again for this request.</p>
 
 <p>A part inside a loop gets the fields of its rows back as they were when the section was
 stored, so <code>&#123;topProducts&#125;...&#123;nocache&#125;&#123;stock $id&#125;&#123;/nocache&#125;...</code>
-looks up the live stock of each cached product. In a section the part renders where the
-section stands, with the page's fields.</p>
+looks up the live stock of each cached product. The variables the cached text set before the
+part - a <code>&#123;set&#125;</code> in its loop, a <code>&#123;while&#125;</code> counter - are
+set again as it renders. In a section the part renders where the section stands, with the
+page's fields.</p>
 
 <p>A page-cache hit runs no PHP - not the page's, nor an <code>_inits.php</code> - so a part
 there sees what a request has without it: request and session values, the configuration, the

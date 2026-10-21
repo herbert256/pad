@@ -2,14 +2,15 @@
 
   // Fetches nocacheprobe twice at an address new on every run: the second fetch is a hit
   // of the page cache, so its build moment is the first fetch's, while its {nocache} parts
-  // render again - the time differs - and the part inside the loop still has its row.
+  // render again - the time differs - and the part inside the loop still has its row and the
+  // variable the loop set before it, though the {set} is stored text on the hit.
 
   $url = $padHost . 'regression/cache_file/?nocacheprobe&padInclude&run=' . padRandomString ();
 
   $one = trim ( padCurl ( $url ) ['data'] ?? '' );
   $two = trim ( padCurl ( $url ) ['data'] ?? '' );
 
-  $pattern = '/^built (\d+) live (\S+ \d+) rows 1=1;2=2;$/';
+  $pattern = '/^built (\d+) live (\S+ \d+) rows 1=1\/10;2=2\/20;$/';
 
   $okOne = preg_match ( $pattern, $one, $partsOne );
   $okTwo = preg_match ( $pattern, $two, $partsTwo );

@@ -65,8 +65,13 @@
     $padToolbarData [ ( $entry === FALSE ) ? 'fragmentMiss' : 'fragmentHit' ] =
       ( $padToolbarData [ ( $entry === FALSE ) ? 'fragmentMiss' : 'fragmentHit' ] ?? 0 ) + 1;
 
-    if ( $entry === FALSE )
+    // The application's variables as the section starts rendering: a {nocache} part in it
+    // keeps those the section sets before it (padNocacheVars).
+
+    if ( $entry === FALSE ) {
+      $padFragment [$pad] ['vars'] = padAppVars ( $GLOBALS );
       return FALSE;
+    }
 
     $padFragment [$pad] ['hit']     = TRUE;
     $padFragment [$pad] ['body']    = padFragmentNonce ( $entry ['body'], TRUE );
