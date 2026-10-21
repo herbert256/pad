@@ -7,7 +7,8 @@
   // alone; otherwise what gets stored is the walked data, or the plain data when the walk never
   // started, and the text is blanked so the storing prints nothing - on $padContent, because
   // the walker copies the result back over it after the phase, which silently undid the
-  // direct $padResult blanking this used to do.
+  // direct $padResult blanking this used to do. After an @end@ coda, which renders on a
+  // stand-in row, the rows are where start_end/end2.php put them aside.
 
   $padStoreName = $padPrm [$pad] ['toData'];
 
@@ -29,6 +30,8 @@
 
   if ( $padWalk  [$pad] != 'start' )
     $padDataStore [$padStoreName] = $padWalkData [$pad];
+  elseif ( isset ( $padSectionRows [$pad] ) )
+    $padDataStore [$padStoreName] = $padStartData [$pad];
   else
     $padDataStore [$padStoreName] = $padData [$pad];
 

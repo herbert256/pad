@@ -10,6 +10,13 @@
 
   $padSectionRows [$pad] = count ( $padData [$pad] );
 
+  // The rows themselves are put aside in $padStartData, as start_end/start1.php puts them
+  // aside for the prelude: what the level walked is still its data for the end phase - the
+  // toData option stored the stand-in row, {items toData='c'}H@start@{$n}@end@F{/items}
+  // gave c one row without a field.
+
+  $padStartData [$pad] = $padData [$pad];
+
   $padBase [$pad] = $padEndBase [$pad];
   $padData [$pad] = padDefaultData ();
 
