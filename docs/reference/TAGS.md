@@ -1645,8 +1645,10 @@ its evaluated parameters, and skips the tag's own handler on a hit. `$padFragmen
 selects the store (`'file'`, `'apcu'`, or `FALSE` to render every time);
 `padFragmentForget('top-products')` drops a section, `padFragmentForget()` all of them.
 PHP that runs before the template - the page's `.php` - runs on a hit too. What the section
-leaves for the rest of the page is kept with it and made again on a hit: its `{push}`es, and
-the page booking of a paged tag in it, for a `{pager}` further down. A request for one
+leaves for the rest of the page is kept with it and made again on a hit: its `{push}`es, the
+page booking of a paged tag in it, for a `{pager}` further down, and the variables and stores
+it set - a `{set}`, a `{data}`, `{content}` or `{bool}` store, a `{define}` or `{macro}`, what a
+`callback=` worked out - as they stood when the section ended. A request for one
 response fragment, or the post of a live region, renders the section and stores nothing. A
 rendering that holds the visitor's CSRF token (a `{form}`, `{csrf}`, a live region) or the
 request's `{nonce}` is not stored either: it renders every time. A `{nocache}` part of the

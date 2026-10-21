@@ -105,8 +105,8 @@
 
     if ( $before === NULL )
       for ( $i = 0; $i < $pad; $i++ )
-        if ( is_array ( $padFragment [$i] ['vars'] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
-          $before = $padFragment [$i] ['vars'];
+        if ( is_array ( $padFragment [$i] ['before'] ['vars'] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
+          $before = $padFragment [$i] ['before'] ['vars'];
           break;
         }
 

@@ -15,8 +15,10 @@ once (with a vary value as its second argument to drop one copy), and
 <code>{topProducts cache=3600}...{/topProducts}</code> is keyed on the page, the tag as written
 and its evaluated parameters, and skips the tag's own handler on a hit. Closing pipes and end
 options run on a stored rendering as on a fresh one. What the section leaves for the rest of the
-page is kept with it and made again on a hit: its <code>{push}</code>es, and the booking of a
-paged tag for a <code>{pager}</code> further down.</p>
+page is kept with it and made again on a hit: its <code>{push}</code>es, the booking of a
+paged tag for a <code>{pager}</code> further down, and the variables and stores it set - a
+<code>{set}</code>, a <code>{data}</code>, <code>{content}</code> or <code>{bool}</code> store, a
+<code>{define}</code> or <code>{macro}</code> - as they stood when the section ended.</p>
 
 <p>Some renderings are never stored: one that holds the visitor's CSRF token (a
 <code>{form}</code>, <code>{csrf}</code>, a live region) or the request's
