@@ -11,6 +11,13 @@
   $padGetName = padTagParm ( $padReset );
   $padContent = include PAD . 'get/content.php';
 
+  // The level is a hit from here on, so the content stands in with the half in front of its
+  // own @else@, as it does where it is used by name or with content= (lib/content.php): it
+  // came in after level/split.php had run, and printed whole, the marker and both halves.
+
+  if ( is_string ( $padContent ) )
+    padContentElse ( $padContent, $padContent, $padResetFalse );
+
   $padTagResult  = TRUE;
   $padTagContent = '';
 
