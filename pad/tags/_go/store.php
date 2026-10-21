@@ -221,6 +221,25 @@
 
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
+  // The resolver itself says what {name} reaches now the store holds it (lib/type.php
+  // padTypeTag): besides the built-in and application tags above, a _common tag or snippet
+  // comes before every store, and a store earlier in its order before this one - {data
+  // 'lines'} then {lines} rendered _common's lines snippet, {content 'x'} then {data 'x'}
+  // left {x} the content, both in silence.
+
+  if ( $padCheckSyntax ) {
+
+    $padStoreReach = padTypeTag ( $padName [$pad], 0 );
+
+    if ( $padStoreReach and $padStoreReach != $padTag [$pad] and ! in_array ( $padStoreReach, [ 'app', 'pad' ] ) )
+      padError ( "the store name '" . $padName [$pad] . "' is already "
+        . ( [ 'common'  => 'a _common tag or snippet', 'pull'   => 'a sequence store',  'bool'   => 'a bool store',
+              'content' => 'a content block',          'define' => 'a {define} tag',    'macro'  => 'a {macro}',
+              'select'  => 'a select table',           'data'   => 'a data store' ] [$padStoreReach] ?? "a $padStoreReach" )
+        . " - {" . $padName [$pad] . "} will never reach the store" );
+
+  }
+
   if ( $padInfo )
     include PAD . 'events/store.php';
 
