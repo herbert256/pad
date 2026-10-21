@@ -116,7 +116,7 @@
   // The field {$x} and the tag parameter {#x} both run the sanitize chain: a parameter is
   // the caller's data, and a component that prints {#title} wrote it to the page raw, so
   // {card title=$x} with '<script>' was an injection. {!x} stays the raw escape hatch, and
-  // {?x} {^x} {&x} keep their own encodings.
+  // {?x} {^x} keep their own encodings.
 
   if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) )
     foreach ( $padDataDefaultStart as $padOptOne )
@@ -142,11 +142,21 @@
   // live, where the same function under any other name was escaped. pad: names the
   // built-in for certain.
 
-  $padVarBuiltIn = in_array ( $padFirst, [ '$', '#' ], TRUE )
+  // A property {&x} that answers text runs the end chain as well: what it answers is a
+  // row's data - firstFieldValue and firstFieldName, a keyed set's key, through an @ any
+  // field at all - and the print option is {&firstFieldValue} on every row, so
+  // {names print, glue=', '} over a name '<script>alert(1)</script>' wrote a live script
+  // where {names}{$name}{/names} escaped it. The engine's own answers - a count, a
+  // position, a first or even - are numbers and truths, which no markup can be in, and
+  // are left as they are.
+
+  $padVarEnd = ( in_array ( $padFirst, [ '$', '#' ], TRUE ) or ( $padFirst == '&' and is_string ( $padVal ) ) );
+
+  $padVarBuiltIn = $padVarEnd
     && preg_match ( '/(^|\|)\s*(pad:)?(markdown\s*(\(\s*\))?|highlight\s*(\(\s*([\'"])\w+\6\s*\))?)\s*$/', $padVarOpts, $padVarMatch )
     && ( $padVarMatch [2] !== '' or ! padAppFunctionCheck ( substr ( $padVarMatch [3], 0, 1 ) == 'm' ? 'markdown' : 'highlight' ) );
 
-  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) and ! $padVarBuiltIn )
+  if ( $padVarEnd and ! $padVarBuiltIn )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
