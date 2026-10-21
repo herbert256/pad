@@ -48,6 +48,14 @@
     if ( http_response_code () and http_response_code () != 200 )
       return FALSE;
 
+    // A page that exposes its data answers JSON or CSV to an Accept header that asks for them
+    // (lib/expose.php), and says Vary: Accept - which its PHP decides, and a hit runs none:
+    // the hit said Vary: Accept-Encoding alone, and a browser holding the HTML answered a
+    // fetch of the page's JSON with it.
+
+    if ( count ( (array) ( $GLOBALS ['padExpose'] ?? [] ) ) )
+      return FALSE;
+
     foreach ( headers_list () as $header )
       if ( ! preg_match ( '/^(X-Powered-By:|Set-Cookie: pad(Ses|Req)ID=)/i', $header ) )
         return FALSE;
