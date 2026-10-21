@@ -116,6 +116,14 @@
 
   function padGraphemeEnd ( $text, $count, $length ) {
 
+    // A text that is no valid UTF-8 is cut in code points, as every other cut of it is: a
+    // window at its end can be valid where the text is not, and right(1) gave a whole
+    // character when the broken byte stood more than a window before the end and a code
+    // point when it stood in it.
+
+    if ( ! mb_check_encoding ( $text, 'UTF-8' ) )
+      return mb_substr ( $text, - $count, $length, 'UTF-8' );
+
     $size = max ( 4096, $count * 64 );
 
     while ( $size < strlen ( $text ) ) {
