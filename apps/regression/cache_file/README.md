@@ -30,4 +30,5 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `proxied.php/pad` | A page that greets the visitor it knows; shared caches may keep it and it sets no PAD cookie |
 | `an_exposing_page_says_vary_accept_on_every_fetch.php/pad` | Fetches `exposed` twice at a fresh address: both answers say `Vary: Accept` - an exposing page is never stored, a hit could not say it |
 | `exposed.php/pad` | A page that exposes its rows as data |
+| `a_304_carries_the_etag_its_200_carries.php/pad` | Fetches `stable` at a fresh address - the miss, the gzipped hit - and asks again with the hit's tag: the 304 carries that same tag |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age and `$padCookies` off |

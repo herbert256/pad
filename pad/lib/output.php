@@ -137,7 +137,12 @@
     // for a client that accepts it, and saying so only when the on-the-fly $padGzip was
     // configured shipped compressed bytes with no Content-Encoding at all.
 
-    $padWebGzip = ( $stop == 200 and $padClientGzip and ( $padGzip or ( $padCacheStop == 200 and $padCacheServerGzip ) ) );
+    // A 304 carries the ETag its 200 would - the gzip body's tag when that 200 came gzipped,
+    // from the cache's store as from the on-the-fly $padGzip (RFC 9110): it said the identity
+    // tag, which a cache holding the gzip copy may not take for the one it holds.
+
+    $padWebZip  = ( $padClientGzip and ( $padGzip or ( ( $padCacheStop == 200 or $padCacheStop == 304 ) and $padCacheServerGzip ) ) );
+    $padWebGzip = ( $stop == 200 and $padWebZip );
 
     if ( $padWebGzip )
       padHeader ( 'Content-Encoding: gzip' );
@@ -180,7 +185,7 @@
     if ( ! isset ( $padCacheClientAge ) or ( $stop != 200 and $stop != 304 ) )
       padHeader ( 'Cache-Control: no-cache, no-store' );
     else
-      padWebCacheHeaders ( $padWebGzip );
+      padWebCacheHeaders ( $padWebZip );
 
   }
 
