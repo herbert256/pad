@@ -20,10 +20,13 @@
   // application has no page of that name, waits as well: inits/sitemap.php and
   // inits/health.php answer it, or make it the 404 of a page that is not there. It was taken
   // for a page here, and the missing up.php ended every such request on a 500 boot error.
+  // A bracketed route that took the name - [slug].php at the root - is the page only with
+  // the sitemap or the health check off, as for any application: with it on the answer is
+  // the engine's, where the route's plain PHP answered robots.txt, sitemap.xml and up.
 
   if ( ! $padNoNo or $padNotFound !== ''
-       or ( $padSitemapAsk !== '' and $padPage === $padSitemapAsk )
-       or ( $padHealthAsk and $padPage === 'up' ) )
+       or ( $padSitemapAsk !== '' and ( $padSitemap or $padPage === $padSitemapAsk ) )
+       or ( $padHealthAsk and ( $padHealth or $padPage === 'up' ) ) )
     return;
 
   if ( $padMaintenanceDown = padMaintenance () )
