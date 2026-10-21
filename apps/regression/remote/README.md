@@ -12,7 +12,6 @@ their own could leave the local server no worker to answer them.
 | File | Description |
 |------|-------------|
 | `stamp.php` | A JSON document new on every fetch |
-| `query.php` | A JSON document of the query values `a` and `b` it was asked with |
 | `slow.php` | A JSON source that takes 200 ms and says when it started and ended |
 | `curl_ttl.pad` | `{curl ..., ttl=60}` twice answers alike |
 | `curl_data_ttl.php/pad` | A `_data/*.curl` file with a `<ttl>`, and `data=` with the ttl option - an address the page's PHP built |
@@ -22,7 +21,6 @@ their own could leave the local server no worker to answer them.
 | `an_address_written_inside_a_condition_of_close_named_data_is_fetched.pad` | A written address inside an {if} of a {data} named at its close |
 | `a_page_variable_address_is_fetched.php/pad` | An address in a page variable, in {data 'd', $u} and through `{$padHost}` - the page's own, fetched |
 | `an_address_the_page_built_is_fetched_beside_values_holding_its_host.php/pad` | Request values that merely hold the host's text do not refuse the page's own address |
-| `an_address_a_component_is_given_keeps_its_query_as_written.php/pad` | A component's data='{#src}' asks for the query its caller wrote - no &amp;, no stand-in - and a request value spliced into a query arrives as one parameter |
 | `disposition.php` | A download named `report.file` whose body is the name of a data file here |
 | `curl_data_disposition.pad` | That download is read as the text it is - `_data/localOnly.json` is never read |
 | `debugged.php/pad` | A page with a `{debug}` box, which only a local request sees |

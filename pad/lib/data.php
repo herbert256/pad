@@ -310,12 +310,14 @@
   // is not fetched (or built). The danger is a visitor naming the host and port the server
   // connects to, or the length of a range it builds: a request value - GET, POST, a JSON
   // body, a cookie, a segment of a clean URL - that is the address's host (with its port or
-  // without), its port, or the start of the address itself, through the scheme into the
-  // host; for a range one that is either end or the whole range. Merely holding the host's
-  // text is not enough: a search for "workshop", a cookie "regression-dark" or the random
-  // padReqID refused a page fetching SELF://shop/..., SELF://regression/... or a two-letter
-  // host its own PHP built; and a written port no longer makes the visitor's host the
-  // author's, data='http://{$h}:80/' with ?h=localhost, nor a written host his port.
+  // without) or the start of the address itself, through the scheme into the host; for a
+  // range one that is either end or the whole range. Merely holding the host's text is not
+  // enough: a search for "workshop", a cookie "regression-dark" or the random padReqID
+  // refused a page fetching SELF://shop/..., SELF://regression/... or a two-letter host its
+  // own PHP built; and a written port no longer makes the visitor's host the author's,
+  // data='http://{$h}:80/' with ?h=localhost. A value equal to the port alone is no choice
+  // of it: ?amount=8000 refused every address of a server on port 8000. Pieces of a host
+  // the template puts together from a value are not caught - OPTIONS.md says so.
   //
   // A page variable, an engine variable ({$padHost}), a parameter a component's caller wrote
   // name the author's address. So does the template: the address's scheme and host - the
@@ -326,11 +328,7 @@
 
     global $pad, $padBase;
 
-    // The address as data/curl.php will ask for it, its stand-ins and HTML escapes undone:
-    // judged on the escaped text, a host with an @ in it - user@host - hid behind the @'s
-    // stand-in from the request value that holds it.
-
-    $text   = padParmText ( padDataText ( $source ) );
+    $text   = padDataText ( $source );
     $low    = strtolower ( $text );
     $values = array_map ( 'strtolower', padDataRequestValues () );
     $asked  = FALSE;
@@ -344,7 +342,7 @@
       $host     = ( $port === '' ) ? $hostPort : substr ( $hostPort, 0, - strlen ( $port ) - 1 );
 
       foreach ( $values as $one )
-        if ( $one === $host or $one === $hostPort or ( $port !== '' and $one === $port )
+        if ( $one === $host or $one === $hostPort
              or ( strlen ( $one ) > strlen ( $match [1] ) and str_starts_with ( $low, $one ) ) )
           $asked = TRUE;
 
@@ -384,29 +382,6 @@
     } );
 
     return $values;
-
-  }
-
-  // An address restored to the text it was written as (data/curl.php) holds a request
-  // value's text as it came: spliced into the query - data='https://api/x?q={$q}' with
-  // ?q=a%26admin%3D1 - its & and = became parameters of their own and sent admin=1 to the
-  // API, where the HTML escape and the stand-ins had kept them apart by accident. Behind
-  // the scheme and host, a request value's text goes in URL-encoded, as the one value it
-  // is; the author's text and the page's own values stay as written.
-
-  function padDataRequestEncoded ( $url ) {
-
-    $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $url, $match ) ? $match [0] : '';
-    $map  = [];
-
-    foreach ( padDataRequestValues () as $one )
-      if ( rawurlencode ( $one ) !== $one )
-        $map [$one] = rawurlencode ( $one );
-
-    if ( ! $map )
-      return $url;
-
-    return $head . strtr ( substr ( $url, strlen ( $head ) ), $map );
 
   }
 

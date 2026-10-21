@@ -55,11 +55,17 @@ Retrieves data from a named source.
 3. `padData($sourceName)` - Load from data provider
 
 An address - `https://...`, `SELF://...` - a visitor chose is refused: a request value (GET,
-POST, a JSON body, a cookie, a clean-URL segment) that is its host (with or without the port),
-its port, or the start of the address, and a template that does not write that scheme and
+POST, a JSON body, a cookie, a clean-URL segment) that is the whole address or its start, or
+names its host (with or without the port), and a template that does not write that scheme and
 host; so is a range of more than 10000 values whose end or whole text a request value gives.
 A request value merely holding the host's text chooses nothing, and the page's own values -
 `data=$url` with `$url` from its PHP or configuration - are fetched.
+
+The guard has a limit: a template that builds the host from pieces of a request value is not
+caught - `data='http://{$h}/x'` with `h` = `x@127.0.0.1:9`, or a host with a path tail behind
+it. Never splice a visitor's value into the scheme or host of an address. Nor is a range whose
+end a pipe made from a request value - `data='0..{$n | - 1}'`: never let a visitor's value set
+the end of a range.
 
 **Example:**
 ```
