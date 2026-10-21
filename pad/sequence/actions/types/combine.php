@@ -1,10 +1,13 @@
 <?php
 
   // combine='seq', and merge='seq' which delegates here - folds each named store into the
-  // current sequence, walking the two in step and always taking the smaller value first,
-  // so two ascending sequences come out ascending. combine keeps duplicates; merge (any
-  // $pqAction other than 'combine') skips a value that is already in the result. The
-  // result is renumbered.
+  // current sequence in value order: both are put in order first, then walked in step, the
+  // smaller value taken first. combine keeps duplicates; merge (any $pqAction other than
+  // 'combine') skips a value that is already in the result. The result is renumbered.
+  //
+  // Walked as they came, two lists not in order came out in no order - merge of [3, 1] and
+  // [2, 0] gave 2 0 3 1 - and a FALSE among the values ended the walk, the end of a list and
+  // a value being the one answer of reset () and next ().
   //
   // merge keeps a set of the values in the result, $pqMergeSeen: looked up in the result
   // itself, every value was compared with all the values before it, and two stores of
@@ -19,24 +22,26 @@
     if ( ! isset ( $pqStore [$pqMergeKey] ) )
       continue;
 
-    $pqMerge1 = $pqResult;
-    $pqMerge2 = $pqStore [$pqMergeKey];
+    $pqMerge1 = array_values ( $pqResult );
+    $pqMerge2 = array_values ( $pqStore [$pqMergeKey] );
+
+    sort ( $pqMerge1 );
+    sort ( $pqMerge2 );
 
     $pqResult    = [];
     $pqMergeSeen = [];
 
-    $pqMerge1Val = reset ($pqMerge1);
-    $pqMerge2Val = reset ($pqMerge2);
+    $pqMergeOne = 0;
+    $pqMergeTwo = 0;
+    $pqMergeEnd1 = count ( $pqMerge1 );
+    $pqMergeEnd2 = count ( $pqMerge2 );
 
-    while ( $pqMerge1Val !== FALSE or $pqMerge2Val !== FALSE ) {
+    while ( $pqMergeOne < $pqMergeEnd1 or $pqMergeTwo < $pqMergeEnd2 ) {
 
-      if ( $pqMerge2Val === FALSE or ( $pqMerge1Val !== FALSE and $pqMerge1Val < $pqMerge2Val ) ) {
-        $pqMergeVal  = $pqMerge1Val;
-        $pqMerge1Val = next ( $pqMerge1 );
-      } else {
-        $pqMergeVal  = $pqMerge2Val;
-        $pqMerge2Val = next ( $pqMerge2 );
-      }
+      if ( $pqMergeTwo >= $pqMergeEnd2 or ( $pqMergeOne < $pqMergeEnd1 and $pqMerge1 [$pqMergeOne] < $pqMerge2 [$pqMergeTwo] ) )
+        $pqMergeVal = $pqMerge1 [$pqMergeOne++];
+      else
+        $pqMergeVal = $pqMerge2 [$pqMergeTwo++];
 
       if ( $pqAction != 'combine' ) {
         $pqMergeAt = pqValueKey ( $pqMergeVal );

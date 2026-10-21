@@ -184,6 +184,9 @@ With `seqA` holding 1 to 6 and `seqB` holding 4 to 9:
 {pull:seqA onlyStore='seqB'}     # 7 8 9                    - in seqB only
 ```
 
+`combine` and `merge` put both in value order first, whatever order they are in: with `seqA`
+holding 3 1 and `seqB` 2 0, `combine='seqB'` gives 0 1 2 3.
+
 `difference` is the symmetric difference: the values only in the sequence, followed by the
 values only in the store. For the one-sided operation use `onlyNow`.
 

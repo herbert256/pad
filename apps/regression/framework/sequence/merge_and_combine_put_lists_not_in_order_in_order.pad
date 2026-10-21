@@ -1,0 +1,1 @@
+{sequence '3;1', push='a'/}{sequence '2;0', push='b'/}[{pull:a merge='b'}{$sequence} {/pull:a}][{pull:a combine='b'}{$sequence} {/pull:a}][{echo php:implode(',', sequence:combine([3,1],[2,0]))}]
