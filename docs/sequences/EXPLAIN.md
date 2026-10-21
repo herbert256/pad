@@ -21,8 +21,12 @@ return include PQ . 'exits/return.php';   // The rows for the tag
 
 The expression form `sequence:<type>(n)` enters through `sequence/sequence.php`, which runs
 the same build for one term (`inits/direct.php`, `inits/eval.php`, `build/inits.php`,
-`inits/init.php`, ..., `build/build.php`, `exits/actions.php`) and returns that term,
-`end ( $pqEvalResult )`, not a list.
+`inits/init.php`, ..., `build/build.php`, `exits/actions.php`) and returns the term at that
+position, not a list - `sequence:fibonacci(8)` is 13. A type with a `function.php` answers the
+position from its formula, without a walk; any other walks from its first term, and the terms
+a lookup made are kept for the request (`pqTermsMade`), so a later lookup at or below them is
+answered from them. A position the type does not reach within the limits below is `''`, and
+under the strict check an error that names the limit.
 
 ## Constants
 
@@ -38,7 +42,7 @@ Parameters control how sequences are generated (`inits/parms.php`):
 |-----------|---------|-------------|
 | `from` | 1 | Where the loop starts - a value for the types that test candidates, a position for the ones that compute the nth term |
 | `to` | PHP_INT_MAX | Where the loop ends, counting the same way as `from` |
-| `sole` | 0 | Generate single value (sets from=to) |
+| `sole` | none | Generate single value (sets from=to) |
 | `minimal` | PHP_INT_MIN | Minimum acceptable value |
 | `maximal` | PHP_INT_MAX | Maximum acceptable value |
 | `increment` | 1 | Step between iterations, 1 or more - a range (`'0..1'`) also counts in a step below 1 |
@@ -54,6 +58,29 @@ Parameters control how sequences are generated (`inits/parms.php`):
 | `negative` | 0 | Invert an action's selection; has no effect on a play, which inverts by using `remove` instead of `keep` |
 | `pull` | '' | Pull from stored sequence |
 | `push` | '' | Push to stored sequence |
+
+## Limits
+
+Four settings in `pad/config/sequence.php` bound a run:
+
+| Setting | Default | What it bounds |
+|---------|---------|----------------|
+| `$padSeqDefaultRows` | 10 | The terms a tag makes when it names no `rows=` and has no end of its own |
+| `$padSeqDefaultTries` | 10,000 | The candidates a filtered sequence tests when it names no `try=` - and how many terms membership (`keep`, `remove`, `flag`) makes of a type it has to look in |
+| `$padSeqMaxTries` | 1,000,000 | The ceiling of candidates: `try=`, `stop=`, `to=` and a position lookup go no further |
+| `$padSeqMaxSeconds` | 5 | The time a run walks its candidates |
+
+The time is looked at between candidates. One candidate - a costly test, a formula at a far
+position - and an action over the finished list are not cut off while they run, so it is no
+deadline for the request; PHP's `max_execution_time` is.
+
+A run that ran out of candidates or time answers the terms it found, as one that came to its
+end does: `{sequence prime, rows=10, try=5}` gives the three primes up to 5, and `count` after
+it says 3, with no mark that seven are missing. A position lookup does say so - under the
+strict check `sequence:strong(5)` is an error naming the limit it ran into.
+
+A tag's terms are made in full before its rows render - there is no lazy iteration; `rows=`,
+`page=` and the limits decide how many are made.
 
 ## Build Types
 
@@ -113,7 +140,22 @@ $pq = include PT . "$pqSeq/order.php";
 
 ### 7. Check Build (`build/types/check.php`)
 
-Validates values against criteria.
+Answers whether a value is a term of a type - the build of `keep`, `remove` and `flag`. The
+cheapest test the type has decides: its `bool.php`, the whole list its `fixed.php` or
+`build.php` returns, its precomputed table, and failing those the terms are made and looked in:
+
+- of most types as far as the value and at least `$padSeqDefaultTries` terms, and past a value
+  beyond the ceiling only while terms growing as they grew can still get to it;
+- of `eval=`, whose terms go wherever the expression says, `$padSeqDefaultTries` terms; a number
+  past every one of them is looked for in the terms at twice, four times ... that many and at
+  the ceiling - one of them the value makes it a term, all of them short of it as the terms made
+  are leave it none, and otherwise every term to the ceiling is made. Terms that kept to one
+  direction over those first ones are taken to keep to it: an expression that turns back after
+  them is not followed there;
+- of `chance` and `random` as far as the value, which is drawn at its own position.
+
+A term past the ceiling is no term of the run: `{sequence list='9223372036854775806', flag,
+eval='@ * 2'}` is 0, though `@ * 2` makes it at position 4611686018427387903.
 
 ### 8. Pull Build (`build/types/pull.php`)
 
@@ -175,7 +217,8 @@ types/
 │   ├── make.php       # Finds next prime from n
 │   └── flags/         # Type-specific flags
 ├── fibonacci/
-│   ├── go.php         # Computes Fibonacci(n) from previous values
+│   ├── order.php      # The order build: the seeds 0 and 1, then go.php
+│   ├── go.php         # The sum of the two terms before - shared with lucas
 │   ├── generated.php  # PADfibonacci constant
 │   └── flags/
 ├── triangular/
@@ -519,6 +562,16 @@ For a type such as `even`, `from` and `to` count terms rather than name values:
 {sequence prime, rows=5, randomly}
 → [17, 3, 41, 7, 23] (random primes)
 ```
+
+## From PHP
+
+`pqArray ( 'even', '', 'rows=3' )` is `[ 2, 4, 6 ]`: the terms of a type as the values they
+are. The parameter is a value of the type - text in it is never template source - and the
+options are the run's named limits, `from`, `to`, `sole`, `minimal`, `maximal`, `min`, `max`,
+`increment`, `rows`, `try`, `stop`, `skip`, `randomly`, `unique` and `build`, as an array
+(`[ 'rows' => 3 ]`) or written `'rows=3, to=50'`. Plays and actions are the tag's. An
+expression for `eval` handed in from PHP is refused, as one from a value is: it is the
+template's own text.
 
 ## Boolean Functions
 

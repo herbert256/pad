@@ -64,7 +64,8 @@ Sum: {pull:nums sum}{$sequence}{/pull:nums}
 
 ## Notes
 
-- Sequences are lazily evaluated where possible
+- A tag's terms are made in full before its rows render; `rows=`, `try=` and the limits in
+  [EXPLAIN.md](EXPLAIN.md#limits) bound how many
 - Use `push` to store sequences for later transformation
 - Use `{resume}` to apply transformations to the last pushed sequence
 - Use `{pull:name}` to iterate over a stored sequence
