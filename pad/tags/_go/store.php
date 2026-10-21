@@ -90,10 +90,10 @@
       $padStoreData = [];
 
     } elseif ( $padProtectValues and padDataValueRange ( $padStoreSource )
-             and padDataValueAddress ( $padStoreSource, $padStoreValue ) ) {
+             and padDataValueAddress ( $padStoreSource ) ) {
 
-      // A range a value names is built whole, a row per member - lib/data.php padDataValueRange.
-      // Who chose it is judged as for an address below, by the text the author wrote: a value
+      // A range a visitor names is built whole, a row per member - lib/data.php
+      // padDataValueRange. Who chose it is judged as for an address below: a request value
       // walked into a {data} named at its close, {data}{$v}{/data 'd'}, or spliced into the
       // second parameter, {data 'd', '{$v}'}, chose 1..100000 as {data 'd', $v} does, and
       // was built whole - 121 s and 386 MB; {data}1..20000{/data 'd'} is the author's.
@@ -102,12 +102,11 @@
       $padStoreData = [];
 
     } elseif ( $padProtectValues and padDataFetches ( $padStoreSource, padTagParm ( 'type' ) )
-             and padDataValueAddress ( $padStoreSource, $padStoreValue ) ) {
+             and padDataValueAddress ( $padStoreSource ) ) {
 
-      // An address is fetched only when the author wrote it, as data= has it (options/
-      // data.php): {data 'd', $v}, and a value walked into a {data} named at its close -
-      // a scheme and host the author did not write - had the server fetch whatever the
-      // request named.
+      // An address a visitor chose is not fetched, as data= has it (options/data.php):
+      // {data 'd', $v} with a request value, and one walked into a {data} named at its
+      // close, had the server fetch whatever the request named.
 
       padError ( "the data value reads as an address to fetch - write the address in the template, data='https://...', or fetch it in the page's PHP with padPrefetch or padCurl" );
       $padStoreData = [];

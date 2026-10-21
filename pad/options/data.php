@@ -44,15 +44,16 @@
     if ( padContentType ( $padDataList ) == 'list' )
       return padError ( "the data= value reads as a PAD list, whose elements would run as expressions" );
 
-    // An address is fetched as data only when it is written in the template, data=
-    // 'https://...': a value - data=$v, or one spliced in at its start, data='{$v}' - had
-    // the server connect to any host and port it can reach, its own pages behind an address
-    // guard (SELF://) and cloud metadata included, and render the answer into the page.
+    // An address a visitor chose is not fetched: a request value - data=$v with ?v=..., or
+    // one spliced into data='{$v}' - had the server connect to any host and port it can
+    // reach, its own pages behind an address guard (SELF://) and cloud metadata included,
+    // and render the answer into the page. The page's own values name the author's
+    // address (lib/data.php padDataValueAddress).
 
-    if ( padDataValueRange ( $padCheck ) and padDataValueAddress ( $padCheck, ! padOptionLiteral ( 'data' ) ) )
+    if ( padDataValueRange ( $padCheck ) and padDataValueAddress ( $padCheck ) )
       return padError ( "the data= value reads as a range of more than $padSeqDefaultTries values - write a range that long in the template" );
 
-    if ( padDataFetches ( $padCheck ) and padDataValueAddress ( $padCheck, ! padOptionLiteral ( 'data' ) ) )
+    if ( padDataFetches ( $padCheck ) and padDataValueAddress ( $padCheck ) )
       return padError ( "the data value reads as an address to fetch - write the address in the template, data='https://...', or fetch it in the page's PHP with padPrefetch or padCurl" );
 
   }

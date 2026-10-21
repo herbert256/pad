@@ -277,31 +277,43 @@
 
   }
 
-  // Whether a value chose the address a data source reads as, so that it is not fetched:
-  // $value when the source is a value outright - data=$v, {data 'd', $v} - and otherwise
-  // when the scheme and host it reads as (or the whole range) are not the author's, by the
-  // template text: the level the tag stands in and every level around it, where data='{$v}'
-  // or {data}{$v}{/data 'd'} has only the field. Every enclosing level, as an address may
-  // reach a tag from further out - a component's data='{#src}' gets it from the caller's
-  // {feed src='https://...'} - or stand inside a tag of its content, {data}{if $live}
-  // https://...{/if}{/data 'd'}, which a test of the content's start refused. The request's
-  // record of spliced values (padSpliceRecord) cannot tell: any value printed earlier - a
-  // footer's http://localhost - is in it, and an address the author wrote that started with
-  // it was refused.
+  // Whether a visitor chose the address a data source reads as - or the range, whose whole
+  // text stands for its host - so that it is not fetched (or built): its host, what follows
+  // the scheme, stands in a value the request brought - GET, POST, a cookie, a segment of a
+  // clean URL - and the template does not write that scheme and host itself. The danger is
+  // a visitor naming the host and port the server connects to: a page variable, an engine
+  // variable ({$padHost}), a parameter a component's caller wrote ({feed src='https://...'}
+  // with data='{#src}') name the author's address, and an address the page's PHP built
+  // from its configuration is fetched as it was before every value was refused.
   //
-  // The head ends where the written host or range ends: as a mere prefix of the text, a
-  // link to http://127.0.0.1:90/ let a value fetch port 9, a written 10.0.0.15 passed
-  // 10.0.0.1, and a range 21..200000 passed 1..20000.
+  // The template counts in the level the data tag stands in and every level around it, as an
+  // address may reach a tag from further out or stand inside a tag of its content, {data}
+  // {if $live}https://...{/if}{/data 'd'}; the match ends where the written host or range
+  // ends - a link to http://127.0.0.1:90/ does not make port 9 the author's, nor a written
+  // 21..200000 the range 1..20000.
 
-  function padDataValueAddress ( $source, $value ) {
+  function padDataValueAddress ( $source ) {
 
     global $pad, $padBase;
 
-    if ( $value )
-      return TRUE;
-
     $text = padDataText ( $source );
     $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
+    $host = strtolower ( trim ( preg_replace ( '#^[a-z]+:/*#i', '', $head ) ) );
+
+    if ( $host === '' )
+      return FALSE;
+
+    $asked = FALSE;
+    $from  = [ $_GET, $_POST, $_COOKIE, $GLOBALS ['padRouteVars'] ?? [] ];
+
+    array_walk_recursive ( $from, function ( $one ) use ( $host, &$asked ) {
+      if ( is_scalar ( $one ) and str_contains ( strtolower ( trim ( (string) $one ) ), $host ) )
+        $asked = TRUE;
+    } );
+
+    if ( ! $asked )
+      return FALSE;
+
     $head = '#(?<![\w.:/-])' . preg_quote ( $head, '#' ) . '(?![\w.:-])#';
 
     for ( $i = $pad; $i >= -1; $i-- )
