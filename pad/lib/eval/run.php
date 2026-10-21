@@ -376,8 +376,13 @@
 
     $value = include PAD . "eval/parms/$kind.php";
 
+    // A negative zero it answers - round(-0.4), php:round(-0.4) - is 0, as an operator's is
+    // (padEvalApply).
+
     if ( is_float ( $value ) and is_nan ( $value ) )
       $value = '';
+    elseif ( is_float ( $value ) and $value == 0 )
+      $value = 0.0;
 
     return $value;
 
@@ -443,6 +448,13 @@
 
     if ( is_float ( $now ) and is_nan ( $now ) )
       $now = '';
+
+    // And PHP's negative zero - 0.00 * -1, 0.00 / -1 - is 0, as {sequence} writes it (pqZero
+    // in lib/sequence.php): it went out as -0, a sign error to the reader of a balance of 0.00
+    // negated.
+
+    elseif ( is_float ( $now ) and $now == 0 )
+      $now = 0.0;
 
     return $now;
 
