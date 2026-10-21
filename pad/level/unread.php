@@ -31,6 +31,22 @@
       if ( file_exists ( PAD . "options/$padUnreadName.php" ) )
         continue;
 
+      // A modifier is read by the handler it belongs to - sum, avg, min and max by group,
+      // orderly and duplicates by random, left, right and both by trim - and its file under
+      // handling/types/ is a placeholder for the reference, which let it pass below on a tag
+      // without that handler: {orders sum='total'} written for a grand total rendered the rows
+      // unsummed in silence. atLeastOnce belongs to the randomize action of a sequence.
+
+      $padUnreadOwner = [ 'sum' => 'group', 'avg' => 'group', 'min' => 'group', 'max' => 'group',
+                          'orderly' => 'random', 'duplicates' => 'random', 'atLeastOnce' => 'randomize',
+                          'left' => 'trim', 'right' => 'trim', 'both' => 'trim' ] [$padUnreadName] ?? NULL;
+
+      if ( $padUnreadOwner !== NULL and ! $padTagSeq [$pad] and ! isset ( $padPrm [$pad] [$padUnreadOwner] ) )
+        return padError ( "the tag {" . $padTag [$pad] . "} was given an option '$padUnreadName' that nothing reads - "
+                          . ( $padUnreadOwner == 'randomize'
+                              ? 'the randomize action of a sequence reads it'
+                              : "$padUnreadOwner reads it, and the tag has no $padUnreadOwner" ) );
+
       // A sequence takes its handling from the subsystem, not from handling/ - where=, group=
       // and page= on one did nothing, in silence - so there a handling name is read only when
       // it is a sequence option or action as well (below).
