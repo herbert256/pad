@@ -66,6 +66,11 @@
   // A{-- shows its @else@ part --}B cut the page inside the comment, and a tag template's
   // {-- the caller's content lands at @content@ --} took the caller's content into the
   // comment, which was then stripped with it.
+  //
+  // And a marker inside the braces of a tag is written over: it is a value of the tag - a
+  // quoted parameter, {echo 'x@else@y'}, {if $s eq '@else@'} - never the content of a level.
+  // The balance of the pairs did not see it, a single tag being no pair, and the level was
+  // cut in the middle of the tag: "No close } found for open {".
 
   function padMarkerText ( $text ) {
 
@@ -74,11 +79,51 @@
 
     $text = padCommentStrip ( $text, TRUE );
 
-    if ( ! str_contains ( $text, '~' ) )
-      return $text;
+    if ( str_contains ( $text, '~' ) ) {
+      $text = preg_replace ( '/\{~(?=[\/A-Za-z_$!#&?^@])/', ' {', $text );
+      $text = preg_replace ( '/(\{[\/A-Za-z_$!#&?^@][^{}]*?)~\}/', '$1} ', $text );
+    }
 
-    $text = preg_replace ( '/\{~(?=[\/A-Za-z_$!#&?^@])/', ' {', $text );
-    $text = preg_replace ( '/(\{[\/A-Za-z_$!#&?^@][^{}]*?)~\}/', '$1} ', $text );
+    return padMarkerInTags ( $text );
+
+  }
+
+  // A tag opens with a { that a name, a sigil or a slash follows, and ends at the } that
+  // brings the brace depth back - a parameter may hold a tag of its own, {echo {$x}}. One
+  // that never closes ends the search: what follows stays as it is.
+
+  function padMarkerInTags ( $text ) {
+
+    $at  = 0;
+    $len = strlen ( $text );
+
+    while ( ( $at = strpos ( $text, '{', $at ) ) !== FALSE ) {
+
+      if ( ! preg_match ( '/\G\{[\/A-Za-z_$!#&?^@]/', $text, $match, 0, $at ) ) {
+        $at++;
+        continue;
+      }
+
+      $depth = 0;
+
+      for ( $i = $at; $i < $len; $i += 1 + strcspn ( $text, '{}', $i + 1 ) )
+        if ( $text [$i] == '{' )
+          $depth++;
+        elseif ( ! --$depth )
+          break;
+
+      if ( $i >= $len )
+        break;
+
+      $tag = substr ( $text, $at, $i - $at + 1 );
+
+      if ( str_contains ( $tag, '@' ) )
+        $text = substr_replace ( $text, preg_replace_callback ( '/@(else|content|start|end)@/',
+                  fn ( $m ) => str_repeat ( ' ', strlen ( $m [0] ) ), $tag ), $at, strlen ( $tag ) );
+
+      $at = $i + 1;
+
+    }
 
     return $text;
 
@@ -86,8 +131,9 @@
 
   function padContentElse ( $input, &$before, &$after ) {
 
-    $text = padMarkerText ( $input );
-    $pos  = strpos ( $text, '@else@' );
+    $pos  = strpos ( $input, '@else@' );
+    $text = ( $pos === FALSE ) ? '' : padMarkerText ( $input );
+    $pos  = ( $pos === FALSE ) ? FALSE : strpos ( $text, '@else@' );
     $list = ( $pos === FALSE ) ? [] : padOpenCloseList ( $text ) ;
 
     while ( $pos !== FALSE) {
@@ -109,8 +155,9 @@
 
   function padContentBeforeAfter ( $input, &$before, &$after ) {
 
-    $text = padMarkerText ( $input );
-    $pos  = strpos ( $text, '@content@' );
+    $pos  = strpos ( $input, '@content@' );
+    $text = ( $pos === FALSE ) ? '' : padMarkerText ( $input );
+    $pos  = ( $pos === FALSE ) ? FALSE : strpos ( $text, '@content@' );
 
     while ( $pos !== FALSE) {
 
