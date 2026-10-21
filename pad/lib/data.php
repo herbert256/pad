@@ -296,7 +296,11 @@
 
     global $pad, $padBase;
 
-    $text = padDataText ( $source );
+    // The address as data/curl.php will ask for it, its stand-ins and HTML escapes undone:
+    // judged on the escaped text, a host with an @ in it - user@host - hid behind the @'s
+    // stand-in from the request value that holds it.
+
+    $text = padParmText ( padDataText ( $source ) );
     $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
     $host = strtolower ( trim ( preg_replace ( '#^[a-z]+:/*#i', '', $head ) ) );
 
