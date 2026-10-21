@@ -308,12 +308,10 @@
       return FALSE;
 
     $asked = FALSE;
-    $from  = [ $_GET, $_POST, $_COOKIE, $GLOBALS ['padRouteVars'] ?? [] ];
 
-    array_walk_recursive ( $from, function ( $one ) use ( $host, &$asked ) {
-      if ( is_scalar ( $one ) and str_contains ( strtolower ( trim ( (string) $one ) ), $host ) )
+    foreach ( padDataRequestValues () as $one )
+      if ( str_contains ( strtolower ( $one ), $host ) )
         $asked = TRUE;
-    } );
 
     if ( ! $asked )
       return FALSE;
@@ -325,6 +323,46 @@
         return FALSE;
 
     return TRUE;
+
+  }
+
+  // The values the request brought - GET, POST, cookies, the segments of a clean URL - as
+  // the text a field prints them: trimmed, as padGetParms2 made the variables.
+
+  function padDataRequestValues () {
+
+    $values = [];
+    $from   = [ $_GET, $_POST, $_COOKIE, $GLOBALS ['padRouteVars'] ?? [] ];
+
+    array_walk_recursive ( $from, function ( $one ) use ( &$values ) {
+      if ( is_scalar ( $one ) and ( $one = trim ( (string) $one ) ) !== '' )
+        $values [$one] = $one;
+    } );
+
+    return $values;
+
+  }
+
+  // An address restored to the text it was written as (data/curl.php) holds a request
+  // value's text as it came: spliced into the query - data='https://api/x?q={$q}' with
+  // ?q=a%26admin%3D1 - its & and = became parameters of their own and sent admin=1 to the
+  // API, where the HTML escape and the stand-ins had kept them apart by accident. Behind
+  // the scheme and host, a request value's text goes in URL-encoded, as the one value it
+  // is; the author's text and the page's own values stay as written.
+
+  function padDataRequestEncoded ( $url ) {
+
+    $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $url, $match ) ? $match [0] : '';
+    $map  = [];
+
+    foreach ( padDataRequestValues () as $one )
+      if ( rawurlencode ( $one ) !== $one )
+        $map [$one] = rawurlencode ( $one );
+
+    if ( ! $map )
+      return $url;
+
+    return $head . strtr ( substr ( $url, strlen ( $head ) ), $map );
 
   }
 

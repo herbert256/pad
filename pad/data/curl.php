@@ -43,9 +43,10 @@
     // source through a printed parameter or field - a component's data='{#src}' - kept the
     // HTML escape of its & and the stand-in of its =, and asked for ?query&amp;a\u{E03D}1,
     // which php -S refused outright. lib/data.php padDataValueAddress judges this same text.
-    // A value spliced into an address's query is the author's to encode, {$q | urlencode}.
+    // A request value's text in it goes in URL-encoded (padDataRequestEncoded), so that its
+    // & and = stay inside the one parameter it was spliced into.
 
-    $curlUrl = padParmText ( $curlUrl );
+    $curlUrl = padDataRequestEncoded ( padParmText ( $curlUrl ) );
 
   $curlUrl = str_replace ( 'SELF://', $GLOBALS ['padHost'], $curlUrl );
   $curlTtl = padTagParm ( 'ttl', $curlTtl );
