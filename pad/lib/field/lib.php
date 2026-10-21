@@ -126,9 +126,15 @@
     $start = $pad-$lvl;
     $own   = in_array ( $property, padTagOwnProperties, TRUE );
 
+    // A property pair is looked past by padLevelInRow when it renders once - {first@xs},
+    // {notFirst@} - but one that iterates a data set - {fields@xs}, {keys@xs}, {data@xs},
+    // {options@xs} - is the loop there: passed over as a property tag, {notFirst@}, {/notFirst@}
+    // inside {fields@xs} read the row of xs and put no comma between the fields of its first
+    // row. A tag's own properties still pass every property pair, as an option does.
+
     for ($i=$start; $i > 0; $i--)
-      if ( ! ( $padAtTag [$i] ?? FALSE )
-           and ! ( $own ? in_array ( $padTag [$i] ?? '', [ 'if', 'case' ] ) : padLevelInRow ( $i ) ) )
+      if ( $own ? ! ( $padAtTag [$i] ?? FALSE ) and ! in_array ( $padTag [$i] ?? '', [ 'if', 'case' ] )
+                : ! padLevelInRow ( $i ) )
         return $i;
 
     return max ( 0, $pad - 1 );
