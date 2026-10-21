@@ -16,6 +16,7 @@ their own could leave the local server no worker to answer them.
 | `curl_ttl.pad` | `{curl ..., ttl=60}` twice answers alike |
 | `curl_data_ttl.php/pad` | A `_data/*.curl` file with a `<ttl>`, and `data=` with the ttl option - an address the page's PHP built |
 | `curl_data_self.pad` | `data='SELF://...'` is fetched from this server, as `{curl}` has it |
+| `padcurlforget_drops_the_copy_the_curl_tag_keeps.php/pad` | `padCurlForget ( $url )` drops the copy `{curl $url, ttl=}` keeps |
 | `an_address_written_after_a_printed_value_is_fetched.php/pad` | A written address is fetched though a value printed before it starts it |
 | `an_address_a_component_is_given_in_the_template_is_fetched.pad` | A {define} fetching the address its caller wrote, data='{#src}' |
 | `an_address_written_inside_a_condition_of_close_named_data_is_fetched.pad` | A written address inside an {if} of a {data} named at its close |

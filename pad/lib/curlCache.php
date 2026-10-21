@@ -117,9 +117,17 @@
 
   }
 
+  // An input array holding nothing but the url asks what the url alone asks (padCurlBuild),
+  // and is kept under the same key: {curl $u, ttl=} hands over [ 'url' => $u ], data= and
+  // padPrefetch the address, so padCurlForget ( $u ) missed the tag's copy - the page showed
+  // the old answer for the rest of the ttl - and one address fetched by both was kept twice.
+
   function padCurlCacheKey ( $input ) {
 
     global $padApp;
+
+    if ( is_array ( $input ) and array_keys ( $input ) === [ 'url' ] )
+      $input = $input ['url'];
 
     return padMD5 ( "$padApp " . serialize ( $input ) );
 
