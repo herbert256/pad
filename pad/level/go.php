@@ -53,7 +53,12 @@
 
       $padTagContent .= $padTagIsValue ? padProtect ( $padTagResult ) : $padTagResult;
 
-    $padTagResult = TRUE;
+    // An answer of '' is a tag that produced nothing, as FALSE is: level/flags.php takes it
+    // for else, so the @else@ half, else=, notOk= and demand see it. Turned into TRUE with
+    // every other value, {e}T@else@F{/e} over an empty $e showed T and {e demand} passed.
+
+    if ( $padTagResult !== '' )
+      $padTagResult = TRUE;
 
   }
 

@@ -68,6 +68,12 @@
 
   $padTagContent = $padCallOB . padFileGet ("$padTagGo.pad");
 
+  // A tag with no PHP half answers TRUE: its template is what it shows. The '' a call of a
+  // missing file leaves is an answer of nothing, which takes the @else@ half (level/go.php).
+
+  if ( ! padFileExists ( "$padTagGo.php" ) )
+    return TRUE;
+
   return $padCallPHP;
 
 ?>
