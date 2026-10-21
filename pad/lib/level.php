@@ -81,28 +81,47 @@ function padSplitOnUnquotedColon ( $str ) {
 
     global $pad, $padName, $padTag, $padCheckSyntax;
 
+    // Every search stays inside the pass the control tag stands in: its root is the nearest
+    // level below it named 'internal' - the page's, level 0, or that of a nested pass such
+    // as a {code} or {sandbox}, which runs on the same level stack. A name found below that
+    // root unwound the pass from inside it (level/nextLevel.php), and start/function.php put
+    // the level that asked for the pass back as it was: {rows}{code}{break 'rows'}{/code}
+    // {/rows} printed the tag's own source and ended the loop, {continue 'rows'} printed its
+    // source on every row and {cease 'rows'} did nothing.
+
+    $floor = 0;
+
+    for ( $key = $pad-1; $key > 0; $key-- )
+      if ( $padTag [$key] == 'internal' ) {
+        $floor = $key;
+        break;
+      }
+
     // A negative offset counts levels up from the control tag. One that reaches past the
     // page root indexed a level that is not there - {cease -9} ended in a raw 'Undefined
-    // array key -7'. Strict mode names it; the lenient walk falls to the nearest loop, as a
-    // name that matches nothing does.
+    // array key -7'. One that lands on the root itself is no loop either: {break -1} at the
+    // top of a page did nothing at all, as a target of 0 reads as no jump (level/start.php).
+    // Strict mode names it; the lenient walk falls to the nearest loop, as a name that
+    // matches nothing does.
 
     if ( $parm and is_numeric ($parm) and $parm < 0 ) {
 
-      if ( $pad + (int) $parm >= 0 )
+      if ( $pad + (int) $parm > $floor )
         return $pad + (int) $parm;
 
       if ( $padCheckSyntax )
-        padError ( "the offset $parm of {" . $padTag [$pad] . "} reaches past the page" );
+        padError ( "the offset $parm of {" . $padTag [$pad] . "} reaches past the "
+                   . ( $floor ? "pass it stands in" : "page" ) );
 
     }
 
     if ( $parm )
-      for ( $key = $pad-1; $key >=0 ; $key-- )
+      for ( $key = $pad-1; $key >= $floor ; $key-- )
         if ( $padName [$key] == $parm )
           return $key;
 
     if ( $parm and is_numeric ($parm) )
-      for ( $key = $pad-1; $key >=0 ; $key-- )
+      for ( $key = $pad-1; $key >= $floor ; $key-- )
         if ( $key == $parm )
           return $key;
 
@@ -110,7 +129,8 @@ function padSplitOnUnquotedColon ( $str ) {
     // control tag silently worked on the wrong level. Strict mode says so instead.
 
     if ( $parm and ! is_numeric ( $parm ) and $padCheckSyntax )
-      padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}" );
+      padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}"
+                 . ( $floor ? " in the pass it stands in" : "" ) );
 
     // The nearest loop is past every level that renders its content once for the row it
     // stands in (padLevelInRow) - only an {if} and a {case} were, and a nameless control
@@ -119,7 +139,7 @@ function padSplitOnUnquotedColon ( $str ) {
     // {break}{/notFirst@rows}{$a}{/rows} printed every row. The root of a pass - the page,
     // or a nested pass such as a {code} - ends the search, as it did.
 
-    for ( $key = $pad-1; $key >=0 ; $key-- )
+    for ( $key = $pad-1; $key >= $floor ; $key-- )
       if ( $padTag [$key] == 'internal' or ! padLevelInRow ( $key ) ) {
 
         // The nearest thing left may be the page root - loop control aimed at nothing.
