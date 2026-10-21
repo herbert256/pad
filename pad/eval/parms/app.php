@@ -30,6 +30,12 @@
 
   $padContent = $value;
 
+  // A date object it returns stays one (call/_exit.php), for the date, ago and localDate
+  // pipes after it: made an array, {$d | due | date('Y')} ended on "Array to string
+  // conversion" and {$d | due} printed nothing.
+
+  $padCallDate = TRUE;
+
   return include PAD . 'call/any.php';
 
 ?>
