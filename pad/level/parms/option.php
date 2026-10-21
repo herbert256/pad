@@ -8,11 +8,13 @@
   // those with one in _options/end/ in $padOptionsAppEnd [$pad] for options/_go/appEnd.php
   // to run on the rendered result as the level closes.
 
+  $padOptionApp   = padAppLevel ();
   $padOptionCheck = padOptionCheck ( $padPrmName );
 
   if ( $padOptionCheck ) {
     $padOptionsAppStart     [$pad] []            = $padPrmName;
     $padOptionsAppStartCall [$pad] [$padPrmName] = $padOptionCheck;
+    $padOptionApp                                = TRUE;
   }
 
   $padOptionCheck = padOptionEndCheck ( $padPrmName );
@@ -20,6 +22,7 @@
   if ( $padOptionCheck ) {
     $padOptionsAppEnd     [$pad] []            = $padPrmName;
     $padOptionsAppEndCall [$pad] [$padPrmName] = $padOptionCheck;
+    $padOptionApp                                = TRUE;
   }
 
   // A name with '=' and nothing behind it is not the bare-flag form: the author started
@@ -50,6 +53,13 @@
     padError ( "a comma is missing between options: " . trim ( $padPrmOne ) );
 
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
+
+  // An option of an application or _common tag, and one the application implements itself in
+  // _options/, reaches the application's PHP with { } and | as stand-ins (padAppValue,
+  // lib/options.php) - in $padPrm and as the option handler's $padGetName.
+
+  if ( $padOptionApp )
+    $padPrm [$pad] [$padPrmName] = padAppValue ( $padPrm [$pad] [$padPrmName] );
 
   $padParmsSetType  = 'option';
   $padParmsSetName  = $padPrmName;

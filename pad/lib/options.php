@@ -168,6 +168,35 @@
 
   }
 
+  // A value handed to the application's own PHP - a parameter or option of an application or
+  // _common tag, as the tag reads it from $padParm, $padOpt [$pad] or $padPrm [$pad], and
+  // the value of an option the application implements in _options/ or _options/end/, its
+  // $padGetName - has { } and | as inert stand-ins, the way padTagParm hands it; quotes stay
+  // real, for htmlspecialchars. What such code echoes or writes into $padContent is template
+  // source: padTagParm protected only the reads through it, so {echoparm $v} echoing $padParm
+  // ran a visitor's {php:getcwd}, and {xs mark=$w} on a built-in tag, through the documented
+  // _options/end/wrap.php pattern, did the same. The stand-ins are restored when the page is
+  // written out. padAppLevel says whether the level is such a tag.
+
+  function padAppValue ( $value ) {
+
+    global $padProtectValues;
+
+    if ( ! $padProtectValues or ! is_string ( $value ) )
+      return $value;
+
+    return strtr ( $value, array_intersect_key ( padProtectMap (), [ '{' => 1, '}' => 1, '|' => 1 ] ) );
+
+  }
+
+  function padAppLevel () {
+
+    global $pad, $padType;
+
+    return in_array ( $padType [$pad] ?? '', [ 'app', 'common' ], TRUE );
+
+  }
+
   // Whether an option of this level was written out in the template - glue=', ', quote="'",
   // a number - rather than taken from a value, glue=$sep. A written-out option is the
   // author's template text; a value goes in as text (padProtect), or a separator a visitor

@@ -710,6 +710,11 @@ Tags in `_tags/` receive parameters via `$padOpt[$pad]` array:
 Named parameters are in `$padPrm[$pad]`:
 - `$padPrm[$pad]['format']` - Named parameter value
 
+A text value arrives with `{`, `}` and `|` as inert stand-ins, as `padTagParm()` hands it - and so
+does `$padGetName`, the value of an option the application implements in `_options/`: what the
+tag echoes or puts in `$padContent` is template source, and a visitor's `{php:...}` in a value
+prints rather than runs. The stand-ins are restored when the page is written out.
+
 **Example** (`_tags/clock.php`):
 ```php
 <?php
