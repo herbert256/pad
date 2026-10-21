@@ -8,7 +8,7 @@
   // its return value is the answer. Failing that, when padField split a trailing :name or
   // :value off the reference and passed it as $parm, the remaining $field is read as a
   // 1-based column number into that level's current row and the matching key or value is
-  // returned. INF when neither applies.
+  // returned. padMiss when neither applies.
 
   function padTag ( $field, $padIdx, $type, $parm ) {
 
@@ -34,7 +34,7 @@
 
     }
 
-    return INF;
+    return padMiss;
 
   }
 

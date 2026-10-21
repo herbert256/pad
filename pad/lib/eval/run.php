@@ -700,7 +700,7 @@
 
     $raw = ( str_contains ( $name, '@' ) or str_contains ( $name, '.' ) ) ? padFieldAt ( $name, 0 ) : padFieldLevel ( $name, 2 );
 
-    return is_object ( $raw );
+    return is_object ( $raw ) and $raw !== padMiss;
 
   }
 

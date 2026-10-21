@@ -18,7 +18,7 @@
   //
   // $type decides which candidates count: 1/2 accept only scalars, 3/4 only arrays, 9 asks
   // whether the value is present and NULL. A candidate of the wrong shape is skipped and
-  // the search continues. INF comes back when nothing matched at all.
+  // the search continues. padMiss (lib/field/field.php) comes back when nothing matched at all.
 
   // An object asked for as a list - a stdClass record, an ArrayObject, an iterator, a
   // generator - is the array it holds, as padData reads one it is handed (padDataObject):
@@ -161,7 +161,7 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    return INF;
+    return padMiss;
 
   }
 

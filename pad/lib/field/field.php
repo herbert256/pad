@@ -19,12 +19,21 @@
   // padFieldFirstParmTag for options, padFieldFirstNonTag for properties, the current level
   // otherwise - and padFieldPrefix or padFieldLevel does the lookup.
   //
-  // INF is the internal "not found" marker, never a value; padField retries a plain field
-  // as a property and then as an option before shaping INF into ''/FALSE for the caller.
+  // padMiss is the internal "not found" marker, never a value; padField retries a plain field
+  // as a property and then as an option before shaping padMiss into ''/FALSE for the caller.
+  // It was INF, which a value can be: a page's $big = INF, a float overflowing to it, read as
+  // no field at all - "Field '$big' not found" - and {if $big gt 1} as "there is no field
+  // named '$big'". The case of an enum of the engine's own is a value no page holds by chance,
+  // compared with ===. The at/ subsystem keeps INF as its own marker; padFieldAt turns it into
+  // this one at its border.
   // The name 'pad' is reserved and always yields $padGo, the app's own URL prefix.
   //
   // padRawValue, padUrlValue and padJsonEscape are output helpers on top of padFieldValue,
   // for embedding a value in template text, in a query string and in HTML respectively.
+
+  enum padFieldMissing { case Marker; }
+
+  const padMiss = padFieldMissing::Marker;
 
   function padFieldCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 1, $lvl  ); }
 
@@ -67,7 +76,7 @@
 
     if ( $secret ) {
 
-      $value = INF;
+      $value = padMiss;
 
     } elseif ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
 
@@ -97,10 +106,10 @@
       elseif ( $prefix     ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
       else                   $value = padFieldLevel  ( $field, $type );
 
-      if ( $value === INF and $type == 1 ) $value = padTag  ( $field, $idx, 7, $parm );
-      if ( $value === INF and $type == 2 ) $value = padTag  ( $field, $idx, 8, $parm );
-      if ( $value === INF and $type == 1 ) $value = padParm ( $field, $idx, 5);
-      if ( $value === INF and $type == 2 ) $value = padParm ( $field, $idx, 6 );
+      if ( $value === padMiss and $type == 1 ) $value = padTag  ( $field, $idx, 7, $parm );
+      if ( $value === padMiss and $type == 2 ) $value = padTag  ( $field, $idx, 8, $parm );
+      if ( $value === padMiss and $type == 1 ) $value = padParm ( $field, $idx, 5);
+      if ( $value === padMiss and $type == 2 ) $value = padParm ( $field, $idx, 6 );
 
       if ( $padInfo )
         include PAD . 'events/fieldClassic.php';
@@ -125,14 +134,14 @@
 
     $scalar = ( is_scalar ( $value ) or $value instanceof DateTimeInterface );
 
-    if     ($type ==  1) $return = ( $value !== NULL and ( $value === INF or ! $scalar ) ) ? FALSE : TRUE;
-    elseif ($type ==  2) $return = ( $value === NULL or    $value === INF or ! $scalar   ) ? ''    : $value;
-    elseif ($type ==  3) $return = ( $value === NULL or    $value === INF or   $scalar   ) ? FALSE : TRUE;
-    elseif ($type ==  4) $return = ( $value === NULL or    $value === INF or   $scalar   ) ? []    : $value;
-    elseif ($type ==  5) $return = ( $value === INF                                                ) ? FALSE : TRUE;
-    elseif ($type ==  6) $return = ( $value === INF                                                ) ? ''    : $value;
-    elseif ($type ==  7) $return = ( $value === INF                                                ) ? FALSE : TRUE;
-    elseif ($type ==  8) $return = ( $value === INF                                                ) ? ''    : $value;
+    if     ($type ==  1) $return = ( $value !== NULL and ( $value === padMiss or ! $scalar ) ) ? FALSE : TRUE;
+    elseif ($type ==  2) $return = ( $value === NULL or    $value === padMiss or ! $scalar   ) ? ''    : $value;
+    elseif ($type ==  3) $return = ( $value === NULL or    $value === padMiss or   $scalar   ) ? FALSE : TRUE;
+    elseif ($type ==  4) $return = ( $value === NULL or    $value === padMiss or   $scalar   ) ? []    : $value;
+    elseif ($type ==  5) $return = ( $value === padMiss                                                ) ? FALSE : TRUE;
+    elseif ($type ==  6) $return = ( $value === padMiss                                                ) ? ''    : $value;
+    elseif ($type ==  7) $return = ( $value === padMiss                                                ) ? FALSE : TRUE;
+    elseif ($type ==  8) $return = ( $value === padMiss                                                ) ? ''    : $value;
     elseif ($type ==  9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
     if ( $padInfo )
@@ -155,7 +164,7 @@
     $head = preg_split ( '/[.@:]/', $field ) [0];
 
     if ( $head !== 'padMailLast' and padEngineName ( $head ) )
-      return INF;
+      return padMiss;
 
     if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )
       $field .= '@*';
@@ -175,14 +184,18 @@
       $padAtShallow = TRUE;
 
       try {
-        return padAt ( "$field@*", $lvl );
+        $value = padAt ( "$field@*", $lvl );
       } finally {
         $padAtShallow = $keep;
       }
 
+      return ( $value === INF ) ? padMiss : $value;
+
     }
 
-    return padAt ( $field, $lvl );
+    $value = padAt ( $field, $lvl );
+
+    return ( $value === INF ) ? padMiss : $value;
 
   }
 

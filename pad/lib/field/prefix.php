@@ -10,7 +10,7 @@
   //
   // padFieldSearch does the actual read: objects and resources are cast to arrays first,
   // and a hit still has to match what the caller asked for - types 1 and 2 want a scalar,
-  // 3 and 4 an array. A missing key or the wrong shape both give INF, the not-found marker.
+  // 3 and 4 an array. A missing key or the wrong shape both give padMiss, the not-found marker.
 
   function padFieldPrefix ( $field, $idx, $type, $prefix ) {
 
@@ -48,13 +48,13 @@
     // A prefix that names a scalar global holds no fields - not found, not a TypeError.
 
     if ( ! is_array ($current) or ! array_key_exists($field, $current ) )
-      return INF;
+      return padMiss;
 
     if ( ($type == 1 or $type == 2) and is_array($current[$field]) )
-      return INF;
+      return padMiss;
 
     if ( ($type == 3 or $type == 4) and ! is_array($current[$field]) )
-      return INF;
+      return padMiss;
 
     return $current [$field];
 
