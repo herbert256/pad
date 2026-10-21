@@ -286,6 +286,16 @@
       return $type;
     }
 
+    // JSONP written with white space inside its parentheses - cb( [...] ), the bracket on
+    // the next line, a ; after it - has no ({ or ([ side by side: once a closing ) at the
+    // very end no longer said JSON, it read as CSV and iterated nothing. A text that ends
+    // with the ) - and an optional ; - of a ( whose content is a bracketed document.
+
+    if ( preg_match ( '/\(\s*([\[{].*[\]}])\s*\)\s*;?$/s', $content, $match ) ) {
+      $content = $match [1];
+      return 'json';
+    }
+
     // Numeric ends of any sign or with decimals make a range too, as padGetRange counts them:
     // ctype_alnum refuses the - and the ., and -3..3, -5..-1 or 1.5..3 were read as a CSV
     // header with no rows - an empty set in silence, where {sequence '-3..3'} counts.
