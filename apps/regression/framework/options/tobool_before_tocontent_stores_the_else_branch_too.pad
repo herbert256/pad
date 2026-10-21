@@ -1,0 +1,2 @@
+{data 'xs'}[{"n":1}]{/data}
+A[{e toBool='b1', toContent='c1'}x@else@none{/e}][{content:c1}] B[{e toContent='c2', toBool='b2'}x@else@none{/e}][{content:c2}] C[{xs where='$n gt 9', toBool='b3', toContent='c3'}{$n}@else@nobody{/xs}][{content:c3}] D[{if bool:b1 or bool:b2 or bool:b3}set{else}unset{/if}]

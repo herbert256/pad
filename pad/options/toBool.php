@@ -10,9 +10,16 @@
 
   $padStoreName = $padPrm [$pad] ['toBool'];
 
+  // The text is taken before the flag is decided, on every branch: a level that showed its
+  // @else@ took the FALSE branch without it, and a toContent written after this stored the
+  // emptied text - {e toBool='b', toContent='c'}x@else@none{/e} stored nothing for c, where
+  // written the other way round it stored none.
+
+  $padStoreText ??= $padContent;
+
   if     ( $padNull [$pad]  ) $padBoolStore [$padStoreName] = FALSE;
   elseif ( $padElse [$pad]  ) $padBoolStore [$padStoreName] = FALSE;
-  elseif ( trim ( $padStoreText ??= $padContent ) != '' ) $padBoolStore [$padStoreName] = TRUE;
+  elseif ( trim ( $padStoreText ) != '' ) $padBoolStore [$padStoreName] = TRUE;
   else                                  $padBoolStore [$padStoreName] = FALSE;
 
   $padContent = '';
