@@ -204,15 +204,22 @@
 
   function padFragmentKey () {
 
-    global $pad, $padOpt, $padPrm, $padOrg, $padApp, $padPage;
+    global $pad, $padOpt, $padPrm, $padOrg, $padSource, $padPipeBefore, $padApp, $padPage;
 
     $vary = padTagParm ( 'vary', '' );
+
+    // The tag as written is the opening tag and what stands between it and its close, with
+    // the opening pipe that rewrites that content: two tags that open alike and hold another
+    // body - {xs cache=60}<li>{$n}</li>{/xs} and {xs cache=60}{$n},{/xs}, the same rows
+    // shown as a list and as a line - were one entry, and the second printed the first one's
+    // rendering.
 
     if ( padFragmentNamed () )
       $what = 'name ' . ( $padOpt [$pad] [1] ?? '' );
     else
       $what = "page $padPage " . $padOrg [$pad] . ' ' . serialize ( $padOpt [$pad] ) . ' '
-            . serialize ( array_diff_key ( $padPrm [$pad], [ 'cache' => 1, 'ttl' => 1, 'vary' => 1 ] ) );
+            . serialize ( array_diff_key ( $padPrm [$pad], [ 'cache' => 1, 'ttl' => 1, 'vary' => 1 ] ) ) . ' '
+            . serialize ( [ $padSource [$pad] ?? '', $padPipeBefore [$pad] ?? '' ] );
 
     // A clean URL route is one page for every value its brackets bind (lib/route.php):
     // products/[id] for 42 and for 43 are two pages, and a section of one is not the other's.
