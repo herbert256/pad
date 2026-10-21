@@ -4,7 +4,7 @@
   // condition holds ({while}) or does not hold ({until}). tags/until.php is only an include
   // of this file, and $padTag [$pad] is what decides which way round the test goes.
   //
-  // The condition is taken raw from $padParms [$pad] [0] ['padPrmOrg'] and re-evaluated on
+  // The condition is taken raw from the first parameter (padFirstParm) and re-evaluated on
   // every pass. Returning [ 1 => [] ] hands the level a single occurrence to render and
   // $padWalk [$pad] = 'next' asks level/end.php to call this handler once more afterwards;
   // returning NULL with an empty $padWalk ends the loop. When the condition sits on the
@@ -42,7 +42,7 @@
   // Reading a missing condition was a PHP error; now a conditionless loop simply does
   // not run - and strict mode says why.
 
-  $padWhileOrg = $padParms [$pad] [0] ['padPrmOrg'] ?? '';
+  $padWhileOrg = padFirstParm ();
 
   if ( trim ( $padWhileOrg ) == '' ) {
 

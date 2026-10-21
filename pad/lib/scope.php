@@ -219,6 +219,24 @@
   // {php:...} in it ran - as stand-ins they print as themselves (exits/exits.php) and open
   // nothing. A built-in tag reads its own options whole. Off under $padProtectValues = FALSE.
 
+  // The expression of an {if}, a {case}, a {while} or an {until}: its first positional
+  // parameter, the text as written. The first item of the list was taken whatever its kind,
+  // and an option written before the condition became the condition - {while name='w', $i lt
+  // 3} never ran, {until name='w', $i ge 3} ran to its ceiling and {if toBool='zz', $i lt 3}
+  // held, the real condition ignored. Options stand anywhere else in a tag's list.
+
+  function padFirstParm () {
+
+    global $pad, $padParms;
+
+    foreach ( $padParms [$pad] ?? [] as $one )
+      if ( ( $one ['padPrmKind'] ?? '' ) == 'parm' )
+        return $one ['padPrmOrg'];
+
+    return '';
+
+  }
+
   function padTagParm ($parm, $default='') {
 
     global $pad, $padPrm, $padProtectValues, $padType, $padDone;

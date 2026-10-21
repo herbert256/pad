@@ -16,10 +16,12 @@
   if ( ! $padPair [$pad] and $padCheckSyntax )
     padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
 
-  if ( $padCheckSyntax and trim ( $padParms [$pad] [0] ['padPrmOrg'] ?? '' ) == '' )
+  $padCaseOrg = padFirstParm ();
+
+  if ( $padCheckSyntax and trim ( $padCaseOrg ) == '' )
     padError ( "the {case} has no value" );
 
-  $padBasis   = padEval  ( $padParms [$pad] [0] ['padPrmOrg'] ?? '' );
+  $padBasis   = padEval  ( $padCaseOrg );
   $padChk     = strpos   ( $padContent , '{when' );
 
   if ( $padCheckSyntax and $padChk === FALSE )

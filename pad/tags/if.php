@@ -29,7 +29,7 @@
   if ( ( $padParms [$pad] [0] ['padPrmName'] ?? '' ) == 'bool' )
     $padIf = ( include PAD . 'options/bool.php' ) ? '1' : '0';
   else
-    $padIf = $padParms [$pad] [0] ['padPrmOrg'] ?? '';
+    $padIf = padFirstParm ();
 
   if ( trim ( $padIf ) == '' and $padCheckSyntax )
     padError ( "the {if} has no condition" );
