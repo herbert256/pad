@@ -7,7 +7,7 @@
   if ( ! $padPipeAfter [$pad] )
     return;
 
-  $padResult [$pad] = padEval ( $padPipeAfter [$pad], $padResult [$pad], TRUE );
+  $padResult [$pad] = padEval ( $padPipeAfter [$pad], padEntityLetters ( $padResult [$pad] ), TRUE );
 
   // The result is spliced into the parent's text, so it has to be a string: a pipe that ends
   // on a list - {d}x{/d | sequence:sum([1,2,3])} - handed padLevel an array and the request

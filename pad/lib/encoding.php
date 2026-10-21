@@ -74,6 +74,32 @@
                           $string ?? '' );
   }
 
+  // The letters and signs of the rendered text that a field's sanitize step wrote as named
+  // entities - &eacute; &euml; &Aring; &hellip; &euro; - as the characters they are, for a
+  // closing pipe (level/pipes/after.php), which transforms the output the reader sees:
+  // {/items | upper} made Zo&euml; ZO&EUML;, which is no entity and showed as written, and
+  // truncate and left cut an entity in half. Only HTML 4's own entities, which the sanitize
+  // step writes, and never &amp; &lt; &gt; &quot; - nor one that would stand for a
+  // character PAD or HTML reads as syntax - so no markup and no tag comes of it.
+
+  function padEntityLetters ( $text ) {
+
+    if ( ! is_string ( $text ) or ! str_contains ( $text, '&' ) )
+      return $text;
+
+    return preg_replace_callback ( '/&([A-Za-z][A-Za-z0-9]*);/', function ( $match ) {
+
+      if ( in_array ( $match [1], [ 'amp', 'lt', 'gt', 'quot' ], TRUE ) )
+        return $match [0];
+
+      $char = html_entity_decode ( $match [0], ENT_QUOTES | ENT_HTML401, 'UTF-8' );
+
+      return ( $char === $match [0] or strpbrk ( $char, "{}|=,@'\"\\<>&" ) !== FALSE ) ? $match [0] : $char;
+
+    }, $text );
+
+  }
+
   // A brace the opening pipe masked (level/pipes/before.php, padPipeMask) is a brace of the
   // content all the same, so {json 'products' | ignore} still turns the content's braces to
   // text.
