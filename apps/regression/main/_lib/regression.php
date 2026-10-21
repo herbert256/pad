@@ -509,8 +509,8 @@
       'name'   => $name,
       'url'    => $url,
       'what'   => getSuiteWhat ( $app, $name ),
-      'want'   => ( $status == 'ok' ) ? '' : getSuiteShown ( $expect ),
-      'got'    => ( $status == 'ok' ) ? '' : getSuiteShown ( $got    ),
+      'want'   => ( $status == 'ok' ) ? '' : getSuiteShown ( $expect, $got    ),
+      'got'    => ( $status == 'ok' ) ? '' : getSuiteShown ( $got,    $expect ),
       'status' => $status,
       'failed' => ( $status == 'FAILED' ) ? 1 : 0,
       'count'  => getSuiteCount ( $name, $expect )
@@ -568,16 +568,39 @@
   // What a failed row keeps of a body: escaped as the overview renders it, and cut at 64 KB.
   // A page that died on PHP's time limit came back as an error report of 127 MB, kept whole:
   // the framework overview that shows it ran out of its gigabyte, and the regression suite
-  // failed on that index. 64 KB holds all but a handful of the stored answers whole, so the
-  // place where want and got part - which pad_test names - stays in what is kept. Cut at a
-  // character, not inside one.
+  // failed on that index. Cut at a character, not inside one.
+  //
+  // The cut is taken around the place where the body parts from the other one of its row -
+  // want from got, got from want - with 4 KB before it, and the same for both, so that place
+  // is in what is kept: cut from the start, an answer over 64 KB that changed beyond it kept
+  // two equal texts, and pad_test and the overview showed no difference for a failing test.
+  // A note in front says how much was left out there. Two bodies of 64 KB or less are kept
+  // whole.
 
-  function getSuiteShown ( $text ) {
+  function getSuiteShown ( $text, $other = '' ) {
 
-    $text = (string) $text;
+    $text  = (string) $text;
+    $other = (string) $other;
 
-    if ( strlen ( $text ) > 65536 )
-      $text = mb_strcut ( $text, 0, 65536, 'UTF-8' ) . "\n... cut - " . strlen ( $text ) . ' bytes in all';
+    if ( max ( strlen ( $text ), strlen ( $other ) ) > 65536 ) {
+
+      $same  = min ( strlen ( $text ), strlen ( $other ) );
+      $same  = strspn ( substr ( $text, 0, $same ) ^ substr ( $other, 0, $same ), "\0" );
+      $start = max ( 0, $same - 4096 );
+
+      // To the start of a character - the bytes before the parting are the two bodies' own
+      // alike, so both start at the same place.
+
+      while ( $start > 0 and ( ord ( $text [$start] ) & 0xC0 ) == 0x80 )
+        $start--;
+
+      $kept = mb_strcut ( substr ( $text, $start ), 0, 65536, 'UTF-8' );
+      $left = strlen ( $text ) - $start - strlen ( $kept );
+
+      $text = ( $start ? "... $start bytes before\n" : '' ) . $kept
+            . ( $left ? "\n... cut - " . strlen ( $text ) . ' bytes in all' : '' );
+
+    }
 
     return padEscape ( htmlspecialchars ( $text ) );
 
@@ -978,8 +1001,8 @@
       $tests [] = [
         'name'   => $name,
         'url'    => $url,
-        'want'   => ( $status == 'ok' ) ? '' : getSuiteShown ( $expect ),
-        'got'    => ( $status == 'ok' ) ? '' : getSuiteShown ( $got    ),
+        'want'   => ( $status == 'ok' ) ? '' : getSuiteShown ( $expect, $got    ),
+        'got'    => ( $status == 'ok' ) ? '' : getSuiteShown ( $got,    $expect ),
         'status' => $status,
         'failed' => ( $status == 'FAILED' ) ? 1 : 0
       ];
