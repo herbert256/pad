@@ -24,21 +24,28 @@
 
     $padPrmCompare = str_starts_with ( $padPrmValue, '=' );
 
-    if ( in_array    ( $padPrmName [0] ?? '', ['$','%'] ) and
-         padValidVar ( substr ( $padPrmName, 1 ) )  and
-         strlen      ( $padPrmValue ) and
-         ! $padPrmCompare )
-
-      include PAD . 'level/parms/variable.php';
-
     // The first item of {if}, {while}, {until}, {case} and {echo} is their whole expression,
     // and a bare word there is that expression - a constant, false, null - not a flag option
     // of the tag: {if false} set the option false, which the condition then read as TRUE and
     // rendered its content; {while false} ran its 10000 rounds, {echo PHP_VERSION} printed 1.
+    //
+    // So is $name = value there: the evaluator reads a single = as eq, as {elseif $x = 1} and
+    // {if ($x = 1)} did, where the opening tag took it for a level variable - {if $role =
+    // 'admin'} set $role to admin and then compared it with itself, TRUE for every role, and
+    // {while $n = 5} looped its 10000 rounds.
+
+    $padPrmWhole = ( ! count ( $padParms [$pad] ) and ( $padType [$pad] ?? '' ) == 'pad'
+                     and in_array ( $padTag [$pad], [ 'if', 'while', 'until', 'case', 'echo' ], TRUE ) );
+
+    if ( in_array    ( $padPrmName [0] ?? '', ['$','%'] ) and
+         padValidVar ( substr ( $padPrmName, 1 ) )  and
+         strlen      ( $padPrmValue ) and
+         ! $padPrmCompare and ! $padPrmWhole )
+
+      include PAD . 'level/parms/variable.php';
 
     elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare and ! padParmsRaw ()
-             and ! ( $padPrmValue === '' and ! count ( $padParms [$pad] ) and ( $padType [$pad] ?? '' ) == 'pad'
-                     and in_array ( $padTag [$pad], [ 'if', 'while', 'until', 'case', 'echo' ], TRUE ) ) )
+             and ! ( $padPrmValue === '' and $padPrmWhole ) )
 
       include PAD . 'level/parms/option.php';
 
