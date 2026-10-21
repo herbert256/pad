@@ -7,12 +7,17 @@
 
   // A list given as a list - {sequence [3, 1, 2]}, list=$values - is taken as it is, its
   // values in order; one of them that is no single value has no place in a sequence.
+  //
+  // FALSE is how the walk says a candidate makes no term, so a FALSE in the list is lost; the
+  // strict check names it, where [1, false, 2] counted 2 in silence.
 
   if ( is_array ( $pqParm ) ) {
 
     foreach ( $pqParm as $pqListOne )
       if ( ! is_scalar ( $pqListOne ) and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
         padError ( "A list sequence holds values, and one of them is a " . gettype ( $pqListOne ) );
+      elseif ( $pqListOne === FALSE and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
+        padError ( "A list sequence holds values, and FALSE is none: the walk reads it as no term" );
 
     return array_values ( array_filter ( $pqParm, 'is_scalar' ) );
 
