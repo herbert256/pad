@@ -279,32 +279,36 @@
 
   // Whether a value chose the address a data source reads as, so that it is not fetched:
   // $value when the source is a value outright - data=$v, {data 'd', $v} - and otherwise
-  // when the scheme and host it reads as are not the author's, by the template text it
-  // came from, $written: a source written in a tag's parameters or between its tags has
-  // them in the text of the level the tag stands in, where data='{$v}' has only the field;
-  // content walked before it is read, $start, has to begin with them - {data}{$v}{/data
-  // 'd'} does not. The request's record of spliced values (padSpliceRecord) cannot tell:
-  // any value printed earlier - a footer's http://localhost - is in it, and an address
-  // the author wrote that starts with it was refused.
+  // when the scheme and host it reads as (or the whole range) are not the author's, by the
+  // template text: the level the tag stands in and every level around it, where data='{$v}'
+  // or {data}{$v}{/data 'd'} has only the field. Every enclosing level, as an address may
+  // reach a tag from further out - a component's data='{#src}' gets it from the caller's
+  // {feed src='https://...'} - or stand inside a tag of its content, {data}{if $live}
+  // https://...{/if}{/data 'd'}, which a test of the content's start refused. The request's
+  // record of spliced values (padSpliceRecord) cannot tell: any value printed earlier - a
+  // footer's http://localhost - is in it, and an address the author wrote that started with
+  // it was refused.
+  //
+  // The head ends where the written host or range ends: as a mere prefix of the text, a
+  // link to http://127.0.0.1:90/ let a value fetch port 9, a written 10.0.0.15 passed
+  // 10.0.0.1, and a range 21..200000 passed 1..20000.
 
-  function padDataValueAddress ( $source, $value, $written, $start = FALSE ) {
+  function padDataValueAddress ( $source, $value ) {
+
+    global $pad, $padBase;
 
     if ( $value )
       return TRUE;
 
     $text = padDataText ( $source );
     $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
+    $head = '#(?<![\w.:/-])' . preg_quote ( $head, '#' ) . '(?![\w.:-])#';
 
-    // The head ends where the written host or range ends: as a mere prefix of the text, a
-    // link to http://127.0.0.1:90/ let a value fetch port 9, a written 10.0.0.15 passed
-    // 10.0.0.1, and a range 21..200000 passed 1..20000.
+    for ( $i = $pad; $i >= -1; $i-- )
+      if ( is_string ( $padBase [$i] ?? NULL ) and preg_match ( $head, $padBase [$i] ) )
+        return FALSE;
 
-    $head = '(?<![\w.:/-])' . preg_quote ( $head, '#' ) . '(?![\w.:-])';
-
-    if ( $start )
-      return ! preg_match ( "#^$head#", padDataText ( $written ) );
-
-    return ! preg_match ( "#$head#", (string) $written );
+    return TRUE;
 
   }
 
