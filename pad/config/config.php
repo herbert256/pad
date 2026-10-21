@@ -10,11 +10,34 @@
   // application database), file and directory modes, date formats, session variables, the
   // default data pipelines, tidy, the select subsystem, and misc request options.
 
+  // What happens when an error is raised (inits/error.php loads error/types/<action>.php):
+  // 'pad' ends the request with the error page - the full report for this machine, the
+  // request id and the application's _errors/ page for a visitor; 'boot' ends it with a
+  // plain 500 (the JSON report for a local tool); 'stop' with a plain 500 that says
+  // nothing; 'exit' drops it where it stands and ships nothing; 'php' hands the error to
+  // PHP's own handling; 'ignore' swallows it and goes on; 'log' writes it to the log and
+  // goes on; 'dump' writes the full report under DATA/dumps/ and goes on. The command line
+  // and a local tool get 'boot' unless the application chose its own action.
+
   $padErrorAction    = 'pad';
+
+  // Which PHP errors reach that action (error/error.php padErrorReporting): 'none', 'error',
+  // 'warning', 'notice' - each taking in the ones listed before it - or 'all', deprecations
+  // as well.
 
   $padErrorLevel     = 'all';
 
+  // TRUE runs the engine's risky include points - a tag's handler, a field, an expression,
+  // the application's PHP files - inside try/catch (try/try.php), so a throw there becomes
+  // a PAD error with its template position; FALSE makes those calls bare and leaves an
+  // uncaught throwable to PHP.
+
   $padErrorTry       = TRUE;
+
+  // $padErrorLog writes every error as one [PAD] line - request id, message with its
+  // credentials redacted, template file:line:column - to the server's error log
+  // (lib/session.php padLogError). $padErrorReport writes the full report to
+  // DATA/dumps/<app>/ as well (lib/dump.php), keeping the newest $padErrorKeep of them.
 
   $padErrorLog       = TRUE;
   $padErrorReport    = TRUE;
@@ -40,6 +63,9 @@
 
   $padSample         = 'local';
 
+  // TRUE has the expression evaluator keep the tokens and the tree of every evaluation in
+  // the global $_eval (lib/eval/eval.php padEvalTrace) - for debugging the evaluator itself,
+  // costly on a real page.
 
   $padEvalTrace = FALSE;
 
@@ -96,9 +122,27 @@
 
   $padRecord = FALSE;
 
+  // The debug information a request records - '' none, or a comma-separated list of the
+  // presets in config/info/: 'trace' (the execution trace in DATA/trace/), 'stats', 'track',
+  // 'xml', 'xref', 'info' (stats, track and xref together), 'all', 'none'. Each word
+  // includes config/info/<word>.php, which switches the $padInfo* flags explained in
+  // config/info/all.php. Set in the configuration; a request cannot switch it on.
+
   $padInfo = '';
 
+  // The shared application _common takes part (build/base.php, build/libs.php,
+  // lib/paths.php): its _lib/ is loaded, its _tags/, _include/, _functions/, _data/,
+  // _content/ and _lang/ are looked in after the application's own, its .env is read, and
+  // a _common/_inits.pad would frame every page. FALSE keeps the application on its own;
+  // _common is then reached only by the common: prefix.
+
   $padCommon = TRUE;
+
+  // How the result leaves the engine (config/output/<type>.php, exits/output/<type>.php):
+  // 'web' the page to the browser; 'file' written to disk, after which the request restarts
+  // at $padFileNextPage; 'download' sent as an attachment; 'console' plain text for the
+  // command line - the cli SAPI gets it by itself; 'json' and 'csv' the page's $padExpose
+  // variables as data instead of the template.
 
   $padOutputType = 'web';
 
@@ -110,6 +154,13 @@
   // engine name never does.
 
   $padExpose = [];
+
+  // The page cache (cache/inits.php, cache/exits.php): TRUE keeps the whole answer of a
+  // plain GET for an anonymous visitor and answers the next one from it - 304 or the stored
+  // body - before any PHP of the application runs. The ages and the backend are set in
+  // config/cache.php ($padCacheServerAge must be above 0 for anything to be kept); a page
+  // under a _guard.php, one with a {nocache} part that pushes, or one that exposes data
+  // is never kept.
 
   $padCache = FALSE;
 
@@ -154,10 +205,14 @@
 
   include_once PAD . 'lib/env.php';
 
+  // The engine's own 'pad' database (padDb) - host, database, user, password.
+
   $padSqlPadHost           = padEnv ( 'padSqlPadHost' );
   $padSqlPadDatabase       = padEnv ( 'padSqlPadDatabase' );
   $padSqlPadUser           = padEnv ( 'padSqlPadUser' );
   $padSqlPadPassword       = padEnv ( 'padSqlPadPassword' );
+
+  // The application database (db() and the database tags) - host, database, user, password.
 
   $padSqlHost               = padEnv ( 'padSqlHost' );
   $padSqlDatabase           = padEnv ( 'padSqlDatabase' );
@@ -172,8 +227,14 @@
   $padSqlDriver             = padEnv ( 'padSqlDriver' );
   $padSqlSetup              = padEnv ( 'padSqlSetup' );
 
+  // The permissions a directory and a file get when the engine creates them under DATA/ -
+  // padFilePut, uploads, logs, dumps, the file caches, migrations and the SQLite database.
+
   $padDirMode  = 0755;
   $padFileMode = 0644;
+
+  // The format, in PHP's date() letters, of the date pipe when it is given none: {$created |
+  // date} writes 2026-10-21 (functions/date.php).
 
   $padFmtDate = 'Y-m-d';
 
@@ -185,6 +246,11 @@
   $padLocale   = 'en';
   $padLocales  = [];
   $padTimezone = '';
+
+  // The globals a session keeps (lib/session.php, inits/parms.php): names listed here, e.g.
+  // [ 'session_user', 'cart' ], start the session, are filled from it before the page's PHP
+  // runs - empty when the session has none - and written back to it at the end of the
+  // request. A request value never fills one of them.
 
   $padSessionVars = [];
 
@@ -226,11 +292,29 @@
 
   $padCsp = "frame-ancestors 'self'";
 
+  // The pipes every {$field} - and {#parameter} - runs through (level/var.php):
+  // $padDataDefaultStart before the field's own pipes, $padDataDefaultEnd after them.
+  // 'sanitize' encodes the characters HTML gives a meaning (functions/sanitize.php); {!x}
+  // skips both chains, {echo} never runs them. Emptying the end chain writes every field
+  // raw - every value then needs its own escaping.
+
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 
+  // The clean-up of a finished HTML page (exits/tidy.php): $padTidy runs PHP's tidy
+  // extension with the settings of config/tidy.php - indented, html5 - and a page can ask
+  // for it alone with an @tidy@ marker; $padMyTidy, when $padTidy is off, runs PAD's own
+  // light text pass (exits/myTidy.php). Neither runs on a fragment, an include request or a
+  // data answer.
+
   $padTidy   = TRUE;
   $padMyTidy = FALSE;
+
+  // The select subsystem (select/_lib/select.php, docs/DATABASE.md): $padSelect declares
+  // the tables a template may use as tags - [ 'users' => [ 'key' => 'id' ] ], and virtual
+  // tables with base=, where=, order= - and $padRelations their relations - $padRelations
+  // ['orders'] ['customers'] = 'customerNumber' - so a nested {select:} follows them. Set in
+  // an application's _lib/ or _inits.php.
 
   $padSelect    = [];
   $padRelations = [];
@@ -312,6 +396,17 @@
   // row it answers, so a new password ends every remember-me cookie made before it.
 
   $padAuthRemember = '';
+
+  // $padGzip compresses a web answer for a client that accepts gzip (lib/output.php); the
+  // page cache has its own $padCacheServerGzip.
+  //
+  // $padCookies sends PAD's two identity cookies (inits/cookies.php): padSesID, the visitor
+  // across requests, and padReqID, which the next request reports as its parent. FALSE sends
+  // none - no tracking of the visitor's requests.
+  //
+  // $padNoNo makes the application plain PHP (inits/nono.php, the nono application): the
+  // page's .php runs by itself and ends the request - no template, no level loop, no
+  // exits - with every pad* global unset first; the page sends its own output and headers.
 
   $padGzip      = FALSE;
   $padCookies   = TRUE;

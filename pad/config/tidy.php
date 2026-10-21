@@ -43,6 +43,11 @@
     'custom-tags'         => 'inline'
   ];
 
+  // PAD's own pass (exits/myTidy.php) runs these steps in this order, each when it is on:
+  // the filter flags of $padMyTidySanitize; every tab to a blank; the page trimmed; the white
+  // space between two tags taken out (><); the blanks at the start of each line taken out;
+  // empty lines taken out; every line break taken out, the page on one line.
+
   $padMyTidySanitize         ??= [];
   $padMyTidyTabToSpace       ??= TRUE;
   $padMyTidyTrim             ??= TRUE;
