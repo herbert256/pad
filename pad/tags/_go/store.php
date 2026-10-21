@@ -90,8 +90,9 @@
       $padStoreData = [];
 
     } elseif ( $padProtectValues and padDataFetches ( $padStoreSource, padTagParm ( 'type' ) )
-             and padDataValueAddress ( $padStoreSource, $padStoreValue,
-                   ( $padWalk [$pad] == 'end' and (string) $padContent !== '' ) ? $padBase [$pad] : NULL ) ) {
+             and ( ( $padWalk [$pad] == 'end' and (string) $padContent !== '' )
+                   ? padDataValueAddress ( $padStoreSource, $padStoreValue, $padBase [$pad], TRUE )
+                   : padDataValueAddress ( $padStoreSource, $padStoreValue, $padBase [$pad - 1] ?? '' ) ) ) {
 
       // An address is fetched only when the author wrote it, as data= has it (options/
       // data.php): {data 'd', $v}, and a value walked into a {data} named at its close that

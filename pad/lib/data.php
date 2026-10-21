@@ -274,31 +274,27 @@
   }
 
   // Whether a value chose the address a data source reads as, so that it is not fetched:
-  // $value when the source is a value outright - data=$v, {data 'd', $v} - or a value
-  // spliced into a source written in the template stands at its start, data='{$v}' (one
-  // kept by padSpliceRecord, lib/level.php, with a scheme's colon in it); $written, for
-  // content walked before it is read, is the source as the author wrote it, which has to
-  // start with the scheme and host the walk produced - {data}{$v}{/data 'd'} does not.
+  // $value when the source is a value outright - data=$v, {data 'd', $v} - and otherwise
+  // when the scheme and host it reads as are not the author's, by the template text it
+  // came from, $written: a source written in a tag's parameters or between its tags has
+  // them in the text of the level the tag stands in, where data='{$v}' has only the field;
+  // content walked before it is read, $start, has to begin with them - {data}{$v}{/data
+  // 'd'} does not. The request's record of spliced values (padSpliceRecord) cannot tell:
+  // any value printed earlier - a footer's http://localhost - is in it, and an address
+  // the author wrote that starts with it was refused.
 
-  function padDataValueAddress ( $source, $value, $written = NULL ) {
+  function padDataValueAddress ( $source, $value, $written, $start = FALSE ) {
 
     if ( $value )
       return TRUE;
 
     $text = padDataText ( $source );
-
-    foreach ( array_keys ( $GLOBALS ['padSpliceValues'] ?? [] ) as $one ) {
-      $one = trim ( (string) $one );
-      if ( str_contains ( $one, ':' ) and str_starts_with ( $text, $one ) )
-        return TRUE;
-    }
-
-    if ( $written === NULL )
-      return FALSE;
-
     $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
 
-    return ! str_starts_with ( padDataText ( $written ), $head );
+    if ( $start )
+      return ! str_starts_with ( padDataText ( $written ), $head );
+
+    return ! str_contains ( (string) $written, $head );
 
   }
 

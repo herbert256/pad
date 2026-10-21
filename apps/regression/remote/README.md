@@ -16,6 +16,7 @@ their own could leave the local server no worker to answer them.
 | `curl_ttl.pad` | `{curl ..., ttl=60}` twice answers alike |
 | `curl_data_ttl.pad` | A `_data/*.curl` file with a `<ttl>`, and `data=` with the ttl option - an address written in the template, as a value is never fetched |
 | `curl_data_self.pad` | `data='SELF://...'` is fetched from this server, as `{curl}` has it |
+| `an_address_written_after_a_printed_value_is_fetched.php/pad` | A written address is fetched though a value printed before it starts it |
 | `disposition.php` | A download named `report.file` whose body is the name of a data file here |
 | `curl_data_disposition.pad` | That download is read as the text it is - `_data/localOnly.json` is never read |
 | `debugged.php/pad` | A page with a `{debug}` box, which only a local request sees |

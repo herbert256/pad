@@ -35,7 +35,7 @@
     // the server connect to any host and port it can reach, its own pages behind an address
     // guard (SELF://) and cloud metadata included, and render the answer into the page.
 
-    if ( padDataFetches ( $padCheck ) and padDataValueAddress ( $padCheck, ! padOptionLiteral ( 'data' ) ) )
+    if ( padDataFetches ( $padCheck ) and padDataValueAddress ( $padCheck, ! padOptionLiteral ( 'data' ), $padBase [$pad - 1] ?? '' ) )
       return padError ( "the data value reads as an address to fetch - write the address in the template, data='https://...', or fetch it in the page's PHP with padPrefetch or padCurl" );
 
   }
