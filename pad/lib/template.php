@@ -314,6 +314,31 @@
 
   }
 
+  // The text between a pair's opener and a closer the closer search tries (level/tag.php),
+  // its text pairs written over with spaces - the same length, as padMarkerText blanks a
+  // comment - so an opener or closer of the pair's own name in a sample is not counted; FALSE
+  // when the closer stands inside a text pair: {ignore}{/xs}{/ignore} is a sample, no closer
+  // of the loop around it. NULL when there is no text pair in the stretch at all - looked for
+  // with substr_count, which reads only that stretch, not the rest of the page.
+
+  function padTextBlank ( $string, $from, $to ) {
+
+    if ( $to <= $from or ( ! substr_count ( $string, 'ignore', $from, $to - $from ) and ! substr_count ( $string, 'highlight', $from, $to - $from ) ) )
+      return NULL;
+
+    $string = substr ( $string, $from, $to - $from );
+    $scan   = padTextScan ( $string );
+
+    if ( $scan ['open'] )
+      return FALSE;
+
+    foreach ( $scan ['spans'] as list ( $one, $two ) )
+      $string = substr_replace ( $string, str_repeat ( ' ', $two - $one ), $one, $two - $one );
+
+    return $string;
+
+  }
+
   // Whether the parameters of an opener - the text behind its name - hold the ignore option:
   // the word ignore as an option of its own, bare or with a value, in front of any pipe.
 

@@ -1,0 +1,4 @@
+{set $a = 1}{set $xs = ['a', 'b']}
+[{if $a eq 1}Open a branch with {ignore}{if $x}{/ignore} and close it.{/if}]
+[{xs}{$xs}: end a loop with {ignore}{/xs}{/ignore}. {/xs}]
+[{if $a eq 1}Close it with {highlight 'pad'}{/if}{/highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)} at the end.{/if}]

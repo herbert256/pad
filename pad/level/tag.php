@@ -69,6 +69,15 @@
   // made a closer, and the pair fell apart: the opener was taken single and the closer was
   // left in the page.
 
+  // What an {ignore} wraps and a {highlight} sample - a text pair, padTextBlank in
+  // lib/template.php - is text: a closer of the pair's name inside one is no closer, and an
+  // opener or closer of its name there is not counted. {xs}... {ignore}{/xs}{/ignore} ...{/xs}
+  // closed the loop at the sample, and {if $a}... {ignore}{if $x}{/ignore} ...{/if} never
+  // closed. A pair that is a text pair itself counts its own name only, as before - its
+  // content is all text.
+
+  $padPairTexts = ! ( in_array ( $padTypeCheck, padTextPairs, TRUE ) or padTextOption ( $padBetween ) );
+
   while ( $padPairCheck === '' or ! ( $padPairCheck == '}' or $padPairCheck == '|' or ctype_space ( $padPairCheck ) ) ) {
 
     $padPos = strpos($padOut [$pad] , '{/' . $padPairTag, ++$padPos);
@@ -76,8 +85,13 @@
     if ($padPos === FALSE)
       return;
 
+    $padPairText = $padPairTexts ? padTextBlank ( $padOut [$pad], $padEnd [$pad] + 1, $padPos ) : NULL;
+
+    if ( $padPairText === FALSE )
+      continue;
+
     if ( $padPairOpen === FALSE or $padPairOpen > $padPos
-         or padOpenCloseCountOne ( substr ( $padOut [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1 ), $padPairTag ) )
+         or padOpenCloseCountOne ( $padPairText ?? substr ( $padOut [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1 ), $padPairTag ) )
       $padPairCheck = substr($padOut [$pad], $padPos + strlen($padPairTag) + 2, 1);
 
   }
