@@ -327,8 +327,7 @@
   // asks for the property and nothing else, where the $-spelling asks the whole resolver
   // chain - fields first - as it always has. The sigil is the meaning: $first@orders is a
   // field of the row, first@orders is the iteration state, and a row field named 'first'
-  // shadows only the former. INF shapes to empty, so a missing target answers '' here the
-  // same as everywhere.
+  // shadows only the former. INF shapes to empty.
 
   // A property written without a target - current@ in an expression - is the loop's the
   // expression stands in: the level itself when it is iterating (a field's pipe), the level
@@ -342,8 +341,9 @@
 
     padSplit ( '@', $field, $before, $after );
 
-    $names = padExplode ( $before, '.' );
-    $name  = reset ( $names );
+    $names   = padExplode ( $before, '.' );
+    $name    = reset ( $names );
+    $written = ( $after !== '' );
 
     if ( $after === '' )
       $after = (string) padFieldFirstNonTag ( ( $padOccur [$pad] ?? 0 ) ? 0 : 1, $name );
@@ -359,9 +359,18 @@
     // answered about the {echo} itself, 0, and {if first@-1} was never true.
 
     $relative = ( strlen ( $first ) > 1 and $first [0] == '-' and is_numeric ( substr ( $first, 1 ) ) );
+    $idx      = padAtIdx ( $first, ( $relative and ! ( $padOccur [$pad] ?? 0 ) ) ? 1 : 0 );
 
-    $check = ( $parts [1] ?? '' ) ? INF
-           : padAtProperty ( $names, padAtIdx ( $first, ( $relative and ! ( $padOccur [$pad] ?? 0 ) ) ? 1 : 0 ) );
+    // A target that names no enclosing level is a missing reference, as an undefined $field
+    // is, and the strict check names it with the words of the tag form {count@nosuch}
+    // (level/no.php): a misspelt {if last@itms} never closed its list, and count@d of a {data}
+    // store outside its loop was '' - {while $i lt count@d} never ran - in silence. With the
+    // check off it answers '' as before.
+
+    if ( $written and $idx === FALSE and $GLOBALS ['padCheckSyntax'] )
+      padError ( "there is no enclosing level named '$first' for the property '$name'" );
+
+    $check = ( $parts [1] ?? '' ) ? INF : padAtProperty ( $names, $idx );
 
     return ( $check === INF ) ? '' : $check;
 
