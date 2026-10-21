@@ -14,6 +14,7 @@
     $padCookies        = FALSE;
     $padCacheProxyAge  = 300;
     $padCacheClientAge = 60;
+    $padLocales        = [ 'en', 'nl' ];
   }
 
 ?>

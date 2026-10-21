@@ -26,11 +26,11 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `stable.pad` | A page that never changes, fetched by etaglist at a fresh address each time |
 | `nocache.php/pad` | Fetches `nocacheprobe` twice at a fresh address: the second fetch is a hit - the same build moment - while its `{nocache}` parts render again, the one in a loop with its row |
 | `nocacheprobe.php/pad` | A page whose build moment is cached and whose `{nocache}` parts are not |
-| `a_visitor_with_an_identity_is_never_answered_public.php/pad` | Fetches `proxied` as a guest, with a cookie of its own and with an Authorization header: public to the guest only, private to the other two |
+| `a_visitor_with_an_identity_is_never_answered_public.php/pad` | Fetches `proxied` as a guest, with a cookie of its own, with an Authorization header and with a padLang cookie: public to the guest only, private to the other three |
 | `proxied.php/pad` | A page that greets the visitor it knows; shared caches may keep it and it sets no PAD cookie |
 | `an_exposing_page_says_vary_accept_on_every_fetch.php/pad` | Fetches `exposed` twice at a fresh address: both answers say `Vary: Accept` - an exposing page is never stored, a hit could not say it |
 | `exposed.php/pad` | A page that exposes its rows as data |
 | `a_304_carries_the_etag_its_200_carries.php/pad` | Fetches `stable` at a fresh address - the miss, the gzipped hit - and asks again with the hit's tag: the 304 carries that same tag |
 | `a_push_in_a_nocache_part_is_made_on_every_fetch.php/pad` | Fetches `nocachepush` twice at a fresh address: the part and its push are new both times - such a page is not kept |
 | `nocachepush.pad` | A page whose `{nocache}` part pushes to a stack in its head |
-| `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age and `$padCookies` off |
+| `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age, two locales and `$padCookies` off |

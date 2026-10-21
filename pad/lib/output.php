@@ -241,7 +241,10 @@
   // So is the answer to a visitor with an identity - a cookie of their own, a session, an
   // Authorization header (padCacheIdentity, lib/cache.php): the page cache builds it fresh
   // because it may be theirs alone, and it went out public with an s-maxage, so a shared
-  // cache kept "Hello Ann" and handed it to every visitor after her.
+  // cache kept "Hello Ann" and handed it to every visitor after her. A padLang cookie that
+  // chose the page's locale among $padLocales (lib/locale.php) counts here too, where the
+  // page cache, whose key holds the locale, lets it pass: a shared cache keys on the address
+  // and Vary: Accept-Language only, and handed the Dutch page to the next English visitor.
 
   function padWebCacheHeaders ( $gzip = FALSE ) {
 
@@ -258,7 +261,9 @@
     else
       $age = 0;
 
-    if ( $padCacheProxyAge and ! $cookie and ! padCacheIdentity () ) {
+    $chosen = ( count ( $GLOBALS ['padLocales'] ?? [] ) and isset ( $_COOKIE ['padLang'] ) );
+
+    if ( $padCacheProxyAge and ! $cookie and ! $chosen and ! padCacheIdentity () ) {
       $type = 'public';
       $sage = $padCacheProxyAge - ($_SERVER['REQUEST_TIME'] - $padTime);
     } else {
