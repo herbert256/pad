@@ -6,11 +6,15 @@
   // application, and any other name the route's page. The route's plain PHP answered all
   // four - "SLUG PAGE: robots.txt".
 
+  // The PHP binary as the other command-line cases find it: under Apache's module PHP_BINARY
+  // is empty, and the shell answered "command not found" for every name.
+
+  $nrPhp    = ( PHP_SAPI === 'cli' or PHP_SAPI === 'cli-server' ) && PHP_BINARY !== '' ? PHP_BINARY : PHP_BINDIR . '/php';
   $nrResult = '';
 
   foreach ( [ 'robots.txt', 'sitemap.xml', 'up', 'other' ] as $nrAsk ) {
 
-    $nrOut = (string) shell_exec ( escapeshellarg ( PHP_BINARY ) . ' ' . escapeshellarg ( "$padHome/editors/render.php" )
+    $nrOut = (string) shell_exec ( escapeshellarg ( $nrPhp ) . ' ' . escapeshellarg ( "$padHome/editors/render.php" )
                                  . ' nn ' . escapeshellarg ( $nrAsk ) . ' --apps=' . escapeshellarg ( APP . '_nonoroute' ) . ' 2>&1' );
 
     $nrResult .= "$nrAsk: " . match ( TRUE ) {
