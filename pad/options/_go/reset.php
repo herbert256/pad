@@ -8,7 +8,8 @@
   // $padHit, restores default data so nothing is iterated, and drops any content option so it
   // is not merged on top of the replacement. Returns TRUE, which the callers pass on.
 
-  $padGetName = padTagParm ( $padReset );
+  $padGetName   = padTagParm ( $padReset );
+  $padGetOption = $padReset;
   $padContent = include PAD . 'get/content.php';
 
   // The level is a hit from here on, so the content stands in with the half in front of its

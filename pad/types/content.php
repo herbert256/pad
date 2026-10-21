@@ -4,6 +4,8 @@
   // store): returns the text through get/content.php, which level/go.php has already primed
   // with $padGetName set to the tag name. Content is put there by the toContent option.
 
+  $padGetOption = '';
+
   return include PAD . 'get/content.php';
 
 ?>

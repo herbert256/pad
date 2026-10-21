@@ -5,7 +5,8 @@
   //
   // Included by level/go.php, which merges the returned text into the level's content.
 
-  $padGetName = padTagParm ( 'content' );
+  $padGetName   = padTagParm ( 'content' );
+  $padGetOption = 'content';
 
   return include PAD . 'get/content.php';
 

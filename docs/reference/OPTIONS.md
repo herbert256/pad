@@ -228,9 +228,12 @@ Marks a tag as required: it must produce something.
 ## Conditional Content Options
 
 Options that show other content based on what the tag itself answered. The value of each is
-the **name** of that content - a `{content 'name'}` block, or else an `_include/` snippet, a
-page or a tag of that name (`get/content.php`) - never literal text: `else="Nothing here"`
-shows nothing.
+the **name** of that content - a `{content 'name'}` block, or else an `_include/` snippet or a
+page of that name a request could ask for, no segment starting with `_` or `.`
+(`get/content.php`) - never a tag, a PHP function or a path (a name with `..`, a backslash or
+a leading `/` is refused), and never literal text: under the strict check a name written in
+the template that names none of them - `else="Nothing here"` - is an error; a value naming
+nothing shows nothing.
 
 ### null
 
