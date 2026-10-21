@@ -11,6 +11,8 @@
   if ( $padLeft < 1 )
     return '';
 
-  return mb_substr ( $value, 0, $padLeft, 'UTF-8' );
+  include_once PAD . 'functions/_lib/grapheme.php';
+
+  return padGraphemeCut ( $value, 0, $padLeft );
 
 ?>

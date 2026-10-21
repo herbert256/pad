@@ -9,12 +9,14 @@
   // came, an empty one - substr(1, $len) with $len empty - or a word was a TypeError out of
   // mb_substr, and 1.5 a deprecation, either one the end of the request.
 
+  include_once PAD . 'functions/_lib/grapheme.php';
+
   if ( $count == 1 )
 
-    return mb_substr ( $value, (int) $parm [0], NULL, 'UTF-8' );
+    return padGraphemeCut ( $value, (int) $parm [0] );
 
   else
 
-    return mb_substr ( $value, (int) $parm [0], (int) $parm [1], 'UTF-8' );
+    return padGraphemeCut ( $value, (int) $parm [0], (int) $parm [1] );
 
 ?>

@@ -12,6 +12,8 @@
   if ( $padMidLen !== NULL and (int) $padMidLen < 1 )
     return '';
 
-  return mb_substr ( $value, $padMidStart - 1, $padMidLen === NULL ? NULL : (int) $padMidLen, 'UTF-8' );
+  include_once PAD . 'functions/_lib/grapheme.php';
+
+  return padGraphemeCut ( $value, $padMidStart - 1, $padMidLen === NULL ? NULL : (int) $padMidLen );
 
 ?>

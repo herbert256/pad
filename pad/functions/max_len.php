@@ -9,8 +9,10 @@
 
   $padMaxLen = max ( 0, (int) $parm [0] );
 
-  if ( mb_strlen ( $value, 'UTF-8' ) > $padMaxLen )
-    return mb_substr ( $value, 0, $padMaxLen, 'UTF-8' );
+  include_once PAD . 'functions/_lib/grapheme.php';
+
+  if ( padGraphemeLength ( $value ) > $padMaxLen )
+    return padGraphemeCut ( $value, 0, $padMaxLen );
   else
     return $value;
 
