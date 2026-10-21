@@ -208,9 +208,9 @@
   // counting only {/tag} left such a nested pair looking open, and the enclosing tag's
   // {else} or {when} was skipped as if it belonged to the inner one.
 
-  function padCheckTag ($tag, $string) {
+  function padCheckTag ( $tag, $string, $full = NULL ) {
 
-    return padPairBalanced ( $string, $tag ) and padTextFree ( $string );
+    return padPairBalanced ( $string, $tag ) and padTextFree ( $string, $full );
 
   }
 
@@ -225,9 +225,9 @@
 
   const padTextPairs = [ 'ignore', 'highlight' ];
 
-  function padTextFree ( $string ) {
+  function padTextFree ( $string, $full = NULL ) {
 
-    return ! padTextScan ( $string ) ['open'];
+    return ! padTextScan ( $string, $full, is_string ( $string ) ? strlen ( $string ) : 0 ) ['open'];
 
   }
 
@@ -252,65 +252,80 @@
   // 'open' says whether a text pair is still open at the end of $string; 'spans' are the
   // contents of the text pairs that closed.
 
-  function padTextScan ( $string ) {
+  function padTextScan ( $string, $full = NULL, $offset = 0 ) {
 
     if ( ! is_string ( $string ) or ( ! str_contains ( $string, 'ignore' ) and ! str_contains ( $string, 'highlight' ) ) )
       return [ 'open' => FALSE, 'spans' => [] ];
 
     preg_match_all ( '/\{~?(\/?)(?:pad:)?([A-Za-z_][\w:.-]*)(?=[\s}~|])/', $string, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
 
-    $open  = [];
+    // While a text pair is open nothing else opens in it - an {ignore} shown in a
+    // {highlight} sample is text - and only its own name counts, a nested opener of that
+    // name closing first, as the engine pairs them. A tag that carries the ignore option is
+    // a text pair only when a closer of its name follows - in $string, or in $full behind
+    // $offset when $string is the part in front of a branch marker: the option is one of
+    // any tag, and a single {echo 'ab' ignore} has no closer. Counted as open, it took the
+    // {else} behind it for text and kept the {/if} around it from closing.
+
+    $name  = NULL;
+    $depth = 0;
+    $from  = 0;
     $pairs = [];
 
     foreach ( $all as $one ) {
 
-      $name = $one [2] [0];
-      $at   = $one [0] [1];
+      $tag = $one [2] [0];
+      $at  = $one [0] [1];
 
-      if ( $one [1] [0] === '/' ) {
-        if ( ! empty ( $open [$name] ) ) {
-          [ $from, $text ] = array_pop ( $open [$name] );
-          if ( $text )
+      if ( $name !== NULL ) {
+
+        if ( $tag !== $name )
+          continue;
+
+        if ( $one [1] [0] === '/' ) {
+          if ( ! --$depth ) {
             $pairs [$from] = $at;
-        }
+            $name          = NULL;
+          }
+        } elseif ( ( $end = strpos ( $string, '}', $at ) ) !== FALSE and ! padOpenSelfClosing ( $string, $at + strlen ( $one [0] [0] ) ) )
+          $depth++;
+
         continue;
+
       }
+
+      if ( $one [1] [0] === '/' )
+        continue;
 
       $after = $at + strlen ( $one [0] [0] );
       $end   = strpos ( $string, '}', $at );
-      $parms = ( $end === FALSE ) ? substr ( $string, $after ) : substr ( $string, $after, $end - $after );
 
       if ( $end === FALSE or padOpenSelfClosing ( $string, $after ) )
         continue;
 
-      if ( $name == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
-        continue;
+      $parms = substr ( $string, $after, $end - $after );
 
-      $text = ( in_array ( $name, padTextPairs, TRUE ) or padTextOption ( $parms ) );
+      if ( in_array ( $tag, padTextPairs, TRUE ) )
+        $text = ! ( $tag == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) );
+      else
+        $text = ( padTextOption ( $parms )
+                  and ( strpos ( $string, '{/' . $tag, $end ) !== FALSE
+                        or ( $full !== NULL and strpos ( $full, '{/' . $tag, $offset ) !== FALSE ) ) );
 
-      $open [$name] [] = [ $end + 1, $text ];
+      if ( $text ) {
+        $name  = $tag;
+        $depth = 1;
+        $from  = $end + 1;
+      }
 
     }
 
-    $still = FALSE;
-
-    foreach ( $open as $list )
-      foreach ( $list as [ $from, $text ] )
-        if ( $text )
-          $still = TRUE;
-
-    ksort ( $pairs );
-
     $spans = [];
-    $last  = -1;
 
-    foreach ( $pairs as $from => $to )
-      if ( $from > $last ) {
-        $spans [] = [ $from, $to ];
-        $last     = $to;
-      }
+    foreach ( $pairs as $one => $two )
+      $spans [] = [ $one, $two ];
 
-    return [ 'open' => $still, 'spans' => $spans ];
+    return [ 'open' => ( $name !== NULL ), 'spans' => $spans ];
 
   }
 
@@ -326,8 +341,9 @@
     if ( $to <= $from or ( ! substr_count ( $string, 'ignore', $from, $to - $from ) and ! substr_count ( $string, 'highlight', $from, $to - $from ) ) )
       return NULL;
 
+    $full   = $string;
     $string = substr ( $string, $from, $to - $from );
-    $scan   = padTextScan ( $string );
+    $scan   = padTextScan ( $string, $full, $to );
 
     if ( $scan ['open'] )
       return FALSE;
@@ -380,13 +396,13 @@
 
   const padElseOwners = [ 'if', 'case', 'auth', 'guest', 'can', 'cannot', 'feature' ];
 
-  function padElseFree ( $string ) {
+  function padElseFree ( $string, $full = NULL ) {
 
     foreach ( padElseOwners as $tag )
       if ( ! padPairBalanced ( $string, $tag ) )
         return FALSE;
 
-    return padTextFree ( $string );
+    return padTextFree ( $string, $full );
 
   }
 
@@ -461,7 +477,7 @@
 
     $at = strpos ( $content, '{else}' );
 
-    while ( $at !== FALSE and ! padElseFree ( substr ( $content, 0, $at ) ) )
+    while ( $at !== FALSE and ! padElseFree ( substr ( $content, 0, $at ), $content ) )
       $at = strpos ( $content, '{else}', $at + 6 );
 
     if ( $at === FALSE )

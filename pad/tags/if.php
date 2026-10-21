@@ -49,17 +49,17 @@
 
     $padIfElse = strpos ( $padContent, '{else}' );
 
-    while ( $padIfElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padIfElse ) ) )
+    while ( $padIfElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padIfElse ), $padContent ) )
       $padIfElse = strpos ( $padContent, '{else}', $padIfElse+6 );
 
     if ( $padIfElse !== FALSE ) {
 
       for ( $padIfAt = strpos ( $padContent, '{elseif', $padIfElse ); $padIfAt !== FALSE; $padIfAt = strpos ( $padContent, '{elseif', $padIfAt+7 ) )
-        if ( padCheckTag ( 'if', substr ( $padContent, 0, $padIfAt ) ) )
+        if ( padCheckTag ( 'if', substr ( $padContent, 0, $padIfAt ), $padContent ) )
           padError ( "an {elseif} behind the {else} never answers" );
 
       for ( $padIfAt = strpos ( $padContent, '{else}', $padIfElse+6 ); $padIfAt !== FALSE; $padIfAt = strpos ( $padContent, '{else}', $padIfAt+6 ) )
-        if ( padElseFree ( substr ( $padContent, 0, $padIfAt ) ) )
+        if ( padElseFree ( substr ( $padContent, 0, $padIfAt ), $padContent ) )
           padError ( "the {if} has two {else}s - what follows the second never renders" );
 
     }
@@ -70,7 +70,7 @@
 
   while ($padChk !== FALSE) {
 
-    if ( ! padCheckTag ('if', substr($padContent, 0, $padChk)) )
+    if ( ! padCheckTag ( 'if', substr ( $padContent, 0, $padChk ), $padContent ) )
 
       $padChk = strpos($padContent , '{elseif', $padChk+7);
 
@@ -109,7 +109,7 @@
 
   $padChk = strpos ( $padContent, '{else}' );
 
-  while ( $padChk !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padChk ) ) )
+  while ( $padChk !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padChk ), $padContent ) )
     $padChk = strpos ( $padContent, '{else}', $padChk+6 );
 
   if ( $padChk !== FALSE ) {

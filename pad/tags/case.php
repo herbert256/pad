@@ -46,14 +46,14 @@
 
     $padCaseElse = strpos ( $padContent, '{else}' );
 
-    while ( $padCaseElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padCaseElse ) ) )
+    while ( $padCaseElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padCaseElse ), $padContent ) )
       $padCaseElse = strpos ( $padContent, '{else}', $padCaseElse+6 );
 
     // A second {else} of our own: what follows it never renders.
 
     if ( $padCaseElse !== FALSE )
       for ( $padCaseAt = strpos ( $padContent, '{else}', $padCaseElse+6 ); $padCaseAt !== FALSE; $padCaseAt = strpos ( $padContent, '{else}', $padCaseAt+6 ) )
-        if ( padElseFree ( substr ( $padContent, 0, $padCaseAt ) ) )
+        if ( padElseFree ( substr ( $padContent, 0, $padCaseAt ), $padContent ) )
           padError ( "the {case} has two {else}s - what follows the second never renders" );
 
     $padCaseSeen = [];
@@ -61,7 +61,7 @@
 
     while ( ( $padCaseScan = strpos ( $padContent, '{when', $padCaseScan ) ) !== FALSE ) {
 
-      if ( padCheckTag ( 'case', substr ( $padContent, 0, $padCaseScan ) ) ) {
+      if ( padCheckTag ( 'case', substr ( $padContent, 0, $padCaseScan ), $padContent ) ) {
 
         if ( $padCaseElse !== FALSE and $padCaseScan > $padCaseElse )
           padError ( "a {when} behind the {else} never answers" );
@@ -116,7 +116,7 @@
 
   while ($padChk !== FALSE) {
 
-    if ( ! padCheckTag  ('case', substr ( $padContent, 0, $padChk ) ) )
+    if ( ! padCheckTag ( 'case', substr ( $padContent, 0, $padChk ), $padContent ) )
 
       $padChk = strpos ( $padContent , '{when', $padChk+5 );
 
@@ -155,7 +155,7 @@
 
   $padChk = strpos ( $padContent, '{else}' );
 
-  while ( $padChk !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padChk ) ) )
+  while ( $padChk !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padChk ), $padContent ) )
     $padChk = strpos ( $padContent, '{else}', $padChk+6 );
 
   if ( $padChk !== FALSE ) {

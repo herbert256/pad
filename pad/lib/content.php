@@ -242,7 +242,7 @@
 
     foreach ( $found [0] as list ( $tag, $at ) ) {
 
-      if ( $at < $last or ! padElseFree ( substr ( $new, 0, $at ) ) )
+      if ( $at < $last or ! padElseFree ( substr ( $new, 0, $at ), $new ) )
         continue;
 
       $part = substr ( $new, $last, $at - $last );
