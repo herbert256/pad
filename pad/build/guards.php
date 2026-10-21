@@ -20,9 +20,18 @@
     if ( ! padFileExists ( $padCall ) )
       continue;
 
+    // padAuthRequire and padAuthorize refuse through $padGuardRefusal in the guard of a page
+    // a {page} tag includes (padGuardNestedRefuse, lib/gate.php), where they would send the
+    // whole request away.
+
+    $padGuardRefusal = FALSE;
+    $padGuardRunning = TRUE;
+
     include PAD . 'call/_call.php';
 
-    if ( $padCallPHP !== 1 and ! $padCallPHP ) {
+    $padGuardRunning = FALSE;
+
+    if ( $padGuardRefusal or ( $padCallPHP !== 1 and ! $padCallPHP ) ) {
       $padBuildRefused = $padCall;
       break;
     }

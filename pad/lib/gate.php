@@ -108,6 +108,12 @@
     if ( padCan ( $ability, ...$values ) )
       return TRUE;
 
+    // In the _guard.php of a page a {page} tag includes, the guard refuses and the part
+    // renders as nothing, where the 403 took the whole page that holds it.
+
+    if ( padGuardNestedRefuse () )
+      return FALSE;
+
     padAbort ( 403 );
 
   }
@@ -115,6 +121,18 @@
   // ------------------------------------------------------------------------------------
   // The private helpers.
   // ------------------------------------------------------------------------------------
+
+  // Whether a refusal stands in the _guard.php of a page a {page} tag includes - then it is
+  // that guard's refusal (build/guards.php reads it), and TRUE.
+
+  function padGuardNestedRefuse () {
+
+    if ( empty ( $GLOBALS ['padGuardNested'] ) or empty ( $GLOBALS ['padGuardRunning'] ) )
+      return FALSE;
+
+    return $GLOBALS ['padGuardRefusal'] = TRUE;
+
+  }
 
   function &padGateList () {
 

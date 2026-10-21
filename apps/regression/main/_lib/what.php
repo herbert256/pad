@@ -68,6 +68,7 @@
       'request/demo_takes_a_list_field_as_no_text' => 'The demo forms take a field posted as a list (name[]=x) as no text - no 500, nothing stored',
       'request/ses'               => 'The session fixture bare: some id, pinned by shape',
       'request/up'                => 'The upload fixture bare: no file',
+      'request/a_part_whose_guard_asks_for_a_login_renders_nothing_for_a_guest' => 'A page included by {page} whose _guard.php calls padAuthRequire or padAuthorize renders as nothing when refused, where the whole public page was sent to the login or answered 403',
       'request/a_guarded_page_named_as_content_renders_nothing_when_refused' => 'A page below a _guard.php named by content= or else= is asked of its guard as a {page} is - refused, it renders as nothing',
       'request/a_json_body_address_is_refused' => 'An address posted as a JSON body is a request value - refused as a form post of it is',
       'request/json_feed'         => 'The fixture of request/a_json_body_address_is_refused, fetched bare: no address, nothing fetched',

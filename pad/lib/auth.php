@@ -248,6 +248,14 @@
     if ( padAuthCheck () )
       return TRUE;
 
+    // In the _guard.php of a page a {page} tag includes, a guest is no reason to send the
+    // whole request away: the guard refuses, and the part renders as nothing, as it does for
+    // a guard returning FALSE (build/guards.php) - a members' box on a public page took the
+    // public page from every guest.
+
+    if ( padGuardNestedRefuse () )
+      return FALSE;
+
     if ( ! is_string ( $login ) or ! preg_match ( '#^\??[A-Za-z0-9_][A-Za-z0-9_./-]*$#D', $login ) or str_contains ( $login, '..' ) ) {
       padError ( 'padAuthRequire: the login page must be a page name, not ' . padRequestShow ( $login ) );
       $login = 'login';
