@@ -2,7 +2,8 @@
 
   // String helpers for a page's PHP: what Laravel's Str and Symfony's String component give
   // a controller, written the PAD way - plain functions over UTF-8 text that count in
-  // characters (mb_*), never in bytes, so an accented letter or an emoji is one character.
+  // characters, never in bytes, so an accented letter or an emoji is one character - the
+  // ones that cut a text count as a reader does, a flag or an emoji family one (padStrCut).
   //
   // padStrSlug        a readable URL part - the slug pipe calls it, so both answer the same
   // padStrLimit       at most so many characters, $end added when something was cut
@@ -92,10 +93,10 @@
     if ( $limit === NULL )
       return '';
 
-    if ( mb_strlen ( $text ) <= $limit )
+    if ( padStrLength ( $text ) <= $limit )
       return $text;
 
-    return padStrTrimEnd ( mb_substr ( $text, 0, $limit ) ) . $end;
+    return padStrTrimEnd ( padStrCut ( $text, 0, $limit ) ) . $end;
 
   }
 
@@ -153,13 +154,13 @@
     $match = [ 1 => substr ( $text, 0, $at ), 2 => $phrase, 3 => substr ( $text, $at + strlen ( $phrase ) ) ];
 
     $before = padStrTrimStart ( $match [1] );
-    $start  = padStrTrimStart ( mb_substr ( $before, max ( mb_strlen ( $before ) - $radius, 0 ) ) );
+    $start  = padStrTrimStart ( padStrCut ( $before, max ( padStrLength ( $before ) - $radius, 0 ) ) );
 
     if ( $start !== $before )
       $start = $omission . $start;
 
     $after = padStrTrimEnd ( $match [3] );
-    $end   = padStrTrimEnd ( mb_substr ( $after, 0, $radius ) );
+    $end   = padStrTrimEnd ( padStrCut ( $after, 0, $radius ) );
 
     if ( $end !== $after )
       $end .= $omission;
@@ -385,17 +386,17 @@
       return '';
     }
 
-    $segment = mb_substr ( $text, $index, $length );
+    $segment = padStrCut ( $text, $index, $length );
 
     if ( $segment === '' )
       return $text;
 
-    $size  = mb_strlen ( $segment );
-    $start = $index < 0 ? max ( 0, mb_strlen ( $text ) + $index ) : $index;
+    $size  = padStrLength ( $segment );
+    $start = $index < 0 ? max ( 0, padStrLength ( $text ) + $index ) : $index;
 
-    return mb_substr ( $text, 0, $start )
-         . str_repeat ( mb_substr ( $character, 0, 1 ), $size )
-         . mb_substr ( $text, $start + $size );
+    return padStrCut ( $text, 0, $start )
+         . str_repeat ( padStrCut ( $character, 0, 1 ), $size )
+         . padStrCut ( $text, $start + $size );
 
   }
 
@@ -870,6 +871,30 @@
   function padStrUpperFirst ( $text ) {
 
     return mb_strtoupper ( mb_substr ( $text, 0, 1 ) ) . mb_substr ( $text, 1 );
+
+  }
+
+  // The length of a text, and a part of it, in characters as a reader sees them - grapheme
+  // clusters, with intl: a flag, an emoji with a skin tone or joined into a family, a letter
+  // written with a combining accent (NFD text, a macOS file name) are one character each.
+  // In code points (mb_*) they were cut in half - padStrLimit of two flags at 1 answered
+  // half a flag, padStrLimit ( "e\u{0301}tude", 1 ) the e without its accent. Without intl
+  // the count is code points. A part takes a start and a length as mb_substr does: negative
+  // counts from the end, a NULL length to the end.
+
+  function padStrLength ( $text ) {
+
+    $length = function_exists ( 'grapheme_strlen' ) ? grapheme_strlen ( $text ) : NULL;
+
+    return is_int ( $length ) ? $length : mb_strlen ( $text );
+
+  }
+
+  function padStrCut ( $text, $start, $length = NULL ) {
+
+    $part = function_exists ( 'grapheme_substr' ) ? grapheme_substr ( $text, $start, $length ) : NULL;
+
+    return is_string ( $part ) ? $part : mb_substr ( $text, $start, $length );
 
   }
 

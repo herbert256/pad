@@ -145,8 +145,11 @@ a plain value is neither equal, smaller nor larger (no PHP warning).
 
 ## Strings
 
-`pad/lib/str.php` - text counted in characters (`mb_*`, UTF-8), never in bytes, so an accented
-letter or an emoji is never cut in half. Manual page: *String helpers* (`strings`).
+`pad/lib/str.php` - text counted in characters (UTF-8), never in bytes, so an accented
+letter or an emoji is never cut in half: `padStrLimit`, `padStrMask` and `padStrExcerpt` count
+grapheme clusters when PHP has intl - a flag, a skin-toned or family emoji, a letter with a
+combining accent is one character - and code points (`mb_*`) without it. Manual page:
+*String helpers* (`strings`).
 
 | Function | Answers |
 |----------|---------|
