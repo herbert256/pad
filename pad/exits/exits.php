@@ -19,6 +19,13 @@
   if ( $padCheckSyntax and str_contains ( $padResult [0], '@content@' ) )
     padErrorAt ( 'an @content@ stands where nothing merges content into it', [ 'search' => '@content@' ] );
 
+  // So was an @else@ no tag took - one at the top of an _inits.pad or _exits.pad, directly
+  // in a layout's {block} override or in a {slot} fill, where no level splits the text: it
+  // was printed, the marker and both of its halves.
+
+  if ( $padCheckSyntax and str_contains ( $padResult [0], '@else@' ) )
+    padErrorAt ( 'an @else@ stands where no tag takes it', [ 'search' => '@else@' ] );
+
   // The values' stand-ins come back too - before tidy, which must see the quotes and = of
   // the markup a tag answered. Always, not only under $padProtectValues: a stand-in that
   // arrived in the input is a character, and a page written with the switch on in one
