@@ -15,6 +15,20 @@
   if ( isset ( $pqStore [$padCheck] ) )
     return $pqStore [$padCheck];
 
+  // A page array or an array field by its name, as {chart data='staff'} takes it (tags/
+  // _lib/chart.php): data='staff' read the word as a CSV header with no rows and iterated
+  // nothing.
+
+  if ( is_string ( $padCheck ) and padValidVar ( $padCheck ) ) {
+
+    if ( isset ( $GLOBALS [$padCheck] ) and is_array ( $GLOBALS [$padCheck] ) )
+      return $GLOBALS [$padCheck];
+
+    if ( padFieldCheck ( $padCheck ) and is_array ( $padDataField = padFieldValue ( $padCheck ) ) )
+      return $padDataField;
+
+  }
+
   // A list - ( 'a', $b, 2 * 3 ) - evaluates every element as an expression. A {data} block
   // reads one from the template; through data= the text is a value, often a field's, so
   // under $padProtectValues a value that reads as a list is refused rather than run.
@@ -42,6 +56,18 @@
       return padError ( "the data value reads as an address to fetch - write the address in the template, data='https://...', or fetch it in the page's PHP with padPrefetch or padCurl" );
 
   }
+
+  // A bare word that names nothing - no store, no page array or field, no _data file - is a
+  // CSV header with no rows, so a misspelt data='usres' iterated nothing in silence, where
+  // {data:usres} is an error. Written in the template it is one under the strict check, as
+  // the chart's data= is; a value naming nothing stays silent, and so does a name a
+  // {sandbox} hides.
+
+  $padDataWord = is_string ( $padCheck ) ? trim ( $padCheck ) : '';
+
+  if ( $padCheckSyntax and preg_match ( '/^[a-zA-Z_][a-zA-Z0-9_-]*$/D', $padDataWord )
+       and padContentType ( $padDataWord ) == 'csv' and padOptionLiteral ( 'data' ) and ! padStrHidden ( $padDataWord ) )
+    return padError ( "there is no data named '$padDataWord' - no data store, sequence store, page array or _data file" );
 
   return padData ( $padCheck );
 
