@@ -31,4 +31,6 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `an_exposing_page_says_vary_accept_on_every_fetch.php/pad` | Fetches `exposed` twice at a fresh address: both answers say `Vary: Accept` - an exposing page is never stored, a hit could not say it |
 | `exposed.php/pad` | A page that exposes its rows as data |
 | `a_304_carries_the_etag_its_200_carries.php/pad` | Fetches `stable` at a fresh address - the miss, the gzipped hit - and asks again with the hit's tag: the 304 carries that same tag |
+| `a_push_in_a_nocache_part_is_made_on_every_fetch.php/pad` | Fetches `nocachepush` twice at a fresh address: the part and its push are new both times - such a page is not kept |
+| `nocachepush.pad` | A page whose `{nocache}` part pushes to a stack in its head |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age and `$padCookies` off |

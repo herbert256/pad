@@ -56,6 +56,12 @@
     if ( count ( (array) ( $GLOBALS ['padExpose'] ?? [] ) ) )
       return FALSE;
 
+    // A {push} inside a {nocache} part pushes anew on every hit, into a page kept with its
+    // stacks already filled in - lib/stack.php: the stack showed the first visitor's push.
+
+    if ( $GLOBALS ['padStackNocache'] ?? FALSE )
+      return FALSE;
+
     foreach ( headers_list () as $header )
       if ( ! preg_match ( '/^(X-Powered-By:|Set-Cookie: pad(Ses|Req)ID=)/i', $header ) )
         return FALSE;

@@ -51,7 +51,7 @@
 
   function padStackPush ( $name, $text, $once = '' ) {
 
-    global $padStackStore, $padFragment, $pad, $padTag, $padType;
+    global $padStackStore, $padFragment, $pad, $padTag, $padType, $padStackNocache;
 
     $name = (string) $name;
     $text = (string) $text;
@@ -72,12 +72,18 @@
 
     // Every fragment-cache section that is rendering around this push records it, so a
     // hit can make it again - up to a {nocache} round the push, which makes it again itself.
+    //
+    // The page cache keeps a page with its stacks filled in, so a push a {nocache} part
+    // makes again on every hit had no stack left to land in: the stack showed the first
+    // visitor's push for the entry's whole life. Such a page is not kept (lib/cache.php).
 
     for ( $i = $pad; $i >= 0; $i-- ) {
       if ( isset ( $padFragment [$i] ) and is_array ( $padFragment [$i] ) and ! $padFragment [$i] ['hit'] )
         $padFragment [$i] ['stacks'] [] = [ $name, $text, $once ];
-      if ( ( $padTag [$i] ?? '' ) == 'nocache' and ( $padType [$i] ?? '' ) == 'pad' )
+      if ( ( $padTag [$i] ?? '' ) == 'nocache' and ( $padType [$i] ?? '' ) == 'pad' ) {
+        $padStackNocache = TRUE;
         break;
+      }
     }
 
     return TRUE;
