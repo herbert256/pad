@@ -349,8 +349,19 @@
       $after = (string) padFieldFirstNonTag ( ( $padOccur [$pad] ?? 0 ) ? 0 : 1, $name );
 
     $parts = padExplode ( $after,  ':' );
+    $first = $parts [0] ?? '';
 
-    $check = padAtProperties ( $name, $names, $parts [0] ?? '', $parts [1] ?? '', 0 );
+    // A relative -N counts the enclosing levels from the tag the reference is written in, as
+    // the tag form {current@-1} and a field's pipe count them. While a tag's parameters are
+    // read its own level is open and its occurrence has not started, so the count starts a
+    // level further down - the step a $cor of 1 takes in padAtIdx, from the same base the
+    // target-less form uses above. Counted from the tag's own level, {echo current@-1}
+    // answered about the {echo} itself, 0, and {if first@-1} was never true.
+
+    $relative = ( strlen ( $first ) > 1 and $first [0] == '-' and is_numeric ( substr ( $first, 1 ) ) );
+
+    $check = ( $parts [1] ?? '' ) ? INF
+           : padAtProperty ( $names, padAtIdx ( $first, ( $relative and ! ( $padOccur [$pad] ?? 0 ) ) ? 1 : 0 ) );
 
     return ( $check === INF ) ? '' : $check;
 
