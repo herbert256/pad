@@ -39,6 +39,33 @@
 
   $padIfArm = 'if';
 
+  // The branches stand in order: the {elseif}s, then one {else}. An {elseif} behind the
+  // {else} never answers - the branch in front of it was lost in silence, or with another
+  // value the kept part ended in an {else} nothing claimed, "there is no tag named 'else'";
+  // a second {else} the same. Strict mode names it, as case.php does for a {when} behind
+  // its {else}.
+
+  if ( $padCheckSyntax ) {
+
+    $padIfElse = strpos ( $padContent, '{else}' );
+
+    while ( $padIfElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padIfElse ) ) )
+      $padIfElse = strpos ( $padContent, '{else}', $padIfElse+6 );
+
+    if ( $padIfElse !== FALSE ) {
+
+      for ( $padIfAt = strpos ( $padContent, '{elseif', $padIfElse ); $padIfAt !== FALSE; $padIfAt = strpos ( $padContent, '{elseif', $padIfAt+7 ) )
+        if ( padCheckTag ( 'if', substr ( $padContent, 0, $padIfAt ) ) )
+          padError ( "an {elseif} behind the {else} never answers" );
+
+      for ( $padIfAt = strpos ( $padContent, '{else}', $padIfElse+6 ); $padIfAt !== FALSE; $padIfAt = strpos ( $padContent, '{else}', $padIfAt+6 ) )
+        if ( padElseFree ( substr ( $padContent, 0, $padIfAt ) ) )
+          padError ( "the {if} has two {else}s - what follows the second never renders" );
+
+    }
+
+  }
+
   $padChk = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {

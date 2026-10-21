@@ -47,6 +47,13 @@
     while ( $padCaseElse !== FALSE and ! padElseFree ( substr ( $padContent, 0, $padCaseElse ) ) )
       $padCaseElse = strpos ( $padContent, '{else}', $padCaseElse+6 );
 
+    // A second {else} of our own: what follows it never renders.
+
+    if ( $padCaseElse !== FALSE )
+      for ( $padCaseAt = strpos ( $padContent, '{else}', $padCaseElse+6 ); $padCaseAt !== FALSE; $padCaseAt = strpos ( $padContent, '{else}', $padCaseAt+6 ) )
+        if ( padElseFree ( substr ( $padContent, 0, $padCaseAt ) ) )
+          padError ( "the {case} has two {else}s - what follows the second never renders" );
+
     $padCaseSeen = [];
     $padCaseScan = 0;
 
