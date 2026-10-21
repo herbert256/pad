@@ -392,7 +392,7 @@ the session; these do the same by name, whatever those settings let through. Man
 | `padSessionPull ( $key, $default = NULL )` | The value, taken out of the session; the default when it is not there |
 | `padSessionForget ( $keys )` | Removes one or several names or dot paths from the session |
 | `padSessionRegenerate ()` | Moves the session to a new id, its data kept and its CSRF token renewed - after a login, against session fixation. `TRUE` / `FALSE` |
-| `padFlashInput ( $except = [ 'password', 'password_confirmation', 'padCsrfToken' ] )` | Keeps this request's input, without those names, for the next request only. `TRUE` / `FALSE` |
+| `padFlashInput ( $except = [ 'password', 'password_confirmation', 'padCsrfToken' ] )` | Keeps this request's input, without those names - by default also without any field, at any depth, whose name says it holds a secret (`current_password`, `user[password]`, `api_key` ...) - for the next request only. `TRUE` / `FALSE` |
 | `padOld ( $key = NULL, $default = '' )` | A value of the input the request before flashed (or this one, when it flashed); `NULL` key: all of it |
 | `padUrl ( $page = '', $vars = [], $absolute = FALSE )` | A link to a page of this application: `/myapp/?orders&sort=date`, or `/myapp/orders?sort=date` with `$padCleanUrls`; `''` is the page the visitor asked for; absolute on `$padHost` |
 | `padBack ( $fallback = '' )` | Redirects (302) to the referring page when it is a page of this application on this host, else to `$fallback` (a page name; `''` the index) |

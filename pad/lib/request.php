@@ -377,10 +377,20 @@
   // shows no stale values. Passwords and the CSRF token are left out by default.
   //
   // This request's own padOld reads the input just flashed, as the next one will.
+  //
+  // By default every field whose name says it holds a secret stays out as well, at any
+  // depth - current_password, new_password, its confirmation, user[password], pwd, an api
+  // key - as padAuthSecret tells it for a user's row (lib/auth.php): the default list named
+  // password and password_confirmation alone, and a change-password form kept the visitor's
+  // old and new password in the session in plain text. A list of its own given, the page
+  // says what stays out.
 
   function padFlashInput ( $except = [ 'password', 'password_confirmation', 'padCsrfToken' ] ) {
 
     $input = padRequestExcept ( $except );
+
+    if ( ! func_num_args () )
+      $input = padFlashKeep ( $input );
 
     $GLOBALS ['padOldFresh'] = $input;
 
@@ -398,6 +408,18 @@
     padOldCookie ( TRUE );
 
     return TRUE;
+
+  }
+
+  function padFlashKeep ( $input ) {
+
+    foreach ( $input as $key => $value )
+      if ( padAuthSecret ( (string) $key ) )
+        unset ( $input [$key] );
+      elseif ( is_array ( $value ) )
+        $input [$key] = padFlashKeep ( $value );
+
+    return $input;
 
   }
 
