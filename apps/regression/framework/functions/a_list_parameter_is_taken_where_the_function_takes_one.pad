@@ -1,0 +1,1 @@
+1[{echo 'abc' | replace(['a', 'b'], ['x', 'y'])}] 2[{echo 'abc' | cut(['a', 'c'])}] 3[{echo 'b' | in(['a', 'b'])}] 4[{echo [1, 2] | contains(2)}] 5[{echo '' | default(['x', 'y']) | php:count}] 6[{echo 'b' in ('a', 'b')}]

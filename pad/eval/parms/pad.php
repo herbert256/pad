@@ -69,6 +69,32 @@
 
   }
 
+  // And so is a list or an object handed as a parameter where the function wants a value -
+  // contains(['a']), like ['a'], matches(php:explode(',', $words)): strpos, preg_split and
+  // the string casts of the function files ended the page on a PHP TypeError or "Array to
+  // string conversion" in either mode, and left([1]) cut 1 and truncate([2]) answered "…" in
+  // silence. in tests against a list, default and optional hand any value on, replace and cut
+  // hand a list of what they search for to str_replace, which takes one, and contains looks
+  // for any item in a list. A date object stays a moment, and a Stringable one writes its text.
+
+  $padFnLists = match ( $name ) {
+    'in', 'default', 'optional' => TRUE,
+    'replace', 'cut'            => is_array ( $parm [0] ?? NULL ),
+    'contains'                  => is_array ( $value ),
+    default                     => FALSE
+  };
+
+  if ( is_array ( $parm ) and ! $padFnLists )
+    foreach ( $parm as $padFnOne )
+      if ( is_array ( $padFnOne ) or ( is_object ( $padFnOne ) and ! $padFnOne instanceof DateTimeInterface and ! $padFnOne instanceof Stringable ) ) {
+
+        if ( $GLOBALS ['padCheckSyntax'] )
+          padError ( "the function '$name' wants a value as its parameter, not " . ( is_array ( $padFnOne ) ? 'a list' : 'an object' ) );
+
+        return '';
+
+      }
+
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
                   'mid'     => 1, 'substr'     => 1, 'left'     => 1,
                   'right'   => 1, 'max_len'    => 1, 'like'     => 1,
