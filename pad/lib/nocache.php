@@ -82,20 +82,25 @@
 
   }
 
-  // A variable the cached text set before the part - a {set} in the loop round it, the
+  // A variable the cached text made before the part - a {set} in the loop round it, the
   // counter of a {while}, an {increment} - is no field of a row, and on a hit the tags that
   // set it are stored text that never runs: the part ended the page on "Field '$t' not
   // found", or printed whatever value a later line of the page had left. So the
-  // application variables the part's source names are compared with what they were when
-  // the caching began - after the page's PHP for the page cache (build/build.php), where
-  // the outermost section round the part started rendering for a fragment
-  // (padFragmentHit) - and those the cached text set or changed are kept with the part, to
-  // be set again as it renders on a hit (tags/nocache.php), as they stood on the miss. As
-  // variables, not as fields of its row, which would stand in front of what the part sets
-  // itself: {nocache}{set $u = $n * 2}{$u}{/nocache} in a loop then printed the row
-  // before's value. One that is as it was is left out: the PHP that set it runs again on a
-  // hit of a section, and the part reads it fresh. Only plain values are kept - the entry
-  // is stored serialized.
+  // application variables the part's source names - as $name, {!name}, {^name}, {?name}
+  // or the bare {name} - are compared with those there when the caching began - after the
+  // page's PHP for the page cache (build/build.php), where the outermost section round the
+  // part started rendering for a fragment (padFragmentHit) - and those the cached text
+  // made are kept with the part, to be set again as it renders on a hit (tags/nocache.php),
+  // as they stood on the miss. As variables, not as fields of its row, which would stand
+  // in front of what the part sets itself: {nocache}{set $u = $n * 2}{$u}{/nocache} in a
+  // loop then printed the row before's value.
+  //
+  // A variable that was there when the caching began is left out, though the cached text
+  // changed it: its value is the request's - the PHP that set it runs again on a hit of a
+  // section, a request or session value is this visitor's - and the part reads it as this
+  // request has it; the miss's value set again gave every visitor the first one's ("Results
+  // for ann!" for bob). The section's change of it is not made on a hit - the lesser evil.
+  // Only plain values are kept - the entry is stored serialized.
 
   function padNocacheVars ( $source, $row ) {
 
@@ -112,13 +117,12 @@
 
     $vars = [];
 
-    if ( $before === NULL or ! preg_match_all ( '/\$([A-Za-z_][A-Za-z0-9_]*)/', $source, $names ) )
+    if ( $before === NULL or ! preg_match_all ( '/\$([A-Za-z_][A-Za-z0-9_]*)|\{[!?^]?([A-Za-z_][A-Za-z0-9_]*)/', $source, $names ) )
       return $vars;
 
-    foreach ( array_unique ( $names [1] ) as $name )
+    foreach ( array_unique ( array_filter ( array_merge ( $names [1], $names [2] ) ) ) as $name )
       if ( ! array_key_exists ( $name, $row ) and isset ( $GLOBALS [$name] ) and ! padEngineName ( $name )
-           and ( ! array_key_exists ( $name, $before ) or $before [$name] !== $GLOBALS [$name] )
-           and padNocachePlain ( $GLOBALS [$name] ) )
+           and ! array_key_exists ( $name, $before ) and padNocachePlain ( $GLOBALS [$name] ) )
         $vars [$name] = $GLOBALS [$name];
 
     return $vars;

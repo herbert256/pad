@@ -12,15 +12,20 @@
 
   $padNocacheRow = NULL;
 
-  // The variables the cached text had set before the part are set again, as they stood on
-  // the miss (padNocacheVars) - the tags that set them are stored text on a hit.
+  // The variables the cached text had made before the part are set again, as they stood on
+  // the miss (padNocacheVars) - the tags that made them are stored text on a hit. Only one
+  // that is not there, or that an earlier part set so ($padNocacheSet): one the request has
+  // otherwise - its page, or a part that set it itself for this visitor - is the request's.
 
   if ( (string) $padParm !== '' ) {
     if ( isset ( $padNocacheRows [$padParm] ) ) {
       $padNocacheRow = $padNocacheRows [$padParm] ['row'];
       foreach ( $padNocacheRows [$padParm] ['vars'] as $padNocacheVar => $padNocacheValue )
-        if ( ! padEngineName ( (string) $padNocacheVar ) )
-          $GLOBALS [$padNocacheVar] = $padNocacheValue;
+        if ( ! padEngineName ( (string) $padNocacheVar )
+             and ( ! isset ( $GLOBALS [$padNocacheVar] ) or isset ( $GLOBALS ['padNocacheSet'] [$padNocacheVar] ) ) ) {
+          $GLOBALS [$padNocacheVar]                  = $padNocacheValue;
+          $GLOBALS ['padNocacheSet'] [$padNocacheVar] = TRUE;
+        }
     } elseif ( $padCheckSyntax )
       padError ( "the {nocache} takes no parameter" );
   }

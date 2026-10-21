@@ -1674,8 +1674,9 @@ A part of a cached page or section that renders on every request, the hit includ
 section (or a tag's `cache=` option) that is rendering, and on a page the page cache may keep,
 the part is stored as its source: on a hit the stored rendering comes back with the part
 rendered again, and a part inside a loop gets the fields of its rows back as they were when it
-was stored - and the variables the cached text set before it (a `{set}` in its loop, a
-`{while}` counter), which are set again as it renders. In a section the part renders where the section stands, with the page's fields.
+was stored - and the variables the cached text made before it (a `{set}` in its loop, a
+`{while}` counter), which are set again as it renders; a variable that was there before the
+caching began is read as this request has it. In a section the part renders where the section stands, with the page's fields.
 A page-cache hit runs no PHP - not the page's, nor an `_inits.php` - so there a part sees what a
 request has without it: request and session values, the configuration, the `_lib` functions and
 the application's tags. The CSRF token of a `{form}` or the `{nonce}` in a part no longer keeps
