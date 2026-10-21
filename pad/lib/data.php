@@ -295,10 +295,16 @@
     $text = padDataText ( $source );
     $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
 
-    if ( $start )
-      return ! str_starts_with ( padDataText ( $written ), $head );
+    // The head ends where the written host or range ends: as a mere prefix of the text, a
+    // link to http://127.0.0.1:90/ let a value fetch port 9, a written 10.0.0.15 passed
+    // 10.0.0.1, and a range 21..200000 passed 1..20000.
 
-    return ! str_contains ( (string) $written, $head );
+    $head = '(?<![\w.:/-])' . preg_quote ( $head, '#' ) . '(?![\w.:-])';
+
+    if ( $start )
+      return ! preg_match ( "#^$head#", padDataText ( $written ) );
+
+    return ! preg_match ( "#$head#", (string) $written );
 
   }
 
