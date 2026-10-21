@@ -40,7 +40,16 @@
   // @else@ or @content@ inside it. Otherwise it is protected here, and the pipe transforms
   // the template text around it as it always did.
 
-  if ( padSingleValue ( $padTagResult ) ) {
+  // The {tag ? true : false} form chooses by the truth of the value the tag answers, as
+  // {echo $qty ? 'some' : 'none'} does - '', '0', 0 and FALSE take the false side - and the
+  // value itself is no part of the answer (level/ternary.php): every value was made TRUE and
+  // written in front of the side, {qty ? some : none} with qty 0 printed 0some.
+
+  if ( padSingleValue ( $padTagResult ) and str_starts_with ( $padOpt [$pad] [0], '?' ) )
+
+    $padTagResult = (bool) $padTagResult;
+
+  elseif ( padSingleValue ( $padTagResult ) ) {
 
     $padTagIsValue = $padProtectValues && ! padTagAnswersSource ();
 
