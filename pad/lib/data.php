@@ -11,7 +11,6 @@
   //
   //   padDataChkSimpleArray  a flat list becomes one named field per occurrence
   //   padDataChkChkOne       a single wrapper around a numeric list is unwrapped
-  //   padDataChkDataAttr     XML attr sub-arrays are folded into their parent
   //   padDataChkCheckRecord  one record becomes a one-occurrence list
   //   padDataChkCheckArray   a vector of scalars becomes nested named occurrences
   //
@@ -137,7 +136,12 @@
 
     $data = padDataChkSimpleArray ($data,$name);
     $data = padDataChkChkOne      ($data,$name);
-    $data = padDataChkDataAttr    ($data,$name);
+
+    // A field named attr is a field like any other. It was dissolved into its row at any
+    // depth - its keys overwrote the row's own, color blue became the attr's red and
+    // {$attr.color} was not found - a fixer for an XML attribute shape no reader makes any
+    // more: the XML reader writes attributes as fields of their element.
+
     $data = padDataChkCheckRecord ($data,$name);
     $data = padDataChkCheckArray  ($data,$name);
 
@@ -534,23 +538,6 @@
       }
 
     }
-
-    return $result;
-
-  }
-
-  function padDataChkDataAttr ($data,$name) {
-
-    $result = $data;
-
-    foreach ($result as $k => $v)
-      if ( is_array($v) )
-        if (trim($k) == 'attr') {
-          foreach ($v as $k2 => $v2)
-            $result [$k2] = $v2;
-          unset ($result [$k]);
-        } else
-          $result [$k] = padDataChkDataAttr ( $result [$k], $name );
 
     return $result;
 
