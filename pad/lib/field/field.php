@@ -236,9 +236,15 @@
 
   }
 
+  // A field that is NULL is JSON's null, as a NULL inside a row is: padFieldValue answers ''
+  // for it, and data-props="{^user}" for a page whose $user is NULL - nobody logged in -
+  // handed the island the string "" where props === null was what it tested.
+
   function padJsonEscape ( $parm )  {
 
-    $value = padArrayCheck ( $parm ) ? padArrayValue ( $parm ) : padDateText ( padFieldValue ( $parm ) );
+    if     ( padArrayCheck ( $parm ) ) $value = padArrayValue ( $parm );
+    elseif ( padFieldNull  ( $parm ) ) $value = NULL;
+    else                               $value = padDateText ( padFieldValue ( $parm ) );
     $json  = json_encode ( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR );
     $json  = str_replace ( [ "\u{E022}", "\u{E027}", "\u{E05C}" ], [ '\u0022', '\u0027', '\u005c' ], $json );
     $json  = htmlspecialchars ( $json, ENT_QUOTES, 'UTF-8' );
