@@ -55,9 +55,34 @@
 
   file_put_contents ( $xrefFile, $xrefKeep );
 
+  // The occurrences page, its report written in full: a loop of fields alone opens no level
+  // inside it, and its two occurrences still belong in its element - the element was written
+  // closed on its own line, and <occurs> after it, read as the parent's.
+
+  $occursFile = DATA . '_xml/include/occurs.xml';
+
+  padFilePut ( $occursFile, "<stale />" );
+
+  padCurl ( $padHost . 'regression/info/?occurs&padInclude' );
+
+  for ( $settle = 0; $settle < 20; $settle++ ) {
+
+    clearstatcache ();
+
+    $occursText = file_exists ( $occursFile ) ? file_get_contents ( $occursFile ) : '';
+    $occursXml  = str_contains ( $occursText, '<stale' ) ? FALSE : simplexml_load_string ( $occursText );
+
+    if ( $occursXml !== FALSE )
+      break;
+
+    usleep ( 100000 );
+
+  }
+
   $vStats = ( is_array ( $stats ) and isset ( $stats ['total'] ) )      ? 'yes' : 'NO';
   $vTrack = ( $trackAfter > $trackBefore and $dbAfter > $dbBefore )     ? 'yes' : 'NO';
   $vXml   = ( $xmlOne )                                                 ? 'yes' : 'NO';
   $vXref  = ( str_contains ( $xref, 'regression/info;probe' ) )         ? 'yes' : 'NO';
+  $vOccur = ( $occursXml !== FALSE and count ( $occursXml->xpath ( '//rows/occurs/occur' ) ) == 2 ) ? 'yes' : 'NO';
 
 ?>

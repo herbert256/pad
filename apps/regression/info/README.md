@@ -20,4 +20,5 @@ removed. The `{trace}` tag is still tested by `regression/pages` (`misc/trace`,
 |------|-------------|
 | `index.php/pad` | Fetches the probe and states one verdict per mode |
 | `probe.php/pad` | A page with a loop, a pipe and a sequence to record |
+| `occurs.php/pad` | A loop of fields alone, its xml report written in full, for the index to find its occurrences inside its element |
 | `_config/config.php` | The four modes by name, every option on, `_common` off |

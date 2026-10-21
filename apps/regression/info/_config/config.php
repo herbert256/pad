@@ -18,4 +18,10 @@
   $padInfoXmlTidy          = TRUE;
   $padInfoXmlCompact       = TRUE;
 
+  // The occurrences page is reported in full - its loop's occurrences with it - for the
+  // index to read where they stand.
+
+  if ( $padPage == 'occurs' )
+    $padInfoXmlCompact = FALSE;
+
 ?>

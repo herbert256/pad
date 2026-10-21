@@ -64,6 +64,13 @@
     if ( $padInfoXmlCompact )
       $options = [];
 
+    // A loop of fields alone opens no level inside it, so no child marked it as an element,
+    // and its occurrences, two or more, are written all the same: the element was closed on
+    // its own line and its <occurs> came after it, read as the parent's.
+
+    if ( count ( $occurs ) > 1 and ! $padInfoXmlCompact )
+      $padInfoXmlTree [$tree] ['childs'] = TRUE;
+
     if ( $padInfoXmlTree [$tree] ['childs'] )
       padInfoXmlOpen ( $tag, $options );
     else
