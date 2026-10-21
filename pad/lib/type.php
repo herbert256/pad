@@ -90,12 +90,12 @@
   // Whether the PHP this request ran in the page's own scope - the configuration, the guards,
   // _inits.php, the page, _exits.php - names the variable: $name, or $GLOBALS ['name']. The
   // files of the _ directories - _lib, _tags, _functions, _callbacks ... - hold functions and
-  // tags, whose $date is a local of their own. The text is read once, and again when more
+  // tags, whose $date is a local of their own. The names are read once, and again when more
   // files were included since.
 
   function padTypePageNamed ( $item ) {
 
-    static $text = '', $seen = 0, $root = NULL;
+    static $names = [], $seen = 0, $root = NULL;
 
     $files = get_included_files ();
 
@@ -103,18 +103,119 @@
 
       $root ??= rtrim ( realpath ( APPS ) ?: APPS, '/' ) . '/';
       $seen   = count ( $files );
-      $text   = '';
+      $names  = [];
 
       foreach ( $files as $file )
         if ( str_starts_with ( $file, $root )
              and ! preg_match ( '#(^|/)_(?!config/|common/)[^/]*/#', substr ( $file, strlen ( $root ) ) ) )
-          $text .= file_get_contents ( $file ) . "\n";
+          $names += padTypePageVars ( file_get_contents ( $file ) );
 
     }
 
-    $name = preg_quote ( $item, '/' );
+    return isset ( $names [$item] );
 
-    return (bool) preg_match ( '/\$' . $name . '\b|GLOBALS\s*\[\s*[\'"]' . $name . '[\'"]/', $text );
+  }
+
+  // The variables a file of PHP names in its own scope, read from its tokens: a word in a
+  // comment or a string is none, nor a parameter or a local of a function, a closure or a
+  // class - only a global statement there names one. Searched in the text, $upper in a
+  // comment made the page's own a name it never set, and ?upper=<script>... took {upper}'s
+  // place again, written out raw.
+
+  function padTypePageVars ( $code ) {
+
+    $names  = [];
+    $depth  = 0;
+    $bodies = [];
+    $wait   = FALSE;
+    $params = 0;
+    $string = FALSE;
+    $global = FALSE;
+    $before = NULL;
+    $tokens = token_get_all ( (string) $code );
+
+    foreach ( $tokens as $i => $token ) {
+
+      $id = is_array ( $token ) ? $token [0] : $token;
+
+      if ( in_array ( $id, [ T_WHITESPACE, T_COMMENT, T_DOC_COMMENT ], TRUE ) )
+        continue;
+
+      $last   = $before;
+      $before = $id;
+
+      // A string with variables in it: what stands inside is text, its {$x} braces too.
+
+      if ( $id === '"' or $id === '`' ) { $string = ! $string; continue; }
+      if ( $id === T_START_HEREDOC )    { $string = TRUE;      continue; }
+      if ( $id === T_END_HEREDOC )      { $string = FALSE;     continue; }
+
+      if ( $id === '{' or $id === T_CURLY_OPEN or $id === T_DOLLAR_OPEN_CURLY_BRACES ) {
+        $depth++;
+        if ( $wait ) {
+          $bodies [] = $depth;
+          $wait      = FALSE;
+        }
+        continue;
+      }
+
+      if ( $id === '}' ) {
+        if ( $bodies and end ( $bodies ) == $depth )
+          array_pop ( $bodies );
+        $depth--;
+        continue;
+      }
+
+      if ( $string )
+        continue;
+
+      // A function, a closure, a class: its parameters and its body are its own. An arrow
+      // function's parameters are its own, its expression reads the page's.
+
+      if ( $id === T_FUNCTION
+           or ( in_array ( $id, [ T_CLASS, T_INTERFACE, T_TRAIT ], TRUE ) and $last !== T_DOUBLE_COLON )
+           or ( defined ( 'T_ENUM' ) and $id === T_ENUM ) ) {
+        $wait = TRUE;
+        continue;
+      }
+
+      if ( $wait and $id === ';' ) {
+        $wait = FALSE;
+        continue;
+      }
+
+      if ( $id === T_FN ) {
+        $params = -1;
+        continue;
+      }
+
+      if ( $params ) {
+        if ( $id === '(' ) $params = ( $params < 0 ) ? 1 : $params + 1;
+        if ( $id === ')' ) $params--;
+        continue;
+      }
+
+      if ( $id === T_GLOBAL ) { $global = TRUE;  continue; }
+      if ( $id === ';' )      { $global = FALSE; continue; }
+
+      if ( $id !== T_VARIABLE or $wait or ( $bodies and ! $global ) )
+        continue;
+
+      $name = substr ( $token [1], 1 );
+
+      if ( $name === 'GLOBALS' ) {
+        $next = array_values ( array_filter ( array_slice ( $tokens, $i + 1, 6 ),
+          fn ( $one ) => ! is_array ( $one ) or ! in_array ( $one [0], [ T_WHITESPACE, T_COMMENT, T_DOC_COMMENT ], TRUE ) ) );
+        if ( ( $next [0] ?? '' ) === '[' and is_array ( $next [1] ?? NULL ) and $next [1] [0] === T_CONSTANT_ENCAPSED_STRING )
+          $names [ substr ( $next [1] [1], 1, -1 ) ] = TRUE;
+        continue;
+      }
+
+      $names [$name] = TRUE;
+
+    }
+
+    return $names;
 
   }
 

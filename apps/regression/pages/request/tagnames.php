@@ -10,4 +10,10 @@
   $who     = $who ?? 'nobody';
   $date    = $date ?? '2000-01-01';
 
+  // A name in a comment, a string or a function's parameter is none of the page's: $upper
+  // here, '$fibonacci' and $nums below stay the template's.
+
+  $tagNamesText  = 'the $fibonacci sequence';
+  $tagNamesLocal = function ( $nums ) { $exclaim = 1; return $nums; };
+
 ?>
