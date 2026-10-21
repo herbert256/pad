@@ -277,20 +277,21 @@
 
   }
 
-  // Whether a visitor chose the address a data source reads as - or the range, whose whole
-  // text stands for its host - so that it is not fetched (or built): its host, what follows
-  // the scheme, stands in a value the request brought - GET, POST, a cookie, a segment of a
-  // clean URL - and the template does not write that scheme and host itself. The danger is
-  // a visitor naming the host and port the server connects to: a page variable, an engine
-  // variable ({$padHost}), a parameter a component's caller wrote ({feed src='https://...'}
-  // with data='{#src}') name the author's address, and an address the page's PHP built
-  // from its configuration is fetched as it was before every value was refused.
+  // Whether a visitor chose the address a data source reads as - or the range - so that it
+  // is not fetched (or built). The danger is a visitor naming the host and port the server
+  // connects to, or the length of a range it builds: a request value - GET, POST, a JSON
+  // body, a cookie, a segment of a clean URL - that is the address's host (with its port or
+  // without), its port, or the start of the address itself, through the scheme into the
+  // host; for a range one that is either end or the whole range. Merely holding the host's
+  // text is not enough: a search for "workshop", a cookie "regression-dark" or the random
+  // padReqID refused a page fetching SELF://shop/..., SELF://regression/... or a two-letter
+  // host its own PHP built; and a written port no longer makes the visitor's host the
+  // author's, data='http://{$h}:80/' with ?h=localhost, nor a written host his port.
   //
-  // The template counts in the level the data tag stands in and every level around it, as an
-  // address may reach a tag from further out or stand inside a tag of its content, {data}
-  // {if $live}https://...{/if}{/data 'd'}; the match ends where the written host or range
-  // ends - a link to http://127.0.0.1:90/ does not make port 9 the author's, nor a written
-  // 21..200000 the range 1..20000.
+  // A page variable, an engine variable ({$padHost}), a parameter a component's caller wrote
+  // name the author's address. So does the template: the address's scheme and host - the
+  // whole range - written in the level the data tag stands in or any level around it, the
+  // match ending where the written one ends.
 
   function padDataValueAddress ( $source ) {
 
@@ -300,18 +301,31 @@
     // judged on the escaped text, a host with an @ in it - user@host - hid behind the @'s
     // stand-in from the request value that holds it.
 
-    $text = padParmText ( padDataText ( $source ) );
-    $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
-    $host = strtolower ( trim ( preg_replace ( '#^[a-z]+:/*#i', '', $head ) ) );
+    $text   = padParmText ( padDataText ( $source ) );
+    $low    = strtolower ( $text );
+    $values = array_map ( 'strtolower', padDataRequestValues () );
+    $asked  = FALSE;
 
-    if ( $host === '' )
-      return FALSE;
+    if ( preg_match ( '#^([a-z]+:/*)([^/?\#]*)#i', $text, $match ) ) {
 
-    $asked = FALSE;
+      $head     = $match [0];
+      $auth     = strtolower ( $match [2] );
+      $hostPort = ( ( $at = strrpos ( $auth, '@' ) ) === FALSE ) ? $auth : substr ( $auth, $at + 1 );
+      $port     = preg_match ( '#:(\d+)$#', $hostPort, $digits ) ? $digits [1] : '';
+      $host     = ( $port === '' ) ? $hostPort : substr ( $hostPort, 0, - strlen ( $port ) - 1 );
 
-    foreach ( padDataRequestValues () as $one )
-      if ( str_contains ( strtolower ( $one ), $host ) )
-        $asked = TRUE;
+      foreach ( $values as $one )
+        if ( $one === $host or $one === $hostPort or ( $port !== '' and $one === $port )
+             or ( strlen ( $one ) > strlen ( $match [1] ) and str_starts_with ( $low, $one ) ) )
+          $asked = TRUE;
+
+    } else {
+
+      $head  = $text;
+      $ends  = array_map ( fn ( $end ) => strtolower ( trim ( $end ) ), explode ( '..', $text ) );
+      $asked = (bool) array_intersect ( $values, array_merge ( $ends, [ $low ] ) );
+
+    }
 
     if ( ! $asked )
       return FALSE;
@@ -326,13 +340,14 @@
 
   }
 
-  // The values the request brought - GET, POST, cookies, the segments of a clean URL - as
-  // the text a field prints them: trimmed, as padGetParms2 made the variables.
+  // The values the request brought - GET, POST, a JSON body (padRequestJson, which
+  // padRequest reads as POST input), cookies, the segments of a clean URL - as the text a
+  // field prints them: trimmed, as padGetParms2 made the variables.
 
   function padDataRequestValues () {
 
     $values = [];
-    $from   = [ $_GET, $_POST, $_COOKIE, $GLOBALS ['padRouteVars'] ?? [] ];
+    $from   = [ $_GET, $_POST, padRequestJson (), $_COOKIE, $GLOBALS ['padRouteVars'] ?? [] ];
 
     array_walk_recursive ( $from, function ( $one ) use ( &$values ) {
       if ( is_scalar ( $one ) and ( $one = trim ( (string) $one ) ) !== '' )
