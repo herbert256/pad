@@ -24,8 +24,8 @@
   // right would otherwise slice to 0 and leave nothing at all; padTypeReverse reverses a
   // number's digits.
   //
-  // pqArray goes the other way round: it renders {sequence ...} through padCode and hands
-  // the result back to PHP as an array.
+  // pqArray goes the other way round: it hands PHP the terms of a type as an array, made as
+  // pqTerms makes them.
 
   function pqActionArray ( &$parms ) {
 
@@ -139,36 +139,64 @@
 
   }
 
-  function pqArray ( $sequence, $parm='', $options='') {
+  // pqArray ( 'even', '', 'rows=3' ) is [ 2, 4, 6 ]: the terms of a type of types/ as the
+  // values they are. The parameter is a value of the type, whatever text is in it, and the
+  // options are the run's named limits - [ 'rows' => 3, 'to' => 50 ] or the same written
+  // 'rows=3, to=50', each value as written - made by pqTerms, nothing rendered. It wrote a
+  // {sequence} tag pair of the three and rendered it through padCode, so the parameter was
+  // template source - pqArray ( 'repeat', "1, make, eval='php:abs(-123)'", 'rows=1' ) ran the
+  // PHP call and answered [ '123' ] - and a term came back as the page writes it, 'a&b' as
+  // 'a&amp;b' and 'a,b' with the comma one of the template's stand-ins. A name that is no type
+  // or an option the run has no use for is reported, and the answer is no terms.
 
-    // Only TRUE or nothing at all means no parameter - a 0 is a value like any other, and
-    // the truthiness test glued it onto the name (add=0 asked for a sequence named add0).
+  function pqArray ( $sequence, $parm='', $options=[] ) {
 
-    if ( $parm === TRUE or $parm === FALSE or $parm === NULL or $parm === '' )
-      $parm = '';
-    else
-      $parm = "=$parm";
+    if ( ! pqSeq ( $sequence ) ) {
+      padError ( "pqArray: there is no sequence type named '" . padMakeSafe ( $sequence, 30 ) . "'" );
+      return [];
+    }
 
-    if ( $options )
-      $options = ", $options";
+    if ( is_string ( $options ) ) {
 
-    // Every term is rendered with a comma behind it, the last one too, so that one comma is
-    // cut before the split - it used to stay and leave an empty last element, and an empty
-    // sequence came back as [''] rather than [].
+      $list = [];
 
-    $list = padCode ( "{sequence $sequence$parm$options}{\$sequence},{/sequence}" );
+      foreach ( padExplode ( $options, ',' ) as $option ) {
 
-    if ( str_ends_with ( $list, ',' ) )
-      $list = substr ( $list, 0, -1 );
+        [ $name, $value ] = array_map ( 'trim', explode ( '=', $option, 2 ) ) + [ 1 => TRUE ];
 
-    return ( $list === '' ) ? [] : explode ( ',', $list );
+        if ( is_string ( $value ) and preg_match ( '/^([\'"])(.*)\1$/s', $value, $quoted ) )
+          $value = $quoted [2];
+        elseif ( is_numeric ( $value ) )
+          $value += 0;
+
+        $list [$name] = $value;
+
+      }
+
+      $options = $list;
+
+    }
+
+    if ( ! is_array ( $options ) )
+      $options = [];
+
+    $limits = [ 'from', 'to', 'sole', 'minimal', 'maximal', 'min', 'max', 'increment', 'rows',
+                'try', 'stop', 'skip', 'randomly', 'unique', 'build' ];
+
+    foreach ( array_keys ( $options ) as $name )
+      if ( ! in_array ( $name, $limits, TRUE ) ) {
+        padError ( "pqArray: '" . padMakeSafe ( $name, 30 ) . "' is no option it takes - " . implode ( ', ', $limits ) );
+        return [];
+      }
+
+    return pqTerms ( $sequence, ( $parm === TRUE ) ? '' : $parm, $options );
 
   }
 
-  // pqTerms is pqArray for a sequence type the engine itself generates to look in: the type
-  // and its parameter go to sequence/terms.php as data, the run is bounded by $parms - stop,
-  // to or sole - and the terms come back as they were made, nothing rendered. A parameter of
-  // nothing is the bare type, as pqArray writes it.
+  // pqTerms makes the terms of a type - for pqArray, and for the engine itself to look in:
+  // the type and its parameter go to sequence/terms.php as data, the run is bounded by
+  // $parms - stop, to, sole, rows - and the terms come back as they were made, nothing
+  // rendered. A parameter of nothing is the bare type.
 
   function pqTerms ( $sequence, $parm, $parms ) {
 
