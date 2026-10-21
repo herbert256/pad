@@ -83,6 +83,14 @@
     if ( $key === NULL )
       return $array = $value;
 
+    // A key that holds a dot itself - 'mail.host' as one key, what padArrDot makes - is
+    // written as it is when the array holds it whole, as padArrGet, padArrHas and
+    // padArrForget find it: a nested level was written beside it, and padArrGet went on
+    // answering the old value.
+
+    if ( is_string ( $key ) and str_contains ( $key, '.' ) and padArrStep ( $array, $key, $now ) )
+      return $array = padArrPut ( 'padArrSet', $array, $key, $value );
+
     $path = padArrPath ( 'padArrSet', $key );
 
     if ( $path !== NULL )
