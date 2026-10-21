@@ -7,7 +7,7 @@
   //
   // Opt-in with $padToolbar = 'local' (TRUE means the same). It never shows to a request from
   // elsewhere: what it lists - SQL, variables, the session - is the same material the error
-  // report keeps for this machine, so padLocal() decides, and $padDiagnostics = FALSE closes
+  // report keeps for this machine, so padLocalView() decides, and $padDiagnostics = FALSE closes
   // it like the rest. It stays out of a bare fragment (&padInclude) and a response fragment
   // ({fragment}), out of anything that is not a web page answering 200, and out of the page
   // cache: it is added to the response on its way out, after the cache stored the page.
@@ -47,7 +47,7 @@
     if ( padReplaying () )
       return FALSE;
 
-    return padLocal ();
+    return padLocalView ();
 
   }
 

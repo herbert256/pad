@@ -44,7 +44,7 @@
     if ( padReplaying () )
       return FALSE;
 
-    return padLocal ();
+    return padLocalView ();
 
   }
 

@@ -72,7 +72,7 @@
 
   function padSelfFetchHeaders () {
 
-    return padLocal () ? [] : [ 'X-PAD-Remote' => '1' ];
+    return padLocalView () ? [] : [ 'X-PAD-Remote' => '1' ];
 
   }
 

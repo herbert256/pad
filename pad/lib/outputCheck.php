@@ -34,7 +34,7 @@
     global $padCache, $padCheckOutput, $padContentType, $padOutputType, $padFragmentSent, $padFragmentOnly, $padFragmentTarget;
 
     if ( ! ( $padCheckOutput ?? FALSE ) and ! padSelfSwitch ( 'padCheckOutput' ) ) return FALSE;
-    if ( ! padLocal ()                                                          ) return FALSE;
+    if ( ! padLocalView ()                                                      ) return FALSE;
     if ( ( $padOutputType ?? 'web' ) != 'web'                                    ) return FALSE;
     if ( $padCache                                                               ) return FALSE;
     if ( padLive () !== ''                                                       ) return FALSE;

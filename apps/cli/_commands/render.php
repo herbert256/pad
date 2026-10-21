@@ -63,10 +63,14 @@
 
   // pad export wants the page as the web gets it - the web output type, tidy and all, where
   // the command line otherwise writes it as console text - and nothing a developer's own
-  // machine adds to a page: no toolbar, no live reload.
+  // machine adds to a page: no toolbar, no live reload, no output check, no {debug} box -
+  // $padExportRun makes padLocalView answer as for a visitor, the page's own PHP switching
+  // one on too.
 
-  if ( getenv ( 'PAD_EXPORT' ) )
+  if ( getenv ( 'PAD_EXPORT' ) ) {
+    $padExportRun = TRUE;
     $padSetConfig = array_merge ( $padSetConfig, [ 'OutputType' => 'web', 'Toolbar' => FALSE, 'Reload' => FALSE ] );
+  }
 
   // pad test renders the application's _tests/ pages, bare like the suites' pages, with
   // every {assert} checked, and reads the status the request ended with from stderr - the

@@ -292,6 +292,23 @@
 
   }
 
+  // Whether the page goes to this machine's own screen: what only the developer may see in
+  // a page - the toolbar, live reload, the output check's panel, a {debug} box - and the
+  // fetches the page makes of this site ask it. pad export renders each page on the command
+  // line, local to padLocal, for a static copy any visitor reads, so it gets what a visitor
+  // gets (apps/cli/_commands/render.php sets $padExportRun): a page whose own PHP said
+  // $padToolbar = 'local' put the bar, its variables and SQL with it, into the copy, and
+  // every {debug} box went along.
+
+  function padLocalView () {
+
+    if ( PHP_SAPI === 'cli' and ( $GLOBALS ['padExportRun'] ?? FALSE ) )
+      return FALSE;
+
+    return padLocal ();
+
+  }
+
   // $padDiagnostics says no: FALSE, or any value that means it - a 0 in the configuration,
   // the '0' or 'off' an .env holds when the setting is read through padEnv. Only the boolean
   // counted, and every other no left the full reports on.

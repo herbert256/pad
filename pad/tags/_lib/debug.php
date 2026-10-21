@@ -1,8 +1,9 @@
 <?php
 
   // {debug $order} and {debug}: a value shown where the page is, while rendering goes on -
-  // for a local request only (padLocal: the command line, or loopback with nothing
-  // forwarded, and $padDiagnostics not switched off). A remote visitor gets nothing.
+  // for a local request only (padLocalView: the command line, or loopback with nothing
+  // forwarded, and $padDiagnostics not switched off - not pad export's render, whose copy
+  // any visitor reads). A remote visitor gets nothing.
   //
   // The tag's items are read raw, as {attrs} reads them: a $name that holds an array is the
   // array, where an expression would read it as empty, and a missing name is shown as
@@ -14,7 +15,7 @@
 
     global $pad, $padCurrent;
 
-    if ( ! padLocal () )
+    if ( ! padLocalView () )
       return '';
 
     $items = padAttrsItems ();
