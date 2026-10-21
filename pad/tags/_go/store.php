@@ -89,6 +89,13 @@
       padError ( "a value spliced into a {data} list would run as an expression: put it in quotes, ( '{\$x}' ), or hand it over as data=\$x" );
       $padStoreData = [];
 
+    } elseif ( $padProtectValues and $padStoreValue and padDataValueRange ( $padStoreSource ) ) {
+
+      // A range a value names is built whole, a row per member - lib/data.php padDataValueRange.
+
+      padError ( "the data value reads as a range of more than $padSeqDefaultTries values - write a range that long in the template" );
+      $padStoreData = [];
+
     } elseif ( $padProtectValues and padDataFetches ( $padStoreSource, padTagParm ( 'type' ) )
              and ( ( $padWalk [$pad] == 'end' and (string) $padContent !== '' )
                    ? padDataValueAddress ( $padStoreSource, $padStoreValue, $padBase [$pad], TRUE )

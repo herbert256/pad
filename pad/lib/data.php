@@ -302,6 +302,28 @@
 
   }
 
+  // Whether a data source reads as a numeric range of more members than a value may ask for,
+  // $padSeqDefaultTries - the rounds a {while} gets. A range is built whole, a row per member,
+  // up to the ceiling of a range the author writes ($padSeqMaxTries, padGetRange): a request
+  // value 1..1000000 handed to data= built a million rows, two minutes and 766 MB for one
+  // request. Who chose it is decided as for an address (padDataValueAddress).
+
+  function padDataValueRange ( $source ) {
+
+    $text = padDataText ( $source );
+
+    if ( ! is_string ( $text ) or padContentType ( $text ) != 'range' )
+      return FALSE;
+
+    $parts = padExplode ( $text, '..' );
+
+    if ( ! is_numeric ( $parts [0] ?? '' ) or ! is_numeric ( $parts [1] ?? '' ) )
+      return FALSE;
+
+    return abs ( $parts [1] - $parts [0] ) + 1 > ( $GLOBALS ['padSeqDefaultTries'] ?? 10000 );
+
+  }
+
   function padDataIsRecord ( $input ) {
 
     global $padDataSetRecord;
