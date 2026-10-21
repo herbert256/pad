@@ -147,7 +147,7 @@
     if     ( ! padValid     ( $type              )                 ) return FALSE;
     elseif ( padAppTagCheck ( $type              )                 ) return 'app';
     elseif ( padCommonCheck ( $type              ) and $padCommon  ) return 'common';
-    elseif ( padCheck       ( PAD . "tags/$type" )                 ) return 'pad';
+    elseif ( padTagBuiltIn  ( $type              )                 ) return 'pad';
 
     $common = padTypeCommon ( $type );
 
@@ -183,7 +183,7 @@
 
     if     ( padAppTagCheck     ( $item                          ) and $type == 'app'      ) return $type;
     elseif ( padCommonCheck     ( $item                          ) and $type == 'common'   ) return $type;
-    elseif ( padCheck           ( PAD . "tags/$item"             ) and $type == 'pad'      ) return $type;
+    elseif ( padTagBuiltIn      ( $item                          ) and $type == 'pad'      ) return $type;
     elseif ( isset              ( $pqStore         [$item]       ) and $type == 'pull'     ) return $type;
     elseif ( isset              ( $padBoolStore    [$item]       ) and $type == 'bool'     ) return $type;
     elseif ( isset              ( $padContentStore [$item]       ) and $type == 'content'  ) return $type;
@@ -206,6 +206,25 @@
     elseif ( padTypeFunction    ( $item, 0                       ) and $type == 'function' ) return $type;
 
     return FALSE;
+
+  }
+
+  // Whether $name is a built-in tag: a file in PAD/tags/ of exactly that name, as a built-in
+  // pipe function is one below. A file system that ignores case found tags/if.php for {If}
+  // and {IF}, whose code compares its own name exactly: {If 1 eq 2}a{Else}b{/If} printed
+  // nothing, {ELSEIF} was skipped and {Data 'q'} ended on a PHP warning, where a server that
+  // tells case apart has no tag named If.
+
+  function padTagBuiltIn ( $name ) {
+
+    static $exact = NULL;
+
+    if ( ! padCheck ( PAD . "tags/$name" ) )
+      return FALSE;
+
+    $exact ??= file_exists ( PAD . 'TAGS/' ) ? pqNames ( PAD . 'tags' ) : [];
+
+    return ! $exact or isset ( $exact ["$name.php"] ) or isset ( $exact ["$name.pad"] );
 
   }
 
