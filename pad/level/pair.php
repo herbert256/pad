@@ -45,6 +45,15 @@
   // text, the name became /tag, and a name nothing claims was reported as '/tag' and kept an
   // optional or noError on its closing tag from dropping it.
 
+  // Both halves carrying options: the closing tag's replace the opening tag's, all of them -
+  // the do-while form {while name='outer'}...{/while $i lt 3} lost its name and a toData=
+  // there stored nothing, in silence, as the unread-option sweep looks at the closing tag's
+  // set only. Strict mode names it: they belong together on one of the two.
+
+  if ( count($padWordsCheck) > 1 and $padPrmTypeSet == 'open' and $padCheckSyntax )
+    padError ( "the options of {" . $padBetween . "} are replaced by those of its closing tag {"
+               . $padBetweenCheck . "} - write them all on one of the two" );
+
   if ( count($padWordsCheck) > 1 ) {
     $padPrmTypeSet = 'close';
     $padBetween    = $padTagCheck . ' ' . $padWordsCheck [1];
