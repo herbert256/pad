@@ -68,6 +68,11 @@
 
         padBranchNested ( $padCaseText, 'a {when}', "{when \$y}" );
 
+        // Two values are the same when the match would take them for the same: it compares
+        // with ==, so 1, '01' and 1.0 are one number, and a {when '01'} behind a {when 1}
+        // never answers. Numbers only - == holds a text against TRUE as well, and a {when
+        // true} behind a {when 'abc'} does answer for 'x'.
+
         foreach ( padParseOptions ( $padCaseText ) as $padCaseOne ) {
 
           if ( padMetaLiteral ( $padCaseOne ) === NULL )
@@ -75,8 +80,10 @@
 
           $padCaseVal = padEval ( $padCaseOne );
 
-          if ( in_array ( $padCaseVal, $padCaseSeen, TRUE ) )
-            padError ( "the {when '" . $padCaseVal . "'} is written twice - the first one answers" );
+          foreach ( $padCaseSeen as $padCaseOld )
+            if ( $padCaseOld === $padCaseVal
+                 or ( is_numeric ( $padCaseOld ) and is_numeric ( $padCaseVal ) and $padCaseOld == $padCaseVal ) )
+              padError ( "the {when " . trim ( $padCaseOne ) . "} is written twice - the first one answers" );
 
           $padCaseSeen [] = $padCaseVal;
 
