@@ -348,6 +348,27 @@
 
   }
 
+  // An {else} written with white space before its brace - {else }, {else and a line break
+  // - is the tag {else}, as {echo $x } is {echo $x} and {/if } is {/if}. The owners of an
+  // {else} - {if}, {case} and the condition tags (padElseCut) - look for its exact text, so
+  // the branch was lost in silence when the condition failed, and "there is no tag named
+  // 'else'" ended the page when it held. Written as {else} where a level's text is set out
+  // for an occurrence (occurrence/init.php), what a {highlight} shows kept as written, as
+  // padTildeStrip keeps it.
+
+  function padElseSpace ( $text ) {
+
+    if ( ! is_string ( $text ) or ! str_contains ( $text, '{else' ) or ! preg_match ( '/\{else\s+\}/', $text ) )
+      return $text;
+
+    $kept = [];
+    $text = padTildeKeep ( $text, $kept );
+    $text = preg_replace ( '/\{else\s+\}/', '{else}', $text );
+
+    return $kept ? strtr ( $text, $kept ) : $text;
+
+  }
+
   // A condition tag's own {else}: the content is cut to the part in front of it when the
   // condition holds, to the part after it when not - TRUE then; FALSE when there is none,
   // and the tag answers the way any tag does, its @else@ half rendering on FALSE.

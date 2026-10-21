@@ -1,8 +1,8 @@
 <?php
 
   // Opens a new occurrence: bumps the row counter, gives the level a fresh working copy
-  // of its template ($padOut = $padBase, its comments taken out and its ~ whitespace
-  // control applied) and points
+  // of its template ($padOut = $padBase, its comments taken out, its ~ whitespace control
+  // applied and an {else } written {else} - lib/template.php padElseSpace) and points
   // $padKey/$padCurrent at the row the data pointer currently sits on.
   //
   // Rows reached after the first walk pass are also collected in $padWalkData, which is
@@ -14,7 +14,7 @@
 
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
 
-  $padOut     [$pad] = padTildeStrip ( padCommentStrip ( $padBase [$pad] ) );
+  $padOut     [$pad] = padElseSpace ( padTildeStrip ( padCommentStrip ( $padBase [$pad] ) ) );
   $padScan    [$pad] = 0;
 
   // A level no tag opened - the page itself when its PHP answered no list (build/page.php
