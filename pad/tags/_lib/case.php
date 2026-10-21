@@ -17,10 +17,20 @@
 
   }
 
+  // A value spliced into the case's value or a when's - {case '{$q}'} - holds its syntax
+  // characters as the stand-ins of padProtect (lib/encoding.php), which only the page's exit
+  // puts back: {case '{$q}'}{when 'ann@x.com'} missed for q = ann@x.com. Compared as the
+  // characters they are, as the comparison operators of an expression compare them
+  // (padEvalScalar).
+
   function padCaseWhen ( $basis, $when ) {
 
+    $text = fn ( $one ) => ( is_string ( $one ) and str_contains ( $one, "\xEE" ) ) ? padUnprotect ( $one ) : $one;
+
+    $basis = $text ( $basis );
+
     foreach ( padCaseWhenValues ( $when ) as $value )
-      if ( $basis == $value )
+      if ( $basis == $text ( $value ) )
         return TRUE;
 
     return FALSE;

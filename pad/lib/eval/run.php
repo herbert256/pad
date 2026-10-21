@@ -489,10 +489,19 @@
 
     // A boolean compares as PAD writes it, TRUE as 1 and FALSE as empty, and NULL as empty:
     // the bare word true is PHP's TRUE, and 'no' eq true was true because 'no' == TRUE is.
+    //
+    // A value spliced into the expression - where='$email eq {$q}', {if '{$c}' eq 'Paris, TX'}
+    // - is a string of it holding its syntax characters as the stand-ins of padProtect
+    // (lib/encoding.php), which only the page's exit puts back: ann@x.com never equalled the
+    // row's ann@x.com, so a where= on a request value found no row and an {if} took the other
+    // branch for any value with a comma, an @, a quote or an = in it. A comparison reads the
+    // characters the stand-ins are; it answers a truth, so nothing of the value goes on.
 
     if ( in_array ( $opr, [ 'LT', 'LE', 'EQ', 'GE', 'GT', 'NE' ] ) ) {
       if ( is_bool ( $left  ) or $left  === NULL ) $left  = $left  ? '1' : '';
       if ( is_bool ( $right ) or $right === NULL ) $right = $right ? '1' : '';
+      if ( is_string ( $left  ) and str_contains ( $left,  "\xEE" ) ) $left  = padUnprotect ( $left  );
+      if ( is_string ( $right ) and str_contains ( $right, "\xEE" ) ) $right = padUnprotect ( $right );
     }
 
     switch ( $opr ) {
