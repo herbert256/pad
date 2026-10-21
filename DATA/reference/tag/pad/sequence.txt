@@ -1,8 +1,6 @@
-manual;fragments/charts_2
 manual;fragments/page_4
 manual;fragments/response_fragments_1
 manual;fragments/sequences_1
-manual;fragments/sequences_2
 manual;fragments/stacks_1
 manual;lvl_occ/5
 manual;lvl_occ/6
@@ -14,6 +12,7 @@ regression/common;tableFun/fun_5_a
 regression/common;tableFun/fun_5_b
 regression/errors;eval/a_bare_max_is_named_as_written
 regression/errors;eval/a_data_set_named_0_is_named
+regression/errors;eval/a_false_in_a_list_sequence_is_named
 regression/errors;eval/a_list_as_name_is_named
 regression/errors;eval/a_list_as_push_is_named
 regression/errors;eval/a_list_as_the_expression_of_eval_is_named
@@ -24,6 +23,8 @@ regression/errors;eval/a_list_given_to_action_is_named
 regression/errors;eval/a_list_where_an_action_takes_a_count_is_named_as_written
 regression/errors;eval/a_multiple_of_a_0_spelled_minus_0_is_refused
 regression/errors;eval/a_name_nothing_reads_beside_a_store_pulled_is_named
+regression/errors;eval/a_percentage_of_chance_that_is_no_number_is_named
+regression/errors;eval/a_percentage_of_random_that_is_no_number_is_named
 regression/errors;eval/a_randomize_with_repeats_past_the_ceiling_is_named
 regression/errors;eval/a_range_parameter_of_words_is_named
 regression/errors;eval/a_range_without_its_start_is_named
@@ -43,6 +44,7 @@ regression/errors;eval/an_action_option_in_another_case_is_named
 regression/errors;eval/an_unknown_action_given_to_action_is_named
 regression/errors;eval/build_names_its_strategy_in_the_case_it_is_written
 regression/errors;eval/divide_by_a_0_spelled_0_0_is_refused
+regression/errors;eval/repeat_of_false_is_named
 regression/errors;eval/resume_in_another_case_is_no_tag
 regression/errors;eval/resume_names_a_parameter_past_the_first_that_nothing_reads
 regression/errors;eval/resume_of_a_quoted_store_that_is_not_there_is_named
@@ -143,6 +145,7 @@ regression/framework;sequence/a_parameter_after_the_first_is_read_by_what_the_on
 regression/framework;sequence/a_parameter_of_0_spelled_otherwise_is_read_as_0
 regression/framework;sequence/a_parameter_past_the_integer_range_makes_no_bitwise_term
 regression/framework;sequence/a_parameter_store_shorter_than_the_sequence_ends_it
+regression/framework;sequence/a_percentage_of_chance_or_random_draws_its_fraction_too
 regression/framework;sequence/a_play_keeps_the_zero_term
 regression/framework;sequence/a_play_named_like_its_sequence_plays
 regression/framework;sequence/a_play_of_a_recurrence_has_no_term_at_0_and_reads_its_terms_once
@@ -223,7 +226,6 @@ regression/framework;sequence/an_eval_written_by_the_template_runs_a_spliced_val
 regression/framework;sequence/an_expression_inside_a_run_leaves_the_run_alone
 regression/framework;sequence/an_expression_inside_resume_is_its_own_run
 regression/framework;sequence/an_increment_wider_than_the_range_leaves_its_start
-regression/framework;sequence/an_oeis_row_that_is_no_list_of_numbers_has_no_terms
 regression/framework;sequence/an_order_play_of_a_type_without_a_table_is_the_term_at_each_position
 regression/framework;sequence/an_overflow_ends_a_walk_and_loses_only_a_random_draw
 regression/framework;sequence/an_unquoted_range_is_a_range
@@ -347,8 +349,10 @@ regression/framework;sequence/median_of_an_even_count_averages_the_two_middles
 regression/framework;sequence/median_sorts_first
 regression/framework;sequence/membership_hands_the_parameter_over_as_a_value
 regression/framework;sequence/membership_of_an_arithmetic_sequence_is_computed
+regression/framework;sequence/membership_of_an_expression_is_looked_for_in_its_terms_past_the_reach
 regression/framework;sequence/membership_of_exponentiation_near_the_integer_limit_and_modulo_far_out
 regression/framework;sequence/membership_past_a_table_generates_once_for_a_range_of_values
+regression/framework;sequence/merge_and_combine_put_lists_not_in_order_in_order
 regression/framework;sequence/merge_drops_duplicates
 regression/framework;sequence/merge_of_long_stores_drops_each_duplicate
 regression/framework;sequence/mersenne
@@ -377,6 +381,7 @@ regression/framework;sequence/nand
 regression/framework;sequence/negation
 regression/framework;sequence/negation_and_not_recognise_a_term_past_their_table
 regression/framework;sequence/negation_is_no_member_at_the_integer_minimum
+regression/framework;sequence/negative_after_a_rebuilt_result_leaves_out_each_occurrence_the_action_took
 regression/framework;sequence/negative_does_not_invert_a_play_remove_does
 regression/framework;sequence/negative_leaves_a_total_as_it_is
 regression/framework;sequence/negative_parameter
@@ -494,6 +499,7 @@ regression/framework;sequence/the_bare_parameter_and_the_parameter_1_keep_their_
 regression/framework;sequence/the_bitwise_tests_take_what_a_negative_or_full_parameter_makes
 regression/framework;sequence/the_largest_integer_is_no_member_of_a_type_that_never_makes_it
 regression/framework;sequence/the_name_publishes_the_value_under_itself
+regression/framework;sequence/the_oeis_row_A375613_holds_the_terms_of_its_triangle
 regression/framework;sequence/the_pager_of_a_sequence_has_the_page_size_the_sequence_used
 regression/framework;sequence/the_set_actions_tell_values_apart_as_dedup_does_and_name_a_value_of_several_stores_once
 regression/framework;sequence/the_store_the_tag_pulls_named_again_is_that_store
@@ -513,6 +519,7 @@ regression/framework;sequence/try_counts_the_candidates_of_a_list_too
 regression/framework;sequence/try_limits_the_candidates_weighed
 regression/framework;sequence/unique_drops_repeats
 regression/framework;sequence/unique_over_a_long_range_keeps_every_value
+regression/framework;sequence/whole_numbers_past_the_integer_range_stay_apart_in_the_set_actions
 regression/framework;sequence/xnor
 regression/framework;sequence/xor
 regression/framework;sequence/xpadovan
@@ -525,11 +532,9 @@ regression/framework;tags/a_collected_tag_knows_which_occurrence_is_which
 regression/framework;tags/a_request_for_a_fragment_gets_that_fragment_alone
 regression/framework;tags/a_self_closing_tag_does_not_open_a_pair_of_its_name
 regression/framework;tags/action_applies_an_action_to_a_stored_sequence
-regression/framework;tags/chart_treemap_without_names_draws_a_part_per_row
 regression/framework;tags/parm_reads_a_parameter_from_inside_the_tag
 regression/framework;tags/property_reads_what_the_tag_publishes
 regression/framework;tags/push_with_once_keeps_the_first_push_of_a_key
-regression/framework;tags/sparkline_plots_the_terms_of_a_sequence
 regression/framework;tags/the_shorthand_is_the_same_lookup
 regression/framework;tags/the_shorthand_is_the_same_lookup_2
 regression/pages;catalog/prefixes
@@ -672,7 +677,6 @@ sequence;concepts/resume
 sequence;concepts/sequences
 sequence;concepts/stores
 sequence;gallery
-sequence;guess
 sequence;keepRemoveFlag/abundant
 sequence;keepRemoveFlag/add
 sequence;keepRemoveFlag/amicable
@@ -979,7 +983,6 @@ tags;examples/action/1-store
 tags;examples/action/2-shift
 tags;examples/ajax/parts/list
 tags;examples/break/2-outer
-tags;examples/cache/1-section
 tags;examples/case/2-else
 tags;examples/cease/2-compare
 tags;examples/continue/2-outer
@@ -1000,7 +1003,6 @@ tags;examples/sequence/2-types
 tags;examples/sequence/3-plays-actions
 tags;examples/sequence/4-push-pull
 tags;examples/set/2-sticks
-tags;examples/sparkline/3-sequence
 tags;examples/switch/1-stripes
 tags;examples/switch/2-three
 tags;examples/trans/2-plural
