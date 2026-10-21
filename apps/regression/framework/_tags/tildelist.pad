@@ -1,0 +1,4 @@
+{# Fixture for the whitespace-control cases: a tag template whose nested pairs are written
+   with a ~ and have an else part and a start part of their own; the caller's content goes
+   in at the template's own content marker. #}
+<ul>{~rows~}<li>{$n}</li>@else@<li>none</li>{~/rows~}</ul>{~nums~}(@start@{$n}@end@){~/nums~}[@content@]

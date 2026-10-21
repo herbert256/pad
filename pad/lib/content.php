@@ -52,20 +52,42 @@
 
   }
 
+  // The text a construct marker is looked for in. A template read from its file - the page
+  // itself, an application tag's .pad, an _include snippet - meets the marker searches before
+  // the occurrence takes its whitespace control off (occurrence/init.php), and the balance
+  // helpers know no ~: {~rows~} opened no rows pair there, so the @else@ inside it was taken
+  // as the template's own and the text cut in the middle of that pair - the page ended at
+  // [{~none~}x, a tag template lost the rest. This copy has the ~ of a tag's brace moved
+  // just outside it, {~/rows~} reading " {/rows} ", so it is exactly as long as the template
+  // and a position found in it is the same position in the template.
+
+  function padMarkerText ( $text ) {
+
+    if ( ! str_contains ( $text, '~' ) )
+      return $text;
+
+    $text = preg_replace ( '/\{~(?=[\/A-Za-z_$!#&?^@])/', ' {', $text );
+    $text = preg_replace ( '/(\{[\/A-Za-z_$!#&?^@][^{}]*?)~\}/', '$1} ', $text );
+
+    return $text;
+
+  }
+
   function padContentElse ( $input, &$before, &$after ) {
 
-    $pos  = strpos ( $input, '@else@' );
-    $list = ( $pos === FALSE ) ? [] : padOpenCloseList ( $input ) ;
+    $text = padMarkerText ( $input );
+    $pos  = strpos ( $text, '@else@' );
+    $list = ( $pos === FALSE ) ? [] : padOpenCloseList ( $text ) ;
 
     while ( $pos !== FALSE) {
 
-      if  ( padOpenCloseCount ( substr ( $input, 0, $pos ), $list ) ) {
+      if  ( padOpenCloseCount ( substr ( $text, 0, $pos ), $list ) ) {
         $before = substr ( $input, 0, $pos );
         $after  = substr ( $input, $pos+6  );
         return;
       }
 
-      $pos = strpos ( $input, '@else@', $pos+1 );
+      $pos = strpos ( $text, '@else@', $pos+1 );
 
     }
 
@@ -76,18 +98,19 @@
 
   function padContentBeforeAfter ( $input, &$before, &$after ) {
 
-    $pos = strpos ( $input, '@content@' );
+    $text = padMarkerText ( $input );
+    $pos  = strpos ( $text, '@content@' );
 
     while ( $pos !== FALSE) {
 
-      if  ( padOpenCloseCountOne ( substr ( $input, 0, $pos ), 'content' )
-            and padOpenCloseCountOne ( substr ( $input, 0, $pos ), 'slot' ) ) {
+      if  ( padOpenCloseCountOne ( substr ( $text, 0, $pos ), 'content' )
+            and padOpenCloseCountOne ( substr ( $text, 0, $pos ), 'slot' ) ) {
         $before = substr ( $input, 0, $pos );
         $after  = substr ( $input, $pos+9  );
         return TRUE;
       }
 
-      $pos = strpos ( $input, '@content@', $pos+1 );
+      $pos = strpos ( $text, '@content@', $pos+1 );
 
     }
 

@@ -6,17 +6,23 @@
   // Only an @else@ with all tag pairs balanced in front of it counts, so an @else@ that
   // belongs to a nested tag is skipped and the search moves on; when none qualifies both
   // variables are left as they were.
+  //
+  // The page is still the text of its files here, its whitespace control not yet taken off
+  // (occurrence/init.php): the marker is looked for in padMarkerText (lib/content.php), where
+  // {~none~} opens a none pair as {none} does, and the page is cut at the same position.
 
   if ( ! str_contains ( $padBuildTrue, '@else@' ) )
     return;
 
-  $padOpenClose = padOpenCloseList ( $padBuildTrue) ;
+  $padSplitText = padMarkerText ( $padBuildTrue );
 
-  $padPos = strpos ( $padBuildTrue, '@else@');
+  $padOpenClose = padOpenCloseList ( $padSplitText ) ;
+
+  $padPos = strpos ( $padSplitText, '@else@');
 
   while ( $padPos !== FALSE) {
 
-    if  ( padOpenCloseCount ( substr ( $padBuildTrue, 0, $padPos ), $padOpenClose) ) {
+    if  ( padOpenCloseCount ( substr ( $padSplitText, 0, $padPos ), $padOpenClose) ) {
       $padBuildFalse = substr ( $padBuildTrue, $padPos+6  );
       $padBuildTrue  = substr ( $padBuildTrue, 0, $padPos );
       if ( $padInfo )
@@ -24,7 +30,7 @@
       return;
     }
 
-    $padPos = strpos ( $padBuildTrue, '@else@', $padPos+1);
+    $padPos = strpos ( $padSplitText, '@else@', $padPos+1);
 
   }
 

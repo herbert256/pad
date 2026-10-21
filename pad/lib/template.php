@@ -33,10 +33,16 @@
   // of the level's own hid it - {items}@start@{subs}(@start@{$s}@end@){/subs}@end@{/items}
   // failed the strict check as an @start@ without its @end@ - and the split took place at
   // the nested marker.
+  //
+  // The text is read as padMarkerText (lib/content.php) gives it: a custom tag's level holds
+  // its template as the file has it, whose {~rows~} is a pair of rows too.
 
   function padOpenClosePos ( $string, $check ) {
 
     $pos = strpos ( $string, $check );
+
+    if ( $pos !== FALSE )
+      $string = padMarkerText ( $string );
 
     while ( $pos !== FALSE ) {
 
