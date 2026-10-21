@@ -55,7 +55,7 @@ summed. Manual page: *Array helpers* (`?pages/arrays`).
 | `padArrLast ( $array, $callback = NULL, $default = NULL )` | The same from the end |
 | `padArrGroupBy ( $rows, $key )` | `[ group => [ rows ] ]` by a dot path or a callback, groups in the order of their first row, each group a list |
 | `padArrKeyBy ( $rows, $key )` | The rows keyed by a dot path or a callback; a later row wins |
-| `padArrSortBy ( $rows, $key, $descending = FALSE )` | The rows sorted by a dot path, a callback, or (NULL key) the values; stable; string keys kept, a list numbered again. `$descending`: TRUE or `'desc'` |
+| `padArrSortBy ( $rows, $key, $descending = FALSE )` | The rows sorted by a dot path, a callback, or (NULL key) the values; stable; NULL first (last descending); string keys kept, a list numbered again. `$descending`: TRUE or `'desc'` |
 | `padArrFlatten ( $array, $depth = INF )` | The values as one list, nested arrays opened `$depth` levels deep (0: none) |
 | `padArrDot ( $array, $prepend = '' )` | A nested array as one level with dot path keys; an empty array stays a value |
 | `padArrUndot ( $array )` | Dot path keys made nested arrays again |

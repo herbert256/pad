@@ -339,7 +339,8 @@
   // value keep their order, so sorting by one field and then by another sorts by the
   // second, then the first. Keys are kept, except that a list stays a list, numbered again
   // in the new order. Values compare as PHP compares them: numbers and numeric strings as
-  // numbers, other text byte by byte. $descending may be TRUE or 'desc'.
+  // numbers, other text byte by byte - but NULL comes before every value (after them all
+  // descending), as MySQL's ORDER BY puts it. $descending may be TRUE or 'desc'.
 
   function padArrSortBy ( $rows, $key, $descending = FALSE ) {
 
@@ -1138,9 +1139,15 @@
   }
 
   // padArrOrder is padArrCompare for sorting, where every pair needs an order: an object
-  // comes after a plain value.
+  // comes after a plain value, and NULL before every value, as MySQL's ORDER BY puts it.
+  // PHP compares NULL with a number as two booleans - NULL equals 0 and lies below -1 -
+  // which is no order at all: with a NULL among them the numbers themselves came out
+  // unsorted ([0, NULL, -1, 5] stayed so).
 
   function padArrOrder ( $a, $b ) {
+
+    if ( $a === NULL or $b === NULL )
+      return ( $a !== NULL ) <=> ( $b !== NULL );
 
     return padArrCompare ( $a, $b ) ?? ( is_object ( $a ) <=> is_object ( $b ) );
 
