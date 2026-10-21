@@ -89,8 +89,24 @@
       padError ( "a value spliced into a {data} list would run as an expression: put it in quotes, ( '{\$x}' ), or hand it over as data=\$x" );
       $padStoreData = [];
 
-    } else
+    } else {
+
       $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
+
+      // Walked content holds its values with their syntax characters as stand-ins (lib/
+      // encoding.php), which keep a spliced comma from splitting a CSV cell and a quote from
+      // closing a JSON string while it is parsed. Parsed, the fields are values again: they
+      // kept the stand-ins - "Smith, John" stored with the comma's - and {if}, where=, sort,
+      // lookup and php: calls on them compared another string. Printed, a field is a value
+      // and travels protected again.
+
+      if ( $padWalk [$pad] == 'end' and (string) $padContent !== '' and is_array ( $padStoreData ) )
+        array_walk_recursive ( $padStoreData, function ( &$padStoreOne ) {
+          if ( is_string ( $padStoreOne ) )
+            $padStoreOne = padUnprotect ( $padStoreOne );
+        } );
+
+    }
 
   } elseif ( $padTag [$pad] == 'bool' ) {
 
