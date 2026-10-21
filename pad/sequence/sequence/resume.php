@@ -51,8 +51,11 @@
   foreach ( [ $pqPush, $pqNameGiven ] as $pqResumeAt => $pqResumeAs )
     if ( is_string ( $pqResumeAs ) and $pqResumeAs !== '' and $pqResumeAs != $pqPull ) {
       $pqResumeTaken = pqStoreTaken ( $pqResumeAs );
+      $pqResumeHeld  = ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) ? pqStoreHeld ( $pqResumeAs ) : '';
       if ( $pqResumeTaken )
         padError ( "Store name '$pqResumeAs' can not be equal to $pqResumeTaken" );
+      elseif ( $pqResumeHeld )
+        padError ( "the store name '$pqResumeAs' is already $pqResumeHeld - {" . $pqResumeAs . "} would iterate the sequence in its place" );
       else {
         $pqStore    [$pqResumeAs] = array_values ( $pqResult );
         $padSeqData [$pqResumeAs] = $pqResumeRows;

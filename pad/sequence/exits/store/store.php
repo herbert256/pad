@@ -16,7 +16,9 @@
   // loop of {$i}. Its values are kept under that name when the name is free for a store, and
   // the store pushed last stays the one {resume} and a bare {pull} take - a loop named step,
   // count or first ended the page on "Store name can not be equal to", and a loop named i
-  // between a push and a {resume} took the resume for itself.
+  // between a push and a {resume} took the resume for itself. Nor when the page made something
+  // of that name - an array, a {data} or other store (pqStoreHeld): the store took its place
+  // for {name}.
 
   if ( $padPair [$pad] and ! $pqPush ) {
 
@@ -28,7 +30,7 @@
     // values were written over it, and {pull:s name='s', shift} over 1..5 left s holding 1, with
     // the rows of the remainder beside it.
 
-    if ( is_string ( $pqNameGiven ) and ! pqStoreTaken ( $pqNameGiven ) ) {
+    if ( is_string ( $pqNameGiven ) and ! pqStoreTaken ( $pqNameGiven ) and ! pqStoreHeld ( $pqNameGiven ) ) {
       if ( $pqStoreUpdated and $pqNameGiven == $pqPull )
         $pqStore [$pqNameGiven] = array_values ( $pqStore [$pqPull] );
       else

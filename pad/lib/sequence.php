@@ -332,6 +332,33 @@
 
   }
 
+  // What the page made under a name already, which a sequence store of that name would take the
+  // place of: lib/type.php padTypeTag reaches $pqStore before every other store and before a
+  // page variable, so {name} iterated the sequence from then on. The sequence pair that only
+  // names its loop - {sequence 3, name='orders'} - made a later {orders}{$id}{/orders} loop
+  // over 1 2 3 instead of the page's orders, and push='x' after a {data 'x'}, {content 'x'},
+  // {bool 'x'} or {define 'x'} left that store reachable as {data:x} only, in silence, where a
+  // {data 'x'} after the sequence store is refused (tags/_go/store.php). '' when it made none.
+
+  function pqStoreHeld ( $name ) {
+
+    global $padBoolStore, $padContentStore, $padDataStore, $padDefineStore, $padMacroStore, $padSelect;
+
+    if ( ! is_string ( $name ) and ! is_int ( $name ) )
+      return '';
+
+    if     ( isset ( $padDataStore    [$name] ) ) return 'a data store';
+    elseif ( isset ( $padContentStore [$name] ) ) return 'a content block';
+    elseif ( isset ( $padBoolStore    [$name] ) ) return 'a bool store';
+    elseif ( isset ( $padDefineStore  [$name] ) ) return 'a {define} tag';
+    elseif ( isset ( $padMacroStore   [$name] ) ) return 'a {macro}';
+    elseif ( isset ( $padSelect       [$name] ) ) return 'a select table';
+    elseif ( is_array ( $GLOBALS [$name] ?? NULL ) and padValidStore ( $name ) ) return 'an array of the page';
+
+    return '';
+
+  }
+
   // The key the terms of a position lookup - sequence:prime(5) - are kept under, or '' when
   // they cannot be: a type that draws at random or evaluates an expression gives other terms
   // another time, a parameter written as a range is drawn per term, and one naming a store
