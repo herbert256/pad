@@ -77,6 +77,7 @@
       'request/form_rules'        => 'The form rules fixture bare: an empty form, not processed',
       'request/a_field_a_post_leaves_out_is_checked_from_the_query_string' => 'A field the post leaves out is read from the query string, so the rules check it there - website=javascript:..., plan=enterprise and role=admin in the address refused, good values passed',
       'request/a_field_a_post_leaves_out' => 'The fixture of request/a_field_a_post_leaves_out_is_checked_from_the_query_string bare: an empty form, not stored',
+      'request/a_plain_php_application_answers_404_for_up_and_the_sitemap' => 'The plain-PHP application nono asked for ?up, ?sitemap.xml and ?robots.txt it has no page for: the 404 of any page that is not there, not a boot error on the stand-in page',
       'request/contact_valid'     => 'The demo contact form posted without a mistake: stored, redirected, thanked - the store put back',
       'callback'                  => 'The row phase of a streaming callback, which reads the occurrence fields as plain variables',
       'globals'                   => 'object: over a page variable, which in a request is a global like any other',

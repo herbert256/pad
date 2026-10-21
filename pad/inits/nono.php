@@ -15,8 +15,15 @@
   // application that is down for maintenance) - its name is no file to run. Down for
   // maintenance, the plain PHP is held back as every page is (lib/maintenance.php): a
   // plain 503, as there is no template to render one with.
+  //
+  // The stand-in page inits/page.php gives sitemap.xml, robots.txt and ?up, when the
+  // application has no page of that name, waits as well: inits/sitemap.php and
+  // inits/health.php answer it, or make it the 404 of a page that is not there. It was taken
+  // for a page here, and the missing up.php ended every such request on a 500 boot error.
 
-  if ( ! $padNoNo or $padNotFound !== '' )
+  if ( ! $padNoNo or $padNotFound !== ''
+       or ( $padSitemapAsk !== '' and $padPage === $padSitemapAsk )
+       or ( $padHealthAsk and $padPage === 'up' ) )
     return;
 
   if ( $padMaintenanceDown = padMaintenance () )
