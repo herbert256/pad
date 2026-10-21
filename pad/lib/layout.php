@@ -31,6 +31,9 @@
 
   function padLayout ( &$template, &$frame ) {
 
+    $template = padLayoutTilde ( $template );
+    $frame    = padLayoutTilde ( $frame );
+
     if ( ! str_contains ( $template . $frame, '{extends' )
          and ! str_contains ( $template . $frame, '{block' )
          and ! str_contains ( $template . $frame, '{parent' ) )
@@ -207,10 +210,34 @@
     if ( $name === '' or str_contains ( $name, '..' ) or ! preg_match ( '/^[A-Za-z0-9_\/.-]+$/', $name ) )
       return FALSE;
 
-    if ( file_exists ( APP . "$name.pad" ) )  return padFileGet ( APP . "$name.pad" );
-    if ( file_exists ( APP . "$name.html" ) ) return padFileGet ( APP . "$name.html" );
+    if ( file_exists ( APP . "$name.pad" ) )  return padLayoutTilde ( padFileGet ( APP . "$name.pad" ) );
+    if ( file_exists ( APP . "$name.html" ) ) return padLayoutTilde ( padFileGet ( APP . "$name.html" ) );
 
     return FALSE;
+
+  }
+
+  // The tags the assembly reads - {block}, {extends}, {parent}, {meta} - written with
+  // whitespace control, {block 'title'~}...{~/block}, are read as written without it, the
+  // white space beside the ~ taken as the render takes it (padTildeStrip, which the rest of
+  // the page still gets when it renders). Looked for as {block, {~block was no block: the
+  // page's override landed in the body and the wrapper kept its default, and
+  // {extends 'x'~} and {meta title='x'~} ended in "'~' is no operator or value". The
+  // content of a {highlight} pair is code shown as it stands (padTildeKeep).
+
+  function padLayoutTilde ( $text ) {
+
+    if ( ! is_string ( $text ) or ! str_contains ( $text, '~' ) )
+      return $text;
+
+    $kept = [];
+    $text = padTildeKeep ( $text, $kept );
+    $name = '\/?(?:block|extends|parent|meta)(?=[\s}~\/])';
+
+    $text = preg_replace ( "/\s*\{~(?=$name)/", '{', $text );
+    $text = preg_replace ( "/(\{{$name}[^{}]*?)~\}\s*/", '$1}', $text );
+
+    return $kept ? strtr ( $text, $kept ) : $text;
 
   }
 

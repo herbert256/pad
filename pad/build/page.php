@@ -102,7 +102,7 @@
       $padBuildOwn = padPageTemplate ( APP . $padPage );
     }
 
-    $padBuildTemplate = padMetaBuild ( $padBuildOwn );
+    $padBuildTemplate = padMetaBuild ( padLayoutTilde ( $padBuildOwn ) );
 
   } else
 
