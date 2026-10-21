@@ -245,10 +245,24 @@
   // JSON or XML string behind it was not recognised on sight and read as CSV. The guards that
   // refuse a value reading as a PAD list - {data 'd', $v}, data=$v, a fetched body - judge
   // this same text, so white space before the BOM cannot hide the list from them.
+  //
+  // The indent all its lines share is taken off first, so a block written indented in its
+  // template - as a {data} pair is written - reads as it would unindented. Trimmed alone, the
+  // first line lost its indent where the others kept theirs: YAML without its --- start,
+  //   city: Paris / country: FR, read the second key as inside the first and ended on "YAML
+  // parse error: mapping values are not allowed", an indented - name: a list the same.
 
   function padDataText ( $text ) {
 
-    $text = trim ( (string) $text );
+    $text = (string) $text;
+
+    if ( str_contains ( $text, "\n" ) and preg_match_all ( '/^([ \t]*)\S/m', $text, $indents ) ) {
+      $cut = min ( array_map ( 'strlen', $indents [1] ) );
+      if ( $cut )
+        $text = preg_replace ( '/^[ \t]{0,' . $cut . '}/m', '', $text );
+    }
+
+    $text = trim ( $text );
 
     if ( str_starts_with ( $text, "\xEF\xBB\xBF" ) )
       $text = ltrim ( substr ( $text, 3 ) );
