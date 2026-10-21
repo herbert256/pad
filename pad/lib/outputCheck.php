@@ -13,7 +13,8 @@
   // (padLocal: the command line, or loopback with nothing forwarded): a remote visitor never
   // pays for the parse and never sees the panel. The page cache is left alone as well - a
   // stored page with a panel in it would go to the next visitor - and so is the answer to
-  // a live event, the inside of one region, which the panel would land in.
+  // a live event, the inside of one region, which the panel would land in, and a response
+  // fragment.
   //
   // The link check is exact because PAD's routing is: a ?page link is broken when padPageCheck
   // finds no page for it, in this application or, for /<mount>/<app>/?page, in the one it
@@ -30,13 +31,18 @@
 
   function padOutputCheckOn () {
 
-    global $padCache, $padCheckOutput, $padContentType, $padOutputType;
+    global $padCache, $padCheckOutput, $padContentType, $padOutputType, $padFragmentSent, $padFragmentOnly, $padFragmentTarget;
 
     if ( ! ( $padCheckOutput ?? FALSE ) and ! padSelfSwitch ( 'padCheckOutput' ) ) return FALSE;
     if ( ! padLocal ()                                                          ) return FALSE;
     if ( ( $padOutputType ?? 'web' ) != 'web'                                    ) return FALSE;
     if ( $padCache                                                               ) return FALSE;
     if ( padLive () !== ''                                                       ) return FALSE;
+
+    // A response fragment (lib/respond.php) is no page either: htmx swaps it in, panel and
+    // all, as the answer to a live event would be.
+
+    if ( $padFragmentSent or ( (string) $padFragmentOnly !== '' and ! $padFragmentTarget ) ) return FALSE;
 
     return str_starts_with ( strtolower ( trim ( $padContentType ?? '' ) ), 'text/html' );
 

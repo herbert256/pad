@@ -51,6 +51,8 @@
       'request/auth_intended'     => 'A guest sent from a page for the logged-in to the login page, and the login sending them back to the page and values first asked - once',
       'fragments/targets'         => 'An htmx request answered by the fragment named like the element it swaps (HX-Target) - the whole page when there is none or htmx did not ask, and padFragment winning over the header',
       'fragments/target'          => 'The fixture for fragments/targets: a page with one fragment between other HTML',
+      'fragments/a_fragment_answers_without_the_developer_helpers' => 'A page with the toolbar, live reload and the output check on carries the bar, the script and the panel as a whole page, and none of them in the answer to its fragment - asked by padFragment or by htmx in HX-Target',
+      'fragments/helpers'         => 'The fixture for fragments/a_fragment_answers_without_the_developer_helpers: the three helpers on, a fragment with an image the output check names - fetched bare, its panel follows the page',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',
       'sse/headers'               => 'A stream as the browser gets it: text/event-stream, no-cache, no proxy buffering, and the last id back as a header or query value with its line break taken out',

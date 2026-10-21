@@ -8,9 +8,9 @@
   // Opt-in with $padToolbar = 'local' (TRUE means the same). It never shows to a request from
   // elsewhere: what it lists - SQL, variables, the session - is the same material the error
   // report keeps for this machine, so padLocal() decides, and $padDiagnostics = FALSE closes
-  // it like the rest. It stays out of a bare fragment (&padInclude), out of anything that is
-  // not a web page answering 200, and out of the page cache: it is added to the response on
-  // its way out, after the cache stored the page.
+  // it like the rest. It stays out of a bare fragment (&padInclude) and a response fragment
+  // ({fragment}), out of anything that is not a web page answering 200, and out of the page
+  // cache: it is added to the response on its way out, after the cache stored the page.
   //
   // padToolbarOn     whether this request gets the bar
   // padToolbarLevel  called by level/setup.php for every level opened: one row of the tree
@@ -27,9 +27,17 @@
 
   function padToolbarOn () {
 
-    global $padToolbar, $padInclude, $padOutputType;
+    global $padToolbar, $padInclude, $padOutputType, $padFragmentSent, $padFragmentOnly, $padFragmentTarget;
 
     if ( ! $padToolbar or $padInclude or $padOutputType != 'web' )
+      return FALSE;
+
+    // A response fragment (lib/respond.php) is the fragment alone, as a bare &padInclude is:
+    // htmx swaps the answer in, and every swap put another fixed bar into the page. One a
+    // request asked for by padFragment counts from the start - a page-cache hit of it
+    // rendered nothing - and one htmx asked for by HX-Target once it was sent.
+
+    if ( $padFragmentSent or ( (string) $padFragmentOnly !== '' and ! $padFragmentTarget ) )
       return FALSE;
 
     // A replay of a recorded case (lib/replay.php) is local, but no browser looks at it: it

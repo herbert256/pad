@@ -8,9 +8,9 @@
   // Opt-in with $padReload in _config/config.php: 'local' (or TRUE) watches the
   // application's directory, its entry point directory in www/ and _common when the
   // application uses it; 'engine' watches pad/ as well, for work on the engine itself. Like
-  // the toolbar it is for this machine's own
-  // requests only (padLocal), never in a &padInclude fragment, a page that is not HTML
-  // answering 200, the page cache - it is added on the way out - or a pad export.
+  // the toolbar it is for this machine's own requests only (padLocal), never in a
+  // &padInclude or {fragment} answer, a page that is not HTML answering 200, the page cache
+  // - it is added on the way out - or a pad export.
   //
   // padReloadAdd     exits/output.php: the script, with the stamp the page was rendered at -
   //                  it reloads only on an answer that is a stamp, so a server that does not
@@ -25,9 +25,16 @@
 
   function padReloadOn () {
 
-    global $padReload, $padInclude, $padOutputType;
+    global $padReload, $padInclude, $padOutputType, $padFragmentSent, $padFragmentOnly, $padFragmentTarget;
 
     if ( ! $padReload or $padInclude or $padOutputType != 'web' )
+      return FALSE;
+
+    // A response fragment (lib/respond.php) is the fragment alone: htmx runs a script it
+    // swaps in, and every swap started another poller of the stamp. One asked for by
+    // padFragment counts from the start, one htmx asked for by HX-Target once it was sent.
+
+    if ( $padFragmentSent or ( (string) $padFragmentOnly !== '' and ! $padFragmentTarget ) )
       return FALSE;
 
     // A replay of a recorded case (lib/replay.php) is a machine's fetch, compared with the
