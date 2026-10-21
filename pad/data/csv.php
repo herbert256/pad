@@ -8,8 +8,8 @@
   // The text is read with fgetcsv over a memory stream: RFC 4180 quoting - commas and
   // newlines inside quotes, "" for a quote inside a quoted field, no backslash escape - and
   // no decoding of any kind. Cells and header names are trimmed, lines with nothing on them
-  // are skipped, rows are numbered from 1, and a cell beyond the header has no name to be
-  // stored under and is left out.
+  // are skipped, rows are numbered from 1, a cell beyond the header has no name to be
+  // stored under and is left out, and a row short of the header has the rest empty.
   //
   // It used to emulate the quoting with urlencode and a !!Q!! marker: every cell went
   // through urldecode (A+B came out as A B, %41 as A), quoted cells were converted from
@@ -37,6 +37,12 @@
     }
 
     $row++;
+
+    // Every row has every field of the header: a row cut short - a trailing empty cell left
+    // out, as a spreadsheet export or a hand-written line does - lacked the missing fields,
+    // so {$city} on it found the page's own $city, or ended the page "not found".
+
+    $result [$row] = array_fill_keys ( $header, '' );
 
     foreach ( $cells as $key => $cell )
       if ( isset ( $header [$key] ) )
