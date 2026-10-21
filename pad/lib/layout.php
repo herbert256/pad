@@ -193,6 +193,71 @@
 
   }
 
+  // How long the run of a page's first lines is that holds nothing but its {meta},
+  // {extends} and {block} pairs, with white space and comments between them - what stands in
+  // front of the page's content, its own for both halves of an @else@ (build/page.php).
+
+  function padLayoutLead ( $text ) {
+
+    $pos    = 0;
+    $blocks = NULL;
+
+    while ( TRUE ) {
+
+      $pos += strspn ( $text, " \t\r\n", $pos );
+
+      foreach ( [ '{--', '{#' ] as $open )
+        if ( substr ( $text, $pos, strlen ( $open ) ) === $open and ( $end = padLayoutComment ( $text, $pos, $open ) ) !== FALSE ) {
+          $pos = $end;
+          continue 2;
+        }
+
+      if ( preg_match ( '/\G\{(meta|extends)[\s}\/]/', $text, $match, 0, $pos ) ) {
+        $end = padPairTagEnd ( $text, $pos + 1 );
+        if ( $end === FALSE )
+          break;
+        $pos = $end + 1;
+        continue;
+      }
+
+      if ( substr ( $text, $pos, 6 ) === '{block' ) {
+        $blocks ??= padLayoutBlocks ( $text, TRUE );
+        foreach ( $blocks as $pair )
+          if ( $pair ['start'] == $pos ) {
+            $pos = $pair ['end'];
+            continue 2;
+          }
+      }
+
+      break;
+
+    }
+
+    return $pos;
+
+  }
+
+  // That run for the @else@ half: without the {block}s the half writes of its own, and
+  // without its {extends} when the half has one.
+
+  function padLayoutLeadFor ( $lead, $half ) {
+
+    $own = [];
+
+    foreach ( padLayoutBlocks ( $half, TRUE ) as $pair )
+      $own [ $pair ['name'] ] = TRUE;
+
+    foreach ( array_reverse ( padLayoutBlocks ( $lead, TRUE ) ) as $pair )
+      if ( isset ( $own [ $pair ['name'] ] ) )
+        $lead = substr ( $lead, 0, $pair ['start'] ) . substr ( $lead, $pair ['end'] );
+
+    if ( padLayoutExtends ( $half ) !== FALSE and ( $extends = padLayoutExtends ( $lead ) ) !== FALSE )
+      $lead = $extends ['text'];
+
+    return $lead;
+
+  }
+
   // The @page@ of a template in the chain as the mark of its place there - 0 the page, 1
   // the layout it extends, and so on.
 

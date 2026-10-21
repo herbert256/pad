@@ -121,6 +121,12 @@
   // that is not shown sets nothing - a {block 'title'}Not found{/block} after the @else@
   // titled the page over the record that was found, a {meta} there was applied as well,
   // and a block in each half was refused as standing twice.
+  //
+  // What stands in front of the page's content - the {meta}, {extends} and {block}s of its
+  // first lines (padLayoutLead) - is the page's own, written once for both: it goes with the
+  // @else@ half as well, where a {block} or an {extends} of the same name that half writes
+  // itself takes its place. Taken for the found half only, a page with no rows lost the
+  // title of its {meta} on the first line and the layout of its {extends}.
 
   $padBuildElseAt = ( $padBuildCall !== NULL ) ? padLayoutElse ( $padBuildTemplate ) : FALSE;
 
@@ -136,6 +142,9 @@
     $padBuildTail = substr ( $padBuildTemplate, $padBuildElseAt + 6 );
 
     if ( $padBuildCall === FALSE or ! count ( $padBuild ) ) {
+      $padBuildLead = padLayoutLead ( $padBuildHead );
+      $padBuildTail = padLayoutLeadFor ( substr ( $padBuildHead, 0, $padBuildLead ), $padBuildTail ) . $padBuildTail;
+      $padBuildHead = substr ( $padBuildHead, $padBuildLead );
       $padBuildTail = padMetaBuild ( $padBuildTail );
       padLayout ( $padBuildTail, $padBuildBase );
     } else {
