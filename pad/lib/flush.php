@@ -80,6 +80,15 @@
 
     $chunk = substr ( $raw, strlen ( $padFlushRaw ?? '' ) );
 
+    // A {toc} lists the headings of the whole page, so its marker is filled in once the page
+    // is done (lib/toc.php): a part holding one is not sent - this flush sends nothing, nor
+    // does any after it, and the headings around the toc go with the rest of the page, which
+    // the toc is filled from. Sent, the raw marker went to the browser - private-use
+    // characters, its seal and the hex of its options - and the toc was never written.
+
+    if ( str_contains ( $chunk, "\u{E0F6}" ) )
+      return;
+
     if ( ! isset ( $padFlushRaw ) ) {
 
       $padTidy       = FALSE;

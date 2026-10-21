@@ -1120,6 +1120,8 @@ type other than web, and in a request answered with a part of the page - a respo
 `_events/output.php` hook, which sees the page whole, it does nothing. The page's PHP runs before any of the template, so what
 a flush wins is the rendering below it. A `{stack}` in the part that goes out early gets the
 pushes made before the flush only - a push below it cannot reach text the browser already has.
+A `{toc}` lists the headings of the whole page, so a flush with one in the part it would send
+sends nothing, nor does any flush after it: the toc goes with the rest of the page.
 
 ---
 
