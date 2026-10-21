@@ -453,6 +453,14 @@
       if ( padAuthSecret ( $name, $value ) )
         $secrets [$name] = $value;
 
+    // A secret that is no UTF-8 text - a token in a BINARY column, a raw salt - is no JSON,
+    // and the partial output wrote it as null: renewing it changed nothing the cookie was
+    // signed over, and every remember-me cookie made before it held. It goes in as its hex.
+
+    foreach ( $secrets as $name => $value )
+      if ( is_string ( $value ) and ! mb_check_encoding ( $value, 'UTF-8' ) )
+        $secrets [$name] = [ 'hex' => bin2hex ( $value ) ];
+
     ksort ( $secrets, SORT_STRING );
 
     return json_encode ( $secrets, JSON_PARTIAL_OUTPUT_ON_ERROR );
