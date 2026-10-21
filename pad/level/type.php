@@ -31,6 +31,14 @@
     if ( ! $padTypeResult )
       $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck );
 
+    // A name is one prefix and one name. What stood behind a second colon was dropped, and
+    // {field:name:zzz} answered the field name, {constant:PHP_INT_SIZE:junk} the constant -
+    // a path written with colons read as its head. Such a name is no tag: level/no.php names
+    // it under the strict check, and the lenient walk keeps it as text.
+
+    if ( count ( $padTypeExplode ) > 2 )
+      $padTypeResult = FALSE;
+
   }
 
 ?>
