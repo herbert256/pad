@@ -106,17 +106,46 @@
       $padBuildOwn = padPageTemplate ( APP . $padPage );
     }
 
-    $padBuildTemplate = padMetaBuild ( padLayoutTilde ( $padBuildOwn ) );
+    $padBuildTemplate = padLayoutTilde ( $padBuildOwn );
 
   } else
 
     $padBuildTemplate = $padBuildOwn = '';
 
-  // The layout blocks are resolved now, in the text: a page that extends a layout trades
-  // the frame build/base.php made for that layout, and the page's blocks override the
-  // frame's - lib/layout.php.
+  // The {meta} tags are applied and the layout blocks resolved now, in the text: a page that
+  // extends a layout trades the frame build/base.php made for that layout, and the page's
+  // blocks override the frame's - lib/meta.php, lib/layout.php.
+  //
+  // Those of the half of the page that shows: what the PHP returned decides between the
+  // text before the page's @else@ and the text after it (build/split.php), and the half
+  // that is not shown sets nothing - a {block 'title'}Not found{/block} after the @else@
+  // titled the page over the record that was found, a {meta} there was applied as well,
+  // and a block in each half was refused as standing twice.
 
-  padLayout ( $padBuildTemplate, $padBuildBase );
+  $padBuildElseAt = ( $padBuildCall !== NULL ) ? padLayoutElse ( $padBuildTemplate ) : FALSE;
+
+  if ( $padBuildElseAt === FALSE ) {
+
+    $padBuildTemplate = padMetaBuild ( $padBuildTemplate );
+
+    padLayout ( $padBuildTemplate, $padBuildBase );
+
+  } else {
+
+    $padBuildHead = substr ( $padBuildTemplate, 0, $padBuildElseAt );
+    $padBuildTail = substr ( $padBuildTemplate, $padBuildElseAt + 6 );
+
+    if ( $padBuildCall === FALSE or ! count ( $padBuild ) ) {
+      $padBuildTail = padMetaBuild ( $padBuildTail );
+      padLayout ( $padBuildTail, $padBuildBase );
+    } else {
+      $padBuildHead = padMetaBuild ( $padBuildHead );
+      padLayout ( $padBuildHead, $padBuildBase );
+    }
+
+    $padBuildTemplate = "$padBuildHead@else@$padBuildTail";
+
+  }
 
   // The source map (lib/source.php) places the page's template where it lands in the joined
   // text, by its offsets in the file. A page whose {meta} was taken out, or whose {block}s

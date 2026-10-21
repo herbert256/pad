@@ -174,6 +174,25 @@
 
   }
 
+  // Where a page's own @else@ stands - the first one with every tag pair in front of it
+  // closed, found as build/split.php finds it - or FALSE when there is none.
+
+  function padLayoutElse ( $text ) {
+
+    if ( ! str_contains ( (string) $text, '@else@' ) )
+      return FALSE;
+
+    $marked = padMarkerText ( $text );
+    $tags   = padOpenCloseList ( $marked );
+
+    for ( $pos = strpos ( $marked, '@else@' ); $pos !== FALSE; $pos = strpos ( $marked, '@else@', $pos + 1 ) )
+      if ( padOpenCloseCount ( substr ( $marked, 0, $pos ), $tags ) )
+        return $pos;
+
+    return FALSE;
+
+  }
+
   // The @page@ of a template in the chain as the mark of its place there - 0 the page, 1
   // the layout it extends, and so on.
 
