@@ -692,13 +692,18 @@
   // $wild is padArrSet's walk. padArrUndot's builds arrays only: a '*' is the character
   // it is, and an object on the way is replaced as a plain value is - written in place, the
   // object the caller handed to padArrUndot changed, or was an error without that property.
+  //
+  // Every level reads its segment at $from of the one path all levels share: a level that
+  // shifted its own copy of the rest kept that copy alive until the walk came back, memory
+  // quadratic in the segments - a key of 4000 segments, 8 KB, took 276 MB, and a JSON body
+  // handed to padArrUndot could exhaust the memory with one small request.
 
-  function padArrWrite ( $function, $target, $path, $value, $wild ) {
+  function padArrWrite ( $function, $target, $path, $value, $wild, $from = 0 ) {
 
-    if ( ! $path )
+    if ( $from >= count ( $path ) )
       return $value;
 
-    $segment = array_shift ( $path );
+    $segment = $path [$from];
 
     if ( ! is_array ( $target ) and ( ! $wild or ! is_object ( $target ) ) )
       $target = [];
@@ -706,7 +711,7 @@
     if ( $wild and $segment === '*' ) {
 
       foreach ( padArrItems ( $target ) as $at => $item )
-        $target = padArrPut ( $function, $target, $at, padArrWrite ( $function, $item, $path, $value, $wild ) );
+        $target = padArrPut ( $function, $target, $at, padArrWrite ( $function, $item, $path, $value, $wild, $from + 1 ) );
 
       return $target;
 
@@ -715,7 +720,7 @@
     if ( ! padArrStep ( $target, $segment, $child ) )
       $child = NULL;
 
-    return padArrPut ( $function, $target, $segment, padArrWrite ( $function, $child, $path, $value, $wild ) );
+    return padArrPut ( $function, $target, $segment, padArrWrite ( $function, $child, $path, $value, $wild, $from + 1 ) );
 
   }
 
@@ -789,7 +794,7 @@
   // item of the level - all of the items when it is the last segment. A level that is not
   // there ends the walk: nothing to remove.
 
-  function padArrRemove ( $function, $target, $path, $copy ) {
+  function padArrRemove ( $function, $target, $path, $copy, $from = 0 ) {
 
     if ( ! is_array ( $target ) and ! is_object ( $target ) )
       return $target;
@@ -797,26 +802,29 @@
     if ( $copy and is_object ( $target ) )
       $target = padArrClone ( $function, $target );
 
-    $segment = array_shift ( $path );
+    // The segment at $from of the one path every level shares, as padArrWrite reads it.
+
+    $segment = $path [$from] ?? NULL;
+    $more    = ( $from + 1 < count ( $path ) );
 
     if ( $segment === '*' ) {
 
       foreach ( padArrItems ( $target ) as $at => $item )
-        $target = $path
-          ? padArrPut   ( $function, $target, $at, padArrRemove ( $function, $item, $path, $copy ) )
+        $target = $more
+          ? padArrPut   ( $function, $target, $at, padArrRemove ( $function, $item, $path, $copy, $from + 1 ) )
           : padArrUnset ( $function, $target, $at );
 
       return $target;
 
     }
 
-    if ( ! $path )
+    if ( ! $more )
       return padArrUnset ( $function, $target, $segment );
 
     if ( ! padArrStep ( $target, $segment, $child ) )
       return $target;
 
-    $changed = padArrRemove ( $function, $child, $path, $copy );
+    $changed = padArrRemove ( $function, $child, $path, $copy, $from + 1 );
 
     if ( $changed === $child )
       return $target;
