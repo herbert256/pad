@@ -284,8 +284,13 @@
       return $type;
     }
 
+    // Numeric ends of any sign or with decimals make a range too, as padGetRange counts them:
+    // ctype_alnum refuses the - and the ., and -3..3, -5..-1 or 1.5..3 were read as a CSV
+    // header with no rows - an empty set in silence, where {sequence '-3..3'} counts.
+
     $parts = padExplode ($content, '..');
-    if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
+    if ( count ($parts) == 2 and ( ( ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
+                                   or ( is_numeric ($parts[0]) and is_numeric ($parts[1]) ) ) )
       return 'range';
 
     // SELF:// is this server, which data/curl.php turns into $padHost as {curl} does - but
