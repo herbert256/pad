@@ -8,9 +8,17 @@
   // A language it does not know is named as the {highlight} tag names it - the pipe wrote
   // plain text marked data-lang="phpp" in silence.
 
-  if ( isset ( $parm [0] ) and ! padHighlightKnown ( (string) $parm [0] ) and $GLOBALS ['padCheckSyntax'] )
-    padError ( "there is no language '" . padMakeSafe ( (string) $parm [0], 20 ) . "' to highlight - pad, php, html, css, js, json, yaml, sql or bash" );
+  // An empty one - a language column left empty, highlight($lang) with $lang '' - is plain
+  // text, as the tag takes it.
 
-  return padHighlight ( $value, $parm [0] ?? 'text' );
+  $padHighlightLang = trim ( (string) ( $parm [0] ?? '' ) );
+
+  if ( $padHighlightLang === '' )
+    $padHighlightLang = 'text';
+
+  if ( ! padHighlightKnown ( $padHighlightLang ) and $GLOBALS ['padCheckSyntax'] )
+    padError ( "there is no language '" . padMakeSafe ( $padHighlightLang, 20 ) . "' to highlight - pad, php, html, css, js, json, yaml, sql or bash" );
+
+  return padHighlight ( $value, $padHighlightLang );
 
 ?>
