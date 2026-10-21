@@ -203,6 +203,20 @@
     if ( padAppTagCheck ( $padName [$pad] ) )
       padError ( "the store name '" . $padName [$pad] . "' is already an application tag - {" . $padName [$pad] . "} will never reach the store" );
 
+    // The store is written here, while the tag runs - before its opening pipe and its
+    // handling options act on the level, which then has nothing left to act on: {data 'x',
+    // sort='n DESC'} stored the rows unsorted and {content 'c' | upper} the text as it was,
+    // and both passed as options that were read. Where the store is used they work, {x
+    // sort=...}, {c | upper}, and toData= on that tag keeps the result.
+
+    foreach ( $padParms [$pad] as $padStoreParm )
+      if ( $padStoreParm ['padPrmKind'] == 'option' and is_string ( $padStoreParm ['padPrmName'] )
+           and file_exists ( PAD . "handling/types/{$padStoreParm ['padPrmName']}.php" ) )
+        padError ( "the option '{$padStoreParm ['padPrmName']}' on {" . $padTag [$pad] . "} acts on nothing - a store keeps what it reads: use it where the store is used, {" . $padName [$pad] . " {$padStoreParm ['padPrmName']}=...}, or keep that result with toData=" );
+
+    if ( $padPipeBefore [$pad] )
+      padError ( "an opening pipe on {" . $padTag [$pad] . "} pipes nothing that is stored - pipe where the store is used, {" . $padName [$pad] . " | ...}" );
+
   }
 
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
