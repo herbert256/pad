@@ -15,16 +15,6 @@
   if ( is_array ( $value ) or is_object ( $value ) )
     return filter_var ( $value, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
-  // PAD's own escape entities - &open; &close; &pipe; &eq; &comma; &at; &else;, what the
-  // ignore pipe writes for the page's exit to put back - are left as they are, as a real
-  // entity is: {$json | ignore} printed &open;"a": 1&comma; ... &close; in the page, since
-  // the &amp; written in front of them kept padUnescape from finding them.
-
-  $padSanitized = htmlentities ( padUnprotectQuotes ( (string) $value ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', FALSE );
-
-  if ( str_contains ( $padSanitized, '&amp;' ) )
-    $padSanitized = preg_replace ( '/&amp;(open|close|pipe|eq|comma|at|else);/i', '&$1;', $padSanitized );
-
-  return $padSanitized;
+  return htmlentities ( padUnprotectQuotes ( (string) $value ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', FALSE );
 
 ?>
