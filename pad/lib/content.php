@@ -168,17 +168,52 @@
   // {/none} showing B@else@C - and strict mode names it, where level/split.php and
   // build/split.php cut at the first. $pos is the first, $pairs the pair list it was
   // placed with.
+  //
+  // The markers behind the first are judged in one walk: the openers and closers of the
+  // pairs, read as padOpenCount and padOpenCloseCountOne read them, are taken in the order
+  // they stand, and at each marker the pairs still open are known. Counting the whole text
+  // in front of every marker again took seconds for a page with thousands of nested ones.
 
   function padElseSecond ( $text, $pos, $pairs ) {
 
-    $pos = strpos ( $text, '@else@', $pos + 6 );
+    if ( strpos ( $text, '@else@', $pos + 6 ) === FALSE )
+      return;
 
-    while ( $pos !== FALSE ) {
+    $events = [];
 
-      if ( padOpenCloseCount ( substr ( $text, 0, $pos ), $pairs ) )
+    foreach ( $pairs as $tag => $dummy ) {
+
+      $quoted = preg_quote ( $tag, '/' );
+
+      preg_match_all ( '/\{' . $quoted . '(?=[\s}])/', $text, $found, PREG_OFFSET_CAPTURE );
+      foreach ( $found [0] as list ( $open, $at ) )
+        if ( $text [$at + strlen ( $open )] == '}' or ! padOpenSelfClosing ( $text, $at + strlen ( $open ) ) )
+          $events [] = [ $at, $tag, 1 ];
+
+      preg_match_all ( '/\{\/' . $quoted . '[\s}|]/', $text, $found, PREG_OFFSET_CAPTURE );
+      foreach ( $found [0] as list ( $close, $at ) )
+        $events [] = [ $at, $tag, -1 ];
+
+    }
+
+    usort ( $events, fn ( $a, $b ) => $a [0] <=> $b [0] );
+
+    $depth = [];
+    $open  = 0;
+    $next  = 0;
+    $count = count ( $events );
+
+    for ( $at = strpos ( $text, '@else@', $pos + 6 ); $at !== FALSE; $at = strpos ( $text, '@else@', $at + 1 ) ) {
+
+      for ( ; $next < $count and $events [$next] [0] < $at; $next++ ) {
+        list ( , $tag, $step ) = $events [$next];
+        $was           = $depth [$tag] ?? 0;
+        $depth [$tag]  = $was + $step;
+        $open         += ( $was == 0 ) - ( $depth [$tag] == 0 );
+      }
+
+      if ( ! $open )
         return padError ( "a tag has one @else@ - a second one stands beside the first" );
-
-      $pos = strpos ( $text, '@else@', $pos + 1 );
 
     }
 
