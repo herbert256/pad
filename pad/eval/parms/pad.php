@@ -52,6 +52,23 @@
 
   }
 
+  // A list or an object handed along the chain where a function wants a value - {echo $s |
+  // php:explode(',', @) | trim} - is named under the strict check and is empty in the
+  // lenient walk, as a missing parameter is: the function files hand $value to PHP's
+  // string functions, and the page ended on a PHP TypeError or "Array to string conversion"
+  // in either mode. The functions that test or hand on a list take it, and the date ones a
+  // date object; sanitize keeps the answer its filter gives a list.
+
+  if ( ( is_array ( $value ) or ( is_object ( $value ) and ! $value instanceof DateTimeInterface ) )
+       and ! in_array ( $name, [ 'contains', 'in', 'between', 'range', 'default', 'optional', 'lookup', 'sanitize' ], TRUE ) ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] )
+      padError ( "the function '$name' wants a value, not " . ( is_array ( $value ) ? 'a list' : 'an object' ) );
+
+    return '';
+
+  }
+
   $padFnNeeds = [ 'replace' => 2, 'between'    => 2, 'range'    => 2,
                   'mid'     => 1, 'substr'     => 1, 'left'     => 1,
                   'right'   => 1, 'max_len'    => 1, 'like'     => 1,
