@@ -44,6 +44,7 @@
       'request/rawbody'           => 'A request body that is no form, posted as text/plain and read back through php://input',
       'request/cookie'            => 'A cookie sent with the request, read from $_COOKIE by the fixture',
       'request/the_identity_cookies_are_kept_on_the_application_directory' => 'padSesID and padReqID on the directory of the entry point, from a clean URL below it as from ?page - not one pair per directory of the address',
+      'request/an_old_identity_cookie_of_a_directory_below_the_application_is_expired' => 'A padReqID and padSesID kept on a directory below the application are expired there and on each directory between, the session id going on on the application directory',
       'request/crumbs'            => 'A cookie, a pq-named and an _-named request value sent to the fixture, none of which becomes a variable',
       'request/crumb'             => 'The fixture for request/crumbs, fetched bare: no cookie, nothing promoted',
       'request/every_engine_cookie_of_an_https_site_is_secure' => 'The session, flash and padReqID cookies are Secure on an https site - behind a proxy that ends TLS ($padHostBase https) and under session.cookie_secure too - and plain on plain http',

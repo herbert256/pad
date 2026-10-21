@@ -31,10 +31,30 @@
 
       $padCookieDir = rtrim ( str_replace ( '\\', '/', dirname ( (string) ( $_SERVER ['SCRIPT_NAME'] ?? '' ) ) ), '/' ) . '/';
 
-      if ( str_starts_with ( (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), $padCookieDir ) )
+      if ( str_starts_with ( (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), $padCookieDir ) ) {
+
         $padCookieFlags ['path'] = $padCookieDir;
 
-      if ( ! isset($_COOKIE['padSesID']) or $_COOKIE['padSesID'] != $padSesID )
+        // A pair the browser kept on a directory below it before - the address's own
+        // directory, and each one between - is sent first, the longer path ahead, and PHP
+        // keeps the first of two cookies of one name: that old padReqID was every later
+        // request's parent, for the ten years it lives. It is expired where it may stand,
+        // and the session id it carried goes on on the application's directory.
+
+        $padCookieOld = explode ( '?', (string) $_SERVER ['REQUEST_URI'], 2 ) [0];
+        $padCookieOld = substr ( $padCookieOld, 0, (int) strrpos ( $padCookieOld, '/' ) );
+
+        if ( isset ( $_COOKIE ['padReqID'] ) or isset ( $_COOKIE ['padSesID'] ) )
+          while ( strlen ( $padCookieOld ) >= strlen ( $padCookieDir ) and str_starts_with ( $padCookieOld, $padCookieDir ) ) {
+            foreach ( [ 'padSesID', 'padReqID' ] as $padCookieName )
+              setCookie ( $padCookieName, '', [ 'expires' => 1, 'path' => $padCookieOld ] + $padCookieFlags );
+            $padCookieMoved = TRUE;
+            $padCookieOld = substr ( $padCookieOld, 0, (int) strrpos ( $padCookieOld, '/' ) );
+          }
+
+      }
+
+      if ( ! isset($_COOKIE['padSesID']) or $_COOKIE['padSesID'] != $padSesID or isset ( $padCookieMoved ) )
         setCookie ('padSesID', $padSesID, $padCookieFlags );
 
       setCookie ('padReqID', $padReqID, $padCookieFlags );
