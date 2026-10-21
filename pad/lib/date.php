@@ -23,7 +23,8 @@
   // The timezone is read when a function is called, not when the request starts: a page's
   // PHP that sets $padTimezone for itself is answered in that zone. A number is a Unix
   // timestamp, as the date pipe reads it; text is read the way PHP's DateTime reads it, with
-  // "tomorrow" and "+1 week" counted from the frozen moment when the clock is frozen.
+  // "tomorrow", "+1 week" and a date without a year - "Dec 25" - counted from the frozen
+  // moment when the clock is frozen.
 
   function padDateZone () {
 
@@ -168,7 +169,10 @@
     try {
 
       // Text that says nothing of the date - 'tomorrow', '+1 week', '10:30' - is counted
-      // from now, and a frozen now is the one it is counted from.
+      // from now, and a frozen now is the one it is counted from. So is text that leaves
+      // the year out - 'Dec 25', 'february', 'last day of february': PHP fills the year
+      // (and for 'february' the day) from now, which was the real clock, so frozen at
+      // 2028-06-15 'Dec 25' was 2026-12-25 and a frozen 2028 had no 29 February.
 
       $frozen = $GLOBALS ['padNowFrozen'] ?? NULL;
       $parts  = date_parse ( $value );
@@ -176,7 +180,7 @@
       if ( padDateWarned ( $parts, $parts ) )
         return NULL;
 
-      if ( $frozen instanceof DateTimeImmutable and $parts ['year'] === FALSE and $parts ['month'] === FALSE and $parts ['day'] === FALSE ) {
+      if ( $frozen instanceof DateTimeImmutable and $parts ['year'] === FALSE ) {
 
         // A zone the text names - '10:30 UTC', 'tomorrow Europe/London' - is kept, as it is
         // with the clock running: modify passes over a zone written in the text and counts
@@ -184,7 +188,15 @@
         // first. It answered 10:30 and midnight in the application's zone.
 
         $zone = $parts ['is_localtime'] ? ( new DateTimeImmutable ( $value, padDateZone () ) )->getTimezone () : padDateZone ();
-        $date = @$frozen->setTimezone ( $zone )->modify ( $value );
+        $base = $frozen->setTimezone ( $zone );
+
+        // A date without a time is midnight, as PHP reads it with the clock running;
+        // modify keeps the time of the moment it changes.
+
+        if ( ( $parts ['month'] !== FALSE or $parts ['day'] !== FALSE ) and $parts ['hour'] === FALSE )
+          $base = $base->setTime ( 0, 0, 0, 0 );
+
+        $date = @$base->modify ( $value );
         return ( $date instanceof DateTimeImmutable ) ? $date : NULL;
       }
 

@@ -707,7 +707,8 @@ Edge rules:
   leaves the clock as it was.
 - **The frozen clock.** `padNow`, `padToday`, `padAgo`, the `ago` pipe, `padLog`'s time stamp
   and relative text in `padDateParse` (`tomorrow`, `+1 week`, `10:30` - text that names no
-  date of its own) all follow it; the frozen moment is shown in the application's zone. The
+  date of its own - and a date without a year: `Dec 25`, `last day of february` are in the
+  frozen year) all follow it; the frozen moment is shown in the application's zone. The
   `date` and `now` pipes and PHP's own `time ()` do not.
 - **Ago.** Under 10 seconds is `just now`, under a minute seconds, under an hour minutes,
   under a day hours (whole units, rounded down). From 24 hours on the calendar counts, in the
