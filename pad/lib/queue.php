@@ -179,7 +179,7 @@
 
     while ( ! $max or count ( $answer ['jobs'] ) < $max ) {
 
-      $claimed = padQueueClaim ( $dir );
+      $claimed = padQueueClaim ( $dir, $timeout );
 
       if ( ! $claimed )
         break;
@@ -410,9 +410,10 @@
 
   // The first job of the directory that is due, claimed: [ run file, record ], or NULL when
   // none is. The names sort by the time a job may run, so the first that is not due ends
-  // the look. A rename that fails is another worker's claim of the same job.
+  // the look. A rename that fails is another worker's claim of the same job. The claim
+  // keeps the worker's timeout in the record, for padQueueRelease.
 
-  function padQueueClaim ( $dir ) {
+  function padQueueClaim ( $dir, $timeout = 60 ) {
 
     $now = time ();
 
@@ -440,6 +441,7 @@
 
       $record ['attempts'] = (int) ( $record ['attempts'] ?? 0 ) + 1;
       $record ['reserved'] = $now;
+      $record ['timeout']  = max ( 1, (int) $timeout );
 
       @file_put_contents ( $run, padQueueJson ( $record ), LOCK_EX );
 
@@ -471,7 +473,7 @@
 
     $tries = $tries ?? (int) ( $record ['tries'] ?? 1 );
 
-    unset ( $record ['reserved'] );
+    unset ( $record ['reserved'], $record ['timeout'] );
 
     if ( $record ['attempts'] < $tries ) {
 
@@ -497,19 +499,25 @@
   // margin. Each is claimed back by a rename before it is judged, so two workers releasing
   // at once release it once. Its attempt counts - it may well be the job that killed the
   // worker.
+  //
+  // The timeout is the longer of this worker's and the one the claiming worker kept in the
+  // record: judged by this worker's alone, a job still running under pad work --timeout=300
+  // was released by a worker with the default 60 once it had run 90 seconds, and ran a
+  // second time beside the first.
 
   function padQueueRelease ( $dir, $timeout ) {
 
     $count = 0;
-    $limit = time () - $timeout - 30;
 
     foreach ( glob ( $dir . '*.run' ) ?: [] as $run ) {
 
       clearstatcache ( TRUE, $run );
 
-      $time = @filemtime ( $run );
+      $time  = @filemtime ( $run );
+      $claim = padQueueRead ( $run );
+      $wait  = max ( $timeout, (int) ( $claim ['timeout'] ?? 0 ) );
 
-      if ( $time === FALSE or $time > $limit )
+      if ( $time === FALSE or $time > time () - $wait - 30 )
         continue;
 
       $mine = $run . '.' . getmypid ();
