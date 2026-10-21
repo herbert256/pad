@@ -414,7 +414,10 @@
     if ( ! padFormCameBack ( $form ['name'] ?? '' ) )
       return NULL;
 
-    return ( ! $form or $form ['name'] === '' or (string) ( $_POST [padFormAt] ?? '1' ) === (string) $form ['at'] ) ? $_POST : NULL;
+    // The place is a text: posted as a list - padFormAt[]=2 - it names no form, where the
+    // cast to a text ended the page on "Array to string conversion".
+
+    return ( ! $form or $form ['name'] === '' or ( $_POST [padFormAt] ?? '1' ) === (string) $form ['at'] ) ? $_POST : NULL;
 
   }
 
