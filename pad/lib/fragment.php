@@ -30,13 +30,21 @@
   // A {nocache} part of the section renders on a hit too: kept as its source ('nocache'),
   // the stored rendering is then made a template again and rendered - lib/nocache.php.
   //
-  // So is what the section leaves for the rest of the page in the variables and the stores
-  // ('left'): a {set}, a {data}, {content} or {bool} store, a {define} or {macro} made in
-  // it, the total a callback= worked out over its rows. On a hit the tags that made them
-  // are stored text that never runs, and the page rendered on the miss, then ended every
-  // later request on "there is no tag named 'menu'" or "Field '$total' not found". What the
-  // section changed, compared with the state it started from (padFragmentState), is kept
-  // and put back as the hit ends, where the miss's rendering ended.
+  // So is what the section makes for the rest of the page in the variables and the stores
+  // ('left'): a variable a {set} in it brings into being, a {data}, {content} or {bool}
+  // store, a {define} or {macro} made in it, the total a callback= worked out over its rows.
+  // On a hit the tags that made them are stored text that never runs, and the page rendered
+  // on the miss, then ended every later request on "there is no tag named 'menu'" or "Field
+  // '$total' not found". What the section made - a name that was not there when it started
+  // (padFragmentState) - is kept and put back as the hit ends, where the miss's rendering
+  // ended. Only what is not there then: a name the request has by then is the request's -
+  // set by a {nocache} part of the section for this visitor, or by the page - and a value
+  // of the miss's written over it went to every later visitor ("after: Ann" for Bob).
+  //
+  // A variable that was there before the section is not kept, though the section changed
+  // it - {set $title = $title . '!'}: its value is this request's, from its PHP, its request
+  // or its session, and the miss's value put back gave every visitor the first one's title.
+  // On a hit the section's change of it is not made - the lesser evil.
 
   function padFragmentHit () {
 
@@ -152,8 +160,8 @@
 
   }
 
-  // What the section set or changed: each variable and store entry that is not what it was
-  // when the section started. Only plain values - the entry is stored serialized.
+  // What the section made: each variable and store entry that was not there when the
+  // section started. Only plain values - the entry is stored serialized.
 
   function padFragmentLeft ( $before ) {
 
@@ -161,16 +169,15 @@
 
     foreach ( padFragmentState () as $kind => $values )
       foreach ( $values as $name => $value )
-        if ( ( ! array_key_exists ( $name, $before [$kind] ?? [] ) or $before [$kind] [$name] !== $value )
-             and padNocachePlain ( $value ) )
+        if ( ! array_key_exists ( $name, $before [$kind] ?? [] ) and padNocachePlain ( $value ) )
           $left [$kind] [$name] = $value;
 
     return $left;
 
   }
 
-  // A hit puts back what the miss left - a variable never an engine name, a store entry only
-  // in one of the stores padFragmentState keeps.
+  // A hit puts back what the miss made and is not there now - a variable never an engine
+  // name, a store entry only in one of the stores padFragmentState keeps.
 
   function padFragmentLeftBack ( $left ) {
 
@@ -178,9 +185,10 @@
       if ( is_array ( $values ) )
         foreach ( $values as $name => $value )
           if ( $kind === 'vars' ) {
-            if ( ! padEngineName ( (string) $name ) )
+            if ( ! padEngineName ( (string) $name ) and ! isset ( $GLOBALS [$name] ) )
               $GLOBALS [$name] = $value;
-          } elseif ( in_array ( $kind, [ 'padDataStore', 'padContentStore', 'padBoolStore', 'pqStore', 'padDefineStore', 'padMacroStore' ], TRUE ) )
+          } elseif ( in_array ( $kind, [ 'padDataStore', 'padContentStore', 'padBoolStore', 'pqStore', 'padDefineStore', 'padMacroStore' ], TRUE )
+                     and ! isset ( $GLOBALS [$kind] [$name] ) )
             $GLOBALS [$kind] [$name] = $value;
 
   }
