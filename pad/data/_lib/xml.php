@@ -82,7 +82,8 @@
     // has such names is read by padXmlToArraySpaced, which takes them all.
 
     if ( array_filter ( array_keys ( $xml->getDocNamespaces ( TRUE ) ) ) or preg_match ( '/\sxml:[\w-]+\s*=/', $input ) )
-      $arr = padXmlToArraySpaced ( $xml );
+      $arr = padXmlToArraySpaced ( $xml, [ padXmlSpacedClash ( $xml->xpath ( '//*' ) ?: [] ),
+                                           padXmlSpacedClash ( $xml->xpath ( '//@*' ) ?: [] ) ] );
     else
       $arr = padXmlToArrayIterator ( $xml );
 
@@ -144,19 +145,20 @@
   // padXmlToArrayIterator for a document with prefixed names: every child element and every
   // attribute, in document order, whatever its namespace. A prefixed name is kept under its
   // local name - {$creator}, as a field name holds no colon - and under prefix_name where
-  // another namespace uses the same local name in that element: <title> and <dc:title> are
-  // title and dc_title.
+  // another namespace uses the same local name in the document: <title> and <dc:title> are
+  // title and dc_title. $clash holds those local names, of the elements and of the attributes
+  // (padXmlSpacedClash), so one kind of element has one name in every row.
 
-  function padXmlToArraySpaced ( $xml ) {
+  function padXmlToArraySpaced ( $xml, $clash ) {
 
     $arr = [];
 
-    foreach ( padXmlSpacedNames ( $xml->xpath ( '*' ) ?: [] ) as [ $idx, $el ] ) {
+    foreach ( padXmlSpacedNames ( $xml->xpath ( '*' ) ?: [], $clash [0] ) as [ $idx, $el ] ) {
 
       $val   = trim ( strval ( $el ) );
       $cnt   = ( array_key_exists ($idx, $arr) ) ? array_key_last ($arr [$idx]) + 1 : 0;
       $kids  = $el->xpath ( '*' ) ?: [];
-      $attrs = padXmlSpacedNames ( $el->xpath ( '@*' ) ?: [] );
+      $attrs = padXmlSpacedNames ( $el->xpath ( '@*' ) ?: [], $clash [1] );
 
       if ( ! $kids and ! $attrs )
 
@@ -174,7 +176,7 @@
             $arr [$idx] [$cnt] [$key] = strval($att);
 
         if ( $kids )
-          $arr [$idx] [$cnt] ['_children'] = padXmlToArraySpaced ( $el );
+          $arr [$idx] [$cnt] ['_children'] = padXmlToArraySpaced ( $el, $clash );
 
       }
 
@@ -184,15 +186,27 @@
 
   }
 
-  // The names the nodes of one element are kept under, as [ name, node ] pairs in their order:
-  // the local name, or prefix_name when that local name stands in more than one namespace.
+  // The local names that stand in more than one namespace among $nodes - all the elements,
+  // or all the attributes, of the document. Counted per element, an item with <author> and
+  // <itunes:author> had author and itunes_author, an item with <itunes:author> alone author:
+  // {$itunes_author} was not found on the second.
 
-  function padXmlSpacedNames ( $nodes ) {
+  function padXmlSpacedClash ( $nodes ) {
 
     $spaces = [];
 
     foreach ( $nodes as $node )
       $spaces [ $node->getName () ] [ (string) array_key_first ( $node->getNamespaces () ) ] = TRUE;
+
+    return array_filter ( $spaces, fn ( $set ) => count ( $set ) > 1 );
+
+  }
+
+  // The names the nodes of one element are kept under, as [ name, node ] pairs in their order:
+  // the local name, or prefix_name when that local name stands in more than one namespace of
+  // the document ($clash).
+
+  function padXmlSpacedNames ( $nodes, $clash ) {
 
     $named = [];
 
@@ -201,7 +215,7 @@
       $local  = $node->getName ();
       $prefix = (string) array_key_first ( $node->getNamespaces () );
 
-      $named [] = [ ( $prefix !== '' and count ( $spaces [$local] ) > 1 ) ? $prefix . '_' . $local : $local, $node ];
+      $named [] = [ ( $prefix !== '' and isset ( $clash [$local] ) ) ? $prefix . '_' . $local : $local, $node ];
 
     }
 
