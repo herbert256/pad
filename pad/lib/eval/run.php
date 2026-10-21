@@ -199,9 +199,9 @@
       $values [] = padDateText ( padEvalNode ( $one, $me, $leaf ) );
 
     foreach ( $values as $value )
-      if ( is_array ( $value ) ) {
+      if ( is_array ( $value ) or padEvalObject ( $value ) ) {
         if ( $GLOBALS ['padCheckSyntax'] )
-          padError ( "Expression error: a list and another value stand side by side with no operator between them: {$node[2]}" );
+          padError ( "Expression error: " . ( is_array ( $value ) ? 'a list' : 'an object' ) . " and another value stand side by side with no operator between them: {$node[2]}" );
         return '';
       }
 
@@ -514,7 +514,7 @@
       case 'AND': return ( $left AND $right ) ? 1 : '';
       case 'OR':  return ( $left OR  $right ) ? 1 : '';
       case 'XOR': return ( $left XOR $right ) ? 1 : '';
-      case '.':   return $left . $right;
+      case '.':   return padEvalObject ( $left ) || padEvalObject ( $right ) ? padEvalObjectError ( 'the . is handed' ) : $left . $right;
     }
 
     $left  = padEvalNumber ( $left,  $opr );
@@ -602,6 +602,28 @@
 
   }
 
+  // Whether a value is an object that writes no text - what php:json_decode answers, an
+  // application function's record; a date object is its text before it gets here, and a
+  // Stringable one, a SimpleXMLElement, writes its own. Joined as text it ended the page on
+  // PHP's "Object of class stdClass could not be converted to string", under the lenient walk
+  // too: named under the strict check, as the arithmetic and the pipes name it, and empty in
+  // the lenient walk (padEvalObjectError).
+
+  function padEvalObject ( $value ) {
+
+    return is_object ( $value ) and ! $value instanceof Stringable;
+
+  }
+
+  function padEvalObjectError ( $what ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] )
+      padError ( "Expression error: $what an object, not a value" );
+
+    return '';
+
+  }
+
   // Whether every element of an array is a number - an empty one passes, its sum being 0.
 
   function padEvalNumeric ( $array ) {
@@ -629,7 +651,10 @@
     $text = '';
 
     foreach ( $flat as $one )
-      $text .= $one;
+      if ( padEvalObject ( $one ) )
+        return padEvalObjectError ( 'a list run together as one value holds' );
+      else
+        $text .= $one;
 
     return $text;
 
