@@ -49,6 +49,22 @@
   $padNocacheBody = padNocacheCut ( $padOutput, $padNocacheKept );
   $padOutput      = padNocacheStrip ( $padOutput );
 
+  // A live request - a {live} region posting an event - is answered with that region's
+  // content alone, without tidy, which would make a page of it (lib/live.php). Taken before
+  // the forms get their tokens below, so a posting form in the region carries the token in
+  // the answer as it did in the page: the answer was the region as rendered, and once the
+  // script had put it in, every post of that form was refused 403. The page's <base href>
+  // is kept first - the region's forms post under it (lib/csrf.php).
+
+  if ( padLive () !== '' ) {
+
+    if ( $padCsrf or isset ( $padCsrfIssued ) )
+      padCsrfBaseKeep ( $padOutput );
+
+    $padOutput = padLiveAnswer ();
+
+  }
+
   // With $padCsrf on, each form of the page that posts back here carries the session's
   // token without the template having to ask (lib/csrf.php) - the forms an application
   // already had are protected by the one setting. A token that went into the page with
@@ -57,12 +73,6 @@
 
   if ( ( $padCsrf or isset ( $padCsrfIssued ) ) and $padOutputType == 'web' )
     $padOutput = padCsrfForms ( $padOutput, $padCsrf );
-
-  // A live request - a {live} region posting an event - is answered with that region's
-  // content alone, without tidy, which would make a page of it (lib/live.php).
-
-  if ( padLive () !== '' )
-    $padOutput = padLiveAnswer ();
 
   // A {toc} is filled in once every heading of the page is written, the answer of a live
   // request included - lib/toc.php.

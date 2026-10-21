@@ -59,6 +59,8 @@
       'fragments/target'          => 'The fixture for fragments/targets: a page with one fragment between other HTML',
       'fragments/a_fragment_answers_without_the_developer_helpers' => 'A page with the toolbar, live reload and the output check on carries the bar, the script and the panel as a whole page, and none of them in the answer to its fragment - asked by padFragment or by htmx in HX-Target',
       'fragments/helpers'         => 'The fixture for fragments/a_fragment_answers_without_the_developer_helpers: the three helpers on, a fragment with an image the output check names - fetched bare, its panel follows the page',
+      'live/a_posting_form_in_a_live_answer_keeps_its_csrf_token' => 'A posting form in a {live} region under $padCsrf carries the token in the answer to an event as in the page',
+      'live/form'                 => 'The fixture of live/a_posting_form_in_a_live_answer_keeps_its_csrf_token, fetched bare: the region, its form with the token',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',
       'sse/headers'               => 'A stream as the browser gets it: text/event-stream, no-cache, no proxy buffering, and the last id back as a header or query value with its line break taken out',

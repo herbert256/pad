@@ -10,7 +10,7 @@
   // The live region tests need pages that check CSRF tokens - the check runs before the
   // page's PHP, so only the configuration can switch it on for a post.
 
-  if ( in_array ( $padPage, [ 'live/counter', 'request/livecsrf' ] ) )
+  if ( in_array ( $padPage, [ 'live/counter', 'live/form', 'request/livecsrf' ] ) )
     $padCsrf = TRUE;
 
   // The Secure cookie test asks itself as a site behind a proxy that ends TLS would be.
