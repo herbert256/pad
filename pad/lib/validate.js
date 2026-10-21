@@ -317,8 +317,10 @@
   }
 
   // The text of the field's <label>, made fit for a sentence as padValidateLabel makes it.
+  // A checkbox or radio is worded with the field's name, as {input} words it: its label
+  // names one choice of the group.
   function labelOf(form, control) {
-    if (!control || !control.id) return '';
+    if (!control || !control.id || box(control)) return '';
     var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
     return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
   }
@@ -327,11 +329,16 @@
     return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   }
 
+  function box(control) {
+    return control.type === 'checkbox' || control.type === 'radio';
+  }
+
+  // The error of a group of boxes goes by the id of its first box, as {input} writes it.
   function show(form, name, text) {
     var controls = controlsOf(form, name);
     var last = controls[controls.length - 1];
     if (!last) return;
-    var id = idOf(name, last) + '-error';
+    var id = idOf(name, box(last) ? controls[0] : last) + '-error';
     var span = document.getElementById(id);
     controls.forEach(function (control) {
       if (text) {

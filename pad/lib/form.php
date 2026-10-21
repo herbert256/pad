@@ -534,23 +534,61 @@
 
   // The label before the field, and after it the error with the aria attributes that tie
   // the two together - a screen reader says the message with the field.
+  //
+  // A checkbox or radio - $box its own value - shares its name with the rest of its group.
+  // The first box of a name in its form keeps the id of the name, every later one without
+  // an id= of its own gets the name with its value, size-L, so its label points at it: every
+  // box of {input 'size', type='radio', value='L', label='Large'} had the id size, and the
+  // label Large checked Small. The group's error is written once, after its first box and
+  // under that box's id, the later boxes pointing at it, and is worded with the field's name
+  // as the browser's checker words it - a box's label names one choice, and a group posted
+  // without a choice read "Small is required" after its first box and "Large is required"
+  // after its second, under one id.
 
-  function padFormField ( $name, $take, $attrs, $control ) {
+  function padFormField ( $name, $take, $attrs, $control, $box = NULL ) {
 
     $id    = padFormId ( $name, $take );
+    $first = ( $box === NULL ) ? NULL : padFormBoxFirst ( $name, $id );
+
+    if ( $first !== NULL and ! ( isset ( $take ['id'] ) and $take ['id'] !== '' ) )
+      $id = padFormId ( padFormId ( $name, [] ) . "-$box", [] );
+
     $label = isset ( $take ['label'] ) ? '<label for="' . padFormEscape ( $id ) . '">' . padFormEscape ( $take ['label'] ) . '</label>' : '';
-    $error = padFormError ( $name, (string) ( $take ['label'] ?? '' ) );
+    $error = padFormError ( $name, ( $box === NULL ) ? (string) ( $take ['label'] ?? '' ) : '' );
 
     if ( $error !== '' ) {
+      $shown = ( $first ?? $id ) . '-error';
       $attrs ['aria-invalid']     = 'aria-invalid="true"';
-      $attrs ['aria-describedby'] = 'aria-describedby="' . padFormEscape ( "$id-error" ) . '"';
-      $error = '<span class="error" id="' . padFormEscape ( "$id-error" ) . '">' . padFormEscape ( $error ) . '</span>';
+      $attrs ['aria-describedby'] = 'aria-describedby="' . padFormEscape ( $shown ) . '"';
+      $error = ( $first === NULL ) ? '<span class="error" id="' . padFormEscape ( $shown ) . '">' . padFormEscape ( $error ) . '</span>' : '';
     }
 
     $head = 'name="' . padFormEscape ( $name ) . '"' . ( $id !== '' ? ' id="' . padFormEscape ( $id ) . '"' : '' );
     $rest = $attrs ? ' ' . implode ( ' ', $attrs ) : '';
 
     return $control ( $head, $rest, $label, $error );
+
+  }
+
+  // The id of the first box of a name in the form being rendered - NULL when this box is the
+  // first, whose id is kept for the boxes after it. Outside a {form} the page is one group.
+
+  function padFormBoxFirst ( $name, $id ) {
+
+    global $padFormStack, $padFormBoxes;
+
+    if ( ! $padFormStack ) {
+      $first = $padFormBoxes [$name] ?? NULL;
+      $padFormBoxes [$name] ??= $id;
+      return $first;
+    }
+
+    $at    = array_key_last ( $padFormStack );
+    $first = $padFormStack [$at] ['boxes'] [$name] ?? NULL;
+
+    $padFormStack [$at] ['boxes'] [$name] ??= $id;
+
+    return $first;
 
   }
 
@@ -571,6 +609,7 @@
 
     $type    = strtolower ( (string) ( $take ['type'] ?? 'text' ) );
     $default = (string) ( $take ['value'] ?? '' );
+    $box     = in_array ( $type, [ 'checkbox', 'radio' ] ) ? ( ( $default === '' ) ? 'on' : $default ) : NULL;
 
     return padFormField ( $name, $take, $attrs, function ( $head, $rest, $label, $error ) use ( $name, $type, $default, $take ) {
 
@@ -604,7 +643,7 @@
 
       return "$label<input $typed value=\"" . padFormEscape ( $value ) . "\"$rest>$error";
 
-    } );
+    }, $box );
 
   }
 
