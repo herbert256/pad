@@ -84,7 +84,13 @@
 
     $padFiles ['path']  = $padFilesFile->getPathname();
     $padFiles ['file']  = $padFilesFile->getFilename();
-    $padFiles ['ext']   = $padFilesFile->getExtension();
+
+    // Only a file has an extension, and only behind a dot that is not its first character: a
+    // dotfile - .env, .gitignore - is all name, and was given an empty item and its whole name
+    // as ext; a directory with a dot in its name - v1.2, .hidden - got an ext, where a
+    // directory's is empty.
+
+    $padFiles ['ext']   = ( $padFilesFile->isFile () and strrpos ( $padFilesName, '.' ) > 0 ) ? $padFilesFile->getExtension () : '';
 
     // The item is the path behind the scanned directory and its separator, for a file and a
     // directory alike - the / was taken off the files only, so a directory came as /sub
