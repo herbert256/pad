@@ -275,9 +275,12 @@
       return NULL;
     }
 
+    // NAN is named for itself: ! ( NAN >= 1 ) is true, but opcache's optimizer makes it
+    // NAN < 1, which is false - on a server a NAN window passed and was a window of ages.
+
     if ( ! ( is_int ( $decaySeconds ) or is_float ( $decaySeconds )
              or ( is_string ( $decaySeconds ) and is_numeric ( $decaySeconds ) ) )
-         or ! ( $decaySeconds >= 1 ) or is_infinite ( (float) $decaySeconds ) ) {
+         or ! is_finite ( (float) $decaySeconds ) or ! ( $decaySeconds >= 1 ) ) {
       padError ( "$function: the window is a number of seconds, 1 or more - not "
                . padCacheAppShow ( $decaySeconds ) );
       return NULL;
@@ -315,7 +318,10 @@
 
   function padCacheAppFile ( $key, $kind, $function ) {
 
-    if ( is_int ( $key ) or is_float ( $key ) or $key instanceof Stringable )
+    // NAN is no key: PHP 8.5 warns when it casts NAN to a string, and that warning ended
+    // the request in place of the report below.
+
+    if ( is_int ( $key ) or ( is_float ( $key ) and ! is_nan ( $key ) ) or $key instanceof Stringable )
       $key = (string) $key;
 
     if ( ! is_string ( $key ) or $key === '' ) {
@@ -446,8 +452,12 @@
     if ( is_bool ( $value ) )
       return $value ? 'TRUE' : 'FALSE';
 
+    // NAN is written NAN, as padArrShow writes it: a NAN ttl, window or maximum is caught
+    // by the checks, and the report that named it ended the request on PHP 8.5's warning
+    // for (string) NAN.
+
     if ( is_int ( $value ) or is_float ( $value ) )
-      return (string) $value;
+      return is_nan ( (float) $value ) ? 'NAN' : (string) $value;
 
     return get_debug_type ( $value );
 
