@@ -135,8 +135,18 @@
   // escaped the raw HTML of the value - so a field whose last pipe is one of them skips the
   // end chain, whose sanitize would escape the markup just made: {$post.body | markdown}
   // shows the post, {$query | highlight('sql')} the query.
+  //
+  // Only when the built-in is the one that answers: an application function of that name in
+  // _functions/ comes before it, and is the application's own text - a search-term
+  // highlighter returning "<mark>$value</mark>" wrote a visitor's <script> to the page
+  // live, where the same function under any other name was escaped. pad: names the
+  // built-in for certain.
 
-  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) and ! preg_match ( '/(^|\|)\s*(markdown\s*(\(\s*\))?|highlight\s*(\(\s*([\'"])\w+\5\s*\))?)\s*$/', $padVarOpts ) )
+  $padVarBuiltIn = in_array ( $padFirst, [ '$', '#' ], TRUE )
+    && preg_match ( '/(^|\|)\s*(pad:)?(markdown\s*(\(\s*\))?|highlight\s*(\(\s*([\'"])\w+\6\s*\))?)\s*$/', $padVarOpts, $padVarMatch )
+    && ( $padVarMatch [2] !== '' or ! padAppFunctionCheck ( substr ( $padVarMatch [3], 0, 1 ) == 'm' ? 'markdown' : 'highlight' ) );
+
+  if ( in_array ( $padFirst, [ '$', '#' ], TRUE ) and ! $padVarBuiltIn )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
