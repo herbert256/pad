@@ -21,18 +21,20 @@
   $padDateZone = padDateZone ();
 
   // A date object - a DateTime the page's PHP left - is the moment it holds.
+  //
+  // Now is padNow's and text is read by padDateParse (lib/date.php), as ago and padToday
+  // read them: a clock a test froze with padNowFreeze is the now of an empty value, of
+  // {now} and of 'tomorrow', and a date that does not exist - 2026-02-30 - is no date,
+  // where DateTimeImmutable made it 2 March and the real clock was read.
 
   if ( $value instanceof DateTimeInterface )
     $value = $value->getTimestamp ();
   elseif ( ! $value )
-    $value = time ();
+    $value = padNow ()->getTimestamp ();
   elseif ( ! is_numeric ( $value ) ) {
-    $padDateText = $value;
-    try {
-      $value = ( new DateTimeImmutable ( (string) $value, $padDateZone ) ) -> getTimestamp ();
-    } catch ( Exception $padDateError ) {
-      $value = FALSE;
-    }
+    $padDateText   = $value;
+    $padDateMoment = padDateParse ( (string) $value );
+    $value         = $padDateMoment ? $padDateMoment->getTimestamp () : FALSE;
     if ( $value === FALSE ) {
       if ( $padCheckSyntax )
         padError ( "the date function cannot read '$padDateText' as a date" );

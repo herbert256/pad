@@ -247,17 +247,17 @@
 
   function padLocaleTime ( $value ) {
 
+    // Now and text as the date pipe has them (padNow, padDateParse): a frozen clock is
+    // the now, and 2026-02-30 is no date.
+
     if ( $value === '' or $value === NULL or $value === 0 or $value === '0' )
-      return time ();
+      return padNow ()->getTimestamp ();
 
     if ( is_numeric ( $value ) )
       return (int) $value;
 
-    try {
-      $time = ( new DateTimeImmutable ( (string) $value, padDateZone () ) ) -> getTimestamp ();
-    } catch ( Exception $e ) {
-      $time = FALSE;
-    }
+    $time = padDateParse ( (string) $value );
+    $time = $time ? $time->getTimestamp () : FALSE;
 
     if ( $time === FALSE and $GLOBALS ['padCheckSyntax'] )
       padError ( "localDate cannot read '" . padMakeSafe ( (string) $value, 40 ) . "' as a date" );
