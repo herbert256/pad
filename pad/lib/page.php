@@ -112,6 +112,31 @@
     $ajax = 'padAjax' . md5 ( $page . $qry . $app ) ;
     //$ajax = 'padAjax' . padRandomString(8);
 
+    // The same page asked twice on one page - a widget shown twice, an {ajax} in a loop - had
+    // one id and one global request: the second script took the request over while the first
+    // was in flight, both answers went into the first div and the second stayed empty. Every
+    // use after the first gets a number of its own; the first keeps its id, so the page stays
+    // the same from one request to the next, for its ETag and the page cache.
+
+    static $ajaxUsed = [], $ajaxRequest = NULL;
+
+    if ( $ajaxRequest !== ( $GLOBALS ['padReqID'] ?? '' ) ) {
+      $ajaxUsed    = [];
+      $ajaxRequest = $GLOBALS ['padReqID'] ?? '';
+    }
+
+    $ajaxUsed [$ajax] = ( $ajaxUsed [$ajax] ?? 0 ) + 1;
+
+    if ( $ajaxUsed [$ajax] > 1 )
+      $ajax .= '_' . $ajaxUsed [$ajax];
+
+    // Under a Content-Security-Policy naming 'nonce' the script carries this request's nonce,
+    // as {live} and {asset} write theirs - without it the policy blocked it, and no {ajax}
+    // loaded.
+
+    $nonce = ( is_string ( $GLOBALS ['padCsp'] ?? NULL ) and str_contains ( $GLOBALS ['padCsp'], "'nonce'" ) )
+           ? ' nonce="' . htmlspecialchars ( padNonce (), ENT_QUOTES ) . '"' : '';
+
     // Each segment of the page is encoded, as {get} asks for its page: a segment a route
     // binds may hold what a query string reads as its own, and products/a&b loaded
     // products/a with a value b into the browser.
@@ -134,7 +159,7 @@
     return <<< END
 <div id="{$ajax}"></div>
 
-<script>
+<script{$nonce}>
   {$ajax} = new XMLHttpRequest();
   {$ajax}.onreadystatechange=function() {
     if ({$ajax}.readyState === 4) {
