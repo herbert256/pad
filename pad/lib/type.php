@@ -203,7 +203,7 @@
     elseif ( function_exists    ( strstr ( "$item(", '(', TRUE ) ) and $type == 'php'      ) return $type;
     elseif ( pqSeq              ( $item                          ) and $type == 'sequence' ) return $type;
     elseif ( pqAction           ( $item                          ) and $type == 'action'   ) return $type;
-    elseif ( padTypeFunction    ( $item, 0                       ) and $type == 'function' ) return $type;
+    elseif ( in_array ( padTypeFunction ( $item, 0 ), [ 'app', 'pad' ], TRUE ) and $type == 'function' ) return $type;
 
     return FALSE;
 
