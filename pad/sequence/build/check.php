@@ -171,6 +171,48 @@
   $pqCheckDefault = $GLOBALS ['padSeqDefaultTries'] ?? 10000;
   $pqCheckDraw    = in_array ( $pqSeq, [ 'chance', 'random' ] );
   $pqCheckMost    = $GLOBALS ['padSeqMaxTries'] ?? 1000000;
+
+  // An expression is held to no estimate of where its terms go: they go wherever the template
+  // wrote, and how they went over the reach says nothing of what comes after it. A number past
+  // every term made over the reach is looked for in the terms at twice, four times ... the
+  // reach and at the ceiling, made one at a time and kept with the terms (pqCheckSamples): one
+  // of them that is the value makes it a term, every one of them short of it on the side the
+  // terms made are on - or, for terms that were no numbers, no number either - leaves it none,
+  // and otherwise every term to the ceiling is made to look in. Estimated, {sequence
+  // '2000000;3', flag, eval='@ le 10000 ? @ : 2000000'} answered 0 for the 2000000 the
+  // expression makes at position 10,001 - its first 10,000 terms climb one at a time, which
+  // gets there past the ceiling - and a value within the ceiling was looked for only as far as
+  // itself, so eval='@ le 20000 ? 0 : 5' had no 5, made at position 20,001. Made to the
+  // ceiling every time, the million terms of '@ * 2' for 9223372036854775807 took a second and
+  // a half, and those of 'abc' the five seconds a run has.
+
+  if ( $pqSeq == 'eval' and is_numeric ( $pqLoop ) ) {
+
+    if ( ( $pqCheckTerms [$pqCheckKey] ['to'] ?? 0 ) < $pqCheckDefault )
+      $pqCheckTerms [$pqCheckKey] = pqTermsIndex ( $pqSeq, $pqParm, $pqCheckDefault );
+
+    if ( isset ( $pqCheckTerms [$pqCheckKey] ['index'] [$pqCheckAt] ) )
+      return TRUE;
+
+    if ( $pqCheckTerms [$pqCheckKey] ['to'] < $pqCheckMost
+         and ( $pqCheckTerms [$pqCheckKey] ['last'] === NULL
+               or $pqLoop < $pqCheckTerms [$pqCheckKey] ['low'] or $pqLoop > $pqCheckTerms [$pqCheckKey] ['high'] ) ) {
+
+      $pqCheckTerms [$pqCheckKey] ['samples'] ??= pqCheckSamples ( $pqSeq, $pqParm, $pqCheckTerms [$pqCheckKey] ['to'], $pqCheckMost );
+
+      $pqCheckSeen = pqCheckSeen ( $pqCheckTerms [$pqCheckKey], $pqLoop, $pqCheckAt );
+
+      if ( $pqCheckSeen !== NULL )
+        return $pqCheckSeen;
+
+      $pqCheckTerms [$pqCheckKey] = pqTermsIndex ( $pqSeq, $pqParm, $pqCheckMost );
+
+      return isset ( $pqCheckTerms [$pqCheckKey] ['index'] [$pqCheckAt] );
+
+    }
+
+  }
+
   $pqCheckFar     = is_numeric ( $pqLoop ) ? (int) min ( abs ( (float) $pqLoop ), $pqCheckMost ) : 0;
   $pqCheckWithin  = ( is_numeric ( $pqLoop ) and abs ( (float) $pqLoop ) <= $pqCheckMost );
   $pqCheckTo      = $pqCheckDraw ? $pqCheckFar : max ( $pqCheckFar, $pqCheckDefault );

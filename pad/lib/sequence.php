@@ -902,6 +902,46 @@
 
   }
 
+  // The terms of a type at twice, four times ... position $made and at position $most - one
+  // at a time, each a run of its own from that position - for build/check.php to see where the
+  // terms of an expression go past those it made.
+
+  function pqCheckSamples ( $seq, $parm, $made, $most ) {
+
+    $samples = [];
+
+    for ( $at = 2 * max ( 1, $made ); $at < $most; $at *= 2 )
+      $samples = array_merge ( $samples, pqTerms ( $seq, $parm, [ 'from' => $at, 'to' => $at ] ) );
+
+    return array_merge ( $samples, pqTerms ( $seq, $parm, [ 'from' => $most, 'to' => $most ] ) );
+
+  }
+
+  // What the samples pqCheckSamples () made say of $value, a number past every term made: TRUE
+  // when one of them is the value, FALSE when every one stays short of it as the terms made do
+  // - a number on their side of it, or no number when they were none - and NULL when they say
+  // neither.
+
+  function pqCheckSeen ( $made, $value, $at ) {
+
+    $short = TRUE;
+
+    foreach ( $made ['samples'] as $sample ) {
+
+      if ( pqIndexKey ( $sample ) === $at )
+        return TRUE;
+
+      if ( $made ['last'] === NULL )
+        $short = $short && ! is_numeric ( $sample );
+      else
+        $short = $short && is_numeric ( $sample ) && ( ( $value > $made ['high'] ) ? $sample < $value : $sample > $value );
+
+    }
+
+    return $short ? FALSE : NULL;
+
+  }
+
   // The key the terms of an eval= expression are kept under for the request, or '' when they
   // are made for the run: an expression of the value, numbers, strings and operators alone
   // gives the same terms every time. One with a field gives others for another value of it,
