@@ -883,7 +883,18 @@
 
     $page = ( $to [0] == '?' ) ? explode ( '&', substr ( $to, 1 ), 2 ) [0] : NULL;
 
-    return $page !== NULL and ( $page === '' ? 'index' : $page ) === (string) ( $GLOBALS ['padPage'] ?? '' );
+    if ( $page === NULL )
+      return FALSE;
+
+    // The name resolved as the request resolves it - products/42 is products/[id], account
+    // is account/index - or the name this page was asked by: compared as written, the page's
+    // own address was another page on a bracketed route or a directory's index.
+
+    $page  = ( $page === '' ) ? 'index' : $page;
+    $route = padPageRoute ( $page );
+
+    return in_array ( $page, [ padFormPage (), (string) ( $GLOBALS ['padPageAsked'] ?? '' ) ], TRUE )
+        or ( $route and $route ['page'] === padFormPage () );
 
   }
 
