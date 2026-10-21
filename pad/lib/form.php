@@ -104,6 +104,14 @@
   // The errors it answers are those of its own fields. The fields show those together with
   // what an earlier check left for other fields - the rules of the template, checked before
   // the page's PHP - so a page can add a check of its own to them.
+  //
+  // Without data a post is checked as the page reads it: a field the post leaves out is a
+  // variable, and a padRequest value, from the query string (inits/parms.php promotes the
+  // post first, then the query string; padRequestInput is a JSON body, the post, then the
+  // query string). The post alone was checked, a field it did not carry was empty there
+  // and passed every rule but required, and a post of name alone to an address carrying
+  // ?website=javascript:... or ?plan=enterprise handed the page that value past its url
+  // and in: rules.
 
   function padValidate ( $rules, $data = NULL, $messages = [] ) {
 
@@ -116,7 +124,7 @@
       unset ( $padFormErrors [$field], $padFormErrorParts [$field] );
 
     if ( $data === NULL )
-      $data = padRequestIs ( 'POST' ) ? $_POST : $_GET;
+      $data = padRequestIs ( 'POST' ) ? padRequestInput () : $_GET;
 
     $errors = [];
 
@@ -993,7 +1001,7 @@
     $rules = padFormRules () [$form] ?? [];
 
     if ( $rules )
-      $padFormChecked [$form] = padValidate ( $rules, $_POST );
+      $padFormChecked [$form] = padValidate ( $rules );
 
   }
 

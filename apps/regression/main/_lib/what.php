@@ -75,6 +75,8 @@
       'request/sent'              => 'The fixture of upload_send bare: the stored text, shown',
       'request/form_rules_post'   => 'Rules on the fields of the template, checked before the page-s PHP: a post that breaks them comes back refilled with its messages and is not padPosted, an unrendered field is checked too, the page-s own padValidate adds to them',
       'request/form_rules'        => 'The form rules fixture bare: an empty form, not processed',
+      'request/a_field_a_post_leaves_out_is_checked_from_the_query_string' => 'A field the post leaves out is read from the query string, so the rules check it there - website=javascript:..., plan=enterprise and role=admin in the address refused, good values passed',
+      'request/a_field_a_post_leaves_out' => 'The fixture of request/a_field_a_post_leaves_out_is_checked_from_the_query_string bare: an empty form, not stored',
       'request/contact_valid'     => 'The demo contact form posted without a mistake: stored, redirected, thanked - the store put back',
       'callback'                  => 'The row phase of a streaming callback, which reads the occurrence fields as plain variables',
       'globals'                   => 'object: over a page variable, which in a request is a global like any other',
