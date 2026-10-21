@@ -256,6 +256,9 @@
     if ( is_numeric ( $value ) )
       return (int) $value;
 
+    if ( padDateZero ( $value ) )
+      return NULL;
+
     $time = padDateParse ( (string) $value );
     $time = $time ? $time->getTimestamp () : FALSE;
 

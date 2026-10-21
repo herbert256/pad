@@ -25,12 +25,17 @@
   // Now is padNow's and text is read by padDateParse (lib/date.php), as ago and padToday
   // read them: a clock a test froze with padNowFreeze is the now of an empty value, of
   // {now} and of 'tomorrow', and a date that does not exist - 2026-02-30 - is no date,
-  // where DateTimeImmutable made it 2 March and the real clock was read.
+  // where DateTimeImmutable made it 2 March and the real clock was read. PHP's relative
+  // formats - 'first day of december', 'february', 24:00 - are read as before, and the zero
+  // date of a MySQL column, 0000-00-00, is no date and no mistake: it answers empty, where
+  // it was -0001-11-30.
 
   if ( $value instanceof DateTimeInterface )
     $value = $value->getTimestamp ();
   elseif ( ! $value )
     $value = padNow ()->getTimestamp ();
+  elseif ( padDateZero ( $value ) )
+    return '';
   elseif ( ! is_numeric ( $value ) ) {
     $padDateText   = $value;
     $padDateMoment = padDateParse ( (string) $value );

@@ -113,6 +113,41 @@
   // no date and answer NULL. A DateTimeInterface keeps its own zone, as does text that names
   // one; a timestamp and zone-less text are in the application's zone.
 
+  // The zero date a MySQL column holds for no date - 0000-00-00, with 00:00:00 or without.
+
+  function padDateZero ( $value ) {
+
+    return is_string ( $value ) and preg_match ( '/^\s*0000-00-00(?:[ T]00:00:00)?\s*$/', $value );
+
+  }
+
+  // Whether what PHP said reading a date makes it no date. An error does. Of the warnings,
+  // "The parsed date was invalid" does only for a date written whole - year, month and day -
+  // that the calendar does not have, 2026-02-30: PHP gives it for a month without a year as
+  // well - 'february', 'first day of december', 'last day of february' - which it reads
+  // all the same, and "The parsed time was invalid" for 24:00:00, the end of the day. Every
+  // warning made the text no date, and the date pipes refused PHP's own relative formats.
+
+  function padDateWarned ( $said, $parts ) {
+
+    if ( $said ['error_count'] ?? count ( $said ['errors'] ?? [] ) )
+      return TRUE;
+
+    foreach ( $said ['warnings'] ?? [] as $warning )
+      if ( $warning == 'The parsed date was invalid' ) {
+        if ( $parts ['year'] !== FALSE and $parts ['month'] !== FALSE and $parts ['day'] !== FALSE
+             and ! checkdate ( (int) $parts ['month'], (int) $parts ['day'], (int) $parts ['year'] ) )
+          return TRUE;
+      } elseif ( $warning == 'The parsed time was invalid' ) {
+        if ( ! ( $parts ['hour'] == 24 and $parts ['minute'] == 0 and $parts ['second'] == 0 ) )
+          return TRUE;
+      } else
+        return TRUE;
+
+    return FALSE;
+
+  }
+
   function padDateParse ( $value ) {
 
     if ( $value instanceof DateTimeImmutable )
@@ -138,7 +173,7 @@
       $frozen = $GLOBALS ['padNowFrozen'] ?? NULL;
       $parts  = date_parse ( $value );
 
-      if ( $parts ['error_count'] or $parts ['warning_count'] )
+      if ( padDateWarned ( $parts, $parts ) )
         return NULL;
 
       if ( $frozen instanceof DateTimeImmutable and $parts ['year'] === FALSE and $parts ['month'] === FALSE and $parts ['day'] === FALSE ) {
@@ -157,7 +192,7 @@
 
       $errors = DateTimeImmutable::getLastErrors ();
 
-      if ( $errors and ( $errors ['warning_count'] or $errors ['error_count'] ) )
+      if ( $errors and padDateWarned ( $errors, $parts ) )
         return NULL;
 
       return $date;
