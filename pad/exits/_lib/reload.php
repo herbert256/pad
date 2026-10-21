@@ -134,7 +134,7 @@
       $path = "$dir/$file";
 
       if ( is_dir ( $path ) ) {
-        if ( ! is_link ( $path ) and ! file_exists ( "$path/index.php" ) )
+        if ( ! is_link ( $path ) and ! padReloadNested ( $path ) )
           $newest = max ( $newest, padReloadNewest ( $path ) );
       } else
         $newest = max ( $newest, (int) @filemtime ( $path ) );
@@ -142,6 +142,25 @@
     }
 
     return $newest;
+
+  }
+
+  // A directory is another application's when it has an entry point in www/: a directory of
+  // the application tree is asked by its counterpart there, one of the www/ tree by itself.
+  // An index.php in the application tree is a page - shop/admin/index.php with index.pad is
+  // the page ?admin - and was taken for an application's own, so a file saved anywhere below
+  // a directory holding a page index never reloaded the page.
+
+  function padReloadNested ( $path ) {
+
+    $www = dirname ( APPS ) . '/www/';
+
+    if ( str_starts_with ( "$path/", APPS ) )
+      $path = $www . substr ( $path, strlen ( APPS ) );
+    elseif ( ! str_starts_with ( "$path/", $www ) )
+      return FALSE;
+
+    return is_file ( "$path/index.php" );
 
   }
 
