@@ -875,7 +875,7 @@
     if ( is_array ( $value ) )
       $value = implode ( ',', $value );
 
-    $value = (string) ( $value ?? '' );
+    $value = is_float ( $value ) ? padDbFloat ( $value ) : (string) ( $value ?? '' );
 
     if ( $connect instanceof PDO )
       return str_replace ( [ "\0", $quote ], [ '', $quote . $quote ], $value );
@@ -908,7 +908,10 @@
     if ( is_bool ( $value ) )
       return $value ? '1' : '0';
 
-    if ( is_int ( $value ) or is_float ( $value ) )
+    if ( is_float ( $value ) )
+      return padDbFloat ( $value );
+
+    if ( is_int ( $value ) )
       return (string) $value;
 
     if ( $number and preg_match ( '/^-?\d+(\.\d+)?$/', (string) $value ) )
@@ -918,6 +921,26 @@
       return (string) $value;
 
     return "'" . padDbEscape ( $connect, $value, "'" ) . "'";
+
+  }
+
+  // A float as the shortest text that reads back as the same double: PHP's string cast
+  // writes 14 significant digits (precision), so a REAL or DOUBLE read from the database -
+  // 1234567.891234567, 0.1 + 0.2 - was bound back as 1234567.8912346 or 0.3 and no longer
+  // found its own row. var_export follows serialize_precision, -1 by default: the shortest
+  // exact text. A whole number loses its .0, so a count after LIMIT stays a count; INF and
+  // NAN are no number SQL knows.
+
+  function padDbFloat ( $value ) {
+
+    if ( ! is_finite ( $value ) ) {
+      padError ( 'a database value must be a finite number, not ' . var_export ( $value, TRUE ) );
+      return 'NULL';
+    }
+
+    $text = var_export ( $value, TRUE );
+
+    return str_ends_with ( $text, '.0' ) ? substr ( $text, 0, -2 ) : $text;
 
   }
 

@@ -65,7 +65,8 @@
         elseif ( is_array ( $value )     ) $add = ( $connect = padDbApp () ) ? padDbLiteral ( $connect, $value ) : 'NULL';
         elseif ( $value === NULL         ) $add = 'NULL';
         elseif ( is_bool ( $value )      ) $add = $value ? '1' : '0';
-        elseif ( is_int ( $value ) or is_float ( $value ) or ( ! $mysql and padDbNumeral ( (string) $value ) ) )
+        elseif ( is_float ( $value )     ) $add = padDbFloat ( $value );
+        elseif ( is_int ( $value ) or ( ! $mysql and padDbNumeral ( (string) $value ) ) )
                                            $add = (string) $value;
         else                               $add = "'" . padSelectEscape ( $value ) . "'";
 

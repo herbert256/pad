@@ -96,6 +96,7 @@
       'db/record2'                => 'The same through the {record} tag',
       'db/placeholders'           => 'db() placeholders - a bare one quotes a value that is not a number, a quoted one escapes, an array becomes a list, and nothing is filled twice',
       'db/a_number_or_a_value_in_a_quoted_literal_spliced_into_a_database_tag_stays_a_value' => 'A value spliced into the SQL of a database tag with {$name} is refused outside a quoted literal, but a plain number stands as itself and a value inside a quoted literal is text',
+      'db/a_float_read_from_the_database_is_bound_back_as_the_same_number' => 'A float from the database bound back - a db() placeholder, a $name of a database tag - is the same number, not its 14 significant digits, and a whole one stays a count after LIMIT',
       'db/placeholder_numeric_text' => 'A bare placeholder holding numeric text is text on MySQL - name = {0} with 0 matches no name - and a count in a limit',
       'db/placeholder_minus_inside_quotes' => 'The space that keeps a bare negative number from a -- comment goes outside quotes only - A-{0} quoted stays A--1',
       'db/placeholder_numeric_text_counts_and_positions' => 'Numeric text is a number where MySQL wants one - an ORDER BY position, a FETCH NEXT count - as after LIMIT',
