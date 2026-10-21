@@ -44,7 +44,19 @@
 
       include PAD . 'level/parms/variable.php';
 
-    elseif ( padValidVar ( $padPrmName ) and ! $padPrmCompare and ! padParmsRaw ()
+    // A name with the engine's prefix is no variable a tag may set - $padInfo, $pqStore - and
+    // the strict check says so; the lenient walk takes the item as a parameter, as before.
+
+    elseif ( $padCheckSyntax and in_array ( $padPrmName [0] ?? '', ['$','%'] ) and strlen ( $padPrmValue )
+             and ! $padPrmCompare and ! $padPrmWhole and padValidOption ( substr ( $padPrmName, 1 ) ) )
+
+      padError ( "'" . $padPrmName . "' is an engine name, which a tag cannot set as a variable" );
+
+    // An option is no variable - it lives in $padPrm [$pad] - so its name may start with pad or
+    // pq: padding='4px' on a component, padlock. Asked as a variable name, such an option was
+    // a positional parameter holding the comparison padding = '4px', in silence.
+
+    elseif ( padValidOption ( $padPrmName ) and ! $padPrmCompare and ! padParmsRaw ()
              and ! ( $padPrmValue === '' and $padPrmWhole ) )
 
       include PAD . 'level/parms/option.php';

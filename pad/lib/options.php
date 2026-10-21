@@ -197,6 +197,16 @@
 
   }
 
+  // Whether a name can be an option: a name of letters, digits and _, starting with a letter.
+  // An option lives in $padPrm and is no variable, so a name with the engine's prefix -
+  // padding, padlock, pqr - is one too, where padValidVar refuses it as a variable.
+
+  function padValidOption ( $name ) {
+
+    return is_string ( $name ) and preg_match ( '/^[a-zA-Z][a-zA-Z0-9_]*$/D', $name );
+
+  }
+
   // Whether an option of this level was written out in the template - glue=', ', quote="'",
   // a number - rather than taken from a value, glue=$sep. A written-out option is the
   // author's template text; a value goes in as text (padProtect), or a separator a visitor

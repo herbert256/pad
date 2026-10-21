@@ -32,7 +32,7 @@
   // A {#...} whose name is not name-shaped meant to be a comment and lost its closing # -
   // the {#option} sigil form always carries a plain name.
 
-  if ( $padFirst == '#' and $padCheckSyntax and ! padValidVar ( $padFld ) )
+  if ( $padFirst == '#' and $padCheckSyntax and ! padValidOption ( $padFld ) )
     padError ( "the comment {# ... does not close with #}" );
 
   // {$$x} takes the name of the field from a value, and a value may come from the request -
