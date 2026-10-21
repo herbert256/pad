@@ -54,6 +54,9 @@ Retrieves data from a named source.
 2. `$pqStore[$sourceName]` - Sequence store
 3. `padData($sourceName)` - Load from data provider
 
+An address - `https://...`, `SELF://...` - is fetched only when it is written in the template;
+a value naming one (`data=$url`) is refused: fetch it in the page's PHP with `padPrefetch`.
+
 **Example:**
 ```
 {users data="cachedUsers"}

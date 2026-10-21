@@ -253,6 +253,55 @@
 
   }
 
+  // Whether a data source would be fetched - an address, which data/curl.php reads - as
+  // padData will take it: the type given when it names a reader, else the type sniffed.
+
+  function padDataFetches ( $source, $type = '' ) {
+
+    if ( ! is_string ( $source ) )
+      return FALSE;
+
+    $type = strtolower ( (string) $type );
+    $type = [ 'yml' => 'yaml', 'htm' => 'html' ] [$type] ?? $type;
+
+    if ( $type !== '' and preg_match ( '/^[a-z]+$/D', $type ) and padFileExists ( PAD . "data/$type.php" ) )
+      return $type == 'curl';
+
+    $text = padDataText ( $source );
+
+    return padContentType ( $text ) == 'curl';
+
+  }
+
+  // Whether a value chose the address a data source reads as, so that it is not fetched:
+  // $value when the source is a value outright - data=$v, {data 'd', $v} - or a value
+  // spliced into a source written in the template stands at its start, data='{$v}' (one
+  // kept by padSpliceRecord, lib/level.php, with a scheme's colon in it); $written, for
+  // content walked before it is read, is the source as the author wrote it, which has to
+  // start with the scheme and host the walk produced - {data}{$v}{/data 'd'} does not.
+
+  function padDataValueAddress ( $source, $value, $written = NULL ) {
+
+    if ( $value )
+      return TRUE;
+
+    $text = padDataText ( $source );
+
+    foreach ( array_keys ( $GLOBALS ['padSpliceValues'] ?? [] ) as $one ) {
+      $one = trim ( (string) $one );
+      if ( str_contains ( $one, ':' ) and str_starts_with ( $text, $one ) )
+        return TRUE;
+    }
+
+    if ( $written === NULL )
+      return FALSE;
+
+    $head = preg_match ( '#^[a-z]+:/*[^/?\#]*#i', $text, $match ) ? $match [0] : $text;
+
+    return ! str_starts_with ( padDataText ( $written ), $head );
+
+  }
+
   function padDataIsRecord ( $input ) {
 
     global $padDataSetRecord;

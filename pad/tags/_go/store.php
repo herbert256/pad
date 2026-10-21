@@ -89,6 +89,18 @@
       padError ( "a value spliced into a {data} list would run as an expression: put it in quotes, ( '{\$x}' ), or hand it over as data=\$x" );
       $padStoreData = [];
 
+    } elseif ( $padProtectValues and padDataFetches ( $padStoreSource, padTagParm ( 'type' ) )
+             and padDataValueAddress ( $padStoreSource, $padStoreValue,
+                   ( $padWalk [$pad] == 'end' and (string) $padContent !== '' ) ? $padBase [$pad] : NULL ) ) {
+
+      // An address is fetched only when the author wrote it, as data= has it (options/
+      // data.php): {data 'd', $v}, and a value walked into a {data} named at its close that
+      // starts its content - the scheme and host the author did not write - had the server
+      // fetch whatever the request named.
+
+      padError ( "the data value reads as an address to fetch - write the address in the template, data='https://...', or fetch it in the page's PHP with padPrefetch or padCurl" );
+      $padStoreData = [];
+
     } else {
 
       $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
