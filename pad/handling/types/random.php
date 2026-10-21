@@ -31,12 +31,16 @@
   $padHandRand    = $padData [$pad];
   $padData [$pad] = [];
 
-  // Numbered rows are renumbered, named keys stay - as array_slice treats them for first and
-  // last. negative depends on it: it names the rows x0, x1, ... and keeps those whose key
-  // the handler did not hand back, so fresh numbers made it keep every row.
+  // A list is numbered again, the keys of keyed rows stay - as first and last treat them.
+  // negative depends on it: it names the rows x0, x1, ... and keeps those whose key the
+  // handler did not hand back, so fresh numbers made it keep every row. Keys that are numbers
+  // were renumbered as a list's are, and {&key} of a set keyed by id named no row. A draw
+  // with duplicates repeats rows, which one key cannot hold.
+
+  $padHandRandList = array_is_list ( $padHandRand );
 
   foreach ( $padHandRandKeys as $padK )
-    if ( is_string ( $padK ) and ! $padHandRandDuplicates )
+    if ( ( is_string ( $padK ) or ! $padHandRandList ) and ! $padHandRandDuplicates )
       $padData [$pad] [$padK] = $padHandRand [$padK];
     else
       $padData [$pad] [] = $padHandRand [$padK];

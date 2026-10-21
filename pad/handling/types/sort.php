@@ -111,6 +111,18 @@
 
   $padSortArgs [] = &$padData [$pad];
 
+  // array_multisort keeps keys that are names and renumbers keys that are numbers: a set keyed
+  // by id came back keyed 0, 1, 2 and {&key} named no row. The keys go along as one more
+  // array and are put back; a list stays a list.
+
+  $padSortKeys = array_is_list ( $padData [$pad] ) ? NULL : array_keys ( $padData [$pad] );
+
+  if ( $padSortKeys !== NULL )
+    $padSortArgs [] = &$padSortKeys;
+
   call_user_func_array ('array_multisort', $padSortArgs);
+
+  if ( $padSortKeys !== NULL )
+    $padData [$pad] = array_combine ( $padSortKeys, array_values ( $padData [$pad] ) );
 
 ?>

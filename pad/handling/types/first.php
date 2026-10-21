@@ -8,12 +8,17 @@
 
   // last=0 keeps no row, as first=0 does: a slice from -0 is a slice from the front, and
   // last=0 kept every row - and last=0, negative none of them.
+  //
+  // Rows keyed by number keep their keys, as where, page and slice keep them: a set keyed by
+  // id - $products [$id] - came back keyed 0, 1 and {&key} named no row; a list stays a list.
+
+  $padFirstKeys = ! array_is_list ( $padData [$pad] );
 
   if ( count($padData [$pad]) > $padHandCnt )
     if ( $padHandName == 'first')
-      $padData [$pad] = array_slice ( $padData [$pad], 0, $padHandCnt );
+      $padData [$pad] = array_slice ( $padData [$pad], 0, $padHandCnt, $padFirstKeys );
     elseif ( $padHandCnt )
-      $padData [$pad] = array_slice ( $padData [$pad], $padHandCnt * -1 );
+      $padData [$pad] = array_slice ( $padData [$pad], $padHandCnt * -1, NULL, $padFirstKeys );
     else
       $padData [$pad] = [];
 
