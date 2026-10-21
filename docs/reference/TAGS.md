@@ -973,7 +973,9 @@ Make HTTP request.
 - `SELF://` prefix replaced with current host
 - `ttl=600`: keep the answer that many seconds (see below)
 
-**Behavior:** Makes HTTP request; a result other than 200 is a PAD error
+**Behavior:** Makes HTTP request; a result other than 200 is a PAD error. An address a
+visitor chose - `{curl $v}` with a request value, the rule of `data=` (OPTIONS.md) - is refused:
+write the address in the template, or fetch it in the page's PHP with `padCurl`
 
 **Returns:** Response data
 

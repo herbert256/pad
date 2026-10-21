@@ -18,6 +18,16 @@
   if ( ! isset ($padPrm [$pad] ['url']) )
     $padPrm [$pad] ['url'] = $padParm;
 
+  // An address a visitor chose is not fetched, as data= has it (options/data.php): {curl $v}
+  // with a request value had the server connect to any host and port it can reach - its own
+  // pages behind an address guard, cloud metadata - and write the answer into the page, kept
+  // for every later visitor under a ttl. Judged as written, before SELF:// becomes the host,
+  // so the template's own SELF://app names the author's address (lib/data.php
+  // padDataValueAddress).
+
+  if ( $padProtectValues and is_string ( $padPrm [$pad] ['url'] ) and padDataValueAddress ( $padPrm [$pad] ['url'] ) )
+    return padError ( "the {curl} address reads as an address a request value chose - write the address in the template, {curl 'https://...'}, or fetch it in the page's PHP with padCurl" );
+
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );
 
