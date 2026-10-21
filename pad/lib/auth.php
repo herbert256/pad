@@ -428,10 +428,25 @@
         if ( in_array ( $word, [ 'pass', 'pwd', 'hash', 'salt', 'otp', 'totp', 'pin', 'recovery', 'backup' ], TRUE )
              or preg_match ( '/password|passwd|passphrase|passcode|secret|token|apikey|privatekey/', $word )
              or preg_match ( '/^pin(codes|hash|seed|keys?|number|num|no)$|^t?otp(codes?|hash|seed|keys?)$|^(recovery|(t?otp)?backup)(codes?|keys?)$|.pwd$|(pass|pw|pwd|pin|code|otp|user|remember|recovery|backup|reset|auth|login|session|key)hash$|(pass|pw|pwd|pin|otp|user|hash|secret|auth|login|key)salt$/', $word )
-             or ( $word === 'key' and in_array ( $words [$i - 1] ?? '', [ 'api', 'app', 'private', 'recovery', 'secret', 'encryption' ], TRUE ) ) )
+             or ( $word === 'key' and in_array ( $words [$i - 1] ?? '', [ 'api', 'app', 'private', 'recovery', 'secret', 'encryption' ], TRUE ) )
+             or ( in_array ( $word, [ 'key', 'keys', 'code', 'codes', 'link' ], TRUE ) and in_array ( $words [$i - 1] ?? '', padAuthSecretOf (), TRUE ) )
+             or preg_match ( '/^(' . implode ( '|', padAuthSecretOf () ) . ')(keys?|codes?|link)$/', $word )
+             or ( $word === 'answer' and ( $words [$i - 1] ?? '' ) === 'security' ) )
           return TRUE;
 
     return is_string ( $value ) and $value !== '' and ( password_get_info ( $value ) ['algo'] ?? NULL ) !== NULL;
+
+  }
+
+  // The words that make a key, a code or a link after them a secret: Yii's auth_key - the
+  // column it renews to end remembered logins - and the one-time codes that log in or reset
+  // a password, reset_code, login_code, verification_code, activation_key, magic_link, went
+  // into the session, {auth} and the dumps, and renewing one ended no remember-me cookie.
+
+  function padAuthSecretOf () {
+
+    return [ 'auth', 'remember', 'session', 'login', 'access', 'mfa', '2fa', 'reset', 'unlock', 'activation',
+             'verification', 'verify', 'magic', 'signing', 'hmac', 'cookie', 'confirmation', 'confirm' ];
 
   }
 
