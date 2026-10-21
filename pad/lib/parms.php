@@ -24,18 +24,44 @@
   // padTypeAsked in lib/type.php reads the note. The value is kept to see whether the page
   // has set the variable since: one the page's PHP assigned is the page's own.
 
+  // A name that is set is never filled, and isset ( $GLOBALS [$name] ) says so cheaply. One
+  // that is not set may still be there holding NULL, which only the session fills: the
+  // names of the globals are copied once per call for that question, the first time it is
+  // asked. It was array_key_exists ( $name, $GLOBALS ) per value, which copies the whole
+  // symbol table since PHP 8.1 - a table every promoted value made larger, so the time grew
+  // with the square of the number of values: 4000 posted ones took 125 ms, and a cookie
+  // paid before it was turned down.
+
   function padGetParms ( $type, $parms ) {
 
-    foreach ( $parms as $field => $value )
+    $have = NULL;
+
+    foreach ( $parms as $field => $value ) {
+
       if ( $type == 'GET' and (string) $field === ( $GLOBALS ['padPageKey'] ?? '' ) )
         continue;
-      elseif ( ! array_key_exists ( $field, $GLOBALS ) or ( $type == 'SESSION' and $GLOBALS [$field] === NULL ) )
-        if ( padValidVar ($field) )
-          if ( $type == 'SESSION' or padRequestVar ($field, $type) ) {
-            $GLOBALS [$field] = padGetParms2 ( $type, $value );
-            if ( $type != 'SESSION' )
-              $GLOBALS ['padRequestGot'] [$field] = $GLOBALS [$field];
-          }
+
+      if ( isset ( $GLOBALS [$field] ) or ! padValidVar ($field) )
+        continue;
+
+      if ( $type != 'SESSION' ) {
+
+        if ( ! padRequestVar ($field, $type) )
+          continue;
+
+        $have ??= array_flip ( array_keys ( $GLOBALS ) );
+
+        if ( isset ( $have [$field] ) )
+          continue;
+
+      }
+
+      $GLOBALS [$field] = padGetParms2 ( $type, $value );
+
+      if ( $type != 'SESSION' )
+        $GLOBALS ['padRequestGot'] [$field] = $GLOBALS [$field];
+
+    }
 
   }
 
