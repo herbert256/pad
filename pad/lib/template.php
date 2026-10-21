@@ -112,15 +112,14 @@
 
     while ($p1 !== FALSE) {
 
-      $p2 = strpos($string, '}', $p1);
+      // The name ends at white space, a pipe or the }, as level/tag.php reads a closer and
+      // padOpenCloseCountOne counts one: ended at a space only, {/rows and a line break gave
+      // the name "rows" with the break, which is no tag, and that pair went uncounted - the
+      // @else@ inside it was taken for one of the level around it.
 
-      if ( $p2 !== FALSE ) {
+      if ( strpos ( $string, '}', $p1 ) !== FALSE ) {
 
-        $p3 = strpos($string, ' ', $p1);
-        if ($p3 !== FALSE and $p3 < $p2 )
-          $p2 = $p3;
-
-        $tag = substr($string, $p1+2, $p2-$p1-2);
+        $tag = substr ( $string, $p1 + 2, strcspn ( $string, " \t\r\n|}", $p1 + 2 ) );
         if ( padValidTag ($tag) )
           $tags [$tag] = TRUE;
 
