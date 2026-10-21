@@ -12,7 +12,7 @@
 
   function padTag ( $field, $padIdx, $type, $parm ) {
 
-    if ( file_exists ( PAD . "properties/".$field.".php" ) )
+    if ( padPropertyName ( $field ) )
       if ( $type == 7 )
         return 1;
       else

@@ -83,6 +83,27 @@
 
   }
 
+  // Whether a name is a property: one of the files in pad/properties/, named exactly. A
+  // file_exists() of the name answers without regard to case on macOS and Windows, where
+  // {CURRENT@xs}, {if Current@xs eq 2} and {&First} were the current and first properties -
+  // and on a Linux server, or in the packed WebAssembly runtime, no property at all. The
+  // listing is the kept one (padDirList), its names read once per request.
+
+  function padPropertyName ( $name ) {
+
+    static $names = NULL;
+
+    if ( $names === NULL ) {
+      $names = [];
+      foreach ( padDirList ( PAD . 'properties' ) ?: [] as $file )
+        if ( str_ends_with ( $file, '.php' ) )
+          $names [ substr ( $file, 0, -4 ) ] = TRUE;
+    }
+
+    return isset ( $names [ (string) $name ] );
+
+  }
+
   // Marks the current level as answered-by-at, which the field walkers in lib/field/lib.php
   // read as "skip this one". Skipped while an expression is being evaluated: a property
   // resolving inside another tag's parameters - {echo $option.opt@true} - used to stamp

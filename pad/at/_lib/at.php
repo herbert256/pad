@@ -112,7 +112,7 @@
     // (padAtSetTag); in a loop at the top of the page it landed on the property's own
     // level, and {current@} answered 0 on every row.
 
-    if ( file_exists ( PAD . "at/properties/$check.php") ) {
+    if ( padPropertyName ( $check ) ) {
       $idx   = padFieldFirstNonTag ( $cor, $check );
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
@@ -358,6 +358,13 @@
     // target-less form uses above. Counted from the tag's own level, {echo current@-1}
     // answered about the {echo} itself, 0, and {if first@-1} was never true.
 
+    // The expression's scanner (lib/eval/scan.php) takes a name for a property when a file
+    // of that name is there, which on macOS and Windows is so in any case: a name that is
+    // not one exactly - Current@xs - is named under the strict check, as the tag form is.
+
+    if ( ! padPropertyName ( $name ) and $GLOBALS ['padCheckSyntax'] )
+      padError ( "there is no property named '$name'" );
+
     $relative = ( strlen ( $first ) > 1 and $first [0] == '-' and is_numeric ( substr ( $first, 1 ) ) );
     $idx      = padAtIdx ( $first, ( $relative and ! ( $padOccur [$pad] ?? 0 ) ) ? 1 : 0 );
 
@@ -414,7 +421,7 @@
 
     $name = reset ( $names );
 
-    if ( ! $padIdx or ! file_exists ( PAD . "at/properties/$name.php") )
+    if ( ! $padIdx or ! padPropertyName ( $name ) )
       return INF;
 
     $return = include PAD . "at/properties/$name.php";

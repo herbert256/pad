@@ -29,7 +29,7 @@
   // the list was limited. A row field still comes first, as PROPERTIES.md says of the tag
   // form; the parameter stays reachable as {#first} and option.first@xs.
 
-  $padAtPrm = ( count ( $names ) == 1 and file_exists ( PAD . "at/properties/$name.php" ) )
+  $padAtPrm = ( count ( $names ) == 1 and padPropertyName ( $name ) )
             ? [] : ( $padPrm [$padIdx] ?? [] );
 
   if ( count ( $names ) == 1 ) {

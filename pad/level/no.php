@@ -110,7 +110,7 @@
       $padNoProp   = strstr ( $padNoTag, '@', TRUE );
       $padNoTarget = substr ( strstr ( $padNoTag, '@' ), 1 );
 
-      if ( file_exists ( PAD . "properties/$padNoProp.php" ) )
+      if ( padPropertyName ( $padNoProp ) )
         padError ( "there is no enclosing level named '$padNoTarget' for the property '$padNoProp'" );
 
       // The mirror: the level is there, the property is not.
