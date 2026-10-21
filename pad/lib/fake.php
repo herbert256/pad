@@ -22,8 +22,9 @@
   // padFakeWord       padFakeWords ( n )  padFakeSentence  padFakeParagraph   lorem ipsum text
   // padFakeDate       a date between two moments, formatted - 'Y-m-d' unless said otherwise
   // padFakeUuid       a version 4 UUID made from the sequence, so it repeats with the seed too
-  // padFakeUnique     a value from a generator that it has not given before under that key -
-  //                   padFakeUnique ( 'email', 'padFakeEmail' ); padFakeUniqueReset to forget
+  // padFakeUnique     a value from a generator that it has not given before under that key in
+  //                   the request, a new seed or not - padFakeUnique ( 'email', 'padFakeEmail' );
+  //                   padFakeUniqueReset to forget, for the same values again after a seed
   // padFactory        inserts $count rows into a table through db (), each made by a function
   //                   of $i (1, 2, ...): the values go in as placeholders, never as SQL text.
   //                   The rows as inserted, each with 'id' - the id the insert answered -
@@ -51,11 +52,10 @@
     for ( $i = 0; $i < 8; $i++ )
       padFakeNext ();
 
-    // A seed is a new start, and the values padFakeUnique gave belong to the sequence that
-    // made them: kept, the same seed twice in a request - a test page or a seeder run again -
-    // answered other unique values the second time, every other helper the same.
-
-    padFakeUniqueReset ();
+    // A seed restarts the sequence only: what padFakeUnique gave stays given for the
+    // request, so two seeders that each start with padFakeSeed ( 42 ) and fill a unique
+    // column never collide - the second steps past the first one's values. A run that wants
+    // the very same unique values again says so with padFakeUniqueReset ().
 
   }
 

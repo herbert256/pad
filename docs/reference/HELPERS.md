@@ -947,12 +947,12 @@ never pasted into SQL: `db ( "RECORD * FROM users WHERE id={0}", [ $id ] )`.
 | `padMigrateFresh ( TRUE )` | Every table and view dropped, then every migration - refused without TRUE |
 | `padMigrateError ()` | The last failure's message, or `''` |
 | `padSeed ( $name = '' )` | The seeders of `_seeds/` in name order, or the one named (`users` for `01_users.php`) |
-| `padFakeSeed ( $seed )` | Starts the fake sequence - the same values again for the same seed; `mt_rand` untouched |
+| `padFakeSeed ( $seed )` | Starts the fake sequence - the same values again for the same seed; `mt_rand` untouched; the values `padFakeUnique` gave stay given |
 | `padFakeNumber`, `padFakeFloat`, `padFakeBool`, `padFakePick`, `padFakePicks` | Numbers, chances and picks |
 | `padFakeFirstName`, `padFakeLastName`, `padFakeName`, `padFakeEmail`, `padFakePhone`, `padFakeCompany`, `padFakeCity`, `padFakeCountry`, `padFakeStreet` | People and places - e-mail on example.com/org/net, phones in the 555-01xx range |
 | `padFakeWord`, `padFakeWords`, `padFakeSentence`, `padFakeParagraph` | Text |
 | `padFakeDate ( $from, $to, $format )`, `padFakeUuid ()` | A moment between two (relative ones follow `padNowFreeze`); a v4 UUID |
-| `padFakeUnique ( $key, $function, ...$args )`, `padFakeUniqueReset ( $key )` | A value never given twice under the key |
+| `padFakeUnique ( $key, $function, ...$args )`, `padFakeUniqueReset ( $key )` | A value never given twice under the key in the request, a new seed or not; the reset forgets them - after `padFakeSeed` the same values again |
 | `padFactory ( $table, $count, $row )` | Inserts `$count` rows - `$row` an array or `fn ( $i )` - with placeholders; the rows with their ids |
 
 ## Queues, schedule and HTTP fakes
