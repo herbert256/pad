@@ -45,17 +45,31 @@
   if ( padSpliceInCode ( (string) $padHandParm ) )
     return padError ( "a value spliced into a where= is part of its code: put it in as \$name" );
 
-  $padWhereKeep = $padCurrent [$pad] ?? [];
+  // The row stands with its key and its place as well: key@, current@, even@ and first@ read
+  // $padKey and $padOccur, which kept what level/setup.php gave them - 1 and 0 - for every
+  // row, so {ks where='key@ks ne "b"'} kept b and {xs where='even@xs'} every row. Under
+  // negative the keys carry its x in front (handling/negative/), which the key leaves off.
+  // The rows that fail go once every row was asked: count@ and last@ read the level's data,
+  // which dropping them on the way changed under the rows still to come.
+
+  $padWhereKeep = [ $padCurrent [$pad] ?? [], $padKey [$pad], $padOccur [$pad] ];
+  $padWhereDrop = [];
+  $padWhereNth  = 0;
 
   foreach ( $padData [$pad] as $padWhereKey => $padWhereRow ) {
 
     $padCurrent [$pad] = is_array ( $padWhereRow ) ? $padWhereRow : [];
+    $padKey     [$pad] = $padHandInvert ? substr ( $padWhereKey, 1 ) : $padWhereKey;
+    $padOccur   [$pad] = ++$padWhereNth;
 
     if ( ! padEvalBool ( (string) $padHandParm ) )
-      unset ( $padData [$pad] [$padWhereKey] );
+      $padWhereDrop [] = $padWhereKey;
 
   }
 
-  $padCurrent [$pad] = $padWhereKeep;
+  foreach ( $padWhereDrop as $padWhereKey )
+    unset ( $padData [$pad] [$padWhereKey] );
+
+  list ( $padCurrent [$pad], $padKey [$pad], $padOccur [$pad] ) = $padWhereKeep;
 
 ?>
