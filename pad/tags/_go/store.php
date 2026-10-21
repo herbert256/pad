@@ -111,10 +111,13 @@
       // like - a request value php:strlen(12345) eq 6 stored FALSE, connection_status called
       // that PHP function. What the author wrote is the source with its tags taken out:
       // nothing there, the content is values alone and the flag their text's own truth, as
-      // {bool 'b', $a} takes it ('Hello world' TRUE, blank and '0' FALSE). An expression
-      // of the author's own is evaluated while every name outside its strings is one the
-      // author wrote - a number spliced in, {$n} gt 2, or a value in quotes, '{$u}' eq 'Ann',
-      // brings none; a value bringing a name of its own is refused, as the {data} list is.
+      // {bool 'b', $a} takes it ('Hello world' TRUE, blank and '0' FALSE). An expression of
+      // the author's own is evaluated with the values in it - a number, {$n} gt 2, a word,
+      // {$s} eq 'paid', or a value in quotes, '{$u}' eq 'Ann' - and refused, as the {data}
+      // list is, when a value stands in its code: one of more than a word, which
+      // padSpliceInCode knows, or a single word the author did not write that the evaluator
+      // takes for a reference - a function, a tag, a constant: phpversion and
+      // connection_status ran with no arguments. TRUE, FALSE and NULL are values.
 
       $padStoreStrings = '/\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"/s';
       $padStoreOwn     = $padBase [$pad];
@@ -125,14 +128,17 @@
       preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', $padStoreOwn ), $padStoreOwnNames );
       preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', (string) $padStoreSource ), $padStoreNames );
 
+      $padStoreCalls = array_filter ( array_diff ( $padStoreNames [0], $padStoreOwnNames [0] ),
+        fn ( $name ) => ! in_array ( strtolower ( $name ), [ 'true', 'false', 'null' ] )
+                        and ( padTypeFunction ( $name ) or defined ( $name ) ) );
+
       if ( trim ( $padStoreOwn ) === '' )
         $padStoreData = ! in_array ( trim ( (string) $padStoreSource ), [ '', '0' ], TRUE );
-      elseif ( ! array_diff ( $padStoreNames [0], $padStoreOwnNames [0] ) )
-        $padStoreData = padMakeFlag ( $padStoreSource );
-      else {
+      elseif ( $padStoreCalls or padSpliceInCode ( $padStoreSource ) ) {
         padError ( "a value spliced into a {bool} expression would run as part of it: put it in quotes, '{\$x}' eq 'Ann', or take its own truth with {bool 'name', \$x}" );
         $padStoreData = FALSE;
-      }
+      } else
+        $padStoreData = padMakeFlag ( $padStoreSource );
 
     } else
       $padStoreData = padMakeFlag ( $padStoreSource );
