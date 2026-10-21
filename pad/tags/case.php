@@ -57,9 +57,11 @@
         if ( $padCaseElse !== FALSE and $padCaseScan > $padCaseElse )
           padError ( "a {when} behind the {else} never answers" );
 
-        $padCasePos = strpos ( $padContent, '}', $padCaseScan );
+        $padCaseText = padBranchText ( $padContent, $padCaseScan, 5, $padCasePos );
 
-        foreach ( padParseOptions ( substr ( $padContent, $padCaseScan+6, $padCasePos-($padCaseScan+6) ) ) as $padCaseOne ) {
+        padBranchNested ( $padCaseText, 'a {when}', "{when \$y}" );
+
+        foreach ( padParseOptions ( $padCaseText ) as $padCaseOne ) {
 
           if ( padMetaLiteral ( $padCaseOne ) === NULL )
             continue;
@@ -81,11 +83,12 @@
 
   }
 
-  $padPos     = strpos   ( $padContent, '}', $padChk );
-  $padIf      = substr   ( $padContent, $padChk+6, $padPos-($padChk+6) );
+  $padIf      = padBranchText ( $padContent, $padChk, 5, $padPos );
 
   if ( $padCheckSyntax and trim ( $padIf ) == '' )
     padError ( "a {when} of this {case} has no value" );
+
+  padBranchNested ( $padIf, 'a {when}', "{when \$y}" );
 
   $padContent = substr   ( $padContent, $padPos+1 );
   $padChk     = strpos   ( $padContent, '{when' );
@@ -112,12 +115,13 @@
 
     } else {
 
-      $padPos     = strpos   ( $padContent, '}', $padChk );
-      $padIf      = substr   ( $padContent, $padChk+6, $padPos-($padChk+6) );
+      $padIf      = padBranchText ( $padContent, $padChk, 5, $padPos );
       $padCaseArm = "when $padIf";
 
       if ( $padCheckSyntax and trim ( $padIf ) == '' )
         padError ( "a {when} of this {case} has no value" );
+
+      padBranchNested ( $padIf, 'a {when}', "{when \$y}" );
 
       $padContent = substr   ( $padContent, $padPos+1 );
       $padChk     = strpos   ( $padContent, '{when' );

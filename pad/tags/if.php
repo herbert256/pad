@@ -56,12 +56,13 @@
         return TRUE;
       }
 
-      $padPos     = strpos($padContent, '}', $padChk);
-      $padIf      = substr($padContent, $padChk+8, $padPos-($padChk+8));
+      $padIf      = padBranchText ( $padContent, $padChk, 7, $padPos );
       $padIfArm   = "elseif $padIf";
 
       if ( trim ( $padIf ) == '' and $padCheckSyntax )
         padError ( "an {elseif} of this {if} has no condition" );
+
+      padBranchNested ( $padIf, 'an {elseif}', "{elseif \$x eq 'b'}" );
 
       $padContent = substr($padContent, $padPos+1);
       $padChk     = strpos($padContent, '{elseif');

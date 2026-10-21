@@ -264,6 +264,48 @@
 
   }
 
+  // The text of a branch tag of an {if} or a {case} - the {elseif ...} or {when ...} whose
+  // name, $length long with its brace, starts at $at in $content - and in $end the place of
+  // the } that closes it. A bare {elseif} has the empty text: the condition was cut from one
+  // past its }, a negative length, and substr took the rest of the content but its last
+  // character - {if $a}A{elseif}B{else}C{/if} tested 'B{else}' and the strict "has no
+  // condition" never came. The brace is found by depth, so a nested tag is read whole and
+  // can be named (padBranchNested): the first } closed {elseif {$x} eq 'b'} at the field's
+  // own, and the condition was '{$x'.
+
+  function padBranchText ( $content, $at, $length, &$end ) {
+
+    $depth = 1;
+    $from  = $at + $length;
+    $size  = strlen ( $content );
+
+    for ( $i = $from + strcspn ( $content, '{}', $from ); $i < $size; $i += 1 + strcspn ( $content, '{}', $i + 1 ) )
+      if ( $content [$i] == '{' )
+        $depth++;
+      elseif ( ! --$depth ) {
+        $end = $i;
+        return trim ( substr ( $content, $from, $i - $from ) );
+      }
+
+    $end = $size;
+
+    return trim ( substr ( $content, $from ) );
+
+  }
+
+  // A branch tag's text is read raw, from the content of its {if} or {case} before any tag
+  // in it ran: a tag nested in it was never resolved, and the condition evaluated its
+  // braces. The opening tag can hold one - its parameters are spliced before it runs - a
+  // branch tag cannot, and the strict check says so; the lenient walk evaluates the text as
+  // it stands, which comes to nothing.
+
+  function padBranchNested ( $text, $tag, $example ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] and str_contains ( $text, '{' ) )
+      padError ( "$tag takes no nested tag - write $example" );
+
+  }
+
   // A condition tag's own {else}: the content is cut to the part in front of it when the
   // condition holds, to the part after it when not - TRUE then; FALSE when there is none,
   // and the tag answers the way any tag does, its @else@ half rendering on FALSE.
