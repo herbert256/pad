@@ -113,7 +113,39 @@
 
     }
 
+    if ( padSrcValuePass () )
+      return NULL;
+
     return padSrcSearch ( substr ( $out, $start, $close - $start + 1 ), $error );
+
+  }
+
+  // Whether the error stands in a pass over text made from a value: a value run as PAD -
+  // | code, | sandbox, any tag used as a pipe (padTagAsFunction) - or padCode and padSandbox
+  // called by the application's own PHP, a snippet kept in a database. Its tag may well
+  // stand in a template too, and the search found it there: "Field '$x' not found" from
+  // the value pointed at a {$x} of the page that never ran. A text that came from no
+  // template has no position in one.
+
+  function padSrcValuePass () {
+
+    $engine = [ PAD, str_replace ( '\\', '/', (string) realpath ( PAD ) ) . '/' ];
+
+    foreach ( debug_backtrace ( DEBUG_BACKTRACE_IGNORE_ARGS ) as $frame ) {
+
+      $function = $frame ['function'] ?? '';
+
+      if ( $function == 'padTagAsFunction' )
+        return TRUE;
+
+      if ( ( $function == 'padCode' or $function == 'padSandbox' ) and isset ( $frame ['file'] )
+           and ! str_starts_with ( str_replace ( '\\', '/', $frame ['file'] ), $engine [0] )
+           and ! str_starts_with ( str_replace ( '\\', '/', $frame ['file'] ), $engine [1] ) )
+        return TRUE;
+
+    }
+
+    return FALSE;
 
   }
 
