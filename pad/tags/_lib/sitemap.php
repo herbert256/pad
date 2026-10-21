@@ -22,8 +22,8 @@
   // padSitemapWalk   one directory of that walk
   // padSitemapKeep   whether one page belongs in it
   // padSitemapUrl    the address of a page: the application itself for index, a directory
-  //                  for its index, $padGoExt for the rest - so the clean form follows
-  //                  $padCleanUrls
+  //                  for its index (unless a page has the directory's name), $padGoExt for
+  //                  the rest - so the clean form follows $padCleanUrls
   // padSitemapTime   the newest modification time among a page's .pad, .php and .html
   // padSitemapXml    the sitemap protocol's document over those rows
   // padSitemapRobots the robots.txt that names it
@@ -135,7 +135,12 @@
     if ( $page == 'index' )
       return $padHost . "$padApp/";
 
-    if ( str_ends_with ( $page, '/index' ) )
+    // A directory's index answers at the directory's name only when no page has that name:
+    // the router gives a page file the bare name first (padRouteWalk, lib/route.php). With
+    // about.pad beside about/index.pad both were listed at ?about, and about/index - answered
+    // only at ?about/index - never.
+
+    if ( str_ends_with ( $page, '/index' ) and ! padPageExists ( APP . substr ( $page, 0, -6 ) ) )
       $page = substr ( $page, 0, -6 );
 
     return $padGoExt . $page;

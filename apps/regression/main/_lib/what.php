@@ -20,6 +20,7 @@
       'sample/use_rows'           => 'The designer preview gives a page that returns its rows the @return of its sample',
       'sample/capture_rows'       => 'A capture keeps what the page returned as @return',
       'misc/react'                => 'The {reactData} tag over a static provider, and the @providers reference reading the parked result back',
+      'sitemap/a_page_beside_a_directory_of_its_name_leaves_the_index_its_full_address' => 'A page docs beside a directory docs/ with an index: {sitemap} lists the page at ?docs and the index at ?docs/index, where the router sends it - not both at ?docs',
       'misc/react_keeps_its_data_with_a_byte_that_is_no_utf8' => 'A {reactData} provider whose text holds a byte that is no UTF-8 - a Latin-1 Caf\xE9 - keeps its data, the byte as U+FFFD: the JSON came back FALSE, and the attribute empty',
       'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
       'select/demo/options'       => 'Every option a declared table takes on the tag - where, order, fields, group, having, rollup, distinctrow, db and union - one labelled line each over the staff table',
