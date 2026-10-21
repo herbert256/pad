@@ -9,6 +9,8 @@
   //   padXmlToArrayIterator  walks the SimpleXML tree; a childless attribute-less element
   //                          becomes its text, otherwise attributes become fields (a name
   //                          clash gets an _ prefix) and children go under '_children'
+  //   padXmlToArraySpaced    the same walk for a document with prefixed names, which takes
+  //                          the elements and attributes of every namespace
   //   padXmlToArrayCheck     folds those '_children' entries up into their parent (a name
   //                          clash gets a _ suffix) and unwraps single-element lists, but for
   //                          an element that repeats in a sibling row
@@ -75,7 +77,15 @@
 
     }
 
-    $arr = padXmlToArrayIterator ( $xml );
+    // SimpleXML's own iteration walks the children and attributes of an element's own
+    // namespace only: an element or attribute with a prefix - an RSS item's dc:creator and
+    // content:encoded, xml:lang, xlink:href - was dropped without a word. A document that
+    // has such names is read by padXmlToArraySpaced, which takes them all.
+
+    if ( array_filter ( array_keys ( $xml->getDocNamespaces ( TRUE ) ) ) or preg_match ( '/\sxml:[\w-]+\s*=/', $input ) )
+      $arr = padXmlToArraySpaced ( $xml );
+    else
+      $arr = padXmlToArrayIterator ( $xml );
 
     // A document with no element - only a prolog or a comment - iterates to nothing, and
     // reset() of the empty array is FALSE, which the single-element unwrap and
@@ -129,6 +139,74 @@
     }
 
     return $arr;
+
+  }
+
+  // padXmlToArrayIterator for a document with prefixed names: every child element and every
+  // attribute, in document order, whatever its namespace. A prefixed name is kept under its
+  // local name - {$creator}, as a field name holds no colon - and under prefix_name where
+  // another namespace uses the same local name in that element: <title> and <dc:title> are
+  // title and dc_title.
+
+  function padXmlToArraySpaced ( $xml ) {
+
+    $arr = [];
+
+    foreach ( padXmlSpacedNames ( $xml->xpath ( '*' ) ?: [] ) as [ $idx, $el ] ) {
+
+      $val   = trim ( strval ( $el ) );
+      $cnt   = ( array_key_exists ($idx, $arr) ) ? array_key_last ($arr [$idx]) + 1 : 0;
+      $kids  = $el->xpath ( '*' ) ?: [];
+      $attrs = padXmlSpacedNames ( $el->xpath ( '@*' ) ?: [] );
+
+      if ( ! $kids and ! $attrs )
+
+        $arr [$idx] [$cnt] = $val;
+
+      else {
+
+        if ( $val !== '' )
+          $arr [$idx] [$cnt] [$idx] = $val;
+
+        foreach ( $attrs as [ $key, $att ] )
+          if ( isset ( $arr [$idx] [$cnt] [$key] ) )
+            $arr [$idx] [$cnt] ['_'.$key] = strval($att);
+          else
+            $arr [$idx] [$cnt] [$key] = strval($att);
+
+        if ( $kids )
+          $arr [$idx] [$cnt] ['_children'] = padXmlToArraySpaced ( $el );
+
+      }
+
+    }
+
+    return $arr;
+
+  }
+
+  // The names the nodes of one element are kept under, as [ name, node ] pairs in their order:
+  // the local name, or prefix_name when that local name stands in more than one namespace.
+
+  function padXmlSpacedNames ( $nodes ) {
+
+    $spaces = [];
+
+    foreach ( $nodes as $node )
+      $spaces [ $node->getName () ] [ (string) array_key_first ( $node->getNamespaces () ) ] = TRUE;
+
+    $named = [];
+
+    foreach ( $nodes as $node ) {
+
+      $local  = $node->getName ();
+      $prefix = (string) array_key_first ( $node->getNamespaces () );
+
+      $named [] = [ ( $prefix !== '' and count ( $spaces [$local] ) > 1 ) ? $prefix . '_' . $local : $local, $node ];
+
+    }
+
+    return $named;
 
   }
 
