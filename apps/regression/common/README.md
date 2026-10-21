@@ -19,15 +19,15 @@ What lives here:
 | `misc/eval` | shows its forms through `{demo}` and `{table}` |
 | `tags/redirect`, `tags/restart` | wrapped in `{demo}` and `{table}` |
 | `hello/` | a copy of `regression/pages/hello` - the page `redirect` and `restart` land on, which must be in the same application |
-| `index` | the one test fetched without `&padInclude`, so it asserts the frame itself: the `_common` wrapper and the title `_inits.php` derives |
-| `menu` | the `{menu}` include - `lines.pad` around it, `menu.json` behind it, the link-per-application bar |
-| `reference` | the `_common/_lib/` helpers a page calls directly: `getReference()` over the type handlers, and the Xref link builders in `menu.php` |
+| `index` | the one test fetched without `&padInclude`, so it asserts the frame itself: `_common`'s `padFrame` and `padFrameEnd` and the title `_inits.php` derives |
+| `reference` | the `_common/_lib/` helper a page calls directly: `getReference()` over the type handlers |
 | `misc/db` | the demo database through the credentials `_common`'s `.env` supplies - the one test that queries it |
 | `misc/env` | `padEnv` reads `_common`'s `.env` for an application that runs with `_common` |
 
-The application also has an `_inits.pad` of its own, `{padOpen}@page@{padClose}` - so the `index`
-test, the one fetched full, asserts the whole frame: the `_common` wrapper, the menu, and the
-title printed through `showTitle`.
+The application's `_inits.pad` is the frame every PAD application shares,
+`{common:padFrame}@page@{common:padFrameEnd}` - so the `index` test, the one fetched full,
+asserts the whole frame: the side with the menu of the applications, the bar with the title
+`_common`'s `_inits.php` derives, and the page in it.
 
 ## Running them
 

@@ -8,9 +8,8 @@
 
     return [
 
-      'index'                     => 'The one test fetched without padInclude: the _common wrapper, padOpen and padClose with the menu, and the title shown through showTitle',
-      'menu'                      => 'The {menu} include - lines.pad around it, menu.json behind it, a link per application',
-      'reference'                 => 'The _common _lib helpers a page calls directly - getReference() over the type handlers, and the Xref link builders',
+      'index'                     => 'The one test fetched without padInclude: the frame from _common, padFrame and padFrameEnd, with the title its _inits.php derives in the bar',
+      'reference'                 => 'The _common _lib helper a page calls directly - getReference() over the type handlers',
       'misc/db'                   => 'The demo database through the credentials _common supplies - the one test that queries it',
       'regression/errors/error/index'   => 'The menu of the pages that end a request; each of those is a test of its own',
       'error/throw'               => 'The {exception} tag, which throws a real PHP exception from the template',

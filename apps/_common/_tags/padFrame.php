@@ -1,10 +1,12 @@
 <?php
 
-  // The frame the PAD applications share - admin, edit, tags, pad, manual, reference,
-  // sequence and regression: a dark side with the logo and the application's name, its
-  // menu under it, and the bar with the page's title above the page. Each one's _inits.pad
-  // opens it with this tag, the parts of its own as slots, and closes it after the page with
-  // the padFrameEnd snippet:
+  // The frame the PAD applications share - every one that uses _common, and admin, edit and
+  // tags, which reach it with the common: prefix: a side with the logo and the application's
+  // name, its menu under it, and the bar with the page's title and the light/dark switch
+  // above the page.
+  // _common has no wrapper of its own: each application's _inits.pad opens the frame with
+  // this tag, the parts of its own as slots, and closes it after the page with the
+  // padFrameEnd snippet:
   //
   //   {common:padFrame}
   //     {slot 'head'}{asset 'admin.css', tag}{/slot}    in <head>
@@ -25,7 +27,8 @@
   //   $title       the page's title - in the bar, and in <title>; $skipTitle leaves it out
   //                of the bar for a page that shows a heading of its own
   //   $frameMenu   the application's menu, rows of head (a heading - the rest empty), link,
-  //                label, icon (a name of the icon tag, or '') and current
+  //                label, icon (a name of the icon tag, or '') and current - left out, it is
+  //                whether the link names the page shown
   //
   // and the option fill - {common:padFrame fill} - for a page that fills the window
   // instead of scrolling: the editor. The stylesheet and the script are www/_common/pad.css
@@ -46,9 +49,11 @@
   ];
 
   $frameOthers = [
-    'examples' => [ 'examples', 'code',     'The examples of the manual and the suites' ],
-    'develop'  => [ 'develop',  'terminal', 'Builds and tools for PAD itself' ],
-    'apps'     => [ 'apps',     'grid',     'Every application of this installation' ]
+    'examples'      => [ 'examples',      'code',     'The examples of the manual and the suites' ],
+    'develop'       => [ 'develop',       'terminal', 'Builds and tools for PAD itself' ],
+    'apps'          => [ 'apps',          'grid',     'Every application of this installation' ],
+    'classicModels' => [ 'classicModels', 'database', 'PAD Select over the Classic Models database' ],
+    'structure'     => [ 'structure',     'folder',   'The _xxx directories at every level' ]
   ];
 
   $frameApps = $frameMore = [];
@@ -68,7 +73,9 @@
   $frameTitle = ( isset ( $skipTitle ) or ! isset ( $title ) or ! is_scalar ( $title ) )
               ? '' : ucfirst ( str_replace ( '_', ' ', (string) $title ) );
 
-  // The menu, every row with every field - a heading has no link, an entry no heading.
+  // The menu, every row with every field - a heading has no link, an entry no heading. An
+  // entry that does not say whether it is the page shown is when its link names that page:
+  // ?orders, or $padGo with orders.
 
   $frameRows = [];
 
@@ -77,7 +84,9 @@
                       'link'    => (string) ( $frameRow ['link']  ?? '' ),
                       'label'   => (string) ( $frameRow ['label'] ?? '' ),
                       'icon'    => (string) ( $frameRow ['icon']  ?? '' ),
-                      'current' => empty ( $frameRow ['current'] ) ? 0 : 1 ];
+                      'current' => ( array_key_exists ( 'current', $frameRow )
+                                     ? ! empty ( $frameRow ['current'] )
+                                     : in_array ( (string) ( $frameRow ['link'] ?? '' ), [ "?$padPage", "$padGo$padPage" ], TRUE ) ) ? 1 : 0 ];
 
   $frameMenu = $frameRows;
   $frameNav  = $frameRows ? 1 : 0;

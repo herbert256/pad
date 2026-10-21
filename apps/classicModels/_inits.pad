@@ -1,3 +1,9 @@
-{padOpen}
-  @page@
-{padClose}
+{set $frameMenu = [ [ 'link' => '?index',       'label' => 'Overview',    'icon' => 'home'    ],
+                    [ 'link' => '?offices',     'label' => 'Offices',     'icon' => 'map-pin' ],
+                    [ 'link' => '?employees_1', 'label' => 'Employees',   'icon' => 'users'   ],
+                    [ 'link' => '?employees_2', 'label' => 'Employees 2', 'icon' => 'users'   ],
+                    [ 'link' => '?orders',      'label' => 'Orders',      'icon' => 'cart'    ],
+                    [ 'link' => '?options',     'label' => 'Options',     'icon' => 'filter'  ] ]}
+{common:padFrame}
+@page@
+{common:padFrameEnd}

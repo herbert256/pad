@@ -1,13 +1,10 @@
 <?php
 
-  // The frame every PAD application shares (_common/_tags/padFrame.pad) instead of the
-  // _common wrapper, with the application's pages as its menu - the page it is on marked,
-  // its name the title.
+  // The menu of the frame every PAD application shares (_common/_tags/padFrame.pad): the
+  // application's pages - the page it is on marked, its name the title.
   //
   // The regression suite for this subsystem lives with the other framework suites, in the
   // regression application under regression/sequence.
-
-  $commonFramed = TRUE;
 
   $sequencePages = [
     'index'     => [ 'Concepts',  'home'      ],

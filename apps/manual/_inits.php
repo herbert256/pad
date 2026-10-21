@@ -1,10 +1,7 @@
 <?php
 
-  // The frame every PAD application shares (_common/_tags/padFrame.pad) instead of the
-  // _common wrapper. Its menu is the manual's contents - the subjects by group
-  // (_lib/topics.php), the page it is on marked.
-
-  $commonFramed = TRUE;
+  // The menu of the frame every PAD application shares (_common/_tags/padFrame.pad): the
+  // manual's contents - the subjects by group (_lib/topics.php), the page it is on marked.
 
   $frameMenu = [ [ 'link' => "{$padGo}index", 'label' => 'Contents', 'icon' => 'home', 'current' => $padPage == 'index' ] ];
 

@@ -3375,7 +3375,7 @@ Resolve naming conflicts with explicit prefixes:
 | Prefix | Purpose | Example |
 |--------|---------|---------|
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
-| `common:` | Tag from the `_common` app | `{common:menu}` |
+| `common:` | Tag from the `_common` app | `{common:padFrame}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
 | `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |

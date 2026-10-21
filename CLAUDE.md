@@ -1176,7 +1176,7 @@ Resolve naming conflicts with explicit prefixes:
 | Prefix | Purpose | Example |
 |--------|---------|---------|
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
-| `common:` | Tag from the `_common` app | `{common:menu}` |
+| `common:` | Tag from the `_common` app | `{common:padFrame}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
 | `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
@@ -1531,10 +1531,12 @@ The `@page@` placeholder is replaced with each page's content.
 
 ### The frame of the PAD applications
 
-admin, edit, tags, pad, manual, reference, sequence and regression share one frame, from
-`_common`: a dark side with the `{}` logo and `PAD <app>` - a click opens the menu of the
-applications - the application's menu under it, and a bar with the title and the light/dark
-switch (kept for all of them, `www/_common/pad.js`) above the page. Their `_inits.pad`:
+Every application that uses `_common` - and admin, edit and tags, which have it off and reach
+it with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
+(no `_common/_inits.pad`): a side with the `{}` logo and `PAD <app>` - a click opens the menu
+of the applications - the application's menu under it, and a bar with the title and the
+light/dark switch above the page; side and page are light or dark together, the choice kept
+for all of them (`www/_common/pad.js`). Their `_inits.pad`:
 
 ```
 {common:padFrame}                                  # _common/_tags/padFrame.pad + .php
@@ -1546,8 +1548,7 @@ switch (kept for all of them, `www/_common/pad.js`) above the page. Their `_init
 
 `$frameMenu` (rows of `head`, or `link`, `label`, `icon`, `current`) from `_inits.php` is the
 menu, `$title` the bar's title (`$skipTitle` leaves it out); `{common:padFrame fill}` for a
-page that fills the window. An application with `_common` on sets `$commonFramed = TRUE` so
-the `_common` wrapper leaves it the document. The stylesheet is `www/_common/pad.css`: the
+page that fills the window. The stylesheet is `www/_common/pad.css`: the
 `--frame-*` properties are the frame's own, `--bg`, `--text`, `--accent` ... the palette the
 pages use - the old pages' `bgcolor=`, `<font color>` and `highlight_string` colours read in
 dark too.

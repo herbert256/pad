@@ -1,10 +1,10 @@
 <?php
 
   // Every page of this application has the frame every PAD application shares
-  // (_common/_tags/padFrame.pad) instead of the _common wrapper, and the same menu in it:
-  // Index, the suites, then Test and Build. What Test runs is about the page it is on: on
-  // the index everything, on a suite page that suite. Pages that have no test of their own,
-  // show/ among them, get the menu without the entry.
+  // (_common/_tags/padFrame.pad), and the same menu in it: Index, the suites, then Test and
+  // Build. What Test runs is about the page it is on: on the index everything, on a suite
+  // page that suite. Pages that have no test of their own, show/ among them, get the menu
+  // without the entry.
   //
   // Index is the overview the application opens on, one line of totals per kind of test.
   // Pages, Common and Framework are the suites, every test a page fetched over HTTP - from
@@ -17,8 +17,6 @@
   // the suite over every application without one of its own. Build is the fresh build:
   // clear the suite results and the dumps, and run the eight suites - the reference and
   // the examples stores are develop's, harvested there and left standing.
-
-  $commonFramed = TRUE;
 
   $suiteTest = '';
 

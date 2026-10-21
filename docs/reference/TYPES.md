@@ -108,13 +108,13 @@ Loads built-in PAD tags from the `PAD/tags/` directory.
 Loads shared tags from the `apps/_common/` application.
 
 ```
-{menu}
-{common:menu}
+{padFrame}
+{common:padFrame}
 ```
 
 **Resolution:** `padCommonCheck()` - checked after `app`, before `pad`, so a common tag overrides a built-in of the same name but not an app-local one. Can be disabled per app with `$padCommon = FALSE`.
 
-**Use case:** Tags shared by all applications (navigation, layout helpers).
+**Use case:** Tags shared by all applications - the frame of the PAD applications, `{example}`, `{demo}`, `{table}`.
 
 ---
 

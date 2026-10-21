@@ -1,23 +1,24 @@
-/* PAD - the frame the PAD applications share: admin, edit, tags, pad, manual, reference,
-   sequence and regression (apps/_common/_tags/padFrame.pad). A static file: PAD never parses it.
+/* PAD - the frame the PAD applications share: every one that uses _common, and admin, edit
+   and tags (apps/_common/_tags/padFrame.pad). A static file: PAD never parses it.
 
    The colours are custom properties - light and dark follow the system, or the choice the
-   frame's toggle keeps (data-theme on <html>, www/_common/pad.js). The --frame-* ones are the
-   frame's own and no application changes them, so the frame looks the same in every one;
+   frame's toggle keeps (data-theme on <html>, www/_common/pad.js), the side with its menus
+   as well as the page. The --frame-* ones are the frame's own and no application changes
+   them, so the frame looks the same in every one;
    the others are the palette the applications' pages build on, and an application may
    redefine them for its own content - the editor does. */
 
 :root {
   --frame-bg: #f5f6f8; --frame-panel: #fff; --frame-text: #1d2330; --frame-dim: #6b7280; --frame-line: #e3e6eb;
   --frame-accent: #2563eb; --frame-accent-text: #fff;
-  --frame-side: #111827; --frame-side-text: #cbd5e1; --frame-side-dim: #64748b; --frame-side-hover: #1f2937;
-  --frame-side-line: #1f2937; --frame-menu: #1a2232;
-  --frame-width: 232px; --frame-height: 56px;
+  --frame-side: #fff; --frame-side-text: #374151; --frame-side-dim: #8a94a3; --frame-side-hover: #f1f3f6;
+  --frame-side-line: #e3e6eb; --frame-side-strong: #111827;
+  --frame-menu: #fff; --frame-menu-shadow: 0 16px 36px -12px rgba(20, 30, 50, .28);
+  --frame-width: 240px; --frame-height: 56px;
 
   --bg: var(--frame-bg); --panel: var(--frame-panel); --text: var(--frame-text); --soft: #4b5563; --dim: var(--frame-dim);
   --line: var(--frame-line); --accent: var(--frame-accent); --accent-text: var(--frame-accent-text);
   --accent-soft: #e8effd; --head: #eef0f3; --code: #f3f4f6;
-  --side: var(--frame-side); --side-text: var(--frame-side-text); --side-dim: var(--frame-side-dim);
   --ok: #15803d; --ok-bg: #dcfce7; --warn: #b45309; --warn-bg: #fef3c7; --bad: #b91c1c; --bad-bg: #fee2e2;
   --shadow: 0 1px 2px rgba(20, 22, 31, .05), 0 8px 24px -12px rgba(30, 40, 90, .18);
   --mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
@@ -29,7 +30,9 @@
   :root:not([data-theme="light"]) {
     --frame-bg: #0f1218; --frame-panel: #171b23; --frame-text: #e5e7eb; --frame-dim: #9ca3af; --frame-line: #2a303b;
     --frame-accent: #60a5fa; --frame-accent-text: #0b1020;
-    --frame-side: #0a0d12; --frame-side-hover: #1a202b; --frame-side-line: #1a202b; --frame-menu: #151b26;
+    --frame-side: #0a0d12; --frame-side-text: #cbd5e1; --frame-side-dim: #64748b; --frame-side-hover: #1a202b;
+    --frame-side-line: #1a202b; --frame-side-strong: #fff;
+    --frame-menu: #151b26; --frame-menu-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6);
     --soft: #c0c6d0; --accent-soft: #172235; --head: #1d222b; --code: #11151c;
     --ok: #4ade80; --ok-bg: #12301f; --warn: #fbbf24; --warn-bg: #33270b; --bad: #f87171; --bad-bg: #3a1414;
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
@@ -40,7 +43,9 @@
 :root[data-theme="dark"] {
   --frame-bg: #0f1218; --frame-panel: #171b23; --frame-text: #e5e7eb; --frame-dim: #9ca3af; --frame-line: #2a303b;
   --frame-accent: #60a5fa; --frame-accent-text: #0b1020;
-  --frame-side: #0a0d12; --frame-side-hover: #1a202b; --frame-side-line: #1a202b; --frame-menu: #151b26;
+  --frame-side: #0a0d12; --frame-side-text: #cbd5e1; --frame-side-dim: #64748b; --frame-side-hover: #1a202b;
+  --frame-side-line: #1a202b; --frame-side-strong: #fff;
+  --frame-menu: #151b26; --frame-menu-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6);
   --soft: #c0c6d0; --accent-soft: #172235; --head: #1d222b; --code: #11151c;
   --ok: #4ade80; --ok-bg: #12301f; --warn: #fbbf24; --warn-bg: #33270b; --bad: #f87171; --bad-bg: #3a1414;
   --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
@@ -69,6 +74,7 @@ body.frame {
   position: sticky; top: 0; height: 100vh;
   display: flex; flex-direction: column; min-width: 0;
   background: var(--frame-side); color: var(--frame-side-text);
+  border-right: 1px solid var(--frame-side-line);
   font: 14px/1.5 var(--sans);
 }
 
@@ -79,8 +85,8 @@ body.frame {
 .frame-brand > summary {
   list-style: none; cursor: pointer; user-select: none;
   display: flex; align-items: center; gap: 9px;
-  height: var(--frame-height); padding: 0 18px;
-  color: #fff; font-size: 17px; white-space: nowrap;
+  height: var(--frame-height); padding: 0 14px 0 18px;
+  color: var(--frame-side-strong); font-size: 16px; white-space: nowrap;
   border-bottom: 1px solid var(--frame-side-line);
 }
 .frame-brand > summary::-webkit-details-marker { display: none; }
@@ -103,7 +109,7 @@ body.frame {
   width: 300px; max-height: calc(100vh - var(--frame-height)); overflow-y: auto;
   padding: 6px; border-radius: 10px;
   background: var(--frame-menu); border: 1px solid var(--frame-side-line);
-  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6);
+  box-shadow: var(--frame-menu-shadow);
 }
 .frame-apps a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 7px; color: var(--frame-side-text); }
 .frame-apps a:hover { background: var(--frame-side-hover); text-decoration: none; }
@@ -127,7 +133,7 @@ body.frame {
 .frame-foot .dim { color: var(--frame-side-dim); }
 .frame-foot form { margin: 6px 0 0; }
 .frame-foot button { background: none; border: 0; padding: 0; font: inherit; color: var(--frame-side-text); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-.frame-foot button:hover { color: #fff; }
+.frame-foot button:hover { color: var(--frame-side-strong); }
 
 /* the bar above the page */
 
