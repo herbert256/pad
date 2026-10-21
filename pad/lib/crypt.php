@@ -196,6 +196,12 @@
       $now = padNow ();
 
       if ( is_int ( $expires ) or is_float ( $expires ) or ( is_string ( $expires ) and is_numeric ( trim ( $expires ) ) ) ) {
+        // NAN is smaller, equal and larger than nothing: it passed the test below and its
+        // cast to a whole number ended the request on PHP 8.5's "not representable".
+        if ( is_nan ( (float) $expires ) ) {
+          padError ( 'padSignedUrl: a lifetime of NAN seconds is no number of seconds' );
+          return '';
+        }
         if ( (float) $expires <= 0 ) {
           padError ( "padSignedUrl: a link that lives $expires seconds has expired before it is made" );
           return '';
