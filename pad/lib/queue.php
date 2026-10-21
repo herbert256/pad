@@ -85,6 +85,15 @@
       return FALSE;
     }
 
+    // What JSON cannot hold - INF, NAN, arrays nested past its depth - was written as an
+    // empty job file under an id: the worker dropped it without a word, not done and not
+    // failed.
+
+    if ( padQueueJson ( [ 'data' => $data ] ) === FALSE ) {
+      padError ( 'padQueue: the data of a job cannot be kept as JSON - ' . json_last_error_msg () );
+      return FALSE;
+    }
+
     $available = padQueueAvailable ( $delay );
 
     if ( $available === NULL )
@@ -683,7 +692,9 @@
 
   function padQueueWrite ( $file, $record ) {
 
-    return padFilePut ( $file, padQueueJson ( $record ) ) !== FALSE;
+    $json = padQueueJson ( $record );
+
+    return ( $json !== FALSE ) and padFilePut ( $file, $json ) !== FALSE;
 
   }
 
