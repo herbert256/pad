@@ -146,9 +146,12 @@
 
   function padOpenCloseCountOne ( $string, $tag ) {
 
+    // A closer is its name followed by white space, the } or a pipe, as level/tag.php reads
+    // one: {/rows|trim} and {/rows and a line break were not counted.
+
     if ( padOpenCount ( $string, $tag )
            !=
-         ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )
+         preg_match_all ( '/\{\/' . preg_quote ( $tag, '/' ) . '[\s}|]/', $string ) )
       return FALSE;
 
     return TRUE;
@@ -161,7 +164,8 @@
   // opener is found by brace depth, so a parameter holding a tag of its own, {tag x={$y}/},
   // is read to its real end; like level/tag.php, the slash must stand right before the }.
   // Any white space may follow the name, as the tag parser reads it: an {if written over
-  // two lines was no opener here, and the pair around it closed at its {/if}.
+  // two lines was no opener here, and the pair around it closed at its {/if}. So may a pipe
+  // without a space, {rows|trim}, which the balance of an enclosing {rows} did not count.
 
   function padOpenCount ( $string, $tag ) {
 
@@ -174,7 +178,7 @@
       $offset = $pos + strlen ( $open );
       $next   = $string [$offset] ?? '';
 
-      if ( $next == '}' or ( $next !== '' and ctype_space ( $next ) and ! padOpenSelfClosing ( $string, $offset ) ) )
+      if ( $next == '}' or ( $next !== '' and ( $next == '|' or ctype_space ( $next ) ) and ! padOpenSelfClosing ( $string, $offset ) ) )
         $count++;
 
     }

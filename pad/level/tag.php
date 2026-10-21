@@ -64,7 +64,12 @@
 
   $padPairOpen = strpos ( $padOut [$pad], '{' . $padPairTag, $padEnd [$pad] + 1 );
 
-  while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
+  // A closer is read as an opener is: its name followed by white space, the }, or a pipe
+  // written without a space - {/items|upper}, {/items and a line break. Only a space or the }
+  // made a closer, and the pair fell apart: the opener was taken single and the closer was
+  // left in the page.
+
+  while ( $padPairCheck === '' or ! ( $padPairCheck == '}' or $padPairCheck == '|' or ctype_space ( $padPairCheck ) ) ) {
 
     $padPos = strpos($padOut [$pad] , '{/' . $padPairTag, ++$padPos);
 
