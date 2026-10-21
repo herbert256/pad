@@ -58,11 +58,14 @@
   // The {tag ? true : false} form chooses by the truth of the value the tag answers, as
   // {echo $qty ? 'some' : 'none'} does - '', '0', 0 and FALSE take the false side - and the
   // value itself is no part of the answer (level/ternary.php): every value was made TRUE and
-  // written in front of the side, {qty ? some : none} with qty 0 printed 0some.
+  // written in front of the side, {qty ? some : none} with qty 0 printed 0some. A tag that
+  // printed something, or has a template of its own, is a hit whatever it answers, as below:
+  // {greet ? yes : no} over an application tag with a template whose PHP ends in return ''
+  // took the false side and dropped the template, where {greet}yes@else@no{/greet} showed both.
 
   if ( padSingleValue ( $padTagResult ) and str_starts_with ( $padOpt [$pad] [0], '?' ) )
 
-    $padTagResult = (bool) $padTagResult;
+    $padTagResult = ( (bool) $padTagResult or $padTagContent !== '' );
 
   elseif ( padSingleValue ( $padTagResult ) ) {
 
