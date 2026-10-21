@@ -214,61 +214,117 @@
 
   }
 
-  // The pairs whose content is text, not template: what {ignore} wraps and a {highlight}
-  // sample. A branch marker inside one - {ignore}{else}{/ignore}, a {when} in a sample - is
+  // The pairs whose content is text, not template: what {ignore} wraps, a {highlight}
+  // sample, and the content of any pair whose opener carries the ignore option - {markdown
+  // ignore}, {data 'd' ignore} - which level/split.php reads as text as it reads the other
+  // two. A branch marker inside one - {ignore}{else}{/ignore}, a {when} in a sample - is
   // that text, and belongs to no tag: it was taken by the {if}, {case} or condition tag
-  // around it, which cut its content there and left "the pair {ignore} never closes". The
-  // @else@ split already looks past them (padOpenCloseList balances every pair).
+  // around it, which cut its content there and left "the pair {ignore} never closes" - and
+  // so it still was inside a {markdown ignore} sample. The @else@ split already looks past
+  // them (padOpenCloseList balances every pair).
 
   const padTextPairs = [ 'ignore', 'highlight' ];
 
   function padTextFree ( $string ) {
 
-    foreach ( padTextPairs as $tag )
-      if ( padTextOpen ( $string, $tag ) )
-        return FALSE;
-
-    return TRUE;
+    return ! padTextScan ( $string ) ['open'];
 
   }
 
-  // Whether a sample of the text pair $tag is open at the end of $string: its openers and
-  // closers in order, a closer taking the nearest open opener before it. The single form
-  // opens nothing - {highlight file='orders.php'}, which colours a file and has no content,
-  // and a self-closing {tag .../} - nor does a closer with no opener before it. Counted as
-  // the owners' pairs are counted (padPairBalanced), a single {highlight file=...} read as a
-  // sample never closed, and every {else}, {elseif} and {when} behind it was taken for its
-  // text: {if $a}{highlight file='x'}{else}none{/if} showed nothing for a=0.
+  // The content of every text pair of $text, outermost only, as [ from, to ] - from the end
+  // of the opener to the start of its closer: what padTildeKeep sets aside.
 
-  function padTextOpen ( $string, $tag ) {
+  function padTextSpans ( $text ) {
 
-    if ( ! str_contains ( $string, $tag ) )
-      return FALSE;
+    return padTextScan ( $text ) ['spans'];
 
-    preg_match_all ( '/\{(\/?)(?:pad:)?' . preg_quote ( $tag, '/' ) . '(?=[\s}|])/', $string, $all,
-                     PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+  }
 
-    $open = 0;
+  // The text pairs of $string, read in order: a closer takes the nearest open opener of its
+  // own name before it, as the engine pairs them, whether that opener holds text or not - a
+  // {markdown} inside a {markdown ignore} sample closes before its outer one does. The single
+  // form opens nothing - {highlight file='orders.php'}, which colours a file and has no
+  // content, and a self-closing {tag .../} - nor does a closer with no opener before it.
+  // Counted as the owners' pairs are counted (padPairBalanced), a single {highlight file=...}
+  // read as a sample never closed, and every {else}, {elseif} and {when} behind it was taken
+  // for its text: {if $a}{highlight file='x'}{else}none{/if} showed nothing for a=0.
+  //
+  // 'open' says whether a text pair is still open at the end of $string; 'spans' are the
+  // contents of the text pairs that closed.
+
+  function padTextScan ( $string ) {
+
+    if ( ! is_string ( $string ) or ( ! str_contains ( $string, 'ignore' ) and ! str_contains ( $string, 'highlight' ) ) )
+      return [ 'open' => FALSE, 'spans' => [] ];
+
+    preg_match_all ( '/\{~?(\/?)(?:pad:)?([A-Za-z_][\w:.-]*)(?=[\s}~|])/', $string, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+
+    $open  = [];
+    $pairs = [];
 
     foreach ( $all as $one ) {
 
-      $at = $one [0] [1];
+      $name = $one [2] [0];
+      $at   = $one [0] [1];
 
       if ( $one [1] [0] === '/' ) {
-        if ( $open )
-          $open--;
+        if ( ! empty ( $open [$name] ) ) {
+          [ $from, $text ] = array_pop ( $open [$name] );
+          if ( $text )
+            $pairs [$from] = $at;
+        }
         continue;
       }
 
-      $end  = strpos ( $string, '}', $at );
-      $text = ( $end === FALSE ) ? substr ( $string, $at ) : substr ( $string, $at, $end - $at );
+      $after = $at + strlen ( $one [0] [0] );
+      $end   = strpos ( $string, '}', $at );
+      $parms = ( $end === FALSE ) ? substr ( $string, $after ) : substr ( $string, $after, $end - $after );
 
-      if ( ! preg_match ( '/[\s,]file\s*=/', $text ) and ! padOpenSelfClosing ( $string, $at + strlen ( $one [0] [0] ) ) )
-        $open++;
+      if ( $end === FALSE or padOpenSelfClosing ( $string, $after ) )
+        continue;
+
+      if ( $name == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
+        continue;
+
+      $text = ( in_array ( $name, padTextPairs, TRUE ) or padTextOption ( $parms ) );
+
+      $open [$name] [] = [ $end + 1, $text ];
 
     }
 
-    return $open > 0;
+    $still = FALSE;
+
+    foreach ( $open as $list )
+      foreach ( $list as [ $from, $text ] )
+        if ( $text )
+          $still = TRUE;
+
+    ksort ( $pairs );
+
+    $spans = [];
+    $last  = -1;
+
+    foreach ( $pairs as $from => $to )
+      if ( $from > $last ) {
+        $spans [] = [ $from, $to ];
+        $last     = $to;
+      }
+
+    return [ 'open' => $still, 'spans' => $spans ];
+
+  }
+
+  // Whether the parameters of an opener - the text behind its name - hold the ignore option:
+  // the word ignore as an option of its own, bare or with a value, in front of any pipe.
+
+  function padTextOption ( $parms ) {
+
+    if ( ! str_contains ( $parms, 'ignore' ) )
+      return FALSE;
+
+    $parms = explode ( '|', $parms, 2 ) [0];
+
+    return (bool) preg_match ( '/(^|[\s,])ignore\s*(=|,|~?$)/', rtrim ( $parms ) );
 
   }
 

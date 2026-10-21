@@ -624,43 +624,15 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  // The content of a {highlight} pair is code shown as it stands - a sample of the ~ syntax
-  // lost every ~ and the line breaks beside them. It is set aside while the rest is
-  // stripped; the pair's own tags keep their ~.
-  //
-  // A closing tag pairs with the nearest opening tag before it that has none yet, as the
-  // engine pairs them; an opening tag left over is a single {highlight file=...}. Counted
-  // as an opener that never closed, a single tag in front of a pair kept every pair after
-  // it from being set aside.
+  // The content of a text pair - a {highlight} sample, what {ignore} wraps, a pair carrying
+  // the ignore option such as {markdown ignore} - is shown as it stands: a sample of the ~
+  // syntax lost every ~ and the line breaks beside them, {ignore}{~items~}{/ignore} printed
+  // {items}. It is set aside while the rest is stripped; the pair's own tags keep their ~.
+  // The pairs are read as the {else} scans read them (padTextSpans, lib/template.php).
 
   function padTildeKeep ( $text, &$kept ) {
 
-    if ( ! str_contains ( $text, 'highlight' ) )
-      return $text;
-
-    preg_match_all ( '/\{~?(\/?)highlight(?=[\s}~|])[^{}]*\}/', $text, $tags, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
-
-    $open  = [];
-    $pairs = [];
-
-    foreach ( $tags as $tag )
-      if ( $tag [1] [0] === '' )
-        $open [] = $tag [0] [1] + strlen ( $tag [0] [0] );
-      elseif ( $open )
-        $pairs [array_pop ( $open )] = $tag [0] [1];
-
-    ksort ( $pairs );
-
-    $spans = [];
-    $last  = -1;
-
-    foreach ( $pairs as $from => $to )
-      if ( $from > $last ) {
-        $spans [] = [ $from, $to ];
-        $last     = $to;
-      }
-
-    foreach ( array_reverse ( $spans ) as list ( $from, $to ) ) {
+    foreach ( array_reverse ( padTextSpans ( $text ) ) as list ( $from, $to ) ) {
       $mark          = "\u{E0F8}" . count ( $kept ) . "\u{E0F9}";
       $kept [$mark]  = substr ( $text, $from, $to - $from );
       $text          = substr ( $text, 0, $from ) . $mark . substr ( $text, $to );

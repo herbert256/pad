@@ -1,0 +1,4 @@
+{set $a = 1}
+[{if $a eq 1}{markdown ignore}Write `{else}` for the other branch.{/markdown}{/if}]
+[{case $a}{when 1}one: {markdown ignore}Write `{when 2}` for two.{/markdown}{when 2}two{/case}]
+[{if $a eq 1}{data 'el' ignore}["a {else} b"]{/data}{el}{$el}{/el}{/if}]
