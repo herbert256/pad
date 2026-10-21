@@ -199,7 +199,7 @@
             'path'     => '/',
             'httponly' => TRUE,
             'samesite' => 'Lax',
-            'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off'
+            'secure'   => padCookieSecure ()
           ] );
 
           // The front page of the application, so the secret does not stay in the address

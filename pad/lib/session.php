@@ -97,8 +97,9 @@
   //
   // Strict mode: a session id the server never issued is refused and a fresh one made, so a
   // visitor cannot plant an id of their choosing. The cookie is kept from scripts and
-  // cross-site requests, and travels only over https when the page did. Once headers have
-  // gone out no cookie can be sent, so a session cannot start then and FALSE says so.
+  // cross-site requests, and travels only over https when the site is https
+  // (padCookieSecure). Once headers have gone out no cookie can be sent, so a session
+  // cannot start then and FALSE says so.
   //
   // $padSessionStarted tells padCloseSession that there is a session to write back and
   // close at the end of the request.
@@ -120,7 +121,7 @@
     session_set_cookie_params ( [
       'httponly' => TRUE,
       'samesite' => 'Lax',
-      'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off'
+      'secure'   => padCookieSecure ()
     ] );
 
     if ( ! session_start () )
@@ -129,6 +130,26 @@
     $padSessionStarted = TRUE;
 
     return TRUE;
+
+  }
+
+  // Whether a cookie the engine sets travels over https only: when this request came over
+  // TLS, when the configuration says the site is https - an https $padHostBase, the base of
+  // a site behind a proxy that ends TLS and asks this server over plain http - or when
+  // php.ini asks it of the session cookie (session.cookie_secure). The request's HTTPS
+  // alone decided, so behind such a proxy the session id, the flash sign and padSesID went
+  // out without Secure, and padSessionStart turned the operator's session.cookie_secure = 1
+  // off for the request.
+
+  function padCookieSecure () {
+
+    if ( ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off' )
+      return TRUE;
+
+    if ( str_starts_with ( strtolower ( trim ( (string) ( $GLOBALS ['padHostBase'] ?? '' ) ) ), 'https://' ) )
+      return TRUE;
+
+    return filter_var ( ini_get ( 'session.cookie_secure' ), FILTER_VALIDATE_BOOLEAN );
 
   }
 

@@ -128,7 +128,7 @@
       'path'     => ini_get ( 'session.cookie_path' ) ?: '/',
       'httponly' => TRUE,
       'samesite' => 'Lax',
-      'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off'
+      'secure'   => padCookieSecure ()
     ] );
 
   }

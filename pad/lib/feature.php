@@ -173,7 +173,7 @@
           'path'     => '/',
           'httponly' => TRUE,
           'samesite' => 'Lax',
-          'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off'
+          'secure'   => padCookieSecure ()
         ] );
 
     }

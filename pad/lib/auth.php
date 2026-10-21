@@ -588,7 +588,7 @@
 
   function padAuthSecure () {
 
-    return ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off';
+    return padCookieSecure ();
 
   }
 

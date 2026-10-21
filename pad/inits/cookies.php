@@ -12,13 +12,14 @@
 
     if ( ! headers_sent () ) {
 
-      // Kept from scripts and from cross-site requests, and over https only when the page
-      // came over https: they were plain cookies any script on the page could read.
+      // Kept from scripts and from cross-site requests, and over https only when the site
+      // is https (padCookieSecure, lib/session.php): they were plain cookies any script on
+      // the page could read.
 
       $padCookieFlags = [ 'expires'  => time() + (60 * 60 * 24 * 366 * 10),
                           'httponly' => TRUE,
                           'samesite' => 'Lax',
-                          'secure'   => ( $_SERVER ['HTTPS'] ?? '' ) !== '' and ( $_SERVER ['HTTPS'] ?? '' ) !== 'off' ];
+                          'secure'   => padCookieSecure () ];
 
       if ( ! isset($_COOKIE['padSesID']) or $_COOKIE['padSesID'] != $padSesID )
         setCookie ('padSesID', $padSesID, $padCookieFlags );
