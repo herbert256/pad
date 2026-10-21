@@ -68,6 +68,16 @@
     if ( $user === NULL )
       return FALSE;
 
+    // What it is asked to remember is checked before the login: refused after it - a
+    // checkbox's 'on', an id the cookie cannot carry, no $padAuthRemember - the visitor got
+    // the error and was logged in all the same, without the cookie.
+
+    $remember = ( $remember !== FALSE and $remember !== NULL and $remember !== 0 )
+              ? padAuthRememberSeconds ( $user, $remember ) : FALSE;
+
+    if ( $remember === NULL )
+      return FALSE;
+
     if ( ! padSessionStart () )
       return padError ( 'padLogin: no session can start - the headers have gone out already' );
 
@@ -82,7 +92,7 @@
     padAuthStore ( 'now', NULL );
     padAuthStore ( 'checked', TRUE );
 
-    if ( $remember !== FALSE and $remember !== NULL and $remember !== 0 )
+    if ( $remember !== FALSE )
       padAuthCookie ( $user, $remember );
 
     return TRUE;
@@ -495,26 +505,10 @@
 
     }
 
-    if ( ! function_exists ( (string) ( $GLOBALS ['padAuthRemember'] ?? '' ) ) ) {
-      padError ( 'padLogin: remember-me needs $padAuthRemember, the name of a function that finds a user by id' );
+    $seconds = padAuthRememberSeconds ( $user, $remember );
+
+    if ( $seconds === NULL )
       return;
-    }
-
-    // The id goes back into the cookie, and padAuthRemembered reads only a number or a plain
-    // token there: a user name with a space or an accent was signed into a cookie that never
-    // logged in again, without a word.
-
-    if ( ! padAuthRememberId ( $user ['id'] ?? NULL ) ) {
-      padError ( 'padLogin: remember-me needs an id of letters, digits and _ . @ + : -, not ' . padRequestShow ( $user ['id'] ?? NULL ) );
-      return;
-    }
-
-    $seconds = ( $remember === TRUE ) ? padAuthRememberDays * 86400 : $remember;
-
-    if ( ! is_int ( $seconds ) or $seconds < 1 ) {
-      padError ( 'padLogin: remember must be TRUE or a number of seconds, not ' . padRequestShow ( $remember ) );
-      return;
-    }
 
     $until = padNow ()->getTimestamp () + $seconds;
     $sign  = padAuthSign ( 'remember', [ $user ['id'], $until ], padAuthSecrets ( $user ) );
@@ -528,6 +522,36 @@
 
     setcookie ( $name, $value, [ 'expires' => $until, 'path' => '/', 'httponly' => TRUE, 'samesite' => 'Lax',
                                  'secure' => padAuthSecure () ] );
+
+  }
+
+  // How long a login is remembered - $remember TRUE: 30 days, a number: seconds - or NULL
+  // with the error when it cannot be: padLogin asks before it logs in.
+
+  function padAuthRememberSeconds ( $user, $remember ) {
+
+    if ( ! function_exists ( (string) ( $GLOBALS ['padAuthRemember'] ?? '' ) ) ) {
+      padError ( 'padLogin: remember-me needs $padAuthRemember, the name of a function that finds a user by id' );
+      return NULL;
+    }
+
+    // The id goes back into the cookie, and padAuthRemembered reads only a number or a plain
+    // token there: a user name with a space or an accent was signed into a cookie that never
+    // logged in again, without a word.
+
+    if ( ! padAuthRememberId ( $user ['id'] ?? NULL ) ) {
+      padError ( 'padLogin: remember-me needs an id of letters, digits and _ . @ + : -, not ' . padRequestShow ( $user ['id'] ?? NULL ) );
+      return NULL;
+    }
+
+    $seconds = ( $remember === TRUE ) ? padAuthRememberDays * 86400 : $remember;
+
+    if ( ! is_int ( $seconds ) or $seconds < 1 ) {
+      padError ( 'padLogin: remember must be TRUE or a number of seconds, not ' . padRequestShow ( $remember ) );
+      return NULL;
+    }
+
+    return $seconds;
 
   }
 
