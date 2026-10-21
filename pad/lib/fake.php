@@ -403,7 +403,11 @@
 
         }
 
-        $id = db ( "insert into $table (" . implode ( ', ', $names ) . ') values (' . implode ( ', ', $places ) . ')', $vars );
+        // The names quoted, as both MySQL and SQLite read `name`: a column the table has under
+        // a word the SQL reserves - order, group, key, rank - is filled like any other, where
+        // insert into items (name, order) ended the seeder on a syntax error.
+
+        $id = db ( "insert into `$table` (`" . implode ( '`, `', $names ) . '`) values (' . implode ( ', ', $places ) . ')', $vars );
 
         if ( $id === FALSE )
           break;

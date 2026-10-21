@@ -14,6 +14,15 @@
 
   $fixed = padFactory ( 'customers', 2, [ 'name' => 'Same', 'city' => 'Here' ] );
 
+  // A table whose columns are named by words the SQL reserves is filled as any other.
+
+  db ( 'create table "group" (id integer primary key, "order" integer, "key" text)' );
+
+  $reserved = padFactory ( 'group', 2, fn ( $i ) => [ 'order' => $i, 'key' => "k$i" ] );
+  $keys     = implode ( ', ', array_column ( db ( 'array "key" from "group" order by "order"' ), 'key' ) );
+
+  db ( 'drop table "group"' );
+
   $rows  = db ( "array id, name, city, coalesce(email, 'NULL') as email from customers order by id" );
   $ids   = implode ( ', ', array_column ( array_merge ( $made, $fixed ), 'id' ) );
 
