@@ -98,12 +98,43 @@
     // as PAD: padMakeFlag hands a string to padEval, and the parameter was evaluated to the
     // value before it got here, so $v holding a php: call ran it. Blank and '0' are FALSE,
     // any other value TRUE, PHP's own (bool) rule. A written-out literal is evaluated as
-    // before ($padStoreValue above). The pair form's content keeps padMakeFlag: padEval
-    // leaves a {$field} source untouched, so no value runs there and its flag stays.
+    // before ($padStoreValue above). The pair named on its opening tag keeps padMakeFlag:
+    // padEval leaves a {$field} source untouched, so no value runs there and its flag stays.
 
     if ( $padStoreValue )
       $padStoreData = ! in_array ( trim ( (string) $padStoreSource ), [ '', '0' ], TRUE );
-    else
+
+    elseif ( $padWalk [$pad] == 'end' and (string) $padContent !== '' ) {
+
+      // Named on its closing tag, {bool}{$a}{/bool 'b'}, the content is walked first and
+      // holds its fields' values: handed to padEval they ran as the expression they read
+      // like - a request value php:strlen(12345) eq 6 stored FALSE, connection_status called
+      // that PHP function. What the author wrote is the source with its tags taken out:
+      // nothing there, the content is values alone and the flag their text's own truth, as
+      // {bool 'b', $a} takes it ('Hello world' TRUE, blank and '0' FALSE). An expression
+      // of the author's own is evaluated while every name outside its strings is one the
+      // author wrote - a number spliced in, {$n} gt 2, or a value in quotes, '{$u}' eq 'Ann',
+      // brings none; a value bringing a name of its own is refused, as the {data} list is.
+
+      $padStoreStrings = '/\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*"/s';
+      $padStoreOwn     = $padBase [$pad];
+
+      do $padStoreOwn = preg_replace ( '/\{[^{}]*\}/', ' ', $padStoreOwn, -1, $padStoreHits );
+      while ( $padStoreHits );
+
+      preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', $padStoreOwn ), $padStoreOwnNames );
+      preg_match_all ( '/[a-z_]\w*/i', preg_replace ( $padStoreStrings, '', (string) $padStoreSource ), $padStoreNames );
+
+      if ( trim ( $padStoreOwn ) === '' )
+        $padStoreData = ! in_array ( trim ( (string) $padStoreSource ), [ '', '0' ], TRUE );
+      elseif ( ! array_diff ( $padStoreNames [0], $padStoreOwnNames [0] ) )
+        $padStoreData = padMakeFlag ( $padStoreSource );
+      else {
+        padError ( "a value spliced into a {bool} expression would run as part of it: put it in quotes, '{\$x}' eq 'Ann', or take its own truth with {bool 'name', \$x}" );
+        $padStoreData = FALSE;
+      }
+
+    } else
       $padStoreData = padMakeFlag ( $padStoreSource );
 
   }
