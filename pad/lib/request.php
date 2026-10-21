@@ -380,7 +380,7 @@
   //
   // By default every field whose name says it holds a secret stays out as well, at any
   // depth - current_password, new_password, its confirmation, user[password], pwd, an api
-  // key - as padAuthSecret tells it for a user's row (lib/auth.php): the default list named
+  // key - as padFlashSecret tells it: the default list named
   // password and password_confirmation alone, and a change-password form kept the visitor's
   // old and new password in the session in plain text. A list of its own given, the page
   // says what stays out.
@@ -414,12 +414,29 @@
   function padFlashKeep ( $input ) {
 
     foreach ( $input as $key => $value )
-      if ( padAuthSecret ( (string) $key ) )
+      if ( padFlashSecret ( (string) $key ) )
         unset ( $input [$key] );
       elseif ( is_array ( $value ) )
         $input [$key] = padFlashKeep ( $value );
 
     return $input;
+
+  }
+
+  // A field holding a password or a key: a password word anywhere in its name, or secret,
+  // token, key or otp as its last word. padAuthSecret's test was made for the columns of a
+  // users row and counts pin, hash, salt, backup, recovery and pass anywhere in a name - a
+  // form's pin checkbox, backup_frequency, token_name, recovery_plan and boarding_pass came
+  // back empty after padFlashInput (); padBack ().
+
+  function padFlashSecret ( $name ) {
+
+    $words = array_map ( 'strtolower', preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/', $name, -1, PREG_SPLIT_NO_EMPTY ) );
+
+    if ( array_intersect ( $words, [ 'password', 'passwd', 'passphrase', 'passcode', 'pwd' ] ) )
+      return TRUE;
+
+    return in_array ( end ( $words ), [ 'secret', 'token', 'key', 'apikey', 'otp' ], TRUE );
 
   }
 
