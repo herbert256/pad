@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{if $frameTitle ne ''}{$frameTitle} · {/if}PAD {$frameName}</title>
+  <link rel="stylesheet" href="{$frameCss}">
+  <script src="{$frameJs}"></script>
+  {slot 'head'}{/slot}
+</head>
+<body class="frame {$frameClass}{if $frameFill} frame-fill{/if}">
+
+  <aside class="frame-side">
+
+    <details class="frame-brand">
+      <summary title="The PAD applications"><span class="frame-logo" aria-hidden="true">&#123;&#125;</span> <span class="frame-name">PAD <b>{$frameName}</b></span> {icon 'chevron-down', size=14}</summary>
+      <nav class="frame-apps" aria-label="PAD applications">
+        {frameApps}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16} <span><b>{$name}</b><small>{$about}</small></span></a>{/frameApps}
+        <div class="frame-head">More</div>
+        {frameMore}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16} <span><b>{$name}</b><small>{$about}</small></span></a>{/frameMore}
+      </nav>
+    </details>
+
+    {if $frameNav}
+      <nav class="frame-nav" aria-label="{$frameName}">
+        {frameMenu}
+          {if $head ne ''}
+            <div class="frame-head">{$head}</div>
+          {else}
+            <a href="{$link}"{if $current} aria-current="page"{/if}>{if $icon ne ''}{icon $icon, size=16} {/if}{$label}</a>
+          {/if}
+        {/frameMenu}
+      </nav>
+    {/if}
+
+    {slot 'side'}{/slot}
+
+    {slot 'foot'}{/slot}
+
+  </aside>
+
+  <main class="frame-main">
+
+    <header class="frame-top">
+      {slot 'title'}{if $frameTitle ne ''}<h1>{$frameTitle}</h1>{/if}{/slot}
+      <div class="frame-tools">
+        {slot 'tools'}{/slot}
+        <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark">{icon 'sun', size=18}{icon 'moon', size=18}</button>
+      </div>
+    </header>
+
+    <div class="frame-body">

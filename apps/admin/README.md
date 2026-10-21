@@ -50,4 +50,4 @@ default password, and only this machine may make that user; more are added on th
 | `_lib/apps.php` | The applications, their pages, parts and settings |
 | `_lib/tools.php` | Sizes, safe paths, running pad and git, redaction, the history |
 | `_lib/mail.php` | Reading back the `.eml` files |
-| `www/admin/admin.css`, `admin.js` | The look, and the table filters and confirm questions |
+| `www/admin/admin.css`, `admin.js` | The look of the pages, and the table filters and confirm questions - the frame round them, its menu from `_inits.php`, is the one every PAD application shares (`_common/_tags/padFrame`, `www/_common/pad.css`) |

@@ -9,8 +9,8 @@ Cross-reference and directory listing utilities for PAD applications.
 ```
 reference/
 ├── _data/           # Reference data
-├── _inits.pad       # Reference wrapper
-├── _inits.php       # Reference initialization
+├── _inits.pad       # The frame every PAD application shares
+├── _inits.php       # Its menu: the index's sections, from _data/reference.json
 ├── dir.pad/.php     # Directory browser
 ├── index.pad        # Reference index
 └── pages.pad/.php   # Page listing

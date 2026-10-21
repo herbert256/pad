@@ -8,7 +8,7 @@ The main PAD framework reference and documentation application.
 
 ```
 pad/
-├── _inits.pad       # Reference wrapper
+├── _inits.pad/.php  # The frame every PAD application shares, with the two pages as its menu
 ├── _install/        # Installation utilities
 ├── index.pad/.php   # PAD introduction page
 ├── hello.pad/.php   # Hello World example

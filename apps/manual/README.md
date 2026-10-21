@@ -14,10 +14,10 @@ manual/
 ├── _data/           # Documentation data
 ├── _functions/      # Documentation functions
 ├── _include/        # Documentation includes
-├── _inits.pad       # Manual wrapper
+├── _inits.pad/.php  # The frame every PAD application shares, the contents as its menu
 ├── _lang/           # Translation catalogs for the locale page
 ├── _layouts/        # Layout fixture for the layouts page
-├── _lib/            # Manual libraries
+├── _lib/            # Manual libraries - topics.php: the subjects by group, for the contents and the menu
 ├── _mail/           # Mail template fixture
 ├── _scripts/        # Manual scripts
 ├── _tags/           # Documentation tags

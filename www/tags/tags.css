@@ -1,59 +1,25 @@
-/* PAD tags - a page per built-in tag and the indexes over them.
-   Light and dark: the tokens below, switched by the system or by the toggle (data-theme). */
+/* PAD tags - a page per built-in tag and the indexes over them, inside the frame every PAD
+   application shares (apps/_common/_tags/padFrame.pad). */
+
+/* The palette is the frame's (www/_common/pad.css), in the names this file was written with;
+   the code blocks stay dark in both themes. */
 
 :root {
-  color-scheme: light;
-  --bg:        #f6f7fb;
-  --panel:     #ffffff;
-  --ink:       #14161f;
-  --ink-soft:  #4b4f60;
-  --ink-mute:  #80849a;
-  --line:      #e2e5ee;
-  --accent:    #2a6fd6;
-  --accent-bg: #e8f0fc;
+  --ink:       var(--text);
+  --ink-soft:  var(--soft);
+  --ink-mute:  var(--dim);
+  --accent-bg: var(--accent-soft);
   --code-bg:   #161925;
   --code-ink:  #d7dae6;
-  --shadow:    0 1px 2px rgba(20, 22, 31, .05), 0 8px 24px -12px rgba(30, 40, 90, .18);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg:        #0c0e14;
-    --panel:     #141720;
-    --ink:       #eef0f6;
-    --ink-soft:  #b4b8c9;
-    --ink-mute:  #7f8399;
-    --line:      #262a37;
-    --accent:    #5aa2f8;
-    --accent-bg: #172235;
-    --code-bg:   #0f1119;
-    --shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
-  }
+  :root:not([data-theme="light"]) { --code-bg: #0f1119; }
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg:        #0c0e14;
-  --panel:     #141720;
-  --ink:       #eef0f6;
-  --ink-soft:  #b4b8c9;
-  --ink-mute:  #7f8399;
-  --line:      #262a37;
-  --accent:    #5aa2f8;
-  --accent-bg: #172235;
-  --code-bg:   #0f1119;
-  --shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
-}
+:root[data-theme="dark"] { --code-bg: #0f1119; }
 
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-}
+.app-tags .frame-body { font-size: 15px; line-height: 1.6; }
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -64,53 +30,7 @@ code, pre, .name { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas,
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-/* ---------------------------------------------------------------- top bar */
-
-.topbar {
-  position: sticky; top: 0; z-index: 10;
-  background: color-mix(in srgb, var(--panel) 88%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-
-.topbar-inner {
-  max-width: 1180px; margin: 0 auto; padding: 10px 16px;
-  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-}
-
-.brand { display: flex; align-items: center; gap: 8px; color: var(--ink); font-size: 17px; }
-.brand:hover { text-decoration: none; }
-.brand-mark {
-  display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
-  background: var(--accent); color: #fff; font: 700 14px ui-monospace, monospace;
-}
-
-.menu { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; }
-.menu-link { padding: 5px 10px; border-radius: 6px; color: var(--ink-soft); font-weight: 500; }
-.menu-link:hover { background: var(--accent-bg); text-decoration: none; }
-.menu-link.is-active { background: var(--accent-bg); color: var(--accent); }
-
-.search input {
-  width: 200px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line);
-  background: var(--bg); color: var(--ink); font: inherit;
-}
-
-.theme {
-  width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line);
-  background: transparent; color: var(--ink-soft); cursor: pointer; display: grid; place-items: center;
-}
-.theme svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
-.theme .moon { display: none; }
-:root[data-theme="dark"] .theme .sun { display: none; }
-:root[data-theme="dark"] .theme .moon { display: block; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme .sun { display: none; }
-  :root:not([data-theme="light"]) .theme .moon { display: block; }
-}
-
 /* ---------------------------------------------------------------- page */
-
-.page { max-width: 1180px; margin: 0 auto; padding: 28px 16px 48px; }
 
 h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; letter-spacing: -.01em; }
 h2 { font-size: 21px; margin: 0 0 12px; }
@@ -118,7 +38,7 @@ h3 { font-size: 16px; margin: 18px 0 8px; }
 
 .lead { color: var(--ink-soft); font-size: 16px; max-width: 760px; }
 
-.foot { max-width: 1180px; margin: 0 auto; padding: 0 16px 32px; color: var(--ink-mute); font-size: 13px; }
+.foot { margin-top: 32px; color: var(--ink-mute); font-size: 13px; }
 
 .hero { padding: 12px 0 20px; }
 .stats { display: flex; gap: 24px; list-style: none; padding: 0; margin: 12px 0 0; color: var(--ink-soft); }
@@ -217,8 +137,6 @@ mark { background: #ffe58a; color: #14161f; border-radius: 2px; }
 @media (max-width: 760px) {
   .example-grid { grid-template-columns: minmax(0, 1fr); }
   .list li { grid-template-columns: 1fr; gap: 2px; }
-  .search input { width: 100%; }
-  .search { flex: 1 1 100%; }
 }
 
 /* ---------------------------------------------------------------- highlighting */

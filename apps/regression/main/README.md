@@ -10,7 +10,7 @@ fresh build that regenerates everything a build owns.
 
 ```
 main/
-├── _inits.pad/.php          # the menu every page carries - derived from the suite registry
+├── _inits.pad/.php          # the frame every PAD application shares; its menu derived from the suite registry
 ├── _guard.php               # Test, Build and record act for this machine's own requests only
 ├── _lib/regression.php      # the registry and the runner behind all eight suites
 ├── index.pad/.php           # the overview the application opens on - totals per suite

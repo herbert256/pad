@@ -15,7 +15,7 @@
 
   'use strict';
 
-  var boot = JSON.parse(document.body.getAttribute('data-boot') || '{}');
+  var boot = JSON.parse((document.querySelector('[data-boot]') || document.body).getAttribute('data-boot') || '{}');
   var csrf = (document.querySelector('meta[name="csrf-token"]') || {}).content || '';
   var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
   var MOD = isMac ? '⌘' : 'Ctrl+';
@@ -82,6 +82,11 @@
   }
 
   var settings = Object.assign({}, DEFAULTS, store('settings') || {});
+
+  // Light or dark is the choice every PAD application shares - the switch in the frame's bar,
+  // www/_common/pad.js - so the editor starts from it and keeps it when its own setting changes.
+
+  if (window.padTheme) settings.theme = window.padTheme.get();
 
   function saveSettings() { store('settings', settings); }
 
@@ -612,10 +617,17 @@
     E.editor.onDidChangeCursorPosition(function () { renderStatus(); });
     if (window.matchMedia)
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { if (settings.theme === 'auto') applySettings(); });
+    document.addEventListener('padtheme', function (e) {
+      if (e.detail === settings.theme) return;
+      settings.theme = e.detail;
+      saveSettings();
+      applySettings();
+    });
   }
 
   function applySettings() {
     if (!E.monaco) return;
+    if (window.padTheme && window.padTheme.get() !== settings.theme) window.padTheme.set(settings.theme);
     E.monaco.editor.setTheme(themeName());
     E.editor.updateOptions(editorOptions());
     document.documentElement.style.setProperty('--side-width', settings.sideWidth + 'px');

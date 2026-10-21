@@ -10,8 +10,8 @@ Demonstration and testing of PAD's mathematical sequence subsystem.
 sequence/
 ├── _data/           # Sequence data
 ├── _include/        # Sequence includes
-├── _inits.pad       # Sequence wrapper
-├── _inits.php       # Sequence initialization
+├── _inits.pad       # The frame every PAD application shares
+├── _inits.php       # Its menu: the application's pages
 ├── _lib/            # Sequence libraries
 ├── basic/           # Basic sequence examples (120+ sequences)
 ├── check/           # Sequence validation tests

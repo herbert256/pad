@@ -1,0 +1,239 @@
+/* PAD - the frame the PAD applications share: admin, edit, tags, pad, manual, reference,
+   sequence and regression (apps/_common/_tags/padFrame.pad). A static file: PAD never parses it.
+
+   The colours are custom properties - light and dark follow the system, or the choice the
+   frame's toggle keeps (data-theme on <html>, www/_common/pad.js). The --frame-* ones are the
+   frame's own and no application changes them, so the frame looks the same in every one;
+   the others are the palette the applications' pages build on, and an application may
+   redefine them for its own content - the editor does. */
+
+:root {
+  --frame-bg: #f5f6f8; --frame-panel: #fff; --frame-text: #1d2330; --frame-dim: #6b7280; --frame-line: #e3e6eb;
+  --frame-accent: #2563eb; --frame-accent-text: #fff;
+  --frame-side: #111827; --frame-side-text: #cbd5e1; --frame-side-dim: #64748b; --frame-side-hover: #1f2937;
+  --frame-side-line: #1f2937; --frame-menu: #1a2232;
+  --frame-width: 232px; --frame-height: 56px;
+
+  --bg: var(--frame-bg); --panel: var(--frame-panel); --text: var(--frame-text); --soft: #4b5563; --dim: var(--frame-dim);
+  --line: var(--frame-line); --accent: var(--frame-accent); --accent-text: var(--frame-accent-text);
+  --accent-soft: #e8effd; --head: #eef0f3; --code: #f3f4f6;
+  --side: var(--frame-side); --side-text: var(--frame-side-text); --side-dim: var(--frame-side-dim);
+  --ok: #15803d; --ok-bg: #dcfce7; --warn: #b45309; --warn-bg: #fef3c7; --bad: #b91c1c; --bad-bg: #fee2e2;
+  --shadow: 0 1px 2px rgba(20, 22, 31, .05), 0 8px 24px -12px rgba(30, 40, 90, .18);
+  --mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --frame-bg: #0f1218; --frame-panel: #171b23; --frame-text: #e5e7eb; --frame-dim: #9ca3af; --frame-line: #2a303b;
+    --frame-accent: #60a5fa; --frame-accent-text: #0b1020;
+    --frame-side: #0a0d12; --frame-side-hover: #1a202b; --frame-side-line: #1a202b; --frame-menu: #151b26;
+    --soft: #c0c6d0; --accent-soft: #172235; --head: #1d222b; --code: #11151c;
+    --ok: #4ade80; --ok-bg: #12301f; --warn: #fbbf24; --warn-bg: #33270b; --bad: #f87171; --bad-bg: #3a1414;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --frame-bg: #0f1218; --frame-panel: #171b23; --frame-text: #e5e7eb; --frame-dim: #9ca3af; --frame-line: #2a303b;
+  --frame-accent: #60a5fa; --frame-accent-text: #0b1020;
+  --frame-side: #0a0d12; --frame-side-hover: #1a202b; --frame-side-line: #1a202b; --frame-menu: #151b26;
+  --soft: #c0c6d0; --accent-soft: #172235; --head: #1d222b; --code: #11151c;
+  --ok: #4ade80; --ok-bg: #12301f; --warn: #fbbf24; --warn-bg: #33270b; --bad: #f87171; --bad-bg: #3a1414;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------- the frame */
+
+body.frame {
+  margin: 0;
+  display: grid;
+  grid-template-columns: var(--frame-width) minmax(0, 1fr);
+  min-height: 100vh;
+  font: 14px/1.5 var(--sans);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.frame *, .frame *::before, .frame *::after { box-sizing: border-box; }
+
+.frame a { color: var(--accent); text-decoration: none; }
+.frame a:hover { text-decoration: underline; }
+.frame .pad-icon { vertical-align: -3px; flex: none; }
+
+.frame-side {
+  position: sticky; top: 0; height: 100vh;
+  display: flex; flex-direction: column; min-width: 0;
+  background: var(--frame-side); color: var(--frame-side-text);
+  font: 14px/1.5 var(--sans);
+}
+
+/* the logo and the application menu under it */
+
+.frame-brand { position: relative; flex: none; }
+
+.frame-brand > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 9px;
+  height: var(--frame-height); padding: 0 18px;
+  color: #fff; font-size: 17px; white-space: nowrap;
+  border-bottom: 1px solid var(--frame-side-line);
+}
+.frame-brand > summary::-webkit-details-marker { display: none; }
+.frame-brand > summary:hover { background: var(--frame-side-hover); }
+.frame-brand > summary:focus-visible { outline: 2px solid var(--frame-accent); outline-offset: -2px; }
+.frame-brand > summary b { font-weight: 700; }
+.frame-brand > summary .frame-name { overflow: hidden; text-overflow: ellipsis; }
+.frame-brand > summary .pad-icon { margin-left: auto; color: var(--frame-side-dim); transition: transform .15s; }
+.frame-brand[open] > summary .pad-icon { transform: rotate(180deg); }
+
+.frame-logo {
+  display: inline-grid; place-items: center; flex: none;
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--frame-accent); color: var(--frame-accent-text);
+  font: 700 14px/1 var(--mono); letter-spacing: -1px;
+}
+
+.frame-apps {
+  position: absolute; z-index: 50; top: calc(var(--frame-height) - 4px); left: 10px;
+  width: 300px; max-height: calc(100vh - var(--frame-height)); overflow-y: auto;
+  padding: 6px; border-radius: 10px;
+  background: var(--frame-menu); border: 1px solid var(--frame-side-line);
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6);
+}
+.frame-apps a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 7px; color: var(--frame-side-text); }
+.frame-apps a:hover { background: var(--frame-side-hover); text-decoration: none; }
+.frame-apps a[aria-current="page"] { background: var(--frame-accent); color: var(--frame-accent-text); }
+.frame-apps a span { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+.frame-apps a b { font-weight: 600; }
+.frame-apps a small { color: var(--frame-side-dim); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.frame-apps a[aria-current="page"] small { color: inherit; opacity: .8; }
+.frame-apps .frame-head { margin: 8px 10px 2px; }
+
+/* the application's own menu */
+
+.frame-nav { flex: 1 1 auto; overflow-y: auto; padding: 8px 10px 16px; min-height: 0; }
+.frame-head { text-transform: uppercase; font-size: 11px; letter-spacing: .06em; color: var(--frame-side-dim); margin: 14px 10px 4px; }
+.frame-nav .frame-head:first-child { margin-top: 6px; }
+.frame-nav a { display: flex; gap: 8px; align-items: center; color: var(--frame-side-text); padding: 5px 10px; border-radius: 6px; }
+.frame-nav a:hover { background: var(--frame-side-hover); text-decoration: none; }
+.frame-nav a[aria-current="page"] { background: var(--frame-accent); color: var(--frame-accent-text); }
+
+.frame-foot { flex: none; border-top: 1px solid var(--frame-side-line); padding: 12px 20px; font-size: 13px; }
+.frame-foot .dim { color: var(--frame-side-dim); }
+.frame-foot form { margin: 6px 0 0; }
+.frame-foot button { background: none; border: 0; padding: 0; font: inherit; color: var(--frame-side-text); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.frame-foot button:hover { color: #fff; }
+
+/* the bar above the page */
+
+.frame-main { min-width: 0; display: flex; flex-direction: column; }
+
+.frame-top {
+  position: sticky; top: 0; z-index: 20; flex: none;
+  display: flex; align-items: center; gap: 14px;
+  height: var(--frame-height); padding: 0 28px;
+  background: color-mix(in srgb, var(--frame-panel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--frame-line);
+  color: var(--frame-text);
+}
+.frame-top form { margin: 0; min-width: 0; }
+.frame-top h1 { margin: 0; font-size: 18px; line-height: 1.25; font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+
+.frame-tools { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+.frame-tools a { color: var(--frame-dim); display: inline-flex; align-items: center; gap: 5px; }
+.frame-top input[type=search] {
+  width: 280px; max-width: 100%; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--frame-line);
+  background: var(--frame-bg); color: var(--frame-text); font: inherit;
+}
+
+.frame-theme {
+  display: grid; place-items: center; flex: none;
+  width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--frame-line); background: transparent; color: var(--frame-dim);
+}
+.frame-theme:hover { color: var(--frame-text); border-color: var(--frame-accent); }
+.frame-theme .pad-icon-moon { display: none; }
+:root[data-theme="dark"] .frame-theme .pad-icon-sun { display: none; }
+:root[data-theme="dark"] .frame-theme .pad-icon-moon { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .frame-theme .pad-icon-sun { display: none; }
+  :root:not([data-theme="light"]) .frame-theme .pad-icon-moon { display: inline; }
+}
+
+.frame-body { flex: 1 0 auto; padding: 24px 28px 48px; min-width: 0; overflow-x: auto; }
+
+/* A full-height application - the editor: the page fills what the bar leaves, no scrolling. */
+
+body.frame-fill { height: 100vh; overflow: hidden; }
+body.frame-fill .frame-main { height: 100vh; }
+body.frame-fill .frame-top { position: static; }
+body.frame-fill .frame-body { flex: 1 1 auto; padding: 0; min-height: 0; overflow: hidden; }
+
+.frame .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------------------------------------------------------------- the pages
+   Plain HTML as the older pages write it - tables with border=, bgcolor= and <font color=>,
+   PHP's highlight_string - made to read well in both themes. */
+
+.frame-body h1, .frame-body h2, .frame-body h3 { line-height: 1.25; }
+.frame-body [id] { scroll-margin-top: calc(var(--frame-height) + 12px); }
+.frame-body code, .frame-body pre, .frame-body kbd, .frame-body samp { font-family: var(--mono); font-size: 12.5px; }
+.frame-body hr { border: 0; border-top: 1px solid var(--line); }
+.frame-body hr[style] { border: 0 !important; border-top: 1px solid var(--line) !important; }
+
+.frame-body table[border] { border-collapse: collapse; }
+.frame-body table[border]:not([border="0"]) > * > tr > th,
+.frame-body table[border]:not([border="0"]) > * > tr > td,
+.frame-body table[border]:not([border="0"]) > tr > th,
+.frame-body table[border]:not([border="0"]) > tr > td { border: 1px solid var(--line); }
+.frame-body table[align="center"] { margin-left: 0; margin-right: 0; }
+.frame-body th[bgcolor], .frame-body td[bgcolor] { background: var(--head); color: var(--text); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .frame-body font[color="black" i],
+  :root:not([data-theme="light"]) .frame-body [style*="color: #000000" i] { color: var(--text) !important; }
+  :root:not([data-theme="light"]) .frame-body font[color="red" i],
+  :root:not([data-theme="light"]) .frame-body [style*="color: #DD0000" i] { color: #ff8a80 !important; }
+  :root:not([data-theme="light"]) .frame-body font[color="green" i],
+  :root:not([data-theme="light"]) .frame-body [style*="color: #007700" i] { color: #86d993 !important; }
+  :root:not([data-theme="light"]) .frame-body font[color="blue" i],
+  :root:not([data-theme="light"]) .frame-body [style*="color: #0000BB" i] { color: #82b8ff !important; }
+  :root:not([data-theme="light"]) .frame-body font[color="purple" i] { color: #d3a8ff !important; }
+  :root:not([data-theme="light"]) .frame-body [style*="color: #FF8000" i] { color: #ffb86b !important; }
+  :root:not([data-theme="light"]) .frame-body [style*="background: #f0f0f0" i],
+  :root:not([data-theme="light"]) .frame-body [style*="background: #f0f8ff" i] { background: var(--code) !important; }
+}
+
+:root[data-theme="dark"] .frame-body font[color="black" i],
+:root[data-theme="dark"] .frame-body [style*="color: #000000" i] { color: var(--text) !important; }
+:root[data-theme="dark"] .frame-body font[color="red" i],
+:root[data-theme="dark"] .frame-body [style*="color: #DD0000" i] { color: #ff8a80 !important; }
+:root[data-theme="dark"] .frame-body font[color="green" i],
+:root[data-theme="dark"] .frame-body [style*="color: #007700" i] { color: #86d993 !important; }
+:root[data-theme="dark"] .frame-body font[color="blue" i],
+:root[data-theme="dark"] .frame-body [style*="color: #0000BB" i] { color: #82b8ff !important; }
+:root[data-theme="dark"] .frame-body font[color="purple" i] { color: #d3a8ff !important; }
+:root[data-theme="dark"] .frame-body [style*="color: #FF8000" i] { color: #ffb86b !important; }
+:root[data-theme="dark"] .frame-body [style*="background: #f0f0f0" i],
+:root[data-theme="dark"] .frame-body [style*="background: #f0f8ff" i] { background: var(--code) !important; }
+
+/* ---------------------------------------------------------------- narrow screens */
+
+@media (max-width: 800px) {
+  body.frame { grid-template-columns: minmax(0, 1fr); }
+  .frame-side { position: static; height: auto; }
+  .frame-nav { display: flex; gap: 2px; padding: 8px 10px; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
+  .frame-nav a { flex: none; }
+  .frame-nav .frame-head { display: none; }
+  .frame-top { padding: 0 16px; }
+  .frame-top input[type=search] { width: 160px; }
+  .frame-body { padding: 16px; }
+  body.frame-fill { height: auto; overflow: visible; }
+  body.frame-fill .frame-main { height: 100vh; }
+}

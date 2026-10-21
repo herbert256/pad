@@ -1,18 +1,3 @@
-{padOpen}
-
-{lines}
-  {nows}
-    {if $padPage eq $now}
-      <b>{$text@nows}</b>
-    @else@
-      <a href="?{$now}">{$text@nows}</a>
-    {/if}
-    {notLast} | {/notLast}
-  {/nows}
-{/lines}
-
-<h2>{$sequenceTitile}</h2>
-
-<p>@page@</p>
-
-{padClose}
+{common:padFrame}
+@page@
+{common:padFrameEnd}

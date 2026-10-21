@@ -41,7 +41,7 @@ The template structure mirrors the application flow. No routing, no controllers 
 pad/
 ├── pad/      # PAD framework core (template engine, tag processors, expression evaluator)
 ├── apps/     # PAD applications (each subdirectory is a self-contained app)
-├── www/      # Web server entry points (PHP entry points for each app)
+├── www/      # Web server entry points (PHP entry points for each app); www/_common/ the frame's CSS and JS
 ├── editors/  # Editor kits, the language server, the command-line renderer
 ├── docs/     # Documentation
 ├── wasm/     # PAD in the browser: wasm/build.php bundles the engine for www/wasm/ (PHP compiled to WebAssembly);
@@ -1529,6 +1529,29 @@ Wrap all pages with a common layout:
 
 The `@page@` placeholder is replaced with each page's content.
 
+### The frame of the PAD applications
+
+admin, edit, tags, pad, manual, reference, sequence and regression share one frame, from
+`_common`: a dark side with the `{}` logo and `PAD <app>` - a click opens the menu of the
+applications - the application's menu under it, and a bar with the title and the light/dark
+switch (kept for all of them, `www/_common/pad.js`) above the page. Their `_inits.pad`:
+
+```
+{common:padFrame}                                  # _common/_tags/padFrame.pad + .php
+  {slot 'head'}{asset 'admin.css', tag}{/slot}     # also 'title', 'tools', 'side', 'foot'
+{/common:padFrame}
+@page@
+{common:padFrameEnd}                               # _common/_include/padFrameEnd.pad
+```
+
+`$frameMenu` (rows of `head`, or `link`, `label`, `icon`, `current`) from `_inits.php` is the
+menu, `$title` the bar's title (`$skipTitle` leaves it out); `{common:padFrame fill}` for a
+page that fills the window. An application with `_common` on sets `$commonFramed = TRUE` so
+the `_common` wrapper leaves it the document. The stylesheet is `www/_common/pad.css`: the
+`--frame-*` properties are the frame's own, `--bg`, `--text`, `--accent` ... the palette the
+pages use - the old pages' `bgcolor=`, `<font color>` and `highlight_string` colours read in
+dark too.
+
 ---
 
 ## Common Patterns
@@ -2091,8 +2114,8 @@ See [REACT.md](docs/REACT.md) for complete React integration documentation inclu
 When creating documentation with examples:
 
 **Manual page** (`manual/topic.pad`) - Contains all explanatory text:
-- The title as `{meta title='...'}` on the first line - the `_common` wrapper prints it as
-  the page's one `<h1>` (from the file name when there is no meta); never an `<h1>` of its own
+- The title as `{meta title='...'}` on the first line - the frame's bar prints it as the
+  page's one `<h1>` (from the file name when there is no meta); never an `<h1>` of its own
 - Introduction and description
 - Section headings (`<h2>`, `<h3>`)
 - Explanatory paragraphs

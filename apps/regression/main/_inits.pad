@@ -1,24 +1,3 @@
-{padOpen}
-
-{lines}
-  {suites}
-    {if $name eq 'Test'}
-      | &nbsp;
-    {/if}
-    {if $name eq 'Build'}
-      | &nbsp;
-    {/if}
-    {if $now eq 1}
-      <b>{$name}</b>
-    @else@
-      <a href="{$link}">{$name}</a>
-    {/if}
-    {notLast} &nbsp; {/notLast}
-  {/suites}
-{/lines}
-
-<h1>{$title | replace ( '_', ' ') | ucfirst}</h1>
-
+{common:padFrame}
 @page@
-
-{padClose}
+{common:padFrameEnd}

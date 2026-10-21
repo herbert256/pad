@@ -21,15 +21,16 @@ cheat sheet with the syntax of every tag, and a search.
 | `cheatsheet.pad` | The syntax of every tag on one page |
 | `search.pad` | `?search&q=word` - the tags whose name, line, syntax or options hold every word |
 | `_lib/catalog.php` | The catalog, read from `tag/*.php`, and the rows of every index |
-| `_inits.pad`, `_inits.php` | The frame: the menu, the search box, the light/dark switch |
+| `_inits.pad`, `_inits.php` | The frame every PAD application shares (`_common/_tags/padFrame`), with this application's menu and the search box in its bar |
 | `tag/<name>.php` | What the indexes read: the line, the group, the form, the syntax, the parameters, the options, the related tags |
 | `tag/<name>.pad` | The longer description |
 | `tag/_inits.pad`, `tag/_exits.pad`, `tag/_exits.php` | The tag page around the description: syntax, parameters and options above; examples, related tags and the neighbours by name below |
 | `examples/<name>/<n>-<slug>.pad` | A live example - first line `{meta title='...', about='...'}`; with a paired `.php` for its data |
 | `examples/<name>/<n>-<slug>.src` | An example that is shown but never run - a redirect, an exit, a mail |
-| `_config/config.php` | Switches `_common` off: the application has a design of its own |
+| `_config/config.php` | Switches `_common` off - the frame is reached as `common:padFrame` - and fixes the timezone |
 
-The stylesheet and the small script are `www/tags/tags.css` and `tags.js`.
+The stylesheet is `www/tags/tags.css`; the frame's own, with the light/dark switch, is
+`www/_common/pad.css` and `pad.js`.
 
 ## Adding a tag
 

@@ -7,6 +7,7 @@
   // it was posted - padRequest and padValidate trim, and a space at the end of a password is
   // part of it.
 
+  $title      = 'Log in';
   $loginSetup = editUsers ( editStore () ) ? 0 : 1;
   $loginError = '';
   $loginHint  = ( $loginSetup and PHP_SAPI !== 'cli' and ! editThisMachine () ) ? 1 : 0;

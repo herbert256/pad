@@ -12,15 +12,18 @@
   $tagsGroupCnt = count ( array_unique ( array_column ( tagsCatalog (), 'group' ) ) );
   $tagsSearch   = '';
 
-  $tagsMenu = [];
+  // The menu of the frame (_common/_tags/padFrame.php). The pages show their own headings,
+  // and the frame's bar holds the search box instead of the title.
 
-  foreach ( [ 'index'      => 'Home',
-              'names'      => 'A-Z',
-              'groups'     => 'Groups',
-              'forms'      => 'Forms',
-              'options'    => 'Options',
-              'cheatsheet' => 'Cheat sheet' ] as $page => $label )
-    $tagsMenu [] = [ 'page' => $page, 'label' => $label, 'active' => $page == $padPage ];
+  $frameMenu = [];
+
+  foreach ( [ 'index'      => [ 'Home',        'home'   ],
+              'names'      => [ 'A-Z',         'list'   ],
+              'groups'     => [ 'Groups',      'grid'   ],
+              'forms'      => [ 'Forms',       'code'   ],
+              'options'    => [ 'Options',     'filter' ],
+              'cheatsheet' => [ 'Cheat sheet', 'file'   ] ] as $tagsPage => [ $tagsLabel, $tagsIcon ] )
+    $frameMenu [] = [ 'link' => "?$tagsPage", 'label' => $tagsLabel, 'icon' => $tagsIcon, 'current' => $tagsPage == $padPage ];
 
   $title = 'PAD tags';
 

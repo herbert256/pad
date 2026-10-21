@@ -9,27 +9,31 @@
 
   $adminSection = explode ( '/', $padPage ) [0];
 
-  $adminMenu = [];
+  // The menu of the frame (_common/_tags/padFrame.php) - only once logged in: the login
+  // page has the frame, with nothing in it but the way to the other applications.
 
-  foreach ( [
-    'Overview'    => [ 'index' => [ 'Dashboard', 'home' ],     'apps' => [ 'Applications', 'grid' ],
-                       'files' => [ 'Files', 'folder' ],        'search' => [ 'Search', 'search' ] ],
-    'Operations'  => [ 'console' => [ 'Console', 'terminal' ],  'maintenance' => [ 'Maintenance', 'power' ],
-                       'queues' => [ 'Queues', 'list' ],        'schedule' => [ 'Schedule', 'calendar' ] ],
-    'Diagnostics' => [ 'logs' => [ 'Logs', 'file' ],            'dumps' => [ 'Error dumps', 'alert' ],
-                       'mail' => [ 'Mail outbox', 'mail' ] ],
-    'System'      => [ 'storage' => [ 'Storage', 'database' ],  'php' => [ 'PHP', 'code' ],
-                       'settings' => [ 'Settings', 'settings' ], 'git' => [ 'Git', 'link' ],
-                       'users' => [ 'Users', 'users' ] ]
-  ] as $adminGroup => $adminItems ) {
+  $frameMenu = [];
 
-    $adminMenu [] = [ 'head' => $adminGroup, 'page' => '', 'label' => '', 'icon' => '', 'current' => 0 ];
+  if ( $adminIn )
+    foreach ( [
+      'Overview'    => [ 'index' => [ 'Dashboard', 'home' ],     'apps' => [ 'Applications', 'grid' ],
+                         'files' => [ 'Files', 'folder' ],        'search' => [ 'Search', 'search' ] ],
+      'Operations'  => [ 'console' => [ 'Console', 'terminal' ],  'maintenance' => [ 'Maintenance', 'power' ],
+                         'queues' => [ 'Queues', 'list' ],        'schedule' => [ 'Schedule', 'calendar' ] ],
+      'Diagnostics' => [ 'logs' => [ 'Logs', 'file' ],            'dumps' => [ 'Error dumps', 'alert' ],
+                         'mail' => [ 'Mail outbox', 'mail' ] ],
+      'System'      => [ 'storage' => [ 'Storage', 'database' ],  'php' => [ 'PHP', 'code' ],
+                         'settings' => [ 'Settings', 'settings' ], 'git' => [ 'Git', 'link' ],
+                         'users' => [ 'Users', 'users' ] ]
+    ] as $adminGroup => $adminItems ) {
 
-    foreach ( $adminItems as $adminItem => [ $adminLabel, $adminIcon ] )
-      $adminMenu [] = [ 'head' => '', 'page' => $adminItem, 'label' => $adminLabel, 'icon' => $adminIcon,
-                        'current' => ( $adminSection == $adminItem
-                                       or ( $adminItem == 'apps' and $adminSection == 'application' ) ) ? 1 : 0 ];
+      $frameMenu [] = [ 'head' => $adminGroup ];
 
-  }
+      foreach ( $adminItems as $adminItem => [ $adminLabel, $adminIcon ] )
+        $frameMenu [] = [ 'link' => "?$adminItem", 'label' => $adminLabel, 'icon' => $adminIcon,
+                          'current' => ( $adminSection == $adminItem
+                                         or ( $adminItem == 'apps' and $adminSection == 'application' ) ) ];
+
+    }
 
 ?>

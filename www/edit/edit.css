@@ -174,35 +174,18 @@ body {
 
   /* ---------------------------------------------------------------- frame */
 
+  /* The shared frame (www/_common/pad.css) holds the editor: the side is the file tree, as
+     wide as it was dragged, the bar holds the application and the actions, and the page
+     below the bar is the work area and the status bar. */
+
+  body.app-edit { --frame-width: var(--side-width); }
+  body.app-edit.no-side { --frame-width: 64px; }
+
   .editor-page {
     display: grid;
-    grid-template-rows: 44px 1fr 24px;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 10px;
-    background: var(--bg-2);
-    border-bottom: 1px solid var(--line);
-    min-width: 0;
-  }
-
-  .brand { display: flex; align-items: center; gap: 8px; font-weight: 650; white-space: nowrap; }
-
-  .logo, .login-logo {
-    display: inline-grid;
-    place-items: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 7px;
-    font: 700 13px/1 var(--mono);
-    color: #fff;
-    background: linear-gradient(135deg, #8b3d8b, #0e7c7b);
-    letter-spacing: -1px;
+    grid-template-rows: minmax(0, 1fr) 24px;
+    height: 100%;
+    min-height: 0;
   }
 
   .app-button, .quick-button {
@@ -220,16 +203,7 @@ body {
   .app-button strong { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .quick-button { flex: 0 1 380px; justify-content: space-between; color: var(--muted); margin: 0 auto; }
   .app-button:hover, .quick-button:hover { border-color: var(--select-line); }
-  .top-actions { display: flex; gap: 2px; margin-left: auto; }
-
-  .main {
-    display: grid;
-    grid-template-columns: var(--side-width) 5px minmax(0, 1fr);
-    min-height: 0;
-  }
-
-  .no-side .main { grid-template-columns: 0 0 minmax(0, 1fr); }
-  .no-side .side, .no-side #sideGutter { visibility: hidden; }
+  .top-actions { display: flex; gap: 2px; }
 
   .gutter { background: transparent; position: relative; z-index: 2; }
   .gutter-x { cursor: col-resize; }
@@ -238,15 +212,30 @@ body {
   .dragging { user-select: none; }
   .dragging iframe { pointer-events: none; }
 
+  #sideGutter { position: absolute; top: 0; bottom: 0; right: -2px; width: 5px; z-index: 30; }
+
+  .no-side .files, .no-side #sideGutter, .no-side .frame-name, .no-side .frame-brand > summary > .pad-icon { display: none; }
+
   /* ---------------------------------------------------------------- the tree */
 
-  .side {
+  /* The tree stands in the frame's dark side, in both themes: its colours are the side's. */
+
+  .files {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
     min-width: 0;
     min-height: 0;
-    background: var(--panel);
-    border-right: 1px solid var(--line);
+    --text: var(--frame-side-text);
+    --muted: var(--frame-side-dim);
+    --hover: var(--frame-side-hover);
+    --line: var(--frame-side-line);
+    --bg-3: #0b0f16;
+    --select: #1e3a5f;
+    --select-line: #3b82f6;
+    --accent: #c695c6;
+    --accent-soft: #2e2536;
+    color: var(--text);
   }
 
   .side-tools { display: flex; gap: 2px; padding: 6px 6px 2px; }
@@ -896,7 +885,8 @@ body {
   .login-page {
     display: grid;
     place-items: center;
-    min-height: 100vh;
+    height: 100%;
+    overflow: auto;
     padding: 16px;
     background:
       radial-gradient(1200px 600px at 10% -10%, rgba(139, 61, 139, .18), transparent 60%),
@@ -913,8 +903,6 @@ body {
     box-shadow: var(--shadow);
   }
 
-  .login-box h1 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font-size: 20px; }
-  .login-logo { width: 34px; height: 34px; font-size: 15px; border-radius: 9px; }
   .login-intro { color: var(--muted); margin: 0 0 16px; }
   .login-error { color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, transparent); padding: 8px 10px; border-radius: 6px; margin: 0 0 12px; }
   .login-box form p { margin: 0 0 12px; }
@@ -943,13 +931,12 @@ body {
 
   /* ---------------------------------------------------------------- narrow screens */
 
-  @media (max-width: 760px) {
-    .quick-button span, .brand span:last-child { display: none; }
+  @media (max-width: 800px) {
+    .quick-button span { display: none; }
     .quick-button { flex: 0 0 auto; margin: 0; }
-    .main { grid-template-columns: 0 0 minmax(0, 1fr); }
-    .side, #sideGutter { visibility: hidden; }
-    body:not(.no-side) .main { grid-template-columns: min(80vw, 300px) 0 minmax(0, 1fr); }
-    body:not(.no-side) .side { visibility: visible; }
+    body.app-edit:has(.editor-page) { grid-template-columns: var(--frame-width) minmax(0, 1fr); --side-width: min(70vw, 280px); height: 100vh; overflow: hidden; }
+    body.app-edit:has(.editor-page) .frame-side { position: sticky; height: 100vh; }
+    body.app-edit .frame-top { padding: 0 10px; }
     .preview { position: absolute; inset: 0; width: auto; z-index: 5; }
     .center { position: relative; }
   }

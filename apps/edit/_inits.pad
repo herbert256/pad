@@ -1,0 +1,50 @@
+{common:padFrame fill}
+
+  {slot 'head'}
+    <meta name="robots" content="noindex">
+    <meta name="csrf-token" content="{csrf token}">
+    {asset 'edit.css', tag}
+  {/slot}
+
+  {slot 'title'}
+    {if $padPage eq 'index'}
+      <button type="button" class="app-button" id="appButton" title="Switch application (Alt+A)">
+        <span class="muted">app</span> <strong id="appName">…</strong> <span aria-hidden="true">&#9662;</span>
+      </button>
+      <button type="button" class="quick-button" id="quickButton" title="Go to file">
+        <span>Go to file…</span> <kbd id="quickKeys"></kbd>
+      </button>
+    {elseif $padPage eq 'login'}
+      <h1>{$title}</h1>
+    {/if}
+  {/slot}
+
+  {slot 'tools'}
+    {if $padPage eq 'index'}
+      <div class="top-actions">
+        <button type="button" class="btn ghost" id="saveButton" title="Save" aria-label="Save"></button>
+        <button type="button" class="btn ghost" id="previewButton" title="Preview (Alt+P)" aria-label="Preview"></button>
+        <button type="button" class="btn ghost" id="panelButton" title="Bottom panel" aria-label="Bottom panel"></button>
+        <button type="button" class="btn ghost" id="menuButton" title="More" aria-label="More" aria-haspopup="menu"></button>
+      </div>
+      <form method="post" action="?logout" id="logoutForm" hidden></form>
+    {/if}
+  {/slot}
+
+  {slot 'side'}
+    {if $padPage eq 'index'}
+      <div class="files" aria-label="Files">
+        <div class="side-tools" id="sideTools"></div>
+        <input type="search" class="tree-filter" id="treeFilter" placeholder="Filter files" aria-label="Filter files" spellcheck="false">
+        <div class="tree" id="tree" role="tree" aria-label="Files of the application"></div>
+        <input type="file" id="uploadInput" multiple hidden>
+      </div>
+      <div class="gutter gutter-x" id="sideGutter" title="Drag to resize, double-click to reset"></div>
+    {/if}
+  {/slot}
+
+{/common:padFrame}
+
+@page@
+
+{common:padFrameEnd}

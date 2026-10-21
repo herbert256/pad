@@ -71,7 +71,8 @@ settings in `_config/` files, `db()`'s verbs; signature help; hover; go to defin
   through the history, `clear` or Ctrl+L empties the screen. There is no terminal device:
   a command gets no input, and full-screen programs (vi, top, less) do not work. The `pad`
   command is on the PATH.
-- Light and dark, font size, tab size, word wrap, minimap, autosave (**⋯ → Settings**).
+- Light and dark - the choice every PAD application shares, the switch in the bar - font size,
+  tab size, word wrap, minimap, autosave (**⋯ → Settings**).
 
 **Debugging** - the **Debug** tab of the bottom panel, a step debugger for the PHP of a page
 through Xdebug:
@@ -193,3 +194,4 @@ suite's Other run lists its pages as *new* until they have answers.
 | `www/edit/pad-mode.js` | PAD for Monaco |
 | `www/edit/php-mode.js` | PHP completion for Monaco |
 | `www/edit/edit.css` | The look, light and dark |
+| `_inits.pad` | The frame every PAD application shares (`_common/_tags/padFrame`): the files in its side, the application and the actions in its bar |
