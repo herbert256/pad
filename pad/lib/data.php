@@ -85,9 +85,11 @@
 
       // A type word with no parser behind it used to end the request on a raw missing
       // include. Strict mode names it; the lenient walk falls back to sniffing the type
-      // from the data, the way an untyped {data} is read.
+      // from the data, the way an untyped {data} is read. A type is a word - type= is often a
+      // value, and as part of the include path ../../x with a value's name included and ran
+      // any .php file on the disk.
 
-      if ( ! padFileExists ( PAD . "data/$type.php" ) ) {
+      if ( ! is_string ( $type ) or ! preg_match ( '/^[a-z]+$/D', $type ) or ! padFileExists ( PAD . "data/$type.php" ) ) {
 
         global $padCheckSyntax;
 
