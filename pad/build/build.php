@@ -81,11 +81,18 @@
 
   // Strict mode reads the assembled source for construct typos: an @word@ that names no
   // file in pad/constructs/ renders as nothing anywhere, silently. What sits between
-  // {ignore} tags is the author saying hands off, so it stays out of the scan.
+  // {ignore} tags is the author saying hands off, so it stays out of the scan - written with
+  // whitespace control too, {~ignore~}, and so does a {highlight} sample, code shown as it
+  // stands, and the content of a pair carrying the ignore option, {markdown ignore}: only
+  // the plain {ignore} was skipped, and a sample showing a placeholder, "Hello @name@",
+  // failed as "there is no @name@ construct".
 
   if ( $padCheckSyntax ) {
 
-    $padBuildScan = preg_replace ( '/\{ignore\}.*?\{\/ignore\}/s', '', $padBase [$pad] );
+    $padBuildScan = preg_replace ( [
+      '/\{~?(ignore|highlight)(?=[\s}~|])[^{}]*\}.*?\{~?\/\1(?=[\s}~|])[^{}]*\}/s',
+      '/\{~?([A-Za-z][\w:]*)\s[^{}]*\bignore\b[^{}]*\}.*?\{~?\/\1(?=[\s}~|])[^{}]*\}/s'
+    ], '', $padBase [$pad] );
 
     if ( preg_match_all ( '/@([a-zA-Z][a-zA-Z0-9]*)@/', $padBuildScan, $padBuildCon ) )
       foreach ( array_unique ( $padBuildCon [1] ) as $padBuildOne )
