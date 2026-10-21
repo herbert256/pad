@@ -1,7 +1,7 @@
 <?php
 
   // Implements content="name": resolves the name through get/content.php - content store, app
-  // _include file, app page, or the tag rendered as a function - and returns the text.
+  // _include file or app page, never a tag or a PHP function - and returns the text.
   //
   // Included by level/go.php, which merges the returned text into the level's content.
 

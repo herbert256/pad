@@ -56,6 +56,14 @@
     if ( isset ( $memo [$key] ) )
       return $memo [$key];
 
+    // Every caller hands it a name - a tag, a snippet, a page, a function - never a path: a
+    // .. segment, a backslash or a NUL climbed out of the application, and content=$v with
+    // ../../x found and ran any .php the walk reached.
+
+    if ( str_contains ( $check, "\0" ) or str_contains ( $check, '\\' )
+         or ( str_contains ( $check, '..' ) and in_array ( '..', explode ( '/', $check ), TRUE ) ) )
+      return $memo [$key] = FALSE;
+
     foreach ( padDirs () as $value )
       if ( padCheck ( APP2 . "$value$check" ) )
         return $memo [$key] = $value . $check ;
