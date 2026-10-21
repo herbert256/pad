@@ -75,6 +75,35 @@
 
   }
 
-  return include PAD . "functions/$name.php";
+  // A field inside a quoted literal - {echo 'Re: {$subject}' | url} - reaches the function
+  // with its syntax characters as the stand-ins of padProtect (lib/encoding.php), which the
+  // page's exit puts back: url wrote %EE%80%AC for the comma, escape('js') \uE02C, and
+  // contains(','), after(',') and replace(', ', ...) never found it. The function is handed
+  // the characters, and what it answers is protected again, so nothing a value brought
+  // becomes code on the way. Not over an opening pipe's template text - its tags masked by
+  // padPipeMarks - whose own quotes would come back as stand-ins - and not for markdown and
+  // highlight, which escape every stand-in as the character it will be and read none of
+  // them as their syntax: a quote's stand-in from the request is no title delimiter.
+
+  $padFnStand = FALSE;
+
+  if ( is_string ( $value ) and str_contains ( $value, "\xEE" ) and ! str_contains ( $value, padPipeMarks () [0] )
+       and ! in_array ( $name, [ 'markdown', 'highlight' ], TRUE ) ) {
+    $padFnText  = padUnprotect ( $value );
+    $padFnStand = ( $padFnText !== $value );
+    $value      = $padFnText;
+  }
+
+  if ( is_array ( $parm ) and ! in_array ( $name, [ 'markdown', 'highlight' ], TRUE ) )
+    foreach ( $parm as $padFnKey => $padFnOne )
+      if ( is_string ( $padFnOne ) and str_contains ( $padFnOne, "\xEE" ) ) {
+        $parm [$padFnKey] = padUnprotect ( $padFnOne );
+        if ( $parm [$padFnKey] !== $padFnOne )
+          $padFnStand = TRUE;
+      }
+
+  $padFnResult = include PAD . "functions/$name.php";
+
+  return ( $padFnStand and is_string ( $padFnResult ) ) ? padProtect ( $padFnResult ) : $padFnResult;
 
 ?>
