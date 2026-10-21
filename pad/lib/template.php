@@ -207,7 +207,25 @@
 
   function padCheckTag ($tag, $string) {
 
-    return padPairBalanced ( $string, $tag );
+    return padPairBalanced ( $string, $tag ) and padTextFree ( $string );
+
+  }
+
+  // The pairs whose content is text, not template: what {ignore} wraps and a {highlight}
+  // sample. A branch marker inside one - {ignore}{else}{/ignore}, a {when} in a sample - is
+  // that text, and belongs to no tag: it was taken by the {if}, {case} or condition tag
+  // around it, which cut its content there and left "the pair {ignore} never closes". The
+  // @else@ split already looks past them (padOpenCloseList balances every pair).
+
+  const padTextPairs = [ 'ignore', 'highlight' ];
+
+  function padTextFree ( $string ) {
+
+    foreach ( padTextPairs as $tag )
+      if ( ! padPairBalanced ( $string, $tag ) )
+        return FALSE;
+
+    return TRUE;
 
   }
 
@@ -242,7 +260,7 @@
       if ( ! padPairBalanced ( $string, $tag ) )
         return FALSE;
 
-    return TRUE;
+    return padTextFree ( $string );
 
   }
 
