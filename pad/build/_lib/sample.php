@@ -9,7 +9,7 @@
   //                   else the capture under DATA/samples/; NULL when there is none
   // padSampleUse      makes the sample's entries variables - not an engine name
   // padSampleBefore   the variables before the PHP runs, for padSampleAfter to compare
-  // padSampleAfter    keeps what the PHP made or changed
+  // padSampleAfter    keeps what the PHP made or changed, and what the page returned
   // padSampleWrite    writes the capture at the end of the request
 
   function padSampleName ( $page ) {
@@ -69,11 +69,19 @@
 
   }
 
-  function padSampleAfter ( $before ) {
+  function padSampleAfter ( $before, $return = TRUE ) {
 
     global $padSampleData;
 
     $padSampleData = [];
+
+    // What the page's PHP returned when it decides the page: the rows of a page that
+    // returns its data, FALSE for its @else@ half, NULL for no page - kept under a key no
+    // variable can have, which build/page.php hands back as the page's return when the
+    // sample is used.
+
+    if ( is_array ( $return ) or $return === FALSE or $return === NULL )
+      $padSampleData ['@return'] = $return;
 
     foreach ( $GLOBALS as $name => $value ) {
 

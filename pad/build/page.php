@@ -57,8 +57,12 @@
     $padSampleData = $padBuildSample;
     padSampleUse ( $padSampleData );
 
-    $padCallPHP   = TRUE;
-    $padBuildCall = TRUE;
+    // What the page's PHP returned - its rows, FALSE for the @else@ half - stands in the
+    // sample as @return, which no variable can be named: a page returning its data
+    // previewed one empty occurrence.
+
+    $padCallPHP   = array_key_exists ( '@return', $padBuildSample ) ? $padBuildSample ['@return'] : TRUE;
+    $padBuildCall = $padCallPHP;
 
   } else {
 
@@ -148,7 +152,7 @@
   }
 
   if ( $padBuildCapture )
-    padSampleAfter ( $padBuildBefore );
+    padSampleAfter ( $padBuildBefore, $padBuildCall );
 
   $padSrcPage = [];
 

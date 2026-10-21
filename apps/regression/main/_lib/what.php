@@ -17,6 +17,8 @@
       'error/dump'                => 'The {dump} tag, which stops the request on the engine state dump',
       'misc/trace'                => 'The {trace} tag wrapping a scope in the execution trace',
       'noted/frames'              => 'An @page@ inside a comment of a wrapper marks nothing - one beside the real marker, and one in a wrapper that has no other',
+      'sample/use_rows'           => 'The designer preview gives a page that returns its rows the @return of its sample',
+      'sample/capture_rows'       => 'A capture keeps what the page returned as @return',
       'misc/react'                => 'The {reactData} tag over a static provider, and the @providers reference reading the parked result back',
       'select/support/prefix'     => 'The select: prefix spelling of a declared table, which also says the word the reference matcher looks for',
       'select/demo/options'       => 'Every option a declared table takes on the tag - where, order, fields, group, having, rollup, distinctrow, db and union - one labelled line each over the staff table',
