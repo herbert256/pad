@@ -18,16 +18,30 @@
 
   function padLocaleNormal ( $locale ) {
 
-    $locale = str_replace ( '-', '_', trim ( (string) $locale ) );
+    // The charset or modifier of the form setlocale takes - nl_NL.UTF-8, de_DE@euro - is no
+    // part of the language: kept, the locale was no locale at all and no catalog was read.
+
+    $locale = str_replace ( '-', '_', preg_replace ( '/[.@].*$/s', '', trim ( (string) $locale ) ) );
 
     // A region is written in capitals - nl_NL, es_419 - and a script, four letters, with one
     // - zh_Hant, sr_Latn - as the catalog files are named: upper-cased, zh_Hant was looked
     // for as zh_HANT.json, which a file system that tells cases apart does not have.
+    //
+    // A script may have a region behind it - zh_Hant_TW, sr_Latn_RS - which made the locale
+    // no locale at all: neither zh_Hant_TW.json nor zh.json was read, and listed in
+    // $padLocales it was never chosen.
 
-    if ( preg_match ( '/^([a-zA-Z]{2,3})(?:_([a-zA-Z0-9]{2,4}))?$/', $locale, $match ) )
-      return strtolower ( $match [1] ) . ( isset ( $match [2] ) ? '_' . ( strlen ( $match [2] ) == 4 ? ucfirst ( strtolower ( $match [2] ) ) : strtoupper ( $match [2] ) ) : '' );
+    if ( ! preg_match ( '/^([a-zA-Z]{2,3})(?:_([a-zA-Z0-9]{2,4}))?(?:_([a-zA-Z]{2}|[0-9]{3}))?$/', $locale, $match ) )
+      return '';
 
-    return '';
+    if ( isset ( $match [3] ) and ! preg_match ( '/^[a-zA-Z]{4}$/', $match [2] ) )
+      return '';
+
+    $part = fn ( $one ) => strlen ( $one ) == 4 ? ucfirst ( strtolower ( $one ) ) : strtoupper ( $one );
+
+    return strtolower ( $match [1] )
+         . ( ( $match [2] ?? '' ) !== '' ? '_' . $part ( $match [2] ) : '' )
+         . ( isset ( $match [3] ) ? '_' . strtoupper ( $match [3] ) : '' );
 
   }
 
@@ -38,14 +52,29 @@
     if ( $locale === '' )
       return [];
 
-    $list = [ $locale ];
+    // The whole tag, then the language with its script, then with its region - zh_Hant_TW,
+    // zh_Hant, zh_TW - then the language alone; each also with dashes, as a catalog may be
+    // named.
 
-    if ( str_contains ( $locale, '_' ) ) {
-      $list [] = str_replace ( '_', '-', $locale );
-      $list [] = substr ( $locale, 0, strpos ( $locale, '_' ) );
+    $parts = explode ( '_', $locale );
+    $tags  = [ $locale ];
+
+    if ( count ( $parts ) == 3 ) {
+      $tags [] = $parts [0] . '_' . $parts [1];
+      $tags [] = $parts [0] . '_' . $parts [2];
     }
 
-    return $list;
+    $list = [];
+
+    foreach ( $tags as $tag ) {
+      $list [] = $tag;
+      $list [] = str_replace ( '_', '-', $tag );
+    }
+
+    if ( count ( $parts ) > 1 )
+      $list [] = $parts [0];
+
+    return array_values ( array_unique ( $list ) );
 
   }
 
@@ -65,7 +94,9 @@
     if ( $language === '' )
       return '';
 
-    $tries = [];
+    // The whole tag first: a listed zh_Hant_TW is what zh-Hant-TW asks for.
+
+    $tries = [ padLocaleNormal ( $wanted ) ];
 
     foreach ( array_slice ( $parts, 1, 2 ) as $part )
       $tries [] = padLocaleNormal ( $parts [0] . '_' . $part );
