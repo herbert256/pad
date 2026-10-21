@@ -5,6 +5,13 @@
   // EUR, the locale to the request's $padLocale. Without PHP's intl extension the amount is
   // written with two decimals and the code behind it.
 
+  // An empty value - a NULL price column - is no amount and no mistake of the template: it
+  // answers empty, as ago does for a date. It ended the page under the strict check and
+  // was written as a price of zero without it.
+
+  if ( $value === '' or $value === NULL )
+    return '';
+
   $padCurCode   = strtoupper ( trim ( (string) ( $parm [0] ?? 'EUR' ) ) ) ?: 'EUR';
   $padCurLocale = padLocaleOf ( $parm [1] ?? '' );
   $padCurAmount = is_numeric ( $value ) ? (float) $value : 0.0;
