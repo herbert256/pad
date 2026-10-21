@@ -46,8 +46,13 @@
     if ( ! count ( (array) $padExpose ) and $padCheckSyntax )
       padError ( "a json answer is the variables \$padExpose names, and it names none" );
 
+    // A byte that is no UTF-8 - a latin1 database or file - becomes U+FFFD, as the HTML page
+    // shows it: partial output made the whole value null, with no error, which a client
+    // cannot tell from a real null.
+
     $json = json_encode ( (object) padExposeData (), JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR
-                                                   | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
+                                                   | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+                                                   | JSON_INVALID_UTF8_SUBSTITUTE );
 
     return ( $json === FALSE ) ? '{}' : $json;
 
