@@ -7,6 +7,15 @@
   // Reached from types/content.php, the content= option and options/_go/reset.php (else=,
   // null=, notOk=); the return value of the include is the content.
 
+  // A number is the name it writes - content=$n with an int from PHP names what a written
+  // content=5 names - and anything else that is no text, the bare option {e else} among
+  // them, names nothing.
+
+  if ( is_int ( $padGetName ) or is_float ( $padGetName ) )
+    $padGetName = (string) $padGetName;
+  elseif ( ! is_string ( $padGetName ) )
+    return '';
+
   if ( isset ( $padContentStore [$padGetName] ) )
     return $padContentStore [$padGetName];
 
@@ -16,7 +25,7 @@
   // any file on the disk - was included and run in the request (padAppCheck refuses the
   // same names for every lookup).
 
-  if ( ! is_string ( $padGetName ) or str_contains ( $padGetName, "\0" ) or str_contains ( $padGetName, '\\' )
+  if ( str_contains ( $padGetName, "\0" ) or str_contains ( $padGetName, '\\' )
        or str_starts_with ( $padGetName, '/' ) or in_array ( '..', explode ( '/', $padGetName ), TRUE ) )
     return padError ( "the content name '" . padMakeSafe ( $padGetName, 60 ) . "' leaves the application - content=, else=, null= and notOk= name a content block, a snippet or a page" );
 
