@@ -136,6 +136,14 @@
       $padCurrent [$i] = [];
     }
 
+    // A {stack} of the page or its frame is filled from what the page pushed - not from the
+    // pushes of the page that ended - and a {toc} from its own headings, as the page's own
+    // answer is (exits/exits.php): written out as it was, the marker of a stack stood in
+    // the answer and what the page had pushed was lost.
+
+    $stacks                    = $GLOBALS ['padStackStore'] ?? [];
+    $GLOBALS ['padStackStore'] = [];
+
     set_error_handler ( 'padErrorThrow' );
 
     ob_start ();
@@ -144,7 +152,7 @@
 
       $GLOBALS ['padSectionsNext'] = TRUE;
 
-      $out = padUnprotect ( padUnescape ( padCode ( $source ) ) );
+      $out = padTocFill ( padUnprotect ( padUnescape ( padStackFill ( padCode ( $source ) ) ) ) );
 
     } catch ( Throwable $e ) {
 
@@ -162,6 +170,8 @@
 
       foreach ( $rows as $i => $row )
         $padCurrent [$i] = $row;
+
+      $GLOBALS ['padStackStore'] = $stacks;
 
       $padErrorTry      = $tryWas;
       $padErrorPageBusy = FALSE;

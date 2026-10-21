@@ -16,9 +16,9 @@ page sees its own values, never the row of a loop the request failed in.
 | File | Description |
 |------|-------------|
 | `index.php/pad` | Fetches every error and shows status, type, X-Content-Type-Options and body |
-| `_errors/_inits.pad` | The frame of the error pages |
+| `_errors/_inits.pad` | The frame of the error pages, with a `{stack}` the 4xx page pushes to |
 | `_errors/404.pad`, `403.pad`, `500.pad` | The pages of one status each - the 404 and 403 with an `{if}`, answered before the hand-over to the application |
-| `_errors/4xx.pad` | Every other client error |
+| `_errors/4xx.pad` | Every other client error - it pushes a note to the stack of the frame |
 | `_errors/418.pad` | A page that fails: the plain line answers |
 | `admin/_guard.php`, `admin/panel.pad` | A guard that refuses |
 | `slow.php`, `gone.php`, `teapot.php` | `padAbort` with 429, 410 and 418 |
