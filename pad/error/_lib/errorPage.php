@@ -100,6 +100,16 @@
     if ( (int) $status == 500 and function_exists ( 'padID' ) )
       $GLOBALS ['id'] = padID ();
 
+    // A page not found, maintenance's 503 and a post without its CSRF token are answered
+    // before the hand-over to the application (inits/app.php) defines APP2, the root the
+    // lookup of every tag, snippet and option walks the directories from: the first tag of
+    // the page - an {if}, an {echo} - failed on "Undefined constant APP2", and the plain line
+    // answered for every error page but one of fields alone. The request ends with this
+    // page, so the hand-over it marks has nothing left to change.
+
+    if ( ! defined ( 'APP2' ) )
+      define ( 'APP2', substr ( APP, 0, -1 ) );
+
     // An error inside the page comes back as a throwable (padErrorHook, padErrorHandler)
     // instead of being reported, the try guards stand aside, and whatever the pass echoes
     // is dropped.
