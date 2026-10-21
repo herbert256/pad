@@ -110,7 +110,20 @@
     foreach ( array_keys ( $padStackStore ?? [] ) as $name )
       $markers [ padStackMarker ( $name ) ] = padStackText ( $name );
 
-    $output = strtr ( $output, $markers );
+    // A stack's text can hold the marker of another - a push of head markup with a {stack}
+    // of its own: filled again while one is left, as many rounds as there are stacks, so a
+    // stack pushed into itself ends. One pass left it to the line below, which took it for
+    // a stack nothing pushed to, and the css stack of {push 'head'}{stack 'css'}{/push} was
+    // lost.
+
+    for ( $round = 0; $round <= count ( $markers ); $round++ ) {
+
+      $output = strtr ( $output, $markers );
+
+      if ( ! array_filter ( array_keys ( $markers ), fn ( $marker ) => str_contains ( $output, $marker ) ) )
+        break;
+
+    }
 
     // A stack nothing pushed to prints nothing.
 
