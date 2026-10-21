@@ -152,8 +152,15 @@
 
   $padVarEnd = ( in_array ( $padFirst, [ '$', '#' ], TRUE ) or ( $padFirst == '&' and is_string ( $padVal ) ) );
 
+  // The language of highlight may be a field as well as a quoted word - highlight($lang),
+  // the language of a row: the built-in escapes every piece of the value whatever language
+  // it is given, and an argument that is one name or one quoted word cannot carry anything
+  // past it. Only the quoted word counted, so {$code | highlight($lang)} printed the whole
+  // stylesheet and markup as escaped text. An argument that is more - an expression, a
+  // second call - keeps the chain, as before.
+
   $padVarBuiltIn = $padVarEnd
-    && preg_match ( '/(^|\|)\s*(pad:)?(markdown\s*(\(\s*\))?|highlight\s*(\(\s*([\'"])\w+\6\s*\))?)\s*$/', $padVarOpts, $padVarMatch )
+    && preg_match ( '/(^|\|)\s*(pad:)?(markdown\s*(\(\s*\))?|highlight\s*(\(\s*(([\'"])\w+\7|\$[\w.@]+)\s*\))?)\s*$/', $padVarOpts, $padVarMatch )
     && ( $padVarMatch [2] !== '' or ! padAppFunctionCheck ( substr ( $padVarMatch [3], 0, 1 ) == 'm' ? 'markdown' : 'highlight' ) );
 
   if ( $padVarEnd and ! $padVarBuiltIn )
