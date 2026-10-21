@@ -10,7 +10,10 @@
   // The name must be an application variable (padValidVar): {increment $padPage} counted
   // on the engine's own state.
 
-  $padField = padFieldName ( $padOpt [$pad] [0] );
+  // The raw text is trimmed, as every other tag reads its words: a blank before the closing
+  // brace, {increment $i }, stayed in the name and was refused as "not 'i '".
+
+  $padField = padFieldName ( trim ( $padOpt [$pad] [0] ) );
 
   if ( ! padValidVar ( $padField ) ) {
     padError ( "{increment} counts an application variable, not '$padField'" );
