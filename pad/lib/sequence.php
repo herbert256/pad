@@ -75,10 +75,14 @@
 
   }
 
+  // An end past the integer range is as far as the range goes, as from= and to= past it are
+  // (inits/limits.php): PHP's (int) of '1e400' is 0, so '1...1e400' drew from 0..1 - a 0 out
+  // of the range asked - and '-1e400...-5' from -5..0.
+
   function pqRandomBetween ( $from, $to ) {
 
-    $from = (int) $from;
-    $to   = (int) $to;
+    $from = ( $from >= PHP_INT_MAX ) ? PHP_INT_MAX : ( ( $from <= PHP_INT_MIN ) ? PHP_INT_MIN : (int) $from );
+    $to   = ( $to   >= PHP_INT_MAX ) ? PHP_INT_MAX : ( ( $to   <= PHP_INT_MIN ) ? PHP_INT_MIN : (int) $to   );
 
     if ( $from <= $to )
       return mt_rand ( $from, $to );
