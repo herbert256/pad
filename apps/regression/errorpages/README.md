@@ -8,7 +8,8 @@ status. The index fetches every kind and shows status, content type and body: a 
 not there (also `?sitemap.xml` and `?up` with those answers off, and `_errors/404` itself,
 which is no page), a guard's refusal, a post without its CSRF token, `padAbort` through the
 `4xx` page, a failing page's 500 - diagnostics are off, so every request counts as a
-visitor's - and an error page that fails itself, whose answer is the plain line.
+visitor's - and an error page that fails itself, whose answer is the plain line. An error
+page sees its own values, never the row of a loop the request failed in.
 
 ## Files
 
@@ -22,5 +23,7 @@ visitor's - and an error page that fails itself, whose answer is the plain line.
 | `admin/_guard.php`, `admin/panel.pad` | A guard that refuses |
 | `slow.php`, `gone.php`, `teapot.php` | `padAbort` with 429, 410 and 418 |
 | `broken.pad` | A page that fails: the 500 page |
+| `rowbroken.php/pad` | A page that fails inside a loop whose rows have an id and a status: the 500 page shows the request's |
+| `rowgone.php/pad`, `_tags/refuse.php` | `padAbort` (410) from a tag inside a loop whose row has a status and a message: the 4xx page shows the refusal's |
 | `about.pad` | A page that is there |
 | `_config/config.php` | `_common` off, CSRF on, diagnostics off |

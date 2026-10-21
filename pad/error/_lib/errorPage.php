@@ -109,6 +109,23 @@
     $padErrorTry      = FALSE;
     $level            = ob_get_level ();
 
+    // The pass opens on the level the request failed or was refused on, and a field is
+    // looked for in the rows of the levels around it before the globals above: inside a
+    // {users} whose rows have an id and a status, a visitor's 500 page quoted the row's id
+    // for the request's and showed its status, and a padAbort from a tag inside {products}
+    // showed the product's status and message - a row's private columns, to a visitor. The
+    // page answers the request, not a row of the page that ended: those rows are out of
+    // its sight while it renders, and put back after.
+
+    global $padCurrent;
+
+    $rows = [];
+
+    for ( $i = 1; $i <= $pad; $i++ ) {
+      $rows [$i]       = $padCurrent [$i] ?? [];
+      $padCurrent [$i] = [];
+    }
+
     set_error_handler ( 'padErrorThrow' );
 
     ob_start ();
@@ -132,6 +149,9 @@
         ob_end_clean ();
 
       restore_error_handler ();
+
+      foreach ( $rows as $i => $row )
+        $padCurrent [$i] = $row;
 
       $padErrorTry      = $tryWas;
       $padErrorPageBusy = FALSE;
