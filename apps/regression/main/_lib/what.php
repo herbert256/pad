@@ -81,6 +81,7 @@
       'request/a_json_body_address_is_refused' => 'An address posted as a JSON body is a request value - refused as a form post of it is',
       'request/json_feed'         => 'The fixture of request/a_json_body_address_is_refused, fetched bare: no address, nothing fetched',
       'request/upload_send'       => 'padUploadSend answering a stored file: text shown, the same as a download when asked, HTML always downloaded, a path out of DATA 404',
+      'request/a_stored_file_larger_than_the_memory_limit_is_sent_whole' => 'padUploadSend streams a stored file of sixteen megabytes whole from a request allowed ten more than it uses - it was read into one string, a 500 past memory_limit',
       'request/sent'              => 'The fixture of upload_send bare: the stored text, shown',
       'request/form_rules_post'   => 'Rules on the fields of the template, checked before the page-s PHP: a post that breaks them comes back refilled with its messages and is not padPosted, an unrendered field is checked too, the page-s own padValidate adds to them',
       'request/form_rules'        => 'The form rules fixture bare: an empty form, not processed',

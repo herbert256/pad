@@ -135,7 +135,18 @@
 
     $GLOBALS ['padSent'] = TRUE;
 
-    padFlushSend ( file_get_contents ( $path ) );
+    // Streamed from the disk, in constant memory: the file was read into one string first,
+    // so one larger than memory_limit - a 200 MB upload, a grown SQLite database - was a
+    // 500 "Allowed memory size exhausted", and every download held its whole file. The
+    // buffers are gone (padEmptyBuffers above) and the length is sent, so it goes out as it
+    // is read.
+
+    while ( ob_get_level () )
+      ob_end_clean ();
+
+    readfile ( $path );
+
+    flush ();
 
     padExit ( 200 );
 
