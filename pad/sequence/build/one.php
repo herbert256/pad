@@ -70,9 +70,13 @@
 
     } else {
 
-      // The next value of the counter, while it is within to=.
+      // The next value of the counter, while it is within to=. A counter that is no finite
+      // number is within nothing: tested by the negated comparison alone, a NAN went through
+      // under opcache, which reads ! ( $pqGo <= $pqTo ) as $pqGo > $pqTo - false for a NAN -
+      // where the command line stopped, and multiple=1e400, whose start is 0 * INF, walked
+      // NAN candidates over the web up to the try limit: a million with to=, 2.7 seconds.
 
-      if ( ! ( $pqGo <= $pqTo ) )
+      if ( ! ( $pqGo <= $pqTo ) or ( is_float ( $pqGo ) and ! is_finite ( $pqGo ) ) )
         break;
 
       $pqLoop = $pqGo;
