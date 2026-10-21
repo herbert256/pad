@@ -10,6 +10,12 @@
   // which level/setup.php had just initialised to 1, so the truncation point was a constant
   // - right whenever the loop happened to stand on key 1, wrong on any other row, and never
   // reached at all over string keys.
+  //
+  // The keys are compared as they are: both come from the same array, so they have its own
+  // key types, an int for "7" and a string for "007". Compared with ==, PHP took 7, "007" and
+  // "7.0" for one number: the walk marked the first such key as the current one and never
+  // dropped a later one that matched as well - a cease on the first row kept the second and
+  // the fourth.
 
   $padCeaseLevel = padFindContinueBreak ( $padParm );
 
@@ -17,7 +23,7 @@
 
   foreach ( $padData [$padCeaseLevel] as $padK => $padV )
 
-    if ( $padK == $padKey [$padCeaseLevel] )
+    if ( $padK === $padKey [$padCeaseLevel] )
 
       $padCease = TRUE;
 
