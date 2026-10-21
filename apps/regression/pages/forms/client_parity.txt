@@ -2324,6 +2324,144 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "zip",
+            "data": {
+                "zip": "12"
+            },
+            "server": "",
+            "client": {
+                "zip": {
+                    "label": "Zip",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[0-9]{,4}$/",
+                            ":label is not valid",
+                            "/^[0-9]{,4}$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "NL"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[A-Z]{2, 3}$/",
+                            ":label is not valid",
+                            "/^[A-Z]{2, 3}$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "year",
+            "data": {
+                "year": "1234"
+            },
+            "server": "",
+            "client": {
+                "year": {
+                    "label": "Year",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^\\d{ 4 }$/",
+                            ":label is not valid",
+                            "/^\\d{ 4 }$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "{ab}"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^{[a-z]+}$/",
+                            ":label is not valid",
+                            "/^{[a-z]+}$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "ab"
+            },
+            "server": "Code is not valid",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^{[a-z]+}$/",
+                            ":label is not valid",
+                            "/^{[a-z]+}$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": ",{,2}"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[{,]\\{,2}$/",
+                            ":label is not valid",
+                            "/^[{,]\\{,2}$/"
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }

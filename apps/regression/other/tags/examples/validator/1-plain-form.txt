@@ -136,7 +136,24 @@
     if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
     if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
     if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    if (braces(body)) return null;
     try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+  }
+  function braces(body) {
+    var inClass = false;
+    for (var i = 0; i < body.length; i++) {
+      var c = body.charAt(i);
+      if (c === '\\') {
+        i++;
+      } else if (inClass) {
+        if (c === ']') inClass = false;
+      } else if (c === '[') {
+        inClass = true;
+        if (body.charAt(i + 1) === '^') i++;
+        if (body.charAt(i + 1) === ']') i++;
+      } else if (c === '{' && /^\{[ \t]*(\d+[ \t]*(,[ \t]*\d*)?|,[ \t]*\d+)[ \t]*\}/.test(body.slice(i)) && !/^\{\d+(,\d*)?\}/.test(body.slice(i))) return true;
+    }
+    return false;
   }
   function rule(name, arg, value, values, number) {
     if (Array.isArray(value)) {

@@ -206,7 +206,30 @@
     // class and [^] as any character - /^[^]]+$/ could never match and blocked the form.
     if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
     if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    if (braces(body)) return null;
     try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+  }
+
+  // Whether the pattern has a brace JavaScript does not read as a quantifier: PCRE2 10.43
+  // and later read {,4} as {0,4} and allow blanks inside the braces - {2, 3}, { 4 } - where
+  // JavaScript without u reads them as text, so regex:/^[0-9]{,4}$/ refused 12 the server
+  // takes and the form could not be sent. A brace in a class or escaped, and one that is
+  // text in both - {x}, the {L} of \p{L} - is no quantifier in either.
+  function braces(body) {
+    var inClass = false;
+    for (var i = 0; i < body.length; i++) {
+      var c = body.charAt(i);
+      if (c === '\\') {
+        i++;
+      } else if (inClass) {
+        if (c === ']') inClass = false;
+      } else if (c === '[') {
+        inClass = true;
+        if (body.charAt(i + 1) === '^') i++;
+        if (body.charAt(i + 1) === ']') i++;
+      } else if (c === '{' && /^\{[ \t]*(\d+[ \t]*(,[ \t]*\d*)?|,[ \t]*\d+)[ \t]*\}/.test(body.slice(i)) && !/^\{\d+(,\d*)?\}/.test(body.slice(i))) return true;
+    }
+    return false;
   }
 
   function rule(name, arg, value, values, number) {
