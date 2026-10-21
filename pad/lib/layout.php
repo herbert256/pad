@@ -44,10 +44,17 @@
 
     $extends = padLayoutExtends ( $text );
 
+    // The composed layout is the frame, with one @page@ where the page's rest goes, and that
+    // rest is the template - as with the _inits.pad and _exits.pad it replaces. Handed back
+    // whole as the template, with '@page@' for a frame, the layout was all the page's: a page
+    // whose PHP returned two rows rendered two <html> documents, one per row, and what its
+    // PHP echoed stood in front of the <html>.
+
     if ( $extends !== FALSE ) {
 
-      $frame    = '@page@';
-      $template = padLayoutUnmask ( padLayoutChain ( $text, $extends, $masks ), $masks );
+      $page     = '';
+      $frame    = padLayoutNoted ( padLayoutUnmask ( padLayoutChain ( $text, $extends, $masks, $page ), $masks ) );
+      $template = padLayoutUnmask ( $page, $masks );
 
       return;
 
@@ -81,7 +88,12 @@
   // layout it extends - or of the one that layout extends, when it has none - and a rest
   // of nothing but white space, a layout of blocks only, leaves that @page@ to the next.
 
-  function padLayoutChain ( $text, $extends, &$masks ) {
+  // The page's own rest is no part of what this composes: it comes back in $page, and a mark
+  // stands where it goes, which becomes the frame's one @page@.
+
+  function padLayoutChain ( $text, $extends, &$masks, &$page ) {
+
+    $mark = "\u{E0FC}";
 
     $chain = [ [ 'text' => $extends ['text'], 'name' => 'the page' ] ];
     $seen  = [];
@@ -145,6 +157,11 @@
       $rest = padLayoutFill ( $rests [$level], $defs, $used, TRUE );
       $hole = FALSE;
 
+      if ( $level == 0 ) {
+        $page = $rest;
+        $rest = $mark;
+      }
+
       for ( $up = $level + 1; $up <= $last and $hole === FALSE; $up++ )
         if ( str_contains ( $composed, padLayoutHole ( $up ) ) )
           $hole = padLayoutHole ( $up );
@@ -155,15 +172,23 @@
         $at       = strpos ( $composed, $hole );
         $composed = substr ( $composed, 0, $at ) . $rest . substr ( $composed, $at + strlen ( $hole ) );
       }
-      elseif ( trim ( $rest ) !== '' )
+      elseif ( trim ( $rest ) !== '' ) {
         $composed = trim ( $rest ) . $composed;
+        if ( $level == 0 )
+          $page = trim ( $page );
+      }
 
     }
 
-    // A @page@ nothing went into is empty - the page's own stays the text it was.
+    // A @page@ nothing went into is empty - the page's own stays the text it was: in its rest
+    // as it stands, in a block it overrides as text the frame's @page@ is not, the @ as its
+    // stand-in, which the page's exit turns back.
 
-    $composed = str_replace ( padLayoutHole ( 0 ), '@page@', $composed );
+    $page     = str_replace ( padLayoutHole ( 0 ), '@page@', $page );
+    $page     = preg_replace ( '/\x{E0FA}\d+\x{E0FB}/u', '', $page );
+    $composed = str_replace ( padLayoutHole ( 0 ), strtr ( '@page@', [ '@' => padProtectMap () ['@'] ] ), $composed );
     $composed = preg_replace ( '/\x{E0FA}\d+\x{E0FB}/u', '', $composed );
+    $composed = str_replace ( $mark, '@page@', $composed );
 
     if ( $GLOBALS ['padCheckSyntax'] )
       foreach ( $defs as $block => $list )
