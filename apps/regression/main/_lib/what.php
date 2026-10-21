@@ -61,6 +61,7 @@
       'fragments/helpers'         => 'The fixture for fragments/a_fragment_answers_without_the_developer_helpers: the three helpers on, a fragment with an image the output check names - fetched bare, its panel follows the page',
       'live/a_posting_form_in_a_live_answer_keeps_its_csrf_token' => 'A posting form in a {live} region under $padCsrf carries the token in the answer to an event as in the page',
       'live/form'                 => 'The fixture of live/a_posting_form_in_a_live_answer_keeps_its_csrf_token, fetched bare: the region, its form with the token',
+      'flush/a_tidy_marker_above_a_flush_is_taken_out' => 'An @tidy@ in the part a {flush} sends early is taken out, as from the rest of the page',
       'flush/a_toc_above_a_flush_lists_the_headings_below_it' => 'A {toc} in the part a {flush} would send holds every flush back: the toc lists the headings below it, no marker goes out',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',

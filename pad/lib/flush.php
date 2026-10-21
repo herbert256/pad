@@ -130,6 +130,11 @@
 
     $chunk = padNocacheStrip ( padUnprotect ( padUnescape ( padStackFill ( $chunk ) ) ) );
 
+    // The @tidy@ marker goes, as exits/tidy.php takes it out of the rest of the page - tidy
+    // itself is off once the page flushes, and the part sent early carried the marker's text.
+
+    $chunk = str_replace ( '@tidy@', '', $chunk );
+
     if ( $padCsrf ) {
 
       $chunk = padCsrfForms ( $chunk, TRUE, TRUE );
