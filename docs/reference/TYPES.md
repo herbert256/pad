@@ -60,8 +60,9 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 20. **action** - Sequence action
 21. **function** - PAD function (fallback)
 
-A field or array that exists only as a request value - a GET, POST or cookie value the page has
-not set since, held by no row - comes after all of them: a visitor's `?prime=x` never takes the
+A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
+(its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
+after all of them: a visitor's `?prime=x` never takes the
 place of the sequence, constant, `_data` file or function the template names, and is the field
 only when the template means nothing else by the name.
 

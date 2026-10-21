@@ -60,6 +60,11 @@
   // ?navigate=x made the demo's menu, read from _data/navigate.json, iterate the text x, and
   // ?strrev=X made the pipe | strrev answer X. Such a name gives way to every kind the
   // template can mean by it, and is the field only when nothing else is there.
+  //
+  // A variable the application's PHP names is the page's own, whatever it holds: $date =
+  // $date ?? '2000-01-01' with ?date=2026-01-01 keeps the request's value, and an assignment
+  // of the same value cannot be told from none by the value - {date} then printed the date
+  // pipe's answer, or the asked date, as the visitor sent it or not (padTypePageNamed).
 
   function padTypeAsked ( $item ) {
 
@@ -78,7 +83,38 @@
            or isset ( $padSetOcc [$i] [$item] ) or isset ( $padSetLvl [$i] [$item] ) )
         return FALSE;
 
-    return TRUE;
+    return ! padTypePageNamed ( $item );
+
+  }
+
+  // Whether the PHP this request ran in the page's own scope - the configuration, the guards,
+  // _inits.php, the page, _exits.php - names the variable: $name, or $GLOBALS ['name']. The
+  // files of the _ directories - _lib, _tags, _functions, _callbacks ... - hold functions and
+  // tags, whose $date is a local of their own. The text is read once, and again when more
+  // files were included since.
+
+  function padTypePageNamed ( $item ) {
+
+    static $text = '', $seen = 0, $root = NULL;
+
+    $files = get_included_files ();
+
+    if ( count ( $files ) != $seen ) {
+
+      $root ??= rtrim ( realpath ( APPS ) ?: APPS, '/' ) . '/';
+      $seen   = count ( $files );
+      $text   = '';
+
+      foreach ( $files as $file )
+        if ( str_starts_with ( $file, $root )
+             and ! preg_match ( '#(^|/)_(?!config/|common/)[^/]*/#', substr ( $file, strlen ( $root ) ) ) )
+          $text .= file_get_contents ( $file ) . "\n";
+
+    }
+
+    $name = preg_quote ( $item, '/' );
+
+    return (bool) preg_match ( '/\$' . $name . '\b|GLOBALS\s*\[\s*[\'"]' . $name . '[\'"]/', $text );
 
   }
 
