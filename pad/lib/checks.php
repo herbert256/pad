@@ -304,13 +304,15 @@
 
     // YAML without its --- start: a block of lines opening - past its # comments - with a
     // list item ('- name: a') or a mapping key ('name: a', 'rows:') read as CSV, one column
-    // named after the whole first line. A CSV header has its commas, a key line none.
+    // named after the whole first line. A CSV header has its commas, a key none: the comma is
+    // looked for in the key only, as the value of a key line may hold any text - 'city:
+    // Paris, France' was read as CSV, one row whose field was named 'city: Paris'.
 
     if ( str_contains ( $content, "\n" ) ) {
       $line = trim ( preg_replace ( '/^(\s*#[^\n]*\n)+/', '', $content ) );
       $line = strtok ( $line, "\n" );
       if ( preg_match ( '/^-(\s|$)/', $line )
-        or ( ! str_contains ( $line, ',' ) and preg_match ( '/^[\w"\'][^:]*:(\s|$)/', $line ) ) )
+        or preg_match ( '/^[\w"\'][^:,]*:(\s|$)/', $line ) )
         return 'yaml';
     }
 
