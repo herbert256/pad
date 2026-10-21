@@ -45,6 +45,14 @@
   if ( padSpliceInCode ( (string) $padHandParm ) )
     return padError ( "a value spliced into a where= is part of its code: put it in as \$name" );
 
+  // A where= is one condition, and a comma outside every bracket in it is a list written
+  // without its brackets: the evaluator joins the values on both sides (padEvalTopComma), and
+  // where='$dept in "IT", "HR"' tested $dept in "IT" joined with "HR" - true for every row,
+  // so every row was kept, in silence.
+
+  if ( $padCheckSyntax and ( $padWhereComma = padEvalTopComma ( (string) $padHandParm ) ) )
+    return padError ( "the , at position $padWhereComma of the where= stands outside brackets - a where= is one condition, and a list is written in brackets: \$dept in ('IT', 'HR')" );
+
   // The row stands with its key and its place as well: key@, current@, even@ and first@ read
   // $padKey and $padOccur, which kept what level/setup.php gave them - 1 and 0 - for every
   // row, so {ks where='key@ks ne "b"'} kept b and {xs where='even@xs'} every row. Under

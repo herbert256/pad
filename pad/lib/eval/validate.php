@@ -127,6 +127,57 @@
 
   }
 
+  // The one-based character position of the first comma of an expression that stands outside
+  // every string and bracket, or 0. The scanner drops such a comma and the values on both
+  // sides of it are joined, as {echo 'a','b'} prints ab; for an expression that is one
+  // condition - a where= - it is the mistake of a list written without its brackets:
+  // where='$dept in "IT", "HR"' tested $dept in "IT" joined with "HR", true for every row.
+  // Strings and printf formats are passed over as padEvalValidate passes them.
+
+  function padEvalTopComma ( $eval ) {
+
+    $text = padUnescape ( $eval );
+
+    if ( ! str_contains ( $text, ',' ) )
+      return 0;
+
+    if ( ( $segments = padEvalFormatSegments ( $text ) ) !== FALSE ) {
+      $text = '';
+      foreach ( $segments as $n => list ( $part, $format ) )
+        $text .= ( $n ? '|' : '' ) . ( $format ? str_repeat ( ' ', strlen ( $part ) ) : $part );
+    }
+
+    $quote = '';
+    $depth = 0;
+
+    for ( $i = 0, $len = strlen ( $text ); $i < $len; $i++ ) {
+
+      $one = $text [$i];
+
+      if ( $quote ) {
+        if     ( $one == '\\'   ) $i++;
+        elseif ( $one == $quote ) $quote = '';
+      } elseif ( $one == "'" or $one == '"' )
+        $quote = $one;
+      elseif ( $one == '|' and ( $text [$i+1] ?? '' ) == '|' )
+        $i++;
+      elseif ( $one == '|' and $depth ) {
+        for ( $from = $i + 1; $from < $len and ctype_space ( $text [$from] ); $from++ ) ;
+        if ( $flen = padEvalFormatLength ( $text, $from ) )
+          $i = $from + $flen - 1;
+      } elseif ( $one == '(' or $one == '[' )
+        $depth++;
+      elseif ( $one == ')' or $one == ']' )
+        $depth--;
+      elseif ( $one == ',' and $depth <= 0 )
+        return padEvalValidateAt ( $text, $i + 1 );
+
+    }
+
+    return 0;
+
+  }
+
   // A second, token-level check, run after the scanner has split the expression: the
   // word that follows a | must name a pipe function (or a tag, which the type system can
   // apply as one). Without this a misspelled function is silently taken for a bare constant
