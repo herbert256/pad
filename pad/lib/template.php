@@ -222,10 +222,50 @@
   function padTextFree ( $string ) {
 
     foreach ( padTextPairs as $tag )
-      if ( ! padPairBalanced ( $string, $tag ) )
+      if ( padTextOpen ( $string, $tag ) )
         return FALSE;
 
     return TRUE;
+
+  }
+
+  // Whether a sample of the text pair $tag is open at the end of $string: its openers and
+  // closers in order, a closer taking the nearest open opener before it. The single form
+  // opens nothing - {highlight file='orders.php'}, which colours a file and has no content,
+  // and a self-closing {tag .../} - nor does a closer with no opener before it. Counted as
+  // the owners' pairs are counted (padPairBalanced), a single {highlight file=...} read as a
+  // sample never closed, and every {else}, {elseif} and {when} behind it was taken for its
+  // text: {if $a}{highlight file='x'}{else}none{/if} showed nothing for a=0.
+
+  function padTextOpen ( $string, $tag ) {
+
+    if ( ! str_contains ( $string, $tag ) )
+      return FALSE;
+
+    preg_match_all ( '/\{(\/?)(?:pad:)?' . preg_quote ( $tag, '/' ) . '(?=[\s}|])/', $string, $all,
+                     PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+
+    $open = 0;
+
+    foreach ( $all as $one ) {
+
+      $at = $one [0] [1];
+
+      if ( $one [1] [0] === '/' ) {
+        if ( $open )
+          $open--;
+        continue;
+      }
+
+      $end  = strpos ( $string, '}', $at );
+      $text = ( $end === FALSE ) ? substr ( $string, $at ) : substr ( $string, $at, $end - $at );
+
+      if ( ! preg_match ( '/[\s,]file\s*=/', $text ) and ! padOpenSelfClosing ( $string, $at + strlen ( $one [0] [0] ) ) )
+        $open++;
+
+    }
+
+    return $open > 0;
 
   }
 
