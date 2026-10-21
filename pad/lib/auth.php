@@ -198,6 +198,17 @@
       return FALSE;
     }
 
+    // A password that is no text - password[]=x posts a list - matches nothing, but is
+    // checked against the hash as the empty text all the same: refused before any hash was
+    // checked, a known name answered at once where an unknown one spent a whole hash on the
+    // stand-in above, and one request told which names exist. What the visitor posts decides
+    // the shape of $password, so a list costs what a wrong text does.
+
+    if ( ! is_string ( $password ) and ! is_int ( $password ) and ! is_float ( $password ) and ! $password instanceof Stringable ) {
+      padHashCheck ( '', $hash );
+      return FALSE;
+    }
+
     if ( ! padHashCheck ( $password, $hash ) )
       return FALSE;
 
