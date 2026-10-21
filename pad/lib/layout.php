@@ -457,6 +457,28 @@
 
   }
 
+  // A wrapper's text with every @page@ inside a comment made @page_, which marks nothing:
+  // the comment never renders, and the text keeps its length, so the source map still
+  // places the wrapper's lines (build/base.php).
+
+  function padLayoutNoted ( $text ) {
+
+    $text = (string) $text;
+
+    if ( ! str_contains ( $text, '@page@' ) or ( ! str_contains ( $text, '{#' ) and ! str_contains ( $text, '{--' ) ) )
+      return $text;
+
+    $masks  = [];
+    $masked = padLayoutMask ( $text, $masks );
+
+    foreach ( $masks as $index => $mask )
+      if ( preg_match ( '/^\{(#|--)/', $mask ) )
+        $masks [$index] = str_replace ( '@page@', '@page_', $mask );
+
+    return padLayoutUnmask ( $masked, $masks );
+
+  }
+
   // The end of the comment that opens at $pos, or FALSE when none opens there: {-- needs
   // whitespace after it, {#name} and {#name | pipe} are the option sigil, and a {# that
   // meets another {# before any #} is no comment - the rules of padCommentStrip.
