@@ -94,6 +94,7 @@
       'request/form_rules_post'   => 'Rules on the fields of the template, checked before the page-s PHP: a post that breaks them comes back refilled with its messages and is not padPosted, an unrendered field is checked too, the page-s own padValidate adds to them',
       'request/form_rules'        => 'The form rules fixture bare: an empty form, not processed',
       'request/a_field_a_post_leaves_out_is_checked_from_the_query_string' => 'A field the post leaves out is read from the query string, so the rules check it there - website=javascript:..., plan=enterprise and role=admin in the address refused, good values passed',
+      'forms/a_textarea_keeps_the_blank_line_its_value_starts_with' => 'A text area writes a line break after its opening tag, which the HTML parser drops - a value starting with a blank line keeps it',
       'request/a_field_a_post_leaves_out' => 'The fixture of request/a_field_a_post_leaves_out_is_checked_from_the_query_string bare: an empty form, not stored',
       'request/a_plain_php_application_answers_404_for_up_and_the_sitemap' => 'The plain-PHP application nono asked for ?up, ?sitemap.xml and ?robots.txt it has no page for: the 404 of any page that is not there, not a boot error on the stand-in page',
       'request/contact_valid'     => 'The demo contact form posted without a mistake: stored, redirected, thanked - the store put back',

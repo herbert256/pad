@@ -652,7 +652,10 @@
 
   }
 
-  // {textarea 'message', label='Message', rows=6, required}.
+  // {textarea 'message', label='Message', rows=6, required}. A line break follows the
+  // opening tag: the HTML parser drops one right after <textarea>, and a value that began
+  // with a blank line lost it on every round trip - a refill after a failed post, a stored
+  // note edited and saved again.
 
   function padFormTextarea () {
 
@@ -664,7 +667,7 @@
 
     return padFormField ( $name, $take, $attrs, function ( $head, $rest, $label, $error ) use ( $value ) {
 
-      return "$label<textarea $head$rest>" . padFormEscape ( $value ) . "</textarea>$error";
+      return "$label<textarea $head$rest>\n" . padFormEscape ( $value ) . "</textarea>$error";
 
     } );
 
