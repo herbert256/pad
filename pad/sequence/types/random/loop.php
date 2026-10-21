@@ -18,10 +18,12 @@
 
   if ( is_numeric ( $pqParm ) ? $pqParm != 0 : $pqParm ) {
 
+    // A percentage as finely as a one-in-N chance - see chance/loop.php.
+
     if ( str_contains ( $pqParm, '%' ) ) {
       $pqRandomPerc = str_replace ('%', '', $pqParm);
-      if  ( mt_rand ( 1, 100 ) <= $pqRandomPerc ) return TRUE;
-      else                                      return FALSE;
+      if  ( mt_rand ( 0, mt_getrandmax () - 1 ) / mt_getrandmax () * 100 < $pqRandomPerc ) return TRUE;
+      else                                                                                return FALSE;
     }
 
     if ( is_numeric ( $pqParm ) )

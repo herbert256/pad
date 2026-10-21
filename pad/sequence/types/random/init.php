@@ -17,6 +17,12 @@
   if ( is_numeric ( $pqParm ) and $pqParm != 0 and $pqParm < 1 )
     return padError ( 'The random sequence needs a parameter of 1 or more' );
 
+  // A percentage is a number with a % behind it: 'abc%' was compared as text in loop.php.
+
+  if ( is_string ( $pqParm ) and str_contains ( $pqParm, '%' ) and ! str_contains ( $pqParm, '..' )
+       and ! is_numeric ( substr ( trim ( $pqParm ), 0, -1 ) ) )
+    return padError ( "The random sequence needs a number or a percentage as its parameter, not '$pqParm'" );
+
   $pqRandomStart = ( $pqMin == PHP_INT_MIN ) ? 1 : $pqMin;
   $pqRandomEnd   = $pqMax;
 

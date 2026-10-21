@@ -19,10 +19,13 @@
 
   if ( str_contains ( $pqParm, '%' ) ) {
 
+    // A percentage is drawn as finely as a one-in-N chance: a whole number from 1 to 100
+    // compared with it took the fraction off - chance='0.5%' never hit and '12.5%' was 12%.
+
     $pqChance = str_replace('%', '', $pqParm );
 
-    if  ( mt_rand ( 1, 100 ) <= $pqChance  ) return TRUE;
-    else                                     return FALSE;
+    if  ( mt_rand ( 0, mt_getrandmax () - 1 ) / mt_getrandmax () * 100 < $pqChance ) return TRUE;
+    else                                                                            return FALSE;
 
   } else {
 

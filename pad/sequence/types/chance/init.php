@@ -10,6 +10,12 @@
   if ( $pqParm === '' or $pqParm === TRUE or $pqParm === NULL )
     return;
 
+  // A percentage is a number with a % behind it: 'abc%' was compared as text and decided
+  // nothing anyone wrote.
+
+  if ( str_contains ( $pqParm, '%' ) and ! is_numeric ( substr ( trim ( $pqParm ), 0, -1 ) ) and ! str_contains ( $pqParm, '..' ) )
+    return padError ( "The chance sequence needs a number or a percentage as its parameter, not '$pqParm'" );
+
   if ( str_contains ( $pqParm, '%' ) or str_contains ( $pqParm, '..' ) )
     return;
 
