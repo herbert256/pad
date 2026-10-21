@@ -739,6 +739,8 @@
     $form = array_pop ( $padFormStack );
     $open = $form ['open'] ?? '<form>';
 
+    padFormRulesSent ( $form, padUnprotect ( $content ) );
+
     if ( ( $form ['method'] ?? '' ) == 'post' and ! preg_match ( '/^<form[^>]*\senctype=/i', $open )
          and str_contains ( padUnprotect ( $content ), 'type="file"' ) )
       $open = preg_replace ( '/^<form method="post"/', '<form method="post" enctype="multipart/form-data"', $open );
@@ -757,6 +759,61 @@
 
     return padProtect ( $open ) . $content . padProtect ( '</form>' )
          . ( ( $form ['client'] ?? FALSE ) ? padValidateScript () : '' );
+
+  }
+
+  // The rules of a form are checked on a post of it to its own page, as action= to another
+  // page is an error. htmx sends a form by attributes of its own - hx-post= to another page
+  // leaves the rules unchecked as action= does, and hx-get, hx-put, hx-patch and hx-delete
+  // send no post at all - and a button with a formaction= sends the form to that address:
+  // such a form rendered without a word, and the page it went to answered padPosted TRUE
+  // for any post naming it, an e-mail of not-an-email too.
+
+  function padFormRulesSent ( $form, $content ) {
+
+    $name = (string) ( $form ['name'] ?? '' );
+
+    if ( $name === '' or ! padFormRules ( $name ) )
+      return;
+
+    preg_match ( '/^<form\b[^>]*>/i', (string) ( $form ['open'] ?? '' ), $tag );
+
+    preg_match_all ( '/\s((?:data-)?hx-(get|post|put|patch|delete))\s*=\s*"([^"]*)"/i', $tag [0] ?? '', $sends, PREG_SET_ORDER );
+
+    foreach ( $sends as $send )
+      if ( strtolower ( $send [2] ) != 'post' )
+        return padError ( "the rules of {form '$name'} are never checked - only a form that posts is validated ($send[1]=)" );
+      elseif ( ! padFormRulesHere ( $send [3] ) )
+        return padError ( "the rules of {form '$name'} are never checked - the form posts to another page ($send[1]=)" );
+
+    preg_match_all ( '/<(?:button|input)\b[^>]*?\sformaction\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $content, $buttons, PREG_SET_ORDER );
+
+    foreach ( $buttons as $button )
+      if ( ! padFormRulesHere ( ( $button [1] ?? '' ) . ( $button [2] ?? '' ) . ( $button [3] ?? '' ) ) )
+        return padError ( "the rules of {form '$name'} are never checked - a button in it sends the form to another page (formaction=)" );
+
+  }
+
+  // Whether an address in the HTML names the request's page: '' or ?page - written with
+  // $padGo or $padGoExt in front too - with values after an &, as hx-post='?examples/form'
+  // does on the page examples/form.
+
+  function padFormRulesHere ( $to ) {
+
+    $to = html_entity_decode ( (string) $to, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+    foreach ( [ $GLOBALS ['padGoExt'] ?? '', $GLOBALS ['padGo'] ?? '' ] as $go )
+      if ( $go !== '' and str_starts_with ( $to, $go ) ) {
+        $to = '?' . substr ( $to, strlen ( $go ) );
+        break;
+      }
+
+    if ( $to === '' )
+      return TRUE;
+
+    $page = ( $to [0] == '?' ) ? explode ( '&', substr ( $to, 1 ), 2 ) [0] : NULL;
+
+    return $page !== NULL and ( $page === '' ? 'index' : $page ) === (string) ( $GLOBALS ['padPage'] ?? '' );
 
   }
 

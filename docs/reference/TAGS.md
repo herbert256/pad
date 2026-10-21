@@ -645,7 +645,8 @@ Only the page's own template is read - with its `_inits.pad` and `_exits.pad` - 
 is written out: quoted rules on a field with a quoted name, in a form with a quoted name. A
 field with rules in an `_include` snippet, a custom tag, a `{page}` or an `{extends}` layout,
 rules from a variable, rules outside a named form, in a form with `action=` or
-`method='get'`, on a file field, a rule that does not exist and one field given two sets of
+`method='get'`, in one htmx sends elsewhere (`hx-post=` to another page, `hx-get=`, `hx-put=` ...)
+or holding a button whose `formaction=` names another page, on a file field, a rule that does not exist and one field given two sets of
 rules are errors, strict check or not - each would be rules nothing checks. A rule with
 braces writes them as `&open;` and `&close;`, and a backslash as `\\`: `rules='regex:/^\\d&open;4&close;$/'`. Custom
 messages stay with `padValidate`'s third argument.
