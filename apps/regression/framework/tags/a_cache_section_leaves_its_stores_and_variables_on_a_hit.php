@@ -1,5 +1,0 @@
-<?php
-
-  padFragmentForget ( 'fw-left' );
-
-?>

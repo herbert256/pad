@@ -1645,13 +1645,13 @@ its evaluated parameters, and skips the tag's own handler on a hit. `$padFragmen
 selects the store (`'file'`, `'apcu'`, or `FALSE` to render every time);
 `padFragmentForget('top-products')` drops a section, `padFragmentForget()` all of them.
 PHP that runs before the template - the page's `.php` - runs on a hit too. What the section
-leaves for the rest of the page is kept with it and made again on a hit: its `{push}`es, the
-page booking of a paged tag in it, for a `{pager}` further down, and the variables and stores
-it made - a `{set}` of a name that was not there, a `{data}`, `{content}` or `{bool}` store, a
-`{define}` or `{macro}`, what a `callback=` worked out - as they stood when the section ended,
-where the page has nothing of that name by then (a `{nocache}` part may have set it for this
-visitor). A variable that was there before the section keeps this request's value: the
-section's change of it - `{set $title = $title . '!'}` - is not made on a hit. A request for one
+leaves for the rest of the page is kept with it and made again on a hit: its `{push}`es, and
+the page booking of a paged tag in it, for a `{pager}` further down. Otherwise a section keeps
+its text, not its effects: what it sets, stores or defines - a `{set}`, `{increment}` or
+`{decrement}`, a `{data}`, `{content}` or `{bool}` store, a `{define}` or `{macro}`, the totals
+of a `callback=` - happens on the miss only, and on a hit the page goes on with the variables
+and stores this request has. Put such a tag before the section, or in a `{nocache}` part, which
+renders every time. A request for one
 response fragment, or the post of a live region, renders the section and stores nothing. A
 rendering that holds the visitor's CSRF token (a `{form}`, `{csrf}`, a live region) or the
 request's `{nonce}` is not stored either: it renders every time. A `{nocache}` part of the
@@ -1674,9 +1674,9 @@ A part of a cached page or section that renders on every request, the hit includ
 section (or a tag's `cache=` option) that is rendering, and on a page the page cache may keep,
 the part is stored as its source: on a hit the stored rendering comes back with the part
 rendered again, and a part inside a loop gets the fields of its rows back as they were when it
-was stored - and the variables the cached text made before it (a `{set}` in its loop, a
-`{while}` counter), which are set again as it renders; a variable that was there before the
-caching began is read as this request has it. In a section the part renders where the section stands, with the page's fields.
+was stored. In a section the part renders where the section stands, with the page's fields;
+a variable or store the cached text made before it is not there on a hit - the section keeps
+its text, not its effects - so what a part reads is made before the section or in the part.
 A page-cache hit runs no PHP - not the page's, nor an `_inits.php` - so there a part sees what a
 request has without it: request and session values, the configuration, the `_lib` functions and
 the application's tags. The CSRF token of a `{form}` or the `{nonce}` in a part no longer keeps

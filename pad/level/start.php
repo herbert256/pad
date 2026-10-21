@@ -55,11 +55,7 @@
 
   include PAD . 'options/_go/start.php';
 
-  // A fragment-cache hit walks no rows, so a callback= has nothing to see: run over none, its
-  // init and exit reset the total the miss left for the page (lib/fragment.php puts that
-  // back) - [6] on the miss, [0] on every hit.
-
-  if ( isset ( $padPrm [$pad] ['callback'] ) and ! ( $padFragment [$pad] ['hit'] ?? FALSE ) )
+  if ( isset ( $padPrm [$pad] ['callback'] ) )
     include PAD . 'level/callback.php' ;
 
   // The two section markers walk together, @start@ first: a prelude, the body, a coda.

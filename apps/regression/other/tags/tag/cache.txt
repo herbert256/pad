@@ -15,13 +15,15 @@ once (with a vary value as its second argument to drop one copy), and
 <code>{topProducts cache=3600}...{/topProducts}</code> is keyed on the page, the tag as written
 and its evaluated parameters, and skips the tag's own handler on a hit. Closing pipes and end
 options run on a stored rendering as on a fresh one. What the section leaves for the rest of the
-page is kept with it and made again on a hit: its <code>{push}</code>es, the booking of a
-paged tag for a <code>{pager}</code> further down, and the variables and stores it made - a
-<code>{set}</code> of a name that was not there, a <code>{data}</code>, <code>{content}</code> or
-<code>{bool}</code> store, a <code>{define}</code> or <code>{macro}</code> - as they stood when the
-section ended, where the page has nothing of that name by then. A variable that was there
-before the section keeps this request's value: the section's change of it is not made on a
-hit.</p>
+page is kept with it and made again on a hit: its <code>{push}</code>es, and the booking of a
+paged tag for a <code>{pager}</code> further down.</p>
+
+<p>Otherwise a section keeps its text, not its effects: what it sets, stores or defines - a
+<code>{set}</code>, <code>{increment}</code>, a <code>{data}</code>, <code>{content}</code> or
+<code>{bool}</code> store, a <code>{define}</code> or <code>{macro}</code>, the totals of a
+<code>callback=</code> - happens on the miss only, and on a hit the page goes on with the
+variables and stores this request has. Put such a tag before the section, or in a
+<a href="?tag/nocache"><code>{nocache}</code></a> part, which renders every time.</p>
 
 <p>Some renderings are never stored: one that holds the visitor's CSRF token (a
 <code>{form}</code>, <code>{csrf}</code>, a live region) or the request's

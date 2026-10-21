@@ -60,12 +60,6 @@
 
     include PAD . 'build/expose.php';
 
-    // The application's variables once the PHP of the page the page cache keeps has run: a
-    // {nocache} part keeps those its template sets before it (padNocacheVars).
-
-    if ( ( $GLOBALS ['padCache'] ?? FALSE ) and ( $GLOBALS ['padCacheServerAge'] ?? 0 ) and ! isset ( $GLOBALS ['padNocacheVars'] ) )
-      $GLOBALS ['padNocacheVars'] = padAppVars ( $GLOBALS );
-
     $padBase [$pad] = $padBuildLib . str_replace ( '@page@', $padBuildPage, $padBuildBase );
 
     // The same text as source-map pieces, kept as this level's map when they join up to it

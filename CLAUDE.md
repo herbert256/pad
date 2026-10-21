@@ -889,6 +889,10 @@ A `{nocache}` part of a cached section - or of a page the page cache keeps - ren
 request, the hit included; inside a loop it gets its row's fields back. A page-cache hit runs no
 PHP, so there a part sees the request, the session, `_lib` and the application's tags only.
 
+A cached section keeps its text, not its effects: what it sets, stores or defines - `{set}`,
+`{increment}`, `{data}`, `{content}`, `{define}`, `{macro}`, a `callback=`'s totals - happens on
+the miss only. Put it before the section, or in a `{nocache}` part, which renders every time.
+
 ### Remote data with a cache
 ```
 {curl 'https://api.example.com/rates.json', ttl=600}
