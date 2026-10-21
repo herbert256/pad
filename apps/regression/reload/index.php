@@ -3,8 +3,8 @@
   // Test fetches the sample page - live reload switched on for it alone - and asserts what
   // live reload promises: a local whole page carries the script, with the stamp the poll
   // answers; a file that changes moves the stamp; a bare fragment and a forwarded request
-  // get no script, and the forwarded poll is an ordinary page; a pad export of the page
-  // carries none either. A plain load only offers the link.
+  // get no script, and the forwarded poll is an ordinary page; a replay and a pad export of
+  // the page carry none either. A plain load only offers the link.
 
   $tested = isset ( $test ) ? 1 : 0;
 
@@ -34,6 +34,13 @@
     $elsewhere = ( str_contains ( $bare, 'sample' ) and ! str_contains ( $bare, 'padReload' )
                    and str_contains ( $other, 'sample' ) and ! str_contains ( $other, 'padReload' )
                    and str_contains ( $otherP, 'sample' ) and ! ctype_digit ( trim ( $otherP ) ) ) ? 'yes' : 'NO';
+
+    // A replay of a recorded case (lib/replay.php) is a machine's fetch, compared with the
+    // recording taken before the script went in - a script carrying the newest file time made
+    // every case of the application differ after every edit.
+
+    $again    = padCurl ( "$base&padReplay" ) ['data'] ?? '';
+    $replayed = ( str_contains ( $again, 'sample' ) and ! str_contains ( $again, 'padReload' ) ) ? 'yes' : 'NO';
 
     // pad export renders the page as the web gets it - without the script.
 

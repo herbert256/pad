@@ -32,6 +32,13 @@
     if ( ! $padToolbar or $padInclude or $padOutputType != 'web' )
       return FALSE;
 
+    // A replay of a recorded case (lib/replay.php) is local, but no browser looks at it: it
+    // is compared with the recording, which was taken before the bar went in, and every
+    // case of an application with the bar on was reported changed - by its timings too.
+
+    if ( padReplaying () )
+      return FALSE;
+
     return padLocal ();
 
   }

@@ -30,6 +30,13 @@
     if ( ! $padReload or $padInclude or $padOutputType != 'web' )
       return FALSE;
 
+    // A replay of a recorded case (lib/replay.php) is a machine's fetch, compared with the
+    // recording taken before the script went in: the script, carrying the newest file time,
+    // made every case of the application differ after every edit the replay is there to check.
+
+    if ( padReplaying () )
+      return FALSE;
+
     return padLocal ();
 
   }
