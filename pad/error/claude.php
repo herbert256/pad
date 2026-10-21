@@ -140,7 +140,10 @@
 
   // Whether a name - a key, a variable, a header - is a secret's. A name is read as HTTP
   // writes it as well: X-Api-Key and Set-Cookie went out in clear, the pattern knowing only
-  // the underscore, and so did the USERPWD of a fetch with a login and a passphrase.
+  // the underscore, and so did the USERPWD of a fetch with a login and a passphrase. The
+  // password words count anywhere in the name: a hash kept as password_hash, passwordHash
+  // or pass_hash - the column of every users table - showed in clear in {debug}, the
+  // toolbar and the reports, the word counting only at the end.
 
   function padRedactName ( $name ) {
 
@@ -148,7 +151,7 @@
 
     $name = is_scalar ( $name ) ? (string) $name : '';
 
-    return $memo [$name] ??= (bool) preg_match ( '/pass(word|wd|phrase)?$|passwd|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
+    return $memo [$name] ??= (bool) preg_match ( '/pass(word|wd|phrase|code)|pass(_?hash|$)|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
                                                  str_replace ( '-', '_', $name ) );
 
   }
