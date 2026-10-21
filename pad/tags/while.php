@@ -17,6 +17,18 @@
   if ( ! $padPair [$pad] and $padCheckSyntax )
     padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
 
+  // A handling option - first=, rows=, last=, where=, sort and the rest of handling/types/ -
+  // works on rows, and a {while} or {until} has none: it was taken on the first round's one
+  // stand-in row and did nothing, and the unread-option sweep was silent, as handling had read
+  // it - {while $i lt 5, first=2} ran its five rounds. Strict mode names it.
+
+  if ( $padCheckSyntax and $padWalk [$pad] != 'next' )
+    foreach ( $padParms [$pad] as $padWhileOpt )
+      if ( ( $padWhileOpt ['padPrmKind'] ?? '' ) == 'option'
+           and padFileExists ( PAD . 'handling/types/' . $padWhileOpt ['padPrmName'] . '.php' ) )
+        padError ( "the option " . $padWhileOpt ['padPrmName'] . " does nothing on "
+                   . ( $padTag [$pad] == 'until' ? 'an' : 'a' ) . " {" . $padTag [$pad] . "} - it has no rows to handle" );
+
   // A condition that never turns ran forever, and the request died on PHP's clock with
   // nothing said. The loop stops at the ceiling the sequences already use; strict mode
   // says which loop it was.
