@@ -19,9 +19,14 @@
   // padMD5Unpack giving the hex form back), padRandomString (session and request ids,
   // temporary file names), and padZip / padUnzip (gzip for cached output).
 
+  // A text that is no UTF-8 - a Latin-1 "Caf\xE9" from a latin1 database or file - is written
+  // with the broken byte as U+FFFD, and a value JSON cannot hold as null, the rest kept: plain
+  // json_encode answered FALSE for the whole input, which htmlspecialchars made '', and the
+  // component got data="" in place of its data, with no error anywhere.
+
   function padJsonForHtmlAttr ( $input ) {
-  
-    return padEscape ( htmlspecialchars ( json_encode ( $input ), ENT_QUOTES, 'UTF-8' ) );
+
+    return padEscape ( htmlspecialchars ( json_encode ( $input, JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR ), ENT_QUOTES, 'UTF-8' ) );
 
   }
 
