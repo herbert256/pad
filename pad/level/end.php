@@ -39,13 +39,21 @@
   if ( next ($padData [$pad]) !== FALSE )
     return include PAD . 'occurrence/occurrence.php';
 
+  // An @start@ prelude that has rendered hands over to the body before the walk asks for
+  // another round. The walk's round came first, and a {while} or {until} - which walks by
+  // re-running its handler - re-ran it after the prelude with the body still put aside: the
+  // body that moves the condition never ran, the prelude rendered again every round and the
+  // loop ran to its ceiling - {while $i lt 3}<ul>@start@<li>{$i}</li>{increment $i}@end@</ul>
+  // was "passed 10000 rounds". The @end@ coda stays behind the walk, which has ended then.
+
+  if ( $padStartBase [$pad] ) return include PAD . 'level/start_end/start2.php';
+
   if ( $padWalk [$pad] == 'next' ) {
     include PAD . 'walk/next.php';
     if ( $padWalk [$pad] == 'next' )
       return include PAD . 'occurrence/occurrence.php';
   }
 
-  if ( $padStartBase [$pad] ) return include PAD . 'level/start_end/start2.php';
   if ( $padEndBase   [$pad] ) return include PAD . 'level/start_end/end2.php';
 
   $padOccur [$pad] = 99999;
