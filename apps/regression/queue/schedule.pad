@@ -2,6 +2,9 @@
 {entries}  <tr><td>{$name}</td><td>{$cron}</td><td>{$queue}</td><td>{$next}</td></tr>
 {/entries}</table>
 <ul>
+{faults}  <li>fault: {$name} ({$job}): {$error}</li>
+{/faults}</ul>
+<ul>
 {due}  <li>{$at}: {$names}</li>
 {/due}</ul>
 <ul>

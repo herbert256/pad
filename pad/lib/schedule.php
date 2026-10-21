@@ -31,6 +31,7 @@
   // padCronEvery    the 'every' words as a cron expression
   // padScheduleDue  whether an entry runs at a moment
   // padScheduleList the application's entries, each with its cron, next and last run
+  // padScheduleFaults the entries padScheduleList left out, each with what is wrong with it
   // padScheduleRun  runs the entries that are due this minute, once each
   //
   // The cron syntax is the usual five fields - minute, hour, day of the month, month, day
@@ -197,9 +198,17 @@
   }
 
   // The application's entries, checked, under their names: [ name => [ name, job, cron,
-  // data, queue, overlap, next, last ] ]. An entry with a fault is reported and left out.
+  // data, queue, overlap, next, last ] ]. An entry with a fault is left out and kept with
+  // what is wrong with it for padScheduleFaults: padScheduleRun answers it as a failed line
+  // and pad schedule --list names it. Reported with padError, a fault ended the request -
+  // under boot, as pad schedule runs, every other entry of the application went unrun with
+  // it, the nightly backup beside a handler a deploy had removed.
 
   function padScheduleList ( $time = NULL ) {
+
+    global $padScheduleFaults, $padEventErrorBusy;
+
+    $padScheduleFaults = [];
 
     $file = APP . '_schedule.php';
 
@@ -217,57 +226,126 @@
     $list  = [];
     $jobs  = array_count_values ( array_map ( fn ( $one ) => is_array ( $one ) ? (string) ( $one ['job'] ?? '' ) : '', $entries ) );
 
-    foreach ( $entries as $entry ) {
+    // The checks below report with padError, which throws meanwhile - as it does in a queue
+    // job (lib/queue.php) - and so do PHP's warnings: the fault is the entry's, caught here.
 
-      $cron = padScheduleCron ( $entry );
+    $busy              = $padEventErrorBusy ?? FALSE;
+    $padEventErrorBusy = TRUE;
+    $place             = 0;
 
-      if ( $cron === '' )
-        continue;
+    set_error_handler ( 'padErrorThrow' );
 
-      $job = $entry ['job'] ?? '';
+    try {
 
-      if ( ! padQueueJobName ( $job, 'padSchedule' ) )
-        continue;
+      foreach ( $entries as $entry ) {
 
-      if ( padQueueHandler ( $job ) === '' ) {
-        padError ( "padSchedule: there is no job handler _jobs/$job.php in this application" );
-        continue;
+        $place++;
+
+        try {
+
+          $one = padScheduleEntry ( $entry, $jobs, $state, $time );
+
+        } catch ( Throwable $e ) {
+
+          $padScheduleFaults [] = [ 'name'  => padScheduleFaultName ( $entry, $place ),
+                                    'job'   => ( is_array ( $entry ) and is_scalar ( $entry ['job'] ?? NULL ) ) ? padMakeSafe ( (string) $entry ['job'], 60 ) : '',
+                                    'error' => preg_replace ( '/^PAD: /', '', $e->getMessage () ),
+                                    'file'  => $e->getFile (),
+                                    'line'  => $e->getLine () ];
+
+          continue;
+
+        }
+
+        if ( isset ( $list [$one ['name']] ) ) {
+          $padScheduleFaults [] = [ 'name' => padMakeSafe ( $one ['name'], 60 ), 'job' => $one ['job'],
+                                    'error' => "padSchedule: two entries are named '" . padMakeSafe ( $one ['name'], 40 ) . "' - give one a 'name'",
+                                    'file' => __FILE__, 'line' => __LINE__ ];
+          continue;
+        }
+
+        $list [$one ['name']] = $one;
+
       }
 
-      $queue = $entry ['queue'] ?? FALSE;
+    } finally {
 
-      if ( $queue === TRUE )
-        $queue = 'default';
+      restore_error_handler ();
 
-      if ( $queue !== FALSE and ! padQueueName ( $queue, 'padSchedule' ) )
-        continue;
-
-      $data = $entry ['data'] ?? [];
-
-      if ( ! is_array ( $data ) ) {
-        padError ( "padSchedule: the data of the entry for '$job' is an array of named values" );
-        continue;
-      }
-
-      $name = (string) ( $entry ['name'] ?? ( $jobs [$job] > 1 ? "$job $cron" : $job ) );
-
-      if ( isset ( $list [$name] ) ) {
-        padError ( "padSchedule: two entries are named '" . padMakeSafe ( $name, 40 ) . "' - give one a 'name'" );
-        continue;
-      }
-
-      $list [$name] = [ 'name'    => $name,
-                        'job'     => $job,
-                        'cron'    => $cron,
-                        'data'    => $data,
-                        'queue'   => $queue,
-                        'overlap' => ( $entry ['overlap'] ?? TRUE ) !== FALSE,
-                        'next'    => padCronNext ( $cron, $time ),
-                        'last'    => $state [$name] ?? NULL ];
+      $padEventErrorBusy = $busy;
 
     }
 
+    // The application's _events/error.php hears of each, as of a job that failed.
+
+    foreach ( $padScheduleFaults as $fault )
+      padEventError ( 'PAD: ' . $fault ['error'], $fault ['file'], $fault ['line'] );
+
     return $list;
+
+  }
+
+  // The faults padScheduleList found the last time it read the schedule: [ name, job, error ].
+
+  function padScheduleFaults () {
+
+    return array_map ( fn ( $fault ) => [ 'name' => $fault ['name'], 'job' => $fault ['job'], 'error' => $fault ['error'] ],
+                       $GLOBALS ['padScheduleFaults'] ?? [] );
+
+  }
+
+  // A faulty entry by its name, its job, or else its place in the list.
+
+  function padScheduleFaultName ( $entry, $place ) {
+
+    foreach ( [ 'name', 'job' ] as $key )
+      if ( is_array ( $entry ) and is_scalar ( $entry [$key] ?? NULL ) and (string) $entry [$key] !== '' )
+        return padMakeSafe ( (string) $entry [$key], 60 );
+
+    return "entry $place";
+
+  }
+
+  // One entry, checked - a fault is a padError, which throws while padScheduleList runs.
+
+  function padScheduleEntry ( $entry, $jobs, $state, $time ) {
+
+    $cron = padScheduleCron ( $entry );
+
+    if ( $cron === '' )
+      throw new ErrorException ( 'padSchedule: the entry says nowhere when it runs' );
+
+    $job = $entry ['job'] ?? '';
+
+    if ( ! padQueueJobName ( $job, 'padSchedule' ) )
+      throw new ErrorException ( 'padSchedule: the entry names no job' );
+
+    if ( padQueueHandler ( $job ) === '' )
+      padError ( "padSchedule: there is no job handler _jobs/$job.php in this application" );
+
+    $queue = $entry ['queue'] ?? FALSE;
+
+    if ( $queue === TRUE )
+      $queue = 'default';
+
+    if ( $queue !== FALSE and ! padQueueName ( $queue, 'padSchedule' ) )
+      throw new ErrorException ( 'padSchedule: the entry names no queue' );
+
+    $data = $entry ['data'] ?? [];
+
+    if ( ! is_array ( $data ) )
+      padError ( "padSchedule: the data of the entry for '$job' is an array of named values" );
+
+    $name = (string) ( $entry ['name'] ?? ( $jobs [$job] > 1 ? "$job $cron" : $job ) );
+
+    return [ 'name'    => $name,
+             'job'     => $job,
+             'cron'    => $cron,
+             'data'    => $data,
+             'queue'   => $queue,
+             'overlap' => ( $entry ['overlap'] ?? TRUE ) !== FALSE,
+             'next'    => padCronNext ( $cron, $time ),
+             'last'    => $state [$name] ?? NULL ];
 
   }
 
@@ -280,7 +358,8 @@
   // Runs what is due at $time (now when NULL), each entry once in its minute: an entry the
   // record says ran in this minute already is passed by. Answers a line per entry that was
   // due: [ name, job, status, ms, error, id ] - status 'done', 'failed', 'queued', 'skipped'
-  // (overlap) or 'ran' (this minute already).
+  // (overlap) or 'ran' (this minute already) - and a 'failed' line for every entry with a
+  // fault, whose time cannot be told: each run names it until it is put right.
 
   function padScheduleRun ( $time = NULL ) {
 
@@ -291,7 +370,10 @@
     if ( padReplaying () )
       return $ran;
 
-    foreach ( padScheduleList ( $time ) as $name => $entry ) {
+    $list   = padScheduleList ( $time );
+    $faults = padScheduleFaults ();
+
+    foreach ( $list as $name => $entry ) {
 
       if ( ! padCronMatch ( $entry ['cron'], $moment ) )
         continue;
@@ -326,6 +408,10 @@
       $ran [] = $line;
 
     }
+
+    foreach ( $faults as $fault )
+      $ran [] = [ 'name' => $fault ['name'], 'job' => $fault ['job'], 'status' => 'failed', 'ms' => 0,
+                  'error' => $fault ['error'], 'id' => '' ];
 
     return $ran;
 

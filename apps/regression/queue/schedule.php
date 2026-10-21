@@ -18,6 +18,8 @@
                     'queue' => $entry ['queue'] === FALSE ? 'inline' : $entry ['queue'],
                     'next'  => date_create ( '@' . $entry ['next'] )->setTimezone ( padDateZone () )->format ( 'D Y-m-d H:i' ) ];
 
+  $faults = padScheduleFaults ();
+
   $due = [];
 
   foreach ( [ '2026-10-12 08:00', '2026-10-12 08:15', '2026-10-13 03:00', '2026-11-01 00:00' ] as $at ) {

@@ -13,7 +13,9 @@
   //                                     entry out; --list with it counts from then
   //
   // A line per entry that was due: done, failed, queued, skipped (its last run still going)
-  // or ran (this minute already). Exit status 1 when an entry failed.
+  // or ran (this minute already), and a failed line for an entry with a fault - a handler
+  // that is not there, an 'every' that cannot be read - the others run as ever. Exit status
+  // 1 when an entry failed, or --list found a fault.
 
   $scheduleArgs  = array_slice ( $argv, 2 );
   $scheduleWords = array_values ( array_filter ( $scheduleArgs, fn ( $one ) => ! str_starts_with ( $one, '--' ) ) );
@@ -97,7 +99,12 @@
 
       }
 
-      return 0;
+      // An entry with a fault is left out of the list and named under it, with the fault.
+
+      foreach ( padScheduleFaults () as $fault )
+        cliOut ( sprintf ( '  %-24s fault: %s', $fault ['name'], $fault ['error'] ) );
+
+      return padScheduleFaults () ? 1 : 0;
 
     }
 
