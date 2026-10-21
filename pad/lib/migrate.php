@@ -558,6 +558,8 @@
 
         if ( $word == 'trigger' and preg_match ( '/^\s*create\s+(or\s+replace\s+)?(definer\s*=\s*([^\s\'"`]+|\'[^\']*\'|"[^"]*"|`[^`]*`)+\s+)?((temp|temporary)\s+)?$/i', $now ) )
           $trigger = TRUE;
+        elseif ( $trigger and ( $word == 'begin' or $word == 'case' or $word == 'end' ) and padMigrateBlockName ( $word, $now, $sql, $i + strlen ( $match [0] ) ) )
+          ; // a column or table so named - new.end, (title, begin, end), set begin = 1
         elseif ( $trigger and ( $word == 'begin' or $word == 'case' ) )
           $depth++;
         elseif ( $trigger and $word == 'end' ) {
@@ -602,6 +604,30 @@
       $list [] = trim ( $now );
 
     return $list;
+
+  }
+
+  // BEGIN, END and CASE are no reserved words in SQLite or MySQL, and begin/end is a common
+  // pair of date columns. Where none of them can stand as the word of a block it is a name:
+  // after or before a . (new.end, old.begin), after the ( or , of a list of names or after
+  // SET (title, begin, end - END never follows a ( or a , and BEGIN neither, CASE may), and
+  // BEGIN or CASE before an =, a , or a ) (set begin = 1 - END may close a CASE there). A
+  // column so named anywhere else - select begin from - needs its quotes, as it would in
+  // most other databases.
+
+  function padMigrateBlockName ( $word, $now, $sql, $at ) {
+
+    $now    = rtrim ( $now );
+    $before = substr ( $now, -1 );
+    $after  = preg_match ( '/\G\s*(\S)/', $sql, $next, 0, $at ) ? $next [1] : '';
+
+    if ( $before == '.' or $after == '.' or preg_match ( '/\bset$/i', $now ) )
+      return TRUE;
+
+    if ( $word != 'case' and ( $before == '(' or $before == ',' ) )
+      return TRUE;
+
+    return ( $word != 'end' and ( $after == '=' or $after == ',' or $after == ')' ) );
 
   }
 
