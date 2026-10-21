@@ -15,7 +15,7 @@ page sees its own values, never the row of a loop the request failed in.
 
 | File | Description |
 |------|-------------|
-| `index.php/pad` | Fetches every error and shows status, type and body |
+| `index.php/pad` | Fetches every error and shows status, type, X-Content-Type-Options and body |
 | `_errors/_inits.pad` | The frame of the error pages |
 | `_errors/404.pad`, `403.pad`, `500.pad` | The pages of one status each - the 404 and 403 with an `{if}`, answered before the hand-over to the application |
 | `_errors/4xx.pad` | Every other client error |

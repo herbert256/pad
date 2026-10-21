@@ -134,6 +134,16 @@
     if ( ! headers_sent () and http_response_code () != 500 )
       http_response_code(500);
 
+    // The report is echoed before padBootExit, whose headers then find the answer sent: no
+    // Cache-Control, and none of the security headers - those once lib is there to send them
+    // (lib/security.php), as padRefuse sends them for a refusal.
+
+    if ( ! headers_sent () ) {
+      header ( 'Cache-Control: no-cache, no-store' );
+      if ( function_exists ( 'padSecurityHeaders' ) and ( $GLOBALS ['padOutputType'] ?? 'web' ) == 'web' )
+        padSecurityHeaders ();
+    }
+
     if     ( padAnswerSent () ) padShowErrorLog    ( $error, $file, $line );
     elseif ( padLocal ()      ) padShowErrorLocal  ( $error, $file, $line );
     else                        padShowErrorRemote ( $error, $file, $line );

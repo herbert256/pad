@@ -16,8 +16,17 @@
       return;
     }
 
-    if ( ! headers_sent () )
+    // The report is echoed before padExit, whose headers then find the answer sent: the 500
+    // went out without the security headers every other answer has, and - but for an error
+    // page - without the Cache-Control that keeps a failure out of a cache. Sent here, as
+    // padRefuse sends them for a refusal (lib/exit.php).
+
+    if ( ! headers_sent () ) {
       header ( 'HTTP/1.0 500 Internal Server Error' );
+      header ( 'Cache-Control: no-cache, no-store' );
+      if ( $padOutputType == 'web' )
+        padSecurityHeaders ();
+    }
 
     // A visitor gets the application's own page for a failure when it has one -
     // _errors/500.pad (error/_lib/errorPage.php) - with the request id in $id, the report on disk;
