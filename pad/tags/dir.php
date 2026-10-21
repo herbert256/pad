@@ -11,6 +11,14 @@
 
   $padDirScan = $padParm;
 
+  // An address is no directory of the tree: is_dir ( 'ftp://host:port/x/' ) had the server
+  // log in to the host and port the name gave before padDirContained said no.
+
+  if ( str_contains ( $padDirScan, '://' ) or str_starts_with ( $padDirScan, '\\\\' ) ) {
+    padError ( "the directory '$padDirScan' lies outside the applications, the engine and DATA" );
+    return [];
+  }
+
   // A directory that is not there was a raw scandir failure. Strict mode names it; the
   // lenient walk answers the empty list a scan of nothing is.
 

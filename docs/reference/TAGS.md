@@ -929,7 +929,9 @@ Check if file exists.
 **Parameters:**
 - First parameter: File path
 
-**Returns:** TRUE if file exists, FALSE otherwise
+**Returns:** TRUE if file exists, FALSE otherwise - and FALSE for a path outside the
+applications, the engine and DATA, and for an address (`ftp://...`), as `{dir}` and `{files}`
+keep to that tree
 
 ---
 
