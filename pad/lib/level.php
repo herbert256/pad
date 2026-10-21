@@ -530,14 +530,16 @@ function padSplitOnUnquotedColon ( $str ) {
   // and closes at the first #} after it. Not a comment: the option sigil {#name} or
   // {#name | pipe}, and a {# whose span reaches another {# before any #} - the strict
   // check names an unclosed one, and the lenient walk reads {# x } as it always did.
+  // With $blank a comment is written over with spaces instead of taken out, so the text keeps
+  // its length - for padMarkerText (lib/content.php), whose positions are the template's.
 
-  function padCommentStrip ( $text ) {
+  function padCommentStrip ( $text, $blank = FALSE ) {
 
     if ( ! is_string ( $text ) )
       return $text;
 
     if ( str_contains ( $text, '{--' ) )
-      $text = padCommentStripDash ( $text );
+      $text = padCommentStripDash ( $text, $blank );
 
     if ( ! str_contains ( $text, '{#' ) )
       return $text;
@@ -559,7 +561,7 @@ function padSplitOnUnquotedColon ( $str ) {
         continue;
       }
 
-      $text = substr ( $text, 0, $pos ) . substr ( $text, $close + 2 );
+      $text = substr ( $text, 0, $pos ) . ( $blank ? str_repeat ( ' ', $close + 2 - $pos ) : '' ) . substr ( $text, $close + 2 );
 
     }
 
@@ -640,7 +642,7 @@ function padSplitOnUnquotedColon ( $str ) {
   // {ignore} block - :root{--gap:4px} - is never read as a comment; the comment closes at
   // the first --} after it, and one that never closes stays as it is.
 
-  function padCommentStripDash ( $text ) {
+  function padCommentStripDash ( $text, $blank = FALSE ) {
 
     $pos = 0;
 
@@ -654,7 +656,7 @@ function padSplitOnUnquotedColon ( $str ) {
         continue;
       }
 
-      $text = substr ( $text, 0, $pos ) . substr ( $text, $close + 3 );
+      $text = substr ( $text, 0, $pos ) . ( $blank ? str_repeat ( ' ', $close + 3 - $pos ) : '' ) . substr ( $text, $close + 3 );
 
     }
 

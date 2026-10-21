@@ -35,14 +35,17 @@
   // the nested marker.
   //
   // The text is read as padMarkerText (lib/content.php) gives it: a custom tag's level holds
-  // its template as the file has it, whose {~rows~} is a pair of rows too.
+  // its template as the file has it, whose {~rows~} is a pair of rows too and whose comments
+  // hold no marker.
 
   function padOpenClosePos ( $string, $check ) {
 
     $pos = strpos ( $string, $check );
 
-    if ( $pos !== FALSE )
+    if ( $pos !== FALSE ) {
       $string = padMarkerText ( $string );
+      $pos    = strpos ( $string, $check );
+    }
 
     while ( $pos !== FALSE ) {
 

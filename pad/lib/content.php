@@ -60,8 +60,19 @@
   // [{~none~}x, a tag template lost the rest. This copy has the ~ of a tag's brace moved
   // just outside it, {~/rows~} reading " {/rows} ", so it is exactly as long as the template
   // and a position found in it is the same position in the template.
+  //
+  // Its comments are written over with spaces (padCommentStrip in lib/level.php): a comment
+  // is gone before the template is scanned, and so is a marker the author wrote in one -
+  // A{-- shows its @else@ part --}B cut the page inside the comment, and a tag template's
+  // {-- the caller's content lands at @content@ --} took the caller's content into the
+  // comment, which was then stripped with it.
 
   function padMarkerText ( $text ) {
+
+    if ( ! is_string ( $text ) )
+      return $text;
+
+    $text = padCommentStrip ( $text, TRUE );
 
     if ( ! str_contains ( $text, '~' ) )
       return $text;
