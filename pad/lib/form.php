@@ -558,6 +558,10 @@
   // when the posted value is its own value - before a post, when checked is given - and has
   // its label after it. A password or file field is never refilled: the one would put a
   // password into the page, the other cannot be. A button has no label and no error.
+  //
+  // A box of a group named for a list - tags[] - is checked when the posted list holds its
+  // value: padFormValue answers a text only, and a failed post brought every box of
+  // {input 'tags[]', type='checkbox'} back unticked.
 
   function padFormInput () {
 
@@ -574,10 +578,14 @@
 
       if ( in_array ( $type, [ 'checkbox', 'radio' ] ) ) {
 
-        $own     = ( $default === '' ) ? 'on' : $default;
-        $checked = padFormSource () !== NULL
-                 ? ( padFormValue ( $name, NULL ) === $own )
-                 : padAttrsTrue ( $take ['checked'] ?? FALSE );
+        $own    = ( $default === '' ) ? 'on' : $default;
+        $source = padFormSource ();
+
+        if ( $source !== NULL ) {
+          [ $found, $posted ] = padFormFind ( $source, $name );
+          $checked = ( $found and ( is_array ( $posted ) ? ( str_ends_with ( $name, '[]' ) and in_array ( $own, $posted, TRUE ) ) : $posted === $own ) );
+        } else
+          $checked = padAttrsTrue ( $take ['checked'] ?? FALSE );
 
         return "<input $typed value=\"" . padFormEscape ( $own ) . '"' . ( $checked ? ' checked' : '' ) . "$rest>$label$error";
 
