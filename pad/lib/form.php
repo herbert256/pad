@@ -417,7 +417,26 @@
     // The place is a text: posted as a list - padFormAt[]=2 - it names no form, where the
     // cast to a text ended the page on "Array to string conversion".
 
-    return ( ! $form or $form ['name'] === '' or ( $_POST [padFormAt] ?? '1' ) === (string) $form ['at'] ) ? $_POST : NULL;
+    // The place is the page's that wrote the form and its count there - list:3 - and only the
+    // forms of the page that sent the post are told apart by it: a post the third form of a
+    // list sent with action= to a page that shows the form once came back empty there.
+
+    if ( ! $form or $form ['name'] === '' )
+      return $_POST;
+
+    $here = padFormPage () . ':';
+    $at   = $_POST [padFormAt] ?? $here . '1';
+
+    if ( ! is_string ( $at ) )
+      return NULL;
+
+    return ( ! str_starts_with ( $at, $here ) or $at === $here . $form ['at'] ) ? $_POST : NULL;
+
+  }
+
+  function padFormPage () {
+
+    return (string) ( $GLOBALS ['padPage'] ?? '' );
 
   }
 
@@ -765,7 +784,7 @@
         $at = $padFormSeen [$name] = ( $padFormSeen [$name] ?? 0 ) + 1;
         $open .= '<input type="hidden" name="' . padFormName . '" value="' . padFormEscape ( $name ) . '">';
         if ( $at > 1 )
-          $open .= '<input type="hidden" name="' . padFormAt . '" value="' . $at . '">';
+          $open .= '<input type="hidden" name="' . padFormAt . '" value="' . padFormEscape ( padFormPage () . ":$at" ) . '">';
       }
     }
 

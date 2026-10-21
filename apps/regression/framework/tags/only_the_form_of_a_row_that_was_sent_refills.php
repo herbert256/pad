@@ -1,7 +1,7 @@
 <?php
 
   $_SERVER ['REQUEST_METHOD'] = 'POST';
-  $_POST = [ 'padForm' => 'rename', 'padFormAt' => '2', 'id' => '2', 'title' => '' ];
+  $_POST = [ 'padForm' => 'rename', 'padFormAt' => 'tags/only_the_form_of_a_row_that_was_sent_refills:2', 'id' => '2', 'title' => '' ];
 
   padValidate ( [ 'title' => 'required' ] );
 
