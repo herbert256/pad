@@ -65,7 +65,8 @@ boolean ones, with an operator for the counting ones, and combined freely:
 The property name is what makes this read as one reference: only the names on this page do
 (the files in `pad/properties/`), and the target names an iterating tag. Without a target -
 `{if current@ eq 2}`, `{echo current@ * 10}` - it is the loop the expression stands in, past
-an `{if}` or a `{case}`. Elsewhere in an expression `@` is still the current-value
+an `{if}`, a `{case}` and any other level that renders once for the row - an `{ifchanged}`, a
+`{guest}`, a `{spaceless}`, a snippet. Elsewhere in an expression `@` is still the current-value
 placeholder, and so is an `@` after a space: `count @`.
 
 **The sigil decides what a colliding name means.** When a row carries a field named like a

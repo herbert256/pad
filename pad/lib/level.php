@@ -21,7 +21,8 @@
   //
   // padFindContinueBreak resolves the target of {continue}, {cease} and {break}: a level
   // name, a negative offset, an absolute level number, or by default the nearest enclosing
-  // level that is not an if or case - so loop control skips over conditionals.
+  // loop - past every level that is a part of the row (padLevelInRow), the conditions among
+  // them.
 
 function padSplitOnUnquotedColon ( $str ) {
 
@@ -53,6 +54,23 @@ function padSplitOnUnquotedColon ( $str ) {
     return [$str, ''];
 
 }
+
+  // Whether a level is part of the row it stands in rather than a loop of its own: it renders
+  // its content once - its data is the single empty occurrence a tag answering TRUE gets
+  // (padIsDefaultData) - and it is no {while} or {until}, whose every round is such an
+  // occurrence too. An {if}, a {case}, an {ifchanged}, a {guest}, {auth}, {can} or {feature},
+  // a property pair such as {notFirst@items}, a {spaceless}, a {fragment}, a snippet, a
+  // custom tag: each is a new level on every row of the loop around it, and what asks for
+  // "the loop" - {ifchanged}'s memory, a property without a target - looks past it.
+
+  function padLevelInRow ( $lvl ) {
+
+    global $padData, $padTag;
+
+    return padIsDefaultData ( $padData [$lvl] ?? [] )
+       and ! in_array ( $padTag [$lvl] ?? '', [ 'while', 'until' ] );
+
+  }
 
   function padFindContinueBreak ( $parm ) {
 
@@ -89,8 +107,15 @@ function padSplitOnUnquotedColon ( $str ) {
     if ( $parm and ! is_numeric ( $parm ) and $padCheckSyntax )
       padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}" );
 
+    // The nearest loop is past every level that renders its content once for the row it
+    // stands in (padLevelInRow) - only an {if} and a {case} were, and a nameless control
+    // inside an {ifchanged}, a property pair, a {guest} or a {spaceless} acted on that
+    // level: its one occurrence ended and the loop ran on, in silence - {rows}{notFirst@rows}
+    // {break}{/notFirst@rows}{$a}{/rows} printed every row. The root of a pass - the page,
+    // or a nested pass such as a {code} - ends the search, as it did.
+
     for ( $key = $pad-1; $key >=0 ; $key-- )
-      if ( $padTag [$key] != 'if' and $padTag [$key] != 'case' ) {
+      if ( $padTag [$key] == 'internal' or ! padLevelInRow ( $key ) ) {
 
         // The nearest thing left may be the page root - loop control aimed at nothing.
         // Strict mode says so; the lenient walk keeps the old answer.

@@ -8,8 +8,9 @@ inside an <code>{if}</code> - stop at the first row that matches. The tag prints
 further pass. For a stop that lets the current pass finish, use
 <a href="?tag/cease">{cease}</a>; to skip one pass only, <a href="?tag/continue">{continue}</a>.</p>
 
-<p>Without a parameter it leaves the nearest enclosing level that is not an <code>{if}</code>
-or a <code>{case}</code>. A name - <code>{break 'orders'}</code>, a tag's name or its
+<p>Without a parameter it leaves the nearest enclosing loop, past an <code>{if}</code>, a
+<code>{case}</code> and any other level that renders once for the row it stands in - an
+<code>{ifchanged}</code>, a <code>{guest}</code>, a property pair, a snippet. A name - <code>{break 'orders'}</code>, a tag's name or its
 <code>name=</code> - leaves an outer loop, and the inner loops with it; a level number or a
 negative offset picks the level by position. Under the strict syntax check a name no
 enclosing level has is an error.</p>

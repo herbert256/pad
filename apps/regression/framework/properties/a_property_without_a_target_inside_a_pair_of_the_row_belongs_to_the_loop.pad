@@ -1,0 +1,5 @@
+A{items}{ifchanged $g}{notFirst@}</ul>{/notFirst@}<h2>{$g}</h2><ul>{/ifchanged}<li>{$n}</li>{/items}</ul>
+B{items}[{ifchanged $g}{current@}{/ifchanged}]{/items}
+C{items}<li>{spaceless}{$n}{notLast@}, {/notLast@}{/spaceless}</li>{/items}
+D{items}{guest}{if current@ eq 2}two{/if}{&current}{/guest};{/items}
+E{items}{fragment 'row'}{first@}<ul>{/first@}{$n}{/fragment}{/items}

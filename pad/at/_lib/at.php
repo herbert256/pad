@@ -113,7 +113,7 @@
     // level, and {current@} answered 0 on every row.
 
     if ( file_exists ( PAD . "at/properties/$check.php") ) {
-      $idx   = padFieldFirstNonTag ( $cor );
+      $idx   = padFieldFirstNonTag ( $cor, $check );
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
       if ( $check !== INF )
@@ -333,7 +333,8 @@
   // A property written without a target - current@ in an expression - is the loop's the
   // expression stands in: the level itself when it is iterating (a field's pipe), the level
   // below it when it is a tag whose parameters are being read - its occurrence has not
-  // started - and past an {if} or a {case} (padFieldFirstNonTag).
+  // started - and past an {if}, a {case} and any other level that renders once for the row
+  // (padFieldFirstNonTag).
 
   function padPropertyValue ( $field ) {
 
@@ -341,11 +342,12 @@
 
     padSplit ( '@', $field, $before, $after );
 
-    if ( $after === '' )
-      $after = (string) padFieldFirstNonTag ( ( $padOccur [$pad] ?? 0 ) ? 0 : 1 );
-
     $names = padExplode ( $before, '.' );
     $name  = reset ( $names );
+
+    if ( $after === '' )
+      $after = (string) padFieldFirstNonTag ( ( $padOccur [$pad] ?? 0 ) ? 0 : 1, $name );
+
     $parts = padExplode ( $after,  ':' );
 
     $check = padAtProperties ( $name, $names, $parts [0] ?? '', $parts [1] ?? '', 0 );

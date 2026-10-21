@@ -10,8 +10,9 @@
   //   padTagFieldSearch    the same question asked as a yes/no - does such a level exist
   //   padFieldFirstParmTag nearest enclosing level that can carry options, skipping {if}
   //                        and {case} and levels that are themselves tags
-  //   padFieldFirstNonTag  nearest enclosing level that is not a tag, nor an {if} or a
-  //                        {case}, optionally starting $lvl levels further out - used for
+  //   padFieldFirstNonTag  nearest enclosing level that is not a tag, nor a part of its row
+  //                        - an {if}, a {case}, a {guest}, a snippet and the like
+  //                        (padLevelInRow), optionally starting $lvl levels further out - used for
   //                        property lookups so that a property reads from the data tag, not
   //                        the tag calling it
   //
@@ -104,15 +105,30 @@
   // belongs to the tag around it (padFieldFirstParmTag). It was read from the {if} or the
   // {case} level itself, which has one occurrence: current was 1 on every row, first was
   // always true.
+  //
+  // Nor is any other level that renders its content once for the row it stands in
+  // (padLevelInRow, lib/level.php) - an {ifchanged}, a {guest}, {auth}, {can} or {feature},
+  // a {spaceless}, a {fragment}, a snippet, a custom tag: only if and case were looked past,
+  // and {items}{ifchanged $g}{notFirst@}</ul>{/notFirst@}... never closed the list before a
+  // new heading, {xs}{guest}{&current}{/guest} was 1 on every row.
+  //
+  // That holds for the properties of the rows. The properties of a tag itself - its name,
+  // its options, parameters and variables (padTagOwnProperties) - belong to the tag they
+  // are written in: {pad name='myTag'}{&name}{/pad} is myTag, and only an {if} or a {case}
+  // is looked past for them, as before.
 
-  function padFieldFirstNonTag ($lvl=0) {
+  const padTagOwnProperties = [ 'name', 'option', 'options', 'parameter', 'parameters', 'variable', 'variables' ];
+
+  function padFieldFirstNonTag ( $lvl = 0, $property = '' ) {
 
     global $pad, $padAtTag, $padTag;
 
     $start = $pad-$lvl;
+    $own   = in_array ( $property, padTagOwnProperties, TRUE );
 
     for ($i=$start; $i > 0; $i--)
-      if ( ! ( $padAtTag [$i] ?? FALSE ) and ! in_array ( $padTag [$i] ?? '', [ 'if', 'case' ] ) )
+      if ( ! ( $padAtTag [$i] ?? FALSE )
+           and ! ( $own ? in_array ( $padTag [$i] ?? '', [ 'if', 'case' ] ) : padLevelInRow ( $i ) ) )
         return $i;
 
     return max ( 0, $pad - 1 );

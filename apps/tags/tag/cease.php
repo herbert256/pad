@@ -10,7 +10,7 @@
 PAD;
 
   $tagParms   = [
-    'level' => 'Optional: which loop. The name of an enclosing tag or its <code>name=</code> (<code>\'items\'</code>), a level number, or a negative offset counting levels up from here. Without it, the nearest enclosing level that is not an <code>{if}</code> or <code>{case}</code>.' ];
+    'level' => 'Optional: which loop. The name of an enclosing tag or its <code>name=</code> (<code>\'items\'</code>), a level number, or a negative offset counting levels up from here. Without it, the nearest enclosing loop - past an <code>{if}</code>, a <code>{case}</code> and any other level that renders once for the row it stands in.' ];
 
   $tagOptions = [];
 

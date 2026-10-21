@@ -9,7 +9,8 @@ rows but re-tests its condition, <code>{cease}</code> lets the current pass fini
 no further one, whatever the condition says.</p>
 
 <p>The parameter picks the loop as for the other loop-control tags: none for the nearest
-enclosing level that is not an <code>{if}</code> or <code>{case}</code>, a name
+enclosing loop, past an <code>{if}</code>, a <code>{case}</code> and any other level that
+renders once for the row, a name
 (<code>{cease 'orders'}</code>, a tag's name or its <code>name=</code>) for an outer loop, or a
 level number or negative offset. Ceasing an outer loop from an inner one lets the inner loop
 finish its rows, and the outer loop ends after the current row. A name no enclosing level has

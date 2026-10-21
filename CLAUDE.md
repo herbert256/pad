@@ -680,7 +680,8 @@ A property is written as a tag pair, in a ternary, or as a value inside a condit
 property name followed by `@` and a target is one reference inside an expression; only the
 names in `pad/properties/` read that way, and any other word before `@` leaves `@` as the
 current-value placeholder. Without a target - `{if current@ eq 2}` - it is the loop the
-expression stands in; inside an `{if}` or a `{case}` every property spelling belongs to the
+expression stands in; inside an `{if}`, a `{case}` or any other level that renders once for
+the row - an `{ifchanged}`, a `{guest}`, a snippet - every property spelling belongs to the
 loop around it. The sigil decides a name collision: with a row field named
 `first`, `{if first@orders}` is still the iteration state and `{$first@orders}` is the
 field.

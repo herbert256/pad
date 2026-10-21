@@ -62,8 +62,9 @@ heading per group in a sorted list.
 row always renders; an unchanged value renders the `@else@` branch, if there is one.
 
 **Behavior:** The memory belongs to one run of the enclosing loop - the nearest level that
-is not an `if`, `case` or `ifchanged` - so a loop that runs again starts afresh, and to the
-tag's place in it: the n-th `ifchanged` of a row is compared with the n-th of the row before.
+iterates, past an `if`, `case`, `ifchanged`, `guest`, `can`, a property pair or a snippet,
+which render once for the row - so a loop that runs again starts afresh, and to the tag's
+place in it: the n-th `ifchanged` of a row is compared with the n-th of the row before.
 
 ---
 

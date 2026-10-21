@@ -85,7 +85,7 @@
 
       if     ( $prefix                   ) $idx = padFieldGetLevel ($prefix);
       elseif ( in_array ( $type, [5,6] ) ) $idx = padFieldFirstParmTag ($lvl);
-      elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl);
+      elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl, $field);
       else                                 $idx = $pad;
 
       padSplit ( ':', $field, $field, $parm  );

@@ -1,0 +1,5 @@
+[{items}{guest}{ifchanged $g}<{$g}>{/ifchanged}{/guest}{$n} {/items}]
+[{items}{true}{ifchanged $g}<{$g}>{/ifchanged}{/true}{$n} {/items}]
+[{items}{notFirst@items}{ifchanged $g}|{/ifchanged}{/notFirst@items}{$n} {/items}]
+[{define 'heading'}{ifchanged $g}<{$g}>{/ifchanged}{/define}{items}{heading}{$n} {/items}]
+[{set $i = 0}{while $i lt 5}{increment $i}{guest}{ifchanged php:intdiv($i,2)}<h>{/ifchanged}{/guest}{$i}{/while}]
