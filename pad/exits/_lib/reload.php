@@ -130,7 +130,11 @@
 
   // The newest modification time in a directory tree. Hidden names are passed over - an
   // editor's swap file or .DS_Store is not a change to the page - and so are the
-  // directories of the applications nested in this one, which watch for themselves.
+  // directories of the applications nested in this one, which watch for themselves. So is
+  // node_modules, the packages npm installs for a Vite build under _frontend/: none of them
+  // is a file behind the pages - the build's output in www/ is - and walked on every poll,
+  // its tens of thousands of files cost a tenth of a second for every open tab, every
+  // second.
 
   function padReloadNewest ( $dir ) {
 
@@ -142,7 +146,7 @@
 
     foreach ( $files as $file ) {
 
-      if ( $file [0] == '.' )
+      if ( $file [0] == '.' or $file == 'node_modules' )
         continue;
 
       $path = "$dir/$file";
