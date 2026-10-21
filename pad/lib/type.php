@@ -15,7 +15,8 @@
   //                  {define}, {macro}, select, data block, _include/ snippet, tag
   //                  property, field, array, parameter, level variable, PHP constant,
   //                  _data/ file, _scripts/ script, PHP function, sequence type, sequence
-  //                  action - in that order
+  //                  action - in that order; a field or array that is only a request
+  //                  value comes after all of them (padTypeAsked)
   // padTypeTagCheck  used when the template gave an explicit prefix (app:, pad:, php: ...)
   //                  - it verifies that one type instead of searching, so the prefix both
   //                  disambiguates and asserts
@@ -51,6 +52,50 @@
 
   }
 
+  // Whether a name is only a request value: a variable a GET, POST or cookie value made
+  // (padGetParms keeps the note) that the page has not set since, and no row or {set} of an
+  // enclosing level holds - or, with no variable of the name, a value the field search finds
+  // in $_GET or $_POST. The visitor chooses the names: ?prime=<script>... made {prime} on the
+  // sequence application's prime page the field tag of that value, written out as it came,
+  // ?navigate=x made the demo's menu, read from _data/navigate.json, iterate the text x, and
+  // ?strrev=X made the pipe | strrev answer X. Such a name gives way to every kind the
+  // template can mean by it, and is the field only when nothing else is there.
+
+  function padTypeAsked ( $item ) {
+
+    global $pad, $padCurrent, $padSetOcc, $padSetLvl, $padRequestGot;
+
+    if ( isset ( $GLOBALS [$item] ) ) {
+      if ( ! isset ( $padRequestGot [$item] ) or $GLOBALS [$item] !== $padRequestGot [$item] )
+        return FALSE;
+    } elseif ( ! isset ( $_GET [$item] ) and ! isset ( $_POST [$item] ) )
+      return FALSE;
+    elseif ( array_key_exists ( $item, $GLOBALS ) )
+      return FALSE;
+
+    for ( $i = $pad; $i > 0; $i-- )
+      if ( array_key_exists ( $item, $padCurrent [$i] ?? [] )
+           or isset ( $padSetOcc [$i] [$item] ) or isset ( $padSetLvl [$i] [$item] ) )
+        return FALSE;
+
+    return TRUE;
+
+  }
+
+  // The field or list a name is when it is only a request value - the last of the kinds,
+  // asked by padTypeTag and padTypeFunction once nothing else answered (padTypeAsked).
+
+  function padTypeAskedKind ( $item ) {
+
+    if ( ! padTypeAsked ( $item ) ) return FALSE;
+
+    if     ( padFieldCheck ( $item ) ) return 'field';
+    elseif ( padArrayCheck ( $item ) ) return 'array';
+
+    return FALSE;
+
+  }
+
   function padTypeCommon ( $item ) {
 
     global $padBoolStore, $padContentStore, $padDataStore, $padDefineStore, $padMacroStore, $padSelect, $pqStore;
@@ -73,11 +118,15 @@
     // value, so the page's data stands; a request value of a name the page does not set is
     // still read as a field as before.
 
-    elseif ( is_array ( $GLOBALS [$item] ?? NULL )
-             and ( isset ( $_GET [$item] ) or isset ( $_POST [$item] ) or isset ( $_COOKIE [$item] ) ) ) return 'array';
+    // A name that is only a request value - a list ?prime[]=x as well - is neither here:
+    // padTypeAskedKind answers it, after every other kind - see padTypeAsked.
 
-    elseif ( padFieldCheck      ( $item                          ) ) return 'field';
-    elseif ( padArrayCheck      ( $item                          ) ) return 'array';
+    elseif ( is_array ( $GLOBALS [$item] ?? NULL )
+             and ( isset ( $_GET [$item] ) or isset ( $_POST [$item] ) or isset ( $_COOKIE [$item] ) )
+             and ! padTypeAsked ( $item ) ) return 'array';
+
+    elseif ( padFieldCheck      ( $item                          ) and ! padTypeAsked ( $item ) ) return 'field';
+    elseif ( padArrayCheck      ( $item                          ) and ! padTypeAsked ( $item ) ) return 'array';
     elseif ( padOptCheck        ( $item, 1                       ) ) return 'parm';
     elseif ( padChkLevel        ( $item                          ) ) return 'level';
     elseif ( defined            ( $item                          ) ) return 'constant';
@@ -116,6 +165,9 @@
 
     if ( $goFunction and padTypeFunction ( $type, 0 ) )
       return 'function';
+
+    if ( $goFunction )
+      return padTypeAskedKind ( $type );
 
     return FALSE;
 
@@ -191,6 +243,9 @@
 
     if ( $goTag and padTypeTag ( $type, 0 ) )
       return 'tag';
+
+    if ( $goTag )
+      return padTypeAskedKind ( $type );
 
     return FALSE;
 

@@ -18,6 +18,12 @@
   //               $padRequestVars setting lets through - a cookie only when listed by name
   //               - and never a $padSessionVars name
 
+  // What a request value made a variable is noted as well, the value with its name, in
+  // $padRequestGot: a visitor chooses the names, and a name that is a sequence, a PHP
+  // function, a constant or a _data file in the template stays what the template wrote -
+  // padTypeAsked in lib/type.php reads the note. The value is kept to see whether the page
+  // has set the variable since: one the page's PHP assigned is the page's own.
+
   function padGetParms ( $type, $parms ) {
 
     foreach ( $parms as $field => $value )
@@ -25,8 +31,11 @@
         continue;
       elseif ( ! array_key_exists ( $field, $GLOBALS ) or ( $type == 'SESSION' and $GLOBALS [$field] === NULL ) )
         if ( padValidVar ($field) )
-          if ( $type == 'SESSION' or padRequestVar ($field, $type) )
+          if ( $type == 'SESSION' or padRequestVar ($field, $type) ) {
             $GLOBALS [$field] = padGetParms2 ( $type, $value );
+            if ( $type != 'SESSION' )
+              $GLOBALS ['padRequestGot'] [$field] = $GLOBALS [$field];
+          }
 
   }
 

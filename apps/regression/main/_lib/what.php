@@ -40,6 +40,8 @@
       'request/cookie'            => 'A cookie sent with the request, read from $_COOKIE by the fixture',
       'request/crumbs'            => 'A cookie, a pq-named and an _-named request value sent to the fixture, none of which becomes a variable',
       'request/crumb'             => 'The fixture for request/crumbs, fetched bare: no cookie, nothing promoted',
+      'request/a_request_value_never_decides_what_a_tag_is' => 'Request values named like a constant, a sequence, a _data file, a pipe or PHP function the template writes as a tag or a pipe: each stays what the template wrote, a page variable and a name nothing else claims stay fields',
+      'request/tagnames'          => 'The fixture for request/a_request_value_never_decides_what_a_tag_is, fetched bare: what the template means by each name',
       'request/statuses'          => 'A missing page answers 404, and a status the page sets with http_response_code() stands',
       'request/gone'              => 'The fixture for request/statuses: a page that answers 410 itself',
       'request/redirect'          => 'A redirecting page, seen unfollowed - status and destination - and followed to where it lands',
