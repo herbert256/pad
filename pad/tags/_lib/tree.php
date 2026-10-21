@@ -34,6 +34,19 @@
     $field = $padTreeStore [ $padLevelId [$lvl] ] ['children'];
     $kids  = $padCurrent [$lvl] [$field] ?? [];
 
+    // Children held in an object - an ArrayObject, a collection class, a generator - are the
+    // list it holds, as a field asked for as a list reads them (padFieldListOf, lib/field/
+    // level.php): the tree found none in them, so {branch} was false and {recurse} rendered
+    // nothing, in silence, where a {children} tag over the same field iterated them. One that
+    // runs once is read once, its array put in its place for the {recurse} after the {branch}.
+
+    if ( is_object ( $kids ) ) {
+      $list = padFieldListOf ( $kids, 3 );
+      if ( padFieldOneShot ( $kids ) )
+        $padCurrent [$lvl] [$field] = $list;
+      $kids = $list;
+    }
+
     return ( is_array ( $kids ) ) ? $kids : [];
 
   }
