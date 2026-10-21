@@ -724,10 +724,19 @@
   // 0.30000000000000004 from a listed 0.3 by all 17 digits and printed 0.3 0.3, where dedup
   // took the two, which print alike, for one value.
 
+  //
+  // A whole number written past the integer range is the digits it is written with - its
+  // sign, no leading zeros: as a float 9223372036854775808 and 9223372036854775809 were one
+  // value, unique kept the first alone and an intersection with a store of the one let the
+  // other through.
+
   function pqValueKey ( $value ) {
 
     if ( ! is_numeric ( $value ) )
       return 's' . $value;
+
+    if ( is_string ( $value ) and preg_match ( '/^\s*([+-]?)0*(\d+)\s*$/', $value, $pqWhole ) and ! is_int ( $value + 0 ) )
+      return ( ( $pqWhole [1] == '-' ) ? '-' : '' ) . $pqWhole [2];
 
     $value = $value + 0;
 
