@@ -54,9 +54,52 @@
       // A URL is read as one - padFileGet roots a relative path under DATA and refuses the
       // // of a scheme, so every fetch used to come back as an empty 200.
 
+      // Redirects are followed here, not by the stream wrapper: each hop is put through
+      // padNoCurlContext again, so one on this site's own address keeps the pin, as curl's
+      // CONNECT_TO holds for every connection to that host and port - the wrapper, kept off
+      // them, answered the redirect's own body, Apache's 301 page or PAD's empty one, as a
+      // 200 page. A post redirected by 301, 302 or 303 goes on as a GET, as curl sends it,
+      // and only http and https are followed.
+
       if ( str_contains ( $output ['url'], '://' ) ) {
-        [ $url, $context ] = padNoCurlContext ( $output ['url'], $output ['options'] );
-        $result = file_get_contents ( $url, FALSE, $context );
+
+        $url     = $output ['url'];
+        $options = $output ['options'];
+        $hops    = empty ( $options ['FOLLOWLOCATION'] ) ? 0 : (int) ( $options ['MAXREDIRS'] ?? 5 );
+
+        while ( TRUE ) {
+
+          if ( ! preg_match ( '#^https?://#i', $url ) )
+            return padCurlError ( $output, 'padNoCurl: only http and https are fetched' );
+
+          [ $to, $context ] = padNoCurlContext ( $url, $options );
+
+          $stream = fopen ( $to, 'r', FALSE, $context );
+          $result = stream_get_contents ( $stream );
+          $status = 0;
+          $moved  = '';
+
+          foreach ( stream_get_meta_data ( $stream ) ['wrapper_data'] ?? [] as $line )
+            if ( preg_match ( '#^HTTP/\S+\s+(\d{3})#', $line, $match ) )
+              [ $status, $moved ] = [ (int) $match [1], '' ];
+            elseif ( preg_match ( '#^Location:\s*(\S+)#i', $line, $match ) )
+              $moved = $match [1];
+
+          fclose ( $stream );
+
+          if ( $status < 300 or $status > 399 or $moved === '' or $hops-- <= 0 )
+            break;
+
+          $url = padNoCurlLocation ( $url, $moved );
+
+          if ( in_array ( $status, [ 301, 302, 303 ] ) )
+            unset ( $options ['POST'], $options ['POSTFIELDS'] );
+
+        }
+
+        if ( $status < 200 or $status > 299 )
+          return padCurlError ( $output, "padNoCurl: HTTP $status" );
+
       } else
         $result = padFileGet ( $output ['url'], FALSE );
 
@@ -87,7 +130,7 @@
   // credentials, the agent and the time-out. And the pin of a fetch of this site, CONNECT_TO
   // (lib/paths.php padSelfConnect): the address connected to is the pinned one, the URL's
   // name goes along as the Host header and, over https, as the name the certificate must
-  // carry; a redirect is not followed, as it would leave the pin. Without ext-curl the URL
+  // carry; padNoCurl follows a redirect itself, hop by hop. Without ext-curl the URL
   // was read as it stood - its host made of the visitor's Host header, so Host:
   // 169.254.169.254 had every SELF://, {get} and {page app=} fetch from there - as a GET
   // with none of the rest.
@@ -97,8 +140,8 @@
     $headers = $options ['HTTPHEADER'] ?? [];
     $http    = [ 'method'          => empty ( $options ['POST'] ) ? 'GET' : 'POST',
                  'timeout'         => $options ['TIMEOUT'] ?? 120,
-                 'follow_location' => empty ( $options ['FOLLOWLOCATION'] ) ? 0 : 1,
-                 'max_redirects'   => ( $options ['MAXREDIRS'] ?? 5 ) + 1 ];
+                 'follow_location' => 0,
+                 'ignore_errors'   => TRUE ];
     $ssl     = [];
 
     if ( isset ( $options ['USERAGENT'] ) )
@@ -130,7 +173,6 @@
 
       $headers []                = 'Host: ' . $parts ['host'] . ( isset ( $parts ['port'] ) ? ':' . $parts ['port'] : '' );
       $ssl ['peer_name']         = $host;
-      $http ['follow_location']  = 0;
 
       $url = $parts ['scheme'] . '://' . ( $to [3] !== '' ? $to [3] : $parts ['host'] ) . ':' . ( $to [4] !== '' ? $to [4] : $port )
            . ( $parts ['path'] ?? '' ) . ( isset ( $parts ['query'] ) ? '?' . $parts ['query'] : '' );
@@ -142,6 +184,30 @@
     $http ['header'] = $headers;
 
     return [ $url, stream_context_create ( [ 'http' => $http, 'ssl' => $ssl ] ) ];
+
+  }
+
+  // Where a redirect's Location leads from the address it answered: as given when it names
+  // a scheme, else on the scheme and host - with the port - of that address.
+
+  function padNoCurlLocation ( $url, $location ) {
+
+    if ( preg_match ( '#^[a-z][a-z0-9+.-]*:#i', $location ) )
+      return $location;
+
+    $parts = parse_url ( $url );
+
+    if ( str_starts_with ( $location, '//' ) )
+      return $parts ['scheme'] . ":$location";
+
+    $root = $parts ['scheme'] . '://' . $parts ['host'] . ( isset ( $parts ['port'] ) ? ':' . $parts ['port'] : '' );
+
+    if ( str_starts_with ( $location, '/' ) )
+      return $root . $location;
+
+    $path = $parts ['path'] ?? '/';
+
+    return $root . substr ( $path, 0, strrpos ( $path, '/' ) + 1 ) . $location;
 
   }
 
