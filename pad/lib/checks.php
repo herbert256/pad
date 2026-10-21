@@ -168,10 +168,12 @@
       if ( is_file ( $script ) )
         return $memo [$key] = $script;
 
-      $found = glob ( "$script.*" );
+      // The directory is listed, not globbed: a bracketed route directory - blog/[year]/ -
+      // read as a character class, and its scripts were never found.
 
-      if ( $found )
-        return $memo [$key] = $found [0];
+      foreach ( is_dir ( dirname ( $script ) ) ? scandir ( dirname ( $script ) ) : [] as $file )
+        if ( str_starts_with ( $file, "$check." ) and is_file ( dirname ( $script ) . "/$file" ) )
+          return $memo [$key] = dirname ( $script ) . "/$file";
 
     }
 
