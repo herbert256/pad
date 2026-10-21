@@ -10,10 +10,21 @@
   // master.passwd answered yes - and ?v=ftp://host:port/x had the server open an FTP session
   // to the host and port he named (a \\host\share path on Windows an SMB connection). The
   // directory is judged, so a file that is not there answers no as before.
+  //
+  // www/ counts as well: the applications' public files are served to every visitor anyway,
+  // and a picture shown only when its file is there - www/<app>/images/logo.png - answered
+  // missing.
 
   if ( str_contains ( $padParm, '://' ) or str_starts_with ( $padParm, '\\\\' ) )
     return FALSE;
 
-  return padDirContained ( dirname ( $padParm ) ) and file_exists ( $padParm );
+  $padExistsDir = padGetPath ( dirname ( $padParm ) );
+  $padExistsWww = padGetPath ( APPS . '../www' );
+
+  $padExistsIn  = ( padDirContained ( dirname ( $padParm ) )
+                    or ( $padExistsDir !== FALSE and $padExistsWww !== FALSE
+                         and str_starts_with ( rtrim ( $padExistsDir, '/' ) . '/', rtrim ( $padExistsWww, '/' ) . '/' ) ) );
+
+  return $padExistsIn and file_exists ( $padParm );
 
 ?>

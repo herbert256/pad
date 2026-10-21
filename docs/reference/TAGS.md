@@ -931,8 +931,8 @@ Check if file exists.
 - First parameter: File path
 
 **Returns:** TRUE if file exists, FALSE otherwise - and FALSE for a path outside the
-applications, the engine and DATA, and for an address (`ftp://...`), as `{dir}` and `{files}`
-keep to that tree
+applications, the engine, DATA and the public files of `www/`, and for an address
+(`ftp://...`)
 
 ---
 
