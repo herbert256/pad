@@ -51,6 +51,12 @@
     for ( $i = 0; $i < 8; $i++ )
       padFakeNext ();
 
+    // A seed is a new start, and the values padFakeUnique gave belong to the sequence that
+    // made them: kept, the same seed twice in a request - a test page or a seeder run again -
+    // answered other unique values the second time, every other helper the same.
+
+    padFakeUniqueReset ();
+
   }
 
   // The state, unseeded the first time it is asked for: a random start.
