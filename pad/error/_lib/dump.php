@@ -319,10 +319,34 @@
 
     global $padDumpDeep;
 
+    // Bounded as the JSON report bounds them (padClaudeFields, error/claude.php): 64 KB a
+    // global, 4 MB in all, the application's own variables served first, in the order PHP
+    // keeps them. Printed whole, the data that ran a request out of memory was printed again
+    // in the room padBootRoom gave the report: the second fatal took the report and the
+    // answer with it - an empty 500, no request id, no _errors/500.pad, for this machine too.
+
     $globals = [];
 
     foreach ( $GLOBALS as $key => $value )
-      $globals [$key] = padRedact ( $value, $key, $padDumpDeep ?? FALSE );
+      $globals [$key] = NULL;
+
+    $room   = 4 << 20;
+    $values = padRedactValues ();
+
+    foreach ( [ FALSE, TRUE ] as $engine )
+      foreach ( $GLOBALS as $key => $value ) {
+
+        if ( $engine !== ( str_starts_with ( $key, 'pad' ) or str_starts_with ( $key, 'pq' ) or str_starts_with ( $key, '_' ) ) )
+          continue;
+
+        $left  = min ( 65536, max ( 0, $room ) );
+        $own   = $left;
+        $value = padClaudeBound ( $value, 0, $left, $values );
+        $room -= $own - $left;
+
+        $globals [$key] = padRedact ( $value, $key, $padDumpDeep ?? FALSE );
+
+      }
 
     echo htmlentities ( print_r ( $globals, TRUE ) );
 
