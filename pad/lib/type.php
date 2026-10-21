@@ -147,9 +147,13 @@
       $last   = $before;
       $before = $id;
 
-      // A string with variables in it: what stands inside is text, its {$x} braces too.
+      // A string with variables in it: what stands inside is text, its {$x} braces too. A
+      // binary string opens with the one token b" - read as no string, the state began at its
+      // closing quote and ran to the end of the file, a function's locals behind it the
+      // page's own.
 
-      if ( $id === '"' or $id === '`' ) { $string = ! $string; continue; }
+      if ( $id === 'b"' or $id === 'B"' ) { $string = TRUE;      continue; }
+      if ( $id === '"' or $id === '`' )   { $string = ! $string; continue; }
       if ( $id === T_START_HEREDOC )    { $string = TRUE;      continue; }
       if ( $id === T_END_HEREDOC )      { $string = FALSE;     continue; }
 

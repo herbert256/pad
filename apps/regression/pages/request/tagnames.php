@@ -11,9 +11,11 @@
   $date    = $date ?? '2000-01-01';
 
   // A name in a comment, a string or a function's parameter is none of the page's: $upper
-  // here, '$fibonacci' and $nums below stay the template's.
+  // here, '$fibonacci' and $nums below stay the template's, and so does the closure's local
+  // $exclaim behind a binary string.
 
-  $tagNamesText  = 'the $fibonacci sequence';
-  $tagNamesLocal = function ( $nums ) { $exclaim = 1; return $nums; };
+  $tagNamesText   = 'the $fibonacci sequence';
+  $tagNamesBinary = b"a binary string for $who";
+  $tagNamesLocal  = function ( $nums ) { $exclaim = 1; return $nums; };
 
 ?>
