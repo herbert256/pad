@@ -42,6 +42,13 @@
     foreach ( $vars as $padK => $padV )
       $go = padAddGet ( $go, $padK, $padV );
 
+    // A page name handed over from the request - padRedirect ( padRequest ( 'next' ) ) - may
+    // hold a line break or another control character, which no header may: PHP refused the
+    // Location and every ?next=x%0d%0aX:1 ended as a 500 error report instead of a redirect.
+    // They are percent-encoded, as the browser would write them in an address.
+
+    $go = preg_replace_callback ( '/[\x00-\x20\x7f]/', fn ( $match ) => rawurlencode ( $match [0] ), $go );
+
     padHeader ( "Location: $go" );
 
     padExit ( 302 );
