@@ -19,6 +19,21 @@
   if ( ! isset ( $padSlot [$pad] ) and padSlotType ( $padType [$pad] ) )
     $padSlot [$pad] = [ 'fills' => padSlotTake ( $padContent ), 'declared' => NULL ];
 
+  // content= on a tag that cuts its own content at its branches - an {if}, a {case}, the
+  // condition tags (padElseOwners) - is merged in before the tag runs. Merged after it, as
+  // for any other tag, its {else}, {elseif} and {when}s were never seen: "there is no tag
+  // named 'else'", "the {case} has no {when}", or the else branch lost in silence. An
+  // @else@ half of the stored text goes to the level's own, as padContentMerge puts it.
+
+  $padContentFirst = ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], padElseOwners, TRUE ) and padTagParm ( 'content' ) );
+
+  if ( $padContentFirst ) {
+    padContentElse ( include PAD . 'options/content.php', $padContentTrue, $padContentFalse );
+    $padContent = padContentSet ( $padContent, $padContentTrue );
+    if ( $padContentFalse !== '' )
+      $padFalse = padContentSet ( $padFalse, $padContentFalse );
+  }
+
   ob_start();
   $padGetName     = $padTag [$pad];
   $padTagResult   = include PAD . "types/" . $padType [$pad] . ".php";
@@ -96,7 +111,7 @@
   if ( $padTagContent !== '' )
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
-  if ( padTagParm ('content') ) {
+  if ( padTagParm ('content') and ! $padContentFirst ) {
     $padContentData = include PAD . 'options/content.php';
     padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
   }
