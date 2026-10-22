@@ -367,7 +367,8 @@ padSqlSetup=_install/schema.sql            # CREATE TABLE ... INSERT ... - run o
 Everything above works alike on both: the `db()` verbs and their result shapes (`field`,
 `record`, `array`, `check`, `insert` answering the new id, `update`/`delete` the rows
 touched), the `{0}` placeholders, the database tags, named `_data/*.sql` queries and the
-Select subsystem. An insert that gives no row a new id - an ignored duplicate, an empty
+Select subsystem - but for `rollup`, MySQL's WITH ROLLUP, which SQLite has not got and the
+select refuses there, and `distinctrow`, which it writes as `distinct`. An insert that gives no row a new id - an ignored duplicate, an empty
 `INSERT ... SELECT` - answers its row count, 0, on both; on SQLite so does an upsert that
 updated (MySQL answers the updated row's id there), and a multi-row insert answers the last
 new id where MySQL answers the first. The placeholders escape the way the driver needs - SQLite doubles a quote

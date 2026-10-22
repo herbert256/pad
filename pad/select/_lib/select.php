@@ -261,9 +261,12 @@
 
   function padSelectStart ( $all,  $distinct, $distinctrow ) {
 
+    // distinctrow is MySQL's word for distinct: SQLite read it as a column name, so there
+    // the select writes distinct.
+
     if     ($all)         return 'ALL';
     elseif ($distinct)    return 'distinct';
-    elseif ($distinctrow) return 'distinctrow';
+    elseif ($distinctrow) return ( padDbApp () instanceof PDO ) ? 'distinct' : 'distinctrow';
     else                  return '';
 
   }
@@ -273,7 +276,13 @@
     if ($group)
       $group = "group by $group";
 
-    if ($rollup)
+    // WITH ROLLUP is MySQL's, and SQLite ended the statement on 'near "with": syntax
+    // error'; it is refused with what it is, and under a continuing error action the
+    // select runs without the total row.
+
+    if ( $rollup and padDbApp () instanceof PDO )
+      padError ( "rollup is MySQL's WITH ROLLUP, which SQLite has not got - total the rows in a select of their own" );
+    elseif ($rollup)
       $group .= "\nwith rollup";
 
     return $group;

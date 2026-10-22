@@ -793,7 +793,7 @@ padSqlPassword=pass
 
 # Or SQLite through PDO - no server: the file (relative = under DATA/) and a .sql file
 # (relative = in the app) that builds it on first use. db() verbs, placeholders, the
-# database tags, named queries and Select work alike on both drivers.
+# database tags, named queries and Select work alike on both drivers (rollup is MySQL's).
 # padSqlDriver=sqlite
 # padSqlDatabase=myapp/myapp.sqlite
 # padSqlSetup=_install/schema.sql
