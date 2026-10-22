@@ -758,9 +758,14 @@
   // own into the statement. padSelectKeys quotes each key the same way now; it wrapped a
   // table.column as one name.
 
+  //
+  // A name already in backticks, with none inside - a table declared `order`, the way to name
+  // one that is a reserved word - is quoted as it stands: quoted again it was ```order```,
+  // and a join to it ended on "Unknown column".
+
   function padSelectField ($field) {
 
-    $quote = fn ( $name ) => '`' . str_replace ( '`', '``', $name ) . '`';
+    $quote = fn ( $name ) => preg_match ( '/^`[^`]+`$/', $name ) ? $name : '`' . str_replace ( '`', '``', $name ) . '`';
 
     $parts = padExplode($field, '.');
 
