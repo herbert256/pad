@@ -277,8 +277,13 @@ function padSplitOnUnquotedColon ( $str ) {
     $value = (string) $value;
     $start = $padStart [$pad];
 
+    // A negative number right after a minus - where="salary > 2000-{$adj}" with -1000 -
+    // joined into "2000--1000", a -- line comment on SQLite (MySQL wants white space after
+    // --) that took the rest of the statement with it: the condition, the order, the limit.
+    // A space keeps the two apart, as padSelectBind does for a bound $adj.
+
     if ( preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', $value ) or $start < 1 )
-      return $value;
+      return ( $value !== '' and $value [0] === '-' and $start >= 1 and ( $padOut [$pad] [$start - 1] ?? '' ) === '-' ) ? " $value" : $value;
 
     // Looked for within the 4 KB before the splice: no tag writes that much before a field
     // in its parameters, and searching the whole resolved text before it made a page of
