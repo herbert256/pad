@@ -217,9 +217,16 @@
 
         if ( $delim !== '' and ! ctype_alnum ( $delim ) and ! ctype_space ( $delim ) and $delim !== '\\' ) {
 
-          for ( $i = $open + 1; $i < $len and $text [$i] !== $close; $i++ )
+          // A bracket delimiter closes at the bracket that pairs with it, as PCRE counts
+          // them: regex:((S)|M) ended at the ) of its group and was cut at the |.
+
+          for ( $i = $open + 1, $depth = 1; $i < $len; $i++ )
             if ( $text [$i] === '\\' )
               $i++;
+            elseif ( $text [$i] === $close and ! --$depth )
+              break;
+            elseif ( $text [$i] === $delim and $delim !== $close )
+              $depth++;
 
           if ( $i < $len ) {
             for ( $i++; $i < $len and ctype_alpha ( $text [$i] ); $i++ ) ;
