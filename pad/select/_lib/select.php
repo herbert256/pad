@@ -97,7 +97,7 @@
     if ( $htmlAttrJson and ! in_array ( strtolower ( (string) $htmlAttrJson ), [ 'array', 'record', 'field' ], TRUE ) )
       return padError ( "htmlAttrJson= takes array, record or field, not '" . padMakeSafe ( (string) $htmlAttrJson, 40 ) . "'" );
 
-    if ( ! $padHtmlAttrJson and $htmlAttrJson ) {
+    if ( ! $padHtmlAttrJson and $htmlAttrJson and ! $unionBuild ) {
       $padHtmlAttrJson = strtolower ( $htmlAttrJson );
       $type            = $padHtmlAttrJson;
     }
