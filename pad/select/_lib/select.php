@@ -157,6 +157,7 @@
     $head  = padSelectLines ( [ "$padSelStart $fields", "from $db", $padSelJoin, $padSelWhere, $padSelGroup, $having ] );
     $tail  = padSelectLines ( [ $padSelOrder, $padSelLimit ] );
     $limit = $padSelLimit;
+    $join  = $padSelJoin;
 
     $padSelUnion = padSelectUnion  ( $padSelUnion );
     $members     = $padSelUnion;
@@ -183,6 +184,8 @@
     // again, to theirs, so a paged select with union= booked no count and its {pager} showed
     // no links - or, read from a select before it on the same level, that one's pages. A
     // select that books none takes the count of the one before away for the same reason.
+    // The join is this select's own the same way: the last member's was read, and a joined
+    // select with a union that had none ended its pager on "Duplicate column name".
 
     if ( ! $unionBuild and ! $limit )
       unset ( $GLOBALS ['padPagerCount'] [$pad], $GLOBALS ['padPagerRows'] [$pad] );
@@ -198,7 +201,7 @@
       // the count ended on "Duplicate column name": it is the number of rows the select
       // gives without its limit then, read when the pager asks (padPagerItems).
 
-      $GLOBALS ['padPagerCount'] [$pad] = ( ! $short and $padSelJoin !== '' )
+      $GLOBALS ['padPagerCount'] [$pad] = ( ! $short and $join !== '' )
                                         ? "array $base"
                                         : "field count(*) from ( $count\n) as padPagerCount";
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
