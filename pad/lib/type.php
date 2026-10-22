@@ -382,6 +382,10 @@
   // and {IF}, whose code compares its own name exactly: {If 1 eq 2}a{Else}b{/If} printed
   // nothing, {ELSEIF} was skipped and {Data 'q'} ended on a PHP warning, where a server that
   // tells case apart has no tag named If.
+  //
+  // The listing is the one kept between requests (padDirList, lib/dirs.php), as the lib
+  // loader's and tags/_lib's are: read afresh it was a scandir of some 150 entries - 60 to
+  // 90 us on this Mac - in every request that ran a built-in tag.
 
   function padTagBuiltIn ( $name ) {
 
@@ -390,7 +394,7 @@
     if ( ! padCheck ( PAD . "tags/$name" ) )
       return FALSE;
 
-    $exact ??= file_exists ( PAD . 'TAGS/' ) ? pqNames ( PAD . 'tags' ) : [];
+    $exact ??= file_exists ( PAD . 'TAGS/' ) ? array_flip ( padDirList ( PAD . 'tags' ) ?: [] ) : [];
 
     return ! $exact or isset ( $exact ["$name.php"] ) or isset ( $exact ["$name.pad"] );
 
@@ -401,7 +405,8 @@
   // such a machine failed on one that does not - and the rules kept by a function's name
   // missed them there: DATE('Y', 0) took 'Y' for the moment and answered 0, LEFT ran past its
   // parameter check into a PHP warning. Where the engine's directory ignores case its
-  // listing says, read once per request.
+  // listing says - the one kept between requests (padDirList), where a scandir read it in
+  // every request that piped a value.
 
   function padFunctionBuiltIn ( $name ) {
 
@@ -411,7 +416,7 @@
       return FALSE;
 
     $exact ??= file_exists ( PAD . 'FUNCTIONS/' )
-      ? array_flip ( str_replace ( '.php', '', preg_grep ( '/\.php$/', scandir ( PAD . 'functions' ) ) ) )
+      ? array_flip ( str_replace ( '.php', '', preg_grep ( '/\.php$/', padDirList ( PAD . 'functions' ) ?: [] ) ) )
       : [];
 
     return ! $exact or isset ( $exact [$name] );
