@@ -590,7 +590,7 @@
 
     $head = ( $quote === '' ) ? $inside : substr ( $inside, 0, $quoteAt );
 
-    if ( preg_match ( '/^\s*(?:pad:)?(field|record|array|check)\s+$/i', $head, $match ) )
+    if ( preg_match ( '/^\s*(?:pad:)?(field|record|array|check)\s(.*)$/is', $head, $match ) and padDbSqlParm ( $match [2] ) )
       $what = 'the SQL of {' . strtolower ( $match [1] ) . '} is the template\'s own';
     elseif ( preg_match ( '/(?<![\w$:.@])(field|record|array|check)\s*\(\s*$/i', $head, $match ) )
       $what = 'the SQL of ' . strtolower ( $match [1] ) . '() is the template\'s own';
@@ -631,6 +631,47 @@
         $i = $end - 1;
 
     return ( $in === "'" ) ? '' : $refuse;
+
+  }
+
+  // Whether a splice stands in the SQL of a database tag - $items its parameters up to the
+  // splice, or up to the quote it stands in: the first positional parameter is the SQL
+  // (padDbTagSql), whatever options come before it, so every item before the splice is an
+  // option - name, name=value - or a $name=value, and the item at the splice has nothing
+  // before it yet. The tag's name had to be followed by the SQL at once, and an option
+  // written first - {field name='x', "count(*) from staff where salary < {$max}"} - made
+  // the splice an ordinary parameter's: ?max=0 or 1 went in bare and counted every row.
+
+  function padDbSqlParm ( $items ) {
+
+    $parts = [];
+    $from  = 0;
+    $in    = '';
+    $depth = 0;
+
+    for ( $i = 0, $len = strlen ( $items ); $i < $len; $i++ )
+      if ( $in ) {
+        if     ( $items [$i] == '\\' ) $i++;
+        elseif ( $items [$i] == $in  ) $in = '';
+      } elseif ( $items [$i] == "'" or $items [$i] == '"' )
+        $in = $items [$i];
+      elseif ( $items [$i] == '(' or $items [$i] == '[' )
+        $depth++;
+      elseif ( $items [$i] == ')' or $items [$i] == ']' )
+        $depth--;
+      elseif ( $items [$i] == ',' and $depth <= 0 ) {
+        $parts [] = substr ( $items, $from, $i - $from );
+        $from     = $i + 1;
+      }
+
+    if ( $in or $depth > 0 or trim ( substr ( $items, $from ) ) !== '' )
+      return FALSE;
+
+    foreach ( $parts as $one )
+      if ( ! preg_match ( '/^\s*[$%]?[A-Za-z_]\w*\s*(=(?!=).*)?$/s', $one ) )
+        return FALSE;
+
+    return TRUE;
 
   }
 
