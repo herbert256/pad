@@ -5,6 +5,11 @@
 
   $padSelect ['staffSel'] = [ 'db' => 'staff', 'key' => 'name' ];
 
+  // A union member with rows= of its own keeps them: SQLite takes no member in parentheses,
+  // so it is a derived table there.
+
+  $padSelect ['topPaid']  = [ 'db' => 'staff', 'fields' => 'name', 'order' => 'salary desc', 'rows' => 1 ];
+
   // A value bound into where= is escaped as SQLite wants it: the quote stays in the string.
 
   $who = "x' or name > '";

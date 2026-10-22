@@ -6,3 +6,4 @@ minus: [{staffSel where="salary > 2000-$adj", order="name"}{$name} @else@none{/s
 spliced: [{staffSel where="salary > 2000-{$adj}", order="name"}{$name} @else@none{/staffSel}]
 field: [{field "count(*) from staff where salary > 2000-{$adj}"}]
 distinctrow: [{staffSel fields="floor(salary / 2000) as band", distinctrow, order="band"}{$band} {/staffSel}]
+member: [{staffSel fields="name", where="salary < 2000", union="topPaid", order="name"}{$name} {/staffSel}]

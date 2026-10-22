@@ -213,12 +213,17 @@
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
     }
 
-    // A member with rows= of its own - and the order that picks them - is a derived table:
-    // its order and limit were left out, and every row of it was added without a word.
-    // MySQL and SQLite both read a select from a derived table as a member of a union.
+    // A member with rows= of its own - and the order that picks them - keeps them: its order
+    // and limit were left out, and every row of it was added without a word. MySQL takes the
+    // member in parentheses, as it stands; SQLite has no parentheses there and reads it as a
+    // derived table. A derived table on MySQL may not hold a column name twice, and a member
+    // of orders joined to customers, both with customerNumber, ended on "Duplicate column
+    // name".
 
     if ( $unionBuild and $limit )
-      return "union select * from (\nselect " . padSelectLines ( [ $base, $tail ] ) . "\n) as padUnion" . ( count ( $_UNION ) );
+      return ( padDbApp () instanceof PDO )
+           ? "union select * from (\nselect " . padSelectLines ( [ $base, $tail ] ) . "\n) as padUnion" . ( count ( $_UNION ) )
+           : "union (\nselect " . padSelectLines ( [ $base, $tail ] ) . "\n)";
 
     if ($unionBuild)
       return $padSelUnion;
