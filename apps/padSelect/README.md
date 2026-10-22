@@ -38,7 +38,7 @@ padSelect/
 ├── views/            # base=, a view of a view, a view nested, where= on a view
 ├── joins/            # inner, left, natural, more than one, a join to a view, join= on the tag
 ├── aggregates/       # group=, having=, rollup, distinct
-├── paging/           # rows= and page=, the pager
+├── paging/           # rows= and page=, the pager, pages of distinct rows
 ├── unions/           # union=, a union of several, a member with rows of its own
 └── output/           # type=record and field, htmlAttrJson, handling options
 ```

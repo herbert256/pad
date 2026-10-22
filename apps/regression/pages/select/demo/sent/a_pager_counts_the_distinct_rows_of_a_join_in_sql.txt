@@ -1,0 +1,5 @@
+distinct: [In Process ] (prev: current:1 page:2 next:2 )
+
+select distinct orders.status from orders join customers on customers.customerNumber = orders.customerNumber where (customers.country = &#039;France&#039;) order by orders.status limit 0, 1
+
+select count(*) from ( select distinct orders.status from orders join customers on customers.customerNumber = orders.customerNumber where (customers.country = &#039;France&#039;) ) as padPagerCount limit 0,1

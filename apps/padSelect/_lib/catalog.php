@@ -102,7 +102,9 @@
         'paging/rows_page' => [ 'rows= and page=',
                                 'rows= and page= are the SQL limit: page 2 of five is the sixth to the tenth track, read from the database and nothing more.' ],
         'paging/pager'     => [ 'The pager',
-                                '{pager} after the paged table counts its rows with one more statement - only when it is there - and links the pages.' ]
+                                '{pager} after the paged table counts its rows with one more statement - only when it is there - and links the pages.' ],
+        'paging/distinct'  => [ 'Pages of distinct rows',
+                                'Distinct rows of a join are rows of their own - thirteen albums are twelve pairs of an artist and a genre - and the pager counts those, in SQL: a count over the distinct select.' ]
       ],
 
       'Unions' => [

@@ -196,12 +196,13 @@
       $count = $short
              ? 'select 1 ' . padSelectLines ( [ "from $db", $padSelJoin, $padSelWhere ] )
              : "select $base";
-      // With a join the select list may hold a column name twice - select distinct * from
-      // orders join customers, both with customerNumber - which no derived table can, and
-      // the count ended on "Duplicate column name": it is the number of rows the select
-      // gives without its limit then, read when the pager asks (padPagerItems).
+      // A select list may hold a column name twice - select distinct * from orders join
+      // customers, both with customerNumber - which no derived table can, and the count
+      // ended on "Duplicate column name": it is the number of rows the select gives without
+      // its limit then, read when the pager asks (padPagerItems). Only then: every joined
+      // select was read that way, and the pager of 350,000 distinct rows took 170 MB.
 
-      $GLOBALS ['padPagerCount'] [$pad] = ( ! $short and $join !== '' )
+      $GLOBALS ['padPagerCount'] [$pad] = ( ! $short and padSelectRepeats ( (string) $fields, $join !== '' ) )
                                         ? "array $base"
                                         : "field count(*) from ( $count\n) as padPagerCount";
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
@@ -250,6 +251,74 @@
     $fields = preg_replace ( "/\\b\\w+\\s*(?&group)\\s*over\\s*(?:(?&group)|\\w+)$group/i", '0', $fields ) ?? $fields;
 
     return (bool) preg_match ( '/\b(count|sum|avg|min|max|total|group_concat|json_arrayagg|json_objectagg|string_agg|bit_and|bit_or|bit_xor|std|stddev|stddev_pop|stddev_samp|variance|var_pop|var_samp)\s*\(/i', $fields );
+
+  }
+
+  // Whether the columns of a select list can repeat a name: a * beside a join or beside
+  // another column, two columns of one name or alias, or a list with a comment, which is
+  // not read further.
+
+  function padSelectRepeats ( $fields, $joined ) {
+
+    if ( preg_match ( '/--|#|\/\*/', $fields ) )
+      return TRUE;
+
+    $items = padSelectItems ( preg_replace ( '/^\s*(all|distinct|distinctrow)\s+/i', '', $fields ) );
+    $names = [];
+
+    foreach ( $items as $item ) {
+
+      if ( $item === '*' or str_ends_with ( $item, '.*' ) ) {
+        if ( $joined or count ( $items ) > 1 )
+          return TRUE;
+        continue;
+      }
+
+      $name = '(`[^`]+`|"[^"]+"|\'[^\']+\'|\w+)';
+
+      if (     preg_match ( "/\\bas\\s+$name$/i",                         $item, $match ) ) $item = $match [1];
+      elseif ( preg_match ( "/^(?:(?:`[^`]+`|\\w+)\\s*\\.\\s*)*$name$/", $item, $match ) ) $item = $match [1];
+      elseif ( preg_match ( "/[\\w`)]\\s+$name$/",                       $item, $match ) ) $item = $match [1];
+
+      $item = strtolower ( preg_replace ( '/\s+/', ' ', trim ( $item, '`"\'' ) ) );
+
+      if ( isset ( $names [$item] ) )
+        return TRUE;
+
+      $names [$item] = TRUE;
+
+    }
+
+    return FALSE;
+
+  }
+
+  // The items of a select list, split at the commas outside parentheses and quotes.
+
+  function padSelectItems ( $fields ) {
+
+    $items = [];
+    $item  = '';
+    $depth = 0;
+    $in    = '';
+
+    for ( $i = 0, $len = strlen ( $fields ); $i < $len; $i++ ) {
+
+      $char = $fields [$i];
+
+      if     ( $in )                          { if ( $char == $in ) $in = ''; }
+      elseif ( strpos ( '\'"`', $char ) !== FALSE ) $in = $char;
+      elseif ( $char == '(' )                 $depth++;
+      elseif ( $char == ')' )                 $depth--;
+      elseif ( $char == ',' and ! $depth )    { $items [] = trim ( $item ); $item = ''; continue; }
+
+      $item .= $char;
+
+    }
+
+    $items [] = trim ( $item );
+
+    return $items;
 
   }
 

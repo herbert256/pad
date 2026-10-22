@@ -72,7 +72,7 @@
         </div><a href="?aggregates/group">group= : a row per group</a> <a href="?aggregates/having">having= : a condition on the groups</a> <a href="?aggregates/rollup">rollup : the total row</a> <a href="?aggregates/distinct">distinct</a>
         <div class="frame-head">
           Paging
-        </div><a href="?paging/rows_page">rows= and page=</a> <a href="?paging/pager">The pager</a>
+        </div><a href="?paging/rows_page">rows= and page=</a> <a href="?paging/pager">The pager</a> <a href="?paging/distinct">Pages of distinct rows</a>
         <div class="frame-head">
           Unions
         </div><a href="?unions/union">union= : rows from two tables</a> <a href="?unions/many">A union of several</a> <a href="?unions/member_rows">A member with rows of its own</a>
@@ -252,6 +252,9 @@
                 </li>
                 <li>
                   <a href="?paging/pager">The pager</a><span>{pager} after the paged table counts its rows with one more statement - only when it is there - and links the pages.</span>
+                </li>
+                <li>
+                  <a href="?paging/distinct">Pages of distinct rows</a><span>Distinct rows of a join are rows of their own - thirteen albums are twelve pairs of an artist and a genre - and the pager counts those, in SQL: a count over the distinct select.</span>
                 </li>
               </ul>
             </section>

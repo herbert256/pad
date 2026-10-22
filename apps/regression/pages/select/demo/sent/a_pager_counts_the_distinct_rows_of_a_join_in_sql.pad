@@ -1,0 +1,4 @@
+distinct: [{orderSel join="customers on customers.customerNumber = orders.customerNumber", fields="distinct orders.status", where="customers.country = 'France'", order="orders.status", page=1, rows=1}{$status} {/orderSel}] ({pager 'orderSel', window=0}{$kind}:{$page} {/pager})
+{caseSql}
+{$caseSql}
+{/caseSql}
