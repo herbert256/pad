@@ -71,7 +71,6 @@
   $padInfoTraceSequence    = FALSE;
   $padInfoTraceVar         = FALSE;
   $padInfoTraceField       = FALSE;
-  $padInfoTraceEval        = FALSE;
   $padInfoTraceCall        = FALSE;
   $padInfoTraceSql         = FALSE;
   $padInfoTracePut         = FALSE;

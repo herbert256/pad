@@ -18,6 +18,9 @@
 
   padLevelBetween ();
 
+  if ( $padInfo )
+    include PAD . 'events/parse.php';
+
   if ( padWhiteCheck   () ) return padWhiteHit   ();
   if ( padCloseCheck   () ) return padCloseHit   ();
   if ( padCommentCheck () ) return padCommentHit ();

@@ -131,9 +131,10 @@
 
   $padInfoTraceBuild       = TRUE;
 
-  // Parse: read nowhere at present - events/parse.php, which would trace each tag as it is
-  // found with the text around it, is included by no file. Parms: a 'parm' line per tag for
-  // each option (opt), named parameter (prm), $ variable (lvl) and % variable (occ) on it.
+  // Parse: every { } pair the level loop finds, as found - a 'parse start' line with its
+  // text, 'parse before' with up to 50 characters before it and 'parse after' with what
+  // follows it (events/parse.php). Parms: a 'parm' line per tag for each option (opt),
+  // named parameter (prm), $ variable (lvl) and % variable (occ) on it.
 
   $padInfoTraceParse       = TRUE;
   $padInfoTraceParms       = TRUE;
@@ -169,23 +170,23 @@
   //
   //   Store     a {data}, {content} or {bool} block stored - its name and value
   //   Sequence  a sequence run - its type and the terms it gave
-  //   Var       read nowhere at present: events/var_start.php and var_end.php, which would
-  //             trace a {$var} and its value, are included by no file
+  //   Var       every variable tag - {$x}, {!x}, {#x} ... - its name and pipe as written
+  //             ('var start') and the value it writes ('var end')
   //   Field     every field lookup through padField - name, lookup type, level and the
   //             value found; the busiest of all
-  //   Eval      read nowhere at present: events/eval/*, which would trace an expression
-  //             step by step, are included by no file
   //   Call      every PHP file the engine runs - the page's .php, _inits, _lib, a tag ...
   //   Sql       every statement of db() and padDb() - input, values, the SQL sent, result
   //   Put       every file padFilePut writes, the trace's own files left out
   //   Get       every file padFileGet reads
   //   Curl      every padCurl fetch, by its URL
+  //
+  // An expression is traced by none of them: $padEvalTrace (config/config.php) keeps the
+  // tokens and the tree of each evaluation in $_eval.
 
   $padInfoTraceStore       = TRUE;
   $padInfoTraceSequence    = TRUE;
   $padInfoTraceVar         = TRUE;
   $padInfoTraceField       = TRUE;
-  $padInfoTraceEval        = TRUE;
   $padInfoTraceCall        = TRUE;
   $padInfoTraceSql         = TRUE;
   $padInfoTracePut         = TRUE;

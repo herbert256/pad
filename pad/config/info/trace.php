@@ -5,7 +5,7 @@
   //
   // On are the root level, line numbers, local tags, the start/end markers for levels and
   // occurrences, and the content each level produced; off are the noisier per-tag internals
-  // - the tree, types, parse/parms, flags, data and the store/eval/sql/curl event
+  // - the tree, types, parse/parms, flags, data and the store/var/sql/curl event
   // lines. Also included directly by tags/trace.php, so a {trace} tag traces just its own
   // part of the page with exactly these settings.
 
@@ -61,7 +61,6 @@
   $padInfoTraceSequence    = FALSE;
   $padInfoTraceVar         = FALSE;
   $padInfoTraceField       = FALSE;
-  $padInfoTraceEval        = FALSE;
   $padInfoTraceCall        = FALSE;
   $padInfoTraceSql         = FALSE;
   $padInfoTracePut         = FALSE;

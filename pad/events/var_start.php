@@ -1,8 +1,8 @@
 <?php
 
-  // Traces the start of a {$var} substitution - the field name and the pipe expression that
-  // follows it - when $padInfoTraceVar is on. Nothing includes this file at present; the
-  // variables it reads are set at the top of level/var.php.
+  // Fires from level/var.php once the name and the pipe of a variable tag - {$x}, {!x},
+  // {#x}, {&x}, {?x}, {^x} - are split, and traces them when $padInfoTraceVar is on: the
+  // name as written ({$$x} shows $x, before the indirection) and the pipe expression.
 
   global $padInfoTrace;
 

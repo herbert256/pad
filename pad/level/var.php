@@ -29,6 +29,9 @@
     $padVarOpts = '';
   }
 
+  if ( $padInfo )
+    include PAD . 'events/var_start.php';
+
   // A {#...} whose name is not name-shaped meant to be a comment and lost its closing # -
   // the {#option} sigil form always carries a plain name.
 
@@ -166,6 +169,11 @@
   if ( $padVarEnd and ! $padVarBuiltIn )
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
+
+  // The trace has the value as it will read, before the braces in it are made inert.
+
+  if ( $padInfo )
+    include PAD . 'events/var_end.php';
 
   // Last of all, so the pipes and the sanitize chain work on the value as it really is.
   // Every sigil form: the raw, option and property values are the ones no sanitize ever

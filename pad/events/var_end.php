@@ -1,8 +1,9 @@
 <?php
 
-  // Closing counterpart of events/var_start.php: traces the finished value of a {$var}
-  // substitution when $padInfoTraceVar is on. Nothing includes this file at present; $padVal
-  // is the value level/var.php hands to padLevel().
+  // Closing counterpart of events/var_start.php: fires from level/var.php when the value of
+  // the variable tag is final - pipes and sanitize chains applied - and traces it when
+  // $padInfoTraceVar is on, before padProtect makes its braces inert and padLevel splices
+  // it into the output.
 
   global $padInfoTrace;
 

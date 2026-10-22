@@ -1,11 +1,10 @@
 <?php
 
-  // Traces a tag as it is found in the output: the raw '{...}' text, up to 50 characters of
-  // the output preceding it, and everything that follows it - active when $padInfoTraceParse
-  // is on.
-  //
-  // Nothing includes this file at present; it belongs where level/level.php locates the tag
-  // delimiters and sets $padBetween, $padStart [$pad] and $padEnd [$pad].
+  // Fires from level/level.php for every { } pair the level loop finds, once padLevelBetween
+  // has set $padBetween, $padStart [$pad] and $padEnd [$pad] - before it is told apart as a
+  // tag, a closing tag, a comment or a variable. Traces it as found in the output when
+  // $padInfoTraceParse is on: the raw '{...}' text, up to 50 characters of the output
+  // preceding it, and what follows it (cut, as every trace info, to padMakeSafe's 2048).
 
   global $padInfoTrace;
 
