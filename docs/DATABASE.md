@@ -237,9 +237,10 @@ strings in the template; `where=$cond` is refused, and so is a `fields=`, `db=`,
 `where=`/`having=` as a quoted, escaped literal of that application variable (a number as a
 number, an array as a list - numeric text is text on MySQL, as for `db()`), in
 `order=`/`group=` as column names, each with an optional `asc`/`desc`, and nothing
-else. `{$name}` there splices the value's text instead - in `having=`, `order=` and `group=`
-refused outside a quoted literal of the SQL (a plain number excepted), in `fields=`, `db=`,
-`join=` and `union=` refused - use `$name`. Keys bound on the tag
+else. `{$name}` there splices the value's text instead - in `where=`, `having=`, `order=` and
+`group=` refused outside a `'...'` literal of the SQL (a plain number excepted; inside `"..."`,
+a name on SQLite and on MySQL under ANSI_QUOTES, refused too), in `fields=`, `db=`, `join=`
+and `union=` refused - use `$name`. Keys bound on the tag
 (`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
 On every other data - a `{array}` query, JSON, page PHP - `where=` and `group=` are the handling
 options instead: a PAD expression per row, and grouping with subtotals in the template (see
