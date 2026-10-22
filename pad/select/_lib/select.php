@@ -129,7 +129,8 @@
     $padSelStart = padSelectStart  ( $all, $distinct, $distinctrow);
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
-    $padSelLimit = padSelectLimit  ( $rows, $page );
+    $padSelLimit = padSelectLimit  ( $rows, $page, array_key_exists ( 'page', $prm ) or array_key_exists ( 'rows', $prm )
+                                                  or array_key_exists ( 'page', $parms ) or array_key_exists ( 'rows', $parms ) );
     $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, isset ( $prm ['where'] ), padSelectOwn ( $db, $padSelJoin ) );
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
@@ -272,8 +273,13 @@
   // pages by those rows (lib/pager.php), which may be the table's declared rows= - it took
   // the tag's rows= or 10, and a table declared with 'rows' => 5 had its pager count pages
   // of 10.
+  //
+  // $given: page= or rows= is there, on the tag or in the declaration. The limit was made
+  // when their values were, so page=$pg ?? 1 with ?pg= or ?pg=0 read the whole table, the
+  // handling paged it in PHP, and a sort= before the page made its first page another one
+  // than ?pg=1's.
 
-  function padSelectLimit ( &$rows, &$page ) {
+  function padSelectLimit ( &$rows, &$page, $given = FALSE ) {
 
     global $pad, $padDone;
 
@@ -286,7 +292,7 @@
 
     if ( ( $padDone [$pad] ['page'] ?? '' ) !== 'limit' )
 
-      if ($page or $rows) {
+      if ( $given or $page or $rows ) {
 
         if ($rows < 1) $rows = 10;
         if ($page < 1) $page = 1;
