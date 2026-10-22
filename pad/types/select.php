@@ -17,6 +17,13 @@
 
   $padSelectData = padSelect ( $padTag [$pad] );
 
+  // Every row, as a list in the order of the select: db() keys the rows of an array by an id
+  // column when they hold one, and as JSON that was an object keyed by id - no .map() for the
+  // component, and the keys read back in number order, not the order the SQL gave.
+
+  if ( $padHtmlAttrJson == 'array' and is_array ( $padSelectData ) )
+    $padSelectData = array_values ( $padSelectData );
+
   return padJsonForHtmlAttr ( $padSelectData ) ;
 
 ?>
