@@ -38,9 +38,14 @@
   // <title> of its own, the browser's tooltip on hover. The colours are CSS custom
   // properties with light and dark defaults - --pad-chart-series, --pad-chart-text,
   // --pad-chart-grid and --pad-chart-surface - which a page overrides on .pad-chart.
+  //
+  // The parts are found in the listing of tags/_lib/chart/ kept between requests (padDirList,
+  // lib/dirs.php), the names glob's *.php matched - not hidden, ending in .php - in the same
+  // order: the glob read the directory in every request that drew a chart, some 60 us.
 
-  foreach ( glob ( PAD . 'tags/_lib/chart/*.php' ) as $padChartPart )
-    include_once $padChartPart;
+  foreach ( padDirList ( PAD . 'tags/_lib/chart' ) ?: [] as $padChartPart )
+    if ( $padChartPart [0] != '.' and str_ends_with ( $padChartPart, '.php' ) )
+      include_once PAD . "tags/_lib/chart/$padChartPart";
 
   function padChartRows ( $source = '', $what = 'chart' ) {
 
