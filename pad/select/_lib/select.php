@@ -876,17 +876,23 @@
 
   }
 
+  // The columns of a joined table go after the select's own on a line of their own when a
+  // -- or # comment ends that list: written after it, they were part of the comment, and the
+  // joined columns were missing from every row.
+
   function padSelectAddFields (&$result, $table, $fields) {
+
+    $comma = fn () => preg_match ( '/--|#/', $result ) ? "\n," : ',';
 
     if ( is_array($fields) ) {
       foreach ($fields as $key => $value) {
         if ($result)
-          $result .= ',';
+          $result .= $comma ();
         $result .= ' ' . $table . '.' . $key . ' as ' . $value;
       }
     } else {
       if ($result)
-        $result .= ',';
+        $result .= $comma ();
       $result .= $fields;
     }
 
