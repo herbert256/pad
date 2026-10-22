@@ -625,7 +625,7 @@
     $refuse = "$what: a value spliced into it outside a quoted literal is SQL - put it in as \$name";
 
     if ( $call )
-      $refuse .= ' of a database tag';
+      $refuse = "$what: a value spliced into it outside a quoted literal is SQL - query with a database tag and put the value in as \$name, or call db() from PHP with placeholders";
 
     if ( $quote === '' )
       return $refuse;
@@ -742,6 +742,12 @@
   // around the SQL - php:db(trim("... < {$max}")) - took ?max=0 or 1 bare and counted every
   // row. Whatever the argument builds, the database reads as SQL, so a value there is judged
   // by the string it stands in, and outside one it is refused.
+  //
+  // Only a name that resolves to PHP's function is one: php:db always, a bare db or padDb
+  // when the application has nothing of its own by that name - a tag, a {macro}, a {define},
+  // a snippet, a data store, a select table - as the engine resolves the tag (padTypeTag) or
+  // the function in an expression (padTypeFunction). Every {db} was taken for PHP's, and
+  // {macro 'db', label}...{/macro} {db 'Hi {$who}'} with ?who=Ann Smith was refused as SQL.
 
   function padDbCall ( $inside ) {
 
@@ -751,7 +757,8 @@
     $tag = '';
     $at  = 0;
 
-    if ( preg_match ( '/^\s*(php:)?((?:pad)?db)\s/i', $inside, $match ) ) {
+    if ( preg_match ( '/^\s*(php:)?((?:pad)?db)\s/i', $inside, $match )
+         and ( $match [1] or padTypeTag ( $match [2] ) === 'php' ) ) {
       $tag = '{' . $match [1] . $match [2] . '}';
       $at  = strlen ( $match [0] );
     }
@@ -796,14 +803,14 @@
   }
 
   // The db() or padDb() a ( opens, as padDbCall wants it - $before the text before the ( -
-  // or '': php:db( or a bare db(, another prefix never.
+  // or '': php:db( always, a bare db( when it resolves to PHP's, another prefix never.
 
   function padDbCallName ( $before ) {
 
     if ( ! preg_match ( '/(?<![\w$.@:])(?:(\w+):)?((?:pad)?db)\s*$/i', $before, $match ) )
       return '';
 
-    if ( strtolower ( $match [1] ) == 'php' or $match [1] === '' )
+    if ( strtolower ( $match [1] ) == 'php' or ( $match [1] === '' and padTypeFunction ( $match [2] ) === 'php' ) )
       return $match [2] . '()';
 
     return '';
