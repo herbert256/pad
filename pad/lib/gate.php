@@ -127,11 +127,18 @@
   // as nothing. Returning FALSE let the guard's own code after the call run as a guest:
   // $member = padUser (); $member ['role'] ended the public page with a PHP error. FALSE
   // anywhere else - the caller redirects or answers 403 as before.
+  //
+  // The refusal is booked before it is thrown: a guard that swallows the exception - the
+  // call inside padRescue, padRetry or a try/catch of its own - and returns TRUE is refused
+  // all the same, as the 403 and the redirect at the top level cannot be caught; caught, the
+  // part showed what the page it holds refuses.
 
   function padGuardNestedRefuse () {
 
     if ( empty ( $GLOBALS ['padGuardNested'] ) or empty ( $GLOBALS ['padGuardRunning'] ) )
       return FALSE;
+
+    $GLOBALS ['padGuardRefusal'] = TRUE;
 
     throw new padGuardRefusal ();
 

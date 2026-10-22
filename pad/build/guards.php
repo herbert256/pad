@@ -22,7 +22,9 @@
 
     // padAuthRequire and padAuthorize refuse the guard of a page a {page} tag includes by
     // throwing padGuardRefusal (padGuardNestedRefuse, lib/gate.php), where they would send the
-    // whole request away: the guard ends there, its output buffer with it.
+    // whole request away: the guard ends there, its output buffer with it. The flag is set
+    // before the throw too, so a guard that catches the refusal itself is refused all the
+    // same.
 
     $padGuardRefusal = FALSE;
     $padGuardRunning = TRUE;
