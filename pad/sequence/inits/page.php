@@ -21,14 +21,20 @@
   // written, as it always was: page 4 is 71 67 61 59 53, the page's terms reversed.
   //
   // Not when every action before page= keeps a front of the run, in its order - first=,
-  // shift, element=, dedup, a filter by stores, prepend: of the run's first terms they make
-  // the first terms of what they make of every term, so the (page+1)*rows terms made are
-  // enough and the cut stays where it is written. Cut first, {sequence 'prime', first=20,
-  // page=5, rows=5} showed 73 79 83 89 97, primes past the twenty, and a pager without an end.
+  // shift, element=, prepend: of the run's first terms they make the first terms of what they
+  // make of every term, so the (page+1)*rows terms made are enough and the cut stays where it
+  // is written. Cut first, {sequence 'prime', first=20, page=5, rows=5} showed 73 79 83 89 97,
+  // primes past the twenty, and a pager without an end.
+  //
+  // Only actions that drop no term of that front: dedup, intersection, onlyNow and any action
+  // under negative keep a front in order too, but of the (page+1)*rows terms made fewer
+  // remain, so the page came short or empty and the pager, counting the pages made, ended
+  // while the run goes on - {sequence 'golomb', dedup, page=2, rows=3} was 4 5 with no next
+  // page, {sequence 'prime', first=3, negative, page=1, rows=3} one page. They are cut first.
 
   if ( $pqPageWhole !== PHP_INT_MAX )
     foreach ( array_slice ( $pqActions, 0, $pqPageCut ) as [ $pqPageAction ] )
-      if ( ! in_array ( $pqPageAction, [ 'first', 'shift', 'element', 'dedup', 'intersection', 'onlyNow', 'prepend' ] ) )
+      if ( $pqNegative or ! in_array ( $pqPageAction, [ 'first', 'shift', 'element', 'prepend' ] ) )
         $pqPageCut = 0;
 
   if ( $pqPageCut and $pqPageSize !== NULL ) {
