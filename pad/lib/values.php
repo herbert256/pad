@@ -137,6 +137,28 @@
 
   }
 
+  // JSON has no INF or NAN, and json_encode's partial output writes them 0 - a number the page
+  // never held, which a client cannot tell from a real 0. They are written null, at any depth
+  // of an array, as a browser's JSON.stringify writes Infinity and NaN: a page's JSON answer
+  // ($padExpose) and {^field} gave 0 where its HTML and its CSV gave INF.
+
+  function padJsonFinite ( $value, $depth = 0 ) {
+
+    if ( is_float ( $value ) and ! is_finite ( $value ) )
+      return NULL;
+
+    if ( is_array ( $value ) and $depth < 512 )
+      foreach ( $value as $key => $one )
+        if ( is_array ( $one ) or is_float ( $one ) ) {
+          $new = padJsonFinite ( $one, $depth + 1 );
+          if ( $new !== $one )
+            $value [$key] = $new;
+        }
+
+    return $value;
+
+  }
+
   function padFieldName ($parm) {
 
     return (substr($parm, 0, 1) == '$') ? substr($parm, 1) : $parm;

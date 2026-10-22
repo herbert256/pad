@@ -254,7 +254,7 @@
     if     ( padArrayCheck ( $parm ) ) $value = padArrayValue ( $parm );
     elseif ( padFieldNull  ( $parm ) ) $value = NULL;
     else                               $value = padDateText ( padFieldValue ( $parm ) );
-    $json  = json_encode ( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR );
+    $json  = json_encode ( padJsonFinite ( $value ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR );
     $json  = str_replace ( [ "\u{E022}", "\u{E027}", "\u{E05C}" ], [ '\u0022', '\u0027', '\u005c' ], $json );
     $json  = htmlspecialchars ( $json, ENT_QUOTES, 'UTF-8' );
 

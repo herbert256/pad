@@ -50,7 +50,7 @@
     // shows it: partial output made the whole value null, with no error, which a client
     // cannot tell from a real null.
 
-    $json = json_encode ( (object) padExposeData (), JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR
+    $json = json_encode ( (object) padJsonFinite ( padExposeData () ), JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR
                                                    | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
                                                    | JSON_INVALID_UTF8_SUBSTITUTE );
 
