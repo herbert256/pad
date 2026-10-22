@@ -1,0 +1,7 @@
+1[{if 1 eq 2}S{highlight 'pad'}{/if}{/highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)}{else}N{/if}]
+2[{case 2}{when 1}a{ignore}{/case}{/ignore}{when 2}b{/case}]
+3[{if 1}S{ignore}{/if}{/ignore}{else}N{/if}]
+4[{if 1 eq 2}S{ignore}{if $x}{/ignore}{else}N{/if}]
+5[{if 1 eq 2}S{ignore}{/if}{/ignore}{elseif 1}E{/if}]
+6[{case 2}{when 1}a{ignore}{case $x}{/ignore}{when 2}b{/case}]
+7[{if 1 eq 2}S{ignore}{/guest}{/ignore}{else}N{/if}]

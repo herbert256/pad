@@ -210,7 +210,9 @@
 
   function padCheckTag ( $tag, $string, $full = NULL ) {
 
-    return padPairBalanced ( $string, $tag ) and padTextFree ( $string, $full );
+    $string = padTextFree ( $string, $full );
+
+    return $string !== FALSE and padPairBalanced ( $string, $tag );
 
   }
 
@@ -225,9 +227,21 @@
 
   const padTextPairs = [ 'ignore', 'highlight' ];
 
+  // The part in front of a branch marker - $string, which starts where $full does - is
+  // counted with its text pairs written over with spaces (padTextBlank), and is FALSE when a
+  // text pair is still open at its end: the marker is then that pair's text. The openers and
+  // closers of the owners were counted in the raw part, so one shown in a sample was counted
+  // too, and the marker behind it was skipped as a nested tag's: [{if 1 eq 2}S{ignore}{/if}
+  // {/ignore}{else}N{/if}] gave [] where N is right, a {/case} in a sample in front of a
+  // {when} hid that {when} as well, and with a true condition the {else} was left in the
+  // branch, "there is no tag named 'else'" - though the closer search reads that {/if} as
+  // text and pairs the {if} with its own closer.
+
   function padTextFree ( $string, $full = NULL ) {
 
-    return ! padTextScan ( $string, $full, is_string ( $string ) ? strlen ( $string ) : 0 ) ['open'];
+    $string = (string) $string;
+
+    return padTextBlank ( $full ?? $string, 0, strlen ( $string ) ) ?? $string;
 
   }
 
@@ -472,10 +486,19 @@
     if ( $scan ['open'] )
       return FALSE;
 
-    foreach ( $scan ['spans'] as list ( $one, $two ) )
-      $string = substr_replace ( $string, str_repeat ( ' ', $two - $one ), $one, $two - $one );
+    // Put together in one pass: written over span by span, each span copied the whole
+    // stretch again, and the part in front of every {when} of a {case} counts its samples
+    // this way too (padTextFree).
 
-    return $string;
+    $blank = '';
+    $at    = 0;
+
+    foreach ( $scan ['spans'] as list ( $one, $two ) ) {
+      $blank .= substr ( $string, $at, $one - $at ) . str_repeat ( ' ', $two - $one );
+      $at     = $two;
+    }
+
+    return $blank . substr ( $string, $at );
 
   }
 
@@ -522,11 +545,16 @@
 
   function padElseFree ( $string, $full = NULL ) {
 
+    $string = padTextFree ( $string, $full );
+
+    if ( $string === FALSE )
+      return FALSE;
+
     foreach ( padElseOwners as $tag )
       if ( ! padPairBalanced ( $string, $tag ) )
         return FALSE;
 
-    return padTextFree ( $string, $full );
+    return TRUE;
 
   }
 
