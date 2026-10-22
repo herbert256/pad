@@ -325,19 +325,26 @@ async function snapshot(ref, scope) {
 // parallel sessions of a hunt each compare against a commit of their own - is never taken
 // from under it: the seventh made while one rendered deleted the oldest, the one in use, and
 // its compare said "they differ" with an engine file missing on the old side. One that goes
-// is renamed out of the way first, so no call finds it half deleted.
+// is renamed out of the way first, so no call finds it half deleted. Pruning is housekeeping
+// and never fails the call that made a snapshot: a render still writing under DATA/ of the
+// one being removed (another session's, on an old commit) made the delete fail with
+// ENOTEMPTY, and pad_compare answered that error. Such a .gone- directory is left, and the
+// next prune takes it.
 const KEEP = 6;
 const USED = 3600000;
 
 function prune(keep) {
-    let list = [];
-    try { list = fs.readdirSync(SNAPSHOTS).filter((n) => !n.startsWith('.')).map((n) => path.join(SNAPSHOTS, n)); } catch (e) { return; }
+    let names = [];
+    try { names = fs.readdirSync(SNAPSHOTS); } catch (e) { return; }
+    const remove = (d) => { try { fs.rmSync(d, { recursive: true, force: true }); } catch (e) { /* the next prune */ } };
+    for (const n of names) if (n.startsWith('.gone-')) remove(path.join(SNAPSHOTS, n));
+    const list = names.filter((n) => !n.startsWith('.')).map((n) => path.join(SNAPSHOTS, n));
     const aged = list.map((d) => { try { return { d, t: fs.statSync(d).mtimeMs }; } catch (e) { return null; } }).filter(Boolean).sort((x, y) => y.t - x.t);
     for (const { d, t } of aged.slice(KEEP)) {
         if (d === keep || Date.now() - t < USED) continue;
         const gone = path.join(SNAPSHOTS, '.gone-' + crypto.randomBytes(4).toString('hex'));
         try { fs.renameSync(d, gone); } catch (e) { continue; }
-        fs.rmSync(gone, { recursive: true, force: true });
+        remove(gone);
     }
 }
 
