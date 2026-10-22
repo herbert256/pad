@@ -2,3 +2,5 @@ text:    [{$lo}-{$hi}] [row-{$id}] <i id="item-{$id}"></i>
 echo:    [{echo 'UTC-{$id}'}]
 literal: [{field "concat('X-{$id}')"}]
 code:    [{field "2000-{$adj}"}]
+fields:  [{staffSel fields="name, concat('X-{$id}') as code", rows=1}{$code}{/staffSel}]
+join:    [{staffSel join="staff as b on b.name = staff.name and concat('X-{$id}') = 'X--1'", fields="staff.name", rows=1}{$name}{/staffSel}]

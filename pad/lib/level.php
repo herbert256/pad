@@ -436,7 +436,11 @@ function padSplitOnUnquotedColon ( $str ) {
 
     padSpliceQuoteOpen ( $inside, $quote, $quoteAt );
 
-    return padDbSplice ( $inside, $quote, $quoteAt ) !== '';
+    // padDbSplice refuses any value in fields=, db=, join= and union=, in a literal or not:
+    // the literal is judged here for those as well.
+
+    return padDbSplice ( $inside, $quote, $quoteAt ) !== ''
+       and ( $quote === '' or ! padDbInLiteral ( $inside, $quote, $quoteAt ) );
 
   }
 

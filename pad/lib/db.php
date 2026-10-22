@@ -630,12 +630,19 @@
     if ( $quote === '' )
       return $refuse;
 
-    // The SQL up to the splice, as the database reads it once the parameter's own quote is
-    // unescaped: a comment is skipped as a whole, an apostrophe in it opening nothing, and a
-    // backslash escapes in a literal on MySQL only (padDbComment, padDbPlaceholders). Only a
-    // '...' literal holds a value as text: "..." is a name on SQLite and on MySQL under
-    // ANSI_QUOTES - name = "{$who}" with ?who=name picked the column and every row came back -
-    // so a splice inside one stands in the SQL and is refused.
+    return padDbInLiteral ( $inside, $quote, $quoteAt ) ? '' : $refuse;
+
+  }
+
+  // Whether a splice inside the quoted parameter that opened at $quoteAt stands in a '...'
+  // literal of its SQL. The SQL up to the splice is read as the database reads it once the
+  // parameter's own quote is unescaped: a comment is skipped as a whole, an apostrophe in it
+  // opening nothing, and a backslash escapes in a literal on MySQL only (padDbComment,
+  // padDbPlaceholders). Only a '...' literal holds a value as text: "..." is a name on SQLite
+  // and on MySQL under ANSI_QUOTES - name = "{$who}" with ?who=name picked the column and
+  // every row came back - so a splice inside one stands in the SQL and is refused.
+
+  function padDbInLiteral ( $inside, $quote, $quoteAt ) {
 
     $sql   = str_replace ( '\\' . $quote, $quote, substr ( $inside, $quoteAt + 1 ) );
     $mysql = ( $GLOBALS ['padSqlDriver'] ?? 'mysql' ) !== 'sqlite';
@@ -650,7 +657,7 @@
       elseif ( $end = padDbComment ( $sql, $i, $mysql ) )
         $i = $end - 1;
 
-    return ( $in === "'" ) ? '' : $refuse;
+    return $in === "'";
 
   }
 
