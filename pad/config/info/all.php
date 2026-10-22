@@ -4,8 +4,12 @@
   //
   // Reached as config/info/all.php from inits/config.php (or inits/configSet.php) for each
   // comma-separated word in $padInfo. Enables all five info types - track, xml, stats, trace,
-  // xref - and then every sub-flag each of them honours, so nothing the engine can record is
-  // left out. Expensive; none.php is its mirror image.
+  // xref - and then the sub-flags each of them honours, every one on but two. A few flags
+  // choose between two ways of writing rather than add something, and here they choose:
+  // OccursSmart and xml's Compact are off, so every pass gets its own trace directory and
+  // the xml report is the full one, with its <parms>; the trace's Double is on, so every
+  // result line is written, also one equal to the level's text - and the True, False and
+  // LevelBase lines, though on, write nothing. Expensive; none.php is its mirror image.
   //
   // Every flag is explained here, once - the other files of config/info/ set subsets of them.
 
@@ -46,12 +50,12 @@
   // in place of the parm= attribute with its first option. Tidy: the file is re-indented by
   // PHP's tidy extension once written - nothing without the extension. Compact: the bare
   // skeleton instead - no attributes, no occurrences, no <parms>, a level that produced no
-  // output left out - written to DATA/_xml/compact/...; on here, so the compact file is the
-  // only one this selector writes and Parms shows nothing in it.
+  // output left out - written to DATA/_xml/compact/... in place of the full report; off
+  // here, so the report is the full one and Parms shows in it.
 
   $padInfoXmlParms         = TRUE;
   $padInfoXmlTidy          = TRUE;
-  $padInfoXmlCompact       = TRUE;
+  $padInfoXmlCompact       = FALSE;
 
   // How the trace writes. Lines: the trace lines are written at all - off, only the files
   // of the trace (data*.json, status-*.txt, more/) are. Double: a level's and an
