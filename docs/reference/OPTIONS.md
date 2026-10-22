@@ -256,8 +256,9 @@ Shows the named content when the tag answers NULL.
 
 **Triggers when:**
 - Result is `NULL`
-- Result is `INF`
 - Result is `NaN`
+
+`INF`, a float past the range, is a value: it prints, as `-INF` does.
 
 **Behavior:**
 - Resets state and replaces content

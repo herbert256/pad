@@ -9,6 +9,6 @@ either. Alone it prints nothing.</p>
 empty text. A tag of your own (or a PHP call) that answers NULL for "there is no such thing"
 therefore has its own way out, separate from "there is something, and it is empty".</p>
 
-<p>The engine reads INF and NAN as NULL too. <code>{null}</code> is mainly there to show and
-test that difference, and to switch a block off so thoroughly that even its else part
-stays away.</p>
+<p>The engine reads NAN as NULL too; INF, a float past the range, is a value and prints.
+<code>{null}</code> is mainly there to show and test that difference, and to switch a block
+off so thoroughly that even its else part stays away.</p>
