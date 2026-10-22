@@ -41,6 +41,14 @@
     $padHighlightText = $padFalseSplit ? $padContent . '@else@' . $padFalse : $padContent;
     $padFalse         = '';
 
+    // An @page@ shown in a sample of a wrapper or a layout comes with its @ as the stand-in
+    // the assembly gave it, so the frame's page does not go there (padLayoutWrapper,
+    // padLayoutIgnored in lib/layout.php): it is @page@ again for the colouring, which showed
+    // it plain where the same sample in a page is coloured as a construct. What the tag
+    // answers is a value, protected again as every tag's answer is (level/go.php).
+
+    $padHighlightText = str_replace ( strtr ( '@page@', [ '@' => padProtectMap () ['@'] ] ), '@page@', $padHighlightText );
+
   }
 
   $padContent = '';
