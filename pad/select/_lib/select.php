@@ -353,10 +353,15 @@
     // employees nested in {offices} was related by nothing, and every office listed every
     // row of the view.
 
+    // A select rendering its @else@ - it found no row - has no row to relate to, so it is
+    // passed over: the select nested there stands alone. Its empty row was followed, and
+    // the page ended on "... which the row of 'customers' does not hold - select it in
+    // fields=".
+
     $padSelOuter = '';
 
     for ( $i=$pad-1; $i; $i-- )
-      if ( $padType [$i] == 'select' ) {
+      if ( $padType [$i] == 'select' and is_array ( $padCurrent [$i] ?? NULL ) and $padCurrent [$i] ) {
 
         $padSelOuter = $padTag [$i];
 
