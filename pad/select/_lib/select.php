@@ -142,8 +142,9 @@
     // build writes its own parts into the same names, so a union query composed after it
     // carried the member's where instead of its own.
 
-    $head = "$padSelStart $fields from $db $padSelJoin $padSelWhere $padSelGroup $having";
-    $tail = "$padSelOrder $padSelLimit";
+    $head  = "$padSelStart $fields from $db $padSelJoin $padSelWhere $padSelGroup $having";
+    $tail  = "$padSelOrder $padSelLimit";
+    $limit = $padSelLimit;
 
     $padSelUnion = padSelectUnion  ( $padSelUnion );
     $members     = $padSelUnion;
@@ -165,8 +166,16 @@
     // The fields decide it as well when they start with distinct or hold an aggregate:
     // fields='distinct country' had the pages of every customer, and fields='count(*) as n'
     // a pager over its one row.
+    //
+    // The limit is the one folded into $tail: building the union members sets the global
+    // again, to theirs, so a paged select with union= booked no count and its {pager} showed
+    // no links - or, read from a select before it on the same level, that one's pages. A
+    // select that books none takes the count of the one before away for the same reason.
 
-    if ( $padSelLimit and ! $unionBuild ) {
+    if ( ! $unionBuild and ! $limit )
+      unset ( $GLOBALS ['padPagerCount'] [$pad], $GLOBALS ['padPagerRows'] [$pad] );
+
+    if ( $limit and ! $unionBuild ) {
       $short = ( in_array ( $padSelStart, [ '', 'ALL' ] ) and ! $padSelGroup and ! $having and trim ( $members ) === ''
                  and ! padSelectTotals ( (string) $fields ) );
       $count = $short
