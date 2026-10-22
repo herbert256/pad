@@ -240,14 +240,23 @@
 
   }
 
-  // The text pairs of $string, read in order: a closer takes the nearest open opener of its
-  // own name before it, as the engine pairs them, whether that opener holds text or not - a
-  // {markdown} inside a {markdown ignore} sample closes before its outer one does. The single
-  // form opens nothing - {highlight file='orders.php'}, which colours a file and has no
-  // content, and a self-closing {tag .../} - nor does a closer with no opener before it.
-  // Counted as the owners' pairs are counted (padPairBalanced), a single {highlight file=...}
-  // read as a sample never closed, and every {else}, {elseif} and {when} behind it was taken
-  // for its text: {if $a}{highlight file='x'}{else}none{/if} showed nothing for a=0.
+  // The text pairs of $string, read in order, each paired with its closer as the engine
+  // pairs it (level/tag.php): the first closer of the opener's own spelling - {/pad:markdown}
+  // for {pad:markdown ...}, never {/markdowns} - in front of which the openers and closers of
+  // that spelling balance, a nested one closing first; nothing else opens inside, its content
+  // is text. An opener with no such closer is a single tag and holds no text: the single form
+  // {highlight file='orders.php'}, which colours a file, a self-closing {tag .../}, any tag
+  // that merely carries the ignore option - {echo 'ab' ignore} - and a sample's opener whose
+  // closer a nested opener of its name takes. The closer is looked for in $string, and on in
+  // $full behind $offset - where $string ends - when $string is the part in front of a
+  // branch marker or the stretch in front of a closer the closer search tries.
+  //
+  // Any closer of the name later in the text made a tag carrying the ignore option an open
+  // text pair: {echo 'x' ignore} inside a loop, with an {echo}y{/echo} further down the page,
+  // took the loop's {/sequence} for its text. The name was read without its pad: prefix, so
+  // {pad:markdown ignore} found no {/markdown} and was no text pair - an {else} in its sample
+  // was the {if}'s - and inside an open sample every opener of the name counted, the single
+  // {highlight file=...} too, so a sample showing one never closed.
   //
   // 'open' says whether a text pair is still open at the end of $string; 'spans' are the
   // contents of the text pairs that closed.
@@ -257,46 +266,20 @@
     if ( ! is_string ( $string ) or ( ! str_contains ( $string, 'ignore' ) and ! str_contains ( $string, 'highlight' ) ) )
       return [ 'open' => FALSE, 'spans' => [] ];
 
-    preg_match_all ( '/\{~?(\/?)(?:pad:)?([A-Za-z_][\w:.-]*)(?=[\s}~|])/', $string, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+    preg_match_all ( '/\{~?(\/?)((?:pad:)?([A-Za-z_][\w:.-]*))(?=[\s}~|])/', $string, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
 
-    // While a text pair is open nothing else opens in it - an {ignore} shown in a
-    // {highlight} sample is text - and only its own name counts, a nested opener of that
-    // name closing first, as the engine pairs them. A tag that carries the ignore option is
-    // a text pair only when a closer of its name follows - in $string, or in $full behind
-    // $offset when $string is the part in front of a branch marker: the option is one of
-    // any tag, and a single {echo 'ab' ignore} has no closer. Counted as open, it took the
-    // {else} behind it for text and kept the {/if} around it from closing.
-
-    $name  = NULL;
-    $depth = 0;
-    $from  = 0;
-    $pairs = [];
+    $base  = ( $full === NULL ) ? 0 : $offset - strlen ( $string );
+    $past  = 0;
+    $spans = [];
 
     foreach ( $all as $one ) {
 
-      $tag = $one [2] [0];
-      $at  = $one [0] [1];
+      $at = $one [0] [1];
 
-      if ( $name !== NULL ) {
-
-        if ( $tag !== $name )
-          continue;
-
-        if ( $one [1] [0] === '/' ) {
-          if ( ! --$depth ) {
-            $pairs [$from] = $at;
-            $name          = NULL;
-          }
-        } elseif ( ( $end = strpos ( $string, '}', $at ) ) !== FALSE and ! padOpenSelfClosing ( $string, $at + strlen ( $one [0] [0] ) ) )
-          $depth++;
-
+      if ( $at < $past or $one [1] [0] === '/' )
         continue;
 
-      }
-
-      if ( $one [1] [0] === '/' )
-        continue;
-
+      $tag   = $one [3] [0];
       $after = $at + strlen ( $one [0] [0] );
       $end   = strpos ( $string, '}', $at );
 
@@ -305,27 +288,48 @@
 
       $parms = substr ( $string, $after, $end - $after );
 
-      if ( in_array ( $tag, padTextPairs, TRUE ) )
-        $text = ! ( $tag == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) );
-      else
-        $text = ( padTextOption ( $parms )
-                  and ( strpos ( $string, '{/' . $tag, $end ) !== FALSE
-                        or ( $full !== NULL and strpos ( $full, '{/' . $tag, $offset ) !== FALSE ) ) );
+      if ( in_array ( $tag, padTextPairs, TRUE ) ) {
+        if ( $tag == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
+          continue;
+      } elseif ( ! padTextOption ( $parms ) )
+        continue;
 
-      if ( $text ) {
-        $name  = $tag;
-        $depth = 1;
-        $from  = $end + 1;
-      }
+      $close = padTextCloser ( $full ?? $string, $one [2] [0], $base + $end + 1 );
+
+      if ( $close === FALSE )
+        continue;
+
+      if ( $close - $base >= strlen ( $string ) )
+        return [ 'open' => TRUE, 'spans' => $spans ];
+
+      $spans [] = [ $end + 1, $close - $base ];
+      $past     = $close - $base + 1;
 
     }
 
-    $spans = [];
+    return [ 'open' => FALSE, 'spans' => $spans ];
 
-    foreach ( $pairs as $one => $two )
-      $spans [] = [ $one, $two ];
+  }
 
-    return [ 'open' => ( $name !== NULL ), 'spans' => $spans ];
+  // Where the closer of a text pair stands in $text, looked for from $from on - the end of
+  // the opener named $name, spelled as written: its openers and closers counted as
+  // padOpenCount and level/tag.php count them, a self-closing one opening nothing. FALSE
+  // when no closer balances it.
+
+  function padTextCloser ( $text, $name, $from ) {
+
+    preg_match_all ( '/\{~?(\/?)' . preg_quote ( $name, '/' ) . '(?=[\s}~|])/', $text, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $from );
+
+    $depth = 1;
+
+    foreach ( $all as $one )
+      if ( $one [1] [0] === '/' ) {
+        if ( ! --$depth )
+          return $one [0] [1];
+      } elseif ( ! padOpenSelfClosing ( $text, $one [0] [1] + strlen ( $one [0] [0] ) ) )
+        $depth++;
+
+    return FALSE;
 
   }
 
