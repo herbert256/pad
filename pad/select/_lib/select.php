@@ -462,9 +462,15 @@
 
     global $padRelations;
 
-    if  ( isset ( $padRelations [$relation] [$table] ) )
+    // A relation declared empty - [] or '', the form classicModels once wrote them all in -
+    // names no field to follow: it relates nothing, as one never declared, and the strict
+    // check says so. It counted as a relation, and every row met every row without a word.
+
+    $empty = fn ( $keys ) => $keys === NULL or $keys === [] or $keys === '';
+
+    if  ( ! $empty ( $padRelations [$relation] [$table] ?? NULL ) )
       padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0, $relation, $own );
-    elseif ( isset ( $padRelations [$table] [$relation] ) )
+    elseif ( ! $empty ( $padRelations [$table] [$relation] ?? NULL ) )
       padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1, $relation, $own );
     else
       return FALSE;
