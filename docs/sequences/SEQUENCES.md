@@ -291,6 +291,14 @@ multiple of N, 0 and the negative ones included - `{sequence '-6..3', keep, mult
 
 **IMPORTANT:** Store names cannot be the same as action names (e.g., can't use `push='first'` because `first` is an action).
 
+Nor the name of something the page made - an array of the page, a `{data}`, `{content}`, `{bool}`,
+`{define}`, `{macro}` or a select table: `push=` (or a single tag's `name=`) is refused under the
+strict check - "the store name 'x' is already an array of the page" - and a pair that only names
+its loop keeps no store. A value the request brought under the name (`?nums[]=1`) is no array the
+page made, and gives way to the store; so the refusal covers a name the page made itself that the
+request did not also bring - `{set $primes = ['1']}` before `push='primes'` is refused, with
+`?primes[]=1` in the request the same list is taken for the request's and the store takes the name.
+
 ```
 {sequence '1..10', push='mySeq'}           # Store sequence
 {pull:mySeq}{$sequence} {/pull:mySeq}      # Retrieve and iterate

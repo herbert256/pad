@@ -132,12 +132,6 @@
 
     $GLOBALS [$name] = $value;
 
-    // The template set it: no longer a value the request brought (padGetParms' note in
-    // $padRequestGot), whatever it holds - a {set} of the value a visitor sent is the page's
-    // as much as one of any other (pqStorePageValue, padTypeAsked).
-
-    unset ( $GLOBALS ['padRequestGot'] [$name] );
-
     for ( $i = $pad; $i > 0; $i-- )
       if ( is_array ( $padCurrent [$i] ?? NULL ) and array_key_exists ( $name, $padCurrent [$i] ) ) {
 
