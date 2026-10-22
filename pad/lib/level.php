@@ -300,10 +300,16 @@ function padSplitOnUnquotedColon ( $str ) {
     // No tag opens within the window: text, or the far part of a tag's parameters longer than
     // the window - where='...' of 4 KB - which nothing here can tell apart. Kept, so the
     // evaluators still refuse it as part of their code (padSpliceInCode): it went in bare and
-    // unrecorded, and a request value's php:abs(-3) ran past both guards.
+    // unrecorded, and a request value's php:abs(-3) ran past both guards. A field's value
+    // past the window is kept with its place as well, with the text before it: a database
+    // tag or select it turns out to stand in looks it up and judges it as padDbSplice would
+    // have (padDbSpliceFar, lib/db.php) - only there, so a value printed in the page's text
+    // is never held against SQL it does not stand in.
 
     if ( $open === FALSE ) {
       padSpliceRecord ( $value );
+      if ( $field and $start > $window )
+        $GLOBALS ['padSpliceFar'] [$pad] [$start] = [ substr ( $padOut [$pad], $start - 32, 32 ), $value ];
       return $value;
     }
 
@@ -362,17 +368,7 @@ function padSplitOnUnquotedColon ( $str ) {
     if ( ! $field or ctype_space ( $inside [0] ) or $inside [0] == '"' or str_contains ( $inside, '}' ) or ! preg_match ( '/\s/', $inside ) )
       return $value;
 
-    $quote   = '';
-    $quoteAt = 0;
-
-    for ( $i = 0, $len = strlen ( $inside ); $i < $len; $i++ )
-      if ( $quote ) {
-        if     ( $inside [$i] == '\\'   ) $i++;
-        elseif ( $inside [$i] == $quote ) $quote = '';
-      } elseif ( $inside [$i] == "'" or $inside [$i] == '"' ) {
-        $quote   = $inside [$i];
-        $quoteAt = $i;
-      }
+    padSpliceQuoteOpen ( $inside, $quote, $quoteAt );
 
     // A value standing in SQL the template writes, outside a quoted literal of it - the SQL
     // of {field}, {record}, {array}, {check}, the having=, fields= ... of a select table - is
@@ -410,6 +406,25 @@ function padSplitOnUnquotedColon ( $str ) {
     }
 
     return $value;
+
+  }
+
+  // The quote open at the end of a tag's text up to a splice - $inside, from the tag's { on -
+  // and where it opened: '' and 0 when the splice stands outside every quoted string.
+
+  function padSpliceQuoteOpen ( $inside, &$quote, &$quoteAt ) {
+
+    $quote   = '';
+    $quoteAt = 0;
+
+    for ( $i = 0, $len = strlen ( $inside ); $i < $len; $i++ )
+      if ( $quote ) {
+        if     ( $inside [$i] == '\\'   ) $i++;
+        elseif ( $inside [$i] == $quote ) $quote = '';
+      } elseif ( $inside [$i] == "'" or $inside [$i] == '"' ) {
+        $quote   = $inside [$i];
+        $quoteAt = $i;
+      }
 
   }
 

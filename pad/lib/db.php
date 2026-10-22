@@ -566,6 +566,9 @@
     // printed above {array "... order by name desc"}, a guestbook entry reading from staff
     // above {field "count(*) from staff"}.
 
+    if ( ! padDbSpliceFar () )
+      return FALSE;
+
     return padSelectBind ( (string) ( $padOpt [$pad] [1] ?? '' ), FALSE, '{' . $padTag [$pad] . '}' );
 
   }
@@ -631,6 +634,43 @@
         $i = $end - 1;
 
     return ( $in === "'" ) ? '' : $refuse;
+
+  }
+
+  // A field's value spliced into the text of the tag now running - a database tag, a select
+  // table - more than 4 KB past the tag's {, where padSpliceQuote looks back no further and
+  // let it in bare: judged here as padDbSplice judges one it can place, from the tag's text
+  // up to the value's place, which padSpliceQuote kept with the 32 bytes before it - so a
+  // value kept for another text at the same place, in another occurrence, is told apart.
+  // The page-wide test that stood here, every spliced value against the whole SQL, refused
+  // a tag a value printed elsewhere happened to match; this one looks only at the values
+  // that stand in the tag. {field "count(*) from staff where 1 = 1 <4 KB> and salary <
+  // {$max}"} with ?max=0 or 1 counted every row. FALSE refuses the tag.
+
+  function padDbSpliceFar () {
+
+    global $pad, $padOut, $padStart, $padEnd;
+
+    $level = $pad - 1;
+
+    foreach ( $GLOBALS ['padSpliceFar'] [$level] ?? [] as $at => [ $lead, $value ] ) {
+
+      if ( $at <= $padStart [$level] or $at >= $padEnd [$level] )
+        continue;
+
+      if ( substr ( $padOut [$level], $at - strlen ( $lead ), strlen ( $lead ) + strlen ( $value ) ) !== $lead . $value )
+        continue;
+
+      $inside = substr ( $padOut [$level], $padStart [$level] + 1, $at - $padStart [$level] - 1 );
+
+      padSpliceQuoteOpen ( $inside, $quote, $quoteAt );
+
+      if ( $what = padDbSplice ( $inside, $quote, $quoteAt ) )
+        return padError ( $what );
+
+    }
+
+    return TRUE;
 
   }
 

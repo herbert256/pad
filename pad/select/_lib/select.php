@@ -454,6 +454,12 @@
 
     global $pad, $padParms;
 
+    // A value spliced into an option more than 4 KB past the tag's { is judged here, as one
+    // nearer is where it is spliced (padDbSpliceFar, lib/db.php).
+
+    if ( $prm and ! padDbSpliceFar () )
+      return FALSE;
+
     foreach ( [ 'where', 'having', 'order', 'group' ] as $part ) {
 
       if ( ! isset ( $prm [$part] ) or ! is_string ( $prm [$part] ) )
