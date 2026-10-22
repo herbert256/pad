@@ -961,6 +961,12 @@
   // when one of them is the value, FALSE when every one stays short of it as the terms made do
   // - a number on their side of it, or no number when they were none - and NULL when they say
   // neither.
+  //
+  // A sample is the value when their keys name one entry of an index, as the index of the terms
+  // made is asked: compared as strings, since pqIndexKey () gives an int as it is and anything
+  // else as its key text. Compared as they came, the term "2000000" an expression's ternary made
+  // was never the candidate 2000000, nor 5 the "5" of '@ le 20000 ? 0 : 5', and each was looked
+  // for in a million terms made one by one - two and a half seconds - where the sample had it.
 
   function pqCheckSeen ( $made, $value, $at ) {
 
@@ -968,7 +974,7 @@
 
     foreach ( $made ['samples'] as $sample ) {
 
-      if ( pqIndexKey ( $sample ) === $at )
+      if ( (string) pqIndexKey ( $sample ) === (string) $at )
         return TRUE;
 
       if ( $made ['last'] === NULL )
