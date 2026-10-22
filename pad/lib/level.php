@@ -280,10 +280,13 @@ function padSplitOnUnquotedColon ( $str ) {
     // A negative number right after a minus - where="salary > 2000-{$adj}" with -1000 -
     // joined into "2000--1000", a -- line comment on SQLite (MySQL wants white space after
     // --) that took the rest of the statement with it: the condition, the order, the limit.
-    // A space keeps the two apart, as padSelectBind does for a bound $adj.
+    // A space keeps the two apart, as padSelectBind does for a bound $adj - in that SQL alone,
+    // outside its quoted literals (padSpliceInSql): put there everywhere, the page's text
+    // -12--4 read -12- -4, an id item--1 became item- -1 and a literal 'X--1' found nothing.
 
     if ( preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/', $value ) or $start < 1 )
-      return ( $value !== '' and $value [0] === '-' and $start >= 1 and ( $padOut [$pad] [$start - 1] ?? '' ) === '-' ) ? " $value" : $value;
+      return ( $value !== '' and $value [0] === '-' and $start >= 1 and ( $padOut [$pad] [$start - 1] ?? '' ) === '-'
+               and padSpliceInSql ( $padOut [$pad], $start ) ) ? " $value" : $value;
 
     // Looked for within the 4 KB before the splice: no tag writes that much before a field
     // in its parameters, and searching the whole resolved text before it made a page of
@@ -411,6 +414,29 @@ function padSplitOnUnquotedColon ( $str ) {
     }
 
     return $value;
+
+  }
+
+  // Whether the splice at $start of $out stands in SQL a tag writes, outside a quoted literal
+  // of it - where padDbSplice refuses a text - found as padSpliceQuote finds the tag's {.
+
+  function padSpliceInSql ( $out, $start ) {
+
+    $window = min ( $start, 4096 );
+    $before = substr ( $out, $start - $window, $window );
+    $open   = strrpos ( $before, '{' );
+
+    while ( $open !== FALSE and $open < $window - 1 and ( ctype_space ( $before [$open + 1] ) or $before [$open + 1] == '"' ) )
+      $open = $open ? strrpos ( $before, '{', $open - $window - 1 ) : FALSE;
+
+    if ( $open === FALSE or $open >= $window - 1 )
+      return FALSE;
+
+    $inside = substr ( $before, $open + 1 );
+
+    padSpliceQuoteOpen ( $inside, $quote, $quoteAt );
+
+    return padDbSplice ( $inside, $quote, $quoteAt ) !== '';
 
   }
 
