@@ -5,7 +5,9 @@
   // locale (lib/locale.php), and the answer to that visitor is private - but a shared cache
   // that kept the guest's English answer, stored under the address and Accept-Language
   // alone, handed it to the next visitor whose padLang=nl cookie chose Dutch, the server
-  // never asked (RFC 9111 4.1: only the headers Vary names are matched).
+  // never asked (RFC 9111 4.1: only the headers Vary names are matched). Apache joins the
+  // Vary names with a comma, php -S with a comma and a blank: the blank is taken out before
+  // they are compared.
 
   $varyAnswer = padCurl ( [ 'url' => $padHost . 'regression/cache_file/?proxied&padInclude&fresh=' . bin2hex ( random_bytes ( 6 ) ),
                             'headers' => [ 'Accept-Language' => 'en' ] ] );
@@ -17,7 +19,7 @@
     if ( strtolower ( $varyName ) == 'cache-control' )
       $varyControl = $varyValue;
     elseif ( strtolower ( $varyName ) == 'vary' )
-      $varyList = $varyValue;
+      $varyList = preg_replace ( '/\s*,\s*/', ',', $varyValue );
 
   $varyResult = trim ( (string) ( $varyAnswer ['data'] ?? '' ) ) . ' '
               . ( preg_match ( '/^(public|private)\b/', $varyControl, $varyMatch ) ? $varyMatch [1] : "'$varyControl'" )
