@@ -31,21 +31,15 @@
     return include PAD . 'eval/fast.php';
 
   // The commonest expressions - a number, a string with no quote or backslash in it, a plain
-  // $field - come once per row and per parameter, and answer here what the pipeline answers
-  // for them: the number and the string as written, the field after the strict check
-  // padEvalLeaf gives it - none when its caller hands it to a fallback. Not in a pipe body,
-  // where a signed number alone is named as an operator missing its space, nor while the
-  // trace records the stages.
+  // $field - come once per row and per parameter, and answer what the pipeline answers for
+  // them: the number and the string as written, before this file, in padEval (lib/eval/
+  // eval.php), and the field here, after the strict check padEvalLeaf gives it - none when its
+  // caller hands it to a fallback. Not in a pipe body, where a signed number alone is named as
+  // an operator missing its space, nor while the trace records the stages.
 
   if ( ! $pipe and is_string ( $eval ) and ! $padEvalTrace ) {
 
     $padEvalFirst = $eval [0] ?? '';
-
-    if ( ( ctype_digit ( $padEvalFirst ) or $padEvalFirst == '-' ) and preg_match ( '/^-?\d+(\.\d+)?$/D', $eval ) )
-      return $eval;
-
-    if ( ( $padEvalFirst == "'" or $padEvalFirst == '"' ) and preg_match ( '/^(\'[^\'\\\\]*\'|"[^"\\\\]*")$/D', $eval ) )
-      return padUnescape ( substr ( $eval, 1, -1 ) );
 
     if ( $padEvalFirst == '$' and preg_match ( '/^\$([a-zA-Z_][a-zA-Z0-9_]*)$/D', $eval, $padEvalField ) ) {
       $padEvalValue = padFieldValue ( $padEvalField [1] );
