@@ -141,7 +141,7 @@
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
     $padSelLimit = padSelectLimit  ( $rows, $page, array_key_exists ( 'page', $prm ) or array_key_exists ( 'rows', $prm )
-                                                  or array_key_exists ( 'page', $parms ) or array_key_exists ( 'rows', $parms ), $unionBuild );
+                                                  or array_key_exists ( 'page', $parms ), $unionBuild, array_key_exists ( 'rows', $prm ) );
     $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, $tagWhere, padSelectOwn ( $db, $padSelJoin ) );
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
@@ -403,16 +403,20 @@
   // the tag's rows= or 10, and a table declared with 'rows' => 5 had its pager count pages
   // of 10.
   //
-  // $given: page= or rows= is there, on the tag or in the declaration. The limit was made
-  // when their values were, so page=$pg ?? 1 with ?pg= or ?pg=0 read the whole table, the
-  // handling paged it in PHP, and a sort= before the page made its first page another one
-  // than ?pg=1's.
+  // $given: page= or rows= is written on the tag, or page in the declaration. The limit was
+  // made when their values were, so page=$pg ?? 1 with ?pg= or ?pg=0 read the whole table,
+  // the handling paged it in PHP, and a sort= before the page made its first page another
+  // one than ?pg=1's. A declaration's 'rows' => 0 alone is no limit, as it always was.
 
   //
   // $member: the limit of a union member, which is its own and none of the level's - the
   // book is neither read nor marked for it.
+  //
+  // $rowsGiven: rows= is written on the tag. Below one - 0, a request value that is no
+  // number - it keeps no row, as it does on every other data; it was read as the 10 of a
+  // rows= not written.
 
-  function padSelectLimit ( &$rows, &$page, $given = FALSE, $member = FALSE ) {
+  function padSelectLimit ( &$rows, &$page, $given = FALSE, $member = FALSE, $rowsGiven = FALSE ) {
 
     global $pad, $padDone;
 
@@ -427,14 +431,14 @@
 
       if ( $given or $page or $rows ) {
 
-        if ($rows < 1) $rows = 10;
+        if ($rows < 1) $rows = $rowsGiven ? 0 : 10;
         if ($page < 1) $page = 1;
 
         // A page from the request past PHP_INT_MAX / rows made the offset a float, written
         // 1.844674407371E+19 - an SQL syntax error a visitor could raise at will. Held there,
         // it is a page past the last, as any page too high is.
 
-        $page   = min ( $page, intdiv ( PHP_INT_MAX, $rows ) );
+        $page   = $rows ? min ( $page, intdiv ( PHP_INT_MAX, $rows ) ) : 1;
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";
 
