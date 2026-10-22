@@ -80,20 +80,27 @@
   // stands, and the content of a pair carrying the ignore option, {markdown ignore}: only
   // the plain {ignore} was skipped, and a sample showing a placeholder, "Hello @name@",
   // failed as "there is no @name@ construct".
+  //
+  // The comments are out of the scan as they are out of the render (occurrence/init.php),
+  // written over with spaces so a place found stays the template's: a {# @todo@ #} note
+  // failed as "there is no @todo@ construct" though it never renders, and a comment naming
+  // the {ignore} tag opened a span to the next real {/ignore} that hid an @typo@ in between.
 
   if ( $padCheckSyntax ) {
+
+    $padBuildBlank = padCommentStrip ( $padBase [$pad], TRUE );
 
     $padBuildScan = preg_replace ( [
       '/\{~?(ignore|highlight)(?=[\s}~|])[^{}]*\}.*?\{~?\/\1(?=[\s}~|])[^{}]*\}/s',
       '/\{~?([A-Za-z][\w:]*)\s[^{}]*\bignore\b[^{}]*\}.*?\{~?\/\1(?=[\s}~|])[^{}]*\}/s'
-    ], '', $padBase [$pad] );
+    ], '', $padBuildBlank );
 
     if ( preg_match_all ( '/@([a-zA-Z][a-zA-Z0-9]*)@/', $padBuildScan, $padBuildCon ) )
       foreach ( array_unique ( $padBuildCon [1] ) as $padBuildOne )
         if ( ! file_exists ( PAD . "constructs/$padBuildOne.php" ) )
           padErrorAt ( "there is no @" . $padBuildOne . "@ construct",
                        [ 'level'  => $pad,
-                         'base'   => strpos ( $padBase [$pad], "@$padBuildOne@" ),
+                         'base'   => strpos ( $padBuildBlank, "@$padBuildOne@" ),
                          'length' => strlen ( $padBuildOne ) + 2 ] );
 
   }
