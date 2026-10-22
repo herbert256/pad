@@ -437,7 +437,7 @@
     if ( ! is_string ( $at ) )
       return NULL;
 
-    return ( ! str_starts_with ( $at, $here ) or $at === $here . $form ['at'] ) ? $_POST : NULL;
+    return ( ! str_starts_with ( $at, $here ) or $at === $form ['place'] ) ? $_POST : NULL;
 
   }
 
@@ -789,20 +789,37 @@
     // from the one post, each row's hidden id the posted row's, and a save from another row
     // changed the posted record.
 
-    $at = 1;
+    // A form of a {page} part that posts to the part's own page - action='?part', hx-post - is
+    // counted as that page counts it when it answers the post by itself: among the forms of
+    // the name in this rendering of the part, with the part's name as its place. Counted
+    // with the page around it, the part's second form wrote outer:3, which the part's page
+    // took for a post from elsewhere and refilled both its forms of the name with.
+    // $padFormPartSeen is the pass's own - padFormPost starts it for the request, so every
+    // nested pass puts it back when it ends - and every rendering of the part counts from
+    // its first form, as its page does, the forms of the part posting elsewhere among them.
+
+    $at    = 1;
+    $place = padFormPage () . ':1';
 
     if ( $method == 'post' ) {
       if ( padCsrfFormPosts ( $open ) )
         $open .= padCsrfField ();
       if ( $name !== '' ) {
-        $at = $padFormSeen [$name] = ( $padFormSeen [$name] ?? 0 ) + 1;
+        $at    = $padFormSeen [$name] = ( $padFormSeen [$name] ?? 0 ) + 1;
+        $place = padFormPage () . ":$at";
+        if ( (string) ( $GLOBALS ['padPage'] ?? '' ) !== padFormPage () ) {
+          $partAt = $GLOBALS ['padFormPartSeen'] [$name] = ( $GLOBALS ['padFormPartSeen'] [$name] ?? 0 ) + 1;
+          if ( ( $part = padFormPart ( $open ) ) !== '' )
+            [ $at, $place ] = [ $partAt, "$part:$partAt" ];
+        }
         $open .= '<input type="hidden" name="' . padFormName . '" value="' . padFormEscape ( $name ) . '">';
         if ( $at > 1 )
-          $open .= '<input type="hidden" name="' . padFormAt . '" value="' . padFormEscape ( padFormPage () . ":$at" ) . '">';
+          $open .= '<input type="hidden" name="' . padFormAt . '" value="' . padFormEscape ( $place ) . '">';
       }
     }
 
-    $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open, 'client' => $client !== '', 'at' => $at ];
+    $padFormStack [] = [ 'name' => $name, 'method' => $method, 'open' => $open, 'client' => $client !== '',
+                         'at' => $at, 'place' => $place ];
 
     $error = $take ['error'] ?? NULL;
     $error = ( $error === TRUE ) ? padFormErrorText : $error;
@@ -880,9 +897,10 @@
 
   // Whether an address in the HTML names the request's page: '' or ?page - written with
   // $padGo or $padGoExt in front too - with values after an &, as hx-post='?examples/form'
-  // does on the page examples/form.
+  // does on the page examples/form. With $here, whether it names that page alone - a {page}
+  // part's (padFormPart), which '' does not: an empty address is the page around the part.
 
-  function padFormRulesHere ( $to ) {
+  function padFormRulesHere ( $to, $here = NULL ) {
 
     $to = html_entity_decode ( (string) $to, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
@@ -893,7 +911,7 @@
       }
 
     if ( $to === '' )
-      return TRUE;
+      return $here === NULL;
 
     $page = ( $to [0] == '?' ) ? explode ( '&', substr ( $to, 1 ), 2 ) [0] : NULL;
 
@@ -906,9 +924,32 @@
 
     $page  = ( $page === '' ) ? 'index' : $page;
     $route = padPageRoute ( $page );
+    $pages = ( $here === NULL ) ? [ padFormPage (), (string) ( $GLOBALS ['padPageAsked'] ?? '' ) ] : [ $here ];
 
-    return in_array ( $page, [ padFormPage (), (string) ( $GLOBALS ['padPageAsked'] ?? '' ) ], TRUE )
-        or ( $route and $route ['page'] === padFormPage () );
+    return in_array ( $page, $pages, TRUE ) or ( $route and $route ['page'] === $pages [0] );
+
+  }
+
+  // The part's page a form posts to, when the form stands in a {page} part - $padPage is the
+  // part's name there, not the page the request built - and its action= or hx-post= names
+  // that part; else ''. An empty or missing action posts to the address the browser shows,
+  // the page around the part.
+
+  function padFormPart ( $open ) {
+
+    $part = (string) ( $GLOBALS ['padPage'] ?? '' );
+
+    if ( $part === '' or $part === padFormPage () )
+      return '';
+
+    preg_match ( '/^<form\b[^>]*>/i', $open, $tag );
+    preg_match_all ( '/\s(?:action|(?:data-)?hx-post)\s*=\s*"([^"]*)"/i', $tag [0] ?? '', $sends );
+
+    foreach ( $sends [1] as $to )
+      if ( padFormRulesHere ( $to, $part ) )
+        return $part;
+
+    return '';
 
   }
 
@@ -1208,11 +1249,12 @@
 
   function padFormPost () {
 
-    global $padFormChecked, $padFormSeen, $padFormPage, $padPage;
+    global $padFormChecked, $padFormSeen, $padFormPartSeen, $padFormPage, $padPage;
 
-    $padFormChecked = [];
-    $padFormSeen    = [];
-    $padFormPage    = (string) $padPage;
+    $padFormChecked  = [];
+    $padFormSeen     = [];
+    $padFormPartSeen = [];
+    $padFormPage     = (string) $padPage;
 
     $form = $_POST [padFormName] ?? NULL;
 
