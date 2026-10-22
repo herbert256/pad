@@ -19,9 +19,17 @@
   // their reversal: every page of {sequence 'prime', reverse, page=N, rows=5} showed 29 23 19
   // 17 13, while the pager offered a next one. Such a run is cut first, wherever page= is
   // written, as it always was: page 4 is 71 67 61 59 53, the page's terms reversed.
+  //
+  // Not when every action before page= keeps a front of the run, in its order - first=,
+  // shift, element=, dedup, a filter by stores, prepend: of the run's first terms they make
+  // the first terms of what they make of every term, so the (page+1)*rows terms made are
+  // enough and the cut stays where it is written. Cut first, {sequence 'prime', first=20,
+  // page=5, rows=5} showed 73 79 83 89 97, primes past the twenty, and a pager without an end.
 
   if ( $pqPageWhole !== PHP_INT_MAX )
-    $pqPageCut = 0;
+    foreach ( array_slice ( $pqActions, 0, $pqPageCut ) as [ $pqPageAction ] )
+      if ( ! in_array ( $pqPageAction, [ 'first', 'shift', 'element', 'dedup', 'intersection', 'onlyNow', 'prepend' ] ) )
+        $pqPageCut = 0;
 
   if ( $pqPageCut and $pqPageSize !== NULL ) {
     $pqPageCount = FALSE;
