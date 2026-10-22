@@ -667,7 +667,16 @@
         if ( isset ( $joinTable ['fields'] ) )
           padSelectAddFields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
 
-        $joinSQL .= ' ' . $xtype .  ' join ' . $joinTable ['db'] . ' ';
+        // A joined table with a where - a view - is joined as the rows of its where, a
+        // derived table under the table's own name, so the key and the fields still name
+        // it, for every kind of join; its where was left out and every row joined.
+
+        $joinFrom = $joinTable ['db'];
+
+        if ( (string) ( $joinTable ['where'] ?? '' ) !== '' and preg_match ( '/^[A-Za-z_][A-Za-z0-9_]*$/', (string) $joinFrom ) )
+          $joinFrom = "(\nselect * from $joinFrom\nwhere " . $joinTable ['where'] . "\n) as $joinFrom";
+
+        $joinSQL .= ' ' . $xtype .  ' join ' . $joinFrom . ' ';
 
         if ( isset($value ['key']) ) {
           $joinSQL .= ' on ';
