@@ -274,10 +274,16 @@
     if ( preg_match ( '/--|#|\/\*/', $fields ) )
       return TRUE;
 
-    $items = padSelectItems ( preg_replace ( '/^\s*(all|distinct|distinctrow)\s+/i', '', $fields ) );
+    $items = padSelectItems ( preg_replace ( '/^\s*(all|distinctrow|distinct)\b\s*/i', '', $fields ) );
     $names = [];
 
     foreach ( $items as $item ) {
+
+      // A column in parentheses is named by what they hold: distinct(albums.artist_id) is
+      // artist_id, as a column beside it of that name.
+
+      while ( preg_match ( '/^(\((?:[^()\'"]++|\'[^\']*\'|"[^"]*"|(?1))*\))$/s', $item ) )
+        $item = trim ( substr ( $item, 1, -1 ) );
 
       if ( $item === '*' or str_ends_with ( $item, '.*' ) ) {
         if ( $joined or count ( $items ) > 1 )
