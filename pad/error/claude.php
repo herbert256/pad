@@ -73,11 +73,17 @@
   // A page pad export renders is this machine's here, though padLocalView keeps the
   // developer's helpers out of its copy: what the page fetches of its own site at build time
   // is the copy's content. Sent as a visitor's, the manual's template_errors - whose example
-  // fetches the JSON error report only this machine gets - failed the export.
+  // fetches the JSON error report only this machine gets - failed the export. Such a fetch
+  // says X-PAD-Export, which padLoopback lets pass and padLocalView reads as no screen of
+  // this machine's: the page fetched kept its {debug} boxes, and the toolbar, live reload
+  // and the output check its PHP switched on, and the copy carried them.
 
   function padSelfFetchHeaders () {
 
-    return padLocal () ? [] : [ 'X-PAD-Remote' => '1' ];
+    if ( ! padLocal () )
+      return [ 'X-PAD-Remote' => '1' ];
+
+    return padLocalView () ? [] : [ 'X-PAD-Export' => '1' ];
 
   }
 

@@ -298,11 +298,16 @@
   // renders each page on the command line, local to padLocal, for a static copy any visitor
   // reads, so it gets what a visitor gets (apps/cli/_commands/render.php sets
   // $padExportRun): a page whose own PHP said $padToolbar = 'local' put the bar, its
-  // variables and SQL with it, into the copy, and every {debug} box went along.
+  // variables and SQL with it, into the copy, and every {debug} box went along. So does a
+  // page that page fetches of this site, which comes with X-PAD-Export (padSelfFetchHeaders)
+  // - a header that only takes away, whoever sends it.
 
   function padLocalView () {
 
     if ( PHP_SAPI === 'cli' and ( $GLOBALS ['padExportRun'] ?? FALSE ) )
+      return FALSE;
+
+    if ( isset ( $_SERVER ['HTTP_X_PAD_EXPORT'] ) )
       return FALSE;
 
     return padLocal ();

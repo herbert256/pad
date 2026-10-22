@@ -57,6 +57,8 @@
       'request/an_exported_page_fetches_this_site_as_this_machine' => 'A page pad export renders keeps this machine\'s standing for what it fetches of its own site - only the developer\'s helpers stay out of the copy',
       'request/fetching'          => 'The fixture for request/an_exported_page_fetches_this_site_as_this_machine: a page that fetches request/standing and shows its answer',
       'request/standing'          => 'The fixture for request/fetching: whom this machine took the request for',
+      'request/an_exported_page_fetches_this_site_without_the_developers_view' => 'A page pad export renders fetches a page of its own site whose PHP switches the toolbar, live reload and the output check on, with a {debug} box: none of the four comes back into the copy',
+      'request/fetchexported'     => 'The fixture for request/an_exported_page_fetches_this_site_without_the_developers_view: a page that fetches request/exported and names which of the developer\'s helpers came back',
       'request/exported'          => 'The fixture for request/an_exported_page_carries_nothing_only_this_machine_sees: the helpers switched on by the page itself, a {debug} box and an image the output check names',
       'request/statuses'          => 'A missing page answers 404, and a status the page sets with http_response_code() stands',
       'request/a_redirect_carries_a_list_as_the_query_writes_it' => 'The values padRedirect and {redirect} carry go into the query as padUrl writes them - a list as ids[0]=1&ids[1]=2, a NULL left out, a name with & encoded',
