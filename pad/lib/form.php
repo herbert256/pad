@@ -441,9 +441,16 @@
 
   }
 
+  // The page of the place is the page this request built - padFormPost keeps its name -
+  // not the one being rendered: in a part a {page} tag renders, $padPage is the part's name,
+  // so its form wrote part:2 where the count it carries is the request's, and the page's
+  // own form of the name, reading part:2 as a post from another page, refilled with the
+  // part's values and messages too. Without the post pass - a designer preview - the page
+  // being rendered.
+
   function padFormPage () {
 
-    return (string) ( $GLOBALS ['padPage'] ?? '' );
+    return (string) ( $GLOBALS ['padFormPage'] ?? $GLOBALS ['padPage'] ?? '' );
 
   }
 
@@ -1201,10 +1208,11 @@
 
   function padFormPost () {
 
-    global $padFormChecked, $padFormSeen;
+    global $padFormChecked, $padFormSeen, $padFormPage, $padPage;
 
     $padFormChecked = [];
     $padFormSeen    = [];
+    $padFormPage    = (string) $padPage;
 
     $form = $_POST [padFormName] ?? NULL;
 
