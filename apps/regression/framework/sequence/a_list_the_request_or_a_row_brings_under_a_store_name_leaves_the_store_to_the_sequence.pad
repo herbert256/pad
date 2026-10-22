@@ -1,0 +1,3 @@
+[{sequence '1..3', push='primes'/}{pull:primes}{$primes} {/pull:primes}]
+[{sequence 3, name='orders'}{$orders}{/sequence}|{pull:orders}{$orders}{/pull:orders}]
+{data 'o'}[{"id":1,"kids":[{"k":1}]}]{/data}[{o}{sequence '1..2', push='kids'/}{pull:kids}{$kids}{/pull:kids}{/o}]

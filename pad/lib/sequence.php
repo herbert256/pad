@@ -353,9 +353,39 @@
     elseif ( isset ( $padDefineStore  [$name] ) ) return 'a {define} tag';
     elseif ( isset ( $padMacroStore   [$name] ) ) return 'a {macro}';
     elseif ( isset ( $padSelect       [$name] ) ) return 'a select table';
-    elseif ( is_array ( $GLOBALS [$name] ?? NULL ) and padValidStore ( $name ) ) return 'an array of the page';
+    elseif ( is_array ( pqStorePageValue ( $name ) ) and padValidStore ( $name ) ) return 'an array of the page';
 
     return '';
+
+  }
+
+  // What the page itself holds under a name, for pqStoreHeld: not the field of a row a loop
+  // around published - padSetGlobalOcc put aside what that row shadowed, and the outermost
+  // level that did holds the page's own value, while one that made the name from nothing says
+  // the page has none - and not a value the request brought (padGetParms notes it in
+  // $padRequestGot), unless the page has set it since. With $padRequestVars TRUE every GET and
+  // POST value is a global, a list too: ?primes[]=1 made every page that pushes a store primes
+  // answer 500, a form posting a checkbox list nums[] refused its own post on a page pushing
+  // nums, and a row whose field kids held a list refused push='kids' inside its loop. The
+  // store wins over such a value, as it did before the refusal was there.
+
+  function pqStorePageValue ( $name ) {
+
+    global $pad, $padSaveOcc, $padDeleteOcc, $padRequestGot;
+
+    $value = $GLOBALS [$name] ?? NULL;
+
+    for ( $i = 1; $i <= $pad; $i++ )
+      if ( array_key_exists ( $name, $padSaveOcc [$i] ?? [] ) ) {
+        $value = $padSaveOcc [$i] [$name];
+        break;
+      } elseif ( in_array ( $name, $padDeleteOcc [$i] ?? [], TRUE ) )
+        return NULL;
+
+    if ( isset ( $padRequestGot [$name] ) and $value === $padRequestGot [$name] )
+      return NULL;
+
+    return $value;
 
   }
 
