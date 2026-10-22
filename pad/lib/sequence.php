@@ -373,6 +373,12 @@
   // answer 500, a form posting a checkbox list nums[] refused its own post on a page pushing
   // nums, and a row whose field kids held a list refused push='kids' inside its loop. The
   // store wins over such a value, as it did before the refusal was there.
+  //
+  // Set since is told by who set it, not by the value: a {set} drops the note (padSetField in
+  // lib/scope.php), and a name the page's PHP assigns is the page's own (padTypePageNamed in
+  // lib/type.php, as padTypeAsked reads it). Told by the value, {set $primes = ['1']} or
+  // $primes = $_GET ['primes'] ?? [] was refused without a query and shadowed by the store
+  // without a word with ?primes[]=1 - the answer was the visitor's to choose.
 
   function pqStorePageValue ( $name ) {
 
@@ -387,7 +393,7 @@
       } elseif ( in_array ( $name, $padDeleteOcc [$i] ?? [], TRUE ) )
         return NULL;
 
-    if ( isset ( $padRequestGot [$name] ) and $value === $padRequestGot [$name] )
+    if ( isset ( $padRequestGot [$name] ) and $value === $padRequestGot [$name] and ! padTypePageNamed ( $name ) )
       return NULL;
 
     return $value;
