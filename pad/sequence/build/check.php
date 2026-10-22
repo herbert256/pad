@@ -185,6 +185,15 @@
   // itself, so eval='@ le 20000 ? 0 : 5' had no 5, made at position 20,001. Made to the
   // ceiling every time, the million terms of '@ * 2' for 9223372036854775807 took a second and
   // a half, and those of 'abc' the five seconds a run has.
+  //
+  // The terms to the ceiling are made a stretch at a time, looked in as they come, and kept with
+  // where they got to (pqCheckWalk): a value made early is found there without the rest. Once
+  // that walk has begun, every value is looked for in it, a number or not, going on to the
+  // ceiling for one not found yet - as every value was looked for in the million terms the one
+  // run to the ceiling left.
+
+  if ( isset ( $pqCheckTerms [$pqCheckKey] ['walk'] ) )
+    return pqCheckWalk ( $pqCheckTerms [$pqCheckKey], $pqSeq, $pqParm, $pqCheckAt, $pqCheckMost );
 
   if ( $pqSeq == 'eval' and is_numeric ( $pqLoop ) ) {
 
@@ -205,9 +214,7 @@
       if ( $pqCheckSeen !== NULL )
         return $pqCheckSeen;
 
-      $pqCheckTerms [$pqCheckKey] = pqTermsIndex ( $pqSeq, $pqParm, $pqCheckMost );
-
-      return isset ( $pqCheckTerms [$pqCheckKey] ['index'] [$pqCheckAt] );
+      return pqCheckWalk ( $pqCheckTerms [$pqCheckKey], $pqSeq, $pqParm, $pqCheckAt, $pqCheckMost );
 
     }
 

@@ -879,7 +879,12 @@
 
   function pqTermsIndex ( $seq, $parm, $to ) {
 
-    $terms   = pqTerms ( $seq, $parm, [ 'to' => $to ] );
+    return pqTermsIndexOf ( pqTerms ( $seq, $parm, [ 'to' => $to ] ), $to );
+
+  }
+
+  function pqTermsIndexOf ( $terms, $to, $index = NULL ) {
+
     $numbers = array_values ( array_filter ( $terms, 'is_numeric' ) );
     $count   = count ( $numbers );
     $rising  = $falling = ( $count == count ( $terms ) );
@@ -891,7 +896,7 @@
 
     return [
       'to'      => $to,
-      'index'   => pqIndex ( $terms ),
+      'index'   => $index ?? pqIndex ( $terms ),
       'first'   => array_slice ( $terms, 0, 1 ),
       'low'     => $count ? min ( $numbers ) : NULL,
       'high'    => $count ? max ( $numbers ) : NULL,
@@ -985,6 +990,52 @@
     }
 
     return $short ? FALSE : NULL;
+
+  }
+
+  // The terms of an expression to the ceiling of candidates, $most, for build/check.php to look
+  // value key $at up in when the samples said nothing of it - made a stretch at a time, each
+  // twice as far as the one before, and looked in as they come, so a value made early is found
+  // without the rest of the million being made. The walk is kept in $made, the terms made
+  // as far as the reach, and goes on from where it stopped for the next value not found yet;
+  // at the ceiling $made becomes what the terms there make of it, pqTermsIndexOf () with the
+  // index the walk made - pqIndex () of them - as the one run to the ceiling made it. Made in one run every time, {sequence '150;500;1000;4000', keep,
+  // eval='@ + 1'} made a million terms for 150, made at position 149, and took two seconds.
+  //
+  // A stretch that comes back short - a position that made no term, or one past the integer
+  // range, which ends a run - is left for one run to the ceiling, as before: run whole, the
+  // terms end at the first one out of range, and stretches would go on past it.
+
+  function pqCheckWalk ( &$made, $seq, $parm, $at, $most ) {
+
+    $made ['walk'] ??= [ 'to' => 0, 'terms' => [], 'index' => [] ];
+
+    while ( ! isset ( $made ['walk'] ['index'] [$at] ) and $made ['walk'] ['to'] < $most ) {
+
+      $from  = $made ['walk'] ['to'] + 1;
+      $to    = min ( $most, 2 * max ( $made ['walk'] ['to'], $made ['to'] ) );
+      $terms = pqTerms ( $seq, $parm, [ 'from' => $from, 'to' => $to ] );
+
+      if ( count ( $terms ) != $to - $from + 1 ) {
+        $made = pqTermsIndex ( $seq, $parm, $most );
+        return isset ( $made ['index'] [$at] );
+      }
+
+      foreach ( $terms as $term ) {
+        $made ['walk'] ['terms'] [] = $term;
+        $made ['walk'] ['index'] [ pqIndexKey ( $term ) ] ??= count ( $made ['walk'] ['terms'] );
+      }
+
+      $made ['walk'] ['to'] = $to;
+
+    }
+
+    $found = isset ( $made ['walk'] ['index'] [$at] );
+
+    if ( $made ['walk'] ['to'] >= $most )
+      $made = pqTermsIndexOf ( $made ['walk'] ['terms'], $most, $made ['walk'] ['index'] );
+
+    return $found;
 
   }
 
