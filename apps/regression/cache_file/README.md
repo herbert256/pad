@@ -29,9 +29,11 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `a_visitor_with_an_identity_is_never_answered_public.php/pad` | Fetches `proxied` as a guest, with a cookie of its own, with an Authorization header and with a padLang cookie: public to the guest only, private to the other three |
 | `a_public_answer_among_several_locales_varies_on_the_cookie.php/pad` | Fetches `proxied` as a guest: the public answer says `Vary: Cookie` beside Accept-Language - a padLang cookie can choose the locale, and a shared cache must not hand the guest's page to that visitor |
 | `proxied.php/pad` | A page that greets the visitor it knows; shared caches may keep it and it sets no PAD cookie |
+| `a_public_answer_of_one_locale_varies_on_neither_the_language_nor_the_cookie.php/pad` | Fetches `proxiedone` with Accept-Language and a padLang cookie: one locale, nothing to choose - public, and Vary names neither |
+| `proxiedone.pad` | A page of one locale that shared caches may keep |
 | `an_exposing_page_says_vary_accept_on_every_fetch.php/pad` | Fetches `exposed` twice at a fresh address: both answers say `Vary: Accept` - an exposing page is never stored, a hit could not say it |
 | `exposed.php/pad` | A page that exposes its rows as data |
 | `a_304_carries_the_etag_its_200_carries.php/pad` | Fetches `stable` at a fresh address - the miss, the gzipped hit - and asks again with the hit's tag: the 304 carries that same tag |
 | `a_push_in_a_nocache_part_is_made_on_every_fetch.php/pad` | Fetches `nocachepush` twice at a fresh address: the part and its push are new both times - such a page is not kept |
 | `nocachepush.pad` | A page whose `{nocache}` part pushes to a stack in its head |
-| `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age, two locales and `$padCookies` off |
+| `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age, two locales and `$padCookies` off; for `proxiedone` the same with one locale |

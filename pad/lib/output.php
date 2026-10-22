@@ -158,13 +158,19 @@
     // visitor whose cookie chose another locale, the server never asked. Vary: Cookie keeps
     // the public answer for the visitors who send the same cookies - the guests - where
     // making every answer private would keep it for none.
+    //
+    // Only where there is a choice: with one locale (or none) neither the header nor the
+    // cookie changes the answer (padLocaleChoose answers that one), and Vary named them all
+    // the same - a shared cache kept a copy per Cookie header, every visitor with a cookie of
+    // the site's analytics a miss - as the fragment cache keys on the locale only among
+    // several (padFragmentLocale).
 
     $padWebVary = [];
 
     if ( $padGzip or $padCacheServerGzip )
       $padWebVary [] = 'Accept-Encoding';
 
-    if ( count ( $GLOBALS ['padLocales'] ?? [] ) )
+    if ( count ( (array) ( $GLOBALS ['padLocales'] ?? [] ) ) > 1 )
       array_push ( $padWebVary, 'Accept-Language', 'Cookie' );
 
     // A page that exposes its data answers JSON or CSV to an Accept header that asks for
@@ -267,7 +273,7 @@
     else
       $age = 0;
 
-    $chosen = ( count ( $GLOBALS ['padLocales'] ?? [] ) and isset ( $_COOKIE ['padLang'] ) );
+    $chosen = ( count ( (array) ( $GLOBALS ['padLocales'] ?? [] ) ) > 1 and isset ( $_COOKIE ['padLang'] ) );
 
     if ( $padCacheProxyAge and ! $cookie and ! $chosen and ! padCacheIdentity () ) {
       $type = 'public';

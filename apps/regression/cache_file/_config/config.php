@@ -17,4 +17,13 @@
     $padLocales        = [ 'en', 'nl' ];
   }
 
+  // The same for proxiedone, with one locale: nothing chooses it.
+
+  if ( $padPage == 'proxiedone' ) {
+    $padCookies        = FALSE;
+    $padCacheProxyAge  = 300;
+    $padCacheClientAge = 60;
+    $padLocales        = [ 'nl' ];
+  }
+
 ?>
