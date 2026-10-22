@@ -453,11 +453,11 @@
 
   }
 
-  // The table a select with a join names its key and relation fields with: a field both
-  // tables hold - orderNumber in orders and orderdetails - was written bare, and the select
-  // ended on "Column 'orderNumber' in WHERE is ambiguous" as soon as a key was bound on its
-  // tag or it stood in a related select. A db that is no plain name - a schema, an alias -
-  // leaves the fields bare, as before.
+  // The table a select with a join names its key and relation fields with - those it holds
+  // (padSelectHolds): a field both tables hold - orderNumber in orders and orderdetails - was
+  // written bare, and the select ended on "Column 'orderNumber' in WHERE is ambiguous" as
+  // soon as a key was bound on its tag or it stood in a related select. A db that is no
+  // plain name - a schema, an alias - leaves the fields bare, as before.
 
   function padSelectOwn ( $db, $join ) {
 
@@ -465,6 +465,33 @@
       return '';
 
     return preg_match ( '/^[A-Za-z_][A-Za-z0-9_]*$/', (string) $db ) ? $db : '';
+
+  }
+
+  // Whether the table $db holds the column $field: its columns are read once a request -
+  // SHOW COLUMNS on MySQL, PRAGMA table_info on SQLite - on the connection itself, so the
+  // application's _events/sql.php does not hear them as a statement of the page. TRUE when
+  // they cannot be read.
+
+  function padSelectHolds ( $db, $field ) {
+
+    static $columns = [];
+
+    if ( ! array_key_exists ( $db, $columns ) ) {
+
+      $connect = padDbApp ();
+      $names   = [];
+
+      if ( $connect instanceof PDO and $result = $connect->query ( 'pragma table_info(' . padSelectField ( $db ) . ')' ) )
+        $names = array_column ( $result->fetchAll ( PDO::FETCH_ASSOC ), 'name' );
+      elseif ( $connect instanceof mysqli and $result = mysqli_query ( $connect, 'show columns from ' . padSelectField ( $db ) ) )
+        $names = array_column ( mysqli_fetch_all ( $result, MYSQLI_ASSOC ), 'Field' );
+
+      $columns [$db] = $names ? array_flip ( array_map ( 'strtolower', $names ) ) : NULL;
+
+    }
+
+    return $columns [$db] === NULL or isset ( $columns [$db] [ strtolower ( trim ( $field, '` ' ) ) ] );
 
   }
 
@@ -665,9 +692,14 @@
   // '2' never equals the integer 2 there, and {boards $id=2} found no board and every
   // board's nested topics came out empty.
 
+  //
+  // $own names the field only when its table holds it (padSelectHolds): a field of the
+  // joined table - the label an album's artist is signed to - was named with the select's
+  // own table, and the select ended on "Unknown column 'albums.signed_to'".
+
   function padSelectWhereAdd  (&$where, $field, $value, $own = '') {
 
-    $add = padSelectField ( ( $own !== '' and ! str_contains ( $field, '.' ) ) ? "$own.$field" : $field ) . ' = ';
+    $add = padSelectField ( ( $own !== '' and ! str_contains ( $field, '.' ) and padSelectHolds ( $own, $field ) ) ? "$own.$field" : $field ) . ' = ';
 
     if ( strpos ( $where, $add ) !== FALSE )
       return;
