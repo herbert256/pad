@@ -1,0 +1,6 @@
+group: [{staffSel fields="floor(salary / 2000) as band, count(*) as n", group="band -- per band", having="n > 1", order="n desc", rows=1}{$band}={$n} {/staffSel}]
+having: [{staffSel fields="floor(salary / 2000) as band, count(*) as n", group="band", having="n > 1 -- the shared ones", order="n desc"}{$band}={$n} {/staffSel}]
+rollup: [{staffSel fields="floor(salary / 2000) as band, sum(salary) as pay", group="band -- per band", rollup}{$pay} {/staffSel}]
+where: [{staffSel where="salary > 2000 -- the well paid", order="name"}{$name} {/staffSel}]
+order: [{staffSel order="salary desc -- best paid first", rows=2}{$name} {/staffSel}]
+pages: [{staffSel fields="floor(salary / 2000) as band, count(*) as n", group="band", having="n > 0 -- every band", page=1, rows=2}{$band} {/staffSel}] ({pager 'staffSel', window=0}{$kind}:{$page} {/pager})

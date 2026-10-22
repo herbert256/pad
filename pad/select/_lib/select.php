@@ -144,9 +144,14 @@
     // so a $where or $order of the application is not overwritten - and a member's
     // build writes its own parts into the same names, so a union query composed after it
     // carried the member's where instead of its own.
+    //
+    // Each clause stands on a line of its own (padSelectLines): a -- or # comment written in
+    // one ran to the end of the statement on one line, so a comment in group=, having= or
+    // order= took the clauses after it - the having, the order, the limit - without a word,
+    // and one in where= the closing parenthesis of the where.
 
-    $head  = "$padSelStart $fields from $db $padSelJoin $padSelWhere $padSelGroup $having";
-    $tail  = "$padSelOrder $padSelLimit";
+    $head  = padSelectLines ( [ "$padSelStart $fields", "from $db", $padSelJoin, $padSelWhere, $padSelGroup, $having ] );
+    $tail  = padSelectLines ( [ $padSelOrder, $padSelLimit ] );
     $limit = $padSelLimit;
 
     $padSelUnion = padSelectUnion  ( $padSelUnion );
@@ -154,8 +159,8 @@
 
     $_UNION [] = $padSelUnion;
 
-    $base  = "$head $padSelUnion";
-    $sql   = "$type $base $tail";
+    $base  = padSelectLines ( [ $head, $padSelUnion ] );
+    $sql   = "$type " . padSelectLines ( [ $base, $tail ] );
     $padSelUnion = "union select $base";
 
     $_SELECT [] = $sql;
@@ -182,9 +187,9 @@
       $short = ( in_array ( $padSelStart, [ '', 'ALL' ] ) and ! $padSelGroup and ! $having and trim ( $members ) === ''
                  and ! padSelectTotals ( (string) $fields ) );
       $count = $short
-             ? "select 1 from $db $padSelJoin $padSelWhere"
+             ? 'select 1 ' . padSelectLines ( [ "from $db", $padSelJoin, $padSelWhere ] )
              : "select $base";
-      $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( $count ) as padPagerCount";
+      $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( $count\n) as padPagerCount";
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
     }
 
@@ -218,6 +223,15 @@
 
   }
 
+  // The clauses of a statement, each on a line of its own and the empty ones left out, so a
+  // line comment written in one ends with it.
+
+  function padSelectLines ( $parts ) {
+
+    return implode ( "\n", array_filter ( array_map ( 'trim', $parts ), fn ( $one ) => $one !== '' ) );
+
+  }
+
   function padSelectKeys ( $keys ) {
 
     if ( ! $keys )
@@ -242,7 +256,7 @@
       $group = "group by $group";
 
     if ($rollup)
-      $group .= ' with rollup';
+      $group .= "\nwith rollup";
 
     return $group;
 
@@ -339,7 +353,7 @@
     global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl;
 
     if ($where)
-      $where = 'where (' . $where . ')';
+      $where = 'where (' . $where . ( preg_match ( '/--|#/', $where ) ? "\n)" : ')' );
 
     $bound = FALSE;
 
