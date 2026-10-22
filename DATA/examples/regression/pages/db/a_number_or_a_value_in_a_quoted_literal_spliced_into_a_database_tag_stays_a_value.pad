@@ -1,0 +1,4 @@
+number: [{field "count(*) from staff where salary > {$n}"}]
+quoted: [{field "phone from staff where name = '{$who}'"}]
+words:  [{field "count(*) from staff where name = '{$words}'"}]
+call:   [{echo field("phone from staff where name = '{$who}'")}]

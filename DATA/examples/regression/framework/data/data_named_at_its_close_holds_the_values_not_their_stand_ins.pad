@@ -1,0 +1,5 @@
+{data}
+name
+{people}"{!name}"
+{/people}
+{/data 'p'}{data}[{people}{notFirst@people},{/notFirst@people}{"n":"{!name}"}{/people}]{/data 'q'}A[{p}{if $name eq 'Smith, John'}eq{else}ne{/if};{/p}]B[{p where='$name eq "x=1"'}{$name}@else@none{/p}]C[{q}{echo php:strlen($n)};{/q}]

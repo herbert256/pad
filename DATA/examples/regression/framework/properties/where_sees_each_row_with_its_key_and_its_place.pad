@@ -1,0 +1,2 @@
+{data 'xs'}[{"n":1},{"n":2},{"n":3},{"n":4}]{/data}{data 'ks'}{"a":{"v":1},"b":{"v":2},"c":{"v":3}}{/data}
+even:[{xs where='even@xs'}{$n}{/xs}] first:[{xs where='first@xs'}{$n}{/xs}] last:[{xs where='last@xs'}{$n}{/xs}] current:[{xs where='current@xs gt 2'}{$n}{/xs}] count:[{xs where='$n gt 2 and count@xs eq 4'}{$n}{/xs}] key:[{ks where='key@ks ne "b"'}{$v}{/ks}] negative:[{ks where='key@ks eq "b"', negative}{$v}{/ks}] after:[{xs where='even@xs'}{current@xs}:{$n},{/xs}]

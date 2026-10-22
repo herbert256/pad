@@ -1,0 +1,8 @@
+{set $i = 0}A[{while $i lt 5}{increment $i}{notFirst@while},{if $i eq 3}{break}{/if}{/notFirst@while}{$i}{/while}]
+{set $i = 0}B[{while $i lt 5}{increment $i}{ifchanged $i}{if $i eq 3}{cease}{/if}{/ifchanged}{$i}{/while}]
+{set $i = 0}C[{while $i lt 5}{increment $i}{ifchanged $i}{if $i eq 3}{continue}{/if}{/ifchanged}{$i}{/while}]
+D[{rows}{ifchanged $a}{if $a eq 2}{break}{/if}{/ifchanged}{$a}{/rows}]
+E[{rows}{notFirst@rows}{break}{/notFirst@rows}{$a}{/rows}]
+F[{rows}{guest}{if $a eq 2}{continue}{/if}{/guest}{$a}{/rows}]
+G[{rows}{true}{cease}{/true}{$a}{/rows}]
+H[{rows}{spaceless}{if $a eq 2}{break}{/if}{/spaceless}{$a}{/rows}]

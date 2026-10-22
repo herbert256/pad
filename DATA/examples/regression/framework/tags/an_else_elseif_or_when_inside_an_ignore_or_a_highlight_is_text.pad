@@ -1,0 +1,8 @@
+1[{if $a}{ignore}x{else}y{/ignore}A{else}B{/if}]
+2[{if 0}A{ignore}{else}{/ignore}B{else}C{/if}]
+3[{if $a}Write {ignore}{elseif $x}{/ignore} for another branch{/if}]
+4[{if 0}A{ignore}x {elseif 1} y{/ignore}B{/if}]
+5[{case $a}{when 1}Write {ignore}{when 2}{/ignore} for a branch{else}other{/case}]
+6[{case 2}{when 1}one {ignore}{when 2}{/ignore} done{when 3}three{/case}]
+7[{guest}Write {ignore}{else}{/ignore} for the default{/guest}]
+8[{if 1}A{highlight 'pad'}{else}{/highlight}B{/if}]

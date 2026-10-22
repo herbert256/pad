@@ -101,6 +101,14 @@
     [ 'count',    'integer',                  [ 'count' => '9223372036854775808' ] ],
     [ 'count',    'integer',                  [ 'count' => '-9223372036854775808' ] ],
     [ 'count',    'integer|max:10',           [ 'count' => '99999999999999999999' ] ],
+    [ 'zip',      'regex:/^[0-9]{,4}$/',      [ 'zip' => '12' ] ],
+    [ 'code',     'regex:/^[A-Z]{2, 3}$/',    [ 'code' => 'NL' ] ],
+    [ 'year',     'regex:/^\d{ 4 }$/',        [ 'year' => '1234' ] ],
+    [ 'code',     'regex:/^{[a-z]+}$/',       [ 'code' => '{ab}' ] ],
+    [ 'code',     'regex:/^{[a-z]+}$/',       [ 'code' => 'ab' ] ],
+    [ 'code',     'regex:/^[{,]\{,2}$/',      [ 'code' => ',{,2}' ] ],
+    [ 'size',     'required|regex:/^(S|M|L)$/', [ 'size' => 'M' ] ],
+    [ 'size',     'required|regex:/^(S|M|L)$/', [ 'size' => 'X' ] ],
   ];
 
   $parity = [];

@@ -1,0 +1,1 @@
+{content 'c'}yes{else}no{/content}{content 'w'}{when 1}one{when 2}two{else}other{/content}{content 'e'}yes@else@no{/content}{set $x = 1}1[{if $x eq 1, content='c'}{/if}] 2[{if $x eq 2, content='c'}{/if}] 3[{case $x, content='w'}{/case}] 4[{if $x eq 1, content='e'}{/if}] 5[{if $x eq 2, content='e'}{/if}] 6[{auth content='c'}{/auth}]

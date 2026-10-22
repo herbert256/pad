@@ -1,0 +1,4 @@
+[{rows}{$name}:{while $n gt 0}{$n}{decrement $n}{/while}/{$n};{/rows}]
+[{rows}{$n}>{set $n = $n - 1}{$n}/{echo $n}/{if $n eq 1}one{else}not{/if};{/rows}]
+[{set $n = 0}{rows}{set $n = 99}{/rows}{$n}]
+[{rows}{increment $n}{/rows}{$n}]

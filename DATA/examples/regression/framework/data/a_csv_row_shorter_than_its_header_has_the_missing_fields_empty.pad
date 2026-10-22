@@ -1,0 +1,9 @@
+{data 'people'}
+name,city
+Ann,Paris
+Bob
+{/data}{data 'c2'}
+a,b,c
+1,2
+3,4,5
+{/data}[{people}<{$name} lives in {$city}>{/people}][{c2}{$a}{$b}({$c}){/c2}][{people where='$city eq ""'}{$name}{/people}]

@@ -1,0 +1,15 @@
+{data 'y'}
+  city: Paris
+  country: FR
+{/data}[{y}{key@y}={$y};{/y}]
+{data 'l'}
+  - name: a
+  - name: b
+{/data}[{l}{$name};{/l}]
+{data 'n'}
+    rows:
+      - name: c
+        age: 3
+      - name: d
+        age: 4
+{/data}[{n}{$name}{$age};{/n}]
