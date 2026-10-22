@@ -132,7 +132,7 @@
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
     $padSelLimit = padSelectLimit  ( $rows, $page, array_key_exists ( 'page', $prm ) or array_key_exists ( 'rows', $prm )
-                                                  or array_key_exists ( 'page', $parms ) or array_key_exists ( 'rows', $parms ) );
+                                                  or array_key_exists ( 'page', $parms ) or array_key_exists ( 'rows', $parms ), $unionBuild );
     $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, isset ( $prm ['where'] ), padSelectOwn ( $db, $padSelJoin ) );
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
@@ -199,6 +199,13 @@
                                         : "field count(*) from ( $count\n) as padPagerCount";
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
     }
+
+    // A member with rows= of its own - and the order that picks them - is a derived table:
+    // its order and limit were left out, and every row of it was added without a word.
+    // MySQL and SQLite both read a select from a derived table as a member of a union.
+
+    if ( $unionBuild and $limit )
+      return "union select * from (\nselect " . padSelectLines ( [ $base, $tail ] ) . "\n) as padUnion" . ( count ( $_UNION ) );
 
     if ($unionBuild)
       return $padSelUnion;
@@ -302,7 +309,11 @@
   // handling paged it in PHP, and a sort= before the page made its first page another one
   // than ?pg=1's.
 
-  function padSelectLimit ( &$rows, &$page, $given = FALSE ) {
+  //
+  // $member: the limit of a union member, which is its own and none of the level's - the
+  // book is neither read nor marked for it.
+
+  function padSelectLimit ( &$rows, &$page, $given = FALSE, $member = FALSE ) {
 
     global $pad, $padDone;
 
@@ -313,7 +324,7 @@
     $rows = (int) $rows;
     $page = (int) $page;
 
-    if ( ( $padDone [$pad] ['page'] ?? '' ) !== 'limit' )
+    if ( $member or ( $padDone [$pad] ['page'] ?? '' ) !== 'limit' )
 
       if ( $given or $page or $rows ) {
 
@@ -328,8 +339,10 @@
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";
 
-        padDone ('page', 'limit');
-        padDone ('rows', 'limit');
+        if ( ! $member ) {
+          padDone ('page', 'limit');
+          padDone ('rows', 'limit');
+        }
 
       }
 
