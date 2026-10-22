@@ -5,11 +5,12 @@
   // expired, on the address's directory and each one between, and the session id goes on on
   // the application's directory: the old pair was sent first, the longer path ahead, PHP
   // kept the first of the two, and every later request of that directory reported one
-  // frozen parent for the ten years the cookie lives.
+  // frozen parent for the ten years the cookie lives. The browser sends both copies - the
+  // old one first - which is how the engine knows there is an old one.
 
   $oldDir  = parse_url ( $padHost, PHP_URL_PATH ) . 'regression/clean_urls/';
   $oldBody = @file_get_contents ( $padHost . 'regression/clean_urls/index.php/products/42', FALSE,
-               stream_context_create ( [ 'http' => [ 'header' => "Cookie: padReqID=DIRAAAAA; padSesID=SESAAAAA\r\n", 'ignore_errors' => TRUE ] ] ) );
+               stream_context_create ( [ 'http' => [ 'header' => "Cookie: padReqID=DIRAAAAA; padSesID=SESAAAAA; padReqID=APPAAAAA; padSesID=SESBBBBB\r\n", 'ignore_errors' => TRUE ] ] ) );
 
   $oldResult = '';
 
