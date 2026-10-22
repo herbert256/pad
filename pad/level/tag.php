@@ -78,6 +78,17 @@
 
   $padPairTexts = ! ( in_array ( $padTypeCheck, padTextPairs, TRUE ) or padTextOption ( $padBetween ) );
 
+  // Each closer tried is held to the whole stretch from the tag to it, and padTextBlank looked
+  // for the words of a text pair in all of it again: the tenth closer tried read the first
+  // stretch for the tenth time - 0.45 ms of the manual's charts page, 1.8 ms of its expressions
+  // page, where {example} nests its {if}s. Up to $padPairClean the stretch is known to hold
+  // neither word, so only the part behind it is looked at - from eight characters before it,
+  // so a word across the line is seen - and without a word there the stretch has no text
+  // pair: NULL, as padTextBlank answers it. A word once seen is in every longer stretch, and
+  // padTextBlank reads those.
+
+  $padPairClean = $padEnd [$pad] + 1;
+
   while ( $padPairCheck === '' or ! ( $padPairCheck == '}' or $padPairCheck == '|' or ctype_space ( $padPairCheck ) ) ) {
 
     $padPos = strpos($padOut [$pad] , '{/' . $padPairTag, ++$padPos);
@@ -85,7 +96,15 @@
     if ($padPos === FALSE)
       return;
 
-    $padPairText = $padPairTexts ? padTextBlank ( $padOut [$pad], $padEnd [$pad] + 1, $padPos ) : NULL;
+    if ( ! $padPairTexts )
+      $padPairText = NULL;
+    elseif ( $padPairClean !== FALSE and ! padTextWords ( $padOut [$pad], max ( $padEnd [$pad] + 1, $padPairClean - 8 ), $padPos ) ) {
+      $padPairText  = NULL;
+      $padPairClean = $padPos;
+    } else {
+      $padPairText  = padTextBlank ( $padOut [$pad], $padEnd [$pad] + 1, $padPos );
+      $padPairClean = FALSE;
+    }
 
     if ( $padPairText === FALSE )
       continue;

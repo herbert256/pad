@@ -471,12 +471,11 @@
   // its text pairs written over with spaces - the same length, as padMarkerText blanks a
   // comment - so an opener or closer of the pair's own name in a sample is not counted; FALSE
   // when the closer stands inside a text pair: {ignore}{/xs}{/ignore} is a sample, no closer
-  // of the loop around it. NULL when there is no text pair in the stretch at all - looked for
-  // with substr_count, which reads only that stretch, not the rest of the page.
+  // of the loop around it. NULL when there is no text pair in the stretch at all (padTextWords).
 
   function padTextBlank ( $string, $from, $to ) {
 
-    if ( $to <= $from or ( ! substr_count ( $string, 'ignore', $from, $to - $from ) and ! substr_count ( $string, 'highlight', $from, $to - $from ) ) )
+    if ( ! padTextWords ( $string, $from, $to ) )
       return NULL;
 
     $full   = $string;
@@ -499,6 +498,16 @@
     }
 
     return $blank . substr ( $string, $at );
+
+  }
+
+  // Whether a text pair can stand between $from and $to in $string: the word ignore or
+  // highlight whole in that stretch, the name of a text pair or the option that makes one -
+  // looked for with substr_count, which reads only that stretch, not the rest of the page.
+
+  function padTextWords ( $string, $from, $to ) {
+
+    return $to > $from and ( substr_count ( $string, 'ignore', $from, $to - $from ) or substr_count ( $string, 'highlight', $from, $to - $from ) );
 
   }
 
