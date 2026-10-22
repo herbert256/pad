@@ -72,6 +72,15 @@
     $pqResultAt = array_slice ( $pqResultAt, $pqPageSkip, $pqPageSize );
   }
 
+  // The columns of the actions that ran before the cut (exits/extra/actions.php) are read by
+  // the row's place, so they are cut as the terms are: kept for the whole run, the row showing
+  // 3 of {sequence '5;3;9;1;7;2', sort, page=2, rows=2} said sort gave 1. Those after the cut
+  // record the page already.
+
+  else
+    foreach ( $pqActionsHit as $pqActionK => $pqActionV )
+      $pqActionsHit [$pqActionK] = array_slice ( $pqActionV, $pqPageSkip, $pqPageSize );
+
   if ( $pqTag == 'resume' )
     return;
 
