@@ -151,7 +151,13 @@
     // says so - for a cache along the way. It used to say Vary: Content-Encoding, the name
     // of a response header, and only on the cached path; the on-the-fly gzip sent nothing.
 
-    // A locale picked from Accept-Language makes the response depend on that header too.
+    // A locale picked from Accept-Language makes the response depend on that header too -
+    // and on Cookie, where a padLang cookie can choose it (lib/locale.php). The answer to
+    // that visitor is private (padWebCacheHeaders), but a shared cache that kept the public
+    // one a guest got, under the address and Accept-Language alone, handed it to the next
+    // visitor whose cookie chose another locale, the server never asked. Vary: Cookie keeps
+    // the public answer for the visitors who send the same cookies - the guests - where
+    // making every answer private would keep it for none.
 
     $padWebVary = [];
 
@@ -159,7 +165,7 @@
       $padWebVary [] = 'Accept-Encoding';
 
     if ( count ( $GLOBALS ['padLocales'] ?? [] ) )
-      $padWebVary [] = 'Accept-Language';
+      array_push ( $padWebVary, 'Accept-Language', 'Cookie' );
 
     // A page that exposes its data answers JSON or CSV to an Accept header that asks for
     // them (lib/expose.php), so its response depends on that header as well.

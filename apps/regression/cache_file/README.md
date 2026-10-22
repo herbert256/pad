@@ -27,6 +27,7 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `nocache.php/pad` | Fetches `nocacheprobe` twice at a fresh address: the second fetch is a hit - the same build moment - while its `{nocache}` parts render again, the one in a loop with its row |
 | `nocacheprobe.php/pad` | A page whose build moment is cached and whose `{nocache}` parts are not |
 | `a_visitor_with_an_identity_is_never_answered_public.php/pad` | Fetches `proxied` as a guest, with a cookie of its own, with an Authorization header and with a padLang cookie: public to the guest only, private to the other three |
+| `a_public_answer_among_several_locales_varies_on_the_cookie.php/pad` | Fetches `proxied` as a guest: the public answer says `Vary: Cookie` beside Accept-Language - a padLang cookie can choose the locale, and a shared cache must not hand the guest's page to that visitor |
 | `proxied.php/pad` | A page that greets the visitor it knows; shared caches may keep it and it sets no PAD cookie |
 | `an_exposing_page_says_vary_accept_on_every_fetch.php/pad` | Fetches `exposed` twice at a fresh address: both answers say `Vary: Accept` - an exposing page is never stored, a hit could not say it |
 | `exposed.php/pad` | A page that exposes its rows as data |
