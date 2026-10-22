@@ -12,6 +12,13 @@
     include PQ . 'exits/page.php';
   include PQ . 'exits/exit.php';
   include PQ . 'exits/actions.php';
+
+  // A run that grows is made again until the actions in front of page= fill the page after
+  // the one shown (inits/page.php, exits/short.php).
+
+  while ( $pqPageShort ?? FALSE )
+    include PQ . 'exits/grow.php';
+
   include PQ . 'exits/store/store.php';
   include PQ . 'exits/data.php';
   include PQ . 'exits/return/return.php';

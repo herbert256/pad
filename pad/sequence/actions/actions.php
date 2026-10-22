@@ -38,8 +38,11 @@
 
   foreach ( $pqActions as [ $pqAction, $pqActionParm ] ) {
 
-    if ( $pqPageCut and $pqActionNth++ == $pqPageCut )
+    if ( $pqPageCut and $pqActionNth++ == $pqPageCut ) {
+      if ( include PQ . 'exits/short.php' )
+        return;
       include PQ . 'exits/page.php';
+    }
 
     $pqActionStart = $pqResult;
     $pqActionList  = padExplode ( $pqActionParm, '|' );
@@ -76,8 +79,11 @@
 
   }
 
-  if ( $pqPageCut and $pqPageCut >= count ( $pqActions ) )
+  if ( $pqPageCut and $pqPageCut >= count ( $pqActions ) ) {
+    if ( include PQ . 'exits/short.php' )
+      return;
     include PQ . 'exits/page.php';
+  }
 
   foreach ( $pqActions as [ $pqAction, $pqActionParm ] )
     foreach ( padExplode ( $pqActionParm, '|' ) as $pqStoreKey )

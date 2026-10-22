@@ -26,20 +26,44 @@
   // is written. Cut first, {sequence 'prime', first=20, page=5, rows=5} showed 73 79 83 89 97,
   // primes past the twenty, and a pager without an end.
   //
-  // Only actions that drop no term of that front: dedup, intersection, onlyNow and any action
-  // under negative keep a front in order too, but of the (page+1)*rows terms made fewer
-  // remain, so the page came short or empty and the pager, counting the pages made, ended
-  // while the run goes on - {sequence 'golomb', dedup, page=2, rows=3} was 4 5 with no next
-  // page, {sequence 'prime', first=3, negative, page=1, rows=3} one page. They are cut first.
+  // dedup, intersection, onlyNow and any of them under negative keep a front in order too,
+  // but they drop terms of it: of the (page+1)*rows terms made fewer remain, the page came
+  // short or empty and the pager, counting the pages made, ended while the run goes on -
+  // {sequence 'golomb', dedup, page=2, rows=3} was 4 5 with no next page, {sequence 'prime',
+  // first=3, negative, page=1, rows=3} one page. Cut first instead, the page was one of the
+  // terms before the actions, page 2's terms deduplicated, 3 4. Such a run is made again with
+  // twice the terms until what the actions leave in front of the cut fills the page after the
+  // one shown (exits/grow.php), $pqPageGrow, and the state the build starts from is kept for
+  // it here, $pqPageGrowState.
+
+  $pqPageGrow = FALSE;
 
   if ( $pqPageWhole !== PHP_INT_MAX )
     foreach ( array_slice ( $pqActions, 0, $pqPageCut ) as [ $pqPageAction ] )
-      if ( $pqNegative or ! in_array ( $pqPageAction, [ 'first', 'shift', 'element', 'prepend' ] ) )
+      if ( ! in_array ( $pqPageAction, [ 'first', 'shift', 'element', 'prepend', 'dedup', 'intersection', 'onlyNow' ] ) )
         $pqPageCut = 0;
+      elseif ( $pqNegative or ! in_array ( $pqPageAction, [ 'first', 'shift', 'element', 'prepend' ] ) )
+        $pqPageGrow = TRUE;
 
   if ( $pqPageCut and $pqPageSize !== NULL ) {
     $pqPageCount = FALSE;
     $pqRows      = $pqPageWhole;
   }
+
+  if ( $pqPageGrow and $pqPageCut and $pqPageSize !== NULL and $pqEntry == 'tag' ) {
+
+    $pqPageGrowNeed  = $pqRows;
+    $pqPageGrowLast  = -1;
+    $pqPageGrowState = [];
+
+    // Every pq name but the ones inits/clear.php spares - the stores, how the run started,
+    // a direct caller's values - and the growth's own.
+
+    foreach ( preg_grep ( '/^pq(?!Store$|Entry$|Set|PageGrow)/', array_keys ( $GLOBALS ) ) as $pqPageGrowName )
+      $pqPageGrowState [$pqPageGrowName] = $GLOBALS [$pqPageGrowName];
+
+  } else
+
+    $pqPageGrow = FALSE;
 
 ?>
