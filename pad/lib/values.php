@@ -142,20 +142,48 @@
   // of an array, as a browser's JSON.stringify writes Infinity and NaN: a page's JSON answer
   // ($padExpose) and {^field} gave 0 where its HTML and its CSV gave INF.
 
+  // An object is walked as json_encode writes it, or one inside the data - a json_decode row,
+  // a PDO FETCH_OBJ row, (object) [...], what an API client hands a page - still had its INF
+  // written 0: one that serializes itself (JsonSerializable) by what jsonSerialize answers,
+  // any other by its public properties, which get_object_vars answers out here as json_encode
+  // sees them. Such an object is answered as a plain object of those properties only when a
+  // value in it changed - JSON writes them the same - and is otherwise left as it is.
+
   function padJsonFinite ( $value, $depth = 0 ) {
 
     if ( is_float ( $value ) and ! is_finite ( $value ) )
       return NULL;
 
-    if ( is_array ( $value ) and $depth < 512 )
-      foreach ( $value as $key => $one )
-        if ( is_array ( $one ) or is_float ( $one ) ) {
-          $new = padJsonFinite ( $one, $depth + 1 );
-          if ( $new !== $one )
-            $value [$key] = $new;
-        }
+    if ( $depth >= 512 )
+      return $value;
 
-    return $value;
+    if ( $value instanceof JsonSerializable )
+      return padJsonFinite ( $value->jsonSerialize (), $depth + 1 );
+
+    $object = is_object ( $value );
+
+    if ( $object )
+      $walk = get_object_vars ( $value );
+    elseif ( is_array ( $value ) )
+      $walk = $value;
+    else
+      return $value;
+
+    $changed = FALSE;
+
+    foreach ( $walk as $key => $one )
+      if ( is_array ( $one ) or is_float ( $one ) or is_object ( $one ) ) {
+        $new = padJsonFinite ( $one, $depth + 1 );
+        if ( $new !== $one ) {
+          $walk [$key] = $new;
+          $changed     = TRUE;
+        }
+      }
+
+    if ( ! $object )
+      return $walk;
+
+    return $changed ? (object) $walk : $value;
 
   }
 

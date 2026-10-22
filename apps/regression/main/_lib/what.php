@@ -80,6 +80,8 @@
       'format/latin'              => 'The fixture of format/a_text_that_is_no_utf8_is_kept_in_a_json_answer, fetched bare: its page',
       'format/a_float_past_the_range_is_null_in_a_json_answer' => 'A float past the range - INF, -INF, NAN - is null in a JSON answer, as JSON.stringify writes it, never the 0 of a partial output; the CSV keeps INF',
       'format/infinite'           => 'The fixture of format/a_float_past_the_range_is_null_in_a_json_answer, fetched bare: its page, and {^big} null',
+      'format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer' => 'INF and NAN inside an object - a cast array, a json_decode row, a JsonSerializable - are null in a JSON answer as inside an array, never the 0 of a partial output',
+      'format/infobjects'         => 'The fixture of format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer, fetched bare: {^field} over objects holding INF and NAN, null at any depth',
       'format/a_csv_answer_of_a_record_or_of_objects_is_a_table' => 'A CSV answer of a record holding a list is one row, and of json_decode objects a row per object',
       'format/records'            => 'The fixture of format/a_csv_answer_of_a_record_or_of_objects_is_a_table, fetched bare: its page',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
