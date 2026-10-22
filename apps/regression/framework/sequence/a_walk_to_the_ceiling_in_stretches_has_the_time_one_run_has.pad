@@ -1,0 +1,1 @@
+{set $t = php:hrtime(TRUE)}[{sequence '50001;3', keep, eval='@ % 2 eq 0 ? @ : 0 - @'}{$sequence} {/sequence}]{if (php:hrtime(TRUE) - $t) lt 450000000}held to the time a run has{else}past it{/if}

@@ -21,6 +21,12 @@
   include PQ . 'inits/clear.php';
   include PQ . 'inits/vars.php';
 
+  // A deadline the caller gives - one a walk in stretches shares (pqCheckWalk) - in place of
+  // the run's own.
+
+  if ( $pqSetUntil !== NULL )
+    $pqTriesUntil = $pqSetUntil;
+
   $pqSeq   = $pqSetAction;
   $pqParm  = $pqSetParm;
   $pqPull  = '';

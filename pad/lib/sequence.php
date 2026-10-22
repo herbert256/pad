@@ -202,11 +202,16 @@
   // $parms - stop, to, sole, rows - and the terms come back as they were made, nothing
   // rendered. A parameter of nothing is the bare type.
 
-  function pqTerms ( $sequence, $parm, $parms ) {
+  //
+  // $until, an hrtime () moment, is the deadline of the run in place of the $padSeqMaxSeconds
+  // of its own every run has - for a walk made in stretches that share one (pqCheckWalk).
+
+  function pqTerms ( $sequence, $parm, $parms, $until = NULL ) {
 
     $pqSetAction = $sequence;
     $pqSetParm   = ( $parm === FALSE or $parm === NULL or $parm === '' ) ? TRUE : $parm;
     $pqSetParms  = $parms;
+    $pqSetUntil  = $until;
 
     return include PQ . 'sequence/terms.php';
 
@@ -907,9 +912,9 @@
   // lowest, the highest, the one halfway and the last, and whether they never go down or never
   // go up, every term a number.
 
-  function pqTermsIndex ( $seq, $parm, $to ) {
+  function pqTermsIndex ( $seq, $parm, $to, $until = NULL ) {
 
-    return pqTermsIndexOf ( pqTerms ( $seq, $parm, [ 'to' => $to ] ), $to );
+    return pqTermsIndexOf ( pqTerms ( $seq, $parm, [ 'to' => $to ], $until ), $to );
 
   }
 
@@ -1035,19 +1040,34 @@
   // A stretch that comes back short - a position that made no term, or one past the integer
   // range, which ends a run - is left for one run to the ceiling, as before: run whole, the
   // terms end at the first one out of range, and stretches would go on past it.
+  //
+  // The walk has the time the one run had, $padSeqMaxSeconds, for all its stretches together:
+  // each is given what is left of it ('spent' counts what they took, so a walk gone on with
+  // for a later value, after other work, is not charged for that work), and the one run a
+  // short stretch leaves is given the rest. A stretch the clock cut ends the walk at the
+  // ceiling with the terms made, as the clock ended the one run with the terms it made. Each
+  // stretch had five seconds of its own, and one cut by the clock came back short and started
+  // the one run - with five more: keep of 50001 over an expression of 10 us a term took 10.6
+  // seconds where the one run took 5.3, and under Xdebug 18 where it took 6.
 
   function pqCheckWalk ( &$made, $seq, $parm, $at, $most ) {
 
-    $made ['walk'] ??= [ 'to' => 0, 'terms' => [], 'index' => [] ];
+    $made ['walk'] ??= [ 'to' => 0, 'terms' => [], 'index' => [], 'spent' => 0 ];
+
+    $seconds = $GLOBALS ['padSeqMaxSeconds'] ?? 5;
+    $budget  = ( is_numeric ( $seconds ) and is_finite ( (float) $seconds ) and $seconds > 0 ) ? $seconds * 1e9 : INF;
 
     while ( ! isset ( $made ['walk'] ['index'] [$at] ) and $made ['walk'] ['to'] < $most ) {
 
       $from  = $made ['walk'] ['to'] + 1;
       $to    = min ( $most, 2 * max ( $made ['walk'] ['to'], $made ['to'] ) );
-      $terms = pqTerms ( $seq, $parm, [ 'from' => $from, 'to' => $to ] );
+      $start = hrtime ( TRUE );
+      $until = $start + $budget - $made ['walk'] ['spent'];
+      $terms = pqTerms ( $seq, $parm, [ 'from' => $from, 'to' => $to ], $until );
+      $out   = ( hrtime ( TRUE ) > $until );
 
-      if ( count ( $terms ) != $to - $from + 1 ) {
-        $made = pqTermsIndex ( $seq, $parm, $most );
+      if ( count ( $terms ) != $to - $from + 1 and ! $out ) {
+        $made = pqTermsIndex ( $seq, $parm, $most, $until );
         return isset ( $made ['index'] [$at] );
       }
 
@@ -1056,7 +1076,8 @@
         $made ['walk'] ['index'] [ pqIndexKey ( $term ) ] ??= count ( $made ['walk'] ['terms'] );
       }
 
-      $made ['walk'] ['to'] = $to;
+      $made ['walk'] ['spent'] += hrtime ( TRUE ) - $start;
+      $made ['walk'] ['to']     = $out ? $most : $to;
 
     }
 
