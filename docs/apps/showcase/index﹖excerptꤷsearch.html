@@ -100,13 +100,13 @@
 
   <span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
     <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Fragment cache'</span><span class="hl-pun">,</span>
-      <span class="hl-str">'url'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'?manual/cache'</span><span class="hl-pun">,</span>
+      <span class="hl-str">'url'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'../manual/?pages/fragment_cache'</span><span class="hl-pun">,</span>
       <span class="hl-str">'body'</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">'Some parts of a page cost more to render than others: a list of the best selling products, a menu built from the database, a report over a year of orders. The fragment cache keeps the rendered text of such a section for a number of seconds and serves it again on the next request without running the tags inside it. Name the section, give it a ttl, and forget it when what it shows has changed.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
     <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Remote data'</span><span class="hl-pun">,</span>
-      <span class="hl-str">'url'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'?manual/curl'</span><span class="hl-pun">,</span>
+      <span class="hl-str">'url'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'../manual/?pages/remote_data'</span><span class="hl-pun">,</span>
       <span class="hl-str">'body'</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">'A page that shows exchange rates or the weather fetches them from another server. Every request would wait for that server, so the answer is kept for a while: the ttl option says how many seconds. When the source fails afterwards, the last good copy in the cache is served and the failure is logged, so a slow or broken service never takes the page down with it.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
     <span class="hl-pun">[</span> <span class="hl-str">'title'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Page cache'</span><span class="hl-pun">,</span>
-      <span class="hl-str">'url'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'?manual/config'</span><span class="hl-pun">,</span>
+      <span class="hl-str">'url'</span>   <span class="hl-pun">=&gt;</span> <span class="hl-str">'../manual/?pages/fragment_cache'</span><span class="hl-pun">,</span>
       <span class="hl-str">'body'</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">'With the page cache switched on in the configuration, a whole page is kept after its first rendering, with an ETag, and a browser that asks again with that tag gets a 304 Not Modified. Pages with a guard, a flash message or a form are never cached. The cache can live in files, APCu, Redis, Memcached or the database.'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
 
 <span class="hl-tag">?&gt;</span></code></pre>
@@ -136,14 +136,14 @@
               </p>
               <article>
                 <h3>
-                  <a href="?manual/cache">Fragment cache</a>
+                  <a href="../manual/index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
                 </h3>
                 <p></p><span class="pad-excerpt">… from the database, a report over a year of orders. The fragment <mark>cache</mark> keeps the rendered text of such a section for a number …</span>
                 <p></p>
               </article>
               <article>
                 <h3>
-                  <a href="?manual/curl">Remote data</a>
+                  <a href="../manual/index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
                 </h3>
                 <p>
                   <span class="pad-excerpt">… seconds. When the source fails afterwards, the last good copy in the <mark>cache</mark> is served and the failure is logged, so a slow or …</span>
@@ -151,7 +151,7 @@
               </article>
               <article>
                 <h3>
-                  <a href="?manual/config">Page cache</a>
+                  <a href="../manual/index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Page cache</a>
                 </h3>
                 <p>
                   <span class="pad-excerpt">With the page <mark>cache</mark> switched on in the configuration, a whole page is kept after its first rendering, with an ETag, and a browser …</span>

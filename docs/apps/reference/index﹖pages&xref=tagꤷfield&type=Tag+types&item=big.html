@@ -86,6 +86,48 @@
             <td>
               <center>
                 <hr>
+                App: regression/framework - Page: variables/a_bare_tag_piped_over_inf_pipes_the_number_as_echo_does<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">variables/a_bare_tag_piped_over_inf_pipes_the_number_as_echo_does.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">variables/a_bare_tag_piped_over_inf_pipes_the_number_as_echo_does.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A bare tag answering INF meets its pipe as the number, as {echo} does (a_tag_answering_<br>  // inf_prints_it_as_the_field_does): {big | + 1} piped the text 'INF', "not a number".<br><br>  </span><span style="color: #0000BB">$big </span><span style="color: #007700">= </span><span style="color: #0000BB">INF</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$neg </span><span style="color: #007700">= -</span><span style="color: #0000BB">INF</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$brace </span><span style="color: #007700">= </span><span style="color: #DD0000">"{php:getcwd}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">big </font><font color="red"><font color="black">|</font> + 1</font>}</b>][<b>{<font color="blue">neg </font><font color="red"><font color="black">|</font> + 1</font>}</b>][<b>{<font color="blue">big </font><font color="red"><font color="black">|</font> * -1</font>}</b>][<b>{<font color="blue">big </font><font color="red"><font color="black">|</font> + 1 <font color="black">|</font> * 2</font>}</b>][<b>{<font color="blue">big </font><font color="red"><font color="black">|</font> upper</font>}</b>][<b>{<font color="blue">big </font><font color="red"><font color="black">|</font> <font color="black">@</font> . <font color="red">$</font>brace</font>}</b>][<b>{<font color="blue">neg</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big <font color="black">|</font> + 1</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6136939278db499c0f0346908577d479"></div>
+                      <script>
+                      padAjax6136939278db499c0f0346908577d479 = new XMLHttpRequest();
+                      padAjax6136939278db499c0f0346908577d479.onreadystatechange=function() {
+                      if (padAjax6136939278db499c0f0346908577d479.readyState === 4) {
+                      if (padAjax6136939278db499c0f0346908577d479.status === 200) {
+                      document.getElementById("padAjax6136939278db499c0f0346908577d479").innerHTML=padAjax6136939278db499c0f0346908577d479.responseText;
+                      } else {
+                      document.getElementById("padAjax6136939278db499c0f0346908577d479").innerHTML=padAjax6136939278db499c0f0346908577d479.statusText;
+                      }
+                      }
+                      }
+                      padAjax6136939278db499c0f0346908577d479.open("GET","http://localhost/pad/regression/framework/?variables/a_bare_tag_piped_over_inf_pipes_the_number_as_echo_does&padInclude",true);
+                      padAjax6136939278db499c0f0346908577d479.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: variables/a_tag_answering_inf_prints_it_as_the_field_does<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
