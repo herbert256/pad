@@ -27,7 +27,8 @@
   // It all happens in the text, so it costs nothing at render time and the tags are gone
   // before the page renders: {block 'name'} needs its name quoted, which also keeps the
   // {block} snippet of the _common application - no name - what it was. What stands
-  // between {ignore} tags is left alone.
+  // between {ignore} tags is left alone, and so is a {highlight} sample and the content of a
+  // pair carrying the ignore option.
 
   function padLayout ( &$template, &$frame ) {
 
@@ -313,7 +314,7 @@
   function padLayoutBlank ( $text, $masks ) {
 
     $text = preg_replace_callback ( '/\x{E0F2}(\d+)\x{E0F3}/u', fn ( $match ) =>
-      preg_match ( '/^\{(#|--)/', $masks [ (int) $match [1] ] ?? '' ) ? '' : $match [0], $text );
+      padLayoutIsComment ( $masks [ (int) $match [1] ] ?? '' ) ? '' : $match [0], $text );
 
     return trim ( $text ) === '';
 
@@ -559,6 +560,12 @@
   // (occurrence/init.php): a comment that names the tag - {# the @page@ in {ignore} stays
   // text #} - opened an ignore span there that ran to the layout's next real {/ignore},
   // and the regions in between were no regions: the page's block "overrides nothing".
+  //
+  // The text pairs are found as the render finds them (padTextSpans, lib/template.php) and
+  // their content set aside: the {ignore} written with whitespace control, {~ignore~}, a
+  // {highlight} sample and a pair carrying the ignore option, {markdown ignore}, as well as
+  // the plain {ignore} - only that one was, and {~ignore~}{block 'title'}X{/block}{~/ignore~}
+  // overrode the title, a {highlight 'pad'} sample of {block 'x'}X{/block} showed X.
 
   function padLayoutMask ( $text, &$masks ) {
 
@@ -577,14 +584,30 @@
         $pos     += strlen ( $mark );
       }
 
-    return preg_replace_callback ( '/\{ignore\}.*?\{\/ignore\}/s', function ( $match ) use ( &$masks ) {
-      $masks [] = $match [0];
-      return "\u{E0F2}" . ( count ( $masks ) - 1 ) . "\u{E0F3}";
-    }, $text );
+    foreach ( array_reverse ( padTextSpans ( $text ) ) as [ $from, $to ] ) {
+      $masks [] = substr ( $text, $from, $to - $from );
+      $text     = substr ( $text, 0, $from ) . "\u{E0F2}" . ( count ( $masks ) - 1 ) . "\u{E0F3}" . substr ( $text, $to );
+    }
+
+    return $text;
 
   }
 
-  // The set-aside texts with an @page@ inside an {ignore} as text the frame's @page@ is not -
+  // Whether a set-aside text is a comment rather than the content of a text pair: one
+  // comment from end to end, as padLayoutMask took it - a sample that opens with the option
+  // sigil, {ignore}{#tone} @page@{/ignore}, is none.
+
+  function padLayoutIsComment ( $mask ) {
+
+    foreach ( [ '{--', '{#' ] as $open )
+      if ( str_starts_with ( $mask, $open ) and padLayoutComment ( $mask, 0, $open ) === strlen ( $mask ) )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
+  // The set-aside texts with an @page@ inside a text pair as text the frame's @page@ is not -
   // the @ as its stand-in, which the page's exit turns back: build/build.php puts the page in
   // every @page@ of the frame, and since a layout is the frame, one written in an {ignore} of
   // the layout, or of a block the page overrides, got the page's whole build text, its
@@ -593,7 +616,7 @@
   function padLayoutIgnored ( $masks ) {
 
     foreach ( $masks as $index => $mask )
-      if ( str_starts_with ( $mask, '{ignore}' ) and str_contains ( $mask, '@page@' ) )
+      if ( str_contains ( $mask, '@page@' ) and ! padLayoutIsComment ( $mask ) )
         $masks [$index] = str_replace ( '@page@', strtr ( '@page@', [ '@' => padProtectMap () ['@'] ] ), $mask );
 
     return $masks;
@@ -615,7 +638,7 @@
     $masked = padLayoutMask ( $text, $masks );
 
     foreach ( $masks as $index => $mask )
-      if ( preg_match ( '/^\{(#|--)/', $mask ) )
+      if ( padLayoutIsComment ( $mask ) )
         $masks [$index] = str_replace ( '@page@', '@page_', $mask );
 
     return padLayoutUnmask ( $masked, $masks );
