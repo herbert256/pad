@@ -71,8 +71,11 @@
     $pqActionCnt   = ( ctype_digit ( (string) $pqActionParm ) ) ? $pqActionParm : 1;
     $pqActionKey   = array_key_first ( $pqResult ) ?? 0;
 
+    // A range totalled from its plan has the action's answer already (build/total/make.php).
+
     include PQ . 'actions/merge.php';
-    include PA . "$pqAction.php";
+    if ( ! $pqTotalMade )
+      include PA . "$pqAction.php";
     include PQ . 'actions/negative/negative.php';
 
     $pqActionsHit [$pqAction] = array_values ( $pqResult );

@@ -25,6 +25,9 @@
 
   $pqDone [] = 'increment';
 
-  return padGetRange ( $pqParm,  $pqInc );
+  // A run that totals the terms asks for the plan of a range of whole numbers instead of its
+  // list - build/types/build.php.
+
+  return padGetRange ( $pqParm,  $pqInc, $pqTotalPlan ?? FALSE );
 
 ?>

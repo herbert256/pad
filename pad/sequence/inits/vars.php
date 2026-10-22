@@ -8,7 +8,9 @@
   // $pqCheckPlay carrying which of keep, remove and flag a 'check' build stands for; $pqPlays
   // holds the filters and $pqActions the transformations, each with a matching *Hit array
   // recording what actually fired; $pqDone lists option names already claimed so later passes
-  // skip them; $pqInfo collects the {info} report.
+  // skip them; $pqInfo collects the {info} report. $pqTotalMade says the build worked the
+  // answer of the run's one totalling action out itself, from the plan of a range
+  // (build/total/).
   //
   // inits/parms.php then reads the run's parameters and inits/set.php derives the rest.
 
@@ -19,6 +21,7 @@
 
   $pqTries      = 0;
   $pqTriesOut   = FALSE;
+  $pqTotalMade  = FALSE;
   $pqTimeOut    = FALSE;
   $pqTriesUntil = $GLOBALS ['padSeqMaxSeconds'] ?? 5;
 

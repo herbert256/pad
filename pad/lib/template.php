@@ -729,7 +729,7 @@
 
   }
 
-  function padGetRange ( $input, $increment=1 ) {
+  function padGetRange ( $input, $increment=1, $plan=FALSE ) {
 
     global $padCheckSyntax;
 
@@ -850,6 +850,21 @@
       return $values;
 
     }
+
+    // Asked for a plan - the range type, for a run whose one action totals the terms - a range
+    // of whole numbers is answered as its first value, its step and its number of values, from
+    // which each term follows, instead of the list: build/total/total.php works the total out
+    // without the million values '1..1000000' is. Only where range () makes integers of the
+    // ends as written: two ends of one character each it reads as letters, so '1'..'5' is the
+    // strings '1' to '5', and an end like 1e3 is a float - those stay the list range () makes,
+    // as does a distance between the ends past the integer range.
+
+    if ( $plan and is_numeric ( $p1 ) and is_int ( $p1 + 0 ) and is_int ( $p2 + 0 ) and is_int ( $increment )
+         and ! ( strlen ( (string) $p1 ) == 1 and strlen ( (string) $p2 ) == 1 )
+         and is_int ( abs ( ( $p2 + 0 ) - ( $p1 + 0 ) ) ) )
+      return [ 'first' => $p1 + 0,
+               'step'  => ( $p2 >= $p1 ) ? $increment : - $increment,
+               'count' => intdiv ( abs ( ( $p2 + 0 ) - ( $p1 + 0 ) ), $increment ) + 1 ];
 
     return range ( $p1, $p2, $increment );
 
