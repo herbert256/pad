@@ -266,44 +266,37 @@
     if ( ! is_string ( $string ) or ( ! str_contains ( $string, 'ignore' ) and ! str_contains ( $string, 'highlight' ) ) )
       return [ 'open' => FALSE, 'spans' => [] ];
 
-    preg_match_all ( '/\{~?(\/?)((?:pad:)?([A-Za-z_][\w:.-]*))(?=[\s}~|])/', $string, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+    if ( $full === NULL ) {
+      $full   = $string;
+      $offset = strlen ( $string );
+    }
 
-    $base  = ( $full === NULL ) ? 0 : $offset - strlen ( $string );
-    $past  = 0;
+    $base  = $offset - strlen ( $string );
+    $pairs = padTextPairsOf ( $full );
+    $count = count ( $pairs );
+    $next  = padTextPairFrom ( $pairs, $base );
     $spans = [];
 
-    foreach ( $all as $one ) {
+    while ( $next < $count ) {
 
-      $at = $one [0] [1];
+      [ $at, $end, $close, $slash ] = $pairs [$next];
 
-      if ( $at < $past or $one [1] [0] === '/' )
+      // The opener's } lies past the stretch: it and every opener behind it are no tag yet.
+      if ( $end >= $offset )
+        break;
+
+      // Self-closing only when the brace that balances the opener lies in the stretch, as
+      // padOpenSelfClosing reads the stretch it is given.
+      if ( $slash !== FALSE and $slash < $offset ) {
+        $next++;
         continue;
+      }
 
-      $tag   = $one [3] [0];
-      $after = $at + strlen ( $one [0] [0] );
-      $end   = strpos ( $string, '}', $at );
-
-      if ( $end === FALSE or padOpenSelfClosing ( $string, $after ) )
-        continue;
-
-      $parms = substr ( $string, $after, $end - $after );
-
-      if ( in_array ( $tag, padTextPairs, TRUE ) ) {
-        if ( $tag == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
-          continue;
-      } elseif ( ! padTextOption ( $parms ) )
-        continue;
-
-      $close = padTextCloser ( $full ?? $string, $one [2] [0], $base + $end + 1 );
-
-      if ( $close === FALSE )
-        continue;
-
-      if ( $close - $base >= strlen ( $string ) )
+      if ( $close >= $offset )
         return [ 'open' => TRUE, 'spans' => $spans ];
 
-      $spans [] = [ $end + 1, $close - $base ];
-      $past     = $close - $base + 1;
+      $spans [] = [ $end + 1 - $base, $close - $base ];
+      $next     = padTextPairFrom ( $pairs, $close + 1 );
 
     }
 
@@ -311,25 +304,146 @@
 
   }
 
-  // Where the closer of a text pair stands in $text, looked for from $from on - the end of
-  // the opener named $name, spelled as written: its openers and closers counted as
-  // padOpenCount and level/tag.php count them, a self-closing one opening nothing. FALSE
-  // when no closer balances it.
+  // Every opener of $text that may hold text, in order, as [ at, end, close, slash ]: where
+  // its { stands, its first }, where its closer stands, and - for an opener written
+  // self-closing, {ignore .../} - where the } that balances it stands, else FALSE. The closer
+  // is the first one of the opener's own spelling, looked for behind its first }, in front
+  // of which the openers and closers of that spelling balance - counted as padOpenCount and
+  // level/tag.php count them, a self-closing one opening nothing; an opener without one is
+  // left out, it holds no text anywhere.
+  //
+  // Found for the whole text in one pass and kept per text: padTextScan reads a stretch of
+  // it - the part in front of every {else} or {when} an {if} or {case} tries, the stretch in
+  // front of every closer the closer search tries - and looked for each opener's closer by
+  // reading the rest of the text again, every opener and closer of its name from there to the
+  // end: an {if} holding 800 samples, each with an {if}{else}{/if} in front of it, took 26
+  // seconds where it had taken 3, and padTextSpans of 2000 {ignore} pairs 238 ms for 4.
+  // The closers come from one count per spelling: with P the running sum of its tokens (an
+  // opener +1, a closer -1, a self-closing opener 0), the closer of an opener whose first
+  // closer candidate is token i is the token before the first place behind i where the sum
+  // drops below P [i] - one stack walk from the end finds that place for every i.
 
-  function padTextCloser ( $text, $name, $from ) {
+  function padTextPairsOf ( $text ) {
 
-    preg_match_all ( '/\{~?(\/?)' . preg_quote ( $name, '/' ) . '(?=[\s}~|])/', $text, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $from );
+    static $memo = [];
 
-    $depth = 1;
+    if ( isset ( $memo [$text] ) )
+      return $memo [$text];
+
+    preg_match_all ( '/\{~?(\/?)((?:pad:)?([A-Za-z_][\w:.-]*))(?=[\s}~|])/', $text, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
+
+    $openers = $names = [];
+
+    foreach ( $all as $one ) {
+
+      if ( $one [1] [0] === '/' )
+        continue;
+
+      $at    = $one [0] [1];
+      $tag   = $one [3] [0];
+      $after = $at + strlen ( $one [0] [0] );
+      $end   = strpos ( $text, '}', $at );
+
+      if ( $end === FALSE )
+        break;
+
+      $parms = substr ( $text, $after, $end - $after );
+
+      if ( in_array ( $tag, padTextPairs, TRUE ) ) {
+        if ( $tag == 'highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
+          continue;
+      } elseif ( ! padTextOption ( $parms ) )
+        continue;
+
+      $slash = FALSE;
+      $depth = 1;
+      $len   = strlen ( $text );
+
+      for ( $i = $after + strcspn ( $text, '{}', $after ); $i < $len; $i += 1 + strcspn ( $text, '{}', $i + 1 ) )
+        if ( $text [$i] == '{' )
+          $depth++;
+        elseif ( ! --$depth ) {
+          if ( $text [$i-1] == '/' )
+            $slash = $i;
+          break;
+        }
+
+      $openers [] = [ $at, $end, $one [2] [0], $slash ];
+      $names [$one [2] [0]] = TRUE;
+
+    }
+
+    $tokens = [];
 
     foreach ( $all as $one )
-      if ( $one [1] [0] === '/' ) {
-        if ( ! --$depth )
-          return $one [0] [1];
-      } elseif ( ! padOpenSelfClosing ( $text, $one [0] [1] + strlen ( $one [0] [0] ) ) )
-        $depth++;
+      if ( isset ( $names [$one [2] [0]] ) )
+        $tokens [$one [2] [0]] [] = [ $one [0] [1], $one [1] [0] === '/' ? -1 : ( padOpenSelfClosing ( $text, $one [0] [1] + strlen ( $one [0] [0] ) ) ? 0 : 1 ) ];
 
-    return FALSE;
+    $drops = $point = [];
+
+    foreach ( $tokens as $name => $list ) {
+
+      $sum = [ 0 ];
+
+      foreach ( $list as $k => $token )
+        $sum [$k+1] = $sum [$k] + $token [1];
+
+      $drop  = [];
+      $stack = [];
+
+      for ( $k = count ( $list ); $k >= 0; $k-- ) {
+        while ( $stack and $sum [end ( $stack )] >= $sum [$k] )
+          array_pop ( $stack );
+        $drop [$k] = $stack ? end ( $stack ) : FALSE;
+        $stack []  = $k;
+      }
+
+      $drops [$name] = $drop;
+      $point [$name] = 0;
+
+    }
+
+    $pairs = [];
+
+    foreach ( $openers as [ $at, $end, $name, $slash ] ) {
+
+      $list = $tokens [$name];
+      $i    = $point [$name];
+
+      while ( isset ( $list [$i] ) and $list [$i] [0] <= $end )
+        $i++;
+
+      $point [$name] = $i;
+      $drop          = $drops [$name] [$i];
+
+      if ( $drop !== FALSE )
+        $pairs [] = [ $at, $end, $list [$drop-1] [0], $slash ];
+
+    }
+
+    if ( count ( $memo ) >= 8 )
+      unset ( $memo [array_key_first ( $memo )] );
+
+    return $memo [$text] = $pairs;
+
+  }
+
+  // The first of the openers padTextPairsOf found that stands at or behind $from.
+
+  function padTextPairFrom ( $pairs, $from ) {
+
+    $low  = 0;
+    $high = count ( $pairs );
+
+    while ( $low < $high ) {
+      $mid = ( $low + $high ) >> 1;
+      if ( $pairs [$mid] [0] < $from )
+        $low = $mid + 1;
+      else
+        $high = $mid;
+    }
+
+    return $low;
 
   }
 
