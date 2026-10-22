@@ -645,6 +645,39 @@
 
   }
 
+  // A wrapper file's text as build/base.php frames the page with it, and in $pieces its
+  // source-map pieces: its @page@ in a comment noted (padLayoutNoted), and one inside a text
+  // pair - {ignore}write @page@ here{/ignore}, a {highlight} sample - as text the frame's
+  // @page@ is not, the @ as its stand-in, which the page's exit turns back. Counted as a
+  // marker, it refused the wrapper under the strict check - "one @page@ to a wrapper" - and
+  // without it the page went into the sample as well. The stand-in is longer than the file's
+  // @page@, so it gets a piece of its own: what follows keeps its place in the file, and an
+  // error there names its own line and column.
+
+  function padLayoutWrapper ( $file, &$pieces ) {
+
+    $text   = padLayoutNoted ( padFileGet ( $file ) );
+    $pieces = padSrcPieces ( $text, $file );
+
+    if ( ! str_contains ( $text, '@page@' ) )
+      return $text;
+
+    $hold = "\u{E0FD}\u{E0FE}";
+    $find = $text;
+
+    foreach ( padTextSpans ( padCommentStrip ( $text, TRUE ) ) as [ $from, $to ] )
+      $find = substr ( $find, 0, $from ) . str_replace ( '@page@', $hold, substr ( $find, $from, $to - $from ) ) . substr ( $find, $to );
+
+    if ( $find === $text )
+      return $text;
+
+    $shown  = strtr ( '@page@', [ '@' => padProtectMap () ['@'] ] );
+    $pieces = padSrcReplace ( padSrcPieces ( $find, $file ), $hold, padSrcPieces ( $shown ) );
+
+    return str_replace ( $hold, $shown, $find );
+
+  }
+
   // The end of the comment that opens at $pos, or FALSE when none opens there: {-- needs
   // whitespace after it, {#name} and {#name | pipe} are the option sigil, and a {# that
   // meets another {# before any #} is no comment - the rules of padCommentStrip.

@@ -17,6 +17,7 @@
       'error/dump'                => 'The {dump} tag, which stops the request on the engine state dump',
       'misc/trace'                => 'The {trace} tag wrapping a scope in the execution trace',
       'noted/frames'              => 'An @page@ inside a comment of a wrapper marks nothing - one beside the real marker, and one in a wrapper that has no other',
+      'shown/frames'              => 'An @page@ inside an {ignore} of a wrapper is text it shows - one beside the real marker, and one in a wrapper that has no other',
       'sample/use_rows'           => 'The designer preview gives a page that returns its rows the @return of its sample',
       'sample/capture_rows'       => 'A capture keeps what the page returned as @return',
       'misc/react'                => 'The {reactData} tag over a static provider, and the @providers reference reading the parked result back',

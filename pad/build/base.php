@@ -6,7 +6,8 @@
   //
   // An @page@ inside a comment is no marker (padLayoutNoted, lib/layout.php) - a wrapper
   // that mentioned it in a {# #} note was refused as one with two, and one whose only
-  // @page@ stood in a commented-out line put the page in the comment, which dropped it.
+  // @page@ stood in a commented-out line put the page in the comment, which dropped it. Nor
+  // is one inside an {ignore} or another text pair, which shows it (padLayoutWrapper).
   //
   // A directory that writes its own @page@ in _inits.pad or _exits.pad decides where the
   // inner levels land; when neither contains one, @page@ is appended to _inits.pad so
@@ -27,11 +28,8 @@
 
   foreach ( $padBuildDirs as $padBuildDir ) {
 
-    $padBuildInit = padLayoutNoted ( padFileGet ( "$padBuildDir/_inits.pad" ) );
-    $padBuildExit = padLayoutNoted ( padFileGet ( "$padBuildDir/_exits.pad" ) );
-
-    $padSrcInit = padSrcPieces ( $padBuildInit, "$padBuildDir/_inits.pad" );
-    $padSrcExit = padSrcPieces ( $padBuildExit, "$padBuildDir/_exits.pad" );
+    $padBuildInit = padLayoutWrapper ( "$padBuildDir/_inits.pad", $padSrcInit );
+    $padBuildExit = padLayoutWrapper ( "$padBuildDir/_exits.pad", $padSrcExit );
 
     if ( trim ( $padBuildInit ) !== '' )
       $padSrcWrap [] = "$padBuildDir/_inits.pad";
@@ -73,8 +71,7 @@
   // _include/ or _tags/ - has the page after it, as a directory's has: the page went into
   // a hole that was not there, and every page of the application rendered empty.
 
-  $padBuildCommon = padLayoutNoted ( padFileGet ( COMMON . '_inits.pad' ) );
-  $padSrcCommon   = padSrcPieces ( $padBuildCommon, COMMON . '_inits.pad' );
+  $padBuildCommon = padLayoutWrapper ( COMMON . '_inits.pad', $padSrcCommon );
 
   // Listed by what the file holds, before the @page@ is added - tested after, a _common
   // without an _inits.pad had every error say the page was wrapped by that missing file.
