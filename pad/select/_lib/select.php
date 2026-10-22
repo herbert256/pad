@@ -79,6 +79,14 @@
     $rows         = $prm ['rows']         ?? $parms ['rows']        ?? 0;
     $htmlAttrJson = $prm ['htmlAttrJson'] ?? $parms ['htmlAttrJson'] ?? 0;
 
+    // A where= on the tag narrows the table the declaration makes: the declared where - a
+    // view's, with those of its base chain - holds beside it. The tag's took its place, so
+    // {jazzAlbums where="released > 2000"} answered the folk albums too, and a view of the
+    // published posts handed out a draft by its slug.
+
+    if ( isset ( $prm ['where'] ) and (string) $prm ['where'] !== '' and (string) ( $parms ['where'] ?? '' ) !== '' )
+      $padSelWhere = '(' . $parms ['where'] . ') and (' . $prm ['where'] . ')';
+
     // The mode becomes the statement's command word, so it is one of the shapes db() knows
     // for rows - array, record or field - and a bare htmlAttrJson means array. Any other
     // value went into the SQL as written.

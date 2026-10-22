@@ -195,8 +195,9 @@ $padSelect ['openBugs'] = [
 
 A virtual table takes what it does not declare - db, key, order - from its base, and a base
 may be a virtual table itself: the chain is followed to the table at its end, and the where
-of every view in it holds. Nested in another select, a view is related to it by its own
-relations or by those of a table of its base chain.
+of every view in it holds - a `where=` on the tag narrows the view, beside its own. Nested in
+another select, a view is related to it by its own relations or by those of a table of its
+base chain.
 
 ### Using Table Tags in Templates
 
