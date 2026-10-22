@@ -8,13 +8,13 @@
   // variables are left as they were.
   //
   // The page is still the text of its files here, its whitespace control not yet taken off
-  // (occurrence/init.php): the marker is looked for in padMarkerText (lib/content.php), where
+  // (occurrence/init.php): the marker is looked for in padElseText (lib/content.php), where
   // {~none~} opens a none pair as {none} does, and the page is cut at the same position.
 
   if ( ! str_contains ( $padBuildTrue, '@else@' ) )
     return;
 
-  $padSplitText = padMarkerText ( $padBuildTrue );
+  $padSplitText = padElseText ( $padBuildTrue );
 
   $padOpenClose = padOpenCloseList ( $padSplitText ) ;
 

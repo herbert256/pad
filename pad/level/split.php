@@ -26,10 +26,11 @@
        or isset ( $padPrm [$pad] ['ignore'] ) )
     return;
 
-  // The marker is looked for in padMarkerText (lib/content.php), where one written inside the
-  // braces of a tag - a quoted parameter, {echo 'x@else@y'} - is no marker of the level.
+  // The marker is looked for in padElseText (lib/content.php), where one written inside the
+  // braces of a tag - a quoted parameter, {echo 'x@else@y'} - is no marker of the level, and
+  // what an {ignore} or a {highlight} sample shows is counted as the text it is.
 
-  $padSplitText = padMarkerText ( $padBase [$pad] );
+  $padSplitText = padElseText ( $padBase [$pad] );
 
   $padOpenClose = padOpenCloseList ( $padSplitText ) ;
 

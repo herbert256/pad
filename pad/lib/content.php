@@ -89,6 +89,25 @@
 
   }
 
+  // The text an @else@ is looked for in: padMarkerText, with the content of its text pairs -
+  // what an {ignore} or a {highlight} sample shows - written over with spaces as well
+  // (padTextFree, lib/template.php), the same length. A sample is text: the marker in one is
+  // no marker, and neither is an opener or closer it shows - but those were counted, a
+  // {/echo} in a sample put echo among the pairs to balance and threw its count off, so
+  // [{sequence '1..2'}{ignore}{/echo}{/ignore}{echo 'a'}{echo 'b'}@else@ x{/sequence}] left
+  // the @else@ to no tag at all - "an @else@ stands where no tag takes it" - and so did a
+  // {/dd} shown in front of two uses of a {define}d dd. With one {echo} the counts met by
+  // chance. A text pair still open at the end leaves the text as it is.
+
+  function padElseText ( $text ) {
+
+    $text  = padMarkerText ( $text );
+    $blank = is_string ( $text ) ? padTextFree ( $text ) : FALSE;
+
+    return is_string ( $blank ) ? $blank : $text;
+
+  }
+
   // A tag opens with a { that a name, a sigil or a slash follows, and ends at the } that
   // brings the brace depth back - a parameter may hold a tag of its own, {echo {$x}}. One
   // that never closes ends the search: what follows stays as it is.
@@ -265,7 +284,7 @@
   function padContentElse ( $input, &$before, &$after ) {
 
     $pos  = strpos ( $input, '@else@' );
-    $text = ( $pos === FALSE ) ? '' : padMarkerText ( $input );
+    $text = ( $pos === FALSE ) ? '' : padElseText ( $input );
     $pos  = ( $pos === FALSE ) ? FALSE : strpos ( $text, '@else@' );
     $list = ( $pos === FALSE ) ? [] : padOpenCloseList ( $text ) ;
 
