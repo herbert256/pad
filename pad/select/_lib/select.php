@@ -85,7 +85,7 @@
     // published posts handed out a draft by its slug.
 
     if ( isset ( $prm ['where'] ) and (string) $prm ['where'] !== '' and (string) ( $parms ['where'] ?? '' ) !== '' )
-      $padSelWhere = '(' . $parms ['where'] . ') and (' . $prm ['where'] . ')';
+      $padSelWhere = padSelectWherePart ( $parms ['where'] ) . ' and ' . padSelectWherePart ( $prm ['where'] );
 
     // The mode becomes the statement's command word, so it is one of the shapes db() knows
     // for rows - array, record or field - and a bare htmlAttrJson means array. Any other
@@ -467,7 +467,7 @@
     global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl;
 
     if ($where)
-      $where = 'where (' . $where . ( preg_match ( '/--|#/', $where ) ? "\n)" : ')' );
+      $where = 'where ' . padSelectWherePart ( $where );
 
     $bound = FALSE;
 
@@ -527,6 +527,16 @@
       padError ( "no relation declared between '$padSelOuter' and '$table' - every row meets every row" );
 
     return $where;
+
+  }
+
+  // A condition in parentheses, the closing one on a line of its own when a -- or # comment
+  // in it would take it: the where of a view composed with its base's, or with the tag's,
+  // ended on an SQL syntax error when one of them held a comment.
+
+  function padSelectWherePart ( $where ) {
+
+    return '(' . $where . ( preg_match ( '/--|#/', (string) $where ) ? "\n)" : ')' );
 
   }
 
@@ -903,7 +913,7 @@
       $inherit = padSelectGetDB ( $base, array_merge ( $seen, [ $table ] ) );
 
       if ( isset ( $parms ['where'] ) and ( $inherit ['where'] ?? '' ) !== '' and $parms ['where'] !== '' )
-        $parms ['where'] = '(' . $inherit ['where'] . ') and (' . $parms ['where'] . ')';
+        $parms ['where'] = padSelectWherePart ( $inherit ['where'] ) . ' and ' . padSelectWherePart ( $parms ['where'] );
 
       unset ( $inherit ['base'] );
 
