@@ -31,7 +31,9 @@ The A-number is written without its leading zeroes. The terms come from
 `pad/sequence/types/oeis/oeis.sqlite`, one row per A-number, read a sequence at a time - so
 a request that asks for one costs a lookup rather than the whole table. An A-number the
 table does not hold produces no terms. `oeis/regenerate.php` regenerates the table from the
-`stripped` bulk download published by oeis.org.
+`stripped` bulk download published by oeis.org; `oeis/MANIFEST.md` records which download the
+table holds (August 2024), its license (CC BY-SA 4.0, The OEIS Foundation), its changes since,
+its row count and checksum.
 
 ## Loop with from/to Parameters
 

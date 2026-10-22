@@ -15,6 +15,8 @@
   // empty sequence.
   //
   // The download is expected beside the repository, at dirname($padHome)/host/Downloads.
+  // MANIFEST.md beside this file records the download the table in use holds, with its row
+  // count and checksum - a new table renamed into place gets its numbers written there.
   //
   // It was called build.php, the name of a build strategy: build='build' on an oeis
   // sequence ran it from build/types/build.php in the middle of a request, expecting a term
