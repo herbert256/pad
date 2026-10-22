@@ -35,11 +35,11 @@ padSelect/
 ├── model.pad/.php    # the tables as the database has them, and _lib/select.php
 ├── tables/           # a table is a tag, select:, the key, where=, order=, fields=, db=, @else@
 ├── relations/        # down, up, three levels, the three forms of a relation, itself, every level, counts
-├── views/            # base=, a view of a view, a view nested
-├── joins/            # inner, left, natural, more than one, join= on the tag
+├── views/            # base=, a view of a view, a view nested, where= on a view
+├── joins/            # inner, left, natural, more than one, a join to a view, join= on the tag
 ├── aggregates/       # group=, having=, rollup, distinct
 ├── paging/           # rows= and page=, the pager
-├── unions/           # union=, a union of several
+├── unions/           # union=, a union of several, a member with rows of its own
 └── output/           # type=record and field, htmlAttrJson, handling options
 ```
 
