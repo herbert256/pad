@@ -827,12 +827,21 @@
   // first stands at, from 1. Asked with isset () it answers what in_array () answered over
   // the list, without walking it.
 
+  //
+  // The key of a text is worked out once per text: it follows from the text alone, and the
+  // terms looked in are often one text many times over - the 10,000 terms of repeat=4 or
+  // eval=4 that keep, remove and flag look in are the text '4' each, and spelled 10,000 times
+  // by pqValueKey () they took 1 ms of the 1.2 their index took.
+
   function pqIndex ( $list ) {
 
-    $index = [];
+    $index = $texts = [];
 
     foreach ( array_values ( $list ) as $at => $value )
-      $index [ pqIndexKey ( $value ) ] ??= $at + 1;
+      if ( is_string ( $value ) )
+        $index [ $texts [$value] ??= pqValueKey ( $value ) ] ??= $at + 1;
+      else
+        $index [ pqIndexKey ( $value ) ] ??= $at + 1;
 
     return $index;
 
