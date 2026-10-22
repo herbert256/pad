@@ -79,7 +79,10 @@ the database as PAD's inert stand-ins, so such a value does not match. Only a `'
 holds it as text: inside `"..."` - a name on SQLite and on MySQL under ANSI_QUOTES - it is
 refused too. Only a value written as `{$name}` is guarded this way: a tag's answer written into
 the SQL - `{echo $x}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
-request value never goes into a query that way; put it in as `$name`.
+request value never goes into a query that way; put it in as `$name`. `db()` and `padDb()`
+called from a template - `php:db("FIELD ...")`, `{php:db "..."}` - are guarded the same way at
+their first argument, but SQL piped into one - `{echo "..." | php:db}` - is a string until the
+pipe, and a `{$name}` in it goes in unguarded: query with a database tag.
 
 ```
 {field "phone from staff where name = $who"}

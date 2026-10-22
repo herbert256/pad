@@ -586,6 +586,12 @@
   // SQL. Inside a quoted literal of the SQL - name = '{$who}' - a value is text, its quotes
   // PAD's inert stand-ins. where= of a select is left to padSpliceExpression, which quotes
   // a value there as a string of the expression it takes it for.
+  //
+  // db() and padDb() called from a template - php:db("FIELD ..."), db("...") in an
+  // expression, {php:db "..."}, {db "..."} - take their first argument as SQL just the same,
+  // and nothing guarded it: "FIELD count(*) from staff where salary < {$max}" with ?max=0
+  // or 1 counted every row. SQL piped into db() - {echo "..." | php:db} - is a string of the
+  // expression until the pipe, which the splice cannot see; DATABASE.md names that limit.
 
   function padDbSplice ( $inside, $quote, $quoteAt ) {
 
@@ -597,6 +603,10 @@
       $what = 'the SQL of {' . strtolower ( $match [1] ) . '} is the template\'s own';
     elseif ( preg_match ( '/(?<![\w$:.@])(field|record|array|check)\s*\(\s*$/i', $head, $match ) )
       $what = 'the SQL of ' . strtolower ( $match [1] ) . '() is the template\'s own';
+    elseif ( preg_match ( '/(?<![\w$.@])(?:php:)?((?:pad)?db)\s*\(\s*$/i', $head, $match ) )
+      $what = 'the SQL of ' . $match [1] . '() is the template\'s own';
+    elseif ( preg_match ( '/^\s*((?:php:)?(?:pad)?db)\s(.*)$/is', $head, $match ) and padDbSqlParm ( $match [2] ) )
+      $what = 'the SQL of {' . $match [1] . '} is the template\'s own';
     elseif ( preg_match ( '/^(select:)?([A-Za-z_][\w-]*)(\s.*)?[\s,](having|order|group|fields|db|join|union)\s*=\s*$/is', $head, $match )
              and ( $match [1] or isset ( $padSelect [$match [2]] ) ) )
       $what = strtolower ( $match [4] ) . '= is SQL the template writes';
@@ -609,6 +619,9 @@
       return "$what: a value spliced into it is SQL";
 
     $refuse = "$what: a value spliced into it outside a quoted literal is SQL - put it in as \$name";
+
+    if ( preg_match ( '/^(php:)?(pad)?db$/i', $match [1] ?? '' ) )
+      $refuse .= ' of a database tag';
 
     if ( $quote === '' )
       return $refuse;
