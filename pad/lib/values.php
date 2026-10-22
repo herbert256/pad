@@ -117,13 +117,22 @@
 
   }
 
+  // INF, -INF and NAN are written null, as padJsonFinite writes them for the page's JSON
+  // answer: json_encode's partial output wrote them 0, so a file padFilePut wrote, a dump, a
+  // trace line or an error message showed a number the value never was. The data is walked
+  // only when json_encode met a value it could not write, so the common call costs no more.
+
   function padJson ( $data ) {
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
-      $return = json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
+      $flags  = JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
+      $return = json_encode ( $data, $flags );
+
+      if ( json_last_error () !== JSON_ERROR_NONE )
+        $return = json_encode ( padJsonFinite ( $data ), $flags );
 
     } catch (Throwable $e) {
 
@@ -148,8 +157,13 @@
   // any other by its public properties, which get_object_vars answers out here as json_encode
   // sees them. Such an object is answered as a plain object of those properties only when a
   // value in it changed - JSON writes them the same - and is otherwise left as it is.
+  //
+  // An object met again inside itself is null, as json_encode writes a recursion: padJson
+  // hands this any value it is given - an error message's, a dump's - and an object graph
+  // whose children point back at their parent was walked down every path to the depth bound,
+  // twice as many walks for every level of a tree with two children.
 
-  function padJsonFinite ( $value, $depth = 0 ) {
+  function padJsonFinite ( $value, $depth = 0, $path = [] ) {
 
     if ( is_float ( $value ) and ! is_finite ( $value ) )
       return NULL;
@@ -157,8 +171,20 @@
     if ( $depth >= 512 )
       return $value;
 
-    if ( $value instanceof JsonSerializable )
-      return padJsonFinite ( $value->jsonSerialize (), $depth + 1 );
+    if ( is_object ( $value ) ) {
+
+      if ( isset ( $path [ spl_object_id ( $value ) ] ) )
+        return NULL;
+
+      $path [ spl_object_id ( $value ) ] = TRUE;
+
+      // A jsonSerialize that answers the object itself has it written by its properties, as
+      // json_encode does.
+
+      if ( $value instanceof JsonSerializable and ( $serial = $value->jsonSerialize () ) !== $value )
+        return padJsonFinite ( $serial, $depth + 1, $path );
+
+    }
 
     $object = is_object ( $value );
 
@@ -173,7 +199,7 @@
 
     foreach ( $walk as $key => $one )
       if ( is_array ( $one ) or is_float ( $one ) or is_object ( $one ) ) {
-        $new = padJsonFinite ( $one, $depth + 1 );
+        $new = padJsonFinite ( $one, $depth + 1, $path );
         if ( $new !== $one ) {
           $walk [$key] = $new;
           $changed     = TRUE;
