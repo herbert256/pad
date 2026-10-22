@@ -80,9 +80,15 @@ holds it as text: inside `"..."` - a name on SQLite and on MySQL under ANSI_QUOT
 refused too. Only a value written as `{$name}` is guarded this way: a tag's answer written into
 the SQL - `{echo $x}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
 request value never goes into a query that way; put it in as `$name`. `db()` and `padDb()`
-called from a template - `php:db("FIELD ...")`, `{php:db "..."}` - are guarded the same way at
-their first argument, but SQL piped into one - `{echo "..." | php:db}` - is a string until the
-pipe, and a `{$name}` in it goes in unguarded: query with a database tag.
+called from a template - `php:db("FIELD ...")`, `{php:db "..."}` - are guarded the same way
+anywhere in their first argument: a `{$name}` there, concatenated - `php:db('... < ' .
+{$max})` - or in a call around the SQL - `php:db(trim("..."))` - is refused unless it stands
+inside a `'...'` literal of the string it is spliced into. SQL piped into one - `{echo "..." |
+php:db}` - is a string until the pipe, and a `{$name}` in it goes in unguarded. And only a
+`{$name}` is guarded there: SQL the template builds with an expression - `{db $q}`,
+`{echo php:db($q)}`, `{db "... < " . $max}` - is the template author's SQL, exactly as SQL a
+PHP file builds is the PHP author's, and runs as it is written. Query with a database tag,
+where a value goes in as `$name`, or call `db()` from PHP with placeholders.
 
 ```
 {field "phone from staff where name = $who"}

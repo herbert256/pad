@@ -592,23 +592,25 @@
   // db() and padDb() called from a template - php:db("FIELD ..."), db("...") in an
   // expression, {php:db "..."}, {db "..."} - take their first argument as SQL just the same,
   // and nothing guarded it: "FIELD count(*) from staff where salary < {$max}" with ?max=0
-  // or 1 counted every row. SQL piped into db() - {echo "..." | php:db} - is a string of the
-  // expression until the pipe, which the splice cannot see; DATABASE.md names that limit.
+  // or 1 counted every row. A value spliced anywhere in that argument is judged so, outside
+  // a string or in one (padDbCall). SQL piped into db() - {echo "..." | php:db} - is a string
+  // of the expression until the pipe, which the splice cannot see; DATABASE.md names that
+  // limit, and that SQL the template builds with an expression - {db $q}, {db "..." . $max}
+  // - is the template's own, as SQL a PHP file builds is the PHP's.
 
   function padDbSplice ( $inside, $quote, $quoteAt ) {
 
     global $padSelect;
 
     $head = ( $quote === '' ) ? $inside : substr ( $inside, 0, $quoteAt );
+    $call = '';
 
     if ( preg_match ( '/^\s*(?:pad:)?(field|record|array|check)\s(.*)$/is', $head, $match ) and padDbSqlParm ( $match [2] ) )
       $what = 'the SQL of {' . strtolower ( $match [1] ) . '} is the template\'s own';
     elseif ( preg_match ( '/(?<![\w$:.@])(field|record|array|check)\s*\(\s*$/i', $head, $match ) )
       $what = 'the SQL of ' . strtolower ( $match [1] ) . '() is the template\'s own';
-    elseif ( preg_match ( '/(?<![\w$.@])(?:php:)?((?:pad)?db)\s*\(\s*$/i', $head, $match ) )
-      $what = 'the SQL of ' . $match [1] . '() is the template\'s own';
-    elseif ( preg_match ( '/^\s*((?:php:)?(?:pad)?db)\s(.*)$/is', $head, $match ) and padDbSqlParm ( $match [2] ) )
-      $what = 'the SQL of {' . $match [1] . '} is the template\'s own';
+    elseif ( $call = padDbCall ( $inside ) )
+      $what = "the SQL of $call is the template's own";
     elseif ( preg_match ( '/^(select:)?([A-Za-z_][\w-]*)(\s.*)?[\s,](where|having|order|group|fields|db|join|union)\s*=\s*$/is', $head, $match )
              and ( $match [1] or isset ( $padSelect [$match [2]] ) ) )
       $what = strtolower ( $match [4] ) . '= is SQL the template writes';
@@ -622,7 +624,7 @@
 
     $refuse = "$what: a value spliced into it outside a quoted literal is SQL - put it in as \$name";
 
-    if ( preg_match ( '/^(php:)?(pad)?db$/i', $match [1] ?? '' ) )
+    if ( $call )
       $refuse .= ' of a database tag';
 
     if ( $quote === '' )
@@ -727,6 +729,84 @@
         return FALSE;
 
     return TRUE;
+
+  }
+
+  // Whether a splice stands in the first argument of db() or padDb() called from a template,
+  // and how that call is written, for the refusal - {php:db}, db() - or '' - $inside the
+  // tag's text from its { up to the splice. The tag form's first argument is its first
+  // positional parameter, options before it passed over as padDbSqlParm does; a call's is
+  // what stands between its ( and the first comma at its own depth. Anywhere in it is in it:
+  // the splice had to stand in the argument's own string or right after the (, so a
+  // concatenation - {db "... salary < " . {$max}}, php:db('... < ' . {$max}) - or a call
+  // around the SQL - php:db(trim("... < {$max}")) - took ?max=0 or 1 bare and counted every
+  // row. Whatever the argument builds, the database reads as SQL, so a value there is judged
+  // by the string it stands in, and outside one it is refused.
+
+  function padDbCall ( $inside ) {
+
+    if ( stripos ( $inside, 'db' ) === FALSE )
+      return '';
+
+    $tag = '';
+    $at  = 0;
+
+    if ( preg_match ( '/^\s*(php:)?((?:pad)?db)\s/i', $inside, $match ) ) {
+      $tag = '{' . $match [1] . $match [2] . '}';
+      $at  = strlen ( $match [0] );
+    }
+
+    $in    = '';
+    $stack = [];
+    $from  = $at;
+    $first = TRUE;
+
+    for ( $i = $at, $len = strlen ( $inside ); $i < $len; $i++ )
+      if ( $in ) {
+        if     ( $inside [$i] == '\\'  ) $i++;
+        elseif ( $inside [$i] == $in   ) $in = '';
+      } elseif ( $inside [$i] == "'" or $inside [$i] == '"' )
+        $in = $inside [$i];
+      elseif ( $inside [$i] == '(' )
+        $stack [] = [ strcasecmp ( substr ( rtrim ( substr ( $inside, max ( 0, $i - 64 ), min ( $i, 64 ) ) ), -2 ), 'db' )
+                      ? '' : padDbCallName ( substr ( $inside, 0, $i ) ), FALSE ];
+      elseif ( $inside [$i] == '[' )
+        $stack [] = [ '', FALSE ];
+      elseif ( $inside [$i] == ')' or $inside [$i] == ']' )
+        array_pop ( $stack );
+      elseif ( $inside [$i] == ',' and $stack )
+        $stack [ array_key_last ( $stack ) ] [1] = TRUE;
+      elseif ( $inside [$i] == ',' ) {
+        if ( ! preg_match ( '/^\s*[$%]?[A-Za-z_]\w*\s*(=(?!=).*)?$/s', substr ( $inside, $from, $i - $from ) ) )
+          $first = FALSE;
+        $from = $i + 1;
+      }
+
+    foreach ( $stack as [ $call, $comma ] )
+      if ( $call and ! $comma )
+        return $call;
+
+    // In the tag's own parameters: the first positional one, not the value of an option.
+
+    if ( $tag and $first and ! preg_match ( '/^\s*[$%]?[A-Za-z_]\w*\s*=(?!=)/', substr ( $inside, $from ) ) )
+      return $tag;
+
+    return '';
+
+  }
+
+  // The db() or padDb() a ( opens, as padDbCall wants it - $before the text before the ( -
+  // or '': php:db( or a bare db(, another prefix never.
+
+  function padDbCallName ( $before ) {
+
+    if ( ! preg_match ( '/(?<![\w$.@:])(?:(\w+):)?((?:pad)?db)\s*$/i', $before, $match ) )
+      return '';
+
+    if ( strtolower ( $match [1] ) == 'php' or $match [1] === '' )
+      return $match [2] . '()';
+
+    return '';
 
   }
 
