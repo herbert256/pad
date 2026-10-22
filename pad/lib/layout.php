@@ -341,7 +341,11 @@
   // the page still gets when it renders). Looked for as {block, {~block was no block: the
   // page's override landed in the body and the wrapper kept its default, and
   // {extends 'x'~} and {meta title='x'~} ended in "'~' is no operator or value". The
-  // content of a {highlight} pair is code shown as it stands (padTildeKeep).
+  // content of a {highlight} pair is code shown as it stands (padTildeKeep), and so is
+  // what an {ignore} holds, its pairs found with the comments out of the way: a comment that
+  // named the tag - {# a note on {ignore} #} - left the real pair after it unclosed, one
+  // that wrote {/ignore} closed it early, and {~block 'x'~} in the sample printed
+  // {block 'x'}.
 
   function padLayoutTilde ( $text ) {
 
@@ -349,7 +353,7 @@
       return $text;
 
     $kept = [];
-    $text = padTildeKeep ( $text, $kept );
+    $text = padTildeKeep ( $text, $kept, TRUE );
     $name = '\/?(?:block|extends|parent|meta)(?=[\s}~\/])';
 
     $text = preg_replace ( "/\s*\{~(?=$name)/", '{', $text );

@@ -629,10 +629,14 @@ function padSplitOnUnquotedColon ( $str ) {
   // syntax lost every ~ and the line breaks beside them, {ignore}{~items~}{/ignore} printed
   // {items}. It is set aside while the rest is stripped; the pair's own tags keep their ~.
   // The pairs are read as the {else} scans read them (padTextSpans, lib/template.php).
+  //
+  // A text that still holds its comments - the page's template the assembly reads before
+  // it renders (padLayoutTilde) - has its pairs read with them written over, as the render
+  // reads the pairs once the comments are gone.
 
-  function padTildeKeep ( $text, &$kept ) {
+  function padTildeKeep ( $text, &$kept, $comments = FALSE ) {
 
-    foreach ( array_reverse ( padTextSpans ( $text ) ) as list ( $from, $to ) ) {
+    foreach ( array_reverse ( padTextSpans ( $comments ? padCommentStrip ( $text, TRUE ) : $text ) ) as list ( $from, $to ) ) {
       $mark          = "\u{E0F8}" . count ( $kept ) . "\u{E0F9}";
       $kept [$mark]  = substr ( $text, $from, $to - $from );
       $text          = substr ( $text, 0, $from ) . $mark . substr ( $text, $to );
