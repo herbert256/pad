@@ -174,7 +174,10 @@ requests that ask for the debugger go to a php-fpm pool that has it - on this ma
   `mod_proxy` and `mod_proxy_fcgi` loaded, hands that pool a `.php` request that carries
   `XDEBUG_SESSION` or `XDEBUG_TRIGGER` (a cookie or a query value), and the editor's own
   debugger calls (`?api&action=debug`), which check that their PHP has the step debugger
-  and start the debugger process.
+  and start the debugger process. It reads the cookie with `req_novary`, so no answer gets
+  `Vary: Cookie`, and gives the pool an hour (`ProxySet timeout=3600`) where the proxy's
+  own limit is 60 seconds: a paused request waits, and a browser extension that sends
+  `XDEBUG_SESSION` for the whole site sends every page there - `develop/?build` too.
 
 Xdebug connects back to `xdebug.client_port` (9003); an IDE
 listening there at the same time keeps the editor's debugger from starting. A browser
