@@ -249,7 +249,8 @@
   // row per distinct value. An aggregate in a subquery - (select max(released) from albums
   // where ...) - or over a window - sum(price) over (order by released) - is a value of each
   // row, so those are taken out first: they made the select one of totals, and it lost the
-  // declared order, with rows= another first page.
+  // declared order, with rows= another first page. over is a word of its own there: the
+  // alias of sum(salary) overall is no window.
 
   function padSelectTotals ( $fields ) {
 
@@ -258,7 +259,7 @@
 
     $group  = '(?(DEFINE)(?<group>\((?:[^()\'"]++|\'[^\']*\'|"[^"]*"|(?&group))*\)))';
     $fields = preg_replace ( "/\\(\\s*select\\b(?:[^()'\"]++|'[^']*'|\"[^\"]*\"|(?&group))*\\)$group/i", '()', $fields ) ?? $fields;
-    $fields = preg_replace ( "/\\b\\w+\\s*(?&group)\\s*over\\s*(?:(?&group)|\\w+)$group/i", '0', $fields ) ?? $fields;
+    $fields = preg_replace ( "/\\b\\w+\\s*(?&group)\\s*over\\b\\s*(?:(?&group)|\\w+)$group/i", '0', $fields ) ?? $fields;
 
     return (bool) preg_match ( '/\b(count|sum|avg|min|max|total|group_concat|json_arrayagg|json_objectagg|string_agg|bit_and|bit_or|bit_xor|std|stddev|stddev_pop|stddev_samp|variance|var_pop|var_samp)\s*\(/i', $fields );
 
