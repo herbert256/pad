@@ -191,6 +191,15 @@ id someone learned before it is worth nothing.</p>
 one next request only, like a <a href="/pad/manual/?pages/flash_messages">Flash messages</a> message. Passwords and the CSRF token
 are left out unless another list is given.</p>
 
+<p>Without a list, every field whose name looks like a password, a key, a token, a card's
+code or number or a one-time code stays out as well - <code>new_password</code>,
+<code>user[password]</code>, <code>api_key</code>, <code>card_number</code>,
+<code>otp_code</code>. That is judged by the words of the name, and no word rule knows every
+name: a field it does not recognise, a <code>stripe_key</code>, is kept. For a form with such
+a field, give the list yourself - it replaces the default, so it names every field that
+stays out - or flash only the fields the form needs back:
+<code>padFlashInput ( array_diff ( array_keys ( padRequestExcept ( [] ) ), [ 'name', 'email' ] ) )</code>.</p>
+
 
 
  

@@ -392,7 +392,7 @@ the session; these do the same by name, whatever those settings let through. Man
 | `padSessionPull ( $key, $default = NULL )` | The value, taken out of the session; the default when it is not there |
 | `padSessionForget ( $keys )` | Removes one or several names or dot paths from the session |
 | `padSessionRegenerate ()` | Moves the session to a new id, its data kept and its CSRF token renewed - after a login, against session fixation. `TRUE` / `FALSE` |
-| `padFlashInput ( $except = [ 'password', 'password_confirmation', 'padCsrfToken' ] )` | Keeps this request's input, without those names - by default also without any field, at any depth, whose name says it holds a secret (`current_password`, `user[password]`, `api_key` ...) - for the next request only. `TRUE` / `FALSE` |
+| `padFlashInput ( $except = [ 'password', 'password_confirmation', 'padCsrfToken' ] )` | Keeps this request's input, without those names - by default also without any field, at any depth, whose name says it holds a secret (`current_password`, `user[password]`, `api[key]`, `card_number`, `otp_code` ...; a word rule, see below) - for the next request only. `TRUE` / `FALSE` |
 | `padOld ( $key = NULL, $default = '' )` | A value of the input the request before flashed (or this one, when it flashed); `NULL` key: all of it |
 | `padUrl ( $page = '', $vars = [], $absolute = FALSE )` | A link to a page of this application: `/myapp/?orders&sort=date`, or `/myapp/orders?sort=date` with `$padCleanUrls`; `''` is the page the visitor asked for; absolute on `$padHost` |
 | `padBack ( $fallback = '' )` | Redirects (302) to the referring page when it is a page of this application on this host, else to `$fallback` (a page name; `''` the index) |
@@ -463,6 +463,26 @@ Edge rules:
   message: the `padOld` cookie tells the next request to take it out of the session, and it
   is gone after that whether `padOld` read it or not. A request without input that calls
   `padFlashInput` flashes nothing.
+- `padFlashInput ()` leaves out the fields whose names look like a password, a key, a token,
+  a card's code or number or a one-time code, by a rule over the words of the name - split
+  on `_`, `-` and a change of case, a bracketed name judged with its groups (`api[key]` as
+  `api_key`): a password word inside a word (`newpassword`, `passwd`, `pwd`, `wachtwoord`,
+  `kennwort`, `contraseña`, `lösenord`, `mot_de_passe` ...); the words `pass`, `pw`, `pin`,
+  `otp`, `totp`, `cvv`, `cvc`, `csc`, `cvn`, `senha`, `parola`, `hasło`; a `secret`; a last
+  word ending in `token`; a key, code or answer after a word that makes it a credential
+  (`api_key`, `license_key`, `backup_code`, `card_code`, `sms_code`, `2fa_code`,
+  `one_time_code`, `security_answer`); a card's number (`card_number`, `cc_number`); a key
+  under a named group (`stripe[key]`). A count, a type, a method, a length, enabled or
+  required after the word, or enable, use or max before it, makes it a setting that comes
+  back (`otp_enabled`, `pass_count`, `max_tokens`), as does a key or code after any other
+  word (`sort_key`, `zip_code`). Where a name is in doubt the field stays out (`pin`,
+  `boarding_pass`). **The rule is a heuristic and has a limit**: a field it does not
+  recognise is flashed - a `stripe_key`, a credential named for a vendor or in a language
+  it does not know. For a form with such a field, name what stays out yourself - a list of
+  your own replaces the default and the word rule with it, so it names every secret field:
+  `padFlashInput ( [ 'stripe_key', 'password', 'padCsrfToken' ] )`. Or flash only the
+  fields the form needs back - there is no list of fields to keep, so leave out every other
+  name: `padFlashInput ( array_diff ( array_keys ( padRequestExcept ( [] ) ), [ 'name', 'email' ] ) )`.
 - `padUrl`: a page written as a link writes it - `?about`, `about&x=1` - is that page with
   those values; a `#fragment` stays at the end; the page's segments are URL-encoded; the
   values go through `http_build_query` (arrays as `tags%5B0%5D=...`, `NULL` left out); a string

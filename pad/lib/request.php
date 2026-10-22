@@ -411,13 +411,27 @@
 
   }
 
-  function padFlashKeep ( $input ) {
+  // A field under a bracketed name - api[key], user[password], payment[card][number], or the
+  // same shape in a JSON body - is judged by its name with the names of its groups before it,
+  // as api_key, user_password and payment_card_number: the word that makes a key or a code a
+  // credential stands in the group's name, and the inner name alone, a bare key or code,
+  // said nothing - api[key], license[key], mfa[code] and recovery[code] went into the
+  // session. A list's index says nothing either: payment[cards][0][number] is cards_number.
+  // A key under a named group is that group's own key - stripe[key], mailgun[key] - and
+  // stays out too, where a key under a list's row is the row's: fields[0][key] comes back.
 
-    foreach ( $input as $key => $value )
-      if ( padFlashSecret ( (string) $key ) )
+  function padFlashKeep ( $input, $parent = '', $group = FALSE ) {
+
+    foreach ( $input as $key => $value ) {
+
+      $name = $parent === '' ? (string) $key : "{$parent}_{$key}";
+
+      if ( padFlashSecret ( $name ) or ( $group and preg_match ( '/^keys?$/i', (string) $key ) ) )
         unset ( $input [$key] );
       elseif ( is_array ( $value ) )
-        $input [$key] = padFlashKeep ( $value );
+        $input [$key] = padFlashKeep ( $value, $name, ! ctype_digit ( (string) $key ) );
+
+    }
 
     return $input;
 
@@ -425,47 +439,100 @@
 
   // A field holding a password or another credential the visitor typed or pasted, judged by
   // the words of its name - split on _, - and where the case changes, as padAuthSecret
-  // splits a column's name. It is one when a word of it
+  // splits a column's name, a number standing as a word of its own left out. It is one when
+  // a word of it
   //
   //   - holds a password word anywhere inside: password1, newpassword, oldPassword, passwd,
-  //     passphrase2, passcode, pwd2, userpwd, a secret (client_secret, secret_answer - but a
-  //     secretary is none);
-  //   - is pass, pw, otp, totp, hotp, cvv or cvc, a number after it or not: Drupal's pass,
-  //     WordPress's user_pass, an installer's db_pass, the boxes otp_1 ... otp_6;
-  //   - is the last word and holds token: access_token, csrfToken, apitoken;
+  //     passphrase2, passcode, pwd2, userpwd, and the password of other languages -
+  //     wachtwoord, kennwort, contraseña, salasana, lösenord, mot_de_passe;
+  //   - is pass, pw, pin, otp, totp, hotp, cvv, cvc, csc or cvn, or senha, parola, hasło or
+  //     mdp, a number after it or not: Drupal's pass, WordPress's user_pass, an installer's
+  //     db_pass, the boxes otp_1 ... otp_6, pin_code, a card's cvv2;
+  //   - is a secret as the last word or before a key, a token, a code, an answer, a phrase
+  //     or a value - client_secret, secret_key, secret_answer -, or a word holding secret
+  //     (clientsecret, secretkey; a secretary or a secretion is none);
+  //   - is the last word and ends in token: access_token, csrfToken, apitoken - or is tokens
+  //     after a word that makes them credentials (api_tokens);
   //   - is a key, a code or an answer after a word that makes it a credential, or written
   //     together with one: api_key, apiKey, apikey, private_key, license_key, backup_code,
-  //     recoverycodes, otpcode, security_answer, security_code, and the auth_key, reset_code,
-  //     verification_code and access_key of padAuthSecretOf ().
+  //     recoverycodes, otpcode, security_answer, security_code, card_code, cardCode, sms_code,
+  //     twofa_code, 2fa_code, mfa_code, a one_time_code, and the auth_key, reset_code,
+  //     verification_code and access_key of padAuthSecretOf () - a session and an app have a
+  //     secret key but an ordinary code (a conference's session_code, an app_code);
+  //   - is a card's number: card_number, cardNumber, cc_number, credit_card_number.
   //
-  // Every other field comes back: a key or a code after any other word - key, sort_key,
-  // meta_key, shortcutKey, translation_key, zip_code, country_code -, a token's name or type,
-  // a pin checkbox, backup_frequency, recovery_plan, salt, and a passport, which is an
-  // identity document's number and no log-in secret. Where a name is in doubt the field stays
-  // out, a field to type again against a password in the session in plain text: pass is a
-  // password word wherever it stands, so boarding_pass and pass_mark come back empty.
+  // A word that makes the credential a setting of it stands the field back: a count, a type,
+  // a method, a length, enabled or required after it - otp_enabled, otp_method, pass_count,
+  // pass_type, secrets_count, api_key_type, password_length - or enable, use, require, has,
+  // show, max, min or num before it - enable_otp, use_totp, has_password. Every other field
+  // comes back: a key or a code after any other word - key, sort_key, meta_key, shortcutKey,
+  // translation_key, zip_code, country_code -, a token's name or type, max_tokens, a
+  // tokenizer, a secret_santa, backup_frequency, recovery_plan, salt, cid (a customer's id),
+  // and a passport, which is an identity document's number and no log-in secret. Where a
+  // name is in doubt the field stays out, a field to type again against a secret in the
+  // session in plain text: pass and pin are secrets wherever they stand, so boarding_pass,
+  // pass_mark and pin_to_top come back empty.
+  //
+  // This is a word rule, and no word rule knows every name: a credential under a name it does
+  // not recognise - a stripe_key, a field named for a vendor or in another language - is
+  // flashed. The documentation says so; a form with such a field names what stays out
+  // itself, padFlashInput ( [ ... ] ).
   //
   // padAuthSecret judges the columns of a users row, where pin, hash, salt, backup and
   // recovery anywhere in a name are a secret's and the value is looked at too; a form has a
-  // pin checkbox and a backup_frequency, so the two share the words of padAuthSecretOf () and
-  // not the rule. The test before this one took a password word only as a whole word and key
-  // as the last word after any word: password1, password2, newpassword, pass, user_pass, the
-  // one-time and recovery codes went into the session, and a song's key, a sort_key and a
-  // meta_key came back empty.
+  // backup_frequency and a recovery_plan, so the two share the words of padAuthSecretOf ()
+  // and not the rule. The test before this one took any word holding token and a secret
+  // anywhere, a pass, otp or secret before a count or a type, and a session or app code, as
+  // a secret - max_tokens, tokenizer, otp_enabled, enable_otp, secrets_count, secret_santa,
+  // session_code, pass_count came back empty -, and flashed card_code, csc, cvn, card_number,
+  // one_time_code, sms_code, twofa_code, pin, pin_code and wachtwoord, kennwort, mot_de_passe.
 
   function padFlashSecret ( $name ) {
 
-    $words = array_map ( 'strtolower', preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/', $name, -1, PREG_SPLIT_NO_EMPTY ) );
-    $of    = array_merge ( [ 'api', 'app', 'private', 'encryption', 'license', 'licence', 'recovery', 'backup',
-                             'security', 'factor', 'otp', 'totp', 'hotp' ], padAuthSecretOf () );
-    $last  = count ( $words ) - 1;
+    $split = preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/', $name, -1, PREG_SPLIT_NO_EMPTY );
+    $words = array_values ( array_filter ( array_map ( 'mb_strtolower', $split ), fn ( $word ) => ! ctype_digit ( $word ) ) );
 
-    foreach ( $words as $i => $word )
-      if ( preg_match ( '/passw|passphrase|passcode|pwd|secret(?!ar)|^(pass|pw|[th]?otp|cvv|cvc)\d*$/', $word )
-           or ( $i == $last and str_contains ( $word, 'token' ) )
-           or ( preg_match ( '/^(keys?|codes?|answers?)$/', $word ) and in_array ( $words [$i - 1] ?? '', $of, TRUE ) )
-           or preg_match ( '/^(' . implode ( '|', $of ) . ')(keys?|codes?|answers?)$/', $word ) )
+    if ( preg_match ( '/motdepasse|onetime(code|pin|key|token|password)/', implode ( '', $words ) ) )
+      return TRUE;
+
+    $of      = array_merge ( [ 'api', 'app', 'private', 'encryption', 'license', 'licence', 'recovery', 'backup',
+                               'security', 'factor', 'otp', 'totp', 'hotp' ], padAuthSecretOf () );
+    $codeOf  = array_merge ( array_diff ( $of, [ 'session', 'app' ] ), [ 'card', 'cc', 'sms', 'twofa', 'tfa' ] );
+    $keys    = implode ( '|', $of );
+    $codes   = implode ( '|', $codeOf );
+    $setting = [ 'count', 'counts', 'type', 'types', 'kind', 'method', 'methods', 'mode', 'enabled', 'disabled',
+                 'required', 'optional', 'length', 'policy', 'strength', 'expiry', 'expires', 'expiration', 'ttl',
+                 'lifetime', 'limit', 'format', 'provider', 'channel', 'setting', 'settings', 'status', 'label',
+                 'name', 'attempts', 'tries', 'retries' ];
+    $switch  = [ 'enable', 'disable', 'use', 'require', 'allow', 'has', 'show', 'max', 'min', 'num' ];
+    $last    = count ( $words ) - 1;
+
+    foreach ( $words as $i => $word ) {
+
+      $before = $words [$i - 1] ?? '';
+      $after  = $words [$i + 1] ?? '';
+
+      $first = match ( TRUE ) {
+        (bool) preg_match ( '/passw|passphrase|passcode|pwd|wachtwoord|kennwort|contrase|salasana|l(o|ö)senord|' .
+                            '^(pass|pw|pin|[th]?otp|cvv|cvc|csc|cvn|senha|parola|has(l|ł)o|mdp)\d*$/', $word ),
+        (bool) preg_match ( '/secret(?!ar|ion)/', $word ) and ( ! preg_match ( '/^secrets?$/', $word ) or $i == $last
+          or preg_match ( '/^(keys?|tokens?|codes?|answers?|phrases?|values?)$/', $after ) ),
+        $i == $last and ( str_ends_with ( $word, 'token' ) or preg_match ( "/^($keys)tokens$/", $word ) ),
+        (bool) preg_match ( "/^($keys)keys?$|^($codes)(codes?|answers?)$|^(credit)?(card|cc)(number|num|no|nr)$/", $word )
+          => $i,
+        $i == $last and $word == 'tokens' and in_array ( $before, $of, TRUE ),
+        preg_match ( '/^keys?$/', $word ) and in_array ( $before, $of, TRUE ),
+        preg_match ( '/^(codes?|answers?)$/', $word ) and in_array ( $before, $codeOf, TRUE ),
+        preg_match ( '/^(number|num|no|nr|verification)$/', $word ) and in_array ( $before, [ 'card', 'cards', 'cc', 'creditcard' ], TRUE )
+          => $i - 1,
+        default
+          => NULL
+      };
+
+      if ( $first !== NULL and ! in_array ( $after, $setting, TRUE ) and ! in_array ( $words [$first - 1] ?? '', $switch, TRUE ) )
         return TRUE;
+
+    }
 
     return FALSE;
 
