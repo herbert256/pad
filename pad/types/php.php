@@ -18,6 +18,15 @@
     return padError ( "the php: tag takes a bare function name and its arguments after a space - {php:"
                       . strstr ( $padTag [$pad], '(', TRUE ) . " ...}; a call with ( ) is the expression form" );
 
+  // db() and padDb() take SQL as their first parameter, which a value spliced in judges where
+  // it lands (padDbSplice, lib/db.php) - and one more than 4 KB past the tag's {, where the
+  // splice looks back no further, the tag judges itself, as a database tag does
+  // (padDbSpliceFar): {php:db "FIELD ... where 1 = 1 <4200 spaces> and salary < {$max}"}
+  // with ?max=0 or 1 counted every row.
+
+  if ( in_array ( strtolower ( $padTag [$pad] ), [ 'db', 'paddb' ], TRUE ) and ! padDbSpliceFar () )
+    return FALSE;
+
   if ( ! strlen ( $padOpt [$pad] [0] ) )
     return call_user_func_array ( $padTag [$pad], [] );
 
