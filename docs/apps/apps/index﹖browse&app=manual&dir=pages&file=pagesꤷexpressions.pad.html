@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Browse: manual/pages · PAD apps
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <style>
+    .browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body class="frame app-apps">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>apps</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="apps">
+        <a href="index%EF%B9%96index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Applications</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Browse: manual/pages
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <div class="browse-page">
+          <div class="browse-container">
+            <div class="file-list">
+              <ul>
+                <li class="parent">
+                  <a href="index%EF%B9%96browse&amp;app=manual.html">..</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7alpine.pad.html">alpine.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7app_tests.pad.html">app_tests.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7application_options.pad.html">application_options.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7application_structure.pad.html">application_structure.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7arrays.pad.html">arrays.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7callback.pad.html">callback.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7charts.pad.html">charts.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7clean_urls.pad.html">clean_urls.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7client_validation.pad.html">client_validation.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7collections.pad.html">collections.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7comments.pad.html">comments.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7components.pad.html">components.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7conditions.pad.html">conditions.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7content.pad.html">content.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7coverage.pad.html">coverage.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7csrf_protection.pad.html">csrf_protection.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7data_answers.pad.html">data_answers.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7data_handling.pad.html">data_handling.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7database.pad.html">database.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7dates_and_logging.pad.html">dates_and_logging.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7debug.pad.html">debug.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7directory_guards.pad.html">directory_guards.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7editor_support.pad.html">editor_support.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7else.pad.html">else.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7ending_the_request.pad.html">ending_the_request.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7environment_and_cache.pad.html">environment_and_cache.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7escaping_special_PAD_chars.pad.html">escaping_special_PAD_chars.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7events.pad.html">events.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7examples_used_in_this_manual.pad.html">examples_used_in_this_manual.pad</a>
+                </li>
+                <li class="current">expressions.pad
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7extending.pad.html">extending.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7field_sigils.pad.html">field_sigils.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7file_uploads.pad.html">file_uploads.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7flash_messages.pad.html">flash_messages.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7flush.pad.html">flush.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7forms.pad.html">forms.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7fragment_cache.pad.html">fragment_cache.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7grouping.pad.html">grouping.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7hashing_and_encryption.pad.html">hashing_and_encryption.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7html_helpers.pad.html">html_helpers.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7htmx.pad.html">htmx.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7ignore.pad.html">ignore.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7islands.pad.html">islands.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7layouts.pad.html">layouts.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7level_and_occurrence_variables.pad.html">level_and_occurrence_variables.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7levels_and_occurrences.pad.html">levels_and_occurrences.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7live.pad.html">live.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7live_reload.pad.html">live_reload.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7locale.pad.html">locale.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7lookup.pad.html">lookup.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7loops.pad.html">loops.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7mail.pad.html">mail.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7markdown.pad.html">markdown.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7numbers.pad.html">numbers.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7offline_applications.pad.html">offline_applications.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7options_variables_parameters.pad.html">options_variables_parameters.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7output_checks.pad.html">output_checks.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7pad_command.pad.html">pad_command.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7pad_in_the_browser.pad.html">pad_in_the_browser.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7page.pad.html">page.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7page_meta.pad.html">page_meta.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7pager.pad.html">pager.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7parallel_fetching.pad.html">parallel_fetching.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7parse.pad.html">parse.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7php_and_html.pad.html">php_and_html.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7pipes.pad.html">pipes.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7playground.pad.html">playground.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7prefix.pad.html">prefix.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7properties.pad.html">properties.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7remote_data.pad.html">remote_data.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7replay.pad.html">replay.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7requests_and_sessions.pad.html">requests_and_sessions.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7requests_and_urls.pad.html">requests_and_urls.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7response_fragments.pad.html">response_fragments.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7samples.pad.html">samples.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7security_headers.pad.html">security_headers.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7sequences.pad.html">sequences.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7server_sent_events.pad.html">server_sent_events.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7showing_code.pad.html">showing_code.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7sitemap.pad.html">sitemap.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7sqlite.pad.html">sqlite.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7stacks.pad.html">stacks.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7start_end.pad.html">start_end.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7static_export.pad.html">static_export.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7strings.pad.html">strings.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7tag_return_values.pad.html">tag_return_values.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7tags.pad.html">tags.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7template_errors.pad.html">template_errors.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7the_content_tag.pad.html">the_content_tag.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7the_data_tag.pad.html">the_data_tag.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7toolbar.pad.html">toolbar.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7toolbar.php.html">toolbar.php</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7trees.pad.html">trees.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7typescript_types.pad.html">typescript_types.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7values.pad.html">values.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7vite.pad.html">vite.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7walking.pad.html">walking.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7web_components.pad.html">web_components.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=manual&amp;dir=pages&amp;file=pages%EA%A4%B7whitespace.pad.html">whitespace.pad</a>
+                </li>
+              </ul>
+            </div>
+            <div class="source-view">
+              <h3>
+                pages/expressions.pad
+              </h3>
+              <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Expressions<font color="black">'</font></font>}</b><br><br>&lt;p&gt;An expression is the part of a tag that works out a value: &lt;code&gt;1 + 2&lt;/code&gt;,<br>&lt;code&gt;$price * $qty&lt;/code&gt;, &lt;code&gt;$name | upper&lt;/code&gt;, &lt;code&gt;$state in ('open',<br>'pending')&lt;/code&gt;. PAD's evaluator reads it - numbers, strings, fields, lists, operators,<br>functions and pipes - and answers one value. This page goes through all of it; every example<br>is live, its template beside what PAD made of it.&lt;/p&gt;<br><br>&lt;h2&gt;Where expressions stand&lt;/h2&gt;<br><br>&lt;p&gt;An expression is read wherever a tag takes a value: the parameter of <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> and of<br>&lt;code&gt;<b>{<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt; and &lt;code&gt;<b>{<font color="blue">elseif</font><font color="red"></font>}</b>&lt;/code&gt;, the right side of<br>&lt;code&gt;<b>{<font color="blue">set </font><font color="red"><font color="red">$</font>x = ...</font>}</b>&lt;/code&gt;, the value of &lt;code&gt;<b>{<font color="blue">case</font><font color="red"></font>}</b>&lt;/code&gt; and its<br>&lt;code&gt;<b>{<font color="blue">when</font><font color="red"></font>}</b>&lt;/code&gt;s, the condition of &lt;code&gt;<b>{<font color="blue">while</font><font color="red"></font>}</b>&lt;/code&gt; and<br>&lt;code&gt;<b>{<font color="blue">until</font><font color="red"></font>}</b>&lt;/code&gt;, a quoted option such as &lt;code&gt;where='...'&lt;/code&gt;, and an<br>occurrence assignment &lt;code&gt;%name = ...&lt;/code&gt; on a tag that loops:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_1<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_2<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_3<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A field tag takes a pipe as it stands - &lt;code&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">trim</font>}</b>&lt;/code&gt; - and so<br>does the closing tag of a pair, over everything the pair rendered. The<br>&lt;a href="?pages/pipes"&gt;pipes&lt;/a&gt; page has the opening and closing tag pipes in full:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Values&lt;/h2&gt;<br><br>&lt;h3&gt;Numbers&lt;/h3&gt;<br><br>&lt;p&gt;Whole numbers, decimals, a decimal that starts with its point (&lt;code&gt;.5&lt;/code&gt;) and<br>exponents (&lt;code&gt;1e3&lt;/code&gt;, &lt;code&gt;2.5E-1&lt;/code&gt;). A minus before a number belongs to it.<br>&lt;code&gt;0x&lt;/code&gt; followed by hexadecimal digits is not a number but a string of bytes:<br>&lt;code&gt;0x41&lt;/code&gt; is the letter A.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_5<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Strings&lt;/h3&gt;<br><br>&lt;p&gt;Text stands between single or double quotes, which mean the same: a &lt;code&gt;$name&lt;/code&gt;<br>inside double quotes stays text, it is not filled in as PHP would. A backslash starts an<br>escape - &lt;code&gt;\n&lt;/code&gt;, &lt;code&gt;\r&lt;/code&gt;, &lt;code&gt;\t&lt;/code&gt;, &lt;code&gt;\\&lt;/code&gt;,<br>&lt;code&gt;\'&lt;/code&gt; and &lt;code&gt;\"&lt;/code&gt;; any other letter after it is an error. The dot joins<br>strings, and numbers with them:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_6<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Bare words&lt;/h3&gt;<br><br>&lt;p&gt;A word without quotes and without a sigil is looked up. An operator word -<br>&lt;code&gt;eq&lt;/code&gt;, &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;not&lt;/code&gt; ... - is the operator; a PHP constant -<br>&lt;code&gt;TRUE&lt;/code&gt;, &lt;code&gt;FALSE&lt;/code&gt;, &lt;code&gt;NULL&lt;/code&gt;, &lt;code&gt;PHP_EOL&lt;/code&gt;,<br>&lt;code&gt;M_PI&lt;/code&gt; - is its value; a word that names nothing stands for its own text.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_7<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;b&gt;Quote text.&lt;/b&gt; A bare word that names something PAD knows - a function, a tag, a<br>property, a data set, a field - is that thing: &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt; and<br>&lt;code&gt;first&lt;/code&gt; are &lt;a href="?pages/properties"&gt;properties&lt;/a&gt;, so<br>&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">count</font>}</b>&lt;/code&gt; does not write the word count. Text in quotes is always<br>text.&lt;/p&gt;<br><br>&lt;h3&gt;Fields, paths and indirection&lt;/h3&gt;<br><br>&lt;p&gt;&lt;code&gt;$name&lt;/code&gt; reads a field: a variable the page's PHP set, one a<br>&lt;code&gt;<b>{<font color="blue">set</font><font color="red"></font>}</b>&lt;/code&gt; made, a field of the row a loop stands on. A dot walks into an<br>array - &lt;code&gt;$user.address.city&lt;/code&gt;, and &lt;code&gt;$items.0&lt;/code&gt; by position.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_8<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;$$name&lt;/code&gt; reads the field whose name another field holds - a path as well - the<br>way &lt;code&gt;<b>{<font color="green"><font color="red">$</font><font color="red">$</font>name</font>}</b>&lt;/code&gt; does as a tag. The name must be one of the application's<br>fields; the engine's own &lt;code&gt;pad...&lt;/code&gt; variables are never read this way.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_9<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A field that holds a list is not a value: &lt;code&gt;$items + 1&lt;/code&gt; is an error. Walk the<br>list with a loop, or hand it to a function with the &lt;code&gt;array:&lt;/code&gt; prefix, below.&lt;/p&gt;<br><br>&lt;h3&gt;Options, properties and the placeholder&lt;/h3&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;&amp;#35;name&lt;/code&gt; - a parameter or option of the tag; in a<br>  &lt;code&gt;<b>{<font color="blue">define</font><font color="red"></font>}</b>&lt;/code&gt; or a custom tag, the ones the tag was called with&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;&amp;amp;name&lt;/code&gt; - a property of the tag, &lt;code&gt;name@tag&lt;/code&gt; a property of the<br>  tag named - &lt;code&gt;first@items&lt;/code&gt;, &lt;code&gt;current@items&lt;/code&gt;, &lt;code&gt;count@items&lt;/code&gt;<br>  (see &lt;a href="?pages/properties"&gt;properties&lt;/a&gt;)&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;@&lt;/code&gt; - the value piped into this part of the expression (see<br>  &lt;a href="#pipes"&gt;pipes&lt;/a&gt; below)&lt;/li&gt;<br>&lt;/ul&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_10<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Lists&lt;/h3&gt;<br><br>&lt;p&gt;&lt;code&gt;[ ]&lt;/code&gt; makes a list, its items separated by commas, with keys written<br>&lt;code&gt;key =&gt; value&lt;/code&gt; where wanted, mixed with plain items as PHP mixes them. A list is<br>what &lt;code&gt;<b>{<font color="blue">set</font><font color="red"></font>}</b>&lt;/code&gt; stores, what a loop walks and what a PHP function<br>takes:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_11<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Type prefixes&lt;/h3&gt;<br><br>&lt;p&gt;A prefix says what a name is, so nothing else of that name can be meant:<br>&lt;code&gt;field:&lt;/code&gt;, &lt;code&gt;array:&lt;/code&gt; (a list as a value), &lt;code&gt;data:&lt;/code&gt; (a<br>&lt;code&gt;<b>{<font color="blue">data</font><font color="red"></font>}</b>&lt;/code&gt; set), &lt;code&gt;constant:&lt;/code&gt;, &lt;code&gt;php:&lt;/code&gt; (a PHP<br>function), &lt;code&gt;pad:&lt;/code&gt; and &lt;code&gt;app:&lt;/code&gt; (a built-in or an application pipe<br>function), &lt;code&gt;function:&lt;/code&gt;, &lt;code&gt;tag:&lt;/code&gt; and the others the<br>&lt;a href="?pages/prefix"&gt;prefix&lt;/a&gt; page lists:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_12<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Operators&lt;/h2&gt;<br><br>&lt;p&gt;The operators bind in this order, strongest first. Those of one row bind equally and are<br>applied left to right - &lt;code&gt;10 - 2 + 3&lt;/code&gt; is 11 - except &lt;code&gt;**&lt;/code&gt;, which binds<br>right to left. Round brackets group as usual.&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;&lt;th&gt;operators&lt;/th&gt;&lt;th&gt;what they do&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;**&lt;/code&gt;&lt;/td&gt;&lt;td&gt;power, right to left: &lt;code&gt;2 ** 3 ** 2&lt;/code&gt; is &lt;code&gt;2 ** 9&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;!&lt;/code&gt;, a sign &lt;code&gt;-&lt;/code&gt; &lt;code&gt;+&lt;/code&gt; before a value&lt;/td&gt;&lt;td&gt;not, and the signs - weaker than &lt;code&gt;**&lt;/code&gt;: &lt;code&gt;-3 ** 2&lt;/code&gt; is -9&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;*&lt;/code&gt; &lt;code&gt;/&lt;/code&gt; &lt;code&gt;%&lt;/code&gt;&lt;/td&gt;&lt;td&gt;multiply, divide, remainder&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;+&lt;/code&gt; &lt;code&gt;-&lt;/code&gt;&lt;/td&gt;&lt;td&gt;add, subtract&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;.&lt;/code&gt;&lt;/td&gt;&lt;td&gt;join as text&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;lt&lt;/code&gt; &lt;code&gt;le&lt;/code&gt; &lt;code&gt;gt&lt;/code&gt; &lt;code&gt;ge&lt;/code&gt; - &lt;code&gt;&lt;&lt;/code&gt; &lt;code&gt;&lt;=&lt;/code&gt; &lt;code&gt;&gt;&lt;/code&gt; &lt;code&gt;&gt;=&lt;/code&gt;&lt;/td&gt;&lt;td&gt;order&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;eq&lt;/code&gt; &lt;code&gt;ne&lt;/code&gt; - &lt;code&gt;==&lt;/code&gt; &lt;code&gt;=&lt;/code&gt; &lt;code&gt;!=&lt;/code&gt; &lt;code&gt;&lt;&gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;equal, not equal&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;not&lt;/code&gt;&lt;/td&gt;&lt;td&gt;denies what follows, a comparison included&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;and&lt;/code&gt; - &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;both hold&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;xor&lt;/code&gt;&lt;/td&gt;&lt;td&gt;exactly one holds&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;or&lt;/code&gt; - &lt;code&gt;||&lt;/code&gt;&lt;/td&gt;&lt;td&gt;either holds&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;??&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the left side, or the right one when the left is empty or missing&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;? :&lt;/code&gt; and &lt;code&gt;?:&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the inline ternary, weakest of all&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;The tests &lt;code&gt;in&lt;/code&gt;, &lt;code&gt;like&lt;/code&gt;, &lt;code&gt;matches&lt;/code&gt;, &lt;code&gt;range&lt;/code&gt;,<br>&lt;code&gt;between&lt;/code&gt; and &lt;code&gt;contains&lt;/code&gt; read infix as well; they have<br>&lt;a href="#tests"&gt;a section of their own&lt;/a&gt;.&lt;/p&gt;<br><br>&lt;h3&gt;Arithmetic&lt;/h3&gt;<br><br>&lt;p&gt;As in PHP: &lt;code&gt;/&lt;/code&gt; answers a decimal when it does not divide evenly, &lt;code&gt;%&lt;/code&gt;<br>works on whole numbers. A text that is a number counts as one - &lt;code&gt;'5' + '5'&lt;/code&gt; is 10 -<br>a text that is not, &lt;code&gt;'a' + 1&lt;/code&gt;, is an error, and so is a division by zero.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_13<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Precedence&lt;/h3&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_14<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Joining text&lt;/h3&gt;<br><br>&lt;p&gt;The dot binds weaker than &lt;code&gt;+&lt;/code&gt; and &lt;code&gt;-&lt;/code&gt;: in &lt;code&gt;1 + 2 . 3&lt;/code&gt; the<br>sum comes first and is then joined with the 3, and in &lt;code&gt;1 . 5 + 5&lt;/code&gt; the 1 is joined<br>with 10. After a value a dot is the join, also right against it - &lt;code&gt;'a'.1&lt;/code&gt; - and<br>only where no value stands before it does a dot start a number.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_15<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Comparing&lt;/h3&gt;<br><br>&lt;p&gt;Each comparison has a word and a symbol: &lt;code&gt;eq&lt;/code&gt; or &lt;code&gt;==&lt;/code&gt; (a single<br>&lt;code&gt;=&lt;/code&gt; too), &lt;code&gt;ne&lt;/code&gt;, &lt;code&gt;!=&lt;/code&gt; or &lt;code&gt;&lt;&gt;&lt;/code&gt;, and<br>&lt;code&gt;lt le gt ge&lt;/code&gt; or &lt;code&gt;&lt; &lt;= &gt; &gt;=&lt;/code&gt;. The words read better in a<br>template full of HTML. Numbers, and texts that are numbers, compare as numbers -<br>&lt;code&gt;'2' lt '10'&lt;/code&gt; holds; other texts compare character by character, case counting.<br>PHP's &lt;code&gt;===&lt;/code&gt; and &lt;code&gt;!==&lt;/code&gt; are not there. A comparison answers<br>&lt;code&gt;1&lt;/code&gt; or nothing:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_16<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;Logic&lt;/h3&gt;<br><br>&lt;p&gt;&lt;code&gt;and&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt;, &lt;code&gt;xor&lt;/code&gt; and &lt;code&gt;not&lt;/code&gt;, with<br>&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;, &lt;code&gt;||&lt;/code&gt; and &lt;code&gt;!&lt;/code&gt; as their symbols. The word<br>&lt;code&gt;not&lt;/code&gt; binds weaker than the comparisons, so &lt;code&gt;not $a eq $b&lt;/code&gt; denies the<br>comparison; &lt;code&gt;!&lt;/code&gt; binds as tightly as a sign, so &lt;code&gt;!$a eq $b&lt;/code&gt; compares<br>&lt;code&gt;!$a&lt;/code&gt; with &lt;code&gt;$b&lt;/code&gt;. &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt; stop at a left<br>side that decides: &lt;code&gt;$n gt 0 and 10 / $n gt 1&lt;/code&gt; never divides by zero.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_17<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;A default: ??&lt;/h3&gt;<br><br>&lt;p&gt;&lt;code&gt;a ?? b&lt;/code&gt; answers &lt;code&gt;a&lt;/code&gt; unless it is empty - &lt;code&gt;''&lt;/code&gt;, NULL, FALSE,<br>an empty list - or a field that does not exist; then it answers &lt;code&gt;b&lt;/code&gt;. A 0 is a value<br>and stays. A field in front of &lt;code&gt;??&lt;/code&gt; may be missing, also under the strict check:<br>giving it a default is what the operator is for. The right side is worked out only when it<br>is wanted. In a pipe it takes the piped value, and the &lt;code&gt;default&lt;/code&gt; function does<br>the same:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_18<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;The inline ternary&lt;/h3&gt;<br><br>&lt;p&gt;&lt;code&gt;cond ? then : else&lt;/code&gt; binds weakest of all: everything before the<br>&lt;code&gt;?&lt;/code&gt; is the condition, and each branch runs to its &lt;code&gt;:&lt;/code&gt; or to the end -<br>&lt;code&gt;0 ? 'yes' : 'no' . '!'&lt;/code&gt; joins the &lt;code&gt;'!'&lt;/code&gt; to the no. Only the branch<br>chosen is worked out. Ternaries in a row read from the right, &lt;code&gt;a ? b : c ? d : e&lt;/code&gt;<br>being &lt;code&gt;a ? b : (c ? d : e)&lt;/code&gt;. The short form &lt;code&gt;a ?: b&lt;/code&gt; answers<br>&lt;code&gt;a&lt;/code&gt; itself when it holds, and with nothing before the &lt;code&gt;?&lt;/code&gt; the piped<br>value is the condition:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_19<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_20<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Truth&lt;/h2&gt;<br><br>&lt;p&gt;Where a condition is wanted - &lt;code&gt;<b>{<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt;, &lt;code&gt;where=&lt;/code&gt;, the<br>ternary, &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt; - a value is tested as PHP tests it:<br>&lt;code&gt;''&lt;/code&gt;, &lt;code&gt;'0'&lt;/code&gt;, 0, NULL, FALSE and an empty list are false, every other<br>value is true - the texts &lt;code&gt;'0.0'&lt;/code&gt;, &lt;code&gt;'false'&lt;/code&gt; and a space among<br>them.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_21<font color="black">'</font></font>}</b><br><br>&lt;p&gt;The comparisons, the tests and the logic operators answer &lt;code&gt;1&lt;/code&gt; for true and<br>&lt;code&gt;''&lt;/code&gt; for false: written by <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> a truth is a 1 or nothing at all, and truths<br>add up as numbers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_22<font color="black">'</font></font>}</b><br><br>&lt;h2 id="tests"&gt;Tests: in, like, matches, range, between, contains&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;&lt;th&gt;test&lt;/th&gt;&lt;th&gt;holds when&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x in (a, b, ...)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value equals one of the list&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x like 'A%'&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the value matches the SQL pattern: &lt;code&gt;%&lt;/code&gt; any run of characters, &lt;code&gt;_&lt;/code&gt; one character, &lt;code&gt;\\%&lt;/code&gt; and &lt;code&gt;\\_&lt;/code&gt; themselves; case is ignored&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x matches '/re/'&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the regular expression matches&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x range (a, b)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a &lt;= value &lt;= b, the ends included&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x between (a, b)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a &lt; value &lt; b, the ends left out&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x contains y&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the text holds y - or, for a list, an item of it equals y&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;A &lt;code&gt;not&lt;/code&gt; between the value and the test denies the test, as SQL writes it:<br>&lt;code&gt;$s not in (...)&lt;/code&gt;, &lt;code&gt;not like&lt;/code&gt;, &lt;code&gt;not matches&lt;/code&gt;,<br>&lt;code&gt;not range&lt;/code&gt;. The value is everything left of the test - &lt;code&gt;5 + 1 in (6,<br>7)&lt;/code&gt; tests 6.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_23<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;like&lt;/code&gt; ignores case; &lt;code&gt;_&lt;/code&gt; stands for exactly one character:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_24<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A backslash in a PAD string is an escape, so the backslash a regular expression needs is<br>written twice: &lt;code&gt;'/a\\.b/'&lt;/code&gt;. A &lt;code&gt;<b>{<font color="blue">n</font><font color="red"></font>}</b>&lt;/code&gt; quantifier would open a<br>tag - repeat the class, as below, or let the page's PHP hand the pattern over.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_25<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_26<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;contains&lt;/code&gt; looks into a text, or into a list for an item equal to the one asked<br>for:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_27<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Each test is a pipe function too, so it can stand after a pipe or be called, its value the<br>first argument:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_28<font color="black">'</font></font>}</b><br><br>&lt;p&gt;Together with &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt; they make the conditions of the<br>&lt;code&gt;where&lt;/code&gt; option, which the &lt;a href="?pages/data_handling"&gt;data handling&lt;/a&gt; page<br>covers with the other options:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_29<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Functions&lt;/h2&gt;<br><br>&lt;p&gt;The built-in pipe functions - &lt;code&gt;upper&lt;/code&gt;, &lt;code&gt;left&lt;/code&gt;, &lt;code&gt;replace&lt;/code&gt;,<br>&lt;code&gt;date&lt;/code&gt; and the rest of the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>functions<font color="black">'</font></font>}</b> list - are used two ways. After a pipe<br>they take the value on its left: &lt;code&gt;$s | left(2)&lt;/code&gt;. Written as a call with nothing<br>piped in they take it as their first argument: &lt;code&gt;left($s, 2)&lt;/code&gt;, as PHP's own<br>functions do - so they nest, and stand wherever a value can. The number of parameters is<br>checked.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_30<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_31<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;php:name&lt;/code&gt; calls a PHP function, and so does a plain name followed by<br>&lt;code&gt;(&lt;/code&gt; that is no PAD function - &lt;code&gt;ucfirst('word')&lt;/code&gt;; the setting<br>&lt;code&gt;$padPhpFunctions&lt;/code&gt; decides which PHP functions a template may call. A piped value<br>goes in as the only argument - &lt;code&gt;'abc' | php:strrev&lt;/code&gt; - and into a call with<br>arguments where &lt;code&gt;@&lt;/code&gt; stands: &lt;code&gt;$n | php:number_format(@, 2)&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_32<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A file in the application's &lt;code&gt;_functions/&lt;/code&gt; directory is a pipe function as well,<br>the piped value its &lt;code&gt;$value&lt;/code&gt; - this manual has &lt;code&gt;_functions/stars.php&lt;/code&gt;.<br>&lt;code&gt;function:&lt;/code&gt; asks for whatever function kind the name is, &lt;code&gt;app:&lt;/code&gt; for the<br>application's own (see &lt;a href="?pages/extending"&gt;extending&lt;/a&gt;):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_33<font color="black">'</font></font>}</b><br><br>&lt;h2 id="pipes"&gt;Pipes&lt;/h2&gt;<br><br>&lt;p&gt;A &lt;code&gt;|&lt;/code&gt; hands the value on its left to what follows; the parts run left to right,<br>each over what the one before answered:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_34<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A part after a pipe is an expression of its own, and the piped value fills the place of<br>the operand it lacks. An operator that opens the part takes it as its left side -<br>&lt;code&gt;| + 1&lt;/code&gt;, &lt;code&gt;| . ' EUR'&lt;/code&gt;, &lt;code&gt;| ?? 'none'&lt;/code&gt;. A space between such an<br>operator and its operand is required: &lt;code&gt;| + 1&lt;/code&gt;, never &lt;code&gt;| +1&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_35<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_36<font color="black">'</font></font>}</b><br><br>&lt;p&gt;&lt;code&gt;@&lt;/code&gt; stands for the piped value wherever the part needs it, as often as it<br>needs it:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_37<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A part that is a printf format - it starts with &lt;code&gt;%&lt;/code&gt; and is one conversion -<br>formats the value as PHP's &lt;code&gt;sprintf&lt;/code&gt; does. A &lt;code&gt;%&lt;/code&gt; that is no format is<br>the remainder: &lt;code&gt;| % 3&lt;/code&gt;.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_38<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A pipe inside round or square brackets belongs to that group: &lt;code&gt;($n | + 1) * 2&lt;/code&gt;<br>adds before it multiplies, &lt;code&gt;upper($s | trim)&lt;/code&gt; trims the argument, and in a list or<br>an argument list the pipe works on its own item. Outside brackets a pipe always ends the<br>whole expression before it.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_39<font color="black">'</font></font>}</b><br><br>&lt;p&gt;A field tag with a pipe, &lt;code&gt;<b>{<font color="green">$x</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/code&gt;, writes its answer through<br>the sanitize chain, like every field tag. <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> writes it raw - the right one for HTML<br>the page made itself, the wrong one for what a visitor typed:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_40<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Dates&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;date(format, modifier)&lt;/code&gt; reads a Unix timestamp, a date in text or a date object<br>the page's PHP made; the modifier is what PHP's &lt;code&gt;strtotime&lt;/code&gt; reads, such as<br>&lt;code&gt;'+1 week'&lt;/code&gt;. Written as a call it keeps PHP's order, the format first:<br>&lt;code&gt;date('Y', $created)&lt;/code&gt;. Dates written &lt;code&gt;YYYY-MM-DD&lt;/code&gt; compare correctly as<br>plain text. &lt;code&gt;now&lt;/code&gt; is the current time, and the<br>&lt;a href="?pages/locale"&gt;locale&lt;/a&gt; page has &lt;code&gt;localDate&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_41<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Lists meeting operators&lt;/h2&gt;<br><br>&lt;p&gt;An arithmetic operator or a comparison that meets a list works with the sum of its<br>numbers. A list holding more than numbers, or met by the dot, is an error. A field that holds<br>a list is handed over with the &lt;code&gt;array:&lt;/code&gt; prefix:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_42<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_43<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Numbers at the edges&lt;/h2&gt;<br><br>&lt;p&gt;What is not a number - a NAN such as &lt;code&gt;php:sqrt(-1)&lt;/code&gt; - is empty. &lt;code&gt;%&lt;/code&gt;<br>works on whole numbers, as PHP's does; &lt;code&gt;php:fmod&lt;/code&gt; keeps the fraction. Decimals are<br>written with PHP's precision, so &lt;code&gt;0.1 + 0.2&lt;/code&gt; comes out as 0.3:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_44<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Values are text&lt;/h2&gt;<br><br>&lt;p&gt;An expression's answer is a value, and a value never becomes template code: a field that<br>holds braces - from a database, a form, a file - is written as the text it is. To run it as<br>PAD on purpose, say so where it is used, with the &lt;code&gt;code&lt;/code&gt; pipe (or<br>&lt;code&gt;sandbox&lt;/code&gt;, which runs it in an isolated pass):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/expressions_45<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;When an expression is wrong&lt;/h2&gt;<br><br>&lt;p&gt;Under the strict syntax check - &lt;code&gt;$padCheckSyntax&lt;/code&gt;, on by default - a mistake in<br>an expression is an error that names the fault and its place, and the page answers with the<br>error report instead of guessing. The report shows the template's file, line and column with<br>the lines around it (see &lt;a href="?pages/template_errors"&gt;errors in the template&lt;/a&gt;). What<br>some mistakes are told:&lt;/p&gt;<br><br>&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;&lt;th&gt;written&lt;/th&gt;&lt;th&gt;the error says&lt;/th&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">(1 + 2</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the ( opened at position 1 is never closed&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the string opened with ' at position 1 is never closed&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>name <font color="black">|</font> uppr</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;there is no pipe function named 'uppr'&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">nofunc(1)</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;there is no function named 'nofunc'&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>typo eq 1</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;there is no field named '$typo'&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>items + 1</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the field '$items' is a list, not a value&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>n eq</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the operator 'eq' has nothing on its right&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>n + * 3</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the operators '+' and '*' stand side by side - a value is missing between them&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>n === 5</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;'===' is no operator - eq (==) compares two values&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>n <font color="black">|</font> +1</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a pipe operator needs a space before its operand - write '| + 1', not '| +1'&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">5 &amp;amp; 3</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;'&amp;amp;' is no operator or value&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>n not 5</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">7 / 0</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;a division by zero in /&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> * 2</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;'a' is not a number for *&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>n ? <font color="black">'</font>a<font color="black">'</font></font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the ? of an inline ternary has no : - write cond ? then : else&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">[ <font color="black">'</font>a<font color="black">'</font> =&gt; ]</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the key 'a' of a list has no value after its =&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">replace(<font color="black">'</font>abc<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>x<font color="black">'</font><font color="black">,</font> -1)</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a\qb<font color="black">'</font></font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Unsupported \ char&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;The lenient walk&lt;/h2&gt;<br><br>&lt;p&gt;With &lt;code&gt;$padCheckSyntax = FALSE&lt;/code&gt; in &lt;code&gt;_config/config.php&lt;/code&gt; nothing is<br>reported and the evaluator answers what it can: a text that is no number counts as 0<br>(&lt;code&gt;'a' + 1&lt;/code&gt; is 1), a missing field is empty (&lt;code&gt;$nope + 1&lt;/code&gt; is 1), an<br>unknown escape loses its backslash, and an expression that cannot be worked out at all - a<br>bracket never closed, a division by zero, a PHP function refusing its arguments - answers<br>nothing. That suits old templates; a new one is better off with the check, which finds the<br>typo the lenient walk hides.&lt;/p&gt;<br><br>&lt;h2&gt;See also&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;a href="?pages/conditions"&gt;Conditions and branching&lt;/a&gt; - &lt;code&gt;<b>{<font color="blue">if</font><font color="red"></font>}</b>&lt;/code&gt;, &lt;code&gt;<b>{<font color="blue">case</font><font color="red"></font>}</b>&lt;/code&gt; and the ternary in templates&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="?pages/pipes"&gt;Pipes&lt;/a&gt; - pipes on tags, opening and closing&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="?pages/properties"&gt;Properties&lt;/a&gt; - &lt;code&gt;first@items&lt;/code&gt; and the others&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="?pages/prefix"&gt;Prefix&lt;/a&gt; - the type prefixes&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="?pages/field_sigils"&gt;Field sigils&lt;/a&gt; - &lt;code&gt;<b>{<font color="green"><font color="red">!</font>name</font>}</b>&lt;/code&gt;, &lt;code&gt;{^name}&lt;/code&gt; and the rest&lt;/li&gt;<br>  &lt;li&gt;&lt;a href="?pages/level_and_occurrence_variables"&gt;Level and occurrence variables&lt;/a&gt; - &lt;code&gt;$&lt;/code&gt; and &lt;code&gt;%&lt;/code&gt;&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

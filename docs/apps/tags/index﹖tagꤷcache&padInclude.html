@@ -19,6 +19,13 @@ options run on a stored rendering as on a fresh one. What the section leaves for
 page is kept with it and made again on a hit: its <code>{push}</code>es, and the booking of a
 paged tag for a <code>{pager}</code> further down.</p>
 
+<p>Otherwise a section keeps its text, not its effects: what it sets, stores or defines - a
+<code>{set}</code>, <code>{increment}</code>, a <code>{data}</code>, <code>{content}</code> or
+<code>{bool}</code> store, a <code>{define}</code> or <code>{macro}</code>, the totals of a
+<code>callback=</code> - happens on the miss only, and on a hit the page goes on with the
+variables and stores this request has. Put such a tag before the section, or in a
+<a href="index%EF%B9%96tag%EA%A4%B7nocache.html"><code>{nocache}</code></a> part, which renders every time.</p>
+
 <p>Some renderings are never stored: one that holds the visitor's CSRF token (a
 <code>{form}</code>, <code>{csrf}</code>, a live region) or the request's
 <code>{nonce}</code>, and a request for one response fragment or the post of a live region.

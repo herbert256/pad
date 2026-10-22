@@ -5,9 +5,10 @@ PHP's <code>continue</code>. It is usually written inside an <code>{if}</code>, 
 rows that do not qualify. The rows are untouched; that is the difference with
 <a href="index%EF%B9%96tag%EA%A4%B7break.html">{break}</a>, which empties them.</p>
 
-<p>Without a parameter it works on the nearest enclosing level that is not an
-<code>{if}</code> or a <code>{case}</code>: the data tag, <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a>,
-<a href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> or other loop the tag stands in. With a name -
+<p>Without a parameter it works on the nearest enclosing loop: the data tag,
+<a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a>, <a href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> or other loop the tag
+stands in, past an <code>{if}</code>, a <code>{case}</code> and any other level that renders
+once for the row - an <code>{ifchanged}</code>, a <code>{guest}</code>, a snippet. With a name -
 <code>{continue 'orders'}</code>, the tag's name or its <code>name=</code> - it reaches an outer
 loop: the inner loop is abandoned with the rest of the outer pass. A level number or a
 negative offset (<code>-2</code>: two levels up) picks the level by position.</p>

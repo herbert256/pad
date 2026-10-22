@@ -1,1939 +1,2200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Regression suite - 233 pages, 233 tests, 0 failed
+      Regression suite - 261 pages, 261 tests, 0 failed · PAD regression
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../../pad/index.html">home</a> | <a href="../../manual/index.html">manual</a> | <a href="../../reference/index.html">reference</a> | <a href="../../examples/index.html">examples</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../../sequence/index.html">sequence</a> | <a href="../../develop/index.html">develop</a> | <a href="../../apps/index.html">apps</a> | <a href="../../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td>
-                <hr style="margin:2; border: 1px solid black; width:100%">
-                <a href="index%EF%B9%96index.html">Index</a> &nbsp; <a href="index%EF%B9%96pages%EA%A4%B7index.html">Pages</a> &nbsp; <a href="index%EF%B9%96common%EA%A4%B7index.html">Common</a> &nbsp; <a href="index%EF%B9%96errors%EA%A4%B7index.html">Errors</a> &nbsp; <a href="index%EF%B9%96framework%EA%A4%B7index.html">Framework</a> &nbsp; <b>Regression</b> &nbsp; <a href="index%EF%B9%96sequence%EA%A4%B7index.html">Sequence</a> &nbsp; <a href="index%EF%B9%96manual%EA%A4%B7index.html">Manual</a> &nbsp; <a href="index%EF%B9%96other%EA%A4%B7index.html">Other</a> &nbsp; | &nbsp; <a href="?regression/index&amp;test">Test</a> &nbsp; | &nbsp; <a href="?build">Build</a>
-                <hr style="margin:2; border: 1px solid black; width:100%">
-              </td>
-            </tr>
-          </table>
-          <h1>
-            Regression suite - 233 pages, 233 tests, 0 failed
-          </h1>
-          <p>
-            <b>233 pages, 233 tests, 0 failed</b> - all ok
-          </p>
-          <p>
-            Every test here is a page of one of the self-testing applications - the cache, error, output, info, config and try families under <code>regression/</code> - fetched over HTTP one request at a time, and compared with the prediction of the same name in <code>apps/regression/regression/</code>. The pages stay in their own applications; the store holds nothing but what each must answer. An index is fetched full, everything else bare with <code>&amp;padInclude</code>, the same rule the harvest applies - and a prediction is an exact body, an <code>HTTP</code> code with an optional pattern over the dump, or a <code>/pattern/</code> for a page that draws.
-          </p>
-          <table border="1" cellpadding="4" cellspacing="0">
-            <tr>
-              <th>
-                page
-              </th>
-              <th>
-                status
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_apcu/?delete&amp;padInclude">cache_apcu/delete</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_apcu/?index">cache_apcu/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_apcu/?nodata&amp;padInclude">cache_apcu/nodata</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_apcu/?probe&amp;padInclude">cache_apcu/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_db/?delete&amp;padInclude">cache_db/delete</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_db/?index">cache_db/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_db/?nodata&amp;padInclude">cache_db/nodata</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_db/?probe&amp;padInclude">cache_db/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?debug&amp;padInclude">cache_file/debug</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?debugged&amp;padInclude">cache_file/debugged</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?etaglist&amp;padInclude">cache_file/etaglist</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?flush&amp;padInclude">cache_file/flush</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?flushed&amp;padInclude">cache_file/flushed</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?fragment&amp;padInclude">cache_file/fragment</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?fragmented&amp;padInclude">cache_file/fragmented</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?guarded&amp;padInclude">cache_file/guarded</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?identity&amp;padInclude">cache_file/identity</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?index">cache_file/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?json&amp;padInclude">cache_file/json</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?locked/probe&amp;padInclude">cache_file/locked/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?meta&amp;padInclude">cache_file/meta</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?metaoff&amp;padInclude">cache_file/metaoff</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?nocache&amp;padInclude">cache_file/nocache</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?nocacheprobe&amp;padInclude">cache_file/nocacheprobe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?nonce&amp;padInclude">cache_file/nonce</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?partial&amp;padInclude">cache_file/partial</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?partials&amp;padInclude">cache_file/partials</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?pdfcache&amp;padInclude">cache_file/pdfcache</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?pdfcached&amp;padInclude">cache_file/pdfcached</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?probe&amp;padInclude">cache_file/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?script&amp;padInclude">cache_file/script</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?stable&amp;padInclude">cache_file/stable</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?typed&amp;padInclude">cache_file/typed</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?validators&amp;padInclude">cache_file/validators</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?widgetcached&amp;padInclude">cache_file/widgetcached</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_file/?widgetids&amp;padInclude">cache_file/widgetids</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_memcached/?delete&amp;padInclude">cache_memcached/delete</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_memcached/?index">cache_memcached/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_memcached/?nodata&amp;padInclude">cache_memcached/nodata</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_memcached/?probe&amp;padInclude">cache_memcached/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_redis/?delete&amp;padInclude">cache_redis/delete</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_redis/?index">cache_redis/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_redis/?nodata&amp;padInclude">cache_redis/nodata</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cache_redis/?probe&amp;padInclude">cache_redis/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?[lang]/about&amp;padInclude">clean_urls/[lang]/about</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?[slug]&amp;padInclude">clean_urls/[slug]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?encoded&amp;padInclude">clean_urls/encoded</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?helpers&amp;padInclude">clean_urls/helpers</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?helpers_forget&amp;padInclude">clean_urls/helpers_forget</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?helpers_put&amp;padInclude">clean_urls/helpers_put</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?index">clean_urls/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?langroute&amp;padInclude">clean_urls/langroute</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?members/[member]&amp;padInclude">clean_urls/members/[member]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?pagerroute&amp;padInclude">clean_urls/pagerroute</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?products/[id]&amp;padInclude">clean_urls/products/[id]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?rootroute&amp;padInclude">clean_urls/rootroute</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?session_foreign&amp;padInclude">clean_urls/session_foreign</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?session_foreign_get&amp;padInclude">clean_urls/session_foreign_get</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/clean_urls/?session_foreign_put&amp;padInclude">clean_urls/session_foreign_put</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cli/?index">cli/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cli/?lintme/[id]&amp;padInclude">cli/lintme/[id]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cli/?lintme/broken&amp;padInclude">cli/lintme/broken</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cli/?lintme/good&amp;padInclude">cli/lintme/good</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cli/?sample&amp;padInclude">cli/sample</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cli/?verdict&amp;padInclude">cli/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/config_typo/?index">config_typo/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/config_typo/?level&amp;padInclude">config_typo/level</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cors/?data&amp;padInclude">cors/data</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/cors/?index">cors/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/env/?burst&amp;padInclude">env/burst</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/env/?cache&amp;padInclude">env/cache</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/env/?hit&amp;padInclude">env/hit</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/env/?index">env/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_boot/?boom&amp;padInclude">error_boot/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_boot/?index">error_boot/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_boot/?verdict&amp;padInclude">error_boot/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_dump/?boom&amp;padInclude">error_dump/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_dump/?index">error_dump/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_dump/?unguarded&amp;padInclude">error_dump/unguarded</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_dump/?verdict&amp;padInclude">error_dump/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_exit/?boom&amp;padInclude">error_exit/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_exit/?index">error_exit/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_exit/?verdict&amp;padInclude">error_exit/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?boom&amp;padInclude">error_ignore/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?curl&amp;padInclude">error_ignore/curl</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?index">error_ignore/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?restart&amp;padInclude">error_ignore/restart</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?restarted&amp;padInclude">error_ignore/restarted</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?strict&amp;padInclude">error_ignore/strict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?unguarded&amp;padInclude">error_ignore/unguarded</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_ignore/?verdict&amp;padInclude">error_ignore/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?boom&amp;padInclude">error_log/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?curl&amp;padInclude">error_log/curl</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?index">error_log/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?restart&amp;padInclude">error_log/restart</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?restarted&amp;padInclude">error_log/restarted</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?strict&amp;padInclude">error_log/strict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?unguarded&amp;padInclude">error_log/unguarded</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?upload_dir&amp;padInclude">error_log/upload_dir</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?upload_dir_take&amp;padInclude">error_log/upload_dir_take</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_log/?verdict&amp;padInclude">error_log/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_pad/?boom&amp;padInclude">error_pad/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_pad/?index">error_pad/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_pad/?verdict&amp;padInclude">error_pad/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?answered_then_failed&amp;padInclude">error_php/answered_then_failed</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?answered_then_threw&amp;padInclude">error_php/answered_then_threw</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?boom&amp;padInclude">error_php/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?index">error_php/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?late&amp;padInclude">error_php/late</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?late_own&amp;padInclude">error_php/late_own</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_php/?verdict&amp;padInclude">error_php/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_stop/?boom&amp;padInclude">error_stop/boom</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_stop/?index">error_stop/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/error_stop/?verdict&amp;padInclude">error_stop/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?about&amp;padInclude">errorpages/about</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?admin/panel&amp;padInclude">errorpages/admin/panel</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?broken&amp;padInclude">errorpages/broken</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?gone&amp;padInclude">errorpages/gone</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?index">errorpages/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?slow&amp;padInclude">errorpages/slow</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/errorpages/?teapot&amp;padInclude">errorpages/teapot</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?curl&amp;padInclude">events/curl</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?error&amp;padInclude">events/error</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?index">events/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?output&amp;padInclude">events/output</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?outputdata&amp;padInclude">events/outputdata</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?outputjson&amp;padInclude">events/outputjson</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?sql&amp;padInclude">events/sql</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/events/?sub/output&amp;padInclude">events/sub/output</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/health/?about&amp;padInclude">health/about</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/health/?index">health/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/info/?index">info/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/info/?probe&amp;padInclude">info/probe</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/main/?build&amp;padInclude">main/build</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96common%EA%A4%B7index&amp;padInclude.html">main/common/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96errors%EA%A4%B7index&amp;padInclude.html">main/errors/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96framework%EA%A4%B7index&amp;padInclude.html">main/framework/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96index.html">main/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96manual%EA%A4%B7index&amp;padInclude.html">main/manual/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96other%EA%A4%B7index&amp;padInclude.html">main/other/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96pages%EA%A4%B7index&amp;padInclude.html">main/pages/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96regression%EA%A4%B7index&amp;padInclude.html">main/regression/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="index%EF%B9%96sequence%EA%A4%B7index&amp;padInclude.html">main/sequence/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/maintenance/?about&amp;padInclude">maintenance/about</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/maintenance/?index">maintenance/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?error&amp;padInclude">migrate/error</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?factory&amp;padInclude">migrate/factory</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?index">migrate/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?migrate&amp;padInclude">migrate/migrate</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?pretend&amp;padInclude">migrate/pretend</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?rollback&amp;padInclude">migrate/rollback</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?seed&amp;padInclude">migrate/seed</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/migrate/?split&amp;padInclude">migrate/split</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_console/?broken&amp;padInclude">output_console/broken</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_console/?error&amp;padInclude">output_console/error</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_console/?index">output_console/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_console/?payload&amp;padInclude">output_console/payload</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_download/?index">output_download/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_download/?late&amp;padInclude">output_download/late</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_download/?lateread&amp;padInclude">output_download/lateread</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_download/?payload&amp;padInclude">output_download/payload</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_file/?done&amp;padInclude">output_file/done</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_file/?index">output_file/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_file/?payload&amp;padInclude">output_file/payload</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_json/?index">output_json/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_json/?payload&amp;padInclude">output_json/payload</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_web/?index">output_web/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_web/?json&amp;padInclude">output_web/json</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/output_web/?payload&amp;padInclude">output_web/payload</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/queue/?index">queue/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/queue/?schedule&amp;padInclude">queue/schedule</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/queue/?work&amp;padInclude">queue/work</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/reload/?index">reload/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/reload/?item/[id]&amp;padInclude">reload/item/[id]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/reload/?routed&amp;padInclude">reload/routed</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/reload/?sample&amp;padInclude">reload/sample</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/reload/?verdict&amp;padInclude">reload/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?bomlist&amp;padInclude">remote/bomlist</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?curl_data_disposition&amp;padInclude">remote/curl_data_disposition</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?curl_data_self&amp;padInclude">remote/curl_data_self</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?curl_data_ttl&amp;padInclude">remote/curl_data_ttl</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?curl_ttl&amp;padInclude">remote/curl_ttl</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?curl_ttl_stores_no_debug&amp;padInclude">remote/curl_ttl_stores_no_debug</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?debugged&amp;padInclude">remote/debugged</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?disposition&amp;padInclude">remote/disposition</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?index">remote/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?prefetch&amp;padInclude">remote/prefetch</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?prefetch_bomlist&amp;padInclude">remote/prefetch_bomlist</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?prefetch_ttl&amp;padInclude">remote/prefetch_ttl</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?slow&amp;padInclude">remote/slow</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/remote/?stamp&amp;padInclude">remote/stamp</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/site/?about&amp;padInclude">site/about</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/site/?docs/intro&amp;padInclude">site/docs/intro</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/site/?index">site/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?[slug]&amp;padInclude">sitemap/[slug]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?about&amp;padInclude">sitemap/about</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?admin/panel&amp;padInclude">sitemap/admin/panel</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?commented&amp;padInclude">sitemap/commented</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?docs/index&amp;padInclude">sitemap/docs/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?docs/intro&amp;padInclude">sitemap/docs/intro</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?dotted&amp;padInclude">sitemap/dotted</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?index">sitemap/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?products/[id]&amp;padInclude">sitemap/products/[id]</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sitemap/?thanks&amp;padInclude">sitemap/thanks</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?error&amp;padInclude">sqlite/error</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?fresh&amp;padInclude">sqlite/fresh</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?index">sqlite/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?placeholders&amp;padInclude">sqlite/placeholders</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?select&amp;padInclude">sqlite/select</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?tags&amp;padInclude">sqlite/tags</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?verbs&amp;padInclude">sqlite/verbs</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/sqlite/?writes&amp;padInclude">sqlite/writes</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/toolbar/?index">toolbar/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/toolbar/?sample&amp;padInclude">toolbar/sample</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/toolbar/?verdict&amp;padInclude">toolbar/verdict</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?call&amp;padInclude">try_log/call</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?eval&amp;padInclude">try_log/eval</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?go&amp;padInclude">try_log/go</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?goNotOk&amp;padInclude">try_log/goNotOk</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?index">try_log/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?once/index&amp;padInclude">try_log/once/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?tag&amp;padInclude">try_log/tag</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?tagNotOk&amp;padInclude">try_log/tagNotOk</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_log/?var&amp;padInclude">try_log/var</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?call&amp;padInclude">try_pad/call</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?eval&amp;padInclude">try_pad/eval</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?go&amp;padInclude">try_pad/go</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?goNotOk&amp;padInclude">try_pad/goNotOk</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?index">try_pad/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?once/index&amp;padInclude">try_pad/once/index</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?tag&amp;padInclude">try_pad/tag</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?tagNotOk&amp;padInclude">try_pad/tagNotOk</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="http://localhost/pad/regression/try_pad/?var&amp;padInclude">try_pad/var</a>
-              </td>
-              <td>
-                ok
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../../pad/index.html">home</a> | <a href="../../manual/index.html">manual</a> | <a href="../../reference/index.html">reference</a> | <a href="../../examples/index.html">examples</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../../sequence/index.html">sequence</a> | <a href="../../develop/index.html">develop</a> | <a href="../../apps/index.html">apps</a> | <a href="../../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-regression-main">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>regression</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="regression">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Suites
+        </div><a href="index%EF%B9%96pages%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Pages</a> <a href="index%EF%B9%96common%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Common</a> <a href="index%EF%B9%96errors%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Errors</a> <a href="index%EF%B9%96framework%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Framework</a> <a href="index%EF%B9%96regression%EA%A4%B7index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Regression</a> <a href="index%EF%B9%96sequence%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Sequence</a> <a href="index%EF%B9%96manual%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Manual</a> <a href="index%EF%B9%96other%EA%A4%B7index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> Other</a>
+        <div class="frame-head">
+          Run
+        </div><a href="?regression/index&amp;test"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Test</a> <a href="?build"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg> Build</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Regression suite - 261 pages, 261 tests, 0 failed
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p>
+          <b>261 pages, 261 tests, 0 failed</b> - all ok
+        </p>
+        <p>
+          Every test here is a page of one of the self-testing applications - the cache, error, output, info, config and try families under <code>regression/</code> - fetched over HTTP one request at a time, and compared with the prediction of the same name in <code>apps/regression/regression/</code>. The pages stay in their own applications; the store holds nothing but what each must answer. An index is fetched full, everything else bare with <code>&amp;padInclude</code>, the same rule the harvest applies - and a prediction is an exact body, an <code>HTTP</code> code with an optional pattern over the dump, or a <code>/pattern/</code> for a page that draws.
+        </p>
+        <table border="1" cellpadding="4" cellspacing="0">
+          <tr>
+            <th>
+              page
+            </th>
+            <th>
+              status
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_apcu/?delete&amp;padInclude">cache_apcu/delete</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_apcu/?index">cache_apcu/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_apcu/?nodata&amp;padInclude">cache_apcu/nodata</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_apcu/?probe&amp;padInclude">cache_apcu/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_db/?delete&amp;padInclude">cache_db/delete</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_db/?index">cache_db/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_db/?nodata&amp;padInclude">cache_db/nodata</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_db/?probe&amp;padInclude">cache_db/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?a_304_carries_the_etag_its_200_carries&amp;padInclude">cache_file/a_304_carries_the_etag_its_200_carries</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?a_public_answer_among_several_locales_varies_on_the_cookie&amp;padInclude">cache_file/a_public_answer_among_several_locales_varies_on_the_cookie</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?a_public_answer_of_one_locale_varies_on_neither_the_language_nor_the_cookie&amp;padInclude">cache_file/a_public_answer_of_one_locale_varies_on_neither_the_language_nor_the_cookie</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?a_push_in_a_nocache_part_is_made_on_every_fetch&amp;padInclude">cache_file/a_push_in_a_nocache_part_is_made_on_every_fetch</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?a_visitor_with_an_identity_is_never_answered_public&amp;padInclude">cache_file/a_visitor_with_an_identity_is_never_answered_public</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?an_exposing_page_says_vary_accept_on_every_fetch&amp;padInclude">cache_file/an_exposing_page_says_vary_accept_on_every_fetch</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?debug&amp;padInclude">cache_file/debug</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?debugged&amp;padInclude">cache_file/debugged</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?etaglist&amp;padInclude">cache_file/etaglist</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?exposed&amp;padInclude">cache_file/exposed</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?flush&amp;padInclude">cache_file/flush</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?flushed&amp;padInclude">cache_file/flushed</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?fragment&amp;padInclude">cache_file/fragment</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?fragmented&amp;padInclude">cache_file/fragmented</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?guarded&amp;padInclude">cache_file/guarded</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?identity&amp;padInclude">cache_file/identity</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?index">cache_file/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?json&amp;padInclude">cache_file/json</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?locked/probe&amp;padInclude">cache_file/locked/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?meta&amp;padInclude">cache_file/meta</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?metaoff&amp;padInclude">cache_file/metaoff</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?nocache&amp;padInclude">cache_file/nocache</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?nocacheprobe&amp;padInclude">cache_file/nocacheprobe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?nocachepush&amp;padInclude">cache_file/nocachepush</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?nonce&amp;padInclude">cache_file/nonce</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?partial&amp;padInclude">cache_file/partial</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?partials&amp;padInclude">cache_file/partials</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?pdfcache&amp;padInclude">cache_file/pdfcache</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?pdfcached&amp;padInclude">cache_file/pdfcached</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?probe&amp;padInclude">cache_file/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?proxied&amp;padInclude">cache_file/proxied</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?proxiedone&amp;padInclude">cache_file/proxiedone</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?script&amp;padInclude">cache_file/script</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?stable&amp;padInclude">cache_file/stable</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?typed&amp;padInclude">cache_file/typed</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?validators&amp;padInclude">cache_file/validators</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?widgetcached&amp;padInclude">cache_file/widgetcached</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_file/?widgetids&amp;padInclude">cache_file/widgetids</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_memcached/?delete&amp;padInclude">cache_memcached/delete</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_memcached/?index">cache_memcached/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_memcached/?nodata&amp;padInclude">cache_memcached/nodata</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_memcached/?probe&amp;padInclude">cache_memcached/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_redis/?delete&amp;padInclude">cache_redis/delete</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_redis/?index">cache_redis/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_redis/?nodata&amp;padInclude">cache_redis/nodata</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cache_redis/?probe&amp;padInclude">cache_redis/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?[lang]/about&amp;padInclude">clean_urls/[lang]/about</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?[slug]&amp;padInclude">clean_urls/[slug]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?encoded&amp;padInclude">clean_urls/encoded</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?helpers&amp;padInclude">clean_urls/helpers</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?helpers_forget&amp;padInclude">clean_urls/helpers_forget</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?helpers_put&amp;padInclude">clean_urls/helpers_put</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?index">clean_urls/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?langroute&amp;padInclude">clean_urls/langroute</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?members/[member]&amp;padInclude">clean_urls/members/[member]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?pagerroute&amp;padInclude">clean_urls/pagerroute</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?products/[id]&amp;padInclude">clean_urls/products/[id]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?rootroute&amp;padInclude">clean_urls/rootroute</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?scripted&amp;padInclude">clean_urls/scripted</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?session_foreign&amp;padInclude">clean_urls/session_foreign</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?session_foreign_get&amp;padInclude">clean_urls/session_foreign_get</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?session_foreign_put&amp;padInclude">clean_urls/session_foreign_put</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/clean_urls/?yearly/[year]/show&amp;padInclude">clean_urls/yearly/[year]/show</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cli/?index">cli/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cli/?lintme/[id]&amp;padInclude">cli/lintme/[id]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cli/?lintme/broken&amp;padInclude">cli/lintme/broken</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cli/?lintme/good&amp;padInclude">cli/lintme/good</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cli/?sample&amp;padInclude">cli/sample</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cli/?verdict&amp;padInclude">cli/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/config_typo/?index">config_typo/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/config_typo/?level&amp;padInclude">config_typo/level</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cors/?data&amp;padInclude">cors/data</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/cors/?index">cors/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/env/?burst&amp;padInclude">env/burst</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/env/?cache&amp;padInclude">env/cache</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/env/?hit&amp;padInclude">env/hit</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/env/?index">env/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_boot/?boom&amp;padInclude">error_boot/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_boot/?index">error_boot/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_boot/?verdict&amp;padInclude">error_boot/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_dump/?boom&amp;padInclude">error_dump/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_dump/?index">error_dump/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_dump/?unguarded&amp;padInclude">error_dump/unguarded</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_dump/?verdict&amp;padInclude">error_dump/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_exit/?boom&amp;padInclude">error_exit/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_exit/?index">error_exit/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_exit/?verdict&amp;padInclude">error_exit/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?boom&amp;padInclude">error_ignore/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?curl&amp;padInclude">error_ignore/curl</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?index">error_ignore/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?restart&amp;padInclude">error_ignore/restart</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?restarted&amp;padInclude">error_ignore/restarted</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?strict&amp;padInclude">error_ignore/strict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?unguarded&amp;padInclude">error_ignore/unguarded</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_ignore/?verdict&amp;padInclude">error_ignore/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?boom&amp;padInclude">error_log/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?curl&amp;padInclude">error_log/curl</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?index">error_log/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?restart&amp;padInclude">error_log/restart</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?restarted&amp;padInclude">error_log/restarted</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?strict&amp;padInclude">error_log/strict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?unguarded&amp;padInclude">error_log/unguarded</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?upload_dir&amp;padInclude">error_log/upload_dir</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?upload_dir_take&amp;padInclude">error_log/upload_dir_take</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_log/?verdict&amp;padInclude">error_log/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_pad/?boom&amp;padInclude">error_pad/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_pad/?index">error_pad/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_pad/?verdict&amp;padInclude">error_pad/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?answered_then_failed&amp;padInclude">error_php/answered_then_failed</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?answered_then_threw&amp;padInclude">error_php/answered_then_threw</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?boom&amp;padInclude">error_php/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?index">error_php/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?late&amp;padInclude">error_php/late</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?late_own&amp;padInclude">error_php/late_own</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_php/?verdict&amp;padInclude">error_php/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_stop/?boom&amp;padInclude">error_stop/boom</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_stop/?index">error_stop/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/error_stop/?verdict&amp;padInclude">error_stop/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?about&amp;padInclude">errorpages/about</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?admin/panel&amp;padInclude">errorpages/admin/panel</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?broken&amp;padInclude">errorpages/broken</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?brokendata&amp;padInclude">errorpages/brokendata</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?gone&amp;padInclude">errorpages/gone</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?index">errorpages/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?memory&amp;padInclude">errorpages/memory</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?rowbroken&amp;padInclude">errorpages/rowbroken</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?rowgone&amp;padInclude">errorpages/rowgone</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?slow&amp;padInclude">errorpages/slow</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/errorpages/?teapot&amp;padInclude">errorpages/teapot</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?a_flush_never_sends_past_the_output_hook&amp;padInclude">events/a_flush_never_sends_past_the_output_hook</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?curl&amp;padInclude">events/curl</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?error&amp;padInclude">events/error</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?index">events/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?output&amp;padInclude">events/output</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?outputdata&amp;padInclude">events/outputdata</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?outputjson&amp;padInclude">events/outputjson</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?sql&amp;padInclude">events/sql</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/events/?sub/output&amp;padInclude">events/sub/output</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/health/?about&amp;padInclude">health/about</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/health/?index">health/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/info/?index">info/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/info/?occurs&amp;padInclude">info/occurs</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/info/?probe&amp;padInclude">info/probe</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/main/?build&amp;padInclude">main/build</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96common%EA%A4%B7index&amp;padInclude.html">main/common/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96errors%EA%A4%B7index&amp;padInclude.html">main/errors/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96framework%EA%A4%B7index&amp;padInclude.html">main/framework/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96index.html">main/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96manual%EA%A4%B7index&amp;padInclude.html">main/manual/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96other%EA%A4%B7index&amp;padInclude.html">main/other/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96pages%EA%A4%B7index&amp;padInclude.html">main/pages/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96regression%EA%A4%B7index&amp;padInclude.html">main/regression/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="index%EF%B9%96sequence%EA%A4%B7index&amp;padInclude.html">main/sequence/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/maintenance/?about&amp;padInclude">maintenance/about</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/maintenance/?index">maintenance/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?dump&amp;padInclude">migrate/dump</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?error&amp;padInclude">migrate/error</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?factory&amp;padInclude">migrate/factory</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?index">migrate/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?migrate&amp;padInclude">migrate/migrate</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?pretend&amp;padInclude">migrate/pretend</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?rollback&amp;padInclude">migrate/rollback</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?seed&amp;padInclude">migrate/seed</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/migrate/?split&amp;padInclude">migrate/split</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_console/?broken&amp;padInclude">output_console/broken</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_console/?error&amp;padInclude">output_console/error</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_console/?index">output_console/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_console/?payload&amp;padInclude">output_console/payload</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_download/?index">output_download/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_download/?late&amp;padInclude">output_download/late</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_download/?lateread&amp;padInclude">output_download/lateread</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_download/?payload&amp;padInclude">output_download/payload</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_file/?done&amp;padInclude">output_file/done</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_file/?index">output_file/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_file/?payload&amp;padInclude">output_file/payload</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_json/?index">output_json/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_json/?payload&amp;padInclude">output_json/payload</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_web/?index">output_web/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_web/?json&amp;padInclude">output_web/json</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/output_web/?payload&amp;padInclude">output_web/payload</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/queue/?index">queue/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/queue/?schedule&amp;padInclude">queue/schedule</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/queue/?shop/mail&amp;padInclude">queue/shop/mail</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/queue/?work&amp;padInclude">queue/work</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?index">reload/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?item/[id]&amp;padInclude">reload/item/[id]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?nested&amp;padInclude">reload/nested</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?routed&amp;padInclude">reload/routed</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?sample&amp;padInclude">reload/sample</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?shelf/index&amp;padInclude">reload/shelf/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/reload/?verdict&amp;padInclude">reload/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?a_page_variable_address_is_fetched&amp;padInclude">remote/a_page_variable_address_is_fetched</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?an_address_a_component_is_given_in_the_template_is_fetched&amp;padInclude">remote/an_address_a_component_is_given_in_the_template_is_fetched</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?an_address_the_page_built_is_fetched_beside_values_holding_its_host&amp;padInclude">remote/an_address_the_page_built_is_fetched_beside_values_holding_its_host</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?an_address_written_after_a_printed_value_is_fetched&amp;padInclude">remote/an_address_written_after_a_printed_value_is_fetched</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?an_address_written_inside_a_condition_of_close_named_data_is_fetched&amp;padInclude">remote/an_address_written_inside_a_condition_of_close_named_data_is_fetched</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?bomlist&amp;padInclude">remote/bomlist</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?curl_data_disposition&amp;padInclude">remote/curl_data_disposition</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?curl_data_self&amp;padInclude">remote/curl_data_self</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?curl_data_ttl&amp;padInclude">remote/curl_data_ttl</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?curl_ttl&amp;padInclude">remote/curl_ttl</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?curl_ttl_stores_no_debug&amp;padInclude">remote/curl_ttl_stores_no_debug</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?debugged&amp;padInclude">remote/debugged</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?disposition&amp;padInclude">remote/disposition</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?index">remote/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?padcurlforget_drops_the_copy_the_curl_tag_keeps&amp;padInclude">remote/padcurlforget_drops_the_copy_the_curl_tag_keeps</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?prefetch&amp;padInclude">remote/prefetch</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?prefetch_bomlist&amp;padInclude">remote/prefetch_bomlist</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?prefetch_ttl&amp;padInclude">remote/prefetch_ttl</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?slow&amp;padInclude">remote/slow</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/remote/?stamp&amp;padInclude">remote/stamp</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/site/?about&amp;padInclude">site/about</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/site/?docs/intro&amp;padInclude">site/docs/intro</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/site/?index">site/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?[slug]&amp;padInclude">sitemap/[slug]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?about&amp;padInclude">sitemap/about</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?admin/panel&amp;padInclude">sitemap/admin/panel</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?commented&amp;padInclude">sitemap/commented</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?docs/index&amp;padInclude">sitemap/docs/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?docs/intro&amp;padInclude">sitemap/docs/intro</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?dotted&amp;padInclude">sitemap/dotted</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?index">sitemap/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?products/[id]&amp;padInclude">sitemap/products/[id]</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sitemap/?thanks&amp;padInclude">sitemap/thanks</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?error&amp;padInclude">sqlite/error</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?fresh&amp;padInclude">sqlite/fresh</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?index">sqlite/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?placeholders&amp;padInclude">sqlite/placeholders</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?select&amp;padInclude">sqlite/select</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?tags&amp;padInclude">sqlite/tags</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?verbs&amp;padInclude">sqlite/verbs</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/sqlite/?writes&amp;padInclude">sqlite/writes</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/toolbar/?index">toolbar/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/toolbar/?sample&amp;padInclude">toolbar/sample</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/toolbar/?verdict&amp;padInclude">toolbar/verdict</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?call&amp;padInclude">try_log/call</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?eval&amp;padInclude">try_log/eval</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?go&amp;padInclude">try_log/go</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?goNotOk&amp;padInclude">try_log/goNotOk</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?index">try_log/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?once/index&amp;padInclude">try_log/once/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?tag&amp;padInclude">try_log/tag</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?tagNotOk&amp;padInclude">try_log/tagNotOk</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_log/?var&amp;padInclude">try_log/var</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?call&amp;padInclude">try_pad/call</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?eval&amp;padInclude">try_pad/eval</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?go&amp;padInclude">try_pad/go</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?goNotOk&amp;padInclude">try_pad/goNotOk</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?index">try_pad/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?once/index&amp;padInclude">try_pad/once/index</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?tag&amp;padInclude">try_pad/tag</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?tagNotOk&amp;padInclude">try_pad/tagNotOk</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/try_pad/?var&amp;padInclude">try_pad/var</a>
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

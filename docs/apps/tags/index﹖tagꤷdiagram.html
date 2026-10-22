@@ -6,8 +6,9 @@
     <title>
       {diagram} · PAD tags
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
     <link rel="stylesheet" href="tags.css">
-    <script src="tags.js"></script>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
     </style>
@@ -27,367 +28,417 @@
     :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
     </style>
   </head>
-  <body>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
-        <nav class="menu" aria-label="Indexes">
-          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
         </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
         <form class="search" action="" method="get" role="search">
           <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
-        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4.5"></circle>
-        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
-        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
-      </div>
-    </header>
-    <main class="page">
-      <article class="tag">
-        <nav class="crumbs" aria-label="Where you are">
-          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">diagram</span>
-        </nav>
-        <header class="tag-head">
-          <h1>
-            <span class="brace">{</span>diagram<span class="brace">}</span>
-          </h1>
-          <p class="tag-about">
-            Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.
-          </p>
-          <p class="chips">
-            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
-          </p>
-        </header>
-        <section class="block" aria-labelledby="syntax">
-          <h2 id="syntax">
-            Syntax
-          </h2>
-          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> A[Start] --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">Ready</span>?<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
-          <h3>
-            Options
-          </h3>
-          <dl class="defs">
-            <dt>
-              <code>type</code>
-            </dt>
-            <dd>
-              <code>flowchart</code> (default) or <code>sequence</code> - a first line <code>sequenceDiagram</code> says so too.
-            </dd>
-            <dt>
-              <code>direction</code>
-            </dt>
-            <dd>
-              <code>TB</code> (default), <code>BT</code>, <code>LR</code> or <code>RL</code> - else a first line <code>graph LR</code> or <code>flowchart LR</code> names it.
-            </dd>
-            <dt>
-              <code>edges</code>
-            </dt>
-            <dd>
-              How a flowchart's edges run: <code>orthogonal</code> (default, rounded turns), <code>straight</code> or <code>curved</code>.
-            </dd>
-            <dt>
-              <code>title</code>
-            </dt>
-            <dd>
-              The accessible name, default <code>Flowchart</code> or <code>Sequence diagram</code>.
-            </dd>
-          </dl>
-        </section>
-        <section class="block prose" aria-labelledby="description">
-          <h2 id="description">
-            Description
-          </h2>
-          <p>
-            <code>{diagram}</code> turns a few lines of text in its content into a picture, written the way Mermaid writes them, and lays it out on the server (<code>tags/_lib/diagram.php</code>) as inline SVG - no JavaScript in the browser. The content is taken as it stands before the level walks it, so the braces of a decision like <code>B{Paid?}</code> need no ignore.
-          </p>
-          <h3>
-            Flowcharts
-          </h3>
-          <p>
-            A line is a chain of nodes and edges. Nodes: <code>A[Box]</code>, <code>B(Rounded)</code>, <code>C([Stadium])</code>, <code>D{Decision?}</code>, <code>E((Circle))</code>, <code>F[(Database)]</code>, <code>G{{Hexagon}}</code> - a node is named once with its text and later by its id alone. Edges: <code>--&gt;</code> (arrow), <code>---</code> (line), <code>-.-&gt;</code> and <code>-.-</code> (dashed), <code>==&gt;</code> and <code>===</code> (thick), a label as <code>--&gt;|text|</code> or <code>-- text --&gt;</code>; <code>&</code> joins several nodes on one side (<code>A & B --&gt; C</code>) and <code>%%</code> starts a comment. The layout is layered, with as few crossings as it can find; <code>direction</code> turns it, <code>edges</code> chooses how the lines run.
-          </p>
-          <h3>
-            Sequence diagrams
-          </h3>
-          <p>
-            With <code>type='sequence'</code>: <code>participant A as Alice</code>, <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code> (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross), <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and <code>over A,B</code>), the frames <code>loop</code>, <code>alt</code> / <code>else</code>, <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.
-          </p>
-          <p>
-            The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> that says every edge or message. A diagram without nodes answers nothing, so its <code>@else@</code> shows; a line it cannot read, or an unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the strict check.
-          </p>
-        </section>
-        <section class="block" aria-labelledby="examples">
-          <h2 id="examples">
-            Examples
-          </h2>
-          <div class="example" id="example-1">
-            <h3>
-              A flowchart
-            </h3>
-            <p class="example-about">
-              Nodes of several shapes, labelled edges and a dashed loop back.
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">diagram</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>diagram<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.
             </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/diagram/1-flowchart.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">title</span>=<span class="hl-str">'Handling an order'</span><span class="hl-brc">}</span>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> A[Start] --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">Ready</span>?<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>type</code>
+              </dt>
+              <dd>
+                <code>flowchart</code> (default) or <code>sequence</code> - a first line <code>sequenceDiagram</code> says so too.
+              </dd>
+              <dt>
+                <code>direction</code>
+              </dt>
+              <dd>
+                <code>TB</code> (default), <code>BT</code>, <code>LR</code> or <code>RL</code> - else a first line <code>graph LR</code> or <code>flowchart LR</code> names it.
+              </dd>
+              <dt>
+                <code>edges</code>
+              </dt>
+              <dd>
+                How a flowchart's edges run: <code>orthogonal</code> (default, rounded turns), <code>straight</code> or <code>curved</code>.
+              </dd>
+              <dt>
+                <code>title</code>
+              </dt>
+              <dd>
+                The accessible name, default <code>Flowchart</code> or <code>Sequence diagram</code>.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{diagram}</code> turns a few lines of text in its content into a picture, written the way Mermaid writes them, and lays it out on the server (<code>tags/_lib/diagram.php</code>) as inline SVG - no JavaScript in the browser. The content is taken as it stands before the level walks it, so the braces of a decision like <code>B{Paid?}</code> need no ignore.
+            </p>
+            <h3>
+              Flowcharts
+            </h3>
+            <p>
+              A line is a chain of nodes and edges. Nodes: <code>A[Box]</code>, <code>B(Rounded)</code>, <code>C([Stadium])</code>, <code>D{Decision?}</code>, <code>E((Circle))</code>, <code>F[(Database)]</code>, <code>G{{Hexagon}}</code> - a node is named once with its text and later by its id alone. Edges: <code>--&gt;</code> (arrow), <code>---</code> (line), <code>-.-&gt;</code> and <code>-.-</code> (dashed), <code>==&gt;</code> and <code>===</code> (thick), a label as <code>--&gt;|text|</code> or <code>-- text --&gt;</code>; <code>&</code> joins several nodes on one side (<code>A & B --&gt; C</code>) and <code>%%</code> starts a comment. The layout is layered, with as few crossings as it can find; <code>direction</code> turns it, <code>edges</code> chooses how the lines run.
+            </p>
+            <h3>
+              Sequence diagrams
+            </h3>
+            <p>
+              With <code>type='sequence'</code>: <code>participant A as Alice</code>, <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code> (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross), <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and <code>over A,B</code>), the frames <code>loop</code>, <code>alt</code> / <code>else</code>, <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.
+            </p>
+            <p>
+              The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> that says every edge or message. A diagram without nodes answers nothing, so its <code>@else@</code> shows; a line it cannot read, or an unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the strict check.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                A flowchart
+              </h3>
+              <p class="example-about">
+                Nodes of several shapes, labelled edges and a dashed loop back.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/1-flowchart.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">title</span>=<span class="hl-str">'Handling an order'</span><span class="hl-brc">}</span>
   A([Order placed]) --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">In</span> stock?<span class="hl-brc">}</span>
   B --<span class="hl-htm">&gt;</span>|no| C[Order from supplier]
   C -.-<span class="hl-htm">&gt;</span>|delivered| B
   B --<span class="hl-htm">&gt;</span>|yes| D[Take payment] --<span class="hl-htm">&gt;</span> E[(Orders database)] --<span class="hl-htm">&gt;</span> F((Shipped))
 <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B71-flowchart.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-7a2560d6-title pad-chart-7a2560d6-desc" width="338" height="442" viewbox="0 0 338 442">
-                  <title id="pad-chart-7a2560d6-title">
-                    Handling an order
-                  </title>
-                  <desc id="pad-chart-7a2560d6-desc">
-                    Order placed → In stock?; In stock? → Order from supplier (no); Order from supplier → In stock? (delivered); In stock? → Take payment (yes); Take payment → Orders database; Orders database → Shipped
-                  </desc>
-                  <g class="pc-mark">
-                    <title>
-                      Order placed → In stock?
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B71-flowchart.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-7a2560d6-title pad-chart-7a2560d6-desc" width="338" height="442" viewbox="0 0 338 442">
+                    <title id="pad-chart-7a2560d6-title">
+                      Handling an order
                     </title>
-                    <path class="pd-edge" d="M148,46L148,83"></path>
-                    <path class="pd-head" d="M148,90L143.5,81L152.5,81Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      In stock? → Order from supplier (no)
-                    </title>
-                    <path class="pd-edge" d="M134,130L134,156Q134,164 126,164L93.5,164Q85.5,164 85.5,172L85.5,187"></path>
-                    <path class="pd-head" d="M85.5,194L81,185L90,185Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Order from supplier → In stock? (delivered)
-                    </title>
-                    <path class="pd-edge pd-dashed" d="M99.5,194L99.5,186.5Q99.5,179 107,179L140,179Q148,179 148,171L148,141"></path>
-                    <path class="pd-head" d="M148,134L152.5,143L143.5,143Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      In stock? → Take payment (yes)
-                    </title>
-                    <path class="pd-edge" d="M162,130L162,141Q162,149 170,149L251,149Q259,149 259,157L259,187"></path>
-                    <path class="pd-head" d="M259,194L254.5,185L263.5,185Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Take payment → Orders database
-                    </title>
-                    <path class="pd-edge" d="M259,228L259,265"></path>
-                    <path class="pd-head" d="M259,272L254.5,263L263.5,263Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Orders database → Shipped
-                    </title>
-                    <path class="pd-edge" d="M259,318L259,355"></path>
-                    <path class="pd-head" d="M259,362L254.5,353L263.5,353Z"></path>
-                  </g>
-                  <rect class="pd-plate" x="100.8" y="155" width="22" height="18" rx="3"></rect>
-                  <text x="111.8" y="168" text-anchor="middle">
-                    no
-                  </text>
-                  <rect class="pd-plate" x="126.8" y="170" width="71" height="18" rx="3"></rect>
-                  <text x="162.3" y="183" text-anchor="middle">
-                    delivered
-                  </text>
-                  <rect class="pd-plate" x="209" y="140" width="29" height="18" rx="3"></rect>
-                  <text x="223.5" y="153" text-anchor="middle">
-                    yes
-                  </text>
-                  <rect class="pd-node" x="88" y="12" width="120" height="34" rx="17"></rect>
-                  <text x="148" y="33" text-anchor="middle">
-                    <tspan x="148">
-                      Order placed
-                    </tspan>
-                  </text>
-                  <path class="pd-node pd-diamond" d="M148,90L224.7,112L148,134L71.3,112Z"></path>
-                  <text x="148" y="116" text-anchor="middle">
-                    <tspan x="148">
-                      In stock?
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="12" y="194" width="161" height="34" rx="4"></rect>
-                  <text x="92.5" y="215" text-anchor="middle">
-                    <tspan x="92.5">
-                      Order from supplier
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="203" y="194" width="112" height="34" rx="4"></rect>
-                  <text x="259" y="215" text-anchor="middle">
-                    <tspan x="259">
-                      Take payment
-                    </tspan>
-                  </text>
-                  <path class="pd-node pd-circle" d="M192.5,278a66.5,6 0 0,0 133,0a66.5,6 0 0,0 -133,0V312a66.5,6 0 0,0 133,0V278"></path>
-                  <text x="259" y="304" text-anchor="middle">
-                    <tspan x="259">
-                      Orders database
-                    </tspan>
-                  </text>
-                  <circle class="pd-node pd-circle" cx="259" cy="395.8" r="33.8"></circle>
-                  <text x="259" y="399.8" text-anchor="middle">
-                    <tspan x="259">
-                      Shipped
-                    </tspan>
-                  </text></svg>
+                    <desc id="pad-chart-7a2560d6-desc">
+                      Order placed → In stock?; In stock? → Order from supplier (no); Order from supplier → In stock? (delivered); In stock? → Take payment (yes); Take payment → Orders database; Orders database → Shipped
+                    </desc>
+                    <g class="pc-mark">
+                      <title>
+                        Order placed → In stock?
+                      </title>
+                      <path class="pd-edge" d="M148,46L148,83"></path>
+                      <path class="pd-head" d="M148,90L143.5,81L152.5,81Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        In stock? → Order from supplier (no)
+                      </title>
+                      <path class="pd-edge" d="M134,130L134,156Q134,164 126,164L93.5,164Q85.5,164 85.5,172L85.5,187"></path>
+                      <path class="pd-head" d="M85.5,194L81,185L90,185Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Order from supplier → In stock? (delivered)
+                      </title>
+                      <path class="pd-edge pd-dashed" d="M99.5,194L99.5,186.5Q99.5,179 107,179L140,179Q148,179 148,171L148,141"></path>
+                      <path class="pd-head" d="M148,134L152.5,143L143.5,143Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        In stock? → Take payment (yes)
+                      </title>
+                      <path class="pd-edge" d="M162,130L162,141Q162,149 170,149L251,149Q259,149 259,157L259,187"></path>
+                      <path class="pd-head" d="M259,194L254.5,185L263.5,185Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Take payment → Orders database
+                      </title>
+                      <path class="pd-edge" d="M259,228L259,265"></path>
+                      <path class="pd-head" d="M259,272L254.5,263L263.5,263Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Orders database → Shipped
+                      </title>
+                      <path class="pd-edge" d="M259,318L259,355"></path>
+                      <path class="pd-head" d="M259,362L254.5,353L263.5,353Z"></path>
+                    </g>
+                    <rect class="pd-plate" x="100.8" y="155" width="22" height="18" rx="3"></rect>
+                    <text x="111.8" y="168" text-anchor="middle">
+                      no
+                    </text>
+                    <rect class="pd-plate" x="126.8" y="170" width="71" height="18" rx="3"></rect>
+                    <text x="162.3" y="183" text-anchor="middle">
+                      delivered
+                    </text>
+                    <rect class="pd-plate" x="209" y="140" width="29" height="18" rx="3"></rect>
+                    <text x="223.5" y="153" text-anchor="middle">
+                      yes
+                    </text>
+                    <rect class="pd-node" x="88" y="12" width="120" height="34" rx="17"></rect>
+                    <text x="148" y="33" text-anchor="middle">
+                      <tspan x="148">
+                        Order placed
+                      </tspan>
+                    </text>
+                    <path class="pd-node pd-diamond" d="M148,90L224.7,112L148,134L71.3,112Z"></path>
+                    <text x="148" y="116" text-anchor="middle">
+                      <tspan x="148">
+                        In stock?
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="12" y="194" width="161" height="34" rx="4"></rect>
+                    <text x="92.5" y="215" text-anchor="middle">
+                      <tspan x="92.5">
+                        Order from supplier
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="203" y="194" width="112" height="34" rx="4"></rect>
+                    <text x="259" y="215" text-anchor="middle">
+                      <tspan x="259">
+                        Take payment
+                      </tspan>
+                    </text>
+                    <path class="pd-node pd-circle" d="M192.5,278a66.5,6 0 0,0 133,0a66.5,6 0 0,0 -133,0V312a66.5,6 0 0,0 133,0V278"></path>
+                    <text x="259" y="304" text-anchor="middle">
+                      <tspan x="259">
+                        Orders database
+                      </tspan>
+                    </text>
+                    <circle class="pd-node pd-circle" cx="259" cy="395.8" r="33.8"></circle>
+                    <text x="259" y="399.8" text-anchor="middle">
+                      <tspan x="259">
+                        Shipped
+                      </tspan>
+                    </text></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="example" id="example-2">
-            <h3>
-              Left to right, curved
-            </h3>
-            <p class="example-about">
-              direction=LR and edges=curved; & fans one node out to several.
-            </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/diagram/2-lr.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Deploy pipeline'</span><span class="hl-brc">}</span>
+            <div class="example" id="example-2">
+              <h3>
+                Left to right, curved
+              </h3>
+              <p class="example-about">
+                direction=LR and edges=curved; & fans one node out to several.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/2-lr.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Deploy pipeline'</span><span class="hl-brc">}</span>
   code([Commit]) --<span class="hl-htm">&gt;</span> build[Build]
   build --<span class="hl-htm">&gt;</span> unit[Tests] & lint[Lint]
   unit & lint --<span class="hl-htm">&gt;</span> gate<span class="hl-brc">{</span><span class="hl-tag">Green</span>?<span class="hl-brc">}</span>
   gate --<span class="hl-htm">&gt;</span>|yes| live((Live))
   gate -.-<span class="hl-htm">&gt;</span>|no| code
 <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B72-lr.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8f4c9eb9-title pad-chart-8f4c9eb9-desc" width="587" height="145" viewbox="0 0 587 145">
-                  <title id="pad-chart-8f4c9eb9-title">
-                    Deploy pipeline
-                  </title>
-                  <desc id="pad-chart-8f4c9eb9-desc">
-                    Commit → Build; Build → Tests; Build → Lint; Tests → Green?; Lint → Green?; Green? → Live (yes); Green? → Commit (no)
-                  </desc>
-                  <g class="pc-mark">
-                    <title>
-                      Commit → Build
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B72-lr.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8f4c9eb9-title pad-chart-8f4c9eb9-desc" width="587" height="145" viewbox="0 0 587 145">
+                    <title id="pad-chart-8f4c9eb9-title">
+                      Deploy pipeline
                     </title>
-                    <path class="pd-edge" d="M88.5,85.5C110.7,85.5 110.7,61 133,61"></path>
-                    <path class="pd-head" d="M140,61L131,65.5L131,56.5Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Build → Tests
-                    </title>
-                    <path class="pd-edge" d="M203,54C221.5,54 221.5,29 240,29"></path>
-                    <path class="pd-head" d="M247,29L238,33.5L238,24.5Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Build → Lint
-                    </title>
-                    <path class="pd-edge" d="M203,68C222.3,68 222.3,93 241.5,93"></path>
-                    <path class="pd-head" d="M248.5,93L239.5,97.5L239.5,88.5Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Tests → Green?
-                    </title>
-                    <path class="pd-edge" d="M310,29C345.8,29 345.8,68.8 381.7,68.8"></path>
-                    <path class="pd-head" d="M388.7,68.8L379.7,73.3L379.7,64.3Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Lint → Green?
-                    </title>
-                    <path class="pd-edge" d="M308.5,93C327.8,93 327.8,82 347,82"></path>
-                    <path class="pd-head" d="M354,82L345,86.5L345,77.5Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Green? → Live (yes)
-                    </title>
-                    <path class="pd-edge" d="M469.6,82C494.6,82 494.6,82 519.6,82"></path>
-                    <path class="pd-head" d="M526.6,82L517.6,86.5L517.6,77.5Z"></path>
-                  </g>
-                  <g class="pc-mark">
-                    <title>
-                      Green? → Commit (no)
-                    </title>
-                    <path class="pd-edge pd-dashed" d="M388.7,95.2C333.6,95.2 333.6,124 278.5,124C225,124 225,124 171.5,124C133.5,124 133.5,99.5 95.5,99.5"></path>
-                    <path class="pd-head" d="M88.5,99.5L97.5,95L97.5,104Z"></path>
-                  </g>
-                  <rect class="pd-plate" x="483.6" y="73" width="29" height="18" rx="3"></rect>
-                  <text x="498.1" y="86" text-anchor="middle">
-                    yes
-                  </text>
-                  <rect class="pd-plate" x="160.5" y="115" width="22" height="18" rx="3"></rect>
-                  <text x="171.5" y="128" text-anchor="middle">
-                    no
-                  </text>
-                  <rect class="pd-node" x="12" y="75.5" width="78" height="34" rx="17"></rect>
-                  <text x="51" y="96.5" text-anchor="middle">
-                    <tspan x="51">
-                      Commit
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="140" y="44" width="63" height="34" rx="4"></rect>
-                  <text x="171.5" y="65" text-anchor="middle">
-                    <tspan x="171.5">
-                      Build
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="247" y="12" width="63" height="34" rx="4"></rect>
-                  <text x="278.5" y="33" text-anchor="middle">
-                    <tspan x="278.5">
-                      Tests
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="248.5" y="76" width="60" height="34" rx="4"></rect>
-                  <text x="278.5" y="97" text-anchor="middle">
-                    <tspan x="278.5">
-                      Lint
-                    </tspan>
-                  </text>
-                  <path class="pd-node pd-diamond" d="M411.8,60L469.6,82L411.8,104L354,82Z"></path>
-                  <text x="411.8" y="86" text-anchor="middle">
-                    <tspan x="411.8">
-                      Green?
-                    </tspan>
-                  </text>
-                  <circle class="pd-node pd-circle" cx="550.7" cy="82" r="24.1"></circle>
-                  <text x="550.7" y="86" text-anchor="middle">
-                    <tspan x="550.7">
-                      Live
-                    </tspan>
-                  </text></svg>
+                    <desc id="pad-chart-8f4c9eb9-desc">
+                      Commit → Build; Build → Tests; Build → Lint; Tests → Green?; Lint → Green?; Green? → Live (yes); Green? → Commit (no)
+                    </desc>
+                    <g class="pc-mark">
+                      <title>
+                        Commit → Build
+                      </title>
+                      <path class="pd-edge" d="M88.5,85.5C110.7,85.5 110.7,61 133,61"></path>
+                      <path class="pd-head" d="M140,61L131,65.5L131,56.5Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Build → Tests
+                      </title>
+                      <path class="pd-edge" d="M203,54C221.5,54 221.5,29 240,29"></path>
+                      <path class="pd-head" d="M247,29L238,33.5L238,24.5Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Build → Lint
+                      </title>
+                      <path class="pd-edge" d="M203,68C222.3,68 222.3,93 241.5,93"></path>
+                      <path class="pd-head" d="M248.5,93L239.5,97.5L239.5,88.5Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Tests → Green?
+                      </title>
+                      <path class="pd-edge" d="M310,29C345.8,29 345.8,68.8 381.7,68.8"></path>
+                      <path class="pd-head" d="M388.7,68.8L379.7,73.3L379.7,64.3Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Lint → Green?
+                      </title>
+                      <path class="pd-edge" d="M308.5,93C327.8,93 327.8,82 347,82"></path>
+                      <path class="pd-head" d="M354,82L345,86.5L345,77.5Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Green? → Live (yes)
+                      </title>
+                      <path class="pd-edge" d="M469.6,82C494.6,82 494.6,82 519.6,82"></path>
+                      <path class="pd-head" d="M526.6,82L517.6,86.5L517.6,77.5Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Green? → Commit (no)
+                      </title>
+                      <path class="pd-edge pd-dashed" d="M388.7,95.2C333.6,95.2 333.6,124 278.5,124C225,124 225,124 171.5,124C133.5,124 133.5,99.5 95.5,99.5"></path>
+                      <path class="pd-head" d="M88.5,99.5L97.5,95L97.5,104Z"></path>
+                    </g>
+                    <rect class="pd-plate" x="483.6" y="73" width="29" height="18" rx="3"></rect>
+                    <text x="498.1" y="86" text-anchor="middle">
+                      yes
+                    </text>
+                    <rect class="pd-plate" x="160.5" y="115" width="22" height="18" rx="3"></rect>
+                    <text x="171.5" y="128" text-anchor="middle">
+                      no
+                    </text>
+                    <rect class="pd-node" x="12" y="75.5" width="78" height="34" rx="17"></rect>
+                    <text x="51" y="96.5" text-anchor="middle">
+                      <tspan x="51">
+                        Commit
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="140" y="44" width="63" height="34" rx="4"></rect>
+                    <text x="171.5" y="65" text-anchor="middle">
+                      <tspan x="171.5">
+                        Build
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="247" y="12" width="63" height="34" rx="4"></rect>
+                    <text x="278.5" y="33" text-anchor="middle">
+                      <tspan x="278.5">
+                        Tests
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="248.5" y="76" width="60" height="34" rx="4"></rect>
+                    <text x="278.5" y="97" text-anchor="middle">
+                      <tspan x="278.5">
+                        Lint
+                      </tspan>
+                    </text>
+                    <path class="pd-node pd-diamond" d="M411.8,60L469.6,82L411.8,104L354,82Z"></path>
+                    <text x="411.8" y="86" text-anchor="middle">
+                      <tspan x="411.8">
+                        Green?
+                      </tspan>
+                    </text>
+                    <circle class="pd-node pd-circle" cx="550.7" cy="82" r="24.1"></circle>
+                    <text x="550.7" y="86" text-anchor="middle">
+                      <tspan x="550.7">
+                        Live
+                      </tspan>
+                    </text></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="example" id="example-3">
-            <h3>
-              A sequence diagram
-            </h3>
-            <p class="example-about">
-              Participants, numbered messages, dashed replies, an alt frame and a note.
-            </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/diagram/3-sequence.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Paying an order'</span><span class="hl-brc">}</span>
+            <div class="example" id="example-3">
+              <h3>
+                A sequence diagram
+              </h3>
+              <p class="example-about">
+                Participants, numbered messages, dashed replies, an alt frame and a note.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/3-sequence.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Paying an order'</span><span class="hl-brc">}</span>
   participant S as Shop
   participant B as Bank
   autonumber
@@ -399,131 +450,132 @@
   end
   Note over S,B: The card number never reaches the shop
 <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B73-sequence.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8c142292-title pad-chart-8c142292-desc" width="326" height="354" viewbox="0 0 326 354">
-                  <title id="pad-chart-8c142292-title">
-                    Paying an order
-                  </title>
-                  <desc id="pad-chart-8c142292-desc">
-                    Shop to Bank: Charge 42.00; Alt: Enough funds; Bank to Shop: Approved; Else: Declined; Bank to Shop: Refused; Note: The card number never reaches the shop
-                  </desc>
-                  <line class="pd-life" x1="52" x2="52" y1="46" y2="308"></line>
-                  <rect class="pd-node" x="12" y="12" width="80" height="34" rx="4"></rect>
-                  <text x="52" y="33" text-anchor="middle">
-                    <tspan x="52">
-                      Shop
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="12" y="308" width="80" height="34" rx="4"></rect>
-                  <text x="52" y="329" text-anchor="middle">
-                    <tspan x="52">
-                      Shop
-                    </tspan>
-                  </text>
-                  <line class="pd-life" x1="272" x2="272" y1="46" y2="308"></line>
-                  <rect class="pd-node" x="232" y="12" width="80" height="34" rx="4"></rect>
-                  <text x="272" y="33" text-anchor="middle">
-                    <tspan x="272">
-                      Bank
-                    </tspan>
-                  </text>
-                  <rect class="pd-node" x="232" y="308" width="80" height="34" rx="4"></rect>
-                  <text x="272" y="329" text-anchor="middle">
-                    <tspan x="272">
-                      Bank
-                    </tspan>
-                  </text>
-                  <rect class="pd-frame" x="4" y="106" width="318" height="132"></rect>
-                  <path class="pd-tab" d="M4,106h35v12l-6,6H4Z"></path>
-                  <text class="pd-small" x="10" y="119">
-                    alt
-                  </text>
-                  <text x="47" y="120">
-                    [Enough funds]
-                  </text>
-                  <line class="pd-frame pd-dashed" x1="4" x2="322" y1="172" y2="172"></line>
-                  <text x="12" y="186">
-                    [Declined]
-                  </text>
-                  <g class="pc-mark">
-                    <title>
-                      Shop → Bank: Charge 42.00
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B73-sequence.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8c142292-title pad-chart-8c142292-desc" width="326" height="354" viewbox="0 0 326 354">
+                    <title id="pad-chart-8c142292-title">
+                      Paying an order
                     </title>
-                    <path class="pd-edge" d="M52,82H265"></path>
-                    <path class="pd-head" d="M272,82L263,86.5L263,77.5Z"></path>
-                  </g>
-                  <rect class="pd-plate" x="106.5" y="64" width="111" height="15" rx="2"></rect>
-                  <text x="162" y="76" text-anchor="middle">
-                    1. Charge 42.00
-                  </text>
-                  <g class="pc-mark">
-                    <title>
-                      Bank → Shop: Approved
-                    </title>
-                    <path class="pd-edge pd-dashed" d="M272,150H59"></path>
-                    <path class="pd-head" d="M52,150L61,145.5L61,154.5Z"></path>
-                  </g>
-                  <rect class="pd-plate" x="120.5" y="132" width="83" height="15" rx="2"></rect>
-                  <text x="162" y="144" text-anchor="middle">
-                    2. Approved
-                  </text>
-                  <g class="pc-mark">
-                    <title>
-                      Bank → Shop: Refused
-                    </title>
-                    <path class="pd-edge pd-dashed" d="M272,214H59"></path>
-                    <path class="pd-head" d="M52,214L61,209.5L61,218.5Z"></path>
-                  </g>
-                  <rect class="pd-plate" x="124" y="196" width="76" height="15" rx="2"></rect>
-                  <text x="162" y="208" text-anchor="middle">
-                    3. Refused
-                  </text>
-                  <g>
-                    <title>
-                      Note: The card number never reaches the shop
-                    </title>
-                    <rect class="pd-note" x="32" y="246" width="260" height="42" rx="2"></rect>
-                    <text x="162" y="263" text-anchor="middle">
-                      <tspan x="162">
-                        The card number never reaches the
-                      </tspan>
-                      <tspan x="162" dy="16">
-                        shop
+                    <desc id="pad-chart-8c142292-desc">
+                      Shop to Bank: Charge 42.00; Alt: Enough funds; Bank to Shop: Approved; Else: Declined; Bank to Shop: Refused; Note: The card number never reaches the shop
+                    </desc>
+                    <line class="pd-life" x1="52" x2="52" y1="46" y2="308"></line>
+                    <rect class="pd-node" x="12" y="12" width="80" height="34" rx="4"></rect>
+                    <text x="52" y="33" text-anchor="middle">
+                      <tspan x="52">
+                        Shop
                       </tspan>
                     </text>
-                  </g></svg>
+                    <rect class="pd-node" x="12" y="308" width="80" height="34" rx="4"></rect>
+                    <text x="52" y="329" text-anchor="middle">
+                      <tspan x="52">
+                        Shop
+                      </tspan>
+                    </text>
+                    <line class="pd-life" x1="272" x2="272" y1="46" y2="308"></line>
+                    <rect class="pd-node" x="232" y="12" width="80" height="34" rx="4"></rect>
+                    <text x="272" y="33" text-anchor="middle">
+                      <tspan x="272">
+                        Bank
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="232" y="308" width="80" height="34" rx="4"></rect>
+                    <text x="272" y="329" text-anchor="middle">
+                      <tspan x="272">
+                        Bank
+                      </tspan>
+                    </text>
+                    <rect class="pd-frame" x="4" y="106" width="318" height="132"></rect>
+                    <path class="pd-tab" d="M4,106h35v12l-6,6H4Z"></path>
+                    <text class="pd-small" x="10" y="119">
+                      alt
+                    </text>
+                    <text x="47" y="120">
+                      [Enough funds]
+                    </text>
+                    <line class="pd-frame pd-dashed" x1="4" x2="322" y1="172" y2="172"></line>
+                    <text x="12" y="186">
+                      [Declined]
+                    </text>
+                    <g class="pc-mark">
+                      <title>
+                        Shop → Bank: Charge 42.00
+                      </title>
+                      <path class="pd-edge" d="M52,82H265"></path>
+                      <path class="pd-head" d="M272,82L263,86.5L263,77.5Z"></path>
+                    </g>
+                    <rect class="pd-plate" x="106.5" y="64" width="111" height="15" rx="2"></rect>
+                    <text x="162" y="76" text-anchor="middle">
+                      1. Charge 42.00
+                    </text>
+                    <g class="pc-mark">
+                      <title>
+                        Bank → Shop: Approved
+                      </title>
+                      <path class="pd-edge pd-dashed" d="M272,150H59"></path>
+                      <path class="pd-head" d="M52,150L61,145.5L61,154.5Z"></path>
+                    </g>
+                    <rect class="pd-plate" x="120.5" y="132" width="83" height="15" rx="2"></rect>
+                    <text x="162" y="144" text-anchor="middle">
+                      2. Approved
+                    </text>
+                    <g class="pc-mark">
+                      <title>
+                        Bank → Shop: Refused
+                      </title>
+                      <path class="pd-edge pd-dashed" d="M272,214H59"></path>
+                      <path class="pd-head" d="M52,214L61,209.5L61,218.5Z"></path>
+                    </g>
+                    <rect class="pd-plate" x="124" y="196" width="76" height="15" rx="2"></rect>
+                    <text x="162" y="208" text-anchor="middle">
+                      3. Refused
+                    </text>
+                    <g>
+                      <title>
+                        Note: The card number never reaches the shop
+                      </title>
+                      <rect class="pd-note" x="32" y="246" width="260" height="42" rx="2"></rect>
+                      <text x="162" y="263" text-anchor="middle">
+                        <tspan x="162">
+                          The card number never reaches the
+                        </tspan>
+                        <tspan x="162" dy="16">
+                          shop
+                        </tspan>
+                      </text>
+                    </g></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section class="block" aria-labelledby="see">
-          <h2 id="see">
-            See also
-          </h2>
-          <ul class="list">
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
-            </li>
-          </ul>
-        </section>
-        <nav class="prevnext" aria-label="Other tags">
-          <a href="index%EF%B9%96tag%EA%A4%B7define.html">← {define}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7diff.html">{diff} →</a>
-        </nav>
-      </article>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7define.html">← {define}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7diff.html">{diff} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
     </main>
-    <footer class="foot">
-      <p>
-        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
-      </p>
-    </footer>
   </body>
 </html>

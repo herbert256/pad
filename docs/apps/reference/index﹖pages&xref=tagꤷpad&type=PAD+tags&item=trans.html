@@ -1,674 +1,711 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - PAD tags - trans
+      Reference - PAD tags - trans · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - PAD tags - trans
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: manual - Page: fragments/locale_1<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">fragments/locale_1.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">fragments/locale_1.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page picks Dutch; an application listing $padLocales lets the visitor's<br>  // Accept-Language or ?lang= choose instead.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$user  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$when  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h4&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>&lt;/h4&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>count</font>}</b> - <b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.owner<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b> - <b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">localDate('d MMMM y')</font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb846913dff488ddc294b52db7fe0d477"></div>
-                        <script>
-                        padAjaxb846913dff488ddc294b52db7fe0d477 = new XMLHttpRequest();
-                        padAjaxb846913dff488ddc294b52db7fe0d477.onreadystatechange=function() {
-                        if (padAjaxb846913dff488ddc294b52db7fe0d477.readyState === 4) {
-                        if (padAjaxb846913dff488ddc294b52db7fe0d477.status === 200) {
-                        document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.responseText;
-                        } else {
-                        document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb846913dff488ddc294b52db7fe0d477.open("GET","http://localhost/pad/manual/?fragments/locale_1&padInclude",true);
-                        padAjaxb846913dff488ddc294b52db7fe0d477.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/errors - Page: syntax/a_trans_needs_a_key<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">syntax/a_trans_needs_a_key.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">trans</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax17d673b1048192b8d9c4aaa6f18219cf"></div>
-                        <script>
-                        padAjax17d673b1048192b8d9c4aaa6f18219cf = new XMLHttpRequest();
-                        padAjax17d673b1048192b8d9c4aaa6f18219cf.onreadystatechange=function() {
-                        if (padAjax17d673b1048192b8d9c4aaa6f18219cf.readyState === 4) {
-                        if (padAjax17d673b1048192b8d9c4aaa6f18219cf.status === 200) {
-                        document.getElementById("padAjax17d673b1048192b8d9c4aaa6f18219cf").innerHTML=padAjax17d673b1048192b8d9c4aaa6f18219cf.responseText;
-                        } else {
-                        document.getElementById("padAjax17d673b1048192b8d9c4aaa6f18219cf").innerHTML=padAjax17d673b1048192b8d9c4aaa6f18219cf.statusText;
-                        }
-                        }
-                        }
-                        padAjax17d673b1048192b8d9c4aaa6f18219cf.open("GET","http://localhost/pad/regression/errors/?syntax/a_trans_needs_a_key&padInclude",true);
-                        padAjax17d673b1048192b8d9c4aaa6f18219cf.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: data/dir_leaves_the_page_directory_as_it_was<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">data/dir_leaves_the_page_directory_as_it_was.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">data/dir_leaves_the_page_directory_as_it_was.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $caseScanDir </span><span style="color: #007700">= </span><span style="color: #0000BB">APPS </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/main/other'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">dir </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>caseScanDir</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>dir</font>}</b><b>{<font color="blue">notLast</font><font color="red"></font>}</b> <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><b>{/<font color="blue">dir</font><font color="red"></font>}</b>] [<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax0539193c3c8e8992ff0ea63a61387925"></div>
-                        <script>
-                        padAjax0539193c3c8e8992ff0ea63a61387925 = new XMLHttpRequest();
-                        padAjax0539193c3c8e8992ff0ea63a61387925.onreadystatechange=function() {
-                        if (padAjax0539193c3c8e8992ff0ea63a61387925.readyState === 4) {
-                        if (padAjax0539193c3c8e8992ff0ea63a61387925.status === 200) {
-                        document.getElementById("padAjax0539193c3c8e8992ff0ea63a61387925").innerHTML=padAjax0539193c3c8e8992ff0ea63a61387925.responseText;
-                        } else {
-                        document.getElementById("padAjax0539193c3c8e8992ff0ea63a61387925").innerHTML=padAjax0539193c3c8e8992ff0ea63a61387925.statusText;
-                        }
-                        }
-                        }
-                        padAjax0539193c3c8e8992ff0ea63a61387925.open("GET","http://localhost/pad/regression/framework/?data/dir_leaves_the_page_directory_as_it_was&padInclude",true);
-                        padAjax0539193c3c8e8992ff0ea63a61387925.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: data/trans_reads_the_catalog_of_its_own_directory<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">data/trans_reads_the_catalog_of_its_own_directory.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax0f8acb98bad460aae95fbe70ba50e1f9"></div>
-                        <script>
-                        padAjax0f8acb98bad460aae95fbe70ba50e1f9 = new XMLHttpRequest();
-                        padAjax0f8acb98bad460aae95fbe70ba50e1f9.onreadystatechange=function() {
-                        if (padAjax0f8acb98bad460aae95fbe70ba50e1f9.readyState === 4) {
-                        if (padAjax0f8acb98bad460aae95fbe70ba50e1f9.status === 200) {
-                        document.getElementById("padAjax0f8acb98bad460aae95fbe70ba50e1f9").innerHTML=padAjax0f8acb98bad460aae95fbe70ba50e1f9.responseText;
-                        } else {
-                        document.getElementById("padAjax0f8acb98bad460aae95fbe70ba50e1f9").innerHTML=padAjax0f8acb98bad460aae95fbe70ba50e1f9.statusText;
-                        }
-                        }
-                        }
-                        padAjax0f8acb98bad460aae95fbe70ba50e1f9.open("GET","http://localhost/pad/regression/framework/?data/trans_reads_the_catalog_of_its_own_directory&padInclude",true);
-                        padAjax0f8acb98bad460aae95fbe70ba50e1f9.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/trans_fills_each_placeholder_from_the_text_as_it_was_written<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/trans_fills_each_placeholder_from_the_text_as_it_was_written.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> place=<font color="black">'</font><font color="black">:</font>name<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>Ann<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font><font color="black">:</font>place<font color="black">'</font><font color="black">,</font> place=<font color="black">'</font>Leiden<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>Bo<font color="black">'</font><font color="black">,</font> place=<font color="black">'</font><font color="black">:</font>count<font color="black">'</font></font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax07f80d7a2206d605c3c43e182ca74397"></div>
-                        <script>
-                        padAjax07f80d7a2206d605c3c43e182ca74397 = new XMLHttpRequest();
-                        padAjax07f80d7a2206d605c3c43e182ca74397.onreadystatechange=function() {
-                        if (padAjax07f80d7a2206d605c3c43e182ca74397.readyState === 4) {
-                        if (padAjax07f80d7a2206d605c3c43e182ca74397.status === 200) {
-                        document.getElementById("padAjax07f80d7a2206d605c3c43e182ca74397").innerHTML=padAjax07f80d7a2206d605c3c43e182ca74397.responseText;
-                        } else {
-                        document.getElementById("padAjax07f80d7a2206d605c3c43e182ca74397").innerHTML=padAjax07f80d7a2206d605c3c43e182ca74397.statusText;
-                        }
-                        }
-                        }
-                        padAjax07f80d7a2206d605c3c43e182ca74397.open("GET","http://localhost/pad/regression/framework/?functions/trans_fills_each_placeholder_from_the_text_as_it_was_written&padInclude",true);
-                        padAjax07f80d7a2206d605c3c43e182ca74397.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/trans_finds_a_key_that_is_a_number_in_the_catalog<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/trans_finds_a_key_that_is_a_number_in_the_catalog.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/trans_finds_a_key_that_is_a_number_in_the_catalog.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">"en_150"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>404<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red">404</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2024<font color="black">'</font> <font color="black">|</font> trans</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=1</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb864e5819b593fdb25d7ace338ea08b5"></div>
-                        <script>
-                        padAjaxb864e5819b593fdb25d7ace338ea08b5 = new XMLHttpRequest();
-                        padAjaxb864e5819b593fdb25d7ace338ea08b5.onreadystatechange=function() {
-                        if (padAjaxb864e5819b593fdb25d7ace338ea08b5.readyState === 4) {
-                        if (padAjaxb864e5819b593fdb25d7ace338ea08b5.status === 200) {
-                        document.getElementById("padAjaxb864e5819b593fdb25d7ace338ea08b5").innerHTML=padAjaxb864e5819b593fdb25d7ace338ea08b5.responseText;
-                        } else {
-                        document.getElementById("padAjaxb864e5819b593fdb25d7ace338ea08b5").innerHTML=padAjaxb864e5819b593fdb25d7ace338ea08b5.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb864e5819b593fdb25d7ace338ea08b5.open("GET","http://localhost/pad/regression/framework/?functions/trans_finds_a_key_that_is_a_number_in_the_catalog&padInclude",true);
-                        padAjaxb864e5819b593fdb25d7ace338ea08b5.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/trans_looks_a_key_up_in_the_catalog_of_the_locale<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/trans_looks_a_key_up_in_the_catalog_of_the_locale.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>unknown.key<font color="black">'</font></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font> <font color="black">|</font> trans</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxc8f46dfeb4149901a164b8d1a94a939f"></div>
-                        <script>
-                        padAjaxc8f46dfeb4149901a164b8d1a94a939f = new XMLHttpRequest();
-                        padAjaxc8f46dfeb4149901a164b8d1a94a939f.onreadystatechange=function() {
-                        if (padAjaxc8f46dfeb4149901a164b8d1a94a939f.readyState === 4) {
-                        if (padAjaxc8f46dfeb4149901a164b8d1a94a939f.status === 200) {
-                        document.getElementById("padAjaxc8f46dfeb4149901a164b8d1a94a939f").innerHTML=padAjaxc8f46dfeb4149901a164b8d1a94a939f.responseText;
-                        } else {
-                        document.getElementById("padAjaxc8f46dfeb4149901a164b8d1a94a939f").innerHTML=padAjaxc8f46dfeb4149901a164b8d1a94a939f.statusText;
-                        }
-                        }
-                        }
-                        padAjaxc8f46dfeb4149901a164b8d1a94a939f.open("GET","http://localhost/pad/regression/framework/?functions/trans_looks_a_key_up_in_the_catalog_of_the_locale&padInclude",true);
-                        padAjaxc8f46dfeb4149901a164b8d1a94a939f.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/trans_picks_the_plural_form_by_count<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/trans_picks_the_plural_form_by_count.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/trans_picks_the_plural_form_by_count.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $n </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=1</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>n</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.stock<font color="black">'</font><font color="black">,</font> count=0</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.stock<font color="black">'</font><font color="black">,</font> count=1</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font> <font color="black">|</font> trans(<font color="red">$</font>n)</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax99fc1c88538cc54011292bbf75bfcdb8"></div>
-                        <script>
-                        padAjax99fc1c88538cc54011292bbf75bfcdb8 = new XMLHttpRequest();
-                        padAjax99fc1c88538cc54011292bbf75bfcdb8.onreadystatechange=function() {
-                        if (padAjax99fc1c88538cc54011292bbf75bfcdb8.readyState === 4) {
-                        if (padAjax99fc1c88538cc54011292bbf75bfcdb8.status === 200) {
-                        document.getElementById("padAjax99fc1c88538cc54011292bbf75bfcdb8").innerHTML=padAjax99fc1c88538cc54011292bbf75bfcdb8.responseText;
-                        } else {
-                        document.getElementById("padAjax99fc1c88538cc54011292bbf75bfcdb8").innerHTML=padAjax99fc1c88538cc54011292bbf75bfcdb8.statusText;
-                        }
-                        }
-                        }
-                        padAjax99fc1c88538cc54011292bbf75bfcdb8.open("GET","http://localhost/pad/regression/framework/?functions/trans_picks_the_plural_form_by_count&padInclude",true);
-                        padAjax99fc1c88538cc54011292bbf75bfcdb8.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/trans_reads_the_catalog_of_the_page_locale<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/trans_reads_the_catalog_of_the_page_locale.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/trans_reads_the_catalog_of_the_page_locale.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">"nl"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=2</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.stock<font color="black">'</font><font color="black">,</font> count=2</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxe90da0e91230570f9f18e3272d306020"></div>
-                        <script>
-                        padAjaxe90da0e91230570f9f18e3272d306020 = new XMLHttpRequest();
-                        padAjaxe90da0e91230570f9f18e3272d306020.onreadystatechange=function() {
-                        if (padAjaxe90da0e91230570f9f18e3272d306020.readyState === 4) {
-                        if (padAjaxe90da0e91230570f9f18e3272d306020.status === 200) {
-                        document.getElementById("padAjaxe90da0e91230570f9f18e3272d306020").innerHTML=padAjaxe90da0e91230570f9f18e3272d306020.responseText;
-                        } else {
-                        document.getElementById("padAjaxe90da0e91230570f9f18e3272d306020").innerHTML=padAjaxe90da0e91230570f9f18e3272d306020.statusText;
-                        }
-                        }
-                        }
-                        padAjaxe90da0e91230570f9f18e3272d306020.open("GET","http://localhost/pad/regression/framework/?functions/trans_reads_the_catalog_of_the_page_locale&padInclude",true);
-                        padAjaxe90da0e91230570f9f18e3272d306020.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/trans_replaces_named_placeholders<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/trans_replaces_named_placeholders.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/trans_replaces_named_placeholders.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $user </span><span style="color: #007700">= </span><span style="color: #DD0000">"Ann"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user<font color="black">,</font> place=<font color="black">'</font>Utrecht<font color="black">'</font></font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax0d932340758eda2a46c35f3df6897c3d"></div>
-                        <script>
-                        padAjax0d932340758eda2a46c35f3df6897c3d = new XMLHttpRequest();
-                        padAjax0d932340758eda2a46c35f3df6897c3d.onreadystatechange=function() {
-                        if (padAjax0d932340758eda2a46c35f3df6897c3d.readyState === 4) {
-                        if (padAjax0d932340758eda2a46c35f3df6897c3d.status === 200) {
-                        document.getElementById("padAjax0d932340758eda2a46c35f3df6897c3d").innerHTML=padAjax0d932340758eda2a46c35f3df6897c3d.responseText;
-                        } else {
-                        document.getElementById("padAjax0d932340758eda2a46c35f3df6897c3d").innerHTML=padAjax0d932340758eda2a46c35f3df6897c3d.statusText;
-                        }
-                        }
-                        }
-                        padAjax0d932340758eda2a46c35f3df6897c3d.open("GET","http://localhost/pad/regression/framework/?functions/trans_replaces_named_placeholders&padInclude",true);
-                        padAjax0d932340758eda2a46c35f3df6897c3d.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/a_cache_section_is_kept_per_locale<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/a_cache_section_is_kept_per_locale.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/a_cache_section_is_kept_per_locale.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With several locales a {cache} section is kept per locale, as a cached page is: the<br>  // section written for nl was served to en - "Je winkelwagen" for every language.<br><br>  </span><span style="color: #0000BB">$padLocales </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'en'</span><span style="color: #007700">, </span><span style="color: #DD0000">'nl' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padLocale  </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'cart-per-locale' </span><span style="color: #007700">);<br><br>  function </span><span style="color: #0000BB">cacheCaseLocale </span><span style="color: #007700">( </span><span style="color: #0000BB">$locale </span><span style="color: #007700">) { </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padLocale'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$locale</span><span style="color: #007700">; return </span><span style="color: #DD0000">''</span><span style="color: #007700">; }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>cart-per-locale<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>cacheCaseLocale(<font color="black">'</font>en<font color="black">'</font>)</font>}</b>[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>cart-per-locale<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax49d8540b3a2e143898849826553ed3d4"></div>
-                        <script>
-                        padAjax49d8540b3a2e143898849826553ed3d4 = new XMLHttpRequest();
-                        padAjax49d8540b3a2e143898849826553ed3d4.onreadystatechange=function() {
-                        if (padAjax49d8540b3a2e143898849826553ed3d4.readyState === 4) {
-                        if (padAjax49d8540b3a2e143898849826553ed3d4.status === 200) {
-                        document.getElementById("padAjax49d8540b3a2e143898849826553ed3d4").innerHTML=padAjax49d8540b3a2e143898849826553ed3d4.responseText;
-                        } else {
-                        document.getElementById("padAjax49d8540b3a2e143898849826553ed3d4").innerHTML=padAjax49d8540b3a2e143898849826553ed3d4.statusText;
-                        }
-                        }
-                        }
-                        padAjax49d8540b3a2e143898849826553ed3d4.open("GET","http://localhost/pad/regression/framework/?tags/a_cache_section_is_kept_per_locale&padInclude",true);
-                        padAjax49d8540b3a2e143898849826553ed3d4.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/a_page_from_another_directory_reads_its_own_translations<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/a_page_from_another_directory_reads_its_own_translations.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>|<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>data/trans_reads_the_catalog_of_its_own_directory<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax6d3fe8c8a868002ef5893bf365e72642"></div>
-                        <script>
-                        padAjax6d3fe8c8a868002ef5893bf365e72642 = new XMLHttpRequest();
-                        padAjax6d3fe8c8a868002ef5893bf365e72642.onreadystatechange=function() {
-                        if (padAjax6d3fe8c8a868002ef5893bf365e72642.readyState === 4) {
-                        if (padAjax6d3fe8c8a868002ef5893bf365e72642.status === 200) {
-                        document.getElementById("padAjax6d3fe8c8a868002ef5893bf365e72642").innerHTML=padAjax6d3fe8c8a868002ef5893bf365e72642.responseText;
-                        } else {
-                        document.getElementById("padAjax6d3fe8c8a868002ef5893bf365e72642").innerHTML=padAjax6d3fe8c8a868002ef5893bf365e72642.statusText;
-                        }
-                        }
-                        }
-                        padAjax6d3fe8c8a868002ef5893bf365e72642.open("GET","http://localhost/pad/regression/framework/?tags/a_page_from_another_directory_reads_its_own_translations&padInclude",true);
-                        padAjax6d3fe8c8a868002ef5893bf365e72642.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/trans_writes_a_substitution_and_an_unknown_key_as_text<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/trans_writes_a_substitution_and_an_unknown_key_as_text.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/trans_writes_a_substitution_and_an_unknown_key_as_text.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $user </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;img src=x onerror=alert(1)&gt;'</span><span style="color: #007700">; </span><span style="color: #0000BB">$status </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;b&gt;new&lt;/b&gt;'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user<font color="black">,</font> place=<font color="black">'</font>R&amp;D<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="red">$</font>status</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=3</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax2db335b757984fad8a2446d8149fc30a"></div>
-                        <script>
-                        padAjax2db335b757984fad8a2446d8149fc30a = new XMLHttpRequest();
-                        padAjax2db335b757984fad8a2446d8149fc30a.onreadystatechange=function() {
-                        if (padAjax2db335b757984fad8a2446d8149fc30a.readyState === 4) {
-                        if (padAjax2db335b757984fad8a2446d8149fc30a.status === 200) {
-                        document.getElementById("padAjax2db335b757984fad8a2446d8149fc30a").innerHTML=padAjax2db335b757984fad8a2446d8149fc30a.responseText;
-                        } else {
-                        document.getElementById("padAjax2db335b757984fad8a2446d8149fc30a").innerHTML=padAjax2db335b757984fad8a2446d8149fc30a.statusText;
-                        }
-                        }
-                        }
-                        padAjax2db335b757984fad8a2446d8149fc30a.open("GET","http://localhost/pad/regression/framework/?tags/trans_writes_a_substitution_and_an_unknown_key_as_text&padInclude",true);
-                        padAjax2db335b757984fad8a2446d8149fc30a.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/trans/1-key<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/trans/1-key.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Keys from the catalog<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The text of each key in _lang/en.json - markup in the catalog stays markup<font color="black">,</font> an unknown key is written as itself.<font color="black">'</font></font>}</b><br>&lt;h3&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.title<font color="black">'</font></font>}</b>&lt;/h3&gt;<br>&lt;p&gt;&lt;button type="button"&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.checkout<font color="black">'</font></font>}</b>&lt;/button&gt;&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.missing<font color="black">'</font></font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax91d3c69bc8ebaf352d0664702062a55d"></div>
-                        <script>
-                        padAjax91d3c69bc8ebaf352d0664702062a55d = new XMLHttpRequest();
-                        padAjax91d3c69bc8ebaf352d0664702062a55d.onreadystatechange=function() {
-                        if (padAjax91d3c69bc8ebaf352d0664702062a55d.readyState === 4) {
-                        if (padAjax91d3c69bc8ebaf352d0664702062a55d.status === 200) {
-                        document.getElementById("padAjax91d3c69bc8ebaf352d0664702062a55d").innerHTML=padAjax91d3c69bc8ebaf352d0664702062a55d.responseText;
-                        } else {
-                        document.getElementById("padAjax91d3c69bc8ebaf352d0664702062a55d").innerHTML=padAjax91d3c69bc8ebaf352d0664702062a55d.statusText;
-                        }
-                        }
-                        }
-                        padAjax91d3c69bc8ebaf352d0664702062a55d.open("GET","http://localhost/pad/tags/?examples/trans/1-key&padInclude",true);
-                        padAjax91d3c69bc8ebaf352d0664702062a55d.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/trans/2-plural<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/trans/2-plural.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Plural forms<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>count= picks one of the three forms - zero<font color="black">,</font> one<font color="black">,</font> other - and replaces <font color="black">%</font>d.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>0..3<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>n<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>n</font>}</b>&lt;/li&gt;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb697529384f4dd98c365d98732d9244c"></div>
-                        <script>
-                        padAjaxb697529384f4dd98c365d98732d9244c = new XMLHttpRequest();
-                        padAjaxb697529384f4dd98c365d98732d9244c.onreadystatechange=function() {
-                        if (padAjaxb697529384f4dd98c365d98732d9244c.readyState === 4) {
-                        if (padAjaxb697529384f4dd98c365d98732d9244c.status === 200) {
-                        document.getElementById("padAjaxb697529384f4dd98c365d98732d9244c").innerHTML=padAjaxb697529384f4dd98c365d98732d9244c.responseText;
-                        } else {
-                        document.getElementById("padAjaxb697529384f4dd98c365d98732d9244c").innerHTML=padAjaxb697529384f4dd98c365d98732d9244c.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb697529384f4dd98c365d98732d9244c.open("GET","http://localhost/pad/tags/?examples/trans/2-plural&padInclude",true);
-                        padAjaxb697529384f4dd98c365d98732d9244c.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - PAD tags - trans
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: manual - Page: fragments/locale_1<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/locale_1.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/locale_1.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page picks Dutch; an application listing $padLocales lets the visitor's<br>  // Accept-Language or ?lang= choose instead.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$user  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$when  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h4&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>&lt;/h4&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>count</font>}</b> - <b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.owner<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b> - <b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">localDate('d MMMM y')</font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb846913dff488ddc294b52db7fe0d477"></div>
+                      <script>
+                      padAjaxb846913dff488ddc294b52db7fe0d477 = new XMLHttpRequest();
+                      padAjaxb846913dff488ddc294b52db7fe0d477.onreadystatechange=function() {
+                      if (padAjaxb846913dff488ddc294b52db7fe0d477.readyState === 4) {
+                      if (padAjaxb846913dff488ddc294b52db7fe0d477.status === 200) {
+                      document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.responseText;
+                      } else {
+                      document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb846913dff488ddc294b52db7fe0d477.open("GET","http://localhost/pad/manual/?fragments/locale_1&padInclude",true);
+                      padAjaxb846913dff488ddc294b52db7fe0d477.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_trans_needs_a_key<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_trans_needs_a_key.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">trans</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax17d673b1048192b8d9c4aaa6f18219cf"></div>
+                      <script>
+                      padAjax17d673b1048192b8d9c4aaa6f18219cf = new XMLHttpRequest();
+                      padAjax17d673b1048192b8d9c4aaa6f18219cf.onreadystatechange=function() {
+                      if (padAjax17d673b1048192b8d9c4aaa6f18219cf.readyState === 4) {
+                      if (padAjax17d673b1048192b8d9c4aaa6f18219cf.status === 200) {
+                      document.getElementById("padAjax17d673b1048192b8d9c4aaa6f18219cf").innerHTML=padAjax17d673b1048192b8d9c4aaa6f18219cf.responseText;
+                      } else {
+                      document.getElementById("padAjax17d673b1048192b8d9c4aaa6f18219cf").innerHTML=padAjax17d673b1048192b8d9c4aaa6f18219cf.statusText;
+                      }
+                      }
+                      }
+                      padAjax17d673b1048192b8d9c4aaa6f18219cf.open("GET","http://localhost/pad/regression/errors/?syntax/a_trans_needs_a_key&padInclude",true);
+                      padAjax17d673b1048192b8d9c4aaa6f18219cf.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: data/dir_leaves_the_page_directory_as_it_was<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">data/dir_leaves_the_page_directory_as_it_was.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">data/dir_leaves_the_page_directory_as_it_was.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $caseScanDir </span><span style="color: #007700">= </span><span style="color: #0000BB">APPS </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/main/other'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">dir </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>caseScanDir</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>dir</font>}</b><b>{<font color="blue">notLast</font><font color="red"></font>}</b> <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><b>{/<font color="blue">dir</font><font color="red"></font>}</b>] [<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0539193c3c8e8992ff0ea63a61387925"></div>
+                      <script>
+                      padAjax0539193c3c8e8992ff0ea63a61387925 = new XMLHttpRequest();
+                      padAjax0539193c3c8e8992ff0ea63a61387925.onreadystatechange=function() {
+                      if (padAjax0539193c3c8e8992ff0ea63a61387925.readyState === 4) {
+                      if (padAjax0539193c3c8e8992ff0ea63a61387925.status === 200) {
+                      document.getElementById("padAjax0539193c3c8e8992ff0ea63a61387925").innerHTML=padAjax0539193c3c8e8992ff0ea63a61387925.responseText;
+                      } else {
+                      document.getElementById("padAjax0539193c3c8e8992ff0ea63a61387925").innerHTML=padAjax0539193c3c8e8992ff0ea63a61387925.statusText;
+                      }
+                      }
+                      }
+                      padAjax0539193c3c8e8992ff0ea63a61387925.open("GET","http://localhost/pad/regression/framework/?data/dir_leaves_the_page_directory_as_it_was&padInclude",true);
+                      padAjax0539193c3c8e8992ff0ea63a61387925.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: data/trans_reads_the_catalog_of_its_own_directory<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">data/trans_reads_the_catalog_of_its_own_directory.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0f8acb98bad460aae95fbe70ba50e1f9"></div>
+                      <script>
+                      padAjax0f8acb98bad460aae95fbe70ba50e1f9 = new XMLHttpRequest();
+                      padAjax0f8acb98bad460aae95fbe70ba50e1f9.onreadystatechange=function() {
+                      if (padAjax0f8acb98bad460aae95fbe70ba50e1f9.readyState === 4) {
+                      if (padAjax0f8acb98bad460aae95fbe70ba50e1f9.status === 200) {
+                      document.getElementById("padAjax0f8acb98bad460aae95fbe70ba50e1f9").innerHTML=padAjax0f8acb98bad460aae95fbe70ba50e1f9.responseText;
+                      } else {
+                      document.getElementById("padAjax0f8acb98bad460aae95fbe70ba50e1f9").innerHTML=padAjax0f8acb98bad460aae95fbe70ba50e1f9.statusText;
+                      }
+                      }
+                      }
+                      padAjax0f8acb98bad460aae95fbe70ba50e1f9.open("GET","http://localhost/pad/regression/framework/?data/trans_reads_the_catalog_of_its_own_directory&padInclude",true);
+                      padAjax0f8acb98bad460aae95fbe70ba50e1f9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/trans_fills_each_placeholder_from_the_text_as_it_was_written<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/trans_fills_each_placeholder_from_the_text_as_it_was_written.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> place=<font color="black">'</font><font color="black">:</font>name<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>Ann<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font><font color="black">:</font>place<font color="black">'</font><font color="black">,</font> place=<font color="black">'</font>Leiden<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>Bo<font color="black">'</font><font color="black">,</font> place=<font color="black">'</font><font color="black">:</font>count<font color="black">'</font></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax07f80d7a2206d605c3c43e182ca74397"></div>
+                      <script>
+                      padAjax07f80d7a2206d605c3c43e182ca74397 = new XMLHttpRequest();
+                      padAjax07f80d7a2206d605c3c43e182ca74397.onreadystatechange=function() {
+                      if (padAjax07f80d7a2206d605c3c43e182ca74397.readyState === 4) {
+                      if (padAjax07f80d7a2206d605c3c43e182ca74397.status === 200) {
+                      document.getElementById("padAjax07f80d7a2206d605c3c43e182ca74397").innerHTML=padAjax07f80d7a2206d605c3c43e182ca74397.responseText;
+                      } else {
+                      document.getElementById("padAjax07f80d7a2206d605c3c43e182ca74397").innerHTML=padAjax07f80d7a2206d605c3c43e182ca74397.statusText;
+                      }
+                      }
+                      }
+                      padAjax07f80d7a2206d605c3c43e182ca74397.open("GET","http://localhost/pad/regression/framework/?functions/trans_fills_each_placeholder_from_the_text_as_it_was_written&padInclude",true);
+                      padAjax07f80d7a2206d605c3c43e182ca74397.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/trans_finds_a_key_that_is_a_number_in_the_catalog<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/trans_finds_a_key_that_is_a_number_in_the_catalog.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/trans_finds_a_key_that_is_a_number_in_the_catalog.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">"en_150"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>404<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red">404</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2024<font color="black">'</font> <font color="black">|</font> trans</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=1</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb864e5819b593fdb25d7ace338ea08b5"></div>
+                      <script>
+                      padAjaxb864e5819b593fdb25d7ace338ea08b5 = new XMLHttpRequest();
+                      padAjaxb864e5819b593fdb25d7ace338ea08b5.onreadystatechange=function() {
+                      if (padAjaxb864e5819b593fdb25d7ace338ea08b5.readyState === 4) {
+                      if (padAjaxb864e5819b593fdb25d7ace338ea08b5.status === 200) {
+                      document.getElementById("padAjaxb864e5819b593fdb25d7ace338ea08b5").innerHTML=padAjaxb864e5819b593fdb25d7ace338ea08b5.responseText;
+                      } else {
+                      document.getElementById("padAjaxb864e5819b593fdb25d7ace338ea08b5").innerHTML=padAjaxb864e5819b593fdb25d7ace338ea08b5.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb864e5819b593fdb25d7ace338ea08b5.open("GET","http://localhost/pad/regression/framework/?functions/trans_finds_a_key_that_is_a_number_in_the_catalog&padInclude",true);
+                      padAjaxb864e5819b593fdb25d7ace338ea08b5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/trans_looks_a_key_up_in_the_catalog_of_the_locale<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/trans_looks_a_key_up_in_the_catalog_of_the_locale.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>unknown.key<font color="black">'</font></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font> <font color="black">|</font> trans</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc8f46dfeb4149901a164b8d1a94a939f"></div>
+                      <script>
+                      padAjaxc8f46dfeb4149901a164b8d1a94a939f = new XMLHttpRequest();
+                      padAjaxc8f46dfeb4149901a164b8d1a94a939f.onreadystatechange=function() {
+                      if (padAjaxc8f46dfeb4149901a164b8d1a94a939f.readyState === 4) {
+                      if (padAjaxc8f46dfeb4149901a164b8d1a94a939f.status === 200) {
+                      document.getElementById("padAjaxc8f46dfeb4149901a164b8d1a94a939f").innerHTML=padAjaxc8f46dfeb4149901a164b8d1a94a939f.responseText;
+                      } else {
+                      document.getElementById("padAjaxc8f46dfeb4149901a164b8d1a94a939f").innerHTML=padAjaxc8f46dfeb4149901a164b8d1a94a939f.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc8f46dfeb4149901a164b8d1a94a939f.open("GET","http://localhost/pad/regression/framework/?functions/trans_looks_a_key_up_in_the_catalog_of_the_locale&padInclude",true);
+                      padAjaxc8f46dfeb4149901a164b8d1a94a939f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/trans_picks_the_plural_form_by_count<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/trans_picks_the_plural_form_by_count.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/trans_picks_the_plural_form_by_count.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $n </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=1</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>n</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.stock<font color="black">'</font><font color="black">,</font> count=0</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.stock<font color="black">'</font><font color="black">,</font> count=1</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font> <font color="black">|</font> trans(<font color="red">$</font>n)</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax99fc1c88538cc54011292bbf75bfcdb8"></div>
+                      <script>
+                      padAjax99fc1c88538cc54011292bbf75bfcdb8 = new XMLHttpRequest();
+                      padAjax99fc1c88538cc54011292bbf75bfcdb8.onreadystatechange=function() {
+                      if (padAjax99fc1c88538cc54011292bbf75bfcdb8.readyState === 4) {
+                      if (padAjax99fc1c88538cc54011292bbf75bfcdb8.status === 200) {
+                      document.getElementById("padAjax99fc1c88538cc54011292bbf75bfcdb8").innerHTML=padAjax99fc1c88538cc54011292bbf75bfcdb8.responseText;
+                      } else {
+                      document.getElementById("padAjax99fc1c88538cc54011292bbf75bfcdb8").innerHTML=padAjax99fc1c88538cc54011292bbf75bfcdb8.statusText;
+                      }
+                      }
+                      }
+                      padAjax99fc1c88538cc54011292bbf75bfcdb8.open("GET","http://localhost/pad/regression/framework/?functions/trans_picks_the_plural_form_by_count&padInclude",true);
+                      padAjax99fc1c88538cc54011292bbf75bfcdb8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/trans_reads_the_catalog_of_the_page_locale<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/trans_reads_the_catalog_of_the_page_locale.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/trans_reads_the_catalog_of_the_page_locale.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">"nl"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=2</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.stock<font color="black">'</font><font color="black">,</font> count=2</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe90da0e91230570f9f18e3272d306020"></div>
+                      <script>
+                      padAjaxe90da0e91230570f9f18e3272d306020 = new XMLHttpRequest();
+                      padAjaxe90da0e91230570f9f18e3272d306020.onreadystatechange=function() {
+                      if (padAjaxe90da0e91230570f9f18e3272d306020.readyState === 4) {
+                      if (padAjaxe90da0e91230570f9f18e3272d306020.status === 200) {
+                      document.getElementById("padAjaxe90da0e91230570f9f18e3272d306020").innerHTML=padAjaxe90da0e91230570f9f18e3272d306020.responseText;
+                      } else {
+                      document.getElementById("padAjaxe90da0e91230570f9f18e3272d306020").innerHTML=padAjaxe90da0e91230570f9f18e3272d306020.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe90da0e91230570f9f18e3272d306020.open("GET","http://localhost/pad/regression/framework/?functions/trans_reads_the_catalog_of_the_page_locale&padInclude",true);
+                      padAjaxe90da0e91230570f9f18e3272d306020.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/trans_replaces_named_placeholders<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/trans_replaces_named_placeholders.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/trans_replaces_named_placeholders.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $user </span><span style="color: #007700">= </span><span style="color: #DD0000">"Ann"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user<font color="black">,</font> place=<font color="black">'</font>Utrecht<font color="black">'</font></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0d932340758eda2a46c35f3df6897c3d"></div>
+                      <script>
+                      padAjax0d932340758eda2a46c35f3df6897c3d = new XMLHttpRequest();
+                      padAjax0d932340758eda2a46c35f3df6897c3d.onreadystatechange=function() {
+                      if (padAjax0d932340758eda2a46c35f3df6897c3d.readyState === 4) {
+                      if (padAjax0d932340758eda2a46c35f3df6897c3d.status === 200) {
+                      document.getElementById("padAjax0d932340758eda2a46c35f3df6897c3d").innerHTML=padAjax0d932340758eda2a46c35f3df6897c3d.responseText;
+                      } else {
+                      document.getElementById("padAjax0d932340758eda2a46c35f3df6897c3d").innerHTML=padAjax0d932340758eda2a46c35f3df6897c3d.statusText;
+                      }
+                      }
+                      }
+                      padAjax0d932340758eda2a46c35f3df6897c3d.open("GET","http://localhost/pad/regression/framework/?functions/trans_replaces_named_placeholders&padInclude",true);
+                      padAjax0d932340758eda2a46c35f3df6897c3d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_cache_section_is_kept_per_locale<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_cache_section_is_kept_per_locale.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_cache_section_is_kept_per_locale.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// With several locales a {cache} section is kept per locale, as a cached page is: the<br>  // section written for nl was served to en - "Je winkelwagen" for every language.<br><br>  </span><span style="color: #0000BB">$padLocales </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'en'</span><span style="color: #007700">, </span><span style="color: #DD0000">'nl' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padLocale  </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'cart-per-locale' </span><span style="color: #007700">);<br><br>  function </span><span style="color: #0000BB">cacheCaseLocale </span><span style="color: #007700">( </span><span style="color: #0000BB">$locale </span><span style="color: #007700">) { </span><span style="color: #0000BB">$GLOBALS </span><span style="color: #007700">[</span><span style="color: #DD0000">'padLocale'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$locale</span><span style="color: #007700">; return </span><span style="color: #DD0000">''</span><span style="color: #007700">; }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>cart-per-locale<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>cacheCaseLocale(<font color="black">'</font>en<font color="black">'</font>)</font>}</b>[<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>cart-per-locale<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax49d8540b3a2e143898849826553ed3d4"></div>
+                      <script>
+                      padAjax49d8540b3a2e143898849826553ed3d4 = new XMLHttpRequest();
+                      padAjax49d8540b3a2e143898849826553ed3d4.onreadystatechange=function() {
+                      if (padAjax49d8540b3a2e143898849826553ed3d4.readyState === 4) {
+                      if (padAjax49d8540b3a2e143898849826553ed3d4.status === 200) {
+                      document.getElementById("padAjax49d8540b3a2e143898849826553ed3d4").innerHTML=padAjax49d8540b3a2e143898849826553ed3d4.responseText;
+                      } else {
+                      document.getElementById("padAjax49d8540b3a2e143898849826553ed3d4").innerHTML=padAjax49d8540b3a2e143898849826553ed3d4.statusText;
+                      }
+                      }
+                      }
+                      padAjax49d8540b3a2e143898849826553ed3d4.open("GET","http://localhost/pad/regression/framework/?tags/a_cache_section_is_kept_per_locale&padInclude",true);
+                      padAjax49d8540b3a2e143898849826553ed3d4.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_page_from_another_directory_reads_its_own_translations<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_page_from_another_directory_reads_its_own_translations.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>|<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>data/trans_reads_the_catalog_of_its_own_directory<font color="black">'</font></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6d3fe8c8a868002ef5893bf365e72642"></div>
+                      <script>
+                      padAjax6d3fe8c8a868002ef5893bf365e72642 = new XMLHttpRequest();
+                      padAjax6d3fe8c8a868002ef5893bf365e72642.onreadystatechange=function() {
+                      if (padAjax6d3fe8c8a868002ef5893bf365e72642.readyState === 4) {
+                      if (padAjax6d3fe8c8a868002ef5893bf365e72642.status === 200) {
+                      document.getElementById("padAjax6d3fe8c8a868002ef5893bf365e72642").innerHTML=padAjax6d3fe8c8a868002ef5893bf365e72642.responseText;
+                      } else {
+                      document.getElementById("padAjax6d3fe8c8a868002ef5893bf365e72642").innerHTML=padAjax6d3fe8c8a868002ef5893bf365e72642.statusText;
+                      }
+                      }
+                      }
+                      padAjax6d3fe8c8a868002ef5893bf365e72642.open("GET","http://localhost/pad/regression/framework/?tags/a_page_from_another_directory_reads_its_own_translations&padInclude",true);
+                      padAjax6d3fe8c8a868002ef5893bf365e72642.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/trans_writes_a_substitution_and_an_unknown_key_as_text<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/trans_writes_a_substitution_and_an_unknown_key_as_text.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/trans_writes_a_substitution_and_an_unknown_key_as_text.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $user </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;img src=x onerror=alert(1)&gt;'</span><span style="color: #007700">; </span><span style="color: #0000BB">$status </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;b&gt;new&lt;/b&gt;'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>greeting<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user<font color="black">,</font> place=<font color="black">'</font>R&amp;D<font color="black">'</font></font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="red">$</font>status</font>}</b>][<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=3</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2db335b757984fad8a2446d8149fc30a"></div>
+                      <script>
+                      padAjax2db335b757984fad8a2446d8149fc30a = new XMLHttpRequest();
+                      padAjax2db335b757984fad8a2446d8149fc30a.onreadystatechange=function() {
+                      if (padAjax2db335b757984fad8a2446d8149fc30a.readyState === 4) {
+                      if (padAjax2db335b757984fad8a2446d8149fc30a.status === 200) {
+                      document.getElementById("padAjax2db335b757984fad8a2446d8149fc30a").innerHTML=padAjax2db335b757984fad8a2446d8149fc30a.responseText;
+                      } else {
+                      document.getElementById("padAjax2db335b757984fad8a2446d8149fc30a").innerHTML=padAjax2db335b757984fad8a2446d8149fc30a.statusText;
+                      }
+                      }
+                      }
+                      padAjax2db335b757984fad8a2446d8149fc30a.open("GET","http://localhost/pad/regression/framework/?tags/trans_writes_a_substitution_and_an_unknown_key_as_text&padInclude",true);
+                      padAjax2db335b757984fad8a2446d8149fc30a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/trans/1-key<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/trans/1-key.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Keys from the catalog<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The text of each key in _lang/en.json - markup in the catalog stays markup<font color="black">,</font> an unknown key is written as itself.<font color="black">'</font></font>}</b><br>&lt;h3&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.title<font color="black">'</font></font>}</b>&lt;/h3&gt;<br>&lt;p&gt;&lt;button type="button"&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.checkout<font color="black">'</font></font>}</b>&lt;/button&gt;&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.missing<font color="black">'</font></font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax91d3c69bc8ebaf352d0664702062a55d"></div>
+                      <script>
+                      padAjax91d3c69bc8ebaf352d0664702062a55d = new XMLHttpRequest();
+                      padAjax91d3c69bc8ebaf352d0664702062a55d.onreadystatechange=function() {
+                      if (padAjax91d3c69bc8ebaf352d0664702062a55d.readyState === 4) {
+                      if (padAjax91d3c69bc8ebaf352d0664702062a55d.status === 200) {
+                      document.getElementById("padAjax91d3c69bc8ebaf352d0664702062a55d").innerHTML=padAjax91d3c69bc8ebaf352d0664702062a55d.responseText;
+                      } else {
+                      document.getElementById("padAjax91d3c69bc8ebaf352d0664702062a55d").innerHTML=padAjax91d3c69bc8ebaf352d0664702062a55d.statusText;
+                      }
+                      }
+                      }
+                      padAjax91d3c69bc8ebaf352d0664702062a55d.open("GET","http://localhost/pad/tags/?examples/trans/1-key&padInclude",true);
+                      padAjax91d3c69bc8ebaf352d0664702062a55d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/trans/2-plural<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/trans/2-plural.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Plural forms<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>count= picks one of the three forms - zero<font color="black">,</font> one<font color="black">,</font> other - and replaces <font color="black">%</font>d.<font color="black">'</font></font>}</b><br>&lt;ul&gt;<br>  <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>0..3<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>n<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>trans.cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>n</font>}</b>&lt;/li&gt;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb697529384f4dd98c365d98732d9244c"></div>
+                      <script>
+                      padAjaxb697529384f4dd98c365d98732d9244c = new XMLHttpRequest();
+                      padAjaxb697529384f4dd98c365d98732d9244c.onreadystatechange=function() {
+                      if (padAjaxb697529384f4dd98c365d98732d9244c.readyState === 4) {
+                      if (padAjaxb697529384f4dd98c365d98732d9244c.status === 200) {
+                      document.getElementById("padAjaxb697529384f4dd98c365d98732d9244c").innerHTML=padAjaxb697529384f4dd98c365d98732d9244c.responseText;
+                      } else {
+                      document.getElementById("padAjaxb697529384f4dd98c365d98732d9244c").innerHTML=padAjaxb697529384f4dd98c365d98732d9244c.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb697529384f4dd98c365d98732d9244c.open("GET","http://localhost/pad/tags/?examples/trans/2-plural&padInclude",true);
+                      padAjaxb697529384f4dd98c365d98732d9244c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

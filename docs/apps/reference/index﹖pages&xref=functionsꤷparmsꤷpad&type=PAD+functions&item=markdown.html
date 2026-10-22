@@ -1,520 +1,599 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - PAD functions - markdown
+      Reference - PAD functions - markdown · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - PAD functions - markdown
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: manual - Page: fragments/markdown_2<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">fragments/markdown_2.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">fragments/markdown_2.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'body' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"Written by a *visitor*: &lt;script&gt;alert(1)&lt;/script&gt; and `{php:getcwd}`" </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green">$post.body</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax6366875dbb9b7adf9133b958cadafa5c"></div>
-                        <script>
-                        padAjax6366875dbb9b7adf9133b958cadafa5c = new XMLHttpRequest();
-                        padAjax6366875dbb9b7adf9133b958cadafa5c.onreadystatechange=function() {
-                        if (padAjax6366875dbb9b7adf9133b958cadafa5c.readyState === 4) {
-                        if (padAjax6366875dbb9b7adf9133b958cadafa5c.status === 200) {
-                        document.getElementById("padAjax6366875dbb9b7adf9133b958cadafa5c").innerHTML=padAjax6366875dbb9b7adf9133b958cadafa5c.responseText;
-                        } else {
-                        document.getElementById("padAjax6366875dbb9b7adf9133b958cadafa5c").innerHTML=padAjax6366875dbb9b7adf9133b958cadafa5c.statusText;
-                        }
-                        }
-                        }
-                        padAjax6366875dbb9b7adf9133b958cadafa5c.open("GET","http://localhost/pad/manual/?fragments/markdown_2&padInclude",true);
-                        padAjax6366875dbb9b7adf9133b958cadafa5c.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $post </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'body' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"*Hi* & &lt;b&gt;" </span><span style="color: #007700">];<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green">$post.body</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc"></div>
-                        <script>
-                        padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc = new XMLHttpRequest();
-                        padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.onreadystatechange=function() {
-                        if (padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.readyState === 4) {
-                        if (padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.status === 200) {
-                        document.getElementById("padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc").innerHTML=padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.responseText;
-                        } else {
-                        document.getElementById("padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc").innerHTML=padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.statusText;
-                        }
-                        }
-                        }
-                        padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.open("GET","http://localhost/pad/regression/framework/?escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup&padInclude",true);
-                        padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: escaping/markdown_escapes_a_stand_in_quote_from_a_value<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">escaping/markdown_escapes_a_stand_in_quote_from_a_value.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">escaping/markdown_escapes_a_stand_in_quote_from_a_value.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The markdown pipe runs on a value before it is protected, so a value from the request<br>  // may hold a quote's stand-in (U+E022); it is escaped as the quote it will be, in a link<br>  // title and in text alike, where it passed the renderer and became a live quote that<br>  // closed the title attribute the renderer built.<br><br>  </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #DD0000">"[a](http://x \"t\u{E022} onx=1\") and \u{E022} text"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>b <font color="black">|</font> markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxdc75e116c47109b63ad8597424a305e1"></div>
-                        <script>
-                        padAjaxdc75e116c47109b63ad8597424a305e1 = new XMLHttpRequest();
-                        padAjaxdc75e116c47109b63ad8597424a305e1.onreadystatechange=function() {
-                        if (padAjaxdc75e116c47109b63ad8597424a305e1.readyState === 4) {
-                        if (padAjaxdc75e116c47109b63ad8597424a305e1.status === 200) {
-                        document.getElementById("padAjaxdc75e116c47109b63ad8597424a305e1").innerHTML=padAjaxdc75e116c47109b63ad8597424a305e1.responseText;
-                        } else {
-                        document.getElementById("padAjaxdc75e116c47109b63ad8597424a305e1").innerHTML=padAjaxdc75e116c47109b63ad8597424a305e1.statusText;
-                        }
-                        }
-                        }
-                        padAjaxdc75e116c47109b63ad8597424a305e1.open("GET","http://localhost/pad/regression/framework/?escaping/markdown_escapes_a_stand_in_quote_from_a_value&padInclude",true);
-                        padAjaxdc75e116c47109b63ad8597424a305e1.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: escaping/markdown_written_from_a_value_stays_text<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">escaping/markdown_written_from_a_value_stays_text.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">escaping/markdown_written_from_a_value_stays_text.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"# {php:getcwd}\n\n{echo 'x'}"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>text</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb38cb8f5b42aa30e2f8e592a738c94c9"></div>
-                        <script>
-                        padAjaxb38cb8f5b42aa30e2f8e592a738c94c9 = new XMLHttpRequest();
-                        padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.onreadystatechange=function() {
-                        if (padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.readyState === 4) {
-                        if (padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.status === 200) {
-                        document.getElementById("padAjaxb38cb8f5b42aa30e2f8e592a738c94c9").innerHTML=padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.responseText;
-                        } else {
-                        document.getElementById("padAjaxb38cb8f5b42aa30e2f8e592a738c94c9").innerHTML=padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.open("GET","http://localhost/pad/regression/framework/?escaping/markdown_written_from_a_value_stays_text&padInclude",true);
-                        padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A numeric reference to a control character inside the scheme: html_entity_decode leaves<br>  // &amp;#13; &amp;#x0D; &amp;#1; &amp;#11; as they are, a browser decodes them and drops the control<br>  // character, so java&amp;#13;script: was javascript:. A link with a reference to an ordinary<br>  // character keeps it.<br><br>  </span><span style="color: #0000BB">$text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](java&amp;#13;script:alert(1)) [b](&amp;#1;javascript:alert(1)) [c](java&amp;#x0D;script:alert(1)) [d](java&amp;#11;script:x) [ok](https://e.com/?a=1&amp;#38;b=2)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxbc819e03ab1bd944045e3b61391281ff"></div>
-                        <script>
-                        padAjaxbc819e03ab1bd944045e3b61391281ff = new XMLHttpRequest();
-                        padAjaxbc819e03ab1bd944045e3b61391281ff.onreadystatechange=function() {
-                        if (padAjaxbc819e03ab1bd944045e3b61391281ff.readyState === 4) {
-                        if (padAjaxbc819e03ab1bd944045e3b61391281ff.status === 200) {
-                        document.getElementById("padAjaxbc819e03ab1bd944045e3b61391281ff").innerHTML=padAjaxbc819e03ab1bd944045e3b61391281ff.responseText;
-                        } else {
-                        document.getElementById("padAjaxbc819e03ab1bd944045e3b61391281ff").innerHTML=padAjaxbc819e03ab1bd944045e3b61391281ff.statusText;
-                        }
-                        }
-                        }
-                        padAjaxbc819e03ab1bd944045e3b61391281ff.open("GET","http://localhost/pad/regression/framework/?functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference&padInclude",true);
-                        padAjaxbc819e03ab1bd944045e3b61391281ff.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_emphasis_never_writes_crossing_tags<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_emphasis_never_writes_crossing_tags.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_emphasis_never_writes_crossing_tags.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Strong and em runs that overlap: an em pass opened inside a &lt;strong&gt; and closed after<br>  // it. Emphasis inside emphasis is kept.<br><br>  </span><span style="color: #0000BB">$nested   </span><span style="color: #007700">= </span><span style="color: #DD0000">'**foo **bar** baz**'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$crossing </span><span style="color: #007700">= </span><span style="color: #DD0000">'**bold *and** italic*'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$inside   </span><span style="color: #007700">= </span><span style="color: #DD0000">'*a **b** c* and **a *b* c**'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green">$nested</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$crossing</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$inside</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxec9c1fae77d13a94753adfc4cc5cacbf"></div>
-                        <script>
-                        padAjaxec9c1fae77d13a94753adfc4cc5cacbf = new XMLHttpRequest();
-                        padAjaxec9c1fae77d13a94753adfc4cc5cacbf.onreadystatechange=function() {
-                        if (padAjaxec9c1fae77d13a94753adfc4cc5cacbf.readyState === 4) {
-                        if (padAjaxec9c1fae77d13a94753adfc4cc5cacbf.status === 200) {
-                        document.getElementById("padAjaxec9c1fae77d13a94753adfc4cc5cacbf").innerHTML=padAjaxec9c1fae77d13a94753adfc4cc5cacbf.responseText;
-                        } else {
-                        document.getElementById("padAjaxec9c1fae77d13a94753adfc4cc5cacbf").innerHTML=padAjaxec9c1fae77d13a94753adfc4cc5cacbf.statusText;
-                        }
-                        }
-                        }
-                        padAjaxec9c1fae77d13a94753adfc4cc5cacbf.open("GET","http://localhost/pad/regression/framework/?functions/markdown_emphasis_never_writes_crossing_tags&padInclude",true);
-                        padAjaxec9c1fae77d13a94753adfc4cc5cacbf.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](javascript&amp;#58top;alert(1)) ![i](x&amp;#x3Ay;) &amp;#58x; &amp;amp; &amp;#123; &amp;#x7B; &amp;copy;'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax0a48a8def67a597f0bc2eea7f064b7e8"></div>
-                        <script>
-                        padAjax0a48a8def67a597f0bc2eea7f064b7e8 = new XMLHttpRequest();
-                        padAjax0a48a8def67a597f0bc2eea7f064b7e8.onreadystatechange=function() {
-                        if (padAjax0a48a8def67a597f0bc2eea7f064b7e8.readyState === 4) {
-                        if (padAjax0a48a8def67a597f0bc2eea7f064b7e8.status === 200) {
-                        document.getElementById("padAjax0a48a8def67a597f0bc2eea7f064b7e8").innerHTML=padAjax0a48a8def67a597f0bc2eea7f064b7e8.responseText;
-                        } else {
-                        document.getElementById("padAjax0a48a8def67a597f0bc2eea7f064b7e8").innerHTML=padAjax0a48a8def67a597f0bc2eea7f064b7e8.statusText;
-                        }
-                        }
-                        }
-                        padAjax0a48a8def67a597f0bc2eea7f064b7e8.open("GET","http://localhost/pad/regression/framework/?functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference&padInclude",true);
-                        padAjax0a48a8def67a597f0bc2eea7f064b7e8.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_escapes_raw_html_and_drops_an_unsafe_link<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_escapes_raw_html_and_drops_an_unsafe_link.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_escapes_raw_html_and_drops_an_unsafe_link.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"Hi &lt;script&gt;alert(1)&lt;/script&gt; [x](javascript:alert(1)) [ok](https://example.com \"t\") and `a&lt;b`"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax6d652be3a9d7173096d4b2f13b7fdfa5"></div>
-                        <script>
-                        padAjax6d652be3a9d7173096d4b2f13b7fdfa5 = new XMLHttpRequest();
-                        padAjax6d652be3a9d7173096d4b2f13b7fdfa5.onreadystatechange=function() {
-                        if (padAjax6d652be3a9d7173096d4b2f13b7fdfa5.readyState === 4) {
-                        if (padAjax6d652be3a9d7173096d4b2f13b7fdfa5.status === 200) {
-                        document.getElementById("padAjax6d652be3a9d7173096d4b2f13b7fdfa5").innerHTML=padAjax6d652be3a9d7173096d4b2f13b7fdfa5.responseText;
-                        } else {
-                        document.getElementById("padAjax6d652be3a9d7173096d4b2f13b7fdfa5").innerHTML=padAjax6d652be3a9d7173096d4b2f13b7fdfa5.statusText;
-                        }
-                        }
-                        }
-                        padAjax6d652be3a9d7173096d4b2f13b7fdfa5.open("GET","http://localhost/pad/regression/framework/?functions/markdown_escapes_raw_html_and_drops_an_unsafe_link&padInclude",true);
-                        padAjax6d652be3a9d7173096d4b2f13b7fdfa5.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](javascript\:alert(1)) ![i](javascript\:alert(1)) [d](data\:text/html,x) [ok](https://example.com/a\_b) [t](x "&lt;https://x/onmouseover=alert(1)//&gt;") [u](&lt;https://example.com/p&gt;)'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax18e7890303cf21f7dc11b0636975ffe2"></div>
-                        <script>
-                        padAjax18e7890303cf21f7dc11b0636975ffe2 = new XMLHttpRequest();
-                        padAjax18e7890303cf21f7dc11b0636975ffe2.onreadystatechange=function() {
-                        if (padAjax18e7890303cf21f7dc11b0636975ffe2.readyState === 4) {
-                        if (padAjax18e7890303cf21f7dc11b0636975ffe2.status === 200) {
-                        document.getElementById("padAjax18e7890303cf21f7dc11b0636975ffe2").innerHTML=padAjax18e7890303cf21f7dc11b0636975ffe2.responseText;
-                        } else {
-                        document.getElementById("padAjax18e7890303cf21f7dc11b0636975ffe2").innerHTML=padAjax18e7890303cf21f7dc11b0636975ffe2.statusText;
-                        }
-                        }
-                        }
-                        padAjax18e7890303cf21f7dc11b0636975ffe2.open("GET","http://localhost/pad/regression/framework/?functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them&padInclude",true);
-                        padAjax18e7890303cf21f7dc11b0636975ffe2.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Lists as editors and document exports write them - a tab after the marker - and a list<br>  // with an empty item, which is still tight.<br><br>  </span><span style="color: #0000BB">$tabs   </span><span style="color: #007700">= </span><span style="color: #DD0000">"-\tfoo\n-\tbar"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$number </span><span style="color: #007700">= </span><span style="color: #DD0000">"1.\tone\n2.\ttwo"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$empty  </span><span style="color: #007700">= </span><span style="color: #DD0000">"- a\n-\n- c"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green">$tabs</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$number</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$empty</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax4fa2b3fece1707d8700588bead8dd47c"></div>
-                        <script>
-                        padAjax4fa2b3fece1707d8700588bead8dd47c = new XMLHttpRequest();
-                        padAjax4fa2b3fece1707d8700588bead8dd47c.onreadystatechange=function() {
-                        if (padAjax4fa2b3fece1707d8700588bead8dd47c.readyState === 4) {
-                        if (padAjax4fa2b3fece1707d8700588bead8dd47c.status === 200) {
-                        document.getElementById("padAjax4fa2b3fece1707d8700588bead8dd47c").innerHTML=padAjax4fa2b3fece1707d8700588bead8dd47c.responseText;
-                        } else {
-                        document.getElementById("padAjax4fa2b3fece1707d8700588bead8dd47c").innerHTML=padAjax4fa2b3fece1707d8700588bead8dd47c.statusText;
-                        }
-                        }
-                        }
-                        padAjax4fa2b3fece1707d8700588bead8dd47c.open("GET","http://localhost/pad/regression/framework/?functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item&padInclude",true);
-                        padAjax4fa2b3fece1707d8700588bead8dd47c.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/markdown_of_a_value_keeps_a_text_of_indented_code<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">functions/markdown_of_a_value_keeps_a_text_of_indented_code.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/markdown_of_a_value_keeps_a_text_of_indented_code.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value that is all indented code - a comment, a post, a .md file.<br><br>  </span><span style="color: #0000BB">$code </span><span style="color: #007700">= </span><span style="color: #DD0000">"    \$a = 1;\n    echo \$a;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="green">$code</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>code</font>}</b>|<br>  <b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>    The pair is dedented with the template around it.<br>  <b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax54cd747ad14fe904417fecba1cb3cd32"></div>
-                        <script>
-                        padAjax54cd747ad14fe904417fecba1cb3cd32 = new XMLHttpRequest();
-                        padAjax54cd747ad14fe904417fecba1cb3cd32.onreadystatechange=function() {
-                        if (padAjax54cd747ad14fe904417fecba1cb3cd32.readyState === 4) {
-                        if (padAjax54cd747ad14fe904417fecba1cb3cd32.status === 200) {
-                        document.getElementById("padAjax54cd747ad14fe904417fecba1cb3cd32").innerHTML=padAjax54cd747ad14fe904417fecba1cb3cd32.responseText;
-                        } else {
-                        document.getElementById("padAjax54cd747ad14fe904417fecba1cb3cd32").innerHTML=padAjax54cd747ad14fe904417fecba1cb3cd32.statusText;
-                        }
-                        }
-                        }
-                        padAjax54cd747ad14fe904417fecba1cb3cd32.open("GET","http://localhost/pad/regression/framework/?functions/markdown_of_a_value_keeps_a_text_of_indented_code&padInclude",true);
-                        padAjax54cd747ad14fe904417fecba1cb3cd32.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - PAD functions - markdown
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: manual - Page: fragments/markdown_2<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/markdown_2.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/markdown_2.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'body' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"Written by a *visitor*: &lt;script&gt;alert(1)&lt;/script&gt; and `{php:getcwd}`" </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green">$post.body</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6366875dbb9b7adf9133b958cadafa5c"></div>
+                      <script>
+                      padAjax6366875dbb9b7adf9133b958cadafa5c = new XMLHttpRequest();
+                      padAjax6366875dbb9b7adf9133b958cadafa5c.onreadystatechange=function() {
+                      if (padAjax6366875dbb9b7adf9133b958cadafa5c.readyState === 4) {
+                      if (padAjax6366875dbb9b7adf9133b958cadafa5c.status === 200) {
+                      document.getElementById("padAjax6366875dbb9b7adf9133b958cadafa5c").innerHTML=padAjax6366875dbb9b7adf9133b958cadafa5c.responseText;
+                      } else {
+                      document.getElementById("padAjax6366875dbb9b7adf9133b958cadafa5c").innerHTML=padAjax6366875dbb9b7adf9133b958cadafa5c.statusText;
+                      }
+                      }
+                      }
+                      padAjax6366875dbb9b7adf9133b958cadafa5c.open("GET","http://localhost/pad/manual/?fragments/markdown_2&padInclude",true);
+                      padAjax6366875dbb9b7adf9133b958cadafa5c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: custom/an_application_function_named_markdown_or_highlight_keeps_the_sanitize_chain<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">custom/an_application_function_named_markdown_or_highlight_keeps_the_sanitize_chain.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">custom/an_application_function_named_markdown_or_highlight_keeps_the_sanitize_chain.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $s </span><span style="color: #007700">= </span><span style="color: #DD0000">"&lt;b&gt;x&lt;/b&gt;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">A[<b>{<font color="green">$s</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>] B[<b>{<font color="green">$s</font> <font color="black">|</font> <font color="blue">highlight</font>}</b>] C[<b>{<font color="green">$s</font> <font color="black">|</font> <font color="blue">highlight('sql')</font>}</b>] D[<b>{<font color="green">$s</font> <font color="black">|</font> <font color="purple">pad</font><font color="black">:</font><font color="blue">markdown</font>}</b>] E[<b>{<font color="green">$s</font> <font color="black">|</font> <font color="blue">upper</font> <font color="black">|</font> <font color="blue">highlight</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxbd5f1b0fd289b4f749fffeafd6631413"></div>
+                      <script>
+                      padAjaxbd5f1b0fd289b4f749fffeafd6631413 = new XMLHttpRequest();
+                      padAjaxbd5f1b0fd289b4f749fffeafd6631413.onreadystatechange=function() {
+                      if (padAjaxbd5f1b0fd289b4f749fffeafd6631413.readyState === 4) {
+                      if (padAjaxbd5f1b0fd289b4f749fffeafd6631413.status === 200) {
+                      document.getElementById("padAjaxbd5f1b0fd289b4f749fffeafd6631413").innerHTML=padAjaxbd5f1b0fd289b4f749fffeafd6631413.responseText;
+                      } else {
+                      document.getElementById("padAjaxbd5f1b0fd289b4f749fffeafd6631413").innerHTML=padAjaxbd5f1b0fd289b4f749fffeafd6631413.statusText;
+                      }
+                      }
+                      }
+                      padAjaxbd5f1b0fd289b4f749fffeafd6631413.open("GET","http://localhost/pad/regression/framework/?custom/an_application_function_named_markdown_or_highlight_keeps_the_sanitize_chain&padInclude",true);
+                      padAjaxbd5f1b0fd289b4f749fffeafd6631413.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $post </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'body' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"*Hi* & &lt;b&gt;" </span><span style="color: #007700">];<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green">$post.body</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc"></div>
+                      <script>
+                      padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc = new XMLHttpRequest();
+                      padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.onreadystatechange=function() {
+                      if (padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.readyState === 4) {
+                      if (padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.status === 200) {
+                      document.getElementById("padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc").innerHTML=padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.responseText;
+                      } else {
+                      document.getElementById("padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc").innerHTML=padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.open("GET","http://localhost/pad/regression/framework/?escaping/a_field_piped_through_markdown_is_not_sanitized_over_its_markup&padInclude",true);
+                      padAjaxa80cd3fda8c8d5ef5412c63a9f7c93fc.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: escaping/markdown_escapes_a_stand_in_quote_from_a_value<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">escaping/markdown_escapes_a_stand_in_quote_from_a_value.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">escaping/markdown_escapes_a_stand_in_quote_from_a_value.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The markdown pipe runs on a value before it is protected, so a value from the request<br>  // may hold a quote's stand-in (U+E022); it is escaped as the quote it will be, in a link<br>  // title and in text alike, where it passed the renderer and became a live quote that<br>  // closed the title attribute the renderer built.<br><br>  </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #DD0000">"[a](http://x \"t\u{E022} onx=1\") and \u{E022} text"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>b <font color="black">|</font> markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxdc75e116c47109b63ad8597424a305e1"></div>
+                      <script>
+                      padAjaxdc75e116c47109b63ad8597424a305e1 = new XMLHttpRequest();
+                      padAjaxdc75e116c47109b63ad8597424a305e1.onreadystatechange=function() {
+                      if (padAjaxdc75e116c47109b63ad8597424a305e1.readyState === 4) {
+                      if (padAjaxdc75e116c47109b63ad8597424a305e1.status === 200) {
+                      document.getElementById("padAjaxdc75e116c47109b63ad8597424a305e1").innerHTML=padAjaxdc75e116c47109b63ad8597424a305e1.responseText;
+                      } else {
+                      document.getElementById("padAjaxdc75e116c47109b63ad8597424a305e1").innerHTML=padAjaxdc75e116c47109b63ad8597424a305e1.statusText;
+                      }
+                      }
+                      }
+                      padAjaxdc75e116c47109b63ad8597424a305e1.open("GET","http://localhost/pad/regression/framework/?escaping/markdown_escapes_a_stand_in_quote_from_a_value&padInclude",true);
+                      padAjaxdc75e116c47109b63ad8597424a305e1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: escaping/markdown_written_from_a_value_stays_text<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">escaping/markdown_written_from_a_value_stays_text.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">escaping/markdown_written_from_a_value_stays_text.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"# {php:getcwd}\n\n{echo 'x'}"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>text</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb38cb8f5b42aa30e2f8e592a738c94c9"></div>
+                      <script>
+                      padAjaxb38cb8f5b42aa30e2f8e592a738c94c9 = new XMLHttpRequest();
+                      padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.onreadystatechange=function() {
+                      if (padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.readyState === 4) {
+                      if (padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.status === 200) {
+                      document.getElementById("padAjaxb38cb8f5b42aa30e2f8e592a738c94c9").innerHTML=padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.responseText;
+                      } else {
+                      document.getElementById("padAjaxb38cb8f5b42aa30e2f8e592a738c94c9").innerHTML=padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.open("GET","http://localhost/pad/regression/framework/?escaping/markdown_written_from_a_value_stays_text&padInclude",true);
+                      padAjaxb38cb8f5b42aa30e2f8e592a738c94c9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A numeric reference to a control character inside the scheme: html_entity_decode leaves<br>  // &amp;#13; &amp;#x0D; &amp;#1; &amp;#11; as they are, a browser decodes them and drops the control<br>  // character, so java&amp;#13;script: was javascript:. A link with a reference to an ordinary<br>  // character keeps it.<br><br>  </span><span style="color: #0000BB">$text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](java&amp;#13;script:alert(1)) [b](&amp;#1;javascript:alert(1)) [c](java&amp;#x0D;script:alert(1)) [d](java&amp;#11;script:x) [ok](https://e.com/?a=1&amp;#38;b=2)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxbc819e03ab1bd944045e3b61391281ff"></div>
+                      <script>
+                      padAjaxbc819e03ab1bd944045e3b61391281ff = new XMLHttpRequest();
+                      padAjaxbc819e03ab1bd944045e3b61391281ff.onreadystatechange=function() {
+                      if (padAjaxbc819e03ab1bd944045e3b61391281ff.readyState === 4) {
+                      if (padAjaxbc819e03ab1bd944045e3b61391281ff.status === 200) {
+                      document.getElementById("padAjaxbc819e03ab1bd944045e3b61391281ff").innerHTML=padAjaxbc819e03ab1bd944045e3b61391281ff.responseText;
+                      } else {
+                      document.getElementById("padAjaxbc819e03ab1bd944045e3b61391281ff").innerHTML=padAjaxbc819e03ab1bd944045e3b61391281ff.statusText;
+                      }
+                      }
+                      }
+                      padAjaxbc819e03ab1bd944045e3b61391281ff.open("GET","http://localhost/pad/regression/framework/?functions/markdown_drops_a_link_whose_scheme_hides_a_control_character_reference&padInclude",true);
+                      padAjaxbc819e03ab1bd944045e3b61391281ff.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_emphasis_never_writes_crossing_tags<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_emphasis_never_writes_crossing_tags.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_emphasis_never_writes_crossing_tags.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Strong and em runs that overlap: an em pass opened inside a &lt;strong&gt; and closed after<br>  // it. Emphasis inside emphasis is kept.<br><br>  </span><span style="color: #0000BB">$nested   </span><span style="color: #007700">= </span><span style="color: #DD0000">'**foo **bar** baz**'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$crossing </span><span style="color: #007700">= </span><span style="color: #DD0000">'**bold *and** italic*'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$inside   </span><span style="color: #007700">= </span><span style="color: #DD0000">'*a **b** c* and **a *b* c**'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green">$nested</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$crossing</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$inside</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxec9c1fae77d13a94753adfc4cc5cacbf"></div>
+                      <script>
+                      padAjaxec9c1fae77d13a94753adfc4cc5cacbf = new XMLHttpRequest();
+                      padAjaxec9c1fae77d13a94753adfc4cc5cacbf.onreadystatechange=function() {
+                      if (padAjaxec9c1fae77d13a94753adfc4cc5cacbf.readyState === 4) {
+                      if (padAjaxec9c1fae77d13a94753adfc4cc5cacbf.status === 200) {
+                      document.getElementById("padAjaxec9c1fae77d13a94753adfc4cc5cacbf").innerHTML=padAjaxec9c1fae77d13a94753adfc4cc5cacbf.responseText;
+                      } else {
+                      document.getElementById("padAjaxec9c1fae77d13a94753adfc4cc5cacbf").innerHTML=padAjaxec9c1fae77d13a94753adfc4cc5cacbf.statusText;
+                      }
+                      }
+                      }
+                      padAjaxec9c1fae77d13a94753adfc4cc5cacbf.open("GET","http://localhost/pad/regression/framework/?functions/markdown_emphasis_never_writes_crossing_tags&padInclude",true);
+                      padAjaxec9c1fae77d13a94753adfc4cc5cacbf.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](javascript&amp;#58top;alert(1)) ![i](x&amp;#x3Ay;) &amp;#58x; &amp;amp; &amp;#123; &amp;#x7B; &amp;copy;'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0a48a8def67a597f0bc2eea7f064b7e8"></div>
+                      <script>
+                      padAjax0a48a8def67a597f0bc2eea7f064b7e8 = new XMLHttpRequest();
+                      padAjax0a48a8def67a597f0bc2eea7f064b7e8.onreadystatechange=function() {
+                      if (padAjax0a48a8def67a597f0bc2eea7f064b7e8.readyState === 4) {
+                      if (padAjax0a48a8def67a597f0bc2eea7f064b7e8.status === 200) {
+                      document.getElementById("padAjax0a48a8def67a597f0bc2eea7f064b7e8").innerHTML=padAjax0a48a8def67a597f0bc2eea7f064b7e8.responseText;
+                      } else {
+                      document.getElementById("padAjax0a48a8def67a597f0bc2eea7f064b7e8").innerHTML=padAjax0a48a8def67a597f0bc2eea7f064b7e8.statusText;
+                      }
+                      }
+                      }
+                      padAjax0a48a8def67a597f0bc2eea7f064b7e8.open("GET","http://localhost/pad/regression/framework/?functions/markdown_escapes_an_ampersand_that_starts_no_complete_reference&padInclude",true);
+                      padAjax0a48a8def67a597f0bc2eea7f064b7e8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_escapes_raw_html_and_drops_an_unsafe_link<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_escapes_raw_html_and_drops_an_unsafe_link.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_escapes_raw_html_and_drops_an_unsafe_link.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"Hi &lt;script&gt;alert(1)&lt;/script&gt; [x](javascript:alert(1)) [ok](https://example.com \"t\") and `a&lt;b`"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6d652be3a9d7173096d4b2f13b7fdfa5"></div>
+                      <script>
+                      padAjax6d652be3a9d7173096d4b2f13b7fdfa5 = new XMLHttpRequest();
+                      padAjax6d652be3a9d7173096d4b2f13b7fdfa5.onreadystatechange=function() {
+                      if (padAjax6d652be3a9d7173096d4b2f13b7fdfa5.readyState === 4) {
+                      if (padAjax6d652be3a9d7173096d4b2f13b7fdfa5.status === 200) {
+                      document.getElementById("padAjax6d652be3a9d7173096d4b2f13b7fdfa5").innerHTML=padAjax6d652be3a9d7173096d4b2f13b7fdfa5.responseText;
+                      } else {
+                      document.getElementById("padAjax6d652be3a9d7173096d4b2f13b7fdfa5").innerHTML=padAjax6d652be3a9d7173096d4b2f13b7fdfa5.statusText;
+                      }
+                      }
+                      }
+                      padAjax6d652be3a9d7173096d4b2f13b7fdfa5.open("GET","http://localhost/pad/regression/framework/?functions/markdown_escapes_raw_html_and_drops_an_unsafe_link&padInclude",true);
+                      padAjax6d652be3a9d7173096d4b2f13b7fdfa5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](javascript\:alert(1)) ![i](javascript\:alert(1)) [d](data\:text/html,x) [ok](https://example.com/a\_b) [t](x "&lt;https://x/onmouseover=alert(1)//&gt;") [u](&lt;https://example.com/p&gt;)'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax18e7890303cf21f7dc11b0636975ffe2"></div>
+                      <script>
+                      padAjax18e7890303cf21f7dc11b0636975ffe2 = new XMLHttpRequest();
+                      padAjax18e7890303cf21f7dc11b0636975ffe2.onreadystatechange=function() {
+                      if (padAjax18e7890303cf21f7dc11b0636975ffe2.readyState === 4) {
+                      if (padAjax18e7890303cf21f7dc11b0636975ffe2.status === 200) {
+                      document.getElementById("padAjax18e7890303cf21f7dc11b0636975ffe2").innerHTML=padAjax18e7890303cf21f7dc11b0636975ffe2.responseText;
+                      } else {
+                      document.getElementById("padAjax18e7890303cf21f7dc11b0636975ffe2").innerHTML=padAjax18e7890303cf21f7dc11b0636975ffe2.statusText;
+                      }
+                      }
+                      }
+                      padAjax18e7890303cf21f7dc11b0636975ffe2.open("GET","http://localhost/pad/regression/framework/?functions/markdown_judges_a_link_url_and_title_with_what_was_held_inside_them&padInclude",true);
+                      padAjax18e7890303cf21f7dc11b0636975ffe2.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Lists as editors and document exports write them - a tab after the marker - and a list<br>  // with an empty item, which is still tight.<br><br>  </span><span style="color: #0000BB">$tabs   </span><span style="color: #007700">= </span><span style="color: #DD0000">"-\tfoo\n-\tbar"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$number </span><span style="color: #007700">= </span><span style="color: #DD0000">"1.\tone\n2.\ttwo"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$empty  </span><span style="color: #007700">= </span><span style="color: #DD0000">"- a\n-\n- c"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green">$tabs</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$number</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="green">$empty</font> <font color="black">|</font> <font color="blue">markdown</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4fa2b3fece1707d8700588bead8dd47c"></div>
+                      <script>
+                      padAjax4fa2b3fece1707d8700588bead8dd47c = new XMLHttpRequest();
+                      padAjax4fa2b3fece1707d8700588bead8dd47c.onreadystatechange=function() {
+                      if (padAjax4fa2b3fece1707d8700588bead8dd47c.readyState === 4) {
+                      if (padAjax4fa2b3fece1707d8700588bead8dd47c.status === 200) {
+                      document.getElementById("padAjax4fa2b3fece1707d8700588bead8dd47c").innerHTML=padAjax4fa2b3fece1707d8700588bead8dd47c.responseText;
+                      } else {
+                      document.getElementById("padAjax4fa2b3fece1707d8700588bead8dd47c").innerHTML=padAjax4fa2b3fece1707d8700588bead8dd47c.statusText;
+                      }
+                      }
+                      }
+                      padAjax4fa2b3fece1707d8700588bead8dd47c.open("GET","http://localhost/pad/regression/framework/?functions/markdown_lists_take_a_tab_after_the_marker_and_an_empty_item&padInclude",true);
+                      padAjax4fa2b3fece1707d8700588bead8dd47c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/markdown_of_a_value_keeps_a_text_of_indented_code<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">functions/markdown_of_a_value_keeps_a_text_of_indented_code.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/markdown_of_a_value_keeps_a_text_of_indented_code.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value that is all indented code - a comment, a post, a .md file.<br><br>  </span><span style="color: #0000BB">$code </span><span style="color: #007700">= </span><span style="color: #DD0000">"    \$a = 1;\n    echo \$a;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green">$code</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>code</font>}</b>|<br>  <b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>    The pair is dedented with the template around it.<br>  <b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax54cd747ad14fe904417fecba1cb3cd32"></div>
+                      <script>
+                      padAjax54cd747ad14fe904417fecba1cb3cd32 = new XMLHttpRequest();
+                      padAjax54cd747ad14fe904417fecba1cb3cd32.onreadystatechange=function() {
+                      if (padAjax54cd747ad14fe904417fecba1cb3cd32.readyState === 4) {
+                      if (padAjax54cd747ad14fe904417fecba1cb3cd32.status === 200) {
+                      document.getElementById("padAjax54cd747ad14fe904417fecba1cb3cd32").innerHTML=padAjax54cd747ad14fe904417fecba1cb3cd32.responseText;
+                      } else {
+                      document.getElementById("padAjax54cd747ad14fe904417fecba1cb3cd32").innerHTML=padAjax54cd747ad14fe904417fecba1cb3cd32.statusText;
+                      }
+                      }
+                      }
+                      padAjax54cd747ad14fe904417fecba1cb3cd32.open("GET","http://localhost/pad/regression/framework/?functions/markdown_of_a_value_keeps_a_text_of_indented_code&padInclude",true);
+                      padAjax54cd747ad14fe904417fecba1cb3cd32.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

@@ -6,195 +6,247 @@
     <title>
       {qr} · PAD tags
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
     <link rel="stylesheet" href="tags.css">
-    <script src="tags.js"></script>
   </head>
-  <body>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
-        <nav class="menu" aria-label="Indexes">
-          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
         </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
         <form class="search" action="" method="get" role="search">
           <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
-        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4.5"></circle>
-        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
-        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
-      </div>
-    </header>
-    <main class="page">
-      <article class="tag">
-        <nav class="crumbs" aria-label="Where you are">
-          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">qr</span>
-        </nav>
-        <header class="tag-head">
-          <h1>
-            <span class="brace">{</span>qr<span class="brace">}</span>
-          </h1>
-          <p class="tag-about">
-            Draws a QR code as inline SVG, encoded on the server - no image library, no remote service.
-          </p>
-          <p class="chips">
-            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
-          </p>
-        </header>
-        <section class="block" aria-labelledby="syntax">
-          <h2 id="syntax">
-            Syntax
-          </h2>
-          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-str">'text'</span><span class="hl-brc">}</span>
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">qr</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>qr<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Draws a QR code as inline SVG, encoded on the server - no image library, no remote service.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-str">'text'</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-var">$url</span>, <span class="hl-opt">size</span>=<span class="hl-num">160</span>, <span class="hl-opt">level</span>=<span class="hl-str">'M'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'#000'</span>, <span class="hl-opt">background</span>=<span class="hl-str">'#fff'</span><span class="hl-brc">}</span></code></pre>
-          <h3>
-            Parameters
-          </h3>
-          <dl class="defs">
-            <dt>
-              <code>text</code>
-            </dt>
-            <dd>
-              The text to encode - an address, a payment or Wi-Fi string, anything up to 2,953 bytes at level L.
-            </dd>
-          </dl>
-          <h3>
-            Options
-          </h3>
-          <dl class="defs">
-            <dt>
-              <code>size</code>
-            </dt>
-            <dd>
-              Width and height in pixels, the quiet zone of four modules included; default 160, at least 21.
-            </dd>
-            <dt>
-              <code>level</code>
-            </dt>
-            <dd>
-              Error correction: <code>L</code> (7% of the symbol may be lost), <code>M</code> (15%, default), <code>Q</code> (25%) or <code>H</code> (30%).
-            </dd>
-            <dt>
-              <code>title</code>
-            </dt>
-            <dd>
-              The accessible name, by default the text itself.
-            </dd>
-            <dt>
-              <code>color</code>
-            </dt>
-            <dd>
-              The dark colour, default <code>#000</code>.
-            </dd>
-            <dt>
-              <code>background</code>
-            </dt>
-            <dd>
-              The light colour, default <code>#fff</code>.
-            </dd>
-          </dl>
-        </section>
-        <section class="block prose" aria-labelledby="description">
-          <h2 id="description">
-            Description
-          </h2>
-          <p>
-            <code>{qr}</code> encodes its first parameter as a QR code and writes it as an inline SVG. The encoder is PAD's own (<code>tags/_lib/qr.php</code>): nothing is fetched and no image is stored, and the same text is always the same picture, so a page with a code caches and prints like any other.
-          </p>
-          <p>
-            The text is encoded in one mode - numeric for digits only, alphanumeric for upper case, digits and <code>$%*+-./:</code>, else the bytes of its UTF-8 - in the smallest of the 40 versions that holds it at the error correction asked, under the mask with the lowest penalty. A higher <code>level</code> survives more damage (a logo printed over it, a scratched label) at the cost of a denser code.
-          </p>
-          <p>
-            The colours are fixed, <code>#000</code> on <code>#fff</code> unless <code>color</code> and <code>background</code> say otherwise - not following the page's dark mode, since a reader needs the contrast and a light quiet zone. The SVG has <code>role="img"</code> and the text (or <code>title</code>) as its name.
-          </p>
-          <p>
-            A text too long for version 40 at the level asked, or a level other than L, M, Q or H, is an error under the strict check, and the tag writes nothing. For a one-dimensional code on a product or a parcel see <a href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode}</a>.
-          </p>
-        </section>
-        <section class="block" aria-labelledby="examples">
-          <h2 id="examples">
-            Examples
-          </h2>
-          <div class="example" id="example-1">
             <h3>
-              An address
+              Parameters
             </h3>
-            <p class="example-about">
-              The text is the first parameter; the default is 160 pixels at level M.
+            <dl class="defs">
+              <dt>
+                <code>text</code>
+              </dt>
+              <dd>
+                The text to encode - an address, a payment or Wi-Fi string, anything up to 2,953 bytes at level L.
+              </dd>
+            </dl>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>size</code>
+              </dt>
+              <dd>
+                Width and height in pixels, the quiet zone of four modules included; default 160, at least 21.
+              </dd>
+              <dt>
+                <code>level</code>
+              </dt>
+              <dd>
+                Error correction: <code>L</code> (7% of the symbol may be lost), <code>M</code> (15%, default), <code>Q</code> (25%) or <code>H</code> (30%).
+              </dd>
+              <dt>
+                <code>title</code>
+              </dt>
+              <dd>
+                The accessible name, by default the text itself.
+              </dd>
+              <dt>
+                <code>color</code>
+              </dt>
+              <dd>
+                The dark colour, default <code>#000</code>.
+              </dd>
+              <dt>
+                <code>background</code>
+              </dt>
+              <dd>
+                The light colour, default <code>#fff</code>.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{qr}</code> encodes its first parameter as a QR code and writes it as an inline SVG. The encoder is PAD's own (<code>tags/_lib/qr.php</code>): nothing is fetched and no image is stored, and the same text is always the same picture, so a page with a code caches and prints like any other.
             </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/qr/1-address.pad</span>
+            <p>
+              The text is encoded in one mode - numeric for digits only, alphanumeric for upper case, digits and <code>$%*+-./:</code>, else the bytes of its UTF-8 - in the smallest of the 40 versions that holds it at the error correction asked, under the mask with the lowest penalty. A higher <code>level</code> survives more damage (a logo printed over it, a scratched label) at the cost of a denser code.
+            </p>
+            <p>
+              The colours are fixed, <code>#000</code> on <code>#fff</code> unless <code>color</code> and <code>background</code> say otherwise - not following the page's dark mode, since a reader needs the contrast and a light quiet zone. The SVG has <code>role="img"</code> and the text (or <code>title</code>) as its name.
+            </p>
+            <p>
+              A text too long for version 40 at the level asked, or a level other than L, M, Q or H, is an error under the strict check, and the tag writes nothing. For a one-dimensional code on a product or a parcel see <a href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode}</a>.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                An address
+              </h3>
+              <p class="example-about">
+                The text is the first parameter; the default is 160 pixels at level M.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/qr/1-address.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-str">'https://example.com/order/42'</span><span class="hl-brc">}</span></code></pre>
                 </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-str">'https://example.com/order/42'</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7qr%EA%A4%B71-address.html">open alone</a>
-                </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="160" height="160" viewbox="0 0 37 37" shape-rendering="crispEdges">
-                  <title>
-                    https://example.com/order/42
-                  </title>
-                  <rect width="100%" height="100%" fill="#fff"></rect>
-                  <path fill="#000" d="M4,4h7v1h-7zM13,4h2v1h-2zM16,4h4v1h-4zM22,4h3v1h-3zM26,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM14,5h1v1h-1zM16,5h5v1h-5zM26,5h1v1h-1zM32,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM17,6h1v1h-1zM19,6h1v1h-1zM22,6h2v1h-2zM26,6h1v1h-1zM28,6h3v1h-3zM32,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h1v1h-1zM14,7h3v1h-3zM18,7h2v1h-2zM21,7h1v1h-1zM24,7h1v1h-1zM26,7h1v1h-1zM28,7h3v1h-3zM32,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM12,8h2v1h-2zM19,8h2v1h-2zM22,8h3v1h-3zM26,8h1v1h-1zM28,8h3v1h-3zM32,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM12,9h5v1h-5zM24,9h1v1h-1zM26,9h1v1h-1zM32,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM26,10h7v1h-7zM12,11h1v1h-1zM14,11h1v1h-1zM16,11h1v1h-1zM18,11h1v1h-1zM20,11h1v1h-1zM23,11h2v1h-2zM4,12h1v1h-1zM6,12h5v1h-5zM14,12h1v1h-1zM16,12h1v1h-1zM20,12h2v1h-2zM23,12h1v1h-1zM26,12h5v1h-5zM6,13h4v1h-4zM14,13h1v1h-1zM17,13h3v1h-3zM23,13h2v1h-2zM26,13h3v1h-3zM32,13h1v1h-1zM4,14h5v1h-5zM10,14h1v1h-1zM12,14h1v1h-1zM14,14h2v1h-2zM17,14h6v1h-6zM24,14h2v1h-2zM27,14h2v1h-2zM5,15h1v1h-1zM7,15h1v1h-1zM13,15h1v1h-1zM17,15h1v1h-1zM19,15h1v1h-1zM22,15h4v1h-4zM27,15h1v1h-1zM29,15h1v1h-1zM31,15h1v1h-1zM6,16h3v1h-3zM10,16h1v1h-1zM12,16h2v1h-2zM16,16h1v1h-1zM18,16h2v1h-2zM21,16h3v1h-3zM29,16h2v1h-2zM5,17h3v1h-3zM11,17h1v1h-1zM13,17h1v1h-1zM15,17h1v1h-1zM19,17h5v1h-5zM25,17h4v1h-4zM32,17h1v1h-1zM4,18h2v1h-2zM7,18h1v1h-1zM9,18h2v1h-2zM12,18h1v1h-1zM15,18h2v1h-2zM21,18h1v1h-1zM24,18h1v1h-1zM26,18h5v1h-5zM4,19h1v1h-1zM6,19h3v1h-3zM12,19h1v1h-1zM14,19h2v1h-2zM18,19h1v1h-1zM20,19h1v1h-1zM24,19h2v1h-2zM28,19h1v1h-1zM31,19h1v1h-1zM4,20h2v1h-2zM7,20h1v1h-1zM9,20h3v1h-3zM13,20h1v1h-1zM15,20h2v1h-2zM20,20h4v1h-4zM29,20h2v1h-2zM4,21h5v1h-5zM11,21h1v1h-1zM13,21h3v1h-3zM17,21h3v1h-3zM23,21h6v1h-6zM30,21h1v1h-1zM32,21h1v1h-1zM4,22h1v1h-1zM6,22h2v1h-2zM10,22h2v1h-2zM13,22h2v1h-2zM17,22h4v1h-4zM24,22h1v1h-1zM28,22h1v1h-1zM30,22h1v1h-1zM4,23h1v1h-1zM13,23h1v1h-1zM15,23h1v1h-1zM17,23h1v1h-1zM19,23h1v1h-1zM22,23h3v1h-3zM31,23h1v1h-1zM4,24h1v1h-1zM6,24h3v1h-3zM10,24h1v1h-1zM12,24h2v1h-2zM18,24h2v1h-2zM21,24h8v1h-8zM30,24h3v1h-3zM12,25h1v1h-1zM14,25h2v1h-2zM19,25h2v1h-2zM24,25h1v1h-1zM28,25h5v1h-5zM4,26h7v1h-7zM14,26h2v1h-2zM21,26h4v1h-4zM26,26h1v1h-1zM28,26h3v1h-3zM4,27h1v1h-1zM10,27h1v1h-1zM12,27h1v1h-1zM15,27h1v1h-1zM18,27h1v1h-1zM20,27h1v1h-1zM22,27h3v1h-3zM28,27h1v1h-1zM31,27h1v1h-1zM4,28h1v1h-1zM6,28h3v1h-3zM10,28h1v1h-1zM12,28h1v1h-1zM14,28h1v1h-1zM20,28h1v1h-1zM22,28h1v1h-1zM24,28h5v1h-5zM30,28h1v1h-1zM32,28h1v1h-1zM4,29h1v1h-1zM6,29h3v1h-3zM10,29h1v1h-1zM12,29h2v1h-2zM15,29h1v1h-1zM18,29h2v1h-2zM21,29h5v1h-5zM27,29h1v1h-1zM29,29h2v1h-2zM4,30h1v1h-1zM6,30h3v1h-3zM10,30h1v1h-1zM12,30h2v1h-2zM17,30h5v1h-5zM25,30h7v1h-7zM4,31h1v1h-1zM10,31h1v1h-1zM13,31h1v1h-1zM16,31h1v1h-1zM18,31h2v1h-2zM21,31h2v1h-2zM24,31h1v1h-1zM26,31h4v1h-4zM31,31h1v1h-1zM4,32h7v1h-7zM12,32h1v1h-1zM16,32h1v1h-1zM19,32h1v1h-1zM23,32h1v1h-1zM25,32h4v1h-4zM30,32h1v1h-1z"></path></svg>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7qr%EA%A4%B71-address.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="160" height="160" viewbox="0 0 37 37" shape-rendering="crispEdges">
+                    <title>
+                      https://example.com/order/42
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#000" d="M4,4h7v1h-7zM13,4h2v1h-2zM16,4h4v1h-4zM22,4h3v1h-3zM26,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM14,5h1v1h-1zM16,5h5v1h-5zM26,5h1v1h-1zM32,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM17,6h1v1h-1zM19,6h1v1h-1zM22,6h2v1h-2zM26,6h1v1h-1zM28,6h3v1h-3zM32,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h1v1h-1zM14,7h3v1h-3zM18,7h2v1h-2zM21,7h1v1h-1zM24,7h1v1h-1zM26,7h1v1h-1zM28,7h3v1h-3zM32,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM12,8h2v1h-2zM19,8h2v1h-2zM22,8h3v1h-3zM26,8h1v1h-1zM28,8h3v1h-3zM32,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM12,9h5v1h-5zM24,9h1v1h-1zM26,9h1v1h-1zM32,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM26,10h7v1h-7zM12,11h1v1h-1zM14,11h1v1h-1zM16,11h1v1h-1zM18,11h1v1h-1zM20,11h1v1h-1zM23,11h2v1h-2zM4,12h1v1h-1zM6,12h5v1h-5zM14,12h1v1h-1zM16,12h1v1h-1zM20,12h2v1h-2zM23,12h1v1h-1zM26,12h5v1h-5zM6,13h4v1h-4zM14,13h1v1h-1zM17,13h3v1h-3zM23,13h2v1h-2zM26,13h3v1h-3zM32,13h1v1h-1zM4,14h5v1h-5zM10,14h1v1h-1zM12,14h1v1h-1zM14,14h2v1h-2zM17,14h6v1h-6zM24,14h2v1h-2zM27,14h2v1h-2zM5,15h1v1h-1zM7,15h1v1h-1zM13,15h1v1h-1zM17,15h1v1h-1zM19,15h1v1h-1zM22,15h4v1h-4zM27,15h1v1h-1zM29,15h1v1h-1zM31,15h1v1h-1zM6,16h3v1h-3zM10,16h1v1h-1zM12,16h2v1h-2zM16,16h1v1h-1zM18,16h2v1h-2zM21,16h3v1h-3zM29,16h2v1h-2zM5,17h3v1h-3zM11,17h1v1h-1zM13,17h1v1h-1zM15,17h1v1h-1zM19,17h5v1h-5zM25,17h4v1h-4zM32,17h1v1h-1zM4,18h2v1h-2zM7,18h1v1h-1zM9,18h2v1h-2zM12,18h1v1h-1zM15,18h2v1h-2zM21,18h1v1h-1zM24,18h1v1h-1zM26,18h5v1h-5zM4,19h1v1h-1zM6,19h3v1h-3zM12,19h1v1h-1zM14,19h2v1h-2zM18,19h1v1h-1zM20,19h1v1h-1zM24,19h2v1h-2zM28,19h1v1h-1zM31,19h1v1h-1zM4,20h2v1h-2zM7,20h1v1h-1zM9,20h3v1h-3zM13,20h1v1h-1zM15,20h2v1h-2zM20,20h4v1h-4zM29,20h2v1h-2zM4,21h5v1h-5zM11,21h1v1h-1zM13,21h3v1h-3zM17,21h3v1h-3zM23,21h6v1h-6zM30,21h1v1h-1zM32,21h1v1h-1zM4,22h1v1h-1zM6,22h2v1h-2zM10,22h2v1h-2zM13,22h2v1h-2zM17,22h4v1h-4zM24,22h1v1h-1zM28,22h1v1h-1zM30,22h1v1h-1zM4,23h1v1h-1zM13,23h1v1h-1zM15,23h1v1h-1zM17,23h1v1h-1zM19,23h1v1h-1zM22,23h3v1h-3zM31,23h1v1h-1zM4,24h1v1h-1zM6,24h3v1h-3zM10,24h1v1h-1zM12,24h2v1h-2zM18,24h2v1h-2zM21,24h8v1h-8zM30,24h3v1h-3zM12,25h1v1h-1zM14,25h2v1h-2zM19,25h2v1h-2zM24,25h1v1h-1zM28,25h5v1h-5zM4,26h7v1h-7zM14,26h2v1h-2zM21,26h4v1h-4zM26,26h1v1h-1zM28,26h3v1h-3zM4,27h1v1h-1zM10,27h1v1h-1zM12,27h1v1h-1zM15,27h1v1h-1zM18,27h1v1h-1zM20,27h1v1h-1zM22,27h3v1h-3zM28,27h1v1h-1zM31,27h1v1h-1zM4,28h1v1h-1zM6,28h3v1h-3zM10,28h1v1h-1zM12,28h1v1h-1zM14,28h1v1h-1zM20,28h1v1h-1zM22,28h1v1h-1zM24,28h5v1h-5zM30,28h1v1h-1zM32,28h1v1h-1zM4,29h1v1h-1zM6,29h3v1h-3zM10,29h1v1h-1zM12,29h2v1h-2zM15,29h1v1h-1zM18,29h2v1h-2zM21,29h5v1h-5zM27,29h1v1h-1zM29,29h2v1h-2zM4,30h1v1h-1zM6,30h3v1h-3zM10,30h1v1h-1zM12,30h2v1h-2zM17,30h5v1h-5zM25,30h7v1h-7zM4,31h1v1h-1zM10,31h1v1h-1zM13,31h1v1h-1zM16,31h1v1h-1zM18,31h2v1h-2zM21,31h2v1h-2zM24,31h1v1h-1zM26,31h4v1h-4zM31,31h1v1h-1zM4,32h7v1h-7zM12,32h1v1h-1zM16,32h1v1h-1zM19,32h1v1h-1zM23,32h1v1h-1zM25,32h4v1h-4zM30,32h1v1h-1z"></path></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="example" id="example-2">
-            <h3>
-              Level, size and colours
-            </h3>
-            <p class="example-about">
-              Level H survives the most damage; a dark colour other than black keeps the contrast.
-            </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/qr/2-options.pad</span>
+            <div class="example" id="example-2">
+              <h3>
+                Level, size and colours
+              </h3>
+              <p class="example-about">
+                Level H survives the most damage; a dark colour other than black keeps the contrast.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/qr/2-options.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-str">'WIFI:T:WPA;S:Office;P:correct-horse;;'</span>, <span class="hl-opt">size</span>=<span class="hl-num">200</span>, <span class="hl-opt">level</span>=<span class="hl-str">'H'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'#1b5e20'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Join the office Wi-Fi'</span><span class="hl-brc">}</span></code></pre>
                 </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">qr</span> <span class="hl-str">'WIFI:T:WPA;S:Office;P:correct-horse;;'</span>, <span class="hl-opt">size</span>=<span class="hl-num">200</span>, <span class="hl-opt">level</span>=<span class="hl-str">'H'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'#1b5e20'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Join the office Wi-Fi'</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7qr%EA%A4%B72-options.html">open alone</a>
-                </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="200" height="200" viewbox="0 0 45 45" shape-rendering="crispEdges">
-                  <title>
-                    Join the office Wi-Fi
-                  </title>
-                  <rect width="100%" height="100%" fill="#fff"></rect>
-                  <path fill="#1b5e20" d="M4,4h7v1h-7zM13,4h4v1h-4zM18,4h1v1h-1zM22,4h2v1h-2zM27,4h1v1h-1zM29,4h2v1h-2zM34,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM13,5h2v1h-2zM16,5h1v1h-1zM18,5h1v1h-1zM21,5h2v1h-2zM25,5h1v1h-1zM27,5h1v1h-1zM29,5h1v1h-1zM32,5h1v1h-1zM34,5h1v1h-1zM40,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM21,6h6v1h-6zM28,6h2v1h-2zM32,6h1v1h-1zM34,6h1v1h-1zM36,6h3v1h-3zM40,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h2v1h-2zM17,7h3v1h-3zM21,7h2v1h-2zM25,7h1v1h-1zM29,7h2v1h-2zM34,7h1v1h-1zM36,7h3v1h-3zM40,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM13,8h4v1h-4zM18,8h1v1h-1zM20,8h3v1h-3zM24,8h4v1h-4zM30,8h3v1h-3zM34,8h1v1h-1zM36,8h3v1h-3zM40,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM14,9h1v1h-1zM16,9h1v1h-1zM19,9h1v1h-1zM21,9h8v1h-8zM32,9h1v1h-1zM34,9h1v1h-1zM40,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM26,10h1v1h-1zM28,10h1v1h-1zM30,10h1v1h-1zM32,10h1v1h-1zM34,10h7v1h-7zM15,11h1v1h-1zM20,11h1v1h-1zM22,11h3v1h-3zM26,11h1v1h-1zM29,11h1v1h-1zM31,11h1v1h-1zM7,12h2v1h-2zM10,12h2v1h-2zM14,12h1v1h-1zM16,12h1v1h-1zM19,12h1v1h-1zM21,12h1v1h-1zM24,12h2v1h-2zM29,12h1v1h-1zM32,12h1v1h-1zM37,12h2v1h-2zM7,13h2v1h-2zM11,13h1v1h-1zM15,13h3v1h-3zM19,13h1v1h-1zM22,13h1v1h-1zM25,13h1v1h-1zM27,13h1v1h-1zM34,13h1v1h-1zM36,13h1v1h-1zM38,13h1v1h-1zM5,14h2v1h-2zM8,14h3v1h-3zM13,14h3v1h-3zM17,14h1v1h-1zM19,14h1v1h-1zM23,14h1v1h-1zM29,14h1v1h-1zM33,14h1v1h-1zM35,14h1v1h-1zM38,14h1v1h-1zM40,14h1v1h-1zM4,15h1v1h-1zM8,15h2v1h-2zM11,15h5v1h-5zM17,15h3v1h-3zM21,15h4v1h-4zM27,15h1v1h-1zM30,15h2v1h-2zM34,15h1v1h-1zM36,15h4v1h-4zM4,16h1v1h-1zM8,16h4v1h-4zM18,16h1v1h-1zM20,16h2v1h-2zM23,16h1v1h-1zM25,16h1v1h-1zM29,16h1v1h-1zM33,16h2v1h-2zM37,16h1v1h-1zM39,16h1v1h-1zM7,17h3v1h-3zM11,17h1v1h-1zM18,17h1v1h-1zM21,17h2v1h-2zM29,17h1v1h-1zM31,17h3v1h-3zM36,17h2v1h-2zM39,17h2v1h-2zM4,18h2v1h-2zM7,18h1v1h-1zM10,18h1v1h-1zM12,18h2v1h-2zM16,18h1v1h-1zM21,18h1v1h-1zM23,18h1v1h-1zM27,18h1v1h-1zM29,18h3v1h-3zM33,18h4v1h-4zM39,18h2v1h-2zM6,19h3v1h-3zM11,19h2v1h-2zM15,19h1v1h-1zM17,19h1v1h-1zM19,19h3v1h-3zM23,19h1v1h-1zM27,19h2v1h-2zM31,19h2v1h-2zM36,19h4v1h-4zM5,20h2v1h-2zM10,20h1v1h-1zM12,20h2v1h-2zM16,20h3v1h-3zM21,20h2v1h-2zM25,20h1v1h-1zM28,20h4v1h-4zM34,20h1v1h-1zM37,20h1v1h-1zM39,20h1v1h-1zM4,21h1v1h-1zM6,21h2v1h-2zM9,21h1v1h-1zM16,21h2v1h-2zM20,21h12v1h-12zM33,21h1v1h-1zM35,21h1v1h-1zM38,21h1v1h-1zM40,21h1v1h-1zM5,22h1v1h-1zM7,22h1v1h-1zM9,22h3v1h-3zM15,22h2v1h-2zM19,22h3v1h-3zM23,22h1v1h-1zM28,22h2v1h-2zM31,22h1v1h-1zM33,22h2v1h-2zM40,22h1v1h-1zM4,23h2v1h-2zM7,23h1v1h-1zM9,23h1v1h-1zM13,23h1v1h-1zM19,23h2v1h-2zM26,23h2v1h-2zM29,23h1v1h-1zM39,23h2v1h-2zM4,24h3v1h-3zM8,24h4v1h-4zM13,24h1v1h-1zM17,24h3v1h-3zM22,24h3v1h-3zM28,24h1v1h-1zM30,24h1v1h-1zM33,24h3v1h-3zM39,24h2v1h-2zM4,25h3v1h-3zM8,25h2v1h-2zM12,25h4v1h-4zM18,25h3v1h-3zM22,25h1v1h-1zM24,25h1v1h-1zM26,25h7v1h-7zM35,25h2v1h-2zM38,25h2v1h-2zM4,26h1v1h-1zM8,26h1v1h-1zM10,26h3v1h-3zM14,26h1v1h-1zM16,26h6v1h-6zM25,26h1v1h-1zM29,26h1v1h-1zM31,26h1v1h-1zM38,26h1v1h-1zM40,26h1v1h-1zM6,27h2v1h-2zM9,27h1v1h-1zM15,27h1v1h-1zM18,27h3v1h-3zM22,27h1v1h-1zM24,27h1v1h-1zM26,27h2v1h-2zM29,27h1v1h-1zM33,27h1v1h-1zM35,27h1v1h-1zM37,27h3v1h-3zM4,28h1v1h-1zM6,28h2v1h-2zM10,28h2v1h-2zM15,28h1v1h-1zM17,28h1v1h-1zM19,28h2v1h-2zM22,28h1v1h-1zM25,28h2v1h-2zM28,28h2v1h-2zM31,28h1v1h-1zM37,28h1v1h-1zM39,28h2v1h-2zM4,29h2v1h-2zM7,29h2v1h-2zM12,29h1v1h-1zM14,29h1v1h-1zM17,29h3v1h-3zM23,29h1v1h-1zM25,29h2v1h-2zM29,29h2v1h-2zM34,29h4v1h-4zM39,29h1v1h-1zM4,30h4v1h-4zM9,30h3v1h-3zM14,30h1v1h-1zM20,30h2v1h-2zM24,30h1v1h-1zM26,30h4v1h-4zM31,30h1v1h-1zM36,30h1v1h-1zM38,30h1v1h-1zM40,30h1v1h-1zM4,31h1v1h-1zM6,31h1v1h-1zM8,31h2v1h-2zM13,31h2v1h-2zM18,31h3v1h-3zM22,31h3v1h-3zM27,31h1v1h-1zM30,31h1v1h-1zM32,31h1v1h-1zM38,31h1v1h-1zM40,31h1v1h-1zM4,32h1v1h-1zM8,32h4v1h-4zM15,32h1v1h-1zM19,32h2v1h-2zM23,32h1v1h-1zM26,32h1v1h-1zM31,32h6v1h-6zM38,32h3v1h-3zM12,33h1v1h-1zM14,33h1v1h-1zM17,33h1v1h-1zM19,33h1v1h-1zM21,33h6v1h-6zM29,33h1v1h-1zM32,33h1v1h-1zM36,33h1v1h-1zM4,34h7v1h-7zM12,34h1v1h-1zM14,34h1v1h-1zM16,34h1v1h-1zM19,34h1v1h-1zM21,34h1v1h-1zM26,34h2v1h-2zM30,34h1v1h-1zM32,34h1v1h-1zM34,34h1v1h-1zM36,34h1v1h-1zM38,34h3v1h-3zM4,35h1v1h-1zM10,35h1v1h-1zM13,35h4v1h-4zM18,35h1v1h-1zM21,35h2v1h-2zM25,35h1v1h-1zM27,35h1v1h-1zM29,35h1v1h-1zM31,35h2v1h-2zM36,35h2v1h-2zM39,35h2v1h-2zM4,36h1v1h-1zM6,36h3v1h-3zM10,36h1v1h-1zM12,36h3v1h-3zM17,36h1v1h-1zM20,36h4v1h-4zM26,36h2v1h-2zM29,36h10v1h-10zM40,36h1v1h-1zM4,37h1v1h-1zM6,37h3v1h-3zM10,37h1v1h-1zM12,37h4v1h-4zM18,37h2v1h-2zM21,37h2v1h-2zM25,37h2v1h-2zM28,37h2v1h-2zM31,37h5v1h-5zM4,38h1v1h-1zM6,38h3v1h-3zM10,38h1v1h-1zM14,38h1v1h-1zM17,38h1v1h-1zM20,38h2v1h-2zM27,38h1v1h-1zM30,38h1v1h-1zM34,38h7v1h-7zM4,39h1v1h-1zM10,39h1v1h-1zM14,39h2v1h-2zM18,39h4v1h-4zM23,39h2v1h-2zM26,39h3v1h-3zM34,39h7v1h-7zM4,40h7v1h-7zM16,40h2v1h-2zM21,40h1v1h-1zM24,40h2v1h-2zM27,40h2v1h-2zM32,40h2v1h-2zM37,40h2v1h-2zM40,40h1v1h-1z"></path></svg>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7qr%EA%A4%B72-options.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="200" height="200" viewbox="0 0 45 45" shape-rendering="crispEdges">
+                    <title>
+                      Join the office Wi-Fi
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#1b5e20" d="M4,4h7v1h-7zM13,4h4v1h-4zM18,4h1v1h-1zM22,4h2v1h-2zM27,4h1v1h-1zM29,4h2v1h-2zM34,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM13,5h2v1h-2zM16,5h1v1h-1zM18,5h1v1h-1zM21,5h2v1h-2zM25,5h1v1h-1zM27,5h1v1h-1zM29,5h1v1h-1zM32,5h1v1h-1zM34,5h1v1h-1zM40,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM21,6h6v1h-6zM28,6h2v1h-2zM32,6h1v1h-1zM34,6h1v1h-1zM36,6h3v1h-3zM40,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h2v1h-2zM17,7h3v1h-3zM21,7h2v1h-2zM25,7h1v1h-1zM29,7h2v1h-2zM34,7h1v1h-1zM36,7h3v1h-3zM40,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM13,8h4v1h-4zM18,8h1v1h-1zM20,8h3v1h-3zM24,8h4v1h-4zM30,8h3v1h-3zM34,8h1v1h-1zM36,8h3v1h-3zM40,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM14,9h1v1h-1zM16,9h1v1h-1zM19,9h1v1h-1zM21,9h8v1h-8zM32,9h1v1h-1zM34,9h1v1h-1zM40,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM26,10h1v1h-1zM28,10h1v1h-1zM30,10h1v1h-1zM32,10h1v1h-1zM34,10h7v1h-7zM15,11h1v1h-1zM20,11h1v1h-1zM22,11h3v1h-3zM26,11h1v1h-1zM29,11h1v1h-1zM31,11h1v1h-1zM7,12h2v1h-2zM10,12h2v1h-2zM14,12h1v1h-1zM16,12h1v1h-1zM19,12h1v1h-1zM21,12h1v1h-1zM24,12h2v1h-2zM29,12h1v1h-1zM32,12h1v1h-1zM37,12h2v1h-2zM7,13h2v1h-2zM11,13h1v1h-1zM15,13h3v1h-3zM19,13h1v1h-1zM22,13h1v1h-1zM25,13h1v1h-1zM27,13h1v1h-1zM34,13h1v1h-1zM36,13h1v1h-1zM38,13h1v1h-1zM5,14h2v1h-2zM8,14h3v1h-3zM13,14h3v1h-3zM17,14h1v1h-1zM19,14h1v1h-1zM23,14h1v1h-1zM29,14h1v1h-1zM33,14h1v1h-1zM35,14h1v1h-1zM38,14h1v1h-1zM40,14h1v1h-1zM4,15h1v1h-1zM8,15h2v1h-2zM11,15h5v1h-5zM17,15h3v1h-3zM21,15h4v1h-4zM27,15h1v1h-1zM30,15h2v1h-2zM34,15h1v1h-1zM36,15h4v1h-4zM4,16h1v1h-1zM8,16h4v1h-4zM18,16h1v1h-1zM20,16h2v1h-2zM23,16h1v1h-1zM25,16h1v1h-1zM29,16h1v1h-1zM33,16h2v1h-2zM37,16h1v1h-1zM39,16h1v1h-1zM7,17h3v1h-3zM11,17h1v1h-1zM18,17h1v1h-1zM21,17h2v1h-2zM29,17h1v1h-1zM31,17h3v1h-3zM36,17h2v1h-2zM39,17h2v1h-2zM4,18h2v1h-2zM7,18h1v1h-1zM10,18h1v1h-1zM12,18h2v1h-2zM16,18h1v1h-1zM21,18h1v1h-1zM23,18h1v1h-1zM27,18h1v1h-1zM29,18h3v1h-3zM33,18h4v1h-4zM39,18h2v1h-2zM6,19h3v1h-3zM11,19h2v1h-2zM15,19h1v1h-1zM17,19h1v1h-1zM19,19h3v1h-3zM23,19h1v1h-1zM27,19h2v1h-2zM31,19h2v1h-2zM36,19h4v1h-4zM5,20h2v1h-2zM10,20h1v1h-1zM12,20h2v1h-2zM16,20h3v1h-3zM21,20h2v1h-2zM25,20h1v1h-1zM28,20h4v1h-4zM34,20h1v1h-1zM37,20h1v1h-1zM39,20h1v1h-1zM4,21h1v1h-1zM6,21h2v1h-2zM9,21h1v1h-1zM16,21h2v1h-2zM20,21h12v1h-12zM33,21h1v1h-1zM35,21h1v1h-1zM38,21h1v1h-1zM40,21h1v1h-1zM5,22h1v1h-1zM7,22h1v1h-1zM9,22h3v1h-3zM15,22h2v1h-2zM19,22h3v1h-3zM23,22h1v1h-1zM28,22h2v1h-2zM31,22h1v1h-1zM33,22h2v1h-2zM40,22h1v1h-1zM4,23h2v1h-2zM7,23h1v1h-1zM9,23h1v1h-1zM13,23h1v1h-1zM19,23h2v1h-2zM26,23h2v1h-2zM29,23h1v1h-1zM39,23h2v1h-2zM4,24h3v1h-3zM8,24h4v1h-4zM13,24h1v1h-1zM17,24h3v1h-3zM22,24h3v1h-3zM28,24h1v1h-1zM30,24h1v1h-1zM33,24h3v1h-3zM39,24h2v1h-2zM4,25h3v1h-3zM8,25h2v1h-2zM12,25h4v1h-4zM18,25h3v1h-3zM22,25h1v1h-1zM24,25h1v1h-1zM26,25h7v1h-7zM35,25h2v1h-2zM38,25h2v1h-2zM4,26h1v1h-1zM8,26h1v1h-1zM10,26h3v1h-3zM14,26h1v1h-1zM16,26h6v1h-6zM25,26h1v1h-1zM29,26h1v1h-1zM31,26h1v1h-1zM38,26h1v1h-1zM40,26h1v1h-1zM6,27h2v1h-2zM9,27h1v1h-1zM15,27h1v1h-1zM18,27h3v1h-3zM22,27h1v1h-1zM24,27h1v1h-1zM26,27h2v1h-2zM29,27h1v1h-1zM33,27h1v1h-1zM35,27h1v1h-1zM37,27h3v1h-3zM4,28h1v1h-1zM6,28h2v1h-2zM10,28h2v1h-2zM15,28h1v1h-1zM17,28h1v1h-1zM19,28h2v1h-2zM22,28h1v1h-1zM25,28h2v1h-2zM28,28h2v1h-2zM31,28h1v1h-1zM37,28h1v1h-1zM39,28h2v1h-2zM4,29h2v1h-2zM7,29h2v1h-2zM12,29h1v1h-1zM14,29h1v1h-1zM17,29h3v1h-3zM23,29h1v1h-1zM25,29h2v1h-2zM29,29h2v1h-2zM34,29h4v1h-4zM39,29h1v1h-1zM4,30h4v1h-4zM9,30h3v1h-3zM14,30h1v1h-1zM20,30h2v1h-2zM24,30h1v1h-1zM26,30h4v1h-4zM31,30h1v1h-1zM36,30h1v1h-1zM38,30h1v1h-1zM40,30h1v1h-1zM4,31h1v1h-1zM6,31h1v1h-1zM8,31h2v1h-2zM13,31h2v1h-2zM18,31h3v1h-3zM22,31h3v1h-3zM27,31h1v1h-1zM30,31h1v1h-1zM32,31h1v1h-1zM38,31h1v1h-1zM40,31h1v1h-1zM4,32h1v1h-1zM8,32h4v1h-4zM15,32h1v1h-1zM19,32h2v1h-2zM23,32h1v1h-1zM26,32h1v1h-1zM31,32h6v1h-6zM38,32h3v1h-3zM12,33h1v1h-1zM14,33h1v1h-1zM17,33h1v1h-1zM19,33h1v1h-1zM21,33h6v1h-6zM29,33h1v1h-1zM32,33h1v1h-1zM36,33h1v1h-1zM4,34h7v1h-7zM12,34h1v1h-1zM14,34h1v1h-1zM16,34h1v1h-1zM19,34h1v1h-1zM21,34h1v1h-1zM26,34h2v1h-2zM30,34h1v1h-1zM32,34h1v1h-1zM34,34h1v1h-1zM36,34h1v1h-1zM38,34h3v1h-3zM4,35h1v1h-1zM10,35h1v1h-1zM13,35h4v1h-4zM18,35h1v1h-1zM21,35h2v1h-2zM25,35h1v1h-1zM27,35h1v1h-1zM29,35h1v1h-1zM31,35h2v1h-2zM36,35h2v1h-2zM39,35h2v1h-2zM4,36h1v1h-1zM6,36h3v1h-3zM10,36h1v1h-1zM12,36h3v1h-3zM17,36h1v1h-1zM20,36h4v1h-4zM26,36h2v1h-2zM29,36h10v1h-10zM40,36h1v1h-1zM4,37h1v1h-1zM6,37h3v1h-3zM10,37h1v1h-1zM12,37h4v1h-4zM18,37h2v1h-2zM21,37h2v1h-2zM25,37h2v1h-2zM28,37h2v1h-2zM31,37h5v1h-5zM4,38h1v1h-1zM6,38h3v1h-3zM10,38h1v1h-1zM14,38h1v1h-1zM17,38h1v1h-1zM20,38h2v1h-2zM27,38h1v1h-1zM30,38h1v1h-1zM34,38h7v1h-7zM4,39h1v1h-1zM10,39h1v1h-1zM14,39h2v1h-2zM18,39h4v1h-4zM23,39h2v1h-2zM26,39h3v1h-3zM34,39h7v1h-7zM4,40h7v1h-7zM16,40h2v1h-2zM21,40h1v1h-1zM24,40h2v1h-2zM27,40h2v1h-2zM32,40h2v1h-2zM37,40h2v1h-2zM40,40h1v1h-1z"></path></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section class="block" aria-labelledby="see">
-          <h2 id="see">
-            See also
-          </h2>
-          <ul class="list">
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode}</a> <span class="about">Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
-            </li>
-          </ul>
-        </section>
-        <nav class="prevnext" aria-label="Other tags">
-          <a href="index%EF%B9%96tag%EA%A4%B7push.html">← {push}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7rating.html">{rating} →</a>
-        </nav>
-      </article>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode}</a> <span class="about">Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7push.html">← {push}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7rating.html">{rating} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
     </main>
-    <footer class="foot">
-      <p>
-        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
-      </p>
-    </footer>
   </body>
 </html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Listen · PAD sequence
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+  </head>
+  <body class="frame app-sequence">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>sequence</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="sequence">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Concepts</a> <a href="index%EF%B9%96sequences.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> Sequences</a> <a href="index%EF%B9%96actions.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg> Actions</a> <a href="index%EF%B9%96examples.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Examples</a> <a href="index%EF%B9%96reference.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bookmark" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6.5 3.5h11v17l-5.5-4-5.5 4Z"></path></svg> Reference</a> <a href="index%EF%B9%96gallery.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> Gallery</a> <a href="index%EF%B9%96listen.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Listen</a> <a href="index%EF%B9%96guess.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> Guess</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Listen
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p>
+          <a href="index%EF%B9%96listen&amp;type=abundant.html">abundant</a> | <a href="index%EF%B9%96listen&amp;type=amicable.html">amicable</a> | <a href="index%EF%B9%96listen&amp;type=antiprime.html">antiprime</a> | <a href="index%EF%B9%96listen&amp;type=automorphic.html">automorphic</a> | <a href="index%EF%B9%96listen&amp;type=bell.html">bell</a> | <a href="index%EF%B9%96listen&amp;type=biquadratic.html">biquadratic</a> | <a href="index%EF%B9%96listen&amp;type=carmichael.html">carmichael</a> | <a href="index%EF%B9%96listen&amp;type=catalan.html">catalan</a> | <a href="index%EF%B9%96listen&amp;type=caterer.html">caterer</a> | <a href="index%EF%B9%96listen&amp;type=centeredHexagonal.html">centeredHexagonal</a> | <a href="index%EF%B9%96listen&amp;type=centeredSquare.html">centeredSquare</a> | <a href="index%EF%B9%96listen&amp;type=collatz.html">collatz</a> | <a href="index%EF%B9%96listen&amp;type=composite.html">composite</a> | <a href="index%EF%B9%96listen&amp;type=cubic.html">cubic</a> | <a href="index%EF%B9%96listen&amp;type=cullen.html">cullen</a> | <a href="index%EF%B9%96listen&amp;type=decagonal.html">decagonal</a> | <a href="index%EF%B9%96listen&amp;type=deficient.html">deficient</a> | <a href="index%EF%B9%96listen&amp;type=derangement.html">derangement</a> | <a href="index%EF%B9%96listen&amp;type=digitSum.html">digitSum</a> | <a href="index%EF%B9%96listen&amp;type=digitalRoot.html">digitalRoot</a> | <a href="index%EF%B9%96listen&amp;type=divisors.html">divisors</a> | <a href="index%EF%B9%96listen&amp;type=emirp.html">emirp</a> | <a href="index%EF%B9%96listen&amp;type=enneadecagonal.html">enneadecagonal</a> | <a href="index%EF%B9%96listen&amp;type=even.html">even</a> | <a href="index%EF%B9%96listen&amp;type=evil.html">evil</a> | <a href="index%EF%B9%96listen&amp;type=factorial.html">factorial</a> | <b>fermat</b> | <a href="index%EF%B9%96listen&amp;type=fibonacci.html">fibonacci</a> | <a href="index%EF%B9%96listen&amp;type=gnomonic.html">gnomonic</a> | <a href="index%EF%B9%96listen&amp;type=golomb.html">golomb</a> | <a href="index%EF%B9%96listen&amp;type=gould.html">gould</a> | <a href="index%EF%B9%96listen&amp;type=hamming.html">hamming</a> | <a href="index%EF%B9%96listen&amp;type=happy.html">happy</a> | <a href="index%EF%B9%96listen&amp;type=harshad.html">harshad</a> | <a href="index%EF%B9%96listen&amp;type=heptadecagonal.html">heptadecagonal</a> | <a href="index%EF%B9%96listen&amp;type=heptagonal.html">heptagonal</a> | <a href="index%EF%B9%96listen&amp;type=hexagonal.html">hexagonal</a> | <a href="index%EF%B9%96listen&amp;type=icosihenagonal.html">icosihenagonal</a> | <a href="index%EF%B9%96listen&amp;type=identity.html">identity</a> | <a href="index%EF%B9%96listen&amp;type=jacobsthal.html">jacobsthal</a> | <a href="index%EF%B9%96listen&amp;type=kaprekar.html">kaprekar</a> | <a href="index%EF%B9%96listen&amp;type=kolakoski.html">kolakoski</a> | <a href="index%EF%B9%96listen&amp;type=kynea.html">kynea</a> | <a href="index%EF%B9%96listen&amp;type=leonardo.html">leonardo</a> | <a href="index%EF%B9%96listen&amp;type=lucas.html">lucas</a> | <a href="index%EF%B9%96listen&amp;type=lucky.html">lucky</a> | <a href="index%EF%B9%96listen&amp;type=mersenne.html">mersenne</a> | <a href="index%EF%B9%96listen&amp;type=moserdebruijn.html">moserdebruijn</a> | <a href="index%EF%B9%96listen&amp;type=motzkin.html">motzkin</a> | <a href="index%EF%B9%96listen&amp;type=narayana.html">narayana</a> | <a href="index%EF%B9%96listen&amp;type=narcissistic.html">narcissistic</a> | <a href="index%EF%B9%96listen&amp;type=negation.html">negation</a> | <a href="index%EF%B9%96listen&amp;type=newmanConway.html">newmanConway</a> | <a href="index%EF%B9%96listen&amp;type=not.html">not</a> | <a href="index%EF%B9%96listen&amp;type=octagonal.html">octagonal</a> | <a href="index%EF%B9%96listen&amp;type=octahedral.html">octahedral</a> | <a href="index%EF%B9%96listen&amp;type=odd.html">odd</a> | <a href="index%EF%B9%96listen&amp;type=odious.html">odious</a> | <a href="index%EF%B9%96listen&amp;type=palindrome.html">palindrome</a> | <a href="index%EF%B9%96listen&amp;type=partition.html">partition</a> | <a href="index%EF%B9%96listen&amp;type=pell.html">pell</a> | <a href="index%EF%B9%96listen&amp;type=pentagonal.html">pentagonal</a> | <a href="index%EF%B9%96listen&amp;type=pentatope.html">pentatope</a> | <a href="index%EF%B9%96listen&amp;type=perfect.html">perfect</a> | <a href="index%EF%B9%96listen&amp;type=perfectPower.html">perfectPower</a> | <a href="index%EF%B9%96listen&amp;type=perrin.html">perrin</a> | <a href="index%EF%B9%96listen&amp;type=polite.html">polite</a> | <a href="index%EF%B9%96listen&amp;type=powerful.html">powerful</a> | <a href="index%EF%B9%96listen&amp;type=prime.html">prime</a> | <a href="index%EF%B9%96listen&amp;type=primorial.html">primorial</a> | <a href="index%EF%B9%96listen&amp;type=pronic.html">pronic</a> | <a href="index%EF%B9%96listen&amp;type=recaman.html">recaman</a> | <a href="index%EF%B9%96listen&amp;type=repunit.html">repunit</a> | <a href="index%EF%B9%96listen&amp;type=reversal.html">reversal</a> | <a href="index%EF%B9%96listen&amp;type=safePrime.html">safePrime</a> | <a href="index%EF%B9%96listen&amp;type=semiprime.html">semiprime</a> | <a href="index%EF%B9%96listen&amp;type=sigma.html">sigma</a> | <a href="index%EF%B9%96listen&amp;type=smith.html">smith</a> | <a href="index%EF%B9%96listen&amp;type=sophieGermain.html">sophieGermain</a> | <a href="index%EF%B9%96listen&amp;type=sphenic.html">sphenic</a> | <a href="index%EF%B9%96listen&amp;type=square.html">square</a> | <a href="index%EF%B9%96listen&amp;type=squarefree.html">squarefree</a> | <a href="index%EF%B9%96listen&amp;type=star.html">star</a> | <a href="index%EF%B9%96listen&amp;type=stern.html">stern</a> | <a href="index%EF%B9%96listen&amp;type=sylvester.html">sylvester</a> | <a href="index%EF%B9%96listen&amp;type=tetrahedral.html">tetrahedral</a> | <a href="index%EF%B9%96listen&amp;type=thabit.html">thabit</a> | <a href="index%EF%B9%96listen&amp;type=thueMorse.html">thueMorse</a> | <a href="index%EF%B9%96listen&amp;type=totient.html">totient</a> | <a href="index%EF%B9%96listen&amp;type=triangular.html">triangular</a> | <a href="index%EF%B9%96listen&amp;type=tribonacci.html">tribonacci</a> | <a href="index%EF%B9%96listen&amp;type=twinPrime.html">twinPrime</a> | <a href="index%EF%B9%96listen&amp;type=vanEck.html">vanEck</a> | <a href="index%EF%B9%96listen&amp;type=woodall.html">woodall</a> | <a href="index%EF%B9%96listen&amp;type=xpadovan.html">xpadovan</a>
+        </p>
+        <h3>
+          Fermat - <a href="https://oeis.org/A000215">A000215</a>
+        </h3><svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-line" role="img" aria-labelledby="pad-chart-c4f9f1a9-title pad-chart-c4f9f1a9-desc" width="640" height="220" viewbox="0 0 640 220">
+        <title id="pad-chart-c4f9f1a9-title">
+          Fermat, the first 32 terms
+        </title>
+        <desc id="pad-chart-c4f9f1a9-desc">
+          1: 3; 2: 5; 3: 17; 4: 257; 5: 65,537; 6: 4,294,967,297
+        </desc>
+        <line class="pc-grid" x1="95" x2="630" y1="196" y2="196"></line>
+        <text x="89" y="200" text-anchor="end">
+          0
+        </text>
+        <line class="pc-grid" x1="95" x2="630" y1="158.8" y2="158.8"></line>
+        <text x="89" y="162.8" text-anchor="end">
+          1,000,000,000
+        </text>
+        <line class="pc-grid" x1="95" x2="630" y1="121.6" y2="121.6"></line>
+        <text x="89" y="125.6" text-anchor="end">
+          2,000,000,000
+        </text>
+        <line class="pc-grid" x1="95" x2="630" y1="84.4" y2="84.4"></line>
+        <text x="89" y="88.4" text-anchor="end">
+          3,000,000,000
+        </text>
+        <line class="pc-grid" x1="95" x2="630" y1="47.2" y2="47.2"></line>
+        <text x="89" y="51.2" text-anchor="end">
+          4,000,000,000
+        </text>
+        <line class="pc-grid" x1="95" x2="630" y1="10" y2="10"></line>
+        <text x="89" y="14" text-anchor="end">
+          5,000,000,000
+        </text>
+        <text x="139.6" y="212" text-anchor="middle">
+          1
+        </text>
+        <text x="228.8" y="212" text-anchor="middle">
+          2
+        </text>
+        <text x="317.9" y="212" text-anchor="middle">
+          3
+        </text>
+        <text x="407.1" y="212" text-anchor="middle">
+          4
+        </text>
+        <text x="496.3" y="212" text-anchor="middle">
+          5
+        </text>
+        <text x="585.4" y="212" text-anchor="middle">
+          6
+        </text>
+        <path class="pc-area" d="M139.6,196L228.8,196L317.9,196L407.1,196L496.3,196L585.4,36.2L585.4,196L139.6,196Z"></path>
+        <path class="pc-line" d="M139.6,196L228.8,196L317.9,196L407.1,196L496.3,196L585.4,36.2"></path>
+        <circle class="pc-dot" cx="585.4" cy="36.2" r="4"></circle>
+        <circle class="pc-hit" cx="139.6" cy="196" r="20">
+          <title>
+            1: 3
+          </title>
+        </circle>
+        <circle class="pc-hit" cx="228.8" cy="196" r="20">
+          <title>
+            2: 5
+          </title>
+        </circle>
+        <circle class="pc-hit" cx="317.9" cy="196" r="20">
+          <title>
+            3: 17
+          </title>
+        </circle>
+        <circle class="pc-hit" cx="407.1" cy="196" r="20">
+          <title>
+            4: 257
+          </title>
+        </circle>
+        <circle class="pc-hit" cx="496.3" cy="196" r="20">
+          <title>
+            5: 65,537
+          </title>
+        </circle>
+        <circle class="pc-hit" cx="585.4" cy="36.2" r="20">
+          <title>
+            6: 4,294,967,297
+          </title>
+        </circle>
+        <line class="pc-axis" x1="95" x2="630" y1="196" y2="196"></line></svg>
+        <p>
+          <audio controls="" preload="none" src="data:audio/wav;base64,UklGRqQlAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YYAlAACAgICBgYKDhIWHiImLjI6PkJKTlJWWlpeXl5eXl5aWlZSTkpGQj46Mi4qJiIeGhYSDgoGAf359fHt6eHZ1c3Bua2hlYl5bV1NPS0dDPzs3NDEvLi0sLC0uMDI1ODxBRktRV15ka3J6gYiQl56kq7G3vMHFyczO0dLT1NTT0tDPzMrHxMC9ubWyrqqmo5+cmZaTkY+MioiHhYOCgH99fHp5d3VzcG5raWZiX1xYVFFNSUVCPjs4NTMxLy4tLC0tLjAzNjk9QkdMUlhfZWx0e4KJkZifpayyt7zBxcnMz9HS09TT09LQzszJxsPAvLi1sa2qpqKfnJmWk5GOjIqIhoWDgoB/fXx6eHd1cnBua2hlYl9bV1RQTElFQT47ODUyMC8tLSwtLS8xMzY6PkJHTVNZYGZtdXyDi5KZoKats7i9wsbKzc/R0tPU09PS0M7LycbDv7y4tLCtqaWin5uYlZOQjoyKiIaEg4GAf317enh2dHJwbWtoZWFeWldTT0xIREE9Ojc0MjAuLS0sLS4vMTM3Oj5DSE5UWmFnbnZ9hIyTmqGnrrO5vsLHys3P0dPT1NPT0dDOy8jFwr+7t7SwrKiloZ6bmJWSkI6LiYiGhIOBgH59e3p4dnRyb21qZ2RhXVpWU09LR0RAPTo3NDIwLi0tLC0uLzE0Nzs/RElPVVtiaHB3foWNlJuiqK60ur/Dx8vN0NLT09TT0tHPzcvIxcK+urezr6yopKGempeVko+Ni4mHhoSCgYB+fXt5eHZ0cW9samdkYF1ZVlJOS0dDQDw5NjQxMC4tLCwtLi8yNDg7QERKT1VcY2lxeH+HjpWco6mvtbq/xMjLztDS09TU09LRz83Kx8TBvrq2sq+rp6SgnZqXlJKPjYuJh4WEgoF/fnx7eXd1c3FvbGlmY2BcWVVSTkpGQz88OTYzMS8uLSwsLS4wMjU4PEBFS1BWXWRrcnmAiI+WnaSqsLa7wMTIy87Q0tPU1NPS0c/NysfEwb25trKuqqejoJ2Zl5SRj42LiYeFhIKBf358enl3dXNxbmxpZmNfXFhVUU1JRkI/Ozg1MzEvLi0sLC0uMDI1OT1BRktRV15lbHN6gYmQl56lq7G3vMHFyczP0dLT1NTT0tDOzMrHw8C9ubWxrqqmo5+cmZaTkY6MioiHhYOCgH99fHp5d3VzcG5raGViX1tYVFBNSUVCPjs4NTMxLy4tLC0tLzAzNjk9QkdMUlhfZm10e4KKkZifpqyyuL3BxsnMz9HS09TT09LQzszJxsPAvLi1sa2ppqKfnJmWk5COjIqIhoWDgoB/fXx6eHZ0cnBta2hlYl5bV1RQTEhFQT46NzUyMC8tLSwtLS8xMzY6PkJHTVNZYGdudXyEi5KZoKets7i9wsbKzc/R09PU09PR0M7LycbCv7u4tLCtqaWinpuYlZOQjoyKiIaEg4GAfn17enh2dHJwbWpoZGFeWldTT0xIREE9Ojc0MjAuLS0sLS4vMTQ3Oj9DSU5UW2Fob3Z9hIyTmaCmrLK3u8DDxsnLzc7Ozs7NzMrIxcPAvbm2sq+rqKShnpuYlZOQjoyKiIeFhIKBgH59fHp5d3Z0cnBta2hmY2BdWldUUU5MSUZEQkA/Pj09PT4/QEJER0pNUVVaXmNpbnR5f4SKj5SanqOnq6+ytbe5ury8vby8u7q5t7Wzsa6sqaajoZ6bmZaUkpCOjIqJh4aFhIOCgYB/fn18e3l4d3V0cnBubGpoZmRhX11bWVdVVFJRUE9PT09QUFFTVVdZW15hZWhscHR4fICEiIuPk5aZnJ+hpKanqKmqq6uqqqmpp6alo6KgnpyamJaUk5GPjoyLiYiHhoWEg4KCgYCAf35+fXx7e3p5eHZ1dHNxcG9tbGppaGdlZGNjYmFhYWFhYWJjZGVmaGprbW9ydHZ5e36Ag4WHiYyOj5GTlJWWl5iYmZmZmZiYl5aWlZSTkpGQjo2Mi4qJiIeGhoWEhIOCgoKBgYCAgH9/f35+fn19fHx7e3p6eXh4d3d2dXV0dHRzc3Nzc3Nzc3N0dHV1dnZ3eHl6e3x9fX5/gIGCg4OEhYWGhoaHh4eHh4eHh4eGhoaGhYWFhISEg4ODgoKCgoGBgYGBgYCAgICAgICAgICAgICAgICAgYKCg4WGh4mKjI2OkJGSk5OUlJWVlJSUk5KRkI+OjYyLiomHhoWEg4OCgYB/fn17enh3dXNwbWtnZGFdWVVRTUlFQT46NzUzMjExMTI0OD1CR01UW2Nrc3uDi5Obo6qxt73Cx8vO0NLT1NPT0c/NysbDv7u3s66qpqKem5iUkY+MioiGhIKBf318enh2dHFua2hlYV1ZVVFNSUVBPTk2MzEvLS0sLS4wMjY6PkRJUFdeZm52foaOlp6mrbO5v8TIzM/R09PU09LQzszJxcG+ubWxramloZ2alpOQjouJh4WDgoB+fXt5d3VzcG1qZ2NgXFhUUEtHQz87ODUyMC4tLCwtLzE0NztARkxSWWFpcXmBiZGZoaivtrzBxsrN0NLT1NTT0tDNy8fEwLy4tLCrp6OfnJiVko+Ni4iGhYOBgH58enh2dHJvbGlmYl5aVlJOSkZCPjo3NDEvLi0sLS4vMjU5PUJITlVcZGt0fISMlJykq7K4vsPHy87R0tPU09LRz8zJxsK/u7ayrqqmop6bl5SRjoyKiIaEgoF/fXt6eHZzcW5raGRhXVlVUUxIREA8OTYzMC8tLCwtLjAzNjo/REpRWF9mbnd/h4+Xn6attLrAxMnMz9HT09TT0tDOy8jFwb25tbGsqKSgnZmWk5COi4mHhYOCgH59e3l3dXJwbWpnY19bV1NPS0dDPzs4NTIwLi0sLS0vMTQ4PEFGTFNaYmlxeoKKkpqiqbC2vMHGys3Q0tPU09PRz83Kx8PAvLizr6uno5+bmJWSj42KiIaEg4F/fnx6eHZ0cW9saWViXlpWUk5JRUE9OjYzMS8uLSwtLjAyNTk+Q0lPVl1kbHR9hY2VnaSssri+w8jLztHS09TT0tHPzMnGwr66trKuqaWhnpqXlJGOjImHhoSCgH99e3l3dXNwbmtnZGBcWFRQTEhEQDw4NTMwLi0sLC0uMDM3Oz9FS1FYYGdvd4CIkJigp661u8DFyc3P0dPU1NPS0M7LyMTBvbm0sKyopKCcmZaTkI2LiYeFg4GAfnx7eXd0cm9taWZjX1tXU09KRkI+Ozc0Mi8uLSwtLS8xNDg8QUdNVFtianJ6g4uTm6Kqsbe9wsfKztDS09TT09HPzcrHw7+7t7Ovqqain5uYlJKPjIqIhoSCgX99fHp4dnRxbmtoZWFdWlVRTUlFQT05NjMxLy0tLC0uMDI2Oj5DSVBWXmVtdX2Gjpaepayzub/EyMzP0dPT1NPS0M7MycXCvrq2sa2ppaGdmpaTkY6LiYeFhIKAf317eXd1c3BtamdkYFxYVFBMR0M/PDg1MjAuLSwsLS8xMzc7QEVLUllgaHB4gYmRmaCor7W7wcXJzdDS09TU09LQzcvHxMC8uLSwrKejoJyZlZKQjYuIh4WDgYB+fHp5dnRyb2xpZmJfW1dSTkpGQj46NzQxLy4tLC0uLzI1OD1CSE5VXGNrc3uEjJSco6qxuL3Cx8vO0NLT1NPS0c/MycbCvrq2sq2ppaGdmpeTkY6MiYeGhIKBf318enh2dHJvbWpnY2BcWVVRTkpGQ0A9Ozk3NjY2Nzg6PD9DR0xRV11janF4f4aNk5qgpquwtbm8v8HDxMTExMPBv726t7Sxrqqno6CdmpeUkY+NiomHhYSDgYB/fnx7eXh2dHJwbWtoZmNgXVpXVFJPTUtJSEdGRkZHSEpMTlFVWV1iZmtxdnuBhoyRlpqfo6eqra+xs7S0tLS0s7Gwrqypp6Sin5yal5WSkI6MiomHhoWEg4KBgH9+fXx7eXh3dXNycG5samhlY2FfXVxaWVhXVlZWVldYWVtdX2JlaGtvc3Z6foKGio2RlJeanJ6goqOkpKSkpKSjoqCfnZyamJaUk5GPjoyKiYiHhoWEg4KBgYCAf35+fXx7enp4d3Z1dHJxcG9tbGtqaWhnZmZmZmZmZ2hpamttbnBydHd5e32AgoSGiIqMjo+RkpOTlJSVlZSUlJOSkpGQj46NjIuKiYiHhoWEhIODgoKBgYGAgIB/f39+fn59fXx8e3t6enl5eHh3d3Z2dnZ2dnZ2dnZ3d3d4eXl6e3x8fX5/f4CBgoKDg4SEhIWFhYWFhYWFhISEhIODg4OCgoKBgYGBgYGAgICAgICAgICAgYKDhIaHiImKioqKiYiHhoWEg4KBgH9+fHp4dXJuamZiX1xaWFlaXWJocHiCi5Wepq2ztri5t7WwrKagm5WQjIiFgn98eXVwamNbU0pBOTMvLS0wNj5JV2Z2hpams7/Iz9PU0s7JwbmxqaGak46JhYJ+e3dzbWdgWFBHPzgyLiwtMTdATFlpeYmZqLbBytDT1NLNx8C4sKefmJKNiIWBfnp2cmxmXlZORj43MS4sLjI5Qk5ca3yMnKu4w8vR09PRzMa/tq6mnpeRjIiEgX16dnFrZF1VTEQ8NjAtLC4zOkRRX25/j5+tusTM0dPT0MvFvbWspJ2WkIuHg4B9eXVwamNbU0tDOzUwLS0vNDxGU2JxgpKisLzGzdLU08/Kw7yzq6OblY+KhoN/fHh0b2liWlJJQTozLy0tMDU+SVZkdIWVpLK+yM7S1NLPycK6sqmhmpSOiYaCf3t3c25nYFhQSEA4My4sLTA3P0tYZ3eImKe1wMnP09TSzsjBubCooJmTjYmFgX57d3JtZl9XT0Y+NzIuLC0xOEFNW2p6i5uqt8LK0NPT0c3Hv7evpp+YkoyIhIF9enZxa2VdVU1FPTYxLSwuMjpDUF5tfY6erLnEzNHT09DMxb62raWdlpGLh4SAfXl1cGpkXFRMQzw1MC0sLzM7RVJgcIGRoK+7xc3S1NPQy8S8tKyjnJWQi4eDgHx5dG9pYltSSkI6NC8tLS81PUhVY3OElKOxvcfO0tTSz8rDu7KqopuUj4qGgn98eHNuaGFZUUhAOTMvLS0wNj9KV2Z2h5emtL/Iz9PU0s7IwbmxqaGZk46JhYJ+e3dybWdfWE9HPzgyLiwtMTdBTFppeYqaqbbBytDT09HNx8C4r6efmJKNiISBfnp2cmxlXlZORT03MS4sLjI5Q09dbHyNnau4w8vR09PRzMa+tq6mnpeRjIiEgH16dXFrZF1VTEQ8NTAtLC4zOkVRX29/kJ+uusXM0dTT0MvFvbWspJ2WkIuHg4B8eXVwamNbU0tCOzQwLS0vNDxHVGJygpOisLzGztLU08/Kw7uzq6OblY+KhoN/fHh0b2hhWlFJQTkzLy0tMDU+SVZldYWWpbO+yM/S1NLOycK6samhmpSOiYWCf3t3c21nYFhQSD84Mi4sLTE3QEtZaHiImKi1wMnQ09TSzsjAuLCooJmSjYmFgX57d3JsZl9XTkY+NzEuLC4yOEJOW2t7i5uqt8LL0NPT0c3Gv7eupp6XkYyIhIF9enZxa2VdVU1EPTYxLSwuMzpEUF5ufo6erbnEzNHT09DMxb21raWdlpCLh4OAfXl1cGpjXFRLQzs1MC0sLzQ7RlJhcYGRoa+8xs3S1NPQysS8tKujnJWPioaDf3x4dG9pYlpSSkI6NC8tLS81PUhVZHSElKSyvsfO0tTSz8nCurKqopqUjoqGgn97eHNuaGFZUUhAOTMvLC0wNj9KWGd3h5emtMDJz9PU0s7IwbmxqKCZk42JhYJ+e3dybWdgWFBIQDo0MS8wNDtET1xreoqZp7O9xcvNzsvHwbuzq6OclpCLh4SBfnt3c25oYltTTEVAOzg3OT1DS1Zib32LmaWwub/ExsXDv7qzrKWfmJOOiYaDgH57d3RvamReV1FLRkJAP0FFS1NcZ3OAjJijrLO5vL69u7eyrKagmpSQi4iFgoB9e3h0cGxmYVtVUExJR0hJTVNaY2x3go2XoKiusrW2tbOvq6Wgm5aRjYmGhIJ/fXt4dXJuaWRfW1ZTUE9QUlVaYWhxeoOMlZ2jqKutrq2rp6OfmpaSjoqHhYOBf317eXZzcGxoZGBcWlhXWFpdYWdudXyEjJOZnqKkpqalo6CcmZWRjouIhoSCgX9+fHp4dXJvbGlmY2FgX2BiZGhtcnh+hIqQlJibnZ6enZuZlpOQjYqIhoSDgYB/fn17eXd1c3Bua2poZ2doaWxvcnd7gISIjJCSlJWWlpWTko+Ni4mHhYSDgoGAf359fHt6eHZ1c3JwcG9vcHFzdXd6fYCDhoiKjI2Ojo6NjIuJiIeFhIOCgYGAgH9/fn59fHt7enl4eHd3d3h5eXt8fX+AgoOEhYaGhoaGhYWEhIOCgoGBgYCAgICAgIB/f39/f39/f39/f3+AgICAgIGCg4SGh4iJioqKiomIh4aFhIOCgYB/fnx6eHVybmpmYl9cWlhZWl1iaHB4gouVnqats7a4ube1sKymoJuVkIyIhYJ/fHl1cGpjW1NKQTkzLy0tMDY+SVdmdoaWprO/yM/T1NLOycG5samhmpOOiYWCfnt3c21nYFhQRz84Mi4sLTE3QExZaXmJmai2wcrQ09TSzcfAuLCnn5iSjYiFgX56dnJsZl5WTkY+NzEuLC4yOUJOXGt8jJyruMPL0dPT0czGv7aupp6XkYyIhIF9enZxa2RdVUxEPDYwLSwuMzpEUV9uf4+frbrEzNHT09DLxb21rKSdlpCLh4OAfXl1cGpjW1NLQzs1MC0tLzQ8RlNicYKSorC8xs3S1NPPysO8s6ujm5WPioaDf3x4dG9pYlpSSUE6My8tLTA1PklWZHSFlaSyvsjO0tTSz8nCurKpoZqUjomGgn97d3NuZ2BYUEhAODMuLC0wNz9LWGd3iJintcDJz9PU0s7IwbmwqKCZk42JhYF+e3dybWZfV09GPjcyLiwtMThBTVtqeoubqrfCytDT09HNx7+3r6afmJKMiISBfXp2cWtlXVVNRT02MS0sLjI6Q1BebX2Onqy5xMzR09PQzMW+tq2lnZaRi4eEgH15dXBqZFxUTEM8NTAtLC8zO0VSYHCBkaCvu8XN0tTT0MvEvLSso5yVkIuHg4B8eXRvaWJbUkpCOjQvLS0vNT1IVWNzhJSjsb3HztLU0s/Kw7uyqqKblI+KhoJ/fHhzbmhhWVFIQDkzLy0tMDY/SldmdoeXprS/yM/T1NLOyMG5samhmZOOiYWCfnt3cm1nX1hPRz84Mi4sLTE3QUxaaXmKmqm2wcrQ09PRzcfAuK+nn5iSjYiEgX56dnJsZV5WTkU9NzEuLC4yOUNPXWx8jZ2ruMPL0dPT0czGvraupp6XkYyIhIB9enVxa2RdVUxEPDUwLSwuMzpFUV9vf5CfrrrFzNHU09DLxb21rKSdlpCLh4OAfHl1cGpjW1NLQjs0MC0tLzQ8R1RicoKTorC8xs7S1NPPysO7s6ujm5WPioaDf3x4dG9oYVpRSUE5My8tLTA1PklWZXWFlqWzvsjP0tTSzsnCurGpoZqUjomFgn97d3NtZ2BYUEg/ODIuLC0xN0BLWWh4iJiotcDJ0NPU0s7IwLiwqKCZko2JhYF+e3dybGZfV05GPjcxLiwuMjhCTltre4ubqrfCy9DT09HNxr+3rqael5GMiISBfXp2cWtlXVVNRD02MS0sLjM6RFBebn6Onq25xMzR09PQzMW9ta2lnZaQi4eDgH15dXBqY1xUS0M7NTAtLC80O0ZSYXGBkaGvvMbN0tTT0MrEvLSro5yVj4qGg398eHRvaWJaUkpCOjQvLS0vNT1IVWR0hJSksr7HztLU0s/JwrqyqqKalI6KhoJ/e3hzbmhhWVFIQDkzLywtMDY/Slhnd4eXprTAyc/T1NLOyMG5saigmZONiYWCfnt3cm1nYFhQSEA6NDEvMDQ7RE9ca3qKmaezvcXLzc7Lx8G7s6ujnJaQi4eEgX57d3NuaGJbU0xFQDs4Nzk9Q0tWYm99i5mlsLm/xMbFw7+6s6yln5iTjomGg4B+e3d0b2pkXldRS0ZCQD9BRUtTXGdzgIyYo6yzuby+vbu3sqymoJqUkIuIhYKAfXt4dHBsZmFbVVBMSUdISU1TWmNsd4KNl6CorrK1trWzr6uloJuWkY2JhoSCf317eHVybmlkX1tWU1BPUFJVWmFocXqDjJWdo6irra6tq6ejn5qWko6Kh4WDgX99e3l2c3BsaGRgXFpYV1haXWFnbnV8hIyTmZ6ipKampaOgnJmVkY6LiIaEgoF/fnx6eHVyb2xpZmNhYF9gYmRobXJ4foSKkJSYm52enp2bmZaTkI2KiIaEg4GAf359e3l3dXNwbmtqaGdnaGlsb3J3e4CEiIyQkpSVlpaVk5KPjYuJh4WEg4KBgH9+fXx7enh2dXNycHBvb3Bxc3V3en2Ag4aIioyNjo6OjYyLiYiHhYSDgoGBgIB/f35+fXx7e3p5eHh3d3d4eXl7fH1/gIKDhIWGhoaGhoWFhISDgoKBgYGAgICAgICAf39/f39/f39/f39/gICAgICBgoOEhoeIiYqKioqJiIeGhYSDgoGAf358enh1cm5qZmJfXFpYWVpdYmhweIKLlZ6mrbO2uLm3tbCspqCblZCMiIWCf3x5dXBqY1tTSkE5My8tLTA2PklXZnaGlqazv8jP09TSzsnBubGpoZqTjomFgn57d3NtZ2BYUEc/ODIuLC0xN0BMWWl5iZmotsHK0NPU0s3HwLiwp5+Yko2IhYF+enZybGZeVk5GPjcxLiwuMjlCTlxrfIycq7jDy9HT09HMxr+2rqael5GMiISBfXp2cWtkXVVMRDw2MC0sLjM6RFFfbn+Pn626xMzR09PQy8W9tayknZaQi4eDgH15dXBqY1tTS0M7NTAtLS80PEZTYnGCkqKwvMbN0tTTz8rDvLOro5uVj4qGg398eHRvaWJaUklBOjMvLS0wNT5JVmR0hZWksr7IztLU0s/JwrqyqaGalI6JhoJ/e3dzbmdgWFBIQDgzLiwtMDc/S1hnd4iYp7XAyc/T1NLOyMG5sKigmZONiYWBfnt3cm1mX1dPRj43Mi4sLTE4QU1banqLm6q3wsrQ09PRzce/t6+mn5iSjIiEgX16dnFrZV1VTUU9NjEtLC4yOkNQXm19jp6sucTM0dPT0MzFvratpZ2WkYuHhIB9eXVwamRcVExDPDUwLSwvMztFUmBwgZGgr7vFzdLU09DLxLy0rKOclZCLh4OAfHl0b2liW1JKQjo0Ly0tLzU9SFVjc4SUo7G9x87S1NLPysO7sqqim5SPioaCf3x4c25oYVlRSEA5My8tLTA2P0pXZnaHl6a0v8jP09TSzsjBubGpoZmTjomFgn57d3JtZ19YT0c/ODIuLC0xN0FMWml5ipqptsHK0NPT0c3HwLivp5+Yko2IhIF+enZybGVeVk5FPTcxLiwuMjlDT11sfI2dq7jDy9HT09HMxr62rqael5GMiISAfXp1cWtkXVVMRDw1MC0sLjM6RVFfb3+Qn666xczR1NPQy8W9tayknZaQi4eDgHx5dXBqY1tTS0I7NDAtLS80PEdUYnKCk6KwvMbO0tTTz8rDu7Oro5uVj4qGg398eHRvaGFaUUlBOTMvLS0wNT5JVmV1hZals77Iz9LU0s7JwrqxqaGalI6JhYJ/e3dzbWdgWFBIPzgyLiwtMTdAS1loeIiYqLXAydDT1NLOyMC4sKigmZKNiYWBfnt3cmxmX1dORj43MS4sLjI4Qk5ba3uLm6q3wsvQ09PRzca/t66mnpeRjIiEgX16dnFrZV1VTUQ9NjEtLC4zOkRQXm5+jp6tucTM0dPT0MzFvbWtpZ2WkIuHg4B9eXVwamNcVEtDOzUwLSwvNDtGUmFxgZGhr7zGzdLU09DKxLy0q6OclY+KhoN/fHh0b2liWlJKQjo0Ly0tLzU9SFVkdISUpLK+x87S1NLPycK6sqqimpSOioaCf3t4c25oYVlRSEA5My8sLTA2P0pYZ3eHl6a0wMnP09TSzsjBubGooJmTjYmFgn57d3JtZ2BYUEhAOjQxLzA0O0RPXGt6ipmns73Fy83Oy8fBu7Oro5yWkIuHhIF+e3dzbmhiW1NMRUA7ODc5PUNLVmJvfYuZpbC5v8TGxcO/urOspZ+Yk46JhoOAfnt3dG9qZF5XUUtGQkA/QUVLU1xnc4CMmKOss7m8vr27t7KspqCalJCLiIWCgH17eHRwbGZhW1VQTElHSElNU1pjbHeCjZegqK6ytba1s6+rpaCblpGNiYaEgn99e3h1cm5pZF9bVlNQT1BSVVphaHF6g4yVnaOoq62urauno5+alpKOioeFg4F/fXt5dnNwbGhkYFxaWFdYWl1hZ251fISMk5meoqSmpqWjoJyZlZGOi4iGhIKBf358enh1cm9saWZjYWBfYGJkaG1yeH6EipCUmJudnp6dm5mWk5CNioiGhIOBgH9+fXt5d3VzcG5ramhnZ2hpbG9yd3uAhIiMkJKUlZaWlZOSj42LiYeFhIOCgYB/fn18e3p4dnVzcnBwb29wcXN1d3p9gIOGiIqMjY6Ojo2Mi4mIh4WEg4KBgYCAf39+fn18e3t6eXh4d3d3eHl5e3x9f4CCg4SFhoaGhoaFhYSEg4KCgYGBgICAgICAgH9/f39/f39/f39/f4CAgICAgYKDhIaHiImKioqKiYiHhoWEg4KBgH9+fHp4dXJuamZiX1xaWFlaXWJocHiCi5Wepq2ztri5t7WwrKagm5WQjIiFgn98eXVwamNbU0pBOTMvLS0wNj5JV2Z2hpams7/Iz9PU0s7JwbmxqaGak46JhYJ+e3dzbWdgWFBHPzgyLiwtMTdATFlpeYmZqLbBytDT1NLNx8C4sKefmJKNiIWBfnp2cmxmXlZORj43MS4sLjI5Qk5ca3yMnKu4w8vR09PRzMa/tq6mnpeRjIiEgX16dnFrZF1VTEQ8NjAtLC4zOkRRX25/j5+tusTM0dPT0MvFvbWspJ2WkIuHg4B9eXVwamNbU0tDOzUwLS0vNDxGU2JxgpKisLzGzdLU08/Kw7yzq6OblY+KhoN/fHh0b2liWlJJQTozLy0tMDU+SVZkdIWVpLK+yM7S1NLPycK6sqmhmpSOiYaCf3t3c25nYFhQSEA4My4sLTA3P0tYZ3eImKe1wMnP09TSzsjBubCooJmTjYmFgX57d3JtZl9XT0Y+NzIuLC0xOEFNW2p6i5uqt8LK0NPT0c3Hv7evpp+YkoyIhIF9enZxa2VdVU1FPTYxLSwuMjpDUF5tfY6erLnEzNHT09DMxb62raWdlpGLh4SAfXl1cGpkXFRMQzw1MC0sLzM7RVJgcIGRoK+7xc3S1NPQy8S8tKyjnJWQi4eDgHx5dG9pYltSSkI6NC8tLS81PUhVY3OElKOxvcfO0tTSz8rDu7KqopuUj4qGgn98eHNuaGFZUUhAOTMvLS0wNj9KV2Z2h5emtL/Iz9PU0s7IwbmxqaGZk46JhYJ+e3dybWdfWE9HPzgyLiwtMTdBTFppeYqaqbbBytDT09HNx8C4r6efmJKNiISBfnp2cmxlXlZORT03MS4sLjI5Q09dbHyNnau4w8vR09PRzMa+tq6mnpeRjIiEgH16dXFrZF1VTEQ8NTAtLC4zOkVRX29/kJ+uusXM0dTT0MvFvbWspJ2WkIuHg4B8eXVwamNbU0tCOzQwLS0vNDxHVGJygpOisLzGztLU08/Kw7uzq6OblY+KhoN/fHh0b2hhWlFJQTkzLy0tMDU+SVZldYWWpbO+yM/S1NLOycK6samhmpSOiYWCf3t3c21nYFhQSD84Mi4sLTE3QEtZaHiImKi1wMnQ09TSzsjAuLCooJmSjYmFgX57d3JsZl9XTkY+NzEuLC4yOEJOW2t7i5uqt8LL0NPT0c3Gv7eupp6XkYyIhIF9enZxa2VdVU1EPTYxLSwuMzpEUF5ufo6erbnEzNHT09DMxb21raWdlpCLh4OAfXl1cGpjXFRLQzs1MC0sLzQ7RlJhcYGRoa+8xs3S1NPQysS8tKujnJWPioaDf3x4dG9pYlpSSkI6NC8tLS81PUhVZHSElKSyvsfO0tTSz8nCurKqopqUjoqGgn97eHNuaGFZUUhAOTMvLC0wNj9KWGd3h5emtMDJz9PU0s7IwbmxqKCZk42JhYJ+e3dybWdgWFBIQDo0MS8wNDtET1xreoqZp7O9xcvNzsvHwbuzq6OclpCLh4SBfnt3c25oYltTTEVAOzg3OT1DS1Zib32LmaWwub/ExsXDv7qzrKWfmJOOiYaDgH57d3RvamReV1FLRkJAP0FFS1NcZ3OAjJijrLO5vL69u7eyrKagmpSQi4iFgoB9e3h0cGxmYVtVUExJR0hJTVNaY2x3go2XoKiusrW2tbOvq6Wgm5aRjYmGhIJ/fXt4dXJuaWRfW1ZTUE9QUlVaYWhxeoOMlZ2jqKutrq2rp6OfmpaSjoqHhYOBf317eXZzcGxoZGBcWlhXWFpdYWdudXyEjJOZnqKkpqalo6CcmZWRjouIhoSCgX9+fHp4dXJvbGlmY2FgX2BiZGhtcnh+hIqQlJibnZ6enZuZlpOQjYqIhoSDgYB/fn17eXd1c3Bua2poZ2doaWxvcnd7gISIjJCSlJWWlpWTko+Ni4mHhYSDgoGAf359fHt6eHZ1c3JwcG9vcHFzdXd6fYCDhoiKjI2Ojo6NjIuJiIeFhIOCgYGAgH9/fn59fHt7enl4eHd3d3h5eXt8fX+AgoOEhYaGhoaGhYWEhIOCgoGBgYCAgICAgIB/f39/f39/f39/f3+AgIA="></audio>
+        </p>
+        <p>
+          Each term is a note: the term modulo 60, counted in semitones up from C2.
+        </p>
+        <p>
+          <small>3, 5, 17, 257, 65537, 4294967297</small>
+        </p>
+        <p>
+          <small>D#2 F2 F3 F3 F3 F3</small>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

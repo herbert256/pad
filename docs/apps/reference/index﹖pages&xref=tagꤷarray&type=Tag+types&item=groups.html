@@ -1,394 +1,431 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - Tag types - groups
+      Reference - Tag types - groups · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - Tag types - groups
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: alpine - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">alpineGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; Behaviour in the markup&lt;/span&gt;<br>    &lt;h1&gt;PAD writes the page.&lt;br&gt;&lt;span class="grad"&gt;Alpine wakes it up.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      Alpine adds behaviour to HTML with a few attributes - and PAD writes that HTML. Both<br>      like braces, so the trick is to let each have its own: PAD hands Alpine its state as JSON<br>      with the ^ sigil, and longer components live in a file of &lt;code&gt;www/&lt;/code&gt;.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/state"&gt;Start with state from PHP&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;Braces, data and requests&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div x-data="{^profile}"&gt;          &lt;!-- $profile from the page's PHP --&gt;<br>  &lt;h2 x-text="name"&gt;&lt;/h2&gt;<br>  &lt;button @click="likes++"&gt;<br>    ♥ &lt;span x-text="likes"&gt;&lt;/span&gt;<br>  &lt;/button&gt;<br>&lt;/div&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>    &lt;p class="small muted"&gt;The template holds no brace of Alpine's: the state is the JSON of a PHP array.&lt;/p&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax62e4f21f92d137afdb55935f6f310532"></div>
-                        <script>
-                        padAjax62e4f21f92d137afdb55935f6f310532 = new XMLHttpRequest();
-                        padAjax62e4f21f92d137afdb55935f6f310532.onreadystatechange=function() {
-                        if (padAjax62e4f21f92d137afdb55935f6f310532.readyState === 4) {
-                        if (padAjax62e4f21f92d137afdb55935f6f310532.status === 200) {
-                        document.getElementById("padAjax62e4f21f92d137afdb55935f6f310532").innerHTML=padAjax62e4f21f92d137afdb55935f6f310532.responseText;
-                        } else {
-                        document.getElementById("padAjax62e4f21f92d137afdb55935f6f310532").innerHTML=padAjax62e4f21f92d137afdb55935f6f310532.statusText;
-                        }
-                        }
-                        }
-                        padAjax62e4f21f92d137afdb55935f6f310532.open("GET","http://localhost/pad/alpine/?index&padInclude",true);
-                        padAjax62e4f21f92d137afdb55935f6f310532.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: htmx - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; HTML over the wire&lt;/span&gt;<br>    &lt;h1&gt;The server renders.&lt;br&gt;&lt;span class="grad"&gt;htmx swaps it in.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      htmx asks the server for a part of the page and puts the answer where it belongs. PAD<br>      already speaks that language: every <b>{<font color="blue">fragment</font><font color="red"></font>}</b> of a template can be asked for<br>      alone - by its name, or by the element htmx swaps - so one template serves the whole page<br>      and every piece of it.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/search"&gt;Start with active search&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How PAD answers htmx&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;input name="q" hx-get="?products"<br>       hx-trigger="input changed delay:300ms"<br>       hx-target="#results"&gt;<br><br>&lt;ul id="results"&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">products</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>    &lt;p class="small muted"&gt;The request carries &lt;code&gt;HX-Target: results&lt;/code&gt;; PAD answers that fragment alone.&lt;/p&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxbbde10c3af3eb550f30077e247997828"></div>
-                        <script>
-                        padAjaxbbde10c3af3eb550f30077e247997828 = new XMLHttpRequest();
-                        padAjaxbbde10c3af3eb550f30077e247997828.onreadystatechange=function() {
-                        if (padAjaxbbde10c3af3eb550f30077e247997828.readyState === 4) {
-                        if (padAjaxbbde10c3af3eb550f30077e247997828.status === 200) {
-                        document.getElementById("padAjaxbbde10c3af3eb550f30077e247997828").innerHTML=padAjaxbbde10c3af3eb550f30077e247997828.responseText;
-                        } else {
-                        document.getElementById("padAjaxbbde10c3af3eb550f30077e247997828").innerHTML=padAjaxbbde10c3af3eb550f30077e247997828.statusText;
-                        }
-                        }
-                        }
-                        padAjaxbbde10c3af3eb550f30077e247997828.open("GET","http://localhost/pad/htmx/?index&padInclude",true);
-                        padAjaxbbde10c3af3eb550f30077e247997828.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: islands - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">islandsGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; Any framework, one runtime&lt;/span&gt;<br>    &lt;h1&gt;Islands of any kind&lt;br&gt;&lt;span class="grad"&gt;on one PAD page.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      PAD writes the page and marks the places that move. A small runtime mounts a component on<br>      each - React here, Vue there, Svelte, Preact or Solid - and fetches a framework only when<br>      an island of it is on the page. Vite builds them; <b>{<font color="blue">vite</font><font color="red"></font>}</b> links the build.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/frameworks"&gt;See all five&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How it fits together&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div data-island="VueCounter" data-props="{^vue}"&gt;&lt;/div&gt;<br>&lt;div data-island="SvelteCounter" data-load="visible"<br>     data-props="{^svelte}"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>islands({<br>  VueCounter:    vue(() =&gt; import('./Counter.vue')),<br>  SvelteCounter: svelte(() =&gt; import('./Counter.svelte'))<br>});<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxe2af573f5d4b2baf6d7bce96e248e742"></div>
-                        <script>
-                        padAjaxe2af573f5d4b2baf6d7bce96e248e742 = new XMLHttpRequest();
-                        padAjaxe2af573f5d4b2baf6d7bce96e248e742.onreadystatechange=function() {
-                        if (padAjaxe2af573f5d4b2baf6d7bce96e248e742.readyState === 4) {
-                        if (padAjaxe2af573f5d4b2baf6d7bce96e248e742.status === 200) {
-                        document.getElementById("padAjaxe2af573f5d4b2baf6d7bce96e248e742").innerHTML=padAjaxe2af573f5d4b2baf6d7bce96e248e742.responseText;
-                        } else {
-                        document.getElementById("padAjaxe2af573f5d4b2baf6d7bce96e248e742").innerHTML=padAjaxe2af573f5d4b2baf6d7bce96e248e742.statusText;
-                        }
-                        }
-                        }
-                        padAjaxe2af573f5d4b2baf6d7bce96e248e742.open("GET","http://localhost/pad/islands/?index&padInclude",true);
-                        padAjaxe2af573f5d4b2baf6d7bce96e248e742.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: react - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The home page: the examples in their groups for the cards, and what the server says to<br>  // the island at the top - asked again by its button as JSON, the same page with<br>  // padFormat=json, which answers only what $padExpose names.<br><br>  </span><span style="color: #0000BB">$groups </span><span style="color: #007700">= </span><span style="color: #0000BB">reactGroups </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$hello </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'message'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hello from PAD'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'php'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">PHP_VERSION</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'time'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'H:i:s' </span><span style="color: #007700">),<br>             </span><span style="color: #DD0000">'patterns' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'examples' </span><span style="color: #007700">) [</span><span style="color: #DD0000">'examples'</span><span style="color: #007700">] ) ];<br><br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'hello' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="purple"><font color="red">#</font> The island carries the server time, so the page differs on every request<font color="black"></font><b><font color="black">:</font></b><font color="green"></font> the stored<br>   answer is a pattern. <font color="red">#</font></font>}</b><br>&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; PHP renders &amp;middot; React reacts&lt;/span&gt;<br>    &lt;h1&gt;Server pages,&lt;br&gt;&lt;span class="grad"&gt;living islands.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      PAD builds the page on the server - the data, the HTML, the routing by file name. React<br>      takes over the parts that move: an island here, a widget there, each handed its data by<br>      PAD and talking back to PAD while it runs.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?patterns"&gt;See the patterns&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;Build your own&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div data-island="HelloServer" data-props="{^hello}"&gt;<br>    &lt;div class="island-fallback"&gt;PAD says: &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>hello.message</font>}</b>&lt;/strong&gt; at <b>{<font color="green"><font color="red">$</font>hello.time</font>}</b> - React takes this box over in a moment.&lt;/div&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br>&lt;div class="flow"&gt;<br>  &lt;div class="flow-step"&gt;<br>    &lt;h3&gt;PHP gathers&lt;/h3&gt;<br>    &lt;p&gt;The page's &lt;code&gt;.php&lt;/code&gt; reads the database, a &lt;code&gt;_data/&lt;/code&gt; file, the session.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step"&gt;<br>    &lt;h3&gt;PAD writes&lt;/h3&gt;<br>    &lt;p&gt;The template places the islands and hands each its props: &lt;code&gt;data-props="{^field}"&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step is-client"&gt;<br>    &lt;h3&gt;React mounts&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;PadReact.island()&lt;/code&gt; finds the islands and renders a component on each.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step is-client"&gt;<br>    &lt;h3&gt;React asks back&lt;/h3&gt;<br>    &lt;p&gt;The same pages answer JSON, one fragment, or a post - &lt;code&gt;padFormat=json&lt;/code&gt;, &lt;code&gt;padFragment&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card rise" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b><br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index.js"&gt;&lt;/script&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax590265b434bfab1e18db6d29707c5076"></div>
-                        <script>
-                        padAjax590265b434bfab1e18db6d29707c5076 = new XMLHttpRequest();
-                        padAjax590265b434bfab1e18db6d29707c5076.onreadystatechange=function() {
-                        if (padAjax590265b434bfab1e18db6d29707c5076.readyState === 4) {
-                        if (padAjax590265b434bfab1e18db6d29707c5076.status === 200) {
-                        document.getElementById("padAjax590265b434bfab1e18db6d29707c5076").innerHTML=padAjax590265b434bfab1e18db6d29707c5076.responseText;
-                        } else {
-                        document.getElementById("padAjax590265b434bfab1e18db6d29707c5076").innerHTML=padAjax590265b434bfab1e18db6d29707c5076.statusText;
-                        }
-                        }
-                        }
-                        padAjax590265b434bfab1e18db6d29707c5076.open("GET","http://localhost/pad/react/?index&padInclude",true);
-                        padAjax590265b434bfab1e18db6d29707c5076.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: react - Page: patterns<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">patterns.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">patterns.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Patterns - PAD + React'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$groups </span><span style="color: #007700">= </span><span style="color: #0000BB">reactGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Patterns&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Every way the two meet, one page each - the live example on top, the template, the PHP and<br>    the component under it. Purple is PAD on the server, blue is React in the browser.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6"></div>
-                        <script>
-                        padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6 = new XMLHttpRequest();
-                        padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.onreadystatechange=function() {
-                        if (padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.readyState === 4) {
-                        if (padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.status === 200) {
-                        document.getElementById("padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6").innerHTML=padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.responseText;
-                        } else {
-                        document.getElementById("padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6").innerHTML=padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.statusText;
-                        }
-                        }
-                        }
-                        padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.open("GET","http://localhost/pad/react/?patterns&padInclude",true);
-                        padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: groups<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">groups.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">groups.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by group<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by group&lt;/h1&gt;<br>&lt;p class="lead"&gt;The tags by what they are for, in <b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b> groups.&lt;/p&gt;<br><br>&lt;nav class="jump" aria-label="Groups"&gt;<b>{<font color="blue">groups</font><font color="red"></font>}</b>&lt;a href="#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt;<b>{/<font color="blue">groups</font><font color="red"></font>}</b>&lt;/nav&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;section class="section" id="<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b> - <b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>tag<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>tags<font color="black">'</font></font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;ul class="list"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/span&gt;&lt;/li&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxa7943cd04a7da5fd0dba1d1dca5d4789"></div>
-                        <script>
-                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789 = new XMLHttpRequest();
-                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.onreadystatechange=function() {
-                        if (padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.readyState === 4) {
-                        if (padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.status === 200) {
-                        document.getElementById("padAjaxa7943cd04a7da5fd0dba1d1dca5d4789").innerHTML=padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.responseText;
-                        } else {
-                        document.getElementById("padAjaxa7943cd04a7da5fd0dba1d1dca5d4789").innerHTML=padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.statusText;
-                        }
-                        }
-                        }
-                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.open("GET","http://localhost/pad/tags/?groups&padInclude",true);
-                        padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups   </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$indexes  </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'names'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By name'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every tag from A to Z, with its one line.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'groups'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By group'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The tags by what they are for - conditions, loops, forms, charts ...' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'forms'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By form'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Single tags, tag pairs, and the tags that can be either.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'options'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By option'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every option a tag takes of its own, and the tags that take it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cheatsheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cheat sheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The syntax of every tag on one page.' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  foreach ( </span><span style="color: #0000BB">tagsCatalog </span><span style="color: #007700">() as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$tag </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">+= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">tagsExamples </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every PAD tag<font color="black">'</font></font>}</b><br>&lt;section class="hero"&gt;<br>  &lt;h1&gt;Every PAD tag&lt;/h1&gt;<br>  &lt;p class="lead"&gt;A page for each built-in tag of PAD: what it does in one line, its syntax and<br>  the options that belong to it, a longer description and live examples - every result<br>  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or<br>  search for it.&lt;/p&gt;<br>  &lt;ul class="stats"&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsCount</font>}</b>&lt;/b&gt; tags&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b>&lt;/b&gt; groups&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>exampleCount</font>}</b>&lt;/b&gt; examples&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">indexes</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">indexes</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The groups&lt;/h2&gt;<br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">groups</font><font color="red"></font>}</b><br>  &lt;section class="card"&gt;<br>    &lt;h3&gt;&lt;a href="?groups#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt; &lt;span class="count"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b>&lt;/p&gt;<br>    &lt;div class="tagcloud"&gt;<b>{<font color="blue">tags</font><font color="red"></font>}</b>&lt;a href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>" title="<b>{<font color="green"><font color="red">$</font>about</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;<b>{/<font color="blue">tags</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/section&gt;<br>  <b>{/<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb6e353252c830d41dd78b26b669feada"></div>
-                        <script>
-                        padAjaxb6e353252c830d41dd78b26b669feada = new XMLHttpRequest();
-                        padAjaxb6e353252c830d41dd78b26b669feada.onreadystatechange=function() {
-                        if (padAjaxb6e353252c830d41dd78b26b669feada.readyState === 4) {
-                        if (padAjaxb6e353252c830d41dd78b26b669feada.status === 200) {
-                        document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.responseText;
-                        } else {
-                        document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb6e353252c830d41dd78b26b669feada.open("GET","http://localhost/pad/tags/?index&padInclude",true);
-                        padAjaxb6e353252c830d41dd78b26b669feada.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: webcomponents - Page: index<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">index.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">index.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">wcGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; The platform's own components&lt;/span&gt;<br>    &lt;h1&gt;Rendered by PAD,&lt;br&gt;&lt;span class="grad"&gt;defined by the browser.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      A custom element with its shadow root written on the server: declarative shadow DOM shows it<br>      encapsulated and slotted before any script ran, and a small module upgrades it where it needs<br>      behaviour. PAD's own components - a custom tag with parameters - write them.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/cards"&gt;Start with the cards&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How it works&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-demo"&gt;<br>    <b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Rendered on the server<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>good<font color="black">'</font></font>}</b><br>      &lt;p&gt;This card is a &lt;code&gt;&lt;pad-card&gt;&lt;/code&gt; with its shadow root - and the page has no script for it.&lt;/p&gt;<br>      &lt;a slot="footer" href="?examples/cards"&gt;See how&lt;/a&gt;<br>    <b>{/<font color="blue">card</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb32875316ed070d6fb050585f06619e0"></div>
-                        <script>
-                        padAjaxb32875316ed070d6fb050585f06619e0 = new XMLHttpRequest();
-                        padAjaxb32875316ed070d6fb050585f06619e0.onreadystatechange=function() {
-                        if (padAjaxb32875316ed070d6fb050585f06619e0.readyState === 4) {
-                        if (padAjaxb32875316ed070d6fb050585f06619e0.status === 200) {
-                        document.getElementById("padAjaxb32875316ed070d6fb050585f06619e0").innerHTML=padAjaxb32875316ed070d6fb050585f06619e0.responseText;
-                        } else {
-                        document.getElementById("padAjaxb32875316ed070d6fb050585f06619e0").innerHTML=padAjaxb32875316ed070d6fb050585f06619e0.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb32875316ed070d6fb050585f06619e0.open("GET","http://localhost/pad/webcomponents/?index&padInclude",true);
-                        padAjaxb32875316ed070d6fb050585f06619e0.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Tag types - groups
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: alpine - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">alpineGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; Behaviour in the markup&lt;/span&gt;<br>    &lt;h1&gt;PAD writes the page.&lt;br&gt;&lt;span class="grad"&gt;Alpine wakes it up.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      Alpine adds behaviour to HTML with a few attributes - and PAD writes that HTML. Both<br>      like braces, so the trick is to let each have its own: PAD hands Alpine its state as JSON<br>      with the ^ sigil, and longer components live in a file of &lt;code&gt;www/&lt;/code&gt;.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/state"&gt;Start with state from PHP&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;Braces, data and requests&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div x-data="{^profile}"&gt;          &lt;!-- $profile from the page's PHP --&gt;<br>  &lt;h2 x-text="name"&gt;&lt;/h2&gt;<br>  &lt;button @click="likes++"&gt;<br>    ♥ &lt;span x-text="likes"&gt;&lt;/span&gt;<br>  &lt;/button&gt;<br>&lt;/div&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>    &lt;p class="small muted"&gt;The template holds no brace of Alpine's: the state is the JSON of a PHP array.&lt;/p&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax62e4f21f92d137afdb55935f6f310532"></div>
+                      <script>
+                      padAjax62e4f21f92d137afdb55935f6f310532 = new XMLHttpRequest();
+                      padAjax62e4f21f92d137afdb55935f6f310532.onreadystatechange=function() {
+                      if (padAjax62e4f21f92d137afdb55935f6f310532.readyState === 4) {
+                      if (padAjax62e4f21f92d137afdb55935f6f310532.status === 200) {
+                      document.getElementById("padAjax62e4f21f92d137afdb55935f6f310532").innerHTML=padAjax62e4f21f92d137afdb55935f6f310532.responseText;
+                      } else {
+                      document.getElementById("padAjax62e4f21f92d137afdb55935f6f310532").innerHTML=padAjax62e4f21f92d137afdb55935f6f310532.statusText;
+                      }
+                      }
+                      }
+                      padAjax62e4f21f92d137afdb55935f6f310532.open("GET","http://localhost/pad/alpine/?index&padInclude",true);
+                      padAjax62e4f21f92d137afdb55935f6f310532.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: htmx - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; HTML over the wire&lt;/span&gt;<br>    &lt;h1&gt;The server renders.&lt;br&gt;&lt;span class="grad"&gt;htmx swaps it in.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      htmx asks the server for a part of the page and puts the answer where it belongs. PAD<br>      already speaks that language: every <b>{<font color="blue">fragment</font><font color="red"></font>}</b> of a template can be asked for<br>      alone - by its name, or by the element htmx swaps - so one template serves the whole page<br>      and every piece of it.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/search"&gt;Start with active search&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How PAD answers htmx&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;input name="q" hx-get="?products"<br>       hx-trigger="input changed delay:300ms"<br>       hx-target="#results"&gt;<br><br>&lt;ul id="results"&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">products</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>    &lt;p class="small muted"&gt;The request carries &lt;code&gt;HX-Target: results&lt;/code&gt;; PAD answers that fragment alone.&lt;/p&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxbbde10c3af3eb550f30077e247997828"></div>
+                      <script>
+                      padAjaxbbde10c3af3eb550f30077e247997828 = new XMLHttpRequest();
+                      padAjaxbbde10c3af3eb550f30077e247997828.onreadystatechange=function() {
+                      if (padAjaxbbde10c3af3eb550f30077e247997828.readyState === 4) {
+                      if (padAjaxbbde10c3af3eb550f30077e247997828.status === 200) {
+                      document.getElementById("padAjaxbbde10c3af3eb550f30077e247997828").innerHTML=padAjaxbbde10c3af3eb550f30077e247997828.responseText;
+                      } else {
+                      document.getElementById("padAjaxbbde10c3af3eb550f30077e247997828").innerHTML=padAjaxbbde10c3af3eb550f30077e247997828.statusText;
+                      }
+                      }
+                      }
+                      padAjaxbbde10c3af3eb550f30077e247997828.open("GET","http://localhost/pad/htmx/?index&padInclude",true);
+                      padAjaxbbde10c3af3eb550f30077e247997828.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: islands - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">islandsGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; Any framework, one runtime&lt;/span&gt;<br>    &lt;h1&gt;Islands of any kind&lt;br&gt;&lt;span class="grad"&gt;on one PAD page.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      PAD writes the page and marks the places that move. A small runtime mounts a component on<br>      each - React here, Vue there, Svelte, Preact or Solid - and fetches a framework only when<br>      an island of it is on the page. Vite builds them; <b>{<font color="blue">vite</font><font color="red"></font>}</b> links the build.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/frameworks"&gt;See all five&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How it fits together&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-code"&gt;<br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br>&lt;div data-island="VueCounter" data-props="{^vue}"&gt;&lt;/div&gt;<br>&lt;div data-island="SvelteCounter" data-load="visible"<br>     data-props="{^svelte}"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">vite </font><font color="red"><font color="black">'</font>src/main.js<font color="black">'</font></font>}</b><br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>js<font color="black">'</font></font>}</b><br>islands({<br>  VueCounter:    vue(() =&gt; import('./Counter.vue')),<br>  SvelteCounter: svelte(() =&gt; import('./Counter.svelte'))<br>});<br><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe2af573f5d4b2baf6d7bce96e248e742"></div>
+                      <script>
+                      padAjaxe2af573f5d4b2baf6d7bce96e248e742 = new XMLHttpRequest();
+                      padAjaxe2af573f5d4b2baf6d7bce96e248e742.onreadystatechange=function() {
+                      if (padAjaxe2af573f5d4b2baf6d7bce96e248e742.readyState === 4) {
+                      if (padAjaxe2af573f5d4b2baf6d7bce96e248e742.status === 200) {
+                      document.getElementById("padAjaxe2af573f5d4b2baf6d7bce96e248e742").innerHTML=padAjaxe2af573f5d4b2baf6d7bce96e248e742.responseText;
+                      } else {
+                      document.getElementById("padAjaxe2af573f5d4b2baf6d7bce96e248e742").innerHTML=padAjaxe2af573f5d4b2baf6d7bce96e248e742.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe2af573f5d4b2baf6d7bce96e248e742.open("GET","http://localhost/pad/islands/?index&padInclude",true);
+                      padAjaxe2af573f5d4b2baf6d7bce96e248e742.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: react - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The home page: the examples in their groups for the cards, and what the server says to<br>  // the island at the top - asked again by its button as JSON, the same page with<br>  // padFormat=json, which answers only what $padExpose names.<br><br>  </span><span style="color: #0000BB">$groups </span><span style="color: #007700">= </span><span style="color: #0000BB">reactGroups </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$hello </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'message'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hello from PAD'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'php'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">PHP_VERSION</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'time'     </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'H:i:s' </span><span style="color: #007700">),<br>             </span><span style="color: #DD0000">'patterns' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'examples' </span><span style="color: #007700">) [</span><span style="color: #DD0000">'examples'</span><span style="color: #007700">] ) ];<br><br>  </span><span style="color: #0000BB">$padExpose </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'hello' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="purple"><font color="red">#</font> The island carries the server time, so the page differs on every request<font color="black"></font><b><font color="black">:</font></b><font color="green"></font> the stored<br>   answer is a pattern. <font color="red">#</font></font>}</b><br>&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; PHP renders &amp;middot; React reacts&lt;/span&gt;<br>    &lt;h1&gt;Server pages,&lt;br&gt;&lt;span class="grad"&gt;living islands.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      PAD builds the page on the server - the data, the HTML, the routing by file name. React<br>      takes over the parts that move: an island here, a widget there, each handed its data by<br>      PAD and talking back to PAD while it runs.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?patterns"&gt;See the patterns&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;Build your own&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div data-island="HelloServer" data-props="{^hello}"&gt;<br>    &lt;div class="island-fallback"&gt;PAD says: &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>hello.message</font>}</b>&lt;/strong&gt; at <b>{<font color="green"><font color="red">$</font>hello.time</font>}</b> - React takes this box over in a moment.&lt;/div&gt;<br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br>&lt;div class="flow"&gt;<br>  &lt;div class="flow-step"&gt;<br>    &lt;h3&gt;PHP gathers&lt;/h3&gt;<br>    &lt;p&gt;The page's &lt;code&gt;.php&lt;/code&gt; reads the database, a &lt;code&gt;_data/&lt;/code&gt; file, the session.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step"&gt;<br>    &lt;h3&gt;PAD writes&lt;/h3&gt;<br>    &lt;p&gt;The template places the islands and hands each its props: &lt;code&gt;data-props="{^field}"&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step is-client"&gt;<br>    &lt;h3&gt;React mounts&lt;/h3&gt;<br>    &lt;p&gt;&lt;code&gt;PadReact.island()&lt;/code&gt; finds the islands and renders a component on each.&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="flow-step is-client"&gt;<br>    &lt;h3&gt;React asks back&lt;/h3&gt;<br>    &lt;p&gt;The same pages answer JSON, one fragment, or a post - &lt;code&gt;padFormat=json&lt;/code&gt;, &lt;code&gt;padFragment&lt;/code&gt;.&lt;/p&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card rise" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b><br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/index.js"&gt;&lt;/script&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax590265b434bfab1e18db6d29707c5076"></div>
+                      <script>
+                      padAjax590265b434bfab1e18db6d29707c5076 = new XMLHttpRequest();
+                      padAjax590265b434bfab1e18db6d29707c5076.onreadystatechange=function() {
+                      if (padAjax590265b434bfab1e18db6d29707c5076.readyState === 4) {
+                      if (padAjax590265b434bfab1e18db6d29707c5076.status === 200) {
+                      document.getElementById("padAjax590265b434bfab1e18db6d29707c5076").innerHTML=padAjax590265b434bfab1e18db6d29707c5076.responseText;
+                      } else {
+                      document.getElementById("padAjax590265b434bfab1e18db6d29707c5076").innerHTML=padAjax590265b434bfab1e18db6d29707c5076.statusText;
+                      }
+                      }
+                      }
+                      padAjax590265b434bfab1e18db6d29707c5076.open("GET","http://localhost/pad/react/?index&padInclude",true);
+                      padAjax590265b434bfab1e18db6d29707c5076.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: react - Page: patterns<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">patterns.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">patterns.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Patterns - PAD + React'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$groups </span><span style="color: #007700">= </span><span style="color: #0000BB">reactGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;header class="example-head"&gt;<br>  &lt;h1&gt;Patterns&lt;/h1&gt;<br>  &lt;p class="lede"&gt;<br>    Every way the two meet, one page each - the live example on top, the template, the PHP and<br>    the component under it. Purple is PAD on the server, blue is React in the browser.<br>  &lt;/p&gt;<br>&lt;/header&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6"></div>
+                      <script>
+                      padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6 = new XMLHttpRequest();
+                      padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.onreadystatechange=function() {
+                      if (padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.readyState === 4) {
+                      if (padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.status === 200) {
+                      document.getElementById("padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6").innerHTML=padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.responseText;
+                      } else {
+                      document.getElementById("padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6").innerHTML=padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.statusText;
+                      }
+                      }
+                      }
+                      padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.open("GET","http://localhost/pad/react/?patterns&padInclude",true);
+                      padAjaxd4dc0b99374c061e66fa9a7de3ec3cd6.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: groups<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">groups.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">groups.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tags by group<font color="black">'</font></font>}</b><br>&lt;h1&gt;Tags by group&lt;/h1&gt;<br>&lt;p class="lead"&gt;The tags by what they are for, in <b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b> groups.&lt;/p&gt;<br><br>&lt;nav class="jump" aria-label="Groups"&gt;<b>{<font color="blue">groups</font><font color="red"></font>}</b>&lt;a href="#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt;<b>{/<font color="blue">groups</font><font color="red"></font>}</b>&lt;/nav&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;section class="section" id="<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<br>  &lt;div class="section-head"&gt;&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b> - <b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count eq 1 ? <font color="black">'</font>tag<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>tags<font color="black">'</font></font>}</b>&lt;/span&gt;&lt;/div&gt;<br>  &lt;ul class="list"&gt;<br>    <b>{<font color="blue">tags</font><font color="red"></font>}</b><br>    &lt;li&gt;&lt;a class="name" href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>"&gt;&amp;#123;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&amp;#125;&lt;/a&gt; &lt;span class="about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/span&gt;&lt;/li&gt;<br>    <b>{/<font color="blue">tags</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa7943cd04a7da5fd0dba1d1dca5d4789"></div>
+                      <script>
+                      padAjaxa7943cd04a7da5fd0dba1d1dca5d4789 = new XMLHttpRequest();
+                      padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.onreadystatechange=function() {
+                      if (padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.readyState === 4) {
+                      if (padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.status === 200) {
+                      document.getElementById("padAjaxa7943cd04a7da5fd0dba1d1dca5d4789").innerHTML=padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.responseText;
+                      } else {
+                      document.getElementById("padAjaxa7943cd04a7da5fd0dba1d1dca5d4789").innerHTML=padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.open("GET","http://localhost/pad/tags/?groups&padInclude",true);
+                      padAjaxa7943cd04a7da5fd0dba1d1dca5d4789.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups   </span><span style="color: #007700">= </span><span style="color: #0000BB">tagsByGroup </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$indexes  </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'names'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By name'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every tag from A to Z, with its one line.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'groups'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By group'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The tags by what they are for - conditions, loops, forms, charts ...' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'forms'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By form'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Single tags, tag pairs, and the tags that can be either.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'options'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'By option'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Every option a tag takes of its own, and the tags that take it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'page' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cheatsheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cheat sheet'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The syntax of every tag on one page.' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  foreach ( </span><span style="color: #0000BB">tagsCatalog </span><span style="color: #007700">() as </span><span style="color: #0000BB">$name </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$tag </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$exampleCount </span><span style="color: #007700">+= </span><span style="color: #0000BB">tagsExampleCount </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every PAD tag<font color="black">'</font></font>}</b><br>&lt;section class="hero"&gt;<br>  &lt;h1&gt;Every PAD tag&lt;/h1&gt;<br>  &lt;p class="lead"&gt;A page for each built-in tag of PAD: what it does in one line, its syntax and<br>  the options that belong to it, a longer description and live examples - every result<br>  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or<br>  search for it.&lt;/p&gt;<br>  &lt;ul class="stats"&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsCount</font>}</b>&lt;/b&gt; tags&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>tagsGroupCnt</font>}</b>&lt;/b&gt; groups&lt;/li&gt;<br>    &lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>exampleCount</font>}</b>&lt;/b&gt; examples&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/section&gt;<br><br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">indexes</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/h2&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">indexes</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The groups&lt;/h2&gt;<br>&lt;div class="cards"&gt;<br>  <b>{<font color="blue">groups</font><font color="red"></font>}</b><br>  &lt;section class="card"&gt;<br>    &lt;h3&gt;&lt;a href="?groups#<b>{<font color="green"><font color="red">$</font>key</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>label</font>}</b>&lt;/a&gt; &lt;span class="count"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/span&gt;&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>tagline</font>}</b>&lt;/p&gt;<br>    &lt;div class="tagcloud"&gt;<b>{<font color="blue">tags</font><font color="red"></font>}</b>&lt;a href="?tag/<b>{<font color="green"><font color="red">$</font>name</font>}</b>" title="<b>{<font color="green"><font color="red">$</font>about</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;<b>{/<font color="blue">tags</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/section&gt;<br>  <b>{/<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb6e353252c830d41dd78b26b669feada"></div>
+                      <script>
+                      padAjaxb6e353252c830d41dd78b26b669feada = new XMLHttpRequest();
+                      padAjaxb6e353252c830d41dd78b26b669feada.onreadystatechange=function() {
+                      if (padAjaxb6e353252c830d41dd78b26b669feada.readyState === 4) {
+                      if (padAjaxb6e353252c830d41dd78b26b669feada.status === 200) {
+                      document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.responseText;
+                      } else {
+                      document.getElementById("padAjaxb6e353252c830d41dd78b26b669feada").innerHTML=padAjaxb6e353252c830d41dd78b26b669feada.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb6e353252c830d41dd78b26b669feada.open("GET","http://localhost/pad/tags/?index&padInclude",true);
+                      padAjaxb6e353252c830d41dd78b26b669feada.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: webcomponents - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $groups </span><span style="color: #007700">= </span><span style="color: #0000BB">wcGroups </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;section class="hero"&gt;<br><br>  &lt;div&gt;<br>    &lt;span class="eyebrow"&gt;&lt;b&gt;●&lt;/b&gt; The platform's own components&lt;/span&gt;<br>    &lt;h1&gt;Rendered by PAD,&lt;br&gt;&lt;span class="grad"&gt;defined by the browser.&lt;/span&gt;&lt;/h1&gt;<br>    &lt;p class="lede"&gt;<br>      A custom element with its shadow root written on the server: declarative shadow DOM shows it<br>      encapsulated and slotted before any script ran, and a small module upgrades it where it needs<br>      behaviour. PAD's own components - a custom tag with parameters - write them.<br>    &lt;/p&gt;<br>    &lt;div class="hero-actions"&gt;<br>      &lt;a class="btn" href="?examples/cards"&gt;Start with the cards&lt;/a&gt;<br>      &lt;a class="btn btn-ghost" href="?guide"&gt;How it works&lt;/a&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br><br>  &lt;div class="hero-demo"&gt;<br>    <b>{<font color="blue">card </font><font color="red">title=<font color="black">'</font>Rendered on the server<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>good<font color="black">'</font></font>}</b><br>      &lt;p&gt;This card is a &lt;code&gt;&lt;pad-card&gt;&lt;/code&gt; with its shadow root - and the page has no script for it.&lt;/p&gt;<br>      &lt;a slot="footer" href="?examples/cards"&gt;See how&lt;/a&gt;<br>    <b>{/<font color="blue">card</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>&lt;/section&gt;<br><br><b>{<font color="blue">groups</font><font color="red"></font>}</b><br>&lt;div class="group-head"&gt;<br>  &lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>  &lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> examples&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;p class="group-text"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br>&lt;div class="grid"&gt;<br>  <b>{<font color="blue">examples</font><font color="red"></font>}</b><br>  &lt;a class="card" href="?<b>{<font color="green"><font color="red">$</font>page</font>}</b>"&gt;<br>    &lt;span class="card-icon" aria-hidden="true"&gt;<b>{<font color="green"><font color="red">$</font>icon</font>}</b>&lt;/span&gt;<br>    &lt;span class="card-go" aria-hidden="true"&gt;→&lt;/span&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    &lt;p&gt;<b>{<font color="green"><font color="red">$</font>lede</font>}</b>&lt;/p&gt;<br>    &lt;div class="chips"&gt;<b>{<font color="blue">server</font><font color="red"></font>}</b>&lt;code class="chip is-server"&gt;<b>{<font color="green"><font color="red">$</font>server</font>}</b>&lt;/code&gt;<b>{/<font color="blue">server</font><font color="red"></font>}</b><b>{<font color="blue">client</font><font color="red"></font>}</b>&lt;code class="chip is-client"&gt;<b>{<font color="green"><font color="red">$</font>client</font>}</b>&lt;/code&gt;<b>{/<font color="blue">client</font><font color="red"></font>}</b>&lt;/div&gt;<br>  &lt;/a&gt;<br>  <b>{/<font color="blue">examples</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><b>{/<font color="blue">groups</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb32875316ed070d6fb050585f06619e0"></div>
+                      <script>
+                      padAjaxb32875316ed070d6fb050585f06619e0 = new XMLHttpRequest();
+                      padAjaxb32875316ed070d6fb050585f06619e0.onreadystatechange=function() {
+                      if (padAjaxb32875316ed070d6fb050585f06619e0.readyState === 4) {
+                      if (padAjaxb32875316ed070d6fb050585f06619e0.status === 200) {
+                      document.getElementById("padAjaxb32875316ed070d6fb050585f06619e0").innerHTML=padAjaxb32875316ed070d6fb050585f06619e0.responseText;
+                      } else {
+                      document.getElementById("padAjaxb32875316ed070d6fb050585f06619e0").innerHTML=padAjaxb32875316ed070d6fb050585f06619e0.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb32875316ed070d6fb050585f06619e0.open("GET","http://localhost/pad/webcomponents/?index&padInclude",true);
+                      padAjaxb32875316ed070d6fb050585f06619e0.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

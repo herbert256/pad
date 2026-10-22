@@ -10,7 +10,9 @@ parts from the recording.</p>
   <li>A name instead of TRUE picks the store, <code>DATA/replay/&lt;name&gt;/</code>, one file per
       URL; <code>?page&amp;padRecord=name</code> records one request of this machine's own.</li>
   <li>Only a request that brought no cookie but PAD's own two ids is recorded: one with a
-      session or a login cannot be replayed faithfully, because a replay comes without cookies.</li>
+      session or a login cannot be replayed faithfully, because a replay comes without cookies.
+      Neither is an answer holding a token its request made - the CSRF token of a form, the
+      CSP nonce - which a replay gets anew.</li>
   <li>The host an answer was recorded under counts as the host it is replayed on.</li>
   <li>An answer that changed on purpose is accepted - it becomes the recording - and a page
       that changes every time, a clock, is deleted from the store.</li>

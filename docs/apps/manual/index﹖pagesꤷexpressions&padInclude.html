@@ -1,0 +1,2396 @@
+
+
+<p>An expression is the part of a tag that works out a value: <code>1 + 2</code>,
+<code>$price * $qty</code>, <code>$name | upper</code>, <code>$state in ('open',
+'pending')</code>. PAD's evaluator reads it - numbers, strings, fields, lists, operators,
+functions and pipes - and answers one value. This page goes through all of it; every example
+is live, its template beside what PAD made of it.</p>
+
+<h2>Where expressions stand</h2>
+
+<p>An expression is read wherever a tag takes a value: the parameter of <b>{echo}</b> and of
+<code>{if}</code> and <code>{elseif}</code>, the right side of
+<code>{set $x = ...}</code>, the value of <code>{case}</code> and its
+<code>{when}</code>s, the condition of <code>{while}</code> and
+<code>{until}</code>, a quoted option such as <code>where='...'</code>, and an
+occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 12.5</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>qty   = 3</font>}</b><br>&lt;p&gt;Total: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price * <font color="red">$</font>qty</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>total = <font color="red">$</font>price * <font color="red">$</font>qty</font>}</b><br>&lt;p&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>total gt 30</font>}</b>Free shipping<b>{<font color="blue">else</font><font color="red"></font>}</b>Shipping: 4.95<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+<p>Total: 37.5</p>
+
+<p>Free shipping</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>stock<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 12}, {"item": "ink", "qty": 0}, {"item": "pad", "qty": 5} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">stock </font><font color="red">where=<font color="black">'</font><font color="red">$</font>qty gt 0<font color="black">'</font><font color="black">,</font> <font color="black">%</font>order = 20 - <font color="red">$</font>qty</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>: <b>{<font color="green"><font color="red">$</font>qty</font>}</b> in stock, order <b>{<font color="green"><font color="red">$</font>order</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">stock</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+  <p>pen: 12 in stock, order 8</p>
+
+  <p>pad: 5 in stock, order 15</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 7</font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue">when</font><font color="red">0</font>}</b>even<b>{<font color="blue">when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue">case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>}</b><br>&lt;p&gt;<b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b> <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>}</b><b>{/<font color="blue">while</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>7 is odd</p>
+
+<p>1 2 4 8 16 </p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>A field tag takes a pipe as it stands - <code>{$name | trim}</code> - and so
+does the closing tag of a pair, over everything the pair rendered. The
+<a href="index%EF%B9%96pages%EA%A4%B7pipes.html">pipes</a> page has the opening and closing tag pipes in full:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>name = <font color="black">'</font>  ada lovelace  <font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">trim</font> <font color="black">|</font> <font color="blue">ucwords</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>langs<font color="black">'</font></font>}</b>["php", "sql", "pad"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">langs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>langs</font>}</b> <b>{/<font color="blue">langs </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>Ada Lovelace</p>
+
+<p>PHP SQL PAD </p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Values</h2>
+
+<h3>Numbers</h3>
+
+<p>Whole numbers, decimals, a decimal that starts with its point (<code>.5</code>) and
+exponents (<code>1e3</code>, <code>2.5E-1</code>). A minus before a number belongs to it.
+<code>0x</code> followed by hexadecimal digits is not a number but a string of bytes:
+<code>0x41</code> is the letter A.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->42<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-7 + 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->-5<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1.25 * 4</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">.5 + .25</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0.75<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1e3 + 1</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1001<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2.5E-1 * 4</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0x41</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0x504144</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->PAD<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Strings</h3>
+
+<p>Text stands between single or double quotes, which mean the same: a <code>$name</code>
+inside double quotes stays text, it is not filled in as PHP would. A backslash starts an
+escape - <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\\</code>,
+<code>\'</code> and <code>\"</code>; any other letter after it is an error. The dot joins
+strings, and numbers with them:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>single quotes<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->single quotes<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"double quotes"</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->double quotes<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>it\<font color="black">'</font>s<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->it's<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"say \"hi\""</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->say "hi"<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>back\\slash<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->back\slash<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>one\ntwo<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>nl2br</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->one<br />
+two<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"a\tb" <font color="black">|</font> php<font color="black">:</font>strlen</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Order <font color="black">'</font> . 42 . "!"</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Order 42!<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Bare words</h3>
+
+<p>A word without quotes and without a sigil is looked up. An operator word -
+<code>eq</code>, <code>and</code>, <code>not</code> ... - is the operator; a PHP constant -
+<code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>, <code>PHP_EOL</code>,
+<code>M_PI</code> - is its value; a word that names nothing stands for its own text.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">TRUE</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">FALSE</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">NULL</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">PHP_INT_SIZE</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->8<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">M_PI <font color="black">|</font> <font color="black">%</font>.4f</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3.1416<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">hello</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->hello<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello<font color="black">'</font> eq hello</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p><b>Quote text.</b> A bare word that names something PAD knows - a function, a tag, a
+property, a data set, a field - is that thing: <code>count</code>, <code>name</code> and
+<code>first</code> are <a href="index%EF%B9%96pages%EA%A4%B7properties.html">properties</a>, so
+<code>{echo count}</code> does not write the word count. Text in quotes is always
+text.</p>
+
+<h3>Fields, paths and indirection</h3>
+
+<p><code>$name</code> reads a field: a variable the page's PHP set, one a
+<code>{set}</code> made, a field of the row a loop stands on. A dot walks into an
+array - <code>$user.address.city</code>, and <code>$items.0</code> by position.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/expressions_8.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_8.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London'</span><span style="color: #007700">, </span><span style="color: #DD0000">'zip' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'W1' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$langs </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'PHP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'SQL'</span><span style="color: #007700">, </span><span style="color: #DD0000">'PAD' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name . <font color="black">'</font> from <font color="black">'</font> . <font color="red">$</font>user.address.city</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>langs.0</font>}</b> and <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>langs.2</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$user.address.city</font> <font color="black">|</font> <font color="blue">upper</font>}</b>, <b>{<font color="green"><font color="red">$</font>user.address.zip</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Ada from London</p>
+<p>PHP and PAD</p>
+<p>LONDON, W1</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p><code>$$name</code> reads the field whose name another field holds - a path as well - the
+way <code>{$$name}</code> does as a tag. The name must be one of the application's
+fields; the engine's own <code>pad...</code> variables are never read this way.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/expressions_9.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_9.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $lang     </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_en </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_nl </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hallo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_de </span><span style="color: #007700">= </span><span style="color: #DD0000">'Guten Tag'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$user     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$show     </span><span style="color: #007700">= </span><span style="color: #DD0000">'user.address.city'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>key = <font color="black">'</font>hello_<font color="black">'</font> . <font color="red">$</font>lang</font>}</b><br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font><font color="red">$</font>key</font>}</b>, <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font><font color="red">$</font>show</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>Hallo, Ada</p>
+<p>London</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>A field that holds a list is not a value: <code>$items + 1</code> is an error. Walk the
+list with a loop, or hand it to a function with the <code>array:</code> prefix, below.</p>
+
+<h3>Options, properties and the placeholder</h3>
+
+<ul>
+  <li><code>&#35;name</code> - a parameter or option of the tag; in a
+  <code>{define}</code> or a custom tag, the ones the tag was called with</li>
+  <li><code>&amp;name</code> - a property of the tag, <code>name@tag</code> a property of the
+  tag named - <code>first@items</code>, <code>current@items</code>, <code>count@items</code>
+  (see <a href="index%EF%B9%96pages%EA%A4%B7properties.html">properties</a>)</li>
+  <li><code>@</code> - the value piped into this part of the expression (see
+  <a href="#pipes">pipes</a> below)</li>
+</ul>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_10.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">define </font><font color="red"><font color="black">'</font>gross<font color="black">'</font></font>}</b><b>{<font color="blue">parms </font><font color="red">net<font color="black">,</font> vat=21</font>}</b><b>{<font color="blue">echo </font><font color="red">#net * (1 + #vat / 100) <font color="black">|</font> <font color="black">%</font>.2f</font>}</b><b>{/<font color="blue">define</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">gross </font><font color="red">net=100</font>}</b> and <b>{<font color="blue">gross </font><font color="red">net=100<font color="black">,</font> vat=9</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b>["plan", "build", "ship"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">steps</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="blue">echo </font><font color="red">&amp;current . <font color="black">'</font> of <font color="black">'</font> . &amp;count</font>}</b>: <b>{<font color="green"><font color="red">$</font>steps</font>}</b><b>{<font color="blue">echo </font><font color="red">last<font color="black">@</font>steps ? <font color="black">'</font> - the last one<font color="black">'</font> <font color="black">:</font> <font color="black">'</font><font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">steps</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>121.00 and 109.00</p>
+
+
+  <p>1 of 3: plan</p>
+
+  <p>2 of 3: build</p>
+
+  <p>3 of 3: ship - the last one</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h3>Lists</h3>
+
+<p><code>[ ]</code> makes a list, its items separated by commas, with keys written
+<code>key =&gt; value</code> where wanted, mixed with plain items as PHP mixes them. A list is
+what <code>{set}</code> stores, what a loop walks and what a PHP function
+takes:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_11.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>book = [ <font color="black">'</font>title<font color="black">'</font> =&gt; <font color="black">'</font>Minutes<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pages<font color="black">'</font> =&gt; 2 * 120 ]</font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>book.title</font>}</b>: <b>{<font color="green"><font color="red">$</font>book.pages</font>}</b> pages&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>primes = [2<font color="black">,</font> 3<font color="black">,</font> 5<font color="black">,</font> 7]</font>}</b><br>&lt;p&gt;<b>{<font color="blue">primes</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>primes</font>}</b> <b>{/<font color="blue">primes</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> + <font color="black">'</font><font color="black">,</font> [1<font color="black">,</font> 2<font color="black">,</font> 3]) . <font color="black">'</font> = <font color="black">'</font> . php<font color="black">:</font>array_sum([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>Minutes: 240 pages</p>
+
+<p>2 3 5 7 </p>
+<p>1 + 2 + 3 = 6</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h3>Type prefixes</h3>
+
+<p>A prefix says what a name is, so nothing else of that name can be meant:
+<code>field:</code>, <code>array:</code> (a list as a value), <code>data:</code> (a
+<code>{data}</code> set), <code>constant:</code>, <code>php:</code> (a PHP
+function), <code>pad:</code> and <code>app:</code> (a built-in or an application pipe
+function), <code>function:</code>, <code>tag:</code> and the others the
+<a href="index%EF%B9%96pages%EA%A4%B7prefix.html">prefix</a> page lists:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_12.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>colors<font color="black">'</font></font>}</b>["red", "green", "blue"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>nums = [4<font color="black">,</font> 8<font color="black">,</font> 15]</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>title = <font color="black">'</font>Prefixes<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">constant<font color="black">:</font>PHP_INT_SIZE</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(data<font color="black">:</font>colors)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>nums)</font>}</b> numbers, together <b>{<font color="blue">echo </font><font color="red">array<font color="black">:</font>nums + 0</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>=<font color="black">'</font><font color="black">,</font> 5)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">field<font color="black">:</font>title <font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+<p>8</p>
+<p>3</p>
+<p>3 numbers, together 27</p>
+<p>=====</p>
+<p>PREFIXES</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Operators</h2>
+
+<p>The operators bind in this order, strongest first. Those of one row bind equally and are
+applied left to right - <code>10 - 2 + 3</code> is 11 - except <code>**</code>, which binds
+right to left. Round brackets group as usual.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr style="background: #f0f0f0;"><th>operators</th><th>what they do</th></tr>
+  <tr><td><code>**</code></td><td>power, right to left: <code>2 ** 3 ** 2</code> is <code>2 ** 9</code></td></tr>
+  <tr><td><code>!</code>, a sign <code>-</code> <code>+</code> before a value</td><td>not, and the signs - weaker than <code>**</code>: <code>-3 ** 2</code> is -9</td></tr>
+  <tr><td><code>*</code> <code>/</code> <code>%</code></td><td>multiply, divide, remainder</td></tr>
+  <tr><td><code>+</code> <code>-</code></td><td>add, subtract</td></tr>
+  <tr><td><code>.</code></td><td>join as text</td></tr>
+  <tr><td><code>lt</code> <code>le</code> <code>gt</code> <code>ge</code> - <code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td><td>order</td></tr>
+  <tr><td><code>eq</code> <code>ne</code> - <code>==</code> <code>=</code> <code>!=</code> <code>&lt;&gt;</code></td><td>equal, not equal</td></tr>
+  <tr><td><code>not</code></td><td>denies what follows, a comparison included</td></tr>
+  <tr><td><code>and</code> - <code>&amp;&amp;</code></td><td>both hold</td></tr>
+  <tr><td><code>xor</code></td><td>exactly one holds</td></tr>
+  <tr><td><code>or</code> - <code>||</code></td><td>either holds</td></tr>
+  <tr><td><code>??</code></td><td>the left side, or the right one when the left is empty or missing</td></tr>
+  <tr><td><code>? :</code> and <code>?:</code></td><td>the inline ternary, weakest of all</td></tr>
+</table>
+
+<p>The tests <code>in</code>, <code>like</code>, <code>matches</code>, <code>range</code>,
+<code>between</code> and <code>contains</code> read infix as well; they have
+<a href="#tests">a section of their own</a>.</p>
+
+<h3>Arithmetic</h3>
+
+<p>As in PHP: <code>/</code> answers a decimal when it does not divide evenly, <code>%</code>
+works on whole numbers. A text that is a number counts as one - <code>'5' + '5'</code> is 10 -
+a text that is not, <code>'a' + 1</code>, is an error, and so is a division by zero.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 + 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 - 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->4<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 * 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 / 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3.5<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 <font color="black">%</font> 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** 10</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1024<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-(2 + 3)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->-5<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">10 / 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3.3333333333333<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Precedence</h3>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 + 2 * 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->7<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(1 + 2) * 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->9<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">10 - 2 + 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">12 / 2 * 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** 3 ** 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->512<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-3 ** 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->-9<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(-3) ** 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->9<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** -1</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0.5<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Joining text</h3>
+
+<p>The dot binds weaker than <code>+</code> and <code>-</code>: in <code>1 + 2 . 3</code> the
+sum comes first and is then joined with the 3, and in <code>1 . 5 + 5</code> the 1 is joined
+with 10. After a value a dot is the join, also right against it - <code>'a'.1</code> - and
+only where no value stands before it does a dot start a number.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Order <font color="black">'</font> . 42</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Order 42<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Total<font color="black">:</font> <font color="black">'</font> . 3 * 4</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Total: 12<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 + 2 . 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->33<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 . 5 + 5</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->110<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(1 . 5) + 5</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font>.1</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->a1<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Comparing</h3>
+
+<p>Each comparison has a word and a symbol: <code>eq</code> or <code>==</code> (a single
+<code>=</code> too), <code>ne</code>, <code>!=</code> or <code>&lt;&gt;</code>, and
+<code>lt le gt ge</code> or <code>&lt; &lt;= &gt; &gt;=</code>. The words read better in a
+template full of HTML. Numbers, and texts that are numbers, compare as numbers -
+<code>'2' lt '10'</code> holds; other texts compare character by character, case counting.
+PHP's <code>===</code> and <code>!==</code> are not there. A comparison answers
+<code>1</code> or nothing:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 eq 3</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 == <font color="black">'</font>3<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 = 4</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 ne 4</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 != 4</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 &lt;&gt; 3</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 lt 10</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">2 &lt; 10</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">9 le 9</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 gt 9</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">5 &gt;= 5</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2<font color="black">'</font> lt <font color="black">'</font>10<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>apple<font color="black">'</font> lt <font color="black">'</font>banana<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> eq <font color="black">'</font>ABC<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> eq 0</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] []<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>Logic</h3>
+
+<p><code>and</code>, <code>or</code>, <code>xor</code> and <code>not</code>, with
+<code>&amp;&amp;</code>, <code>||</code> and <code>!</code> as their symbols. The word
+<code>not</code> binds weaker than the comparisons, so <code>not $a eq $b</code> denies the
+comparison; <code>!</code> binds as tightly as a sign, so <code>!$a eq $b</code> compares
+<code>!$a</code> with <code>$b</code>. <code>and</code> and <code>or</code> stop at a left
+side that decides: <code>$n gt 0 and 10 / $n gt 1</code> never divides by zero.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 and 0</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">1 &amp;&amp; 1</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 or 0</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">0 <font color="black">|</font><font color="black">|</font> 0</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 xor 1</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">1 xor 0</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not 1</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">!0</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not 1 eq 2</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 eq 1 and not 2 eq 3</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 gt 1 and 3 gt 2 or 0</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h3>A default: ??</h3>
+
+<p><code>a ?? b</code> answers <code>a</code> unless it is empty - <code>''</code>, NULL, FALSE,
+an empty list - or a field that does not exist; then it answers <code>b</code>. A 0 is a value
+and stays. A field in front of <code>??</code> may be missing, also under the strict check:
+giving it a default is what the operator is for. The right side is worked out only when it
+is wanted. In a pipe it takes the piped value, and the <code>default</code> function does
+the same:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/expressions_18.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_18.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $nickname </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$count    </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tags     </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>nickname ?? <font color="black">'</font>no nickname<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count ?? <font color="black">'</font>no count<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>surname ?? <font color="black">'</font>no surname<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>surname ?? <font color="red">$</font>nickname ?? <font color="black">'</font>nothing at all<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">?? 'anonymous'</font>}</b> - <b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">default('anonymous')</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>no nickname</p>
+<p>0</p>
+<p>no surname</p>
+<p>nothing at all</p>
+<p>anonymous - anonymous</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h3>The inline ternary</h3>
+
+<p><code>cond ? then : else</code> binds weakest of all: everything before the
+<code>?</code> is the condition, and each branch runs to its <code>:</code> or to the end -
+<code>0 ? 'yes' : 'no' . '!'</code> joins the <code>'!'</code> to the no. Only the branch
+chosen is worked out. Ternaries in a row read from the right, <code>a ? b : c ? d : e</code>
+being <code>a ? b : (c ? d : e)</code>. The short form <code>a ?: b</code> answers
+<code>a</code> itself when it holds, and with nothing before the <code>?</code> the piped
+value is the condition:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3 gt 1 ? <font color="black">'</font>many<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>one<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->many<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">15 gt 10 ? (15 gt 20 ? <font color="black">'</font>L<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>M<font color="black">'</font>) <font color="black">:</font> <font color="black">'</font>S<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->M<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">15 gt 20 ? <font color="black">'</font>L<font color="black">'</font> <font color="black">:</font> 15 gt 10 ? <font color="black">'</font>M<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>S<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->M<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> ?<font color="black">:</font> <font color="black">'</font>Untitled<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Untitled<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Draft<font color="black">'</font> ?<font color="black">:</font> <font color="black">'</font>Untitled<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Draft<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 <font color="black">|</font> ? <font color="black">'</font>some<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>none<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->none<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 ? <font color="black">'</font>yes<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>no<font color="black">'</font> . <font color="black">'</font>!<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->no!<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_20.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cart<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cart</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>qty eq 1 ? <font color="red">$</font>item <font color="black">:</font> <font color="red">$</font>item . <font color="black">'</font>s<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>qty ? <font color="black">'</font><font color="black">'</font> <font color="black">:</font> <font color="black">'</font> - sold out<font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cart</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+  <p>1 pen</p>
+
+  <p>3 books</p>
+
+  <p>0 lamps - sold out</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Truth</h2>
+
+<p>Where a condition is wanted - <code>{if}</code>, <code>where=</code>, the
+ternary, <code>and</code> and <code>or</code> - a value is tested as PHP tests it:
+<code>''</code>, <code>'0'</code>, 0, NULL, FALSE and an empty list are false, every other
+value is true - the texts <code>'0.0'</code>, <code>'false'</code> and a space among
+them.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>0<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">NULL ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[] ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>0.0<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>false<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font> <font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-1 ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[0] ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>The comparisons, the tests and the logic operators answer <code>1</code> for true and
+<code>''</code> for false: written by <b>{echo}</b> a truth is a 1 or nothing at all, and truths
+add up as numbers.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 gt 1</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">1 gt 2</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(2 gt 1) + (3 gt 1) + (0 gt 1)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(<font color="black">'</font>a<font color="black">'</font> eq <font color="black">'</font>a<font color="black">'</font>) . <font color="black">'</font>/<font color="black">'</font> . (<font color="black">'</font>a<font color="black">'</font> eq <font color="black">'</font>b<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1/<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red"><font color="black">'</font>x<font color="black">'</font> eq <font color="black">'</font>x<font color="black">'</font></font>}</b>holds<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->holds<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h2 id="tests">Tests: in, like, matches, range, between, contains</h2>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr style="background: #f0f0f0;"><th>test</th><th>holds when</th></tr>
+  <tr><td><code>$x in (a, b, ...)</code></td><td>the value equals one of the list</td></tr>
+  <tr><td><code>$x like 'A%'</code></td><td>the value matches the SQL pattern: <code>%</code> any run of characters, <code>_</code> one character, <code>\\%</code> and <code>\\_</code> themselves; case is ignored</td></tr>
+  <tr><td><code>$x matches '/re/'</code></td><td>the regular expression matches</td></tr>
+  <tr><td><code>$x range (a, b)</code></td><td>a &lt;= value &lt;= b, the ends included</td></tr>
+  <tr><td><code>$x between (a, b)</code></td><td>a &lt; value &lt; b, the ends left out</td></tr>
+  <tr><td><code>$x contains y</code></td><td>the text holds y - or, for a list, an item of it equals y</td></tr>
+</table>
+
+<p>A <code>not</code> between the value and the test denies the test, as SQL writes it:
+<code>$s not in (...)</code>, <code>not like</code>, <code>not matches</code>,
+<code>not range</code>. The value is everything left of the test - <code>5 + 1 in (6,
+7)</code> tests 6.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 in (1<font color="black">,</font> 2<font color="black">,</font> 3)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> not in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 + 1 in (6<font color="black">,</font> 7)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not <font color="black">'</font>a<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[]<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p><code>like</code> ignores case; <code>_</code> stands for exactly one character:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Alice<font color="black">'</font> like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>alice<font color="black">'</font> like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Bob<font color="black">'</font> like <font color="black">'</font>B_b<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Barb<font color="black">'</font> like <font color="black">'</font>B_b<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Bob<font color="black">'</font> not like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>50<font color="black">%</font><font color="black">'</font> like <font color="black">'</font>50\\<font color="black">%</font><font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>500<font color="black">'</font> like <font color="black">'</font>50\\<font color="black">%</font><font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>A backslash in a PAD string is an escape, so the backslash a regular expression needs is
+written twice: <code>'/a\\.b/'</code>. A <code>{n}</code> quantifier would open a
+tag - repeat the class, as below, or let the page's PHP hand the pattern over.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>NL1234<font color="black">'</font> matches <font color="black">'</font>/^[A-Z][A-Z][0-9]+<font color="red">$</font>/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a.b<font color="black">'</font> matches <font color="black">'</font>/a\\.b/<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>axb<font color="black">'</font> matches <font color="black">'</font>/a\\.b/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> matches <font color="black">'</font>/^h/i<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> matches <font color="black">'</font>/^h/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> not matches <font color="black">'</font>/^h/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">20 range (20<font color="black">,</font> 40)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">40 range (20<font color="black">,</font> 40)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">41 range (20<font color="black">,</font> 40)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">20 between (20<font color="black">,</font> 40)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">30 between (20<font color="black">,</font> 40)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>m<font color="black">'</font> range (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>z<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">50 not range (20<font color="black">,</font> 40)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p><code>contains</code> looks into a text, or into a list for an item equal to the one asked
+for:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> contains <font color="black">'</font>nan<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> contains <font color="black">'</font>x<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> not contains <font color="black">'</font>x<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] contains 3</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">[<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>] contains <font color="black">'</font>c<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>Each test is a pipe function too, so it can stand after a pipe or be called, its value the
+first argument:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>b<font color="black">'</font> <font color="black">|</font> in(<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">in(<font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Alice<font color="black">'</font> <font color="black">|</font> like(<font color="black">'</font>A<font color="black">%</font><font color="black">'</font>)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">like(<font color="black">'</font>Alice<font color="black">'</font><font color="black">,</font> <font color="black">'</font>A<font color="black">%</font><font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> range(1<font color="black">,</font> 9)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">range(7<font color="black">,</font> 1<font color="black">,</font> 9)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">contains(<font color="black">'</font>banana<font color="black">'</font><font color="black">,</font> <font color="black">'</font>nan<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>Together with <code>and</code> and <code>or</code> they make the conditions of the
+<code>where</code> option, which the <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">data handling</a> page
+covers with the other options:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_29.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  [ {"nr": 1, "state": "paid",      "customer": "Ada"},<br>    {"nr": 2, "state": "cancelled", "customer": "Alan"},<br>    {"nr": 3, "state": "sent",      "customer": "Bob"},<br>    {"nr": 4, "state": "sent",      "customer": "Alice"} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">orders </font><font color="red">where=<font color="black">'</font><font color="red">$</font>state not in ("cancelled"<font color="black">,</font> "refunded") and <font color="red">$</font>customer like "A<font color="black">%</font>"<font color="black">'</font></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>nr</font>}</b>: <b>{<font color="green"><font color="red">$</font>customer</font>}</b>, <b>{<font color="green"><font color="red">$</font>state</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+  <p>1: Ada, paid</p>
+
+  <p>4: Alice, sent</p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Functions</h2>
+
+<p>The built-in pipe functions - <code>upper</code>, <code>left</code>, <code>replace</code>,
+<code>date</code> and the rest of the <b>{functions}</b> list - are used two ways. After a pipe
+they take the value on its left: <code>$s | left(2)</code>. Written as a call with nothing
+piped in they take it as their first argument: <code>left($s, 2)</code>, as PHP's own
+functions do - so they nest, and stand wherever a value can. The number of parameters is
+checked.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> left(2)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->ab<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">left(<font color="black">'</font>abcdef<font color="black">'</font><font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->ab<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello <font color="black">'</font> . upper(<font color="black">'</font>world<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Hello WORLD<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">upper(left(<font color="black">'</font>abcdef<font color="black">'</font><font color="black">,</font> 3))</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->ABC<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a-b<font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font>-<font color="black">'</font><font color="black">,</font> upper(<font color="black">'</font> and <font color="black">'</font>))</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->a AND b<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">left(<font color="black">'</font>NL1234<font color="black">'</font><font color="black">,</font> 2) eq <font color="black">'</font>NL<font color="black">'</font></font>}</b>Dutch<b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Dutch<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> mid(2<font color="black">,</font> 3)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->bcd<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> right(2)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->ef<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>user<font color="black">@</font>example.com<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">@</font><font color="black">'</font>) <font color="black">|</font> before(<font color="black">'</font>.<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->example<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Crème Brûlée &amp; Co.<font color="black">'</font> <font color="black">|</font> slug</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->creme-brulee-co<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1536 <font color="black">|</font> bytes</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1.5 KB<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a long sentence that goes on<font color="black">'</font> <font color="black">|</font> truncate(17)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->a long sentence…<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234567 <font color="black">|</font> abbreviate(1)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1.2M<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">22 <font color="black">|</font> ordinal</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->22nd<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p><code>php:name</code> calls a PHP function, and so does a plain name followed by
+<code>(</code> that is no PAD function - <code>ucfirst('word')</code>; the setting
+<code>$padPhpFunctions</code> decides which PHP functions a template may call. A piped value
+goes in as the only argument - <code>'abc' | php:strrev</code> - and into a call with
+arguments where <code>@</code> stands: <code>$n | php:number_format(@, 2)</code>.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>strlen(<font color="black">'</font>abc<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>ab<font color="black">'</font><font color="black">,</font> 3)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->ababab<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>strrev</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->cba<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>number_format(1234567.891<font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1,234,567.89<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> php<font color="black">:</font>number_format(<font color="black">@</font><font color="black">,</font> 2<font color="black">,</font> <font color="black">'</font><font color="black">,</font><font color="black">'</font><font color="black">,</font> <font color="black">'</font>.<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1.234,50<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_pad(<font color="black">'</font>7<font color="black">'</font><font color="black">,</font> 3<font color="black">,</font> <font color="black">'</font>0<font color="black">'</font><font color="black">,</font> STR_PAD_LEFT)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->007<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(3<font color="black">,</font> 9<font color="black">,</font> 4)</font>}</b> <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>min([3<font color="black">,</font> 9<font color="black">,</font> 4])</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->9 3<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">ucfirst(<font color="black">'</font>word<font color="black">'</font>)</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>word<font color="black">'</font> <font color="black">|</font> ucfirst</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Word Word<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>A file in the application's <code>_functions/</code> directory is a pipe function as well,
+the piped value its <code>$value</code> - this manual has <code>_functions/stars.php</code>.
+<code>function:</code> asks for whatever function kind the name is, <code>app:</code> for the
+application's own (see <a href="index%EF%B9%96pages%EA%A4%B7extending.html">extending</a>):</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_33.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> stars</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> function<font color="black">:</font>stars</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> stars <font color="black">|</font> php<font color="black">:</font>strlen</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>*** well done ***</p>
+<p>*** well done ***</p>
+<p>17</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2 id="pipes">Pipes</h2>
+
+<p>A <code>|</code> hands the value on its left to what follows; the parts run left to right,
+each over what the one before answered:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  ada LOVELACE <font color="black">'</font> <font color="black">|</font> trim <font color="black">|</font> lower <font color="black">|</font> ucwords</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Ada Lovelace<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>user<font color="black">@</font>example.com<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">@</font><font color="black">'</font>) <font color="black">|</font> upper</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->EXAMPLE.COM<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> . <font color="black">'</font>!<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>str_repeat(<font color="black">@</font><font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->PAD!PAD!<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">12 <font color="black">|</font> * 1.21 <font color="black">|</font> <font color="black">%</font>.2f <font color="black">|</font> . <font color="black">'</font> EUR<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->14.52 EUR<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>A part after a pipe is an expression of its own, and the piped value fills the place of
+the operand it lacks. An operator that opens the part takes it as its left side -
+<code>| + 1</code>, <code>| . ' EUR'</code>, <code>| ?? 'none'</code>. A space between such an
+operator and its operand is required: <code>| + 1</code>, never <code>| +1</code>.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> + 1</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> * 2 <font color="black">|</font> - 1</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->9<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> * 4 <font color="black">|</font> / 8</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> <font color="black">%</font> 3</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 <font color="black">|</font> ** 8</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->256<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> <font color="black">|</font> . <font color="black">'</font> world<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Hello world<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">10 <font color="black">|</font> gt 5</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> eq <font color="black">'</font>abc<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> in (1<font color="black">,</font> 7)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> * 2 gt 9</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> ?? <font color="black">'</font>empty<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->empty<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3 <font color="black">|</font> - 1 . <font color="black">'</font> left<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2 left<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p><code>@</code> stands for the piped value wherever the part needs it, as often as it
+needs it:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">4 <font color="black">|</font> <font color="black">@</font> * <font color="black">@</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">4 <font color="black">|</font> <font color="black">@</font> + <font color="black">@</font> * 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->12<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->"pad"<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> <font color="black">@</font> . <font color="black">'</font> <font color="black">'</font> . upper(<font color="black">@</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->pad PAD<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">@</font> gt 3 ? <font color="black">'</font>big<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>small<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->big<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>A part that is a printf format - it starts with <code>%</code> and is one conversion -
+formats the value as PHP's <code>sprintf</code> does. A <code>%</code> that is no format is
+the remainder: <code>| % 3</code>.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3.14159 <font color="black">|</font> <font color="black">%</font>.2f</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3.14<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">%</font>05.2f</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->05.00<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42 <font color="black">|</font> <font color="black">%</font>05d</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->00042<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42 <font color="black">|</font> <font color="black">%</font>+d</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->+42<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">255 <font color="black">|</font> <font color="black">%</font>x</font>}</b> <b>{<font color="blue">echo </font><font color="red">255 <font color="black">|</font> <font color="black">%</font>X</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->ff FF<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> <font color="black">%</font>e</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1.234500e+3<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0.256 <font color="black">|</font> * 100 <font color="black">|</font> <font color="black">%</font>.1f <font color="black">|</font> . <font color="black">'</font><font color="black">%</font><font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->25.6%<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>A pipe inside round or square brackets belongs to that group: <code>($n | + 1) * 2</code>
+adds before it multiplies, <code>upper($s | trim)</code> trims the argument, and in a list or
+an argument list the pipe works on its own item. Outside brackets a pipe always ends the
+whole expression before it.</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(5 <font color="black">|</font> + 1) * 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->12<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">upper(<font color="black">'</font>  pad  <font color="black">'</font> <font color="black">|</font> trim)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->PAD<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(1<font color="black">,</font> 5 <font color="black">|</font> + 1)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font>-<font color="black">'</font><font color="black">,</font> [5 <font color="black">|</font> + 1<font color="black">,</font> 2 <font color="black">|</font> * 10])</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6-20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> . (<font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> upper) . <font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->xPADx<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p>A field tag with a pipe, <code>{$x | upper}</code>, writes its answer through
+the sanitize chain, like every field tag. <b>{echo}</b> writes it raw - the right one for HTML
+the page made itself, the wrong one for what a visitor typed:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_40.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>html = <font color="black">'</font>&lt;i&gt;pad&lt;/i&gt;<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="green">$html</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>html <font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>&lt;I&gt;PAD&lt;/I&gt;</p>
+<p><I>PAD</I></p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Dates</h2>
+
+<p><code>date(format, modifier)</code> reads a Unix timestamp, a date in text or a date object
+the page's PHP made; the modifier is what PHP's <code>strtotime</code> reads, such as
+<code>'+1 week'</code>. Written as a call it keeps PHP's order, the format first:
+<code>date('Y', $created)</code>. Dates written <code>YYYY-MM-DD</code> compare correctly as
+plain text. <code>now</code> is the current time, and the
+<a href="index%EF%B9%96pages%EA%A4%B7locale.html">locale</a> page has <code>localDate</code>:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>d M Y<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18 Oct 2026<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>l<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Sunday<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>+1 week<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2026-10-25<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18 14<font color="black">:</font>30<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>H<font color="black">:</font>i<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->14:30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">date(<font color="black">'</font>Y<font color="black">'</font><font color="black">,</font> 1000000000)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2001<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> gt <font color="black">'</font>2026-01-01<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h2>Lists meeting operators</h2>
+
+<p>An arithmetic operator or a comparison that meets a list works with the sum of its
+numbers. A list holding more than numbers, or met by the dot, is an error. A field that holds
+a list is handed over with the <code>array:</code> prefix:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] + 1</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->7<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2] + [3<font color="black">,</font> 4]</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2] * 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] eq 6</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[] ?? <font color="black">'</font>an empty list<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->an empty list<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_43.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>scores = [7<font color="black">,</font> 9<font color="black">,</font> 4<font color="black">,</font> 10]</font>}</b><br>&lt;p&gt;Sum <b>{<font color="blue">echo </font><font color="red">array<font color="black">:</font>scores + 0</font>}</b>, count <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Average <b>{<font color="blue">echo </font><font color="red">(array<font color="black">:</font>scores + 0) / php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Best <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(array<font color="black">:</font>scores)</font>}</b>, worst <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>min(array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<p>Sum 30, count 4</p>
+<p>Average 7.5</p>
+<p>Best 10, worst 4</p>
+<p>7, 9, 4, 10</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Numbers at the edges</h2>
+
+<p>What is not a number - a NAN such as <code>php:sqrt(-1)</code> - is empty. <code>%</code>
+works on whole numbers, as PHP's does; <code>php:fmod</code> keeps the fraction. Decimals are
+written with PHP's precision, so <code>0.1 + 0.2</code> comes out as 0.3:</p>
+
+
+
+ 
+
+ 
+
+  
+  <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>sqrt(-1)</font>}</b>]</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->[]<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>sqrt(-1) ?? <font color="black">'</font>not a number<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->not a number<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>intdiv(7<font color="black">,</font> 2)</font>}</b> <b>{<font color="blue">echo </font><font color="red">7 <font color="black">%</font> 2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->3 1<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7.5 <font color="black">%</font> 2</font>}</b> <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>fmod(7.5<font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 1.5<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0.1 + 0.2</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0.3<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+
+
+
+
+
+
+
+<h2>Values are text</h2>
+
+<p>An expression's answer is a value, and a value never becomes template code: a field that
+holds braces - from a database, a form, a file - is written as the text it is. To run it as
+PAD on purpose, say so where it is used, with the <code>code</code> pipe (or
+<code>sandbox</code>, which runs it in an isolated pass):</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/expressions_45.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/expressions_45.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>{echo 6 * 7}</p>
+<p>{echo 6 * 7} is text</p>
+<p>42</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>When an expression is wrong</h2>
+
+<p>Under the strict syntax check - <code>$padCheckSyntax</code>, on by default - a mistake in
+an expression is an error that names the fault and its place, and the page answers with the
+error report instead of guessing. The report shows the template's file, line and column with
+the lines around it (see <a href="?pages/template_errors">errors in the template</a>). What
+some mistakes are told:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
+  <tr style="background: #f0f0f0;"><th>written</th><th>the error says</th></tr>
+  <tr><td><code>{echo (1 + 2}</code></td><td>the ( opened at position 1 is never closed</td></tr>
+  <tr><td><code>{echo 'abc}</code></td><td>the string opened with ' at position 1 is never closed</td></tr>
+  <tr><td><code>{echo $name | uppr}</code></td><td>there is no pipe function named 'uppr'</td></tr>
+  <tr><td><code>{echo nofunc(1)}</code></td><td>there is no function named 'nofunc'</td></tr>
+  <tr><td><code>{if $typo eq 1}</code></td><td>there is no field named '$typo'</td></tr>
+  <tr><td><code>{echo $items + 1}</code></td><td>the field '$items' is a list, not a value</td></tr>
+  <tr><td><code>{if $n eq}</code></td><td>the operator 'eq' has nothing on its right</td></tr>
+  <tr><td><code>{echo $n + * 3}</code></td><td>the operators '+' and '*' stand side by side - a value is missing between them</td></tr>
+  <tr><td><code>{if $n === 5}</code></td><td>'===' is no operator - eq (==) compares two values</td></tr>
+  <tr><td><code>{echo $n | +1}</code></td><td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td></tr>
+  <tr><td><code>{echo 5 &amp; 3}</code></td><td>'&amp;' is no operator or value</td></tr>
+  <tr><td><code>{if $n not 5}</code></td><td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td></tr>
+  <tr><td><code>{echo 7 / 0}</code></td><td>a division by zero in /</td></tr>
+  <tr><td><code>{echo 'a' * 2}</code></td><td>'a' is not a number for *</td></tr>
+  <tr><td><code>{echo $n ? 'a'}</code></td><td>the ? of an inline ternary has no : - write cond ? then : else</td></tr>
+  <tr><td><code>{echo [ 'a' =&gt; ]}</code></td><td>the key 'a' of a list has no value after its =&gt;</td></tr>
+  <tr><td><code>{echo replace('abc')}</code></td><td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td></tr>
+  <tr><td><code>{echo php:str_repeat('x', -1)}</code></td><td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td></tr>
+  <tr><td><code>{echo 'a\qb'}</code></td><td>Unsupported \ char</td></tr>
+</table>
+
+<h2>The lenient walk</h2>
+
+<p>With <code>$padCheckSyntax = FALSE</code> in <code>_config/config.php</code> nothing is
+reported and the evaluator answers what it can: a text that is no number counts as 0
+(<code>'a' + 1</code> is 1), a missing field is empty (<code>$nope + 1</code> is 1), an
+unknown escape loses its backslash, and an expression that cannot be worked out at all - a
+bracket never closed, a division by zero, a PHP function refusing its arguments - answers
+nothing. That suits old templates; a new one is better off with the check, which finds the
+typo the lenient walk hides.</p>
+
+<h2>See also</h2>
+
+<ul>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions and branching</a> - <code>{if}</code>, <code>{case}</code> and the ternary in templates</li>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a> - pipes on tags, opening and closing</li>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a> - <code>first@items</code> and the others</li>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a> - the type prefixes</li>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a> - <code>{!name}</code>, <code>{^name}</code> and the rest</li>
+  <li><a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a> - <code>$</code> and <code>%</code></li>
+</ul>

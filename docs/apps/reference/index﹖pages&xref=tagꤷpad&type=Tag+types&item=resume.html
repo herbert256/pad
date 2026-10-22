@@ -1,359 +1,697 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - Tag types - resume
+      Reference - Tag types - resume · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - Tag types - resume
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: regression/errors - Page: syntax/a_resume_before_any_push_is_named<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">syntax/a_resume_before_any_push_is_named.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax9292c91cf81f2830b23f9b24ad1773e8"></div>
-                        <script>
-                        padAjax9292c91cf81f2830b23f9b24ad1773e8 = new XMLHttpRequest();
-                        padAjax9292c91cf81f2830b23f9b24ad1773e8.onreadystatechange=function() {
-                        if (padAjax9292c91cf81f2830b23f9b24ad1773e8.readyState === 4) {
-                        if (padAjax9292c91cf81f2830b23f9b24ad1773e8.status === 200) {
-                        document.getElementById("padAjax9292c91cf81f2830b23f9b24ad1773e8").innerHTML=padAjax9292c91cf81f2830b23f9b24ad1773e8.responseText;
-                        } else {
-                        document.getElementById("padAjax9292c91cf81f2830b23f9b24ad1773e8").innerHTML=padAjax9292c91cf81f2830b23f9b24ad1773e8.statusText;
-                        }
-                        }
-                        }
-                        padAjax9292c91cf81f2830b23f9b24ad1773e8.open("GET","http://localhost/pad/regression/errors/?syntax/a_resume_before_any_push_is_named&padInclude",true);
-                        padAjax9292c91cf81f2830b23f9b24ad1773e8.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: lenient/a_store_never_pushed_pulls_nothing<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">lenient/a_store_never_pushed_pulls_nothing.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">lenient/a_store_never_pushed_pulls_nothing.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b>[<b>{<font color="blue">sequence </font><font color="red">pull=<font color="black">'</font>nope<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax24d892c7fab6dba9ef5d2fc2a4b208db"></div>
-                        <script>
-                        padAjax24d892c7fab6dba9ef5d2fc2a4b208db = new XMLHttpRequest();
-                        padAjax24d892c7fab6dba9ef5d2fc2a4b208db.onreadystatechange=function() {
-                        if (padAjax24d892c7fab6dba9ef5d2fc2a4b208db.readyState === 4) {
-                        if (padAjax24d892c7fab6dba9ef5d2fc2a4b208db.status === 200) {
-                        document.getElementById("padAjax24d892c7fab6dba9ef5d2fc2a4b208db").innerHTML=padAjax24d892c7fab6dba9ef5d2fc2a4b208db.responseText;
-                        } else {
-                        document.getElementById("padAjax24d892c7fab6dba9ef5d2fc2a4b208db").innerHTML=padAjax24d892c7fab6dba9ef5d2fc2a4b208db.statusText;
-                        }
-                        }
-                        }
-                        padAjax24d892c7fab6dba9ef5d2fc2a4b208db.open("GET","http://localhost/pad/regression/framework/?lenient/a_store_never_pushed_pulls_nothing&padInclude",true);
-                        padAjax24d892c7fab6dba9ef5d2fc2a4b208db.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: sequence/resume_transforms_the_stored_sequence<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">sequence/resume_transforms_the_stored_sequence.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..4<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>a<font color="black">'</font></font>/}</b><br><b>{<font color="blue">resume </font><font color="red">add=10</font>}</b><br><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<br><b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxbe78ea04e621017f58259a55653466fa"></div>
-                        <script>
-                        padAjaxbe78ea04e621017f58259a55653466fa = new XMLHttpRequest();
-                        padAjaxbe78ea04e621017f58259a55653466fa.onreadystatechange=function() {
-                        if (padAjaxbe78ea04e621017f58259a55653466fa.readyState === 4) {
-                        if (padAjaxbe78ea04e621017f58259a55653466fa.status === 200) {
-                        document.getElementById("padAjaxbe78ea04e621017f58259a55653466fa").innerHTML=padAjaxbe78ea04e621017f58259a55653466fa.responseText;
-                        } else {
-                        document.getElementById("padAjaxbe78ea04e621017f58259a55653466fa").innerHTML=padAjaxbe78ea04e621017f58259a55653466fa.statusText;
-                        }
-                        }
-                        }
-                        padAjaxbe78ea04e621017f58259a55653466fa.open("GET","http://localhost/pad/regression/framework/?sequence/resume_transforms_the_stored_sequence&padInclude",true);
-                        padAjaxbe78ea04e621017f58259a55653466fa.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: sequence/resume_twice<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">sequence/resume_twice.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>a<font color="black">'</font></font>/}</b><br><b>{<font color="blue">resume </font><font color="red">add=10</font>}</b><br><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b><br><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<br><b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax48622ac6ca6af524a74fe0969227de89"></div>
-                        <script>
-                        padAjax48622ac6ca6af524a74fe0969227de89 = new XMLHttpRequest();
-                        padAjax48622ac6ca6af524a74fe0969227de89.onreadystatechange=function() {
-                        if (padAjax48622ac6ca6af524a74fe0969227de89.readyState === 4) {
-                        if (padAjax48622ac6ca6af524a74fe0969227de89.status === 200) {
-                        document.getElementById("padAjax48622ac6ca6af524a74fe0969227de89").innerHTML=padAjax48622ac6ca6af524a74fe0969227de89.responseText;
-                        } else {
-                        document.getElementById("padAjax48622ac6ca6af524a74fe0969227de89").innerHTML=padAjax48622ac6ca6af524a74fe0969227de89.statusText;
-                        }
-                        }
-                        }
-                        padAjax48622ac6ca6af524a74fe0969227de89.open("GET","http://localhost/pad/regression/framework/?sequence/resume_twice&padInclude",true);
-                        padAjax48622ac6ca6af524a74fe0969227de89.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/pages - Page: catalog/tags<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">catalog/tags.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">catalog/tags.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The directory the dir and files lines list: hello/, which holds exactly its index<br>  // trio and nothing that would change with the suite.<br><br>  </span><span style="color: #0000BB">$catDir </span><span style="color: #007700">= </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">action:   <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..4<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>catAct<font color="black">'</font></font>/}</b><b>{<font color="blue">action </font><font color="red">catAct<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">action</font><font color="red"></font>}</b><br>bool:     <b>{<font color="blue">bool </font><font color="red"><font color="black">'</font>catB<font color="black">'</font></font>}</b>1<b>{/<font color="blue">bool</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>catB</font><font color="red"></font>}</b>yes<b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>catB</font><font color="red"></font>}</b><br>break:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>catBr<font color="black">'</font></font>}</b>[1,2,3,4]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">catBr</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>catBr</font>}</b>,<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>catBr eq 2</font>}</b><b>{<font color="blue">break </font><font color="red"><font color="black">'</font>catBr<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">catBr</font><font color="red"></font>}</b><br>case:     <b>{<font color="blue">case </font><font color="red"><font color="black">'</font>blue<font color="black">'</font></font>}</b><b>{<font color="blue">when </font><font color="red"><font color="black">'</font>red<font color="black">'</font></font>}</b>stop<b>{<font color="blue">when </font><font color="red"><font color="black">'</font>blue<font color="black">'</font></font>}</b>go<b>{/<font color="blue">case</font><font color="red"></font>}</b><br>cease:    <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>catCe<font color="black">'</font></font>}</b>[1,2,3,4]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">catCe</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>catCe</font>}</b>,<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>catCe eq 2</font>}</b><b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>catCe<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">catCe</font><font color="red"></font>}</b><br>continue: <b>{<font color="blue">data </font><font color="red"><font color="black">'</font>catCo<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">catCo</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>catCo eq 2</font>}</b><b>{<font color="blue">continue </font><font color="red"><font color="black">'</font>catCo<font color="black">'</font></font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>catCo</font>}</b>,<b>{/<font color="blue">catCo</font><font color="red"></font>}</b><br>curl:     <b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//regression/pages/?pairing&amp;padInclude<font color="black">'</font></font>}</b><br>decrement: <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>catI = 5</font>/}</b><b>{<font color="blue">decrement </font><font color="red"><font color="red">$</font>catI</font>/}</b><b>{<font color="green"><font color="red">$</font>catI</font>}</b><br>dir:      <b>{<font color="blue">dir </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>catDir</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>dir</font>}</b><b>{<font color="blue">notLast</font><font color="red"></font>}</b> <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><b>{/<font color="blue">dir</font><font color="red"></font>}</b><br>exists:   <b>{<font color="blue">exists </font><font color="red"><font color="black">'</font>hello/index.pad<font color="black">'</font></font>}</b>y<b>{/<font color="blue">exists</font><font color="red"></font>}</b><b>{<font color="blue">exists </font><font color="red"><font color="black">'</font>nope.xyz<font color="black">'</font></font>}</b>n<b>{/<font color="blue">exists</font><font color="red"></font>}</b><br>false:    <b>{<font color="blue">false</font><font color="red"></font>}</b>n<b>{/<font color="blue">false</font><font color="red"></font>}</b>.<br>files:    <b>{<font color="blue">files </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> base=<font color="black">'</font>app<font color="black">'</font><font color="black">,</font> onlyFiles</font>}</b><b>{<font color="green"><font color="red">$</font>item</font>}</b>.<b>{<font color="green"><font color="red">$</font>ext</font>}</b><b>{<font color="blue">notLast</font><font color="red"></font>}</b> <b>{/<font color="blue">notLast</font><font color="red"></font>}</b><b>{/<font color="blue">files</font><font color="red"></font>}</b><br>flag:     <b>{<font color="blue">flag </font><font color="red">prime<font color="black">,</font> rows=6<font color="black">,</font> from=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">flag</font><font color="red"></font>}</b><br>foo:      <b>{<font color="blue">foo</font><font color="red"></font>}</b><br>get:      <b>{<font color="blue">get </font><font color="red"><font color="black">'</font>pairing<font color="black">'</font></font>}</b><br>ignore:   <b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">a</font><font color="red"></font>}</b> <b>{<font color="blue">b</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br>keep:     <b>{<font color="blue">keep </font><font color="red">prime<font color="black">,</font> rows=4<font color="black">,</font> from=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">keep</font><font color="red"></font>}</b><br>make:     <b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b><br>null:     <b>{<font color="blue">null</font><font color="red"></font>}</b>n<b>{/<font color="blue">null</font><font color="red"></font>}</b>.<br>output:   <b>{<font color="blue">output </font><font color="red"><font color="black">'</font>web<font color="black">'</font></font>}</b>.<br>pull:     <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>catPu<font color="black">'</font></font>/}</b><b>{<font color="blue">pull </font><font color="red"><font color="black">'</font>catPu<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">pull</font><font color="red"></font>}</b><br>remove:   <b>{<font color="blue">remove </font><font color="red">prime<font color="black">,</font> rows=6<font color="black">,</font> from=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue">remove</font><font color="red"></font>}</b><br>resume:   <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..4<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>catRe<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red">add=10</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>catRe</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>catRe</font><font color="red"></font>}</b><br>sandbox:  <b>{<font color="blue">sandbox</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>in<font color="black">'</font></font>}</b><b>{/<font color="blue">sandbox</font><font color="red"></font>}</b><br>tidy:     <b>{<font color="blue">tidy</font><font color="red"></font>}</b>&lt;p &gt;&lt;b &gt;x&lt;/b &gt;&lt;/p &gt;<b>{/<font color="blue">tidy</font><font color="red"></font>}</b><br>until:    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>catU = 0</font>/}</b><b>{<font color="blue">until </font><font color="red"><font color="red">$</font>catU eq 3</font>}</b><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>catU</font>/}</b><b>{<font color="green"><font color="red">$</font>catU</font>}</b>,<b>{/<font color="blue">until</font><font color="red"></font>}</b><br>marker:   <b><font color="black">@</font><font color="purple">tidy</font><font color="black">@</font></b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax1d141fb65f89408b5bf453dee59f79bf"></div>
-                        <script>
-                        padAjax1d141fb65f89408b5bf453dee59f79bf = new XMLHttpRequest();
-                        padAjax1d141fb65f89408b5bf453dee59f79bf.onreadystatechange=function() {
-                        if (padAjax1d141fb65f89408b5bf453dee59f79bf.readyState === 4) {
-                        if (padAjax1d141fb65f89408b5bf453dee59f79bf.status === 200) {
-                        document.getElementById("padAjax1d141fb65f89408b5bf453dee59f79bf").innerHTML=padAjax1d141fb65f89408b5bf453dee59f79bf.responseText;
-                        } else {
-                        document.getElementById("padAjax1d141fb65f89408b5bf453dee59f79bf").innerHTML=padAjax1d141fb65f89408b5bf453dee59f79bf.statusText;
-                        }
-                        }
-                        }
-                        padAjax1d141fb65f89408b5bf453dee59f79bf.open("GET","http://localhost/pad/regression/pages/?catalog/tags&padInclude",true);
-                        padAjax1d141fb65f89408b5bf453dee59f79bf.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: sequence - Page: concepts/resume<br>
-                  <div id="padAjaxd6a8610b06d0b759890732890823fbce"></div>
-                  <script>
-                  padAjaxd6a8610b06d0b759890732890823fbce = new XMLHttpRequest();
-                  padAjaxd6a8610b06d0b759890732890823fbce.onreadystatechange=function() {
-                  if (padAjaxd6a8610b06d0b759890732890823fbce.readyState === 4) {
-                  if (padAjaxd6a8610b06d0b759890732890823fbce.status === 200) {
-                  document.getElementById("padAjaxd6a8610b06d0b759890732890823fbce").innerHTML=padAjaxd6a8610b06d0b759890732890823fbce.responseText;
-                  } else {
-                  document.getElementById("padAjaxd6a8610b06d0b759890732890823fbce").innerHTML=padAjaxd6a8610b06d0b759890732890823fbce.statusText;
-                  }
-                  }
-                  }
-                  padAjaxd6a8610b06d0b759890732890823fbce.open("GET","http://localhost/pad/sequence/?concepts/resume&padInclude",true);
-                  padAjaxd6a8610b06d0b759890732890823fbce.send();
-                  </script><br>
-                  <hr>
-                  App: tags - Page: examples/resume/1-steps<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/resume/1-steps.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Build a list in steps<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Three resumes rewrite the stored range one after another; the store holds the end result.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>steps<font color="black">'</font></font>}</b><br><b>{<font color="blue">resume </font><font color="red">add=100</font>}</b><br><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b><br><b>{<font color="blue">resume </font><font color="red">first=3</font>}</b><br>&lt;p&gt;<b>{<font color="blue">pull </font><font color="red">steps</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545"></div>
-                        <script>
-                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545 = new XMLHttpRequest();
-                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.onreadystatechange=function() {
-                        if (padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.readyState === 4) {
-                        if (padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.status === 200) {
-                        document.getElementById("padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545").innerHTML=padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.responseText;
-                        } else {
-                        document.getElementById("padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545").innerHTML=padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.statusText;
-                        }
-                        }
-                        }
-                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.open("GET","http://localhost/pad/tags/?examples/resume/1-steps&padInclude",true);
-                        padAjaxa2b9b65bfcf5872f937a3a8e3dfd3545.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/resume/2-filter<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/resume/2-filter.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Filter a store in place<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>keep<font color="black">,</font> prime as a resume<font color="black">:</font> the store itself now holds only the primes.<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..30<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>candidates<font color="black">'</font></font>}</b><br><b>{<font color="blue">resume </font><font color="red">keep<font color="black">,</font> prime</font>}</b><br>&lt;p&gt;<b>{<font color="blue">candidates</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>candidates</font>}</b> <b>{/<font color="blue">candidates</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax7ea1904b6fd989501ec4def636506d26"></div>
-                        <script>
-                        padAjax7ea1904b6fd989501ec4def636506d26 = new XMLHttpRequest();
-                        padAjax7ea1904b6fd989501ec4def636506d26.onreadystatechange=function() {
-                        if (padAjax7ea1904b6fd989501ec4def636506d26.readyState === 4) {
-                        if (padAjax7ea1904b6fd989501ec4def636506d26.status === 200) {
-                        document.getElementById("padAjax7ea1904b6fd989501ec4def636506d26").innerHTML=padAjax7ea1904b6fd989501ec4def636506d26.responseText;
-                        } else {
-                        document.getElementById("padAjax7ea1904b6fd989501ec4def636506d26").innerHTML=padAjax7ea1904b6fd989501ec4def636506d26.statusText;
-                        }
-                        }
-                        }
-                        padAjax7ea1904b6fd989501ec4def636506d26.open("GET","http://localhost/pad/tags/?examples/resume/2-filter&padInclude",true);
-                        padAjax7ea1904b6fd989501ec4def636506d26.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Tag types - resume
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: regression/errors - Page: eval/resume_names_a_parameter_past_the_first_that_nothing_reads<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">eval/resume_names_a_parameter_past_the_first_that_nothing_reads.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>reverse<font color="black">'</font><font color="black">,</font> <font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax62ed90abe63676eeb8920c3869e5edc9"></div>
+                      <script>
+                      padAjax62ed90abe63676eeb8920c3869e5edc9 = new XMLHttpRequest();
+                      padAjax62ed90abe63676eeb8920c3869e5edc9.onreadystatechange=function() {
+                      if (padAjax62ed90abe63676eeb8920c3869e5edc9.readyState === 4) {
+                      if (padAjax62ed90abe63676eeb8920c3869e5edc9.status === 200) {
+                      document.getElementById("padAjax62ed90abe63676eeb8920c3869e5edc9").innerHTML=padAjax62ed90abe63676eeb8920c3869e5edc9.responseText;
+                      } else {
+                      document.getElementById("padAjax62ed90abe63676eeb8920c3869e5edc9").innerHTML=padAjax62ed90abe63676eeb8920c3869e5edc9.statusText;
+                      }
+                      }
+                      }
+                      padAjax62ed90abe63676eeb8920c3869e5edc9.open("GET","http://localhost/pad/regression/errors/?eval/resume_names_a_parameter_past_the_first_that_nothing_reads&padInclude",true);
+                      padAjax62ed90abe63676eeb8920c3869e5edc9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: eval/resume_of_a_quoted_store_that_is_not_there_is_named<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">eval/resume_of_a_quoted_store_that_is_not_there_is_named.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>typo<font color="black">'</font><font color="black">,</font> reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax154a2f1d35147b67653a1c5829d56cc8"></div>
+                      <script>
+                      padAjax154a2f1d35147b67653a1c5829d56cc8 = new XMLHttpRequest();
+                      padAjax154a2f1d35147b67653a1c5829d56cc8.onreadystatechange=function() {
+                      if (padAjax154a2f1d35147b67653a1c5829d56cc8.readyState === 4) {
+                      if (padAjax154a2f1d35147b67653a1c5829d56cc8.status === 200) {
+                      document.getElementById("padAjax154a2f1d35147b67653a1c5829d56cc8").innerHTML=padAjax154a2f1d35147b67653a1c5829d56cc8.responseText;
+                      } else {
+                      document.getElementById("padAjax154a2f1d35147b67653a1c5829d56cc8").innerHTML=padAjax154a2f1d35147b67653a1c5829d56cc8.statusText;
+                      }
+                      }
+                      }
+                      padAjax154a2f1d35147b67653a1c5829d56cc8.open("GET","http://localhost/pad/regression/errors/?eval/resume_of_a_quoted_store_that_is_not_there_is_named&padInclude",true);
+                      padAjax154a2f1d35147b67653a1c5829d56cc8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: eval/resume_of_a_store_that_is_not_there_is_named<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">eval/resume_of_a_store_that_is_not_there_is_named.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red">pull=<font color="black">'</font>typo<font color="black">'</font><font color="black">,</font> reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8786ec4332e16164c638849498ddd7c5"></div>
+                      <script>
+                      padAjax8786ec4332e16164c638849498ddd7c5 = new XMLHttpRequest();
+                      padAjax8786ec4332e16164c638849498ddd7c5.onreadystatechange=function() {
+                      if (padAjax8786ec4332e16164c638849498ddd7c5.readyState === 4) {
+                      if (padAjax8786ec4332e16164c638849498ddd7c5.status === 200) {
+                      document.getElementById("padAjax8786ec4332e16164c638849498ddd7c5").innerHTML=padAjax8786ec4332e16164c638849498ddd7c5.responseText;
+                      } else {
+                      document.getElementById("padAjax8786ec4332e16164c638849498ddd7c5").innerHTML=padAjax8786ec4332e16164c638849498ddd7c5.statusText;
+                      }
+                      }
+                      }
+                      padAjax8786ec4332e16164c638849498ddd7c5.open("GET","http://localhost/pad/regression/errors/?eval/resume_of_a_store_that_is_not_there_is_named&padInclude",true);
+                      padAjax8786ec4332e16164c638849498ddd7c5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_resume_before_any_push_is_named<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_resume_before_any_push_is_named.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax9292c91cf81f2830b23f9b24ad1773e8"></div>
+                      <script>
+                      padAjax9292c91cf81f2830b23f9b24ad1773e8 = new XMLHttpRequest();
+                      padAjax9292c91cf81f2830b23f9b24ad1773e8.onreadystatechange=function() {
+                      if (padAjax9292c91cf81f2830b23f9b24ad1773e8.readyState === 4) {
+                      if (padAjax9292c91cf81f2830b23f9b24ad1773e8.status === 200) {
+                      document.getElementById("padAjax9292c91cf81f2830b23f9b24ad1773e8").innerHTML=padAjax9292c91cf81f2830b23f9b24ad1773e8.responseText;
+                      } else {
+                      document.getElementById("padAjax9292c91cf81f2830b23f9b24ad1773e8").innerHTML=padAjax9292c91cf81f2830b23f9b24ad1773e8.statusText;
+                      }
+                      }
+                      }
+                      padAjax9292c91cf81f2830b23f9b24ad1773e8.open("GET","http://localhost/pad/regression/errors/?syntax/a_resume_before_any_push_is_named&padInclude",true);
+                      padAjax9292c91cf81f2830b23f9b24ad1773e8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: lenient/a_store_never_pushed_pulls_nothing<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">lenient/a_store_never_pushed_pulls_nothing.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">lenient/a_store_never_pushed_pulls_nothing.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b>[<b>{<font color="blue">sequence </font><font color="red">pull=<font color="black">'</font>nope<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax24d892c7fab6dba9ef5d2fc2a4b208db"></div>
+                      <script>
+                      padAjax24d892c7fab6dba9ef5d2fc2a4b208db = new XMLHttpRequest();
+                      padAjax24d892c7fab6dba9ef5d2fc2a4b208db.onreadystatechange=function() {
+                      if (padAjax24d892c7fab6dba9ef5d2fc2a4b208db.readyState === 4) {
+                      if (padAjax24d892c7fab6dba9ef5d2fc2a4b208db.status === 200) {
+                      document.getElementById("padAjax24d892c7fab6dba9ef5d2fc2a4b208db").innerHTML=padAjax24d892c7fab6dba9ef5d2fc2a4b208db.responseText;
+                      } else {
+                      document.getElementById("padAjax24d892c7fab6dba9ef5d2fc2a4b208db").innerHTML=padAjax24d892c7fab6dba9ef5d2fc2a4b208db.statusText;
+                      }
+                      }
+                      }
+                      padAjax24d892c7fab6dba9ef5d2fc2a4b208db.open("GET","http://localhost/pad/regression/framework/?lenient/a_store_never_pushed_pulls_nothing&padInclude",true);
+                      padAjax24d892c7fab6dba9ef5d2fc2a4b208db.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_named_pair_and_a_resume_keep_the_columns_of_their_terms<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_named_pair_and_a_resume_keep_the_columns_of_their_terms.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> add=10<font color="black">,</font> name=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>:<b>{<font color="green"><font color="red">$</font>range</font>}</b>:<b>{<font color="green"><font color="red">$</font>add</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..6<font color="black">'</font><font color="black">,</font> add=10<font color="black">,</font> push=<font color="black">'</font>nums<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>:<b>{<font color="green"><font color="red">$</font>range</font>}</b>:<b>{<font color="green"><font color="red">$</font>add</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..6<font color="black">'</font><font color="black">,</font> add=10<font color="black">,</font> push=<font color="black">'</font>nums<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">shift=2</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>:<b>{<font color="green"><font color="red">$</font>range</font>}</b>:<b>{<font color="green"><font color="red">$</font>add</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8a0cd77639d11fc15b076ba743214601"></div>
+                      <script>
+                      padAjax8a0cd77639d11fc15b076ba743214601 = new XMLHttpRequest();
+                      padAjax8a0cd77639d11fc15b076ba743214601.onreadystatechange=function() {
+                      if (padAjax8a0cd77639d11fc15b076ba743214601.readyState === 4) {
+                      if (padAjax8a0cd77639d11fc15b076ba743214601.status === 200) {
+                      document.getElementById("padAjax8a0cd77639d11fc15b076ba743214601").innerHTML=padAjax8a0cd77639d11fc15b076ba743214601.responseText;
+                      } else {
+                      document.getElementById("padAjax8a0cd77639d11fc15b076ba743214601").innerHTML=padAjax8a0cd77639d11fc15b076ba743214601.statusText;
+                      }
+                      }
+                      }
+                      padAjax8a0cd77639d11fc15b076ba743214601.open("GET","http://localhost/pad/regression/framework/?sequence/a_named_pair_and_a_resume_keep_the_columns_of_their_terms&padInclude",true);
+                      padAjax8a0cd77639d11fc15b076ba743214601.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_named_pair_is_a_loop_first_and_leaves_the_last_push<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_named_pair_is_a_loop_first_and_leaves_the_last_push.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red">3<font color="black">,</font> name=<font color="black">'</font>step<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>step</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">3<font color="black">,</font> name=<font color="black">'</font>count<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">2<font color="black">,</font> name=<font color="black">'</font>first<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>first</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">sequence </font><font color="red">3<font color="black">,</font> name=<font color="black">'</font>i<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>|<b>{<font color="blue">resume </font><font color="red">reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>i</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b><b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>i</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax005feb64a7676b5a665685e489df7793"></div>
+                      <script>
+                      padAjax005feb64a7676b5a665685e489df7793 = new XMLHttpRequest();
+                      padAjax005feb64a7676b5a665685e489df7793.onreadystatechange=function() {
+                      if (padAjax005feb64a7676b5a665685e489df7793.readyState === 4) {
+                      if (padAjax005feb64a7676b5a665685e489df7793.status === 200) {
+                      document.getElementById("padAjax005feb64a7676b5a665685e489df7793").innerHTML=padAjax005feb64a7676b5a665685e489df7793.responseText;
+                      } else {
+                      document.getElementById("padAjax005feb64a7676b5a665685e489df7793").innerHTML=padAjax005feb64a7676b5a665685e489df7793.statusText;
+                      }
+                      }
+                      }
+                      padAjax005feb64a7676b5a665685e489df7793.open("GET","http://localhost/pad/regression/framework/?sequence/a_named_pair_is_a_loop_first_and_leaves_the_last_push&padInclude",true);
+                      padAjax005feb64a7676b5a665685e489df7793.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_position_lookup_answers_the_same_whatever_was_asked_before<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_position_lookup_answers_the_same_whatever_was_asked_before.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..8<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(9 - <font color="red">$</font>sequence)</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(3)</font>}</b> <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(20)</font>}</b> <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>prime(2)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>add(3<font color="black">,</font> 10)</font>}</b> <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>add(3<font color="black">,</font> 20)</font>}</b> <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>add(2)</font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>add(2<font color="black">,</font> <font color="black">'</font>s<font color="black">'</font>)</font>}</b> <b>{<font color="blue">resume </font><font color="red">multiply=10</font>}</b><b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>add(2<font color="black">,</font> <font color="black">'</font>s<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>fibonacci(10)</font>}</b> <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>fibonacci(5)</font>}</b> <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>lucas(5)</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxdeecbf35e4706ef065ff7cf161ff1548"></div>
+                      <script>
+                      padAjaxdeecbf35e4706ef065ff7cf161ff1548 = new XMLHttpRequest();
+                      padAjaxdeecbf35e4706ef065ff7cf161ff1548.onreadystatechange=function() {
+                      if (padAjaxdeecbf35e4706ef065ff7cf161ff1548.readyState === 4) {
+                      if (padAjaxdeecbf35e4706ef065ff7cf161ff1548.status === 200) {
+                      document.getElementById("padAjaxdeecbf35e4706ef065ff7cf161ff1548").innerHTML=padAjaxdeecbf35e4706ef065ff7cf161ff1548.responseText;
+                      } else {
+                      document.getElementById("padAjaxdeecbf35e4706ef065ff7cf161ff1548").innerHTML=padAjaxdeecbf35e4706ef065ff7cf161ff1548.statusText;
+                      }
+                      }
+                      }
+                      padAjaxdeecbf35e4706ef065ff7cf161ff1548.open("GET","http://localhost/pad/regression/framework/?sequence/a_position_lookup_answers_the_same_whatever_was_asked_before&padInclude",true);
+                      padAjaxdeecbf35e4706ef065ff7cf161ff1548.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/an_expression_inside_resume_is_its_own_run<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/an_expression_inside_resume_is_its_own_run.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">resume </font><font color="red">add=sequence<font color="black">:</font>prime(3)</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">resume </font><font color="red">eval=<font color="black">'</font>sequence<font color="black">:</font>square(<font color="black">@</font>)<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>][<b>{<font color="blue">resume </font><font color="red">add=sequence<font color="black">:</font>fibonacci(6)</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5ef56e45b1c665d83ad8585898764ea7"></div>
+                      <script>
+                      padAjax5ef56e45b1c665d83ad8585898764ea7 = new XMLHttpRequest();
+                      padAjax5ef56e45b1c665d83ad8585898764ea7.onreadystatechange=function() {
+                      if (padAjax5ef56e45b1c665d83ad8585898764ea7.readyState === 4) {
+                      if (padAjax5ef56e45b1c665d83ad8585898764ea7.status === 200) {
+                      document.getElementById("padAjax5ef56e45b1c665d83ad8585898764ea7").innerHTML=padAjax5ef56e45b1c665d83ad8585898764ea7.responseText;
+                      } else {
+                      document.getElementById("padAjax5ef56e45b1c665d83ad8585898764ea7").innerHTML=padAjax5ef56e45b1c665d83ad8585898764ea7.statusText;
+                      }
+                      }
+                      }
+                      padAjax5ef56e45b1c665d83ad8585898764ea7.open("GET","http://localhost/pad/regression/framework/?sequence/an_expression_inside_resume_is_its_own_run&padInclude",true);
+                      padAjax5ef56e45b1c665d83ad8585898764ea7.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/page_pages_through_the_terms_of_a_sequence<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/page_pages_through_the_terms_of_a_sequence.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> page=2<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">prime<font color="black">,</font> page=3<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> page=4<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> page=5<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..6<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s </font><font color="red">page=2<font color="black">,</font> rows=2<font color="black">,</font> add=10</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>:<b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">fibonacci<font color="black">,</font> page=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..9<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b>[<b>{<font color="blue">resume </font><font color="red">page=2<font color="black">,</font> rows=3</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax15b9651a177fb84d944555dd49a4a33c"></div>
+                      <script>
+                      padAjax15b9651a177fb84d944555dd49a4a33c = new XMLHttpRequest();
+                      padAjax15b9651a177fb84d944555dd49a4a33c.onreadystatechange=function() {
+                      if (padAjax15b9651a177fb84d944555dd49a4a33c.readyState === 4) {
+                      if (padAjax15b9651a177fb84d944555dd49a4a33c.status === 200) {
+                      document.getElementById("padAjax15b9651a177fb84d944555dd49a4a33c").innerHTML=padAjax15b9651a177fb84d944555dd49a4a33c.responseText;
+                      } else {
+                      document.getElementById("padAjax15b9651a177fb84d944555dd49a4a33c").innerHTML=padAjax15b9651a177fb84d944555dd49a4a33c.statusText;
+                      }
+                      }
+                      }
+                      padAjax15b9651a177fb84d944555dd49a4a33c.open("GET","http://localhost/pad/regression/framework/?sequence/page_pages_through_the_terms_of_a_sequence&padInclude",true);
+                      padAjax15b9651a177fb84d944555dd49a4a33c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/resume_keeps_the_rows_of_its_push_and_name_and_its_push_is_pushed_last<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/resume_keeps_the_rows_of_its_push_and_name_and_its_push_is_pushed_last.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> add=10<font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red">reverse<font color="black">,</font> push=<font color="black">'</font>u<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b>:<b>{<font color="green"><font color="red">$</font>range</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>u</font><font color="red"></font>}</b>][<b>{<font color="blue">resume </font><font color="red">reverse<font color="black">,</font> name=<font color="black">'</font>v<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>v</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b>:<b>{<font color="green"><font color="red">$</font>range</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>v</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>a<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>4..6<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>b<font color="black">'</font></font>/}</b><b>{<font color="blue">resume </font><font color="red">a<font color="black">,</font> add=10<font color="black">,</font> push=<font color="black">'</font>c<font color="black">'</font></font>}</b><b>{<font color="blue">pull</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe3809e1f3bf461de6996ba264b4d9982"></div>
+                      <script>
+                      padAjaxe3809e1f3bf461de6996ba264b4d9982 = new XMLHttpRequest();
+                      padAjaxe3809e1f3bf461de6996ba264b4d9982.onreadystatechange=function() {
+                      if (padAjaxe3809e1f3bf461de6996ba264b4d9982.readyState === 4) {
+                      if (padAjaxe3809e1f3bf461de6996ba264b4d9982.status === 200) {
+                      document.getElementById("padAjaxe3809e1f3bf461de6996ba264b4d9982").innerHTML=padAjaxe3809e1f3bf461de6996ba264b4d9982.responseText;
+                      } else {
+                      document.getElementById("padAjaxe3809e1f3bf461de6996ba264b4d9982").innerHTML=padAjaxe3809e1f3bf461de6996ba264b4d9982.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe3809e1f3bf461de6996ba264b4d9982.open("GET","http://localhost/pad/regression/framework/?sequence/resume_keeps_the_rows_of_its_push_and_name_and_its_push_is_pushed_last&padInclude",true);
+                      padAjaxe3809e1f3bf461de6996ba264b4d9982.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/resume_reads_a_quoted_action_name_as_the_action<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/resume_reads_a_quoted_action_name_as_the_action.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>/}</b>[<b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>reverse<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>|<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>][<b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>reverse<font color="black">'</font><font color="black">,</font> pull=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>|<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxcddb6095989c8e435a0190a5f451a12b"></div>
+                      <script>
+                      padAjaxcddb6095989c8e435a0190a5f451a12b = new XMLHttpRequest();
+                      padAjaxcddb6095989c8e435a0190a5f451a12b.onreadystatechange=function() {
+                      if (padAjaxcddb6095989c8e435a0190a5f451a12b.readyState === 4) {
+                      if (padAjaxcddb6095989c8e435a0190a5f451a12b.status === 200) {
+                      document.getElementById("padAjaxcddb6095989c8e435a0190a5f451a12b").innerHTML=padAjaxcddb6095989c8e435a0190a5f451a12b.responseText;
+                      } else {
+                      document.getElementById("padAjaxcddb6095989c8e435a0190a5f451a12b").innerHTML=padAjaxcddb6095989c8e435a0190a5f451a12b.statusText;
+                      }
+                      }
+                      }
+                      padAjaxcddb6095989c8e435a0190a5f451a12b.open("GET","http://localhost/pad/regression/framework/?sequence/resume_reads_a_quoted_action_name_as_the_action&padInclude",true);
+                      padAjaxcddb6095989c8e435a0190a5f451a12b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/resume_reads_its_parameters_past_the_first_as_the_other_sequence_tags_do<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/resume_reads_its_parameters_past_the_first_as_the_other_sequence_tags_do.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>u<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>v<font color="black">'</font></font>/}</b>[<b>{<font color="blue">resume </font><font color="red">s<font color="black">,</font> <font color="black">'</font>first<font color="black">'</font><font color="black">,</font> 2</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>][<b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>t<font color="black">'</font><font color="black">,</font> <font color="black">'</font>reverse<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>][<b>{<font color="blue">resume </font><font color="red">u<font color="black">,</font> first<font color="black">,</font> 2</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>u</font><font color="red"></font>}</b>][<b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>v<font color="black">'</font><font color="black">,</font> <font color="black">'</font>reverse<font color="black">'</font><font color="black">,</font> <font color="black">'</font>first<font color="black">'</font><font color="black">,</font> 2</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>v</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>v</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e"></div>
+                      <script>
+                      padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e = new XMLHttpRequest();
+                      padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.onreadystatechange=function() {
+                      if (padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.readyState === 4) {
+                      if (padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.status === 200) {
+                      document.getElementById("padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e").innerHTML=padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.responseText;
+                      } else {
+                      document.getElementById("padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e").innerHTML=padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.statusText;
+                      }
+                      }
+                      }
+                      padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.open("GET","http://localhost/pad/regression/framework/?sequence/resume_reads_its_parameters_past_the_first_as_the_other_sequence_tags_do&padInclude",true);
+                      padAjaxd7aa61256c1ea4a4c78aa5c4ebe4e58e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/resume_takes_the_store_it_names_and_push_and_to_data<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/resume_takes_the_store_it_names_and_push_and_to_data.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">s<font color="black">,</font> reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>|<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">pull=<font color="black">'</font>s<font color="black">'</font><font color="black">,</font> add=10</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>|<b>{<font color="blue">pull</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red"><font color="black">'</font>s<font color="black">'</font><font color="black">,</font> sum</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>s</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>s</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">push=<font color="black">'</font>u<font color="black">'</font><font color="black">,</font> reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>u</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>u</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>u</font><font color="red"></font>}</b>|<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">toData=<font color="black">'</font>d<font color="black">'</font><font color="black">,</font> add=1</font>}</b><b>{<font color="blue">d</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>d</font>}</b> <b>{/<font color="blue">d</font><font color="red"></font>}</b>]<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">resume </font><font color="red">reverse</font>}</b><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>t</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4030aab40fe67463862eec8d1c76a18a"></div>
+                      <script>
+                      padAjax4030aab40fe67463862eec8d1c76a18a = new XMLHttpRequest();
+                      padAjax4030aab40fe67463862eec8d1c76a18a.onreadystatechange=function() {
+                      if (padAjax4030aab40fe67463862eec8d1c76a18a.readyState === 4) {
+                      if (padAjax4030aab40fe67463862eec8d1c76a18a.status === 200) {
+                      document.getElementById("padAjax4030aab40fe67463862eec8d1c76a18a").innerHTML=padAjax4030aab40fe67463862eec8d1c76a18a.responseText;
+                      } else {
+                      document.getElementById("padAjax4030aab40fe67463862eec8d1c76a18a").innerHTML=padAjax4030aab40fe67463862eec8d1c76a18a.statusText;
+                      }
+                      }
+                      }
+                      padAjax4030aab40fe67463862eec8d1c76a18a.open("GET","http://localhost/pad/regression/framework/?sequence/resume_takes_the_store_it_names_and_push_and_to_data&padInclude",true);
+                      padAjax4030aab40fe67463862eec8d1c76a18a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/resume_transforms_the_stored_sequence<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/resume_transforms_the_stored_sequence.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..4<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>a<font color="black">'</font></font>/}</b><br><b>{<font color="blue">resume </font><font color="red">add=10</font>}</b><br><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b>,<br><b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxbe78ea04e621017f58259a55653466fa"></div>
+                      <script>
+                      padAjaxbe78ea04e621017f58259a55653466fa = new XMLHttpRequest();
+                      padAjaxbe78ea04e621017f58259a55653466fa.onreadystatechange=function() {
+                      if (padAjaxbe78ea04e621017f58259a55653466fa.readyState === 4) {
+                      if (padAjaxbe78ea04e621017f58259a55653466fa.status === 200) {
+                      document.getElementById("padAjaxbe78ea04e621017f58259a55653466fa").innerHTML=padAjaxbe78ea04e621017f58259a55653466fa.responseText;
+                      } else {
+                      document.getElementById("padAjaxbe78ea04e621017f58259a55653466fa").innerHTML=padAjaxbe78ea04e621017f58259a55653466fa.statusText;
+                      }
+                      }
+                      }
+                      padAjaxbe78ea04e621017f58259a55653466fa.open("GET","http://localhost/pad/regression/framework/?sequence/resume_transforms_the_stored_sequence&padInclude",true);
+                      padAjaxbe78ea04e621017f58259a55653466fa.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

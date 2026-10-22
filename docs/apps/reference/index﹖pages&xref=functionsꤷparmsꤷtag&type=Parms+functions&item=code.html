@@ -1,268 +1,389 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - Parms functions - code
+      Reference - Parms functions - code · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - Parms functions - code
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: regression/framework - Page: escaping/piping_into_code_runs_a_value_as_pad<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">escaping/piping_into_code_runs_a_value_as_pad.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">escaping/piping_into_code_runs_a_value_as_pad.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $v </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>v <font color="black">|</font> code</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax4c16be2b7681f9d4ea9073e7c83abbc1"></div>
-                        <script>
-                        padAjax4c16be2b7681f9d4ea9073e7c83abbc1 = new XMLHttpRequest();
-                        padAjax4c16be2b7681f9d4ea9073e7c83abbc1.onreadystatechange=function() {
-                        if (padAjax4c16be2b7681f9d4ea9073e7c83abbc1.readyState === 4) {
-                        if (padAjax4c16be2b7681f9d4ea9073e7c83abbc1.status === 200) {
-                        document.getElementById("padAjax4c16be2b7681f9d4ea9073e7c83abbc1").innerHTML=padAjax4c16be2b7681f9d4ea9073e7c83abbc1.responseText;
-                        } else {
-                        document.getElementById("padAjax4c16be2b7681f9d4ea9073e7c83abbc1").innerHTML=padAjax4c16be2b7681f9d4ea9073e7c83abbc1.statusText;
-                        }
-                        }
-                        }
-                        padAjax4c16be2b7681f9d4ea9073e7c83abbc1.open("GET","http://localhost/pad/regression/framework/?escaping/piping_into_code_runs_a_value_as_pad&padInclude",true);
-                        padAjax4c16be2b7681f9d4ea9073e7c83abbc1.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: passes/a_code_pass_takes_out_its_start_and_end<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">passes/a_code_pass_takes_out_its_start_and_end.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">passes/a_code_pass_takes_out_its_start_and_end.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $s </span><span style="color: #007700">= </span><span style="color: #DD0000">'A@start@B@end@C'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> code</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax9640cefc0575b9ca4980a8c96ee39824"></div>
-                        <script>
-                        padAjax9640cefc0575b9ca4980a8c96ee39824 = new XMLHttpRequest();
-                        padAjax9640cefc0575b9ca4980a8c96ee39824.onreadystatechange=function() {
-                        if (padAjax9640cefc0575b9ca4980a8c96ee39824.readyState === 4) {
-                        if (padAjax9640cefc0575b9ca4980a8c96ee39824.status === 200) {
-                        document.getElementById("padAjax9640cefc0575b9ca4980a8c96ee39824").innerHTML=padAjax9640cefc0575b9ca4980a8c96ee39824.responseText;
-                        } else {
-                        document.getElementById("padAjax9640cefc0575b9ca4980a8c96ee39824").innerHTML=padAjax9640cefc0575b9ca4980a8c96ee39824.statusText;
-                        }
-                        }
-                        }
-                        padAjax9640cefc0575b9ca4980a8c96ee39824.open("GET","http://localhost/pad/regression/framework/?passes/a_code_pass_takes_out_its_start_and_end&padInclude",true);
-                        padAjax9640cefc0575b9ca4980a8c96ee39824.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/a_streaming_callback_sees_the_row_inside_a_code_pass<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/a_streaming_callback_sees_the_row_inside_a_code_pass.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/a_streaming_callback_sees_the_row_inside_a_code_pass.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $src </span><span style="color: #007700">= </span><span style="color: #DD0000">'{data "n"}[1,2,3]{/data}{n callback="rowfield.php"}{$n},{/n}{$sumRows}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>src <font color="black">|</font> code</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax8fa94f4fc18e1efcedf2e57fd92519de"></div>
-                        <script>
-                        padAjax8fa94f4fc18e1efcedf2e57fd92519de = new XMLHttpRequest();
-                        padAjax8fa94f4fc18e1efcedf2e57fd92519de.onreadystatechange=function() {
-                        if (padAjax8fa94f4fc18e1efcedf2e57fd92519de.readyState === 4) {
-                        if (padAjax8fa94f4fc18e1efcedf2e57fd92519de.status === 200) {
-                        document.getElementById("padAjax8fa94f4fc18e1efcedf2e57fd92519de").innerHTML=padAjax8fa94f4fc18e1efcedf2e57fd92519de.responseText;
-                        } else {
-                        document.getElementById("padAjax8fa94f4fc18e1efcedf2e57fd92519de").innerHTML=padAjax8fa94f4fc18e1efcedf2e57fd92519de.statusText;
-                        }
-                        }
-                        }
-                        padAjax8fa94f4fc18e1efcedf2e57fd92519de.open("GET","http://localhost/pad/regression/framework/?tags/a_streaming_callback_sees_the_row_inside_a_code_pass&padInclude",true);
-                        padAjax8fa94f4fc18e1efcedf2e57fd92519de.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/code/2-value<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/code/2-value.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/code/2-value.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'The total is {echo 19 + 23}.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A value run as PAD<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value is text; piped into code it runs as a template.<font color="black">'</font></font>}</b><br>&lt;p&gt;As text: <b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Run: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax106c8c9865f15e40bdab425838cd4dfb"></div>
-                        <script>
-                        padAjax106c8c9865f15e40bdab425838cd4dfb = new XMLHttpRequest();
-                        padAjax106c8c9865f15e40bdab425838cd4dfb.onreadystatechange=function() {
-                        if (padAjax106c8c9865f15e40bdab425838cd4dfb.readyState === 4) {
-                        if (padAjax106c8c9865f15e40bdab425838cd4dfb.status === 200) {
-                        document.getElementById("padAjax106c8c9865f15e40bdab425838cd4dfb").innerHTML=padAjax106c8c9865f15e40bdab425838cd4dfb.responseText;
-                        } else {
-                        document.getElementById("padAjax106c8c9865f15e40bdab425838cd4dfb").innerHTML=padAjax106c8c9865f15e40bdab425838cd4dfb.statusText;
-                        }
-                        }
-                        }
-                        padAjax106c8c9865f15e40bdab425838cd4dfb.open("GET","http://localhost/pad/tags/?examples/code/2-value&padInclude",true);
-                        padAjax106c8c9865f15e40bdab425838cd4dfb.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/sandbox/3-pipe<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/sandbox/3-pipe.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/sandbox/3-pipe.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'price is {echo $price ?? \'unknown\'}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The sandbox pipe<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value run as PAD<font color="black">,</font> isolated - a snippet kept elsewhere cannot touch the page.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 10</font>}</b><br>&lt;p&gt;code: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;<br>&lt;p&gt;sandbox: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> sandbox</font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxa9139a1855a0d4e67b8405b2483b07ea"></div>
-                        <script>
-                        padAjaxa9139a1855a0d4e67b8405b2483b07ea = new XMLHttpRequest();
-                        padAjaxa9139a1855a0d4e67b8405b2483b07ea.onreadystatechange=function() {
-                        if (padAjaxa9139a1855a0d4e67b8405b2483b07ea.readyState === 4) {
-                        if (padAjaxa9139a1855a0d4e67b8405b2483b07ea.status === 200) {
-                        document.getElementById("padAjaxa9139a1855a0d4e67b8405b2483b07ea").innerHTML=padAjaxa9139a1855a0d4e67b8405b2483b07ea.responseText;
-                        } else {
-                        document.getElementById("padAjaxa9139a1855a0d4e67b8405b2483b07ea").innerHTML=padAjaxa9139a1855a0d4e67b8405b2483b07ea.statusText;
-                        }
-                        }
-                        }
-                        padAjaxa9139a1855a0d4e67b8405b2483b07ea.open("GET","http://localhost/pad/tags/?examples/sandbox/3-pipe&padInclude",true);
-                        padAjaxa9139a1855a0d4e67b8405b2483b07ea.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Parms functions - code
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: manual - Page: fragments/expressions_45<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/expressions_45.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/expressions_45.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxd85f39d99054a6a6184e8d99a3831176"></div>
+                      <script>
+                      padAjaxd85f39d99054a6a6184e8d99a3831176 = new XMLHttpRequest();
+                      padAjaxd85f39d99054a6a6184e8d99a3831176.onreadystatechange=function() {
+                      if (padAjaxd85f39d99054a6a6184e8d99a3831176.readyState === 4) {
+                      if (padAjaxd85f39d99054a6a6184e8d99a3831176.status === 200) {
+                      document.getElementById("padAjaxd85f39d99054a6a6184e8d99a3831176").innerHTML=padAjaxd85f39d99054a6a6184e8d99a3831176.responseText;
+                      } else {
+                      document.getElementById("padAjaxd85f39d99054a6a6184e8d99a3831176").innerHTML=padAjaxd85f39d99054a6a6184e8d99a3831176.statusText;
+                      }
+                      }
+                      }
+                      padAjaxd85f39d99054a6a6184e8d99a3831176.open("GET","http://localhost/pad/manual/?fragments/expressions_45&padInclude",true);
+                      padAjaxd85f39d99054a6a6184e8d99a3831176.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: source/a_tag_of_a_value_run_as_pad_is_not_placed_in_the_page<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">source/a_tag_of_a_value_run_as_pad_is_not_placed_in_the_page.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">source/a_tag_of_a_value_run_as_pad_is_not_placed_in_the_page.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A snippet kept as a value, run as PAD by the page: the field it names is missing, and<br>  // the page's own template holds the same field once, in a branch that never runs.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">"line1\n{\$notInTheSnippetsData}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">top<br><b>{<font color="blue">if</font><font color="red">0</font>}</b>never <b>{<font color="green"><font color="red">$</font>notInTheSnippetsData</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax3fd75ff62cb3c82f44326ca200a749e2"></div>
+                      <script>
+                      padAjax3fd75ff62cb3c82f44326ca200a749e2 = new XMLHttpRequest();
+                      padAjax3fd75ff62cb3c82f44326ca200a749e2.onreadystatechange=function() {
+                      if (padAjax3fd75ff62cb3c82f44326ca200a749e2.readyState === 4) {
+                      if (padAjax3fd75ff62cb3c82f44326ca200a749e2.status === 200) {
+                      document.getElementById("padAjax3fd75ff62cb3c82f44326ca200a749e2").innerHTML=padAjax3fd75ff62cb3c82f44326ca200a749e2.responseText;
+                      } else {
+                      document.getElementById("padAjax3fd75ff62cb3c82f44326ca200a749e2").innerHTML=padAjax3fd75ff62cb3c82f44326ca200a749e2.statusText;
+                      }
+                      }
+                      }
+                      padAjax3fd75ff62cb3c82f44326ca200a749e2.open("GET","http://localhost/pad/regression/errors/?source/a_tag_of_a_value_run_as_pad_is_not_placed_in_the_page&padInclude",true);
+                      padAjax3fd75ff62cb3c82f44326ca200a749e2.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: escaping/piping_into_code_runs_a_value_as_pad<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">escaping/piping_into_code_runs_a_value_as_pad.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">escaping/piping_into_code_runs_a_value_as_pad.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $v </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>v <font color="black">|</font> code</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4c16be2b7681f9d4ea9073e7c83abbc1"></div>
+                      <script>
+                      padAjax4c16be2b7681f9d4ea9073e7c83abbc1 = new XMLHttpRequest();
+                      padAjax4c16be2b7681f9d4ea9073e7c83abbc1.onreadystatechange=function() {
+                      if (padAjax4c16be2b7681f9d4ea9073e7c83abbc1.readyState === 4) {
+                      if (padAjax4c16be2b7681f9d4ea9073e7c83abbc1.status === 200) {
+                      document.getElementById("padAjax4c16be2b7681f9d4ea9073e7c83abbc1").innerHTML=padAjax4c16be2b7681f9d4ea9073e7c83abbc1.responseText;
+                      } else {
+                      document.getElementById("padAjax4c16be2b7681f9d4ea9073e7c83abbc1").innerHTML=padAjax4c16be2b7681f9d4ea9073e7c83abbc1.statusText;
+                      }
+                      }
+                      }
+                      padAjax4c16be2b7681f9d4ea9073e7c83abbc1.open("GET","http://localhost/pad/regression/framework/?escaping/piping_into_code_runs_a_value_as_pad&padInclude",true);
+                      padAjax4c16be2b7681f9d4ea9073e7c83abbc1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: passes/a_code_pass_takes_out_its_start_and_end<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">passes/a_code_pass_takes_out_its_start_and_end.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">passes/a_code_pass_takes_out_its_start_and_end.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $s </span><span style="color: #007700">= </span><span style="color: #DD0000">'A@start@B@end@C'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> code</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax9640cefc0575b9ca4980a8c96ee39824"></div>
+                      <script>
+                      padAjax9640cefc0575b9ca4980a8c96ee39824 = new XMLHttpRequest();
+                      padAjax9640cefc0575b9ca4980a8c96ee39824.onreadystatechange=function() {
+                      if (padAjax9640cefc0575b9ca4980a8c96ee39824.readyState === 4) {
+                      if (padAjax9640cefc0575b9ca4980a8c96ee39824.status === 200) {
+                      document.getElementById("padAjax9640cefc0575b9ca4980a8c96ee39824").innerHTML=padAjax9640cefc0575b9ca4980a8c96ee39824.responseText;
+                      } else {
+                      document.getElementById("padAjax9640cefc0575b9ca4980a8c96ee39824").innerHTML=padAjax9640cefc0575b9ca4980a8c96ee39824.statusText;
+                      }
+                      }
+                      }
+                      padAjax9640cefc0575b9ca4980a8c96ee39824.open("GET","http://localhost/pad/regression/framework/?passes/a_code_pass_takes_out_its_start_and_end&padInclude",true);
+                      padAjax9640cefc0575b9ca4980a8c96ee39824.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_streaming_callback_sees_the_row_inside_a_code_pass<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_streaming_callback_sees_the_row_inside_a_code_pass.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_streaming_callback_sees_the_row_inside_a_code_pass.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $src </span><span style="color: #007700">= </span><span style="color: #DD0000">'{data "n"}[1,2,3]{/data}{n callback="rowfield.php"}{$n},{/n}{$sumRows}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>src <font color="black">|</font> code</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8fa94f4fc18e1efcedf2e57fd92519de"></div>
+                      <script>
+                      padAjax8fa94f4fc18e1efcedf2e57fd92519de = new XMLHttpRequest();
+                      padAjax8fa94f4fc18e1efcedf2e57fd92519de.onreadystatechange=function() {
+                      if (padAjax8fa94f4fc18e1efcedf2e57fd92519de.readyState === 4) {
+                      if (padAjax8fa94f4fc18e1efcedf2e57fd92519de.status === 200) {
+                      document.getElementById("padAjax8fa94f4fc18e1efcedf2e57fd92519de").innerHTML=padAjax8fa94f4fc18e1efcedf2e57fd92519de.responseText;
+                      } else {
+                      document.getElementById("padAjax8fa94f4fc18e1efcedf2e57fd92519de").innerHTML=padAjax8fa94f4fc18e1efcedf2e57fd92519de.statusText;
+                      }
+                      }
+                      }
+                      padAjax8fa94f4fc18e1efcedf2e57fd92519de.open("GET","http://localhost/pad/regression/framework/?tags/a_streaming_callback_sees_the_row_inside_a_code_pass&padInclude",true);
+                      padAjax8fa94f4fc18e1efcedf2e57fd92519de.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/code/2-value<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/code/2-value.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/code/2-value.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'The total is {echo 19 + 23}.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A value run as PAD<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value is text; piped into code it runs as a template.<font color="black">'</font></font>}</b><br>&lt;p&gt;As text: <b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Run: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax106c8c9865f15e40bdab425838cd4dfb"></div>
+                      <script>
+                      padAjax106c8c9865f15e40bdab425838cd4dfb = new XMLHttpRequest();
+                      padAjax106c8c9865f15e40bdab425838cd4dfb.onreadystatechange=function() {
+                      if (padAjax106c8c9865f15e40bdab425838cd4dfb.readyState === 4) {
+                      if (padAjax106c8c9865f15e40bdab425838cd4dfb.status === 200) {
+                      document.getElementById("padAjax106c8c9865f15e40bdab425838cd4dfb").innerHTML=padAjax106c8c9865f15e40bdab425838cd4dfb.responseText;
+                      } else {
+                      document.getElementById("padAjax106c8c9865f15e40bdab425838cd4dfb").innerHTML=padAjax106c8c9865f15e40bdab425838cd4dfb.statusText;
+                      }
+                      }
+                      }
+                      padAjax106c8c9865f15e40bdab425838cd4dfb.open("GET","http://localhost/pad/tags/?examples/code/2-value&padInclude",true);
+                      padAjax106c8c9865f15e40bdab425838cd4dfb.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/sandbox/3-pipe<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/sandbox/3-pipe.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/sandbox/3-pipe.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'price is {echo $price ?? \'unknown\'}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The sandbox pipe<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value run as PAD<font color="black">,</font> isolated - a snippet kept elsewhere cannot touch the page.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 10</font>}</b><br>&lt;p&gt;code: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;<br>&lt;p&gt;sandbox: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> sandbox</font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa9139a1855a0d4e67b8405b2483b07ea"></div>
+                      <script>
+                      padAjaxa9139a1855a0d4e67b8405b2483b07ea = new XMLHttpRequest();
+                      padAjaxa9139a1855a0d4e67b8405b2483b07ea.onreadystatechange=function() {
+                      if (padAjaxa9139a1855a0d4e67b8405b2483b07ea.readyState === 4) {
+                      if (padAjaxa9139a1855a0d4e67b8405b2483b07ea.status === 200) {
+                      document.getElementById("padAjaxa9139a1855a0d4e67b8405b2483b07ea").innerHTML=padAjaxa9139a1855a0d4e67b8405b2483b07ea.responseText;
+                      } else {
+                      document.getElementById("padAjaxa9139a1855a0d4e67b8405b2483b07ea").innerHTML=padAjaxa9139a1855a0d4e67b8405b2483b07ea.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa9139a1855a0d4e67b8405b2483b07ea.open("GET","http://localhost/pad/tags/?examples/sandbox/3-pipe&padInclude",true);
+                      padAjaxa9139a1855a0d4e67b8405b2483b07ea.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

@@ -1,4 +1,4 @@
-<form method="post" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="b757d74d8caf14b8b6ba0163d09b46091333d7490feef1e63cc284119706537e"><input type="hidden" name="padForm" value="signup">
+<form method="post" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="c8aae4bd63cc178c50122a8cd1ad6167f08653ecf3901eab5f8e6e027658810e"><input type="hidden" name="padForm" value="signup">
   <label for="name">Name</label><input type="text" name="name" id="name" value="">
   <label for="email">E-mail</label><input type="email" name="email" id="email" value="">
   <label for="age">Age</label><input type="text" name="age" id="age" value="">
@@ -136,7 +136,24 @@
     if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
     if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
     if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+    if (braces(body)) return null;
     try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+  }
+  function braces(body) {
+    var inClass = false;
+    for (var i = 0; i < body.length; i++) {
+      var c = body.charAt(i);
+      if (c === '\\') {
+        i++;
+      } else if (inClass) {
+        if (c === ']') inClass = false;
+      } else if (c === '[') {
+        inClass = true;
+        if (body.charAt(i + 1) === '^') i++;
+        if (body.charAt(i + 1) === ']') i++;
+      } else if (c === '{' && /^\{[ \t]*(\d+[ \t]*(,[ \t]*\d*)?|,[ \t]*\d+)[ \t]*\}/.test(body.slice(i)) && !/^\{\d+(,\d*)?\}/.test(body.slice(i))) return true;
+    }
+    return false;
   }
   function rule(name, arg, value, values, number) {
     if (Array.isArray(value)) {
@@ -206,18 +223,21 @@
     return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
   }
   function labelOf(form, control) {
-    if (!control || !control.id) return '';
+    if (!control || !control.id || box(control)) return '';
     var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
     return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
   }
   function idOf(name, control) {
     return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   }
+  function box(control) {
+    return control.type === 'checkbox' || control.type === 'radio';
+  }
   function show(form, name, text) {
     var controls = controlsOf(form, name);
     var last = controls[controls.length - 1];
     if (!last) return;
-    var id = idOf(name, last) + '-error';
+    var id = idOf(name, box(last) ? controls[0] : last) + '-error';
     var span = document.getElementById(id);
     controls.forEach(function (control) {
       if (text) {

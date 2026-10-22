@@ -1,510 +1,587 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - Parms functions - currency
+      Reference - Parms functions - currency · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - Parms functions - currency
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: htmx - Page: examples/cart<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/cart.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/cart.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The cart is the session's: product id =&gt; quantity. A button posts its product - op=add<br>  // or op=remove - and the answer is the {fragment 'item'} of that product: the card with its<br>  // new count, then the parts elsewhere on the page that changed too, each marked<br>  // hx-swap-oob - htmx puts the card back where the button was and the rest where their ids<br>  // are: the count in the header, the summary beside the shelf. Emptying the cart is an<br>  // ordinary {form} post that ends in a redirect, the page coming back whole.<br><br>  </span><span style="color: #0000BB">$counts   </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmxCart'</span><span style="color: #007700">, [] );<br>  </span><span style="color: #0000BB">$products </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$posted   </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">);<br><br>  if ( </span><span style="color: #0000BB">$posted </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$id    </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'id'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$op    </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxText </span><span style="color: #007700">( </span><span style="color: #DD0000">'op' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$stock </span><span style="color: #007700">= </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$products</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock'</span><span style="color: #007700">, </span><span style="color: #DD0000">'id' </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'clear' </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmxCart'</span><span style="color: #007700">, [] );<br>      </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">();<br>    }<br><br>    if ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'add' </span><span style="color: #007700">and ( </span><span style="color: #0000BB">$stock </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) &gt; ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] = ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) + </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>    elseif ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'remove' </span><span style="color: #007700">and isset ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ) and --</span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] &lt;= </span><span style="color: #0000BB">0 </span><span style="color: #007700">)<br>      unset ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] );<br><br>    </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmxCart'</span><span style="color: #007700">, </span><span style="color: #0000BB">$counts </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$products </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$products</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$product </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$id </span><span style="color: #007700">) );<br><br>    </span><span style="color: #FF8000">// A product the shelf does not have - a stale or made-up request - has no card to<br>    // answer: a 404, which htmx swaps nothing for, where the empty loop rendered no<br>    // {fragment 'item'} and the answer was a 500, "there is no fragment named 'item'".<br><br>    </span><span style="color: #007700">if ( ! </span><span style="color: #0000BB">$products </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404</span><span style="color: #007700">, </span><span style="color: #DD0000">'There is no such product' </span><span style="color: #007700">);<br><br>  }<br><br>  foreach ( </span><span style="color: #0000BB">$products </span><span style="color: #007700">as </span><span style="color: #0000BB">$at </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$product </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$products </span><span style="color: #007700">[</span><span style="color: #0000BB">$at</span><span style="color: #007700">] [</span><span style="color: #DD0000">'inCart'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[ </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] ] ?? </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$cart      </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxCart </span><span style="color: #007700">( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$cartCount </span><span style="color: #007700">= </span><span style="color: #0000BB">$cart </span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$lines     </span><span style="color: #007700">= </span><span style="color: #0000BB">$cart </span><span style="color: #007700">[</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">$cart </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;div class="shop"&gt;<br>  &lt;div id="shelf" class="grid shelf"&gt;<br>  <b>{<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>item<font color="black">'</font></font>}</b><br>    &lt;div class="card item" id="item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>      &lt;div class="item-top"&gt;&lt;span class="item-emoji"&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b>&lt;/span&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>inCart</font>}</b>&lt;span class="badge is-accent"&gt;<b>{<font color="green"><font color="red">$</font>inCart</font>}</b> in cart&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>      &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;<br>      &lt;div class="muted small"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b> &amp;middot; <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>stock</font>}</b><b>{<font color="green"><font color="red">$</font>stock</font>}</b> in stock<b>{<font color="blue">else</font><font color="red"></font>}</b>sold out<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>      &lt;div class="item-buttons"&gt;<br>        &lt;button class="btn-sm" hx-post="?examples/cart&amp;id=<b>{<font color="green"><font color="red">$</font>id</font>}</b>&amp;op=add&amp;padFragment=item" hx-target="#item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>" hx-swap="outerHTML"&gt;+ Add&lt;/button&gt;<br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>inCart</font>}</b>&lt;button class="btn-sm btn-ghost" hx-post="?examples/cart&amp;id=<b>{<font color="green"><font color="red">$</font>id</font>}</b>&amp;op=remove&amp;padFragment=item" hx-target="#item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>" hx-swap="outerHTML"&gt;−&lt;/button&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>posted</font>}</b><br>      &lt;span id="cart-count" hx-swap-oob="true"&gt;<b>{<font color="green"><font color="red">$</font>cartCount</font>}</b>&lt;/span&gt;<br>      <b>{<font color="blue">cartSummary</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>  <b>{<font color="blue">cartSummary</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxe73d7742db1cd6a22d0b59c041617bfb"></div>
-                        <script>
-                        padAjaxe73d7742db1cd6a22d0b59c041617bfb = new XMLHttpRequest();
-                        padAjaxe73d7742db1cd6a22d0b59c041617bfb.onreadystatechange=function() {
-                        if (padAjaxe73d7742db1cd6a22d0b59c041617bfb.readyState === 4) {
-                        if (padAjaxe73d7742db1cd6a22d0b59c041617bfb.status === 200) {
-                        document.getElementById("padAjaxe73d7742db1cd6a22d0b59c041617bfb").innerHTML=padAjaxe73d7742db1cd6a22d0b59c041617bfb.responseText;
-                        } else {
-                        document.getElementById("padAjaxe73d7742db1cd6a22d0b59c041617bfb").innerHTML=padAjaxe73d7742db1cd6a22d0b59c041617bfb.statusText;
-                        }
-                        }
-                        }
-                        padAjaxe73d7742db1cd6a22d0b59c041617bfb.open("GET","http://localhost/pad/htmx/?examples/cart&padInclude",true);
-                        padAjaxe73d7742db1cd6a22d0b59c041617bfb.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: htmx - Page: examples/scroll<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/scroll.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/scroll.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Ninety orders, fifteen at a time. The page shows the first fifteen; the last row of every<br>  // batch carries hx-get for the next batch, sent when the row scrolls into view. That row<br>  // has no id, so the request names its fragment itself: &amp;padFragment=rows - the answer is<br>  // the next rows, the last of them asking for the batch after it, and hx-swap="afterend"<br>  // puts them below the row that asked.<br><br>  </span><span style="color: #0000BB">$page  </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'p'</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$per   </span><span style="color: #007700">= </span><span style="color: #0000BB">15</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">90</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$pages </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">$total </span><span style="color: #007700">/ </span><span style="color: #0000BB">$per </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$page  </span><span style="color: #007700">= </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">$page</span><span style="color: #007700">, </span><span style="color: #0000BB">$pages </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$people </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Bram'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Chen'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Dalia'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Emeka'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Freya'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Goran'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Hana' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$states </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'shipped'</span><span style="color: #007700">, </span><span style="color: #DD0000">'open'</span><span style="color: #007700">, </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'returned' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$page </span><span style="color: #007700">- </span><span style="color: #0000BB">1 </span><span style="color: #007700">) * </span><span style="color: #0000BB">$per </span><span style="color: #007700">+ </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$n </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">$total</span><span style="color: #007700">, </span><span style="color: #0000BB">$page </span><span style="color: #007700">* </span><span style="color: #0000BB">$per </span><span style="color: #007700">); </span><span style="color: #0000BB">$n</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$orders </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'number'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1000 </span><span style="color: #007700">+ </span><span style="color: #0000BB">$n</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$people </span><span style="color: #007700">[ ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">* </span><span style="color: #0000BB">3 </span><span style="color: #007700">) % </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$people </span><span style="color: #007700">) ],<br>                   </span><span style="color: #DD0000">'amount'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20 </span><span style="color: #007700">+ ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">* </span><span style="color: #0000BB">37 </span><span style="color: #007700">) % </span><span style="color: #0000BB">480</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'status'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$states </span><span style="color: #007700">[ </span><span style="color: #0000BB">$n </span><span style="color: #007700">% </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$states </span><span style="color: #007700">) ],<br>                   </span><span style="color: #DD0000">'next'     </span><span style="color: #007700">=&gt; ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">== </span><span style="color: #0000BB">$page </span><span style="color: #007700">* </span><span style="color: #0000BB">$per </span><span style="color: #007700">and </span><span style="color: #0000BB">$page </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">$pages </span><span style="color: #007700">) ? </span><span style="color: #0000BB">$page </span><span style="color: #007700">+ </span><span style="color: #0000BB">1 </span><span style="color: #007700">: </span><span style="color: #0000BB">0 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Order&lt;/th&gt;&lt;th&gt;Customer&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th class="num"&gt;Amount&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">orders</font><font color="red"></font>}</b><br>    &lt;tr<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>next</font>}</b> hx-get="?examples/scroll&amp;p=<b>{<font color="green"><font color="red">$</font>next</font>}</b>&amp;padFragment=rows" hx-trigger="revealed" hx-swap="afterend"<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<br>      &lt;td&gt;#<b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;&lt;span class="badge status-<b>{<font color="green"><font color="red">$</font>status</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/span&gt;&lt;/td&gt;<br>      &lt;td class="num"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>    <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br>&lt;p class="muted small"&gt;Scroll down - every fifteenth row asks for the next fifteen. Ninety in all.&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxefd245aa1fa4082d8db30a121322c274"></div>
-                        <script>
-                        padAjaxefd245aa1fa4082d8db30a121322c274 = new XMLHttpRequest();
-                        padAjaxefd245aa1fa4082d8db30a121322c274.onreadystatechange=function() {
-                        if (padAjaxefd245aa1fa4082d8db30a121322c274.readyState === 4) {
-                        if (padAjaxefd245aa1fa4082d8db30a121322c274.status === 200) {
-                        document.getElementById("padAjaxefd245aa1fa4082d8db30a121322c274").innerHTML=padAjaxefd245aa1fa4082d8db30a121322c274.responseText;
-                        } else {
-                        document.getElementById("padAjaxefd245aa1fa4082d8db30a121322c274").innerHTML=padAjaxefd245aa1fa4082d8db30a121322c274.statusText;
-                        }
-                        }
-                        }
-                        padAjaxefd245aa1fa4082d8db30a121322c274.open("GET","http://localhost/pad/htmx/?examples/scroll&padInclude",true);
-                        padAjaxefd245aa1fa4082d8db30a121322c274.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: htmx - Page: examples/search<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/search.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/search.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The products whose name, category or text holds the query. The same PHP serves the page<br>  // and every answer to htmx: the input's hx-target="#results" sends HX-Target: results,<br>  // and PAD answers the {fragment 'results'} of search.pad alone. The query stands in the<br>  // address (hx-push-url), so a reload - or a link - shows the same results whole.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxText </span><span style="color: #007700">( </span><span style="color: #DD0000">'q' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$found </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">), fn ( </span><span style="color: #0000BB">$product </span><span style="color: #007700">) =&gt;<br>             </span><span style="color: #0000BB">$q </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">stripos </span><span style="color: #007700">( </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'category'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'blurb'</span><span style="color: #007700">], </span><span style="color: #0000BB">$q </span><span style="color: #007700">) !== </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$found </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;div class="toolbar"&gt;<br>  &lt;div class="search"&gt;<br>    &lt;input class="input" type="search" name="q" value="<b>{<font color="green"><font color="red">$</font>q</font>}</b>" placeholder="Search - try lamp, audio or usb" autocomplete="off"<br>           aria-label="Search the products" hx-get="?examples/search" hx-trigger="input changed delay:250ms, search"<br>           hx-target="#results" hx-push-url="true" hx-indicator="#searching"&gt;<br>  &lt;/div&gt;<br>  &lt;span id="searching" class="htmx-indicator spinner" aria-hidden="true"&gt;&lt;/span&gt;<br>&lt;/div&gt;<br><br>&lt;div id="results"&gt;<br><b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>  &lt;p class="muted small"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 1</font>}</b>product<b>{<font color="blue">else</font><font color="red"></font>}</b>products<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>q</font>}</b> for &lt;mark&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/mark&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;<br>  &lt;table class="table"&gt;<br>    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th class="num"&gt;Price&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>    &lt;tbody&gt;<br>      <b>{<font color="blue">found</font><font color="red"></font>}</b><br>      &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>category</font>}</b>&lt;/span&gt;&lt;/td&gt;&lt;td class="num"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>      <b>{/<font color="blue">found</font><font color="red"></font>}</b><br>    &lt;/tbody&gt;<br>  &lt;/table&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 0</font>}</b>&lt;div class="empty-state"&gt;&lt;span class="big"&gt;🔎&lt;/span&gt;Nothing in the catalogue matches.&lt;/div&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxee9088bf9a5dc78924535538aa455a34"></div>
-                        <script>
-                        padAjaxee9088bf9a5dc78924535538aa455a34 = new XMLHttpRequest();
-                        padAjaxee9088bf9a5dc78924535538aa455a34.onreadystatechange=function() {
-                        if (padAjaxee9088bf9a5dc78924535538aa455a34.readyState === 4) {
-                        if (padAjaxee9088bf9a5dc78924535538aa455a34.status === 200) {
-                        document.getElementById("padAjaxee9088bf9a5dc78924535538aa455a34").innerHTML=padAjaxee9088bf9a5dc78924535538aa455a34.responseText;
-                        } else {
-                        document.getElementById("padAjaxee9088bf9a5dc78924535538aa455a34").innerHTML=padAjaxee9088bf9a5dc78924535538aa455a34.statusText;
-                        }
-                        }
-                        }
-                        padAjaxee9088bf9a5dc78924535538aa455a34.open("GET","http://localhost/pad/htmx/?examples/search&padInclude",true);
-                        padAjaxee9088bf9a5dc78924535538aa455a34.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: manual - Page: fragments/locale_1<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">fragments/locale_1.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">fragments/locale_1.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page picks Dutch; an application listing $padLocales lets the visitor's<br>  // Accept-Language or ?lang= choose instead.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$user  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$when  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">&lt;h4&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>&lt;/h4&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>count</font>}</b> - <b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.owner<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b> - <b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">localDate('d MMMM y')</font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxb846913dff488ddc294b52db7fe0d477"></div>
-                        <script>
-                        padAjaxb846913dff488ddc294b52db7fe0d477 = new XMLHttpRequest();
-                        padAjaxb846913dff488ddc294b52db7fe0d477.onreadystatechange=function() {
-                        if (padAjaxb846913dff488ddc294b52db7fe0d477.readyState === 4) {
-                        if (padAjaxb846913dff488ddc294b52db7fe0d477.status === 200) {
-                        document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.responseText;
-                        } else {
-                        document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.statusText;
-                        }
-                        }
-                        }
-                        padAjaxb846913dff488ddc294b52db7fe0d477.open("GET","http://localhost/pad/manual/?fragments/locale_1&padInclude",true);
-                        padAjaxb846913dff488ddc294b52db7fe0d477.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/errors - Page: syntax/a_currency_locale_intl_does_not_know<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">syntax/a_currency_locale_intl_does_not_know.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>xx_YY<font color="black">'</font>)</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax8117efe47ba1fc45799a98e785139a58"></div>
-                        <script>
-                        padAjax8117efe47ba1fc45799a98e785139a58 = new XMLHttpRequest();
-                        padAjax8117efe47ba1fc45799a98e785139a58.onreadystatechange=function() {
-                        if (padAjax8117efe47ba1fc45799a98e785139a58.readyState === 4) {
-                        if (padAjax8117efe47ba1fc45799a98e785139a58.status === 200) {
-                        document.getElementById("padAjax8117efe47ba1fc45799a98e785139a58").innerHTML=padAjax8117efe47ba1fc45799a98e785139a58.responseText;
-                        } else {
-                        document.getElementById("padAjax8117efe47ba1fc45799a98e785139a58").innerHTML=padAjax8117efe47ba1fc45799a98e785139a58.statusText;
-                        }
-                        }
-                        }
-                        padAjax8117efe47ba1fc45799a98e785139a58.open("GET","http://localhost/pad/regression/errors/?syntax/a_currency_locale_intl_does_not_know&padInclude",true);
-                        padAjax8117efe47ba1fc45799a98e785139a58.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: functions/currency_writes_an_amount_the_locale_s_way<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">functions/currency_writes_an_amount_the_locale_s_way.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> currency(<font color="black">'</font>USD<font color="black">'</font><font color="black">,</font> <font color="black">'</font>en_US<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">99 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>en<font color="black">'</font>)</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax58a4752a819af3d6d195a17ad86f5c6f"></div>
-                        <script>
-                        padAjax58a4752a819af3d6d195a17ad86f5c6f = new XMLHttpRequest();
-                        padAjax58a4752a819af3d6d195a17ad86f5c6f.onreadystatechange=function() {
-                        if (padAjax58a4752a819af3d6d195a17ad86f5c6f.readyState === 4) {
-                        if (padAjax58a4752a819af3d6d195a17ad86f5c6f.status === 200) {
-                        document.getElementById("padAjax58a4752a819af3d6d195a17ad86f5c6f").innerHTML=padAjax58a4752a819af3d6d195a17ad86f5c6f.responseText;
-                        } else {
-                        document.getElementById("padAjax58a4752a819af3d6d195a17ad86f5c6f").innerHTML=padAjax58a4752a819af3d6d195a17ad86f5c6f.statusText;
-                        }
-                        }
-                        }
-                        padAjax58a4752a819af3d6d195a17ad86f5c6f.open("GET","http://localhost/pad/regression/framework/?functions/currency_writes_an_amount_the_locale_s_way&padInclude",true);
-                        padAjax58a4752a819af3d6d195a17ad86f5c6f.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>xx_YY<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-05<font color="black">'</font> <font color="black">|</font> localDate(<font color="black">'</font>long<font color="black">'</font><font color="black">,</font> <font color="black">'</font>none<font color="black">'</font><font color="black">,</font> <font color="black">'</font>zz<font color="black">'</font>)</font>}</b>]</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax87ac697131c8b32a682a5c720a562239"></div>
-                        <script>
-                        padAjax87ac697131c8b32a682a5c720a562239 = new XMLHttpRequest();
-                        padAjax87ac697131c8b32a682a5c720a562239.onreadystatechange=function() {
-                        if (padAjax87ac697131c8b32a682a5c720a562239.readyState === 4) {
-                        if (padAjax87ac697131c8b32a682a5c720a562239.status === 200) {
-                        document.getElementById("padAjax87ac697131c8b32a682a5c720a562239").innerHTML=padAjax87ac697131c8b32a682a5c720a562239.responseText;
-                        } else {
-                        document.getElementById("padAjax87ac697131c8b32a682a5c720a562239").innerHTML=padAjax87ac697131c8b32a682a5c720a562239.statusText;
-                        }
-                        }
-                        }
-                        padAjax87ac697131c8b32a682a5c720a562239.open("GET","http://localhost/pad/regression/framework/?lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form&padInclude",true);
-                        padAjax87ac697131c8b32a682a5c720a562239.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/datatable_sums_the_totals_columns_and_aligns_the_numbers<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/datatable_sums_the_totals_columns_and_aligns_the_numbers.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">datatable </font><font color="red">totals=<font color="black">'</font>qty<font color="black">,</font> amount<font color="black">'</font><font color="black">,</font> labels=<font color="black">'</font>Item<font color="black">,</font> Qty<font color="black">,</font> Amount<font color="black">,</font> Code<font color="black">'</font><font color="black">,</font> format="amount<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)"<font color="black">,</font> caption=<font color="black">'</font>Lines &lt;b&gt;<font color="black">'</font><font color="black">,</font> striped</font>}</b><br>  item,qty,amount,zip_code<br>  Chair &lt;b&gt;,2,10.5,1234<br>  Table,1,120,98765<br>  Lamp,10,3.25,5000<br><b>{/<font color="blue">datatable</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax2774664eb66c33d5cb9a77443ae5e16d"></div>
-                        <script>
-                        padAjax2774664eb66c33d5cb9a77443ae5e16d = new XMLHttpRequest();
-                        padAjax2774664eb66c33d5cb9a77443ae5e16d.onreadystatechange=function() {
-                        if (padAjax2774664eb66c33d5cb9a77443ae5e16d.readyState === 4) {
-                        if (padAjax2774664eb66c33d5cb9a77443ae5e16d.status === 200) {
-                        document.getElementById("padAjax2774664eb66c33d5cb9a77443ae5e16d").innerHTML=padAjax2774664eb66c33d5cb9a77443ae5e16d.responseText;
-                        } else {
-                        document.getElementById("padAjax2774664eb66c33d5cb9a77443ae5e16d").innerHTML=padAjax2774664eb66c33d5cb9a77443ae5e16d.statusText;
-                        }
-                        }
-                        }
-                        padAjax2774664eb66c33d5cb9a77443ae5e16d.open("GET","http://localhost/pad/regression/framework/?tags/datatable_sums_the_totals_columns_and_aligns_the_numbers&padInclude",true);
-                        padAjax2774664eb66c33d5cb9a77443ae5e16d.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: showcase - Page: datatable/expenses<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">datatable/expenses.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A table from inline CSV<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>As a pair the content is the data - CSV<font color="black">,</font> JSON<font color="black">,</font> YAML or XML - here a budget with a pipe formatting the amounts and a totals row.<font color="black">'</font></font>}</b><br><b>{<font color="blue">datatable </font><font color="red">totals=<font color="black">'</font>budget<font color="black">,</font> spent<font color="black">'</font><font color="black">,</font> format="budget<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)<font color="black">,</font> spent<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)"<font color="black">,</font> caption=<font color="black">'</font>Marketing budget<font color="black">,</font> third quarter<font color="black">'</font></font>}</b><br>  channel,budget,spent<br>  Search ads,12000,11380.40<br>  Social media,8500,9120.15<br>  Newsletter,1500,960<br>  Trade fair,15000,14215.80<br>  Print,3000,2410.25<br><b>{/<font color="blue">datatable</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax5139625bd380639fec78d71e7c8d0c23"></div>
-                        <script>
-                        padAjax5139625bd380639fec78d71e7c8d0c23 = new XMLHttpRequest();
-                        padAjax5139625bd380639fec78d71e7c8d0c23.onreadystatechange=function() {
-                        if (padAjax5139625bd380639fec78d71e7c8d0c23.readyState === 4) {
-                        if (padAjax5139625bd380639fec78d71e7c8d0c23.status === 200) {
-                        document.getElementById("padAjax5139625bd380639fec78d71e7c8d0c23").innerHTML=padAjax5139625bd380639fec78d71e7c8d0c23.responseText;
-                        } else {
-                        document.getElementById("padAjax5139625bd380639fec78d71e7c8d0c23").innerHTML=padAjax5139625bd380639fec78d71e7c8d0c23.statusText;
-                        }
-                        }
-                        }
-                        padAjax5139625bd380639fec78d71e7c8d0c23.open("GET","http://localhost/pad/showcase/?datatable/expenses&padInclude",true);
-                        padAjax5139625bd380639fec78d71e7c8d0c23.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: showcase - Page: pdf/invoice<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">pdf/invoice.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">pdf/invoice.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $invoice  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-114'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$issued   </span><span style="color: #007700">= </span><span style="color: #DD0000">'8 October 2026'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$due      </span><span style="color: #007700">= </span><span style="color: #DD0000">'7 November 2026'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$customer </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Noordkaap Sailing School'</span><span style="color: #007700">, </span><span style="color: #DD0000">'street' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Havenkade 12'</span><span style="color: #007700">, </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1781 AB Den Helder' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$lines </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mooring rope, 12 mm, per 20 m'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">38.50 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fender, inflatable, large'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">27.95 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Life jacket 150 N, adult'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">64.00 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shackle, stainless, 8 mm'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3.20  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Delivery to the harbour'</span><span style="color: #007700">,           </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">45.00 </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  foreach ( </span><span style="color: #0000BB">$lines </span><span style="color: #007700">as </span><span style="color: #0000BB">$key </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$line </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$lines </span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">] [</span><span style="color: #DD0000">'amount'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$line </span><span style="color: #007700">[</span><span style="color: #DD0000">'qty'</span><span style="color: #007700">] * </span><span style="color: #0000BB">$line </span><span style="color: #007700">[</span><span style="color: #DD0000">'price'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$lines </span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">] [</span><span style="color: #DD0000">'amount'</span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$vat   </span><span style="color: #007700">= </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">* </span><span style="color: #0000BB">0.21</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$vat</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>An invoice as PDF<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An order rendered on a sheet<font color="black">,</font> the same template one click away as an A4 PDF made in plain PHP.<font color="black">'</font></font>}</b><br><b>{<font color="blue">pdf </font><font color="red">preview<font color="black">,</font> file=<font color="black">'</font>invoice-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>invoice</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Invoice <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>invoice</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>  &lt;img src="photos/logo.jpg" width="56" height="56" alt="Harbour Supplies"&gt;<br>  &lt;h1&gt;Invoice <b>{<font color="green"><font color="red">$</font>invoice</font>}</b>&lt;/h1&gt;<br>  &lt;p&gt;&lt;b&gt;Harbour Supplies&lt;/b&gt;&lt;br&gt;Kaai 3, 1781 AA Den Helder&lt;br&gt;info@harbour.example&lt;/p&gt;<br>  &lt;p&gt;To: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>customer.name</font>}</b>&lt;/b&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>customer.street</font>}</b>&lt;br&gt;<b>{<font color="green"><font color="red">$</font>customer.city</font>}</b>&lt;/p&gt;<br>  &lt;p&gt;Issued <b>{<font color="green"><font color="red">$</font>issued</font>}</b> - due <b>{<font color="green"><font color="red">$</font>due</font>}</b>&lt;/p&gt;<br>  &lt;table&gt;<br>    &lt;tr&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th align="right"&gt;Qty&lt;/th&gt;&lt;th align="right"&gt;Price&lt;/th&gt;&lt;th align="right"&gt;Amount&lt;/th&gt;&lt;/tr&gt;<br>    <b>{<font color="blue">lines</font><font color="red"></font>}</b><br>    &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    <b>{/<font color="blue">lines</font><font color="red"></font>}</b><br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;Subtotal&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$subtotal</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;VAT 21%&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$vat</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;&lt;b&gt;Total&lt;/b&gt;&lt;/td&gt;&lt;td align="right"&gt;&lt;b&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;/table&gt;<br>  &lt;p&gt;Please pay within 30 days to &lt;b&gt;NL91 ABNA 0417 1643 00&lt;/b&gt;, quoting invoice <b>{<font color="green"><font color="red">$</font>invoice</font>}</b>.&lt;/p&gt;<br><b>{/<font color="blue">pdf</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxa8f724843cfee7e2db92420ff8975a49"></div>
-                        <script>
-                        padAjaxa8f724843cfee7e2db92420ff8975a49 = new XMLHttpRequest();
-                        padAjaxa8f724843cfee7e2db92420ff8975a49.onreadystatechange=function() {
-                        if (padAjaxa8f724843cfee7e2db92420ff8975a49.readyState === 4) {
-                        if (padAjaxa8f724843cfee7e2db92420ff8975a49.status === 200) {
-                        document.getElementById("padAjaxa8f724843cfee7e2db92420ff8975a49").innerHTML=padAjaxa8f724843cfee7e2db92420ff8975a49.responseText;
-                        } else {
-                        document.getElementById("padAjaxa8f724843cfee7e2db92420ff8975a49").innerHTML=padAjaxa8f724843cfee7e2db92420ff8975a49.statusText;
-                        }
-                        }
-                        }
-                        padAjaxa8f724843cfee7e2db92420ff8975a49.open("GET","http://localhost/pad/showcase/?pdf/invoice&padInclude",true);
-                        padAjaxa8f724843cfee7e2db92420ff8975a49.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/datatable/2-csv<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/datatable/2-csv.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Rows as content<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>As a pair the content is the data - here CSV - with a currency pipe and a totals row.<font color="black">'</font></font>}</b><br><b>{<font color="blue">datatable </font><font color="red">totals=<font color="black">'</font>budget<font color="black">,</font> spent<font color="black">'</font><font color="black">,</font> format="budget<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)<font color="black">,</font> spent<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)"<font color="black">,</font> caption=<font color="black">'</font>Marketing budget<font color="black">'</font></font>}</b><br>  channel,budget,spent<br>  Search ads,12000,11380.40<br>  Social media,8500,9120.15<br>  Newsletter,1500,960<br><b>{/<font color="blue">datatable</font><font color="red"></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax3a842dd8d60c5f70bcc2b145e500b769"></div>
-                        <script>
-                        padAjax3a842dd8d60c5f70bcc2b145e500b769 = new XMLHttpRequest();
-                        padAjax3a842dd8d60c5f70bcc2b145e500b769.onreadystatechange=function() {
-                        if (padAjax3a842dd8d60c5f70bcc2b145e500b769.readyState === 4) {
-                        if (padAjax3a842dd8d60c5f70bcc2b145e500b769.status === 200) {
-                        document.getElementById("padAjax3a842dd8d60c5f70bcc2b145e500b769").innerHTML=padAjax3a842dd8d60c5f70bcc2b145e500b769.responseText;
-                        } else {
-                        document.getElementById("padAjax3a842dd8d60c5f70bcc2b145e500b769").innerHTML=padAjax3a842dd8d60c5f70bcc2b145e500b769.statusText;
-                        }
-                        }
-                        }
-                        padAjax3a842dd8d60c5f70bcc2b145e500b769.open("GET","http://localhost/pad/tags/?examples/datatable/2-csv&padInclude",true);
-                        padAjax3a842dd8d60c5f70bcc2b145e500b769.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Parms functions - currency
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: htmx - Page: examples/cart<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/cart.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/cart.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The cart is the session's: product id =&gt; quantity. A button posts its product - op=add<br>  // or op=remove - and the answer is the {fragment 'item'} of that product: the card with its<br>  // new count, then the parts elsewhere on the page that changed too, each marked<br>  // hx-swap-oob - htmx puts the card back where the button was and the rest where their ids<br>  // are: the count in the header, the summary beside the shelf. Emptying the cart is an<br>  // ordinary {form} post that ends in a redirect, the page coming back whole.<br><br>  </span><span style="color: #0000BB">$counts   </span><span style="color: #007700">= </span><span style="color: #0000BB">padSession </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmxCart'</span><span style="color: #007700">, [] );<br>  </span><span style="color: #0000BB">$products </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$posted   </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequestIs </span><span style="color: #007700">( </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">);<br><br>  if ( </span><span style="color: #0000BB">$posted </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$id    </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'id'</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$op    </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxText </span><span style="color: #007700">( </span><span style="color: #DD0000">'op' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$stock </span><span style="color: #007700">= </span><span style="color: #0000BB">array_column </span><span style="color: #007700">( </span><span style="color: #0000BB">$products</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock'</span><span style="color: #007700">, </span><span style="color: #DD0000">'id' </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'clear' </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmxCart'</span><span style="color: #007700">, [] );<br>      </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">();<br>    }<br><br>    if ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'add' </span><span style="color: #007700">and ( </span><span style="color: #0000BB">$stock </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) &gt; ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] = ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0 </span><span style="color: #007700">) + </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>    elseif ( </span><span style="color: #0000BB">$op </span><span style="color: #007700">== </span><span style="color: #DD0000">'remove' </span><span style="color: #007700">and isset ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] ) and --</span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] &lt;= </span><span style="color: #0000BB">0 </span><span style="color: #007700">)<br>      unset ( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[</span><span style="color: #0000BB">$id</span><span style="color: #007700">] );<br><br>    </span><span style="color: #0000BB">padSessionPut </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmxCart'</span><span style="color: #007700">, </span><span style="color: #0000BB">$counts </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$products </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$products</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$product </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] == </span><span style="color: #0000BB">$id </span><span style="color: #007700">) );<br><br>    </span><span style="color: #FF8000">// A product the shelf does not have - a stale or made-up request - has no card to<br>    // answer: a 404, which htmx swaps nothing for, where the empty loop rendered no<br>    // {fragment 'item'} and the answer was a 500, "there is no fragment named 'item'".<br><br>    </span><span style="color: #007700">if ( ! </span><span style="color: #0000BB">$products </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404</span><span style="color: #007700">, </span><span style="color: #DD0000">'There is no such product' </span><span style="color: #007700">);<br><br>  }<br><br>  foreach ( </span><span style="color: #0000BB">$products </span><span style="color: #007700">as </span><span style="color: #0000BB">$at </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$product </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$products </span><span style="color: #007700">[</span><span style="color: #0000BB">$at</span><span style="color: #007700">] [</span><span style="color: #DD0000">'inCart'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$counts </span><span style="color: #007700">[ </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] ] ?? </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$cart      </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxCart </span><span style="color: #007700">( </span><span style="color: #0000BB">$counts </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$cartCount </span><span style="color: #007700">= </span><span style="color: #0000BB">$cart </span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$lines     </span><span style="color: #007700">= </span><span style="color: #0000BB">$cart </span><span style="color: #007700">[</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">$cart </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;div class="shop"&gt;<br>  &lt;div id="shelf" class="grid shelf"&gt;<br>  <b>{<font color="blue">products</font><font color="red"></font>}</b><br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>item<font color="black">'</font></font>}</b><br>    &lt;div class="card item" id="item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>      &lt;div class="item-top"&gt;&lt;span class="item-emoji"&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b>&lt;/span&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>inCart</font>}</b>&lt;span class="badge is-accent"&gt;<b>{<font color="green"><font color="red">$</font>inCart</font>}</b> in cart&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>      &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/strong&gt;<br>      &lt;div class="muted small"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b> &amp;middot; <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>stock</font>}</b><b>{<font color="green"><font color="red">$</font>stock</font>}</b> in stock<b>{<font color="blue">else</font><font color="red"></font>}</b>sold out<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>      &lt;div class="item-buttons"&gt;<br>        &lt;button class="btn-sm" hx-post="?examples/cart&amp;id=<b>{<font color="green"><font color="red">$</font>id</font>}</b>&amp;op=add&amp;padFragment=item" hx-target="#item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>" hx-swap="outerHTML"&gt;+ Add&lt;/button&gt;<br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>inCart</font>}</b>&lt;button class="btn-sm btn-ghost" hx-post="?examples/cart&amp;id=<b>{<font color="green"><font color="red">$</font>id</font>}</b>&amp;op=remove&amp;padFragment=item" hx-target="#item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>" hx-swap="outerHTML"&gt;−&lt;/button&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>posted</font>}</b><br>      &lt;span id="cart-count" hx-swap-oob="true"&gt;<b>{<font color="green"><font color="red">$</font>cartCount</font>}</b>&lt;/span&gt;<br>      <b>{<font color="blue">cartSummary</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">products</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br>  <b>{<font color="blue">cartSummary</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe73d7742db1cd6a22d0b59c041617bfb"></div>
+                      <script>
+                      padAjaxe73d7742db1cd6a22d0b59c041617bfb = new XMLHttpRequest();
+                      padAjaxe73d7742db1cd6a22d0b59c041617bfb.onreadystatechange=function() {
+                      if (padAjaxe73d7742db1cd6a22d0b59c041617bfb.readyState === 4) {
+                      if (padAjaxe73d7742db1cd6a22d0b59c041617bfb.status === 200) {
+                      document.getElementById("padAjaxe73d7742db1cd6a22d0b59c041617bfb").innerHTML=padAjaxe73d7742db1cd6a22d0b59c041617bfb.responseText;
+                      } else {
+                      document.getElementById("padAjaxe73d7742db1cd6a22d0b59c041617bfb").innerHTML=padAjaxe73d7742db1cd6a22d0b59c041617bfb.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe73d7742db1cd6a22d0b59c041617bfb.open("GET","http://localhost/pad/htmx/?examples/cart&padInclude",true);
+                      padAjaxe73d7742db1cd6a22d0b59c041617bfb.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: htmx - Page: examples/scroll<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/scroll.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/scroll.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Ninety orders, fifteen at a time. The page shows the first fifteen; the last row of every<br>  // batch carries hx-get for the next batch, sent when the row scrolls into view. That row<br>  // has no id, so the request names its fragment itself: &amp;padFragment=rows - the answer is<br>  // the next rows, the last of them asking for the batch after it, and hx-swap="afterend"<br>  // puts them below the row that asked.<br><br>  </span><span style="color: #0000BB">$page  </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'p'</span><span style="color: #007700">, </span><span style="color: #0000BB">1 </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$per   </span><span style="color: #007700">= </span><span style="color: #0000BB">15</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">90</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$pages </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">$total </span><span style="color: #007700">/ </span><span style="color: #0000BB">$per </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$page  </span><span style="color: #007700">= </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">$page</span><span style="color: #007700">, </span><span style="color: #0000BB">$pages </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$people </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Bram'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Chen'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Dalia'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Emeka'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Freya'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Goran'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Hana' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$states </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'shipped'</span><span style="color: #007700">, </span><span style="color: #DD0000">'open'</span><span style="color: #007700">, </span><span style="color: #DD0000">'paid'</span><span style="color: #007700">, </span><span style="color: #DD0000">'returned' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$page </span><span style="color: #007700">- </span><span style="color: #0000BB">1 </span><span style="color: #007700">) * </span><span style="color: #0000BB">$per </span><span style="color: #007700">+ </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$n </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">$total</span><span style="color: #007700">, </span><span style="color: #0000BB">$page </span><span style="color: #007700">* </span><span style="color: #0000BB">$per </span><span style="color: #007700">); </span><span style="color: #0000BB">$n</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$orders </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'number'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1000 </span><span style="color: #007700">+ </span><span style="color: #0000BB">$n</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$people </span><span style="color: #007700">[ ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">* </span><span style="color: #0000BB">3 </span><span style="color: #007700">) % </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$people </span><span style="color: #007700">) ],<br>                   </span><span style="color: #DD0000">'amount'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20 </span><span style="color: #007700">+ ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">* </span><span style="color: #0000BB">37 </span><span style="color: #007700">) % </span><span style="color: #0000BB">480</span><span style="color: #007700">,<br>                   </span><span style="color: #DD0000">'status'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$states </span><span style="color: #007700">[ </span><span style="color: #0000BB">$n </span><span style="color: #007700">% </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$states </span><span style="color: #007700">) ],<br>                   </span><span style="color: #DD0000">'next'     </span><span style="color: #007700">=&gt; ( </span><span style="color: #0000BB">$n </span><span style="color: #007700">== </span><span style="color: #0000BB">$page </span><span style="color: #007700">* </span><span style="color: #0000BB">$per </span><span style="color: #007700">and </span><span style="color: #0000BB">$page </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">$pages </span><span style="color: #007700">) ? </span><span style="color: #0000BB">$page </span><span style="color: #007700">+ </span><span style="color: #0000BB">1 </span><span style="color: #007700">: </span><span style="color: #0000BB">0 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;table class="table"&gt;<br>  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Order&lt;/th&gt;&lt;th&gt;Customer&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th class="num"&gt;Amount&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>  &lt;tbody&gt;<br>  <b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b><br>    <b>{<font color="blue">orders</font><font color="red"></font>}</b><br>    &lt;tr<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>next</font>}</b> hx-get="?examples/scroll&amp;p=<b>{<font color="green"><font color="red">$</font>next</font>}</b>&amp;padFragment=rows" hx-trigger="revealed" hx-swap="afterend"<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<br>      &lt;td&gt;#<b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>customer</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;&lt;span class="badge status-<b>{<font color="green"><font color="red">$</font>status</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>status</font>}</b>&lt;/span&gt;&lt;/td&gt;<br>      &lt;td class="num"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>    <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>  &lt;/tbody&gt;<br>&lt;/table&gt;<br>&lt;p class="muted small"&gt;Scroll down - every fifteenth row asks for the next fifteen. Ninety in all.&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxefd245aa1fa4082d8db30a121322c274"></div>
+                      <script>
+                      padAjaxefd245aa1fa4082d8db30a121322c274 = new XMLHttpRequest();
+                      padAjaxefd245aa1fa4082d8db30a121322c274.onreadystatechange=function() {
+                      if (padAjaxefd245aa1fa4082d8db30a121322c274.readyState === 4) {
+                      if (padAjaxefd245aa1fa4082d8db30a121322c274.status === 200) {
+                      document.getElementById("padAjaxefd245aa1fa4082d8db30a121322c274").innerHTML=padAjaxefd245aa1fa4082d8db30a121322c274.responseText;
+                      } else {
+                      document.getElementById("padAjaxefd245aa1fa4082d8db30a121322c274").innerHTML=padAjaxefd245aa1fa4082d8db30a121322c274.statusText;
+                      }
+                      }
+                      }
+                      padAjaxefd245aa1fa4082d8db30a121322c274.open("GET","http://localhost/pad/htmx/?examples/scroll&padInclude",true);
+                      padAjaxefd245aa1fa4082d8db30a121322c274.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: htmx - Page: examples/search<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/search.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/search.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The products whose name, category or text holds the query. The same PHP serves the page<br>  // and every answer to htmx: the input's hx-target="#results" sends HX-Target: results,<br>  // and PAD answers the {fragment 'results'} of search.pad alone. The query stands in the<br>  // address (hx-push-url), so a reload - or a link - shows the same results whole.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxText </span><span style="color: #007700">( </span><span style="color: #DD0000">'q' </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$found </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">htmxData </span><span style="color: #007700">( </span><span style="color: #DD0000">'products' </span><span style="color: #007700">), fn ( </span><span style="color: #0000BB">$product </span><span style="color: #007700">) =&gt;<br>             </span><span style="color: #0000BB">$q </span><span style="color: #007700">=== </span><span style="color: #DD0000">'' </span><span style="color: #007700">or </span><span style="color: #0000BB">stripos </span><span style="color: #007700">( </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'category'</span><span style="color: #007700">] . </span><span style="color: #DD0000">' ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$product </span><span style="color: #007700">[</span><span style="color: #DD0000">'blurb'</span><span style="color: #007700">], </span><span style="color: #0000BB">$q </span><span style="color: #007700">) !== </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$found </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;div class="toolbar"&gt;<br>  &lt;div class="search"&gt;<br>    &lt;input class="input" type="search" name="q" value="<b>{<font color="green"><font color="red">$</font>q</font>}</b>" placeholder="Search - try lamp, audio or usb" autocomplete="off"<br>           aria-label="Search the products" hx-get="?examples/search" hx-trigger="input changed delay:250ms, search"<br>           hx-target="#results" hx-push-url="true" hx-indicator="#searching"&gt;<br>  &lt;/div&gt;<br>  &lt;span id="searching" class="htmx-indicator spinner" aria-hidden="true"&gt;&lt;/span&gt;<br>&lt;/div&gt;<br><br>&lt;div id="results"&gt;<br><b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>results<font color="black">'</font></font>}</b><br>  &lt;p class="muted small"&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b> <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 1</font>}</b>product<b>{<font color="blue">else</font><font color="red"></font>}</b>products<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>q</font>}</b> for &lt;mark&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/mark&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;<br>  &lt;table class="table"&gt;<br>    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th class="num"&gt;Price&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;<br>    &lt;tbody&gt;<br>      <b>{<font color="blue">found</font><font color="red"></font>}</b><br>      &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>emoji</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;&lt;span class="badge"&gt;<b>{<font color="green"><font color="red">$</font>category</font>}</b>&lt;/span&gt;&lt;/td&gt;&lt;td class="num"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>      <b>{/<font color="blue">found</font><font color="red"></font>}</b><br>    &lt;/tbody&gt;<br>  &lt;/table&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>count eq 0</font>}</b>&lt;div class="empty-state"&gt;&lt;span class="big"&gt;🔎&lt;/span&gt;Nothing in the catalogue matches.&lt;/div&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxee9088bf9a5dc78924535538aa455a34"></div>
+                      <script>
+                      padAjaxee9088bf9a5dc78924535538aa455a34 = new XMLHttpRequest();
+                      padAjaxee9088bf9a5dc78924535538aa455a34.onreadystatechange=function() {
+                      if (padAjaxee9088bf9a5dc78924535538aa455a34.readyState === 4) {
+                      if (padAjaxee9088bf9a5dc78924535538aa455a34.status === 200) {
+                      document.getElementById("padAjaxee9088bf9a5dc78924535538aa455a34").innerHTML=padAjaxee9088bf9a5dc78924535538aa455a34.responseText;
+                      } else {
+                      document.getElementById("padAjaxee9088bf9a5dc78924535538aa455a34").innerHTML=padAjaxee9088bf9a5dc78924535538aa455a34.statusText;
+                      }
+                      }
+                      }
+                      padAjaxee9088bf9a5dc78924535538aa455a34.open("GET","http://localhost/pad/htmx/?examples/search&padInclude",true);
+                      padAjaxee9088bf9a5dc78924535538aa455a34.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/locale_1<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/locale_1.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/locale_1.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page picks Dutch; an application listing $padLocales lets the visitor's<br>  // Accept-Language or ?lang= choose instead.<br><br>  </span><span style="color: #0000BB">$padLocale </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">3</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$user  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">1234.5</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$when  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-10-05'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h4&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.title<font color="black">'</font></font>}</b>&lt;/h4&gt;<br>&lt;p&gt;<b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.items<font color="black">'</font><font color="black">,</font> count=<font color="red">$</font>count</font>}</b> - <b>{<font color="blue">trans </font><font color="red"><font color="black">'</font>cart.owner<font color="black">'</font><font color="black">,</font> name=<font color="red">$</font>user</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b> - <b>{<font color="green">$when</font> <font color="black">|</font> <font color="blue">localDate('d MMMM y')</font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb846913dff488ddc294b52db7fe0d477"></div>
+                      <script>
+                      padAjaxb846913dff488ddc294b52db7fe0d477 = new XMLHttpRequest();
+                      padAjaxb846913dff488ddc294b52db7fe0d477.onreadystatechange=function() {
+                      if (padAjaxb846913dff488ddc294b52db7fe0d477.readyState === 4) {
+                      if (padAjaxb846913dff488ddc294b52db7fe0d477.status === 200) {
+                      document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.responseText;
+                      } else {
+                      document.getElementById("padAjaxb846913dff488ddc294b52db7fe0d477").innerHTML=padAjaxb846913dff488ddc294b52db7fe0d477.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb846913dff488ddc294b52db7fe0d477.open("GET","http://localhost/pad/manual/?fragments/locale_1&padInclude",true);
+                      padAjaxb846913dff488ddc294b52db7fe0d477.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_currency_locale_intl_does_not_know<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_currency_locale_intl_does_not_know.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>xx_YY<font color="black">'</font>)</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8117efe47ba1fc45799a98e785139a58"></div>
+                      <script>
+                      padAjax8117efe47ba1fc45799a98e785139a58 = new XMLHttpRequest();
+                      padAjax8117efe47ba1fc45799a98e785139a58.onreadystatechange=function() {
+                      if (padAjax8117efe47ba1fc45799a98e785139a58.readyState === 4) {
+                      if (padAjax8117efe47ba1fc45799a98e785139a58.status === 200) {
+                      document.getElementById("padAjax8117efe47ba1fc45799a98e785139a58").innerHTML=padAjax8117efe47ba1fc45799a98e785139a58.responseText;
+                      } else {
+                      document.getElementById("padAjax8117efe47ba1fc45799a98e785139a58").innerHTML=padAjax8117efe47ba1fc45799a98e785139a58.statusText;
+                      }
+                      }
+                      }
+                      padAjax8117efe47ba1fc45799a98e785139a58.open("GET","http://localhost/pad/regression/errors/?syntax/a_currency_locale_intl_does_not_know&padInclude",true);
+                      padAjax8117efe47ba1fc45799a98e785139a58.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/currency_of_an_empty_value_is_empty<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/currency_of_an_empty_value_is_empty.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b>[<b>{<font color="blue"><font color="purple">"price"</font><font color="black"><b>:</b></font>null</font><font color="red"></font>}</b>,{"price":12.5}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">rows</font><font color="red"></font>}</b>[<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR', 'en')</font>}</b>]<b>{/<font color="blue">rows</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> currency</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb7891f302b48675e06451060c3f55b1d"></div>
+                      <script>
+                      padAjaxb7891f302b48675e06451060c3f55b1d = new XMLHttpRequest();
+                      padAjaxb7891f302b48675e06451060c3f55b1d.onreadystatechange=function() {
+                      if (padAjaxb7891f302b48675e06451060c3f55b1d.readyState === 4) {
+                      if (padAjaxb7891f302b48675e06451060c3f55b1d.status === 200) {
+                      document.getElementById("padAjaxb7891f302b48675e06451060c3f55b1d").innerHTML=padAjaxb7891f302b48675e06451060c3f55b1d.responseText;
+                      } else {
+                      document.getElementById("padAjaxb7891f302b48675e06451060c3f55b1d").innerHTML=padAjaxb7891f302b48675e06451060c3f55b1d.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb7891f302b48675e06451060c3f55b1d.open("GET","http://localhost/pad/regression/framework/?functions/currency_of_an_empty_value_is_empty&padInclude",true);
+                      padAjaxb7891f302b48675e06451060c3f55b1d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: functions/currency_writes_an_amount_the_locale_s_way<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">functions/currency_writes_an_amount_the_locale_s_way.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> currency(<font color="black">'</font>USD<font color="black">'</font><font color="black">,</font> <font color="black">'</font>en_US<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">99 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>en<font color="black">'</font>)</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax58a4752a819af3d6d195a17ad86f5c6f"></div>
+                      <script>
+                      padAjax58a4752a819af3d6d195a17ad86f5c6f = new XMLHttpRequest();
+                      padAjax58a4752a819af3d6d195a17ad86f5c6f.onreadystatechange=function() {
+                      if (padAjax58a4752a819af3d6d195a17ad86f5c6f.readyState === 4) {
+                      if (padAjax58a4752a819af3d6d195a17ad86f5c6f.status === 200) {
+                      document.getElementById("padAjax58a4752a819af3d6d195a17ad86f5c6f").innerHTML=padAjax58a4752a819af3d6d195a17ad86f5c6f.responseText;
+                      } else {
+                      document.getElementById("padAjax58a4752a819af3d6d195a17ad86f5c6f").innerHTML=padAjax58a4752a819af3d6d195a17ad86f5c6f.statusText;
+                      }
+                      }
+                      }
+                      padAjax58a4752a819af3d6d195a17ad86f5c6f.open("GET","http://localhost/pad/regression/framework/?functions/currency_writes_an_amount_the_locale_s_way&padInclude",true);
+                      padAjax58a4752a819af3d6d195a17ad86f5c6f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: with the syntax check off, what cannot run passes the<br>  // value through or yields empty, and the walk carries on.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> currency(<font color="black">'</font>EUR<font color="black">'</font><font color="black">,</font> <font color="black">'</font>xx_YY<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-05<font color="black">'</font> <font color="black">|</font> localDate(<font color="black">'</font>long<font color="black">'</font><font color="black">,</font> <font color="black">'</font>none<font color="black">'</font><font color="black">,</font> <font color="black">'</font>zz<font color="black">'</font>)</font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax87ac697131c8b32a682a5c720a562239"></div>
+                      <script>
+                      padAjax87ac697131c8b32a682a5c720a562239 = new XMLHttpRequest();
+                      padAjax87ac697131c8b32a682a5c720a562239.onreadystatechange=function() {
+                      if (padAjax87ac697131c8b32a682a5c720a562239.readyState === 4) {
+                      if (padAjax87ac697131c8b32a682a5c720a562239.status === 200) {
+                      document.getElementById("padAjax87ac697131c8b32a682a5c720a562239").innerHTML=padAjax87ac697131c8b32a682a5c720a562239.responseText;
+                      } else {
+                      document.getElementById("padAjax87ac697131c8b32a682a5c720a562239").innerHTML=padAjax87ac697131c8b32a682a5c720a562239.statusText;
+                      }
+                      }
+                      }
+                      padAjax87ac697131c8b32a682a5c720a562239.open("GET","http://localhost/pad/regression/framework/?lenient/a_locale_intl_does_not_know_falls_back_to_the_plain_form&padInclude",true);
+                      padAjax87ac697131c8b32a682a5c720a562239.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/datatable_sums_the_totals_columns_and_aligns_the_numbers<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/datatable_sums_the_totals_columns_and_aligns_the_numbers.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">datatable </font><font color="red">totals=<font color="black">'</font>qty<font color="black">,</font> amount<font color="black">'</font><font color="black">,</font> labels=<font color="black">'</font>Item<font color="black">,</font> Qty<font color="black">,</font> Amount<font color="black">,</font> Code<font color="black">'</font><font color="black">,</font> format="amount<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)"<font color="black">,</font> caption=<font color="black">'</font>Lines &lt;b&gt;<font color="black">'</font><font color="black">,</font> striped</font>}</b><br>  item,qty,amount,zip_code<br>  Chair &lt;b&gt;,2,10.5,1234<br>  Table,1,120,98765<br>  Lamp,10,3.25,5000<br><b>{/<font color="blue">datatable</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2774664eb66c33d5cb9a77443ae5e16d"></div>
+                      <script>
+                      padAjax2774664eb66c33d5cb9a77443ae5e16d = new XMLHttpRequest();
+                      padAjax2774664eb66c33d5cb9a77443ae5e16d.onreadystatechange=function() {
+                      if (padAjax2774664eb66c33d5cb9a77443ae5e16d.readyState === 4) {
+                      if (padAjax2774664eb66c33d5cb9a77443ae5e16d.status === 200) {
+                      document.getElementById("padAjax2774664eb66c33d5cb9a77443ae5e16d").innerHTML=padAjax2774664eb66c33d5cb9a77443ae5e16d.responseText;
+                      } else {
+                      document.getElementById("padAjax2774664eb66c33d5cb9a77443ae5e16d").innerHTML=padAjax2774664eb66c33d5cb9a77443ae5e16d.statusText;
+                      }
+                      }
+                      }
+                      padAjax2774664eb66c33d5cb9a77443ae5e16d.open("GET","http://localhost/pad/regression/framework/?tags/datatable_sums_the_totals_columns_and_aligns_the_numbers&padInclude",true);
+                      padAjax2774664eb66c33d5cb9a77443ae5e16d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: showcase - Page: datatable/expenses<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">datatable/expenses.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A table from inline CSV<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>As a pair the content is the data - CSV<font color="black">,</font> JSON<font color="black">,</font> YAML or XML - here a budget with a pipe formatting the amounts and a totals row.<font color="black">'</font></font>}</b><br><b>{<font color="blue">datatable </font><font color="red">totals=<font color="black">'</font>budget<font color="black">,</font> spent<font color="black">'</font><font color="black">,</font> format="budget<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)<font color="black">,</font> spent<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)"<font color="black">,</font> caption=<font color="black">'</font>Marketing budget<font color="black">,</font> third quarter<font color="black">'</font></font>}</b><br>  channel,budget,spent<br>  Search ads,12000,11380.40<br>  Social media,8500,9120.15<br>  Newsletter,1500,960<br>  Trade fair,15000,14215.80<br>  Print,3000,2410.25<br><b>{/<font color="blue">datatable</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5139625bd380639fec78d71e7c8d0c23"></div>
+                      <script>
+                      padAjax5139625bd380639fec78d71e7c8d0c23 = new XMLHttpRequest();
+                      padAjax5139625bd380639fec78d71e7c8d0c23.onreadystatechange=function() {
+                      if (padAjax5139625bd380639fec78d71e7c8d0c23.readyState === 4) {
+                      if (padAjax5139625bd380639fec78d71e7c8d0c23.status === 200) {
+                      document.getElementById("padAjax5139625bd380639fec78d71e7c8d0c23").innerHTML=padAjax5139625bd380639fec78d71e7c8d0c23.responseText;
+                      } else {
+                      document.getElementById("padAjax5139625bd380639fec78d71e7c8d0c23").innerHTML=padAjax5139625bd380639fec78d71e7c8d0c23.statusText;
+                      }
+                      }
+                      }
+                      padAjax5139625bd380639fec78d71e7c8d0c23.open("GET","http://localhost/pad/showcase/?datatable/expenses&padInclude",true);
+                      padAjax5139625bd380639fec78d71e7c8d0c23.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: showcase - Page: pdf/invoice<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">pdf/invoice.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">pdf/invoice.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $invoice  </span><span style="color: #007700">= </span><span style="color: #DD0000">'2026-114'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$issued   </span><span style="color: #007700">= </span><span style="color: #DD0000">'8 October 2026'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$due      </span><span style="color: #007700">= </span><span style="color: #DD0000">'7 November 2026'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$customer </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Noordkaap Sailing School'</span><span style="color: #007700">, </span><span style="color: #DD0000">'street' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Havenkade 12'</span><span style="color: #007700">, </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1781 AB Den Helder' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$lines </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mooring rope, 12 mm, per 20 m'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">38.50 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fender, inflatable, large'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">27.95 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Life jacket 150 N, adult'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">64.00 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shackle, stainless, 8 mm'</span><span style="color: #007700">,          </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">24</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3.20  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'item' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Delivery to the harbour'</span><span style="color: #007700">,           </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">,  </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">45.00 </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  foreach ( </span><span style="color: #0000BB">$lines </span><span style="color: #007700">as </span><span style="color: #0000BB">$key </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$line </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$lines </span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">] [</span><span style="color: #DD0000">'amount'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$line </span><span style="color: #007700">[</span><span style="color: #DD0000">'qty'</span><span style="color: #007700">] * </span><span style="color: #0000BB">$line </span><span style="color: #007700">[</span><span style="color: #DD0000">'price'</span><span style="color: #007700">];<br>    </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$lines </span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">] [</span><span style="color: #DD0000">'amount'</span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$vat   </span><span style="color: #007700">= </span><span style="color: #0000BB">round </span><span style="color: #007700">( </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">* </span><span style="color: #0000BB">0.21</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$subtotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$vat</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>An invoice as PDF<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>An order rendered on a sheet<font color="black">,</font> the same template one click away as an A4 PDF made in plain PHP.<font color="black">'</font></font>}</b><br><b>{<font color="blue">pdf </font><font color="red">preview<font color="black">,</font> file=<font color="black">'</font>invoice-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>invoice</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Invoice <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>invoice</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>  &lt;img src="photos/logo.jpg" width="56" height="56" alt="Harbour Supplies"&gt;<br>  &lt;h1&gt;Invoice <b>{<font color="green"><font color="red">$</font>invoice</font>}</b>&lt;/h1&gt;<br>  &lt;p&gt;&lt;b&gt;Harbour Supplies&lt;/b&gt;&lt;br&gt;Kaai 3, 1781 AA Den Helder&lt;br&gt;info@harbour.example&lt;/p&gt;<br>  &lt;p&gt;To: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>customer.name</font>}</b>&lt;/b&gt;&lt;br&gt;<b>{<font color="green"><font color="red">$</font>customer.street</font>}</b>&lt;br&gt;<b>{<font color="green"><font color="red">$</font>customer.city</font>}</b>&lt;/p&gt;<br>  &lt;p&gt;Issued <b>{<font color="green"><font color="red">$</font>issued</font>}</b> - due <b>{<font color="green"><font color="red">$</font>due</font>}</b>&lt;/p&gt;<br>  &lt;table&gt;<br>    &lt;tr&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th align="right"&gt;Qty&lt;/th&gt;&lt;th align="right"&gt;Price&lt;/th&gt;&lt;th align="right"&gt;Amount&lt;/th&gt;&lt;/tr&gt;<br>    <b>{<font color="blue">lines</font><font color="red"></font>}</b><br>    &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$price</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    <b>{/<font color="blue">lines</font><font color="red"></font>}</b><br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;Subtotal&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$subtotal</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;VAT 21%&lt;/td&gt;&lt;td align="right"&gt;<b>{<font color="green">$vat</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>    &lt;tr&gt;&lt;td colspan="3" align="right"&gt;&lt;b&gt;Total&lt;/b&gt;&lt;/td&gt;&lt;td align="right"&gt;&lt;b&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">currency('EUR', 'nl_NL')</font>}</b>&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;/table&gt;<br>  &lt;p&gt;Please pay within 30 days to &lt;b&gt;NL91 ABNA 0417 1643 00&lt;/b&gt;, quoting invoice <b>{<font color="green"><font color="red">$</font>invoice</font>}</b>.&lt;/p&gt;<br><b>{/<font color="blue">pdf</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa8f724843cfee7e2db92420ff8975a49"></div>
+                      <script>
+                      padAjaxa8f724843cfee7e2db92420ff8975a49 = new XMLHttpRequest();
+                      padAjaxa8f724843cfee7e2db92420ff8975a49.onreadystatechange=function() {
+                      if (padAjaxa8f724843cfee7e2db92420ff8975a49.readyState === 4) {
+                      if (padAjaxa8f724843cfee7e2db92420ff8975a49.status === 200) {
+                      document.getElementById("padAjaxa8f724843cfee7e2db92420ff8975a49").innerHTML=padAjaxa8f724843cfee7e2db92420ff8975a49.responseText;
+                      } else {
+                      document.getElementById("padAjaxa8f724843cfee7e2db92420ff8975a49").innerHTML=padAjaxa8f724843cfee7e2db92420ff8975a49.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa8f724843cfee7e2db92420ff8975a49.open("GET","http://localhost/pad/showcase/?pdf/invoice&padInclude",true);
+                      padAjaxa8f724843cfee7e2db92420ff8975a49.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/datatable/2-csv<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/datatable/2-csv.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Rows as content<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>As a pair the content is the data - here CSV - with a currency pipe and a totals row.<font color="black">'</font></font>}</b><br><b>{<font color="blue">datatable </font><font color="red">totals=<font color="black">'</font>budget<font color="black">,</font> spent<font color="black">'</font><font color="black">,</font> format="budget<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)<font color="black">,</font> spent<font color="black">:</font>currency(<font color="black">'</font>EUR<font color="black">'</font>)"<font color="black">,</font> caption=<font color="black">'</font>Marketing budget<font color="black">'</font></font>}</b><br>  channel,budget,spent<br>  Search ads,12000,11380.40<br>  Social media,8500,9120.15<br>  Newsletter,1500,960<br><b>{/<font color="blue">datatable</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax3a842dd8d60c5f70bcc2b145e500b769"></div>
+                      <script>
+                      padAjax3a842dd8d60c5f70bcc2b145e500b769 = new XMLHttpRequest();
+                      padAjax3a842dd8d60c5f70bcc2b145e500b769.onreadystatechange=function() {
+                      if (padAjax3a842dd8d60c5f70bcc2b145e500b769.readyState === 4) {
+                      if (padAjax3a842dd8d60c5f70bcc2b145e500b769.status === 200) {
+                      document.getElementById("padAjax3a842dd8d60c5f70bcc2b145e500b769").innerHTML=padAjax3a842dd8d60c5f70bcc2b145e500b769.responseText;
+                      } else {
+                      document.getElementById("padAjax3a842dd8d60c5f70bcc2b145e500b769").innerHTML=padAjax3a842dd8d60c5f70bcc2b145e500b769.statusText;
+                      }
+                      }
+                      }
+                      padAjax3a842dd8d60c5f70bcc2b145e500b769.open("GET","http://localhost/pad/tags/?examples/datatable/2-csv&padInclude",true);
+                      padAjax3a842dd8d60c5f70bcc2b145e500b769.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

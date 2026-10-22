@@ -1,518 +1,555 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - Reference - Tags - excerpt
+      Reference - Tags - excerpt · PAD reference
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Reference - Tags - excerpt
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <hr>
-                  App: regression/errors - Page: syntax/an_excerpt_of_no_words_is_reported<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2"></font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">syntax/an_excerpt_of_no_words_is_reported.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top"></td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="black">'</font>a b c<font color="black">'</font><font color="black">,</font> words=0</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxf4a1e814a967986eb6e6cabc2f454a32"></div>
-                        <script>
-                        padAjaxf4a1e814a967986eb6e6cabc2f454a32 = new XMLHttpRequest();
-                        padAjaxf4a1e814a967986eb6e6cabc2f454a32.onreadystatechange=function() {
-                        if (padAjaxf4a1e814a967986eb6e6cabc2f454a32.readyState === 4) {
-                        if (padAjaxf4a1e814a967986eb6e6cabc2f454a32.status === 200) {
-                        document.getElementById("padAjaxf4a1e814a967986eb6e6cabc2f454a32").innerHTML=padAjaxf4a1e814a967986eb6e6cabc2f454a32.responseText;
-                        } else {
-                        document.getElementById("padAjaxf4a1e814a967986eb6e6cabc2f454a32").innerHTML=padAjaxf4a1e814a967986eb6e6cabc2f454a32.statusText;
-                        }
-                        }
-                        }
-                        padAjaxf4a1e814a967986eb6e6cabc2f454a32.open("GET","http://localhost/pad/regression/errors/?syntax/an_excerpt_of_no_words_is_reported&padInclude",true);
-                        padAjaxf4a1e814a967986eb6e6cabc2f454a32.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/excerpt_cuts_whole_words_around_the_first_match<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/excerpt_cuts_whole_words_around_the_first_match.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/excerpt_cuts_whole_words_around_the_first_match.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'One two three four five six seven eight nine ten. Templates drive the flow and the template is first. Eleven twelve thirteen fourteen fifteen.'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>text<font color="black">,</font> words=8<font color="black">,</font> highlight=<font color="black">'</font>TEMPL flow<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax092068be947d7ab15e0cf5340d1ec1e5"></div>
-                        <script>
-                        padAjax092068be947d7ab15e0cf5340d1ec1e5 = new XMLHttpRequest();
-                        padAjax092068be947d7ab15e0cf5340d1ec1e5.onreadystatechange=function() {
-                        if (padAjax092068be947d7ab15e0cf5340d1ec1e5.readyState === 4) {
-                        if (padAjax092068be947d7ab15e0cf5340d1ec1e5.status === 200) {
-                        document.getElementById("padAjax092068be947d7ab15e0cf5340d1ec1e5").innerHTML=padAjax092068be947d7ab15e0cf5340d1ec1e5.responseText;
-                        } else {
-                        document.getElementById("padAjax092068be947d7ab15e0cf5340d1ec1e5").innerHTML=padAjax092068be947d7ab15e0cf5340d1ec1e5.statusText;
-                        }
-                        }
-                        }
-                        padAjax092068be947d7ab15e0cf5340d1ec1e5.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_cuts_whole_words_around_the_first_match&padInclude",true);
-                        padAjax092068be947d7ab15e0cf5340d1ec1e5.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/excerpt_escapes_the_text_before_it_marks_a_match<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/excerpt_escapes_the_text_before_it_marks_a_match.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/excerpt_escapes_the_text_before_it_marks_a_match.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p&gt;Use &lt;b&gt;&amp;amp;&lt;/b&gt; and "quotes" - the &lt;mark&gt; tag marks a match.&lt;/p&gt;'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>text<font color="black">,</font> words=5<font color="black">,</font> highlight=<font color="black">'</font>mark<font color="black">'</font></font>}</b><br><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>text<font color="black">,</font> words=6<font color="black">,</font> highlight=<font color="black">'</font>quotes<font color="black">'</font><font color="black">,</font> html<font color="black">,</font> ellipsis=<font color="black">'</font>[more]<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxfe5ed79528905b332555a5a05bafdac0"></div>
-                        <script>
-                        padAjaxfe5ed79528905b332555a5a05bafdac0 = new XMLHttpRequest();
-                        padAjaxfe5ed79528905b332555a5a05bafdac0.onreadystatechange=function() {
-                        if (padAjaxfe5ed79528905b332555a5a05bafdac0.readyState === 4) {
-                        if (padAjaxfe5ed79528905b332555a5a05bafdac0.status === 200) {
-                        document.getElementById("padAjaxfe5ed79528905b332555a5a05bafdac0").innerHTML=padAjaxfe5ed79528905b332555a5a05bafdac0.responseText;
-                        } else {
-                        document.getElementById("padAjaxfe5ed79528905b332555a5a05bafdac0").innerHTML=padAjaxfe5ed79528905b332555a5a05bafdac0.statusText;
-                        }
-                        }
-                        }
-                        padAjaxfe5ed79528905b332555a5a05bafdac0.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_escapes_the_text_before_it_marks_a_match&padInclude",true);
-                        padAjaxfe5ed79528905b332555a5a05bafdac0.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/excerpt_html_parts_words_at_block_tags<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/excerpt_html_parts_words_at_block_tags.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/excerpt_html_parts_words_at_block_tags.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A block tag and a &lt;br&gt; part the words on their sides in an {excerpt ..., html}, where<br>  // strip_tags dropped them whole: step.&lt;/p&gt;&lt;p&gt;PAD was the one word step.PAD, and a<br>  // highlight= of beta found no word starting with it in alphabeta.<br><br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;h2&gt;Intro&lt;/h2&gt;&lt;p&gt;First paragraph.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;alpha&lt;/li&gt;&lt;li&gt;beta&lt;/li&gt;&lt;/ul&gt;line&lt;br&gt;break &lt;b&gt;wo&lt;/b&gt;rd'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>x<font color="black">,</font> words=34<font color="black">,</font> html<font color="black">,</font> highlight=<font color="black">'</font>beta<font color="black">'</font></font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax9eee3b61be74b4d70c113e336378529f"></div>
-                        <script>
-                        padAjax9eee3b61be74b4d70c113e336378529f = new XMLHttpRequest();
-                        padAjax9eee3b61be74b4d70c113e336378529f.onreadystatechange=function() {
-                        if (padAjax9eee3b61be74b4d70c113e336378529f.readyState === 4) {
-                        if (padAjax9eee3b61be74b4d70c113e336378529f.status === 200) {
-                        document.getElementById("padAjax9eee3b61be74b4d70c113e336378529f").innerHTML=padAjax9eee3b61be74b4d70c113e336378529f.responseText;
-                        } else {
-                        document.getElementById("padAjax9eee3b61be74b4d70c113e336378529f").innerHTML=padAjax9eee3b61be74b4d70c113e336378529f.statusText;
-                        }
-                        }
-                        }
-                        padAjax9eee3b61be74b4d70c113e336378529f.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_html_parts_words_at_block_tags&padInclude",true);
-                        padAjax9eee3b61be74b4d70c113e336378529f.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/excerpt_html_strips_scripts_in_linear_time<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/excerpt_html_strips_scripts_in_linear_time.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/excerpt_html_strips_scripts_in_linear_time.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The scripts and styles of an {excerpt ..., html} text are left out in one pass: an<br>  // unclosed &lt;script&gt; before a megabyte of text emptied the excerpt (or ended the request),<br>  // and openers without a closer took seconds - every one scanned on to the end.<br><br>  </span><span style="color: #007700">include_once </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'tags/_lib/excerpt.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$big   </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p&gt;Hello&lt;/p&gt;&lt;script&gt;' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">1000000 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$many  </span><span style="color: #007700">= </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">padExcerptCode </span><span style="color: #007700">( </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;style&gt;x '</span><span style="color: #007700">, </span><span style="color: #0000BB">60000 </span><span style="color: #007700">) ) );<br>  </span><span style="color: #0000BB">$time  </span><span style="color: #007700">= ( </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) - </span><span style="color: #0000BB">$start </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">1e9 </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'in time' </span><span style="color: #007700">: </span><span style="color: #DD0000">'too slow'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$kept  </span><span style="color: #007700">= </span><span style="color: #0000BB">padExcerptCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'a&lt;script&gt;x&lt;/script&gt;b&lt;STYLE&gt;y&lt;/style &gt;c&lt;script src=1&gt;d' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>big<font color="black">,</font> words=1<font color="black">,</font> html</font>}</b> <b>{<font color="green"><font color="red">$</font>many</font>}</b> <b>{<font color="green"><font color="red">$</font>time</font>}</b> <b>{<font color="green"><font color="red">$</font>kept</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax95abf8506d5cfba2b9fd857d7794d9a3"></div>
-                        <script>
-                        padAjax95abf8506d5cfba2b9fd857d7794d9a3 = new XMLHttpRequest();
-                        padAjax95abf8506d5cfba2b9fd857d7794d9a3.onreadystatechange=function() {
-                        if (padAjax95abf8506d5cfba2b9fd857d7794d9a3.readyState === 4) {
-                        if (padAjax95abf8506d5cfba2b9fd857d7794d9a3.status === 200) {
-                        document.getElementById("padAjax95abf8506d5cfba2b9fd857d7794d9a3").innerHTML=padAjax95abf8506d5cfba2b9fd857d7794d9a3.responseText;
-                        } else {
-                        document.getElementById("padAjax95abf8506d5cfba2b9fd857d7794d9a3").innerHTML=padAjax95abf8506d5cfba2b9fd857d7794d9a3.statusText;
-                        }
-                        }
-                        }
-                        padAjax95abf8506d5cfba2b9fd857d7794d9a3.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_html_strips_scripts_in_linear_time&padInclude",true);
-                        padAjax95abf8506d5cfba2b9fd857d7794d9a3.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/excerpt_of_a_broken_byte_is_made<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/excerpt_of_a_broken_byte_is_made.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/excerpt_of_a_broken_byte_is_made.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A broken UTF-8 byte in the text or in the search words - a visitor's ?q=%FF - is a<br>  // character that stands in for it, where preg_split answered FALSE and the request ended.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">"wor\xFF"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">"abc\xFFdef ghi jkl mno"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red">"hello world foo bar"<font color="black">,</font> words=2<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b> <b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>x<font color="black">,</font> words=3</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjaxc1d272fbedeaff401bc2226ad5882516"></div>
-                        <script>
-                        padAjaxc1d272fbedeaff401bc2226ad5882516 = new XMLHttpRequest();
-                        padAjaxc1d272fbedeaff401bc2226ad5882516.onreadystatechange=function() {
-                        if (padAjaxc1d272fbedeaff401bc2226ad5882516.readyState === 4) {
-                        if (padAjaxc1d272fbedeaff401bc2226ad5882516.status === 200) {
-                        document.getElementById("padAjaxc1d272fbedeaff401bc2226ad5882516").innerHTML=padAjaxc1d272fbedeaff401bc2226ad5882516.responseText;
-                        } else {
-                        document.getElementById("padAjaxc1d272fbedeaff401bc2226ad5882516").innerHTML=padAjaxc1d272fbedeaff401bc2226ad5882516.statusText;
-                        }
-                        }
-                        }
-                        padAjaxc1d272fbedeaff401bc2226ad5882516.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_of_a_broken_byte_is_made&padInclude",true);
-                        padAjaxc1d272fbedeaff401bc2226ad5882516.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: regression/framework - Page: tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A search form that posts: four thousand words, and one word of seventy thousand<br>  // letters - each made a pattern PCRE refuses to compile.<br><br>  </span><span style="color: #0000BB">$many </span><span style="color: #007700">= [];<br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">4000</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$many </span><span style="color: #007700">[] = </span><span style="color: #DD0000">'w' </span><span style="color: #007700">. </span><span style="color: #0000BB">dechex </span><span style="color: #007700">( </span><span style="color: #0000BB">$i </span><span style="color: #007700">* </span><span style="color: #0000BB">7919 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$many </span><span style="color: #007700">= </span><span style="color: #DD0000">'excerpting ' </span><span style="color: #007700">. </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">$many </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$huge </span><span style="color: #007700">= </span><span style="color: #DD0000">'excerpting ' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'templates'</span><span style="color: #007700">, </span><span style="color: #0000BB">7800 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red">"Templates drive the excerpting of long texts"<font color="black">,</font> words=3<font color="black">,</font> highlight=<font color="red">$</font>many</font>}</b><br><b>{<font color="blue">excerpt </font><font color="red">"Templates drive the excerpting of long texts"<font color="black">,</font> words=3<font color="black">,</font> highlight=<font color="red">$</font>huge</font>}</b></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax664d3bdc48696af4721042e19c7d2150"></div>
-                        <script>
-                        padAjax664d3bdc48696af4721042e19c7d2150 = new XMLHttpRequest();
-                        padAjax664d3bdc48696af4721042e19c7d2150.onreadystatechange=function() {
-                        if (padAjax664d3bdc48696af4721042e19c7d2150.readyState === 4) {
-                        if (padAjax664d3bdc48696af4721042e19c7d2150.status === 200) {
-                        document.getElementById("padAjax664d3bdc48696af4721042e19c7d2150").innerHTML=padAjax664d3bdc48696af4721042e19c7d2150.responseText;
-                        } else {
-                        document.getElementById("padAjax664d3bdc48696af4721042e19c7d2150").innerHTML=padAjax664d3bdc48696af4721042e19c7d2150.statusText;
-                        }
-                        }
-                        }
-                        padAjax664d3bdc48696af4721042e19c7d2150.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks&padInclude",true);
-                        padAjax664d3bdc48696af4721042e19c7d2150.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: showcase - Page: excerpt/search<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">excerpt/search.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">excerpt/search.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $q </span><span style="color: #007700">= </span><span style="color: #DD0000">'cache'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$results </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fragment cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Some parts of a page cost more to render than others: a list of the best selling products, a menu built from the database, a report over a year of orders. The fragment cache keeps the rendered text of such a section for a number of seconds and serves it again on the next request without running the tags inside it. Name the section, give it a ttl, and forget it when what it shows has changed.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Remote data'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/curl'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A page that shows exchange rates or the weather fetches them from another server. Every request would wait for that server, so the answer is kept for a while: the ttl option says how many seconds. When the source fails afterwards, the last good copy in the cache is served and the failure is logged, so a slow or broken service never takes the page down with it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Page cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/config'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'With the page cache switched on in the configuration, a whole page is kept after its first rendering, with an ETag, and a browser that asks again with that tag gets a 304 Not Modified. Pages with a guard, a flash message or a form are never cached. The cache can live in files, APCu, Redis, Memcached or the database.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Search results<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each result cut to 24 words around the first match of the query<font color="black">,</font> every match marked.<font color="black">'</font></font>}</b><br>&lt;div&gt;<br>  &lt;p&gt;Results for &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/strong&gt;&lt;/p&gt;<br>  <b>{<font color="blue">results</font><font color="red"></font>}</b><br>    &lt;article&gt;<br>      &lt;h3&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>url</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/a&gt;&lt;/h3&gt;<br>      &lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=24<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b>&lt;/p&gt;<br>    &lt;/article&gt;<br>  <b>{/<font color="blue">results</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax29b4517a66717481757edc829d47c8a1"></div>
-                        <script>
-                        padAjax29b4517a66717481757edc829d47c8a1 = new XMLHttpRequest();
-                        padAjax29b4517a66717481757edc829d47c8a1.onreadystatechange=function() {
-                        if (padAjax29b4517a66717481757edc829d47c8a1.readyState === 4) {
-                        if (padAjax29b4517a66717481757edc829d47c8a1.status === 200) {
-                        document.getElementById("padAjax29b4517a66717481757edc829d47c8a1").innerHTML=padAjax29b4517a66717481757edc829d47c8a1.responseText;
-                        } else {
-                        document.getElementById("padAjax29b4517a66717481757edc829d47c8a1").innerHTML=padAjax29b4517a66717481757edc829d47c8a1.statusText;
-                        }
-                        }
-                        }
-                        padAjax29b4517a66717481757edc829d47c8a1.open("GET","http://localhost/pad/showcase/?excerpt/search&padInclude",true);
-                        padAjax29b4517a66717481757edc829d47c8a1.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: showcase - Page: excerpt/teaser<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">excerpt/teaser.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">excerpt/teaser.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $posts </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Templates that drive'</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-09-14'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;p&gt;Most frameworks start in a controller. The controller fetches the data, decides what to show and hands it to a template, which is the last and least important step.&lt;/p&gt;&lt;p&gt;PAD turns that around: the template is where a request starts. It asks for the data it needs, the way a reader asks for a page, and the PHP beside it answers.&lt;/p&gt;' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charts without JavaScript'</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-01'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;p&gt;A chart is a picture, and a picture can be drawn on the server. The chart tag writes inline SVG: bars, lines, pies and forty other kinds, with a title and a description for a screen reader &amp;amp; colours that follow the page into dark mode.&lt;/p&gt;' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Teasers from HTML<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The first 25 words of each post body - its tags dropped with html<font color="black">,</font> an ellipsis where it goes on.<font color="black">'</font></font>}</b><br>&lt;div&gt;<br>  <b>{<font color="blue">posts</font><font color="red"></font>}</b><br>    &lt;article&gt;<br>      &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>      &lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b>&lt;/small&gt; <b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=25<font color="black">,</font> html</font>}</b>&lt;/p&gt;<br>    &lt;/article&gt;<br>  <b>{/<font color="blue">posts</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax29a4500d32b173aecf3261ca98d26dea"></div>
-                        <script>
-                        padAjax29a4500d32b173aecf3261ca98d26dea = new XMLHttpRequest();
-                        padAjax29a4500d32b173aecf3261ca98d26dea.onreadystatechange=function() {
-                        if (padAjax29a4500d32b173aecf3261ca98d26dea.readyState === 4) {
-                        if (padAjax29a4500d32b173aecf3261ca98d26dea.status === 200) {
-                        document.getElementById("padAjax29a4500d32b173aecf3261ca98d26dea").innerHTML=padAjax29a4500d32b173aecf3261ca98d26dea.responseText;
-                        } else {
-                        document.getElementById("padAjax29a4500d32b173aecf3261ca98d26dea").innerHTML=padAjax29a4500d32b173aecf3261ca98d26dea.statusText;
-                        }
-                        }
-                        }
-                        padAjax29a4500d32b173aecf3261ca98d26dea.open("GET","http://localhost/pad/showcase/?excerpt/teaser&padInclude",true);
-                        padAjax29a4500d32b173aecf3261ca98d26dea.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/excerpt/1-search<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/excerpt/1-search.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/excerpt/1-search.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $q </span><span style="color: #007700">= </span><span style="color: #DD0000">'cache ttl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #DD0000">'Some parts of a page cost more to render than others: a list of the best selling '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'products, a menu built from the database, a report over a year of orders. The '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragment cache keeps the rendered text of such a section for a number of seconds and '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'serves it again on the next request without running the tags inside it. Name the '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'section, give it a ttl, and forget it when what it shows has changed.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A search result<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Twenty words around the first match of the query<font color="black">,</font> every word that starts with a search word marked.<font color="black">'</font></font>}</b><br>&lt;p&gt;Results for &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/strong&gt;:&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=20<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b>&lt;/p&gt;<br>&lt;p&gt;The first twenty words, no query: <b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=20</font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax30079cb73c09f43accceb65f615d0215"></div>
-                        <script>
-                        padAjax30079cb73c09f43accceb65f615d0215 = new XMLHttpRequest();
-                        padAjax30079cb73c09f43accceb65f615d0215.onreadystatechange=function() {
-                        if (padAjax30079cb73c09f43accceb65f615d0215.readyState === 4) {
-                        if (padAjax30079cb73c09f43accceb65f615d0215.status === 200) {
-                        document.getElementById("padAjax30079cb73c09f43accceb65f615d0215").innerHTML=padAjax30079cb73c09f43accceb65f615d0215.responseText;
-                        } else {
-                        document.getElementById("padAjax30079cb73c09f43accceb65f615d0215").innerHTML=padAjax30079cb73c09f43accceb65f615d0215.statusText;
-                        }
-                        }
-                        }
-                        padAjax30079cb73c09f43accceb65f615d0215.open("GET","http://localhost/pad/tags/?examples/excerpt/1-search&padInclude",true);
-                        padAjax30079cb73c09f43accceb65f615d0215.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                  <hr>
-                  App: tags - Page: examples/excerpt/2-html<br>
-                  <table border="1" cellpadding="10" cellspacing="0">
-                    <tr>
-                      <th bgcolor="#DDDDDD">
-                        PHP<br>
-                        <font size="-2">examples/excerpt/2-html.php</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        HTML<br>
-                        <font size="-2">examples/excerpt/2-html.pad</font>
-                      </th>
-                      <th bgcolor="#DDDDDD">
-                        Result
-                      </th>
-                    </tr>
-                    <tr>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= </span><span style="color: #DD0000">"&lt;h2&gt;Charts without JavaScript&lt;/h2&gt;\n"<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">"&lt;p&gt;A chart is a picture, and a picture can be &lt;em&gt;drawn on the server&lt;/em&gt;. The chart tag "<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">"writes inline SVG: bars, lines, pies &amp;amp; forty other kinds.&lt;/p&gt;\n"<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">"&lt;script&gt;track ( 'teaser' );&lt;/script&gt;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A teaser from HTML<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>html drops the tags and reads the entities before counting; ellipsis= sets the text for the rest.<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>post<font color="black">,</font> words=28<font color="black">,</font> html<font color="black">,</font> ellipsis=<font color="black">'</font>[more]<font color="black">'</font></font>}</b>&lt;/p&gt;</code></pre>
-                      </td>
-                      <td style="vertical-align:top">
-                        <div id="padAjax33425ad9a80cfee909cbb36039127059"></div>
-                        <script>
-                        padAjax33425ad9a80cfee909cbb36039127059 = new XMLHttpRequest();
-                        padAjax33425ad9a80cfee909cbb36039127059.onreadystatechange=function() {
-                        if (padAjax33425ad9a80cfee909cbb36039127059.readyState === 4) {
-                        if (padAjax33425ad9a80cfee909cbb36039127059.status === 200) {
-                        document.getElementById("padAjax33425ad9a80cfee909cbb36039127059").innerHTML=padAjax33425ad9a80cfee909cbb36039127059.responseText;
-                        } else {
-                        document.getElementById("padAjax33425ad9a80cfee909cbb36039127059").innerHTML=padAjax33425ad9a80cfee909cbb36039127059.statusText;
-                        }
-                        }
-                        }
-                        padAjax33425ad9a80cfee909cbb36039127059.open("GET","http://localhost/pad/tags/?examples/excerpt/2-html&padInclude",true);
-                        padAjax33425ad9a80cfee909cbb36039127059.send();
-                        </script>
-                      </td>
-                    </tr>
-                  </table><br>
-                </center>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>reference</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Tags - excerpt
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: regression/errors - Page: syntax/an_excerpt_of_no_words_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/an_excerpt_of_no_words_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="black">'</font>a b c<font color="black">'</font><font color="black">,</font> words=0</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf4a1e814a967986eb6e6cabc2f454a32"></div>
+                      <script>
+                      padAjaxf4a1e814a967986eb6e6cabc2f454a32 = new XMLHttpRequest();
+                      padAjaxf4a1e814a967986eb6e6cabc2f454a32.onreadystatechange=function() {
+                      if (padAjaxf4a1e814a967986eb6e6cabc2f454a32.readyState === 4) {
+                      if (padAjaxf4a1e814a967986eb6e6cabc2f454a32.status === 200) {
+                      document.getElementById("padAjaxf4a1e814a967986eb6e6cabc2f454a32").innerHTML=padAjaxf4a1e814a967986eb6e6cabc2f454a32.responseText;
+                      } else {
+                      document.getElementById("padAjaxf4a1e814a967986eb6e6cabc2f454a32").innerHTML=padAjaxf4a1e814a967986eb6e6cabc2f454a32.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf4a1e814a967986eb6e6cabc2f454a32.open("GET","http://localhost/pad/regression/errors/?syntax/an_excerpt_of_no_words_is_reported&padInclude",true);
+                      padAjaxf4a1e814a967986eb6e6cabc2f454a32.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/excerpt_cuts_whole_words_around_the_first_match<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/excerpt_cuts_whole_words_around_the_first_match.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/excerpt_cuts_whole_words_around_the_first_match.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'One two three four five six seven eight nine ten. Templates drive the flow and the template is first. Eleven twelve thirteen fourteen fifteen.'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>text<font color="black">,</font> words=8<font color="black">,</font> highlight=<font color="black">'</font>TEMPL flow<font color="black">'</font></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax092068be947d7ab15e0cf5340d1ec1e5"></div>
+                      <script>
+                      padAjax092068be947d7ab15e0cf5340d1ec1e5 = new XMLHttpRequest();
+                      padAjax092068be947d7ab15e0cf5340d1ec1e5.onreadystatechange=function() {
+                      if (padAjax092068be947d7ab15e0cf5340d1ec1e5.readyState === 4) {
+                      if (padAjax092068be947d7ab15e0cf5340d1ec1e5.status === 200) {
+                      document.getElementById("padAjax092068be947d7ab15e0cf5340d1ec1e5").innerHTML=padAjax092068be947d7ab15e0cf5340d1ec1e5.responseText;
+                      } else {
+                      document.getElementById("padAjax092068be947d7ab15e0cf5340d1ec1e5").innerHTML=padAjax092068be947d7ab15e0cf5340d1ec1e5.statusText;
+                      }
+                      }
+                      }
+                      padAjax092068be947d7ab15e0cf5340d1ec1e5.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_cuts_whole_words_around_the_first_match&padInclude",true);
+                      padAjax092068be947d7ab15e0cf5340d1ec1e5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/excerpt_escapes_the_text_before_it_marks_a_match<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/excerpt_escapes_the_text_before_it_marks_a_match.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/excerpt_escapes_the_text_before_it_marks_a_match.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p&gt;Use &lt;b&gt;&amp;amp;&lt;/b&gt; and "quotes" - the &lt;mark&gt; tag marks a match.&lt;/p&gt;'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>text<font color="black">,</font> words=5<font color="black">,</font> highlight=<font color="black">'</font>mark<font color="black">'</font></font>}</b><br><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>text<font color="black">,</font> words=6<font color="black">,</font> highlight=<font color="black">'</font>quotes<font color="black">'</font><font color="black">,</font> html<font color="black">,</font> ellipsis=<font color="black">'</font>[more]<font color="black">'</font></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxfe5ed79528905b332555a5a05bafdac0"></div>
+                      <script>
+                      padAjaxfe5ed79528905b332555a5a05bafdac0 = new XMLHttpRequest();
+                      padAjaxfe5ed79528905b332555a5a05bafdac0.onreadystatechange=function() {
+                      if (padAjaxfe5ed79528905b332555a5a05bafdac0.readyState === 4) {
+                      if (padAjaxfe5ed79528905b332555a5a05bafdac0.status === 200) {
+                      document.getElementById("padAjaxfe5ed79528905b332555a5a05bafdac0").innerHTML=padAjaxfe5ed79528905b332555a5a05bafdac0.responseText;
+                      } else {
+                      document.getElementById("padAjaxfe5ed79528905b332555a5a05bafdac0").innerHTML=padAjaxfe5ed79528905b332555a5a05bafdac0.statusText;
+                      }
+                      }
+                      }
+                      padAjaxfe5ed79528905b332555a5a05bafdac0.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_escapes_the_text_before_it_marks_a_match&padInclude",true);
+                      padAjaxfe5ed79528905b332555a5a05bafdac0.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/excerpt_html_parts_words_at_block_tags<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/excerpt_html_parts_words_at_block_tags.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/excerpt_html_parts_words_at_block_tags.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A block tag and a &lt;br&gt; part the words on their sides in an {excerpt ..., html}, where<br>  // strip_tags dropped them whole: step.&lt;/p&gt;&lt;p&gt;PAD was the one word step.PAD, and a<br>  // highlight= of beta found no word starting with it in alphabeta.<br><br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;h2&gt;Intro&lt;/h2&gt;&lt;p&gt;First paragraph.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;alpha&lt;/li&gt;&lt;li&gt;beta&lt;/li&gt;&lt;/ul&gt;line&lt;br&gt;break &lt;b&gt;wo&lt;/b&gt;rd'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>x<font color="black">,</font> words=34<font color="black">,</font> html<font color="black">,</font> highlight=<font color="black">'</font>beta<font color="black">'</font></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax9eee3b61be74b4d70c113e336378529f"></div>
+                      <script>
+                      padAjax9eee3b61be74b4d70c113e336378529f = new XMLHttpRequest();
+                      padAjax9eee3b61be74b4d70c113e336378529f.onreadystatechange=function() {
+                      if (padAjax9eee3b61be74b4d70c113e336378529f.readyState === 4) {
+                      if (padAjax9eee3b61be74b4d70c113e336378529f.status === 200) {
+                      document.getElementById("padAjax9eee3b61be74b4d70c113e336378529f").innerHTML=padAjax9eee3b61be74b4d70c113e336378529f.responseText;
+                      } else {
+                      document.getElementById("padAjax9eee3b61be74b4d70c113e336378529f").innerHTML=padAjax9eee3b61be74b4d70c113e336378529f.statusText;
+                      }
+                      }
+                      }
+                      padAjax9eee3b61be74b4d70c113e336378529f.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_html_parts_words_at_block_tags&padInclude",true);
+                      padAjax9eee3b61be74b4d70c113e336378529f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/excerpt_html_strips_scripts_in_linear_time<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/excerpt_html_strips_scripts_in_linear_time.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/excerpt_html_strips_scripts_in_linear_time.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The scripts and styles of an {excerpt ..., html} text are left out in one pass: an<br>  // unclosed &lt;script&gt; before a megabyte of text emptied the excerpt (or ended the request),<br>  // and openers without a closer took seconds - every one scanned on to the end.<br><br>  </span><span style="color: #007700">include_once </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'tags/_lib/excerpt.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$big   </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p&gt;Hello&lt;/p&gt;&lt;script&gt;' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">1000000 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$many  </span><span style="color: #007700">= </span><span style="color: #0000BB">strlen </span><span style="color: #007700">( </span><span style="color: #0000BB">padExcerptCode </span><span style="color: #007700">( </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;style&gt;x '</span><span style="color: #007700">, </span><span style="color: #0000BB">60000 </span><span style="color: #007700">) ) );<br>  </span><span style="color: #0000BB">$time  </span><span style="color: #007700">= ( </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) - </span><span style="color: #0000BB">$start </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">1e9 </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'in time' </span><span style="color: #007700">: </span><span style="color: #DD0000">'too slow'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$kept  </span><span style="color: #007700">= </span><span style="color: #0000BB">padExcerptCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'a&lt;script&gt;x&lt;/script&gt;b&lt;STYLE&gt;y&lt;/style &gt;c&lt;script src=1&gt;d' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>big<font color="black">,</font> words=1<font color="black">,</font> html</font>}</b> <b>{<font color="green"><font color="red">$</font>many</font>}</b> <b>{<font color="green"><font color="red">$</font>time</font>}</b> <b>{<font color="green"><font color="red">$</font>kept</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax95abf8506d5cfba2b9fd857d7794d9a3"></div>
+                      <script>
+                      padAjax95abf8506d5cfba2b9fd857d7794d9a3 = new XMLHttpRequest();
+                      padAjax95abf8506d5cfba2b9fd857d7794d9a3.onreadystatechange=function() {
+                      if (padAjax95abf8506d5cfba2b9fd857d7794d9a3.readyState === 4) {
+                      if (padAjax95abf8506d5cfba2b9fd857d7794d9a3.status === 200) {
+                      document.getElementById("padAjax95abf8506d5cfba2b9fd857d7794d9a3").innerHTML=padAjax95abf8506d5cfba2b9fd857d7794d9a3.responseText;
+                      } else {
+                      document.getElementById("padAjax95abf8506d5cfba2b9fd857d7794d9a3").innerHTML=padAjax95abf8506d5cfba2b9fd857d7794d9a3.statusText;
+                      }
+                      }
+                      }
+                      padAjax95abf8506d5cfba2b9fd857d7794d9a3.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_html_strips_scripts_in_linear_time&padInclude",true);
+                      padAjax95abf8506d5cfba2b9fd857d7794d9a3.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/excerpt_of_a_broken_byte_is_made<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/excerpt_of_a_broken_byte_is_made.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/excerpt_of_a_broken_byte_is_made.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A broken UTF-8 byte in the text or in the search words - a visitor's ?q=%FF - is a<br>  // character that stands in for it, where preg_split answered FALSE and the request ended.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">"wor\xFF"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #DD0000">"abc\xFFdef ghi jkl mno"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red">"hello world foo bar"<font color="black">,</font> words=2<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b> <b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>x<font color="black">,</font> words=3</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc1d272fbedeaff401bc2226ad5882516"></div>
+                      <script>
+                      padAjaxc1d272fbedeaff401bc2226ad5882516 = new XMLHttpRequest();
+                      padAjaxc1d272fbedeaff401bc2226ad5882516.onreadystatechange=function() {
+                      if (padAjaxc1d272fbedeaff401bc2226ad5882516.readyState === 4) {
+                      if (padAjaxc1d272fbedeaff401bc2226ad5882516.status === 200) {
+                      document.getElementById("padAjaxc1d272fbedeaff401bc2226ad5882516").innerHTML=padAjaxc1d272fbedeaff401bc2226ad5882516.responseText;
+                      } else {
+                      document.getElementById("padAjaxc1d272fbedeaff401bc2226ad5882516").innerHTML=padAjaxc1d272fbedeaff401bc2226ad5882516.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc1d272fbedeaff401bc2226ad5882516.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_of_a_broken_byte_is_made&padInclude",true);
+                      padAjaxc1d272fbedeaff401bc2226ad5882516.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A search form that posts: four thousand words, and one word of seventy thousand<br>  // letters - each made a pattern PCRE refuses to compile.<br><br>  </span><span style="color: #0000BB">$many </span><span style="color: #007700">= [];<br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">4000</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$many </span><span style="color: #007700">[] = </span><span style="color: #DD0000">'w' </span><span style="color: #007700">. </span><span style="color: #0000BB">dechex </span><span style="color: #007700">( </span><span style="color: #0000BB">$i </span><span style="color: #007700">* </span><span style="color: #0000BB">7919 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$many </span><span style="color: #007700">= </span><span style="color: #DD0000">'excerpting ' </span><span style="color: #007700">. </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">$many </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$huge </span><span style="color: #007700">= </span><span style="color: #DD0000">'excerpting ' </span><span style="color: #007700">. </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'templates'</span><span style="color: #007700">, </span><span style="color: #0000BB">7800 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">excerpt </font><font color="red">"Templates drive the excerpting of long texts"<font color="black">,</font> words=3<font color="black">,</font> highlight=<font color="red">$</font>many</font>}</b><br><b>{<font color="blue">excerpt </font><font color="red">"Templates drive the excerpting of long texts"<font color="black">,</font> words=3<font color="black">,</font> highlight=<font color="red">$</font>huge</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax664d3bdc48696af4721042e19c7d2150"></div>
+                      <script>
+                      padAjax664d3bdc48696af4721042e19c7d2150 = new XMLHttpRequest();
+                      padAjax664d3bdc48696af4721042e19c7d2150.onreadystatechange=function() {
+                      if (padAjax664d3bdc48696af4721042e19c7d2150.readyState === 4) {
+                      if (padAjax664d3bdc48696af4721042e19c7d2150.status === 200) {
+                      document.getElementById("padAjax664d3bdc48696af4721042e19c7d2150").innerHTML=padAjax664d3bdc48696af4721042e19c7d2150.responseText;
+                      } else {
+                      document.getElementById("padAjax664d3bdc48696af4721042e19c7d2150").innerHTML=padAjax664d3bdc48696af4721042e19c7d2150.statusText;
+                      }
+                      }
+                      }
+                      padAjax664d3bdc48696af4721042e19c7d2150.open("GET","http://localhost/pad/regression/framework/?tags/excerpt_with_thousands_of_search_words_or_a_huge_one_still_marks&padInclude",true);
+                      padAjax664d3bdc48696af4721042e19c7d2150.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: showcase - Page: excerpt/search<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">excerpt/search.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">excerpt/search.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $q </span><span style="color: #007700">= </span><span style="color: #DD0000">'cache'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$results </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fragment cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Some parts of a page cost more to render than others: a list of the best selling products, a menu built from the database, a report over a year of orders. The fragment cache keeps the rendered text of such a section for a number of seconds and serves it again on the next request without running the tags inside it. Name the section, give it a ttl, and forget it when what it shows has changed.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Remote data'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/curl'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A page that shows exchange rates or the weather fetches them from another server. Every request would wait for that server, so the answer is kept for a while: the ttl option says how many seconds. When the source fails afterwards, the last good copy in the cache is served and the failure is logged, so a slow or broken service never takes the page down with it.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Page cache'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'url'   </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?manual/config'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'With the page cache switched on in the configuration, a whole page is kept after its first rendering, with an ETag, and a browser that asks again with that tag gets a 304 Not Modified. Pages with a guard, a flash message or a form are never cached. The cache can live in files, APCu, Redis, Memcached or the database.' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Search results<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Each result cut to 24 words around the first match of the query<font color="black">,</font> every match marked.<font color="black">'</font></font>}</b><br>&lt;div&gt;<br>  &lt;p&gt;Results for &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/strong&gt;&lt;/p&gt;<br>  <b>{<font color="blue">results</font><font color="red"></font>}</b><br>    &lt;article&gt;<br>      &lt;h3&gt;&lt;a href="<b>{<font color="green"><font color="red">$</font>url</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/a&gt;&lt;/h3&gt;<br>      &lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=24<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b>&lt;/p&gt;<br>    &lt;/article&gt;<br>  <b>{/<font color="blue">results</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax29b4517a66717481757edc829d47c8a1"></div>
+                      <script>
+                      padAjax29b4517a66717481757edc829d47c8a1 = new XMLHttpRequest();
+                      padAjax29b4517a66717481757edc829d47c8a1.onreadystatechange=function() {
+                      if (padAjax29b4517a66717481757edc829d47c8a1.readyState === 4) {
+                      if (padAjax29b4517a66717481757edc829d47c8a1.status === 200) {
+                      document.getElementById("padAjax29b4517a66717481757edc829d47c8a1").innerHTML=padAjax29b4517a66717481757edc829d47c8a1.responseText;
+                      } else {
+                      document.getElementById("padAjax29b4517a66717481757edc829d47c8a1").innerHTML=padAjax29b4517a66717481757edc829d47c8a1.statusText;
+                      }
+                      }
+                      }
+                      padAjax29b4517a66717481757edc829d47c8a1.open("GET","http://localhost/pad/showcase/?excerpt/search&padInclude",true);
+                      padAjax29b4517a66717481757edc829d47c8a1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: showcase - Page: excerpt/teaser<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">excerpt/teaser.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">excerpt/teaser.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $posts </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Templates that drive'</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-09-14'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;p&gt;Most frameworks start in a controller. The controller fetches the data, decides what to show and hands it to a template, which is the last and least important step.&lt;/p&gt;&lt;p&gt;PAD turns that around: the template is where a request starts. It asks for the data it needs, the way a reader asks for a page, and the PHP beside it answers.&lt;/p&gt;' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charts without JavaScript'</span><span style="color: #007700">, </span><span style="color: #DD0000">'date' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-10-01'</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'body'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;p&gt;A chart is a picture, and a picture can be drawn on the server. The chart tag writes inline SVG: bars, lines, pies and forty other kinds, with a title and a description for a screen reader &amp;amp; colours that follow the page into dark mode.&lt;/p&gt;' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Teasers from HTML<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The first 25 words of each post body - its tags dropped with html<font color="black">,</font> an ellipsis where it goes on.<font color="black">'</font></font>}</b><br>&lt;div&gt;<br>  <b>{<font color="blue">posts</font><font color="red"></font>}</b><br>    &lt;article&gt;<br>      &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>      &lt;p&gt;&lt;small&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b>&lt;/small&gt; <b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=25<font color="black">,</font> html</font>}</b>&lt;/p&gt;<br>    &lt;/article&gt;<br>  <b>{/<font color="blue">posts</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax29a4500d32b173aecf3261ca98d26dea"></div>
+                      <script>
+                      padAjax29a4500d32b173aecf3261ca98d26dea = new XMLHttpRequest();
+                      padAjax29a4500d32b173aecf3261ca98d26dea.onreadystatechange=function() {
+                      if (padAjax29a4500d32b173aecf3261ca98d26dea.readyState === 4) {
+                      if (padAjax29a4500d32b173aecf3261ca98d26dea.status === 200) {
+                      document.getElementById("padAjax29a4500d32b173aecf3261ca98d26dea").innerHTML=padAjax29a4500d32b173aecf3261ca98d26dea.responseText;
+                      } else {
+                      document.getElementById("padAjax29a4500d32b173aecf3261ca98d26dea").innerHTML=padAjax29a4500d32b173aecf3261ca98d26dea.statusText;
+                      }
+                      }
+                      }
+                      padAjax29a4500d32b173aecf3261ca98d26dea.open("GET","http://localhost/pad/showcase/?excerpt/teaser&padInclude",true);
+                      padAjax29a4500d32b173aecf3261ca98d26dea.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/excerpt/1-search<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/excerpt/1-search.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/excerpt/1-search.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $q </span><span style="color: #007700">= </span><span style="color: #DD0000">'cache ttl'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #DD0000">'Some parts of a page cost more to render than others: a list of the best selling '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'products, a menu built from the database, a report over a year of orders. The '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragment cache keeps the rendered text of such a section for a number of seconds and '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'serves it again on the next request without running the tags inside it. Name the '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'section, give it a ttl, and forget it when what it shows has changed.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A search result<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Twenty words around the first match of the query<font color="black">,</font> every word that starts with a search word marked.<font color="black">'</font></font>}</b><br>&lt;p&gt;Results for &lt;strong&gt;<b>{<font color="green"><font color="red">$</font>q</font>}</b>&lt;/strong&gt;:&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=20<font color="black">,</font> highlight=<font color="red">$</font>q</font>}</b>&lt;/p&gt;<br>&lt;p&gt;The first twenty words, no query: <b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>body<font color="black">,</font> words=20</font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax30079cb73c09f43accceb65f615d0215"></div>
+                      <script>
+                      padAjax30079cb73c09f43accceb65f615d0215 = new XMLHttpRequest();
+                      padAjax30079cb73c09f43accceb65f615d0215.onreadystatechange=function() {
+                      if (padAjax30079cb73c09f43accceb65f615d0215.readyState === 4) {
+                      if (padAjax30079cb73c09f43accceb65f615d0215.status === 200) {
+                      document.getElementById("padAjax30079cb73c09f43accceb65f615d0215").innerHTML=padAjax30079cb73c09f43accceb65f615d0215.responseText;
+                      } else {
+                      document.getElementById("padAjax30079cb73c09f43accceb65f615d0215").innerHTML=padAjax30079cb73c09f43accceb65f615d0215.statusText;
+                      }
+                      }
+                      }
+                      padAjax30079cb73c09f43accceb65f615d0215.open("GET","http://localhost/pad/tags/?examples/excerpt/1-search&padInclude",true);
+                      padAjax30079cb73c09f43accceb65f615d0215.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/excerpt/2-html<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/excerpt/2-html.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/excerpt/2-html.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= </span><span style="color: #DD0000">"&lt;h2&gt;Charts without JavaScript&lt;/h2&gt;\n"<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">"&lt;p&gt;A chart is a picture, and a picture can be &lt;em&gt;drawn on the server&lt;/em&gt;. The chart tag "<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">"writes inline SVG: bars, lines, pies &amp;amp; forty other kinds.&lt;/p&gt;\n"<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">"&lt;script&gt;track ( 'teaser' );&lt;/script&gt;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A teaser from HTML<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>html drops the tags and reads the entities before counting; ellipsis= sets the text for the rest.<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">excerpt </font><font color="red"><font color="red">$</font>post<font color="black">,</font> words=28<font color="black">,</font> html<font color="black">,</font> ellipsis=<font color="black">'</font>[more]<font color="black">'</font></font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax33425ad9a80cfee909cbb36039127059"></div>
+                      <script>
+                      padAjax33425ad9a80cfee909cbb36039127059 = new XMLHttpRequest();
+                      padAjax33425ad9a80cfee909cbb36039127059.onreadystatechange=function() {
+                      if (padAjax33425ad9a80cfee909cbb36039127059.readyState === 4) {
+                      if (padAjax33425ad9a80cfee909cbb36039127059.status === 200) {
+                      document.getElementById("padAjax33425ad9a80cfee909cbb36039127059").innerHTML=padAjax33425ad9a80cfee909cbb36039127059.responseText;
+                      } else {
+                      document.getElementById("padAjax33425ad9a80cfee909cbb36039127059").innerHTML=padAjax33425ad9a80cfee909cbb36039127059.statusText;
+                      }
+                      }
+                      }
+                      padAjax33425ad9a80cfee909cbb36039127059.open("GET","http://localhost/pad/tags/?examples/excerpt/2-html&padInclude",true);
+                      padAjax33425ad9a80cfee909cbb36039127059.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

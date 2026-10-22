@@ -6,8 +6,9 @@
     <title>
       {chart} · PAD tags
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
     <link rel="stylesheet" href="tags.css">
-    <script src="tags.js"></script>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
     </style>
@@ -21,398 +22,448 @@
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
     </style>
   </head>
-  <body>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="index%EF%B9%96index.html"><span class="brand-mark" aria-hidden="true">{}</span> <span>PAD <b>tags</b></span></a>
-        <nav class="menu" aria-label="Indexes">
-          <a class="menu-link" href="index%EF%B9%96index.html">Home</a><a class="menu-link" href="index%EF%B9%96names.html">A-Z</a><a class="menu-link" href="index%EF%B9%96groups.html">Groups</a><a class="menu-link" href="index%EF%B9%96forms.html">Forms</a><a class="menu-link" href="index%EF%B9%96options.html">Options</a><a class="menu-link" href="index%EF%B9%96cheatsheet.html">Cheat sheet</a>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
         </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
         <form class="search" action="" method="get" role="search">
           <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 142 tags" autocomplete="off">
-        </form><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4.5"></circle>
-        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
-        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
-      </div>
-    </header>
-    <main class="page">
-      <article class="tag">
-        <nav class="crumbs" aria-label="Where you are">
-          <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">chart</span>
-        </nav>
-        <header class="tag-head">
-          <h1>
-            <span class="brace">{</span>chart<span class="brace">}</span>
-          </h1>
-          <p class="tag-about">
-            Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.
-          </p>
-          <p class="chips">
-            <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
-          </p>
-        </header>
-        <section class="block" aria-labelledby="syntax">
-          <h2 id="syntax">
-            Syntax
-          </h2>
-          <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field, field'</span>, stacked, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">width</span>=<span class="hl-num">600</span>, <span class="hl-opt">height</span>=<span class="hl-num">300</span><span class="hl-brc">}</span>
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">chart</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>chart<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field, field'</span>, stacked, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">width</span>=<span class="hl-num">600</span>, <span class="hl-opt">height</span>=<span class="hl-num">300</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'line'</span>, <span class="hl-opt">sequence</span>=<span class="hl-str">'fibonacci'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">12</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'pie'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'scatter'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">x</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">y</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'field'</span>, trend<span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'gauge'</span>, <span class="hl-opt">value</span>=<span class="hl-num">72</span>, <span class="hl-opt">from</span>=<span class="hl-num">0</span>, <span class="hl-opt">to</span>=<span class="hl-num">100</span>, <span class="hl-opt">bands</span>=<span class="hl-str">'60, 85'</span>, <span class="hl-opt">target</span>=<span class="hl-num">80</span>, <span class="hl-opt">unit</span>=<span class="hl-str">'%'</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'csv'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/chart</span><span class="hl-brc">}</span></code></pre>
-          <h3>
-            Parameters
-          </h3>
-          <dl class="defs">
-            <dt>
-              <code>kind</code>
-            </dt>
-            <dd>
-              The kind of chart: <code>bar</code> (or <code>column</code>), <code>hbar</code>, <code>line</code>, <code>sparkline</code>, <code>pie</code>, <code>donut</code>, <code>scatter</code>, <code>bubble</code>, <code>heatmap</code>, <code>sankey</code>, <code>network</code>, <code>treemap</code>, <code>sunburst</code>, <code>gauge</code>, <code>radar</code>, <code>waterfall</code>, <code>histogram</code>, <code>boxplot</code>, <code>calendar</code>, <code>gantt</code>, <code>area</code>, <code>stream</code>, <code>multiples</code>, <code>candlestick</code>, <code>dual</code>, <code>spiral</code>, <code>rose</code>, <code>radialbar</code>, <code>funnel</code>, <code>pyramid</code>, <code>waffle</code>, <code>marimekko</code>, <code>parliament</code>, <code>venn</code>, <code>density</code>, <code>violin</code>, <code>bullet</code>, <code>rings</code>, <code>parallel</code>, <code>proportional</code>, <code>chord</code>, <code>arc</code>, <code>pack</code> or <code>orgchart</code>.
-            </dd>
-          </dl>
-          <h3>
-            Options
-          </h3>
-          <dl class="defs">
-            <dt>
-              <code>data</code>
-            </dt>
-            <dd>
-              The rows: a <code>{data}</code> store, a sequence store, the page's array or a <code>_data</code> file of that name, or a literal (<code>data='[3,1,4]'</code>). Left out on a pair, the content is the data.
-            </dd>
-            <dt>
-              <code>type</code>
-            </dt>
-            <dd>
-              For a pair: the format of the content - <code>json</code>, <code>yaml</code>, <code>xml</code> or <code>csv</code> - when it is not to be recognised on sight.
-            </dd>
-            <dt>
-              <code>sequence</code>
-            </dt>
-            <dd>
-              Plot the first <code>rows</code> terms (default 10) of a sequence type instead of rows.
-            </dd>
-            <dt>
-              <code>value</code>
-            </dt>
-            <dd>
-              The field with the number - else the first numeric field. A comma list draws a series each (eight at most) for bar, hbar, line, area, stream, radar, rose, marimekko, pyramid and parallel. For a gauge it can be the number itself.
-            </dd>
-            <dt>
-              <code>label</code>
-            </dt>
-            <dd>
-              The field for the category axis or the names - else the first other field, else the row number.
-            </dd>
-            <dt>
-              <code>title</code>
-            </dt>
-            <dd>
-              The accessible name in the SVG's <code>&lt;title&gt;</code>; by default made from value and label.
-            </dd>
-            <dt>
-              <code>width</code>
-            </dt>
-            <dd>
-              The width in pixels, default 600 (round kinds 480, gauge 320, calendar 720).
-            </dd>
-            <dt>
-              <code>height</code>
-            </dt>
-            <dd>
-              The height in pixels, default 300 (round kinds 280, the tall kinds 400, gauge 200, calendar 150).
-            </dd>
-            <dt>
-              <code>stacked</code>
-            </dt>
-            <dd>
-              Bare option, bar, hbar and area: the series one on the other instead of side by side.
-            </dd>
-            <dt>
-              <code>percent</code>
-            </dt>
-            <dd>
-              Bare option, area: every column stacked to 100%.
-            </dd>
-            <dt>
-              <code>x</code>
-            </dt>
-            <dd>
-              Scatter, bubble, heatmap: the field of the horizontal axis (heatmap: the columns).
-            </dd>
-            <dt>
-              <code>y</code>
-            </dt>
-            <dd>
-              Scatter, bubble, heatmap: the field of the vertical axis (heatmap: the rows).
-            </dd>
-            <dt>
-              <code>size</code>
-            </dt>
-            <dd>
-              Bubble: the field that gives each dot its area.
-            </dd>
-            <dt>
-              <code>color</code>
-            </dt>
-            <dd>
-              Scatter, bubble, gantt, parallel: a field whose values colour the marks, with a legend.
-            </dd>
-            <dt>
-              <code>trend</code>
-            </dt>
-            <dd>
-              Bare option, scatter and bubble: adds the least-squares line.
-            </dd>
-            <dt>
-              <code>source</code>
-            </dt>
-            <dd>
-              Sankey, network, chord, arc: the field of where a link starts.
-            </dd>
-            <dt>
-              <code>target</code>
-            </dt>
-            <dd>
-              Sankey, network, chord, arc: the field of where a link goes. Gauge and bullet: the value (or field) marked as the goal.
-            </dd>
-            <dt>
-              <code>layout</code>
-            </dt>
-            <dd>
-              Network: <code>force</code> (default) or <code>radial</code>.
-            </dd>
-            <dt>
-              <code>arrows</code>
-            </dt>
-            <dd>
-              Bare option, network: draws the direction of the links.
-            </dd>
-            <dt>
-              <code>levels</code>
-            </dt>
-            <dd>
-              Treemap, sunburst, pack: the fields above the parts, outermost first.
-            </dd>
-            <dt>
-              <code>from</code>
-            </dt>
-            <dd>
-              Gauge: the start of the scale (0). Gantt: the field with the start of a task.
-            </dd>
-            <dt>
-              <code>to</code>
-            </dt>
-            <dd>
-              Gauge: the end of the scale (100). Gantt: the field with the end of a task. Radar, radialbar, rings, bullet: the end of the scale, a number (or for rings and bullet a field).
-            </dd>
-            <dt>
-              <code>bands</code>
-            </dt>
-            <dd>
-              Gauge and bullet: thresholds that split the track into coloured or grey steps (<code>'60, 85'</code>).
-            </dd>
-            <dt>
-              <code>unit</code>
-            </dt>
-            <dd>
-              Gauge: written after the number.
-            </dd>
-            <dt>
-              <code>total</code>
-            </dt>
-            <dd>
-              Waterfall: the name of the closing bar (<code>Total</code>); <code>total=''</code> leaves it out.
-            </dd>
-            <dt>
-              <code>bins</code>
-            </dt>
-            <dd>
-              Histogram: about how many bins (10).
-            </dd>
-            <dt>
-              <code>date</code>
-            </dt>
-            <dd>
-              Calendar: the field with the day.
-            </dd>
-            <dt>
-              <code>year</code>
-            </dt>
-            <dd>
-              Calendar: draw the whole year instead of the span of the data.
-            </dd>
-            <dt>
-              <code>progress</code>
-            </dt>
-            <dd>
-              Gantt: the field with the part done, 0 to 100.
-            </dd>
-            <dt>
-              <code>mark</code>
-            </dt>
-            <dd>
-              Gantt: a date marked with a dashed line.
-            </dd>
-            <dt>
-              <code>by</code>
-            </dt>
-            <dd>
-              Multiples: the field that splits the rows into small charts.
-            </dd>
-            <dt>
-              <code>columns</code>
-            </dt>
-            <dd>
-              Multiples: the number of small charts side by side.
-            </dd>
-            <dt>
-              <code>open</code>
-            </dt>
-            <dd>
-              Candlestick: the field of the opening price (also <code>high</code>, <code>low</code> and <code>close</code>, each defaulting to its own name).
-            </dd>
-            <dt>
-              <code>volume</code>
-            </dt>
-            <dd>
-              Candlestick: a field of volumes drawn as light bars below.
-            </dd>
-            <dt>
-              <code>line</code>
-            </dt>
-            <dd>
-              Dual: the field drawn as a line on the right axis, beside the bars of <code>value</code>.
-            </dd>
-            <dt>
-              <code>period</code>
-            </dt>
-            <dd>
-              Spiral: rows to one turn (12).
-            </dd>
-            <dt>
-              <code>turn</code>
-            </dt>
-            <dd>
-              Spiral: the field that names each turn.
-            </dd>
-            <dt>
-              <code>cells</code>
-            </dt>
-            <dd>
-              Waffle: the number of squares (100).
-            </dd>
-            <dt>
-              <code>sets</code>
-            </dt>
-            <dd>
-              Venn: the field naming a set (<code>A</code>) or an overlap (<code>A&amp;B</code>).
-            </dd>
-            <dt>
-              <code>bandwidth</code>
-            </dt>
-            <dd>
-              Density, violin: the width of the kernel, else Silverman's rule.
-            </dd>
-            <dt>
-              <code>square</code>
-            </dt>
-            <dd>
-              Bare option, proportional: squares instead of circles.
-            </dd>
-            <dt>
-              <code>id</code>
-            </dt>
-            <dd>
-              Orgchart: the field with a row's id.
-            </dd>
-            <dt>
-              <code>parent</code>
-            </dt>
-            <dd>
-              Orgchart: the field with the id of the row above.
-            </dd>
-            <dt>
-              <code>sub</code>
-            </dt>
-            <dd>
-              Orgchart: a field for the second line of a box.
-            </dd>
-          </dl>
-        </section>
-        <section class="block prose" aria-labelledby="description">
-          <h2 id="description">
-            Description
-          </h2>
-          <p>
-            <code>{chart}</code> draws a chart as inline SVG on the server - no JavaScript, no image library and no remote service, so a chart works in print and in an e-mail and is cached like any other output. The first parameter is the kind, the options name the data and the fields to plot. An unknown kind is an error under the strict check (and is drawn as a bar chart without it).
-          </p>
-          <h3>
-            Where the data comes from
-          </h3>
-          <p>
-            <code>data='name'</code> names the rows: a <code>{data}</code> store, a sequence store, an array of the page's PHP or a file in <code>_data/</code> - or a literal, <code>data='[3,1,4]'</code>. <code>sequence='fibonacci'</code> plots the first <code>rows</code> terms (10) of a <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">sequence</a> type. Written as a pair, without <code>data</code> or <code>sequence</code>, the content between the tags is the data - JSON, YAML, XML or CSV, recognised on sight as <a href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> recognises it, or named by <code>type=</code>. The content is taken as it stands before the level walks it, so the braces of JSON need no <code>{ignore}</code>, and the indent its lines share is taken off. A chart with no data at all is an error under the strict check.
-          </p>
-          <p>
-            The data option is not iterated: the chart is drawn once, from all rows. A field option left out takes the first field of the first row that fits - a numeric field for <code>value</code>, another for <code>label</code>. A row without a finite number is left out, and a chart without points writes nothing, so its <code>@else@</code> shows.
-          </p>
-          <h3>
-            The kinds and their options
-          </h3>
-          <ul>
-            <li>
-              <b>Bars and lines</b> - <code>bar</code> (<code>column</code>), <code>hbar</code>, <code>line</code>, <code>area</code>, <code>stream</code>, <code>multiples</code>, <code>dual</code>: <code>label</code>, <code>value</code> (a comma list draws a series each), <code>stacked</code> (bar, hbar, area), <code>percent</code> (area), <code>by</code> and <code>columns</code> (multiples), <code>line</code> (dual).
-            </li>
-            <li>
-              <b>Parts of a whole</b> - <code>pie</code>, <code>donut</code>, <code>waffle</code> (<code>cells</code>), <code>funnel</code>, <code>pyramid</code>, <code>marimekko</code>, <code>parliament</code>, <code>treemap</code>, <code>sunburst</code>, <code>pack</code> (<code>levels</code>), <code>venn</code> (<code>sets</code>), <code>proportional</code> (<code>square</code>).
-            </li>
-            <li>
-              <b>Distributions</b> - <code>histogram</code> (<code>bins</code>), <code>boxplot</code>, <code>density</code> and <code>violin</code> (<code>bandwidth</code>), <code>scatter</code> and <code>bubble</code> (<code>x</code>, <code>y</code>, <code>size</code>, <code>color</code>, <code>trend</code>), <code>heatmap</code> (<code>x</code>, <code>y</code>, <code>value</code>), <code>parallel</code> (<code>color</code>).
-            </li>
-            <li>
-              <b>Measures</b> - <code>gauge</code> (<code>from</code>, <code>to</code>, <code>bands</code>, <code>target</code>, <code>unit</code> - <code>value=72</code> is the number itself, no data needed), <code>bullet</code>, <code>rings</code>, <code>radialbar</code>, <code>radar</code>, <code>rose</code>, <code>waterfall</code> (<code>total</code>).
-            </li>
-            <li>
-              <b>Time</b> - <code>calendar</code> (<code>date</code>, <code>year</code>), <code>gantt</code> (<code>from</code>, <code>to</code>, <code>progress</code>, <code>color</code>, <code>mark</code>), <code>candlestick</code> (<code>open</code>, <code>high</code>, <code>low</code>, <code>close</code>, <code>volume</code>), <code>spiral</code> (<code>period</code>, <code>turn</code>), <code>sparkline</code>.
-            </li>
-            <li>
-              <b>Relations</b> - <code>sankey</code>, <code>chord</code>, <code>arc</code> and <code>network</code> (<code>source</code>, <code>target</code>, <code>value</code>; network also <code>layout</code> and <code>arrows</code>), <code>orgchart</code> (<code>id</code>, <code>parent</code>, <code>label</code>, <code>sub</code>).
-            </li>
-          </ul>
-          <p>
-            A kind reads only the options it draws with, so an option of another kind - <code>stacked</code> on a line chart - is an option nothing reads, which the strict check reports. The chart's options are named apart from the handling options every tag takes (<code>rows</code>, <code>group</code>, <code>sort</code> ...).
-          </p>
-          <h3>
-            Size, colours and accessibility
-          </h3>
-          <p>
-            The default size is 600 x 300; the round kinds are 480 x 280, the tall ones (sankey, network, treemap, radar, chord, pack, orgchart, parallel, multiples) 600 x 400. <code>.pad-chart { max-width: 100%; height: auto }</code> in the page's CSS lets a chart shrink with its column. The colours are CSS custom properties on <code>.pad-chart</code> - <code>--pad-chart-series</code>, <code>--pad-chart-text</code>, <code>--pad-chart-grid</code>, <code>--pad-chart-surface</code>, the slots <code>--pad-chart-1</code> to <code>-8</code> - with light and dark defaults that follow the page's <code>color-scheme</code>. The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> listing the values, and every bar, point or slice its own <code>&lt;title&gt;</code>, the tooltip on hover. <a href="index%EF%B9%96tag%EA%A4%B7sparkline.html">{sparkline}</a> is the word-sized line by its own name.
-          </p>
-        </section>
-        <section class="block" aria-labelledby="examples">
-          <h2 id="examples">
-            Examples
-          </h2>
-          <div class="example" id="example-1">
             <h3>
-              Bars from a page array
+              Parameters
             </h3>
-            <p class="example-about">
-              label= names the axis, value= the number; data= is an array of the page's PHP.
+            <dl class="defs">
+              <dt>
+                <code>kind</code>
+              </dt>
+              <dd>
+                The kind of chart: <code>bar</code> (or <code>column</code>), <code>hbar</code>, <code>line</code>, <code>sparkline</code>, <code>pie</code>, <code>donut</code>, <code>scatter</code>, <code>bubble</code>, <code>heatmap</code>, <code>sankey</code>, <code>network</code>, <code>treemap</code>, <code>sunburst</code>, <code>gauge</code>, <code>radar</code>, <code>waterfall</code>, <code>histogram</code>, <code>boxplot</code>, <code>calendar</code>, <code>gantt</code>, <code>area</code>, <code>stream</code>, <code>multiples</code>, <code>candlestick</code>, <code>dual</code>, <code>spiral</code>, <code>rose</code>, <code>radialbar</code>, <code>funnel</code>, <code>pyramid</code>, <code>waffle</code>, <code>marimekko</code>, <code>parliament</code>, <code>venn</code>, <code>density</code>, <code>violin</code>, <code>bullet</code>, <code>rings</code>, <code>parallel</code>, <code>proportional</code>, <code>chord</code>, <code>arc</code>, <code>pack</code> or <code>orgchart</code>.
+              </dd>
+            </dl>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>data</code>
+              </dt>
+              <dd>
+                The rows: a <code>{data}</code> store, a sequence store, the page's array or a <code>_data</code> file of that name, or a literal (<code>data='[3,1,4]'</code>). Left out on a pair, the content is the data.
+              </dd>
+              <dt>
+                <code>type</code>
+              </dt>
+              <dd>
+                For a pair: the format of the content - <code>json</code>, <code>yaml</code>, <code>xml</code> or <code>csv</code> - when it is not to be recognised on sight.
+              </dd>
+              <dt>
+                <code>sequence</code>
+              </dt>
+              <dd>
+                Plot the first <code>rows</code> terms (default 10) of a sequence type instead of rows.
+              </dd>
+              <dt>
+                <code>value</code>
+              </dt>
+              <dd>
+                The field with the number - else the first numeric field. A comma list draws a series each (eight at most) for bar, hbar, line, area, stream, radar, rose, marimekko, pyramid and parallel. For a gauge it can be the number itself.
+              </dd>
+              <dt>
+                <code>label</code>
+              </dt>
+              <dd>
+                The field for the category axis or the names - else the first other field, else the row number.
+              </dd>
+              <dt>
+                <code>title</code>
+              </dt>
+              <dd>
+                The accessible name in the SVG's <code>&lt;title&gt;</code>; by default made from value and label.
+              </dd>
+              <dt>
+                <code>width</code>
+              </dt>
+              <dd>
+                The width in pixels, default 600 (round kinds 480, gauge 320, calendar 720).
+              </dd>
+              <dt>
+                <code>height</code>
+              </dt>
+              <dd>
+                The height in pixels, default 300 (round kinds 280, the tall kinds 400, gauge 200, calendar 150).
+              </dd>
+              <dt>
+                <code>stacked</code>
+              </dt>
+              <dd>
+                Bare option, bar, hbar and area: the series one on the other instead of side by side.
+              </dd>
+              <dt>
+                <code>percent</code>
+              </dt>
+              <dd>
+                Bare option, area: every column stacked to 100%.
+              </dd>
+              <dt>
+                <code>x</code>
+              </dt>
+              <dd>
+                Scatter, bubble, heatmap: the field of the horizontal axis (heatmap: the columns).
+              </dd>
+              <dt>
+                <code>y</code>
+              </dt>
+              <dd>
+                Scatter, bubble, heatmap: the field of the vertical axis (heatmap: the rows).
+              </dd>
+              <dt>
+                <code>size</code>
+              </dt>
+              <dd>
+                Bubble: the field that gives each dot its area.
+              </dd>
+              <dt>
+                <code>color</code>
+              </dt>
+              <dd>
+                Scatter, bubble, gantt, parallel: a field whose values colour the marks, with a legend.
+              </dd>
+              <dt>
+                <code>trend</code>
+              </dt>
+              <dd>
+                Bare option, scatter and bubble: adds the least-squares line.
+              </dd>
+              <dt>
+                <code>source</code>
+              </dt>
+              <dd>
+                Sankey, network, chord, arc: the field of where a link starts.
+              </dd>
+              <dt>
+                <code>target</code>
+              </dt>
+              <dd>
+                Sankey, network, chord, arc: the field of where a link goes. Gauge and bullet: the value (or field) marked as the goal.
+              </dd>
+              <dt>
+                <code>layout</code>
+              </dt>
+              <dd>
+                Network: <code>force</code> (default) or <code>radial</code>.
+              </dd>
+              <dt>
+                <code>arrows</code>
+              </dt>
+              <dd>
+                Bare option, network: draws the direction of the links.
+              </dd>
+              <dt>
+                <code>levels</code>
+              </dt>
+              <dd>
+                Treemap, sunburst, pack: the fields above the parts, outermost first.
+              </dd>
+              <dt>
+                <code>from</code>
+              </dt>
+              <dd>
+                Gauge: the start of the scale (0). Gantt: the field with the start of a task.
+              </dd>
+              <dt>
+                <code>to</code>
+              </dt>
+              <dd>
+                Gauge: the end of the scale (100). Gantt: the field with the end of a task. Radar, radialbar, rings, bullet: the end of the scale, a number (or for rings and bullet a field).
+              </dd>
+              <dt>
+                <code>bands</code>
+              </dt>
+              <dd>
+                Gauge and bullet: thresholds that split the track into coloured or grey steps (<code>'60, 85'</code>).
+              </dd>
+              <dt>
+                <code>unit</code>
+              </dt>
+              <dd>
+                Gauge: written after the number.
+              </dd>
+              <dt>
+                <code>total</code>
+              </dt>
+              <dd>
+                Waterfall: the name of the closing bar (<code>Total</code>); <code>total=''</code> leaves it out.
+              </dd>
+              <dt>
+                <code>bins</code>
+              </dt>
+              <dd>
+                Histogram: about how many bins (10).
+              </dd>
+              <dt>
+                <code>date</code>
+              </dt>
+              <dd>
+                Calendar: the field with the day.
+              </dd>
+              <dt>
+                <code>year</code>
+              </dt>
+              <dd>
+                Calendar: draw the whole year instead of the span of the data.
+              </dd>
+              <dt>
+                <code>progress</code>
+              </dt>
+              <dd>
+                Gantt: the field with the part done, 0 to 100.
+              </dd>
+              <dt>
+                <code>mark</code>
+              </dt>
+              <dd>
+                Gantt: a date marked with a dashed line.
+              </dd>
+              <dt>
+                <code>by</code>
+              </dt>
+              <dd>
+                Multiples: the field that splits the rows into small charts.
+              </dd>
+              <dt>
+                <code>columns</code>
+              </dt>
+              <dd>
+                Multiples: the number of small charts side by side.
+              </dd>
+              <dt>
+                <code>open</code>
+              </dt>
+              <dd>
+                Candlestick: the field of the opening price (also <code>high</code>, <code>low</code> and <code>close</code>, each defaulting to its own name).
+              </dd>
+              <dt>
+                <code>volume</code>
+              </dt>
+              <dd>
+                Candlestick: a field of volumes drawn as light bars below.
+              </dd>
+              <dt>
+                <code>line</code>
+              </dt>
+              <dd>
+                Dual: the field drawn as a line on the right axis, beside the bars of <code>value</code>.
+              </dd>
+              <dt>
+                <code>period</code>
+              </dt>
+              <dd>
+                Spiral: rows to one turn (12).
+              </dd>
+              <dt>
+                <code>turn</code>
+              </dt>
+              <dd>
+                Spiral: the field that names each turn.
+              </dd>
+              <dt>
+                <code>cells</code>
+              </dt>
+              <dd>
+                Waffle: the number of squares (100).
+              </dd>
+              <dt>
+                <code>sets</code>
+              </dt>
+              <dd>
+                Venn: the field naming a set (<code>A</code>) or an overlap (<code>A&amp;B</code>).
+              </dd>
+              <dt>
+                <code>bandwidth</code>
+              </dt>
+              <dd>
+                Density, violin: the width of the kernel, else Silverman's rule.
+              </dd>
+              <dt>
+                <code>square</code>
+              </dt>
+              <dd>
+                Bare option, proportional: squares instead of circles.
+              </dd>
+              <dt>
+                <code>id</code>
+              </dt>
+              <dd>
+                Orgchart: the field with a row's id.
+              </dd>
+              <dt>
+                <code>parent</code>
+              </dt>
+              <dd>
+                Orgchart: the field with the id of the row above.
+              </dd>
+              <dt>
+                <code>sub</code>
+              </dt>
+              <dd>
+                Orgchart: a field for the second line of a box.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{chart}</code> draws a chart as inline SVG on the server - no JavaScript, no image library and no remote service, so a chart works in print and in an e-mail and is cached like any other output. The first parameter is the kind, the options name the data and the fields to plot. An unknown kind is an error under the strict check (and is drawn as a bar chart without it).
             </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/chart/1-bar.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'sales'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'month'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'amount'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Sales per month'</span>, <span class="hl-opt">width</span>=<span class="hl-num">480</span>, <span class="hl-opt">height</span>=<span class="hl-num">240</span><span class="hl-brc">}</span></code></pre>
-                <div class="cell-head">
-                  <span>PHP</span><span class="cell-file">examples/chart/1-bar.php</span>
-                </div>
-                <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+            <h3>
+              Where the data comes from
+            </h3>
+            <p>
+              <code>data='name'</code> names the rows: a <code>{data}</code> store, a sequence store, an array of the page's PHP or a file in <code>_data/</code> - or a literal, <code>data='[3,1,4]'</code>. <code>sequence='fibonacci'</code> plots the first <code>rows</code> terms (10) of a <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">sequence</a> type. Written as a pair, without <code>data</code> or <code>sequence</code>, the content between the tags is the data - JSON, YAML, XML or CSV, recognised on sight as <a href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> recognises it, or named by <code>type=</code>. The content is taken as it stands before the level walks it, so the braces of JSON need no <code>{ignore}</code>, and the indent its lines share is taken off. A chart with no data at all is an error under the strict check.
+            </p>
+            <p>
+              The data option is not iterated: the chart is drawn once, from all rows. A field option left out takes the first field of the first row that fits - a numeric field for <code>value</code>, another for <code>label</code>. A row without a finite number is left out, and a chart without points writes nothing, so its <code>@else@</code> shows.
+            </p>
+            <h3>
+              The kinds and their options
+            </h3>
+            <ul>
+              <li>
+                <b>Bars and lines</b> - <code>bar</code> (<code>column</code>), <code>hbar</code>, <code>line</code>, <code>area</code>, <code>stream</code>, <code>multiples</code>, <code>dual</code>: <code>label</code>, <code>value</code> (a comma list draws a series each), <code>stacked</code> (bar, hbar, area), <code>percent</code> (area), <code>by</code> and <code>columns</code> (multiples), <code>line</code> (dual).
+              </li>
+              <li>
+                <b>Parts of a whole</b> - <code>pie</code>, <code>donut</code>, <code>waffle</code> (<code>cells</code>), <code>funnel</code>, <code>pyramid</code>, <code>marimekko</code>, <code>parliament</code>, <code>treemap</code>, <code>sunburst</code>, <code>pack</code> (<code>levels</code>), <code>venn</code> (<code>sets</code>), <code>proportional</code> (<code>square</code>).
+              </li>
+              <li>
+                <b>Distributions</b> - <code>histogram</code> (<code>bins</code>), <code>boxplot</code>, <code>density</code> and <code>violin</code> (<code>bandwidth</code>), <code>scatter</code> and <code>bubble</code> (<code>x</code>, <code>y</code>, <code>size</code>, <code>color</code>, <code>trend</code>), <code>heatmap</code> (<code>x</code>, <code>y</code>, <code>value</code>), <code>parallel</code> (<code>color</code>).
+              </li>
+              <li>
+                <b>Measures</b> - <code>gauge</code> (<code>from</code>, <code>to</code>, <code>bands</code>, <code>target</code>, <code>unit</code> - <code>value=72</code> is the number itself, no data needed), <code>bullet</code>, <code>rings</code>, <code>radialbar</code>, <code>radar</code>, <code>rose</code>, <code>waterfall</code> (<code>total</code>).
+              </li>
+              <li>
+                <b>Time</b> - <code>calendar</code> (<code>date</code>, <code>year</code>), <code>gantt</code> (<code>from</code>, <code>to</code>, <code>progress</code>, <code>color</code>, <code>mark</code>), <code>candlestick</code> (<code>open</code>, <code>high</code>, <code>low</code>, <code>close</code>, <code>volume</code>), <code>spiral</code> (<code>period</code>, <code>turn</code>), <code>sparkline</code>.
+              </li>
+              <li>
+                <b>Relations</b> - <code>sankey</code>, <code>chord</code>, <code>arc</code> and <code>network</code> (<code>source</code>, <code>target</code>, <code>value</code>; network also <code>layout</code> and <code>arrows</code>), <code>orgchart</code> (<code>id</code>, <code>parent</code>, <code>label</code>, <code>sub</code>).
+              </li>
+            </ul>
+            <p>
+              A kind reads only the options it draws with, so an option of another kind - <code>stacked</code> on a line chart - is an option nothing reads, which the strict check reports. The chart's options are named apart from the handling options every tag takes (<code>rows</code>, <code>group</code>, <code>sort</code> ...).
+            </p>
+            <h3>
+              Size, colours and accessibility
+            </h3>
+            <p>
+              The default size is 600 x 300; the round kinds are 480 x 280, the tall ones (sankey, network, treemap, radar, chord, pack, orgchart, parallel, multiples) 600 x 400. <code>.pad-chart { max-width: 100%; height: auto }</code> in the page's CSS lets a chart shrink with its column. The colours are CSS custom properties on <code>.pad-chart</code> - <code>--pad-chart-series</code>, <code>--pad-chart-text</code>, <code>--pad-chart-grid</code>, <code>--pad-chart-surface</code>, the slots <code>--pad-chart-1</code> to <code>-8</code> - with light and dark defaults that follow the page's <code>color-scheme</code>. The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> listing the values, and every bar, point or slice its own <code>&lt;title&gt;</code>, the tooltip on hover. <a href="index%EF%B9%96tag%EA%A4%B7sparkline.html">{sparkline}</a> is the word-sized line by its own name.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                Bars from a page array
+              </h3>
+              <p class="example-about">
+                label= names the axis, value= the number; data= is an array of the page's PHP.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/chart/1-bar.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'sales'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'month'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'amount'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Sales per month'</span>, <span class="hl-opt">width</span>=<span class="hl-num">480</span>, <span class="hl-opt">height</span>=<span class="hl-num">240</span><span class="hl-brc">}</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/chart/1-bar.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
 
   <span class="hl-var">$sales</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
     <span class="hl-pun">[</span> <span class="hl-str">'month'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Jan'</span><span class="hl-pun">,</span> <span class="hl-str">'amount'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">12400</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
@@ -423,105 +474,105 @@
     <span class="hl-pun">[</span> <span class="hl-str">'month'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Jun'</span><span class="hl-pun">,</span> <span class="hl-str">'amount'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">18750</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
 
 <span class="hl-tag">?&gt;</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B71-bar.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bar" role="img" aria-labelledby="pad-chart-88205a49-title pad-chart-88205a49-desc" width="480" height="240" viewbox="0 0 480 240">
-                  <title id="pad-chart-88205a49-title">
-                    Sales per month
-                  </title>
-                  <desc id="pad-chart-88205a49-desc">
-                    Jan: 12,400; Feb: 9,500; Mar: 14,300; Apr: 16,100; May: 15,200; Jun: 18,750
-                  </desc>
-                  <line class="pc-grid" x1="49" x2="470" y1="216" y2="216"></line>
-                  <text x="43" y="220" text-anchor="end">
-                    0
-                  </text>
-                  <line class="pc-grid" x1="49" x2="470" y1="164.5" y2="164.5"></line>
-                  <text x="43" y="168.5" text-anchor="end">
-                    5,000
-                  </text>
-                  <line class="pc-grid" x1="49" x2="470" y1="113" y2="113"></line>
-                  <text x="43" y="117" text-anchor="end">
-                    10,000
-                  </text>
-                  <line class="pc-grid" x1="49" x2="470" y1="61.5" y2="61.5"></line>
-                  <text x="43" y="65.5" text-anchor="end">
-                    15,000
-                  </text>
-                  <line class="pc-grid" x1="49" x2="470" y1="10" y2="10"></line>
-                  <text x="43" y="14" text-anchor="end">
-                    20,000
-                  </text>
-                  <text x="84.1" y="232" text-anchor="middle">
-                    Jan
-                  </text>
-                  <text x="154.3" y="232" text-anchor="middle">
-                    Feb
-                  </text>
-                  <text x="224.4" y="232" text-anchor="middle">
-                    Mar
-                  </text>
-                  <text x="294.6" y="232" text-anchor="middle">
-                    Apr
-                  </text>
-                  <text x="364.8" y="232" text-anchor="middle">
-                    May
-                  </text>
-                  <text x="434.9" y="232" text-anchor="middle">
-                    Jun
-                  </text>
-                  <path class="pc-bar" d="M72.1,216V92.3Q72.1,88.3 76.1,88.3H92.1Q96.1,88.3 96.1,92.3V216Z">
-                    <title>
-                      Jan: 12,400
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B71-bar.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bar" role="img" aria-labelledby="pad-chart-88205a49-title pad-chart-88205a49-desc" width="480" height="240" viewbox="0 0 480 240">
+                    <title id="pad-chart-88205a49-title">
+                      Sales per month
                     </title>
-                  </path>
-                  <path class="pc-bar" d="M142.3,216V122.2Q142.3,118.2 146.3,118.2H162.3Q166.3,118.2 166.3,122.2V216Z">
-                    <title>
-                      Feb: 9,500
-                    </title>
-                  </path>
-                  <path class="pc-bar" d="M212.4,216V72.7Q212.4,68.7 216.4,68.7H232.4Q236.4,68.7 236.4,72.7V216Z">
-                    <title>
-                      Mar: 14,300
-                    </title>
-                  </path>
-                  <path class="pc-bar" d="M282.6,216V54.2Q282.6,50.2 286.6,50.2H302.6Q306.6,50.2 306.6,54.2V216Z">
-                    <title>
-                      Apr: 16,100
-                    </title>
-                  </path>
-                  <path class="pc-bar" d="M352.8,216V63.4Q352.8,59.4 356.8,59.4H372.8Q376.8,59.4 376.8,63.4V216Z">
-                    <title>
-                      May: 15,200
-                    </title>
-                  </path>
-                  <path class="pc-bar" d="M422.9,216V26.9Q422.9,22.9 426.9,22.9H442.9Q446.9,22.9 446.9,26.9V216Z">
-                    <title>
-                      Jun: 18,750
-                    </title>
-                  </path>
-                  <line class="pc-axis" x1="49" x2="470" y1="216" y2="216"></line></svg>
+                    <desc id="pad-chart-88205a49-desc">
+                      Jan: 12,400; Feb: 9,500; Mar: 14,300; Apr: 16,100; May: 15,200; Jun: 18,750
+                    </desc>
+                    <line class="pc-grid" x1="49" x2="470" y1="216" y2="216"></line>
+                    <text x="43" y="220" text-anchor="end">
+                      0
+                    </text>
+                    <line class="pc-grid" x1="49" x2="470" y1="164.5" y2="164.5"></line>
+                    <text x="43" y="168.5" text-anchor="end">
+                      5,000
+                    </text>
+                    <line class="pc-grid" x1="49" x2="470" y1="113" y2="113"></line>
+                    <text x="43" y="117" text-anchor="end">
+                      10,000
+                    </text>
+                    <line class="pc-grid" x1="49" x2="470" y1="61.5" y2="61.5"></line>
+                    <text x="43" y="65.5" text-anchor="end">
+                      15,000
+                    </text>
+                    <line class="pc-grid" x1="49" x2="470" y1="10" y2="10"></line>
+                    <text x="43" y="14" text-anchor="end">
+                      20,000
+                    </text>
+                    <text x="84.1" y="232" text-anchor="middle">
+                      Jan
+                    </text>
+                    <text x="154.3" y="232" text-anchor="middle">
+                      Feb
+                    </text>
+                    <text x="224.4" y="232" text-anchor="middle">
+                      Mar
+                    </text>
+                    <text x="294.6" y="232" text-anchor="middle">
+                      Apr
+                    </text>
+                    <text x="364.8" y="232" text-anchor="middle">
+                      May
+                    </text>
+                    <text x="434.9" y="232" text-anchor="middle">
+                      Jun
+                    </text>
+                    <path class="pc-bar" d="M72.1,216V92.3Q72.1,88.3 76.1,88.3H92.1Q96.1,88.3 96.1,92.3V216Z">
+                      <title>
+                        Jan: 12,400
+                      </title>
+                    </path>
+                    <path class="pc-bar" d="M142.3,216V122.2Q142.3,118.2 146.3,118.2H162.3Q166.3,118.2 166.3,122.2V216Z">
+                      <title>
+                        Feb: 9,500
+                      </title>
+                    </path>
+                    <path class="pc-bar" d="M212.4,216V72.7Q212.4,68.7 216.4,68.7H232.4Q236.4,68.7 236.4,72.7V216Z">
+                      <title>
+                        Mar: 14,300
+                      </title>
+                    </path>
+                    <path class="pc-bar" d="M282.6,216V54.2Q282.6,50.2 286.6,50.2H302.6Q306.6,50.2 306.6,54.2V216Z">
+                      <title>
+                        Apr: 16,100
+                      </title>
+                    </path>
+                    <path class="pc-bar" d="M352.8,216V63.4Q352.8,59.4 356.8,59.4H372.8Q376.8,59.4 376.8,63.4V216Z">
+                      <title>
+                        May: 15,200
+                      </title>
+                    </path>
+                    <path class="pc-bar" d="M422.9,216V26.9Q422.9,22.9 426.9,22.9H442.9Q446.9,22.9 446.9,26.9V216Z">
+                      <title>
+                        Jun: 18,750
+                      </title>
+                    </path>
+                    <line class="pc-axis" x1="49" x2="470" y1="216" y2="216"></line></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="example" id="example-2">
-            <h3>
-              Two lines from a data block
-            </h3>
-            <p class="example-about">
-              A comma list in value= draws a line per field, each named at its end.
-            </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/chart/2-line.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'visits'</span><span class="hl-brc">}</span>
+            <div class="example" id="example-2">
+              <h3>
+                Two lines from a data block
+              </h3>
+              <p class="example-about">
+                A comma list in value= draws a line per field, each named at its end.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/chart/2-line.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'visits'</span><span class="hl-brc">}</span>
   [ <span class="hl-brc">{</span> <span class="hl-str">"day"</span>: <span class="hl-str">"Mon"</span>, <span class="hl-str">"desktop"</span>: <span class="hl-num">420</span>, <span class="hl-str">"mobile"</span>: <span class="hl-num">610</span> <span class="hl-brc">}</span>,
     <span class="hl-brc">{</span> <span class="hl-str">"day"</span>: <span class="hl-str">"Tue"</span>, <span class="hl-str">"desktop"</span>: <span class="hl-num">380</span>, <span class="hl-str">"mobile"</span>: <span class="hl-num">650</span> <span class="hl-brc">}</span>,
     <span class="hl-brc">{</span> <span class="hl-str">"day"</span>: <span class="hl-str">"Wed"</span>, <span class="hl-str">"desktop"</span>: <span class="hl-num">455</span>, <span class="hl-str">"mobile"</span>: <span class="hl-num">590</span> <span class="hl-brc">}</span>,
@@ -529,146 +580,146 @@
     <span class="hl-brc">{</span> <span class="hl-str">"day"</span>: <span class="hl-str">"Fri"</span>, <span class="hl-str">"desktop"</span>: <span class="hl-num">470</span>, <span class="hl-str">"mobile"</span>: <span class="hl-num">820</span> <span class="hl-brc">}</span> ]
 <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'line'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'visits'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'day'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'desktop, mobile'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Visits this week'</span>, <span class="hl-opt">width</span>=<span class="hl-num">480</span>, <span class="hl-opt">height</span>=<span class="hl-num">240</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B72-line.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-line" role="img" aria-labelledby="pad-chart-90b2f5c8-title pad-chart-90b2f5c8-desc" width="480" height="240" viewbox="0 0 480 240">
-                  <title id="pad-chart-90b2f5c8-title">
-                    Visits this week
-                  </title>
-                  <desc id="pad-chart-90b2f5c8-desc">
-                    Mon: Desktop 420, Mobile 610; Tue: Desktop 380, Mobile 650; Wed: Desktop 455, Mobile 590; Thu: Desktop 510, Mobile 700; Fri: Desktop 470, Mobile 820
-                  </desc>
-                  <g class="pc-key">
-                    <rect class="pc-c1" x="43" y="6" width="10" height="10" rx="2"></rect>
-                    <text x="57" y="15">
-                      Desktop
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B72-line.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-line" role="img" aria-labelledby="pad-chart-90b2f5c8-title pad-chart-90b2f5c8-desc" width="480" height="240" viewbox="0 0 480 240">
+                    <title id="pad-chart-90b2f5c8-title">
+                      Visits this week
+                    </title>
+                    <desc id="pad-chart-90b2f5c8-desc">
+                      Mon: Desktop 420, Mobile 610; Tue: Desktop 380, Mobile 650; Wed: Desktop 455, Mobile 590; Thu: Desktop 510, Mobile 700; Fri: Desktop 470, Mobile 820
+                    </desc>
+                    <g class="pc-key">
+                      <rect class="pc-c1" x="43" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="57" y="15">
+                        Desktop
+                      </text>
+                      <rect class="pc-c2" x="114.5" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="128.5" y="15">
+                        Mobile
+                      </text>
+                    </g>
+                    <line class="pc-grid" x1="43" x2="417" y1="216" y2="216"></line>
+                    <text x="37" y="220" text-anchor="end">
+                      0
                     </text>
-                    <rect class="pc-c2" x="114.5" y="6" width="10" height="10" rx="2"></rect>
-                    <text x="128.5" y="15">
+                    <line class="pc-grid" x1="43" x2="417" y1="178" y2="178"></line>
+                    <text x="37" y="182" text-anchor="end">
+                      200
+                    </text>
+                    <line class="pc-grid" x1="43" x2="417" y1="140" y2="140"></line>
+                    <text x="37" y="144" text-anchor="end">
+                      400
+                    </text>
+                    <line class="pc-grid" x1="43" x2="417" y1="102" y2="102"></line>
+                    <text x="37" y="106" text-anchor="end">
+                      600
+                    </text>
+                    <line class="pc-grid" x1="43" x2="417" y1="64" y2="64"></line>
+                    <text x="37" y="68" text-anchor="end">
+                      800
+                    </text>
+                    <line class="pc-grid" x1="43" x2="417" y1="26" y2="26"></line>
+                    <text x="37" y="30" text-anchor="end">
+                      1,000
+                    </text>
+                    <text x="80.4" y="232" text-anchor="middle">
+                      Mon
+                    </text>
+                    <text x="155.2" y="232" text-anchor="middle">
+                      Tue
+                    </text>
+                    <text x="230" y="232" text-anchor="middle">
+                      Wed
+                    </text>
+                    <text x="304.8" y="232" text-anchor="middle">
+                      Thu
+                    </text>
+                    <text x="379.6" y="232" text-anchor="middle">
+                      Fri
+                    </text>
+                    <path class="pc-l1" d="M80.4,136.2L155.2,143.8L230,129.6L304.8,119.1L379.6,126.7"></path>
+                    <circle class="pc-c1 pc-ring" cx="379.6" cy="126.7" r="4"></circle>
+                    <path class="pc-l2" d="M80.4,100.1L155.2,92.5L230,103.9L304.8,83L379.6,60.2"></path>
+                    <circle class="pc-c2 pc-ring" cx="379.6" cy="60.2" r="4"></circle>
+                    <text x="387.6" y="64.2">
                       Mobile
                     </text>
-                  </g>
-                  <line class="pc-grid" x1="43" x2="417" y1="216" y2="216"></line>
-                  <text x="37" y="220" text-anchor="end">
-                    0
-                  </text>
-                  <line class="pc-grid" x1="43" x2="417" y1="178" y2="178"></line>
-                  <text x="37" y="182" text-anchor="end">
-                    200
-                  </text>
-                  <line class="pc-grid" x1="43" x2="417" y1="140" y2="140"></line>
-                  <text x="37" y="144" text-anchor="end">
-                    400
-                  </text>
-                  <line class="pc-grid" x1="43" x2="417" y1="102" y2="102"></line>
-                  <text x="37" y="106" text-anchor="end">
-                    600
-                  </text>
-                  <line class="pc-grid" x1="43" x2="417" y1="64" y2="64"></line>
-                  <text x="37" y="68" text-anchor="end">
-                    800
-                  </text>
-                  <line class="pc-grid" x1="43" x2="417" y1="26" y2="26"></line>
-                  <text x="37" y="30" text-anchor="end">
-                    1,000
-                  </text>
-                  <text x="80.4" y="232" text-anchor="middle">
-                    Mon
-                  </text>
-                  <text x="155.2" y="232" text-anchor="middle">
-                    Tue
-                  </text>
-                  <text x="230" y="232" text-anchor="middle">
-                    Wed
-                  </text>
-                  <text x="304.8" y="232" text-anchor="middle">
-                    Thu
-                  </text>
-                  <text x="379.6" y="232" text-anchor="middle">
-                    Fri
-                  </text>
-                  <path class="pc-l1" d="M80.4,136.2L155.2,143.8L230,129.6L304.8,119.1L379.6,126.7"></path>
-                  <circle class="pc-c1 pc-ring" cx="379.6" cy="126.7" r="4"></circle>
-                  <path class="pc-l2" d="M80.4,100.1L155.2,92.5L230,103.9L304.8,83L379.6,60.2"></path>
-                  <circle class="pc-c2 pc-ring" cx="379.6" cy="60.2" r="4"></circle>
-                  <text x="387.6" y="64.2">
-                    Mobile
-                  </text>
-                  <text x="387.6" y="130.7">
-                    Desktop
-                  </text>
-                  <circle class="pc-hit" cx="80.4" cy="136.2" r="20">
-                    <title>
-                      Mon · Desktop: 420
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="155.2" cy="143.8" r="20">
-                    <title>
-                      Tue · Desktop: 380
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="230" cy="129.6" r="20">
-                    <title>
-                      Wed · Desktop: 455
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="304.8" cy="119.1" r="20">
-                    <title>
-                      Thu · Desktop: 510
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="379.6" cy="126.7" r="20">
-                    <title>
-                      Fri · Desktop: 470
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="80.4" cy="100.1" r="20">
-                    <title>
-                      Mon · Mobile: 610
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="155.2" cy="92.5" r="20">
-                    <title>
-                      Tue · Mobile: 650
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="230" cy="103.9" r="20">
-                    <title>
-                      Wed · Mobile: 590
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="304.8" cy="83" r="20">
-                    <title>
-                      Thu · Mobile: 700
-                    </title>
-                  </circle>
-                  <circle class="pc-hit" cx="379.6" cy="60.2" r="20">
-                    <title>
-                      Fri · Mobile: 820
-                    </title>
-                  </circle>
-                  <line class="pc-axis" x1="43" x2="417" y1="216" y2="216"></line></svg>
+                    <text x="387.6" y="130.7">
+                      Desktop
+                    </text>
+                    <circle class="pc-hit" cx="80.4" cy="136.2" r="20">
+                      <title>
+                        Mon · Desktop: 420
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="155.2" cy="143.8" r="20">
+                      <title>
+                        Tue · Desktop: 380
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="230" cy="129.6" r="20">
+                      <title>
+                        Wed · Desktop: 455
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="304.8" cy="119.1" r="20">
+                      <title>
+                        Thu · Desktop: 510
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="379.6" cy="126.7" r="20">
+                      <title>
+                        Fri · Desktop: 470
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="80.4" cy="100.1" r="20">
+                      <title>
+                        Mon · Mobile: 610
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="155.2" cy="92.5" r="20">
+                      <title>
+                        Tue · Mobile: 650
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="230" cy="103.9" r="20">
+                      <title>
+                        Wed · Mobile: 590
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="304.8" cy="83" r="20">
+                      <title>
+                        Thu · Mobile: 700
+                      </title>
+                    </circle>
+                    <circle class="pc-hit" cx="379.6" cy="60.2" r="20">
+                      <title>
+                        Fri · Mobile: 820
+                      </title>
+                    </circle>
+                    <line class="pc-axis" x1="43" x2="417" y1="216" y2="216"></line></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="example" id="example-3">
-            <h3>
-              A donut from a CSV data block
-            </h3>
-            <p class="example-about">
-              Parts of a whole: a legend with value and share, the total in the middle of a donut.
-            </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/chart/3-pie.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'budget'</span><span class="hl-brc">}</span>
+            <div class="example" id="example-3">
+              <h3>
+                A donut from a CSV data block
+              </h3>
+              <p class="example-about">
+                Parts of a whole: a legend with value and share, the total in the middle of a donut.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/chart/3-pie.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'budget'</span><span class="hl-brc">}</span>
   post,amount
   Rent,<span class="hl-num">1200</span>
   Food,<span class="hl-num">450</span>
@@ -676,220 +727,221 @@
   Savings,<span class="hl-num">300</span>
 <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'donut'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'budget'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'post'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'amount'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Monthly budget'</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B73-pie.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-donut" role="img" aria-labelledby="pad-chart-f89744fa-title pad-chart-f89744fa-desc" width="480" height="280" viewbox="0 0 480 280">
-                  <title id="pad-chart-f89744fa-title">
-                    Monthly budget
-                  </title>
-                  <desc id="pad-chart-f89744fa-desc">
-                    Rent: 1,200 (56.3%); Food: 450 (21.1%); Transport: 180 (8.5%); Savings: 300 (14.1%)
-                  </desc>
-                  <path class="pc-mark pc-gap pc-c1" fill-rule="evenodd" d="M120,30A110,110 0 1 1 77.3,241.4L94.4,200.8A66,66 0 1 0 120,74Z">
-                    <title>
-                      Rent: 1,200 (56.3%)
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B73-pie.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-donut" role="img" aria-labelledby="pad-chart-f89744fa-title pad-chart-f89744fa-desc" width="480" height="280" viewbox="0 0 480 280">
+                    <title id="pad-chart-f89744fa-title">
+                      Monthly budget
                     </title>
-                  </path>
-                  <path class="pc-mark pc-gap pc-c2" fill-rule="evenodd" d="M77.3,241.4A110,110 0 0 1 11.3,123L54.8,129.8A66,66 0 0 0 94.4,200.8Z">
-                    <title>
-                      Food: 450 (21.1%)
-                    </title>
-                  </path>
-                  <path class="pc-mark pc-gap pc-c3" fill-rule="evenodd" d="M11.3,123A110,110 0 0 1 34.9,70.3L68.9,98.2A66,66 0 0 0 54.8,129.8Z">
-                    <title>
-                      Transport: 180 (8.5%)
-                    </title>
-                  </path>
-                  <path class="pc-mark pc-gap pc-c4" fill-rule="evenodd" d="M34.9,70.3A110,110 0 0 1 120,30L120,74A66,66 0 0 0 68.9,98.2Z">
-                    <title>
-                      Savings: 300 (14.1%)
-                    </title>
-                  </path>
-                  <text class="pc-big" x="120" y="146" text-anchor="middle">
-                    2,130
-                  </text>
-                  <rect class="pc-c1" x="254" y="104" width="10" height="10" rx="2"></rect>
-                  <text x="270" y="113">
-                    Rent 1,200 (56.3%)
-                  </text>
-                  <rect class="pc-c2" x="254" y="122" width="10" height="10" rx="2"></rect>
-                  <text x="270" y="131">
-                    Food 450 (21.1%)
-                  </text>
-                  <rect class="pc-c3" x="254" y="140" width="10" height="10" rx="2"></rect>
-                  <text x="270" y="149">
-                    Transport 180 (8.5%)
-                  </text>
-                  <rect class="pc-c4" x="254" y="158" width="10" height="10" rx="2"></rect>
-                  <text x="270" y="167">
-                    Savings 300 (14.1%)
-                  </text></svg>
+                    <desc id="pad-chart-f89744fa-desc">
+                      Rent: 1,200 (56.3%); Food: 450 (21.1%); Transport: 180 (8.5%); Savings: 300 (14.1%)
+                    </desc>
+                    <path class="pc-mark pc-gap pc-c1" fill-rule="evenodd" d="M120,30A110,110 0 1 1 77.3,241.4L94.4,200.8A66,66 0 1 0 120,74Z">
+                      <title>
+                        Rent: 1,200 (56.3%)
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-gap pc-c2" fill-rule="evenodd" d="M77.3,241.4A110,110 0 0 1 11.3,123L54.8,129.8A66,66 0 0 0 94.4,200.8Z">
+                      <title>
+                        Food: 450 (21.1%)
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-gap pc-c3" fill-rule="evenodd" d="M11.3,123A110,110 0 0 1 34.9,70.3L68.9,98.2A66,66 0 0 0 54.8,129.8Z">
+                      <title>
+                        Transport: 180 (8.5%)
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-gap pc-c4" fill-rule="evenodd" d="M34.9,70.3A110,110 0 0 1 120,30L120,74A66,66 0 0 0 68.9,98.2Z">
+                      <title>
+                        Savings: 300 (14.1%)
+                      </title>
+                    </path>
+                    <text class="pc-big" x="120" y="146" text-anchor="middle">
+                      2,130
+                    </text>
+                    <rect class="pc-c1" x="254" y="104" width="10" height="10" rx="2"></rect>
+                    <text x="270" y="113">
+                      Rent 1,200 (56.3%)
+                    </text>
+                    <rect class="pc-c2" x="254" y="122" width="10" height="10" rx="2"></rect>
+                    <text x="270" y="131">
+                      Food 450 (21.1%)
+                    </text>
+                    <rect class="pc-c3" x="254" y="140" width="10" height="10" rx="2"></rect>
+                    <text x="270" y="149">
+                      Transport 180 (8.5%)
+                    </text>
+                    <rect class="pc-c4" x="254" y="158" width="10" height="10" rx="2"></rect>
+                    <text x="270" y="167">
+                      Savings 300 (14.1%)
+                    </text></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="example" id="example-4">
-            <h3>
-              The data inside the pair
-            </h3>
-            <p class="example-about">
-              Without data=, the content between the tags is the data - here CSV, two series stacked.
-            </p>
-            <div class="example-grid">
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Template</span><span class="cell-file">examples/chart/4-pair.pad</span>
-                </div>
-                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'quarter'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'online, shop'</span>, stacked, <span class="hl-opt">title</span>=<span class="hl-str">'Orders per quarter'</span>, <span class="hl-opt">width</span>=<span class="hl-num">480</span>, <span class="hl-opt">height</span>=<span class="hl-num">240</span><span class="hl-brc">}</span>
+            <div class="example" id="example-4">
+              <h3>
+                The data inside the pair
+              </h3>
+              <p class="example-about">
+                Without data=, the content between the tags is the data - here CSV, two series stacked.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/chart/4-pair.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'quarter'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'online, shop'</span>, stacked, <span class="hl-opt">title</span>=<span class="hl-str">'Orders per quarter'</span>, <span class="hl-opt">width</span>=<span class="hl-num">480</span>, <span class="hl-opt">height</span>=<span class="hl-num">240</span><span class="hl-brc">}</span>
   quarter,online,shop
   Q1,<span class="hl-num">320</span>,<span class="hl-num">410</span>
   Q2,<span class="hl-num">380</span>,<span class="hl-num">390</span>
   Q3,<span class="hl-num">450</span>,<span class="hl-num">360</span>
   Q4,<span class="hl-num">610</span>,<span class="hl-num">420</span>
 <span class="hl-brc">{</span><span class="hl-tag">/chart</span><span class="hl-brc">}</span></code></pre>
-              </div>
-              <div class="cell">
-                <div class="cell-head">
-                  <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B74-pair.html">open alone</a>
                 </div>
-                <div class="result">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bar" role="img" aria-labelledby="pad-chart-601fc70b-title pad-chart-601fc70b-desc" width="480" height="240" viewbox="0 0 480 240">
-                  <title id="pad-chart-601fc70b-title">
-                    Orders per quarter
-                  </title>
-                  <desc id="pad-chart-601fc70b-desc">
-                    Q1: Online 320, Shop 410; Q2: Online 380, Shop 390; Q3: Online 450, Shop 360; Q4: Online 610, Shop 420
-                  </desc>
-                  <g class="pc-key">
-                    <rect class="pc-c1" x="43" y="6" width="10" height="10" rx="2"></rect>
-                    <text x="57" y="15">
-                      Online
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7chart%EA%A4%B74-pair.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bar" role="img" aria-labelledby="pad-chart-601fc70b-title pad-chart-601fc70b-desc" width="480" height="240" viewbox="0 0 480 240">
+                    <title id="pad-chart-601fc70b-title">
+                      Orders per quarter
+                    </title>
+                    <desc id="pad-chart-601fc70b-desc">
+                      Q1: Online 320, Shop 410; Q2: Online 380, Shop 390; Q3: Online 450, Shop 360; Q4: Online 610, Shop 420
+                    </desc>
+                    <g class="pc-key">
+                      <rect class="pc-c1" x="43" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="57" y="15">
+                        Online
+                      </text>
+                      <rect class="pc-c2" x="108" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="122" y="15">
+                        Shop
+                      </text>
+                    </g>
+                    <line class="pc-grid" x1="43" x2="470" y1="216" y2="216"></line>
+                    <text x="37" y="220" text-anchor="end">
+                      0
                     </text>
-                    <rect class="pc-c2" x="108" y="6" width="10" height="10" rx="2"></rect>
-                    <text x="122" y="15">
-                      Shop
+                    <line class="pc-grid" x1="43" x2="470" y1="178" y2="178"></line>
+                    <text x="37" y="182" text-anchor="end">
+                      250
                     </text>
-                  </g>
-                  <line class="pc-grid" x1="43" x2="470" y1="216" y2="216"></line>
-                  <text x="37" y="220" text-anchor="end">
-                    0
-                  </text>
-                  <line class="pc-grid" x1="43" x2="470" y1="178" y2="178"></line>
-                  <text x="37" y="182" text-anchor="end">
-                    250
-                  </text>
-                  <line class="pc-grid" x1="43" x2="470" y1="140" y2="140"></line>
-                  <text x="37" y="144" text-anchor="end">
-                    500
-                  </text>
-                  <line class="pc-grid" x1="43" x2="470" y1="102" y2="102"></line>
-                  <text x="37" y="106" text-anchor="end">
-                    750
-                  </text>
-                  <line class="pc-grid" x1="43" x2="470" y1="64" y2="64"></line>
-                  <text x="37" y="68" text-anchor="end">
-                    1,000
-                  </text>
-                  <line class="pc-grid" x1="43" x2="470" y1="26" y2="26"></line>
-                  <text x="37" y="30" text-anchor="end">
-                    1,250
-                  </text>
-                  <text x="96.4" y="232" text-anchor="middle">
-                    Q1
-                  </text>
-                  <text x="203.1" y="232" text-anchor="middle">
-                    Q2
-                  </text>
-                  <text x="309.9" y="232" text-anchor="middle">
-                    Q3
-                  </text>
-                  <text x="416.6" y="232" text-anchor="middle">
-                    Q4
-                  </text>
-                  <rect class="pc-mark pc-seg pc-c1" x="84.4" y="167.4" width="24" height="48.6">
-                    <title>
-                      Q1 · Online: 320
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c2" x="84.4" y="105" width="24" height="62.3">
-                    <title>
-                      Q1 · Shop: 410
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c1" x="191.1" y="158.2" width="24" height="57.8">
-                    <title>
-                      Q2 · Online: 380
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c2" x="191.1" y="99" width="24" height="59.3">
-                    <title>
-                      Q2 · Shop: 390
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c1" x="297.9" y="147.6" width="24" height="68.4">
-                    <title>
-                      Q3 · Online: 450
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c2" x="297.9" y="92.9" width="24" height="54.7">
-                    <title>
-                      Q3 · Shop: 360
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c1" x="404.6" y="123.3" width="24" height="92.7">
-                    <title>
-                      Q4 · Online: 610
-                    </title>
-                  </rect>
-                  <rect class="pc-mark pc-seg pc-c2" x="404.6" y="59.4" width="24" height="63.8">
-                    <title>
-                      Q4 · Shop: 420
-                    </title>
-                  </rect>
-                  <line class="pc-axis" x1="43" x2="470" y1="216" y2="216"></line></svg>
+                    <line class="pc-grid" x1="43" x2="470" y1="140" y2="140"></line>
+                    <text x="37" y="144" text-anchor="end">
+                      500
+                    </text>
+                    <line class="pc-grid" x1="43" x2="470" y1="102" y2="102"></line>
+                    <text x="37" y="106" text-anchor="end">
+                      750
+                    </text>
+                    <line class="pc-grid" x1="43" x2="470" y1="64" y2="64"></line>
+                    <text x="37" y="68" text-anchor="end">
+                      1,000
+                    </text>
+                    <line class="pc-grid" x1="43" x2="470" y1="26" y2="26"></line>
+                    <text x="37" y="30" text-anchor="end">
+                      1,250
+                    </text>
+                    <text x="96.4" y="232" text-anchor="middle">
+                      Q1
+                    </text>
+                    <text x="203.1" y="232" text-anchor="middle">
+                      Q2
+                    </text>
+                    <text x="309.9" y="232" text-anchor="middle">
+                      Q3
+                    </text>
+                    <text x="416.6" y="232" text-anchor="middle">
+                      Q4
+                    </text>
+                    <rect class="pc-mark pc-seg pc-c1" x="84.4" y="167.4" width="24" height="48.6">
+                      <title>
+                        Q1 · Online: 320
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c2" x="84.4" y="105" width="24" height="62.3">
+                      <title>
+                        Q1 · Shop: 410
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c1" x="191.1" y="158.2" width="24" height="57.8">
+                      <title>
+                        Q2 · Online: 380
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c2" x="191.1" y="99" width="24" height="59.3">
+                      <title>
+                        Q2 · Shop: 390
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c1" x="297.9" y="147.6" width="24" height="68.4">
+                      <title>
+                        Q3 · Online: 450
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c2" x="297.9" y="92.9" width="24" height="54.7">
+                      <title>
+                        Q3 · Shop: 360
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c1" x="404.6" y="123.3" width="24" height="92.7">
+                      <title>
+                        Q4 · Online: 610
+                      </title>
+                    </rect>
+                    <rect class="pc-mark pc-seg pc-c2" x="404.6" y="59.4" width="24" height="63.8">
+                      <title>
+                        Q4 · Shop: 420
+                      </title>
+                    </rect>
+                    <line class="pc-axis" x1="43" x2="470" y1="216" y2="216"></line></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section class="block" aria-labelledby="see">
-          <h2 id="see">
-            See also
-          </h2>
-          <ul class="list">
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sparkline.html">{sparkline}</a> <span class="about">Draws a word-sized line chart as inline SVG - no axes, the last point marked - to stand in a sentence or a table cell.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{map}</a> <span class="about">Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its regions.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7diagram.html">{diagram}</a> <span class="about">Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
-            </li>
-            <li>
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
-            </li>
-          </ul>
-        </section>
-        <nav class="prevnext" aria-label="Other tags">
-          <a href="index%EF%B9%96tag%EA%A4%B7cease.html">← {cease}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7check.html">{check} →</a>
-        </nav>
-      </article>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7sparkline.html">{sparkline}</a> <span class="about">Draws a word-sized line chart as inline SVG - no axes, the last point marked - to stand in a sentence or a table cell.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{map}</a> <span class="about">Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its regions.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7diagram.html">{diagram}</a> <span class="about">Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> <span class="about">Turns its content - JSON, XML, YAML, CSV, a list or a range - into a named data set for a later tag to iterate.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> <span class="about">Generates a range, a list or one of 80 mathematical sequences, and iterates its values.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7cease.html">← {cease}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7check.html">{check} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
     </main>
-    <footer class="foot">
-      <p>
-        142 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
-      </p>
-    </footer>
   </body>
 </html>

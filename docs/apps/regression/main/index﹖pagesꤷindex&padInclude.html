@@ -1,5 +1,5 @@
 <p>
-  <b>341 pages, 469 tests, 0 failed</b> - all ok
+  <b>415 pages, 543 tests, 0 failed</b> - all ok
 </p>
 
 
@@ -115,6 +115,20 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?db/a_database_tag_with_nothing_spliced_runs_whatever_the_page_printed_before&amp;padInclude">db/a_database_tag_with_nothing_spliced_runs_whatever_the_page_printed_before</a></td>
+      <td>A database tag with nothing spliced into its SQL runs, whatever text the page printed before it - its sort order, a guestbook entry</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?db/a_float_read_from_the_database_is_bound_back_as_the_same_number&amp;padInclude">db/a_float_read_from_the_database_is_bound_back_as_the_same_number</a></td>
+      <td>A float from the database bound back - a db() placeholder, a $name of a database tag - is the same number, not its 14 significant digits, and a whole one stays a count after LIMIT</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?db/a_formatted_or_empty_record_is_still_a_record&amp;padInclude">db/a_formatted_or_empty_record_is_still_a_record</a></td>
       <td></td>
       <td>ok</td>
@@ -131,6 +145,20 @@
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?db/a_named_query_with_replace_or_a_write_word_in_a_literal_reads&amp;padInclude">db/a_named_query_with_replace_or_a_write_word_in_a_literal_reads</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?db/a_null_of_the_enclosing_row_is_bound_as_null&amp;padInclude">db/a_null_of_the_enclosing_row_is_bound_as_null</a></td>
+      <td>A NULL column of the enclosing row is NULL in the SQL it goes into - a $name of a database tag, the relation a nested select follows - not the empty text</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?db/a_number_or_a_value_in_a_quoted_literal_spliced_into_a_database_tag_stays_a_value&amp;padInclude">db/a_number_or_a_value_in_a_quoted_literal_spliced_into_a_database_tag_stays_a_value</a></td>
+      <td>A value spliced into the SQL of a database tag with {$name} is refused outside a quoted literal, but a plain number stands as itself and a value inside a quoted literal is text</td>
       <td>ok</td>
     </tr>
     
@@ -395,6 +423,27 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?flush/a_tidy_marker_above_a_flush_is_taken_out&amp;padInclude">flush/a_tidy_marker_above_a_flush_is_taken_out</a></td>
+      <td>An  in the part a {flush} sends early is taken out, as from the rest of the page</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered&amp;padInclude">flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered</a></td>
+      <td>An  below a {flush} is taken out and tidy does not run over the rest - one document, as rendered</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?flush/a_toc_above_a_flush_lists_the_headings_below_it&amp;padInclude">flush/a_toc_above_a_flush_lists_the_headings_below_it</a></td>
+      <td>A {toc} in the part a {flush} would send holds every flush back: the toc lists the headings below it, no marker goes out</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?flush/auth&amp;padInclude">flush/auth</a></td>
       <td>A logged-in visitor below a {flush}: still logged in, the session opened before the headers went</td>
       <td>ok</td>
@@ -528,8 +577,43 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?flush/tidybelow&amp;padInclude">flush/tidybelow</a></td>
+      <td>The fixture of flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered, fetched bare: the page, the marker gone</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?flush/timing&amp;padInclude">flush/timing</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/a_csv_answer_of_a_record_or_of_objects_is_a_table&amp;padInclude">format/a_csv_answer_of_a_record_or_of_objects_is_a_table</a></td>
+      <td>A CSV answer of a record holding a list is one row, and of json_decode objects a row per object</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer&amp;padInclude">format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer</a></td>
+      <td>INF and NAN inside an object - a cast array, a json_decode row, a JsonSerializable - are null in a JSON answer as inside an array, never the 0 of a partial output</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/a_float_past_the_range_is_null_in_a_json_answer&amp;padInclude">format/a_float_past_the_range_is_null_in_a_json_answer</a></td>
+      <td>A float past the range - INF, -INF, NAN - is null in a JSON answer, as JSON.stringify writes it, never the 0 of a partial output; the CSV keeps INF</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/a_text_that_is_no_utf8_is_kept_in_a_json_answer&amp;padInclude">format/a_text_that_is_no_utf8_is_kept_in_a_json_answer</a></td>
+      <td>A value with a byte that is no UTF-8 is kept in a JSON answer, the byte as U+FFFD - never null</td>
       <td>ok</td>
     </tr>
     
@@ -563,6 +647,27 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/infinite&amp;padInclude">format/infinite</a></td>
+      <td>The fixture of format/a_float_past_the_range_is_null_in_a_json_answer, fetched bare: its page, and {^big} null</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/infobjects&amp;padInclude">format/infobjects</a></td>
+      <td>The fixture of format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer, fetched bare: {^field} over objects holding INF and NAN, null at any depth</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/latin&amp;padInclude">format/latin</a></td>
+      <td>The fixture of format/a_text_that_is_no_utf8_is_kept_in_a_json_answer, fetched bare: its page</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?format/orders&amp;padInclude">format/orders</a></td>
       <td></td>
       <td>ok</td>
@@ -577,6 +682,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?format/records&amp;padInclude">format/records</a></td>
+      <td>The fixture of format/a_csv_answer_of_a_record_or_of_objects_is_a_table, fetched bare: its page</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?format/scalar&amp;padInclude">format/scalar</a></td>
       <td></td>
       <td>ok</td>
@@ -584,8 +696,29 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?forms/a_form_htmx_posts_to_its_own_directory_keeps_its_rules/index&amp;padInclude">forms/a_form_htmx_posts_to_its_own_directory_keeps_its_rules/index</a></td>
+      <td>A form with rules that htmx posts to its directory name - the address of this index - renders, its rules checked there</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?forms/a_textarea_keeps_the_blank_line_its_value_starts_with&amp;padInclude">forms/a_textarea_keeps_the_blank_line_its_value_starts_with</a></td>
+      <td>A text area writes a line break after its opening tag, which the HTML parser drops - a value starting with a blank line keeps it</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?forms/client_parity&amp;padInclude">forms/client_parity</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?fragments/a_fragment_answers_without_the_developer_helpers&amp;padInclude">fragments/a_fragment_answers_without_the_developer_helpers</a></td>
+      <td>A page with the toolbar, live reload and the output check on carries the bar, the script and the panel as a whole page, and none of them in the answer to its fragment - asked by padFragment or by htmx in HX-Target</td>
       <td>ok</td>
     </tr>
     
@@ -607,6 +740,13 @@
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?fragments/cachedbyurl&amp;padInclude">fragments/cachedbyurl</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?fragments/helpers&amp;padInclude">fragments/helpers</a></td>
+      <td>The fixture for fragments/a_fragment_answers_without_the_developer_helpers: the three helpers on, a fragment with an image the output check names - fetched bare, its panel follows the page</td>
       <td>ok</td>
     </tr>
     
@@ -850,6 +990,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?live/a_posting_form_in_a_live_answer_keeps_its_csrf_token&amp;padInclude">live/a_posting_form_in_a_live_answer_keeps_its_csrf_token</a></td>
+      <td>A posting form in a {live} region under $padCsrf carries the token in the answer to an event as in the page</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?live/counter&amp;padInclude">live/counter</a></td>
       <td></td>
       <td>ok</td>
@@ -858,6 +1005,20 @@
   
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?live/csrf&amp;padInclude">live/csrf</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?live/form&amp;padInclude">live/form</a></td>
+      <td>The fixture of live/a_posting_form_in_a_live_answer_keeps_its_csrf_token, fetched bare: the region, its form with the token</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?mail/a_header_written_as_a_quoted_text_with_a_field_is_its_plain_text&amp;padInclude">mail/a_header_written_as_a_quoted_text_with_a_field_is_its_plain_text</a></td>
       <td></td>
       <td>ok</td>
     </tr>
@@ -1032,6 +1193,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?misc/react_keeps_its_data_with_a_byte_that_is_no_utf8&amp;padInclude">misc/react_keeps_its_data_with_a_byte_that_is_no_utf8</a></td>
+      <td>A {reactData} provider whose text holds a byte that is no UTF-8 - a Latin-1 Caf\xE9 - keeps its data, the byte as U+FFFD: the JSON came back FALSE, and the attribute empty</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?misc/react_types&amp;padInclude">misc/react_types</a></td>
       <td></td>
       <td>ok</td>
@@ -1062,6 +1230,34 @@
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?misc/trace&amp;padInclude">misc/trace</a></td>
       <td>The {trace} tag wrapping a scope in the execution trace</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?noted/frames&amp;padInclude">noted/frames</a></td>
+      <td>An @page@ inside a comment of a wrapper marks nothing - one beside the real marker, and one in a wrapper that has no other</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?noted/only/inner&amp;padInclude">noted/only/inner</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?noted/two/inner&amp;padInclude">noted/two/inner</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?override/a_bare_built_in_name_runs_the_application_s_own_function&amp;padInclude">override/a_bare_built_in_name_runs_the_application_s_own_function</a></td>
+      <td>An application function named as a built-in one stands in for it, also as a bare pipe name</td>
       <td>ok</td>
     </tr>
     
@@ -1102,6 +1298,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_clean_url_with_a_comma_or_semicolon_in_a_directory_answers_a_returning_visitor&amp;padInclude">request/a_clean_url_with_a_comma_or_semicolon_in_a_directory_answers_a_returning_visitor</a></td>
+      <td>A visitor sending an old and a new identity pair asks a clean URL with a , or ; in a directory segment: the page answers and the expiry passes over the path setcookie cannot write</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/a_fetch_for_a_visitor_at_any_address_is_not_local&amp;padInclude">request/a_fetch_for_a_visitor_at_any_address_is_not_local</a></td>
       <td></td>
       <td>ok</td>
@@ -1123,8 +1326,120 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_fetch_without_ext_curl_follows_a_redirect_of_this_site&amp;padInclude">request/a_fetch_without_ext_curl_follows_a_redirect_of_this_site</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_fetch_without_ext_curl_keeps_the_pin_and_the_post&amp;padInclude">request/a_fetch_without_ext_curl_keeps_the_pin_and_the_post</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_field_a_post_leaves_out&amp;padInclude">request/a_field_a_post_leaves_out</a></td>
+      <td>The fixture of request/a_field_a_post_leaves_out_is_checked_from_the_query_string bare: an empty form, not stored</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_field_a_post_leaves_out_is_checked_from_the_query_string&amp;padInclude">request/a_field_a_post_leaves_out_is_checked_from_the_query_string</a></td>
+      <td>A field the post leaves out is read from the query string, so the rules check it there - website=javascript:..., plan=enterprise and role=admin in the address refused, good values passed</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_guard_reading_the_user_after_padauthrequire_ends_at_the_refusal&amp;padInclude">request/a_guard_reading_the_user_after_padauthrequire_ends_at_the_refusal</a></td>
+      <td>In the guard of a {page}-included page padAuthRequire ends the guard for a guest, so a line reading the user after it never runs and the part renders as nothing</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_guard_that_swallows_the_refusal_of_a_part_still_refuses_it&amp;padInclude">request/a_guard_that_swallows_the_refusal_of_a_part_still_refuses_it</a></td>
+      <td>A guard of a {page}-included page that catches the refusal of padAuthRequire or padAuthorize - padRescue, a try/catch - and returns TRUE is refused all the same: the part renders as nothing</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_guarded_page_named_as_content_renders_nothing_when_refused&amp;padInclude">request/a_guarded_page_named_as_content_renders_nothing_when_refused</a></td>
+      <td>A page below a _guard.php named by content= or else= is asked of its guard as a {page} is - refused, it renders as nothing</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_json_body_address_is_refused&amp;padInclude">request/a_json_body_address_is_refused</a></td>
+      <td>An address posted as a JSON body is a request value - refused as a form post of it is</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_part_whose_guard_asks_for_a_login_renders_nothing_for_a_guest&amp;padInclude">request/a_part_whose_guard_asks_for_a_login_renders_nothing_for_a_guest</a></td>
+      <td>A page included by {page} whose _guard.php calls padAuthRequire or padAuthorize renders as nothing when refused, where the whole public page was sent to the login or answered 403</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_plain_php_application_answers_404_for_up_and_the_sitemap&amp;padInclude">request/a_plain_php_application_answers_404_for_up_and_the_sitemap</a></td>
+      <td>The plain-PHP application nono asked for ?up, ?sitemap.xml and ?robots.txt it has no page for: the 404 of any page that is not there, not a boot error on the stand-in page</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_plain_php_application_leaves_the_sitemap_and_up_to_the_engine&amp;padInclude">request/a_plain_php_application_leaves_the_sitemap_and_up_to_the_engine</a></td>
+      <td>A plain-PHP application with a root [slug].php and the sitemap and health check on answers robots.txt, sitemap.xml and up as the engine, any other name by the route</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/a_post_that_fails&amp;padInclude">request/a_post_that_fails</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_redirect_carries_a_list_as_the_query_writes_it&amp;padInclude">request/a_redirect_carries_a_list_as_the_query_writes_it</a></td>
+      <td>The values padRedirect and {redirect} carry go into the query as padUrl writes them - a list as ids[0]=1&ids[1]=2, a NULL left out, a name with & encoded</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_redirect_to_a_name_with_a_line_break_encodes_it&amp;padInclude">request/a_redirect_to_a_name_with_a_line_break_encodes_it</a></td>
+      <td>A line break in the page name padRedirect is handed from the request percent-encoded in a 302 - no header added, no 500</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_redirect_whose_target_holds_a_field_sends_the_field_s_text&amp;padInclude">request/a_redirect_whose_target_holds_a_field_sends_the_field_s_text</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_request_value_never_decides_what_a_tag_is&amp;padInclude">request/a_request_value_never_decides_what_a_tag_is</a></td>
+      <td>Request values named like a constant, a sequence, a _data file, a pipe or PHP function the template writes as a tag or a pipe: each stays what the template wrote, a page variable and a name nothing else claims stay fields</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/a_stored_file_larger_than_the_memory_limit_is_sent_whole&amp;padInclude">request/a_stored_file_larger_than_the_memory_limit_is_sent_whole</a></td>
+      <td>padUploadSend streams a stored file of sixteen megabytes whole from a request allowed ten more than it uses - it was read into one string, a 500 past memory_limit</td>
       <td>ok</td>
     </tr>
     
@@ -1146,6 +1461,41 @@
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/an_error_after_the_answer_stays_out_of_it&amp;padInclude">request/an_error_after_the_answer_stays_out_of_it</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/an_exported_page_carries_nothing_only_this_machine_sees&amp;padInclude">request/an_exported_page_carries_nothing_only_this_machine_sees</a></td>
+      <td>pad export renders on the command line, local to padLocal, for a copy any visitor reads: a page whose own PHP switches the toolbar, live reload and the output check on, with a {debug} box, carries all four to this machine and none into the export</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/an_exported_page_fetches_this_site_as_this_machine&amp;padInclude">request/an_exported_page_fetches_this_site_as_this_machine</a></td>
+      <td>A page pad export renders keeps this machine's standing for what it fetches of its own site - only the developer's helpers stay out of the copy</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/an_exported_page_fetches_this_site_without_the_developers_view&amp;padInclude">request/an_exported_page_fetches_this_site_without_the_developers_view</a></td>
+      <td>A page pad export renders fetches a page of its own site whose PHP switches the toolbar, live reload and the output check on, with a {debug} box: none of the four comes back into the copy</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/an_identity_cookie_sent_once_is_not_expired&amp;padInclude">request/an_identity_cookie_sent_once_is_not_expired</a></td>
+      <td>A padReqID and padSesID sent once each are the only copies: a clean-URL request sends no expiring Set-Cookie, only the new padReqID</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/an_old_identity_cookie_of_a_directory_below_the_application_is_expired&amp;padInclude">request/an_old_identity_cookie_of_a_directory_below_the_application_is_expired</a></td>
+      <td>A padReqID and padSesID kept on a directory below the application are expired there and on each directory between, the session id going on on the application directory</td>
       <td>ok</td>
     </tr>
     
@@ -1174,6 +1524,20 @@
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/body&amp;padInclude">request/body</a></td>
       <td>The raw-body fixture bare: an empty php://input</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/caught/box&amp;padInclude">request/caught/box</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/club/box&amp;padInclude">request/club/box</a></td>
+      <td></td>
       <td>ok</td>
     </tr>
     
@@ -1235,6 +1599,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/editors/box&amp;padInclude">request/editors/box</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/etag_post&amp;padInclude">request/etag_post</a></td>
       <td></td>
       <td>ok</td>
@@ -1244,6 +1615,34 @@
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/etag_target&amp;padInclude">request/etag_target</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/every_engine_cookie_of_an_https_site_is_secure&amp;padInclude">request/every_engine_cookie_of_an_https_site_is_secure</a></td>
+      <td>The session, flash and padReqID cookies are Secure on an https site - behind a proxy that ends TLS ($padHostBase https) and under session.cookie_secure too - and plain on plain http</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/exported&amp;padInclude">request/exported</a></td>
+      <td>The fixture for request/an_exported_page_carries_nothing_only_this_machine_sees: the helpers switched on by the page itself, a {debug} box and an image the output check names</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/fetchexported&amp;padInclude">request/fetchexported</a></td>
+      <td>The fixture for request/an_exported_page_fetches_this_site_without_the_developers_view: a page that fetches request/exported and names which of the developer's helpers came back</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/fetching&amp;padInclude">request/fetching</a></td>
+      <td>The fixture for request/an_exported_page_fetches_this_site_as_this_machine: a page that fetches request/standing and shows its answer</td>
       <td>ok</td>
     </tr>
     
@@ -1438,6 +1837,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/json_feed&amp;padInclude">request/json_feed</a></td>
+      <td>The fixture of request/a_json_body_address_is_refused, fetched bare: no address, nothing fetched</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/live_answer&amp;padInclude">request/live_answer</a></td>
       <td></td>
       <td>ok</td>
@@ -1474,6 +1880,20 @@
   
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/livecsrf&amp;padInclude">request/livecsrf</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/members/box&amp;padInclude">request/members/box</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/nocurl_echo&amp;padInclude">request/nocurl_echo</a></td>
       <td></td>
       <td>ok</td>
     </tr>
@@ -1571,6 +1991,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/rescued/box&amp;padInclude">request/rescued/box</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/reserved&amp;padInclude">request/reserved</a></td>
       <td></td>
       <td>ok</td>
@@ -1627,6 +2054,13 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/standing&amp;padInclude">request/standing</a></td>
+      <td>The fixture for request/fetching: whom this machine took the request for</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/stats&amp;padInclude">request/stats</a></td>
       <td></td>
       <td>ok</td>
@@ -1641,8 +2075,22 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/tagnames&amp;padInclude">request/tagnames</a></td>
+      <td>The fixture for request/a_request_value_never_decides_what_a_tag_is, fetched bare: what the template means by each name</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?request/the_error_page_shows_no_posted_password&amp;padInclude">request/the_error_page_shows_no_posted_password</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?request/the_identity_cookies_are_kept_on_the_application_directory&amp;padInclude">request/the_identity_cookies_are_kept_on_the_application_directory</a></td>
+      <td>padSesID and padReqID on the directory of the entry point, from a clean URL below it as from ?page - not one pair per directory of the address</td>
       <td>ok</td>
     </tr>
     
@@ -1816,8 +2264,22 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?routes/two_ajax_of_one_page_fill_their_own_divs_and_carry_the_nonce&amp;padInclude">routes/two_ajax_of_one_page_fill_their_own_divs_and_carry_the_nonce</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?sample/capture&amp;padInclude">sample/capture</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?sample/capture_rows&amp;padInclude">sample/capture_rows</a></td>
+      <td>A capture keeps what the page returned as @return</td>
       <td>ok</td>
     </tr>
     
@@ -1851,8 +2313,22 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?sample/rows&amp;padInclude">sample/rows</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?sample/use&amp;padInclude">sample/use</a></td>
       <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?sample/use_rows&amp;padInclude">sample/use_rows</a></td>
+      <td>The designer preview gives a page that returns its rows the @return of its sample</td>
       <td>ok</td>
     </tr>
     
@@ -2040,6 +2516,34 @@
     
   
     <tr>
+      <td><a href="http://localhost/pad/regression/pages/?shown/frames&amp;padInclude">shown/frames</a></td>
+      <td>An @page@ inside an {ignore} of a wrapper is text it shows - one beside the real marker, and one in a wrapper that has no other</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?shown/only/inner&amp;padInclude">shown/only/inner</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?shown/two/inner&amp;padInclude">shown/two/inner</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?sitemap/a_page_beside_a_directory_of_its_name_leaves_the_index_its_full_address&amp;padInclude">sitemap/a_page_beside_a_directory_of_its_name_leaves_the_index_its_full_address</a></td>
+      <td>A page docs beside a directory docs/ with an index: {sitemap} lists the page at ?docs and the index at ?docs/index, where the router sends it - not both at ?docs</td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
       <td><a href="http://localhost/pad/regression/pages/?sitemap/guarded&amp;padInclude">sitemap/guarded</a></td>
       <td></td>
       <td>ok</td>
@@ -2055,6 +2559,20 @@
   
     <tr>
       <td><a href="http://localhost/pad/regression/pages/?sitemap/off&amp;padInclude">sitemap/off</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?sitemap/same/docs&amp;padInclude">sitemap/same/docs</a></td>
+      <td></td>
+      <td>ok</td>
+    </tr>
+    
+  
+    <tr>
+      <td><a href="http://localhost/pad/regression/pages/?sitemap/same/docs/index&amp;padInclude">sitemap/same/docs/index</a></td>
       <td></td>
       <td>ok</td>
     </tr>

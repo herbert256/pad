@@ -1,483 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD - htmx
+      Htmx · PAD manual
     </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
   </head>
-  <body>
-    <center>
-      <h1 id="top">
-        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-      </h1>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table><br>
-      <hr width="75%">
-    </center>
-    <blockquote>
-      <center>
-        <blockquote>
-          <h1>
-            Htmx
-          </h1>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <center>
-                  <div style="display: inline-block; text-align: left;">
-                    <p>
-                      htmx asks the server for a part of the page and swaps the answer in - HTML over the wire, no JavaScript of your own. A PAD template already has names on its parts: every <b>{fragment}</b> can be asked for alone, so the template that renders the first visit also answers every question htmx asks after it.
-                    </p>
-                    <pre><code>&lt;input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results"&gt;
+  <body class="frame app-manual">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>manual</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="manual">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Contents</a>
+        <div class="frame-head">
+          Basic concepts
+        </div><a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a> <a href="index%EF%B9%96pages%EA%A4%B7expressions.html">Expressions</a> <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a> <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a> <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a> <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a> <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a> <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a> <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a> <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a> <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a> <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a> <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+        <div class="frame-head">
+          Constructs
+        </div><a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a> <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a> <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a> <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+        <div class="frame-head">
+          Text and markup
+        </div><a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a> <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a> <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a> <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+        <div class="frame-head">
+          Advanced concepts
+        </div><a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a> <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a> <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a> <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a> <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a> <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a> <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a> <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a> <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+        <div class="frame-head">
+          Data
+        </div><a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a> <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a> <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a> <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a> <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a> <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a> <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a> <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a> <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a> <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+        <div class="frame-head">
+          PHP helpers
+        </div><a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a> <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a> <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a> <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a> <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a> <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a> <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a> <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+        <div class="frame-head">
+          Output
+        </div><a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a> <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a> <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a> <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a> <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a> <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a> <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a> <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a> <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
+        <div class="frame-head">
+          Layouts and components
+        </div><a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a> <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a> <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a> <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a> <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+        <div class="frame-head">
+          The application
+        </div><a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a> <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a> <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a> <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a> <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a> <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a> <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a> <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+        <div class="frame-head">
+          With JavaScript
+        </div><a href="index%EF%B9%96pages%EA%A4%B7htmx.html" aria-current="page">Htmx</a> <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a> <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a> <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a> <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+        <div class="frame-head">
+          Forms and security
+        </div><a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a> <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a> <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a> <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a> <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a> <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a> <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+        <div class="frame-head">
+          Development tools
+        </div><a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a> <a href="/pad/manual/?pages/template_errors">Template errors</a> <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a> <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a> <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a> <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a> <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a> <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a> <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a> <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a> <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a> <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a> <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a> <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a> <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a> <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Htmx
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p>
+          htmx asks the server for a part of the page and swaps the answer in - HTML over the wire, no JavaScript of your own. A PAD template already has names on its parts: every <b>{fragment}</b> can be asked for alone, so the template that renders the first visit also answers every question htmx asks after it.
+        </p>
+        <pre><code>&lt;input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results"&gt;
 
 &lt;ul id="results"&gt;
   {fragment 'results'}
     {products}&lt;li&gt;{$name}&lt;/li&gt;{/products}
   {/fragment}
 &lt;/ul&gt;</code></pre>
-                    <h2>
-                      Which part answers
-                    </h2>
-                    <ul>
-                      <li>
-                        <b>By the target.</b> htmx sends the id of the element it swaps in <code>HX-Target</code>; a request of htmx that names no fragment itself gets the fragment called like that element, when the page has one - and the whole page when it has none.
-                      </li>
-                      <li>
-                        <b>By the address.</b> <code>&amp;padFragment=rows</code> names the fragment outright - for a target without an id (<code>hx-target="closest tr"</code>, <code>this</code>) or a part other than the target.
-                      </li>
-                      <li>
-                        <b>By the PHP.</b> <code>$padFragmentOnly = 'row'</code> decides in the page's PHP. A fragment inside a loop answers with the first row it renders: narrow the rows to the one asked for.
-                      </li>
-                    </ul>
-                    <h2>
-                      Posts and forms
-                    </h2>
-                    <ul>
-                      <li>With <code>$padCsrf</code> on, a post needs the session's token. A <b>{form}</b> carries it; for an <code>hx-post</code> on anything else put it on the body once: <code>&lt;body hx-headers="{^headers}"&gt;</code> with <code>$headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ]</code>.
-                      </li>
-                      <li>A <b>{form}</b> with <code>rules=</code> posted through htmx comes back as its own fragment - refilled, with PAD's messages - and with <code>client</code> the browser checks the same rules first (<a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>).
-                      </li>
-                      <li>Elements of an answer marked <code>hx-swap-oob="true"</code> go where their id is: the count in the header, a summary beside a list.
-                      </li>
-                    </ul>
-                    <h2>
-                      Pushed by the server
-                    </h2>
-                    <p>
-                      <code>padSse()</code> (<a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>) streams events; with htmx's sse extension (<code>hx-ext="sse" sse-connect="?ticker"</code>) every event's HTML is swapped in as it arrives.
-                    </p>
-                    <p>
-                      The htmx application shows all of it, each example with its template and PHP: <a href="../htmx/index.html">htmx</a> - active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events.
-                    </p>
-                  </div>
-                </center>
-              </td>
-            </tr>
-          </table>
-          <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-            <tr>
-              <td>
-                <hr>
-                <table valign="top" align="center">
-                  <tr>
-                    <td valign="top">
-                      <h3 align="center">
-                        Basic concepts
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        Constructs
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        Text and markup
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td>
-                      &nbsp;&nbsp;
-                    </td>
-                    <td valign="top">
-                      <h3 align="center">
-                        Advanced concepts
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        Data
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        PHP helpers
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td>
-                      &nbsp;&nbsp;
-                    </td>
-                    <td valign="top">
-                      <h3 align="center">
-                        Output
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        Layouts and components
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        The application
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td>
-                      &nbsp;&nbsp;
-                    </td>
-                    <td valign="top">
-                      <h3 align="center">
-                        With JavaScript
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        Forms and security
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
-                        </li>
-                      </ul>
-                      <h3 align="center">
-                        Development tools
-                      </h3>
-                      <ul>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a>
-                        </li>
-                        <li>
-                          <a href="/pad/manual/?pages/template_errors">Template errors</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a>
-                        </li>
-                        <li>
-                          <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </blockquote>
-      </center>
-    </blockquote>
-    <center>
-      <hr width="75%">
-      <br>
-      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../examples/index.html">examples</a> | <a href="../regression/main/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a> | <a href="../apps/index.html">admin</a>
-            <hr style="margin:2; border: 1px solid black; width:100%">
-          </td>
-        </tr>
-      </table>
-      <p>
-        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
-      </p>
-    </center>
+        <h2>
+          Which part answers
+        </h2>
+        <ul>
+          <li>
+            <b>By the target.</b> htmx sends the id of the element it swaps in <code>HX-Target</code>; a request of htmx that names no fragment itself gets the fragment called like that element, when the page has one - and the whole page when it has none.
+          </li>
+          <li>
+            <b>By the address.</b> <code>&amp;padFragment=rows</code> names the fragment outright - for a target without an id (<code>hx-target="closest tr"</code>, <code>this</code>) or a part other than the target.
+          </li>
+          <li>
+            <b>By the PHP.</b> <code>$padFragmentOnly = 'row'</code> decides in the page's PHP. A fragment inside a loop answers with the first row it renders: narrow the rows to the one asked for.
+          </li>
+        </ul>
+        <h2>
+          Posts and forms
+        </h2>
+        <ul>
+          <li>With <code>$padCsrf</code> on, a post needs the session's token. A <b>{form}</b> carries it; for an <code>hx-post</code> on anything else put it on the body once: <code>&lt;body hx-headers="{^headers}"&gt;</code> with <code>$headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ]</code>.
+          </li>
+          <li>A <b>{form}</b> with <code>rules=</code> posted through htmx comes back as its own fragment - refilled, with PAD's messages - and with <code>client</code> the browser checks the same rules first (<a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a>).
+          </li>
+          <li>Elements of an answer marked <code>hx-swap-oob="true"</code> go where their id is: the count in the header, a summary beside a list.
+          </li>
+        </ul>
+        <h2>
+          Pushed by the server
+        </h2>
+        <p>
+          <code>padSse()</code> (<a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>) streams events; with htmx's sse extension (<code>hx-ext="sse" sse-connect="?ticker"</code>) every event's HTML is swapped in as it arrives.
+        </p>
+        <p>
+          The htmx application shows all of it, each example with its template and PHP: <a href="../htmx/index.html">htmx</a> - active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events.
+        </p>
+      </div>
+    </main>
   </body>
 </html>
