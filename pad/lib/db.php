@@ -584,8 +584,10 @@
   // select user() read any table, the single word ?n=id made id = id and every row came
   // back, and {field {$q}} was quoted into one string the tag took for the template's own
   // SQL. Inside a quoted literal of the SQL - name = '{$who}' - a value is text, its quotes
-  // PAD's inert stand-ins. where= of a select is left to padSpliceExpression, which quotes
-  // a value there as a string of the expression it takes it for.
+  // PAD's inert stand-ins. where= of a select table is SQL as well, under the same rule: left
+  // to padSpliceExpression, which took it for the expression where= is on other tags, a value
+  // there was quoted as a string of that expression, in the other quote - where='name =
+  // {$pick}' became name = "name" with ?pick=name, a column on SQLite, and every row matched.
   //
   // db() and padDb() called from a template - php:db("FIELD ..."), db("...") in an
   // expression, {php:db "..."}, {db "..."} - take their first argument as SQL just the same,
@@ -607,7 +609,7 @@
       $what = 'the SQL of ' . $match [1] . '() is the template\'s own';
     elseif ( preg_match ( '/^\s*((?:php:)?(?:pad)?db)\s(.*)$/is', $head, $match ) and padDbSqlParm ( $match [2] ) )
       $what = 'the SQL of {' . $match [1] . '} is the template\'s own';
-    elseif ( preg_match ( '/^(select:)?([A-Za-z_][\w-]*)(\s.*)?[\s,](having|order|group|fields|db|join|union)\s*=\s*$/is', $head, $match )
+    elseif ( preg_match ( '/^(select:)?([A-Za-z_][\w-]*)(\s.*)?[\s,](where|having|order|group|fields|db|join|union)\s*=\s*$/is', $head, $match )
              and ( $match [1] or isset ( $padSelect [$match [2]] ) ) )
       $what = strtolower ( $match [4] ) . '= is SQL the template writes';
     else
