@@ -7,13 +7,13 @@
   global $padSaveLvl, $padSaveOcc;
 
   $current = padAtSearch ( $padSaveOcc [$padIdx], $names );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $current = padAtSearch ( $padSaveLvl [$padIdx], $names );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
-  return INF;
+  return padMiss;
 
 ?>

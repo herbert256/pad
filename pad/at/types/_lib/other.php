@@ -14,23 +14,23 @@
   for ( $padAtNoDeep = 1; $padAtNoDeep >= ( ( $GLOBALS ['padAtShallow'] ?? FALSE ) ? 1 : 0 ); $padAtNoDeep-- ) {
 
     $check = include PAD . 'at/types/_lib/check.php';
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = include PAD . 'at/types/sequences.php';
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = include PAD . 'at/types/globals.php';
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
   }
 
   $check = include PAD . 'at/types/_lib/new.php';
-  if ( $check !== INF )
+  if ( $check !== padMiss )
     return $check;
 
-  return INF;
+  return padMiss;
 
 ?>

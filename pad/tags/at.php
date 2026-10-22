@@ -14,10 +14,10 @@
 
   $padAtAnswer = padAtValue ( $padParm );
 
-  if ( $padAtAnswer === INF or $padAtAnswer === '' or $padAtAnswer === NULL ) {
+  if ( $padAtAnswer === padMiss or $padAtAnswer === '' or $padAtAnswer === NULL ) {
 
-    // INF can sit in $padAtAnswer here, and the error dump cannot json a float infinity -
-    // the report shipped as an empty 500 until it was emptied first.
+    // The marker of no answer can sit in $padAtAnswer here, and the error dump cannot json
+    // it - the report shipped as an empty 500, when it was INF, until it was emptied first.
 
     $padAtAnswer = '';
 

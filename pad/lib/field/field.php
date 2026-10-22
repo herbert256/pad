@@ -24,8 +24,8 @@
   // It was INF, which a value can be: a page's $big = INF, a float overflowing to it, read as
   // no field at all - "Field '$big' not found" - and {if $big gt 1} as "there is no field
   // named '$big'". The case of an enum of the engine's own is a value no page holds by chance,
-  // compared with ===. The at/ subsystem keeps INF as its own marker; padFieldAt turns it into
-  // this one at its border.
+  // compared with ===. The at/ subsystem answers it as well, so a value found by a path or a
+  // target - {$s.m}, {$m@d} - is INF when it holds INF.
   // The name 'pad' is reserved and always yields $padGo, the app's own URL prefix.
   //
   // padRawValue, padUrlValue and padJsonEscape are output helpers on top of padFieldValue,
@@ -184,18 +184,14 @@
       $padAtShallow = TRUE;
 
       try {
-        $value = padAt ( "$field@*", $lvl );
+        return padAt ( "$field@*", $lvl );
       } finally {
         $padAtShallow = $keep;
       }
 
-      return ( $value === INF ) ? padMiss : $value;
-
     }
 
-    $value = padAt ( $field, $lvl );
-
-    return ( $value === INF ) ? padMiss : $value;
+    return padAt ( $field, $lvl );
 
   }
 

@@ -7,8 +7,10 @@
   // A reference reads as names@parts: the dot-separated $names are the path to look up,
   // the colon-separated $parts say where to look - $first is a level number, a level or
   // tag name, a group or a type, $second a group within that level or a store within that
-  // type. INF is the "nothing here" sentinel, passed back unchanged so a caller can tell
-  // a miss from a legitimately empty value.
+  // type. padMiss (lib/field/field.php) is the "nothing here" sentinel, passed back unchanged
+  // so a caller can tell a miss from a legitimately empty value. It was INF, which a value can
+  // be: a field holding INF reached by a path or a target - {$s.m}, {$m@d}, {if $d.m gt 1} -
+  // read as no field at all, where the plain {$m} printed INF.
   //
   // padAtValue tries the resolvers in order, first hit wins: padAtTag (one whole level,
   // via at/any/tag.php), padAtLevelGroup and padAtGroups (at/groups/), padAtProperties
@@ -22,7 +24,7 @@
   function padAt ( $field, $cor=0 ) {
 
     if ( ! padAtCheck ( $field ) )
-      return INF;
+      return padMiss;
 
     if ( str_ends_with ( $field, '@' ) )
       $field .= '*';
@@ -62,42 +64,42 @@
     $second = $parts [1] ?? '';
 
     $check = padAtTag ( $name, $names, $first, $second, $cor );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtLevelGroup ( $name, $names, $first, $second, $cor );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtProperties ( $name, $names, $first, $second, $cor );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtGroups ( $name, $names, $first, $second, $cor );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtType ( $first, $second, $names, $cor );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtStore ( $pqStore ?? [], $names, $parts );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtStore ( $padDataStore ?? [], $names, $parts );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtGlobals ( $names, $parts );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
     $check = padAtData ( $names, $parts );
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -116,7 +118,7 @@
       $idx   = padFieldFirstNonTag ( $cor, $check );
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
-      if ( $check !== INF )
+      if ( $check !== padMiss )
         return $check;
     }
 
@@ -124,7 +126,7 @@
 
       $check = str_replace ( '@*', "@$i", $field );
       $check = padAtValue ( $check, $cor );
-      if ( $check !== INF )
+      if ( $check !== padMiss )
         return $check;
 
     }
@@ -132,12 +134,12 @@
     if ( str_ends_with($field, '@*') ) {
 
       $check = padAtSingle ( $field, $cor );
-      if ( $check !== INF )
+      if ( $check !== padMiss )
         return $check;
 
     }
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -149,10 +151,10 @@
     $type  = '';
 
     $check = include PAD . 'at/types/_lib/other.php';
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -168,20 +170,20 @@
     // which at/types/globals.php searches first, so this only backs that up.
 
     if ( ( $GLOBALS ['padRequestVars'] ?? TRUE ) !== TRUE )
-      return INF;
+      return padMiss;
 
     if ( padEngineName ( (string) reset ( $names ) ) )
-      return INF;
+      return padMiss;
 
     foreach ( [ '_GET', '_POST' ] as $field )
 
       if ( isset ( $GLOBALS [$field] ) and is_array ( $GLOBALS [$field] ) and count ( $GLOBALS [$field] )) {
         $check = padAtSearch ( $GLOBALS [$field], $names );
-        if ( $check !== INF)
+        if ( $check !== padMiss)
           return $check;
       }
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -191,18 +193,18 @@
 
       if ( str_starts_with($key, 'pad' ) and is_array ( $GLOBALS [$key] ) and count ( $GLOBALS [$key] ) ) {
         $check = padAtSearch ( $value, $names );
-        if ( $check !== INF)
+        if ( $check !== padMiss)
           return $check;
       }
 
-    return INF;
+    return padMiss;
 
   }
 
   function padAtStore ( $store, $names, $parts ) {
 
     if ( ! count ($store) )
-      return INF;
+      return padMiss;
 
     if ( count ($parts) == 1 ) {
       $name = reset ($parts);
@@ -223,14 +225,14 @@
         return padAtSearch ( $store, $names );
     }
 
-    return INF;
+    return padMiss;
 
   }
 
   function padAtGlobals ( $names, $parts ) {
 
     if ( count ($parts) != 1 )
-      return INF;
+      return padMiss;
 
     $array = reset ($parts);
 
@@ -242,7 +244,7 @@
     // $items - {$items.0} answered empty while {$items.1} fell through to Apple's neighbour.
 
     if ( is_numeric ( $array ) )
-      return INF;
+      return padMiss;
 
     return padAtGlobals2 ( $array, $names, $GLOBALS );
 
@@ -259,25 +261,25 @@
     if ( ( ! padEngineName ( (string) $array ) or $array === 'padMailLast' )
          and isset ( $search [$array] ) and is_array ( $search [$array] ) ) {
       $check = padAtSearch ( $search [$array], $names, 1 );
-      if ( $check !== INF )
+      if ( $check !== padMiss )
         return $check;
     }
 
     foreach ( $search as $k => $v )
       if ( padValidStore ($k) and is_array ($v) ) {
         $check = padAtGlobals2 ( $array, $names, $v );
-        if ( $check !== INF )
+        if ( $check !== padMiss )
           return $check;
       }
 
-    return INF;
+    return padMiss;
 
   }
 
   function padAtTag ( $name, $names, $first, $second, $cor ) {
 
     if ( $second )
-      return INF;
+      return padMiss;
 
     $padIdx = padAtIdx ( $first, $cor );
 
@@ -301,11 +303,11 @@
 
       for ( $i=$pad; $i>-1; $i-- ) {
         $check = padAtGroup ( $first, $name, $names, $i+$cor );
-        if ( $check !== INF )
+        if ( $check !== padMiss )
           return $check;
       }
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -314,7 +316,7 @@
     global $padInfo;
 
     if ( ! $group or ! $padIdx or ! file_exists ( PAD . "at/groups/$group.php" ) )
-      return INF;
+      return padMiss;
 
     if ( $padInfo )
       include PAD . 'events/atGroups.php';
@@ -327,7 +329,7 @@
   // asks for the property and nothing else, where the $-spelling asks the whole resolver
   // chain - fields first - as it always has. The sigil is the meaning: $first@orders is a
   // field of the row, first@orders is the iteration state, and a row field named 'first'
-  // shadows only the former. INF shapes to empty.
+  // shadows only the former. padMiss shapes to empty.
 
   // A property written without a target - current@ in an expression - is the loop's the
   // expression stands in: the level itself when it is iterating (a field's pipe), the level
@@ -377,16 +379,16 @@
     if ( $written and $idx === FALSE and $GLOBALS ['padCheckSyntax'] )
       padError ( "there is no enclosing level named '$first' for the property '$name'" );
 
-    $check = ( $parts [1] ?? '' ) ? INF : padAtProperty ( $names, $idx );
+    $check = ( $parts [1] ?? '' ) ? padMiss : padAtProperty ( $names, $idx );
 
-    return ( $check === INF ) ? '' : $check;
+    return ( $check === padMiss ) ? '' : $check;
 
   }
 
   function padAtProperties ( $name, $names, $first, $second, $cor ) {
 
     if ( $second )
-      return INF;
+      return padMiss;
 
     // A relative -N names enclosing levels counted from the tag the property is written in,
     // and a property pair is itself the level the resolution stands in - so the pair's own
@@ -400,10 +402,10 @@
     $padIdx = padAtIdx ( $first, $cor );
 
     $current = padAtProperty ( $names, $padIdx );
-    if ( $current !== INF )
+    if ( $current !== padMiss )
       return $current;
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -417,16 +419,16 @@
 
     if     ( count ( $names ) == 1 ) $parm = '';
     elseif ( count ( $names ) == 2 and in_array ( reset ( $names ), [ 'option', 'parameter', 'variable' ], TRUE ) ) $parm = end ($names);
-    else                             return INF;
+    else                             return padMiss;
 
     $name = reset ( $names );
 
     if ( ! $padIdx or ! padPropertyName ( $name ) )
-      return INF;
+      return padMiss;
 
     $return = include PAD . "at/properties/$name.php";
 
-    if ( $return !== INF )
+    if ( $return !== padMiss )
       padAtSetTag ();
 
     if ( $padInfo )
@@ -441,7 +443,7 @@
     global $padInfo;
 
     if ( ! file_exists ( PAD . "at/types/$go.php" ) )
-      return INF;
+      return padMiss;
 
     if ( $padInfo )
       include PAD . 'events/atTypes.php';
@@ -464,7 +466,7 @@
 
       $check = padAtDataNew ( $data, $names );
 
-      if ( $check !== INF )
+      if ( $check !== padMiss )
         return $check;
 
     }

@@ -8,11 +8,11 @@
   // positional parameters, its level variables, its named options or an occurrence
   // variable (whose value lives in $GLOBALS). A longer path is searched with padAtSearch
   // in roughly that order, then through the level's function variables, its iteration
-  // properties and finally its whole data set. Returns INF when $padIdx is FALSE or
+  // properties and finally its whole data set. Returns padMiss when $padIdx is FALSE or
   // nothing matched.
 
   if ( ! $padIdx )
-    return INF;
+    return padMiss;
 
   global $padCurrent, $padData, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar, $padSetOcc, $padAtShallow;
 
@@ -41,35 +41,35 @@
   }
 
   $current = padAtSearch ( $padCurrent [$padIdx], $names, $padAtNoDeep );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $current = padAtSearch ( $padSetLvl [$padIdx], $names, $padAtNoDeep );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $padOptAt = $padOpt [$padIdx];
   unset ( $padOptAt [0] );
   $current = padAtSearch ( $padOptAt , $names, $padAtNoDeep );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $current = padAtSearch ( $padAtPrm, $names, $padAtNoDeep );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $current = padAtSearch ( $padLvlFunVar [$padIdx], $names, $padAtNoDeep );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $current = padAtProperty ($names, $padIdx );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
   $current = padAtSearch ( $padData [$padIdx], $names, $padAtNoDeep );
-  if ( $current !== INF )
+  if ( $current !== padMiss )
     return $current;
 
-  return INF;
+  return padMiss;
 
 ?>

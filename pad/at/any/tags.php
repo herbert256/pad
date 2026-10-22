@@ -11,11 +11,11 @@
     $padIdx = $i + $cor;
 
     $check = include PAD . 'at/any/tag.php';
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
   }
 
-  return INF;
+  return padMiss;
 
 ?>

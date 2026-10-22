@@ -18,13 +18,13 @@
     $padGlobalsApp ['padMailLast'] = $GLOBALS ['padMailLast'];
 
   $check = padAtSearch ( $padGlobalsApp, $names, $padAtNoDeep ?? 0 );
-  if ( $check !== INF )
+  if ( $check !== padMiss )
     return $check;
 
   $check = padAtSpecial ( $names, $cor );
-  if ( $check !== INF )
+  if ( $check !== padMiss )
     return $check;
 
-  return INF;
+  return padMiss;
 
 ?>

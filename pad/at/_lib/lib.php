@@ -18,7 +18,7 @@
 
     $check = padAtSearch ( $padDataStore [$name], $names );
 
-    if ( $check === INF )
+    if ( $check === padMiss )
       unset ( $padDataStore [$name] );
 
     return $check;

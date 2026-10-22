@@ -2,7 +2,7 @@
 
   // Last resort for a data lookup: the reference names a store ($type) that has not been
   // defined yet, so padAtDataNew() builds it through padData() and searches it, keeping it
-  // only if the path $names was found. INF otherwise.
+  // only if the path $names was found. padMiss otherwise.
 
   global $padDataStore;
 
@@ -10,11 +10,11 @@
 
     $check = padAtDataNew ( $type, $names );
 
-    if ( $check !== INF )
+    if ( $check !== padMiss )
       return $check;
 
   }
 
-  return INF;
+  return padMiss;
 
 ?>

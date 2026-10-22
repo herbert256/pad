@@ -15,7 +15,7 @@
     else                 $temp [$key] = $GLOBALS [$key];
 
   $check = padAtSearch ( $temp, $names );
-  if ( $check !== INF )
+  if ( $check !== padMiss )
     return $check;
 
   $key = padAtKey ( $padParmParse [$padIdx], $name );
@@ -27,6 +27,6 @@
   if ( isset ( $padSetLvl  [$padIdx] [$name] ) ) return $padSetLvl [$padIdx] [$name];
   if ( isset ( $padSetOcc  [$padIdx] [$name] ) ) return $GLOBALS [$name];
 
-  return INF;
+  return padMiss;
 
 ?>

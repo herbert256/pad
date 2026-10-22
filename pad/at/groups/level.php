@@ -11,7 +11,7 @@
   global $padData;
 
   if ( padIsDefaultData ( $padData [$padIdx] ?? [] ) )
-    return INF;
+    return padMiss;
 
   return padAtSearch ( $padData [$padIdx], $names );
 

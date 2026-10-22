@@ -1,7 +1,7 @@
 <?php
 
   // The path walker every at/ lookup ends in: given an array and the dot-separated $names
-  // of an @ reference, return the value at that path or INF.
+  // of an @ reference, return the value at that path or padMiss.
   //
   // padAtSearch tries the path at this level first (padAtSearchGo) and then, unless
   // $noDeep is set, recurses into every nested array whose key is a valid store name,
@@ -22,14 +22,14 @@
       $current = padDataFields ( $current );
 
     if ( ! is_array ( $current ) )
-      return INF;
+      return padMiss;
 
     $check = padAtSearchGo ( $current, $names );
-    if ( $check !== INF)
+    if ( $check !== padMiss)
       return $check;
 
     if ( $noDeep )
-      return INF;
+      return padMiss;
 
     foreach ( $current as $key => $value )
 
@@ -40,13 +40,13 @@
 
         if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
           $check = padAtSearch ( $value, $names );
-          if ( $check !== INF )
+          if ( $check !== padMiss )
             return $check;
         }
 
       }
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -65,7 +65,7 @@
 
       if ( ! is_array ($current) or ! count ($current) )
 
-        return INF;
+        return padMiss;
 
       // Only now that $current is known to be an array - a numeric step into a scalar,
       // {$user.name.1}, handed padAtKey a string and died on a TypeError.
@@ -82,7 +82,7 @@
       if ( $found !== '' ) {
 
         if ( padEngineSecret ( $found ) )
-          return INF;
+          return padMiss;
 
         $current = &$current [$found];
 
@@ -96,8 +96,8 @@
 
         $idx = padAtSearchCondition ( $current, $name );
 
-        if ($idx === INF or padEngineSecret ( $idx ) )
-          return INF;
+        if ($idx === padMiss or padEngineSecret ( $idx ) )
+          return padMiss;
 
         $current = &$current [$idx];
 
@@ -105,7 +105,7 @@
 
       } elseif ( ! array_key_exists ( $name, $current ) or padEngineSecret ( $name ) )
 
-        return INF;
+        return padMiss;
 
       $current = &$current [$name];
 
@@ -137,7 +137,7 @@
         $keys [] = $one;
 
     if ( ! count ($keys) )
-      return INF;
+      return padMiss;
 
     if ( ! count ($rest) )
       return $current [ $keys [ array_rand ($keys) ] ];
@@ -146,11 +146,11 @@
 
     foreach ( $keys as $key ) {
       $work = padAtSearch ( $current [$key], $rest );
-      if ( $work !== INF )
+      if ( $work !== padMiss )
         return $work;
     }
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -199,7 +199,7 @@
 
     }
 
-    return INF;
+    return padMiss;
 
   }
 
@@ -214,7 +214,7 @@
     $count = count ($keys);
 
     if ( $key < 1 or $key > $count )
-      return INF;
+      return padMiss;
 
     $idx = ( $start ) ? $key - 1 : count ($keys) - $key;
 

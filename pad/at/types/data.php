@@ -5,13 +5,13 @@
   // at/types/_lib/new.php tries to define it on the spot.
 
   $check = include PAD . 'at/types/_lib/check.php';
-  if ( $check !== INF )
+  if ( $check !== padMiss )
     return $check;
 
   $check = include PAD . 'at/types/_lib/new.php';
-  if ( $check !== INF )
+  if ( $check !== padMiss )
     return $check;
 
-  return INF;
+  return padMiss;
 
 ?>
