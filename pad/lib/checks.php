@@ -406,7 +406,10 @@
   // What the response has issued stays issued whichever pass issued it - the CSRF token's
   // record, the CSP nonce, the flash messages taken out: rolled back at a sandbox's end, a
   // cached section kept one visitor's token for the next, the script nonce differed from the
-  // header's, and a flash shown inside a {code} showed again outside it.
+  // header's, and a flash shown inside a {code} showed again outside it. So does the count
+  // of the forms of each name (padFormOpen, lib/form.php): put back after a {page} part, the
+  // form of a part a page shows twice was the first of its name both times, and a post from
+  // either refilled both.
 
   function padStrPad ( $field ) {
 
@@ -419,7 +422,7 @@
       if ( ! str_starts_with ( $field, 'padStr' ) )
         if ( ! in_array ( $field, padStrSto) )
           if ( ! in_array ( $field, padLevelVars) )
-            if ( ! in_array ( $field, [ 'padInfoCnt', 'padInfoTraceId', 'padToolbarData', 'padCsrfIssued', 'padNonce', 'padFlashNow' ], TRUE ) )
+            if ( ! in_array ( $field, [ 'padInfoCnt', 'padInfoTraceId', 'padToolbarData', 'padCsrfIssued', 'padNonce', 'padFlashNow', 'padFormSeen' ], TRUE ) )
               return $memo [$field] = TRUE;
 
     return $memo [$field] = FALSE;
