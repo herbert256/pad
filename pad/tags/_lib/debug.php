@@ -52,7 +52,7 @@
         if     ( padArrayCheck ( $field ) ) $value = padArrayValue ( $field );
         elseif ( padFieldCheck ( $field ) ) $value = padFieldValue ( $field );
         else {
-          $out .= padDebugBox ( $label, INF, FALSE );
+          $out .= padDebugBox ( $label, padMiss, FALSE );
           continue;
         }
       } else
@@ -81,7 +81,7 @@
 
   function padDebugType ( $value ) {
 
-    if ( $value === INF   ) return 'missing';
+    if ( $value === padMiss ) return 'missing';
     if ( is_array ( $value ) ) return 'array(' . count ( $value ) . ')';
     if ( is_object ( $value ) ) return get_class ( $value );
     if ( is_null ( $value ) ) return 'null';
@@ -95,7 +95,7 @@
 
   function padDebugTree ( $value, $depth = 0 ) {
 
-    if ( $value === INF )
+    if ( $value === padMiss )
       return '';
 
     if ( is_object ( $value ) )

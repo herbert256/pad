@@ -4,8 +4,10 @@
   // piece of output, or an array.
   //
   // padSingleValue / padSpecialValue  is this a plain scalar that can simply be printed,
-  //                    or one of FALSE, TRUE, NULL, INF, NAN, which the engine reads as
-  //                    meaning rather than as content
+  //                    or one of FALSE, TRUE, NULL, NAN, which the engine reads as
+  //                    meaning rather than as content - INF is a value, as -INF is: a tag
+  //                    answering it, {echo $big} or {big} over $big = INF, printed nothing
+  //                    where {$big} and {echo $neg} over -INF print the value
   // padMakeFlag        the truth test behind {if} and a tag's hit/miss: empty is false, an
   //                    array is true when it holds more than the default occurrence, and a
   //                    string is handed to padEval
@@ -46,7 +48,6 @@
     if     ( $value === FALSE ) return TRUE;
     elseif ( $value === TRUE  ) return TRUE;
     elseif ( $value === NULL  ) return TRUE;
-    elseif ( $value === INF   ) return TRUE;
     elseif ( is_float($value) && is_nan($value) ) return TRUE;
     else                        return FALSE;
 

@@ -35,7 +35,13 @@
   // level, either was read as data and the pipe was handed the level's empty content: max()
   // and count() ended the page on a string given, ago answered empty.
 
-  if ( is_array ( $padEchoValue ) or $padEchoValue instanceof DateTimeInterface ) {
+  // So is a float past the range, INF or -INF: answered to the level it is the text 'INF',
+  // which an arithmetic pipe takes for no number - {echo $neg | + 1} over -INF ended the page
+  // on "'-INF' is not a number for +" - and once piped it is written as that text, as {$big}
+  // writes it.
+
+  if ( is_array ( $padEchoValue ) or $padEchoValue instanceof DateTimeInterface
+       or ( is_float ( $padEchoValue ) and is_infinite ( $padEchoValue ) ) ) {
 
     if ( $padPipeBefore [$pad] ?? '' ) {
       $padEchoValue         = padEval ( $padPipeBefore [$pad], $padEchoValue, TRUE );
@@ -44,6 +50,8 @@
 
     if ( $padEchoValue instanceof DateTimeInterface )
       $padEchoValue = $padEchoValue->format ( 'Y-m-d H:i:s' );
+    elseif ( is_float ( $padEchoValue ) and is_infinite ( $padEchoValue ) )
+      $padEchoValue = (string) $padEchoValue;
 
   }
 
