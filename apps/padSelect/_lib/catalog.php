@@ -67,7 +67,9 @@
         'views/view_of_view' => [ 'A view of a view',
                                   'A view can stand on another view: the chain is followed to the table at its end, and the where of every view holds.' ],
         'views/nested'       => [ 'A view follows its base relations',
-                                  'Nested in {artists}, the view of recent albums is related by the relation of albums, the table it stands on.' ]
+                                  'Nested in {artists}, the view of recent albums is related by the relation of albums, the table it stands on.' ],
+        'views/narrowed'     => [ 'where= on a view narrows it',
+                                  "A where= on the tag of a view holds beside the view's own: the recent albums that are under 14, never an album the view leaves out." ]
       ],
 
       'Joins' => [
@@ -79,6 +81,8 @@
                              'A natural join meets the columns both tables have - genre_code - with no key to give.' ],
         'joins/many'    => [ 'More than one join',
                              'A list of joins: a track with the title of its album and the name of the artist, in one statement.' ],
+        'joins/view'    => [ 'A join to a view',
+                             "A joined table with a where of its own joins only its rows: it stands in the statement as a derived table under its table's name." ],
         'joins/tag'     => [ 'join= on the tag',
                              'On the tag join= is the SQL after the word join, written as a quoted string.' ]
       ],
@@ -105,7 +109,9 @@
         'unions/union' => [ 'union= : rows from two tables',
                             'The albums and the singles in one list: a union member is a declared table, built from its declaration alone.' ],
         'unions/many'  => [ 'A union of several',
-                            'union= takes a list of tables; the order of the tag sorts the whole union.' ]
+                            'union= takes a list of tables; the order of the tag sorts the whole union.' ],
+        'unions/member_rows' => [ 'A member with rows of its own',
+                                  'A union member declared with rows= - and the order that picks them - adds only those: the albums since 2016 and the two newest singles.' ]
       ],
 
       'Output' => [
