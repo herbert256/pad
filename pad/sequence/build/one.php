@@ -42,6 +42,18 @@
   $pqWalkCall  = ( $pqBuild == 'bool' ) ? 'pqBool' . ucfirst ( $pqSeq ) : ( ( $pqBuild == 'function' ) ? 'pq' . ucfirst ( $pqSeq ) : '' );
   $pqGiven     = in_array ( $pqBuild, [ 'build', 'pull', 'given' ] );
 
+  // A type that names its next member - pqNextAntiprime, from the list of the highly composite
+  // numbers - is walked from one member to the next instead of over every value between them:
+  // the candidates are the members, each tested as before, and the try limit counts them. Over
+  // every value antiprime stopped at its 20th term, 7560, as the 10,000 candidates ran out, and
+  // {sequence antiprime, rows=25} gave 20. Only a walk of every value one at a time takes it:
+  // try= and skip= count the values, increment= and a random draw choose them, and keep the
+  // walk they had.
+
+  $pqWalkNext  = ( $pqBuild == 'bool' and ! $pqWalkList and $pqInc == 1 and ! $pqRandomInc and ! $pqRandomly
+                   and ! $pqSkip and ! isset ( $pqParms ['try'] ) and function_exists ( 'pqNext' . ucfirst ( $pqSeq ) ) )
+               ? 'pqNext' . ucfirst ( $pqSeq ) : '';
+
   while ( TRUE ) {
 
     if ( $pqWalkList ) {
@@ -307,6 +319,9 @@
         break;
 
       $pqGo = $pqGo + $pqInc;
+
+      if ( $pqWalkNext )
+        $pqGo = $pqWalkNext ( $pqGo );
 
     }
 

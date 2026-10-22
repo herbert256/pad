@@ -172,7 +172,7 @@ starts differs.
 - `powerful` - Powerful numbers (1, 4, 8, 9, 16, ...)
 - `polite` - Polite numbers (3, 5, 6, 7, 9, ...)
 - `kaprekar` - Kaprekar numbers (1, 9, 45, 55, ...)
-- `antiprime` - Antiprime (highly composite) numbers (1, 2, 4, 6, 12, 24, 36, ...)
+- `antiprime` - Antiprime (highly composite) numbers (1, 2, 4, 6, 12, 24, 36, ...) - walked from one to the next, so all 167 an integer holds are within reach; with `try=`, `skip=` or `increment=` every value is a candidate, as for the other types
 
 ### Other Sequences
 

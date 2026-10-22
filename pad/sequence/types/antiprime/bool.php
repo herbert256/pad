@@ -48,6 +48,23 @@
 
   }
 
+  // The first highly composite number at or above $n, or INF past the last one an integer
+  // holds - for build/one.php, which walks antiprime from one to the next.
+
+  function pqNextAntiprime ( $n ) {
+
+    include_once PT . 'antiprime/generated.php';
+
+    $list = ( $n <= PADantiprime [ count ( PADantiprime ) - 1 ] ) ? PADantiprime : array_keys ( pqAntiprimeList () );
+
+    foreach ( $list as $value )
+      if ( $value >= $n )
+        return $value;
+
+    return INF;
+
+  }
+
   function pqAntiprimeList () {
 
     static $list = NULL;
