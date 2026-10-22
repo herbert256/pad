@@ -322,13 +322,20 @@
   // opener +1, a closer -1, a self-closing opener 0), the closer of an opener whose first
   // closer candidate is token i is the token before the first place behind i where the sum
   // drops below P [i] - one stack walk from the end finds that place for every i.
+  //
+  // Only the last text is kept: the calls that read one text again come one after the other
+  // - the candidates of one closer search, the branch markers one {if} or {case} tries - and
+  // the level text the closer search reads is a new string after every tag spliced into it,
+  // so a memo of eight texts kept up to eight dead copies of the whole page: 43 MB of page
+  // took 642 MB where it had taken 295. The text the call is given is the one kept, so
+  // comparing it with the next is at once when that is the same string.
 
   function padTextPairsOf ( $text ) {
 
-    static $memo = [];
+    static $last = NULL, $memo = [];
 
-    if ( isset ( $memo [$text] ) )
-      return $memo [$text];
+    if ( $text === $last )
+      return $memo;
 
     preg_match_all ( '/\{~?(\/?)((?:pad:)?([A-Za-z_][\w:.-]*))(?=[\s}~|])/', $text, $all, PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
 
@@ -421,10 +428,9 @@
 
     }
 
-    if ( count ( $memo ) >= 8 )
-      unset ( $memo [array_key_first ( $memo )] );
+    $last = $text;
 
-    return $memo [$text] = $pairs;
+    return $memo = $pairs;
 
   }
 
