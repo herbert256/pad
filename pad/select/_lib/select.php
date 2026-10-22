@@ -473,7 +473,7 @@
 
   function padSelectWhere ( $where, $table, $keys, $tagWhere = FALSE, $own = '' ) {
 
-    global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl;
+    global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl, $padElse;
 
     if ($where)
       $where = 'where ' . padSelectWherePart ( $where );
@@ -495,12 +495,13 @@
     // A select rendering its @else@ - it found no row - has no row to relate to, so it is
     // passed over: the select nested there stands alone. Its empty row was followed, and
     // the page ended on "... which the row of 'customers' does not hold - select it in
-    // fields=".
+    // fields=". Only that one: a select of one value - type='field' - was passed over as
+    // well, and the select in it listed every row of its table without a word.
 
     $padSelOuter = '';
 
     for ( $i=$pad-1; $i; $i-- )
-      if ( $padType [$i] == 'select' and is_array ( $padCurrent [$i] ?? NULL ) and $padCurrent [$i] ) {
+      if ( $padType [$i] == 'select' and ! ( $padElse [$i] ?? FALSE ) ) {
 
         // The strict check names the select this one stands in, the nearest: the last one
         // walked was named, the outermost, which the select was never written in.
@@ -632,12 +633,20 @@
   // undefined array key from inside the engine; it is named for what it is now, and under
   // the continuing error actions the condition compares with NULL and relates to no row.
 
+  //
+  // A select that answers one value - type='field', htmlAttrJson - has no row at all, and is
+  // named for that: fields= was not what to change.
+
   function padSelectOuterValue ( $data, $field, $outer ) {
 
     if ( is_array ( $data ) and array_key_exists ( $field, $data ) )
       return $data [$field];
 
-    padError ( "the relation to '$outer' is followed by its field '$field', which the row of '$outer' does not hold - select it in fields=" );
+    if ( ! is_array ( $data ) or ! $data )
+      padError ( "the relation to '$outer' is followed by its field '$field', but '$outer' answers one value here, no row - "
+               . "a select of type='field' or with htmlAttrJson has none to follow" );
+    else
+      padError ( "the relation to '$outer' is followed by its field '$field', which the row of '$outer' does not hold - select it in fields=" );
 
     return NULL;
 
