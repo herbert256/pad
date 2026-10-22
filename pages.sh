@@ -56,7 +56,7 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   // The applications whose pages and files are copied.
 
   $apps = [ 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
-            'nono', 'react', 'structure', 'cli', 'classicModels', 'regression/main', 'develop',
+            'nono', 'react', 'structure', 'cli', 'classicModels', 'padSelect', 'regression/main', 'develop',
             'tags', 'charts', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
             'notes', 'ledger', 'kanban' ];
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      Pages suite - 415 pages, 543 tests, 0 failed · PAD regression
+      Pages suite - 443 pages, 571 tests, 0 failed · PAD regression
     </title>
     <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
     <script src="/pad/_common/pad.js?v=94ab524d77"></script>
@@ -44,7 +44,8 @@
           <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
           <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
         </nav>
       </details>
@@ -80,7 +81,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <h1>
-          Pages suite - 415 pages, 543 tests, 0 failed
+          Pages suite - 443 pages, 571 tests, 0 failed
         </h1>
         <div class="frame-tools">
           <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -91,7 +92,7 @@
       </header>
       <div class="frame-body">
         <p>
-          <b>415 pages, 543 tests, 0 failed</b> - all ok
+          <b>443 pages, 571 tests, 0 failed</b> - all ok
         </p>
         <p>
           Every test here is an ordinary page, fetched over HTTP with <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside it. That makes it a real request, with a page's own <code>.php</code> half in scope for its <code>.pad</code> half. These tests live in <code>apps/regression/pages/</code>, which has <code>_common</code> switched off, so each one also proves it needs nothing but its own application; the pages that use <code>_common</code> are the <a href="index%EF%B9%96common%EA%A4%B7index.html">Common</a> suite.
@@ -293,6 +294,15 @@
           <tr>
             <td>
               <a href="http://localhost/pad/regression/pages/?db/a_named_query_with_replace_or_a_write_word_in_a_literal_reads&amp;padInclude">db/a_named_query_with_replace_or_a_write_word_in_a_literal_reads</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?db/a_negative_number_after_a_hyphen_stays_as_written_outside_sql_code&amp;padInclude">db/a_negative_number_after_a_hyphen_stays_as_written_outside_sql_code</a>
             </td>
             <td></td>
             <td>
@@ -3364,7 +3374,43 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_comment_in_a_view_s_where_ends_with_its_part&amp;padInclude">select/demo/a_comment_in_a_view_s_where_ends_with_its_part</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_comment_in_fields_leaves_the_joined_columns&amp;padInclude">select/demo/a_comment_in_fields_leaves_the_joined_columns</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?select/demo/a_huge_page_number_is_a_page_past_the_last&amp;padInclude">select/demo/a_huge_page_number_is_a_page_past_the_last</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_join_to_a_view_keeps_its_where&amp;padInclude">select/demo/a_join_to_a_view_keeps_its_where</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_join_to_a_view_takes_the_joins_of_the_view&amp;padInclude">select/demo/a_join_to_a_view_takes_the_joins_of_the_view</a>
             </td>
             <td></td>
             <td>
@@ -3384,6 +3430,24 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_joined_select_follows_a_relation_through_a_joined_column&amp;padInclude">select/demo/a_joined_select_follows_a_relation_through_a_joined_column</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation&amp;padInclude">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?select/demo/a_joined_where_is_no_literal&amp;padInclude">select/demo/a_joined_where_is_no_literal</a>
             </td>
             <td>
@@ -3395,7 +3459,25 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_line_comment_ends_its_own_clause&amp;padInclude">select/demo/a_line_comment_ends_its_own_clause</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?select/demo/a_nested_view_follows_its_base_relation&amp;padInclude">select/demo/a_nested_view_follows_its_base_relation</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_pager_counts_a_joined_select_of_distinct_rows&amp;padInclude">select/demo/a_pager_counts_a_joined_select_of_distinct_rows</a>
             </td>
             <td></td>
             <td>
@@ -3422,7 +3504,142 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_pager_counts_the_rows_of_a_union&amp;padInclude">select/demo/a_pager_counts_the_rows_of_a_union</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_pager_of_a_joined_union_reads_its_own_join&amp;padInclude">select/demo/a_pager_of_a_joined_union_reads_its_own_join</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_rollup_takes_no_declared_order&amp;padInclude">select/demo/a_rollup_takes_no_declared_order</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_select_in_the_else_of_an_empty_select_stands_alone&amp;padInclude">select/demo/a_select_in_the_else_of_an_empty_select_stands_alone</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_subquery_or_a_window_in_fields_keeps_the_declared_order&amp;padInclude">select/demo/a_subquery_or_a_window_in_fields_keeps_the_declared_order</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_table_named_in_backticks_joins&amp;padInclude">select/demo/a_table_named_in_backticks_joins</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_total_is_no_row_the_declared_order_sorts&amp;padInclude">select/demo/a_total_is_no_row_the_declared_order_sorts</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_union_is_no_row_the_declared_order_sorts&amp;padInclude">select/demo/a_union_is_no_row_the_declared_order_sorts</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_union_member_keeps_its_rows_and_order&amp;padInclude">select/demo/a_union_member_keeps_its_rows_and_order</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_union_member_with_rows_keeps_its_columns&amp;padInclude">select/demo/a_union_member_with_rows_keeps_its_columns</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_view_named_with_its_schema_or_an_alias_joins_its_rows&amp;padInclude">select/demo/a_view_named_with_its_schema_or_an_alias_joins_its_rows</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_view_of_a_table_named_in_backticks_joins_its_rows&amp;padInclude">select/demo/a_view_of_a_table_named_in_backticks_joins_its_rows</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?select/demo/a_view_of_a_view_reaches_the_table_at_the_end&amp;padInclude">select/demo/a_view_of_a_view_reaches_the_table_at_the_end</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/a_where_on_the_tag_narrows_the_where_of_the_view&amp;padInclude">select/demo/a_where_on_the_tag_narrows_the_where_of_the_view</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/an_empty_page_is_the_first_page_of_the_limit&amp;padInclude">select/demo/an_empty_page_is_the_first_page_of_the_limit</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/an_empty_where_on_a_view_narrows_nothing&amp;padInclude">select/demo/an_empty_where_on_a_view_narrows_nothing</a>
             </td>
             <td></td>
             <td>
@@ -3458,6 +3675,24 @@
             <td>
               The select subsystem walking a declared relation - a join written as nesting
             </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/json_declared_with_the_table_is_json&amp;padInclude">select/demo/json_declared_with_the_table_is_json</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/json_rows_are_a_list_in_the_order_of_the_select&amp;padInclude">select/demo/json_rows_are_a_list_in_the_order_of_the_select</a>
+            </td>
+            <td></td>
             <td>
               ok
             </td>
@@ -3505,6 +3740,24 @@
           <tr>
             <td>
               <a href="http://localhost/pad/regression/pages/?select/demo/paging&amp;padInclude">select/demo/paging</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/rows_0_on_a_select_keeps_no_row&amp;padInclude">select/demo/rows_0_on_a_select_keeps_no_row</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?select/demo/sent/a_pager_counts_the_distinct_rows_of_a_join_in_sql&amp;padInclude">select/demo/sent/a_pager_counts_the_distinct_rows_of_a_join_in_sql</a>
             </td>
             <td></td>
             <td>

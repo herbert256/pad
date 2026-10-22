@@ -1,0 +1,114 @@
+<div class="ps-home">
+
+  <p class="ps-lead">A small music catalogue - labels, artists, genres, albums and their
+  tracks, singles, playlists and reviews - in the database of this application,
+  <code>_install/padSelect.sql</code>. Every name in it is made up.</p>
+
+  <div class="ps-tables">
+    
+    <section class="ps-table">
+      <h3>albums <small>13 rows</small></h3>
+      <ul>
+        <li><span class="key">album_id</span> <span class="ref">int(11)</span></li><li>artist_id <span class="ref">int(11)</span></li><li>title <span class="ref">varchar(40)</span></li><li>released <span class="ref">smallint(6)</span></li><li>genre_code <span class="ref">varchar(12)</span></li><li>price <span class="ref">decimal(5,2)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>artists <small>8 rows</small></h3>
+      <ul>
+        <li><span class="key">artist_id</span> <span class="ref">int(11)</span></li><li>name <span class="ref">varchar(40)</span></li><li>country <span class="ref">varchar(30)</span></li><li>formed <span class="ref">smallint(6)</span></li><li>signed_to <span class="ref">int(11)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>genres <small>8 rows</small></h3>
+      <ul>
+        <li><span class="key">genre_code</span> <span class="ref">varchar(12)</span></li><li>genre <span class="ref">varchar(30)</span></li><li>parent_code <span class="ref">varchar(12)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>labels <small>4 rows</small></h3>
+      <ul>
+        <li><span class="key">label_id</span> <span class="ref">int(11)</span></li><li>name <span class="ref">varchar(40)</span></li><li>country <span class="ref">varchar(30)</span></li><li>founded <span class="ref">smallint(6)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>playlists <small>3 rows</small></h3>
+      <ul>
+        <li><span class="key">playlist_id</span> <span class="ref">int(11)</span></li><li>name <span class="ref">varchar(30)</span></li><li>curator <span class="ref">varchar(30)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>playlist_tracks <small>12 rows</small></h3>
+      <ul>
+        <li><span class="key">playlist_id</span> <span class="ref">int(11)</span></li><li><span class="key">position</span> <span class="ref">tinyint(4)</span></li><li>album_id <span class="ref">int(11)</span></li><li>track_no <span class="ref">tinyint(4)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>reviews <small>12 rows</small></h3>
+      <ul>
+        <li><span class="key">review_id</span> <span class="ref">int(11)</span></li><li>album_id <span class="ref">int(11)</span></li><li>reviewer <span class="ref">varchar(30)</span></li><li>stars <span class="ref">tinyint(4)</span></li><li>written <span class="ref">date</span></li><li>body <span class="ref">varchar(120)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>singles <small>5 rows</small></h3>
+      <ul>
+        <li><span class="key">single_id</span> <span class="ref">int(11)</span></li><li>artist_id <span class="ref">int(11)</span></li><li>title <span class="ref">varchar(40)</span></li><li>released <span class="ref">smallint(6)</span></li>
+      </ul>
+    </section>
+    
+    <section class="ps-table">
+      <h3>tracks <small>43 rows</small></h3>
+      <ul>
+        <li><span class="key">album_id</span> <span class="ref">int(11)</span></li><li><span class="key">track_no</span> <span class="ref">tinyint(4)</span></li><li>title <span class="ref">varchar(40)</span></li><li>seconds <span class="ref">smallint(6)</span></li>
+      </ul>
+    </section>
+    
+  </div>
+
+  <section class="ps-cell">
+    <header class="ps-head">The declarations <span class="ps-file">_lib/select.php</span></header>
+    <pre class="ps-code"><code><span class="hl-com">// The model: the tables of the music catalogue (_install/padSelect.sql) and how they reach</span>
+<span class="hl-com">// one another. Every example of this application stands on these lines; one that needs a</span>
+<span class="hl-com">// view, a join or a union declares it in its own .php.</span>
+<span class="hl-com">//</span>
+<span class="hl-com">// A table is declared with its key - the field, or the fields, that name one row - and the</span>
+<span class="hl-com">// order its rows come in when the tag gives none.</span>
+
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;labels&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;label_id&#039;</span><span class="hl-pun">,</span>              <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;name&#039;</span>          <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;artists&#039;</span><span class="hl-pun">]</span>   <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;artist_id&#039;</span><span class="hl-pun">,</span>             <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;name&#039;</span>          <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;genres&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;genre_code&#039;</span><span class="hl-pun">,</span>            <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;genre&#039;</span>         <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;albums&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;album_id&#039;</span><span class="hl-pun">,</span>              <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;released&#039;</span>      <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;tracks&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;album_id,track_no&#039;</span>                                 <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;singles&#039;</span><span class="hl-pun">]</span>   <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;single_id&#039;</span><span class="hl-pun">,</span>             <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;released&#039;</span>      <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;reviews&#039;</span><span class="hl-pun">]</span>   <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;review_id&#039;</span><span class="hl-pun">,</span>             <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;written&#039;</span>       <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;playlists&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;playlist_id&#039;</span><span class="hl-pun">,</span>           <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;name&#039;</span>          <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-com">// A tag needs no table of its own name: entries reads playlist_tracks.</span>
+
+<span class="hl-var">$padSelect</span> <span class="hl-pun">[</span><span class="hl-str">&#039;entries&#039;</span><span class="hl-pun">]</span>   <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;db&#039;</span>  <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;playlist_tracks&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;playlist_id,position&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;position&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-com">// A relation is declared from the table that holds the reference: $padRelations [a] [b]</span>
+<span class="hl-com">// is how a row of a finds its row of b - and, read the other way, how b finds its rows of</span>
+<span class="hl-com">// a. It is written in one of three forms:</span>
+<span class="hl-com">//</span>
+<span class="hl-com">//   &#039;artist_id&#039;                         a field both tables have</span>
+<span class="hl-com">//   [ &#039;key&#039; =&gt; &#039;signed_to&#039; ]            the field of a holding the declared key of b</span>
+<span class="hl-com">//   [ &#039;album_id&#039; =&gt; &#039;album_id&#039;, ... ]   field of a =&gt; field of b, one pair per field</span>
+
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;albums&#039;</span><span class="hl-pun">]</span>  <span class="hl-pun">[</span><span class="hl-str">&#039;artists&#039;</span><span class="hl-pun">]</span>   <span class="hl-pun">=</span> <span class="hl-str">&#039;artist_id&#039;</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;albums&#039;</span><span class="hl-pun">]</span>  <span class="hl-pun">[</span><span class="hl-str">&#039;genres&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-str">&#039;genre_code&#039;</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;singles&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">[</span><span class="hl-str">&#039;artists&#039;</span><span class="hl-pun">]</span>   <span class="hl-pun">=</span> <span class="hl-str">&#039;artist_id&#039;</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;tracks&#039;</span><span class="hl-pun">]</span>  <span class="hl-pun">[</span><span class="hl-str">&#039;albums&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-str">&#039;album_id&#039;</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;reviews&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">[</span><span class="hl-str">&#039;albums&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-str">&#039;album_id&#039;</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;artists&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">[</span><span class="hl-str">&#039;labels&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;signed_to&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;entries&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">[</span><span class="hl-str">&#039;playlists&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">=</span> <span class="hl-str">&#039;playlist_id&#039;</span><span class="hl-pun">;</span>
+<span class="hl-var">$padRelations</span> <span class="hl-pun">[</span><span class="hl-str">&#039;entries&#039;</span><span class="hl-pun">]</span> <span class="hl-pun">[</span><span class="hl-str">&#039;tracks&#039;</span><span class="hl-pun">]</span>    <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;album_id&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;album_id&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;track_no&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;track_no&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">;</span></code></pre>
+  </section>
+
+</div>
