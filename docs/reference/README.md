@@ -17,7 +17,7 @@ This directory contains reference documentation for PAD template syntax elements
 
 | File | Description |
 |------|-------------|
-| [HELPERS.md](HELPERS.md) | Helper functions for a page's PHP - arrays, strings, values, requests, sessions, cache, dates, hashing |
+| [HELPERS.md](HELPERS.md) | Functions for a page's PHP - arrays, strings, values, requests, sessions, cache, dates, hashing, and the engine functions: redirects, forms, database, errors |
 
 ## Processing
 

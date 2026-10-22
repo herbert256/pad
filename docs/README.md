@@ -21,6 +21,7 @@ See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for
 | [COMPARISON.md](COMPARISON.md) | PAD feature by feature against Laravel, Symfony, Rails and Django |
 | [APP.md](APP.md) | Application development guide - creating apps, template syntax, tags, patterns |
 | [DATABASE.md](DATABASE.md) | Database operations - db() function, template tags, PAD Select subsystem |
+| [FEATURES.md](FEATURES.md) | Every feature beyond the core language - emails, queues, auth, layouts, caching, charts, showcase tags, settings |
 | [GPL.md](GPL.md) | Full GNU General Public License v3.0 text |
 | [PAD.md](PAD.md) | Framework internals - execution flow, level system, configuration |
 | [REACT.md](REACT.md) | React integration patterns - static/dynamic data, file organization |

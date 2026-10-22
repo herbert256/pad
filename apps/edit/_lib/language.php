@@ -6,8 +6,8 @@
   //   pad   the built-in names - editors/lsp/completions.json, which editors/generate.php
   //         writes from pad/ and ./ci.sh keeps in step with it - plus the sequence actions
   //         and the constructs, each with its documentation from docs/reference/*.md
-  //   php   the PAD functions a page's PHP calls - the rows of docs/reference/HELPERS.md
-  //         and of the Library Functions Reference in CLAUDE.md - with their real
+  //   php   the PAD functions a page's PHP calls - the rows of docs/reference/HELPERS.md,
+  //         the helpers and the engine functions of its last chapter - with their real
   //         signatures; every internal PHP function with its signature; the $pad settings
   //         of pad/config/config.php with their defaults and comments; db()'s verbs
   // editLanguageApp   one application's own names, from its _xxx directories, each with the
@@ -40,7 +40,7 @@
   function editLanguageBase () {
 
     $home    = editHome ();
-    $sources = array_merge ( [ "$home/editors/lsp/completions.json", "$home/CLAUDE.md", PAD . 'config/config.php' ],
+    $sources = array_merge ( [ "$home/editors/lsp/completions.json", PAD . 'config/config.php' ],
                              glob ( "$home/docs/reference/*.md" ) ?: [], glob ( PAD . 'lib/*.php' ) ?: [] );
 
     $stamp = PHP_VERSION . '|' . implode ( ',', array_map ( fn ( $f ) => (int) @filemtime ( $f ), $sources ) );
@@ -263,16 +263,15 @@
 
     $documented = [];
 
-    $helpers = (string) @file_get_contents ( editHome () . '/docs/reference/HELPERS.md' );
-    $claude  = (string) @file_get_contents ( editHome () . '/CLAUDE.md' );
-    $library = '';
+    // The engine functions - padRedirect, padFlash, padValidate, db ... - are the last
+    // chapter of HELPERS.md, where they stood in CLAUDE.md's Library Functions Reference
+    // before that file kept only the core.
 
-    if ( preg_match ( '/^## Library Functions Reference\n(.*?)(?=^## |\z)/ms', $claude, $m ) )
-      $library = $m [1];
+    $helpers = (string) @file_get_contents ( editHome () . '/docs/reference/HELPERS.md' );
 
     $chapter = '';
 
-    foreach ( explode ( "\n", $helpers . "\n" . $library ) as $line ) {
+    foreach ( explode ( "\n", $helpers ) as $line ) {
 
       if ( preg_match ( '/^#{2,3}\s+(.*)$/', $line, $m ) )
         $chapter = trim ( $m [1] );

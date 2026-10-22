@@ -3,7 +3,7 @@
 //
 // completion      the PAD functions a page's PHP calls - padRedirect, db, padArrGet ... - with
 //                 their real signatures and the documentation of docs/reference/HELPERS.md
-//                 and CLAUDE.md; the functions of the application's own _lib files; every
+//                 (the helpers and the engine functions); the functions of the application's own _lib files; every
 //                 internal PHP function; the variables of the file and the superglobals; in
 //                 a _config/ file the $pad settings with their defaults; the verbs of db()
 //                 at the start of its query string; and a few PAD snippets

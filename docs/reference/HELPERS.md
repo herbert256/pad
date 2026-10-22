@@ -32,6 +32,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Migrations and fake data](#migrations-and-fake-data) | `padMigrate`, `padSeed`, `padFake*`, `padFactory`, ... | - |
 | [Queues, schedule and HTTP fakes](#queues-schedule-and-http-fakes) | `padQueue`, `padQueueWork`, `padCronMatch`, `padCurlFake`, ... | - |
 | [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
+| [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
 
@@ -1002,3 +1003,113 @@ never pasted into SQL: `db ( "RECORD * FROM users WHERE id={0}", [ $id ] )`.
 | `padMaintenanceRead ( $app )`, `padMaintenanceList ()` | Its record; the applications that are down |
 | `padAsset ( $file )`, `padAssetTag ( $file )` | The versioned address of a file of `www/<app>/`; the element that loads it |
 
+## Engine functions
+
+The functions of the engine a page's PHP, a `_lib` file or a custom tag calls - redirects,
+forms, the current tag's parameters, the database, data, files, mail, evaluation and errors.
+
+### Navigation & Redirection
+
+| Function | Description |
+|----------|-------------|
+| `padRedirect($page, $vars, $app)` | Redirect to a page of this application (or of `$app`) with optional variables - no page: back to the one asked for; never off the site, `{redirect}` also takes an absolute URL |
+| `padRestart($page)` | Restart processing with new page |
+
+### Forms and Security
+
+| Function | Description |
+|----------|-------------|
+| `padSessionStart()` | Start the PHP session on demand, strict mode and safe cookie flags |
+| `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
+| `padCsrfValid()` | Whether this request brought the session's token back |
+| `padPosted($form)` | Whether this request posted (the `{form}` of that name) - and kept the `rules=` of its template; without a name, on a page whose template has rules, only a post of one of its forms |
+| `padFormFailed($form)` | Whether the form came back and broke the `rules=` of its template |
+| `padUpload($field, types: [...], max: '2M')` | Store an uploaded file safely: real type (finfo), size limit, random name in `DATA/uploads/` - the record, NULL (none sent) or FALSE (refused) |
+| `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'}`) |
+| `padUploadSend($file, $name, $download)` | A stored file (`padUpload`'s `file`, a path under `DATA/`) as the page's whole answer - a picture, PDF or text shown, anything else downloaded; a path out of `DATA/` 404 |
+| `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
+| `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
+| `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
+| `padValidateClient($rules, $messages)` | The same rules for the browser's checker - each with the message padValidate would give |
+| `padFormRules($form)` | The `rules=` the page's template gives the fields of a named form |
+
+### Field Access
+
+| Function | Description |
+|----------|-------------|
+| `padFieldValue($name)` | Get field value from current data context |
+| `padFieldCheck($name)` | Check if field exists |
+| `padOptValue($name)` | Get option value |
+| `padTagParm($name, $default)` | Get current tag parameter |
+
+### Database
+
+| Function | Description |
+|----------|-------------|
+| `db($sql, $vars)` | Execute SQL on application database |
+| `padDb($sql, $vars)` | Execute SQL on PAD database |
+| `padDbConnect($host, $user, $pass, $db)` | Create database connection |
+
+### Data Processing
+
+| Function | Description |
+|----------|-------------|
+| `padData($input, $type, $name)` | Convert input to PAD data array |
+| `padDataForcePad($data)` | Force data into PAD format |
+| `padToArray($obj)` | Convert object/resource to array |
+| `padJson($data)` | Convert to JSON |
+| `padPrefetch($sources, $ttl)` | Fetch remote sources in parallel, each kept as named data (`{rates}`) |
+| `padCurlCached($input, $ttl)` | `padCurl()` with a ttl cache and the last good copy on a failure |
+
+### File Operations
+
+| Function | Description |
+|----------|-------------|
+| `padFileGet($file, $default)` | Read file contents - a relative path is under `DATA/` |
+| `padFilePut($file, $data, $append)` | Write file contents - under `DATA/` only, a relative path there too; never a name the web server runs (`.php`, `.phtml` ...) or reads as configuration (`.htaccess`, `.user.ini`) |
+| `padFileCheck($file)` | Validate file path |
+
+### Server-sent events
+
+| Function | Description |
+|----------|-------------|
+| `padSse($producer, $options)` | Stream events as `text/event-stream` and end the request - `every`, `for`, `event`, `retry` |
+| `padSseSend($event, $data, $id)` | One event; whether the visitor is still connected |
+| `padSseLastId()` | The id the browser sends back on a reconnect |
+
+### Mail
+
+| Function | Description |
+|----------|-------------|
+| `padMail($to, $template, $subject, $vars, $options)` | Render `_mail/<template>` and send it - `$options`: `from`, `cc`, `bcc`, `replyTo`, `html`, `text` |
+
+### Evaluation
+
+| Function | Description |
+|----------|-------------|
+| `padEval($expr, $value)` | Evaluate expression |
+| `padEvalBool($expr)` | Evaluate as boolean |
+
+### Error Handling
+
+| Function | Description |
+|----------|-------------|
+| `padError($message)` | Report error |
+| `padExit($code)` | End request with status code |
+| `padDump($error)` | Generate debug dump |
+
+### Validation
+
+| Function | Description |
+|----------|-------------|
+| `padValid($name)` | Validate tag/type name |
+| `padValidVar($name)` | Validate variable name |
+
+### Utilities
+
+| Function | Description |
+|----------|-------------|
+| `padRandomString($len)` | Generate random string |
+| `padExplode($str, $delim, $limit)` | Smart explode with trimming |
+| `padBetween($str, $open, $close, &$before, &$between, &$after)` | Split at the first `$open`...`$close` - TRUE when both are there, the three parts by reference |
+| `padMakeSafe($input, $len)` | Sanitize input |
