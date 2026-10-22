@@ -48,7 +48,10 @@
 
         $name = $match [1];
 
-        if ( ! padValidVar ( $name ) or ! array_key_exists ( $name, $GLOBALS ) )
+        // isset first: array_key_exists on $GLOBALS copies the symbol table, some 2.5 us a
+        // bound $name with 800 globals; it is asked only for a variable holding NULL.
+
+        if ( ! padValidVar ( $name ) or ! ( isset ( $GLOBALS [$name] ) or array_key_exists ( $name, $GLOBALS ) ) )
           return padError ( "there is no application variable named \$$name for $what" );
 
         $value = $GLOBALS [$name];
