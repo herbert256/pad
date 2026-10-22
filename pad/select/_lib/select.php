@@ -104,6 +104,20 @@
     if ( ! in_array ( $type, [ 'array', 'record', 'field' ], TRUE ) )
       return padError ( "type= takes array, record or field, not '" . padMakeSafe ( $type, 40 ) . "'" );
 
+    // The order a table declares - or its key, when it declares none - is the order of its
+    // rows. A select that makes rows of its own - groups, a rollup, distinct rows, totals in
+    // its fields - is sorted by an order given with those alone: the tag's order=, or the
+    // order of the declaration that groups. The declared one was added to it, so a rollup
+    // over a declared table with an order or a key ended on "Incorrect usage of CUBE/ROLLUP
+    // and ORDER BY", and under ONLY_FULL_GROUP_BY, MySQL's default, so did
+    // {albums fields='count(*) as n'} - "Mixing of GROUP columns ... with no GROUP BY".
+
+    $grouped = padSelectGroups ( $parms );
+    $ordered = ( $grouped or ! padSelectGroups ( $prm ) );
+
+    if ( ! isset ( $prm ['order'] ) and ! $ordered )
+      $padSelOrder = '';
+
     $padSelStart = padSelectStart  ( $all, $distinct, $distinctrow);
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
@@ -112,7 +126,7 @@
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
     $keys        = padSelectKeys   ( $keys );
-    $padSelOrder = padSelectOrder  ( $padSelOrder, $padSelJoin, $keys );
+    $padSelOrder = padSelectOrder  ( $padSelOrder, $padSelJoin, ( $ordered and ! $grouped ) ? $keys : '' );
 
     // The outer query's parts are folded into text before the union members are built:
     // the composition variables are globals - the dump reads them, under pad-prefixed names
@@ -146,8 +160,7 @@
 
     if ( $padSelLimit and ! $unionBuild ) {
       $short = ( in_array ( $padSelStart, [ '', 'ALL' ] ) and ! $padSelGroup and ! $having and trim ( $members ) === ''
-                 and ! preg_match ( '/^\s*(all\s+)?distinct(row)?\b/i', (string) $fields )
-                 and ! preg_match ( '/\b(count|sum|avg|min|max|total|group_concat|json_arrayagg|json_objectagg|string_agg|bit_and|bit_or|bit_xor|std|stddev|stddev_pop|stddev_samp|variance|var_pop|var_samp)\s*\(/i', (string) $fields ) );
+                 and ! padSelectTotals ( (string) $fields ) );
       $count = $short
              ? "select 1 from $db $padSelJoin $padSelWhere"
              : "select $base";
@@ -159,6 +172,29 @@
       return $padSelUnion;
     else
       return db ( $sql );
+
+  }
+
+  // Whether options - the tag's, or a table's declaration - make rows of their own: groups,
+  // a rollup, distinct rows, or totals in the fields.
+
+  function padSelectGroups ( $options ) {
+
+    foreach ( [ 'group', 'rollup', 'distinct', 'distinctrow' ] as $one )
+      if ( ! empty ( $options [$one] ) )
+        return TRUE;
+
+    return is_string ( $options ['fields'] ?? NULL ) and padSelectTotals ( $options ['fields'] );
+
+  }
+
+  // A column list that starts with distinct, or holds an aggregate: one row of totals, or a
+  // row per distinct value.
+
+  function padSelectTotals ( $fields ) {
+
+    return preg_match ( '/^\s*(all\s+)?distinct(row)?\b/i', $fields )
+        or preg_match ( '/\b(count|sum|avg|min|max|total|group_concat|json_arrayagg|json_objectagg|string_agg|bit_and|bit_or|bit_xor|std|stddev|stddev_pop|stddev_samp|variance|var_pop|var_samp)\s*\(/i', $fields );
 
   }
 
@@ -672,6 +708,12 @@
         $parms ['where'] = '(' . $inherit ['where'] . ') and (' . $parms ['where'] . ')';
 
       unset ( $inherit ['base'] );
+
+      // A view that makes rows of its own is not sorted by the order of the table it stands
+      // on, the order of that table's rows (padSelect).
+
+      if ( padSelectGroups ( $parms ) )
+        unset ( $inherit ['order'] );
 
       foreach ( $inherit as $key => $value )
         if ( ! isset ( $parms [$key] ) )

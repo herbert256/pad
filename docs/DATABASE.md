@@ -231,6 +231,11 @@ On a select, `rows=` (and `page=`) is the SQL `LIMIT`, applied before any handli
 `sort=` re-sorts the rows that came back, so `{news sort="created_at desc", rows=10}` is the
 first ten rows of the table, sorted - `order=` is what sorts before the limit.
 
+The order a table declares - or its key, when it declares none - sorts the table's rows. A
+select that makes rows of its own - `group=`, `rollup`, `distinct`, a total such as `count(*)`
+in `fields=` - is sorted only by an order written with them: the tag's `order=`, or the order
+of a declaration that groups. A view that groups does not take the order of its base.
+
 `where=`, `having=`, `order=` and `group=` written on a tag are SQL, so they must be quoted
 strings in the template; `where=$cond` is refused, and so is a `fields=`, `db=`, `join=` or
 `union=` taken from a variable. Inside the first four a `$name` is bound by the select: in
