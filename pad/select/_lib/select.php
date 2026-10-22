@@ -403,7 +403,11 @@
     for ( $i=$pad-1; $i; $i-- )
       if ( $padType [$i] == 'select' and is_array ( $padCurrent [$i] ?? NULL ) and $padCurrent [$i] ) {
 
-        $padSelOuter = $padTag [$i];
+        // The strict check names the select this one stands in, the nearest: the last one
+        // walked was named, the outermost, which the select was never written in.
+
+        if ( $padSelOuter === '' )
+          $padSelOuter = $padTag [$i];
 
         foreach ( padSelectChain ( $table ) as $inner ) {
 
