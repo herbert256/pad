@@ -130,7 +130,7 @@
     $padSelGroup = padSelectGroup  ( $padSelGroup, $rollup );
     $having      = padSelectHaving ( $having );
     $padSelLimit = padSelectLimit  ( $rows, $page );
-    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, isset ( $prm ['where'] ) );
+    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, isset ( $prm ['where'] ), padSelectOwn ( $db, $padSelJoin ) );
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
     $keys        = padSelectKeys   ( $keys );
@@ -299,9 +299,25 @@
 
   }
 
-  // $tagWhere: the where= was written on the tag, not taken from the declaration.
+  // The table a select with a join names its key and relation fields with: a field both
+  // tables hold - orderNumber in orders and orderdetails - was written bare, and the select
+  // ended on "Column 'orderNumber' in WHERE is ambiguous" as soon as a key was bound on its
+  // tag or it stood in a related select. A db that is no plain name - a schema, an alias -
+  // leaves the fields bare, as before.
 
-  function padSelectWhere ( $where, $table, $keys, $tagWhere = FALSE ) {
+  function padSelectOwn ( $db, $join ) {
+
+    if ( is_array ( $join ) ? ! $join : trim ( (string) $join ) === '' )
+      return '';
+
+    return preg_match ( '/^[A-Za-z_][A-Za-z0-9_]*$/', (string) $db ) ? $db : '';
+
+  }
+
+  // $tagWhere: the where= was written on the tag, not taken from the declaration. $own: the
+  // table the fields are named with (padSelectOwn), or ''.
+
+  function padSelectWhere ( $where, $table, $keys, $tagWhere = FALSE, $own = '' ) {
 
     global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl;
 
@@ -312,7 +328,7 @@
 
     foreach ( padExplode ( $keys, ',' ) as $field )
       if ( isset ( $padSetLvl [$pad] [$field] ) ) {
-        padSelectWhereAdd ( $where, "$field", $GLOBALS [$field] );
+        padSelectWhereAdd ( $where, "$field", $GLOBALS [$field], $own );
         $bound = TRUE;
       }
 
@@ -334,7 +350,7 @@
           $found = FALSE;
 
           foreach ( padSelectChain ( $padTag [$i] ) as $relation )
-            if ( padSelectWhereRelation ( $where, $inner, $relation, $padCurrent [$i] ) )
+            if ( padSelectWhereRelation ( $where, $inner, $relation, $padCurrent [$i], $own ) )
               $found = TRUE;
 
           if ( $found ) {
@@ -378,14 +394,14 @@
 
   // TRUE when a relation between the two is declared, in either direction.
 
-  function padSelectWhereRelation ( &$where, $table, $relation, $data ) {
+  function padSelectWhereRelation ( &$where, $table, $relation, $data, $own = '' ) {
 
     global $padRelations;
 
     if  ( isset ( $padRelations [$relation] [$table] ) )
-      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0, $relation );
+      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$relation] [$table], $relation, $table ), $data, 0, $relation, $own );
     elseif ( isset ( $padRelations [$table] [$relation] ) )
-      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1, $relation );
+      padSelectWhereKeys ( $where, padSelectRelationKeys ( $padRelations [$table] [$relation], $table, $relation ), $data, 1, $relation, $own );
     else
       return FALSE;
 
@@ -418,17 +434,17 @@
 
   }
 
-  function padSelectWhereKeys ( &$where, $keys, $data, $type, $outer ) {
+  function padSelectWhereKeys ( &$where, $keys, $data, $type, $outer, $own = '' ) {
 
     if ( is_array ($keys) )
       foreach ( $keys as $key => $value )
         if ( $type )
-          padSelectWhereAdd ( $where, $key, padSelectOuterValue ( $data, $value, $outer ) );
+          padSelectWhereAdd ( $where, $key, padSelectOuterValue ( $data, $value, $outer ), $own );
         else
-          padSelectWhereAdd ( $where, $value, padSelectOuterValue ( $data, $key, $outer ) );
+          padSelectWhereAdd ( $where, $value, padSelectOuterValue ( $data, $key, $outer ), $own );
     else
       foreach ( padExplode ( $keys, ',' ) as $field )
-        padSelectWhereAdd ( $where, $field, padSelectOuterValue ( $data, $field, $outer ) );
+        padSelectWhereAdd ( $where, $field, padSelectOuterValue ( $data, $field, $outer ), $own );
 
   }
 
@@ -461,9 +477,9 @@
   // '2' never equals the integer 2 there, and {boards $id=2} found no board and every
   // board's nested topics came out empty.
 
-  function padSelectWhereAdd  (&$where, $field, $value) {
+  function padSelectWhereAdd  (&$where, $field, $value, $own = '') {
 
-    $add = padSelectField ($field) . ' = ';
+    $add = padSelectField ( ( $own !== '' and ! str_contains ( $field, '.' ) ) ? "$own.$field" : $field ) . ' = ';
 
     if ( strpos ( $where, $add ) !== FALSE )
       return;
