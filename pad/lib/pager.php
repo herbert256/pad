@@ -79,8 +79,12 @@
 
   function padPagerItems ( $info, $window, $query ) {
 
+    // The count a select booked: a field statement that counts, or - for a joined select whose
+    // select list decides what a row is - an array statement whose rows are counted here.
+
     if ( $info ['total'] === NULL )
-      $info ['total'] = $info ['count'] ? (int) db ( $info ['count'] ) : 0;
+      $info ['total'] = ! $info ['count'] ? 0
+                      : ( str_starts_with ( $info ['count'], 'array ' ) ? count ( (array) db ( $info ['count'] ) ) : (int) db ( $info ['count'] ) );
 
     if ( $info ['rows'] < 1 )
       return [];

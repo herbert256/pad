@@ -1,0 +1,2 @@
+distinct: [{orderSel join="customers on customers.customerNumber = orders.customerNumber", distinct, where="orders.customerNumber = 103", order="orderNumber", page=1, rows=2}{$orderNumber} {/orderSel}] ({pager 'orderSel', window=0}{$kind}:{$page} {/pager})
+group: [{orderSel join="customers on customers.customerNumber = orders.customerNumber", group="orders.status", where="customers.country = 'France'", order="orders.status", page=1, rows=1}{$status} {/orderSel}] ({pager 'orderSel', window=0}{$kind}:{$page} {/pager})

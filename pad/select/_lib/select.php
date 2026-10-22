@@ -189,7 +189,14 @@
       $count = $short
              ? 'select 1 ' . padSelectLines ( [ "from $db", $padSelJoin, $padSelWhere ] )
              : "select $base";
-      $GLOBALS ['padPagerCount'] [$pad] = "field count(*) from ( $count\n) as padPagerCount";
+      // With a join the select list may hold a column name twice - select distinct * from
+      // orders join customers, both with customerNumber - which no derived table can, and
+      // the count ended on "Duplicate column name": it is the number of rows the select
+      // gives without its limit then, read when the pager asks (padPagerItems).
+
+      $GLOBALS ['padPagerCount'] [$pad] = ( ! $short and $padSelJoin !== '' )
+                                        ? "array $base"
+                                        : "field count(*) from ( $count\n) as padPagerCount";
       $GLOBALS ['padPagerRows']  [$pad] = $rows;
     }
 
