@@ -114,14 +114,16 @@
 
     // The order a table declares - or its key, when it declares none - is the order of its
     // rows. A select that makes rows of its own - groups, a rollup, distinct rows, totals in
-    // its fields - is sorted by an order given with those alone: the tag's order=, or the
-    // order of the declaration that groups. The declared one was added to it, so a rollup
-    // over a declared table with an order or a key ended on "Incorrect usage of CUBE/ROLLUP
-    // and ORDER BY", and under ONLY_FULL_GROUP_BY, MySQL's default, so did
-    // {albums fields='count(*) as n'} - "Mixing of GROUP columns ... with no GROUP BY".
+    // its fields, a union - is sorted by an order given with those alone: the tag's order=,
+    // or the order of the declaration that makes them. The declared one was added to it, so
+    // a rollup over a declared table with an order or a key ended on "Incorrect usage of
+    // CUBE/ROLLUP and ORDER BY", under ONLY_FULL_GROUP_BY, MySQL's default, so did
+    // {albums fields='count(*) as n'} - "Mixing of GROUP columns ... with no GROUP BY" - and
+    // a union whose columns leave the order out on "Unknown column ... in 'ORDER BY'": after
+    // a union only its own columns can be named.
 
-    $grouped = padSelectGroups ( $parms );
-    $ordered = ( $grouped or ! padSelectGroups ( $prm ) );
+    $grouped = padSelectMakesRows ( $parms );
+    $ordered = ( $grouped or ! padSelectMakesRows ( $prm ) );
 
     if ( ! isset ( $prm ['order'] ) and ! $ordered )
       $padSelOrder = '';
@@ -194,11 +196,11 @@
   }
 
   // Whether options - the tag's, or a table's declaration - make rows of their own: groups,
-  // a rollup, distinct rows, or totals in the fields.
+  // a rollup, distinct rows, totals in the fields, or a union.
 
-  function padSelectGroups ( $options ) {
+  function padSelectMakesRows ( $options ) {
 
-    foreach ( [ 'group', 'rollup', 'distinct', 'distinctrow' ] as $one )
+    foreach ( [ 'group', 'rollup', 'distinct', 'distinctrow', 'union' ] as $one )
       if ( ! empty ( $options [$one] ) )
         return TRUE;
 
@@ -756,7 +758,7 @@
       // A view that makes rows of its own is not sorted by the order of the table it stands
       // on, the order of that table's rows (padSelect).
 
-      if ( padSelectGroups ( $parms ) )
+      if ( padSelectMakesRows ( $parms ) )
         unset ( $inherit ['order'] );
 
       foreach ( $inherit as $key => $value )
