@@ -12,6 +12,16 @@
   // (inits/limits.php, $pqPageWhole); actions/actions.php cuts the page where page= stands
   // among the actions, $pqPageCut (actions/inits.php). A page= written before every action
   // cuts first, as before (exits/exits.php).
+  //
+  // A run with no end of its own - a type without to= or stop= - has no every term for an
+  // action to act on: made as many terms as the page's, an action that reads the whole run -
+  // reverse, shuffle, sort, last= - acted on (page+1)*rows terms, and the page was cut from
+  // their reversal: every page of {sequence 'prime', reverse, page=N, rows=5} showed 29 23 19
+  // 17 13, while the pager offered a next one. Such a run is cut first, wherever page= is
+  // written, as it always was: page 4 is 71 67 61 59 53, the page's terms reversed.
+
+  if ( $pqPageWhole !== PHP_INT_MAX )
+    $pqPageCut = 0;
 
   if ( $pqPageCut and $pqPageSize !== NULL ) {
     $pqPageCount = FALSE;
