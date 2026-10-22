@@ -236,7 +236,8 @@ The order a table declares - or its key, when it declares none - sorts the table
 select that makes rows of its own - `group=`, `rollup`, `distinct`, a total such as `count(*)`
 in `fields=`, a `union=` - is sorted only by an order written with them: the tag's `order=`,
 or the order of the declaration that makes them. A view that makes rows of its own does not
-take the order of its base.
+take the order of its base. Beside `rollup` only the tag's `order=` is written: MariaDB, and
+MySQL before 8.0.12, take no ORDER BY with WITH ROLLUP, whose rows come in the group's order.
 
 `where=`, `having=`, `order=` and `group=` written on a tag are SQL, so they must be quoted
 strings in the template; `where=$cond` is refused, and so is a `fields=`, `db=`, `join=` or

@@ -125,7 +125,11 @@
     $grouped = padSelectMakesRows ( $parms );
     $ordered = ( $grouped or ! padSelectMakesRows ( $prm ) );
 
-    if ( ! isset ( $prm ['order'] ) and ! $ordered )
+    // MariaDB, and MySQL before 8.0.12, take no ORDER BY beside WITH ROLLUP, whose rows come
+    // in the order of the group: with a rollup only an order= on the tag is written, not
+    // the order of the declaration that groups.
+
+    if ( ! isset ( $prm ['order'] ) and ( ! $ordered or $rollup ) )
       $padSelOrder = '';
 
     $padSelStart = padSelectStart  ( $all, $distinct, $distinctrow);
