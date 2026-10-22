@@ -843,35 +843,42 @@
 
         $joinTable = padSelectGetDB ( $table ) ;
 
-        if ( isset ( $joinTable ['fields'] ) )
-          padSelectAddFields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
-
         // A joined table with a where - a view - is joined as the rows of its where, a
         // derived table under the table's own name, so the key and the fields still name
         // it, for every kind of join; its where was left out and every row joined. A name in
         // backticks - a table that is a reserved word - is one name as well, and joined
         // every row. The view's own joins go inside with it - its where may name their
         // tables, and ended on "Unknown column 'offices.city'" - and only its own columns
-        // come out, under their own names.
+        // come out, under their own names. A table named with its schema - demo.offices - or
+        // with an alias - offices o - is joined under its own name or that alias, by which
+        // the key and the fields name it then: it joined every row as well.
 
         $joinFrom = $joinTable ['db'];
+        $joinName = $joinFrom;
+        $name     = '([A-Za-z_][A-Za-z0-9_]*|`[^`]+`)';
 
-        if ( (string) ( $joinTable ['where'] ?? '' ) !== '' and preg_match ( '/^([A-Za-z_][A-Za-z0-9_]*|`[^`]+`)$/', (string) $joinFrom ) ) {
+        if ( (string) ( $joinTable ['where'] ?? '' ) !== ''
+             and preg_match ( "/^(?:$name\\s*\\.\\s*)?$name(?:\\s+(?:as\\s+)?$name)?$/i", trim ( (string) $joinFrom ), $match ) ) {
+
+          $joinName = ( ( $match [3] ?? '' ) !== '' ) ? $match [3] : $match [2];
 
           $none  = '';
           $joins = ( ! empty ( $joinTable ['join'] ) and ! in_array ( $table, $seen, TRUE ) )
                  ? trim ( padSelectJoin ( $joinTable ['join'], $none, array_merge ( $seen, [ $table ] ) ) ) : '';
 
-          $joinFrom = "(\nselect " . ( $joins === '' ? '*' : "$joinFrom.*" ) . " from $joinFrom"
-                    . ( $joins === '' ? '' : "\n$joins" ) . "\nwhere " . $joinTable ['where'] . "\n) as $joinFrom";
+          $joinFrom = "(\nselect " . ( $joins === '' ? '*' : "$joinName.*" ) . " from $joinFrom"
+                    . ( $joins === '' ? '' : "\n$joins" ) . "\nwhere " . $joinTable ['where'] . "\n) as $joinName";
 
         }
+
+        if ( isset ( $joinTable ['fields'] ) )
+          padSelectAddFields ($fields, $joinName, $joinTable ['fields'] );
 
         $joinSQL .= ' ' . $xtype .  ' join ' . $joinFrom . ' ';
 
         if ( isset($value ['key']) ) {
           $joinSQL .= ' on ';
-          $joinSQL .= padSelectJoinAdd ($value ['key'], $joinTable ['db'], $joinTable ['key'] ?? '') . ' ';
+          $joinSQL .= padSelectJoinAdd ($value ['key'], $joinName, $joinTable ['key'] ?? '') . ' ';
         }
 
       }
