@@ -246,7 +246,7 @@
       }
 
       if ( substr ( $text, $pos, 6 ) === '{block' ) {
-        $blocks ??= padLayoutBlocks ( $text, TRUE );
+        $blocks ??= padLayoutBlocks ( padCommentStrip ( $text, TRUE ), TRUE );
         foreach ( $blocks as $pair )
           if ( $pair ['start'] == $pos ) {
             $pos = $pair ['end'];
@@ -264,10 +264,19 @@
 
   // That run for the @else@ half: without the {block}s the half writes of its own, and
   // without its {extends} when the half has one.
+  //
+  // Both are read with their comments and {ignore} parts set aside, as padLayout reads
+  // them, and so is the run itself (above, with its comments written over): a {block} or an
+  // {extends} the half commented out took the page's own from it - the half lost its title,
+  // or its layout altogether - and a {/block} written in a comment of the run's block ended
+  // that block there, the rest of the comment left to fail "the comment {# never closes".
 
   function padLayoutLeadFor ( $lead, $half ) {
 
-    $own = [];
+    $masks = [];
+    $lead  = padLayoutMask ( $lead, $masks );
+    $half  = padLayoutMask ( $half, $masks );
+    $own   = [];
 
     foreach ( padLayoutBlocks ( $half, TRUE ) as $pair )
       $own [ $pair ['name'] ] = TRUE;
@@ -279,7 +288,7 @@
     if ( padLayoutExtends ( $half ) !== FALSE and ( $extends = padLayoutExtends ( $lead ) ) !== FALSE )
       $lead = $extends ['text'];
 
-    return $lead;
+    return padLayoutUnmask ( $lead, $masks );
 
   }
 
