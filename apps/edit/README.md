@@ -160,6 +160,22 @@ release; PECL refuses to install over an extension the PHP running it has loaded
 needs the C compiler as `cc`: with another `cc` earlier on the PATH, give it as
 `CC=/usr/bin/clang pecl upgrade xdebug`. `pecl list` shows the version installed.
 
+Loaded in debug mode, Xdebug makes every page about twice as slow, a debug session or not.
+To keep the site at full speed, the PHP that serves the pages can run without it and the
+requests that ask for the debugger go to a php-fpm pool that has it - on this machine:
+
+- Apache's own PHP gets `XDEBUG_MODE=off` from the environment it starts with - in
+  `EnvironmentVariables` of `~/Library/LaunchAgents/homebrew.mxcl.httpd.plist`, which
+  `brew services restart httpd` writes anew, so it is put back after one; `php.ini` keeps
+  `xdebug.mode = debug` for the command line and the pool.
+- A php-fpm pool with Xdebug, `/opt/homebrew/etc/php/8.5/php-fpm-xdebug.conf` on
+  127.0.0.1:9081, started as this user by `~/Library/LaunchAgents/local.pad.php-fpm-xdebug.plist`.
+- `/opt/homebrew/etc/httpd/extra/pad-xdebug.conf`, included last from `httpd.conf` with
+  `mod_proxy` and `mod_proxy_fcgi` loaded, hands that pool a `.php` request that carries
+  `XDEBUG_SESSION` or `XDEBUG_TRIGGER` (a cookie or a query value), and the editor's own
+  debugger calls (`?api&action=debug`), which check that their PHP has the step debugger
+  and start the debugger process.
+
 Xdebug connects back to `xdebug.client_port` (9003); an IDE
 listening there at the same time keeps the editor's debugger from starting. A browser
 extension that sets an `XDEBUG_SESSION` cookie for the whole site makes every request ask
