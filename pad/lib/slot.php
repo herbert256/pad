@@ -40,6 +40,14 @@
   // Takes the fills out of a custom tag's content: every {slot 'name'}...{/slot} that stands
   // directly in it, and {slot 'name'/} as an explicitly empty fill. Returns them by name;
   // $content keeps the rest.
+  //
+  // The pairs are looked for with the content of the text pairs written over with spaces -
+  // the same length, so the places found are the content's (padTextSpans, lib/template.php):
+  // what an {ignore} wraps, a {highlight} sample or a {markdown ignore} is text, as the
+  // closer search of the tag and the bodies of {define} and {macro} read it. A {/slot} shown
+  // in a sample of a fill closed the fill there, and the sample's {ignore} never closed:
+  // {card}{slot 'f'}{ignore}{/slot}{/ignore}{/slot}{/card} failed with "the pair {ignore}
+  // never closes".
 
   function padSlotTake ( &$content ) {
 
@@ -48,11 +56,16 @@
     if ( ! is_string ( $content ) or ! str_contains ( $content, '{slot' ) )
       return $fills;
 
+    $scan = $content;
+
+    foreach ( padTextSpans ( $content ) as [ $from, $to ] )
+      $scan = substr_replace ( $scan, str_repeat ( ' ', $to - $from ), $from, $to - $from );
+
     $taken = [];
 
-    foreach ( padPairScan ( $content, 'slot' ) as $pair ) {
+    foreach ( padPairScan ( $scan, 'slot' ) as $pair ) {
 
-      if ( $pair ['depth'] or ! padPairTopLevel ( $content, $pair ['start'] ) )
+      if ( $pair ['depth'] or ! padPairTopLevel ( $scan, $pair ['start'] ) )
         continue;
 
       $name = padPairName ( $pair ['parms'] );
