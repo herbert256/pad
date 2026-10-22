@@ -42,6 +42,24 @@
   if ( $padNextPadLevel )
     return;
 
+  // A float past the range that will be the level's whole base meets the tag's own pipe as
+  // the number it is, as {echo} hands it (tags/echo.php): joined to the content it is the
+  // text 'INF', which an arithmetic pipe takes for no number - {big | + 1} over $big = INF
+  // ended the page on "'INF' is not a number for +", {neg | + 1} over -INF the same, where
+  // {echo $big | + 1} and {$big | + 1} answer INF. Once piped it is written as that text.
+
+  if ( is_float ( $padTagResult ) and is_infinite ( $padTagResult ) and ( $padPipeBefore [$pad] ?? '' )
+       and $padContent === '' and $padTagContent === '' and ! str_starts_with ( $padOpt [$pad] [0], '?' )
+       and ! padTagParm ( 'content' ) ) {
+
+    $padTagResult         = padEval ( $padPipeBefore [$pad], $padTagResult, TRUE );
+    $padPipeBefore [$pad] = '';
+
+    if ( is_float ( $padTagResult ) and is_infinite ( $padTagResult ) )
+      $padTagResult = (string) $padTagResult;
+
+  }
+
   // What a tag answers is a value - {echo $x}, a field, a PHP function's result, a fetched
   // body - and under $padProtectValues it joins the level as text, since the level goes on
   // to scan it. Template text a tag produces travels as $padTagContent, which is untouched.
