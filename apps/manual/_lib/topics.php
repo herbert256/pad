@@ -16,7 +16,7 @@
       'Advanced concepts'      => [ 'prefix', 'options_variables_parameters', 'callback', 'tag_return_values',
                                     'level_and_occurrence_variables', 'walking', 'ending_the_request', 'pipes',
                                     'sequences' ],
-      'Data'                   => [ 'data_handling', 'grouping', 'pager', 'lookup', 'database', 'sqlite',
+      'Data'                   => [ 'data_handling', 'grouping', 'pager', 'lookup', 'database', 'padSelect', 'sqlite',
                                     'collections', 'remote_data', 'parallel_fetching', 'data_answers' ],
       'PHP helpers'            => [ 'arrays', 'strings', 'values', 'numbers', 'requests_and_sessions',
                                     'environment_and_cache', 'dates_and_logging', 'hashing_and_encryption' ],
