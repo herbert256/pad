@@ -235,7 +235,9 @@ first ten rows of the table, sorted - `order=` is what sorts before the limit.
 The order a table declares - or its key, when it declares none - sorts the table's rows. A
 select that makes rows of its own - `group=`, `rollup`, `distinct`, a total such as `count(*)`
 in `fields=`, a `union=` - is sorted only by an order written with them: the tag's `order=`,
-or the order of the declaration that makes them. A view that makes rows of its own does not
+or the order of the declaration that makes them. An aggregate in a subquery or over a window
+- `(select max(released) from albums where ...)`, `sum(price) over (...)` - is a value of each
+row, no total. A view that makes rows of its own does not
 take the order of its base. Beside `rollup` only the tag's `order=` is written: MariaDB, and
 MySQL before 8.0.12, take no ORDER BY with WITH ROLLUP, whose rows come in the group's order.
 
