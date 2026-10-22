@@ -74,7 +74,15 @@
 
           [ $to, $context ] = padNoCurlContext ( $url, $options );
 
+          // A connection that cannot be made is a failed fetch: fopen answers FALSE - its
+          // warning is silenced here - and stream_get_contents threw a TypeError on that,
+          // naming the engine's path in the error the log and _events/curl.php got.
+
           $stream = fopen ( $to, 'r', FALSE, $context );
+
+          if ( $stream === FALSE )
+            return padCurlError ( $output, 'padNoCurl: nothing read' );
+
           $result = stream_get_contents ( $stream );
           $status = 0;
           $moved  = '';
