@@ -85,23 +85,33 @@
   // written over with spaces so a place found stays the template's: a {# @todo@ #} note
   // failed as "there is no @todo@ construct" though it never renders, and a comment naming
   // the {ignore} tag opened a span to the next real {/ignore} that hid an @typo@ in between.
+  //
+  // The samples are the text pairs the render reads as text (padTextSpans, lib/template.php),
+  // written over with spaces as well, and the place reported is the @word@ the scan found: a
+  // pattern of its own paired them, which read no pad: prefix - {pad:ignore}Hello
+  // @name@{/pad:ignore} failed - and ended a {highlight} sample at the closer of a sample it
+  // shows; and the place was the first @word@ of the text, a sample's too, so a typo on line 3
+  // was pointed at in a sample on line 1.
 
   if ( $padCheckSyntax ) {
 
-    $padBuildBlank = padCommentStrip ( $padBase [$pad], TRUE );
+    $padBuildScan = padCommentStrip ( $padBase [$pad], TRUE );
 
-    $padBuildScan = preg_replace ( [
-      '/\{~?(ignore|highlight)(?=[\s}~|])[^{}]*\}.*?\{~?\/\1(?=[\s}~|])[^{}]*\}/s',
-      '/\{~?([A-Za-z][\w:]*)\s[^{}]*\bignore\b[^{}]*\}.*?\{~?\/\1(?=[\s}~|])[^{}]*\}/s'
-    ], '', $padBuildBlank );
+    foreach ( padTextSpans ( $padBuildScan ) as [ $padBuildFrom, $padBuildTo ] )
+      $padBuildScan = substr_replace ( $padBuildScan, str_repeat ( ' ', $padBuildTo - $padBuildFrom ), $padBuildFrom, $padBuildTo - $padBuildFrom );
 
-    if ( preg_match_all ( '/@([a-zA-Z][a-zA-Z0-9]*)@/', $padBuildScan, $padBuildCon ) )
-      foreach ( array_unique ( $padBuildCon [1] ) as $padBuildOne )
-        if ( ! file_exists ( PAD . "constructs/$padBuildOne.php" ) )
-          padErrorAt ( "there is no @" . $padBuildOne . "@ construct",
-                       [ 'level'  => $pad,
-                         'base'   => strpos ( $padBuildBlank, "@$padBuildOne@" ),
-                         'length' => strlen ( $padBuildOne ) + 2 ] );
+    $padBuildSeen = [];
+
+    if ( preg_match_all ( '/@([a-zA-Z][a-zA-Z0-9]*)@/', $padBuildScan, $padBuildCon, PREG_SET_ORDER | PREG_OFFSET_CAPTURE ) )
+      foreach ( $padBuildCon as [ [ , $padBuildAt ], [ $padBuildOne ] ] )
+        if ( ! isset ( $padBuildSeen [$padBuildOne] ) ) {
+          $padBuildSeen [$padBuildOne] = TRUE;
+          if ( ! file_exists ( PAD . "constructs/$padBuildOne.php" ) )
+            padErrorAt ( "there is no @" . $padBuildOne . "@ construct",
+                         [ 'level'  => $pad,
+                           'base'   => $padBuildAt,
+                           'length' => strlen ( $padBuildOne ) + 2 ] );
+        }
 
   }
 
