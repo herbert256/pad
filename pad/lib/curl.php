@@ -188,7 +188,10 @@
   }
 
   // Where a redirect's Location leads from the address it answered: as given when it names
-  // a scheme, else on the scheme and host - with the port - of that address.
+  // a scheme, else on the scheme and host - with the port - of that address. A query alone
+  // keeps that address's path, a fragment alone its path and query, as a browser and curl
+  // resolve them (RFC 3986 5.2.2): read as a relative path, ?tab=2 from /shop/products/42
+  // went to /shop/products/?tab=2, the directory's index.
 
   function padNoCurlLocation ( $url, $location ) {
 
@@ -206,6 +209,12 @@
       return $root . $location;
 
     $path = $parts ['path'] ?? '/';
+
+    if ( str_starts_with ( $location, '?' ) )
+      return $root . $path . $location;
+
+    if ( str_starts_with ( $location, '#' ) )
+      return $root . $path . ( isset ( $parts ['query'] ) ? '?' . $parts ['query'] : '' ) . $location;
 
     return $root . substr ( $path, 0, strrpos ( $path, '/' ) + 1 ) . $location;
 
