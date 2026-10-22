@@ -1,0 +1,10 @@
+<table>
+  <tr><th>Artist</th><th class="n">Albums</th><th class="n">Singles</th></tr>
+  {artists}
+  <tr>
+    <td>{$name}</td>
+    <td class="n">{albums fields="count(*) as n"}{$n}{/albums}</td>
+    <td class="n">{singles fields="count(*) as n"}{$n}{/singles}</td>
+  </tr>
+  {/artists}
+</table>

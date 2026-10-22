@@ -14,6 +14,7 @@ This directory contains PAD applications and examples.
 | [showcase](showcase/README.md) | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, every example its template beside the result |
 | [tags](tags/README.md) | Standard | A page per built-in tag - its one line, syntax, own options, description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
+| [padSelect](padSelect/README.md) | Standard | A showcase of PAD Select over a music catalogue - every example its declarations, template, result and the SQL PAD sent |
 | [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint, export, test - and the command-line application |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |

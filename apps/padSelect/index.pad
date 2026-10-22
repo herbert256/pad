@@ -1,0 +1,23 @@
+<div class="ps-home">
+
+  <p class="ps-lead">The Select subsystem makes the tables of a database tags. Declare a table
+  once - its key, its order - and the relations between the tables, and a template walks them
+  without writing a join: a table nested in another reads only the rows related to the row
+  around it. Every example here shows the declarations it uses, its template, the result and
+  the SQL PAD sent for it, over a small music catalogue - <a href="?model">the model</a>.</p>
+
+  <div class="ps-groups">
+    {groups}
+    <section class="ps-group">
+      <h2>{$group}</h2>
+      <p>{$tagline}</p>
+      <ul>
+        {examples}
+        <li><a href="?{$page}">{$label}</a><span>{$about}</span></li>
+        {/examples}
+      </ul>
+    </section>
+    {/groups}
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="ps-home">
+
+  <p class="ps-lead">A small music catalogue - labels, artists, genres, albums and their
+  tracks, singles, playlists and reviews - in the database of this application,
+  <code>_install/padSelect.sql</code>. Every name in it is made up.</p>
+
+  <div class="ps-tables">
+    {tables}
+    <section class="ps-table">
+      <h3>{$table} <small>{$rows} rows</small></h3>
+      <ul>
+        {columns}<li>{if $key}<span class="key">{$column}</span>{else}{$column}{/if} <span class="ref">{$type}</span></li>{/columns}
+      </ul>
+    </section>
+    {/tables}
+  </div>
+
+  <section class="ps-cell">
+    <header class="ps-head">The declarations <span class="ps-file">_lib/select.php</span></header>
+    <pre class="ps-code"><code>{!modelHtml}</code></pre>
+  </section>
+
+</div>

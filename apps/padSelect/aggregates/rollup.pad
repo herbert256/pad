@@ -1,0 +1,6 @@
+<table>
+  <tr><th>Genre</th><th class="n">Albums</th><th class="n">Price of them all</th></tr>
+  {albums fields="genre_code, count(*) as n, sum(price) as total", group="genre_code", rollup}
+  <tr><td>{genres}{$genre}@else@<b>All genres</b>{/genres}</td><td class="n">{$n}</td><td class="n">{$total}</td></tr>
+  {/albums}
+</table>

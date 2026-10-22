@@ -1,0 +1,8 @@
+<table>
+  <tr><th>Album</th><th class="n">#</th><th>Track</th></tr>
+  {tracks rows=6, page=$pg ?? 1}
+  <tr><td>{albums}{$title}{/albums}</td><td class="n">{$track_no}</td><td>{$title}</td></tr>
+  {/tracks}
+</table>
+
+{pager 'tracks'}

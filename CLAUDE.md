@@ -1106,6 +1106,7 @@ the `claude` line of `./ci.sh`.
 | `showcase` | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, a section per tag, every example its template beside the result |
 | `tags` | Standard | A page per built-in tag - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
+| `padSelect` | Standard | A showcase of PAD Select over a music catalogue (database `padSelect`) - tables, relations, views, joins, groups, pages, unions, each example with its declarations, template, result and the SQL PAD sent |
 | `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |

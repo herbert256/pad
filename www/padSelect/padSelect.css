@@ -1,0 +1,87 @@
+/* The padSelect showcase, inside the frame of the PAD applications: the palette is the frame's
+   (--bg, --panel, --text, --line, --accent ... from www/_common/pad.css), light or dark with it.
+   The code cells are dark in both. */
+
+.ps-example, .ps-home { max-width: 1180px; }
+
+.ps-crumb { margin: 0 0 4px; color: var(--dim); font-size: 13px; }
+.ps-crumb span { margin: 0 4px; }
+.ps-lead { margin: 0 0 20px; font-size: 15px; line-height: 1.55; color: var(--soft); max-width: 820px; }
+
+.ps-cells { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+
+.ps-cell {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 14px 16px 16px; min-width: 0;
+}
+.ps-head { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 10px; }
+.ps-head .ps-file { margin: 0 0 0 auto; }
+.ps-num {
+  display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-text); font-size: 12px; font-weight: 700;
+}
+.ps-file { margin: 10px 0 6px; color: var(--dim); font: 12px var(--mono); }
+.ps-file:first-of-type { margin-top: 0; }
+
+.ps-code {
+  margin: 0 0 4px; padding: 12px 14px; border-radius: 8px; overflow-x: auto;
+  background: #161a23; color: #d7dae6; line-height: 1.55;
+}
+.ps-code code, .ps-sql code { font-family: var(--mono); font-size: 12.5px; white-space: pre; }
+
+.hl-key, .hl-opt, .hl-att { color: #7db8ff; }
+.hl-str                   { color: #a8e07a; }
+.hl-num, .hl-lit          { color: #ffb86b; }
+.hl-pun, .hl-brc          { color: #8b90a6; }
+.hl-com                   { color: #6c7290; font-style: italic; }
+.hl-tag, .hl-kwd          { color: #ff7ab2; }
+.hl-htm                   { color: #5fd4c4; }
+.hl-var                   { color: #e6c07b; }
+.hl-fn                    { color: #c3a6ff; }
+
+.ps-canvas { overflow-x: auto; }
+.ps-canvas table { border-collapse: collapse; margin: 4px 0; }
+.ps-canvas th, .ps-canvas td { border: 1px solid var(--line); padding: 5px 10px; text-align: left; vertical-align: top; }
+.ps-canvas th { background: var(--head); font-weight: 600; }
+.ps-canvas td.n, .ps-canvas th.n { text-align: right; font-variant-numeric: tabular-nums; }
+.ps-canvas ul { margin: 4px 0; padding-left: 20px; }
+.ps-canvas li { margin: 2px 0; }
+.ps-canvas h3 { margin: 14px 0 4px; font-size: 15px; }
+.ps-canvas h3:first-child { margin-top: 0; }
+.ps-canvas .dim { color: var(--dim); }
+
+.ps-count { margin: 0 0 8px; color: var(--dim); font-size: 13px; }
+.ps-sql { margin: 0; padding: 0; list-style: none; }
+.ps-sql li {
+  display: flex; align-items: baseline; gap: 10px; padding: 7px 12px; margin-bottom: 6px;
+  background: #161a23; color: #d7dae6; border-radius: 8px; overflow-x: auto;
+}
+.ps-sql code { white-space: pre-wrap; word-break: break-word; }
+.ps-times { margin-left: auto; color: #8b90a6; font: 12px var(--mono); white-space: nowrap; }
+
+.ps-pager { display: flex; gap: 16px; margin-top: 20px; }
+.ps-pager a {
+  flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+}
+.ps-pager a:hover { border-color: var(--accent); text-decoration: none; }
+.ps-pager small { color: var(--dim); }
+.ps-pager .ps-next { text-align: right; }
+
+.ps-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.ps-group { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.ps-group h2 { margin: 0; font-size: 16px; }
+.ps-group > p { margin: 2px 0 10px; color: var(--dim); font-size: 13px; }
+.ps-group ul { margin: 0; padding: 0; list-style: none; }
+.ps-group li { padding: 6px 0; border-top: 1px solid var(--line); }
+.ps-group li a { font-weight: 600; }
+.ps-group li span { display: block; color: var(--soft); font-size: 13px; line-height: 1.45; }
+
+.ps-tables { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin: 12px 0 20px; }
+.ps-table { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.ps-table h3 { margin: 0 0 6px; font: 600 14px var(--mono); }
+.ps-table h3 small { font: 12px var(--sans); color: var(--dim); }
+.ps-table ul { margin: 0; padding: 0; list-style: none; font: 12.5px var(--mono); }
+.ps-table li { padding: 1px 0; }
+.ps-table .key { color: var(--accent); font-weight: 600; }
+.ps-table .ref { color: var(--dim); }

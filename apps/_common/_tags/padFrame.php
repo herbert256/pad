@@ -53,6 +53,7 @@
     'develop'       => [ 'develop',       'terminal', 'Builds and tools for PAD itself' ],
     'apps'          => [ 'apps',          'grid',     'Every application of this installation' ],
     'classicModels' => [ 'classicModels', 'database', 'PAD Select over the Classic Models database' ],
+    'padSelect'     => [ 'padSelect',     'filter',   'PAD Select, every option with its SQL' ],
     'structure'     => [ 'structure',     'folder',   'The _xxx directories at every level' ]
   ];
 
