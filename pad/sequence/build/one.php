@@ -320,7 +320,11 @@
 
       $pqGo = $pqGo + $pqInc;
 
-      if ( $pqWalkNext )
+      // Only a counter that is a whole number goes on to the next member: from 2.5 the walk's
+      // values are 3.5, 4.5 ..., none a member, as for every other type - moved to the member
+      // at or above them, {sequence antiprime, from=2.5} gave 4 6 12 24.
+
+      if ( $pqWalkNext and pqBoolWhole ( $pqGo ) )
         $pqGo = $pqWalkNext ( $pqGo );
 
     }
