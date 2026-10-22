@@ -541,13 +541,15 @@
   // back after, and so is a comment - {# ... #} and {-- ... --}, found as padCommentStrip
   // finds them: a tag inside one never runs, and an {extends}, a {block} or a {meta} that
   // was commented out was applied by the assembly all the same.
+  //
+  // The comments go first, as the render takes them out before it meets an {ignore}
+  // (occurrence/init.php): a comment that names the tag - {# the @page@ in {ignore} stays
+  // text #} - opened an ignore span there that ran to the layout's next real {/ignore},
+  // and the regions in between were no regions: the page's block "overrides nothing".
 
   function padLayoutMask ( $text, &$masks ) {
 
-    $text = preg_replace_callback ( '/\{ignore\}.*?\{\/ignore\}/s', function ( $match ) use ( &$masks ) {
-      $masks [] = $match [0];
-      return "\u{E0F2}" . ( count ( $masks ) - 1 ) . "\u{E0F3}";
-    }, (string) $text );
+    $text = (string) $text;
 
     foreach ( [ '{--', '{#' ] as $open )
       for ( $pos = strpos ( $text, $open ); $pos !== FALSE; $pos = strpos ( $text, $open, $pos ) ) {
@@ -562,7 +564,10 @@
         $pos     += strlen ( $mark );
       }
 
-    return $text;
+    return preg_replace_callback ( '/\{ignore\}.*?\{\/ignore\}/s', function ( $match ) use ( &$masks ) {
+      $masks [] = $match [0];
+      return "\u{E0F2}" . ( count ( $masks ) - 1 ) . "\u{E0F3}";
+    }, $text );
 
   }
 
@@ -626,7 +631,7 @@
 
   }
 
-  // A comment can hold an {ignore} that was set aside first, so what comes back can hold a
+  // An {ignore} can hold a comment that was set aside first, so what comes back can hold a
   // mark of its own.
 
   function padLayoutUnmask ( $text, $masks ) {
