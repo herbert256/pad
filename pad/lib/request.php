@@ -423,20 +423,51 @@
 
   }
 
-  // A field holding a password or a key: a password word anywhere in its name, or secret,
-  // token, key or otp as its last word. padAuthSecret's test was made for the columns of a
-  // users row and counts pin, hash, salt, backup, recovery and pass anywhere in a name - a
-  // form's pin checkbox, backup_frequency, token_name, recovery_plan and boarding_pass came
-  // back empty after padFlashInput (); padBack ().
+  // A field holding a password or another credential the visitor typed or pasted, judged by
+  // the words of its name - split on _, - and where the case changes, as padAuthSecret
+  // splits a column's name. It is one when a word of it
+  //
+  //   - holds a password word anywhere inside: password1, newpassword, oldPassword, passwd,
+  //     passphrase2, passcode, pwd2, userpwd, a secret (client_secret, secret_answer - but a
+  //     secretary is none);
+  //   - is pass, pw, otp, totp, hotp, cvv or cvc, a number after it or not: Drupal's pass,
+  //     WordPress's user_pass, an installer's db_pass, the boxes otp_1 ... otp_6;
+  //   - is the last word and holds token: access_token, csrfToken, apitoken;
+  //   - is a key, a code or an answer after a word that makes it a credential, or written
+  //     together with one: api_key, apiKey, apikey, private_key, license_key, backup_code,
+  //     recoverycodes, otpcode, security_answer, security_code, and the auth_key, reset_code,
+  //     verification_code and access_key of padAuthSecretOf ().
+  //
+  // Every other field comes back: a key or a code after any other word - key, sort_key,
+  // meta_key, shortcutKey, translation_key, zip_code, country_code -, a token's name or type,
+  // a pin checkbox, backup_frequency, recovery_plan, salt, and a passport, which is an
+  // identity document's number and no log-in secret. Where a name is in doubt the field stays
+  // out, a field to type again against a password in the session in plain text: pass is a
+  // password word wherever it stands, so boarding_pass and pass_mark come back empty.
+  //
+  // padAuthSecret judges the columns of a users row, where pin, hash, salt, backup and
+  // recovery anywhere in a name are a secret's and the value is looked at too; a form has a
+  // pin checkbox and a backup_frequency, so the two share the words of padAuthSecretOf () and
+  // not the rule. The test before this one took a password word only as a whole word and key
+  // as the last word after any word: password1, password2, newpassword, pass, user_pass, the
+  // one-time and recovery codes went into the session, and a song's key, a sort_key and a
+  // meta_key came back empty.
 
   function padFlashSecret ( $name ) {
 
     $words = array_map ( 'strtolower', preg_split ( '/[_\-\s]+|(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])/', $name, -1, PREG_SPLIT_NO_EMPTY ) );
+    $of    = array_merge ( [ 'api', 'app', 'private', 'encryption', 'license', 'licence', 'recovery', 'backup',
+                             'security', 'factor', 'otp', 'totp', 'hotp' ], padAuthSecretOf () );
+    $last  = count ( $words ) - 1;
 
-    if ( array_intersect ( $words, [ 'password', 'passwd', 'passphrase', 'passcode', 'pwd' ] ) )
-      return TRUE;
+    foreach ( $words as $i => $word )
+      if ( preg_match ( '/passw|passphrase|passcode|pwd|secret(?!ar)|^(pass|pw|[th]?otp|cvv|cvc)\d*$/', $word )
+           or ( $i == $last and str_contains ( $word, 'token' ) )
+           or ( preg_match ( '/^(keys?|codes?|answers?)$/', $word ) and in_array ( $words [$i - 1] ?? '', $of, TRUE ) )
+           or preg_match ( '/^(' . implode ( '|', $of ) . ')(keys?|codes?|answers?)$/', $word ) )
+        return TRUE;
 
-    return in_array ( end ( $words ), [ 'secret', 'token', 'key', 'apikey', 'otp' ], TRUE );
+    return FALSE;
 
   }
 
