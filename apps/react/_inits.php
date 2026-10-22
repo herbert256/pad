@@ -13,9 +13,23 @@
   // The version of www/react/ - when its newest file was saved - for the addresses of the
   // stylesheet and the scripts: a browser keeps such a file a while without asking again,
   // and would run the old copy of a component that changed (pad-react.js).
+  //
+  // The files are the ones the globs *.css, *.js and examples/*.js matched, found in the
+  // listings of the two directories PAD keeps between requests (padDirList) - a file added
+  // or removed changes its directory and the listing is read again, a file saved changes
+  // its own time, which is read every request. The three globs read both directories in
+  // every request, some 200 us of each page.
 
-  $reactWww     = dirname ( APPS ) . "/www/$padApp/";
-  $reactFiles   = array_merge ( glob ( "$reactWww*.css" ) ?: [], glob ( "$reactWww*.js" ) ?: [], glob ( "{$reactWww}examples/*.js" ) ?: [] );
+  $reactWww   = dirname ( APPS ) . "/www/$padApp/";
+  $reactFiles = [];
+
+  foreach ( [ '' => [ '.css', '.js' ], 'examples/' => [ '.js' ] ] as $reactDir => $reactTypes )
+    foreach ( is_dir ( $reactWww . $reactDir ) ? ( padDirList ( $reactWww . $reactDir ) ?: [] ) : [] as $reactFile )
+      if ( $reactFile [0] != '.' and in_array ( strrchr ( $reactFile, '.' ), $reactTypes, TRUE ) )
+        $reactFiles [] = $reactWww . $reactDir . $reactFile;
+
   $reactVersion = max ( array_map ( 'filemtime', $reactFiles ) ?: [ 0 ] );
+
+  unset ( $reactDir, $reactTypes, $reactFile );
 
 ?>
