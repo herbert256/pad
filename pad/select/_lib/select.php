@@ -82,9 +82,14 @@
     // A where= on the tag narrows the table the declaration makes: the declared where - a
     // view's, with those of its base chain - holds beside it. The tag's took its place, so
     // {jazzAlbums where="released > 2000"} answered the folk albums too, and a view of the
-    // published posts handed out a draft by its slug.
+    // published posts handed out a draft by its slug. An empty where= narrows nothing: it
+    // took the declared where's place, and the view answered every row of its table.
 
-    if ( isset ( $prm ['where'] ) and (string) $prm ['where'] !== '' and (string) ( $parms ['where'] ?? '' ) !== '' )
+    $tagWhere = ( (string) ( $prm ['where'] ?? '' ) !== '' );
+
+    if ( ! $tagWhere )
+      $padSelWhere = $parms ['where'] ?? '';
+    elseif ( (string) ( $parms ['where'] ?? '' ) !== '' )
       $padSelWhere = padSelectWherePart ( $parms ['where'] ) . ' and ' . padSelectWherePart ( $prm ['where'] );
 
     // The mode becomes the statement's command word, so it is one of the shapes db() knows
@@ -137,7 +142,7 @@
     $having      = padSelectHaving ( $having );
     $padSelLimit = padSelectLimit  ( $rows, $page, array_key_exists ( 'page', $prm ) or array_key_exists ( 'rows', $prm )
                                                   or array_key_exists ( 'page', $parms ) or array_key_exists ( 'rows', $parms ), $unionBuild );
-    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, isset ( $prm ['where'] ), padSelectOwn ( $db, $padSelJoin ) );
+    $padSelWhere = padSelectWhere  ( $padSelWhere, $table, $keys, $tagWhere, padSelectOwn ( $db, $padSelJoin ) );
     $fields      = padSelectFields ( $fields, $db );
     $padSelJoin  = padSelectJoin   ( $padSelJoin, $fields );
     $keys        = padSelectKeys   ( $keys );
