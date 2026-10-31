@@ -57,9 +57,20 @@
       padFakeSeed ( 'fake' );
   }
 
-  if ( $padFakeAsRows )
+  // rows=0 makes no row, and so no kind would read its options from the tag: one row is made
+  // and dropped, the sequence put back, so a row-set of none is judged as one of some -
+  // {fake 'price', rows=$n, from=5, to=50} with $n at 0 was an error of the strict check,
+  // from= an option nothing reads, where it is the miss its @else@ shows; a misspelt
+  // option is still one nothing reads.
+
+  if ( $padFakeAsRows ) {
     $padFakeResult = padFakeRows ( $padFakeSpec, $padFakeCount, $padFakeSeedOpt, TRUE );
-  else {
+    if ( ! (int) $padFakeCount ) {
+      $padFakeNone = padFakeState ();
+      padFakeRows ( $padFakeSpec, 1, $padFakeSeedOpt, TRUE );
+      padFakeState ( $padFakeNone );
+    }
+  } else {
     if ( $padFakeSeedOpt !== NULL )
       padFakeSeed ( $padFakeSeedOpt );
     $padFakeResult = padFake ( array_values ( $padFakeFields ) [0] [0], TRUE );
