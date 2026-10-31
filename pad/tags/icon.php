@@ -11,6 +11,8 @@
   //
   // padIconNames () lists the names; an unknown name is reported with the names close to it.
 
+  include_once PAD . 'icons/_lib/icon.php';
+
   $padIconName = strtolower ( trim ( (string) $padParm ) );
 
   if ( $padIconName === '' ) {
