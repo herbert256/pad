@@ -703,6 +703,7 @@ show them.
 {dropdown 'Account'}<a href="?profile">Profile</a>...{/dropdown}   # a popover menu under its button
 {tooltip 'Billed every month'}Starter{/tooltip}  VAT {tooltip 'Value added tax'/}   # a tip on hover and focus
 {wizard}{tab 'Address'}...{/tab}{tab 'Payment'}...{/tab}{/wizard}   # steps one at a time, Back and Next
+{lightbox label='Harbour'}{tab 'Dawn'}<img ...>{/tab}...{/lightbox}   # thumbnails, a picture large on :target
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```

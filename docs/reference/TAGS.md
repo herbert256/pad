@@ -2283,6 +2283,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
 | `dropdown` | A button and the menu it opens - the popover attribute, anchored under it | the button's text, `align` |
+| `lightbox` | Every `{tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
@@ -2299,8 +2300,9 @@ written once per page. A name that is no widget is an error, "there is no widget
 
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
-showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{tab}` pairs, which
-`{accordion}`, `{carousel}` and `{wizard}` take as well - `{tab}` is a built-in tag.
+showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{tab}` pairs,
+which `{accordion}`, `{carousel}`, `{wizard}` and `{lightbox}` take as well - `{tab}` is a
+built-in tag.
 
 ```html
 {tabs active='Specs'}
@@ -2319,8 +2321,8 @@ showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{
 | `{tab 'label'}` | One tab: the first parameter is its label, the content its panel |
 
 **Behavior:** a `{tab}` renders its content and hands it to the nearest `{tabs}`,
-`{accordion}`, `{carousel}` or `{wizard}` below it instead of printing it - it may stand in an `{if}` or
-in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
+`{accordion}`, `{carousel}`, `{wizard}` or `{lightbox}` below it instead of printing it - it
+may stand in an `{if}` or in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
 arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
 a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
 their choices; printed, every panel shows. The ids are made from the labels, the same on every
@@ -2618,6 +2620,39 @@ cannot see it, so the page's PHP is the place to check a step (`padValidate`). P
 step shows. The colours are `--pad-wizard-accent`, `-on`, `-text`, `-muted`, `-line` and
 `-surface` on `.pad-wizard`, `light-dark()` defaults. A step without a label, text between the
 steps, a wizard without a step and an `active=` naming none are errors under the strict check.
+
+---
+
+### lightbox
+A gallery whose pictures open large over the page - every `{tab}` a thumbnail in a grid, a link
+to a view of the picture that the CSS shows over the whole window when the address names it
+(`:target`), so no script is needed (`widgets/_lib/lightbox.php`).
+
+```html
+{lightbox label='The harbour'}
+  {tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/tab}
+  {tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/tab}
+{/lightbox}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `label` | The gallery's name for a screen reader, default `Gallery` |
+| `{tab 'caption'}` | One picture - an `<img>` or an `<svg>`, shown small and large; its label, optional, is the caption |
+
+**Behavior:** a view holds the picture as large as the window allows, its caption with
+'n / count', a link to the picture before and after it (the first's before is the last) and a
+close link back to its thumbnail; the back button closes a view, an address ending in a view's
+id opens it, and the page behind does not scroll while one is open (`:has`). A small script,
+once per page with the CSP nonce, adds Escape to close and the arrow keys to go on, and moves
+the focus into a view as it opens and back to its thumbnail as it closes. A caption names the
+thumbnail's link; without one the picture's own alt text does. The thumbnails are 4:3 and 9rem
+wide at least - `--pad-lightbox-ratio` and `--pad-lightbox-size` change that. Printed, no view
+shows. The colours are `--pad-lightbox-accent`, `-shade`, `-backdrop`, `-button` and `-caption`
+on `.pad-lightbox`, `light-dark()` defaults. A lightbox without pictures or with text between
+them is an error under the strict check.
 
 ---
 
@@ -3826,6 +3861,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
 | `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
 | `wizard` | Widget | Steps one at a time - every `{tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
+| `lightbox` | Widget | A gallery of thumbnails whose pictures open large over the page by `:target` - no JavaScript |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
