@@ -1,0 +1,529 @@
+<style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+.pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+.pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+.pad-input [hidden]{display:none!important}
+.pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+.pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+.pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+.pad-input .pi-button:disabled{opacity:.45;cursor:default}
+.pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+.pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+.pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+.pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+.pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+</style><style>.pad-input-datepicker .pi-date-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
+.pad-input-datepicker .pi-calendar{left:0;top:100%;width:max-content}
+.pad-input-datepicker .pi-cal-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;margin-bottom:.35em}
+.pad-input-datepicker .pi-cal-title{font-weight:650;text-align:center;flex:1}
+.pad-input-datepicker .pi-cal-step{padding:.2em .6em;font-size:1.1em}
+.pad-input-datepicker .pi-cal-grid{border-collapse:collapse}
+.pad-input-datepicker .pi-cal-grid th{font-size:.75em;font-weight:600;color:var(--pad-input-muted);padding:.25em 0;text-align:center;width:2.4em}
+.pad-input-datepicker .pi-cal-grid td{padding:1px;text-align:center}
+.pad-input-datepicker .pi-cal-day{width:2.3em;height:2.1em;font:inherit;font-size:.9em;font-variant-numeric:tabular-nums;border:1px solid transparent;border-radius:6px;background:none;color:var(--pad-input-ink);cursor:pointer}
+.pad-input-datepicker .pi-cal-day:hover:not(:disabled){border-color:var(--pad-input-accent)}
+.pad-input-datepicker .pi-cal-day[aria-current=date]{font-weight:700;border-color:var(--pad-input-line)}
+.pad-input-datepicker .pi-cal-day[aria-pressed=true]{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-datepicker .pi-cal-day:disabled{color:var(--pad-input-muted);opacity:.45;cursor:default}
+.pad-input-datepicker .pi-cal-foot{display:flex;justify-content:space-between;gap:.5em;margin-top:.4em}
+@media (forced-colors:active){.pad-input-datepicker .pi-cal-day[aria-pressed=true]{border:2px solid Highlight}}
+</style><script>/* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+   script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+   - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+   a live region or a script brings later. frame is the field's .pad-input element, cfg its
+   data-config, kit the helpers below. The server wrote a native control that a form posts
+   as it is; a kind's script makes more of it and keeps the posted control's value true -
+   and says so with the input and change events a typed value sends, which the browser's
+   checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+(function () {
+  'use strict';
+
+  if (window.PadInputs) return;
+
+  var kinds = {};
+  var made = 0;
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  var kit = {
+    el: el,
+
+    // A new id of the page, for an element a script adds: a listbox, an option, a box.
+    id: function (base) {
+      made++;
+      return (base || 'pad-input') + '-js' + made;
+    },
+
+    // The value changed as if typed: the form, the rules' checker and any listener hear it.
+    changed: function (control) {
+      control.dispatchEvent(new Event('input', { bubbles: true }));
+      control.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+
+    // What the server wrote hidden for a script to show - a button, a popup's opener.
+    show: function (root, selector) {
+      var list = root.querySelectorAll(selector);
+      for (var i = 0; i < list.length; i++) list[i].hidden = false;
+    },
+
+    // A click outside the element - or the focus leaving it - closes what it opened.
+    outside: function (root, close) {
+      document.addEventListener('pointerdown', function (event) {
+        if (!root.contains(event.target)) close();
+      });
+      root.addEventListener('focusout', function (event) {
+        if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+      });
+    },
+
+    // The text of a field's label, for a name a script gives a control it adds.
+    label: function (frame) {
+      return frame.getAttribute('data-pad-label') || '';
+    }
+  };
+
+  function start(frame) {
+    if (frame.padInputReady) return;
+    var init = kinds[frame.getAttribute('data-pad-input')];
+    if (!init) return;
+    var cfg = {};
+    try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+    frame.padInputReady = true;
+    frame.classList.add('is-ready');
+    init(frame, cfg, kit);
+  }
+
+  function scan(where) {
+    var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+    for (var i = 0; i < list.length; i++) start(list[i]);
+  }
+
+  window.PadInputs = {
+    register: function (name, init) { kinds[name] = init; scan(); },
+    scan: scan,
+    kit: kit
+  };
+
+  document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+  if (window.MutationObserver)
+    new MutationObserver(function (records) {
+      for (var i = 0; i < records.length; i++)
+        for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+        }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script><script>/* datepicker - the month over the date field: a dialog with the month's days as a grid, the
+   way the WAI-ARIA date picker dialog is built. The field stays what the form posts, and the
+   day chosen is written into it as 2026-10-31 - it says it changed, as a typed day does. The
+   arrow keys walk the days, Page Up and Page Down the months (with Shift the years), Home
+   and End the week; Enter or Space takes the day, Escape closes, and the focus goes back to
+   the button that opened it. Days outside min= and max= cannot be chosen. The names of the
+   months and the days are the browser's, in the page's language. */
+PadInputs.register('datepicker', function (frame, cfg, kit) {
+  var field = frame.querySelector('input[type=date]');
+  var opener = frame.querySelector('.pi-date-open');
+  var anchor = frame.querySelector('.pi-anchor');
+  if (!field || !opener || !anchor) return;
+
+  var lang = document.documentElement.lang || undefined;
+  var first = cfg.weekstart === 'sunday' ? 0 : 1;
+  var name = kit.label(frame);
+  var monthName = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  var dayName = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  var shortDay = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
+  var longDay = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' });
+
+  // A day is a number of days since 1970-01-01, in UTC: no clock change in between.
+  function parse(text) {
+    var one = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || '');
+    if (!one) return null;
+    var day = Date.UTC(+one[1], +one[2] - 1, +one[3]) / 86400000;
+    return iso(day) === text ? day : null;
+  }
+  function iso(day) {
+    var d = new Date(day * 86400000);
+    return String(d.getUTCFullYear()).padStart(4, '0') + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
+  }
+  function parts(day) {
+    var d = new Date(day * 86400000);
+    return { y: d.getUTCFullYear(), m: d.getUTCMonth(), d: d.getUTCDate(), w: d.getUTCDay() };
+  }
+  function addMonths(day, n) {
+    var p = parts(day);
+    var last = new Date(Date.UTC(p.y, p.m + n + 1, 0)).getUTCDate();
+    return Date.UTC(p.y, p.m + n, Math.min(p.d, last)) / 86400000;
+  }
+  function today() {
+    var now = new Date();
+    return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000;
+  }
+
+  var dialog = kit.el('div', 'pi-popup pi-calendar');
+  dialog.id = kit.id((field.id || 'date') + '-calendar');
+  dialog.setAttribute('role', 'dialog');
+  dialog.setAttribute('aria-modal', 'false');
+  dialog.setAttribute('aria-label', 'Choose ' + (name || 'a day'));
+  dialog.hidden = true;
+
+  var head = kit.el('div', 'pi-cal-head');
+  var back = kit.el('button', 'pi-button pi-cal-step', '‹');
+  back.type = 'button';
+  back.setAttribute('aria-label', 'Previous month');
+  var title = kit.el('div', 'pi-cal-title');
+  title.id = dialog.id + '-title';
+  title.setAttribute('aria-live', 'polite');
+  var ahead = kit.el('button', 'pi-button pi-cal-step', '›');
+  ahead.type = 'button';
+  ahead.setAttribute('aria-label', 'Next month');
+  head.appendChild(back);
+  head.appendChild(title);
+  head.appendChild(ahead);
+
+  var grid = kit.el('table', 'pi-cal-grid');
+  grid.setAttribute('role', 'grid');
+  grid.setAttribute('aria-labelledby', title.id);
+  var thead = kit.el('thead');
+  var names = kit.el('tr');
+  for (var i = 0; i < 7; i++) {
+    var sample = Date.UTC(2024, 0, 7 + first + i);  // 2024-01-07 is a Sunday
+    var th = kit.el('th', '', shortDay.format(sample));
+    th.setAttribute('scope', 'col');
+    th.setAttribute('abbr', longDay.format(sample));
+    names.appendChild(th);
+  }
+  thead.appendChild(names);
+  var tbody = kit.el('tbody');
+  grid.appendChild(thead);
+  grid.appendChild(tbody);
+
+  var foot = kit.el('div', 'pi-cal-foot');
+  var now = kit.el('button', 'pi-button', 'Today');
+  now.type = 'button';
+  var close = kit.el('button', 'pi-button', 'Close');
+  close.type = 'button';
+  foot.appendChild(now);
+  foot.appendChild(close);
+
+  dialog.appendChild(head);
+  dialog.appendChild(grid);
+  dialog.appendChild(foot);
+  anchor.appendChild(dialog);
+  opener.setAttribute('aria-controls', dialog.id);
+  opener.hidden = false;
+
+  var focus = today();
+
+  function allowed(day) {
+    var low = parse(field.min), high = parse(field.max);
+    return (low === null || day >= low) && (high === null || day <= high);
+  }
+
+  function within(day) {
+    var low = parse(field.min), high = parse(field.max);
+    if (low !== null && day < low) return low;
+    if (high !== null && day > high) return high;
+    return day;
+  }
+
+  function draw(moveFocus) {
+    var p = parts(focus);
+    var start = Date.UTC(p.y, p.m, 1) / 86400000;
+    var lead = (parts(start).w - first + 7) % 7;
+    var chosen = parse(field.value), now = today();
+    title.textContent = monthName.format(start * 86400000);
+    tbody.textContent = '';
+    var length = new Date(Date.UTC(p.y, p.m + 1, 0)).getUTCDate();
+    var rows = Math.ceil((lead + length) / 7);
+    var day = start - lead;
+    for (var row = 0; row < rows; row++) {
+      var tr = kit.el('tr');
+      for (var col = 0; col < 7; col++, day++) {
+        var td = kit.el('td');
+        var q = parts(day);
+        if (q.m === p.m) {
+          var button = kit.el('button', 'pi-cal-day', String(q.d));
+          button.type = 'button';
+          button.tabIndex = day === focus ? 0 : -1;
+          button.setAttribute('data-day', String(day));
+          button.setAttribute('aria-label', dayName.format(day * 86400000));
+          if (day === chosen) { button.setAttribute('aria-pressed', 'true'); td.setAttribute('aria-selected', 'true'); }
+          if (day === now) button.setAttribute('aria-current', 'date');
+          if (!allowed(day)) button.disabled = true;
+          td.appendChild(button);
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    var low = parse(field.min), high = parse(field.max);
+    back.disabled = low !== null && start - 1 < low;
+    ahead.disabled = high !== null && start + length > high;
+    now.disabled = !allowed(today());
+    if (moveFocus) {
+      var target = tbody.querySelector('[data-day="' + focus + '"]');
+      if (target) target.focus();
+    }
+  }
+
+  function show() {
+    var chosen = parse(field.value);
+    focus = within(chosen !== null ? chosen : today());
+    dialog.hidden = false;
+    opener.setAttribute('aria-expanded', 'true');
+    draw(true);
+  }
+
+  function hide(giveBack) {
+    if (dialog.hidden) return;
+    dialog.hidden = true;
+    opener.setAttribute('aria-expanded', 'false');
+    if (giveBack) opener.focus();
+  }
+
+  function take(day) {
+    if (!allowed(day)) return;
+    field.value = iso(day);
+    kit.changed(field);
+    hide(true);
+  }
+
+  function move(day) {
+    focus = within(day);
+    draw(true);
+  }
+
+  opener.addEventListener('click', function () { if (dialog.hidden) show(); else hide(true); });
+  back.addEventListener('click', function () { focus = within(addMonths(focus, -1)); draw(false); });
+  ahead.addEventListener('click', function () { focus = within(addMonths(focus, 1)); draw(false); });
+  now.addEventListener('click', function () { take(today()); });
+  close.addEventListener('click', function () { hide(true); });
+
+  tbody.addEventListener('click', function (event) {
+    var button = event.target.closest('.pi-cal-day');
+    if (button && !button.disabled) take(+button.getAttribute('data-day'));
+  });
+
+  tbody.addEventListener('keydown', function (event) {
+    var key = event.key, to = null;
+    var w = (parts(focus).w - first + 7) % 7;
+    if (key === 'ArrowLeft') to = focus - 1;
+    else if (key === 'ArrowRight') to = focus + 1;
+    else if (key === 'ArrowUp') to = focus - 7;
+    else if (key === 'ArrowDown') to = focus + 7;
+    else if (key === 'Home') to = focus - w;
+    else if (key === 'End') to = focus + 6 - w;
+    else if (key === 'PageUp') to = addMonths(focus, event.shiftKey ? -12 : -1);
+    else if (key === 'PageDown') to = addMonths(focus, event.shiftKey ? 12 : 1);
+    else if (key === 'Enter' || key === ' ') { event.preventDefault(); take(focus); return; }
+    if (to === null) return;
+    event.preventDefault();
+    move(to);
+  });
+
+  dialog.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); hide(true); }
+  });
+
+  kit.outside(anchor, function () { hide(false); });
+});
+</script><div class="pad-input pad-input-datepicker" data-pad-input="datepicker" data-pad-label="Arrival" data-config="{&quot;weekstart&quot;:&quot;monday&quot;}"><label for="arrival">Arrival</label><div class="pi-anchor"><div class="pi-row"><input type="date" name="arrival" id="arrival" value=""><button type="button" class="pi-button pi-date-open" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Arrival" hidden><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="3" width="13" height="11.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></button></div></div></div>
+<style>.pad-input-timepicker .pi-time-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
+.pad-input-timepicker .pi-time-list{left:0;top:100%;list-style:none;margin:4px 0 0;padding:.25em;max-height:15em;overflow-y:auto;min-width:7em}
+.pad-input-timepicker .pi-time-option{padding:.3em .7em;border-radius:5px;cursor:pointer;font-variant-numeric:tabular-nums}
+.pad-input-timepicker .pi-time-option:hover{background:var(--pad-input-shade)}
+.pad-input-timepicker .pi-time-option.is-active{outline:2px solid var(--pad-input-accent);outline-offset:-2px}
+.pad-input-timepicker .pi-time-option[aria-selected=true]{background:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-timepicker .pi-time-list:focus{outline:none}
+</style><script>/* timepicker - the times to choose from as a list under the time field: a listbox the arrow
+   keys walk, Home and End to its ends, a typed digit to the first time it begins with; Enter
+   takes the time, Escape closes and gives the focus back. The list starts at the field's
+   time, or the last one before it. The field stays what the form posts; the browser's own
+   list of the datalist is left out where this one is. */
+PadInputs.register('timepicker', function (frame, cfg, kit) {
+  var field = frame.querySelector('input[type=time]');
+  var opener = frame.querySelector('.pi-time-open');
+  var anchor = frame.querySelector('.pi-anchor');
+  var slots = cfg.slots || [];
+  if (!field || !opener || !anchor || !slots.length) return;
+
+  field.removeAttribute('list');
+
+  var list = kit.el('ul', 'pi-popup pi-time-list');
+  list.id = kit.id((field.id || 'time') + '-times');
+  list.setAttribute('role', 'listbox');
+  list.setAttribute('aria-label', kit.label(frame) || 'Times');
+  list.tabIndex = -1;
+  list.hidden = true;
+
+  var options = slots.map(function (slot) {
+    var li = kit.el('li', 'pi-time-option', slot);
+    li.id = kit.id(list.id);
+    li.setAttribute('role', 'option');
+    li.setAttribute('data-time', slot);
+    li.setAttribute('aria-selected', 'false');
+    list.appendChild(li);
+    return li;
+  });
+
+  anchor.appendChild(list);
+  opener.setAttribute('aria-controls', list.id);
+  opener.hidden = false;
+
+  var active = -1;
+
+  function activate(at) {
+    if (active >= 0) options[active].classList.remove('is-active');
+    active = Math.max(0, Math.min(options.length - 1, at));
+    options[active].classList.add('is-active');
+    list.setAttribute('aria-activedescendant', options[active].id);
+    options[active].scrollIntoView({ block: 'nearest' });
+  }
+
+  function show() {
+    var value = (field.value || '').slice(0, 5);
+    var at = 0;
+    options.forEach(function (one, i) {
+      var time = one.getAttribute('data-time');
+      one.setAttribute('aria-selected', time === value ? 'true' : 'false');
+      if (value && time <= value) at = i;
+    });
+    list.hidden = false;
+    opener.setAttribute('aria-expanded', 'true');
+    activate(at);
+    list.focus();
+  }
+
+  function hide(giveBack) {
+    if (list.hidden) return;
+    list.hidden = true;
+    opener.setAttribute('aria-expanded', 'false');
+    if (giveBack) opener.focus();
+  }
+
+  function take(at) {
+    field.value = options[at].getAttribute('data-time');
+    kit.changed(field);
+    hide(true);
+  }
+
+  opener.addEventListener('click', function () { if (list.hidden) show(); else hide(true); });
+
+  list.addEventListener('click', function (event) {
+    var li = event.target.closest('.pi-time-option');
+    if (li) take(options.indexOf(li));
+  });
+
+  list.addEventListener('keydown', function (event) {
+    var key = event.key;
+    if (key === 'ArrowDown') activate(active + 1);
+    else if (key === 'ArrowUp') activate(active - 1);
+    else if (key === 'Home') activate(0);
+    else if (key === 'End') activate(options.length - 1);
+    else if (key === 'PageDown') activate(active + 6);
+    else if (key === 'PageUp') activate(active - 6);
+    else if (key === 'Enter' || key === ' ') take(active);
+    else if (key === 'Escape') hide(true);
+    else if (key === 'Tab') { hide(false); return; }
+    else if (/^\d$/.test(key)) {
+      for (var i = 1; i <= options.length; i++) {
+        var at = (active + i) % options.length;
+        if (options[at].getAttribute('data-time').charAt(0) === key || options[at].getAttribute('data-time').replace(/^0/, '').charAt(0) === key) { activate(at); break; }
+      }
+    } else return;
+    event.preventDefault();
+  });
+
+  kit.outside(anchor, function () { hide(false); });
+});
+</script><div class="pad-input pad-input-timepicker" data-pad-input="timepicker" data-pad-label="Time" data-config="{&quot;slots&quot;:[&quot;00:00&quot;,&quot;00:15&quot;,&quot;00:30&quot;,&quot;00:45&quot;,&quot;01:00&quot;,&quot;01:15&quot;,&quot;01:30&quot;,&quot;01:45&quot;,&quot;02:00&quot;,&quot;02:15&quot;,&quot;02:30&quot;,&quot;02:45&quot;,&quot;03:00&quot;,&quot;03:15&quot;,&quot;03:30&quot;,&quot;03:45&quot;,&quot;04:00&quot;,&quot;04:15&quot;,&quot;04:30&quot;,&quot;04:45&quot;,&quot;05:00&quot;,&quot;05:15&quot;,&quot;05:30&quot;,&quot;05:45&quot;,&quot;06:00&quot;,&quot;06:15&quot;,&quot;06:30&quot;,&quot;06:45&quot;,&quot;07:00&quot;,&quot;07:15&quot;,&quot;07:30&quot;,&quot;07:45&quot;,&quot;08:00&quot;,&quot;08:15&quot;,&quot;08:30&quot;,&quot;08:45&quot;,&quot;09:00&quot;,&quot;09:15&quot;,&quot;09:30&quot;,&quot;09:45&quot;,&quot;10:00&quot;,&quot;10:15&quot;,&quot;10:30&quot;,&quot;10:45&quot;,&quot;11:00&quot;,&quot;11:15&quot;,&quot;11:30&quot;,&quot;11:45&quot;,&quot;12:00&quot;,&quot;12:15&quot;,&quot;12:30&quot;,&quot;12:45&quot;,&quot;13:00&quot;,&quot;13:15&quot;,&quot;13:30&quot;,&quot;13:45&quot;,&quot;14:00&quot;,&quot;14:15&quot;,&quot;14:30&quot;,&quot;14:45&quot;,&quot;15:00&quot;,&quot;15:15&quot;,&quot;15:30&quot;,&quot;15:45&quot;,&quot;16:00&quot;,&quot;16:15&quot;,&quot;16:30&quot;,&quot;16:45&quot;,&quot;17:00&quot;,&quot;17:15&quot;,&quot;17:30&quot;,&quot;17:45&quot;,&quot;18:00&quot;,&quot;18:15&quot;,&quot;18:30&quot;,&quot;18:45&quot;,&quot;19:00&quot;,&quot;19:15&quot;,&quot;19:30&quot;,&quot;19:45&quot;,&quot;20:00&quot;,&quot;20:15&quot;,&quot;20:30&quot;,&quot;20:45&quot;,&quot;21:00&quot;,&quot;21:15&quot;,&quot;21:30&quot;,&quot;21:45&quot;,&quot;22:00&quot;,&quot;22:15&quot;,&quot;22:30&quot;,&quot;22:45&quot;,&quot;23:00&quot;,&quot;23:15&quot;,&quot;23:30&quot;,&quot;23:45&quot;]}"><label for="pickup">Time</label><div class="pi-anchor"><div class="pi-row"><input type="time" name="pickup" id="pickup" value="" list="pickup-times"><button type="button" class="pi-button pi-time-open" aria-haspopup="listbox" aria-expanded="false" aria-label="Choose Time" hidden><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.2V8l2.6 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></button></div></div><datalist id="pickup-times"><option value="00:00"></option><option value="00:15"></option><option value="00:30"></option><option value="00:45"></option><option value="01:00"></option><option value="01:15"></option><option value="01:30"></option><option value="01:45"></option><option value="02:00"></option><option value="02:15"></option><option value="02:30"></option><option value="02:45"></option><option value="03:00"></option><option value="03:15"></option><option value="03:30"></option><option value="03:45"></option><option value="04:00"></option><option value="04:15"></option><option value="04:30"></option><option value="04:45"></option><option value="05:00"></option><option value="05:15"></option><option value="05:30"></option><option value="05:45"></option><option value="06:00"></option><option value="06:15"></option><option value="06:30"></option><option value="06:45"></option><option value="07:00"></option><option value="07:15"></option><option value="07:30"></option><option value="07:45"></option><option value="08:00"></option><option value="08:15"></option><option value="08:30"></option><option value="08:45"></option><option value="09:00"></option><option value="09:15"></option><option value="09:30"></option><option value="09:45"></option><option value="10:00"></option><option value="10:15"></option><option value="10:30"></option><option value="10:45"></option><option value="11:00"></option><option value="11:15"></option><option value="11:30"></option><option value="11:45"></option><option value="12:00"></option><option value="12:15"></option><option value="12:30"></option><option value="12:45"></option><option value="13:00"></option><option value="13:15"></option><option value="13:30"></option><option value="13:45"></option><option value="14:00"></option><option value="14:15"></option><option value="14:30"></option><option value="14:45"></option><option value="15:00"></option><option value="15:15"></option><option value="15:30"></option><option value="15:45"></option><option value="16:00"></option><option value="16:15"></option><option value="16:30"></option><option value="16:45"></option><option value="17:00"></option><option value="17:15"></option><option value="17:30"></option><option value="17:45"></option><option value="18:00"></option><option value="18:15"></option><option value="18:30"></option><option value="18:45"></option><option value="19:00"></option><option value="19:15"></option><option value="19:30"></option><option value="19:45"></option><option value="20:00"></option><option value="20:15"></option><option value="20:30"></option><option value="20:45"></option><option value="21:00"></option><option value="21:15"></option><option value="21:30"></option><option value="21:45"></option><option value="22:00"></option><option value="22:15"></option><option value="22:30"></option><option value="22:45"></option><option value="23:00"></option><option value="23:15"></option><option value="23:30"></option><option value="23:45"></option></datalist></div>
+<style>.pad-input-colorpicker input[type=color]{width:3em;height:2.2em;padding:2px;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);cursor:pointer}
+.pad-input-colorpicker .pi-color-code{width:6.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.pad-input-colorpicker .pi-swatches{display:flex;flex-wrap:wrap;gap:.35em;margin-top:.45em}
+.pad-input-colorpicker .pi-swatch{width:1.9em;height:1.9em;padding:0;border-radius:50%;border:2px solid var(--pad-input-field);box-shadow:0 0 0 1px var(--pad-input-line);cursor:pointer}
+.pad-input-colorpicker .pi-swatch[aria-pressed=true]{box-shadow:0 0 0 2px var(--pad-input-ink)}
+.pad-input-colorpicker .pi-swatch:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:3px}
+@media (forced-colors:active){.pad-input-colorpicker .pi-swatch{forced-color-adjust:none}}
+</style><script>/* colorpicker - the swatches and the code field beside the colour field, all three in step:
+   a swatch chosen, a code typed - #rgb or #rrggbb - or a colour picked sets the other two,
+   and the colour field, the one the form posts, says it changed. The swatch of the colour
+   is pressed. The swatches are buttons in a group, the arrow keys move along them. */
+PadInputs.register('colorpicker', function (frame, cfg, kit) {
+  var colour = frame.querySelector('input[type=color]');
+  var code = frame.querySelector('.pi-color-code');
+  var row = frame.querySelector('.pi-swatches');
+  if (!colour) return;
+  var buttons = [];
+
+  function full(text) {
+    var one = String(text).trim().toLowerCase().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/);
+    if (!one) return null;
+    var hex = one[1];
+    return '#' + (hex.length === 3 ? hex.replace(/./g, '$&$&') : hex);
+  }
+
+  function mark() {
+    buttons.forEach(function (button) {
+      button.setAttribute('aria-pressed', button.getAttribute('data-colour') === colour.value ? 'true' : 'false');
+    });
+  }
+
+  function set(value, from) {
+    if (value === null) return;
+    if (colour.value !== value) {
+      colour.value = value;
+      kit.changed(colour);
+    }
+    if (code && from !== code) code.value = value;
+    mark();
+  }
+
+  (cfg.swatches || []).forEach(function (one, i) {
+    var button = kit.el('button', 'pi-swatch');
+    button.type = 'button';
+    button.setAttribute('data-colour', one);
+    button.setAttribute('aria-label', one);
+    button.title = one;
+    button.tabIndex = i === 0 ? 0 : -1;
+    button.style.background = one;
+    button.addEventListener('click', function () { set(one); });
+    buttons.push(button);
+    row.appendChild(button);
+  });
+
+  // One tab stop for the row: the arrows move between the swatches, as in a toolbar.
+  row.addEventListener('keydown', function (event) {
+    var at = buttons.indexOf(document.activeElement);
+    if (at < 0) return;
+    var to = { ArrowRight: at + 1, ArrowDown: at + 1, ArrowLeft: at - 1, ArrowUp: at - 1, Home: 0, End: buttons.length - 1 }[event.key];
+    if (to === undefined) return;
+    event.preventDefault();
+    to = (to + buttons.length) % buttons.length;
+    buttons[at].tabIndex = -1;
+    buttons[to].tabIndex = 0;
+    buttons[to].focus();
+  });
+
+  // A colour picked in the browser's own picker; the code being typed is left as it is typed.
+  colour.addEventListener('input', function () { if (code && document.activeElement !== code) code.value = colour.value; mark(); });
+
+  if (code) {
+    code.addEventListener('input', function () { set(full(code.value), code); });
+    code.addEventListener('change', function () { var value = full(code.value); code.value = value || colour.value; set(value); });
+  }
+
+  if (buttons.length) row.hidden = false;
+  if (code) code.hidden = false;
+  mark();
+});
+</script><div class="pad-input pad-input-colorpicker" data-pad-input="colorpicker" data-pad-label="Colour" data-config="{&quot;swatches&quot;:[&quot;#2a78d6&quot;,&quot;#1a8a5a&quot;,&quot;#e8a317&quot;,&quot;#eb6834&quot;,&quot;#d43c3b&quot;,&quot;#8e44ad&quot;,&quot;#1a1a19&quot;,&quot;#ffffff&quot;]}"><label for="tint">Colour</label><div class="pi-row pi-color-row"><input type="color" name="tint" id="tint" value="#000000"><input type="text" class="pi-color-code" value="#000000" size="8" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Colour, hexadecimal code" hidden></div><div class="pi-swatches" role="group" aria-label="Swatches for Colour" hidden></div></div>

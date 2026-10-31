@@ -1,0 +1,26 @@
+/^\<p class\="inputs\-lead"\>A one\-time code, the digits a text message or an app gives\: a native text field that posts the code as it is typed \- inputmode\=&quot;numeric&quot;, autocomplete\=&quot;one\-time\-code&quot; so a phone offers the code it received \- and where the script runs a box per character, the next box taking the focus as one is typed, Backspace going back, a pasted code filling them all\. The code the form posts is then the hidden field the boxes fill\. length\= the number of characters, 6 unless given \(4 to 10\); letters takes letters and digits, in upper case, where the code is digits alone unless given\.\<\/p\>
+
+
+\<form method\="post" class\="inputs\-try"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="try"\>
+  \<style\>[\s\S]*?\<\/style\>\<style\>[\s\S]*?\<\/style\>\<script\>[\s\S]*?\<\/script\>\<script\>[\s\S]*?\<\/script\>\<div class\="pad\-input pad\-input\-otp" data\-pad\-input\="otp" data\-pad\-label\="The code we sent you" data\-config\="\{&quot;length&quot;\:6,&quot;letters&quot;\:false\}"\>\<label for\="code"\>The code we sent you\<\/label\>\<input type\="text" class\="pi\-otp\-whole" name\="code" id\="code" value\="" maxlength\="6" inputmode\="numeric" autocomplete\="one\-time\-code" spellcheck\="false"\>\<\/div\>
+  \<div class\="pad\-input pad\-input\-otp" data\-pad\-input\="otp" data\-pad\-label\="Voucher" data\-config\="\{&quot;length&quot;\:8,&quot;letters&quot;\:true\}"\>\<label for\="voucher"\>Voucher\<\/label\>\<input type\="text" class\="pi\-otp\-whole" name\="voucher" id\="voucher" value\="" maxlength\="8" autocapitalize\="characters" autocomplete\="one\-time\-code" spellcheck\="false"\>\<\/div\>
+  \<button class\="inputs\-send"\>Send\<\/button\>
+\<\/form\>
+
+
+
+
+\<h2\>The template\<\/h2\>
+\<style\>[\s\S]*?\<\/style\>\<div class\="pad\-source"\>\<input type\="radio" name\="pad\-source\-1" id\="pad\-source\-1\-1" checked\>\<label for\="pad\-source\-1\-1" data\-side\="server"\>otp\.pad\<\/label\>\<div class\="pad\-source\-panel"\>\<style\>[\s\S]*?\<\/style\>\<pre class\="pad\-highlight hl\-numbered" data\-lang\="pad"\>\<code\>\<span class\="hl\-line" data\-line\="1"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>meta\<\/span\> \<span class\="hl\-opt"\>title\<\/span\>\=\<span class\="hl\-str"\>&\#039;One\-time code&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="2"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>about\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="3"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="4"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>form\<\/span\> \<span class\="hl\-str"\>&\#039;try&\#039;\<\/span\>, \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&\#039;inputs\-try&\#039;\<\/span\>, error\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="5"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>otp\<\/span\> \<span class\="hl\-str"\>&\#039;code&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;The code we sent you&\#039;\<\/span\>, \<span class\="hl\-opt"\>rules\<\/span\>\=\<span class\="hl\-str"\>&\#039;required\|digits\:6&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="6"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>otp\<\/span\> \<span class\="hl\-str"\>&\#039;voucher&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;Voucher&\#039;\<\/span\>, \<span class\="hl\-opt"\>length\<\/span\>\=\<span class\="hl\-num"\>8\<\/span\>, letters\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="7"\>  \<span class\="hl\-htm"\>&lt;button\<\/span\> \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&quot;inputs\-send&quot;\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>Send\<span class\="hl\-htm"\>&lt;\/button\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="8"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>\/form\<\/span\>\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="9"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="10"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>received\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="11"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="12"\>\<span class\="hl\-htm"\>&lt;h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>The template\<span class\="hl\-htm"\>&lt;\/h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="13"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>source\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>\<\/code\>\<\/pre\>\<\/div\>\<\/div\>$/

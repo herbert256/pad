@@ -9,6 +9,7 @@
 {input 'email', type='email', label='E-mail', value='', id='mail', placeholder='you@example.org', required/}
 {input 'terms', type='checkbox', label='I agree', value='yes', checked/}
 {input 'email', type='email', label='E-mail', rules='required|email'/}
+{input:slider 'volume', label='Volume', min=0, max=100/}
 PAD;
 
   $tagParms   = [

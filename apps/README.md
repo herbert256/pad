@@ -23,6 +23,7 @@ This directory contains PAD applications and examples.
 | [toys](toys/README.md) | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy with the template that shows it, read from `pad/toys/types/` |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
+| [inputs](inputs/README.md) | Standard | Every rich form field of the inputs subsystem to try - a card per kind, a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too, read from `pad/inputs/types/` |
 | [htmx](htmx/README.md) | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates, server-sent events - htmx asks for a part, PAD answers its fragment |
 | [islands](islands/README.md) | Standard | Islands of any framework - React, Vue, Svelte, Preact and Solid on one page through one runtime, built by Vite and linked by `{vite}` |
 | [kanban](kanban/README.md) | Offline | A task board on SQLite - drag and drop as JSON, fragments, every window in step by server-sent events - that `pad pack kanban` runs in the browser |

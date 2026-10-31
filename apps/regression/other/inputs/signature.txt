@@ -1,0 +1,24 @@
+/^\<p class\="inputs\-lead"\>A signature drawn with the mouse, a pen or a finger\: a canvas, and the picture drawn posted as a PNG data URL \- data\:image\/png;base64,\.\.\. \- in a hidden field\. The page&\#039;s PHP decodes it\: base64_decode of what follows the comma is the PNG\. Who cannot draw types the name in the field beside it, and the name is drawn on the canvas in a hand of writing; Clear wipes it\. width\= and height\= the canvas, 400 by 150 unless given\. A signature needs the script\: without it the page says so\. After a post that came back the picture is drawn again from the posted field \- one that is no PNG data URL is not refilled\.\<\/p\>
+
+
+\<form method\="post" class\="inputs\-try"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="try"\>
+  \<style\>[\s\S]*?\<\/style\>\<style\>[\s\S]*?\<\/style\>\<script\>[\s\S]*?\<\/script\>\<script\>[\s\S]*?\<\/script\>\<div class\="pad\-input pad\-input\-signature" data\-pad\-input\="signature" data\-pad\-label\="Signature"\>\<label for\="signed"\>Signature\<\/label\>\<div class\="pi\-signature\-pad" hidden\>\<canvas class\="pi\-signature\-canvas" width\="400" height\="150" role\="img" aria\-label\="Signature \- drawn with the mouse, a pen or a finger"\>\<\/canvas\>\<\/div\>\<div class\="pi\-row pi\-signature\-bar" hidden\>\<input type\="text" class\="pi\-signature\-typed" id\="signed" placeholder\="Or type your name" autocomplete\="name"\>\<button type\="button" class\="pi\-button pi\-signature\-clear"\>Clear\<\/button\>\<\/div\>\<input type\="hidden" name\="signed" value\="" data\-pad\-shows\="signed"\>\<noscript\>\<p class\="pi\-noscript"\>Signing needs JavaScript\.\<\/p\>\<\/noscript\>\<\/div\>
+  \<button class\="inputs\-send"\>Send\<\/button\>
+\<\/form\>
+
+
+
+
+\<h2\>The template\<\/h2\>
+\<style\>[\s\S]*?\<\/style\>\<div class\="pad\-source"\>\<input type\="radio" name\="pad\-source\-1" id\="pad\-source\-1\-1" checked\>\<label for\="pad\-source\-1\-1" data\-side\="server"\>signature\.pad\<\/label\>\<div class\="pad\-source\-panel"\>\<style\>[\s\S]*?\<\/style\>\<pre class\="pad\-highlight hl\-numbered" data\-lang\="pad"\>\<code\>\<span class\="hl\-line" data\-line\="1"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>meta\<\/span\> \<span class\="hl\-opt"\>title\<\/span\>\=\<span class\="hl\-str"\>&\#039;Signature&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="2"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>about\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="3"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="4"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>form\<\/span\> \<span class\="hl\-str"\>&\#039;try&\#039;\<\/span\>, \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&\#039;inputs\-try&\#039;\<\/span\>, error\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="5"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>signature\<\/span\> \<span class\="hl\-str"\>&\#039;signed&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;Signature&\#039;\<\/span\>, \<span class\="hl\-opt"\>rules\<\/span\>\=\<span class\="hl\-str"\>&\#039;required&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="6"\>  \<span class\="hl\-htm"\>&lt;button\<\/span\> \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&quot;inputs\-send&quot;\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>Send\<span class\="hl\-htm"\>&lt;\/button\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="7"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>\/form\<\/span\>\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="8"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="9"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>received\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="10"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="11"\>\<span class\="hl\-htm"\>&lt;h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>The template\<span class\="hl\-htm"\>&lt;\/h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="12"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>source\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>\<\/code\>\<\/pre\>\<\/div\>\<\/div\>$/

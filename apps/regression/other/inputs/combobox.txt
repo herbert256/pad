@@ -1,0 +1,40 @@
+/^\<p class\="inputs\-lead"\>A text field that suggests from a list as it is typed\: a native text field with a &lt;datalist&gt; of the choices, which the browser offers by itself, and where the script runs the WAI\-ARIA combobox \- a list under the field of the choices that hold what is typed, the part that matches marked, walked with the arrow keys, Enter taking a choice, Escape closing the list and then emptying the field\. It posts what the field holds, a choice of the list or not\: rules\=&\#039;in\:\.\.\.&\#039; holds it to the list\. The choices are options\=, a list, or the rows of the store data\= names \- field\= the field of a row they are read from, its first unless given \- or the lines between the tags\.\<\/p\>
+
+
+\<form method\="post" class\="inputs\-try"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="try"\>
+  \<style\>[\s\S]*?\<\/style\>\<style\>[\s\S]*?\<\/style\>\<script\>[\s\S]*?\<\/script\>\<script\>[\s\S]*?\<\/script\>\<div class\="pad\-input pad\-input\-combobox" data\-pad\-input\="combobox" data\-pad\-label\="City" data\-config\="\{&quot;choices&quot;\:\[&quot;Amsterdam&quot;,&quot;Antwerp&quot;,&quot;Athens&quot;,&quot;Berlin&quot;,&quot;Bern&quot;,&quot;Brussels&quot;,&quot;Lisbon&quot;,&quot;London&quot;,&quot;Madrid&quot;,&quot;Paris&quot;,&quot;Prague&quot;,&quot;Rome&quot;,&quot;Vienna&quot;\]\}"\>\<label for\="city"\>City\<\/label\>\<div class\="pi\-anchor"\>\<input type\="text" name\="city" id\="city" value\="" list\="city\-choices" autocomplete\="off"\>\<\/div\>\<datalist id\="city\-choices"\>\<option value\="Amsterdam"\>\<\/option\>\<option value\="Antwerp"\>\<\/option\>\<option value\="Athens"\>\<\/option\>\<option value\="Berlin"\>\<\/option\>\<option value\="Bern"\>\<\/option\>\<option value\="Brussels"\>\<\/option\>\<option value\="Lisbon"\>\<\/option\>\<option value\="London"\>\<\/option\>\<option value\="Madrid"\>\<\/option\>\<option value\="Paris"\>\<\/option\>\<option value\="Prague"\>\<\/option\>\<option value\="Rome"\>\<\/option\>\<option value\="Vienna"\>\<\/option\>\<\/datalist\>\<span class\="pi\-hide pi\-combo\-said" aria\-live\="polite"\>\<\/span\>\<\/div\>
+  \<div class\="pad\-input pad\-input\-combobox" data\-pad\-input\="combobox" data\-pad\-label\="Fruit" data\-config\="\{&quot;choices&quot;\:\[&quot;Apple&quot;,&quot;Apricot&quot;,&quot;Banana&quot;,&quot;Cherry&quot;,&quot;Grape&quot;,&quot;Lemon&quot;,&quot;Mango&quot;,&quot;Orange&quot;,&quot;Pear&quot;\]\}"\>\<label for\="fruit"\>Fruit\<\/label\>\<div class\="pi\-anchor"\>\<input type\="text" name\="fruit" id\="fruit" value\="" list\="fruit\-choices" autocomplete\="off"\>\<\/div\>\<datalist id\="fruit\-choices"\>\<option value\="Apple"\>\<\/option\>\<option value\="Apricot"\>\<\/option\>\<option value\="Banana"\>\<\/option\>\<option value\="Cherry"\>\<\/option\>\<option value\="Grape"\>\<\/option\>\<option value\="Lemon"\>\<\/option\>\<option value\="Mango"\>\<\/option\>\<option value\="Orange"\>\<\/option\>\<option value\="Pear"\>\<\/option\>\<\/datalist\>\<span class\="pi\-hide pi\-combo\-said" aria\-live\="polite"\>\<\/span\>\<\/div\>
+  \<button class\="inputs\-send"\>Send\<\/button\>
+\<\/form\>
+
+
+
+
+\<h2\>The template\<\/h2\>
+\<style\>[\s\S]*?\<\/style\>\<div class\="pad\-source"\>\<input type\="radio" name\="pad\-source\-1" id\="pad\-source\-1\-1" checked\>\<label for\="pad\-source\-1\-1" data\-side\="server"\>combobox\.pad\<\/label\>\<div class\="pad\-source\-panel"\>\<style\>[\s\S]*?\<\/style\>\<pre class\="pad\-highlight hl\-numbered" data\-lang\="pad"\>\<code\>\<span class\="hl\-line" data\-line\="1"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>meta\<\/span\> \<span class\="hl\-opt"\>title\<\/span\>\=\<span class\="hl\-str"\>&\#039;Combobox&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="2"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>about\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="3"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="4"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>form\<\/span\> \<span class\="hl\-str"\>&\#039;try&\#039;\<\/span\>, \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&\#039;inputs\-try&\#039;\<\/span\>, error\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="5"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>combobox\<\/span\> \<span class\="hl\-str"\>&\#039;city&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;City&\#039;\<\/span\>, \<span class\="hl\-opt"\>rules\<\/span\>\=\<span class\="hl\-str"\>&\#039;required\|in\:Amsterdam,Antwerp,Athens,Berlin,Bern,Brussels,Lisbon,London,Madrid,Paris,Prague,Rome,Vienna&\#039;\<\/span\>\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="6"\>    Amsterdam\<\/span\>
+\<span class\="hl\-line" data\-line\="7"\>    Antwerp\<\/span\>
+\<span class\="hl\-line" data\-line\="8"\>    Athens\<\/span\>
+\<span class\="hl\-line" data\-line\="9"\>    Berlin\<\/span\>
+\<span class\="hl\-line" data\-line\="10"\>    Bern\<\/span\>
+\<span class\="hl\-line" data\-line\="11"\>    Brussels\<\/span\>
+\<span class\="hl\-line" data\-line\="12"\>    Lisbon\<\/span\>
+\<span class\="hl\-line" data\-line\="13"\>    London\<\/span\>
+\<span class\="hl\-line" data\-line\="14"\>    Madrid\<\/span\>
+\<span class\="hl\-line" data\-line\="15"\>    Paris\<\/span\>
+\<span class\="hl\-line" data\-line\="16"\>    Prague\<\/span\>
+\<span class\="hl\-line" data\-line\="17"\>    Rome\<\/span\>
+\<span class\="hl\-line" data\-line\="18"\>    Vienna\<\/span\>
+\<span class\="hl\-line" data\-line\="19"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>\/combobox\<\/span\>\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="20"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>input\:combobox\<\/span\> \<span class\="hl\-str"\>&\#039;fruit&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;Fruit&\#039;\<\/span\>, \<span class\="hl\-opt"\>options\<\/span\>\=\<span class\="hl\-str"\>&\#039;Apple, Apricot, Banana, Cherry, Grape, Lemon, Mango, Orange, Pear&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="21"\>  \<span class\="hl\-htm"\>&lt;button\<\/span\> \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&quot;inputs\-send&quot;\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>Send\<span class\="hl\-htm"\>&lt;\/button\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="22"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>\/form\<\/span\>\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="23"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="24"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>received\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="25"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="26"\>\<span class\="hl\-htm"\>&lt;h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>The template\<span class\="hl\-htm"\>&lt;\/h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="27"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>source\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>\<\/code\>\<\/pre\>\<\/div\>\<\/div\>$/

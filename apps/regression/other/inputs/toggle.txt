@@ -1,0 +1,28 @@
+/^\<p class\="inputs\-lead"\>A switch, on or off\: a native checkbox with role\=&quot;switch&quot;, drawn as a switch by its style alone, so it needs no script\. It posts a value either way \- on\= when it is on, 1 unless given, and off\= when it is off, 0 unless given, from a hidden field before it that the checkbox&\#039;s own value replaces when it is ticked \- so the page&\#039;s PHP finds the field in every post, and accepted holds the switch to on\. off\=&\#039;&\#039; posts nothing when off, as a checkbox does\. checked turns it on before a post; after one it is as it was posted\.\<\/p\>
+
+
+\<form method\="post" class\="inputs\-try"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>\<input type\="hidden" name\="padForm" value\="try"\>
+  \<style\>[\s\S]*?\<\/style\>\<style\>[\s\S]*?\<\/style\>\<script\>[\s\S]*?\<\/script\>\<div class\="pad\-input pad\-input\-toggle" data\-pad\-input\="toggle" data\-pad\-label\="Send me the newsletter"\>\<div class\="pi\-row pi\-toggle\-row"\>\<label for\="news"\>Send me the newsletter\<\/label\>\<input type\="hidden" name\="news" value\="0"\>\<input type\="checkbox" role\="switch" name\="news" id\="news" value\="1" checked\>\<\/div\>\<\/div\>
+  \<div class\="pad\-input pad\-input\-toggle" data\-pad\-input\="toggle" data\-pad\-label\="Dark mode"\>\<div class\="pi\-row pi\-toggle\-row"\>\<label for\="dark"\>Dark mode\<\/label\>\<input type\="hidden" name\="dark" value\="light"\>\<input type\="checkbox" role\="switch" name\="dark" id\="dark" value\="dark"\>\<\/div\>\<\/div\>
+  \<div class\="pad\-input pad\-input\-toggle" data\-pad\-input\="toggle" data\-pad\-label\="I accept the terms"\>\<div class\="pi\-row pi\-toggle\-row"\>\<label for\="terms"\>I accept the terms\<\/label\>\<input type\="hidden" name\="terms" value\="0"\>\<input type\="checkbox" role\="switch" name\="terms" id\="terms" value\="1"\>\<\/div\>\<\/div\>
+  \<button class\="inputs\-send"\>Send\<\/button\>
+\<\/form\>
+
+
+
+
+\<h2\>The template\<\/h2\>
+\<style\>[\s\S]*?\<\/style\>\<div class\="pad\-source"\>\<input type\="radio" name\="pad\-source\-1" id\="pad\-source\-1\-1" checked\>\<label for\="pad\-source\-1\-1" data\-side\="server"\>toggle\.pad\<\/label\>\<div class\="pad\-source\-panel"\>\<style\>[\s\S]*?\<\/style\>\<pre class\="pad\-highlight hl\-numbered" data\-lang\="pad"\>\<code\>\<span class\="hl\-line" data\-line\="1"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>meta\<\/span\> \<span class\="hl\-opt"\>title\<\/span\>\=\<span class\="hl\-str"\>&\#039;Toggle&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="2"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>about\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="3"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="4"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>form\<\/span\> \<span class\="hl\-str"\>&\#039;try&\#039;\<\/span\>, \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&\#039;inputs\-try&\#039;\<\/span\>, error\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="5"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>toggle\<\/span\> \<span class\="hl\-str"\>&\#039;news&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;Send me the newsletter&\#039;\<\/span\>, checked\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="6"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>toggle\<\/span\> \<span class\="hl\-str"\>&\#039;dark&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;Dark mode&\#039;\<\/span\>, \<span class\="hl\-opt"\>on\<\/span\>\=\<span class\="hl\-str"\>&\#039;dark&\#039;\<\/span\>, \<span class\="hl\-opt"\>off\<\/span\>\=\<span class\="hl\-str"\>&\#039;light&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="7"\>  \<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>toggle\<\/span\> \<span class\="hl\-str"\>&\#039;terms&\#039;\<\/span\>, \<span class\="hl\-opt"\>label\<\/span\>\=\<span class\="hl\-str"\>&\#039;I accept the terms&\#039;\<\/span\>, \<span class\="hl\-opt"\>rules\<\/span\>\=\<span class\="hl\-str"\>&\#039;accepted&\#039;\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="8"\>  \<span class\="hl\-htm"\>&lt;button\<\/span\> \<span class\="hl\-opt"\>class\<\/span\>\=\<span class\="hl\-str"\>&quot;inputs\-send&quot;\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>Send\<span class\="hl\-htm"\>&lt;\/button\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="9"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>\/form\<\/span\>\<span class\="hl\-brc"\>\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="10"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="11"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>received\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="12"\>\<\/span\>
+\<span class\="hl\-line" data\-line\="13"\>\<span class\="hl\-htm"\>&lt;h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>The template\<span class\="hl\-htm"\>&lt;\/h2\<\/span\>\<span class\="hl\-htm"\>&gt;\<\/span\>\<\/span\>
+\<span class\="hl\-line" data\-line\="14"\>\<span class\="hl\-brc"\>\{\<\/span\>\<span class\="hl\-tag"\>source\<\/span\>\<span class\="hl\-brc"\>\/\}\<\/span\>\<\/span\>\<\/code\>\<\/pre\>\<\/div\>\<\/div\>$/

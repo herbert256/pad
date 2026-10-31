@@ -1,0 +1,27 @@
+{meta title='One form'/}
+<p class="inputs-lead">Every kind of field in one form, each with rules. <code>client</code> on the
+form checks the rules in the browser before the form leaves, with the messages the server gives -
+the server checks the post again all the same. Send it empty to see them.</p>
+
+{form 'booking', class='inputs-try', client, error='Please correct the fields marked below.'}
+  {slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
+  {stepper 'guests', label='Guests', min=1, max=12, rules='required|integer|between:1,12'/}
+  {toggle 'terms', label='I accept the terms', rules='accepted'/}
+  {stars 'score', label='Your rating', rules='required'/}
+  {colorpicker 'tint', label='Colour', value='#2a78d6', rules='required|color'/}
+  {datepicker 'arrival', label='Arrival', rules='required|date'/}
+  {timepicker 'pickup', label='Pick-up time', min='08:00', max='18:00', every=30, rules='required|time'/}
+  {taginput 'topics', label='Topics', suggestions='pad, php, forms', rules='required|max:60'/}
+  {signature 'signed', label='Signature', rules='required'/}
+  {mdeditor 'note', label='A note', rows=4, rules='required|min:10'/}
+  {dropzone 'resume', label='Your CV', accept='.pdf'/}
+  {newpassword 'password', label='Password', rules='required|min:12'/}
+  {otp 'code', label='Code', rules='required|digits:6'/}
+  {combobox 'city', label='City', options='Amsterdam, Berlin, Paris, Rome', rules='required|in:Amsterdam,Berlin,Paris,Rome'/}
+  <button class="inputs-send">Send</button>
+{/form}
+
+{received/}
+
+<h2>The template</h2>
+{source/}
