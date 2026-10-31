@@ -1,19 +1,37 @@
 <?php
 
-  // Barcodes - the {barcode} tag: EAN-13, EAN-8, UPC-A and Code 128, written as inline SVG.
+  // The codes subsystem: barcodes and two-dimensional codes, encoded on the server and written
+  // as inline SVG - no image library, no font, no remote service - so a code prints, caches and
+  // goes in an e-mail like any other output.
   //
-  //   {barcode '871234567890'}                      EAN-13, the check digit added
-  //   {barcode 'PAD-2026-0042', type='code128'}     any printable ASCII
-  //   {barcode '03600029145', type='upca', height=50, plain}
+  //   {barcode '871234567890'/}                      EAN-13, the check digit added
+  //   {barcode 'PAD-2026-0042', type='code128'/}     any printable ASCII
+  //   {barcode:ean8 '9638507'/}                      the barcode: type
+  //   {code128 'PAD-2026-0042'/}                     bare, when nothing else has the name
+  //   {qr 'https://example.com'/}                    the QR code, a symbology with a tag of its own
   //
-  // padBarcode         the SVG, or '' with the reason in $error
-  // padBarcodeModules  the bars as a string of 1 (bar) and 0 (space), one per module, and
-  //                    the digits or text written under them
+  // A symbology is a file of codes/types/: the files there are the barcode types there are
+  // (padKinds ('codes'), lib/subsystem.php), and codes/barcode.php is the body the {barcode}
+  // tag, the {qr} tag and the barcode: type all run. A symbology's file encodes the text and
+  // answers the SVG, drawn by the functions of this file; the encoder of a symbology that is
+  // not one of the first four stands in a file of this directory of its own, included by the
+  // symbology's file when a page draws one.
+  //
+  //   padCodeTag         runs the file of a symbology, the text it encodes at hand
+  //   padCodeText        the text: the first parameter as the characters it holds
+  //   padCodeLinear      the SVG of a one-dimensional code, its options read - height, scale,
+  //                      title, plain, color, background - or '' with the reason raised
+  //   padCodeMatrix      the SVG of a two-dimensional code from its rows of dark and light
+  //   padCodeFail        the reason a code cannot be drawn, raised under the strict check
+  //   padCodeElements    the modules of a symbol of narrow and wide elements
+  //   padBarcode         the SVG of the bars: a string of 1 (bar) and 0 (space), one per
+  //                      module, the text written under them, the guard bars drawn longer
+  //   padBarcodeModules  EAN-13, EAN-8, UPC-A and Code 128: the bars and the text under them
   //
   // An EAN or UPC number is given with or without its check digit: without it, it is
   // added; with it, it is checked. Code 128 switches to its double-density digit set C for
   // a run of four or more digits, and to set B for the rest. The text is escaped as {qr}
-  // escapes it, padQrAttr of tags/_lib/qr.php.
+  // escapes it, padQrAttr of codes/_lib/qr.php.
 
   include_once PAD . 'codes/_lib/qr.php';
 
@@ -36,34 +54,140 @@
     '214121', '412121', '111143', '111341', '131141', '114113', '114311', '411113', '411311', '113141',
     '114131', '311141', '411131', '211412', '211214', '211232', '2331112' ];
 
-  // The SVG. $scale is the width of one module in pixels, $height that of the bars; the
-  // digits or the text go under them unless $plain. An EAN or UPC has its guard bars drawn
-  // longer, its digits set in the groups they belong to.
+  // The file of the symbology, run with the text at hand: what it answers is the code - the
+  // SVG, or '' when the text cannot be encoded, the reason raised. A code drawn while another
+  // one is - by a tag in the title of an application's own - gives the text back after.
 
-  function padBarcode ( $text, $type, $height, $scale, $title, $plain, $dark, $light, &$error ) {
+  function padCodeTag ( $kind, $parm ) {
 
-    $coded = padBarcodeModules ( (string) $text, $type, $error );
+    global $padCodeNow;
 
-    if ( ! $coded )
+    $before     = $padCodeNow ?? NULL;
+    $padCodeNow = [ 'kind' => $kind, 'parm' => $parm ];
+
+    $svg = include PAD . "codes/types/$kind.php";
+
+    $padCodeNow = $before;
+
+    return $svg;
+
+  }
+
+  // The text of the code as the characters it holds (padParmText), a field inside it neither
+  // stand-ins nor escaped - a , of SKU-{$sku} came as U+E02C, which no barcode encodes - and
+  // for the bars without the white space around it.
+
+  function padCodeText ( $trim = TRUE ) {
+
+    $parm = $GLOBALS ['padCodeNow'] ['parm'] ?? '';
+
+    if ( is_array ( $parm ) )
       return '';
 
-    list ( $bars, $groups, $guards ) = $coded;
+    return $trim ? trim ( padParmText ( $parm ) ) : padParmText ( $parm );
 
-    $quiet = ( $type == 'code128' ) ? 10 : ( $type == 'ean8' ? 7 : 11 );
-    $width = ( strlen ( $bars ) + 2 * $quiet ) * $scale;
-    $font  = round ( 5.5 * $scale + 1, 1 );
-    $total = $height + ( $plain ? 0 : round ( $font * 1.2 ) );
-    $long  = $plain ? $height : $height + $font / 2;
-    $path  = '';
+  }
+
+  // A code that cannot be drawn: the reason raised under the strict check, nothing written.
+
+  function padCodeFail ( $message ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( $message );
+
+    return '';
+
+  }
+
+  // A bare option of a symbology - check - as plain is one of every barcode.
+
+  function padCodeFlag ( $option ) {
+
+    return (bool) padTagParm ( $option, FALSE );
+
+  }
+
+  // The names of the symbologies, for what a message lists: a, b or c.
+
+  function padCodeList () {
+
+    $kinds = padKinds ( 'codes' );
+    $last  = array_pop ( $kinds );
+
+    return $kinds ? implode ( ', ', $kinds ) . " or $last" : (string) $last;
+
+  }
+
+  // A one-dimensional code: its options read first - so an option given is read whether the
+  // text encodes or not - then the bars the encoder made, or the reason it could not.
+  // $coded is what an encoder answers: [ bars, groups, guards, quiet zone, bearer ], or the
+  // message saying why the text is no code of the kind.
+
+  function padCodeLinear ( $coded ) {
+
+    $height = max ( 10, (int) padTagParm ( 'height', 60 ) );
+    $scale  = max ( 1, min ( 10, (float) padTagParm ( 'scale', 2 ) ) );
+    $title  = padParmText ( padTagParm ( 'title' ) );
+    $plain  = (bool) padTagParm ( 'plain', FALSE );
+    $dark   = (string) padTagParm ( 'color', '#000' );
+    $light  = (string) padTagParm ( 'background', '#fff' );
+
+    if ( ! is_array ( $coded ) )
+      return padCodeFail ( (string) $coded );
+
+    return padBarcode ( $coded, $height, $scale, $title, $plain, $dark, $light );
+
+  }
+
+  // The modules of a symbol written as narrow and wide elements - Code 39, Codabar: $count
+  // bits, the first element first, a bar, then a space, and so on; a 1 is a wide element of
+  // $wide modules, a 0 a narrow one of one.
+
+  function padCodeElements ( $bits, $count, $wide ) {
+
+    $modules = '';
+
+    for ( $k = 0; $k < $count; $k++ )
+      $modules .= str_repeat ( $k % 2 ? '0' : '1', ( $bits >> ( $count - 1 - $k ) & 1 ) ? $wide : 1 );
+
+    return $modules;
+
+  }
+
+  // The SVG of the bars. $coded is [ bars, groups, guards, quiet zone, bearer ]: the bars a
+  // string of 1 and 0, a module each; the groups of the text under them as [ centre, text ],
+  // the centre counted in modules from the first bar; the guards the ranges of modules
+  // [ from, to ) drawn longer, empty for none; the quiet zone the modules of space on either
+  // side; the bearer the modules of a bar above and below the code, as wide as it with its
+  // quiet zones - an ITF-14's - or 0. $scale is the width of one module in pixels, $height
+  // that of the bars; the digits or the text go under them unless $plain. An EAN or UPC has
+  // its digits set in the groups they belong to, stretched to them.
+
+  function padBarcode ( $coded, $height, $scale, $title, $plain, $dark, $light ) {
+
+    list ( $bars, $groups, $guards, $quiet ) = $coded;
+
+    $bearer = ( $coded [4] ?? 0 ) * $scale;
+    $width  = ( strlen ( $bars ) + 2 * $quiet ) * $scale;
+    $font   = round ( 5.5 * $scale + 1, 1 );
+    $total  = $height + 2 * $bearer + ( $plain ? 0 : round ( $font * 1.2 ) );
+    $long   = $plain ? $height : $height + $font / 2;
+    $top    = $bearer ? padBarcodeNum ( $bearer ) : '0';
+    $path   = '';
 
     for ( $x = 0; $x < strlen ( $bars ); $x++ )
       if ( $bars [$x] == '1' ) {
         $run   = strspn ( $bars, '1', $x );
-        $end   = ( $guards and padBarcodeGuard ( $x, $type ) ) ? $long : $height;
-        $path .= 'M' . padBarcodeNum ( ( $x + $quiet ) * $scale ) . ',0h' . padBarcodeNum ( $run * $scale )
+        $end   = ( $guards and padBarcodeGuard ( $x, $guards ) ) ? $long : $height;
+        $path .= 'M' . padBarcodeNum ( ( $x + $quiet ) * $scale ) . ",{$top}h" . padBarcodeNum ( $run * $scale )
                . 'v' . padBarcodeNum ( $end ) . 'h-' . padBarcodeNum ( $run * $scale ) . 'z';
         $x    += $run - 1;
       }
+
+    if ( $bearer )
+      foreach ( [ 0, $bearer + $height ] as $y )
+        $path .= 'M0,' . padBarcodeNum ( $y ) . 'h' . padBarcodeNum ( $width ) . 'v' . padBarcodeNum ( $bearer )
+               . 'h-' . padBarcodeNum ( $width ) . 'z';
 
     $svg = '<svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img"'
          . ' width="' . padBarcodeNum ( $width ) . '" height="' . padBarcodeNum ( $total ) . '"'
@@ -84,52 +208,74 @@
 
   }
 
+  // A two-dimensional code: the rows of TRUE (dark) and FALSE (light) modules, no quiet zone,
+  // drawn in a light rectangle $size pixels wide with a quiet zone of $quiet modules around
+  // them, the dark modules as one path of horizontal runs. The colours are fixed dark on
+  // light by default - a reader needs the contrast, whatever the page's colour scheme.
+
+  function padCodeMatrix ( $matrix, $quiet, $size, $title, $dark, $light, $class ) {
+
+    $rows = count ( $matrix );
+    $cols = count ( $matrix [0] );
+    $wide = $cols + 2 * $quiet;
+    $high = $rows + 2 * $quiet;
+    $path = '';
+
+    foreach ( $matrix as $y => $row )
+      for ( $x = 0; $x < $cols; $x++ )
+        if ( $row [$x] ) {
+          $run = 1;
+          while ( $x + $run < $cols and $row [$x + $run] )
+            $run++;
+          $path .= 'M' . ( $x + $quiet ) . ',' . ( $y + $quiet ) . "h{$run}v1h-{$run}z";
+          $x += $run;
+        }
+
+    $width  = (int) $size;
+    $height = ( $high == $wide ) ? $width : (int) round ( $size * $high / $wide );
+
+    return "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"$class\" role=\"img\" width=\"$width\" height=\"$height\""
+         . " viewBox=\"0 0 $wide $high\" shape-rendering=\"crispEdges\">"
+         . '<title>' . padQrAttr ( $title ) . '</title>'
+         . '<rect width="100%" height="100%" fill="' . padQrAttr ( $light ) . '"/>'
+         . '<path fill="' . padQrAttr ( $dark ) . "\" d=\"$path\"/></svg>";
+
+  }
+
   function padBarcodeNum ( $n ) {
 
     return rtrim ( rtrim ( number_format ( $n, 2, '.', '' ), '0' ), '.' );
 
   }
 
-  // Whether the module at $x belongs to a guard: the start, the middle and the end.
+  // Whether the module at $x belongs to a guard drawn longer - for an EAN the start, the
+  // middle and the end - given as the ranges [ from, to ) of modules they cover.
 
-  function padBarcodeGuard ( $x, $type ) {
+  function padBarcodeGuard ( $x, $guards ) {
 
-    $half = ( $type == 'ean8' ) ? 4 : 6;
-    $mid  = 3 + $half * 7;
+    foreach ( $guards as list ( $from, $to ) )
+      if ( $x >= $from and $x < $to )
+        return TRUE;
 
-    return $x < 3 or ( $x >= $mid and $x < $mid + 5 ) or $x >= $mid + 5 + $half * 7;
+    return FALSE;
 
   }
 
-  // [ bars, groups of the text under them as [ centre, text ], guards drawn longer ].
+  // [ bars, groups of the text under them as [ centre, text ], guards drawn longer, quiet
+  // zone ] of an EAN-13, EAN-8, UPC-A or Code 128, or the message why the text is none.
 
-  function padBarcodeModules ( $text, $type, &$error ) {
-
-    $error = '';
+  function padBarcodeModules ( $text, $type ) {
 
     if ( $type == 'code128' )
-      return padBarcode128 ( $text, $error );
+      return padBarcode128 ( $text );
 
-    $digits = [ 'ean13' => 13, 'ean8' => 8, 'upca' => 12 ] [$type] ?? 0;
+    $digits = [ 'ean13' => 13, 'ean8' => 8, 'upca' => 12 ] [$type];
+    $code   = padBarcodeDigits ( $text, $type, $digits );
 
-    if ( ! $digits ) {
-      $error = "there is no barcode type '" . padMakeSafe ( $type, 20 ) . "' - ean13, ean8, upca or code128";
-      return NULL;
-    }
+    if ( ! is_array ( $code ) )
+      return $code;
 
-    if ( ! ctype_digit ( $text ) or ( strlen ( $text ) != $digits and strlen ( $text ) != $digits - 1 ) ) {
-      $error = "an $type barcode is $digits digits, or " . ( $digits - 1 ) . ' without the check digit';
-      return NULL;
-    }
-
-    $check = padBarcodeCheck ( substr ( $text, 0, $digits - 1 ) );
-
-    if ( strlen ( $text ) == $digits and $text [$digits - 1] != $check ) {
-      $error = "the check digit of $text is $check, not " . $text [$digits - 1];
-      return NULL;
-    }
-
-    $code = substr ( $text, 0, $digits - 1 ) . $check;
+    $code = $code [0];
 
     if ( $type == 'ean8' ) {
       $bars = '101';
@@ -137,7 +283,7 @@
       $bars .= '01010';
       for ( $i = 4; $i < 8; $i++ ) $bars .= PAD_EAN_R [ $code [$i] ];
       $bars .= '101';
-      return [ $bars, [ [ 3 + 14, substr ( $code, 0, 4 ) ], [ 36 + 14, substr ( $code, 4 ) ] ], TRUE ];
+      return [ $bars, [ [ 3 + 14, substr ( $code, 0, 4 ) ], [ 36 + 14, substr ( $code, 4 ) ] ], [ [ 0, 3 ], [ 31, 36 ], [ 64, 67 ] ], 7 ];
     }
 
     // UPC-A is an EAN-13 that starts with 0: the same bars, its own grouping of the digits.
@@ -161,7 +307,25 @@
     else
       $groups = [ [ -5, $ean [0] ], [ 3 + 21, substr ( $ean, 1, 6 ) ], [ 50 + 21, substr ( $ean, 7 ) ] ];
 
-    return [ $bars, $groups, TRUE ];
+    return [ $bars, $groups, [ [ 0, 3 ], [ 45, 50 ], [ 92, 95 ] ], 11 ];
+
+  }
+
+  // The digits of a code that ends in a check digit of weights 3 and 1 - an EAN, a UPC, an
+  // ITF-14 - as [ the digits with the check digit ], or the message why the text is none: a
+  // check digit left off is added, one given is checked.
+
+  function padBarcodeDigits ( $text, $type, $digits ) {
+
+    if ( ! ctype_digit ( $text ) or ( strlen ( $text ) != $digits and strlen ( $text ) != $digits - 1 ) )
+      return "an $type barcode is $digits digits, or " . ( $digits - 1 ) . ' without the check digit';
+
+    $check = padBarcodeCheck ( substr ( $text, 0, $digits - 1 ) );
+
+    if ( strlen ( $text ) == $digits and $text [$digits - 1] != $check )
+      return "the check digit of $text is $check, not " . $text [$digits - 1];
+
+    return [ substr ( $text, 0, $digits - 1 ) . $check ];
 
   }
 
@@ -181,12 +345,10 @@
   // Code 128: start B, or C when the text opens with four digits or more; inside, a run of
   // digits that saves a symbol goes in C - an even number of them, the odd one in B.
 
-  function padBarcode128 ( $text, &$error ) {
+  function padBarcode128 ( $text ) {
 
-    if ( $text === '' or preg_match ( '/[^\x20-\x7E]/', $text ) ) {
-      $error = 'a code128 barcode takes printable ASCII - letters, digits, space and punctuation';
-      return NULL;
-    }
+    if ( $text === '' or preg_match ( '/[^\x20-\x7E]/', $text ) )
+      return 'a code128 barcode takes printable ASCII - letters, digits, space and punctuation';
 
     $digits = fn ( $at ) => strspn ( $text, '0123456789', $at );
     $length = strlen ( $text );
@@ -234,7 +396,7 @@
       foreach ( str_split ( PAD_CODE128 [$value] ) as $k => $w )
         $bars .= str_repeat ( $k % 2 ? '0' : '1', (int) $w );
 
-    return [ $bars, [ [ strlen ( $bars ) / 2, $text ] ], FALSE ];
+    return [ $bars, [ [ strlen ( $bars ) / 2, $text ] ], [], 10 ];
 
   }
 

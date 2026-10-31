@@ -1,10 +1,12 @@
 <?php
 
-  // QR codes - the {qr} tag. The text is encoded the way ISO/IEC 18004 says, and the symbol
-  // is written as inline SVG: no image library, no remote service, no JavaScript.
+  // QR codes - the qr symbology of the codes subsystem, written {qr 'text'/}, {barcode:qr
+  // 'text'/} or {barcode 'text', type='qr'/}. The text is encoded the way ISO/IEC 18004 says,
+  // and the symbol is written as inline SVG: no image library, no remote service, no
+  // JavaScript.
   //
-  //   {qr 'https://example.com/order/42'}
-  //   {qr $url, size=200, level='H', title='Open the order on your phone'}
+  //   {qr 'https://example.com/order/42'/}
+  //   {qr $url, size=200, level='H', title='Open the order on your phone'/}
   //
   // padQr          the SVG of a text, or '' when it does not fit in a version 40 symbol
   // padQrMatrix    the symbol itself: rows of TRUE (dark) and FALSE (light), no quiet zone
@@ -30,9 +32,9 @@
   const PAD_QR_ALNUM = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
 
   // The SVG: a light square with the quiet zone of four modules around the symbol, the dark
-  // modules as one path of horizontal runs. The colours are fixed dark on light by default
-  // - a reader needs the contrast, whatever the page's colour scheme - and color= and
-  // background= change them.
+  // modules as one path of horizontal runs (padCodeMatrix, codes/_lib/barcode.php). The
+  // colours are fixed dark on light by default - a reader needs the contrast, whatever the
+  // page's colour scheme - and color= and background= change them.
 
   function padQr ( $text, $level = 'M', $size = 160, $title = '', $dark = '#000', $light = '#fff' ) {
 
@@ -41,27 +43,7 @@
     if ( ! $matrix )
       return '';
 
-    $n    = count ( $matrix );
-    $full = $n + 8;
-    $path = '';
-
-    foreach ( $matrix as $y => $row )
-      for ( $x = 0; $x < $n; $x++ )
-        if ( $row [$x] ) {
-          $run = 1;
-          while ( $x + $run < $n and $row [$x + $run] )
-            $run++;
-          $path .= 'M' . ( $x + 4 ) . ',' . ( $y + 4 ) . "h{$run}v1h-{$run}z";
-          $x += $run;
-        }
-
-    $title = ( $title !== '' ) ? $title : (string) $text;
-
-    return '<svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="' . (int) $size . '" height="' . (int) $size . '"'
-         . " viewBox=\"0 0 $full $full\" shape-rendering=\"crispEdges\">"
-         . '<title>' . padQrAttr ( $title ) . '</title>'
-         . '<rect width="100%" height="100%" fill="' . padQrAttr ( $light ) . '"/>'
-         . '<path fill="' . padQrAttr ( $dark ) . "\" d=\"$path\"/></svg>";
+    return padCodeMatrix ( $matrix, 4, $size, ( $title !== '' ) ? $title : (string) $text, $dark, $light, 'pad-qr' );
 
   }
 
