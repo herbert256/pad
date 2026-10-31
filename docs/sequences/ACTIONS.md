@@ -12,10 +12,10 @@ generation itself. They are covered in [SEQUENCES.md](SEQUENCES.md) and
 ## Order Manipulation
 
 ```
-{pull:nums reverse}       # Reverse order
-{pull:nums sort}          # Sort ascending
-{pull:nums shuffle}       # Randomize order
-{pull:nums randomize}     # Pick at random - see below, not the same as shuffle
+{pull:nums reverse/}       # Reverse order
+{pull:nums sort/}          # Sort ascending
+{pull:nums shuffle/}       # Randomize order
+{pull:nums randomize/}     # Pick at random - see below, not the same as shuffle
 ```
 
 `shuffle` reorders every value. `randomize` *picks*: bare it draws as many as there are, so
@@ -34,16 +34,16 @@ two: `{pull:a sort='b'}` sorts a and b together rather than sorting a by a field
 ## Selection
 
 ```
-{pull:nums first}         # First element
-{pull:nums first=3}       # First 3 elements
-{pull:nums last=3}        # Last 3 elements
-{pull:nums element=5}     # Get 5th element, counting from 1
-{pull:nums slice='3|4'}   # From offset 3, length 4 - counting from 0
-{pull:nums minimum}       # Smallest value
-{pull:nums minimum=3}     # The 3 smallest, back in their original order
-{pull:nums maximum=3}     # The 3 largest
-{pull:nums shift=2}       # See "Destructive selection" below
-{pull:nums pop=2}         # See "Destructive selection" below
+{pull:nums first/}         # First element
+{pull:nums first=3/}       # First 3 elements
+{pull:nums last=3/}        # Last 3 elements
+{pull:nums element=5/}     # Get 5th element, counting from 1
+{pull:nums slice='3|4'/}   # From offset 3, length 4 - counting from 0
+{pull:nums minimum/}       # Smallest value
+{pull:nums minimum=3/}     # The 3 smallest, back in their original order
+{pull:nums maximum=3/}     # The 3 largest
+{pull:nums shift=2/}       # See "Destructive selection" below
+{pull:nums pop=2/}         # See "Destructive selection" below
 ```
 
 `element` counts from 1, as `from` and `to` do. `slice` and `splice` count from 0, because
@@ -61,7 +61,7 @@ than an error.
 removed, and what stays in the store is the remainder:
 
 ```
-{sequence '1..10', push='nums'}
+{sequence '1..10', push='nums'/}
 {pull:nums shift=2}{$sequence} {/pull:nums}   # shows 1 2
 {pull:nums}{$sequence} {/pull:nums}           # the store now holds 3 4 5 6 7 8 9 10
 ```
@@ -75,8 +75,8 @@ and `toData='x'` on a shift or pop keep what the tag shows, the part removed.
 ## Negative Selection (Invert)
 
 ```
-{pull:nums first=5, negative}   # All EXCEPT first 5
-{pull:nums last=5, negative}    # All EXCEPT last 5
+{pull:nums first=5, negative/}   # All EXCEPT first 5
+{pull:nums last=5, negative/}    # All EXCEPT last 5
 ```
 
 `negative` inverts what an **action** picked, and is applied after each action in turn. It
@@ -89,11 +89,11 @@ does nothing to a play: `keep='prime', negative` is not the complement of `keep=
 nothing without it.
 
 ```
-{pull:nums trim, both=5}              # Trim 5 from each end
-{pull:nums trim, left=5}              # Trim 5 from left
-{pull:nums trim, right=5}             # Trim 5 from right
-{pull:nums trim, left=10, right=5}    # Different amounts each side
-{pull:nums trim=2}                    # 2 from each end - a value on trim itself fills both
+{pull:nums trim, both=5/}              # Trim 5 from each end
+{pull:nums trim, left=5/}              # Trim 5 from left
+{pull:nums trim, right=5/}             # Trim 5 from right
+{pull:nums trim, left=10, right=5/}    # Different amounts each side
+{pull:nums trim=2/}                    # 2 from each end - a value on trim itself fills both
 ```
 
 A count on `trim` itself fills `both`, and `left` and `right` are then taken off on top of
@@ -105,20 +105,20 @@ nothing.
 Apply an expression to each element:
 
 ```
-{pull:nums eval='* 10 | - 1'}    # Multiply by 10, subtract 1
-{pull:nums eval='15 + @'}        # Add 15 to each (@ = current value)
+{pull:nums eval='* 10 | - 1'/}    # Multiply by 10, subtract 1
+{pull:nums eval='15 + @'/}        # Add 15 to each (@ = current value)
 ```
 
 ## Aggregation
 
 ```
-{pull:nums sum}           # Sum of all elements
-{pull:nums product}       # Product of all elements
-{pull:nums average}       # Mean value
-{pull:nums median}        # Median: values sorted, middle one, or the mean of the two middles
-{pull:nums count}         # Number of elements
-{pull:nums distinct}      # Count of unique values
-{pull:nums dedup}         # Remove duplicates
+{pull:nums sum/}           # Sum of all elements
+{pull:nums product/}       # Product of all elements
+{pull:nums average/}       # Mean value
+{pull:nums median/}        # Median: values sorted, middle one, or the mean of the two middles
+{pull:nums count/}         # Number of elements
+{pull:nums distinct/}      # Count of unique values
+{pull:nums dedup/}         # Remove duplicates
 ```
 
 Over an empty sequence, `count`, `sum`, `distinct` and `product` answer 0, 0, 0 and 1, while
@@ -135,18 +135,18 @@ These are sequence types applied to each value as it is generated, so they run *
 actions do. A parameter that is not a number is reported; `divide` will not take a zero.
 
 ```
-{pull:nums add=5}             # Add 5 to each element
-{pull:nums subtract=3}        # Subtract 3 from each
-{pull:nums multiply=2}        # Multiply each by 2
-{pull:nums divide=4}          # Divide each by 4
-{pull:nums modulo=3}          # Modulo 3 of each
-{pull:nums power=2}           # 2 raised to each element
-{pull:nums exponentiation=2}  # Square each element
-{pull:nums exponentiation=3}  # Cube each element
-{pull:nums ceil}              # Ceiling of each
-{pull:nums floor}             # Floor of each
-{pull:nums round}             # Round each
-{pull:nums negation}          # Negate each
+{pull:nums add=5/}             # Add 5 to each element
+{pull:nums subtract=3/}        # Subtract 3 from each
+{pull:nums multiply=2/}        # Multiply each by 2
+{pull:nums divide=4/}          # Divide each by 4
+{pull:nums modulo=3/}          # Modulo 3 of each
+{pull:nums power=2/}           # 2 raised to each element
+{pull:nums exponentiation=2/}  # Square each element
+{pull:nums exponentiation=3/}  # Cube each element
+{pull:nums ceil/}              # Ceiling of each
+{pull:nums floor/}             # Floor of each
+{pull:nums round/}             # Round each
+{pull:nums negation/}          # Negate each
 ```
 
 `increment` is not an action either - it is the option that sets the step a sequence counts
@@ -158,13 +158,13 @@ in; after a pull it steps through the stored list: `{pull:nums increment=3}` ove
 These work on the bits of each value, not on true and false:
 
 ```
-{pull:nums and=12}    # Bitwise AND with 12
-{pull:nums or=5}      # Bitwise OR
-{pull:nums not}       # Bitwise NOT
-{pull:nums nand=12}   # Bitwise NAND - runs negative
-{pull:nums nor=5}     # Bitwise NOR - runs negative
-{pull:nums xor=3}     # Bitwise XOR
-{pull:nums xnor=3}    # Bitwise XNOR - runs negative
+{pull:nums and=12/}    # Bitwise AND with 12
+{pull:nums or=5/}      # Bitwise OR
+{pull:nums not/}       # Bitwise NOT
+{pull:nums nand=12/}   # Bitwise NAND - runs negative
+{pull:nums nor=5/}     # Bitwise NOR - runs negative
+{pull:nums xor=3/}     # Bitwise XOR
+{pull:nums xnor=3/}    # Bitwise XNOR - runs negative
 ```
 
 ## Multi-Sequence Operations
@@ -172,16 +172,16 @@ These work on the bits of each value, not on true and false:
 With `seqA` holding 1 to 6 and `seqB` holding 4 to 9:
 
 ```
-{sequence '1..6', push='seqA'}
-{sequence '4..9', push='seqB'}
-{pull:seqA append='seqB'}        # 1 2 3 4 5 6 4 5 6 7 8 9  - seqB on the end
-{pull:seqA prepend='seqB'}       # 4 5 6 7 8 9 1 2 3 4 5 6  - seqB in front
-{pull:seqA combine='seqB'}       # 1 2 3 4 4 5 5 6 6 7 8 9  - in order, duplicates kept
-{pull:seqA merge='seqB'}         # 1 2 3 4 5 6 7 8 9        - in order, duplicates dropped
-{pull:seqA intersection='seqB'}  # 4 5 6                    - in both
-{pull:seqA difference='seqB'}    # 1 2 3 7 8 9              - in one but not both
-{pull:seqA onlyNow='seqB'}       # 1 2 3                    - in seqA only
-{pull:seqA onlyStore='seqB'}     # 7 8 9                    - in seqB only
+{sequence '1..6', push='seqA'/}
+{sequence '4..9', push='seqB'/}
+{pull:seqA append='seqB'/}        # 1 2 3 4 5 6 4 5 6 7 8 9  - seqB on the end
+{pull:seqA prepend='seqB'/}       # 4 5 6 7 8 9 1 2 3 4 5 6  - seqB in front
+{pull:seqA combine='seqB'/}       # 1 2 3 4 4 5 5 6 6 7 8 9  - in order, duplicates kept
+{pull:seqA merge='seqB'/}         # 1 2 3 4 5 6 7 8 9        - in order, duplicates dropped
+{pull:seqA intersection='seqB'/}  # 4 5 6                    - in both
+{pull:seqA difference='seqB'/}    # 1 2 3 7 8 9              - in one but not both
+{pull:seqA onlyNow='seqB'/}       # 1 2 3                    - in seqA only
+{pull:seqA onlyStore='seqB'/}     # 7 8 9                    - in seqB only
 ```
 
 `combine` and `merge` put both in value order first, whatever order they are in: with `seqA`
@@ -199,20 +199,20 @@ strict check names the store that is not there.
 Applies transformations to a stored sequence without pulling it:
 
 ```
-{sequence 25, push='mySeq'}
-{resume add=100}           # Add 100 to each value
-{resume reverse}           # Reverse order
-{resume subtract=5}        # Subtract 5 from each
+{sequence 25, push='mySeq'/}
+{resume add=100/}           # Add 100 to each value
+{resume reverse/}           # Reverse order
+{resume subtract=5/}        # Subtract 5 from each
 {pull:mySeq}{$sequence} {/pull:mySeq}
 ```
 
-It resumes the store pushed last, or the one it names - `{resume 'mySeq', reverse}`,
-`{resume mySeq, reverse}` or `pull='mySeq'`. A name that is no store is reported, as
+It resumes the store pushed last, or the one it names - `{resume 'mySeq', reverse/}`,
+`{resume mySeq, reverse/}` or `pull='mySeq'`. A name that is no store is reported, as
 `{pull:typo}` reports it, and no other store is touched. A quoted action name is that action:
-`{resume 'reverse'}` is `{resume reverse}`. The parameters after it are read as on the other
-sequence tags ([SEQUENCES.md](SEQUENCES.md#positional-parameters)): `{resume 'first', 2}` and
-`{resume first, 2}` are `{resume first=2}`, `{resume 'mySeq', 'reverse'}` is
-`{resume mySeq, reverse}`, and one nothing reads is reported. `push='u'` and `name='u'` keep
+`{resume 'reverse'/}` is `{resume reverse/}`. The parameters after it are read as on the other
+sequence tags ([SEQUENCES.md](SEQUENCES.md#positional-parameters)): `{resume 'first', 2/}` and
+`{resume first, 2/}` are `{resume first=2/}`, `{resume 'mySeq', 'reverse'/}` is
+`{resume mySeq, reverse/}`, and one nothing reads is reported. `push='u'` and `name='u'` keep
 the result under u as well, with the columns a later `{pull:u}` chains in, and after
 `push='u'` u is the store pushed last - as the store resumed is after `push='mySeq'` on it, or
 a bare `push`.
@@ -233,24 +233,24 @@ Filter or transform sequences based on sequence types:
 ### Generate and Transform
 
 ```
-{sequence '1..10', push='nums'}
-{resume add=5}
-{resume reverse}
+{sequence '1..10', push='nums'/}
+{resume add=5/}
+{resume reverse/}
 {pull:nums sort}{$sequence} {/pull:nums}
 ```
 
 ### Combine Sequences
 
 ```
-{sequence '1..5', push='seqA'}
-{sequence '10..15', push='seqB'}
+{sequence '1..5', push='seqA'/}
+{sequence '10..15', push='seqB'/}
 {pull:seqA append='seqB'}{$sequence} {/pull:seqA}
 ```
 
 ### Aggregate Values
 
 ```
-{sequence '1..100', push='nums'}
+{sequence '1..100', push='nums'/}
 Sum: {pull:nums sum}{$sequence}{/pull:nums}
 Avg: {pull:nums average}{$sequence}{/pull:nums}
 ```

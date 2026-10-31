@@ -2,6 +2,16 @@
 
 This document provides a complete reference for all PAD tags, grouped by functionality.
 
+A tag is written one of two ways. Single, it closes itself with a slash before its brace -
+`{echo $x/}`, `{page 'header'/}`, `{flush/}`, or `{echo $x /| upper}` with an opening pipe.
+Written without the slash it opens a pair, and its closing tag must follow:
+`{items}...{/items}`. Many tags take both forms - `{sequence '1..5'}{$sequence}{/sequence}`
+loops, `{sequence '1..5', push='n'/}` only stores - and the slash says which one is meant. A
+tag without the slash and without its closer is an error under the strict check, "the pair
+{echo} never closes - a single tag is written {echo .../}"; the lenient walk reads it single.
+The variable forms `{$x}`, `{!x}`, `{#x}`, `{&x}`, `{?x}`, `{^x}` are never pairs and take no
+slash, nor do the branch markers `{else}`, `{elseif}` and `{when}`.
+
 ---
 
 ## Control Flow Tags
@@ -76,7 +86,7 @@ body again for the current row's children - menus, category trees, threaded comm
 <ul>
 {tree 'menu', children='items'}
   <li><a href="?{$page}">{$title}</a>
-    {branch}<ul>{recurse}</ul>{/branch}
+    {branch}<ul>{recurse/}</ul>{/branch}
   </li>
 {/tree}
 </ul>
@@ -100,7 +110,7 @@ Inside a `{tree}`: renders its content only when the current row has children - 
 around a `{recurse}` - and its `@else@` part for a leaf.
 
 ```html
-{branch}<ul>{recurse}</ul>@else@<span class="leaf"></span>{/branch}
+{branch}<ul>{recurse/}</ul>@else@<span class="leaf"></span>{/branch}
 ```
 
 ---
@@ -111,7 +121,7 @@ each child a row of its own. A row without children renders nothing. The new lev
 named as the tree is, so `depth@tree` and `count@tree` follow it.
 
 ```html
-{recurse}
+{recurse/}
 ```
 
 ---
@@ -120,7 +130,7 @@ named as the tree is, so `depth@tree` and `count@tree` follow it.
 Rotating switch that cycles through options on each call.
 
 ```html
-{switch 'odd', 'even'}
+{switch 'odd', 'even'/}
 ```
 
 **Parameters:**
@@ -170,12 +180,12 @@ Loop until condition becomes true.
 
 ### set
 Set one or more variables as globals. The assignment sticks: a `{set}` inside a loop or any
-other level outlives it - `{set $x = 1}{sequence 3}{set $x = 8}{/sequence}{$x}` gives 8.
+other level outlives it - `{set $x = 1/}{sequence 3}{set $x = 8/}{/sequence}{$x}` gives 8.
 (A `$name = value` written on another tag, `{users $n = 5}`, is that level's own and is
 unwound when the level closes.)
 
 ```html
-{set $name = 'value', $count = 5, $active = TRUE}
+{set $name = 'value', $count = 5, $active = TRUE/}
 ```
 
 **Parameters:**
@@ -192,7 +202,7 @@ level is passed along on the query string, and the output comes back with its br
 so it is not parsed again. A stored content block is read with `{content:name}` instead.
 
 ```html
-{get 'page_name'}
+{get 'page_name'/}
 ```
 
 **Parameters:**
@@ -238,7 +248,7 @@ Store boolean value to store - the content (or the second parameter) reduced to 
 
 ```html
 {bool 'store_name'}content{/bool}
-{bool 'store_name', $value}
+{bool 'store_name', $value/}
 ```
 
 **Parameters:**
@@ -251,7 +261,7 @@ Store boolean value to store - the content (or the second parameter) reduced to 
 Database access tags. The tag name becomes the `db()` command word, so do NOT write `SELECT` in the parameter:
 
 ```html
-{field "count(*) from users"}                     <!-- single value -->
+{field "count(*) from users"/}                     <!-- single value -->
 {record "* from users where id=5"}...{/record}    <!-- single row -->
 {array "* from users order by name"}...{/array}   <!-- iterate rows -->
 {check "users where email='x@y.z'"}...{/check}    <!-- existence test -->
@@ -300,7 +310,7 @@ rows to a page's PHP.
 Evaluate an `@` expression (for example against a sequence or data set).
 
 ```html
-{at "country.id='f0_325'@mondial"}
+{at "country.id='f0_325'@mondial"/}
 ```
 
 **Parameters:**
@@ -336,7 +346,7 @@ Check if array/data has elements.
 Increment a variable by 1.
 
 ```html
-{increment $counter}
+{increment $counter/}
 ```
 
 **Parameters:**
@@ -350,7 +360,7 @@ Increment a variable by 1.
 Decrement a variable by 1.
 
 ```html
-{decrement $counter}
+{decrement $counter/}
 ```
 
 **Parameters:**
@@ -366,14 +376,14 @@ Decrement a variable by 1.
 Include and execute a PAD page.
 
 ```html
-{page 'pagename'}
+{page 'pagename'/}
 ```
 
 **Parameters:**
 - First parameter: Page path to include
 
 **Behavior:** Executes the page's PHP and PAD files. A name that is no page of its own resolves
-through the clean URL routes: `{page 'products/42'}` renders `products/[id].pad` with `$id` set
+through the clean URL routes: `{page 'products/42'/}` renders `products/[id].pad` with `$id` set
 to 42 (see Clean URLs in docs/APP.md).
 
 ---
@@ -383,8 +393,8 @@ Runs its content as PAD source in a separate engine pass and outputs what that p
 produced.
 
 ```html
-{code}{echo 2 * 3}{/code}        → 6
-{echo $snippet | code}           → $snippet run as PAD
+{code}{echo 2 * 3/}{/code}        → 6
+{echo $snippet | code/}           → $snippet run as PAD
 ```
 
 **Piped into:** a value is text under `$padProtectValues` - a field holding a tag prints
@@ -399,8 +409,8 @@ variables, and the data, content, bool and sequence stores are emptied going in 
 restored coming out.
 
 ```html
-{sandbox}{echo 3 * 3}{/sandbox}  → 9
-{echo $snippet | sandbox}        → $snippet run as PAD, isolated
+{sandbox}{echo 3 * 3/}{/sandbox}  → 9
+{echo $snippet | sandbox/}        → $snippet run as PAD, isolated
 ```
 
 ---
@@ -410,7 +420,7 @@ Execute a sequence action, over a stored sequence.
 
 ```html
 {action myStore, reverse}
-{action:reverse myStore}
+{action:reverse myStore/}
 ```
 
 **Parameters:**
@@ -424,8 +434,8 @@ tag writes a `<div>` and a script that requests the page with `&padInclude` and 
 answer in the div.
 
 ```html
-{ajax 'orders'}
-{ajax 'orders', fragment='order-list'}
+{ajax 'orders'/}
+{ajax 'orders', fragment='order-list'/}
 ```
 
 **Parameters:**
@@ -493,7 +503,7 @@ properties. It includes nothing.
 Redirect to another page of the application.
 
 ```html
-{redirect 'page'}
+{redirect 'page'/}
 ```
 
 **Parameters:**
@@ -512,7 +522,7 @@ site.
 Restart PAD processing with new page.
 
 ```html
-{restart 'pagename', $param1 = 'value1'}
+{restart 'pagename', $param1 = 'value1'/}
 ```
 
 **Parameters:**
@@ -531,7 +541,7 @@ window around the current one, gaps, previous and next.
   <article>{$name}</article>
 {/products}
 
-{pager 'products', window=2}
+{pager 'products', window=2/}
 {-- → ‹ 1 … 4 5 [6] 7 8 … 20 › --}
 ```
 
@@ -578,11 +588,11 @@ The hidden form field holding the CSRF token of the visitor's session.
 
 ```html
 <form method="post">
-  {csrf}
+  {csrf/}
   ...
 </form>
 
-<meta name="csrf-token" content="{csrf token}">
+<meta name="csrf-token" content="{csrf token/}">
 ```
 
 **Options:** `token` - the bare token instead of the field, for a script that sends it in an
@@ -601,8 +611,8 @@ A form that posts back to the page, carrying the session's CSRF token and its ow
 
 ```html
 {form 'contact', class='wide'}
-  {input 'email', type='email', label='E-mail', required}
-  {textarea 'message', label='Message', rows=6}
+  {input 'email', type='email', label='E-mail', required/}
+  {textarea 'message', label='Message', rows=6/}
   <button>Send</button>
 {/form}
 ```
@@ -636,8 +646,8 @@ the PHP, where `padValidate` adds its messages to those of the template.
 
 ```html
 {form 'contact', error='Please correct the errors below.'}
-  {input 'email', type='email', label='E-mail', rules='required|email'}
-  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+  {input 'email', type='email', label='E-mail', rules='required|email'/}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 {/form}
 ```
 
@@ -665,7 +675,7 @@ without a field with rules, is an error.
 
 ```html
 {form 'signup', client, error}
-  {input 'email', type='email', label='E-mail', rules='required|email'}
+  {input 'email', type='email', label='E-mail', rules='required|email'/}
 {/form}
 ```
 
@@ -678,7 +688,7 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 <div x-data="{ rules: {^rules}, form: {}, errors: {} }">
   <input x-model="form.email" @blur="errors = padValidate.check(rules, form)">
 </div>
-{validator}
+{validator/}
 ```
 
 **Behavior:** Writes `pad/lib/validate.js` as one inline script - once a page, also when a
@@ -694,8 +704,8 @@ that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.fo
 A form field that refills from what was posted and shows the error `padValidate` found for it.
 
 ```html
-{input 'email', type='email', label='E-mail', required, placeholder='you@example.org'}
-{input 'terms', type='checkbox', label='I agree', value='yes'}
+{input 'email', type='email', label='E-mail', required, placeholder='you@example.org'/}
+{input 'terms', type='checkbox', label='I agree', value='yes'/}
 ```
 
 **Items:** the field name first; `type=` (default `text`), `label=` (a `<label for>` before
@@ -718,8 +728,8 @@ refused its file the same way.
 `{input}`'s refill, label and error for a text area.
 
 ```html
-{textarea 'message', label='Message', rows=6, required}
-{textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+{textarea 'message', label='Message', rows=6, required/}
+{textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 ```
 
 ---
@@ -796,8 +806,8 @@ is FALSE and, under the strict check, an error.
 The address of a file of `www/<app>/` with a version of its contents, for a far-future cache.
 
 ```html
-<link rel="stylesheet" href="{asset 'charts.css'}">     <!-- /charts/charts.css?v=1f3a9c0b2e -->
-{asset 'app.js', tag}                                     <!-- <script src="..." defer></script> -->
+<link rel="stylesheet" href="{asset 'charts.css'/}">     <!-- /charts/charts.css?v=1f3a9c0b2e -->
+{asset 'app.js', tag/}                                     <!-- <script src="..." defer></script> -->
 ```
 
 **Parameters:** the file, relative to `www/<app>/` - it never leaves it. `tag` writes the
@@ -814,7 +824,7 @@ the strict check, an error. `padAsset()` / `padAssetTag()` from PHP.
 This request's Content-Security-Policy nonce.
 
 ```html
-<script nonce="{nonce}">{ignore}
+<script nonce="{nonce/}">{ignore}
   document.title = 'Hello';
 {/ignore}</script>
 ```
@@ -876,7 +886,7 @@ of the page's files).
 
 Left out: `_` and dot entries, a directory holding a `_guard.php`, a bracketed route
 (`products/[id]`), a page with no template whose PHP only redirects, restarts or writes, a page
-whose template says `{meta sitemap=false}`, and every page or directory `$padSitemapSkip`
+whose template says `{meta sitemap=false/}`, and every page or directory `$padSitemapSkip`
 names. With `$padSitemap = TRUE` the same list answers `?sitemap.xml` (or `/app/sitemap.xml`)
 as the sitemap protocol's XML, and `?robots.txt` points to it - when the application has no
 page of that name.
@@ -940,7 +950,7 @@ applications, the engine, DATA and the public files of `www/`, and for an addres
 Return opening brace character.
 
 ```html
-{open}
+{open/}
 ```
 
 **Returns:** `&open;` (entity for `{`)
@@ -951,7 +961,7 @@ Return opening brace character.
 Return closing brace character.
 
 ```html
-{close}
+{close/}
 ```
 
 **Returns:** `&close;` (entity for `}`)
@@ -964,7 +974,7 @@ Return closing brace character.
 Make HTTP request.
 
 ```html
-{curl 'http://example.com', post='name=x&id=1'}
+{curl 'http://example.com', post='name=x&id=1'/}
 ```
 
 **Parameters:**
@@ -989,7 +999,7 @@ and the failure goes to the error log (and to the application's `_events/curl.ph
 good answer is kept; without a copy the failure is an error as before.
 
 ```html
-{curl 'https://api.example.com/rates.json', ttl=600}
+{curl 'https://api.example.com/rates.json', ttl=600/}
 
 {pad data='https://api.example.com/rates.json', ttl=600} {$code}: {$rate} {/pad}
 ```
@@ -1036,7 +1046,7 @@ failing `data=` is. The parsed sets are also returned, under the same names.
 Render a PAD template to an email - an HTML part and a text part - and send it.
 
 ```html
-{mail to=$email, template='order', subject='Order confirmation'}
+{mail to=$email, template='order', subject='Order confirmation'/}
 
 {mail to=$email, subject='Welcome'}
   <p>Hello {$name}</p>
@@ -1070,8 +1080,8 @@ template are errors. From PHP: `padMail ( $to, $template, $subject, $vars, $opti
 Evaluate and output expression.
 
 ```html
-{echo $variable}
-{echo 5 + 3}          → 8 - a quoted '5 + 3' is the text itself
+{echo $variable/}
+{echo 5 + 3/}          → 8 - a quoted '5 + 3' is the text itself
 ```
 
 **Parameters:**
@@ -1085,7 +1095,7 @@ Evaluate and output expression.
 Set output type.
 
 ```html
-{output 'download'}
+{output 'download'/}
 ```
 
 **Parameters:**
@@ -1107,7 +1117,7 @@ part of the page (a big `{table}`, a `{curl}`) is still rendering.
 <!-- _inits.pad -->
 <html>
   <head><link rel="stylesheet" href="/css/site.css"></head>
-  {flush}
+  {flush/}
   <body>@page@</body>
 </html>
 ```
@@ -1168,7 +1178,7 @@ Write Markdown as HTML.
   - see [the manual](?manual)
 {/markdown}
 
-{markdown $post.body}
+{markdown $post.body/}
 {markdown html} ... {/markdown}
 {markdown ignore} ... code with braces ... {/markdown}
 ```
@@ -1202,47 +1212,47 @@ shown, not run. See also the `markdown` pipe in FUNCTIONS.md.
 Draw a chart as inline SVG - no JavaScript, so it works in print and caches like any output.
 
 ```html
-{chart 'bar', data='sales', label='month', value='amount'}
-{chart 'line', data='visits', value='count', title='Visits this week'}
-{chart 'bar', sequence='fibonacci', rows=12}
-{chart 'bar', data='sales', label='month', value='online, shop', stacked}
-{chart 'pie', data='budget', label='post', value='amount'}
-{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend}
-{chart 'heatmap', data='visits', x='hour', y='day', value='count'}
-{chart 'sankey', data='energy', source='from', target='to', value='amount'}
-{chart 'network', data='friends', source='from', target='to', layout='radial'}
-{chart 'treemap', data='spend', levels='dept', label='post', value='amount'}
-{chart 'gauge', value=72, label='Disk in use', unit='%', bands='60, 85', target=80}
-{chart 'radar', data='phones', label='model', value='battery, camera, screen, speed'}
-{chart 'waterfall', data='result', label='step', value='amount', total='Profit'}
-{chart 'histogram', data='people', value='height', bins=12}
-{chart 'boxplot', data='salaries', label='team', value='salary'}
-{chart 'calendar', data='commits', date='day', value='count', year=2026}
-{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done'}
-{chart 'area', data='energy', label='year', value='coal, gas, wind, solar', stacked}
-{chart 'stream', data='listening', label='month', value='pop, rock, jazz'}
-{chart 'multiples', data='climate', by='city', label='month', value='temperature'}
-{chart 'candlestick', data='share', label='day', volume='volume'}
-{chart 'dual', data='results', label='month', value='revenue', line='margin'}
-{chart 'spiral', data='sales', label='month', value='amount', turn='year'}
-{chart 'rose', data='deaths', label='month', value='disease, wounds, other'}
-{chart 'radialbar', data='funds', label='class', value='raised', to=5000}
-{chart 'funnel', data='shop', label='step', value='visitors'}
-{chart 'pyramid', data='people', label='age', value='men, women'}
-{chart 'waffle', data='energy', label='use', value='kwh', cells=100}
-{chart 'marimekko', data='market', label='region', value='alpha, beta, gamma, other'}
-{chart 'parliament', data='election', label='party', value='seats'}
-{chart 'venn', data='speakers', sets='speaks', value='students'}
-{chart 'density', data='trials', label='group', value='ms'}
-{chart 'violin', data='scores', label='class', value='score'}
-{chart 'bullet', data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'}
-{chart 'rings', data='today', label='goal', value='done', to='target'}
-{chart 'parallel', data='cars', value='mpg, cylinders, horsepower, weight', color='origin'}
-{chart 'proportional', data='emissions', label='country', value='mt'}
-{chart 'chord', data='migration', source='from', target='to', value='people'}
-{chart 'arc', data='coauthors', source='author', target='with', value='papers'}
-{chart 'pack', data='files', levels='folder', label='file', value='kb'}
-{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'}
+{chart 'bar', data='sales', label='month', value='amount'/}
+{chart 'line', data='visits', value='count', title='Visits this week'/}
+{chart 'bar', sequence='fibonacci', rows=12/}
+{chart 'bar', data='sales', label='month', value='online, shop', stacked/}
+{chart 'pie', data='budget', label='post', value='amount'/}
+{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend/}
+{chart 'heatmap', data='visits', x='hour', y='day', value='count'/}
+{chart 'sankey', data='energy', source='from', target='to', value='amount'/}
+{chart 'network', data='friends', source='from', target='to', layout='radial'/}
+{chart 'treemap', data='spend', levels='dept', label='post', value='amount'/}
+{chart 'gauge', value=72, label='Disk in use', unit='%', bands='60, 85', target=80/}
+{chart 'radar', data='phones', label='model', value='battery, camera, screen, speed'/}
+{chart 'waterfall', data='result', label='step', value='amount', total='Profit'/}
+{chart 'histogram', data='people', value='height', bins=12/}
+{chart 'boxplot', data='salaries', label='team', value='salary'/}
+{chart 'calendar', data='commits', date='day', value='count', year=2026/}
+{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done'/}
+{chart 'area', data='energy', label='year', value='coal, gas, wind, solar', stacked/}
+{chart 'stream', data='listening', label='month', value='pop, rock, jazz'/}
+{chart 'multiples', data='climate', by='city', label='month', value='temperature'/}
+{chart 'candlestick', data='share', label='day', volume='volume'/}
+{chart 'dual', data='results', label='month', value='revenue', line='margin'/}
+{chart 'spiral', data='sales', label='month', value='amount', turn='year'/}
+{chart 'rose', data='deaths', label='month', value='disease, wounds, other'/}
+{chart 'radialbar', data='funds', label='class', value='raised', to=5000/}
+{chart 'funnel', data='shop', label='step', value='visitors'/}
+{chart 'pyramid', data='people', label='age', value='men, women'/}
+{chart 'waffle', data='energy', label='use', value='kwh', cells=100/}
+{chart 'marimekko', data='market', label='region', value='alpha, beta, gamma, other'/}
+{chart 'parliament', data='election', label='party', value='seats'/}
+{chart 'venn', data='speakers', sets='speaks', value='students'/}
+{chart 'density', data='trials', label='group', value='ms'/}
+{chart 'violin', data='scores', label='class', value='score'/}
+{chart 'bullet', data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'/}
+{chart 'rings', data='today', label='goal', value='done', to='target'/}
+{chart 'parallel', data='cars', value='mpg, cylinders, horsepower, weight', color='origin'/}
+{chart 'proportional', data='emissions', label='country', value='mt'/}
+{chart 'chord', data='migration', source='from', target='to', value='people'/}
+{chart 'arc', data='coauthors', source='author', target='with', value='papers'/}
+{chart 'pack', data='files', levels='folder', label='file', value='kb'/}
+{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'/}
 ```
 
 **Kinds:**
@@ -1344,8 +1354,8 @@ gets the dark steps in dark mode.
 A word-sized line chart: no axes, the last point marked.
 
 ```html
-Visits {sparkline data='visits', value='count'}
-{sparkline sequence='fibonacci', rows=12}
+Visits {sparkline data='visits', value='count'/}
+{sparkline sequence='fibonacci', rows=12/}
 ```
 
 **Behavior:** `{chart 'sparkline', ...}` by another name, with the same options; 120 x 32 by
@@ -1358,9 +1368,9 @@ A QR code as inline SVG - encoded on the server (`tags/_lib/qr.php`), no image l
 service, no JavaScript.
 
 ```html
-{qr 'https://example.com/order/42'}
-{qr $url, size=200, level='H', title='Open the order on your phone'}
-{qr 'WIFI:T:WPA;S:Office;P:secret;;', color='#2e7d32'}
+{qr 'https://example.com/order/42'/}
+{qr $url, size=200, level='H', title='Open the order on your phone'/}
+{qr 'WIFI:T:WPA;S:Office;P:secret;;', color='#2e7d32'/}
 ```
 
 | Option | Description |
@@ -1384,10 +1394,10 @@ A barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the serve
 (`tags/_lib/barcode.php`).
 
 ```html
-{barcode '871234567890'}                          <!-- EAN-13, the check digit added -->
-{barcode $parcel, type='code128', height=70}
-{barcode '03600029145', type='upca'}
-{barcode 'PAD', scale=3, plain, color='#2e7d32'}
+{barcode '871234567890'/}                          <!-- EAN-13, the check digit added -->
+{barcode $parcel, type='code128', height=70/}
+{barcode '03600029145', type='upca'/}
+{barcode 'PAD', scale=3, plain, color='#2e7d32'/}
 ```
 
 | Option | Description |
@@ -1413,7 +1423,7 @@ A month as a calendar, with its events (`tags/_lib/calendar.php`).
 
 ```html
 {calendar}                                                   <!-- this month -->
-{calendar '2026-10', data='agenda', date='when', title='what', link='url'}
+{calendar '2026-10', data='agenda', date='when', title='what', link='url'/}
 {calendar data='agenda'}
   <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
 {/calendar}
@@ -1449,8 +1459,8 @@ Source code coloured on the server (`lib/highlight.php`) - no JavaScript library
 {highlight 'php', lines, mark='3, 5-7'}
   <?php echo padArrSum ( $orders, 'total' ); ?>
 {/highlight}
-{highlight file='_data/products.json'}
-{echo $query | highlight('sql')}
+{highlight file='_data/products.json'/}
+{echo $query | highlight('sql')/}
 ```
 
 | Option | Description |
@@ -1477,8 +1487,8 @@ the coloured text alone.
 The scripts and stylesheets of a Vite build, linked by the name of their source.
 
 ```html
-{vite 'src/main.js'}                       <!-- the entry's CSS, its chunks preloaded, the script -->
-{vite 'src/main.jsx', 'src/admin.js', react}
+{vite 'src/main.js'/}                       <!-- the entry's CSS, its chunks preloaded, the script -->
+{vite 'src/main.jsx', 'src/admin.js', react/}
 ```
 
 | Option | Description |
@@ -1528,7 +1538,7 @@ finds the root in `this.shadowRoot`. A shadow root takes no styles from the page
 instead, each read once a request, a `</style` in one written so it cannot end the element. The
 file rule of `{source}` applies; a file that is not there or is no `.css` file, and a mode that
 is neither open nor closed, are errors. Inside the pair `{#name}` is `{shadow}`'s own parameter -
-in a custom tag, `{set $value = {#value}}` before the pair carries the tag's into it.
+in a custom tag, `{set $value = {#value}/}` before the pair carries the tag's into it.
 
 ---
 
@@ -1576,7 +1586,7 @@ Escape PAD syntax in content.
 Write HTML attributes - quoted, escaped, the false ones left out.
 
 ```html
-<button {attrs disabled=$busy, title=$help, aria-expanded=$open}>Save</button>
+<button {attrs disabled=$busy, title=$help, aria-expanded=$open/}>Save</button>
 ```
 
 **Items:** `name=expression`, a bare `name` (written as a bare attribute), or an expression
@@ -1600,7 +1610,7 @@ value - the text `false` stays `aria-expanded="false"`; an empty value is an emp
 Build a class list from fixed and conditional names.
 
 ```html
-<div class="{classes 'panel', active=$isActive, invalid=$hasErrors}">
+<div class="{classes 'panel', active=$isActive, invalid=$hasErrors/}">
 ```
 
 **Items:** an expression - a string of one or more names, or an array of them - is always
@@ -1613,9 +1623,9 @@ and escaped.
 A key of the `_lang/` catalogs, in the request's locale.
 
 ```html
-{trans 'cart.title'}
-{trans 'cart.items', count=$n}
-{trans 'greeting', name=$user, place='Utrecht'}
+{trans 'cart.title'/}
+{trans 'cart.items', count=$n/}
+{trans 'greeting', name=$user, place='Utrecht'/}
 ```
 
 **Parameters:** the key; `count=` picks the plural form and replaces `%d`; every other
@@ -1675,7 +1685,7 @@ A part of a cached page or section that renders on every request, the hit includ
   {topProducts}<li>{$name} {nocache}- {stock $id} left{/nocache}</li>{/topProducts}
 {/cache}
 
-<p>Served at {nocache}{php:date 'H:i:s'}{/nocache}</p>    the page cache keeps the page round it
+<p>Served at {nocache}{php:date 'H:i:s'/}{/nocache}</p>    the page cache keeps the page round it
 ```
 
 **Behavior:** where nothing caches, the content renders as any content does. Inside a `{cache}`
@@ -1710,7 +1720,7 @@ form closes at the first `#}` or `--}` after it.
 Render a mount point `<div>` for a React component, filled with data from a provider.
 
 ```html
-{reactData id='products', provider='products'}
+{reactData id='products', provider='products'/}
 ```
 
 **Parameters:**
@@ -1734,9 +1744,9 @@ An initials avatar as inline SVG - drawn on the server (`tags/_lib/avatar.php`),
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html
-{avatar 'Herbert Jebbink'}
-{avatar $name, size=32, shape='square'}
-{users}{avatar $email, size=40} {$name}{/users}
+{avatar 'Herbert Jebbink'/}
+{avatar $name, size=32, shape='square'/}
+{users}{avatar $email, size=40/} {$name}{/users}
 ```
 
 **Parameters:**
@@ -1763,8 +1773,8 @@ A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour
 hash of the value (`tags/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
-{identicon $email}
-{identicon $user.id, size=32, title='Your identicon'}
+{identicon $email/}
+{identicon $user.id, size=32, title='Your identicon'/}
 ```
 
 **Parameters:**
@@ -1789,9 +1799,9 @@ A grey image placeholder as inline SVG - crossing lines and the size or a text i
 service.
 
 ```html
-{placeholder '600x300', text='Hero image'}
-{placeholder ratio='16:9', fluid}
-{placeholder ratio='4:3', width=320}
+{placeholder '600x300', text='Hero image'/}
+{placeholder ratio='16:9', fluid/}
+{placeholder ratio='4:3', width=320/}
 ```
 
 **Parameters:**
@@ -1818,9 +1828,9 @@ line with its label and percentage (`tags/_lib/progress.php`); with `steps` a ro
 script, it prints.
 
 ```html
-{progress 72, max=100, label='Upload'}
-{progress $done, label=$file, color='success', size='small'}
-{progress 3, max=5, steps, label='Checkout'}
+{progress 72, max=100, label='Upload'/}
+{progress $done, label=$file, color='success', size='small'/}
+{progress 3, max=5, steps, label='Checkout'/}
 ```
 
 **Parameters:**
@@ -1848,9 +1858,9 @@ A score as stars (or hearts) in inline SVG - whole ones filled, a part of one cl
 score, the score said in words (`tags/_lib/rating.php`).
 
 ```html
-{rating 4.5, max=5}
-{products}{$product} {rating $score, size=16}{/products}
-{rating 3.75, icon='heart'}
+{rating 4.5, max=5/}
+{products}{$product} {rating $score, size=16/}{/products}
+{rating 3.75, icon='heart'/}
 ```
 
 **Parameters:**
@@ -1878,9 +1888,9 @@ rectangles (`tags/_lib/icon.php`) and written as inline SVG in the colour of the
 icon font, no sprite, no request.
 
 ```html
-{icon 'arrow-right'}
-<button>{icon 'trash', size=16} Delete</button>
-<a href="?next">{icon 'chevron-right', label='Next page'}</a>
+{icon 'arrow-right'/}
+<button>{icon 'trash', size=16/} Delete</button>
+<a href="?next">{icon 'chevron-right', label='Next page'/}</a>
 ```
 
 **Parameters:**
@@ -1906,8 +1916,8 @@ SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG d
 server and no request to a third party at all.
 
 ```html
-{gravatar $email, size=64, default='identicon', alt=$name}
-{gravatar $email, fallback='avatar', alt=$name}
+{gravatar $email, size=64, default='identicon', alt=$name/}
+{gravatar $email, fallback='avatar', alt=$name/}
 ```
 
 **Parameters:**
@@ -1933,9 +1943,9 @@ A chess position from FEN as inline SVG - the board, the pieces drawn as shapes 
 (no font, no image), the coordinates, marked squares and arrows (`tags/_lib/chess.php`).
 
 ```html
-{chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'}
-{chess $fen, flip, highlight='d1, d8', arrow='g5-d8'}
-{chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'}
+{chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
+{chess $fen, flip, highlight='d1, d8', arrow='g5-d8'/}
+{chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'/}
 ```
 
 **Parameters:**
@@ -1964,8 +1974,8 @@ A sudoku as a table - the givens bold, the open cells empty, or with `solve` the
 filled in by a backtracking solver in another colour (`tags/_lib/sudoku.php`).
 
 ```html
-{sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'}
-{sudoku $puzzle, solve, title='Saturday puzzle'}
+{sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
+{sudoku $puzzle, solve, title='Saturday puzzle'/}
 ```
 
 **Parameters:**
@@ -2025,9 +2035,9 @@ What changed between two texts - word by word in the flow of the text, or line b
 one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
 
 ```html
-{diff $draft, $final}
-{diff $old, $new, lines, from='Monday', to='Friday'}
-{diff $before, $after, side, from='before', to='after'}
+{diff $draft, $final/}
+{diff $old, $new, lines, from='Monday', to='Friday'/}
+{diff $before, $after, side, from='before', to='after'/}
 ```
 
 **Parameters:**
@@ -2055,9 +2065,9 @@ A long text cut to whole words with an ellipsis, centred on the first match of t
 words when given, every match in a `<mark>` (`tags/_lib/excerpt.php`).
 
 ```html
-{excerpt $post, words=40}
-{results}<p>{excerpt $body, words=24, highlight=$q}</p>{/results}
-{excerpt $page.html, words=30, html}
+{excerpt $post, words=40/}
+{results}<p>{excerpt $body, words=24, highlight=$q/}</p>{/results}
+{excerpt $page.html, words=30, html/}
 ```
 
 **Parameters:**
@@ -2085,9 +2095,9 @@ Placeholder text: "Lorem ipsum dolor sit amet, ..." and then Latin words, the sa
 every request for the same seed (`tags/_lib/lorem.php`).
 
 ```html
-<h2>{lorem words=4}</h2>
-<p>{lorem sentences=2}</p>
-{lorem paragraphs=3, seed=7, varied}
+<h2>{lorem words=4/}</h2>
+<p>{lorem sentences=2/}</p>
+{lorem paragraphs=3, seed=7, varied/}
 ```
 
 **Parameters:**
@@ -2239,8 +2249,8 @@ A text with a copy-to-clipboard button - the text in a `<pre><code>` that select
 with one click, so it is copied by hand where the button cannot run (`tags/_lib/copy.php`).
 
 ```html
-{copy 'composer require pad/pad'}
-{copy $command, label='Copy command'}
+{copy 'composer require pad/pad'/}
+{copy $command, label='Copy command'/}
 {copy label='Copy settings'}
   padSqlDatabase={$app}/{$app}.sqlite
 {/copy}
@@ -2268,8 +2278,8 @@ A vote among a few answers, once per visitor, and then the results as bars with 
 percentages - built on a `{live}` region, and a plain form without scripting (`tags/_lib/poll.php`).
 
 ```html
-{poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'}
-{poll 'favorite-language', options='PHP, Python, Ruby, Go', results}
+{poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'/}
+{poll 'favorite-language', options='PHP, Python, Ruby, Go', results/}
 ```
 
 **Parameters:**
@@ -2302,8 +2312,8 @@ once with GD (`tags/_lib/img.php`) and kept in `www/<application>/_thumbs/`, whe
 sends it like any asset.
 
 ```html
-{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'}
-{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''}
+{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
+{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
 ```
 
 **Parameters:**
@@ -2338,9 +2348,9 @@ only when the button is pressed (`tags/_lib/video.php`) - nothing of the video s
 visitor asks for it. A file of `www/<application>/` is a `<video>` element.
 
 ```html
-{video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
-{video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'}
-{video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'}
+{video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
+{video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'/}
+{video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'/}
 ```
 
 **Parameters:**
@@ -2377,7 +2387,7 @@ What the content renders, sent as a PDF instead of the page - a writer in plain 
   <table>{lines}<tr><td>{$item}</td><td align="right">{$amount}</td></tr>{/lines}</table>
 {/pdf}
 {pdf preview, file='invoice'}...{/pdf}      # the content on a sheet, links to ?page&padPdf
-{pdf download}                              # single: the whole page as an attachment
+{pdf download/}                              # single: the whole page as an attachment
 ```
 
 **Parameters:**
@@ -2465,8 +2475,8 @@ server from Natural Earth's outlines (`tags/_lib/map.php`, `tags/_lib/map/world.
 no tiles, no remote service.
 
 ```html
-{map 'world', data='sales', key='country', value='amount'}
-{map 'europe', data='visitors', scale='quantile', title='Visitors per country'}
+{map 'world', data='sales', key='country', value='amount'/}
+{map 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
 {map 'south-america', key='code', value='forest', width=320}
   code,forest
   BRA,59.1
@@ -2504,8 +2514,8 @@ Events on a time axis as inline SVG (`tags/_lib/timeline.php`) - cards above and
 spans as bars, or one under the other for a long list.
 
 ```html
-{timeline data='releases', date='when', label='what', text='detail'}
-{timeline data='plan', from='start', to='end', date='day', label='name', color='kind'}
+{timeline data='releases', date='when', label='what', text='detail'/}
+{timeline data='plan', from='start', to='end', date='day', label='name', color='kind'/}
 {timeline date='year', label='what', vertical}
   year,what
   1969,Moon landing
@@ -2544,9 +2554,9 @@ numbers right-aligned and formatted alike down their column, a totals row, heade
 sort and page links that page, all on the server.
 
 ```html
-{datatable data='orders', columns='number, customer, total', totals='total'}
-{datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped}
-{datatable data='cities', rows=10, sortable, caption='Largest cities'}
+{datatable data='orders', columns='number, customer, total', totals='total'/}
+{datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
+{datatable data='cities', rows=10, sortable, caption='Largest cities'/}
 {datatable totals='amount'}
   month,amount
   Jan,12400
@@ -2560,7 +2570,7 @@ sort and page links that page, all on the server.
 | `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
 | `columns` | The fields shown and their order, default every field of the first row |
 | `labels` | The header of each column, in the order of `columns` - default the field name as a headline (`order_date` is Order Date) |
-| `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{echo $value \| pipe}` |
+| `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{echo $value \| pipe/}` |
 | `totals` | Columns summed - over every row, not only the page shown - in a totals row with Total in its first cell |
 | `sortable` | Each header a link that sorts on the server: `?sort=total&dir=desc` on the same page |
 | `rows` | Rows per page, with page links below (`?page=2`) made from the `{pager}`'s items |
@@ -2587,8 +2597,8 @@ A table of contents of the page from its own rendered headings (`tags/_lib/toc.p
 written where `{toc}` stands once the whole page has rendered - the headings below it included.
 
 ```html
-{toc}
-{toc levels='2-4', title='On this page', list='ul'}
+{toc/}
+{toc levels='2-4', title='On this page', list='ul'/}
 ```
 
 **Parameters:**
@@ -2615,8 +2625,8 @@ The time left until a moment, in words, inside a `<time datetime>` (`tags/_lib/c
 optionally ticking every second in the browser.
 
 ```html
-{countdown '2026-12-31 00:00'}                         <!-- 84 days, 3 hours -->
-{countdown $launch, units=3, live, past='We are live!'}
+{countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
+{countdown $launch, units=3, live, past='We are live!'/}
 ```
 
 **Parameters:**
@@ -2643,8 +2653,8 @@ How long ago a moment was, in words, inside a `<time>` with the moment as its `d
 full, as its `title` (`tags/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
-{timeago $created}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
-{timeago $posted, format='j M Y'}
+{timeago $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
+{timeago $posted, format='j M Y'/}
 ```
 
 **Parameters:**
@@ -2666,8 +2676,8 @@ An emoji by its GitHub or Slack shortcode, as a labelled image (`tags/_lib/emoji
 replaces the shortcodes in a text.
 
 ```html
-{emoji 'rocket'}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
-{emoji ':tada:', label='Party!'}
+{emoji 'rocket'/}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
+{emoji ':tada:', label='Party!'/}
 {$comment | emoji}                 <!-- 'Shipped :rocket:' becomes 'Shipped 🚀' -->
 ```
 
@@ -2690,9 +2700,9 @@ strict error that names the nearest one (`did you mean ':rocket:'?`).
 A country's flag from its ISO 3166-1 code, optionally with its English name (`tags/_lib/country.php`).
 
 ```html
-{country 'NL'}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
-{country 'NLD', name}      <!-- the flag and Netherlands beside it -->
-{country $code, name}
+{country 'NL'/}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
+{country 'NLD', name/}      <!-- the flag and Netherlands beside it -->
+{country $code, name/}
 ```
 
 **Parameters:**
@@ -2715,8 +2725,8 @@ A JSON value or a PHP array as a tree to fold open and shut (`tags/_lib/jsonview
 list a `<details>`, no script.
 
 ```html
-{jsonview $response, open=1, title='GET /orders/42'}
-{jsonview data='settings'}
+{jsonview $response, open=1, title='GET /orders/42'/}
+{jsonview data='settings'/}
 {jsonview}
   {"id": 42, "paid": true, "lines": [ ... ]}
 {/jsonview}
@@ -2746,12 +2756,12 @@ a `data` name that names nothing and no value at all are strict errors.
 Frame the page with a layout instead of its directories' wrappers.
 
 ```html
-{extends '_layouts/report'}
+{extends '_layouts/report'/}
 
 {block 'title'}Sales report{/block}
 
 {block 'sidebar'}
-  {parent}
+  {parent/}
   <a href="?export">Export</a>
 {/block}
 
@@ -2764,7 +2774,7 @@ directory keeps it from being a page of its own. It replaces the `_inits.pad`/`_
 frame and the `_common` wrapper; a layout may extend a layout. The page's text outside its
 blocks goes where the layout writes `@page@`, or in front of it when it has none. The tag
 must stand directly in the page's own template; the name may be an expression the page's PHP
-set (`{extends $layout}`).
+set (`{extends $layout/}`).
 
 ---
 
@@ -2789,7 +2799,7 @@ overrides nothing is reported. Text between `{ignore}` tags is left alone.
 Inside an overriding `{block}`: the content it overrides.
 
 ```html
-{block 'sidebar'}{parent}<a href="?export">Export</a>{/block}
+{block 'sidebar'}{parent/}<a href="?export">Export</a>{/block}
 ```
 
 Through a chain of layouts each `{parent}` is the next block down. Outside an overriding block
@@ -2827,7 +2837,7 @@ A named place for content in a custom tag's template, and the fill a caller give
 Declares the parameters of a custom tag, at the top of its template.
 
 ```html
-{parms title, subtitle='', tone='info'}
+{parms title, subtitle='', tone='info'/}
 <h2 class="{#tone}">{#title}</h2>
 ```
 
@@ -2843,7 +2853,7 @@ A custom tag written in the template itself - what an `_tags/name.pad` file is, 
 
 ```html
 {define 'card'}
-  {parms title, tone='info'}
+  {parms title, tone='info'/}
   <div class="card {#tone}">
     <h2>{#title}</h2>
     @content@
@@ -2897,7 +2907,7 @@ parameter named like an option every tag takes (`sort`, `first`, `content` ...) 
 The page's metadata, for a page without PHP as much as one with.
 
 ```html
-{meta title='Monthly report', layout='_layouts/print', cache=600, access='admin', sitemap=false}
+{meta title='Monthly report', layout='_layouts/print', cache=600, access='admin', sitemap=false/}
 ```
 
 **Items:**
@@ -2930,7 +2940,7 @@ and nothing else: the page renders up to the end of the fragment, which is then 
 response, bare and untidied like a `padInclude` request; the rest of the page does not render.
 The first fragment of the name to finish is sent. A fragment that never rendered is an error
 under the strict check, an empty 404 otherwise - keep conditions inside the fragment. For
-HTMX (`hx-get="?orders&padFragment=order-list"`) and `{ajax 'orders', fragment='order-list'}`.
+HTMX (`hx-get="?orders&padFragment=order-list"`) and `{ajax 'orders', fragment='order-list'/}`.
 
 **htmx's target:** a request htmx makes (`HX-Request: true`) that names no fragment itself
 asks for the one called like the element it swaps - the `HX-Target` header, its id: with
@@ -2967,7 +2977,7 @@ Everything pushed to a stack, in push order.
 
 ```html
 <head>
-  {stack 'styles'}
+  {stack 'styles'/}
 </head>
 ```
 
@@ -2983,7 +2993,7 @@ nothing pushed to prints nothing.
 Dump debug information.
 
 ```html
-{dump}
+{dump/}
 ```
 
 **Behavior:** Calls `padDump()` with message
@@ -2994,8 +3004,8 @@ Dump debug information.
 Show a value in the page while it renders - for a local request only.
 
 ```html
-{debug $order}
-{debug}
+{debug $order/}
+{debug/}
 ```
 
 **Behavior:** Writes a collapsible `<details>` tree of the value. `{debug}` alone shows every
@@ -3028,8 +3038,8 @@ Enable detailed tracing.
 A condition a test run holds the page to; silent everywhere else.
 
 ```html
-{assert $total eq 42}
-{assert $lines gt 0, 'the cart has lines'}
+{assert $total eq 42/}
+{assert $lines gt 0, 'the cart has lines'/}
 ```
 
 **Parameters:**
@@ -3047,7 +3057,7 @@ can stay in a page that goes to production. See `pad test` in `apps/cli/README.m
 Trigger a PAD error.
 
 ```html
-{error 'Error message'}
+{error 'Error message'/}
 ```
 
 **Parameters:**
@@ -3061,7 +3071,7 @@ Trigger a PAD error.
 Throw PHP exception.
 
 ```html
-{exception 'Exception message'}
+{exception 'Exception message'/}
 ```
 
 **Parameters:**
@@ -3075,7 +3085,7 @@ Throw PHP exception.
 Exit PAD processing.
 
 ```html
-{exit}
+{exit/}
 ```
 
 **Behavior:** Calls `padExit()` to terminate processing
@@ -3138,7 +3148,7 @@ Generate mathematical sequences.
 Skip to next iteration of a loop.
 
 ```html
-{continue 'tagname'}
+{continue 'tagname'/}
 ```
 
 **Parameters:**
@@ -3152,7 +3162,7 @@ Skip to next iteration of a loop.
 Soft stop - graceful end of loop.
 
 ```html
-{cease 'tagname'}
+{cease 'tagname'/}
 ```
 
 **Parameters:**
@@ -3166,7 +3176,7 @@ Soft stop - graceful end of loop.
 Hard stop - immediate exit from loop.
 
 ```html
-{break 'tagname'}
+{break 'tagname'/}
 ```
 
 **Parameters:**
@@ -3237,7 +3247,7 @@ Transform the last pushed sequence in place, through an action.
 
 ```html
 {sequence '1..5', push='s'}{/sequence}
-{resume reverse}
+{resume reverse/}
 {pull 's'}{$sequence} {/pull}                  → 5 4 3 2 1
 ```
 
@@ -3396,13 +3406,13 @@ Resolve naming conflicts with explicit prefixes:
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
 | `common:` | Tag from the `_common` app | `{common:padFrame}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
-| `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)}` in an expression |
+| `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)/}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
 | `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
-| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."}` tag |
+| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."/}` tag |
 | `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
@@ -3423,7 +3433,7 @@ Resolve naming conflicts with explicit prefixes:
 Options modify tag behavior. Add them to any tag, separated by commas: `{data 'x', ignore}`.
 An option name without a value directly after a single parameter may leave the comma out -
 `{data 'x' ignore}` is the same tag; one with a value, `{pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
-other word after a value is a pipe, `{echo 'abc' upper}` gives `ABC`.
+other word after a value is a pipe, `{echo 'abc' upper/}` gives `ABC`.
 
 ### Data Flow Options
 
@@ -3540,7 +3550,7 @@ Access iteration state and metadata using `property@tag` syntax.
   {first@items}<ul>{/first@items}
   <li class="{even@items ? even : odd}">{$name}</li>
   {last@items}</ul>{/last@items}
-  Index: {current@items} of {count@items}
+  Index: {current@items/} of {count@items/}
 {/items}
 ```
 

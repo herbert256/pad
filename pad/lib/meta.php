@@ -69,7 +69,7 @@
 
     if ( isset ( $padMeta ['layout'] ) and (string) $padMeta ['layout'] !== '' and ! str_contains ( $text, '{extends' ) )
       if ( preg_match ( '/^[A-Za-z0-9_\/.-]+$/D', (string) $padMeta ['layout'] ) )
-        $template = "{extends '" . $padMeta ['layout'] . "'}" . $template;
+        $template = "{extends '" . $padMeta ['layout'] . "'/}" . $template;
       elseif ( $GLOBALS ['padCheckSyntax'] )
         padError ( "there is no layout named '" . padMakeSafe ( (string) $padMeta ['layout'], 60 ) . "' - {meta layout=} names a template from the application root" );
 

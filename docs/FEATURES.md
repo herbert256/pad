@@ -99,7 +99,7 @@ visitor's other requests do not wait - and nothing is cached, compressed or buff
 
 ### Vite builds
 
-`{vite 'src/main.js'}` links the scripts and stylesheets of a Vite build by the name of their
+`{vite 'src/main.js'/}` links the scripts and stylesheets of a Vite build by the name of their
 source: from the manifest of `www/<app>/build/.vite/manifest.json` (`$padViteBuild`) - the
 entry's CSS, its chunks as `modulepreload`, its `<script type="module">` - or, while the dev
 server runs (`$padViteDev`, or the address in `build/hot`), from the dev server with hot module
@@ -112,7 +112,7 @@ the islands PAD writes as before - no Babel in the browser.
 `{$lastmod}` - walked from the files; `{sitemap 'docs'}` one directory. With
 `$padSitemap = TRUE`, `?sitemap.xml` answers the sitemap XML and `?robots.txt` points to it.
 Left out: `_` entries, directories with a `_guard.php`, bracketed routes, action pages (no
-template, PHP that only redirects), `{meta sitemap=false}` and `$padSitemapSkip` names.
+template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip` names.
 
 ### JSON and CSV from the same page
 
@@ -135,7 +135,7 @@ $padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
   exist, or CSV without a list answers 406; asked only through `Accept`, the page renders
   as HTML. An exposing page sends `Vary: Accept`.
 - `$padOutputType = 'json'` (or `'csv'`) in `_config/config.php` makes every page of an
-  application answer data; `{output 'json'}` does it from a template.
+  application answer data; `{output 'json'/}` does it from a template.
 
 ### Maintenance mode
 
@@ -200,9 +200,9 @@ the strict check, an error.
 
 ### Asset versioning
 
-`{asset 'charts.css'}` / `padAsset ( 'charts.css' )` is `/<app>/charts.css?v=<hash of the
+`{asset 'charts.css'/}` / `padAsset ( 'charts.css' )` is `/<app>/charts.css?v=<hash of the
 contents>` of `www/<app>/charts.css` - safe behind a far-future cache header; `{asset
-'app.js', tag}` writes `<script src defer>` (`<link rel="stylesheet">` for .css, module for
+'app.js', tag/}` writes `<script src defer>` (`<link rel="stylesheet">` for .css, module for
 .mjs), with the nonce when `$padCsp` asks for one. A missing file is the plain address and a
 strict error; a name never leaves `www/<app>/`.
 
@@ -270,7 +270,7 @@ matches is an error without `'*'`. `padCurlRecorded ()` lists the calls, `padCur
 ### Lookups Between Data Sets
 ```
 {orders}
-  {$number}: {echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'}
+  {$number}: {echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'/}
 {/orders}
 ```
 `lookup(set, key, field)` finds the row of another set - a `{data}` block, a page array, a
@@ -292,7 +292,7 @@ order of first appearance - a `sort` written after the group sorts the groups.
 ### Page links (pager tag)
 ```
 {products page=$pg ?? 1, rows=12}<article>{$name}</article>{/products}
-{pager 'products', window=2}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
+{pager 'products', window=2/}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
 ```
 The pager follows the paged tag (it reads the total the page handling booked), links through
 `$padGo` keeping the other query values, sets the variable `page=` was written with (`pg`),
@@ -303,7 +303,7 @@ and marks the current page `aria-current="page"`. As a pair it iterates the link
 ```
 <ul>
 {tree 'menu', children='items'}
-  <li>{$title}{branch}<ul>{recurse}</ul>{/branch}</li>
+  <li>{$title}{branch}<ul>{recurse/}</ul>{/branch}</li>
 {/tree}
 </ul>
 ```
@@ -318,8 +318,8 @@ A `{form}` with `{input}` fields and `padValidate` in the page's PHP is describe
 The rules can stand on the fields instead - checked before any PHP runs:
 ```
 {form 'contact', error='Please correct the errors below.'}     # the message above the fields
-  {input 'email', type='email', label='E-mail', rules='required|email'}
-  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+  {input 'email', type='email', label='E-mail', rules='required|email'/}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 {/form}
 ```
 A post of the form is validated against them from the page's text (lib/form.php), so
@@ -335,15 +335,15 @@ keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateCl
 exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
 checker:
 ```
-{form 'signup', client, error}{input 'email', label='E-mail', rules='required|email'}{/form}
-<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{validator}
+{form 'signup', client, error}{input 'email', label='E-mail', rules='required|email'/}{/form}
+<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{validator/}
 ```
 
 ### Layouts (extends / block / parent)
 ```
-{extends '_layouts/report'}                  # replaces the _inits/_exits frame
+{extends '_layouts/report'/}                  # replaces the _inits/_exits frame
 {block 'title'}Sales{/block}                 # overrides the layout's {block 'title'}...{/block}
-{block 'sidebar'}{parent} <a>Export</a>{/block}
+{block 'sidebar'}{parent/} <a>Export</a>{/block}
 <p>the rest goes to the layout's @page@</p>
 ```
 Resolved in the text while the page is assembled. Without `{extends}` a page's blocks
@@ -353,7 +353,7 @@ title without PHP. The block name is always quoted (`{block}` alone is the `_com
 ### Components (slots / parms)
 ```
 {card title='Revenue'}                       # _tags/card.pad:
-  <strong>{$revenue}</strong>                #   {parms title, tone='info'}
+  <strong>{$revenue}</strong>                #   {parms title, tone='info'/}
   {slot 'footer'}<a>Report</a>{/slot}        #   <h2>{#title}</h2> @content@
 {/card}                                      #   {slot 'footer'}<footer>@content@</footer>{/slot}
 ```
@@ -364,7 +364,7 @@ is an error under the strict check.
 
 ### Tags defined in the template (define / macro)
 ```
-{define 'card'}{parms title}<div><h2>{#title}</h2>@content@</div>{/define}   # an _tags/card.pad without the file
+{define 'card'}{parms title/}<div><h2>{#title}</h2>@content@</div>{/define}   # an _tags/card.pad without the file
 {card title='Revenue'}{$revenue}{/card}
 
 {macro 'entry', label, type='text'}<label>{$label} <input type="{$type}"></label>{/macro}
@@ -388,7 +388,7 @@ it finds `this.shadowRoot` ready.
 
 ### Stacks (push / stack)
 ```
-<head>{stack 'scripts'}</head>                # filled in after the whole page rendered
+<head>{stack 'scripts'/}</head>                # filled in after the whole page rendered
 
 {push 'scripts', once='chart'}                # where a component needs it; once per key
   <script src="chart.js"></script>
@@ -399,7 +399,7 @@ from PHP. A push inside a `{cache}` section is made again on every hit.
 
 ### Page Metadata
 ```
-{meta title='Monthly report', layout='_layouts/print', cache=600}
+{meta title='Monthly report', layout='_layouts/print', cache=600/}
 ```
 Read while the page is assembled, after the PHP: `title=` (any non-engine name) becomes
 `$title` for the wrapper, `layout=` is `{extends}`, `cache=` the page's own cache time (0 keeps
@@ -410,7 +410,7 @@ it out) when the app caches; `access=`/`sitemap=` are kept for `padMeta('access'
 {fragment 'order-list'}<ul>{orders}<li>{$number}</li>{/orders}</ul>{/fragment}
 ```
 `?orders&padFragment=order-list` (or `$padFragmentOnly` set in PHP) answers with that
-fragment alone - for HTMX swaps and `{ajax 'orders', fragment='order-list'}`; a normal
+fragment alone - for HTMX swaps and `{ajax 'orders', fragment='order-list'/}`; a normal
 request renders the whole page. An htmx request needs no parameter when its target is named
 like the fragment: `hx-target="#order-list"` sends `HX-Target: order-list`, and a page with
 that fragment answers it alone (one without renders whole). The page cache answers a script's request for a part -
@@ -419,8 +419,8 @@ fragment the PHP chose, since its key is the address.
 
 ### HTML attribute helpers
 ```
-<button {attrs disabled=$busy, title=$help, aria-expanded=$open}>Save</button>
-<div class="{classes 'panel', active=$isActive, invalid=$hasErrors}">
+<button {attrs disabled=$busy, title=$help, aria-expanded=$open/}>Save</button>
+<div class="{classes 'panel', active=$isActive, invalid=$hasErrors/}">
 ```
 A false boolean attribute is left out, a true one written bare; values are escaped. Items
 are attribute names (dashes allowed), never engine options.
@@ -449,7 +449,7 @@ the miss only. Put it before the section, or in a `{nocache}` part, which render
 
 ### Remote data with a cache
 ```
-{curl 'https://api.example.com/rates.json', ttl=600}
+{curl 'https://api.example.com/rates.json', ttl=600/}
 {pad data='https://api.example.com/rates.json', ttl=600} {$rate} {/pad}
 _data/rates.curl:  <curl><url>https://...</url><ttl>600</ttl></curl>
 ```
@@ -466,10 +466,10 @@ padPrefetch ( [ 'rates' => 'https://example.com/rates.json', 'weather' => 'SELF:
 
 ### Translations and locale formatting
 ```
-{trans 'cart.title'}                          # _lang/<locale>.json: "cart.title": "Your cart"
-{trans 'cart.items', count=$n}                # "%d item|%d items" - count picks the form
-{trans 'greeting', name=$user}                # "Hello :name"
-{echo 'cart.title' | trans}                   # the pipe form
+{trans 'cart.title'/}                          # _lang/<locale>.json: "cart.title": "Your cart"
+{trans 'cart.items', count=$n/}                # "%d item|%d items" - count picks the form
+{trans 'greeting', name=$user/}                # "Hello :name"
+{echo 'cart.title' | trans/}                   # the pipe form
 {$price | currency('EUR')}                    # € 1.234,50 in nl, €1,234.50 in en
 {$created | localDate('long', 'short')}       # date and time styles, or an ICU pattern
 ```
@@ -500,30 +500,30 @@ through; `padCollection('blog')` gives the rows to PHP.
 
 ### Charts
 ```
-{chart 'bar', data='sales', label='month', value='amount'}   # inline SVG, no JavaScript
-{chart 'line', data='visits', title='Visits this week'}      # data: store, page array, _data file
-{chart 'bar', data='sales', value='online, shop', stacked}   # several series; 'hbar' lies down
-{chart 'pie', data='budget'}                                 # also donut
-{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend}   # bubble: size=
-{chart 'heatmap', data='visits', x='hour', y='day', value='count'}
-{chart 'sankey', data='energy', source='from', target='to', value='amount'}
-{chart 'network', data='friends', source='a', target='b', layout='radial', arrows}
-{chart 'treemap', data='spend', levels='dept', label='post', value='amount'}  # also sunburst
-{sparkline sequence='fibonacci', rows=12}                    # word-sized; sequence terms as data
-{chart 'gauge', value=72, unit='%', bands='60, 85', target=80}   # one number - no data needed
-{chart 'radar', data='phones', label='model', value='battery, camera, screen'}
-{chart 'waterfall', data='result', label='step', value='amount', total='Profit'}
-{chart 'histogram', data='people', value='height', bins=12}  # also boxplot (label= groups)
-{chart 'calendar', data='commits', date='day', value='count', year=2026}
-{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done', mark='2026-10-07'}
-{chart 'area', data='energy', label='year', value='coal, gas, wind', stacked}   # percent; also stream, multiples (by=)
-{chart 'candlestick', data='share', label='day', volume='volume'}   # open/high/low/close; dual: value= bars, line= right axis
-{chart 'funnel', data='shop', label='step', value='visitors'}       # pyramid: one field a triangle, two back to back
-{chart 'waffle', data='energy', cells=100}                          # also marimekko, parliament, venn (sets=), rose, radialbar
-{chart 'bullet', data='kpis', value='actual', target='goal', bands='50, 75'}   # also rings, proportional
-{chart 'violin', data='scores', label='class', value='score'}       # also density, parallel (value= the axes), spiral (period=)
-{chart 'chord', data='migration', source='from', target='to', value='people'}  # also arc
-{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'}  # pack: the treemap's options
+{chart 'bar', data='sales', label='month', value='amount'/}   # inline SVG, no JavaScript
+{chart 'line', data='visits', title='Visits this week'/}      # data: store, page array, _data file
+{chart 'bar', data='sales', value='online, shop', stacked/}   # several series; 'hbar' lies down
+{chart 'pie', data='budget'/}                                 # also donut
+{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend/}   # bubble: size=
+{chart 'heatmap', data='visits', x='hour', y='day', value='count'/}
+{chart 'sankey', data='energy', source='from', target='to', value='amount'/}
+{chart 'network', data='friends', source='a', target='b', layout='radial', arrows/}
+{chart 'treemap', data='spend', levels='dept', label='post', value='amount'/}  # also sunburst
+{sparkline sequence='fibonacci', rows=12/}                    # word-sized; sequence terms as data
+{chart 'gauge', value=72, unit='%', bands='60, 85', target=80/}   # one number - no data needed
+{chart 'radar', data='phones', label='model', value='battery, camera, screen'/}
+{chart 'waterfall', data='result', label='step', value='amount', total='Profit'/}
+{chart 'histogram', data='people', value='height', bins=12/}  # also boxplot (label= groups)
+{chart 'calendar', data='commits', date='day', value='count', year=2026/}
+{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done', mark='2026-10-07'/}
+{chart 'area', data='energy', label='year', value='coal, gas, wind', stacked/}   # percent; also stream, multiples (by=)
+{chart 'candlestick', data='share', label='day', volume='volume'/}   # open/high/low/close; dual: value= bars, line= right axis
+{chart 'funnel', data='shop', label='step', value='visitors'/}       # pyramid: one field a triangle, two back to back
+{chart 'waffle', data='energy', cells=100/}                          # also marimekko, parliament, venn (sets=), rose, radialbar
+{chart 'bullet', data='kpis', value='actual', target='goal', bands='50, 75'/}   # also rings, proportional
+{chart 'violin', data='scores', label='class', value='score'/}       # also density, parallel (value= the axes), spiral (period=)
+{chart 'chord', data='migration', source='from', target='to', value='people'/}  # also arc
+{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'/}  # pack: the treemap's options
 {chart 'bar', label='month', value='amount'}                 # a pair: the content is the data -
   month,amount                                               #   JSON, YAML, XML or CSV, told
   Jan,12400                                                  #   apart on sight (type= names it)
@@ -536,7 +536,7 @@ Code: `pad/tags/_lib/chart.php` (bar, line, sparkline) and `pad/tags/_lib/chart/
 
 ### Month calendar
 ```
-{calendar data='agenda', title='what'}         # this month (or ?month=2026-11), events, links ‹ ›
+{calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
 {calendar '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
   <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
 {/calendar}
@@ -545,7 +545,7 @@ Code: `pad/tags/_lib/chart.php` (bar, line, sparkline) and `pad/tags/_lib/chart/
 ### Syntax highlighting
 ```
 {highlight 'php', lines, mark='3'}<?php echo $x; ?>{/highlight}   # pad php html css js json yaml sql bash
-{highlight file='_data/products.json'}                           # a file of the app, language from its extension
+{highlight file='_data/products.json'/}                           # a file of the app, language from its extension
 {$query | highlight('sql')}                                       # a value - escaped, so no sanitize on top
 {source}                                     # the page's own template and PHP as tabs, coloured
 {source 'orders', files='_lib/orders.php, www:orders.js'}           # another page, more files (www: = www/<app>/)
@@ -553,46 +553,46 @@ Code: `pad/tags/_lib/chart.php` (bar, line, sparkline) and `pad/tags/_lib/chart/
 
 ### QR codes and barcodes
 ```
-{qr 'https://example.com/order/42'}            # inline SVG, encoded on the server (tags/_lib/qr.php)
-{qr $url, size=200, level='H', title='Scan'}   # level L, M (default), Q, H; color=, background=
-{barcode '871234567890'}                       # EAN-13 (check digit added); type= ean8, upca, code128
-{barcode $parcel, type='code128', height=70}   # scale= module width, plain = no digits under the bars
+{qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (tags/_lib/qr.php)
+{qr $url, size=200, level='H', title='Scan'/}   # level L, M (default), Q, H; color=, background=
+{barcode '871234567890'/}                       # EAN-13 (check digit added); type= ean8, upca, code128
+{barcode $parcel, type='code128', height=70/}   # scale= module width, plain = no digits under the bars
 ```
 
 ### Showcase tags
 ```
-{avatar 'Herbert Jebbink', size=48, shape='square'}   # initials in a circle/square, colour from a hash of the name
-{identicon $email, size=64}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
-{placeholder '600x300', text='Hero image'}    # grey SVG box with crossing lines; ratio='16:9', fluid
-{progress 72, max=100, label='Upload'}       # styled <progress> with label and %; steps for dots, color=, size=
-{rating 4.5, max=5}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
-{icon 'arrow-right', size=20, label='Next'}   # built-in line icon in currentColor; decorative unless label=
-{gravatar $email, size=64, default='identicon'} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
-{chess $fen, flip, highlight='e2,e4', arrow='e2-e4'}   # a FEN as an SVG board, pieces described for a screen reader
-{sudoku '53..7....6..195...', solve}             # 81 cells as a table, givens bold; solve fills the solution in
+{avatar 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
+{identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
+{placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
+{progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
+{rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
+{icon 'arrow-right', size=20, label='Next'/}   # built-in line icon in currentColor; decorative unless label=
+{gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
+{chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
+{sudoku '53..7....6..195...', solve/}             # 81 cells as a table, givens bold; solve fills the solution in
 {crossword}ECHO: Writes a value{/crossword}       # WORD: clue lines laid out, numbered SVG grid + Across/Down clues; solution
-{diff $old, $new}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
-{excerpt $body, words=24, highlight=$q}         # whole words around the first match, <mark>ed, escaped; html
-{lorem paragraphs=3, seed=7}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
+{diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
+{excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
+{lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 {tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
 {accordion single, open=1}{tab 'Question'}Answer{/tab}...{/accordion}   # <details> items, one open
 {modal 'terms', title='Terms', button='Read the terms'}...{/modal}   # <dialog>, works with and without JS
 {carousel label='Photos'}{tab 'Caption'}<img ...>{/tab}...{/carousel}   # scroll-snap slides, link arrows and dots
-{copy 'npm install pad', label='Copy'}             # the text in <pre>, a copy-to-clipboard button
-{poll 'lang', options='PHP, Go', title='Favourite?'}   # one vote per session, results as bars; DATA/poll/
-{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
-{video 'https://youtu.be/ID', title='Launch'}  # poster + play button, nocookie iframe only after a click
+{copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
+{poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
+{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
+{video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
-{map 'europe', data='sales', key='country', value='amount'}   # choropleth: ISO alpha-2/3 or name, world or a region
-{timeline data='releases', date='when', label='what'}   # cards on a time axis; from=/to= spans, vertical for long lists
-{datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10}   # a whole table: totals row, server-side sort and page links
-{toc levels='2,3', title='Contents'}         # the page's own h2/h3, nested and linked - filled in after the page rendered
-{countdown '2026-12-31 00:00', units=3, live}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
-{timeago $created}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
-{emoji 'rocket'}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
-{country 'NL'}  {country 'NLD', name}         # the flag (role="img", named Netherlands); name writes the name beside it
-{jsonview $response, open=2}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
+{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
+{timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
+{datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
+{toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
+{countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
+{timeago $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
+{emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
+{country 'NL'/}  {country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
+{jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
@@ -761,15 +761,15 @@ apps/cli/pad sample shop orders   # the same capture, into apps/shop/_samples/or
 
 Under `$padCheckSyntax` (the default), the expression evaluator reports a malformed
 expression in the source's own terms, naming the exact fault and its position:
-- unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2}` → *the ( opened at position 1 is never closed*
-- a misspelled pipe function — `{echo $x | uppr}` → *there is no pipe function named 'uppr'*
+- unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2/}` → *the ( opened at position 1 is never closed*
+- a misspelled pipe function — `{echo $x | uppr/}` → *there is no pipe function named 'uppr'*
 - a comparison operator missing an operand where no pipe value can stand in for it —
   `{if $x eq}` → *the operator 'eq' has nothing on its right*
 - an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
 - what an expression cannot mean — `{if $x === 1}` → *'===' is no operator - eq (==) compares
   two values*; `$n + * 3` → *the operators '+' and '*' stand side by side*; `3 & 1` → *'&' is
   no operator or value*
-- a PHP function refusing its arguments — `{echo 'ab' | php:str_pad(8, '*')}` → *the PHP
+- a PHP function refusing its arguments — `{echo 'ab' | php:str_pad(8, '*')/}` → *the PHP
   function 'str_pad' refused its arguments: ... @ puts it in its place*
 
 With the check off nothing is reported: a value that is no number counts as 0 (`'a' + 1` is 1),
@@ -801,8 +801,8 @@ The build keeps a source map of the joined `_lib`/`_inits`/page/`_exits` text
 An application keeps its own tests in `_tests/`: `cart.pad` (with `cart.php` when it needs
 data) is the test page, `cart.txt` its answer - an exact body, a `/regex/`, or `HTTP 500`
 with an optional `/regex/` on the next line, as in the framework's suites. A test page renders
-bare, no URL reaches it, and it can bring in a real page with `{page 'cart'}`. `{assert
-$total eq 42, 'the total'}` fails a test run when false and is silent in production
+bare, no URL reaches it, and it can bring in a real page with `{page 'cart'/}`. `{assert
+$total eq 42, 'the total'/}` fails a test run when false and is silent in production
 (`$padAssert`, off by default, on under `pad test`). `pad test shop --record` writes the
 missing answers; `./ci.sh` runs `pad test --all` and fails on a failing test.
 
@@ -817,10 +817,10 @@ for all of them (`www/_common/pad.js`). Their `_inits.pad`:
 
 ```
 {common:padFrame}                                  # _common/_tags/padFrame.pad + .php
-  {slot 'head'}{asset 'admin.css', tag}{/slot}     # also 'title', 'tools', 'side', 'foot'
+  {slot 'head'}{asset 'admin.css', tag/}{/slot}     # also 'title', 'tools', 'side', 'foot'
 {/common:padFrame}
 @page@
-{common:padFrameEnd}                               # _common/_include/padFrameEnd.pad
+{common:padFrameEnd/}                               # _common/_include/padFrameEnd.pad
 ```
 
 `$frameMenu` (rows of `head`, or `link`, `label`, `icon`, `current`) from `_inits.php` is the
@@ -842,7 +842,7 @@ dark too.
 Or using the `{switch}` tag:
 ```
 {items}
-  <tr class="{switch 'odd', 'even'}"><td>{$name}</td></tr>
+  <tr class="{switch 'odd', 'even'/}"><td>{$name}</td></tr>
 {/items}
 ```
 
@@ -864,7 +864,7 @@ Output: `Alice, Bob, Charlie`
 #### Counter Display
 ```
 {items}
-  {current@items} of {count@items}: {$name}
+  {current@items/} of {count@items/}: {$name}
 {/items}
 ```
 
@@ -882,7 +882,7 @@ Output: `Alice, Bob, Charlie`
 {sequence '1..3', name='row'}
   <tr>
     {sequence '1..4', name='col'}
-      <td>{echo $row * 10 + $col}</td>
+      <td>{echo $row * 10 + $col/}</td>
     {/sequence}
   </tr>
 {/sequence}
@@ -890,5 +890,5 @@ Output: `Alice, Bob, Charlie`
 
 #### Extract Domain from Email
 ```
-{echo $email | after('@') | before('.')}
+{echo $email | after('@') | before('.')/}
 ```

@@ -124,7 +124,7 @@ and the binary is handed to PHP as `wasmBinary` instead of being fetched.
 ### Limits
 
 - No MySQL; no network from PHP - `{curl}`, `padCurl`, `padPrefetch`, `SELF://` and a
-  `{page app=...}` fetched over HTTP answer nothing offline. No sodium (`padEncrypt`) and no
+  `{page app=.../}` fetched over HTTP answer nothing offline. No sodium (`padEncrypt`) and no
   intl in the build; the sequence subsystem's large tables are left out.
 - One PHP answers one request at a time: a page that sleeps holds the others.
 - Opened from the disk: a module script of the application (`type="module"`) gets a blob:

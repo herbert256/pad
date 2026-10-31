@@ -36,7 +36,7 @@ The playground runs the template it is given, so it is closed down:
   the playground page or its cookies.
 
 What it does not stop: tags that read files (`{file}`, `{files}`, `{dir}`, `local:`), fetch
-URLs (`{curl}`, `{get}`) or render other applications' pages (`{page app=}`) work as they do
+URLs (`{curl}`, `{get}`) or render other applications' pages (`{page app=/}`) work as they do
 anywhere else - on this machine, for this machine's user.
 
 ## Files

@@ -35,11 +35,6 @@ const KIND = {
 // A ~ just inside the brace is whitespace control - {~items~}, {~/items} - and no part of
 // the name: without it here such a pair was never opened or never closed for the close-tag help.
 const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
-// The built-in tags that never open a pair: marked single in completions.json, which
-// editors/generate.php writes - a hand-kept copy here stopped being updated at highlight, and
-// {items}{icon 'x'}{/ offered icon before items.
-const SINGLE_TAGS = new Set(COMPLETIONS.filter((c) => c.single).map((c) => c.label));
-
 // The branch words of {if} and {case} divide a pair; they never open one of their own.
 const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);
 
@@ -73,6 +68,10 @@ function textBefore(uri, position) {
     return upto.join('\n');
 }
 
+// The pairs still open in front of the cursor. A tag written without the slash opens a pair -
+// a single tag is written {tag/}, or {tag ... /| pipe} - so the stack needs no list of the
+// tags that are single: a list kept by hand, or counted from the applications, guessed.
+
 function openTags(before) {
     const stack = [];
     let m;
@@ -82,7 +81,7 @@ function openTags(before) {
         if (m[1]) {
             const i = stack.lastIndexOf(m[2]);
             if (i >= 0) stack.length = i;
-        } else if (!SINGLE_TAGS.has(m[2]) && !BRANCH_TAGS.has(m[2]) && !m[3].replace(/~$/, '').trimEnd().endsWith('/')) {
+        } else if (!BRANCH_TAGS.has(m[2]) && !m[3].replace(/~$/, '').endsWith('/') && !/\/\s*\|/.test(m[3])) {
             stack.push(m[2]);
         }
     }

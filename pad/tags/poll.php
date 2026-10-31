@@ -16,7 +16,7 @@
   $padPollName = (string) $padParm;
 
   if ( ! preg_match ( '/^[A-Za-z0-9_-]{1,64}$/D', $padPollName ) )
-    return padError ( "a {poll} needs a name of letters, digits, _ and -, like {poll 'favorite-language'}" );
+    return padError ( "a {poll} needs a name of letters, digits, _ and -, like {poll 'favorite-language'/}" );
 
   $padPollAnswers = array_values ( array_unique ( array_filter (
                       array_map ( 'trim', explode ( ',', padParmText ( padTagParm ( 'options' ) ) ) ), 'strlen' ) ) );

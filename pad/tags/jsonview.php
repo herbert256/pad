@@ -60,7 +60,7 @@
 
     if ( trim ( (string) $padJsonviewSource ) === '' ) {
       if ( $padCheckSyntax )
-        padError ( "the jsonview has nothing to show - {jsonview \$value}, data='name' or the JSON between {jsonview} and {/jsonview}" );
+        padError ( "the jsonview has nothing to show - {jsonview \$value/}, data='name' or the JSON between {jsonview} and {/jsonview}" );
       return '';
     }
 

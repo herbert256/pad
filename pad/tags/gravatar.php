@@ -1,6 +1,6 @@
 <?php
 
-  // {gravatar $email} - the Gravatar picture of an e-mail address as an <img>, by
+  // {gravatar $email/} - the Gravatar picture of an e-mail address as an <img>, by
   // tags/_lib/gravatar.php: the address goes out only as its SHA-256 hash, lazily loaded and with
   // no referrer. size= is the width and height in pixels (default 64), default= what
   // Gravatar shows for an address it does not know - mp (default), identicon, monsterid,
@@ -19,7 +19,7 @@
   $padGravatarFallback = strtolower ( trim ( (string) padTagParm ( 'fallback' ) ) );
 
   if ( $padGravatarEmail === '' and $padCheckSyntax )
-    padError ( 'the gravatar has no e-mail address - {gravatar $email}' );
+    padError ( 'the gravatar has no e-mail address - {gravatar $email/}' );
 
   if ( ! in_array ( $padGravatarDefault, PAD_GRAVATAR_DEFAULTS ) and ! preg_match ( '#^https://[^\s"<>]+$#i', $padGravatarDefault ) ) {
     if ( $padCheckSyntax )

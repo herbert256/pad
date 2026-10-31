@@ -18,7 +18,7 @@ so what is shown is exactly what runs.
 | `_inits.php` | The menu from the catalog and, for an example, its data source and template |
 | `_lib/catalog.php` | The catalog, read from the directories: a tag is a directory with an `_about.txt` |
 | `<tag>/_about.txt` | Three lines: the title, one line about the tag, its group |
-| `<tag>/<example>.pad` | An example; its first line `{meta title='...', about='...'}` names it |
+| `<tag>/<example>.pad` | An example; its first line `{meta title='...', about='...'/}` names it |
 | `<tag>/<example>.php` | The data of an example that builds it in PHP |
 | `_config/config.php` | Switches `_common` off: the application has a design of its own |
 

@@ -55,7 +55,7 @@ Use this pattern for data stored in JSON files in `_data/`.
 
 **template.pad:**
 ```html
-<div id="app" data-products="{json 'products' | ignore}"></div>
+<div id="app" data-products="{json 'products' | ignore/}"></div>
 
 {ignore}<script>
   const products = JSON.parse(document.getElementById('app').dataset.products);
@@ -137,10 +137,10 @@ the result into 1 or 0. The engine's `$padData` is not a name a provider or tag 
 <h1>Forum Topic</h1>
 
 <!-- Multiple data sources - each with unique ID -->
-{reactData id='topic', provider='topic', $id=$id}
-{reactData id='board', provider='board', $boardId=$boardId}
-{reactData id='user', provider='user', $userId=$userId}
-{reactData id='posts', provider='posts', $id=$id}
+{reactData id='topic', provider='topic', $id=$id/}
+{reactData id='board', provider='board', $boardId=$boardId/}
+{reactData id='user', provider='user', $userId=$userId/}
+{reactData id='posts', provider='posts', $id=$id/}
 
 <div id="react-app"></div>
 <script type="text/babel" src="/react/examples/topic.js"></script>
@@ -269,7 +269,7 @@ answered 403 before the page runs. Write the token where a script can read it an
 the `X-CSRF-Token` header; the page validates as for any form and answers JSON.
 
 ```html
-<meta name="csrf-token" content="{csrf token}">
+<meta name="csrf-token" content="{csrf token/}">
 ```
 
 ```php
@@ -342,7 +342,7 @@ PAD parses `{ }` as tags. When working with JavaScript/React:
 ### Use | ignore Pipe
 
 ```html
-<div data-config="{echo $configJson | html | ignore}"></div>
+<div data-config="{echo $configJson | html | ignore/}"></div>
 ```
 
 `html` escapes the JSON's quotes for the attribute - `{echo}` does not - and `ignore` keeps PAD
@@ -388,7 +388,7 @@ apps/myapp/
 │   ├── user.php
 │   └── posts.php
 ├── _tags/
-│   └── json.php              # {json} tag for static data - {reactData} is built in
+│   └── json.php              # {json/} tag for static data - {reactData/} is built in
 └── pages/
     └── forum/
         └── topic.pad
@@ -439,9 +439,9 @@ function MyComponent() {
 ### Multiple Data Sources
 
 ```html
-{reactData id='users', provider='users'}
-{reactData id='roles', provider='roles'}
-{reactData id='permissions', provider='permissions'}
+{reactData id='users', provider='users'/}
+{reactData id='roles', provider='roles'/}
+{reactData id='permissions', provider='permissions'/}
 
 <div id="admin-panel"></div>
 ```

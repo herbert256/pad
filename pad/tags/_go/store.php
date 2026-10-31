@@ -181,7 +181,7 @@
                           and ( padTypeFunction ( $name ) or defined ( $name ) ) );
 
         if ( $padStoreCalls or padSpliceInCode ( $padStoreSource ) ) {
-          padError ( "a value spliced into a {bool} expression would run as part of it: put it in quotes, '{\$x}' eq 'Ann', or take its own truth with {bool 'name', \$x}" );
+          padError ( "a value spliced into a {bool} expression would run as part of it: put it in quotes, '{\$x}' eq 'Ann', or take its own truth with {bool 'name', \$x/}" );
           $padStoreData = FALSE;
         } else
           $padStoreData = padMakeFlag ( $padStoreSource );

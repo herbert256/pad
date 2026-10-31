@@ -126,7 +126,7 @@ apps/myapp/
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
-├── _lang/                 # Translation catalogs: en.json, nl.json ... ({trans 'key'})
+├── _lang/                 # Translation catalogs: en.json, nl.json ... ({trans 'key'/})
 ├── _content/              # Markdown collections: _content/blog/*.md ({collection 'blog'})
 ├── _errors/               # Error pages: 404.pad, 403.pad, 5xx.pad ... (optional)
 ├── _migrations/           # Schema changes, run by pad migrate
@@ -155,7 +155,7 @@ apps/myapp/
 | `_lib/` | PHP functions | All `.php` files auto-included |
 | `_include/` | Template snippets | `{name}` → `name.pad` |
 | `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
-| `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
+| `_functions/` | Pipe functions | `{echo $x \| myfunc/}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
 | `_options/` | Tag options | `{tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
@@ -164,7 +164,7 @@ apps/myapp/
 | `_scripts/` | Shell scripts | On demand |
 | `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
 | `_tests/` | Application tests | `pad test <app>` - `name.pad` + `name.txt` answer |
-| `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'}` looks up in locale `nl` |
+| `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'/}` looks up in locale `nl` |
 | `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{collection 'blog'}` |
 | `_errors/` | Error pages | `404.pad`, `403.pad`, `503.pad`, `4xx.pad`, `5xx.pad` answer in place of the plain line |
 | `_migrations/` | Schema changes | `pad migrate <app>` - `.sql` (+ `.down.sql`) or `.php` with up and down |
@@ -276,7 +276,7 @@ so a visitor's `{php:...}` echoed or put in `$padContent` prints rather than run
 ?>
 ```
 
-Use in templates: `{json 'products' | ignore}` - Outputs JSON from `_data/products.json`
+Use in templates: `{json 'products' | ignore/}` - Outputs JSON from `_data/products.json`
 
 ### _functions/ - Pipe Functions
 
@@ -287,7 +287,7 @@ Use in templates: `{json 'products' | ignore}` - Outputs JSON from `_data/produc
 ?>
 ```
 
-Use in templates: `{echo $price | money}`
+Use in templates: `{echo $price | money/}`
 
 ### _events/ - Event Hooks
 
@@ -307,6 +307,25 @@ up to the root). The event's values are the hook's local variables; page variabl
 
 ## Template Syntax
 
+### Single tags and pairs
+
+A tag that is not a pair closes itself with a slash before its brace; a tag written without
+the slash opens a pair, and its closing tag must follow:
+
+```
+{echo $total | money/}         # a single tag
+{page 'header'/}               # one more
+{flush/}                       # one without parameters
+{items}<li>{$name}</li>{/items}  # a pair
+{echo $x /| upper}             # the slash may stand before the opening pipe too
+```
+
+`{echo $x}` with no `{/echo}` behind it is an error under the strict check: "the pair {echo}
+never closes - a single tag is written {echo .../}". The lenient walk (`$padCheckSyntax =
+FALSE`) still reads such a tag single. The variable forms - `{$x}`, `{!x}`, `{#x}`, `{&x}`,
+`{?x}`, `{^x}` - are never pairs and take no slash, nor do the branch markers `{else}`,
+`{elseif ...}` and `{when ...}` inside their pair, nor the comments.
+
 ### Variables
 ```
 {$variable}                    # Output variable
@@ -323,15 +342,15 @@ up to the root). The event's values are the hook's local variables; page variabl
 
 ### Pipe Functions
 ```
-{echo $name | upper}              # Uppercase
-{echo $text | trim | lower}       # Chained functions
-{echo $date | date('Y-m-d')}      # With parameters
-{echo $value | + 1}               # Arithmetic (space required!)
+{echo $name | upper/}              # Uppercase
+{echo $text | trim | lower/}       # Chained functions
+{echo $date | date('Y-m-d')/}      # With parameters
+{echo $value | + 1/}               # Arithmetic (space required!)
 
 {$name | upper}                   # A field tag pipes too - {echo} is for literals
-{echo $value | +1}                # WRONG - needs space before 1
-{echo ($price | round) * 2}       # A pipe inside ( ) or [ ] belongs to that group
-{echo php:max(1, $n | + 1)}       #   - to that argument of a call
+{echo $value | +1/}                # WRONG - needs space before 1
+{echo ($price | round) * 2/}       # A pipe inside ( ) or [ ] belongs to that group
+{echo php:max(1, $n | + 1)/}       #   - to that argument of a call
 ```
 
 ### Pipe Timing: Opening vs Closing Tags
@@ -365,9 +384,9 @@ transformed along with everything else and then not resolve. Sorting is an optio
 ### Pipe Arithmetic
 Arithmetic pipes require a space between the operator and operand:
 ```
-{echo $value | + 1}          # Correct - adds 1
-{echo $value | * 2}          # Correct - multiplies by 2
-{echo $value | +1}           # Wrong - no space
+{echo $value | + 1/}          # Correct - adds 1
+{echo $value | * 2/}          # Correct - multiplies by 2
+{echo $value | +1/}           # Wrong - no space
 ```
 
 ### Conditionals
@@ -395,12 +414,12 @@ A bare value is tested for its truth, as PHP tests it - `''`, `'0'`, `0` and FAL
 
 {while $i le 10}
   Item {$i}
-  {increment $i}
+  {increment $i/}
 {/while}
 
 {until $count eq 0}
   Countdown: {$count}
-  {decrement $count}
+  {decrement $count/}
 {/until}
 ```
 
@@ -417,9 +436,9 @@ with the row's fields first. When the options leave no row, the `@else@` branch 
 
 ### Loop Control
 ```
-{continue 'tagname'}    # Skip to next iteration (like PHP's continue)
-{cease 'tagname'}       # Soft stop (graceful end)
-{break 'tagname'}       # Hard stop (immediate exit)
+{continue 'tagname'/}    # Skip to next iteration (like PHP's continue)
+{cease 'tagname'/}       # Soft stop (graceful end)
+{break 'tagname'/}       # Hard stop (immediate exit)
 ```
 
 ### Iteration Properties (property@tag syntax)
@@ -440,7 +459,7 @@ field.
   {first@items}<ul>{/first@items}
   <li class="{even@items ? even : odd}">{$name}</li>
   {last@items}</ul>{/last@items}
-  Index: {current@items} of {count@items}
+  Index: {current@items/} of {count@items/}
 {/items}
 ```
 
@@ -466,7 +485,7 @@ Renders when the value differs from the previous row of the loop; the first row 
 ### Switch Tag (Alternating Values)
 ```
 {items}
-  <tr style="background: {switch '#fff', '#eee'}">
+  <tr style="background: {switch '#fff', '#eee'/}">
     <td>{$name}</td>
   </tr>
 {/items}
@@ -475,8 +494,8 @@ Renders when the value differs from the previous row of the loop; the first row 
 ### Forms
 ```
 {form 'contact'}                                      # posts back, CSRF token + name
-  {input 'email', type='email', label='E-mail', required}
-  {textarea 'message', label='Message', rows=6}
+  {input 'email', type='email', label='E-mail', required/}
+  {textarea 'message', label='Message', rows=6/}
   <button>Send</button>
 {/form}
 ```
@@ -515,11 +534,11 @@ Supports JSON, XML, YAML, and CSV formats:
 
 ### Variable Assignment
 ```
-{set $name = 'Alice'}              # Assign string
-{set $count = 0}                   # Assign number
-{set $total = $price * $qty}       # Assign expression
-{set $tags = ['a', 'b']}           # Assign a list
-{set $user = ['name' => 'Ann', 'age' => 42]}   # A list with keys - {$user.name}
+{set $name = 'Alice'/}              # Assign string
+{set $count = 0/}                   # Assign number
+{set $total = $price * $qty/}       # Assign expression
+{set $tags = ['a', 'b']/}           # Assign a list
+{set $user = ['name' => 'Ann', 'age' => 42]/}   # A list with keys - {$user.name}
 ```
 
 ### Level vs Occurrence Variables
@@ -544,8 +563,8 @@ The `%` marks the assignment; the value is read back as an ordinary field, with 
 ### The @ Placeholder
 The `@` represents the current value in expressions:
 ```
-{echo 50 | @ * 4}                # @ represents the current value
-{echo $text | '"' . @ . '"'}     # Wrap value in quotes
+{echo 50 | @ * 4/}                # @ represents the current value
+{echo $text | '"' . @ . '"'/}     # Wrap value in quotes
 ```
 
 ### Comments
@@ -588,8 +607,8 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 
 2. **Pipe Function** - Apply to expression output:
 ```html
-<div data-json="{json 'products' | ignore}"></div>
-<div data-users="{echo $usersJson | html | ignore}"></div>
+<div data-json="{json 'products' | ignore/}"></div>
+<div data-users="{echo $usersJson | html | ignore/}"></div>
 ```
 
 3. **Option** - Add to any tag:
@@ -612,18 +631,18 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 ### Values Are Text
 
 A value never becomes template code - a field, what a tag answers, a fetched page. With
-`$v = '{php:getcwd}'`, both `{$v}` and `{echo $v}` print the text `{php:getcwd}`. The
+`$v = '{php:getcwd}'`, both `{$v}` and `{echo $v/}` print the text `{php:getcwd}`. The
 syntax characters of a value travel as inert stand-ins and are restored only when the page
-is written out, so a value inside another tag's quoted parameter - `{echo '{$v}'}` - stays
+is written out, so a value inside another tag's quoted parameter - `{echo '{$v}'/}` - stays
 text too. To run a value as PAD, say so where it is used - a snippet kept in a database:
 
 ```
-{echo $snippet | code}       # runs the value as PAD
-{echo $snippet | sandbox}    # the same, in an isolated pass
+{echo $snippet | code/}       # runs the value as PAD
+{echo $snippet | sandbox/}    # the same, in an isolated pass
 ```
 
-A field written bare into a tag's parameters - `{echo {$v}}` - is spliced as a quoted
-string, unless it is a plain number, so a value of `php:getcwd` stays text; `{echo $v}`
+A field written bare into a tag's parameters - `{echo {$v}/}` - is spliced as a quoted
+string, unless it is a plain number, so a value of `php:getcwd` stays text; `{echo $v/}`
 says the same more simply. A tag's rendered output written there is template text, by design.
 
 `$padProtectValues = FALSE` brings back the old behaviour: every value re-read as template
@@ -633,8 +652,8 @@ source.
 
 ## Critical Syntax Rules (Common Mistakes)
 
-1. **Pipe a value through `{echo}` or a field tag** - `{$var | upper}` and `{echo $var | upper}` both work, but only the field tag runs the sanitize chain - `{echo}` prints the value raw; a literal needs the `{echo}`
-2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
+1. **Pipe a value through `{echo}` or a field tag** - `{$var | upper}` and `{echo $var | upper/}` both work, but only the field tag runs the sanitize chain - `{echo}` prints the value raw; a literal needs the `{echo}`
+2. **Arithmetic needs space** - `{echo $x | + 1/}` not `| +1`
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{ignore}` wrapper
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
@@ -642,6 +661,7 @@ source.
 7. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
 8. **CHECK syntax** - Use `db("CHECK table WHERE...")` NOT `db("CHECK * FROM table...")`
 9. **Boolean options** - Use `{tag option}` NOT `{tag option="true"}` - just the option name is enough
+10. **A single tag ends in a slash** - `{echo $x/}`, `{set $n = 1/}`, `{page 'x'/}`, `{current@items/}`; `{echo $x}` opens a pair and needs its `{/echo}`
 
 ---
 
@@ -654,13 +674,13 @@ Resolve naming conflicts with explicit prefixes:
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
 | `common:` | Tag from the `_common` app | `{common:padFrame}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
-| `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)}` in an expression |
+| `php:` | Call PHP function | `{php:strlen 'abc'/}` as a tag, `{echo $x \| php:strlen(@)/}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
 | `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
-| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."}` tag |
+| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."/}` tag |
 | `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
@@ -705,8 +725,8 @@ See the following files for complete reference documentation:
 | `like 'A%'` | SQL LIKE match |
 | `matches '/re/'` | Regular expression match (a backslash written `\\`) |
 | `a ?? b` | `a`, or `b` when `a` is empty or a missing field |
-| `c ? a : b` | Inline ternary - `{echo $n gt 1 ? 'items' : 'item'}` |
-| `a ?: b` | `a` when it is true, else `b` - `{echo $title ?: 'Untitled'}` |
+| `c ? a : b` | Inline ternary - `{echo $n gt 1 ? 'items' : 'item'/}` |
+| `a ?: b` | `a` when it is true, else `b` - `{echo $title ?: 'Untitled'/}` |
 
 ---
 
@@ -722,7 +742,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Template emails](docs/FEATURES.md#template-emails) | `{mail to=$email, template='order'}`, `padMail ()`, `_mail/` |
 | [Early flush](docs/FEATURES.md#early-flush) | `{flush}` after the wrapper's `</head>` |
 | [Server-sent events](docs/FEATURES.md#server-sent-events) | `padSse ( $producer, $options )` - no template |
-| [Vite builds](docs/FEATURES.md#vite-builds) | `{vite 'src/main.js'}` |
+| [Vite builds](docs/FEATURES.md#vite-builds) | `{vite 'src/main.js'/}` |
 | [Sitemap](docs/FEATURES.md#sitemap-from-the-file-tree) | `{sitemap}`, `$padSitemap` → `?sitemap.xml`, `?robots.txt` |
 | [JSON and CSV answers](docs/FEATURES.md#json-and-csv-from-the-same-page) | `$padExpose` + `&padFormat=json` or `Accept` |
 | [Maintenance mode](docs/FEATURES.md#maintenance-mode) | `pad down shop --secret=word`, `pad up shop` |
@@ -730,7 +750,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Health check](docs/FEATURES.md#health-check) | `$padHealth` → `?up`, `_health.php` |
 | [CORS](docs/FEATURES.md#cross-origin-requests-cors) | `$padCors` |
 | [Login, gates, feature flags](docs/FEATURES.md#logging-in-gates-and-feature-flags) | `padLogin`, `padAuthRequire`, `{auth}`, `{guest}`, `{can}`, `padGate`, `{feature}` |
-| [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag}`, `padAsset ()` |
+| [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag/}`, `padAsset ()` |
 | [Migrations and seeders](docs/FEATURES.md#migrations-and-seeders) | `_migrations/`, `_seeds/`, `pad migrate`, `padFactory`, `padFake*` |
 | [Queues and the scheduler](docs/FEATURES.md#queues-and-the-scheduler) | `padQueue ()`, `_jobs/`, `pad work`, `_schedule.php` |
 | [Offline applications](docs/FEATURES.md#offline-applications-in-the-browser) | `pad pack notes`, `_offline.json`, `padWasm ()` |
@@ -745,8 +765,8 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Components](docs/FEATURES.md#components-slots--parms) | `{slot}`, `{parms}` in a `_tags/x.pad` |
 | [Tags defined in the template](docs/FEATURES.md#tags-defined-in-the-template-define--macro) | `{define}`, `{macro}` |
 | [Web components](docs/FEATURES.md#web-components-declarative-shadow-dom) | `{shadow}` |
-| [Stacks](docs/FEATURES.md#stacks-push--stack) | `{push 'scripts'}`, `{stack 'scripts'}` |
-| [Page metadata](docs/FEATURES.md#page-metadata) | `{meta title=, layout=, cache=}` |
+| [Stacks](docs/FEATURES.md#stacks-push--stack) | `{push 'scripts'}`, `{stack 'scripts'/}` |
+| [Page metadata](docs/FEATURES.md#page-metadata) | `{meta title=, layout=, cache=/}` |
 | [Response fragments](docs/FEATURES.md#response-fragments) | `{fragment 'x'}`, `&padFragment=`, `HX-Target` |
 | [HTML attribute helpers](docs/FEATURES.md#html-attribute-helpers) | `{attrs}`, `{classes}` |
 | [Fragment cache](docs/FEATURES.md#fragment-cache) | `{cache 'x', ttl=300}`, `cache=` on a tag, `{nocache}` |
@@ -868,7 +888,7 @@ The `www/` directory can be served as the docroot itself (apps at `http://host/<
 3. Derives `$padApp` and the mount prefix `$padRoot` (e.g. `/` or `/pad/`) from `SCRIPT_NAME`/`SCRIPT_FILENAME`
 4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `APPS`, `DATA`, `COMMON`) and runs the request
 
-Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padHost`, which includes the mount prefix (`scheme://host` . `$padRoot`), so they work under any mount prefix. The host is the request's own Host header, but the engine's fetches of its own pages (`{get}`, `{page app=}`, `SELF://`, `padPrefetch`) always connect to the server's own address (`SERVER_ADDR`:`SERVER_PORT`) - a forged Host cannot make the server fetch from another machine; with `$padHostBase` set (behind a proxy) they go where it says. Off `php -S` a port in the Host header counts only when it is 80/443 or `$padHosts` lists it with the name (`'localhost:8080'`) - Apache fills `SERVER_PORT` from the Host - else they connect to the scheme's port. Page-internal links use `$padGo`/`?page` (from `SCRIPT_NAME`, with `$padGoExt` as the absolute form) and are prefix-safe automatically.
+Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padHost`, which includes the mount prefix (`scheme://host` . `$padRoot`), so they work under any mount prefix. The host is the request's own Host header, but the engine's fetches of its own pages (`{get}`, `{page app=/}`, `SELF://`, `padPrefetch`) always connect to the server's own address (`SERVER_ADDR`:`SERVER_PORT`) - a forged Host cannot make the server fetch from another machine; with `$padHostBase` set (behind a proxy) they go where it says. Off `php -S` a port in the Host header counts only when it is 80/443 or `$padHosts` lists it with the name (`'localhost:8080'`) - Apache fills `SERVER_PORT` from the Host - else they connect to the scheme's port. Page-internal links use `$padGo`/`?page` (from `SCRIPT_NAME`, with `$padGoExt` as the absolute form) and are prefix-safe automatically.
 
 The CLI variant (`apps/cli/pad`) sets `$padApp = 'cli'` explicitly and includes `pad/pad.php` directly.
 
@@ -1004,7 +1024,7 @@ drawn in [docs/PAD.md](docs/PAD.md#processing-pipeline).
 - Set `$padInfo = 'trace'` for execution tracing
 - Set `$padToolbar = 'local'` for the debug toolbar at the foot of every local page
 - Set `$padReload = 'local'` in `_config/config.php` and a local page reloads itself when a file behind it is saved
-- Use `{debug $order}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
+- Use `{debug $order/}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
 - Use `{dump}` tag for variable inspection
 - Use `{trace}` tag for execution trace
 - Set `$padCheckOutput = true` (or add `&padCheckOutput` to a local request) to have the finished HTML checked for duplicate ids, images without alt, unlabelled fields and broken `?page` links; `develop/?links` checks every application's templates at once
@@ -1175,13 +1195,13 @@ See [REACT.md](docs/REACT.md) for complete React integration documentation inclu
 When creating documentation with examples:
 
 **Manual page** (`manual/topic.pad`) - Contains all explanatory text:
-- The title as `{meta title='...'}` on the first line - the frame's bar prints it as the
+- The title as `{meta title='...'/}` on the first line - the frame's bar prints it as the
   page's one `<h1>` (from the file name when there is no meta); never an `<h1>` of its own
 - Introduction and description
 - Section headings (`<h2>`, `<h3>`)
 - Explanatory paragraphs
 - Tables and reference content
-- Use `{example 'fragments/topic_N'}` to embed working examples
+- Use `{example 'fragments/topic_N'/}` to embed working examples
 
 **Fragment files** (`fragments/topic_N.pad` + optional `topic_N.php`) - Minimal executable code only:
 - Just the code that demonstrates the feature
@@ -1192,14 +1212,14 @@ When creating documentation with examples:
 **Example:**
 ```html
 <!-- manual/pipes.pad -->
-{meta title='Pipes - Transform Output'}
+{meta title='Pipes - Transform Output'/}
 <h3>Variable Pipes</h3>
 <p>Apply functions to variables:</p>
-{example 'fragments/pipes_1'}
+{example 'fragments/pipes_1'/}
 
 <!-- fragments/pipes_1.pad -->
 <p>Original: {$name}</p>
-<p>Uppercase: {echo $name | upper}</p>
+<p>Uppercase: {echo $name | upper/}</p>
 ```
 
 **Benefits:**

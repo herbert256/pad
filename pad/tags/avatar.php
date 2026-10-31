@@ -13,7 +13,7 @@
   $padAvatarShape = strtolower ( trim ( (string) padTagParm ( 'shape', 'circle' ) ) );
 
   if ( $padAvatarName === '' and $padCheckSyntax )
-    padError ( 'the avatar has no name - {avatar \'Herbert Jebbink\'}' );
+    padError ( 'the avatar has no name - {avatar \'Herbert Jebbink\'/}' );
 
   if ( ! in_array ( $padAvatarShape, [ 'circle', 'square' ] ) ) {
     if ( $padCheckSyntax )

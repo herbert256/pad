@@ -38,14 +38,14 @@ below the page:
 
 ```
 {common:padFrame}
-  {slot 'head'}{asset 'admin.css', tag}{/slot}    in <head>
+  {slot 'head'}{asset 'admin.css', tag/}{/slot}    in <head>
   {slot 'title'}...{/slot}                          the bar's left half, in place of the title
   {slot 'tools'}...{/slot}                          the bar's right half, before the switch
   {slot 'side'}...{/slot}                           the side's room under the menu
   {slot 'foot'}...{/slot}                           the bottom of the side
 {/common:padFrame}
 @page@
-{common:padFrameEnd}
+{common:padFrameEnd/}
 ```
 
 Its `_inits.php` gives the menu as `$frameMenu` - rows of `head` (a heading) or `link`,

@@ -5,11 +5,6 @@ const COMPLETIONS = require('./completions.json');
 // just inside the brace ({~items~}, {~/items})
 const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
 
-// built-in tags that never take a closing tag: marked single in completions.json, which
-// editors/generate.php writes - the hand-kept list stopped at highlight, and PAD: Close Tag
-// wrote {/icon} after {items}{icon 'x'}
-const SINGLE_TAGS = new Set(COMPLETIONS.filter((c) => c.single).map((c) => c.label));
-
 // The branch words of {if} and {case} divide a pair; they never open one of their own.
 const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);
 
@@ -21,6 +16,9 @@ function stripComments(text) {
         .replace(/\{--\s[\s\S]*?--\}/g, '');
 }
 
+// The pairs still open before the position. A tag written without the slash opens a pair - a
+// single tag is written {tag/}, or {tag ... /| pipe} - so no list of single tags is needed.
+
 function openTags(document, position) {
     const text = stripComments(document.getText(new vscode.Range(new vscode.Position(0, 0), position)));
     const stack = [];
@@ -31,7 +29,7 @@ function openTags(document, position) {
         if (closing) {
             const i = stack.lastIndexOf(name);
             if (i >= 0) stack.length = i;
-        } else if (!SINGLE_TAGS.has(name) && !BRANCH_TAGS.has(name) && !m[3].replace(/~$/, '').trimEnd().endsWith('/')) {
+        } else if (!BRANCH_TAGS.has(name) && !m[3].replace(/~$/, '').endsWith('/') && !/\/\s*\|/.test(m[3])) {
             stack.push(name);
         }
     }

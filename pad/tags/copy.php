@@ -28,7 +28,7 @@
 
     if ( $padCopyText === '' ) {
       if ( $padCheckSyntax )
-        padError ( "the {copy} needs its text - {copy 'npm install pad'} or {copy}...{/copy}" );
+        padError ( "the {copy} needs its text - {copy 'npm install pad'/} or {copy}...{/copy}" );
       $padContent = '';
       return TRUE;
     }
@@ -41,7 +41,7 @@
 
   if ( is_array ( $padParm ) or trim ( (string) $padParm ) === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the {copy} needs its text - {copy 'npm install pad'} or {copy}...{/copy}" );
+      padError ( "the {copy} needs its text - {copy 'npm install pad'/} or {copy}...{/copy}" );
     return '';
   }
 

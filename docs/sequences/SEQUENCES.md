@@ -298,15 +298,15 @@ Nor the name of something the page made - an array of the page, a `{data}`, `{co
 strict check - "the store name 'x' is already an array of the page" - and a pair that only names
 its loop keeps no store. A value the request brought under the name (`?nums[]=1`) is no array the
 page made, and gives way to the store; so the refusal covers a name the page made itself that the
-request did not also bring - `{set $primes = ['1']}` before `push='primes'` is refused, with
+request did not also bring - `{set $primes = ['1']/}` before `push='primes'` is refused, with
 `?primes[]=1` in the request the same list is taken for the request's and the store takes the name.
 
 ```
-{sequence '1..10', push='mySeq'}           # Store sequence
+{sequence '1..10', push='mySeq'/}           # Store sequence
 {pull:mySeq}{$sequence} {/pull:mySeq}      # Retrieve and iterate
 
 # Use pull: prefix to avoid naming conflicts with app tags
-{sequence 5, push='nums'}
+{sequence 5, push='nums'/}
 {pull:nums} {$sequence} {/pull:nums}
 ```
 
@@ -315,9 +315,9 @@ request did not also bring - `{set $primes = ['1']}` before `push='primes'` is r
 The sequence tags (`resume`, `pull`, `keep`, `remove`, `flag`, `make`) operate on stored sequences:
 
 ```
-{sequence 5, push='mySeq'}           # Create and store sequence
-{resume add=10}                       # Transform: add 10 to each value
-{resume reverse}                      # Transform: reverse order
+{sequence 5, push='mySeq'/}           # Create and store sequence
+{resume add=10/}                       # Transform: add 10 to each value
+{resume reverse/}                      # Transform: reverse order
 {pull:mySeq} {$sequence} {/pull:mySeq}  # Iterate stored sequence
 ```
 
@@ -356,17 +356,17 @@ Always prefer named sequences for clarity:
 **In an expression, `sequence:<type>(n)` is the nth term:**
 
 ```
-{echo '' | sequence:fibonacci(8)}     13 - the eighth Fibonacci number
-{echo '' | sequence:prime(8)}         19
+{echo '' | sequence:fibonacci(8)/}     13 - the eighth Fibonacci number
+{echo '' | sequence:prime(8)/}         19
 {if sequence:square(6) eq 36}...      the term reads as a value
-{echo '' | sequence:add(3, 10)}       13 - a second argument is the type's parameter: add=10
-{echo '' | sequence:prime(3, 'abc')}  error - prime takes no parameter
+{echo '' | sequence:add(3, 10)/}       13 - a second argument is the type's parameter: add=10
+{echo '' | sequence:prime(3, 'abc')/}  error - prime takes no parameter
 ```
 
 The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a list instead,
-because a list is what an action produces; `{echo '' | sequence:sum([1,2,3]) . ''}` prints it
+because a list is what an action produces; `{echo '' | sequence:sum([1,2,3]) . ''/}` prints it
 (6), where a pipe that ends on the list itself prints nothing. A value piped in without
-arguments is the call's argument: `{echo 5 | sequence:fibonacci}` is the fifth term, 3, and
+arguments is the call's argument: `{echo 5 | sequence:fibonacci/}` is the fifth term, 3, and
 `([1,2,3] | sequence:sum) . ''` is 6. Numbers written one after another are the values too, for
 an action that takes no count and no store to act with: `sequence:sum(1, 2, 3)` is the sum of
 the three and `sequence:sort(3, 1, 2)` sorts them, where `sequence:first(5, 2)` reads the 2 as

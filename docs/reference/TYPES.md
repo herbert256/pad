@@ -27,9 +27,9 @@ Explicitly specify the type for disambiguation.
 **Examples:**
 ```
 {users}              ← Auto-detected as 'select' type (if declared in $padSelect)
-{select:users}       ← Explicitly specified as select type
-{field:username}     ← Explicitly field type
-{php:strtoupper 'abc'} ← Explicitly PHP function type
+{select:users/}       ← Explicitly specified as select type
+{field:username/}     ← Explicitly field type
+{php:strtoupper 'abc'/} ← Explicitly PHP function type
 ```
 
 ---
@@ -77,7 +77,7 @@ application root.
 
 ```
 {myCustomTag}
-{app:myCustomTag}
+{app:myCustomTag/}
 ```
 
 **Resolution:** Checks `padAppTagCheck()` for tag in application directory.
@@ -115,7 +115,7 @@ Loads shared tags from the `apps/_common/` application.
 
 ```
 {padFrame}
-{common:padFrame}
+{common:padFrame/}
 ```
 
 **Resolution:** `padCommonCheck()` - checked after `app`, before `pad`, so a common tag overrides a built-in of the same name but not an app-local one. Can be disabled per app with `$padCommon = FALSE`.
@@ -129,7 +129,7 @@ Loads shared tags from the `apps/_common/` application.
 Retrieves data from the data store (`$padDataStore`).
 
 ```
-{data:myData}
+{data:myData/}
 {myData}  ← If myData exists in data store
 ```
 
@@ -141,7 +141,7 @@ Retrieves data from the data store (`$padDataStore`).
 **Example:**
 ```
 {users toData="activeUsers"}
-{data:activeUsers}
+{data:activeUsers/}
 ```
 
 ---
@@ -151,7 +151,7 @@ Retrieves data from the data store (`$padDataStore`).
 Retrieves content from the content store (`$padContentStore`).
 
 ```
-{content:header}
+{content:header/}
 ```
 
 **Resolution:** `$padContentStore[$tagName]`
@@ -159,7 +159,7 @@ Retrieves content from the content store (`$padContentStore`).
 **Example:**
 ```
 {header toContent="savedHeader"}
-{content:savedHeader}
+{content:savedHeader/}
 ```
 
 ---
@@ -169,7 +169,7 @@ Retrieves content from the content store (`$padContentStore`).
 Retrieves boolean values from the boolean store (`$padBoolStore`).
 
 ```
-{bool:isAdmin}
+{bool:isAdmin/}
 ```
 
 **Resolution:** `$padBoolStore[$tagName]`
@@ -189,7 +189,7 @@ Retrieves boolean values from the boolean store (`$padBoolStore`).
 Retrieves field values from the current data context.
 
 ```
-{field:username}
+{field:username/}
 {$username}  ← Shorthand for field
 ```
 
@@ -199,7 +199,7 @@ Retrieves field values from the current data context.
 
 **Example:**
 ```
-{users}{field:email}{/users}
+{users}{field:email/}{/users}
 {users}{$email}{/users}  ← Equivalent
 ```
 
@@ -210,7 +210,7 @@ Retrieves field values from the current data context.
 Retrieves tag properties from parent tags.
 
 ```
-{property:current}
+{property:current/}
 {&current}  ← Shorthand for property
 ```
 
@@ -246,7 +246,7 @@ between is skipped, any other tag is not: inside `{users mode="fast"}{orders}` t
 asked, and has no `mode`.
 
 ```
-{users mode="fast"}{parm:mode}{/users}
+{users mode="fast"}{parm:mode/}{/users}
 ```
 
 **Resolution:** `padOptValue($tagName, 1)`
@@ -274,8 +274,8 @@ variable is not what it reads.
 Retrieves PHP constants by name.
 
 ```
-{constant:PHP_VERSION}
-{constant:APP}
+{constant:PHP_VERSION/}
+{constant:APP/}
 ```
 
 **Resolution:** `constant($tagName)`
@@ -284,8 +284,8 @@ Retrieves PHP constants by name.
 
 **Example:**
 ```
-{constant:PHP_EOL}
-{constant:TRUE}
+{constant:PHP_EOL/}
+{constant:TRUE/}
 ```
 
 ---
@@ -295,7 +295,7 @@ Retrieves PHP constants by name.
 Loads local data files with automatic type detection.
 
 ```
-{local:users.json}
+{local:users.json/}
 {myfile}            ← _data/myfile.csv, the extension found for it
 ```
 
@@ -320,8 +320,8 @@ with its extension or with the first of `.xml`, `.json`, `.yaml`, `.csv`, `.php`
 
 **Example:**
 ```
-{local:settings.json}
-{local:data.csv name='myData', type='csv'}
+{local:settings.json/}
+{local:data.csv name='myData', type='csv'/}
 ```
 
 ---
@@ -331,7 +331,7 @@ with its extension or with the first of `.xml`, `.json`, `.yaml`, `.csv`, `.php`
 Includes content from application include files.
 
 ```
-{include:header}
+{include:header/}
 ```
 
 **Resolution:** `padAppIncludeCheck($tagName)`
@@ -345,7 +345,7 @@ Includes content from application include files.
 Queries database tables declared in the PAD Select subsystem.
 
 ```
-{select:users}
+{select:users/}
 {users}  ← If 'users' is declared in $padSelect
 ```
 
@@ -393,8 +393,8 @@ Executes PAD functions as tags.
 Calls PHP built-in functions directly.
 
 ```
-{php:strtoupper 'hello'}
-{php:date 'Y-m-d'}
+{php:strtoupper 'hello'/}
+{php:date 'Y-m-d'/}
 ```
 
 **Resolution:** `function_exists($tagName)`
@@ -403,8 +403,8 @@ Calls PHP built-in functions directly.
 
 **Example:**
 ```
-{php:strlen 'hello'}  →  5
-{php:array_sum [1,2,3]}  →  6
+{php:strlen 'hello'/}  →  5
+{php:array_sum [1,2,3]/}  →  6
 ```
 
 ---
@@ -414,8 +414,8 @@ Calls PHP built-in functions directly.
 Executes external shell scripts.
 
 ```
-{script:myscript}
-{script:processor 'arg1', 'arg2'}
+{script:myscript/}
+{script:processor 'arg1', 'arg2'/}
 ```
 
 **Resolution:** `padScriptCheck($tagName)` - `_scripts/<name>`, or `_scripts/<name>.<ext>`, from
@@ -439,7 +439,7 @@ These types integrate with the PAD sequence subsystem.
 Accesses sequence type definitions.
 
 ```
-{sequence:fibonacci}
+{sequence:fibonacci/}
 ```
 
 **Resolution:** `file_exists(PT . $tagName)`
@@ -453,7 +453,7 @@ Accesses sequence type definitions.
 Executes sequence actions.
 
 ```
-{action:sum}
+{action:sum/}
 {mySequence:sum}
 ```
 
@@ -468,7 +468,7 @@ Executes sequence actions.
 Retrieves values from the sequence store.
 
 ```
-{pull:mySequence}
+{pull:mySequence/}
 {mySequence}  ← If exists in pqStore
 ```
 
@@ -483,7 +483,7 @@ Retrieves values from the sequence store.
 Turns each value of a sequence into 1 or 0: whether it belongs to the named sequence type.
 
 ```
-{flag:prime}
+{flag:prime/}
 {mySeq:flag even}
 ```
 
@@ -499,7 +499,7 @@ reads the bool store instead.)
 Creates new sequence values.
 
 ```
-{make:fibonacci}
+{make:fibonacci/}
 {fibonacci:make}
 ```
 
@@ -514,7 +514,7 @@ Creates new sequence values.
 Keeps only the values the named sequence type accepts; nothing is stored.
 
 ```
-{keep:mySequence even}
+{keep:mySequence even/}
 ```
 
 **Implementation:** Delegates to `PQ/start/types/keep.php`.
@@ -526,7 +526,7 @@ Keeps only the values the named sequence type accepts; nothing is stored.
 Drops the values the named sequence type accepts; no store is dropped.
 
 ```
-{remove:mySequence even}
+{remove:mySequence even/}
 ```
 
 **Implementation:** Delegates to `PQ/start/types/remove.php`.
@@ -611,24 +611,24 @@ types/
 {users where='$active eq 1', toData='activeUsers'}
 
 {if data:activeUsers}
-  <h2>Active Users ({php:count data:activeUsers})</h2>
+  <h2>Active Users ({php:count data:activeUsers/})</h2>
   {data:activeUsers}
-    <div>{field:name} - {field:email}</div>
+    <div>{field:name/} - {field:email/}</div>
   {/data:activeUsers}
 {else}
   <p>No active users</p>
 {/if}
 
-<footer>{constant:PHP_VERSION}</footer>
+<footer>{constant:PHP_VERSION/}</footer>
 ```
 
 ### Explicit Type Disambiguation
 
 ```html
 {-- 'date' could be a field, function, or PHP function --}
-{field:date}          ← Get date field value
+{field:date/}          ← Get date field value
 {function:date}       ← Use PAD date function
-{php:date 'Y-m-d'}    ← Use PHP date function
+{php:date 'Y-m-d'/}    ← Use PHP date function
 ```
 
 ### Sequence Operations

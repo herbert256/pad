@@ -44,7 +44,7 @@ before the page's PHP runs; `[name+]` takes the rest of the path:
   starts with a bare page name (`/shop/products/42?about`, the relative `href="?about"`)
   names that page instead. `?sort=price` is a value of the page the path names.
 - A bracketed file is reached through its route only; `?products/[id]` by its own name is
-  not found. `{page 'products/42'}`, `{redirect 'products/42'}` and `padRedirect()` resolve
+  not found. `{page 'products/42'/}`, `{redirect 'products/42'/}` and `padRedirect()` resolve
   the same way.
 - `$padCleanUrls = TRUE` makes `$padGo` and `$padGoExt` write `/shop/products/42` instead
   of `/shop/?products/42`; a link written `{$padGo}page&x=1` keeps working in both forms.
@@ -90,7 +90,7 @@ apps/myapp/
 │   └── config.php
 ├── _data/                 # Static data files (XML, JSON)
 ├── _content/              # Markdown collections ({collection 'blog'})
-├── _layouts/              # Layouts a page picks with {extends '_layouts/name'} (a convention)
+├── _layouts/              # Layouts a page picks with {extends '_layouts/name'/} (a convention)
 ├── _tests/                # The application's own tests, for pad test
 │
 └── subdir/                # Subdirectories can have own wrappers
@@ -105,7 +105,7 @@ apps/myapp/
 | `_lib/` | PHP functions | All `.php` files auto-included |
 | `_include/` | Template snippets | `{name}` → `name.pad` |
 | `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
-| `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
+| `_functions/` | Pipe functions | `{echo $x \| myfunc/}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
 | `_options/` | Tag options | `{tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
@@ -180,7 +180,7 @@ A tag can be a template instead - `_tags/card.pad` - with named slots for the ca
 and declared parameters:
 
 ```html
-{parms title, tone='info'}
+{parms title, tone='info'/}
 <div class="card {#tone}">
   <h2>{#title}</h2>
   @content@
@@ -208,7 +208,7 @@ Create custom pipe functions.
 
 Use in templates:
 ```
-{echo $price | money}
+{echo $price | money/}
 ```
 
 ### Layouts - {extends} and {block}
@@ -223,7 +223,7 @@ A page can pick its frame instead of taking its directories' `_inits.pad`/`_exit
 
 **sales.pad**:
 ```
-{extends '_layouts/report'}
+{extends '_layouts/report'/}
 {block 'title'}Sales{/block}
 <p>Revenue ...</p>
 ```
@@ -232,7 +232,7 @@ A page can pick its frame instead of taking its directories' `_inits.pad`/`_exit
 `{block 'title'}...{/block}` overrides the region of that name in the directory wrappers.
 
 A page without PHP sets its wrapper's `$title` - and its layout and cache time - with
-`{meta title='Sales', layout='_layouts/report', cache=600}`.
+`{meta title='Sales', layout='_layouts/report', cache=600/}`.
 
 ### _callbacks/ - Iteration Callbacks
 
@@ -328,7 +328,7 @@ line, with every `{assert}` checked.
 ?>
 ```
 ```
-{assert $total eq 42, 'the cart total'}
+{assert $total eq 42, 'the cart total'/}
 <p>Total {$total}</p>
 ```
 
@@ -424,71 +424,71 @@ Visit `http://yourserver/myapp/` in your browser.
 A field tag pipes as it stands; a literal or an expression goes through `{echo}`.
 ```
 {$name | upper}                     # a field tag pipes
-{echo $name | upper}                # the same value, printed raw - {echo} skips the sanitize chain
-{echo $text | trim | lower}         # chain multiple
-{echo $date | date('Y-m-d')}        # with parameters
-{echo 'hello' | upper}              # a literal needs {echo}
+{echo $name | upper/}                # the same value, printed raw - {echo/} skips the sanitize chain
+{echo $text | trim | lower/}         # chain multiple
+{echo $date | date('Y-m-d')/}        # with parameters
+{echo 'hello' | upper/}              # a literal needs {echo/}
 ```
 
 **Common String Functions:**
 ```
-{echo $text | upper}                # Uppercase
-{echo $text | lower}                # Lowercase
-{echo $text | trim}                 # Remove whitespace
-{echo $text | capitalize}           # Capitalize each word
-{echo $text | bold}                 # Wrap in <b> tags
-{echo $text | html}                 # HTML-encode
-{echo $text | left(5)}              # First 5 characters
-{echo $text | truncate(100)}        # At most 100 chars, ending on a word, with …
-{echo $text | after('@')}           # Everything after first @
-{echo $text | before('.')}          # Everything before first .
-{echo $text | after('(') | before(')')}  # Extract between delimiters
-{echo $text | contains('word')}     # Check if contains substring
+{echo $text | upper/}                # Uppercase
+{echo $text | lower/}                # Lowercase
+{echo $text | trim/}                 # Remove whitespace
+{echo $text | capitalize/}           # Capitalize each word
+{echo $text | bold/}                 # Wrap in <b> tags
+{echo $text | html/}                 # HTML-encode
+{echo $text | left(5)/}              # First 5 characters
+{echo $text | truncate(100)/}        # At most 100 chars, ending on a word, with …
+{echo $text | after('@')/}           # Everything after first @
+{echo $text | before('.')/}          # Everything before first .
+{echo $text | after('(') | before(')')/}  # Extract between delimiters
+{echo $text | contains('word')/}     # Check if contains substring
 ```
 
 **String Concatenation (with @ marker):**
 ```
-{echo $text | . ' suffix'}              # Append string
-{echo $text | 'prefix ' . }             # Prepend string
-{echo $text | 'prefix ' . @ . ' suffix'}  # @ marks where value goes
+{echo $text | . ' suffix'/}              # Append string
+{echo $text | 'prefix ' . /}             # Prepend string
+{echo $text | 'prefix ' . @ . ' suffix'/}  # @ marks where value goes
 ```
 
 **The @ placeholder in expressions:**
 ```
-{echo 50 | @ * 4}                       # @ represents the current value
-{echo 50 | @ * 4 | @ * 2}               # Chain with @ at each step
-{echo 50 | '"' . @ . '"'}               # Wrap value in quotes
+{echo 50 | @ * 4/}                       # @ represents the current value
+{echo 50 | @ * 4 | @ * 2/}               # Chain with @ at each step
+{echo 50 | '"' . @ . '"'/}               # Wrap value in quotes
 ```
 
 **Chaining Multiple Functions:**
 ```
-{echo $email | after('@') | before('.')}   # Extract domain name
-{echo 'Hello: World' | after(': ') | upper}  # "WORLD"
+{echo $email | after('@') | before('.')/}   # Extract domain name
+{echo 'Hello: World' | after(': ') | upper/}  # "WORLD"
 ```
 
 **Number Formatting:**
 ```
-{echo $price | %.2f}                # Format to 2 decimal places
-{echo $value | number_format(@, 2)} # 1,234.50
+{echo $price | %.2f/}                # Format to 2 decimal places
+{echo $value | number_format(@, 2)/} # 1,234.50
 ```
 
 **Printf-style format specifiers:**
 ```
-{echo $nbr | %.5f}          # 5 decimal places
-{echo $nbr | %'.09d}        # Zero-padded to 9 digits
-{echo $nbr | %d}            # Integer
-{echo $nbr | %e}            # Scientific notation
-{echo $nbr | %g}            # General format
-{echo $nbr | %o}            # Octal
-{echo $nbr | %x}            # Hexadecimal
+{echo $nbr | %.5f/}          # 5 decimal places
+{echo $nbr | %'.09d/}        # Zero-padded to 9 digits
+{echo $nbr | %d/}            # Integer
+{echo $nbr | %e/}            # Scientific notation
+{echo $nbr | %g/}            # General format
+{echo $nbr | %o/}            # Octal
+{echo $nbr | %x/}            # Hexadecimal
 ```
 
 ### Pipe Arithmetic
 Arithmetic pipes require a space between the operator and operand:
 ```
-{echo $value | + 1}          # Correct - adds 1
-{echo $value | +1}           # Wrong - no space
-{echo $value | * 2}          # Correct - multiplies by 2
+{echo $value | + 1/}          # Correct - adds 1
+{echo $value | +1/}           # Wrong - no space
+{echo $value | * 2/}          # Correct - multiplies by 2
 {$value | + 1}               # Correct - a field tag pipes too
 ```
 
@@ -501,30 +501,30 @@ Arithmetic pipes require a space between the operator and operand:
 
 ### While and Until Loops
 ```
-{set $i = 1}
+{set $i = 1/}
 {while $i le 10}
   Item {$i}
-  {increment $i}
+  {increment $i/}
 {/while}
 
-{set $count = 5}
+{set $count = 5/}
 {until $count eq 0}
   Countdown: {$count}
-  {decrement $count}
+  {decrement $count/}
 {/until}
 ```
 
 ### Loop Control
 ```
 {items}
-  {if $skip eq 1}{break}{/if}      # Break current loop
+  {if $skip eq 1}{break/}{/if}      # Break current loop
   {$name}
 {/items}
 
 {outer}
   {inner}
-    {break 'outer'}                 # Break named outer loop
-    {break -2}                      # Break by level
+    {break 'outer'/}                 # Break named outer loop
+    {break -2/}                      # Break by level
   {/inner}
 {/outer}
 ```
@@ -532,16 +532,16 @@ Arithmetic pipes require a space between the operator and operand:
 **Three types of loop control:**
 ```
 {staff}
-  {if $name eq 'jack'}{continue 'staff'}{/if}  # Skip this iteration
-  {if $name eq 'bob'}{cease 'staff'}{/if}      # Soft stop (graceful end)
-  {if $name eq 'sue'}{break 'staff'}{/if}      # Hard stop (immediate exit)
+  {if $name eq 'jack'}{continue 'staff'/}{/if}  # Skip this iteration
+  {if $name eq 'bob'}{cease 'staff'/}{/if}      # Soft stop (graceful end)
+  {if $name eq 'sue'}{break 'staff'/}{/if}      # Hard stop (immediate exit)
   {$name}
 {/staff}
 ```
 
-- `{continue 'tag'}` - Skip to next iteration (like PHP's continue)
-- `{cease 'tag'}` - Stop iteration gracefully, process remaining output
-- `{break 'tag'}` - Exit immediately, discard remaining
+- `{continue 'tag'/}` - Skip to next iteration (like PHP's continue)
+- `{cease 'tag'/}` - Stop iteration gracefully, process remaining output
+- `{break 'tag'/}` - Exit immediately, discard remaining
 
 ### Conditionals
 ```
@@ -559,7 +559,7 @@ A condition compares with the operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, `==
 or tests a bare value for its truth, as PHP tests it - `''`, `'0'`, `0` and FALSE fail:
 ```
 {if $count eq 0}Empty{/if}              # A comparison
-{if {clock 'L'} eq 1}Leap year{/if}     # A nested tag as value
+{if {clock 'L'/} eq 1}Leap year{/if}     # A nested tag as value
 {if $flag}True{/if}                      # The value's truth
 ```
 
@@ -573,8 +573,8 @@ operator:
   {first@items}First item{/first@items}
   {last@items}Last item{/last@items}
   {even@items ? 'Even row' : 'Odd row'}
-  Count: {count@items}
-  Index: {current@items}
+  Count: {count@items/}
+  Index: {current@items/}
 {/items}
 ```
 
@@ -597,16 +597,16 @@ operator:
 
 ### Variable Assignment with {set}
 ```
-{set $name = 'Alice'}              # Assign string
-{set $count = 0}                   # Assign number
-{set $total = $price * $qty}       # Assign expression
-{set $upper = {echo $upper | upper}}   # Assign through a pipe
+{set $name = 'Alice'/}              # Assign string
+{set $count = 0/}                   # Assign number
+{set $total = $price * $qty/}       # Assign expression
+{set $upper = {echo $upper | upper/}/}   # Assign through a pipe
 ```
 
 ### Level vs Occurrence Variables
 Variables prefixed with `$` are level variables (same for all iterations). Variables prefixed with `%` are occurrence variables (change each iteration):
 ```
-{set $range = 10}
+{set $range = 10/}
 
 {sequence '1..5', $abc=$range, %xyz=$range}
   Level: {$abc}      # Always 10
@@ -665,7 +665,7 @@ Supports JSON arrays, objects, and tuples:
 ### Switch Tag (Alternating Values)
 ```
 {items}
-  <tr style="background: {switch '#fff', '#eee'}">
+  <tr style="background: {switch '#fff', '#eee'/}">
     <td>{$name}</td>
   </tr>
 {/items}
@@ -682,18 +682,18 @@ Alternates between values on each iteration - useful for zebra striping.
 ```
 
 ### Expression Evaluation
-To evaluate arithmetic expressions, use `{echo expression}`:
+To evaluate arithmetic expressions, use `{echo expression/}`:
 ```
-{echo 365 - {clock 'z'}}                # Evaluates: 365 - 347 = 18
-{echo $total * 1.1}                      # Evaluates multiplication
-{365 - {clock 'z'}}                      # Wrong - an error: {365 ...} is read as a tag named 365
+{echo 365 - {clock 'z'/}/}                # Evaluates: 365 - 347 = 18
+{echo $total * 1.1/}                      # Evaluates multiplication
+{365 - {clock 'z'/}}                      # Wrong - an error: {365 ...} is read as a tag named 365
 ```
 
 ### Calling PHP Functions
 PHP functions can be called directly as tags without custom wrappers:
 ```
 {date_default_timezone_get}             # Calls PHP function directly
-{php:time}                               # Unix timestamp - a bare {time} is the pipe function
+{php:time/}                               # Unix timestamp - a bare {time} is the pipe function
 {rand 1, 100}                            # Random number between 1-100
 ```
 
@@ -843,8 +843,8 @@ message `padValidate` found for them:
 
 ```html
 {form 'contact'}
-  {input 'email', type='email', label='E-mail', required}
-  {textarea 'message', label='Message', rows=6}
+  {input 'email', type='email', label='E-mail', required/}
+  {textarea 'message', label='Message', rows=6/}
   <button>Send</button>
 {/form}
 ```
@@ -872,8 +872,8 @@ The rules can stand on the fields in the template instead, and the PHP then only
 
 ```html
 {form 'contact', error='Please correct the errors below.'}
-  {input 'email', type='email', label='E-mail', rules='required|email'}
-  {textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+  {input 'email', type='email', label='E-mail', rules='required|email'/}
+  {textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
   <button>Send</button>
 {/form}
 ```
@@ -909,7 +909,7 @@ elseif ( $avatar === FALSE )         // refused - NULL means no file was sent
   $problem = padUploadError ( 'avatar' );
 ```
 
-The refusal also shows beside `{input 'avatar', type='file', label='Picture'}`, and a
+The refusal also shows beside `{input 'avatar', type='file', label='Picture'/}`, and a
 `{form}` holding a file field posts as `multipart/form-data` by itself.
 
 What is stored under `DATA/` no address reaches; a page sends it back with `padUploadSend`,
@@ -945,7 +945,7 @@ With `$padCsrf = TRUE` in `_config/config.php`, every `<form method="post">` tha
 to the site gets a hidden `padCsrfToken` field holding the token of the visitor's session,
 and every POST (PUT, PATCH, DELETE) that does not bring it back - in that field or an
 `X-CSRF-Token` header - is answered `403` before the application runs. `{csrf}` writes the
-field by hand, `{csrf token}` the bare token; `padCsrfValid()` checks a post in PHP. The
+field by hand, `{csrf token/}` the bare token; `padCsrfValid()` checks a post in PHP. The
 session starts on demand the first time a token is needed.
 
 ---
@@ -1007,8 +1007,8 @@ $exists = db("CHECK * FROM users WHERE email='{0}'", [$email]);
 ### Database Template Tags
 Query databases directly from templates:
 ```
-{field "count(*) from users"}                    # Single value
-{field "name from users where id = 1"}           # Single field
+{field "count(*) from users"/}                    # Single value
+{field "name from users where id = 1"/}           # Single field
 
 {array "* from users order by name"}
   <tr><td>{$name}</td><td>{$email}</td></tr>
@@ -1075,9 +1075,9 @@ PAD pipe functions come from two sources:
 
 Both pipe from a field tag or through `{echo}`:
 ```
-{echo $text | trim}              # PAD function
-{echo $text | strlen}            # PHP function
-{echo $name | ucfirst}           # PHP function
+{echo $text | trim/}              # PAD function
+{echo $text | strlen/}            # PHP function
+{echo $name | ucfirst/}           # PHP function
 {$text | trim}                   # a field tag pipes as it stands
 ```
 
@@ -1091,8 +1091,8 @@ Parameters are evaluated before being passed to tags. Use quotes to pass literal
 {count items}              # Wrong - items is read as an option, an error
 {count 'items'}            # Correct - passes the string "items"
 
-{get $message}             # Wrong - evaluates $message first
-{get 'fragments/hello'}    # Correct - passes literal page path
+{get $message/}             # Wrong - evaluates $message first
+{get 'fragments/hello'/}    # Correct - passes literal page path
 ```
 
 ### Tag Type Prefixes
@@ -1100,7 +1100,7 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 ```
 {pull:mySequence}...{/pull:mySequence}    # Explicitly use stored sequence
 {data:items}...{/data:items}              # Explicitly use data store
-{app:mytag}                                # Explicitly use app tag from _tags/
+{app:mytag/}                                # Explicitly use app tag from _tags/
 ```
 
 **Complete list of type prefixes:**
@@ -1123,7 +1123,7 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 | `constant:` | Access PHP constant |
 | `bool:` | Access bool definition |
 | `pull:` | Retrieved stored sequence |
-| `field:` | A field (variable) value - the database value is the `{field "..."}` tag |
+| `field:` | A field (variable) value - the database value is the `{field "..."/}` tag |
 | `select:` | Declared select table |
 | `sequence:` | Sequence type |
 | `action:` | Sequence action |
@@ -1139,8 +1139,8 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 ### The `get` Tag
 The `get` tag includes PAD pages, NOT variables:
 ```
-{get 'fragments/hello'}     # Includes the page fragments/hello (.php + .pad)
-{get 'admin/users'}         # Includes admin/users page
+{get 'fragments/hello'/}     # Includes the page fragments/hello (.php + .pad)
+{get 'admin/users'/}         # Includes admin/users page
 ```
 
 ### The `case` Tag
@@ -1190,11 +1190,11 @@ Checks if an array has elements. Quote the array name:
 ### The `output` Tag
 Sets output type, does NOT capture content:
 ```
-{output 'web'}        # Normal web output (default)
-{output 'console'}    # Console output
-{output 'download'}   # File download
-{output 'json'}       # The variables the page names in $padExpose, as JSON
-{output 'csv'}        # The first list the page names in $padExpose, as CSV
+{output 'web'/}        # Normal web output (default)
+{output 'console'/}    # Console output
+{output 'download'/}   # File download
+{output 'json'/}       # The variables the page names in $padExpose, as JSON
+{output 'csv'/}        # The first list the page names in $padExpose, as CSV
 ```
 
 ### The `true` and `false` Tags
@@ -1209,14 +1209,14 @@ Render its content as PAD in a pass of its own - it runs no PHP: PHP written ins
 printed as text. PHP belongs in the page's `.php` or in `_lib/`.
 ```
 {code}
-  {set $total = $price * $qty}{$total}
+  {set $total = $price * $qty/}{$total}
 {/code}
 
 {code sandbox}
   {-- an isolated pass: the page's variables and stores are not seen or changed --}
 {/code}
 
-{echo $snippet | code}      {-- a stored value run as PAD --}
+{echo $snippet | code/}      {-- a stored value run as PAD --}
 ```
 
 ### The `pad` Tag with Content Blocks
@@ -1266,7 +1266,7 @@ Write content to files:
 ### The `open` and `close` Tags
 Output literal braces (for documentation/examples):
 ```
-{open}echo $var{close}    # Outputs: {echo $var}
+{open/}echo $var{close/}    # Outputs: {echo $var/}
 ```
 
 ### Files Tag
@@ -1393,7 +1393,7 @@ HTML when there is none), `_mail/order.php` (runs first), and `_inits.pad`/`_exi
 `.txt`) in the same directory as the email's layout around `@page@`.
 
 ```html
-{mail to=$email, template='order', subject='Order confirmation'}
+{mail to=$email, template='order', subject='Order confirmation'/}
 
 {orders}
   {mail to=$email, subject='Your order ' . $number}<p>Thank you, {$customer}</p>{/mail}
@@ -1422,7 +1422,7 @@ time of its files as `lastmod`, and `?robots.txt` with a `Sitemap:` line pointin
 the application has a page of that name itself. `{sitemap}...{/sitemap}` gives the same rows
 (`page`, `url`, `lastmod`) to a template, for an HTML sitemap. Left out are `_` entries,
 directories holding a `_guard.php`, bracketed routes, action pages (no template, PHP that only
-redirects, restarts or writes), pages whose template says `{meta sitemap=false}`, and what
+redirects, restarts or writes), pages whose template says `{meta sitemap=false/}`, and what
 `$padSitemapSkip` names.
 
 ---
@@ -1509,7 +1509,7 @@ see it, before any `_inits.php` or page PHP runs:
 
 ### Conditional Display with Nested Tags
 ```
-{if {clock 'L'} eq 1}
+{if {clock 'L'/} eq 1}
   366 days (leap year)
 {else}
   365 days
@@ -1518,8 +1518,8 @@ see it, before any `_inits.php` or page PHP runs:
 
 ### Calculated Values
 ```
-Day {clock 'z' | + 1} of {if {clock 'L'} eq 1}366{else}365{/if}
-Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {clock 'z'}}{/if}
+Day {clock 'z' | + 1/} of {if {clock 'L'/} eq 1}366{else}365{/if}
+Days remaining: {if {clock 'L'/} eq 1}{echo 365 - {clock 'z'/}/}{else}{echo 364 - {clock 'z'/}/}{/if}
 ```
 
 ### Alternating Row Colors
@@ -1534,7 +1534,7 @@ Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {
 Or using the `{switch}` tag:
 ```
 {items}
-  <tr class="{switch 'odd', 'even'}"><td>{$name}</td></tr>
+  <tr class="{switch 'odd', 'even'/}"><td>{$name}</td></tr>
 {/items}
 ```
 
@@ -1558,7 +1558,7 @@ Output: `Alice, Bob, Charlie`
 {sequence '1..3', name='row'}
   <tr>
     {sequence '1..4', name='col'}
-      <td>{echo $row * 10 + $col}</td>
+      <td>{echo $row * 10 + $col/}</td>
     {/sequence}
   </tr>
 {/sequence}
@@ -1566,7 +1566,7 @@ Output: `Alice, Bob, Charlie`
 
 ### Extract Domain from Email
 ```
-{echo $email | after('@') | before('.')}
+{echo $email | after('@') | before('.')/}
 ```
 
 ---
@@ -1580,20 +1580,20 @@ Output: `Alice, Bob, Charlie`
 | `{$var}` | Output variable, HTML-escaped (the sanitize chain) | `{$name}` |
 | `{!var}` | Raw output - trusted HTML only | `{!body}` |
 | `{$obj.prop}` | Property access | `{$user.email}` |
-| `{echo expr}` | Evaluate expression | `{echo $a + $b}` |
-| `{echo $x \| func}` | Pipe function | `{echo $text \| upper}` |
-| `{set $x = val}` | Assign variable | `{set $count = 0}` |
+| `{echo expr/}` | Evaluate expression | `{echo $a + $b/}` |
+| `{echo $x \| func/}` | Pipe function | `{echo $text \| upper/}` |
+| `{set $x = val/}` | Assign variable | `{set $count = 0/}` |
 | `{if cond}...{/if}` | Conditional | `{if $x eq 1}yes{/if}` |
 | `{tag}...{/tag}` | Iterate array | `{users}{$name}{/users}` |
 | `{while}...{/while}` | While loop | `{while $i lt 10}...{/while}` |
 | `{case}...{/case}` | Switch/case | `{case $x}{when 'a'}...{/case}` |
-| `{get 'page'}` | Include page | `{get 'fragments/nav'}` |
+| `{get 'page'/}` | Include page | `{get 'fragments/nav'/}` |
 | `{data 'name'}...{/data}` | Define data | `{data 'items'}[1,2,3]{/data}` |
 | `{property@tag}` | Iteration property | `{first@items}`, `{count@users}` |
 | `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` (see [sequences/](sequences/README.md)) |
-| `{break}` | Hard stop loop | `{break}` or `{break 'outer'}` |
-| `{continue}` | Skip iteration | `{continue 'loopname'}` |
-| `{cease}` | Soft stop loop | `{cease 'loopname'}` |
+| `{break}` | Hard stop loop | `{break}` or `{break 'outer'/}` |
+| `{continue}` | Skip iteration | `{continue 'loopname'/}` |
+| `{cease}` | Soft stop loop | `{cease 'loopname'/}` |
 
 ### Comparison Operators
 
@@ -1627,12 +1627,12 @@ Output: `Alice, Bob, Charlie`
 ### Key Distinctions from PHP
 
 1. **Templates drive execution** - not code including templates
-2. **A literal pipes through `{echo}`** - `{echo 'x' | upper}`; a field tag pipes as it stands, `{$var | upper}`, and only the field tag escapes
-3. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
+2. **A literal pipes through `{echo}`** - `{echo 'x' | upper/}`; a field tag pipes as it stands, `{$var | upper}`, and only the field tag escapes
+3. **Arithmetic needs space** - `{echo $x | + 1/}` not `| +1`
 4. **A bare condition tests truth** - `{if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant
 5. **Quote literal strings** - `{count 'items'}` not `{count items}`
 6. **`{continue}` skips iterations** - like PHP; use `{resume}` to transform stored sequences
 7. **Use type prefixes** - `{pull:seq}`, `{data:items}`, `{php:func}` to disambiguate
 8. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
-9. **`@` placeholder** - represents current value in pipes: `{echo 5 | @ * 2}`
+9. **`@` placeholder** - represents current value in pipes: `{echo 5 | @ * 2/}`
 10. **Multiple data formats** - JSON, XML, YAML, CSV all supported in `{data}` blocks

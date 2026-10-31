@@ -39,14 +39,14 @@ Generate a simple range:
 
 Store and transform:
 ```
-{sequence '1..10', push='nums'}
-{resume reverse}
+{sequence '1..10', push='nums'/}
+{resume reverse/}
 {pull:nums}{$sequence} {/pull:nums}
 ```
 
 Aggregate values:
 ```
-{sequence '1..100', push='nums'}
+{sequence '1..100', push='nums'/}
 Sum: {pull:nums sum}{$sequence}{/pull:nums}
 ```
 

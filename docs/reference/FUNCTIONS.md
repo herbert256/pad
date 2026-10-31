@@ -9,16 +9,16 @@ a literal or an expression goes through `{echo}`:
 
 ```
 {$name | upper}                   # a field tag pipes
-{echo $name | upper}              # the same value, printed raw - {echo} skips the sanitize chain
-{echo $text | trim | lower}       # Chained functions
-{echo $date | date('Y-m-d')}      # With parameters
-{echo 'hello' | upper}            # a literal needs {echo}
+{echo $name | upper/}              # the same value, printed raw - {echo/} skips the sanitize chain
+{echo $text | trim | lower/}       # Chained functions
+{echo $date | date('Y-m-d')/}      # With parameters
+{echo 'hello' | upper/}            # a literal needs {echo/}
 ```
 
 Multiple functions can be chained:
 
 ```
-{echo $name | trim | upper | left(10)}
+{echo $name | trim | upper | left(10)/}
 ```
 
 Where nothing is piped in - at the head of an expression, or as an argument of another
@@ -27,9 +27,9 @@ functions do; `date` keeps PHP's order, the format first and then the moment:
 
 ```
 {if left($code, 2) eq 'NL'} ... {/if}
-{echo 'Hello ' . upper($name)}
-{echo $text | replace('x', upper($y))}
-{echo date('Y', $created)}
+{echo 'Hello ' . upper($name)/}
+{echo $text | replace('x', upper($y))/}
+{echo date('Y', $created)/}
 ```
 
 ---
@@ -48,10 +48,10 @@ Functions that extract parts of a string based on a delimiter.
 ### Examples
 
 ```
-{echo 'hello/world/test' | after('/')}  → 'world/test'
-{echo 'hello/world/test' | afterLast('/')} → 'test'
-{echo 'hello/world/test' | before('/')} → 'hello'
-{echo 'hello/world/test' | beforeLast('/')} → 'hello/world'
+{echo 'hello/world/test' | after('/')/}  → 'world/test'
+{echo 'hello/world/test' | afterLast('/')/} → 'test'
+{echo 'hello/world/test' | before('/')/} → 'hello'
+{echo 'hello/world/test' | beforeLast('/')/} → 'hello/world'
 ```
 
 All four skip the whole delimiter, multi-character or not, and give the value back unchanged
@@ -75,11 +75,11 @@ Functions that extract substrings by position.
 ### Examples
 
 ```
-{echo 'Hello World' | left(5)}   → 'Hello'
-{echo 'Hello World' | right(5)}  → 'World'
-{echo 'Hello World' | mid(7, 5)} → 'World'
-{echo 'Hello World' | substr(6)} → 'World'
-{echo 'Hello World' | substr(0, 5)} → 'Hello'
+{echo 'Hello World' | left(5)/}   → 'Hello'
+{echo 'Hello World' | right(5)/}  → 'World'
+{echo 'Hello World' | mid(7, 5)/} → 'World'
+{echo 'Hello World' | substr(6)/} → 'World'
+{echo 'Hello World' | substr(0, 5)/} → 'Hello'
 ```
 
 A count of zero or less names no characters: `left(0)`, `right(0)` and the negative counts
@@ -104,9 +104,9 @@ Functions that change the case of text.
 ### Examples
 
 ```
-{echo 'hello world' | upper}  → 'HELLO WORLD'
-{echo 'HELLO WORLD' | lower}  → 'hello world'
-{echo 'hello world' | capitalize} → 'Hello World'
+{echo 'hello world' | upper/}  → 'HELLO WORLD'
+{echo 'HELLO WORLD' | lower/}  → 'hello world'
+{echo 'hello world' | capitalize/} → 'Hello World'
 ```
 
 ---
@@ -125,10 +125,10 @@ Functions that modify string content.
 ### Examples
 
 ```
-{echo '  hello  ' | trim}              → 'hello'
-{echo 'hello world' | replace('world', 'there')} → 'hello there'
-{echo 'hello world' | cut('o')}        → 'hell wrld'
-{echo 'hello   world' | white}         → 'hello world'
+{echo '  hello  ' | trim/}              → 'hello'
+{echo 'hello world' | replace('world', 'there')/} → 'hello there'
+{echo 'hello world' | cut('o')/}        → 'hell wrld'
+{echo 'hello   world' | white/}         → 'hello world'
 ```
 
 ---
@@ -153,12 +153,12 @@ Functions for encoding and escaping text for various contexts.
 ### Examples
 
 ```
-{echo '<script>' | html}    → '&lt;script&gt;'
-{echo 'hello world' | url}  → 'hello+world'
-{echo "it's here" | slashes} → "it\'s here"
-{json 'products' | ignore}  → an application's own _tags/json.php (CLAUDE.md): the JSON it HTML-escaped itself, kept from the PAD parser
-{echo $json | html | ignore} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
-{echo 'Crème Brûlée & Co.' | slug} → 'creme-brulee-co'
+{echo '<script>' | html/}    → '&lt;script&gt;'
+{echo 'hello world' | url/}  → 'hello+world'
+{echo "it's here" | slashes/} → "it\'s here"
+{json 'products' | ignore/}  → an application's own _tags/json.php (CLAUDE.md): the JSON it HTML-escaped itself, kept from the PAD parser
+{echo $json | html | ignore/} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
+{echo 'Crème Brûlée & Co.' | slug/} → 'creme-brulee-co'
 ```
 
 ### escape
@@ -195,9 +195,9 @@ Functions that add HTML formatting to text.
 ### Examples
 
 ```
-{echo 'important' | bold} → '<b>important</b>'
-{echo 'hello world' | nbsp} → 'hello&nbsp;world'
-{echo '**Hi** <b>' | markdown} → '<p><strong>Hi</strong> &lt;b&gt;</p>'
+{echo 'important' | bold/} → '<b>important</b>'
+{echo 'hello world' | nbsp/} → 'hello&nbsp;world'
+{echo '**Hi** <b>' | markdown/} → '<p><strong>Hi</strong> &lt;b&gt;</p>'
 ```
 
 ### markdown
@@ -231,10 +231,10 @@ Functions that limit or control string length.
 ### Examples
 
 ```
-{echo 'Hello World' | max_len(5)} → 'Hello'
-{echo 'Hi' | max_len(5)}      → 'Hi'
-{echo 'The quick brown fox jumps over the lazy dog' | truncate(20)} → 'The quick brown fox…'
-{echo 3221225472 | bytes}     → '3 GB'
+{echo 'Hello World' | max_len(5)/} → 'Hello'
+{echo 'Hi' | max_len(5)/}      → 'Hi'
+{echo 'The quick brown fox jumps over the lazy dog' | truncate(20)/} → 'The quick brown fox…'
+{echo 3221225472 | bytes/}     → '3 GB'
 ```
 
 ---
@@ -258,12 +258,12 @@ file.
 ### Examples
 
 ```
-{echo 'hello world' | contains('world')} → TRUE
+{echo 'hello world' | contains('world')/} → TRUE
 {$status | in('active', 'pending')}  → '1' or ''
-{echo 'test.txt' | like('%.txt')}    → '1'
+{echo 'test.txt' | like('%.txt')/}    → '1'
 {$age | between(17, 66)}             → TRUE if 17 < age < 66
 {$score | range(0, 100)}             → TRUE if 0 <= score <= 100
-{echo 'templates/page.php' | exists} → '1' or '0'
+{echo 'templates/page.php' | exists/} → '1' or '0'
 {$code | matches('/^[A-Z][A-Z][0-9]+$/')} → '1' or ''
 ```
 
@@ -311,9 +311,9 @@ sign is written `\\%` there - `like('%\\%')` - while a pattern that comes from t
 PHP, `like($pattern)`, is written as is.
 
 ```
-{echo 'filename.txt' | like('%.txt')} → '1'
-{echo 'test123' | like('test___')}    → '1'
-{echo '100%' | like('%\\%')}          → '1'
+{echo 'filename.txt' | like('%.txt')/} → '1'
+{echo 'test123' | like('test___')/}    → '1'
+{echo '100%' | like('%\\%')/}          → '1'
 ```
 
 ---
@@ -333,8 +333,8 @@ them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension whe
 ### Examples
 
 ```
-{echo 'cart.title' | trans}                  → 'Je winkelwagen' in nl
-{echo 'cart.items' | trans($n)}              → '3 artikelen'
+{echo 'cart.title' | trans/}                  → 'Je winkelwagen' in nl
+{echo 'cart.items' | trans($n)/}              → '3 artikelen'
 {$price | currency('USD', 'en_US')}          → '$1,234.50'
 {$created | localDate('long')}               → 'October 5, 2026'
 {$created | localDate('d MMMM y', 'none', 'nl')} → '5 oktober 2026'
@@ -359,7 +359,7 @@ changed. Strict mode names a lookup without a set, or with a name nothing holds.
 
 ```
 {orders}
-  {$number}: {echo $customer_id | lookup('customers', 'id', 'name')}
+  {$number}: {echo $customer_id | lookup('customers', 'id', 'name')/}
 {/orders}
 
 {$customer_id | lookup('customers')}                          → the first field after id
@@ -423,15 +423,15 @@ no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
 
 | Function | Description | Example |
 |----------|-------------|---------|
-| `+ n` | Add | `{echo $value \| + 1}` |
-| `- n` | Subtract | `{echo $value \| - 5}` |
-| `* n` | Multiply | `{echo $value \| * 2}` |
-| `/ n` | Divide | `{echo $value \| / 4}` |
+| `+ n` | Add | `{echo $value \| + 1/}` |
+| `- n` | Subtract | `{echo $value \| - 5/}` |
+| `* n` | Multiply | `{echo $value \| * 2/}` |
+| `/ n` | Divide | `{echo $value \| / 4/}` |
 
 ```
-{echo $value | + 1}          # Correct - adds 1
-{echo $value | * 2}          # Correct - multiplies by 2
-{echo $value | +1}           # WRONG - no space!
+{echo $value | + 1/}          # Correct - adds 1
+{echo $value | * 2/}          # Correct - multiplies by 2
+{echo $value | +1/}           # WRONG - no space!
 ```
 
 ---
@@ -441,17 +441,17 @@ no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
 Use printf format specifiers for number formatting:
 
 ```
-{echo $nbr | %.5f}          # 5 decimal places: 3.14159
-{echo $nbr | %'.09d}        # Zero-padded to 9 digits: 000000123
-{echo $nbr | %d}            # Integer: 42
-{echo $nbr | %x}            # Hexadecimal: 2a
-{echo $nbr | %05d}          # Zero-padded to 5 digits: 00042
-{echo $nbr | %+d}           # With sign: +42
+{echo $nbr | %.5f/}          # 5 decimal places: 3.14159
+{echo $nbr | %'.09d/}        # Zero-padded to 9 digits: 000000123
+{echo $nbr | %d/}            # Integer: 42
+{echo $nbr | %x/}            # Hexadecimal: 2a
+{echo $nbr | %05d/}          # Zero-padded to 5 digits: 00042
+{echo $nbr | %+d/}           # With sign: +42
 ```
 
 A format is one pipe segment like any other, anywhere in the chain - it runs to the next
-`|`: `{echo $price | * 1.21 | %.2f | . ' EUR'}`. A `%` that opens no conversion is the
-modulo operator: `{echo $n | % 3}`.
+`|`: `{echo $price | * 1.21 | %.2f | . ' EUR'/}`. A `%` that opens no conversion is the
+modulo operator: `{echo $n | % 3/}`.
 
 ### Common Format Specifiers
 
@@ -473,9 +473,9 @@ modulo operator: `{echo $n | % 3}`.
 The `@` symbol represents the current value in expressions:
 
 ```
-{echo 50 | @ * 4}                # 200 (@ = 50)
-{echo $text | '"' . @ . '"'}     # Wrap value in quotes
-{echo $num | @ + @ * 2}          # Triple the value
+{echo 50 | @ * 4/}                # 200 (@ = 50)
+{echo $text | '"' . @ . '"'/}     # Wrap value in quotes
+{echo $num | @ + @ * 2/}          # Triple the value
 ```
 
 ---
@@ -494,8 +494,8 @@ Functions for working with PAD template syntax.
 ### Examples
 
 ```
-{echo 'myTag' | open} → '{myTag}'
-{echo 'myTag' | close} → '{/myTag}'
+{echo 'myTag' | open/} → '{myTag}'
+{echo 'myTag' | close/} → '{/myTag}'
 {$maybeNull | optional}  → value or ''
 ```
 
@@ -518,8 +518,8 @@ negative precision is reported.
 {$visits | abbreviate}        → '2M'     ($visits = 1534200)
 {$visits | abbreviate(1)}     → '1.5M'
 {$visits | abbreviate(2)}     → '1.53M'
-{echo 950 | abbreviate}       → '950'
-{echo -2500 | abbreviate(1)}  → '-2.5K'
+{echo 950 | abbreviate/}       → '950'
+{echo -2500 | abbreviate(1)/}  → '-2.5K'
 ```
 
 ### ordinal
@@ -530,8 +530,8 @@ number with a fraction is reported; a value that is not a number goes through un
 
 ```
 {runners}{$place | ordinal}: {$name} {/runners}   → '1st: Ann 2nd: Bob 3rd: Cee '
-{echo 22 | ordinal}           → '22nd'
-{echo 112 | ordinal}          → '112th'
+{echo 22 | ordinal/}           → '22nd'
+{echo 112 | ordinal/}          → '112th'
 ```
 
 
@@ -550,7 +550,7 @@ number with a fraction is reported; a value that is not a number goes through un
 {$created | ago}                 → 'just now', '5 minutes ago', 'yesterday', '3 weeks ago'
 {$deadline | ago}                → 'in 2 hours', 'tomorrow', 'in 3 days'
 {$start | ago($end)}             → counted from $end instead of now
-{echo '2026-10-04' | ago}        → 'yesterday' on 5 October 2026
+{echo '2026-10-04' | ago/}        → 'yesterday' on 5 October 2026
 ```
 
 The value is a Unix timestamp, a date in text or a date object; now is the one `padNowFreeze` fixed, when a
@@ -657,7 +657,7 @@ Create custom functions in `_functions/`:
 
 Use in templates:
 ```
-{echo $price | money}     # $1,234.56
+{echo $price | money/}     # $1,234.56
 ```
 
 **_functions/initials.php:**
@@ -674,7 +674,7 @@ Use in templates:
 
 Use in templates:
 ```
-{echo $name | initials}   # "John Doe" → "JD"
+{echo $name | initials/}   # "John Doe" → "JD"
 ```
 
 ### Available Variables

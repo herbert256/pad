@@ -1,10 +1,15 @@
-PAD is about {tag 'tags'}
+PAD is about {tag 'tags'/}
 
 <p>
-A single {tag 'tag'} or 
-an open/close combination {tag 'tag'} .... {tag 'tag', close}
+A single {tag 'tag', single/} or 
+an open/close combination {tag 'tag'/} .... {tag 'tag', close/}
 
 <p>
-Optional a single {tag 'tag', single} can be closed with a traling <b>/</b> character. <br>( the PAD parser likes you when you do this )
+A single tag is closed with a trailing <b>/</b> character. A tag written without it opens a pair,
+and its closing tag has to follow: under the strict syntax check a tag that has neither is an
+error - <code>the pair {open/}echo{close/} never closes - a single tag is written {open/}echo .../{close/}</code> -
+and the lenient walk reads it as a single tag. The slash may stand in front of an opening pipe
+as well: <code>{open/}echo $x /| upper{close/}</code>. The variable forms - <code>{open/}$x{close/}</code>,
+<code>{open/}!x{close/}</code>, <code>{open/}#x{close/}</code> ... - are never pairs and take no slash.
 
 <br><br>

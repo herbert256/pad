@@ -19,8 +19,8 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `guarded.php/pad` | A page under a `_guard.php` is built fresh for the request the guard lets in, and refused to one it does not - never answered from the cache |
 | `locked/` | The guarded directory: its `_guard.php` wants the header `X-Key: open`, its probe differs on every build |
 | `nonce.php/pad` | A page holding the request's CSP nonce (`script.pad`) is built fresh for each fetch, never stored |
-| `meta.php/pad` | Fetches `metaoff` twice: a page with `{meta cache=0}` is built every time though the application caches |
-| `metaoff.php/pad` | A page that keeps itself out of the cache with `{meta cache=0}`, its body its build moment |
+| `meta.php/pad` | Fetches `metaoff` twice: a page with `{meta cache=0/}` is built every time though the application caches |
+| `metaoff.php/pad` | A page that keeps itself out of the cache with `{meta cache=0/}`, its body its build moment |
 | `validators.php/pad` | The cache's validators belong to one URL: the probe's ETag gets a 304 from the probe only, and a date older than the cached copy gets the page |
 | `etaglist.php/pad` | On a cache miss the 304 reads the whole If-None-Match list: its tag second in a list, and `*`, get a 304, another tag the page |
 | `stable.pad` | A page that never changes, fetched by etaglist at a fresh address each time |

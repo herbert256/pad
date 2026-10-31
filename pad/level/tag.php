@@ -7,8 +7,9 @@
   // off. Otherwise $padOut [$pad] is scanned forward for {/<tag>, using the prefixed or
   // sequence form of the name where one applies, skipping any match that would leave the
   // pair unbalanced (padOpenCloseCountOne) or that is only the prefix of a longer name.
-  // A match hands over to level/pair.php; no match leaves $padPairSet FALSE and the tag is
-  // treated as single.
+  // A match hands over to level/pair.php; no match is an error under the strict check - a
+  // single tag is written {tag/} - and leaves $padPairSet FALSE, the tag single, in the
+  // lenient walk.
 
   $padPairSet    = FALSE;
   $padBaseSet    = '';
@@ -93,8 +94,21 @@
 
     $padPos = strpos($padOut [$pad] , '{/' . $padPairTag, ++$padPos);
 
-    if ($padPos === FALSE)
+    // No closer: a tag written without the slash opens a pair, and a pair closes - a single
+    // tag is written {tag/}. The strict check holds the template to that, so a missing {/if}
+    // is never taken for a single {if} that renders nothing, and the lenient walk takes the
+    // tag single, as it did before the slash was required. A name nothing claims is not
+    // reported here: level/no.php names it.
+
+    if ($padPos === FALSE) {
+
+      if ( $padCheckSyntax and $padTypeResult )
+        padError ( "the pair {" . $padTagCheck . "} never closes - a single tag is written {"
+                   . $padTagCheck . ( ( count ( $padWords ) > 1 or $padPipeBeforeSet !== '' ) ? ' ...' : '' ) . "/}" );
+
       return;
+
+    }
 
     if ( ! $padPairTexts )
       $padPairText = NULL;

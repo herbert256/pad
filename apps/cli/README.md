@@ -88,7 +88,7 @@ pad help                           # the list
     FAIL  checkout
           want: <p>Total 42</p>
           got:  HTTP 500 - assert failed: $total eq 42
-                apps/shop/_tests/checkout.pad:2:1  {assert $total eq 42}
+                apps/shop/_tests/checkout.pad:2:1  {assert $total eq 42/}
     2 tests, 1 failed
   ```
 

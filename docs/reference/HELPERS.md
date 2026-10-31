@@ -1025,7 +1025,7 @@ forms, the current tag's parameters, the database, data, files, mail, evaluation
 | `padPosted($form)` | Whether this request posted (the `{form}` of that name) - and kept the `rules=` of its template; without a name, on a page whose template has rules, only a post of one of its forms |
 | `padFormFailed($form)` | Whether the form came back and broke the `rules=` of its template |
 | `padUpload($field, types: [...], max: '2M')` | Store an uploaded file safely: real type (finfo), size limit, random name in `DATA/uploads/` - the record, NULL (none sent) or FALSE (refused) |
-| `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'}`) |
+| `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'/}`) |
 | `padUploadSend($file, $name, $download)` | A stored file (`padUpload`'s `file`, a path under `DATA/`) as the page's whole answer - a picture, PDF or text shown, anything else downloaded; a path out of `DATA/` 404 |
 | `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
 | `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |

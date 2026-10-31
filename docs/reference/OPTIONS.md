@@ -510,7 +510,7 @@ Keeps one page of the rows - `page` counted from 1, `rows` per page (default 10)
 
 ```
 {products page=$pg ?? 1, rows=12}...{/products}
-{pager 'products'}
+{pager 'products'/}
 ```
 
 ### sort

@@ -30,7 +30,7 @@ Zero-dependency Node server (stdio, Node 18 or newer). Provides:
   | `{app:x}` `{common:x}` `{include:x}` `{pad:x}` | that type's file only |
   | `\| money` | `_functions/money.php` up the directories, then `pad/functions/money.php` |
   | `callback='x'` | `_callbacks/x.php` up the directories |
-  | `{$total}`, `$total`, `%total` | the line of the paired `orders.php` that assigns it, a `{set $total = ...}` of the template, then `_inits.php`, `_exits.php` and `_lib/*.php` up the directories; when nothing assigns it, an array key `'total' =>` (a row field) |
+  | `{$total}`, `$total`, `%total` | the line of the paired `orders.php` that assigns it, a `{set $total = .../}` of the template, then `_inits.php`, `_exits.php` and `_lib/*.php` up the directories; when nothing assigns it, an array key `'total' =>` (a row field) |
   | `first@items`, an option, `app:` | the engine file under `pad/properties`, `pad/options` / `pad/handling/types`, `pad/types` |
 
 The application a file belongs to is found from the path: nested applications

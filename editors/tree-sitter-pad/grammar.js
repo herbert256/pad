@@ -2,10 +2,12 @@
  * Tree-sitter grammar for PAD templates (https://github.com/herbert256/pad).
  *
  * A PAD template is text - usually HTML, injected by queries/injections.scm - with tags in
- * braces. What makes a tag a pair is not its name but what follows it: {orders} opens a
- * block when a {/orders} closes it further on, and is a single tag when nothing does, the
- * same as {echo $x}. The engine decides that by searching ahead (pad/level/tag.php), and
- * so does the external scanner (src/scanner.c): it emits the zero-width _block_start only
+ * braces. A single tag is written with a slash, {echo $x/}, and a tag without one opens a
+ * pair: {orders} opens a block that a {/orders} closes further on. The strict check of the
+ * engine holds every tag to that; the lenient walk still takes a tag nothing closes for a
+ * single one, as templates were written before the slash was required. The external
+ * scanner (src/scanner.c) reads a template either way: it searches ahead for the close, as
+ * pad/level/tag.php does, and emits the zero-width _block_start only
  * when the matching close exists, keeps the open names on a stack, and emits _block_end
  * before the close that matches the innermost one. That gives every pair a block node to
  * fold, select and move over, which a pattern over single tags cannot.

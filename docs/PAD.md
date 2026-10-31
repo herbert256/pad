@@ -126,16 +126,16 @@ $items = ['Apple', 'Banana', 'Cherry'];
 Transform values with pipe functions:
 
 ```
-{echo $name | upper}           {# Uppercase #}
-{echo $text | trim | lower}    {# Chain multiple functions #}
-{echo $date | date('Y-m-d')}   {# With parameters #}
-{echo $value | + 1}            {# Arithmetic (space required) #}
-{echo $text | after('@')}      {# String manipulation #}
-{echo $html | html}            {# Escape HTML #}
-{echo $name | contains('admin')} {# String contains #}
+{echo $name | upper/}           {# Uppercase #}
+{echo $text | trim | lower/}    {# Chain multiple functions #}
+{echo $date | date('Y-m-d')/}   {# With parameters #}
+{echo $value | + 1/}            {# Arithmetic (space required) #}
+{echo $text | after('@')/}      {# String manipulation #}
+{echo $html | html/}            {# Escape HTML #}
+{echo $name | contains('admin')/} {# String contains #}
 ```
 
-A field tag pipes as it stands - `{$var | upper}` - and a literal goes through `{echo}`: `{echo 'text' | upper}`.
+A field tag pipes as it stands - `{$var | upper}` - and a literal goes through `{echo}`: `{echo 'text' | upper/}`.
 
 Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `left`, `right`, `contains`, `in`, `between`, `exists`
 
@@ -166,7 +166,7 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 
 {while $i le 10}               {# While loop #}
   Item {$i}
-  {increment $i}
+  {increment $i/}
 {/while}
 
 {files 'images', base='app', mask='*.jpg'}  {# _data, images ... of the application #}
@@ -176,9 +176,9 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 
 **Loop Control:**
 ```
-{continue 'tagname'}    # Skip to next iteration
-{cease 'tagname'}       # Soft stop (graceful end)
-{break 'tagname'}       # Hard stop (immediate exit)
+{continue 'tagname'/}    # Skip to next iteration
+{cease 'tagname'/}       # Soft stop (graceful end)
+{break 'tagname'/}       # Hard stop (immediate exit)
 ```
 
 ### Tag Properties
@@ -225,12 +225,12 @@ Supports JSON, XML, YAML, and CSV formats.
 
 Resolve naming conflicts with explicit type prefixes:
 ```
-{app:mytag}              # App tag from _tags/
-{pad:tagname}            # Built-in PAD tag
-{php:strlen 'abc'}       # Call PHP function - {echo $x | php:strlen(@)} in an expression
-{data:items}             # Defined data block
-{pull:mySequence}        # Stored sequence
-{field "name from users"}  # Database single value (the field: prefix reads a variable)
+{app:mytag/}              # App tag from _tags/
+{pad:tagname/}            # Built-in PAD tag
+{php:strlen 'abc'/}       # Call PHP function - {echo $x | php:strlen(@)/} in an expression
+{data:items/}             # Defined data block
+{pull:mySequence/}        # Stored sequence
+{field "name from users"/}  # Database single value (the field: prefix reads a variable)
 ```
 
 ### Custom Tags
@@ -247,7 +247,7 @@ Use as `{mytag 'value'}` or `{mytag format='value'}`.
 
 A tag with a `.pad` template is a component: the caller's content goes to `@content@`,
 `{slot 'footer'}...{/slot}` pairs in the content fill the template's named slots - each use
-of the tag has its own - and `{parms title, tone='info'}` declares the parameters, a bare name
+of the tag has its own - and `{parms title, tone='info'/}` declares the parameters, a bare name
 required and `name=default` filled in.
 
 ### Database Operations
@@ -262,7 +262,7 @@ $exists = db("CHECK users WHERE email='{0}'", [$email]);
 
 ```
 // In templates (the tag name becomes the db() command word)
-{field "count(*) from users"}
+{field "count(*) from users"/}
 {record "* from users where id=5"}
   Name: {$name}
 {/record}
@@ -283,8 +283,8 @@ See [DATABASE.md](DATABASE.md) for the `db()` command words and the Select subsy
 120+ mathematical sequences with transformations:
 ```
 {fibonacci rows=10}{$fibonacci} {/fibonacci}
-{sequence '1..10', push='nums'}
-{resume add=5}
+{sequence '1..10', push='nums'/}
+{resume add=5/}
 {pull:nums}{$sequence} {/pull:nums}
 ```
 
@@ -335,7 +335,7 @@ PAD processes templates through a level-based system. Each tag creates a new lev
 ```
 {outer}                 ← Level 0
   {inner}               ← Level 1
-    {field}             ← Level 2
+    {field/}             ← Level 2
   {/inner}
 {/outer}
 ```
@@ -389,7 +389,7 @@ The occurrence system (`occurrence/`) manages:
 Expressions in templates are parsed and evaluated by the eval subsystem:
 
 ```
-{echo $price * 1.1 | round(@, 2)}
+{echo $price * 1.1 | round(@, 2)/}
 ```
 
 Evaluation pipeline:
@@ -608,7 +608,7 @@ they belong. `{stack}` is filled in after the whole page has rendered, so a stac
 `<head>` gets the pushes of everything below it:
 
 ```
-<head>{stack 'scripts'}</head>
+<head>{stack 'scripts'/}</head>
 
 {push 'scripts', once='chart'}     {# once per key, however often the component is used #}
   <script src="chart.js"></script>
@@ -623,9 +623,9 @@ A page picks a layout of its own and overrides its regions, resolved in the text
 page is assembled:
 
 ```
-{extends '_layouts/report'}                {# instead of the _inits.pad/_exits.pad frame #}
+{extends '_layouts/report'/}                {# instead of the _inits.pad/_exits.pad frame #}
 {block 'title'}Sales report{/block}
-{block 'sidebar'}{parent}<a href="?export">Export</a>{/block}
+{block 'sidebar'}{parent/}<a href="?export">Export</a>{/block}
 ```
 
 Without `{extends}`, a page's `{block 'title'}` overrides the region of that name in its
@@ -634,7 +634,7 @@ directories' wrappers.
 A page without PHP says what a `.php` would with `{meta}`, read while the page is assembled:
 
 ```
-{meta title='Monthly report', layout='_layouts/print', cache=600}
+{meta title='Monthly report', layout='_layouts/print', cache=600/}
 ```
 
 ### AJAX Support
@@ -642,7 +642,7 @@ A page without PHP says what a `.php` would with `{meta}`, read while the page i
 Embed a page the browser fetches after load:
 
 ```
-{ajax 'orders'}   {# a <div> the browser fills with ?orders&padInclude #}
+{ajax 'orders'/}   {# a <div> the browser fills with ?orders&padInclude #}
 ```
 
 A named response fragment lets one template serve both the full page and the region an
@@ -653,7 +653,7 @@ update refreshes - `?orders&padFragment=order-list` answers with that fragment a
   {orders}<li>{$number}</li>{/orders}
 {/fragment}
 
-{ajax 'orders', fragment='order-list'}           {# or hx-get="?orders&padFragment=order-list" #}
+{ajax 'orders', fragment='order-list'/}           {# or hx-get="?orders&padFragment=order-list" #}
 ```
 
 ### PAD in the Browser
@@ -846,8 +846,8 @@ outlives it.
 
 ### Key Syntax Rules
 
-1. **A literal pipes through `{echo}`** - `{echo 'x' | upper}`; a field tag pipes as it stands, `{$var | upper}`
-2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
+1. **A literal pipes through `{echo}`** - `{echo 'x' | upper/}`; a field tag pipes as it stands, `{$var | upper}`
+2. **Arithmetic needs space** - `{echo $x | + 1/}` not `| +1`
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps

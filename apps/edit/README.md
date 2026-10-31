@@ -35,7 +35,7 @@ and its `.php` are marked as a pair (Alt+O switches between them); git's view of
   application's own tags and snippets, and pair snippets (`{if}`, `{case}`, `{form}` ...);
   after `{/` the tags still open, innermost first; after `$` the fields the page's PHP
   assigns; after `|` the pipe functions; after a tag name its options; after `first@` the
-  open tags; inside `{page '...'}`, `{include '...'}`, `callback='...'`, `{trans '...'}` and
+  open tags; inside `{page '...'/}`, `{include '...'}`, `callback='...'`, `{trans '...'/}` and
   `{collection '...'}` the pages, snippets, callbacks, translation keys and collections.
 - Hover shows the reference documentation (`docs/reference/`), or the comment of an
   application's own tag or function, or the line that assigns a field.

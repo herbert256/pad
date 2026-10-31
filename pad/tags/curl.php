@@ -26,7 +26,7 @@
   // padDataValueAddress).
 
   if ( $padProtectValues and is_string ( $padPrm [$pad] ['url'] ) and padDataValueAddress ( $padPrm [$pad] ['url'] ) )
-    return padError ( "the {curl} address reads as an address a request value chose - write the address in the template, {curl 'https://...'}, or fetch it in the page's PHP with padCurl" );
+    return padError ( "the {curl} address reads as an address a request value chose - write the address in the template, {curl 'https://...'/}, or fetch it in the page's PHP with padCurl" );
 
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );

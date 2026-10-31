@@ -32,7 +32,7 @@ The table lists what a full-stack framework is expected to ship and where PAD st
 | Stacks, push | Blade `@push` / `@stack` | yes - `{push}`, `{stack}` |
 | Escaping by default | Yes everywhere | yes - values are text, sanitize chain |
 | Auth directives | Blade `@auth`, `@guest`, `@can` | **new** - `{auth}`, `{guest}`, `{can}`, `{cannot}` |
-| Asset versioning | Vite `asset()`, Rails digests, `ManifestStaticFilesStorage` | **new** - `{asset 'app.css'}` → `?v=<content hash>` |
+| Asset versioning | Vite `asset()`, Rails digests, `ManifestStaticFilesStorage` | **new** - `{asset 'app.css'/}` → `?v=<content hash>` |
 | Asset bundling (JS/CSS build) | Vite, Webpacker / jsbundling, Encore | no - PAD serves files as they are |
 | Charts, QR codes, barcodes, calendars, Markdown | Packages | yes - built in, server-rendered SVG |
 

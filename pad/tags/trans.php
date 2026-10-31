@@ -16,7 +16,7 @@
 
   if ( $padTransKey === NULL or $padTransKey === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the {trans} needs a key - {trans 'cart.items'}" );
+      padError ( "the {trans} needs a key - {trans 'cart.items'/}" );
     return '';
   }
 

@@ -388,7 +388,7 @@
           padError ( "a page extends one layout - this one has two {extends}" );
 
         if ( $name === '' and $GLOBALS ['padCheckSyntax'] )
-          padError ( "the {extends} needs the name of a layout - {extends 'layouts/report'}" );
+          padError ( "the {extends} needs the name of a layout - {extends 'layouts/report'/}" );
 
         return [ 'name' => $name, 'text' => $rest ];
 

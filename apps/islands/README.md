@@ -12,7 +12,7 @@ One runtime mounts components of any framework - React, Vue, Svelte, Preact, Sol
 | `examples/loading` | `data-load` - at once, when the browser is idle, when the island scrolls into view - with a log of what came when |
 | `examples/shared` | A React shelf, a Vue summary and a Svelte badge sharing one store, the cart kept by PAD in the session |
 | `examples/typed` | A TypeScript island whose props are typed by `pad types` from the page's own data - `npm run types`, `npm run check` |
-| `examples/build` | What `{vite 'src/main.js'}` wrote for the request, the manifest it read, and the dev server that takes over |
+| `examples/build` | What `{vite 'src/main.js'/}` wrote for the request, the manifest it read, and the dev server that takes over |
 
 ## The runtime
 
@@ -48,7 +48,7 @@ npm run check      # tsc --noEmit: the TypeScript islands against those types
 
 Each framework compiles its own files (`vite.config.js`): React `*.react.jsx`, Solid
 `*.solid.jsx`, Vue `*.vue`, Svelte `*.svelte`; Preact needs no compiler - its components use
-`htm`. `{vite 'src/main.js', react}` in `_inits.pad` links the build, or the dev server while
+`htm`. `{vite 'src/main.js', react/}` in `_inits.pad` links the build, or the dev server while
 `build/hot` is there - with the React fast-refresh preamble. `PAD_ISLANDS_WWW` points the build
 at `www/islands/` when the project is built from a copy elsewhere.
 
@@ -60,7 +60,7 @@ apps/islands/
 ├── _data/                 # examples.json (the catalogue), products, nav
 ├── _lib/islands.php       # islandsData, islandsGroups, islandsExample, islandsCart, islandsWeight, islandsText
 ├── _frontend/             # the Vite project: package.json, vite.config.js, src/
-├── _inits.pad, _inits.php # the page: {vite 'src/main.js', react}, the menu
+├── _inits.pad, _inits.php # the page: {vite 'src/main.js', react/}, the menu
 ├── index, guide
 └── examples/
 

@@ -25,7 +25,7 @@ cheat sheet with the syntax of every tag, and a search.
 | `tag/<name>.php` | What the indexes read: the line, the group, the form, the syntax, the parameters, the options, the related tags |
 | `tag/<name>.pad` | The longer description |
 | `tag/_inits.pad`, `tag/_exits.pad`, `tag/_exits.php` | The tag page around the description: syntax, parameters and options above; examples, related tags and the neighbours by name below |
-| `examples/<name>/<n>-<slug>.pad` | A live example - first line `{meta title='...', about='...'}`; with a paired `.php` for its data |
+| `examples/<name>/<n>-<slug>.pad` | A live example - first line `{meta title='...', about='...'/}`; with a paired `.php` for its data |
 | `examples/<name>/<n>-<slug>.src` | An example that is shown but never run - a redirect, an exit, a mail |
 | `_config/config.php` | Switches `_common` off - the frame is reached as `common:padFrame` - and fixes the timezone |
 

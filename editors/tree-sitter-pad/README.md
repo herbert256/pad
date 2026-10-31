@@ -6,7 +6,7 @@ colour: folding of tag pairs, structural selection, and text objects such as "in
 
 ```
 {orders sort='id'}                      (block
-  <li>{$id}: {echo $amount | money}</li>   (open_tag (tag_name (identifier)) (arguments (option ...)))
+  <li>{$id}: {echo $amount | money/}</li>   (open_tag (tag_name (identifier)) (arguments (option ...)))
 {/orders}                                  (body (text) (field_tag (variable)) (text) (tag ...) (text))
                                            (close_tag (tag_name (identifier))))
 ```

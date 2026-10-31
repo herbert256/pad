@@ -16,7 +16,7 @@
   $padAssertText = trim ( $padParms [$pad] [1] ['padPrmOrg'] ?? '' );
 
   if ( $padAssertCond === '' )
-    return padError ( "the {assert} needs a condition - {assert \$total eq 42}" );
+    return padError ( "the {assert} needs a condition - {assert \$total eq 42/}" );
 
   if ( padEval ( $padAssertCond ) )
     return '';

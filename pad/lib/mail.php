@@ -82,7 +82,7 @@
 
     } elseif ( $html === NULL and $text === NULL )
 
-      return padError ( "a mail needs a template or a body - {mail template='order'}, or the body between {mail} and {/mail}" );
+      return padError ( "a mail needs a template or a body - {mail template='order'/}, or the body between {mail} and {/mail}" );
 
     if ( trim ( (string) $subject ) === '' )
       return padError ( "a mail needs a subject" );

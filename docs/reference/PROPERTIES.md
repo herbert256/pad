@@ -20,8 +20,8 @@ Where `tagname` is the name of the iteration/loop context and `property` is the 
 
 ```
 {first@users}
-{count@items}
-{current@rows}
+{count@items/}
+{current@rows/}
 ```
 
 ### As a Tag Pair
@@ -64,7 +64,7 @@ boolean ones, with an operator for the counting ones, and combined freely:
 
 The property name is what makes this read as one reference: only the names on this page do
 (the files in `pad/properties/`), and the target names an iterating tag. Without a target -
-`{if current@ eq 2}`, `{echo current@ * 10}` - it is the loop the expression stands in, past
+`{if current@ eq 2}`, `{echo current@ * 10/}` - it is the loop the expression stands in, past
 an `{if}`, a `{case}` and any other level that renders once for the row - an `{ifchanged}`, a
 `{guest}`, a `{spaceless}`, a snippet. Elsewhere in an expression `@` is still the current-value
 placeholder, and so is an `@` after a space: `count @`.
@@ -267,7 +267,7 @@ Properties that provide numeric information about the iteration.
 Returns the current occurrence number (1-based index).
 
 ```
-{current@tagname}
+{current@tagname/}
 ```
 
 **Returns:** `$padOccur[$padIdx]`
@@ -275,7 +275,7 @@ Returns the current occurrence number (1-based index).
 **Example:**
 ```html
 {users}
-  {current@users}. {$name}
+  {current@users/}. {$name}
 {/users}
 ```
 
@@ -293,7 +293,7 @@ Returns the current occurrence number (1-based index).
 Returns the total number of items.
 
 ```
-{count@tagname}
+{count@tagname/}
 ```
 
 **Returns:** `max(count($padData[$padIdx]), $padOccur[$padIdx])`
@@ -301,7 +301,7 @@ Returns the total number of items.
 **Example:**
 ```html
 {users}
-  User {current@users} of {count@users}
+  User {current@users/} of {count@users/}
 {/users}
 ```
 
@@ -312,7 +312,7 @@ Returns the total number of items.
 Returns the number of iterations remaining.
 
 ```
-{remaining@tagname}
+{remaining@tagname/}
 ```
 
 **Returns:** `count($padData[$padIdx]) - $padOccur[$padIdx]` (minimum 0)
@@ -320,7 +320,7 @@ Returns the number of iterations remaining.
 **Example:**
 ```html
 {users}
-  {$name} ({remaining@users} more to go)
+  {$name} ({remaining@users/} more to go)
 {/users}
 ```
 
@@ -354,7 +354,7 @@ Properties that provide access to the current data context.
 Returns the complete data array for the current level.
 
 ```
-{data@tagname}
+{data@tagname/}
 ```
 
 **Returns:** `$padData[$padIdx]`
@@ -362,7 +362,7 @@ Returns the complete data array for the current level.
 **Example:**
 ```html
 {users}
-  {data@users toData="allUsers"}
+  {data@users toData="allUsers"/}
 {/users}
 ```
 
@@ -373,7 +373,7 @@ Returns the complete data array for the current level.
 Returns the current array key.
 
 ```
-{key@tagname}
+{key@tagname/}
 ```
 
 **Returns:** `$padKey[$padIdx]`
@@ -381,7 +381,7 @@ Returns the current array key.
 **Example:**
 ```html
 {config}
-  {key@config}: {$value}
+  {key@config/}: {$value}
 {/config}
 ```
 
@@ -399,7 +399,7 @@ user: admin
 Returns an array of all keys with their values as iterable data.
 
 ```
-{keys@tagname}
+{keys@tagname/}
 ```
 
 **Returns:** Array where each item has `name` (the key) and `value`
@@ -420,7 +420,7 @@ Returns an array of all keys with their values as iterable data.
 Returns an array of field name/value pairs from the current record.
 
 ```
-{fields@tagname}
+{fields@tagname/}
 ```
 
 **Returns:** Array where each item has `name` and `value`
@@ -452,7 +452,7 @@ Returns an array of field name/value pairs from the current record.
 Returns the name of the first field in the current record.
 
 ```
-{firstFieldName@tagname}
+{firstFieldName@tagname/}
 ```
 
 **Returns:** First key from `$padCurrent[$padIdx]`
@@ -460,7 +460,7 @@ Returns the name of the first field in the current record.
 **Example:**
 ```html
 {user}
-  Primary field: {firstFieldName@user}
+  Primary field: {firstFieldName@user/}
 {/user}
 ```
 
@@ -471,7 +471,7 @@ Returns the name of the first field in the current record.
 Returns the value of the first field in the current record.
 
 ```
-{firstFieldValue@tagname}
+{firstFieldValue@tagname/}
 ```
 
 **Returns:** First value from `$padCurrent[$padIdx]`
@@ -479,7 +479,7 @@ Returns the value of the first field in the current record.
 **Example:**
 ```html
 {user}
-  Primary value: {firstFieldValue@user}
+  Primary value: {firstFieldValue@user/}
 {/user}
 ```
 
@@ -494,7 +494,7 @@ Properties that provide information about the current tag.
 Returns the name of the current tag/level.
 
 ```
-{name@tagname}
+{name@tagname/}
 ```
 
 **Returns:** `$padName[$padIdx]`
@@ -502,7 +502,7 @@ Returns the name of the current tag/level.
 **Example:**
 ```html
 {users}
-  Processing tag: {echo name@users}
+  Processing tag: {echo name@users/}
 {/users}
 ```
 
@@ -519,14 +519,14 @@ from the top down to itself, so a tag that calls itself has a depth too, and a l
 does not is at depth 1.
 
 ```
-{depth@tree}
+{depth@tree/}
 ```
 
 **Example:**
 ```html
 {tree 'menu', children='items'}
-  <p style="margin-left: {echo depth@tree | * 20}px">{$title}</p>
-  {branch}{recurse}{/branch}
+  <p style="margin-left: {echo depth@tree | * 20/}px">{$title}</p>
+  {branch}{recurse/}{/branch}
 {/tree}
 ```
 
@@ -561,7 +561,7 @@ Returns one positional parameter - the values after the tag name - numbered from
 Returns all positional parameters as an iterable array.
 
 ```
-{parameters@tagname}
+{parameters@tagname/}
 ```
 
 **Returns:** All parameters from `$padOpt[$padIdx]` (excluding index 0, the raw tag text)
@@ -602,7 +602,7 @@ Returns one named option.
 Returns all named options as an iterable array.
 
 ```
-{options@tagname}
+{options@tagname/}
 ```
 
 **Returns:** All options from `$padPrm[$padIdx]`
@@ -646,7 +646,7 @@ Returns one level variable - a `$name = value` written on the tag.
 Returns all level variables as an iterable array.
 
 ```
-{variables@tagname}
+{variables@tagname/}
 ```
 
 **Returns:** All variables from `$padSetLvl[$padIdx]`
@@ -728,8 +728,8 @@ Returns all level variables as an iterable array.
 ```html
 {users}
   <div>
-    {current@users} of {count@users}: {$name}
-    {notLast@users}({remaining@users} remaining){/notLast@users}
+    {current@users/} of {count@users/}: {$name}
+    {notLast@users}({remaining@users/} remaining){/notLast@users}
   </div>
 {/users}
 ```

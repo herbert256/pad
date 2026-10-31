@@ -66,10 +66,10 @@ answers 0, as if no row changed. Reads run as usual.
 
 ## Template Database Tags
 
-The tag name becomes the `db()` command word - `{field "X"}` runs `db("field X")`, and so on. Do NOT write `SELECT` in the tag parameter; the command adds it.
+The tag name becomes the `db()` command word - `{field "X"/}` runs `db("field X")`, and so on. Do NOT write `SELECT` in the tag parameter; the command adds it.
 
 The SQL is the template's own: one quoted string, never an expression or a variable -
-`{field "x from t where city = '" . $city . "'"}` and `{field $q}` are refused. A value goes
+`{field "x from t where city = '" . $city . "'"/}` and `{field $q/}` are refused. A value goes
 in as `$name`, written bare: it is bound as a quoted, escaped literal of that variable (a
 number as a number, an array as a list), as in the select's `where=`. Inside a loop a field
 of the row is a variable too. `{$name}` there splices the value's text before the tag reads
@@ -78,32 +78,32 @@ excepted - and inside one (`name = '{$who}'`) it is text whose quotes and backsl
 the database as PAD's inert stand-ins, so such a value does not match. Only a `'...'` literal
 holds it as text: inside `"..."` - a name on SQLite and on MySQL under ANSI_QUOTES - it is
 refused too. Only a value written as `{$name}` is guarded this way: a tag's answer written into
-the SQL - `{echo $x}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
+the SQL - `{echo $x/}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
 request value never goes into a query that way; put it in as `$name`. `db()` and `padDb()`
-called from a template - `php:db("FIELD ...")`, `{php:db "..."}` - are guarded the same way
+called from a template - `php:db("FIELD ...")`, `{php:db "..."/}` - are guarded the same way
 anywhere in their first argument: a `{$name}` there, concatenated - `php:db('... < ' .
 {$max})` - or in a call around the SQL - `php:db(trim("..."))` - is refused unless it stands
 inside a `'...'` literal of the string it is spliced into. SQL piped into one - `{echo "..." |
-php:db}` - is a string until the pipe, and a `{$name}` in it goes in unguarded. And only a
+php:db/}` - is a string until the pipe, and a `{$name}` in it goes in unguarded. And only a
 `{$name}` is guarded there: SQL the template builds with an expression - `{db $q}`,
-`{echo php:db($q)}`, `{db "... < " . $max}` - is the template author's SQL, exactly as SQL a
+`{echo php:db($q)/}`, `{db "... < " . $max}` - is the template author's SQL, exactly as SQL a
 PHP file builds is the PHP author's, and runs as it is written. Query with a database tag,
 where a value goes in as `$name`, or call `db()` from PHP with placeholders.
 
 ```
-{field "phone from staff where name = $who"}
+{field "phone from staff where name = $who"/}
 {array "name from staff where name in ($names)"}{$name}{/array}
-{orders}{field "name from customers where id = $customer_id"}{/orders}
+{orders}{field "name from customers where id = $customer_id"/}{/orders}
 ```
 
 Called as a function inside an expression the rule is the same: `{echo field("phone from staff
-where name = $who")}` takes one string written there; `field($q)` is refused.
+where name = $who")/}` takes one string written there; `field($q)` is refused.
 
 ### {field} - Query Single Value
 
 ```
-{field "count(*) from users"}
-{field "name from users where id=5"}
+{field "count(*) from users"/}
+{field "name from users where id=5"/}
 ```
 
 ### {record} - Query Single Record
@@ -297,8 +297,8 @@ number.)
 
 ```html
 <div class="stats">
-  {field "count(*) from users"} members
-  {field "count(*) from forum_posts"} posts
+  {field "count(*) from users"/} members
+  {field "count(*) from forum_posts"/} posts
 </div>
 ```
 

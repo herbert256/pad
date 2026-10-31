@@ -1,6 +1,6 @@
 <?php
 
-  // {qr 'https://example.com'} - a QR code as inline SVG, encoded by tags/_lib/qr.php: no image
+  // {qr 'https://example.com'/} - a QR code as inline SVG, encoded by tags/_lib/qr.php: no image
   // library, no remote service. The first parameter is the text; size= is the width and
   // height in pixels (default 160), level= the error correction - L, M (default), Q or H -
   // and title= the accessible name, else the text itself. color= and background= change the
@@ -23,7 +23,7 @@
 
   if ( is_array ( $padParm ) or padParmText ( $padParm ) === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the qr code has no text - {qr 'https://example.com'}" );
+      padError ( "the qr code has no text - {qr 'https://example.com'/}" );
     foreach ( [ 'size', 'title', 'color', 'background' ] as $padQrOption )
       padTagParm ( $padQrOption );
     return '';

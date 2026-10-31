@@ -250,7 +250,7 @@ The files are a registry, never included: under the strict check, when the page 
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <nav>{include:navigation}</nav>
+  <nav>{include:navigation/}</nav>
   <main>
 @page@
 ```
@@ -258,7 +258,7 @@ The files are a registry, never included: under the strict check, when the page 
 **_exits.pad:**
 ```html
   </main>
-  <footer>{include:footer}</footer>
+  <footer>{include:footer/}</footer>
 </body>
 </html>
 ```
@@ -268,7 +268,7 @@ The files are a registry, never included: under the strict check, when the page 
 **Parent template (`_tags/layout.pad`):**
 ```html
 <div class="container">
-  <aside class="sidebar">{include:sidebar}</aside>
+  <aside class="sidebar">{include:sidebar/}</aside>
   <article class="content">
     @content@
   </article>
@@ -306,7 +306,7 @@ The files are a registry, never included: under the strict check, when the page 
   @end@
   {-- Footer processed last --}
   </table>
-  <p>Total: {count@users} users</p>
+  <p>Total: {count@users/} users</p>
 {/users}
 ```
 
