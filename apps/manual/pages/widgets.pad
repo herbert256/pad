@@ -1,0 +1,50 @@
+{meta title='Widgets'/}
+
+<p>{tag 'widget'/} puts an interactive part on the page - tabs, an accordion, a carousel, a modal,
+a dropdown, a toast and more, {echo php:count(padWidgetTypes())/} of them. Every one is built on
+the server and works without JavaScript; where a widget has a script it only makes it handier,
+and it is written once per page with the CSP nonce. Every widget is a file of
+<code>pad/widgets/types/</code>, and the files there are the widgets there are.</p>
+
+{example 'fragments/widgets_1'/}
+
+<h2>Three ways to write one</h2>
+
+<p>The tag names the widget, and its second parameter is the widget's own first:
+<code>{open/}widget 'toast', 'Saved'/{close/}</code>. The widget: type does the same,
+<code>{open/}widget:toast 'Saved'/{close/}</code>, and so does the bare name,
+<code>{open/}toast 'Saved'/{close/}</code>. The bare name comes after every other kind of tag:
+a store, a field or an array of the name wins, so a page's <code>$tabs</code> array is the data
+of <code>{open/}tabs{close/}</code>.</p>
+
+{example 'fragments/widgets_2'/}
+
+<h2>What the browser does itself</h2>
+
+<p>Each widget stands on what HTML and CSS can do: radio buttons and CSS for tabs and the wizard,
+<code>&lt;details&gt;</code> for the accordion, a <code>&lt;dialog&gt;</code> for the modal, the
+drawer and the toast, the <code>popover</code> attribute for the dropdown, <code>:hover</code>
+and <code>:focus-within</code> for the tooltip, <code>:target</code> for the carousel's links and
+the lightbox. The keyboard works because the browser's own controls are underneath; the scripts
+add the arrow keys of a menu, Escape on a tooltip, the focus of a lightbox.</p>
+
+{example 'fragments/widgets_3'/}
+
+<h2>Items made by a loop</h2>
+
+<p>Tabs, an accordion, a carousel, a wizard and a lightbox take {tag 'tab'/} items. A tab hands
+its content to the nearest of them above it, so it may stand in an <code>{open/}if{close/}</code>
+or in a loop over data - a step per row of a <code>{open/}data{close/}</code> store here.</p>
+
+{example 'fragments/widgets_4'/}
+
+<ul>
+  <li>The colours are custom properties on <code>.pad-&lt;widget&gt;</code> -
+  <code>--pad-tabs-accent</code>, <code>--pad-toast-success</code> and their like - with light
+  and dark defaults.</li>
+  <li><code>{open/}copy{close/}</code> stays a built-in tag that runs the copy widget, as PHP has
+  a <code>copy()</code> function that a bare name would reach first; <code>{open/}tab{close/}</code>
+  is a built-in tag too.</li>
+  <li>A name that is no widget, an unknown option value and a widget without what it needs - a
+  name, a label, a tab - are errors under the strict check.</li>
+</ul>
