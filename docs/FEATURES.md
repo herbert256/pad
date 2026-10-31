@@ -603,6 +603,8 @@ function that draws it; a kind is added by adding its file. Each is written thre
 same chart: `{chart 'pie', data='budget'/}`, the chart type `{chart:pie data='budget'/}`, and
 bare, `{pie data='budget'/}`, when no tag, store, field or sequence has the name (the bare
 name comes last, after every other kind of tag). `{sparkline .../}` is the sparkline kind.
+`calendar` is the month calendar tag and `pack` PHP's function, so those two kinds are
+`{chart:calendar .../}` and `{chart:pack .../}` (or `{chart 'pack', .../}`).
 Code: the chart subsystem in `pad/charts/` - `chart.php` the body every form runs,
 `_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
 kinds), `types/` the kinds; `pad/types/chart.php` the chart type.

@@ -131,6 +131,13 @@ async function main() {
     // completion, as before
     let r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{badge/}', 2) });
     expect('completion lists the built-in tags', r.result.some((c) => c.label === 'if'), r.result.length);
+    // A bare kind is offered only where a bare tag reaches it: {pie/} is the chart, {pack/}
+    // PHP's pack() and {calendar} the month calendar tag.
+    expect('completion offers the bare kinds a bare tag reaches, not the ones PHP or a tag takes first',
+           r.result.some((c) => c.label === 'pie' && c.detail === 'chart type')
+           && !r.result.some((c) => c.label === 'pack')
+           && r.result.filter((c) => c.label === 'calendar').every((c) => c.detail === 'PAD tag'),
+           r.result.filter((c) => ['pie', 'pack', 'calendar'].includes(c.label)));
     r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{/orders}', 2) });
     expect('completion closes the open tag', r.result.length && r.result[0].label === 'orders', r.result);
 

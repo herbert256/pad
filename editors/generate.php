@@ -65,13 +65,18 @@
 
   include "$pad/lib/subsystem.php";
 
+  // A name a bare tag reaches before the kind - a tag of pad/tags, a property, a sequence type
+  // or action, a PHP function (lib/type.php padTypeCommon) - is no bare kind: {pack/} is PHP's
+  // pack(), which the list offered as a chart type.
+
   $kinds = [];
-  $tags  = array_flip ( generateNames ( "$pad/tags" ) );
+  $tags  = array_flip ( array_merge ( generateNames ( "$pad/tags" ), generateNames ( "$pad/properties" ),
+                                      generateNames ( "$pad/sequence/types", TRUE ), generateNames ( "$pad/sequence/actions/types" ) ) );
 
   foreach ( padSubsystems as [ $kindDir, $kindBare, $kindLabel ] )
     if ( $kindBare and is_dir ( "$pad/$kindDir/types" ) )
       foreach ( generateNames ( "$pad/$kindDir/types" ) as $kindName )
-        if ( ! isset ( $tags [$kindName] ) )
+        if ( ! isset ( $tags [$kindName] ) and ! function_exists ( $kindName ) )
           $kinds [$kindName] ??= $kindLabel;
 
   uksort ( $kinds, 'strcasecmp' );
