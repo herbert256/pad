@@ -12,10 +12,13 @@
   //   {/diagram}
   //
   // flow and graph, the words Mermaid starts a flowchart with, name the flowchart as well.
+  // Without type= the first line may name the kind by its name alone - mindmap - which a tag
+  // that names one does not let it (padDiagramHeader).
 
-  $padDiagramKind = strtolower ( trim ( (string) padTagParm ( 'type', 'flowchart' ) ) );
+  $padDiagramKind  = strtolower ( trim ( (string) padTagParm ( 'type', '' ) ) );
+  $padDiagramNamed = ( $padDiagramKind !== '' );
 
-  if ( $padDiagramKind == 'flow' or $padDiagramKind == 'graph' )
+  if ( $padDiagramKind == '' or $padDiagramKind == 'flow' or $padDiagramKind == 'graph' )
     $padDiagramKind = 'flowchart';
 
   return include PAD . 'diagrams/diagram.php';

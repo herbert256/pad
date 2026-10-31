@@ -1,0 +1,10 @@
+{diagram:er}
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE-ITEM : contains
+  CUSTOMER }|..|{ ADDRESS : "lives at"
+  PERSON |o--o| PASSPORT : holds
+  CUSTOMER {
+    int id PK "the number"
+    string email UK
+  }
+{/diagram:er}

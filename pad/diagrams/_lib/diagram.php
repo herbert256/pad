@@ -79,18 +79,30 @@
 
   }
 
-  // The kind a first line names the Mermaid way - sequenceDiagram - or ''. It names the kind
-  // whatever the tag says, as a first line sequenceDiagram did when the tag said nothing:
-  // the lines are the diagram's, and a first line written for one kind cannot be read by
-  // another. The line stands alone, so a flowchart whose first node is called mindmap stays
-  // a flowchart.
+  // The kind a first line names the Mermaid way, or ''. The word is the kind's name, with
+  // Diagram after it - sequenceDiagram, stateDiagram-v2, classDiagram, erDiagram - or Graph,
+  // gitGraph, or the name alone - mindmap, journey - and the kinds are the files there are:
+  // no list of Mermaid's words is kept. A name with Diagram or Graph names the kind whatever
+  // the tag says, as a first line sequenceDiagram did: the lines are written for that kind,
+  // and no other can read them. A name alone is the kind only where the tag names none -
+  // {diagram} without type= - since it could be the first line of the kind the tag does
+  // name: the root of a tree called journey. The line stands alone, a direction after a
+  // name with Graph aside (gitGraph LR:), so a flowchart whose first line is a node called
+  // mindmap, and an edge from it, stays one.
 
-  function padDiagramHeader ( $text ) {
+  function padDiagramHeader ( $text, $named ) {
 
-    if ( ! preg_match ( '/^\s*(sequenceDiagram)[ \t]*(\r?\n|$)/', (string) $text, $match ) )
+    if ( ! preg_match ( '/^\s*([a-z]+)(?:((?:Diagram|Graph)(?:-v2)?)(?:[ \t]+[A-Z]{2}:?)?)?[ \t]*(\r?\n|$)/', (string) $text, $match ) )
       return '';
 
-    return [ 'sequenceDiagram' => 'sequence' ] [ $match [1] ];
+    $more = $match [2] ?? '';
+
+    if ( $more === '' and $named )
+      return '';
+
+    $kind = $match [1] . ( str_starts_with ( $more, 'Graph' ) ? 'graph' : '' );
+
+    return padDiagramType ( $kind ) ? $kind : '';
 
   }
 
@@ -443,10 +455,12 @@
     if ( $shape == 'dummy' )
       return 0;
 
-    if ( $shape == 'circle' )
+    // The start and the end of a state diagram are round, its choice a diamond.
+
+    if ( $shape == 'circle' or $shape == 'start' or $shape == 'end' )
       return sqrt ( max ( 0, $main * $main - $off * $off ) );
 
-    if ( $shape == 'diamond' )
+    if ( $shape == 'diamond' or $shape == 'choice' )
       return $main * ( 1 - $off / $cross );
 
     // A hexagon is pointed left and right: across a horizontal flow an edge ends on its
@@ -753,8 +767,7 @@
     if ( $direction == 'TD' )
       $direction = 'TB';
 
-    $vertical = in_array ( $direction, [ 'TB', 'BT' ] );
-    $desc     = [];
+    $desc = [];
 
     foreach ( $nodes as $id => list ( $text, $shape ) ) {
       $lines        = padDiagramWrap ( $text );
@@ -776,11 +789,41 @@
       if ( ! isset ( $linked [$id] ) )
         $desc [] = padDiagramFlat ( $node ['text'] );
 
+    return padDiagramGraph ( $nodes, $edges, $desc, $direction, $edgeForm, $title );
+
+  }
+
+  // The SVG of a diagram in layers - the flowchart, the state diagram, the class and the
+  // entity-relationship diagram. A node is [ 'shape', 'lines', 'w', 'h' ] by its id, an edge
+  // [ from, to, label, style, arrow ] in the order of the text, and $desc says the edges in
+  // words, in that order, then whatever else there is to say. $direction is TB (top to
+  // bottom), BT, LR (left to right) or RL; $edgeForm draws the edges orthogonal - down,
+  // across in a channel of their own, down - straight, or curved; $css adds the rules of a
+  // kind's own shapes.
+  //
+  // An edge may say more by name: 'head' and 'tail', the marks at its ends (padDiagramMark -
+  // an arrow, a triangle, a diamond, the feet of a crow ...), else an arrow when it has one,
+  // and 'ends', the texts written by its two ends, [ at the tail, at the head ]. A node of a
+  // shape the flowchart does not have is drawn by padDiagramDraw<Shape>, its kind's own.
+  //
+  // $room asks for more room than a flowchart needs - 'gap', the least gap between two
+  // ranks, and 'spread', the distance between the edges leaving one side of a node - for the
+  // marks at the ends: the feet of a crow are 16 wide and 18 long, and on a flowchart's 14
+  // and the 15 before an edge's first turn the feet of two edges lay on each other.
+
+  function padDiagramGraph ( $nodes, $edges, $desc, $direction, $edgeForm, $title, $css = '', $room = [] ) {
+
+    $vertical = in_array ( $direction, [ 'TB', 'BT' ] );
+
     // A gap as wide as the labels of the edges that leave the rank before it: in LR the
     // text lies along the edge.
 
     $rankOf = padDiagramRanksOnly ( $nodes, $edges );
     $gaps   = [];
+
+    if ( isset ( $room ['gap'] ) )
+      foreach ( $rankOf as $r )
+        $gaps [$r] = $room ['gap'];
 
     // Every rank an edge crosses is a node of its own in the layout. Past twenty thousand -
     // 0.4 s and 46 MB; a chain of a thousand steps with an edge from the first to each is
@@ -820,6 +863,18 @@
         $gaps [$r] = max ( $gaps [$r] ?? 44, $need );
       }
 
+    // The texts by the ends of an edge - multiplicities - stand along it beside the label:
+    // the gap makes room for the three, where the label's plate covered the one at its head.
+
+    foreach ( $edges as $edge )
+      if ( ( $edge ['ends'] ?? [ '', '' ] ) != [ '', '' ] and $edge [0] !== $edge [1] ) {
+        $r     = min ( $rankOf [ $edge [0] ], $rankOf [ $edge [1] ] );
+        $label = $edge [2] !== '' ? padDiagramWidth ( $edge [2] ) + 8 : 0;
+        $ends  = padDiagramWidth ( $edge ['ends'] [0] ) + padDiagramWidth ( $edge ['ends'] [1] );
+        $need  = $vertical ? ( $label ? 90 : 76 ) : $label + $ends + 70;
+        $gaps [$r] = max ( $gaps [$r] ?? 44, $need );
+      }
+
     list ( $chains, $turned ) = padDiagramLayout ( $nodes, $edges, $vertical, $gaps );
 
     // The ports: the edges leaving a node spread along its side, in the order of where they
@@ -845,7 +900,7 @@
 
         $k     = count ( $segments );
         $width = $vertical ? $nodes [$id] ['w'] : $nodes [$id] ['h'];
-        $step  = ( $k > 1 ) ? min ( 14, $width * 0.6 / ( $k - 1 ) ) : 0;
+        $step  = ( $k > 1 ) ? min ( $room ['spread'] ?? 14, $width * ( isset ( $room ['spread'] ) ? 0.8 : 0.6 ) / ( $k - 1 ) ) : 0;
 
         foreach ( $segments as $j => list ( $e, $i ) )
           $port [$side] [$e] [$i] = ( $nodes [$id] ['shape'] == 'dummy' ) ? 0 : ( $j - ( $k - 1 ) / 2 ) * $step;
@@ -1071,12 +1126,16 @@
 
     list ( $id, $svg ) = padChartOpen ( 'diagram', [ $nodes, $edges, $direction, $edgeForm ], $desc, $title, $width, $height, FALSE );
 
-    $svg .= padDiagramStyle ();
+    $svg .= padDiagramStyle () . $css;
 
     // The edges first, the nodes over their ends.
 
-    foreach ( $edges as $e => list ( $a, $b, $label, $style, $arrow ) ) {
+    foreach ( $edges as $e => $edge ) {
 
+      list ( $a, $b, $label, $style, $arrow ) = $edge;
+
+      $head  = $edge ['head'] ?? ( $arrow ? 'arrow' : '' );
+      $tail  = $edge ['tail'] ?? '';
       $class = 'pd-edge' . ( $style != 'solid' ? " pd-$style" : '' );
       $tip   = '<title>' . padChartAttr ( $desc [$e] ) . '</title>';
 
@@ -1093,7 +1152,7 @@
 
         $d  = 'M' . $X ( $x ) . ',' . $Y ( $y - 8 ) . 'C' . $X ( $x + $r ) . ',' . $Y ( $y - 28 - 6 * $k ) . ' ' . $X ( $x + $r ) . ',' . $Y ( $y + 28 + 6 * $k ) . ' ' . $X ( $x + 6 * $side ) . ',' . $Y ( $y + 10 );
         $svg .= "<g class=\"pc-mark\">$tip<path class=\"$class\" d=\"$d\"/>"
-              . ( $arrow ? padDiagramHead ( [ $x + 12 * $side, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style ) : '' ) . '</g>';
+              . padDiagramMark ( $head, [ $x + 12 * $side, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style ) . '</g>';
 
         continue;
 
@@ -1102,22 +1161,38 @@
       $points = $paths [$e];
       $last   = end ( $points );
       $before = $points [ count ( $points ) - 2 ];
+      $first  = $points [0];
+      $after  = $points [1];
 
       // A curve arrives along the flow - its last control point lies straight before its
       // end - so its head points that way and it is shortened along it: taken from the
-      // chord, the head lay sideways on the box and the curve ended off its base.
+      // chord, the head lay sideways on the box and the curve ended off its base. It leaves
+      // along the flow as well, which is where a mark at its tail points.
 
       if ( $edgeForm == 'curved' ) {
         $along = $vertical ? [ $last [0], ( $before [1] + $last [1] ) / 2 ] : [ ( $before [0] + $last [0] ) / 2, $last [1] ];
         if ( $along != $last )
           $before = $along;
+        $along = $vertical ? [ $first [0], ( $after [1] + $first [1] ) / 2 ] : [ ( $after [0] + $first [0] ) / 2, $first [1] ];
+        if ( $along != $first )
+          $after = $along;
       }
 
-      if ( $arrow )
-        $points [ count ( $points ) - 1 ] = padDiagramShorten ( $before, $last, $style == 'thick' ? 9 : 7 );
+      if ( $cut = padDiagramMarkCut ( $head, $style ) )
+        $points [ count ( $points ) - 1 ] = padDiagramShorten ( $before, $last, $cut );
+
+      if ( $cut = padDiagramMarkCut ( $tail, $style ) )
+        $points [0] = padDiagramShorten ( $after, $first, $cut );
 
       $svg .= "<g class=\"pc-mark\">$tip<path class=\"$class\" d=\"" . padDiagramPath ( $points, $edgeForm, $vertical, $X, $Y ) . '"/>'
-            . ( $arrow ? padDiagramHead ( $before, $last, $X, $Y, $style ) : '' ) . '</g>';
+            . padDiagramMark ( $head, $before, $last, $X, $Y, $style ) . padDiagramMark ( $tail, $after, $first, $X, $Y, $style ) . '</g>';
+
+      // The texts by its ends - the multiplicities of a class diagram - stand beside the
+      // line, a little way along it from the node.
+
+      foreach ( [ [ $edge ['ends'] [0] ?? '', $after, $first ], [ $edge ['ends'] [1] ?? '', $before, $last ] ] as list ( $text, $from, $to ) )
+        if ( $text !== '' )
+          $svg .= padDiagramEndText ( $text, $from, $to, $X, $Y );
 
     }
 
@@ -1125,35 +1200,147 @@
       $svg .= '<rect class="pd-plate" x="' . $X ( $x - $w / 2 ) . '" y="' . $Y ( $y - 9 ) . '" width="' . padChartXY ( $w ) . '" height="18" rx="3"/>'
             . '<text x="' . $X ( $x ) . '" y="' . $Y ( $y + 4 ) . '" text-anchor="middle">' . padChartAttr ( $edges [$e] [2] ) . '</text>';
 
-    foreach ( $nodes as $node ) {
+    foreach ( $nodes as $node )
+      if ( $node ['shape'] != 'dummy' )
+        $svg .= padDiagramNode ( $node, $X, $Y, $minX, $minY );
 
-      if ( $node ['shape'] == 'dummy' )
-        continue;
+    return "$svg</svg>";
 
-      list ( $x, $y, $w, $h ) = [ $node ['x'], $node ['y'], $node ['w'], $node ['h'] ];
+  }
 
-      if ( $node ['shape'] == 'circle' )
-        $svg .= '<circle class="pd-node pd-circle" cx="' . $X ( $x ) . '" cy="' . $Y ( $y ) . '" r="' . padChartXY ( $w / 2 ) . '"/>';
-      elseif ( $node ['shape'] == 'diamond' )
-        $svg .= '<path class="pd-node pd-diamond" d="M' . $X ( $x ) . ',' . $Y ( $y - $h / 2 ) . 'L' . $X ( $x + $w / 2 ) . ',' . $Y ( $y )
-              . 'L' . $X ( $x ) . ',' . $Y ( $y + $h / 2 ) . 'L' . $X ( $x - $w / 2 ) . ',' . $Y ( $y ) . 'Z"/>';
-      elseif ( $node ['shape'] == 'hexagon' )
-        $svg .= '<path class="pd-node pd-diamond" d="M' . $X ( $x - $w / 2 ) . ',' . $Y ( $y ) . 'L' . $X ( $x - $w / 2 + $h / 3 ) . ',' . $Y ( $y - $h / 2 )
-              . 'H' . $X ( $x + $w / 2 - $h / 3 ) . 'L' . $X ( $x + $w / 2 ) . ',' . $Y ( $y ) . 'L' . $X ( $x + $w / 2 - $h / 3 ) . ',' . $Y ( $y + $h / 2 )
-              . 'H' . $X ( $x - $w / 2 + $h / 3 ) . 'Z"/>';
-      elseif ( $node ['shape'] == 'database' ) {
-        $rx   = padChartXY ( $w / 2 );
-        $svg .= '<path class="pd-node pd-circle" d="M' . $X ( $x - $w / 2 ) . ',' . $Y ( $y - $h / 2 + 6 ) . "a$rx,6 0 0,0 " . padChartXY ( $w ) . ',0'
-              . "a$rx,6 0 0,0 -" . padChartXY ( $w ) . ',0V' . $Y ( $y + $h / 2 - 6 ) . "a$rx,6 0 0,0 " . padChartXY ( $w ) . ',0V' . $Y ( $y - $h / 2 + 6 ) . '"/>';
-      } else
-        $svg .= '<rect class="pd-node" x="' . $X ( $x - $w / 2 ) . '" y="' . $Y ( $y - $h / 2 ) . '" width="' . padChartXY ( $w ) . '" height="' . padChartXY ( $h )
-              . '" rx="' . ( $node ['shape'] == 'round' ? padChartXY ( $h / 2 ) : 4 ) . '"/>';
+  // A node at its place: the shapes of the flowchart here, any other one by the function its
+  // kind has for it - padDiagramDrawState for a state - which is handed the same.
 
-      $svg .= padDiagramText ( $node ['lines'], $x - $minX, $y - $minY + ( $node ['shape'] == 'database' ? 5 : 0 ) );
+  function padDiagramNode ( $node, $X, $Y, $minX, $minY ) {
+
+    list ( $x, $y, $w, $h ) = [ $node ['x'], $node ['y'], $node ['w'], $node ['h'] ];
+
+    $svg = '';
+
+    if ( $node ['shape'] == 'circle' )
+      $svg .= '<circle class="pd-node pd-circle" cx="' . $X ( $x ) . '" cy="' . $Y ( $y ) . '" r="' . padChartXY ( $w / 2 ) . '"/>';
+    elseif ( $node ['shape'] == 'diamond' )
+      $svg .= '<path class="pd-node pd-diamond" d="M' . $X ( $x ) . ',' . $Y ( $y - $h / 2 ) . 'L' . $X ( $x + $w / 2 ) . ',' . $Y ( $y )
+            . 'L' . $X ( $x ) . ',' . $Y ( $y + $h / 2 ) . 'L' . $X ( $x - $w / 2 ) . ',' . $Y ( $y ) . 'Z"/>';
+    elseif ( $node ['shape'] == 'hexagon' )
+      $svg .= '<path class="pd-node pd-diamond" d="M' . $X ( $x - $w / 2 ) . ',' . $Y ( $y ) . 'L' . $X ( $x - $w / 2 + $h / 3 ) . ',' . $Y ( $y - $h / 2 )
+            . 'H' . $X ( $x + $w / 2 - $h / 3 ) . 'L' . $X ( $x + $w / 2 ) . ',' . $Y ( $y ) . 'L' . $X ( $x + $w / 2 - $h / 3 ) . ',' . $Y ( $y + $h / 2 )
+            . 'H' . $X ( $x - $w / 2 + $h / 3 ) . 'Z"/>';
+    elseif ( $node ['shape'] == 'database' ) {
+      $rx   = padChartXY ( $w / 2 );
+      $svg .= '<path class="pd-node pd-circle" d="M' . $X ( $x - $w / 2 ) . ',' . $Y ( $y - $h / 2 + 6 ) . "a$rx,6 0 0,0 " . padChartXY ( $w ) . ',0'
+            . "a$rx,6 0 0,0 -" . padChartXY ( $w ) . ',0V' . $Y ( $y + $h / 2 - 6 ) . "a$rx,6 0 0,0 " . padChartXY ( $w ) . ',0V' . $Y ( $y - $h / 2 + 6 ) . '"/>';
+    } elseif ( $node ['shape'] != 'box' and $node ['shape'] != 'round' and function_exists ( $draw = 'padDiagramDraw' . ucfirst ( $node ['shape'] ) ) )
+      return $draw ( $node, $X, $Y, $minX, $minY );
+    else
+      $svg .= '<rect class="pd-node" x="' . $X ( $x - $w / 2 ) . '" y="' . $Y ( $y - $h / 2 ) . '" width="' . padChartXY ( $w ) . '" height="' . padChartXY ( $h )
+            . '" rx="' . ( $node ['shape'] == 'round' ? padChartXY ( $h / 2 ) : 4 ) . '"/>';
+
+    return $svg . padDiagramText ( $node ['lines'], $x - $minX, $y - $minY + ( $node ['shape'] == 'database' ? 5 : 0 ) );
+
+  }
+
+  // The mark at the end of an edge, at $to and pointing away from $from: an arrow (filled),
+  // open (two strokes), a triangle (hollow - a class inherits), a diamond (filled - made
+  // of) or an odiamond (hollow - holds), and the feet of the entity-relationship diagram:
+  // one (two bars), zeroone (a bar and a ring), many (a crow's foot and a bar) and zeromany
+  // (a crow's foot and a ring). '' is no mark.
+
+  function padDiagramMark ( $mark, $from, $to, $X, $Y, $style = 'solid' ) {
+
+    if ( $mark === '' )
+      return '';
+
+    if ( $mark == 'arrow' )
+      return padDiagramHead ( $from, $to, $X, $Y, $style );
+
+    $length = hypot ( $to [0] - $from [0], $to [1] - $from [1] ) ?: 1;
+    $u      = [ ( $to [0] - $from [0] ) / $length, ( $to [1] - $from [1] ) / $length ];
+    $n      = [ -$u [1], $u [0] ];
+
+    // A point $back from the end along the edge and $side across it.
+
+    $at = fn ( $back, $side = 0 ) => $X ( $to [0] - $u [0] * $back + $n [0] * $side ) . ',' . $Y ( $to [1] - $u [1] * $back + $n [1] * $side );
+
+    switch ( $mark ) {
+
+      case 'open':
+        return '<path class="pd-edge" d="M' . $at ( 10, 5 ) . 'L' . $at ( 0 ) . 'L' . $at ( 10, -5 ) . '"/>';
+
+      case 'triangle':
+        return '<path class="pd-hollow" d="M' . $at ( 0 ) . 'L' . $at ( 13, 7 ) . 'L' . $at ( 13, -7 ) . 'Z"/>';
+
+      case 'diamond':
+      case 'odiamond':
+        return '<path class="' . ( $mark == 'diamond' ? 'pd-head' : 'pd-hollow' ) . '" d="M' . $at ( 0 ) . 'L' . $at ( 8, 5 ) . 'L' . $at ( 16 ) . 'L' . $at ( 8, -5 ) . 'Z"/>';
 
     }
 
-    return "$svg</svg>";
+    // The feet: a crow's foot spreads onto the node; a bar and a ring stand before it.
+
+    $bar  = fn ( $back ) => '<path class="pd-foot" d="M' . $at ( $back, 7 ) . 'L' . $at ( $back, -7 ) . '"/>';
+    $ring = fn ( $back ) => '<circle class="pd-ring" cx="' . $X ( $to [0] - $u [0] * $back ) . '" cy="' . $Y ( $to [1] - $u [1] * $back ) . '" r="4.5"/>';
+    $foot = '<path class="pd-foot" d="M' . $at ( 0, 8 ) . 'L' . $at ( 12 ) . 'L' . $at ( 0, -8 ) . 'M' . $at ( 0 ) . 'L' . $at ( 12 ) . '"/>';
+
+    switch ( $mark ) {
+      case 'one':      return $bar ( 6 ) . $bar ( 11 );
+      case 'zeroone':  return $bar ( 6 ) . $ring ( 15 );
+      case 'many':     return $foot . $bar ( 16 );
+      case 'zeromany': return $foot . $ring ( 18 );
+    }
+
+    return '';
+
+  }
+
+  // How far an edge stops short of its end for the mark there: the line ends under the base
+  // of an arrow, at the back of a triangle or a diamond, and runs on to the node under the
+  // feet and the open arrow.
+
+  function padDiagramMarkCut ( $mark, $style = 'solid' ) {
+
+    switch ( $mark ) {
+      case 'arrow':    return ( $style == 'thick' ) ? 9 : 7;
+      case 'triangle': return 13;
+      case 'diamond':
+      case 'odiamond': return 16;
+    }
+
+    return 0;
+
+  }
+
+  // A short text by the end of an edge at $to - "1" or "0..*" - a little back from the node,
+  // above a line that lies and left of one that stands, so the two ends of an edge have
+  // theirs on one side.
+
+  function padDiagramEndText ( $text, $from, $to, $X, $Y ) {
+
+    $length = hypot ( $to [0] - $from [0], $to [1] - $from [1] ) ?: 1;
+    $u      = [ ( $to [0] - $from [0] ) / $length, ( $to [1] - $from [1] ) / $length ];
+    $n      = [ -$u [1], $u [0] ];
+
+    if ( $n [1] > 0.001 or ( abs ( $n [1] ) <= 0.001 and $n [0] > 0 ) )
+      $n = [ -$n [0], -$n [1] ];
+
+    $side   = 9 + padDiagramWidth ( $text ) / 2 * abs ( $u [1] );
+    $x      = $to [0] - $u [0] * 20 + $n [0] * $side;
+    $y      = $to [1] - $u [1] * 20 + $n [1] * $side + 4;
+
+    return '<text class="pd-end" x="' . $X ( $x ) . '" y="' . $Y ( $y ) . '" text-anchor="middle">' . padChartAttr ( $text ) . '</text>';
+
+  }
+
+  // The rules of the marks beyond the arrow, for the kinds that draw them inside their own
+  // <style>: the hollow ones filled with the background so the line stops at their outline,
+  // the feet and the rings in the colour of the edges.
+
+  function padDiagramMarkStyle () {
+
+    return '.pad-chart-diagram .pd-hollow{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}'
+         . '.pad-chart-diagram .pd-foot{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5}'
+         . '.pad-chart-diagram .pd-ring{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5}'
+         . '.pad-chart-diagram .pd-end{font-size:11px}';
 
   }
 
