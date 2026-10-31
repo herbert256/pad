@@ -11,7 +11,7 @@
   // The steps stand in a row of cards under the bands of their sections; under each card a
   // face at the height of its score - a smile for 4 and 5, a straight mouth for 3, a frown
   // below - the faces joined by a line, and a dot for every person who takes the step, in
-  // the colour the legend on the left gives that person.
+  // the colour the legend under them gives that person.
 
   function padDiagramJourney ( $source, $title ) {
 
@@ -64,15 +64,15 @@
     if ( ! $sections )
       return '';
 
-    // The cards as wide as the widest text asks, between 100 and 160; the legend as wide as
-    // the longest name.
+    // The cards as wide as the widest text asks, between 90 and 130 - a longer text wraps - so
+    // a day of six steps fits a page's column.
 
     $widest = 0;
     foreach ( $sections as list ( , $steps ) )
       foreach ( $steps as list ( $text ) )
         $widest = max ( $widest, padDiagramWidth ( $text ) );
 
-    $cardW = max ( 100, min ( 160, $widest + 20 ) );
+    $cardW = max ( 90, min ( 130, $widest + 20 ) );
     $wrap  = max ( 8, (int) floor ( ( $cardW - 16 ) / 7 ) );
     $lines = 1;
 
@@ -82,17 +82,20 @@
         $lines = max ( $lines, count ( $sections [$s] [1] [$t] [3] ) );
       }
 
-    $legend = 0;
-    foreach ( $people as $name => $slot )
-      $legend = max ( $legend, padDiagramWidth ( $name ) + 34 );
+    // The legend is a row under the dots, a dot and a name for every person: beside the
+    // cards it took the room of the longest name from every one of them.
 
-    $left   = 12 + ( $legend ? $legend + 12 : 0 );
+    $legend = 12;
+    foreach ( $people as $name => $slot )
+      $legend += padDiagramWidth ( $name ) + 30;
+
+    $left   = 12;
     $top    = 12 + ( $heading !== '' ? 30 : 0 );
     $cardY  = $top + 28 + 8;
     $cardH  = 16 * $lines + 16;
     $faceY  = $cardY + $cardH + 22;
     $dotY   = $faceY + 4 * 24 + 32;
-    $height = (int) ceil ( $dotY + ( $people ? 14 : -16 ) + 12 );
+    $height = (int) ceil ( $dotY + ( $people ? 14 + 28 : -16 ) + 12 );
 
     // The places across: the cards side by side, a wider gap between two sections.
 
@@ -110,7 +113,7 @@
       $x += 10;
     }
 
-    $width = (int) ceil ( max ( $x - 18 + 12, $heading !== '' ? padDiagramWidth ( $heading ) * 1.2 + 24 : 0 ) );
+    $width = (int) ceil ( max ( $x - 18 + 12, $people ? $legend : 0, $heading !== '' ? padDiagramWidth ( $heading ) * 1.2 + 24 : 0 ) );
     $X     = fn ( $v ) => padChartXY ( $v );
 
     $desc = [];
@@ -125,13 +128,13 @@
     if ( $heading !== '' )
       $svg .= '<text class="pd-heading" x="12" y="' . $X ( 12 + 18 ) . '">' . padChartAttr ( $heading ) . '</text>';
 
-    // The legend: a dot and a name for every person, from the top of the cards down.
+    // The legend, under the dots.
 
-    $row = 0;
+    $x = 12;
     foreach ( $people as $name => $slot ) {
-      $y    = $cardY + 10 + 18 * $row++;
-      $svg .= '<circle class="pd-who' . $slot . ' pd-dot" cx="18" cy="' . $X ( $y ) . '" r="5"/>'
-            . '<text x="30" y="' . $X ( $y + 4 ) . '">' . padChartAttr ( $name ) . '</text>';
+      $svg .= '<circle class="pd-who' . $slot . ' pd-dot" cx="' . $X ( $x + 6 ) . '" cy="' . $X ( $dotY + 28 ) . '" r="5"/>'
+            . '<text x="' . $X ( $x + 16 ) . '" y="' . $X ( $dotY + 32 ) . '">' . padChartAttr ( $name ) . '</text>';
+      $x   += padDiagramWidth ( $name ) + 30;
     }
 
     // The bands of the sections, by turns in the colour of a node and of a round node.
