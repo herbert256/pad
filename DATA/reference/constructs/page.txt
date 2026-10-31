@@ -99,6 +99,7 @@ demo;todo
 edit;login
 examples;index
 examples;show
+games;index
 hello;index
 htmx;examples/cart
 htmx;examples/edit
@@ -255,6 +256,10 @@ manual;fragments/forms_1
 manual;fragments/forms_2
 manual;fragments/forms_3
 manual;fragments/forms_4
+manual;fragments/games_1
+manual;fragments/games_2
+manual;fragments/games_3
+manual;fragments/games_4
 manual;fragments/grouping_1
 manual;fragments/grouping_2
 manual;fragments/hashing_and_encryption_1
@@ -413,6 +418,7 @@ manual;pages/flash_messages
 manual;pages/flush
 manual;pages/forms
 manual;pages/fragment_cache
+manual;pages/games
 manual;pages/grouping
 manual;pages/hashing_and_encryption
 manual;pages/html_helpers
@@ -617,7 +623,6 @@ regression/cache_file;proxiedone
 regression/cache_file;script
 regression/cache_file;stable
 regression/cache_file;typed
-regression/cache_file;validators
 regression/cache_file;widgetcached
 regression/cache_file;widgetids
 regression/cache_memcached;index
@@ -972,6 +977,8 @@ regression/errors;syntax/a_fractional_trim_count_is_named
 regression/errors;syntax/a_fragment_needs_a_name
 regression/errors;syntax/a_function_name_spliced_into_a_bool_expression_named_at_its_close_is_refused
 regression/errors;syntax/a_function_wants_its_parameters
+regression/errors;syntax/a_game_option_out_of_its_bounds_is_reported
+regression/errors;syntax/a_game_that_is_no_file_of_the_games_types_is_reported
 regression/errors;syntax/a_gauge_whose_scale_is_empty_is_reported
 regression/errors;syntax/a_get_needs_its_page
 regression/errors;syntax/a_gravatar_of_an_unknown_default_is_reported
@@ -1030,6 +1037,7 @@ regression/errors;syntax/a_nested_select_needs_a_relation
 regression/errors;syntax/a_nested_view_needs_a_relation_beside_its_where
 regression/errors;syntax/a_network_of_an_unknown_layout_is_reported
 regression/errors;syntax/a_nocache_takes_no_parameter
+regression/errors;syntax/a_nonogram_row_of_another_length_is_reported
 regression/errors;syntax/a_page_is_named_from_the_application_root
 regression/errors;syntax/a_page_may_not_expose_an_engine_variable
 regression/errors;syntax/a_page_of_another_application_needs_its_page
@@ -1065,6 +1073,7 @@ regression/errors;syntax/a_push_never_closes
 regression/errors;syntax/a_qr_code_of_an_unknown_level_is_reported
 regression/errors;syntax/a_qr_code_of_no_text
 regression/errors;syntax/a_query_fragment_name_taken_from_a_value_is_an_application_variable
+regression/errors;syntax/a_quiz_line_without_two_answers_is_reported
 regression/errors;syntax/a_radar_of_two_measures_is_reported
 regression/errors;syntax/a_random_modifier_without_random_is_named
 regression/errors;syntax/a_range_end_a_visitor_gives_is_capped
@@ -1123,6 +1132,7 @@ regression/errors;syntax/a_store_option_on_a_sequence_is_named_as_unread
 regression/errors;syntax/a_store_tag_needs_a_name
 regression/errors;syntax/a_strict_expression_names_its_missing_field
 regression/errors;syntax/a_sudoku_of_many_solutions
+regression/errors;syntax/a_sudoku_to_play_with_two_equal_givens_is_reported
 regression/errors;syntax/a_sudoku_with_no_solution_is_reported_at_once
 regression/errors;syntax/a_sudoku_with_two_equal_givens_in_a_row_is_reported
 regression/errors;syntax/a_sudoku_without_a_solution_is_reported
@@ -1187,6 +1197,7 @@ regression/errors;syntax/a_where_is_written_in_the_template
 regression/errors;syntax/a_where_on_a_sequence_is_named_as_unread
 regression/errors;syntax/a_while_needs_a_condition
 regression/errors;syntax/a_while_never_closes
+regression/errors;syntax/a_word_of_a_word_game_that_is_no_letters_is_reported
 regression/errors;syntax/a_wrapper_holds_one_page_marker
 regression/errors;syntax/a_yaml_parse_error_names_its_reason
 regression/errors;syntax/an_address_rendered_into_data_named_at_its_close_is_not_fetched
@@ -1570,8 +1581,6 @@ regression/framework;develop/the_error_report_keeps_every_global_within_bounds
 regression/framework;develop/the_regression_runner_turns_away_a_cross_site_or_rebound_request
 regression/framework;develop/the_regression_runner_turns_away_a_request_that_is_not_local
 regression/framework;develop/the_regression_runner_turns_away_record_spelt_in_another_case
-regression/info;probe
-regression/info;probe
 regression/info;probe
 regression/info;probe
 regression/info;probe
@@ -3018,6 +3027,7 @@ regression/framework;sequence/zero_is_not_a_member_of_antiprime
 regression/framework;sequence/zero_is_not_a_member_of_happy
 regression/framework;tags/a_bare_chart_kind_draws_as_the_chart_type
 regression/framework;tags/a_bare_chart_kind_gives_way_to_a_data_store_of_its_name
+regression/framework;tags/a_bare_game_name_sets_up_the_game_type
 regression/framework;tags/a_before_callback_can_add_a_field_to_every_row
 regression/framework;tags/a_branch_counts_only_the_children_the_where_of_the_tree_keeps
 regression/framework;tags/a_break_out_of_two_loops_closes_the_inner_one
@@ -3056,6 +3066,7 @@ regression/framework;tags/a_collected_tag_knows_which_occurrence_is_which
 regression/framework;tags/a_condition_tag_opened_with_a_pipe_keeps_its_else_inside_an_if_or_a_case
 regression/framework;tags/a_content_marker_of_a_nested_define_or_inside_ignore_is_not_the_template_s_own
 regression/framework;tags/a_counter_or_a_set_on_a_field_of_the_row_changes_the_field_the_row_shows
+regression/framework;tags/a_crossword_to_play_hands_its_squares_and_clues_to_its_script
 regression/framework;tags/a_css_custom_property_is_not_a_dash_comment
 regression/framework;tags/a_dash_comment_is_dropped_with_the_tags_inside_it
 regression/framework;tags/a_date_field_reads_only_dates
@@ -3078,6 +3089,8 @@ regression/framework;tags/a_form_sent_by_another_page_s_list_refills_the_one_for
 regression/framework;tags/a_fragment_renders_in_place_on_a_normal_request
 regression/framework;tags/a_fragment_response_carries_the_closing_pipe
 regression/framework;tags/a_function_the_application_supplies
+regression/framework;tags/a_game_hands_its_options_to_its_script_as_json
+regression/framework;tags/a_game_is_a_file_of_the_games_types
 regression/framework;tags/a_highlight_of_a_file_before_a_highlight_pair_leaves_the_pair_its_tildes
 regression/framework;tags/a_kept_chart_and_the_same_chart_drawn_now_have_their_own_ids
 regression/framework;tags/a_level_variable_holds_for_every_occurrence
@@ -3671,6 +3684,7 @@ regression/framework;tags/the_cache_option_skips_the_tag_on_a_hit
 regression/framework;tags/the_chart_type_draws_the_kind_it_names
 regression/framework;tags/the_content_of_an_ignore_or_an_ignore_option_keeps_its_tilde_marks
 regression/framework;tags/the_function_prefix_says_to_read_the_name_as_one
+regression/framework;tags/the_game_type_sets_up_the_game_it_names
 regression/framework;tags/the_innermost_tag_of_a_nest_is_the_first_one_finished
 regression/framework;tags/the_same_store_against_a_tag_that_missed
 regression/framework;tags/the_same_tag_written_out_as_a_pair
@@ -3682,6 +3696,7 @@ regression/framework;tags/the_store_can_wrap_the_usage_through_content
 regression/framework;tags/the_ternary_form_on_a_tag_with_a_template_that_answers_empty_is_a_hit
 regression/framework;tags/the_ternary_form_on_a_value_chooses_by_its_truth
 regression/framework;tags/the_tidy_marker_rides_through_a_nested_pass_for_the_exit_to_consume
+regression/framework;tags/the_words_of_a_word_game_are_lower_case_and_once
 regression/framework;tags/tidy_keeps_an_element_whose_quoted_attribute_holds_a_greater_than
 regression/framework;tags/tidy_normalises_the_html_it_wraps
 regression/framework;tags/timeago_wraps_the_words_in_a_time_with_the_full_moment
@@ -5083,6 +5098,7 @@ showcase;progress/uploads
 showcase;rating/hearts
 showcase;rating/reviews
 showcase;sudoku/hardest
+showcase;sudoku/print
 showcase;sudoku/puzzle
 showcase;sudoku/solved
 showcase;tabs/plans_from_data
@@ -5172,8 +5188,6 @@ tags;examples/count/2-data
 tags;examples/countdown/1-events
 tags;examples/country/1-flags
 tags;examples/country/2-names
-tags;examples/crossword/1-words
-tags;examples/crossword/2-solution
 tags;examples/data/1-json
 tags;examples/data/2-csv-xml
 tags;examples/data/3-list
@@ -5219,6 +5233,11 @@ tags;examples/foo/1-builtin
 tags;examples/foo/2-prefixes
 tags;examples/form/1-search
 tags;examples/fragment/1-in-place
+tags;examples/game/1-memory
+tags;examples/game/2-sudoku
+tags;examples/game/3-crossword
+tags;examples/game/4-quiz
+tags;examples/game/5-print
 tags;examples/gravatar/1-comments
 tags;examples/gravatar/2-fallback
 tags;examples/guest/1-guest
@@ -5332,8 +5351,6 @@ tags;examples/sparkline/2-table
 tags;examples/sparkline/3-sequence
 tags;examples/stack/1-head
 tags;examples/stack/2-empty
-tags;examples/sudoku/1-puzzle
-tags;examples/sudoku/2-solved
 tags;examples/switch/1-stripes
 tags;examples/switch/2-three
 tags;examples/tab/1-conditional
@@ -5404,7 +5421,6 @@ tags;tag/copy
 tags;tag/count
 tags;tag/countdown
 tags;tag/country
-tags;tag/crossword
 tags;tag/csrf
 tags;tag/curl
 tags;tag/data
@@ -5435,6 +5451,7 @@ tags;tag/flush
 tags;tag/foo
 tags;tag/form
 tags;tag/fragment
+tags;tag/game
 tags;tag/get
 tags;tag/gravatar
 tags;tag/guest
@@ -5493,7 +5510,6 @@ tags;tag/source
 tags;tag/spaceless
 tags;tag/sparkline
 tags;tag/stack
-tags;tag/sudoku
 tags;tag/switch
 tags;tag/tab
 tags;tag/tabs
