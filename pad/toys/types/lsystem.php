@@ -37,16 +37,20 @@
   ];
 
   // A system of your own: axiom and angle, and a rule a line - one letter, a colon, what it
-  // becomes, in letters, + - [ ] and |.
+  // becomes, in letters, + - [ ] and |. The angle is held to the bounds of angle= and of the
+  // script's slider, 1 to 180 degrees.
 
   $padLsysOwn = [ 'axiom' => '', 'rules' => [], 'angle' => 90, 'iterations' => 5, 'most' => 12 ];
 
   foreach ( padToyLines () as $padLsysLine ) {
     if ( preg_match ( '/^axiom\s*:\s*([A-Za-z+\-\[\]|]+)$/iD', $padLsysLine, $padLsysMatch ) )
       $padLsysOwn ['axiom'] = $padLsysMatch [1];
-    elseif ( preg_match ( '/^angle\s*:\s*(\d+(?:\.\d+)?)$/iD', $padLsysLine, $padLsysMatch ) and $padLsysMatch [1] > 0 and $padLsysMatch [1] < 360 )
-      $padLsysOwn ['angle'] = $padLsysMatch [1] + 0;
-    elseif ( preg_match ( '/^([A-Za-z])\s*[:=]\s*([A-Za-z+\-\[\]|]*)$/D', $padLsysLine, $padLsysMatch ) )
+    elseif ( preg_match ( '/^angle\s*:\s*(.*)$/iD', $padLsysLine, $padLsysMatch ) ) {
+      if ( preg_match ( '/^\d+(?:\.\d+)?$/D', $padLsysMatch [1] ) and $padLsysMatch [1] >= 1 and $padLsysMatch [1] <= 180 )
+        $padLsysOwn ['angle'] = $padLsysMatch [1] + 0;
+      elseif ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "the " . padToyWhat () . " has a line '" . padMakeSafe ( $padLsysLine, 40 ) . "' - angle: the turn in degrees, a number from 1 to 180" );
+    } elseif ( preg_match ( '/^([A-Za-z])\s*[:=]\s*([A-Za-z+\-\[\]|]*)$/D', $padLsysLine, $padLsysMatch ) )
       $padLsysOwn ['rules'] [ $padLsysMatch [1] ] = $padLsysMatch [2];
     elseif ( $GLOBALS ['padCheckSyntax'] )
       padError ( "the " . padToyWhat () . " has a line '" . padMakeSafe ( $padLsysLine, 40 ) . "' - axiom: the word, angle: the turn, or a rule, X: F[+X]-X" );
