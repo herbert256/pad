@@ -3103,10 +3103,11 @@ the strict check, which lists the views there are.
 east, north in degrees - and for a region that is a list of countries rather than a stretch
 of the globe its `countries` (alpha-2 codes) and the `name` the map's title takes; the files
 there are the views there are (`padMapViews`), and a view is added by adding its file. A view
-draws every country its box touches; with a list of countries, the others are the land
-around them, drawn without a value in `--pad-map-context`, and a value of theirs is named in
-the title (`not in this view: Germany`), as one of a country outside the box is - and is
-left out of the scale, the legend and the description, which are the values the map draws.
+draws the countries with a part in its box - the polygons of each that lie in it; with a list
+of countries, the others are the land around them, drawn without a value in
+`--pad-map-context`, and a value of theirs is named in the title (`not in this view:
+Germany`), as one of a country outside the box is - and is left out of the scale, the legend
+and the description, which are the values the map draws.
 
 ---
 

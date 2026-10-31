@@ -17,9 +17,9 @@
   // A view is a file of maps/types/ - the files there are the views there are (padMapViews)
   // - answering its box of longitude and latitude, and for a region that is a list of
   // countries rather than a stretch of the globe those countries, with the name its title
-  // takes. Every country the box touches is drawn; with a list, the others are drawn as the
-  // quiet land around it, --pad-map-context, and a value of theirs is named in the title as
-  // one the view does not show.
+  // takes. Every country with a part in the box is drawn - the polygons of it that lie
+  // there; with a list, the others are drawn as the quiet land around it, --pad-map-context,
+  // and a value of theirs is named in the title as one the view does not show.
   //
   // padMapCountries   the countries, read once per request, and an index of every code and
   //                   name in lower case
@@ -141,8 +141,8 @@
 
   // The SVG. $values is code => [ value ]; $width the width of the picture, the height
   // follows from the view unless $height is given; $scale is linear - the steps evenly
-  // over the values - or quantile - evenly over their ranks. A country whose box lies
-  // outside the view is not written at all; one the box touches that is not of the view's
+  // over the values - or quantile - evenly over their ranks. A country none of whose parts
+  // lies in the view is not written at all (padMapShown); one that is not of the view's
   // countries, when it lists them, is the land around them, drawn without a value.
 
   function padMap ( $view, $values, $title, $width, $height, $scale = 'linear' ) {
@@ -150,7 +150,11 @@
     list ( $countries ) = padMapCountries ();
     list ( $x0, $y0, $x1, $y1 ) = padMapBox ( $view );
 
-    $focus = isset ( padMapView ( $view ) ['countries'] ) ? array_flip ( padMapView ( $view ) ['countries'] ) : NULL;
+    $focus  = isset ( padMapView ( $view ) ['countries'] ) ? array_flip ( padMapView ( $view ) ['countries'] ) : NULL;
+    $boxW   = $x1 - $x0;
+    $boxH   = $y1 - $y0;
+    $simple = ( $boxW / $width > 3 );
+    $shown  = padMapShown ( $countries, $simple, $x0, $y0, $x1, $y1 );
 
     // A country with a value that the view does not show is named in the title, as a key
     // that is no country is: its value was dropped from the picture without a word. Its
@@ -161,23 +165,18 @@
 
     $outside = $inside = [];
 
-    foreach ( $values as $code => $value ) {
-      $box = $countries [$code] [3];
-      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 or ( $focus !== NULL and ! isset ( $focus [$code] ) ) )
+    foreach ( $values as $code => $value )
+      if ( ! isset ( $shown [$code] ) or ( $focus !== NULL and ! isset ( $focus [$code] ) ) )
         $outside [] = $countries [$code] [1];
       else
         $inside [$code] = $value;
-    }
 
-    $boxW   = $x1 - $x0;
-    $boxH   = $y1 - $y0;
     $legend = $inside ? 34 : 0;
 
     if ( $height <= 0 )
       $height = (int) round ( $width * $boxH / $boxW ) + $legend;
 
     $mapH   = max ( 10, $height - $legend );
-    $simple = ( $boxW / $width > 3 );
     $desc   = [];
 
     foreach ( $inside as $code => list ( $value ) )
@@ -219,14 +218,9 @@
 
     $later = '';
 
-    foreach ( $countries as $code => $country ) {
+    foreach ( $shown as $code => $d ) {
 
-      list ( , $name, , $box, $detail, $plain ) = $country;
-
-      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 )
-        continue;
-
-      $d = $simple ? $plain : $detail;
+      $name = $countries [$code] [1];
 
       if ( $focus !== NULL and ! isset ( $focus [$code] ) )
         $svg .= "<path class=\"pm-land pm-context\" d=\"$d\"><title>" . padChartAttr ( $name ) . '</title></path>';
@@ -261,6 +255,59 @@
            . '<text x="' . padChartXY ( $x + 24 ) . '" y="' . ( $y + 9 ) . '">no value</text>';
 
     return "$svg</svg>";
+
+  }
+
+  // The countries a view shows, each as the outline it is drawn with: the parts of it that
+  // lie in the view, by code in the order of world.json. A country is its polygons - an
+  // M and its l steps each - and one whose box lies across the edge of the view keeps those
+  // whose own box touches it: by the box of the whole, Russia and the United States, whose
+  // islands lie on both sides of the 180th meridian, touched every view, and a map of the
+  // Benelux was nine tenths their outlines, outside the picture; France was written with
+  // Guiana and Reunion on it.
+
+  function padMapShown ( $countries, $simple, $x0, $y0, $x1, $y1 ) {
+
+    $shown = [];
+
+    foreach ( $countries as $code => list ( , , , $box, $detail, $plain ) ) {
+
+      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 )
+        continue;
+
+      $d = $simple ? $plain : $detail;
+
+      if ( $box [0] < $x0 or $box [2] > $x1 or $box [1] < $y0 or $box [3] > $y1 ) {
+
+        $keep = '';
+
+        foreach ( preg_split ( '/(?=M)/', $d, -1, PREG_SPLIT_NO_EMPTY ) as $part ) {
+          preg_match_all ( '/-?\d+(?:\.\d+)?/', $part, $numbers );
+          $numbers = $numbers [0];
+          $x = $left = $right = (float) $numbers [0];
+          $y = $top  = $low   = (float) ( $numbers [1] ?? 0 );
+          for ( $i = 2; $i + 1 < count ( $numbers ); $i += 2 ) {
+            $x    += $numbers [$i];
+            $y    += $numbers [$i + 1];
+            $left  = min ( $left, $x );
+            $right = max ( $right, $x );
+            $top   = min ( $top, $y );
+            $low   = max ( $low, $y );
+          }
+          if ( ! ( $right < $x0 or $left > $x1 or $low < $y0 or $top > $y1 ) )
+            $keep .= $part;
+        }
+
+        $d = $keep;
+
+      }
+
+      if ( $d !== '' )
+        $shown [$code] = $d;
+
+    }
+
+    return $shown;
 
   }
 
