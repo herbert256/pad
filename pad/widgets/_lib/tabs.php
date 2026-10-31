@@ -1,7 +1,7 @@
 <?php
 
-  // Tabs without JavaScript - the tabs widget, and the {tab} items that {accordion} and
-  // {carousel} take as well.
+  // Tabs without JavaScript - the tabs widget, and the {tab} items that {accordion},
+  // {carousel}, {wizard} and {lightbox} take as well.
   //
   //   {tabs active='Specs'}
   //     {tab 'Overview'}<p>A kettle that ...</p>{/tab}
@@ -15,8 +15,8 @@
   // tab sets keeps both choices, and the back button keeps its meaning. Printed, every panel
   // shows.
   //
-  // The items are collected while the content renders: {tabs} (and {accordion}, {carousel})
-  // asks for the end walk, opens a collection under its level, and every {tab} below it -
+  // The items are collected while the content renders: {tabs} (and the other owners) asks
+  // for the end walk, opens a collection under its level, and every {tab} below it -
   // also one made in a loop, {specs}{tab $name}...{/tab}{/specs} - renders its content and
   // hands it over instead of printing it. At the end walk the owner builds its markup from
   // what was handed over.

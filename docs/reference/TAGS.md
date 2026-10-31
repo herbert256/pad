@@ -2257,7 +2257,8 @@ kind named 'zebra'". Fake kinds are never reached bare: their names are those of
 
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
-an accordion, a carousel, a modal, a copy box, a poll. Every widget is a file of
+an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
+toast, a copy box, a poll, a breadcrumb. Every widget is a file of
 `pad/widgets/types/` - its tag code - with its functions in `pad/widgets/_lib/`, its style and
 script in `pad/widgets/assets/`, and the files of `types/` are the widgets there are
 (`padWidgetTypes()`); the subsystem is `pad/widgets/`.
