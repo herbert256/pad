@@ -139,6 +139,15 @@
     if ( ! $commits )
       return '';
 
+    // As large as a mind map or a tree at most: 2000 commits, 2000 branches. 8000 branches
+    // were three megabytes of SVG, a lane each, with no word that it was too much.
+
+    foreach ( [ 'commits' => count ( $commits ), 'branches' => count ( $branches ) ] as $what => $count )
+      if ( $count > 2000 ) {
+        padError ( "the commit graph is too large to lay out: $count $what, 2000 at most - draw it in parts" );
+        return '';
+      }
+
     // The lanes: main first, the others by their order: and then as they were made.
 
     $names = array_keys ( $branches );
@@ -172,12 +181,16 @@
 
     // Said in order: the commits, the branches leaving, the merges and the copies.
 
-    $desc = [];
+    // Where each commit's line stands in it is kept for the commit's tooltip: counted again
+    // per commit from every branch event, 8000 branches took 6 seconds.
+
+    $desc = $descAt = [];
     $next = 0;
 
     foreach ( $commits as $k => $commit ) {
       while ( $next < count ( $events ) and $events [$next] [0] <= $k )
         $desc [] = $events [$next++] [1];
+      $descAt [$k] = count ( $desc );
       $what    = [ 'commit' => 'commit', 'merge' => 'merge of ' . ( $commit ['merged'] ?? '' ), 'cherry' => 'cherry-pick of ' . ( $commit ['picked'] ?? '' ) ] [ $commit ['kind'] ];
       $desc [] = $commit ['branch'] . ': ' . $what . ( ( $commit ['id'] !== '' && $commit ['kind'] != 'cherry' ) ? ' ' . $commit ['id'] : '' )
                . ( $commit ['tag'] !== '' ? ' (tag ' . $commit ['tag'] . ')' : '' );
@@ -243,7 +256,7 @@
       $y    = $commit ['y'];
       $slot = $branches [ $commit ['branch'] ] ['slot'];
 
-      $svg .= '<g class="pc-mark"><title>' . padChartAttr ( $desc [ $k + count ( array_filter ( $events, fn ( $e ) => $e [0] <= $k ) ) ] ) . '</title>';
+      $svg .= '<g class="pc-mark"><title>' . padChartAttr ( $desc [ $descAt [$k] ] ) . '</title>';
 
       if ( $commit ['type'] == 'HIGHLIGHT' )
         $svg .= '<rect class="pd-g' . $slot . ' pd-commit" x="' . $X ( $x - 7 ) . '" y="' . $X ( $y - 7 ) . '" width="14" height="14" rx="2"/>';
