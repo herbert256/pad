@@ -1159,6 +1159,17 @@
 
       $items = padFormRulesItems ( $parms );
 
+      // The content of a rich field written as a pair - the text a markdown editor starts
+      // with, the choices of a combobox - is taken as written and never rendered (inputs/
+      // input.php), so a field written in it is text, as in {ignore}: the reading goes on
+      // after its closing tag. {mdeditor 'body'}Write {input 'email', rules='required'/}
+      // ...{/mdeditor} gave the form the rules of an email field it does not have, and no
+      // post of it could pass.
+
+      if ( ( $one [3] [1] ?? -1 ) >= 0 and ! str_ends_with ( rtrim ( $parms ), '/' )
+           and preg_match ( '/\{\/' . preg_quote ( $tag, '/' ) . '(?=[\s}|])/', $text, $close, PREG_OFFSET_CAPTURE, $offset ) )
+        $offset = $close [0] [1];
+
       // Every form with its name written out is there, its fields with rules or not: a post
       // of a form the text does not have kept none of its rules (padPosted).
 
@@ -1270,7 +1281,11 @@
     if ( strtolower ( (string) padFormRulesLiteral ( $form ['take'] ['method'] ?? "'post'" ) ) !== 'post' )
       return padError ( "the rules of $where are never checked - only a form that posts is validated" );
 
-    if ( $tag == 'input' and strtolower ( (string) padFormRulesLiteral ( $items ['take'] ['type'] ?? "''" ) ) == 'file' )
+    // A dropzone is a file field too: refused only as it renders, its rules were kept here,
+    // and under an error action that goes on every post failed on a field $_POST never has.
+
+    if ( ( $tag == 'input' and strtolower ( (string) padFormRulesLiteral ( $items ['take'] ['type'] ?? "''" ) ) == 'file' )
+         or in_array ( $tag, [ 'dropzone', 'input:dropzone' ], TRUE ) )
       return padError ( "the rules of $where are never checked - a file field is checked by padUpload" );
 
     foreach ( padValidateSplit ( $list ) as $whole ) {
