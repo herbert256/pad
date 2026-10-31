@@ -40,11 +40,12 @@
   $padLifeHeight = padToyInt ( 'height', 40, 10, 160 );
 
   // A pattern written between the tags: rows of O or # and ., as long as each other or not -
-  // a short row is dead at its end.
+  // a short row is dead at its end. A line that starts with # is a row when it is one, #.#,
+  // and a comment when it is not, # a glider.
 
   $padLifeOwn = [];
 
-  foreach ( padToyLines () as $padLifeRow ) {
+  foreach ( padToyLines ( '/^[O#*.]+$/iD' ) as $padLifeRow ) {
     if ( ! preg_match ( '/^[O#*.]+$/iD', $padLifeRow ) ) {
       if ( $GLOBALS ['padCheckSyntax'] )
         padError ( "the " . padToyWhat () . " pattern has a row '" . padMakeSafe ( $padLifeRow, 30 ) . "' - O or # for a live cell, . for a dead one" );

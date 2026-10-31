@@ -56,14 +56,16 @@
 
   }
 
-  // The lines of the content, trimmed, the empty ones and the # comments left out.
+  // The lines of the content, trimmed, the empty ones and the # comments left out. $row is
+  // what a line of the toy's own looks like when # is one of its characters - a row of the
+  // Game of Life, #.# - such a line is kept, a # line that is not one is a comment.
 
-  function padToyLines () {
+  function padToyLines ( $row = '' ) {
 
     $lines = [];
 
     foreach ( preg_split ( '/\R/', padToySource () ) as $line )
-      if ( ( $line = trim ( $line ) ) !== '' and $line [0] != '#' )
+      if ( ( $line = trim ( $line ) ) !== '' and ( $line [0] != '#' or ( $row !== '' and preg_match ( $row, $line ) ) ) )
         $lines [] = $line;
 
     return $lines;
