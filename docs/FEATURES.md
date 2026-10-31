@@ -700,6 +700,7 @@ show them.
 {copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
 {poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
 {toast 'Saved', tone='success'}Kept.{/toast}   # a notice: an open <dialog>, its button closes it without JS
+{dropdown 'Account'}<a href="?profile">Profile</a>...{/dropdown}   # a popover menu under its button
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```

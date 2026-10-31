@@ -2282,6 +2282,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
+| `dropdown` | A button and the menu it opens - the popover attribute, anchored under it | the button's text, `align` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
@@ -2510,6 +2511,43 @@ so a page puts one there. Printed, no toast shows. The colours are `--pad-toast-
 `-muted`, `-line`, `-surface`, `-info`, `-success`, `-warning` and `-error` on `.pad-toast`,
 `light-dark()` defaults. A toast without title and text, an unknown tone or place and a
 timeout that is no whole number of seconds are errors under the strict check.
+
+---
+
+### dropdown
+A button and the menu it opens - the menu a popover (the HTML popover attribute) the button
+opens through `popovertarget`, so the browser opens, closes and places it without a script
+(`widgets/_lib/dropdown.php`).
+
+```html
+{dropdown 'Account', align='end'}
+  <p>Signed in as {$user}</p>
+  <a href="?profile">Profile</a>
+  <a href="?settings">Settings</a>
+  <hr>
+  <a href="?logout">Log out</a>
+{/dropdown}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The text of the button |
+| `align` | `start` (the default) - the menu's left edge under the button's - or `end`, its right edge |
+
+**Behavior:** the content is rendered first and becomes the menu: links, buttons, a rule
+(`<hr>`) and a line of text (`<p>`) are drawn as a menu's. The menu stands in the top layer -
+no parent's overflow cuts it off - under its button by CSS anchor positioning, flipped above it
+where there is no room below; a click outside it, Escape or opening another menu closes it, the
+button is 'expanded' for a screen reader, and the menu follows the button in the tab order. A
+small script, once per page with the CSP nonce, adds the arrow keys, Home and End between the
+items, opens the menu at its first item on the down arrow, closes it after a click on an item,
+and places it under the button in a browser without anchor positioning - where there is no
+script either, the menu shows in the middle of the window. The colours are
+`--pad-dropdown-accent`, `-text`, `-muted`, `-line`, `-surface` and `-hover` on
+`.pad-dropdown`, `light-dark()` defaults. A dropdown without the text of its button, one with
+an empty menu and an unknown `align` are errors under the strict check.
 
 ---
 
@@ -3715,6 +3753,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `copy` | Widget | A text with a copy-to-clipboard button, selectable by hand without scripting |
 | `poll` | Widget | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` closed by a form of method dialog, no JavaScript |
+| `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
