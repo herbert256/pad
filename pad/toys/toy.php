@@ -10,7 +10,7 @@
   // frame, the toy's script animates it - once per page, with the CSP nonce, as the
   // interactive tags write theirs (lib/widget.php). The pattern of a Game of Life, the rules
   // of an L-system stand between its tags as they are written - taken before the level walks
-  // them, so they may hold braces.
+  // them, so a field or a tag there is not filled in.
 
   include_once PAD . 'toys/_lib/toy.php';
 
