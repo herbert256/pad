@@ -236,7 +236,7 @@
     $config ['name'] = $label;
 
     $id   = padWidgetId ( "toy-$kind", $config );
-    $json = padWidgetAttr ( json_encode ( $config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+    $json = padWidgetAttr ( json_encode ( $config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE ) );
     $show = padWidgetAttr ( $label );
 
     return padToyStyle ( $kind )

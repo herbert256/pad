@@ -247,7 +247,7 @@
     $config ['name'] = $label;
 
     $id   = padWidgetId ( "game-$kind", [ $config, $board ] );
-    $json = padWidgetAttr ( json_encode ( $config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+    $json = padWidgetAttr ( json_encode ( $config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE ) );
     $show = padWidgetAttr ( $label );
 
     return padGameStyle ( $kind )
