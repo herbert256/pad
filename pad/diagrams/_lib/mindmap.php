@@ -183,7 +183,9 @@
   }
 
   // A line's text and shape: id((text)), (text), [text], {{text}}, )text(, ))text(( or the
-  // text alone.
+  // text alone. Quotes come off when they enclose the whole text, one quoted string -
+  // id["text"] - as a flowchart's node has it: every quote at either end was taken, and
+  // root((PAD "x")) was drawn as PAD "x, B(Press "OK") as Press "OK.
 
   function padDiagramMindNode ( $line ) {
 
@@ -192,7 +194,7 @@
 
     foreach ( $shapes as $open => list ( $close, $shape ) )
       if ( preg_match ( '/^[\p{L}\p{M}\p{N}_-]*' . preg_quote ( $open, '/' ) . '(.*)' . preg_quote ( $close, '/' ) . '$/su', $line, $m ) and trim ( $m [1] ) !== '' )
-        return [ trim ( trim ( $m [1] ), '"' ), $shape ];
+        return [ preg_match ( '/^"([^"]*)"$/u', trim ( $m [1] ), $quoted ) ? $quoted [1] : trim ( $m [1] ), $shape ];
 
     return [ $line, '' ];
 
