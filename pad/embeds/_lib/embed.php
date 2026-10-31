@@ -27,9 +27,11 @@
   //             when it is none of the provider's; $named when the provider was named, so a
   //             bare id is the provider's to read as well
   //   embed     fn ( $parts, $opts ) - what is written: [ mode, src, link, thumb, ratio,
-  //             allow, type ], the mode frame (a facade, the frame loaded on a click), page (a
-  //             frame of the application's own, loaded lazily), video or audio (an element
-  //             that loads nothing before it is played)
+  //             allow, type, name ], the mode frame (a facade, the frame loaded on a click),
+  //             page (a frame of the application's own, loaded lazily), video or audio (an
+  //             element that loads nothing before it is played); name the site the click
+  //             loads from where that is not the provider - a PeerTube instance, the host of
+  //             a PDF - and src '' when there is nothing to write
   //
   // A frame of another site is a facade first: a poster - drawn for its kind, or poster= a
   // picture of www/<application>/, or with thumbnail the provider's own picture - the title,
