@@ -1,0 +1,9 @@
+.pad-input-toggle .pi-toggle-row{flex-wrap:nowrap;gap:.75em}
+.pad-input-toggle .pi-toggle-row>label{margin:0;font-weight:600;cursor:pointer}
+.pad-input-toggle input[role=switch]{-webkit-appearance:none;appearance:none;position:relative;flex:none;width:2.75em;height:1.55em;margin:0;border-radius:1em;border:1px solid var(--pad-input-line);background:var(--pad-input-line);cursor:pointer;transition:background .15s,border-color .15s}
+.pad-input-toggle input[role=switch]::before{content:"";position:absolute;top:.14em;left:.15em;width:1.15em;height:1.15em;border-radius:50%;background:var(--pad-input-knob);box-shadow:0 1px 3px rgb(0 0 0 / .3);transition:transform .15s}
+.pad-input-toggle input[role=switch]:checked{background:var(--pad-input-accent);border-color:var(--pad-input-accent)}
+.pad-input-toggle input[role=switch]:checked::before{transform:translateX(1.18em)}
+.pad-input-toggle input[role=switch]:disabled{opacity:.45;cursor:default}
+@media (forced-colors:active){.pad-input-toggle input[role=switch]{-webkit-appearance:auto;appearance:auto}.pad-input-toggle input[role=switch]::before{display:none}}
+@media (prefers-reduced-motion:reduce){.pad-input-toggle input[role=switch],.pad-input-toggle input[role=switch]::before{transition:none}}

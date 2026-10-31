@@ -12,11 +12,16 @@
   // Whether the tag on this level takes its items raw - the built-in {attrs}, {classes},
   // {trans}, {debug}, {parms}, {assert}, the form tags {form}, {input} and {textarea},
   // {can} and {cannot}, and {jsonview}, whose values may be arrays - a row, an answer of an
-  // API - that an expression cannot hold.
+  // API - that an expression cannot hold. So does every rich form field of pad/inputs/, the
+  // input: type: its items are the field's, as {input}'s are - min= of a slider, rows= of a
+  // markdown editor are no handling options.
 
   function padParmsRaw () {
 
     global $pad, $padTag, $padType;
+
+    if ( ( $padType [$pad] ?? '' ) == 'input' )
+      return TRUE;
 
     return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug', 'parms', 'form', 'input', 'textarea', 'assert', 'can', 'cannot', 'jsonview' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
 

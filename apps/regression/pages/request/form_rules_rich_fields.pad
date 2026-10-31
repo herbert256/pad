@@ -1,0 +1,16 @@
+{form 'trip', error}
+{input:slider 'volume', rules='integer|between:10,90'/}
+{stepper 'guests', label='Guests', rules='required|integer|between:1,8'/}
+{toggle 'terms', label='Terms', rules='accepted'/}
+{stars 'score', label='Score', rules='required'/}
+{colorpicker 'tint', rules='color'/}
+{datepicker 'day', rules='required|date'/}
+{timepicker 'at', rules='time'/}
+{taginput 'topics', rules='required|max:20'/}
+{signature 'signed', rules='required'/}
+{mdeditor 'note', rules='max:12'/}
+{newpassword 'password', rules='required|min:8'/}
+{otp 'code', rules='required|digits:6'/}
+{combobox 'city', options='Rome, Oslo', rules='in:Rome,Oslo'/}
+{/form}
+{$state}

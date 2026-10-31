@@ -192,8 +192,12 @@
     return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
   }
 
+  // A hidden field a rich field posts - the list of a tag input, the code of the boxes of a
+  // one-time code - has the id of the control that shows it, in data-pad-shows: its message
+  // goes by that id, as the server's does.
   function idOf(name, control) {
-    return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+    var shows = control && control.getAttribute ? control.getAttribute('data-pad-shows') : null;
+    return shows || (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   }
 
   // A switch is one field, not a choice of a group: it has its label as a text field has.

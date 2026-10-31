@@ -392,7 +392,8 @@ addRule('uuid', {
     return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
   }
   function idOf(name, control) {
-    return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+    var shows = control && control.getAttribute ? control.getAttribute('data-pad-shows') : null;
+    return shows || (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   }
   function box(control) {
     return (control.type === 'checkbox' || control.type === 'radio') && control.getAttribute('role') !== 'switch';

@@ -31,6 +31,7 @@ applications show them working.
   - [Page links (pager tag)](#page-links-pager-tag)
   - [Recursive Trees](#recursive-trees)
   - [Form rules on the fields and in the browser](#form-rules-on-the-fields-and-in-the-browser)
+  - [Rich form fields](#rich-form-fields)
   - [Layouts (extends / block / parent)](#layouts-extends--block--parent)
   - [Components (slots / parms)](#components-slots--parms)
   - [Tags defined in the template (define / macro)](#tags-defined-in-the-template-define--macro)
@@ -376,6 +377,33 @@ checker:
 {form 'signup', client, error}{input 'email', label='E-mail', rules='required|email'/}{/form}
 <div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{validator/}
 ```
+
+### Rich form fields
+```
+{form 'trip', error}
+  {slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}   # or {input:slider ...}
+  {stars 'score', label='Your rating', rules='required'/}                    # max=5
+  {datepicker 'day', label='Day', min='2026-01-01'/}       # a month to choose from; weekstart=
+  {timepicker 'at', label='Time', every=15/}               # the times of a list
+  {taginput 'topics', label='Topics', suggestions='pad, php'/}   # posts 'pad, php'
+  {combobox 'city', label='City'}Rome
+    Oslo{/combobox}                                        # options=, data=, or a line each
+  {signature 'signed', label='Signature'/}                 # posts a PNG data URL
+  {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
+{/form}
+```
+The kinds are the files of `pad/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
+mdeditor (Markdown with a live preview), newpassword (strength meter, show/hide; `known` for a
+login), otp (a box per character), signature, slider, stars, stepper, taginput, timepicker and
+toggle (a switch posting `on=`/`off=`) - their script and style in `pad/inputs/assets/`. Each
+is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
+refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
+from the template before the PHP runs, `client` too) after its frame in the words of its label,
+every item it does not take an attribute of its field. Every kind writes a native field a form
+posts without any script - a range, a date, a radio group, a text field holding a comma list -
+and its script, once a page with the CSP nonce, makes more of it; a field a fragment brings later
+is enhanced too. The bare name comes after every other kind of tag: on a page with an array
+holding a key `slider`, write `input:slider`.
 
 ### Layouts (extends / block / parent)
 ```

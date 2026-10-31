@@ -230,6 +230,13 @@
         elseif ( ( $why = padValidateArgument ( strtolower ( explode ( ':', $rule, 2 ) [0] ), explode ( ':', $rule, 2 ) [1] ?? '' ) ) !== '' )
           padError ( "padValidate: the rule $rule is $why" );
 
+      // The rules checked go on the xref record, which the reference application shows: the
+      // pages that use each rule.
+
+      if ( $GLOBALS ['padInfoXref'] ?? FALSE )
+        foreach ( $list as $rule )
+          padInfoXref ( 'rule', strtolower ( explode ( ':', $rule, 2 ) [0] ) );
+
       // A list belongs to a field named for one - tags[] - and a field of one value posted
       // as a list is refused whatever its rules: name[]=x passed required and color[]=red
       // passed in:, and the page went on with a list where its form has one text. The key
@@ -1120,15 +1127,21 @@
     $forms  = [];
     $offset = 0;
 
-    preg_match_all ( '/\{(\/?)(?:pad:)?(form|input|textarea)(?=[ }\/\n\t\r])/', $text, $found, PREG_OFFSET_CAPTURE | PREG_SET_ORDER );
+    // The rich fields of pad/inputs/ carry rules= as {input} does: {input:slider 'volume'} and
+    // the bare {slider 'volume'}, each kind a file of inputs/types/.
+
+    $kinds = implode ( '|', array_map ( fn ( $kind ) => preg_quote ( $kind, '/' ), padKinds ( 'inputs' ) ) );
+    $tags  = '(?:pad:)?(form|input|textarea)' . ( $kinds !== '' ? "|((?:input:)?(?:$kinds))" : '' );
+
+    preg_match_all ( '/\{(\/?)(?:' . $tags . ')(?=[ }\/\n\t\r])/', $text, $found, PREG_OFFSET_CAPTURE | PREG_SET_ORDER );
 
     foreach ( $found as $one ) {
 
       $pos  = $one [0] [1];
       $open = $one [0] [0];
-      $tag  = $one [1] [0] . $one [2] [0];
+      $tag  = $one [1] [0] . ( ( $one [2] [1] ?? -1 ) >= 0 ? $one [2] [0] : $one [3] [0] );
 
-      if ( $pos < $offset or $tag == '/input' or $tag == '/textarea' )
+      if ( $pos < $offset or ( $tag [0] == '/' and $tag != '/form' ) )
         continue;
 
       $end = padPairTagEnd ( $text, $pos + strlen ( $open ) );

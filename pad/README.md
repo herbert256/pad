@@ -30,6 +30,7 @@ pad/
 ├── icons/         # Icon subsystem (an icon per file of icons/types/)
 ├── info/          # Debugging and tracing
 ├── inits/         # Initialization
+├── inputs/        # Rich form fields (a kind per file of inputs/types/)
 ├── install/       # Installation scripts
 ├── level/         # Tag processing
 ├── lib/           # PHP helpers
@@ -81,6 +82,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | icons/ | The icon subsystem - `{icon}` and the `icon:` type; an icon is a file of `icons/types/`, `<name>.svg`, drawn by `icons/_lib/icon.php` |
 | info/ | Debugging, tracing, and profiling system |
 | inits/ | Framework initialization and bootstrapping |
+| inputs/ | The rich form fields - the `input:` type and the bare kinds, `{slider}`, `{stars}`, `{datepicker}` ...; a kind is a file of `inputs/types/` writing a native field, its `.js` and `.css` in `inputs/assets/` beside the runtime's, the shared field code in `inputs/_lib/input.php` |
 | install/ | Installation scripts for database and web server |
 | level/ | Tag processing and scope management |
 | lib/ | Core utility functions (database, file, HTTP, etc.), loaded on every request - the code of one tag is `tags/_lib/<tag>.php`, of one engine feature the `_lib/` of its directory, included when it runs |
