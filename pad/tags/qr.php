@@ -6,6 +6,8 @@
   // and title= the accessible name, else the text itself. color= and background= change the
   // dark and light colours, black on white by default: a reader needs the contrast.
 
+  include_once PAD . 'codes/_lib/qr.php';
+
   $padQrLevel = strtoupper ( (string) padTagParm ( 'level', 'M' ) );
 
   if ( ! in_array ( $padQrLevel, [ 'L', 'M', 'Q', 'H' ] ) ) {

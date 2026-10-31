@@ -9,6 +9,8 @@
   // module (default 2), title= the accessible name, else the text; plain leaves the
   // digits under the bars out; color= and background= change the black on white.
 
+  include_once PAD . 'codes/_lib/barcode.php';
+
   // The text as the characters it holds (padParmText), a field inside it neither stand-ins
   // nor escaped - a , of SKU-{$sku} came as U+E02C, which no barcode encodes.
 
