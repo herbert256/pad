@@ -1,15 +1,13 @@
 <?php
 
-  // padIconNames - the names of the icons of {icon}, in the order of PAD_ICONS - for a
-  // page's PHP as well as for the tag: the showcase lists every icon with it. The icons and
-  // the rest of the tag are icons/_lib/icon.php, which the call includes when no {icon} of
-  // the page has yet.
+  // padIconNames - the names of the icons of {icon}, sorted: the files of icons/types/, the icon
+  // subsystem's kinds (padKinds, lib/subsystem.php) - for a page's PHP as well as for the tag:
+  // the showcase lists every icon with it. The drawing of the icons and the rest of the tag
+  // are icons/_lib/icon.php, which {icon} includes.
 
   function padIconNames () {
 
-    include_once PAD . 'icons/_lib/icon.php';
-
-    return array_keys ( PAD_ICONS );
+    return padKinds ( 'icons' );
 
   }
 
