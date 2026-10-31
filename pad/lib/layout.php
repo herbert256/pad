@@ -43,6 +43,13 @@
     $masks = [];
     $text  = padLayoutMask ( $template, $masks );
 
+    // A named {block} of the page is resolved here, in the text, and never reaches its tag's
+    // handler, where a tag goes on the xref record (events/tag.php): {block} was on no page of
+    // the reference, though the pages of every layout write it.
+
+    if ( ( $GLOBALS ['padInfoXref'] ?? FALSE ) and padLayoutBlocks ( $text ) )
+      padInfoXref ( 'tag', 'pad', 'block' );
+
     $extends = padLayoutExtends ( $text );
 
     // The composed layout is the frame, with one @page@ where the page's rest goes, and that
