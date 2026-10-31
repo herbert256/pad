@@ -39,6 +39,14 @@
     if ( $dir1 == 'tag' and $dir2 == 'pad' and ! isset ( pqNames ( PAD . 'tags' ) ["$dir3.php"] ) )
       return;
 
+    // A kind of a subsystem - a toy, an icon, a map view, a rule - is filed whatever the text
+    // of the page says: its name comes from a value as often as from the template, {toy $toy}
+    // on the page of each toy, {icon $name} of a gallery, and the page runs it all the same.
+    // Looked for in the text, the toys and the games of their applications' pages and the
+    // icons of a list were on no page of the reference.
+
+    if ( isset ( padSubsystems [$dir1] ) or $dir1 == 'map' or $dir1 == 'rule' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
+
     if ( $dir1 == 'tag'       and $dir2 != 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions' and $dir2 != 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
