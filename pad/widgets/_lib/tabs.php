@@ -1,6 +1,6 @@
 <?php
 
-  // Tabs without JavaScript - the {tabs} tag, and the {tab} items that {accordion} and
+  // Tabs without JavaScript - the tabs widget, and the {tab} items that {accordion} and
   // {carousel} take as well.
   //
   //   {tabs active='Specs'}
@@ -174,31 +174,17 @@
 
   }
 
-  // The rules once per page, for twelve tabs a set; a set of more adds the rules of its
-  // further tabs, each once.
+  // The rules once per page - assets/tabs.css, which holds the slots of twelve tabs a set; a
+  // set of more adds the rules of its further tabs, each once.
 
   function padTabsStyle ( $count ) {
-
-    $slots = '';
-
-    for ( $n = 1; $n <= 12; $n++ )
-      $slots .= padTabsSlot ( $n );
 
     $css = padWidgetStyle ( 'tabs',
       [ 'accent' => [ '#2a78d6', '#5598e7' ],
         'text'   => [ '#1f1f1d', '#ecebe6' ],
         'muted'  => [ '#62615c', '#a9a8a0' ],
         'line'   => [ '#e4e3df', '#3a3a37' ] ],
-      '.pad-tabs{display:flex;flex-wrap:wrap;align-items:flex-end;margin:0 0 1em}'
-      . '.pad-tabs-radio{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}'
-      . '.pad-tabs-label{position:relative;z-index:1;margin-bottom:-1px;padding:.55em 1em;border-bottom:2px solid transparent;'
-      .   'color:var(--pad-tabs-muted);font-weight:500;cursor:pointer;user-select:none}'
-      . '.pad-tabs-label:hover{color:var(--pad-tabs-text)}'
-      . '.pad-tabs-radio:checked+.pad-tabs-label{color:var(--pad-tabs-text);border-bottom-color:var(--pad-tabs-accent)}'
-      . '.pad-tabs-radio:focus-visible+.pad-tabs-label{outline:2px solid var(--pad-tabs-accent);outline-offset:-2px;border-radius:6px 6px 0 0}'
-      . '.pad-tabs-panel{display:none;flex:1 0 100%;order:1;padding:1em 0 0;border-top:1px solid var(--pad-tabs-line)}'
-      . $slots
-      . '@media print{.pad-tabs-panel{display:block}}' );
+      padWidgetAsset ( 'tabs.css' ) );
 
     for ( $n = 13; $n <= $count; $n++ )
       if ( padWidgetOnce ( "tabs-slot:$n" ) )

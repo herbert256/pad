@@ -5,6 +5,6 @@
   // the avatar tag, and include_once of tags/_lib/Avatar.php after {avatar}'s
   // tags/_lib/avatar.php ended the page on "Cannot redeclare function padAvatar()".
 
-  $libs = implode ( ' ', array_map ( fn ( $tag ) => basename ( (string) padTagLib ( $tag ) ) ?: '-', [ 'avatar', 'Avatar', 'TABS', 'if' ] ) );
+  $libs = implode ( ' ', array_map ( fn ( $tag ) => basename ( (string) padTagLib ( $tag ) ) ?: '-', [ 'avatar', 'Avatar', 'MARKDOWN', 'if' ] ) );
 
 ?>

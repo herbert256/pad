@@ -50,6 +50,7 @@ applications show them working.
   - [Maps](#maps)
   - [Embeds](#embeds)
   - [Toys](#toys)
+  - [Widgets](#widgets)
   - [Month calendar](#month-calendar)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
@@ -690,6 +691,30 @@ the CSP nonce; a toy holds while the page is hidden or it is scrolled away, and 
 dark. The `toys` application shows every one of them, the reference lists them with the pages that
 show them.
 
+### Widgets
+```
+{tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
+{accordion single, open=1}{tab 'Question'}Answer{/tab}...{/accordion}   # <details> items, one open
+{modal 'terms', title='Terms', button='Read the terms'}...{/modal}   # <dialog>, works with and without JS
+{carousel label='Photos'}{tab 'Caption'}<img ...>{/tab}...{/carousel}   # scroll-snap slides, link arrows and dots
+{copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
+{poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
+{widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
+{widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
+```
+The widgets are the files of `pad/widgets/types/` - each the tag code of one widget, its
+functions in `pad/widgets/_lib/<widget>.php`, its style and script in
+`pad/widgets/assets/<widget>.css` and `.js` - and the files there are the widgets there are.
+Each is written three ways, the same widget: `{widget 'modal', 'terms'}` (the tag's second
+parameter is the widget's first), the widget type `{widget:modal 'terms'}`, and bare,
+`{modal 'terms'}`. The bare name comes after every other kind of tag, so a store, a field or
+an array of the name wins - a page's `$tabs` array is the data of `{tabs}`. `{copy}` is a
+built-in tag as well, which runs the copy widget, since PHP's `copy()` would take the bare
+name first; `{tab}` - the item of `{tabs}`, `{accordion}` and `{carousel}` - is a built-in
+tag. A widget works without JavaScript; its script, where it has one, is written once per page
+with the CSP nonce, and its colours are `--pad-<widget>-*` custom properties with light and
+dark defaults. The `showcase` application has examples of each.
+
 ### Month calendar
 ```
 {calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
@@ -760,12 +785,7 @@ the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 {diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
 {excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
 {lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
-{tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
-{accordion single, open=1}{tab 'Question'}Answer{/tab}...{/accordion}   # <details> items, one open
-{modal 'terms', title='Terms', button='Read the terms'}...{/modal}   # <dialog>, works with and without JS
-{carousel label='Photos'}{tab 'Caption'}<img ...>{/tab}...{/carousel}   # scroll-snap slides, link arrows and dots
-{copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
-{poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
+{tabs}...{/tabs}  {modal 'x'}...{/modal}         # the widgets - see Widgets
 {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
 {video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed} for more sites
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link

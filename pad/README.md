@@ -44,7 +44,8 @@ pad/
 ├── toys/          # Toys subsystem (a toy per file of toys/types/)
 ├── try/           # Try/catch wrapper
 ├── types/         # Tag type handlers
-└── walk/          # Template tree walking
+├── walk/          # Template tree walking
+└── widgets/       # Widgets subsystem (a widget per file of widgets/types/)
 ```
 
 ## Documentation
@@ -94,3 +95,4 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | try/ | Try/catch exception handling wrapper |
 | types/ | Tag type handlers (data, field, function, etc.) |
 | walk/ | Tree walking and iteration utilities |
+| widgets/ | The widgets subsystem - `{widget}` and the `widget:` type, reached bare as `{tabs}`, `{modal}` ...; a widget is a file of `widgets/types/` (its tag code), its functions in `widgets/_lib/`, its `.css` and `.js` in `widgets/assets/` |

@@ -1,8 +1,8 @@
 <?php
 
-  // The votes of a {poll}, kept in DATA/poll/<app>/<name>.json - the part of the tag that a
-  // page's PHP uses too, to read the counts or to add a vote of its own; the widget is
-  // tags/_lib/poll.php, loaded when a page uses the tag.
+  // The votes of a {poll}, kept in DATA/poll/<app>/<name>.json - the part of the widget
+  // that a page's PHP uses too, to read the counts or to add a vote of its own; the widget
+  // is widgets/_lib/poll.php, loaded when a page uses it.
   //
   // padPollFile    the file of a poll's votes
   // padPollCounts  the votes per answer, read under a shared lock

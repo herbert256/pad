@@ -2255,11 +2255,47 @@ A kind there is none of, a field that is no plain name, `rows` that are no numbe
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
 kind named 'zebra'". Fake kinds are never reached bare: their names are those of fields.
 
+### widget
+An interactive part of the page that works without JavaScript and gets better with it - tabs,
+an accordion, a carousel, a modal, a copy box, a poll. Every widget is a file of
+`pad/widgets/types/` - its tag code - with its functions in `pad/widgets/_lib/`, its style and
+script in `pad/widgets/assets/`, and the files of `types/` are the widgets there are
+(`padWidgetTypes()`); the subsystem is `pad/widgets/`.
+
+```html
+{widget 'tabs', active=2}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/widget}
+{widget 'modal', 'terms', title='Terms of sale'}...{/widget}
+{widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
+{modal 'terms', title='Terms of sale'}...{/modal}
+```
+
+A widget is written three ways, the same widget each time: the tag, whose first parameter
+names the widget and whose second is the widget's own first - `{widget 'modal', 'terms'}`; the
+widget: type, `{widget:modal 'terms'}`; and bare, `{modal 'terms'}`. A bare name comes after
+every other kind of tag - a store, a field, an array, a sequence, a chart kind or a game of the
+name wins: a page's `$tabs` array is the data of `{tabs}`, and `{pad:tabs}` is no tag. `{copy}`
+stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the bare name;
+`{tab}`, the item of the widgets that take a list of labelled parts, is a built-in tag.
+
+| Widget | What it is | Its options |
+|--------|------------|-------------|
+| `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
+| `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
+| `copy` | A text with a copy-to-clipboard button | the text, `label` |
+| `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
+| `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
+| `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
+
+**Every widget:** its markup is built on the server; a script, where it has one, is written once
+per page with the CSP nonce and only makes it smoother. The colours are custom properties on
+`.pad-<widget>` - `--pad-tabs-accent`, `--pad-modal-surface` ... - with `light-dark()` defaults,
+written once per page. A name that is no widget is an error, "there is no widget named 'x'".
+
 ---
 
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
-showing the panel of the checked one (`tags/_lib/tabs.php`). The items are `{tab}` pairs, which
+showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{tab}` pairs, which
 `{accordion}` and `{carousel}` take as well.
 
 ```html
@@ -2293,7 +2329,7 @@ under the strict check.
 
 ### accordion
 Items that open and close on a click, without JavaScript - every `{tab}` a `<details>` with its
-label as the `<summary>` (`tags/_lib/accordion.php`).
+label as the `<summary>` (`widgets/_lib/accordion.php`).
 
 ```html
 {accordion single, open=1}
@@ -2320,7 +2356,7 @@ a loop. The browser opens and closes an item, from the keyboard too, a screen re
 
 ### modal
 A dialog over the page - an HTML `<dialog>` with the content, and the button that opens it
-(`tags/_lib/modal.php`).
+(`widgets/_lib/modal.php`).
 
 ```html
 {modal 'terms', title='Terms of sale', button='Read the terms'}
@@ -2353,7 +2389,7 @@ once per page. A modal without a valid name is an error under the strict check.
 ### carousel
 Slides in a row that scrolls and snaps sideways (CSS scroll snap), with previous and next links
 on each slide and a dot per slide below - links to the slides' ids, so no JavaScript is needed
-(`tags/_lib/carousel.php`).
+(`widgets/_lib/carousel.php`).
 
 ```html
 {carousel label='Landscapes'}
@@ -2384,7 +2420,7 @@ reduced motion is asked for; printed, the slides stand under each other. The col
 
 ### copy
 A text with a copy-to-clipboard button - the text in a `<pre><code>` that selects as a whole
-with one click, so it is copied by hand where the button cannot run (`tags/_lib/copy.php`).
+with one click, so it is copied by hand where the button cannot run (`widgets/_lib/copy.php`).
 
 ```html
 {copy 'composer require pad/pad'/}
@@ -2413,7 +2449,7 @@ A `{copy}` without a text is an error under the strict check.
 
 ### poll
 A vote among a few answers, once per visitor, and then the results as bars with their
-percentages - built on a `{live}` region, and a plain form without scripting (`tags/_lib/poll.php`).
+percentages - built on a `{live}` region, and a plain form without scripting (`widgets/_lib/poll.php`).
 
 ```html
 {poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'/}
@@ -3638,12 +3674,13 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
 | `fake` | Output | A fake value of a kind - a file of `pad/fakes/types/` - or rows of several kinds, the same for the same seed |
-| `tabs` | Output | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
-| `accordion` | Output | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
-| `modal` | Output | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
-| `carousel` | Output | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
-| `copy` | Output | A text with a copy-to-clipboard button, selectable by hand without scripting |
-| `poll` | Web | A vote once per visitor, results as bars - a live region, a plain form without scripting |
+| `widget` | Widget | An interactive part of the page - the files of `pad/widgets/types/`: tabs, accordion, carousel, modal, copy, poll ...; also the `widget:` type and the bare names |
+| `tabs` | Widget | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
+| `accordion` | Widget | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
+| `modal` | Widget | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
+| `carousel` | Widget | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
+| `copy` | Widget | A text with a copy-to-clipboard button, selectable by hand without scripting |
+| `poll` | Widget | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

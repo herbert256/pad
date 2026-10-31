@@ -1,50 +1,12 @@
 <?php
 
-  // {copy $command} or {copy}npm install {$package}{/copy} - the text in a <pre><code> that
-  // selects as a whole with a click, and a button that puts it on the clipboard: a small
-  // script, once per page with the CSP nonce, says 'Copied' on the button and to a screen
-  // reader. Without scripting there is no button, and the text is selected and copied by
-  // hand. label= is the button's text, 'Copy' when not given. tags/_lib/copy.php.
-  //
-  // The text of the single tag is a value, escaped; the content of the pair is template,
-  // rendered first - like {live}, the pair asks for the end walk and frames what rendered.
+  // {copy 'npm install pad'/} - the copy widget, widgets/types/copy.php, as a built-in tag:
+  // PHP has a copy() function, which a bare name reaches before any widget (lib/type.php),
+  // so {copy} stays a tag that runs the widget - the same one {widget:copy} and {widget
+  // 'copy'} write.
 
-  if ( $padPair [$pad] and $padWalk [$pad] == 'start' ) {
-    $padWalk [$pad] = 'end';
-    return TRUE;
-  }
+  $padWidgetKind = 'copy';
 
-  $padCopyLabel = padParmText ( padTagParm ( 'label', 'Copy' ) );
-
-  if ( $padPair [$pad] ) {
-
-    // The indent the lines share is the template's, not the snippet's: trimmed at its ends
-    // only, every line after the first was copied shifted by where the tag stands.
-
-    $padCopyText = trim ( padChartDedent ( $padContent ) );
-
-    // A pair with nothing to copy is the error the single tag without its text is: it drew
-    // an empty box with a button that copied nothing.
-
-    if ( $padCopyText === '' ) {
-      if ( $padCheckSyntax )
-        padError ( "the {copy} needs its text - {copy 'npm install pad'/} or {copy}...{/copy}" );
-      $padContent = '';
-      return TRUE;
-    }
-
-    $padContent = padCopy ( $padCopyText, $padCopyText, $padCopyLabel );
-
-    return TRUE;
-
-  }
-
-  if ( is_array ( $padParm ) or trim ( (string) $padParm ) === '' ) {
-    if ( $padCheckSyntax )
-      padError ( "the {copy} needs its text - {copy 'npm install pad'/} or {copy}...{/copy}" );
-    return '';
-  }
-
-  return padCopy ( padWidgetAttr ( $padParm ), (string) $padParm, $padCopyLabel );
+  return include PAD . 'widgets/widget.php';
 
 ?>

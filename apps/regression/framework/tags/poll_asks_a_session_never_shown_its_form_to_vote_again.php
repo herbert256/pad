@@ -5,7 +5,7 @@
   // visitor is asked to vote again on the form, which now marks the session: the note said
   // the site keeps no session for them.
 
-  include_once PAD . 'tags/_lib/poll.php';
+  include_once PAD . 'widgets/_lib/poll.php';
 
   @unlink ( padPollFile ( 'fw-again' ) );
 

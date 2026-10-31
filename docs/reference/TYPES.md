@@ -592,6 +592,29 @@ script `PAD/toys/assets/<name>.js` and its style, when it has one, `<name>.css` 
 of `types/` are the toys, and a toy is added by adding its files. Bare, a toy comes after every other
 kind of tag, the chart kinds and the games too.
 
+## Widget Types
+
+### widget
+
+An interactive part of the page - tabs, an accordion, a carousel, a modal, a copy box, a poll
+... - of the kind the tag names: the widgets subsystem in `PAD/widgets/` builds it, as the
+`{widget}` tag builds the widget its first parameter names.
+
+```
+{widget:tabs active=2}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/widget:tabs}
+{widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
+{tabs}{tab 'Overview'}...{/tab}{/tabs}
+```
+
+**Resolution:** a PHP file `PAD/widgets/types/<name>.php` (`padWidgetType()` in `PAD/lib/widget.php`),
+the widget's tag code; its functions in `PAD/widgets/_lib/<name>.php`, its style and script in
+`PAD/widgets/assets/<name>.css` and `.js`. The files of `types/` are the widgets, and a widget is
+added by adding its files. Bare, a widget comes after every other kind of tag - the chart kinds
+and the games too - so a store, a field or an array of the name wins: a page's `$tabs` array
+is the data of `{tabs}`. `{copy}` stays a built-in tag that runs the copy widget, as PHP has a
+`copy()` function that a bare name reaches first; `{tab}`, the item of `{tabs}`, `{accordion}`
+and `{carousel}`, is a built-in tag.
+
 ---
 
 ## Sequence Types
@@ -729,6 +752,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `barcode` | PAD/codes/types/ | Barcode symbologies |
 | `icon` | PAD/icons/types/ | Icons |
 | `toy` | PAD/toys/types/ | Toys |
+| `widget` | PAD/widgets/types/ | Widgets |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -775,6 +799,7 @@ types/
 ├── script.php      → Shell script
 ├── select.php      → Select table query
 ├── sequence.php    → Sequence type
+├── widget.php      → Widget
 └── _go/
     ├── local.php   → Local file processing
     └── tag.php     → Tag file loading

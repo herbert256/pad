@@ -1,6 +1,6 @@
 <?php
 
-  // A poll - the {poll} tag: a question with its answers as a form, and after a vote the
+  // A poll - the poll widget: a question with its answers as a form, and after a vote the
   // results as bars with their percentages.
   //
   //   {poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Your favourite language?'}
@@ -23,10 +23,10 @@
   //                session for a visitor who has none
   // padPollPosted  the vote this request posts for the poll: the answer, '' when none
   // padPoll        the widget: the form, or the results, in its region
-  // padPollStyle   the CSS, once per page
+  // padPollStyle   the CSS, assets/poll.css, once per page
   //
   // The votes themselves - padPollFile, padPollCounts and padPollVote - are kept by
-  // lib/poll.php, for a page's PHP as well as for the tag.
+  // lib/poll.php, for a page's PHP as well as for the widget.
 
   function padPollVoted ( $name ) {
 
@@ -151,30 +151,7 @@
         'line'    => [ '#e4e3df', '#3a3a37' ],
         'track'   => [ '#efeeea', '#2a2a28' ],
         'surface' => [ '#ffffff', '#1f1f1d' ] ],
-      '.pad-poll{max-width:28rem;margin:0 0 1em;padding:1.1em 1.2em;border:1px solid var(--pad-poll-line);border-radius:12px;'
-      .   'background:var(--pad-poll-surface);color:var(--pad-poll-text)}'
-      . '.pad-poll-title{margin:0 0 .7em;padding:0;font-weight:700;font-size:1.05em}'
-      . '.pad-poll-note{margin:0;color:var(--pad-poll-accent);font-weight:600}'
-      . '.pad-poll-answers{display:grid;gap:.4em;margin:0 0 .9em;padding:0;border:0}'
-      . '.pad-poll-answer{display:flex;align-items:center;gap:.6em;padding:.5em .7em;border:1px solid var(--pad-poll-line);'
-      .   'border-radius:8px;cursor:pointer}'
-      . '.pad-poll-answer:hover{border-color:var(--pad-poll-muted)}'
-      . '.pad-poll-answer:has(:checked){border-color:var(--pad-poll-accent);box-shadow:inset 0 0 0 1px var(--pad-poll-accent)}'
-      . '.pad-poll-answer input{accent-color:var(--pad-poll-accent);margin:0}'
-      . '.pad-poll-vote{padding:.55em 1.3em;border:0;border-radius:8px;background:var(--pad-poll-accent);'
-      .   'color:var(--pad-poll-on);font:inherit;font-weight:600;cursor:pointer}'
-      . '.pad-poll-vote:focus-visible,.pad-poll-answer:has(:focus-visible){outline:2px solid var(--pad-poll-accent);outline-offset:2px}'
-      . '[data-pad-live][aria-busy] .pad-poll{opacity:.6}'
-      . '.pad-poll-results{display:grid;gap:.75em;margin:0;padding:0;list-style:none}'
-      . '.pad-poll-result{display:grid;grid-template-columns:1fr auto;gap:.3em .8em}'
-      . '.pad-poll-share{font-variant-numeric:tabular-nums;font-weight:600}'
-      . '.pad-poll-count{color:var(--pad-poll-muted);font-weight:400}'
-      . '.pad-poll-mine{margin-left:.4em;padding:.05em .5em;border-radius:99px;background:var(--pad-poll-accent);'
-      .   'color:var(--pad-poll-on);font-size:.75em;font-weight:600;vertical-align:.1em}'
-      . '.pad-poll-bar{grid-column:1/-1;height:.55em;border-radius:99px;background:var(--pad-poll-track);overflow:hidden}'
-      . '.pad-poll-fill{display:block;height:100%;border-radius:99px;background:var(--pad-poll-accent);opacity:.55}'
-      . '.pad-poll-result.is-mine .pad-poll-fill{opacity:1}'
-      . '.pad-poll-total{margin:.9em 0 0;color:var(--pad-poll-muted);font-size:.9em}' );
+      padWidgetAsset ( 'poll.css' ) );
 
   }
 

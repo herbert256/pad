@@ -1,6 +1,6 @@
 <?php
 
-  // A carousel without JavaScript - the {carousel} tag: every {tab} a slide of a row that
+  // A carousel without JavaScript - the carousel widget: every {tab} a slide of a row that
   // scrolls sideways and snaps to a slide (CSS scroll snap), so a finger, a trackpad or the
   // arrow keys on the focused row move it. Each slide carries a link to the slide before and
   // after it, and below the row a dot links to every slide: links to the slides' ids, which
@@ -23,9 +23,9 @@
   // scroll the row alone, and the dot of the slide in view - also one reached by swiping -
   // is marked, aria-current for a screen reader.
   //
-  // The items are collected the way {tabs} collects its tabs - tags/_lib/tabs.php.
+  // The items are collected the way {tabs} collects its tabs - widgets/_lib/tabs.php.
 
-  include_once PAD . 'tags/_lib/tabs.php';
+  include_once PAD . 'widgets/_lib/tabs.php';
 
   function padCarousel ( $items, $label ) {
 
@@ -66,15 +66,10 @@
 
   }
 
-  // The rules once per page, the marks of the dots for twelve slides a carousel; one of more
-  // adds the marks of its further slides, each once.
+  // The rules once per page - assets/carousel.css, which holds the marks of the dots for
+  // twelve slides a carousel; one of more adds the marks of its further slides, each once.
 
   function padCarouselStyle ( $count ) {
-
-    $marks = '';
-
-    for ( $n = 1; $n <= 12; $n++ )
-      $marks .= padCarouselMark ( $n );
 
     $css = padWidgetStyle ( 'carousel',
       [ 'accent'  => [ '#2a78d6', '#5598e7' ],
@@ -82,30 +77,7 @@
         'muted'   => [ '#62615c', '#a9a8a0' ],
         'surface' => [ '#fcfcfb', '#1a1a19' ],
         'dot'     => [ '#c9c8c2', '#4a4a46' ] ],
-      '.pad-carousel{position:relative;margin:0 0 1em}'
-      . '.pad-carousel-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;'
-      .   'scrollbar-width:none;border-radius:12px}'
-      . '.pad-carousel-track::-webkit-scrollbar{display:none}'
-      . '.pad-carousel-track:focus-visible{outline:2px solid var(--pad-carousel-accent);outline-offset:2px}'
-      . '@media (prefers-reduced-motion:no-preference){.pad-carousel-track{scroll-behavior:smooth}}'
-      . '.pad-carousel-slide{position:relative;flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;margin:0}'
-      . '.pad-carousel-content>*{display:block;width:100%;height:auto}'
-      . '.pad-carousel-caption{margin:.5em 0 0;text-align:center;color:var(--pad-carousel-muted);font-size:.9em}'
-      . '.pad-carousel-prev,.pad-carousel-next{position:absolute;top:calc(50% - 1.2em);display:flex;align-items:center;'
-      .   'justify-content:center;width:2.4em;height:2.4em;border-radius:50%;background:var(--pad-carousel-surface);'
-      .   'color:var(--pad-carousel-text);font-size:1.1em;line-height:1;text-decoration:none;opacity:.85;'
-      .   'box-shadow:0 1px 4px rgba(0,0,0,.25)}'
-      . '.pad-carousel-prev{left:.6em}.pad-carousel-next{right:.6em}'
-      . '.pad-carousel-prev span,.pad-carousel-next span{font-size:1.6em;margin-top:-.15em}'
-      . '.pad-carousel-prev:hover,.pad-carousel-next:hover{opacity:1}'
-      . '.pad-carousel-dots{display:flex;justify-content:center;gap:.5em;padding:.7em 0 0}'
-      . '.pad-carousel-dot{width:.7em;height:.7em;border-radius:50%;background:var(--pad-carousel-dot)}'
-      . '.pad-carousel-dot:hover{background:var(--pad-carousel-muted)}'
-      . '.pad-carousel a:focus-visible{outline:2px solid var(--pad-carousel-accent);outline-offset:2px}'
-      . '.pad-carousel:not([data-pad-current]):not(:has(>.pad-carousel-track>.pad-carousel-slide:target))>.pad-carousel-dots>.pad-carousel-dot:first-child,'
-      . '.pad-carousel-dot[aria-current]{background:var(--pad-carousel-accent)}'
-      . $marks
-      . '@media print{.pad-carousel-track{flex-direction:column}.pad-carousel-prev,.pad-carousel-next,.pad-carousel-dots{display:none}}' );
+      padWidgetAsset ( 'carousel.css' ) );
 
     for ( $n = 13; $n <= $count; $n++ )
       if ( padWidgetOnce ( "carousel-mark:$n" ) )
@@ -128,43 +100,7 @@
 
   function padCarouselScript () {
 
-    return padWidgetScript ( 'carousel', <<<'SCRIPT'
-(function () {
-  if (window.padCarouselReady) return;
-  window.padCarouselReady = true;
-  function mark(carousel) {
-    var track = carousel.querySelector(':scope > .pad-carousel-track');
-    if (!track || !track.clientWidth) return;
-    var current = Math.round(track.scrollLeft / track.clientWidth);
-    carousel.setAttribute('data-pad-current', current + 1);
-    carousel.querySelectorAll(':scope > .pad-carousel-dots > .pad-carousel-dot').forEach(function (dot, index) {
-      if (index === current) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
-    });
-  }
-  function markAll() {
-    document.querySelectorAll('.pad-carousel').forEach(mark);
-  }
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest && e.target.closest('.pad-carousel a[href^="#"]');
-    var carousel = link && link.closest('.pad-carousel');
-    var slide = carousel && document.getElementById(link.getAttribute('href').slice(1));
-    if (!slide || !carousel.contains(slide)) return;
-    e.preventDefault();
-    var track = slide.parentNode;
-    track.scrollTo({ left: Array.prototype.indexOf.call(track.children, slide) * track.clientWidth });
-  });
-  var pending = false;
-  document.addEventListener('scroll', function (e) {
-    var track = e.target.classList && e.target.classList.contains('pad-carousel-track') && e.target;
-    if (!track || pending) return;
-    pending = true;
-    requestAnimationFrame(function () { pending = false; mark(track.parentNode); });
-  }, true);
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', markAll);
-  else markAll();
-})();
-SCRIPT );
+    return padWidgetScript ( 'carousel', padWidgetAsset ( 'carousel.js' ) );
 
   }
 
