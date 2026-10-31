@@ -2433,8 +2433,10 @@ answers the bytes.
 ---
 
 ### diagram
-A flowchart or a sequence diagram from a few lines of text in the content, written the
-Mermaid way and laid out on the server as inline SVG by the diagram subsystem (`pad/diagrams/`) - no JavaScript.
+A diagram from a few lines of text in the content, written the Mermaid way and laid out on
+the server as inline SVG by the diagram subsystem (`pad/diagrams/`) - no JavaScript. A kind
+is a file of `pad/diagrams/types/`: `flowchart` (the default), `sequence`, `state`, `class`,
+`er`, `mindmap`, `tree`, `journey` and `gitgraph`.
 
 ```html
 {diagram}
@@ -2447,35 +2449,135 @@ Mermaid way and laid out on the server as inline SVG by the diagram subsystem (`
   Shop ->> Bank: Charge
   Bank -->> Shop: Approved
 {/diagram}
+
+{diagram:state}
+  [*] --> Idle
+  Idle --> Running : start
+  Running --> [*]
+{/diagram:state}
+
+{diagram:class}
+  class Animal {
+    +String name
+    +move()* bool
+  }
+  Animal <|-- Duck
+{/diagram:class}
+
+{diagram:er}
+  CUSTOMER ||--o{ ORDER : places
+  ORDER {
+    int id PK
+  }
+{/diagram:er}
+
+{mindmap}
+  PAD
+    Templates
+    Data
+{/mindmap}
+
+{diagram:tree}
+  Board
+    Sales
+    Engineering
+{/diagram:tree}
+
+{journey}
+  section Morning
+    Make tea: 5: Me
+{/journey}
+
+{gitgraph}
+  commit
+  branch develop
+  commit id: "Parser"
+  checkout main
+  merge develop tag: "v1.0"
+{/gitgraph}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `type` | `flowchart` (default) or `sequence` - a first line `sequenceDiagram` says so too |
-| `direction` | `TB` (default), `BT`, `LR` or `RL` - else a first line `graph LR` / `flowchart LR` names it |
-| `edges` | `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
-| `title` | The accessible name, default `Flowchart` / `Sequence diagram` |
+| `type` | The kind, a file of `pad/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`) where the tag names none |
+| `direction` | flowchart, state, class, er and tree: `TB` (default), `BT`, `LR` or `RL` - else the lines say it: a first line `graph LR` / `flowchart LR` in a flowchart, a line `direction LR` in a state, class or entity-relationship diagram |
+| `edges` | flowchart, state, class and er: `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
+| `title` | The accessible name, default the kind's (`Flowchart`, `Sequence diagram`, `State diagram`, `Class diagram`, `Entity-relationship diagram`, `Mind map`, `Tree`, `Commit graph`; a journey's `title` line, else `User journey`) |
 
-**Behavior:** a flowchart line is a chain of nodes and edges: `A[Box]`, `B(Rounded)`,
-`C([Stadium])`, `D{Decision?}`, `E((Circle))`, `F[(Database)]`, `G{{Hexagon}}` - a quoted
-text keeps its brackets, `<br>` breaks a line, long texts wrap - joined by `-->` (arrow),
-`---` (line), `-.->` / `-.-` (dashed), `==>` / `===` (thick), a label as `-->|text|` or
-`-- text -->`, `&` for several nodes on one side (`A & B --> C`), `%%` a comment. The layout
-is layered: cycles broken by a depth-first walk, ranks by the longest path, a dummy node per
-rank a long edge crosses, the order in a rank by barycentre sweeps keeping the fewest
-crossings, positions by isotonic regression; node sizes follow their text, ports spread along
-a side, labels sit on a plate half way and step aside for each other. A sequence diagram
-takes `participant A as Alice`, `actor U`, messages `->>` (arrow), `-->>` (dashed), `->` /
-`-->` (no head), `-x` (cross), `-)` (open), `Note left of|right of|over A[,B]: text`, frames
-`loop`, `alt` / `else`, `opt`, `par` / `and`, `critical`, `break` closed by `end`, and
-`autonumber`. The content is read as it stands - the braces of `B{Paid?}` need no
-`{ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge or message; the
-colours are `--pad-diagram-node`, `-border`, `-decision`, `-decision-border`, `-round`,
-`-round-border`, `-edge` and `-note` on `.pad-chart-diagram`, `light-dark()` defaults. A
-diagram without nodes answers nothing and its `@else@` shows; a line it cannot read, an
-unknown type, direction or edges value are errors under the strict check.
+A kind reads only the options it draws with: `direction` on a sequence diagram is an option
+nothing reads, which the strict check reports.
+
+**The kind as the tag:** `{diagram:state}...{/diagram:state}` is `{diagram type='state'}...{/diagram}`,
+and so is the bare `{state}...{/state}` when no tag, store, field or sequence has the name -
+the kinds come after every other kind of tag. `sequence` and `tree` are built-in tags too, so
+bare they are those tags: the sequence diagram and the tree are `{diagram:sequence}` and
+`{diagram:tree}` (or `type=`). `{diagram:zigzag}` is "there is no diagram type named 'zigzag'".
+
+**Behavior:**
+
+- **flowchart** - a line is a chain of nodes and edges: `A[Box]`, `B(Rounded)`,
+  `C([Stadium])`, `D{Decision?}`, `E((Circle))`, `F[(Database)]`, `G{{Hexagon}}` - a quoted
+  text keeps its brackets, `<br>` breaks a line, long texts wrap - joined by `-->` (arrow),
+  `---` (line), `-.->` / `-.-` (dashed), `==>` / `===` (thick), a label as `-->|text|` or
+  `-- text -->`, `&` for several nodes on one side (`A & B --> C`), `%%` a comment. The layout
+  is layered: cycles broken by a depth-first walk, ranks by the longest path, a dummy node per
+  rank a long edge crosses, the order in a rank by barycentre sweeps keeping the fewest
+  crossings, positions by isotonic regression; node sizes follow their text, ports spread
+  along a side, labels sit on a plate half way and step aside for each other.
+- **sequence** - `participant A as Alice`, `actor U`, messages `->>` (arrow), `-->>` (dashed),
+  `->` / `-->` (no head), `-x` (cross), `-)` (open), `Note left of|right of|over A[,B]: text`,
+  frames `loop`, `alt` / `else`, `opt`, `par` / `and`, `critical`, `break` closed by `end`, and
+  `autonumber`.
+- **state** - `[*] --> A` (the start), `A --> B : label`, `A --> [*]` (the end), `state "Long
+  name" as A`, `A : a line of description` (under the name), `state C <<choice>>` (a small
+  diamond), `<<fork>>` and `<<join>>` (a bar across the flow); laid out as a flowchart. A
+  state inside another and a note are lines it cannot read.
+- **class** - `class A { ... }` with a member a line (one with `(` a method; `+ - # ~` the
+  visibility; a `$` at the end - or after the `()` - static, underlined; a `*` abstract, in
+  italics; `List~int~` is `List<int>`), `A : +member`, `<<interface>> A` (the stereotype),
+  and the relations `A <|-- B` (B inherits from A, a hollow triangle), `A <|.. B` (realizes),
+  `A *-- B` (made of, a filled diamond), `A o-- B` (holds, a hollow one), `A --> B`
+  (association), `A ..> B` (depends on), `A -- B` / `A .. B` (a link), the multiplicities in
+  quotes by each end (`A "1" --> "*" B`) and a label after `:`. The parent and the whole are
+  laid out above, whichever side they are written on.
+- **er** - `A ||--o{ B : label` (a quoted label too): at each end how many of that side's
+  entity go with one of the other - `||` exactly one, `|o` / `o|` zero or one, `}|` / `|{`
+  one or more, `}o` / `o{` zero or more - drawn as the feet of a crow; `--` identifying, `..`
+  not (dashed). `A { type name PK "comment" }` - an attribute a line, the keys `PK`, `FK`,
+  `UK` - makes the entity a table.
+- **mindmap** - the hierarchy from the indentation: the first line the root, a line indented
+  under its parent, a shape by its brackets - `[square]`, `(rounded)`, `((circle))`,
+  `{{hexagon}}`, `)cloud(`, `))bang((` - with an id before it or not; `::icon(...)` lines and
+  `:::class` are Mermaid's own styles and left out. The root's branches are shared over its
+  two sides, as many leaves on each as can be, read round the clock; each branch a colour of
+  the chart palette its twigs keep - a branch a box, a twig its text over a line. Two lines
+  at the root's indentation are an error.
+- **tree** - the hierarchy from the indentation, top down: boxes joined by lines with
+  rounded turns, each centred over its children; several lines at the least indentation are
+  several roots side by side.
+- **journey** - `title text`, `section text`, and a step a line, `Make tea: 5: Me, Cat` - its
+  score from 1 (bad) to 5 (good), the people after it. Cards in a row under the bands of
+  their sections, a face under each at the height of its score (a smile, a straight mouth, a
+  frown) joined by a line, a dot per person in the colour the legend gives. A score past 1
+  to 5 is an error.
+- **gitgraph** - `commit` (`id: "name"`, `tag: "v1"`, `type: HIGHLIGHT` square or `REVERSE`
+  crossed out), `branch name` (`order: n` moves its lane; checked out at once), `checkout
+  name` / `switch name`, `merge name` (a commit with a ring) and `cherry-pick id: "name"`;
+  `main` is the branch at the start. A lane a branch in its colour, a column a commit, left
+  to right; the turns between lanes stand between the columns, clear of the names. An unknown
+  branch, a commit id twice and a merge into itself are errors.
+
+The content is read as it stands - the braces of `B{Paid?}` and `class A {` need no
+`{ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge, message,
+relation, branch, step or commit in words; the colours are `--pad-diagram-node`, `-border`,
+`-decision`, `-decision-border`, `-round`, `-round-border`, `-edge`, `-note` and the journey's
+`-score-1` to `-score-5` and `-face` on `.pad-chart-diagram`, `light-dark()` defaults; the mind
+map, the journey's people and the commit graph's lanes take the chart palette
+(`--pad-chart-1` to `-8`). The same lines always draw the same picture. A diagram without
+nodes answers nothing and its `@else@` shows; a line it cannot read, an unknown type,
+direction or edges value are errors under the strict check.
 
 ---
 
@@ -3345,7 +3447,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
-| `diagram` | Output | A flowchart or sequence diagram from Mermaid-style lines, laid out on the server as inline SVG |
+| `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey or commit graph diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |

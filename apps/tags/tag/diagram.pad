@@ -1,8 +1,11 @@
 {ignore}
 <p><code>{diagram}</code> turns a few lines of text in its content into a picture, written
 the way Mermaid writes them, and lays it out on the server (<code>pad/diagrams/</code>) as
-inline SVG - no JavaScript in the browser. The content is taken as it stands before the
-level walks it, so the braces of a decision like <code>B{Paid?}</code> need no ignore.</p>
+inline SVG - no JavaScript in the browser, and the same lines always draw the same picture.
+The content is taken as it stands before the level walks it, so the braces of a decision like
+<code>B{Paid?}</code> or a class <code>class A {</code> need no ignore. Every kind is a file of
+<code>pad/diagrams/types/</code>; each is written three ways - <code>{diagram type='state'}</code>,
+<code>{diagram:state}</code> and the bare <code>{state}</code> when nothing else has the name.</p>
 
 <h3>Flowcharts</h3>
 <p>A line is a chain of nodes and edges. Nodes: <code>A[Box]</code>,
@@ -17,7 +20,8 @@ with as few crossings as it can find; <code>direction</code> turns it, <code>edg
 chooses how the lines run.</p>
 
 <h3>Sequence diagrams</h3>
-<p>With <code>type='sequence'</code>: <code>participant A as Alice</code>,
+<p>With <code>type='sequence'</code> or <code>{diagram:sequence}</code> - bare,
+<code>{sequence}</code> is the sequence tag: <code>participant A as Alice</code>,
 <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code>
 (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross),
 <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and
@@ -25,9 +29,34 @@ chooses how the lines run.</p>
 <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and
 <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.</p>
 
+<h3>State, class and entity-relationship diagrams</h3>
+<p>Laid out in layers as a flowchart is. A state diagram: <code>[*] --&gt; A</code> the start,
+<code>A --&gt; [*]</code> the end, <code>A --&gt; B : label</code>, <code>state "Long name" as A</code>,
+<code>A : a line of description</code>, <code>state C &lt;&lt;choice&gt;&gt;</code>,
+<code>&lt;&lt;fork&gt;&gt;</code> and <code>&lt;&lt;join&gt;&gt;</code>. A class diagram:
+<code>class A { +field; +method() }</code> a member a line (<code>$</code> static,
+<code>*</code> abstract, <code>List~int~</code> generic), <code>A : +member</code>,
+<code>&lt;&lt;interface&gt;&gt; A</code>, and <code>A &lt;|-- B</code> (inherits),
+<code>A &lt;|.. B</code> (implements), <code>A *-- B</code> (made of), <code>A o-- B</code>
+(holds), <code>A --&gt; B</code>, <code>A ..&gt; B</code> (depends on), with multiplicities
+<code>A "1" --&gt; "*" B</code>. An entity-relationship diagram: <code>A ||--o{ B : label</code> -
+<code>||</code> exactly one, <code>|o</code> zero or one, <code>}|</code> one or more,
+<code>}o</code> zero or more, mirrored on the right, <code>..</code> not identifying - and
+<code>A { type name PK "comment" }</code>.</p>
+
+<h3>Mind maps, trees, journeys and commit graphs</h3>
+<p>A mind map and a tree read their hierarchy from the indentation - the mind map's shapes by
+their brackets, <code>[square]</code>, <code>(rounded)</code>, <code>((circle))</code>,
+<code>{{hexagon}}</code>, <code>)cloud(</code>, <code>))bang((</code>; the tree is
+<code>{diagram:tree}</code>, as <code>{tree}</code> is the tree tag. A journey:
+<code>title text</code>, <code>section text</code> and a step a line, <code>Make tea: 5: Me, Cat</code>
+with its score from 1 to 5. A commit graph: <code>commit id: "x" tag: "v1" type: HIGHLIGHT</code>,
+<code>branch name</code>, <code>checkout name</code>, <code>merge name</code> and
+<code>cherry-pick id: "x"</code>.</p>
+
 <p>The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a
-<code>&lt;desc&gt;</code> that says every edge or message. A diagram without nodes answers
-nothing, so its <code>&#64;else&#64;</code> shows; a line it cannot read, or an unknown
-<code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the strict
-check.</p>
+<code>&lt;desc&gt;</code> that says every edge, message, relation or step. A diagram without
+nodes answers nothing, so its <code>&#64;else&#64;</code> shows; a line it cannot read, or an
+unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the
+strict check.</p>
 {/ignore}

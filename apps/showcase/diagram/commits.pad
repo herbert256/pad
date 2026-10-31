@@ -1,0 +1,18 @@
+{meta title='A release in commits', about='A commit graph - main, develop and a feature branch as lanes, merges with a ring, a highlighted and a reverted commit, tags and a cherry-pick.'/}
+{gitgraph title='A release in commits'}
+  commit id: "Init"
+  commit id: "Readme" tag: "v0.1"
+  branch develop
+  commit id: "Parser"
+  branch feature
+  commit id: "Lexer"
+  commit id: "Tokens" type: HIGHLIGHT
+  checkout develop
+  commit id: "Docs"
+  merge feature id: "Merge feature"
+  checkout main
+  commit id: "Hotfix" type: REVERSE
+  merge develop tag: "v1.0"
+  checkout feature
+  cherry-pick id: "Hotfix"
+{/gitgraph}

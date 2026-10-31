@@ -1,0 +1,21 @@
+{meta title='The life of a ticket', about='A state diagram - the start and the end, a choice, a fork into two jobs at once and a description under a state.'/}
+{diagram:state title='The life of a ticket'}
+  [*] --> New
+  New --> Triage : filed
+  state "In progress" as Work
+  Triage --> Work : accepted
+  Triage --> [*] : not a bug
+  Work : the clock runs
+  state Review <<fork>>
+  Work --> Review : done
+  Review --> Tests
+  Review --> Docs
+  state Merge <<join>>
+  Tests --> Merge
+  Docs --> Merge
+  state Passed <<choice>>
+  Merge --> Passed
+  Passed --> Released : green
+  Passed --> Work : red
+  Released --> [*]
+{/diagram:state}

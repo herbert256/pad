@@ -46,6 +46,7 @@ applications show them working.
   - [Markdown collections](#markdown-collections)
   - [Charts](#charts)
   - [Games](#games)
+  - [Diagrams](#diagrams)
   - [Month calendar](#month-calendar)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
@@ -567,6 +568,38 @@ or a live region brings later starts too. A finished game carries `data-result="
 `"lost"` and sends `pad-game-end`. The `games` application plays every one of them, the
 reference lists them with the pages that play them.
 
+### Diagrams
+```
+{diagram direction='LR'}                       # a flowchart, the default kind: a line a chain
+  A([Order]) --> B{Paid?}                      #   of nodes - [box] (round) {decision} ((circle))
+  B -->|yes| C[(Orders)]                       #   [(database)] {{hexagon}} - and edges
+  B -.->|no| D[Remind] --> B                   #   --> --- -.-> ==> with -->|labels|
+{/diagram}
+{diagram:sequence}Shop ->> Bank: Charge{/diagram:sequence}   # lifelines, notes, loop/alt frames
+{diagram:state}[*] --> Idle{/diagram:state}    # state machine: [*] start/end, <<choice>>, <<fork>>
+{diagram:class}Animal <|-- Duck{/diagram:class}   # UML: class A { +field; +m()* }, *-- o-- ..> "1" "*"
+{diagram:er}CUSTOMER ||--o{ ORDER : places{/diagram:er}   # crow's feet, entities as attribute tables
+{mindmap}...{/mindmap}                         # from the indentation, branches on both sides
+{diagram:tree}...{/diagram:tree}               # a hierarchy top down (direction='LR' sideways)
+{journey}...{/journey}                         # section, Make tea: 5: Me - a face per score
+{gitgraph}...{/gitgraph}                       # commit, branch, checkout, merge, cherry-pick
+```
+The kinds are the files of `pad/diagrams/types/` - one file a kind, reading the options it
+draws with - and a kind is added by adding its file. Each is written three ways, the same
+picture: `{diagram type='state'}`, the diagram type `{diagram:state}` and bare, `{state}`, when
+no tag, store, field or sequence has the name (the bare name comes last); `sequence` and `tree`
+are tags too, so those two are `{diagram:sequence}` and `{diagram:tree}`. A first line written
+the Mermaid way - `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph`,
+or `mindmap` and `journey` in a `{diagram}` without `type=` - names the kind, so Mermaid text
+pastes in as it is. The content is read as it stands, braces and all; the layout is
+deterministic (the same lines, the same picture); `role="img"` with a `<title>` and a `<desc>`
+that says every edge, relation or step in words; the colours are `--pad-diagram-*` custom
+properties on `.pad-chart-diagram` with `light-dark()` defaults. Code: the diagram subsystem
+in `pad/diagrams/` - `diagram.php` the body every form runs, `_lib/diagram.php` the shared
+parts, the flowchart and the layered layout the state, class and entity-relationship diagrams
+share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kinds;
+`pad/types/diagram.php` the diagram type. The `showcase` application has an example of each.
+
 ### Month calendar
 ```
 {calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
@@ -615,7 +648,7 @@ reference lists them with the pages that play them.
 {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
 {video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
-{diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
+{diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links

@@ -1,0 +1,86 @@
+{meta title='Diagrams'/}
+
+<p>{tag 'diagram'/} draws a diagram from a few lines of text between its tags, written the way
+Mermaid writes them, and lays it out on the server as inline SVG. There is no JavaScript, so a
+diagram prints, works in an e-mail and caches like any other output, and the same lines always
+draw the same picture. There are {echo php:count(padKinds('diagrams'))/} kinds - every kind is a
+file of <code>pad/diagrams/types/</code>, and a flowchart is the one drawn when the tag names
+none.</p>
+
+{example 'fragments/diagrams_1'/}
+
+<p>A line of a flowchart is a chain of nodes and edges. The brackets give a node its shape -
+<code>[box]</code>, <code>(rounded)</code>, <code>{open/}decision{close/}</code>,
+<code>((circle))</code>, <code>[(database)]</code> - and the arrow its line: <code>--&gt;</code>,
+<code>-.-&gt;</code> dashed, <code>==&gt;</code> thick, <code>---</code> without a head, a label
+between bars. The lines are taken as they stand, so their braces need no
+{tag 'ignore'/}.</p>
+
+<h2>Three ways to write one</h2>
+
+<p><code>type=</code> names the kind: <code>{open/}diagram type='state'{close/}</code>. The diagram
+type does the same, <code>{open/}diagram:state{close/}</code>, and so does the bare name,
+<code>{open/}state{close/}</code>, as long as no tag, store, field or sequence has that name.
+<code>sequence</code> and <code>tree</code> are tags of their own, so those two kinds are written
+<code>{open/}diagram:sequence{close/}</code> and <code>{open/}diagram:tree{close/}</code>. A first
+line written the Mermaid way - <code>sequenceDiagram</code>, <code>stateDiagram-v2</code>,
+<code>classDiagram</code>, <code>erDiagram</code>, <code>gitGraph</code> - names the kind as well,
+so a diagram copied from Mermaid draws as it is.</p>
+
+<h2>Messages and states</h2>
+
+<p>A sequence diagram puts the participants side by side and the messages between them from top
+to bottom, with notes and frames for loops and alternatives. A state diagram draws a machine:
+<code>[*]</code> is its start on the left of an arrow and its end on the right, a label follows
+the colon, and a state can be a choice or a fork.</p>
+
+{example 'fragments/diagrams_2'/}
+
+{example 'fragments/diagrams_3'/}
+
+<h2>Classes and tables</h2>
+
+<p>A class diagram draws a box of three parts for every class - its name, its fields, its methods
+- and the relations between them: <code>&lt;|--</code> inherits, <code>*--</code> is made of,
+<code>o--</code> holds, <code>..&gt;</code> depends on, with the multiplicities in quotes. The
+parent and the whole are laid out above. An entity-relationship diagram draws every entity as a
+table of its attributes and the relations with the feet of a crow: <code>||</code> exactly one,
+<code>o{open/}</code> zero or more, <code>|{open/}</code> one or more.</p>
+
+{example 'fragments/diagrams_4'/}
+
+{example 'fragments/diagrams_5'/}
+
+<h2>Hierarchies</h2>
+
+<p>A mind map and a tree read their hierarchy from the indentation: a line is a node, and a line
+indented under another is its child. The mind map shares the branches of its root over two
+sides, each in a colour its twigs keep; the tree stands top down, every box centred over its
+children - <code>direction='LR'</code> lays it on its side.</p>
+
+{example 'fragments/diagrams_6'/}
+
+{example 'fragments/diagrams_7'/}
+
+<h2>Journeys and commits</h2>
+
+<p>A user journey puts the steps of a day in a row, a face under each at the height of its score
+from 1 to 5, and a dot for everybody who takes the step. A commit graph draws the commits of a
+repository on the lanes of their branches, with the branches leaving and the merges joining.</p>
+
+{example 'fragments/diagrams_8'/}
+
+{example 'fragments/diagrams_9'/}
+
+<ul>
+  <li>The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> - <code>title=</code>, else
+  the name of the kind - and a <code>&lt;desc&gt;</code> that says every edge, message, relation or
+  step in words, so a screen reader hears the whole diagram.</li>
+  <li>The colours are custom properties on <code>.pad-chart-diagram</code> -
+  <code>--pad-diagram-node</code>, <code>--pad-diagram-border</code>, <code>--pad-diagram-edge</code>
+  and their like - with light and dark defaults; the mind map, the journey and the commit graph
+  take the colours of the charts.</li>
+  <li>A kind reads only the options it draws with: <code>direction</code> on a sequence diagram is an
+  option nothing reads, and a line a kind cannot read is an error that names the line.</li>
+  <li>A diagram without nodes answers nothing, so its <code>&#64;else&#64;</code> shows.</li>
+</ul>

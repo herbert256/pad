@@ -1,0 +1,12 @@
+{diagram:er title='Orders'}
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE : contains
+  CUSTOMER {
+    int id PK
+    string name
+  }
+  ORDER {
+    int id PK
+    int customer FK
+  }
+{/diagram:er}
