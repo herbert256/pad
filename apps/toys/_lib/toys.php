@@ -38,7 +38,7 @@
         $first = ( str_word_count ( $match [1] ) >= 5 ) ? $match [1] : ucfirst ( $match [2] );
 
       $words = preg_split ( '/\s+/', $first );
-      $line  = ( count ( $words ) > 20 ) ? rtrim ( implode ( ' ', array_slice ( $words, 0, 20 ) ), ',;:-' ) . ' ...' : rtrim ( $first, ',;:-' ) . '.';
+      $line  = ( count ( $words ) > 20 ) ? rtrim ( implode ( ' ', array_slice ( $words, 0, 20 ) ), ',;:- ' ) . ' ...' : rtrim ( $first, ',;:- ' ) . '.';
 
       $toys [$toy] = [ 'toy' => $toy, 'name' => toysName ( $toy ), 'line' => $line, 'text' => $text ];
 

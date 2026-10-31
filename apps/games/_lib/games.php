@@ -38,7 +38,7 @@
         $first = ( str_word_count ( $match [1] ) >= 5 ) ? $match [1] : ucfirst ( $match [2] );
 
       $words = preg_split ( '/\s+/', $first );
-      $line  = ( count ( $words ) > 20 ) ? rtrim ( implode ( ' ', array_slice ( $words, 0, 20 ) ), ',;:-' ) . ' ...' : rtrim ( $first, ',;:-' ) . '.';
+      $line  = ( count ( $words ) > 20 ) ? rtrim ( implode ( ' ', array_slice ( $words, 0, 20 ) ), ',;:- ' ) . ' ...' : rtrim ( $first, ',;:- ' ) . '.';
 
       $games [$game] = [ 'game' => $game, 'name' => gamesName ( $game ), 'line' => $line, 'text' => $text ];
 
