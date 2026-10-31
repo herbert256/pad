@@ -483,11 +483,11 @@
   // mean position of the neighbours - the barycentre - keeping the order with the fewest
   // crossings; the position across a rank is the one nearest the neighbours' mean that
   // keeps the nodes apart: isotonic regression (pool adjacent violators), so the result is
-  // the same for the same text, every time.
+  // the same for the same text, every time. $ranking is padDiagramRanking's answer.
 
-  function padDiagramLayout ( &$nodes, $edges, $vertical, $gaps ) {
+  function padDiagramLayout ( &$nodes, $edges, $vertical, $gaps, $ranking ) {
 
-    list ( $rank, $turned, $dag ) = padDiagramRanking ( $nodes, $edges );
+    list ( $rank, $turned, $dag ) = $ranking;
 
     // The chains: every edge as the nodes it passes, a dummy in each rank it crosses.
 
@@ -818,8 +818,9 @@
     // A gap as wide as the labels of the edges that leave the rank before it: in LR the
     // text lies along the edge.
 
-    $rankOf = padDiagramRanksOnly ( $nodes, $edges );
-    $gaps   = [];
+    $ranking = padDiagramRanking ( $nodes, $edges );
+    $rankOf  = $ranking [0];
+    $gaps    = [];
 
     if ( isset ( $room ['gap'] ) )
       foreach ( $rankOf as $r )
@@ -875,7 +876,7 @@
         $gaps [$r] = max ( $gaps [$r] ?? 44, $need );
       }
 
-    list ( $chains, $turned ) = padDiagramLayout ( $nodes, $edges, $vertical, $gaps );
+    list ( $chains, $turned ) = padDiagramLayout ( $nodes, $edges, $vertical, $gaps, $ranking );
 
     // The ports: the edges leaving a node spread along its side, in the order of where they
     // go; so are those coming in. A dummy has one of each, in its middle.
@@ -1433,20 +1434,12 @@
 
   }
 
-  // The ranks alone, before the layout: what the gaps for the labels are measured by - the
-  // layout's own, where a relaxation of its own pumped the ranks of a chart with a cycle
-  // up, and the gap a label was given opened between other ranks than the ones its edge
-  // crossed: the label lay over the nodes.
-
-  function padDiagramRanksOnly ( $nodes, $edges ) {
-
-    return padDiagramRanking ( $nodes, $edges ) [0];
-
-  }
-
   // The ranks of the layout: the edges that close a cycle turned, then the longest path
   // from a node without edges coming in - the rank, the turned edges and the edges as laid.
-  // The gaps for the labels are measured by these same ranks (padDiagramRanksOnly).
+  // Worked out once, before the layout (padDiagramGraph): the gaps for the labels are
+  // measured by these same ranks - where a relaxation of the layout's own pumped the ranks
+  // of a chart with a cycle up, and the gap a label was given opened between other ranks
+  // than the ones its edge crossed, the label lay over the nodes.
 
   function padDiagramRanking ( $nodes, $edges ) {
 
@@ -1509,19 +1502,24 @@
       }
 
     $rank  = array_fill_keys ( $ids, 0 );
-    $queue = [];
+    $queue = $out = [];
 
     foreach ( $ids as $id )
       if ( ! isset ( $into [$id] ) )
         $queue [] = $id;
 
+    // A node's edges out, in the order of the text, walked when the node's turn comes: every
+    // edge was walked for every node, and a chain of 8000 steps took three seconds here.
+
+    foreach ( $dag as list ( $a, $b ) )
+      $out [$a] [] = $b;
+
     for ( $q = 0; $q < count ( $queue ); $q++ )
-      foreach ( $dag as list ( $a, $b ) )
-        if ( $a === $queue [$q] ) {
-          $rank [$b] = max ( $rank [$b], $rank [$a] + 1 );
-          if ( --$into [$b] == 0 )
-            $queue [] = $b;
-        }
+      foreach ( $out [ $queue [$q] ] ?? [] as $b ) {
+        $rank [$b] = max ( $rank [$b], $rank [ $queue [$q] ] + 1 );
+        if ( --$into [$b] == 0 )
+          $queue [] = $b;
+      }
 
     return [ $rank, $turned, $dag ];
 
