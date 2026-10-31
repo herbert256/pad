@@ -2288,6 +2288,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
 | `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
 | `tooltip` | A short tip while the pointer or the focus is on its trigger - CSS alone | the tip, `place` |
+| `wizard` | Every `{tab}` a step, one shown at a time, the steps numbered above, Back and Next under each | `active`, `next`, `back`, `label` |
 
 **Every widget:** its markup is built on the server; a script, where it has one, is written once
 per page with the CSP nonce and only makes it smoother. The colours are custom properties on
@@ -2299,7 +2300,7 @@ written once per page. A name that is no widget is an error, "there is no widget
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
 showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{tab}` pairs, which
-`{accordion}` and `{carousel}` take as well.
+`{accordion}`, `{carousel}` and `{wizard}` take as well - `{tab}` is a built-in tag.
 
 ```html
 {tabs active='Specs'}
@@ -2318,7 +2319,7 @@ showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{
 | `{tab 'label'}` | One tab: the first parameter is its label, the content its panel |
 
 **Behavior:** a `{tab}` renders its content and hands it to the nearest `{tabs}`,
-`{accordion}` or `{carousel}` below it instead of printing it - it may stand in an `{if}` or
+`{accordion}`, `{carousel}` or `{wizard}` below it instead of printing it - it may stand in an `{if}` or
 in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
 arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
 a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
@@ -2579,6 +2580,44 @@ that would run off the side of the window back into it. Printed, no tip shows. T
 `--pad-tooltip-accent`, `-muted`, `-surface` and `-on` on `.pad-tooltip`, `light-dark()`
 defaults - a dark tip on a light page, a light one on a dark page. A tooltip without its tip, a
 pair with nothing between its tags and an unknown `place` are errors under the strict check.
+
+---
+
+### wizard
+A form or a story in steps, one shown at a time - every `{tab}` a step, the steps numbered in a
+row above, the ones done and the current one marked, and a Back and a Next under each; radio
+buttons and CSS, as `{tabs}` is, so no script is needed (`widgets/_lib/wizard.php`).
+
+```html
+{form 'order'}
+  {wizard label='Your order'}
+    {tab 'Address'}{input 'street', label='Street'/}{/tab}
+    {tab 'Delivery'}{input 'day', type='date', label='Day'/}{/tab}
+    {tab 'Payment'}<p>Pay by card or by bank.</p><button>Order</button>{/tab}
+  {/wizard}
+{/form}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `active` | The step shown first - its number from 1, or its label; the first one when not given |
+| `next`, `back` | The texts of the two buttons, `Next` and `Back` |
+| `label` | The wizard's name for a screen reader, default `Steps` |
+| `{tab 'label'}` | One step: its name in the row, the content its panel |
+
+**Behavior:** the steps are one radio group - one stop in the tab order, the arrow keys move
+between them, a screen reader hears 'Payment, step 3 of 3' - and each panel is a region named
+by its step. Back and Next are labels of the radio before and after without scripting, and real
+buttons with it (`@media (scripting)`, as for `{modal}`), which a small script, once per page
+with the CSP nonce, makes check the step and move the focus to it. The first step has no Back,
+the last no Next - its own content ends it. Every step of a form is in the form, shown or not,
+so every field is posted; a required field on a step not shown stops the post where the visitor
+cannot see it, so the page's PHP is the place to check a step (`padValidate`). Printed, every
+step shows. The colours are `--pad-wizard-accent`, `-on`, `-text`, `-muted`, `-line` and
+`-surface` on `.pad-wizard`, `light-dark()` defaults. A step without a label, text between the
+steps, a wizard without a step and an `active=` naming none are errors under the strict check.
 
 ---
 
@@ -3786,6 +3825,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` closed by a form of method dialog, no JavaScript |
 | `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
 | `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
+| `wizard` | Widget | Steps one at a time - every `{tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

@@ -1,0 +1,38 @@
+<?php
+
+  // {wizard}{tab 'Address'}...{/tab}{tab 'Payment'}...{/tab}{/wizard} - a form or a story in
+  // steps, one shown at a time: the steps in a row above it, numbered, the ones done and the
+  // current one marked, and under each step a Back and a Next. Radio buttons and CSS, as
+  // {tabs} is - no script needed. active= names the step shown first, by its number from 1 or
+  // its label; next= and back= are the texts of the two buttons, label= names the wizard for
+  // a screen reader ('Steps'). widgets/_lib/wizard.php; the {tab}s are collected as {tabs}
+  // collects them, widgets/_lib/tabs.php.
+  //
+  // Like {live} it runs twice: first it opens the collection its {tab}s hand their content
+  // to and asks for the end walk, then it builds the steps from what they handed over.
+
+  if ( $padWalk [$pad] == 'start' ) {
+
+    if ( ! $padPair [$pad] and $padCheckSyntax )
+      padError ( "the pair {wizard} never closes" );
+
+    padTabsOpen ( 'wizard' );
+
+    $padWalk [$pad] = 'end';
+
+    return TRUE;
+
+  }
+
+  $padWizItems = padTabsItems ( 'wizard', $padContent );
+  $padWizOn    = padTabsPick ( $padWizItems, padTagParm ( 'active' ), 'wizard', 'active' );
+  $padWizLabel = padWidgetText ( 'label', 'Steps' );
+
+  $padContent = $padWizItems
+    ? padWizard ( $padWizItems, $padWizOn, $padWizLabel !== '' ? $padWizLabel : 'Steps',
+                  padWidgetText ( 'next', 'Next' ) ?: 'Next', padWidgetText ( 'back', 'Back' ) ?: 'Back' )
+    : '';
+
+  return TRUE;
+
+?>
