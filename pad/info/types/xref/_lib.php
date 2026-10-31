@@ -59,7 +59,7 @@
 
   function padInfoXrefGo ( $dir1, $dir2, $dir3 ) {
 
-    global $padApp, $padStartPage;
+    global $padApp, $padStartPage, $padPageAsked;
 
     // A property is filed under its name, which has the shape of a tag name. The August
     // harvest filed properties/.txt, properties/box/.txt (from {box/}), ?.txt, <=.txt and
@@ -77,8 +77,14 @@
     if ( $dir3 !== '' )
       $file .= "/$dir3";
 
+    // A page of a bracketed route is filed by the name it was asked by - nim, not [game] - as
+    // that is a page the reference can show; under the name of its file the reference's page
+    // of the item ended on "there is no page named '[game]'".
+
+    $page = ( str_contains ( (string) $padStartPage, '[' ) and ( $padPageAsked ?? '' ) !== '' ) ? $padPageAsked : $padStartPage;
+
     $target = "reference/$file.txt";
-    $xref   = "$padApp;$padStartPage";
+    $xref   = "$padApp;$page";
 
     $check = DATA . $target;
     if ( file_exists ($check) and in_array ( $xref, file ( $check, FILE_IGNORE_NEW_LINES ) ) )
