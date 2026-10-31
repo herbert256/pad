@@ -2129,6 +2129,48 @@ check.
 
 ---
 
+### fake
+A fake value of a kind - a name, an email, a price, an IBAN - or rows of several kinds, for a
+prototype, a designer's preview or a demo page: the fake subsystem in `pad/fakes/`, the values
+of `lib/fake.php`'s sequence.
+
+```html
+{fake 'email'/}
+{fake:city/}
+{fake 'number', from=1, to=6/}
+{fake 'name, email', rows=5, toData='people'/}
+{fake 'customer:name, total:price', rows=3, seed=7}<li>{$customer} {$total}</li>{/fake}
+{fake 'boolean', chance=30}On offer@else@Full price{/fake}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The kind, a file of `pad/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
+| `rows` | So many rows of the kinds, the level's data - iterated by the pair's content, kept by `toData=` |
+| `seed` | Values of their own seed: the rows `padFakeRows ( kinds, rows, seed )` gives |
+| `from`, `to` | number (0, 100), decimal (0, 1), price (1, 100): the range; date: two moments padDateParse reads (`-1 year`, `now`); time: two clock times (`08:00`, `18:00`) |
+| `format` | date: the format, `Y-m-d` |
+| `decimals` | decimal: the places, 2 |
+| `chance` | boolean: the chance of TRUE in percent, 50 |
+| `words`, `sentences` | sentence: its words; paragraph: its sentences |
+| `name` | email: the name it is made from |
+
+**Behavior:** one kind without `rows=` is the tag's value; several kinds, a pair or `rows=` are
+rows - a pair of one kind one row, `{$name}` inside - and a FALSE of boolean, like `rows=0`, is a
+miss, so its `@else@` shows. An email or a username in a row with a name is that person's.
+Without `seed=` the `{fake}` tags of a request share a sequence of their own from one seed:
+the page shows the same values on every request (a date relative to now moves with the day).
+The page's own sequence - its `padFakeSeed` and what it made - is put back afterwards, as
+`{lorem}` puts it back. The kinds are the files of `pad/fakes/types/`, each a few lines that
+answer the value and read their options with `padFakeOpt`; a kind is added by adding its file.
+A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
+10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
+kind named 'zebra'". Fake kinds are never reached bare: their names are those of fields.
+
+---
+
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
 showing the panel of the checked one (`tags/_lib/tabs.php`). The items are `{tab}` pairs, which
@@ -3508,6 +3550,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
+| `fake` | Output | A fake value of a kind - a file of `pad/fakes/types/` - or rows of several kinds, the same for the same seed |
 | `tabs` | Output | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
 | `accordion` | Output | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
 | `modal` | Output | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |

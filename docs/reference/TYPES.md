@@ -64,6 +64,9 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 23. **embed** - Embed provider, a file of `PAD/embeds/types/`
 24. **function** - PAD function (fallback)
 
+The fake kinds (`PAD/fakes/types/`) are never reached bare - their names, email or city, are
+those of fields - only as `{fake:email/}`.
+
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
 after all of them: a visitor's `?prime=x` never takes the
@@ -513,6 +516,25 @@ field or a sequence of the name wins. `{embed:zigzag/}` is "there is no embed pr
 
 ---
 
+## Fake Types
+
+### fake
+
+A fake value of the kind the tag names - the fake subsystem in `PAD/fakes/` makes it, as the
+`{fake}` tag makes the kind its parameter names.
+
+```
+{fake:email/}
+{fake:number from=1, to=6/}
+{fake:date from='2026-01-01', to='2026-12-31', format='j M Y'/}
+```
+
+**Resolution:** a file `PAD/fakes/types/<name>.php` (`padFakeKinds()` in `PAD/lib/fake.php`): the
+files there are the kinds, and a kind is added by adding its file. Never bare: `{email/}` is no
+fake. `{fake:zebra/}` is "there is no fake kind named 'zebra'".
+
+---
+
 ## Sequence Types
 
 These types integrate with the PAD sequence subsystem.
@@ -644,6 +666,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `game` | PAD/games/types/ | Games |
 | `diagram` | PAD/diagrams/types/ | Diagram kinds |
 | `embed` | PAD/embeds/types/ | Embed providers |
+| `fake` | PAD/fakes/types/ | Fake value kinds |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -669,6 +692,7 @@ types/
 ├── data.php        → Data store
 ├── diagram.php     → Diagram kind
 ├── embed.php       → Embed provider
+├── fake.php        → Fake value kind
 ├── field.php       → Field value
 ├── game.php        → Game
 ├── flag.php        → Sequence membership flags

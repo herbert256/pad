@@ -21,6 +21,7 @@ pad/
 ├── eval/          # Expression parser
 ├── events/        # Event hooks
 ├── exits/         # Shutdown and output handling
+├── fakes/         # Fake data subsystem (a kind per file of fakes/types/)
 ├── functions/     # Pipe functions
 ├── games/         # Games subsystem (a game per file of games/types/)
 ├── get/           # Content retrieval
@@ -66,6 +67,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | eval/ | Expression parser and evaluator |
 | events/ | Event hooks of the info modes (trace, stats, xref) - an application's own hooks are its `_events/`, run by lib/events.php |
 | exits/ | Shutdown, output formatting, and HTTP responses |
+| fakes/ | The fake data subsystem - `{fake}` and the `fake:` type; a kind is a file of `fakes/types/`, answering its value from the seeded sequence of `lib/fake.php` (`padFake`, `padFakeRows`) |
 | functions/ | Pipe functions (trim, upper, date, html, etc.) |
 | games/ | The games subsystem - `{game}` and the `game:` type; a game is a file of `games/types/`, its `.js` and `.css` in `games/assets/` beside the runtime's, the sudoku and crossword code in `games/_lib/` |
 | get/ | Variable getter system for content retrieval |

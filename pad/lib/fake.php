@@ -29,6 +29,13 @@
   //                   of $i (1, 2, ...): the values go in as placeholders, never as SQL text.
   //                   The rows as inserted, each with 'id' - the id the insert answered -
   //                   when the row did not give one itself
+  // padFake           a value of a kind by its name - padFake ( 'email' ), padFake ( 'number',
+  //                   [ 'from' => 1, 'to' => 6 ] ) - a kind being a file of fakes/types/
+  //                   (padFakeKinds), which reads its options with padFakeOpt
+  // padFakeRows       rows of fields of those kinds - padFakeRows ( 'name, email', 5 ), or
+  //                   [ 'customer' => 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ] -
+  //                   with a seed the same rows on every run, the sequence put back after
+  //                   them; the {fake} tag's rows= and seed= are the same rows
   //
   // The sequence is PAD's own - xorshift32 in a static - not mt_rand, so seeding it leaves
   // the application's own mt_rand and rand alone, and a seeded run gives the same values on
@@ -427,6 +434,162 @@
     }
 
     return $rows;
+
+  }
+
+  // The kinds of fake value: the files of fakes/types/ (padKinds, lib/subsystem.php) - a
+  // kind is added by adding its file, which answers the value and reads its options with
+  // padFakeOpt.
+
+  function padFakeKinds () {
+
+    return padKinds ( 'fakes' );
+
+  }
+
+  // A value of a kind. $opts are its options by name, or TRUE inside the {fake} tag, whose
+  // own options they then are (padTagParm, so the strict check sees an option no kind of
+  // the tag reads). The options of an outer value are put back afterwards: a kind may ask
+  // for a value of another kind.
+
+  function padFake ( $kind, $opts = [] ) {
+
+    global $padFakeOpts;
+
+    if ( ! padKind ( 'fakes', $kind ) ) {
+      padError ( "padFake: there is no fake kind named '" . padMakeSafe ( is_scalar ( $kind ) ? (string) $kind : get_debug_type ( $kind ), 30 ) . "' - "
+                 . implode ( ', ', padFakeKinds () ) );
+      return NULL;
+    }
+
+    // The kind's file runs in this function: its own variables are its locals, and this
+    // function's are pad-named so a kind cannot overwrite them.
+
+    $padFakeBefore = $padFakeOpts ?? [];
+    $padFakeOpts   = ( $opts === TRUE ) ? TRUE : (array) $opts;
+    $padFakeValue  = include PAD . "fakes/types/$kind.php";
+    $padFakeOpts   = $padFakeBefore;
+
+    return $padFakeValue;
+
+  }
+
+  // An option of the value being made, or its default.
+
+  function padFakeOpt ( $name, $default = NULL ) {
+
+    global $padFakeOpts;
+
+    if ( ( $padFakeOpts ?? NULL ) === TRUE )
+      return padTagParm ( $name, $default );
+
+    return $padFakeOpts [$name] ?? $default;
+
+  }
+
+  // The fields of a row as [ field => [ kind, options ] ]: from 'name, email' - each field
+  // under its kind's name - or 'customer:name, mail:email', or from an array of kinds, with
+  // the field as key where it is not the kind, the options beside the kind where it has
+  // some: [ 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ]. NULL, and an error, for a
+  // field that is no plain name or a kind there is none of.
+
+  function padFakeFields ( $fields ) {
+
+    $list = [];
+
+    if ( is_string ( $fields ) )
+      foreach ( explode ( ',', $fields ) as $one ) {
+        $one = trim ( $one );
+        if ( $one === '' )
+          continue;
+        [ $field, $kind ] = str_contains ( $one, ':' ) ? array_map ( 'trim', explode ( ':', $one, 2 ) ) : [ $one, $one ];
+        $list [$field] = [ $kind, [] ];
+      }
+    elseif ( is_array ( $fields ) )
+      foreach ( $fields as $field => $one ) {
+        $kind  = is_array ( $one ) ? ( $one [0] ?? '' ) : $one;
+        $field = is_int ( $field ) ? $kind : $field;
+        $list [$field] = [ $kind, is_array ( $one ) ? (array) ( $one [1] ?? [] ) : [] ];
+      }
+
+    if ( ! $list ) {
+      padError ( "the fake rows have no fields - name them as 'name, email' or 'customer:name, total:price'" );
+      return NULL;
+    }
+
+    foreach ( $list as $field => [ $kind ] ) {
+      if ( ! is_string ( $field ) or ! preg_match ( '/^[A-Za-z_][A-Za-z0-9_]*$/D', $field ) ) {
+        padError ( "the fake field '" . padMakeSafe ( (string) $field, 30 ) . "' is no plain name" );
+        return NULL;
+      }
+      if ( ! padKind ( 'fakes', $kind ) ) {
+        padError ( "there is no fake kind named '" . padMakeSafe ( is_scalar ( $kind ) ? (string) $kind : '', 30 ) . "' - " . implode ( ', ', padFakeKinds () ) );
+        return NULL;
+      }
+    }
+
+    return $list;
+
+  }
+
+  // $count rows of the fields, made row by row, field by field. With $seed the rows are the
+  // ones the seed gives - padFakeSeed ( $seed ) and then the values - and the sequence is put
+  // back afterwards, so the values a page makes after them are what they would have been:
+  // the rows of a seed are a fact of the seed alone, for a designer preview's sample or a
+  // prototype's table. Without, they come from the sequence as it stands. $opts are the
+  // options of every field, TRUE those of the {fake} tag.
+
+  function padFakeRows ( $fields, $count, $seed = NULL, $opts = [] ) {
+
+    $fields = padFakeFields ( $fields );
+
+    if ( $fields === NULL )
+      return [];
+
+    if ( ! is_numeric ( $count ) or (int) $count < 0 or (int) $count > 10000 ) {
+      padError ( 'padFakeRows: the count is a whole number from 0 to 10000' );
+      return [];
+    }
+
+    if ( $seed !== NULL ) {
+      $state = padFakeState ();
+      padFakeSeed ( ( is_string ( $seed ) and ctype_digit ( $seed ) ) ? (int) $seed : $seed );
+    }
+
+    // The row being made is at hand to the kinds (padFakeInRow): an email of a row with a
+    // name is that person's address.
+
+    global $padFakeRowNow;
+
+    $rows   = [];
+    $before = $padFakeRowNow ?? [];
+
+    for ( $i = 0; $i < (int) $count; $i++ ) {
+      $padFakeRowNow = [];
+      foreach ( $fields as $field => [ $kind, $own ] )
+        $padFakeRowNow [] = [ $kind, padFake ( $kind, ( $opts === TRUE ) ? TRUE : $own + $opts ), $field ];
+      $rows [] = array_combine ( array_column ( $padFakeRowNow, 2 ), array_column ( $padFakeRowNow, 1 ) );
+    }
+
+    $padFakeRowNow = $before;
+
+    if ( $seed !== NULL )
+      padFakeState ( $state );
+
+    return $rows;
+
+  }
+
+  // The value of the first field of a kind in the row padFakeRows is making, NULL when it has
+  // none (yet) or no row is being made.
+
+  function padFakeInRow ( $kind ) {
+
+    foreach ( $GLOBALS ['padFakeRowNow'] ?? [] as [ $one, $value ] )
+      if ( $one == $kind )
+        return $value;
+
+    return NULL;
 
   }
 

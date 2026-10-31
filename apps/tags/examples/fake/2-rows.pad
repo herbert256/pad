@@ -1,0 +1,7 @@
+{meta title='Rows for a table', about='Several kinds and rows= make the data of the pair - the email of each row made from its name, seed= the same rows as padFakeRows.'/}
+<table>
+  <tr><th>Customer</th><th>E-mail</th><th>City</th><th>Total</th></tr>
+  {fake 'customer:name, email, city, total:price', rows=4, seed=7}
+  <tr><td>{$customer}</td><td>{$email}</td><td>{$city}</td><td>{$total}</td></tr>
+  {/fake}
+</table>

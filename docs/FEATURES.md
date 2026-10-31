@@ -228,6 +228,26 @@ reproducible after `padFakeSeed ( 42 )`: `padFakeName`, `padFakeEmail`, `padFake
 `pad migrate shop [--pretend|--status|--rollback[=n]|--fresh --force|--seed|--new=name]`,
 `pad seed shop [name]`.
 
+The kinds of fake value are the files of `pad/fakes/types/` - address, boolean, city, colour,
+company, country, date, decimal, email, firstname, iban (a Dutch number of the bank TEST that
+passes the check), ip (the documentation ranges), job, lastname, name, number, paragraph,
+phone, postcode, price, sentence, street, time, url, username, uuid, word - each named by
+`padFake ( 'email' )` and in a template:
+```
+{fake 'email'/}  {fake:city/}  {fake 'number', from=1, to=6/}  {fake 'date', from='2026-01-01', format='j M Y'/}
+{fake 'name, email', rows=5, toData='people'/}               # rows of fields named after their kinds
+{fake 'customer:name, total:price', rows=3}<li>{$customer} {$total}</li>{/fake}
+{fake 'name', seed=7/}                                        # a value of its own seed
+```
+`padFakeRows ( 'name, email', 5, 7 )` gives the rows `{fake 'name, email', rows=5, seed=7/}`
+gives - a fact of the seed, the sequence put back after them - for a seeder, a prototype's
+table or a designer preview's sample. Without `seed=` the `{fake}` tags of a request share a
+sequence of their own from one seed, so a page looks the same on every request; either way the
+page's own `padFakeSeed` sequence is left where it was. An email or username beside a name is
+that person's. Locale-neutral English, as the helpers; a fake kind is never reached bare - its
+names are those of fields. A kind is added by adding its file, which reads its options with
+`padFakeOpt`.
+
 ### Queues and the scheduler
 
 `padQueue ( 'sendInvoice', [ 'order' => 42 ], delay: 60, queue: 'default', tries: 3, backoff: 10 )`
