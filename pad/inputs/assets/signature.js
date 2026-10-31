@@ -3,7 +3,10 @@
    picture is posted as a PNG data URL in the hidden field after every stroke and every typed
    letter, and the field says it changed; Clear empties both. A canvas is drawn in the pixels
    of the screen, so a signature is as sharp on a phone as on paper, and posted at the size
-   width= and height= give. A signature that came back with the post is drawn again. */
+   width= and height= give. A signature that came back with the post is drawn again. A
+   required signature is held by the typed name's field while there is no picture, and let
+   go once there is one - drawn or typed: kept on the field, which a drawn signature leaves
+   empty, it refused every drawn signature. */
 PadInputs.register('signature', function (frame, cfg, kit) {
   var pad = frame.querySelector('.pi-signature-pad');
   var canvas = frame.querySelector('.pi-signature-canvas');
@@ -12,6 +15,11 @@ PadInputs.register('signature', function (frame, cfg, kit) {
   var clear = frame.querySelector('.pi-signature-clear');
   var hidden = frame.querySelector('input[type=hidden]');
   if (!canvas || !hidden || !canvas.getContext) return;
+
+  var needed = !!(typed && typed.required);
+  if (needed) typed.setAttribute('aria-required', 'true');
+  function hold() { if (needed) typed.required = !hidden.value; }
+  hold();
 
   var width = canvas.width, height = canvas.height;
   var ratio = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
@@ -43,6 +51,7 @@ PadInputs.register('signature', function (frame, cfg, kit) {
       out.getContext('2d').drawImage(canvas, 0, 0, width, height);
       hidden.value = out.toDataURL('image/png');
     }
+    hold();
     kit.changed(hidden);
   }
 

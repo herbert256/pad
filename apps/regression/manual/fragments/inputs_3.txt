@@ -123,12 +123,17 @@
    comma adds the word, a pasted list adds each of its words, leaving the field adds what was
    typed; Backspace in the empty field takes the last word back, and every chip has a button
    that takes it out. A word is in the list once, in the case it was first written in. What
-   happens is said to a screen reader. */
+   happens is said to a screen reader. A required list stays one: the text field the words
+   leave holds the browser's required check while there is no word, and lets it go once a
+   chip holds one - kept on the emptied field, it refused every list. */
 PadInputs.register('taginput', function (frame, cfg, kit) {
   var box = frame.querySelector('.pi-tags input[type=text]');
   var wrap = frame.querySelector('.pi-tags');
   var said = frame.querySelector('.pi-tags-said');
   if (!box || !wrap) return;
+
+  var needed = box.required;
+  if (needed) box.setAttribute('aria-required', 'true');
 
   var words = [];
   var hidden = document.createElement('input');
@@ -148,6 +153,7 @@ PadInputs.register('taginput', function (frame, cfg, kit) {
 
   function sync(quiet) {
     hidden.value = words.join(', ');
+    if (needed) box.required = !words.length;
     chips.textContent = '';
     words.forEach(function (word, i) {
       var li = kit.el('li', 'pi-chip');
