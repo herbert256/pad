@@ -117,11 +117,15 @@
   // javascript:, data: - is no link, and '' comes back: a row of data may hold what a visitor
   // typed. The scheme is read as a browser reads it, without the tabs, line breaks and
   // spaces it skips, and from a link that is markup - a line of rendered content - after
-  // its character references: java&#9;script&#58; is javascript: to a browser.
+  // its character references: java&#9;script&#58; is javascript: to a browser. The stand-ins
+  // of the quotes are read as the quotes they become (padUnprotectQuotes) and escaped as
+  // those: exits.php restores a stand-in after every escaper has run, so a link of a request
+  // value - ?x%EE%80%A2%20onmouseover=... - or of a raw field in the lines of a pair closed
+  // its href and added an event handler.
 
   function padWidgetLink ( $link, $markup = FALSE ) {
 
-    $link = trim ( (string) $link );
+    $link = trim ( padUnprotectQuotes ( (string) $link ) );
 
     if ( $markup )
       $link = html_entity_decode ( $link, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
