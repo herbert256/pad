@@ -394,11 +394,14 @@
 
   // The frame every kind shares: its kind, the label its messages are worded with, its
   // configuration as JSON for its script - and its style and script, once per page. The
-  // message stands after the frame, where the browser's checker puts its own.
+  // message stands after the frame, where the browser's checker puts its own. A byte that is
+  // no UTF-8 - in a choice a database row gives, a unit= a request value holds - is written
+  // as U+FFFD: json_encode answered FALSE for it, the configuration was empty and the kind's
+  // script started on none - a combobox with no choices, a slider without its unit.
 
   function padInputFrame ( $kind, $worded, $inner, $error, $config = [], $tag = 'div', $extra = '' ) {
 
-    $json = $config ? ' data-config="' . padWidgetAttr ( json_encode ( $config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '"' : '';
+    $json = $config ? ' data-config="' . padWidgetAttr ( json_encode ( $config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE ) ) . '"' : '';
 
     return padInputAssets ( $kind )
          . "<$tag class=\"pad-input pad-input-$kind\" data-pad-input=\"$kind\" data-pad-label=\"" . padWidgetAttr ( $worded ) . "\"$json$extra>"
