@@ -52,6 +52,7 @@ applications show them working.
   - [Month calendar](#month-calendar)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
+  - [Icons](#icons)
   - [Showcase tags](#showcase-tags)
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
 - [Development](#development)
@@ -674,11 +675,42 @@ Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSou
 
 ### QR codes and barcodes
 ```
-{qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (tags/_lib/qr.php)
+{qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (codes/_lib/qr.php)
 {qr $url, size=200, level='H', title='Scan'/}   # level L, M (default), Q, H; color=, background=
-{barcode '871234567890'/}                       # EAN-13 (check digit added); type= ean8, upca, code128
+{barcode '871234567890'/}                       # EAN-13 (check digit added); anything else Code 128
 {barcode $parcel, type='code128', height=70/}   # scale= module width, plain = no digits under the bars
+{barcode:upce '04210000526'/}                   # the barcode type: a UPC-A in its short form, 04252614
+{itf14 '1540014128876'/}                        # bare, when nothing else has the name - between bearer bars
+{code39 'PAD-2026', check/}                     # check: code39's modulo 43, itf's digit; msi check='mod1010'|'none'
+{datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
 ```
+The symbologies are the files of `pad/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
+`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `qr` and `datamatrix` - one
+file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
+Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
+`{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
+the name; `{qr}` is the qr symbology by a tag of its own. The bars take `height`, `scale`,
+`title`, `plain`, `color` and `background`, the two-dimensional codes `size`, `title`, `color`
+and `background`; black on white unless told otherwise, as a scanner needs the contrast, and
+`role="img"` named by the text or `title`. A text the symbology cannot hold is an error under
+the strict check. Code: the codes subsystem in `pad/codes/` - `barcode.php` the body every form
+runs, `_lib/` the encoders and the SVG writers, `types/` the symbologies;
+`pad/types/barcode.php` the barcode type.
+
+### Icons
+```
+{icon 'arrow-right'/}                           # an icon in the colour of the text, decoration (aria-hidden)
+<button>{icon 'trash', size=16/} Delete</button>
+{icon 'settings', size=20, label='Settings'/}   # label= makes it an image of that name, for an icon alone
+{icon:cloud-upload stroke=1.5/}                 # the icon type; the names are never reached bare
+```
+An icon is a file of `pad/icons/types/`, `<name>.svg`: a whole SVG on the 24 by 24 grid -
+lines, circles and rectangles, `stroke="currentColor"`, round caps and joins - which a browser
+shows as it is and whose drawing `{icon}` writes inside an svg element of its own; the files
+there are the icons there are, so an icon is added by adding its file, and `padIconNames ()`
+lists them for a page's PHP. A name that is no icon is an error naming the icons close to it.
+Code: the icon subsystem in `pad/icons/` - `icon.php` the body both forms run, `_lib/icon.php`
+the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 
 ### Showcase tags
 ```
@@ -687,7 +719,7 @@ Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSou
 {placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
 {progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
 {rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
-{icon 'arrow-right', size=20, label='Next'/}   # built-in line icon in currentColor; decorative unless label=
+{icon 'arrow-right', size=20, label='Next'/}   # line icon in currentColor, a file of icons/types/; see Icons
 {gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
 {sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games

@@ -1,7 +1,9 @@
 <p><code>{qr}</code> encodes its first parameter as a QR code and writes it as an inline SVG.
-The encoder is PAD's own (<code>tags/_lib/qr.php</code>): nothing is fetched and no image is
+The encoder is PAD's own (<code>pad/codes/_lib/qr.php</code>): nothing is fetched and no image is
 stored, and the same text is always the same picture, so a page with a code caches and prints
-like any other.</p>
+like any other. It is the <code>qr</code> symbology of the codes subsystem by a tag of its own:
+<code>{barcode:qr 'text'/}</code> and <code>{barcode 'text', type='qr'/}</code> write the same
+code.</p>
 
 <p>The text is encoded in one mode - numeric for digits only, alphanumeric for upper case,
 digits and <code> $%*+-./:</code>, else the bytes of its UTF-8 - in the smallest of the 40

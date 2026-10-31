@@ -20,7 +20,7 @@
                                     'collections', 'remote_data', 'parallel_fetching', 'data_answers' ],
       'PHP helpers'            => [ 'arrays', 'strings', 'values', 'numbers', 'requests_and_sessions',
                                     'environment_and_cache', 'dates_and_logging', 'hashing_and_encryption' ],
-      'Output'                 => [ 'html_helpers', 'markdown', 'showing_code', 'charts', 'diagrams', 'games', 'locale',
+      'Output'                 => [ 'html_helpers', 'markdown', 'showing_code', 'charts', 'diagrams', 'games', 'codes', 'icons', 'locale',
                                     'fragment_cache', 'flush', 'live', 'server_sent_events' ],
       'Layouts and components' => [ 'layouts', 'page_meta', 'components', 'stacks', 'response_fragments' ],
       'The application'        => [ 'application_structure', 'extending', 'events', 'application_options',

@@ -1,0 +1,139 @@
+<p><b>{icon}</b> writes an interface icon of PAD's own set - 202 of
+them, drawn on a 24 by 24 grid as lines in the colour of the text around it, written as inline SVG.
+Beside text an icon is decoration that a screen reader skips; alone in a button or a link it gets
+<code>label=</code> and is read out by that name.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/icons_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;button type="button"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>download<font color="black">'</font><font color="black">,</font> size=16</font>/}</b> Download&lt;/button&gt;<br>&lt;button type="button"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="black">'</font>cog<font color="black">'</font><font color="black">,</font> size=16<font color="black">,</font> label=<font color="black">'</font>Settings<font color="black">'</font></font>/}</b>&lt;/button&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <button type="button"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-download" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg> Download</button>
+<button type="button"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-cog" role="img" aria-label="Settings" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Settings</title><path d="M9.4 5.61L10.34 2.75L13.66 2.75L14.6 5.61L14.68 5.64L17.36 4.28L19.72 6.64L18.36 9.32L18.39 9.4L21.25 10.34L21.25 13.66L18.39 14.6L18.36 14.68L19.72 17.36L17.36 19.72L14.68 18.36L14.6 18.39L13.66 21.25L10.34 21.25L9.4 18.39L9.32 18.36L6.64 19.72L4.28 17.36L5.64 14.68L5.61 14.6L2.75 13.66L2.75 10.34L5.61 9.4L5.64 9.32L4.28 6.64L6.64 4.28L9.32 5.64Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>An icon is a file</h2>
+
+<p>Every icon is a file of <code>pad/icons/types/</code>, <code>&lt;name&gt;.svg</code> - a whole SVG
+that a browser shows as it is - and the files there are the icons there are. The icon type writes one
+by its name, <code>{icon:cloud-upload/}</code>; the names are never used alone, as they
+are the names of fields and pages too. <code>size=</code> and <code>stroke=</code> are the size in
+pixels and the width of the lines.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/icons_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">{icon:cloud-upload size=32/} {icon:chart-pie size=32/} {icon:thumb-up size=32, stroke=1.5/}</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-cloud-upload" aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18.5H7a4 4 0 0 1-.6-8A5.5 5.5 0 0 1 17 9a3.8 3.8 0 0 1 .5 9.5H16"/><path d="M12 21v-8M9 15.5l3-3 3 3"/></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"/><path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-thumb-up" aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 10.5V20"/><path d="M3.5 10.5h4l3.8-7a2.2 2.2 0 0 1 4 1.4L14.6 9.5h4.9a2 2 0 0 1 2 2.4l-1.6 7a2 2 0 0 1-2 1.6H3.5Z"/></svg>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li><code>padIconNames ()</code> lists the icons for a page's PHP, and the showcase draws
+  <a href="../showcase/?icon/gallery">every icon</a> by its name.</li>
+  <li>Each icon has the classes <code>pad-icon pad-icon-&lt;name&gt;</code> for styling.</li>
+  <li>A name that is no icon is an error under the strict check, which names the icons close to
+  it.</li>
+</ul>

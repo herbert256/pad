@@ -60,12 +60,18 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 20. **action** - Sequence action
 21. **chart** - Chart type, a file of `PAD/charts/types/`
 22. **game** - Game, a file of `PAD/games/types/`
-23. **diagram** - Diagram kind, a file of `PAD/diagrams/types/`
-23. **embed** - Embed provider, a file of `PAD/embeds/types/`
-24. **function** - PAD function (fallback)
+23. **toy** - Toy, a file of `PAD/toys/types/`
+24. **diagram** - Diagram kind, a file of `PAD/diagrams/types/`
+25. **widget** - Widget, a file of `PAD/widgets/types/`
+26. **barcode** - Barcode symbology, a file of `PAD/codes/types/`
+27. **embed** - Embed provider, a file of `PAD/embeds/types/`
+28. **input** - Rich form field, a file of `PAD/inputs/types/`
+29. **function** - PAD function (fallback)
 
-The fake kinds (`PAD/fakes/types/`) are never reached bare - their names, email or city, are
-those of fields - only as `{fake:email/}`.
+Items 21 to 28 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), tried in that
+order. The icons (`PAD/icons/types/`) and the fake kinds (`PAD/fakes/types/`) are never reached
+bare - their names, home or email, are those of fields and pages - only as `{icon:star/}` and
+`{fake:email/}`.
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -532,6 +538,42 @@ A fake value of the kind the tag names - the fake subsystem in `PAD/fakes/` make
 **Resolution:** a file `PAD/fakes/types/<name>.php` (`padFakeKinds()` in `PAD/lib/fake.php`): the
 files there are the kinds, and a kind is added by adding its file. Never bare: `{email/}` is no
 fake. `{fake:zebra/}` is "there is no fake kind named 'zebra'".
+## Barcode Types
+
+### barcode
+
+A barcode of the symbology the tag names - the codes subsystem in `PAD/codes/` encodes and
+draws it, as the `{barcode}` tag draws the symbology its `type=` names.
+
+```
+{barcode:ean13 '400638133393'/}
+{barcode:datamatrix $serial, size=120/}
+{itf14 '1540014128876'/}
+```
+
+**Resolution:** a file `PAD/codes/types/<name>.php` (`padKinds ('codes')`): the files there are
+the symbologies - `qr` among them, which the `{qr}` tag writes by a name of its own - and a
+symbology is added by adding its file and its encoder in `PAD/codes/_lib/`. Bare, a symbology
+comes after every other kind of tag, the chart kinds and the games too.
+
+---
+
+## Icon Types
+
+### icon
+
+An icon of PAD's own set, the one the tag names - the icon subsystem in `PAD/icons/` draws it,
+as the `{icon}` tag draws the icon its parameter names.
+
+```
+{icon:star size=20/}
+{icon:arrow-right label='Next page'/}
+```
+
+**Resolution:** a file `PAD/icons/types/<name>.svg` (`padIconNames ()` in `PAD/lib/icon.php`):
+the files there are the icons, and an icon is added by adding its file. The type is only ever
+written with its prefix - an icon's name alone is no tag, the names being those of fields and
+pages as well.
 
 ---
 
@@ -667,6 +709,8 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `diagram` | PAD/diagrams/types/ | Diagram kinds |
 | `embed` | PAD/embeds/types/ | Embed providers |
 | `fake` | PAD/fakes/types/ | Fake value kinds |
+| `barcode` | PAD/codes/types/ | Barcode symbologies |
+| `icon` | PAD/icons/types/ | Icons |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -684,6 +728,7 @@ types/
 ├── action.php      → Sequence action
 ├── app.php         → Application tag
 ├── array.php       → Array value
+├── barcode.php     → Barcode symbology
 ├── bool.php        → Boolean store
 ├── chart.php       → Chart kind
 ├── common.php      → Shared _common tag
@@ -697,6 +742,7 @@ types/
 ├── game.php        → Game
 ├── flag.php        → Sequence membership flags
 ├── function.php    → PAD function
+├── icon.php        → Icon
 ├── include.php     → Include file
 ├── keep.php        → Sequence keep
 ├── level.php       → Array field of an enclosing row

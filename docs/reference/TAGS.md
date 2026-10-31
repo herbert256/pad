@@ -1371,8 +1371,9 @@ default, scaled to its own minimum and maximum.
 ---
 
 ### qr
-A QR code as inline SVG - encoded on the server (`tags/_lib/qr.php`), no image library, no remote
-service, no JavaScript.
+A QR code as inline SVG - encoded on the server (`codes/_lib/qr.php`), no image library, no remote
+service, no JavaScript. The `qr` symbology of the codes subsystem by a tag of its own: the same
+code as `{barcode:qr 'text'/}` and `{barcode 'text', type='qr'/}`.
 
 ```html
 {qr 'https://example.com/order/42'/}
@@ -1397,31 +1398,49 @@ check, and writes nothing.
 ---
 
 ### barcode
-A barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server
-(`tags/_lib/barcode.php`).
+A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/codes/`): a
+symbology is a file of `pad/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
+`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `qr` and `datamatrix` - and `type=` names
+it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
+the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
 
 ```html
 {barcode '871234567890'/}                          <!-- EAN-13, the check digit added -->
 {barcode $parcel, type='code128', height=70/}
 {barcode '03600029145', type='upca'/}
 {barcode 'PAD', scale=3, plain, color='#2e7d32'/}
+{barcode:upce '04210000526'/}                      <!-- a UPC-A in its short form: 04252614 -->
+{code39 'PAD-2026', check/}
+{datamatrix 'PAD-2026-0042', size=120/}
 ```
 
 | Option | Description |
 |--------|-------------|
 | first parameter | The number or text |
-| `type` | `ean13`, `ean8`, `upca` or `code128`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
+| `type` | The symbology, a file of `pad/codes/types/`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
 | `height` | The height of the bars in pixels, default 60 |
 | `scale` | The width of one module (the thinnest bar) in pixels, default 2 |
 | `title` | The accessible name, by default the code |
 | `plain` | Bars only - no digits under them |
 | `color`, `background` | Default `#000` on `#fff` |
+| `check` | Bare, `code39`: the check symbol of modulo 43; `itf`: the check digit of weights 3 and 1. `msi`: `mod10` (default), `mod1010` or `none` |
+| `size` | `qr` and `datamatrix`: the width and height in pixels, default 160 - in place of `height`, `scale` and `plain` |
+| `level` | `qr`: the error correction, as `{qr}` takes it |
 
 **Behavior:** an EAN or UPC number is given with or without its check digit - left off, it
 is added; given, it is checked. EAN and UPC draw their guard bars longer and set the digits
-in their groups. Code 128 takes printable ASCII and packs a run of four digits or more two to
-a symbol (set C). A wrong check digit, a wrong length, a character Code 128 cannot hold or an
-unknown type is an error under the strict check, and writes nothing.
+in their groups; `upce` takes six digits, seven with the number system (0 or 1) in front or
+eight with the check digit - that of the UPC-A it stands for - and writes the 11 or 12 digits
+of a UPC-A in its short form when it has one. Code 128 takes printable ASCII and packs a run of
+four digits or more two to a symbol (set C); Code 93 takes printable ASCII, the characters
+Code 39 lacks as shift pairs, with its two check symbols; Code 39 digits, capital letters,
+space and `- . $ / + %`. `itf` is Interleaved 2 of 5 (a 0 in front of an odd number of
+digits), `itf14` the GS1 carton number between bearer bars, `codabar` digits and `- $ : / . +`
+between start and stop letters A to D (A at both ends when the text has none), `msi` digits
+with a Luhn check digit. `datamatrix` is Data Matrix ECC 200 in the smallest of its 24 square
+sizes, 10 by 10 to 144 by 144 modules; `qr` the QR code of `{qr}`. A wrong check digit, a wrong
+length, a character the symbology cannot hold, a text too long for it or an unknown type is an
+error under the strict check, and writes nothing.
 
 ---
 
@@ -1890,21 +1909,25 @@ unusable max or an unknown icon is an error under the strict check.
 ---
 
 ### icon
-An interface icon from PAD's own set of 79, drawn on a 24 by 24 grid as lines, circles and
-rectangles (`tags/_lib/icon.php`) and written as inline SVG in the colour of the text around it - no
-icon font, no sprite, no request.
+An interface icon from PAD's own set, drawn on a 24 by 24 grid as lines, circles and
+rectangles and written as inline SVG in the colour of the text around it - no icon font, no
+sprite, no request. The icon subsystem (`pad/icons/`): an icon is a file of `pad/icons/types/`,
+`<name>.svg` - a whole SVG a browser shows as it is, whose drawing the tag writes - and the
+files there are the icons there are; the icon type writes one by its name, `{icon:star/}`. The
+names are never reached bare: they are the names of fields and pages too.
 
 ```html
 {icon 'arrow-right'/}
 <button>{icon 'trash', size=16/} Delete</button>
 <a href="?next">{icon 'chevron-right', label='Next page'/}</a>
+{icon:cloud-upload size=24/}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The name: arrows and chevrons (`arrow-right`, `chevron-down`, `external`, `refresh`, `sort`, `maximize` ...), marks (`check`, `x`, `plus`, `minus`, `info`, `alert`, `help`, `star`, `heart`, `flag`, `tag` ...), layout (`home`, `menu`, `grid`, `list`, `search`, `filter`, `settings`, `link` ...), people (`user`, `users`, `mail`, `message`, `phone`, `bell` ...), time and places (`calendar`, `clock`, `globe`, `map-pin`, `sun`, `moon`, `cloud`), files (`file`, `folder`, `copy`, `edit`, `trash`, `download`, `upload`, `image`, `camera`, `cart` ...), media (`play`, `pause`, `stop`), security (`lock`, `unlock`, `key`, `eye`, `eye-off`, `power`) and code (`code`, `terminal`, `database`, `bar-chart`) - `padIconNames ()` lists them all |
+| first parameter | The name, a file of `pad/icons/types/`: arrows and movement (`arrow-right`, `chevron-down`, `chevrons-right`, `undo`, `redo`, `refresh`, `move`, `trending-up` ...), marks and shapes (`check`, `x`, `plus`, `info`, `alert`, `alert-circle`, `ban`, `star`, `heart`, `thumb-up`, `smile`, `shield` ...), layout and text (`home`, `menu`, `grid`, `table`, `sidebar`, `search`, `zoom-in`, `settings`, `cog`, `align-left`, `toggle-on` ...), people and talk (`user`, `user-plus`, `mail`, `chat`, `bell`, `wifi`, `rss` ...), files and office (`file`, `file-text`, `folder`, `save`, `clipboard`, `paperclip`, `book`, `qr-code`, `barcode` ...), media (`play`, `pause`, `mic`, `volume`, `mute`, `music`, `video` ...), devices and code (`monitor`, `laptop`, `cpu`, `server`, `bug`, `git-branch`, `code`, `terminal`, `database` ...), money and trade (`cart`, `credit-card`, `wallet`, `package`, `truck`, `chart-line`, `chart-pie` ...), time, places and nature (`calendar`, `clock`, `history`, `map`, `compass`, `sun`, `cloud-rain`, `leaf`, `flame` ...) - `padIconNames ()` lists them all |
 | `size` | Width and height in pixels, default 20 |
 | `label` | The accessible name: the icon becomes `role="img"` with `aria-label` and `<title>` |
 | `stroke` | The line width on the 24-unit grid, default 2 |

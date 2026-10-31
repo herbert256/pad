@@ -1,0 +1,276 @@
+<p><b>{barcode}</b> and <b>{qr}</b> write a code a scanner reads. It is encoded on the server and
+drawn as inline SVG - no image library, no font, no remote service - so a page with a code prints,
+caches and goes in an e-mail like any other. There are 13
+symbologies, every one a file of <code>pad/codes/types/</code>. Twelve or thirteen digits are an
+EAN-13, with the check digit added when it is left off; any other text is Code 128.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/codes_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>871234567890<font color="black">'</font></font>/}</b><br><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>PAD-2026-0042<font color="black">'</font><font color="black">,</font> height=50</font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="74" viewBox="0 0 234 74" shape-rendering="crispEdges"><title>8712345678906</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM30,0h6v60h-6zM38,0h4v60h-4zM44,0h4v60h-4zM52,0h4v60h-4zM60,0h2v60h-2zM66,0h4v60h-4zM72,0h2v60h-2zM82,0h2v60h-2zM88,0h6v60h-6zM96,0h2v60h-2zM100,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v60h-2zM126,0h2v60h-2zM136,0h2v60h-2zM144,0h2v60h-2zM150,0h2v60h-2zM156,0h2v60h-2zM164,0h6v60h-6zM172,0h2v60h-2zM178,0h6v60h-6zM188,0h2v60h-2zM192,0h2v60h-2zM196,0h2v60h-2zM206,0h2v66h-2zM210,0h2v66h-2z"/><text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">8</text><text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="72" lengthAdjust="spacing">712345</text><text x="164" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="72" lengthAdjust="spacing">678906</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="374" height="64" viewBox="0 0 374 64" shape-rendering="crispEdges"><title>PAD-2026-0042</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M20,0h4v50h-4zM26,0h2v50h-2zM32,0h2v50h-2zM42,0h6v50h-6zM50,0h6v50h-6zM58,0h4v50h-4zM64,0h2v50h-2zM68,0h2v50h-2zM76,0h4v50h-4zM86,0h2v50h-2zM90,0h4v50h-4zM100,0h2v50h-2zM108,0h2v50h-2zM114,0h4v50h-4zM120,0h6v50h-6zM130,0h4v50h-4zM138,0h6v50h-6zM148,0h2v50h-2zM152,0h2v50h-2zM158,0h6v50h-6zM166,0h4v50h-4zM174,0h4v50h-4zM182,0h6v50h-6zM192,0h2v50h-2zM196,0h4v50h-4zM204,0h6v50h-6zM212,0h2v50h-2zM218,0h2v50h-2zM224,0h4v50h-4zM230,0h6v50h-6zM240,0h2v50h-2zM244,0h6v50h-6zM252,0h8v50h-8zM262,0h4v50h-4zM268,0h4v50h-4zM276,0h4v50h-4zM284,0h2v50h-2zM288,0h4v50h-4zM294,0h6v50h-6zM306,0h2v50h-2zM314,0h2v50h-2zM320,0h4v50h-4zM328,0h4v50h-4zM338,0h6v50h-6zM346,0h2v50h-2zM350,0h4v50h-4z"/><text x="187" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">PAD-2026-0042</text></svg>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Three ways to write one</h2>
+
+<p><code>type=</code> on the tag names the symbology: <code>{barcode '0425261', type='upce'/}</code>.
+The barcode type does the same, <code>{barcode:upce '0425261'/}</code>, and so does the
+name alone, <code>{upce '0425261'/}</code>, as long as no tag, store, field or sequence
+has that name. All three draw the same UPC-E.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/codes_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>upce<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">barcode</font><font color="black"><b>:</b></font>upce </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font></font>/}</b><br><b>{<font color="blue">upce </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font></font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewBox="0 0 146 74" shape-rendering="crispEdges"><title>04252614</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"/><text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">0</text><text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="72" lengthAdjust="spacing">425261</text><text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">4</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewBox="0 0 146 74" shape-rendering="crispEdges"><title>04252614</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"/><text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">0</text><text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="72" lengthAdjust="spacing">425261</text><text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">4</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewBox="0 0 146 74" shape-rendering="crispEdges"><title>04252614</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"/><text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">0</text><text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="72" lengthAdjust="spacing">425261</text><text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textLength="12" lengthAdjust="spacing">4</text></svg>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Products, parcels and labels</h2>
+
+<p>The product codes - <code>ean13</code>, <code>ean8</code>, <code>upca</code> and
+<code>upce</code> - check the digit a number ends in, or add it. Code 128 and Code 93 take printable
+ASCII, Code 39 capital letters, digits and a few signs, with <code>check</code> for its check
+symbol. <code>itf</code> and <code>itf14</code> are the digits of cartons, <code>codabar</code> the
+code of libraries and blood banks, <code>msi</code> that of shelf labels.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/codes_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">code39 </font><font color="red"><font color="black">'</font>PAD-2026<font color="black">'</font><font color="black">,</font> check<font color="black">,</font> height=40</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">itf14 </font><font color="red"><font color="black">'</font>1540014128876<font color="black">'</font><font color="black">,</font> height=40</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">codabar </font><font color="red"><font color="black">'</font>40156<font color="black">'</font><font color="black">,</font> height=40</font>/}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p><svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="390" height="54" viewBox="0 0 390 54" shape-rendering="crispEdges"><title>PAD-2026</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M20,0h2v40h-2zM28,0h2v40h-2zM32,0h6v40h-6zM40,0h6v40h-6zM48,0h2v40h-2zM52,0h2v40h-2zM56,0h6v40h-6zM64,0h6v40h-6zM72,0h2v40h-2zM80,0h2v40h-2zM84,0h6v40h-6zM92,0h2v40h-2zM96,0h2v40h-2zM104,0h2v40h-2zM108,0h6v40h-6zM116,0h2v40h-2zM120,0h2v40h-2zM124,0h6v40h-6zM136,0h2v40h-2zM140,0h6v40h-6zM148,0h2v40h-2zM156,0h2v40h-2zM160,0h2v40h-2zM164,0h6v40h-6zM172,0h6v40h-6zM180,0h2v40h-2zM184,0h6v40h-6zM196,0h2v40h-2zM200,0h2v40h-2zM204,0h6v40h-6zM212,0h2v40h-2zM216,0h2v40h-2zM224,0h6v40h-6zM232,0h6v40h-6zM240,0h2v40h-2zM244,0h2v40h-2zM248,0h6v40h-6zM260,0h2v40h-2zM264,0h2v40h-2zM268,0h6v40h-6zM276,0h2v40h-2zM280,0h6v40h-6zM292,0h6v40h-6zM300,0h2v40h-2zM304,0h2v40h-2zM308,0h6v40h-6zM316,0h2v40h-2zM324,0h2v40h-2zM328,0h6v40h-6zM336,0h2v40h-2zM340,0h2v40h-2zM348,0h2v40h-2zM352,0h6v40h-6zM360,0h6v40h-6zM368,0h2v40h-2z"/><text x="195" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">PAD-2026</text></svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="310" height="70" viewBox="0 0 310 70" shape-rendering="crispEdges"><title>15400141288763</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M20,8h2v40h-2zM24,8h2v40h-2zM28,8h6v40h-6zM40,8h2v40h-2zM44,8h2v40h-2zM52,8h2v40h-2zM56,8h6v40h-6zM64,8h2v40h-2zM68,8h2v40h-2zM72,8h6v40h-6zM84,8h2v40h-2zM92,8h6v40h-6zM100,8h2v40h-2zM108,8h2v40h-2zM112,8h6v40h-6zM120,8h6v40h-6zM128,8h2v40h-2zM136,8h2v40h-2zM144,8h2v40h-2zM148,8h6v40h-6zM156,8h2v40h-2zM160,8h6v40h-6zM172,8h2v40h-2zM180,8h6v40h-6zM188,8h2v40h-2zM192,8h2v40h-2zM200,8h6v40h-6zM208,8h6v40h-6zM216,8h2v40h-2zM220,8h2v40h-2zM224,8h6v40h-6zM236,8h2v40h-2zM244,8h2v40h-2zM252,8h6v40h-6zM264,8h6v40h-6zM272,8h2v40h-2zM276,8h2v40h-2zM280,8h6v40h-6zM288,8h2v40h-2zM0,0h310v8h-310zM0,48h310v8h-310z"/><text x="155" y="67.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">15400141288763</text></svg></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="214" height="54" viewBox="0 0 214 54" shape-rendering="crispEdges"><title>40156</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M20,0h2v40h-2zM24,0h6v40h-6zM36,0h2v40h-2zM44,0h2v40h-2zM48,0h2v40h-2zM52,0h6v40h-6zM60,0h2v40h-2zM68,0h2v40h-2zM72,0h2v40h-2zM76,0h2v40h-2zM80,0h2v40h-2zM88,0h6v40h-6zM96,0h2v40h-2zM100,0h2v40h-2zM104,0h6v40h-6zM116,0h2v40h-2zM120,0h6v40h-6zM128,0h2v40h-2zM132,0h2v40h-2zM140,0h2v40h-2zM144,0h2v40h-2zM152,0h2v40h-2zM156,0h2v40h-2zM160,0h6v40h-6zM168,0h2v40h-2zM172,0h6v40h-6zM184,0h2v40h-2zM192,0h2v40h-2z"/><text x="107" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">40156</text></svg></p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Two-dimensional codes</h2>
+
+<p><code>qr</code> is the code of <b>{qr}</b>, which a phone camera reads; <code>datamatrix</code>
+the square code of parts and medicine packs. Both take any text and choose the smallest symbol that
+holds it, and both take <code>size=</code> in pixels in place of the height and scale of the bars.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/codes_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">qr </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//example.com/order/42<font color="black">'</font><font color="black">,</font> size=140</font>/}</b><br><b>{<font color="blue">datamatrix </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//example.com/order/42<font color="black">'</font><font color="black">,</font> size=120</font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="140" height="140" viewBox="0 0 37 37" shape-rendering="crispEdges"><title>https://example.com/order/42</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M4,4h7v1h-7zM13,4h2v1h-2zM16,4h4v1h-4zM22,4h3v1h-3zM26,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM14,5h1v1h-1zM16,5h5v1h-5zM26,5h1v1h-1zM32,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM17,6h1v1h-1zM19,6h1v1h-1zM22,6h2v1h-2zM26,6h1v1h-1zM28,6h3v1h-3zM32,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h1v1h-1zM14,7h3v1h-3zM18,7h2v1h-2zM21,7h1v1h-1zM24,7h1v1h-1zM26,7h1v1h-1zM28,7h3v1h-3zM32,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM12,8h2v1h-2zM19,8h2v1h-2zM22,8h3v1h-3zM26,8h1v1h-1zM28,8h3v1h-3zM32,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM12,9h5v1h-5zM24,9h1v1h-1zM26,9h1v1h-1zM32,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM26,10h7v1h-7zM12,11h1v1h-1zM14,11h1v1h-1zM16,11h1v1h-1zM18,11h1v1h-1zM20,11h1v1h-1zM23,11h2v1h-2zM4,12h1v1h-1zM6,12h5v1h-5zM14,12h1v1h-1zM16,12h1v1h-1zM20,12h2v1h-2zM23,12h1v1h-1zM26,12h5v1h-5zM6,13h4v1h-4zM14,13h1v1h-1zM17,13h3v1h-3zM23,13h2v1h-2zM26,13h3v1h-3zM32,13h1v1h-1zM4,14h5v1h-5zM10,14h1v1h-1zM12,14h1v1h-1zM14,14h2v1h-2zM17,14h6v1h-6zM24,14h2v1h-2zM27,14h2v1h-2zM5,15h1v1h-1zM7,15h1v1h-1zM13,15h1v1h-1zM17,15h1v1h-1zM19,15h1v1h-1zM22,15h4v1h-4zM27,15h1v1h-1zM29,15h1v1h-1zM31,15h1v1h-1zM6,16h3v1h-3zM10,16h1v1h-1zM12,16h2v1h-2zM16,16h1v1h-1zM18,16h2v1h-2zM21,16h3v1h-3zM29,16h2v1h-2zM5,17h3v1h-3zM11,17h1v1h-1zM13,17h1v1h-1zM15,17h1v1h-1zM19,17h5v1h-5zM25,17h4v1h-4zM32,17h1v1h-1zM4,18h2v1h-2zM7,18h1v1h-1zM9,18h2v1h-2zM12,18h1v1h-1zM15,18h2v1h-2zM21,18h1v1h-1zM24,18h1v1h-1zM26,18h5v1h-5zM4,19h1v1h-1zM6,19h3v1h-3zM12,19h1v1h-1zM14,19h2v1h-2zM18,19h1v1h-1zM20,19h1v1h-1zM24,19h2v1h-2zM28,19h1v1h-1zM31,19h1v1h-1zM4,20h2v1h-2zM7,20h1v1h-1zM9,20h3v1h-3zM13,20h1v1h-1zM15,20h2v1h-2zM20,20h4v1h-4zM29,20h2v1h-2zM4,21h5v1h-5zM11,21h1v1h-1zM13,21h3v1h-3zM17,21h3v1h-3zM23,21h6v1h-6zM30,21h1v1h-1zM32,21h1v1h-1zM4,22h1v1h-1zM6,22h2v1h-2zM10,22h2v1h-2zM13,22h2v1h-2zM17,22h4v1h-4zM24,22h1v1h-1zM28,22h1v1h-1zM30,22h1v1h-1zM4,23h1v1h-1zM13,23h1v1h-1zM15,23h1v1h-1zM17,23h1v1h-1zM19,23h1v1h-1zM22,23h3v1h-3zM31,23h1v1h-1zM4,24h1v1h-1zM6,24h3v1h-3zM10,24h1v1h-1zM12,24h2v1h-2zM18,24h2v1h-2zM21,24h8v1h-8zM30,24h3v1h-3zM12,25h1v1h-1zM14,25h2v1h-2zM19,25h2v1h-2zM24,25h1v1h-1zM28,25h5v1h-5zM4,26h7v1h-7zM14,26h2v1h-2zM21,26h4v1h-4zM26,26h1v1h-1zM28,26h3v1h-3zM4,27h1v1h-1zM10,27h1v1h-1zM12,27h1v1h-1zM15,27h1v1h-1zM18,27h1v1h-1zM20,27h1v1h-1zM22,27h3v1h-3zM28,27h1v1h-1zM31,27h1v1h-1zM4,28h1v1h-1zM6,28h3v1h-3zM10,28h1v1h-1zM12,28h1v1h-1zM14,28h1v1h-1zM20,28h1v1h-1zM22,28h1v1h-1zM24,28h5v1h-5zM30,28h1v1h-1zM32,28h1v1h-1zM4,29h1v1h-1zM6,29h3v1h-3zM10,29h1v1h-1zM12,29h2v1h-2zM15,29h1v1h-1zM18,29h2v1h-2zM21,29h5v1h-5zM27,29h1v1h-1zM29,29h2v1h-2zM4,30h1v1h-1zM6,30h3v1h-3zM10,30h1v1h-1zM12,30h2v1h-2zM17,30h5v1h-5zM25,30h7v1h-7zM4,31h1v1h-1zM10,31h1v1h-1zM13,31h1v1h-1zM16,31h1v1h-1zM18,31h2v1h-2zM21,31h2v1h-2zM24,31h1v1h-1zM26,31h4v1h-4zM31,31h1v1h-1zM4,32h7v1h-7zM12,32h1v1h-1zM16,32h1v1h-1zM19,32h1v1h-1zM23,32h1v1h-1zM25,32h4v1h-4zM30,32h1v1h-1z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="pad-datamatrix" role="img" width="120" height="120" viewBox="0 0 26 26" shape-rendering="crispEdges"><title>https://example.com/order/42</title><rect width="100%" height="100%" fill="#fff"/><path fill="#000" d="M2,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM8,2h1v1h-1zM10,2h1v1h-1zM12,2h1v1h-1zM14,2h1v1h-1zM16,2h1v1h-1zM18,2h1v1h-1zM20,2h1v1h-1zM22,2h1v1h-1zM2,3h1v1h-1zM4,3h2v1h-2zM7,3h3v1h-3zM12,3h2v1h-2zM15,3h2v1h-2zM19,3h1v1h-1zM23,3h1v1h-1zM2,4h3v1h-3zM7,4h1v1h-1zM10,4h3v1h-3zM16,4h2v1h-2zM19,4h4v1h-4zM2,5h2v1h-2zM5,5h3v1h-3zM10,5h1v1h-1zM13,5h2v1h-2zM16,5h2v1h-2zM20,5h2v1h-2zM23,5h1v1h-1zM2,6h2v1h-2zM6,6h1v1h-1zM9,6h1v1h-1zM11,6h1v1h-1zM13,6h4v1h-4zM18,6h2v1h-2zM22,6h1v1h-1zM2,7h5v1h-5zM8,7h3v1h-3zM12,7h1v1h-1zM17,7h3v1h-3zM23,7h1v1h-1zM2,8h1v1h-1zM5,8h3v1h-3zM11,8h2v1h-2zM15,8h1v1h-1zM17,8h1v1h-1zM19,8h2v1h-2zM2,9h2v1h-2zM6,9h1v1h-1zM8,9h1v1h-1zM10,9h2v1h-2zM13,9h1v1h-1zM15,9h1v1h-1zM17,9h2v1h-2zM20,9h1v1h-1zM22,9h2v1h-2zM2,10h1v1h-1zM5,10h3v1h-3zM9,10h1v1h-1zM14,10h1v1h-1zM21,10h1v1h-1zM2,11h1v1h-1zM4,11h1v1h-1zM7,11h2v1h-2zM10,11h2v1h-2zM13,11h2v1h-2zM16,11h2v1h-2zM19,11h1v1h-1zM23,11h1v1h-1zM2,12h2v1h-2zM8,12h2v1h-2zM14,12h2v1h-2zM18,12h2v1h-2zM21,12h1v1h-1zM2,13h3v1h-3zM6,13h2v1h-2zM9,13h1v1h-1zM13,13h1v1h-1zM16,13h1v1h-1zM19,13h5v1h-5zM2,14h1v1h-1zM5,14h1v1h-1zM9,14h1v1h-1zM11,14h1v1h-1zM13,14h2v1h-2zM17,14h1v1h-1zM21,14h1v1h-1zM2,15h1v1h-1zM4,15h2v1h-2zM9,15h1v1h-1zM13,15h3v1h-3zM17,15h2v1h-2zM23,15h1v1h-1zM2,16h2v1h-2zM7,16h2v1h-2zM11,16h1v1h-1zM13,16h2v1h-2zM17,16h4v1h-4zM22,16h1v1h-1zM2,17h2v1h-2zM6,17h1v1h-1zM11,17h1v1h-1zM13,17h4v1h-4zM23,17h1v1h-1zM2,18h5v1h-5zM9,18h2v1h-2zM12,18h1v1h-1zM14,18h1v1h-1zM17,18h1v1h-1zM19,18h1v1h-1zM21,18h2v1h-2zM2,19h1v1h-1zM4,19h1v1h-1zM6,19h3v1h-3zM10,19h5v1h-5zM16,19h2v1h-2zM23,19h1v1h-1zM2,20h2v1h-2zM6,20h1v1h-1zM8,20h2v1h-2zM12,20h3v1h-3zM16,20h1v1h-1zM20,20h1v1h-1zM2,21h3v1h-3zM10,21h3v1h-3zM15,21h1v1h-1zM18,21h1v1h-1zM21,21h3v1h-3zM2,22h1v1h-1zM4,22h2v1h-2zM7,22h4v1h-4zM13,22h1v1h-1zM15,22h3v1h-3zM19,22h1v1h-1zM21,22h1v1h-1zM2,23h22v1h-22z"/></svg>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The colours are black on white unless <code>color=</code> and <code>background=</code> say
+  otherwise - fixed, whatever the page's colour scheme, as a scanner needs the contrast.</li>
+  <li>The SVG is <code>role="img"</code> with the text, or <code>title=</code>, as its name.</li>
+  <li>A wrong check digit, a character the symbology has no bars for or a text too long for it is
+  an error under the strict check, and nothing is drawn.</li>
+</ul>

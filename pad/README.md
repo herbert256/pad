@@ -13,6 +13,7 @@ pad/
 ├── callback/      # Callback execution
 ├── config/        # Configuration
 ├── charts/       # Chart subsystem (a kind per file of charts/types/)
+├── codes/         # Codes subsystem (a barcode symbology per file of codes/types/)
 ├── constructs/    # @name@ construct handlers
 ├── data/          # Data format handlers (CSV, JSON, XML, YAML)
 ├── database/      # SQL schema definitions
@@ -26,6 +27,7 @@ pad/
 ├── games/         # Games subsystem (a game per file of games/types/)
 ├── get/           # Content retrieval
 ├── handling/      # Data post-processing (sort, page, dedup)
+├── icons/         # Icon subsystem (an icon per file of icons/types/)
 ├── info/          # Debugging and tracing
 ├── inits/         # Initialization
 ├── install/       # Installation scripts
@@ -59,6 +61,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | callback/ | Callback execution at lifecycle stages |
 | config/ | Framework configuration and presets |
 | charts/ | The chart subsystem - `{chart}`, `{sparkline}` and the `chart:` type; a chart kind is a file of `charts/types/`, its drawing in `charts/_lib/` |
+| codes/ | The codes subsystem - `{barcode}`, `{qr}` and the `barcode:` type; a symbology is a file of `codes/types/`, its encoder and the SVG writers in `codes/_lib/` |
 | constructs/ | `@name@` construct handlers (page, content, start, end, tidy) |
 | data/ | Data format handlers (CSV, JSON, XML, YAML) |
 | database/ | SQL schema definitions for PAD internal database |
@@ -72,6 +75,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | games/ | The games subsystem - `{game}` and the `game:` type; a game is a file of `games/types/`, its `.js` and `.css` in `games/assets/` beside the runtime's, the sudoku and crossword code in `games/_lib/` |
 | get/ | Variable getter system for content retrieval |
 | handling/ | Data array post-processing (sort, page, dedup) |
+| icons/ | The icon subsystem - `{icon}` and the `icon:` type; an icon is a file of `icons/types/`, `<name>.svg`, drawn by `icons/_lib/icon.php` |
 | info/ | Debugging, tracing, and profiling system |
 | inits/ | Framework initialization and bootstrapping |
 | install/ | Installation scripts for database and web server |

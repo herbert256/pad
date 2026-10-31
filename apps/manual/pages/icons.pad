@@ -1,0 +1,26 @@
+{meta title='Icons'/}
+
+<p>{tag 'icon'/} writes an interface icon of PAD's own set - {echo php:count(padIconNames())/} of
+them, drawn on a 24 by 24 grid as lines in the colour of the text around it, written as inline SVG.
+Beside text an icon is decoration that a screen reader skips; alone in a button or a link it gets
+<code>label=</code> and is read out by that name.</p>
+
+{example 'fragments/icons_1'/}
+
+<h2>An icon is a file</h2>
+
+<p>Every icon is a file of <code>pad/icons/types/</code>, <code>&lt;name&gt;.svg</code> - a whole SVG
+that a browser shows as it is - and the files there are the icons there are. The icon type writes one
+by its name, <code>{open/}icon:cloud-upload/{close/}</code>; the names are never used alone, as they
+are the names of fields and pages too. <code>size=</code> and <code>stroke=</code> are the size in
+pixels and the width of the lines.</p>
+
+{example 'fragments/icons_2'/}
+
+<ul>
+  <li><code>padIconNames ()</code> lists the icons for a page's PHP, and the showcase draws
+  <a href="../showcase/?icon/gallery">every icon</a> by its name.</li>
+  <li>Each icon has the classes <code>pad-icon pad-icon-&lt;name&gt;</code> for styling.</li>
+  <li>A name that is no icon is an error under the strict check, which names the icons close to
+  it.</li>
+</ul>
