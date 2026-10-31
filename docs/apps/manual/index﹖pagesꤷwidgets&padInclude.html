@@ -1,0 +1,376 @@
+
+
+<p><b>{widget}</b> puts an interactive part on the page - tabs, an accordion, a carousel, a modal,
+a dropdown, a toast and more, 13 of them. Every one is built on
+the server and works without JavaScript; where a widget has a script it only makes it handier,
+and it is written once per page with the CSP nonce. Every widget is a file of
+<code>pad/widgets/types/</code>, and the files there are the widgets there are.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/widgets_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">tabs </font><font color="red">active=<font color="black">'</font>Specs<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>Overview<font color="black">'</font></font>}</b>&lt;p&gt;A kettle in steel.&lt;/p&gt;<b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>  <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>Specs<font color="black">'</font></font>}</b>&lt;p&gt;1.7 litres, 2200 W.&lt;/p&gt;<b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>  <b>{<font color="blue">tab </font><font color="red"><font color="black">'</font>Delivery<font color="black">'</font></font>}</b>&lt;p&gt;Tomorrow.&lt;/p&gt;<b>{/<font color="blue">tab</font><font color="red"></font>}</b><br><b>{/<font color="blue">tabs</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-tabs){--pad-tabs-accent:#2a78d6;--pad-tabs-text:#1f1f1d;--pad-tabs-muted:#62615c;--pad-tabs-line:#e4e3df;}@supports (color:light-dark(#000,#fff)){:where(.pad-tabs){--pad-tabs-accent:light-dark(#2a78d6,#5598e7);--pad-tabs-text:light-dark(#1f1f1d,#ecebe6);--pad-tabs-muted:light-dark(#62615c,#a9a8a0);--pad-tabs-line:light-dark(#e4e3df,#3a3a37);}}.pad-tabs{display:flex;flex-wrap:wrap;align-items:flex-end;margin:0 0 1em}.pad-tabs-radio{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}.pad-tabs-label{position:relative;z-index:1;margin-bottom:-1px;padding:.55em 1em;border-bottom:2px solid transparent;color:var(--pad-tabs-muted);font-weight:500;cursor:pointer;user-select:none}.pad-tabs-label:hover{color:var(--pad-tabs-text)}.pad-tabs-radio:checked+.pad-tabs-label{color:var(--pad-tabs-text);border-bottom-color:var(--pad-tabs-accent)}.pad-tabs-radio:focus-visible+.pad-tabs-label{outline:2px solid var(--pad-tabs-accent);outline-offset:-2px;border-radius:6px 6px 0 0}.pad-tabs-panel{display:none;flex:1 0 100%;order:1;padding:1em 0 0;border-top:1px solid var(--pad-tabs-line)}.pad-tabs>.pad-tabs-radio:nth-of-type(1):checked~.pad-tabs-panel:nth-of-type(1){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(2):checked~.pad-tabs-panel:nth-of-type(2){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(3):checked~.pad-tabs-panel:nth-of-type(3){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(4):checked~.pad-tabs-panel:nth-of-type(4){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(5):checked~.pad-tabs-panel:nth-of-type(5){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(6):checked~.pad-tabs-panel:nth-of-type(6){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(7):checked~.pad-tabs-panel:nth-of-type(7){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(8):checked~.pad-tabs-panel:nth-of-type(8){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(9):checked~.pad-tabs-panel:nth-of-type(9){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(10):checked~.pad-tabs-panel:nth-of-type(10){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(11):checked~.pad-tabs-panel:nth-of-type(11){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(12):checked~.pad-tabs-panel:nth-of-type(12){display:block}@media print{.pad-tabs-panel{display:block}}</style><div class="pad-tabs" id="pad-tabs-69e1643a"><input class="pad-tabs-radio" type="radio" name="pad-tabs-69e1643a" id="pad-tabs-69e1643a-1" aria-controls="pad-tabs-69e1643a-1-panel"><label class="pad-tabs-label" for="pad-tabs-69e1643a-1" id="pad-tabs-69e1643a-1-label">Overview</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-69e1643a" id="pad-tabs-69e1643a-2" aria-controls="pad-tabs-69e1643a-2-panel" checked><label class="pad-tabs-label" for="pad-tabs-69e1643a-2" id="pad-tabs-69e1643a-2-label">Specs</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-69e1643a" id="pad-tabs-69e1643a-3" aria-controls="pad-tabs-69e1643a-3-panel"><label class="pad-tabs-label" for="pad-tabs-69e1643a-3" id="pad-tabs-69e1643a-3-label">Delivery</label><div class="pad-tabs-panel" id="pad-tabs-69e1643a-1-panel" role="region" aria-labelledby="pad-tabs-69e1643a-1-label"><p>A kettle in steel.</p></div><div class="pad-tabs-panel" id="pad-tabs-69e1643a-2-panel" role="region" aria-labelledby="pad-tabs-69e1643a-2-label"><p>1.7 litres, 2200 W.</p></div><div class="pad-tabs-panel" id="pad-tabs-69e1643a-3-panel" role="region" aria-labelledby="pad-tabs-69e1643a-3-label"><p>Tomorrow.</p></div></div>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Three ways to write one</h2>
+
+<p>The tag names the widget, and its second parameter is the widget's own first:
+<code>{widget 'toast', 'Saved'/}</code>. The widget: type does the same,
+<code>{widget:toast 'Saved'/}</code>, and so does the bare name,
+<code>{toast 'Saved'/}</code>. The bare name comes after every other kind of tag:
+a store, a field or an array of the name wins, so a page's <code>$tabs</code> array is the data
+of <code>{tabs}</code>.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/widgets_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">widget </font><font color="red"><font color="black">'</font>toast<font color="black">'</font><font color="black">,</font> <font color="black">'</font>The widget tag<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>success<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>toast </font><font color="red"><font color="black">'</font>The widget<font color="black">:</font> type<font color="black">'</font></font>/}</b><br><b>{<font color="blue">toast </font><font color="red"><font color="black">'</font>The bare name<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>warning<font color="black">'</font></font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-toast){--pad-toast-text:#1f1f1d;--pad-toast-muted:#4f4e4a;--pad-toast-line:#e4e3df;--pad-toast-surface:#ffffff;--pad-toast-info:#2a78d6;--pad-toast-success:#127a52;--pad-toast-warning:#b46b00;--pad-toast-error:#c62f2e;}@supports (color:light-dark(#000,#fff)){:where(.pad-toast){--pad-toast-text:light-dark(#1f1f1d,#ecebe6);--pad-toast-muted:light-dark(#4f4e4a,#bdbcb4);--pad-toast-line:light-dark(#e4e3df,#3a3a37);--pad-toast-surface:light-dark(#ffffff,#242422);--pad-toast-info:light-dark(#2a78d6,#5598e7);--pad-toast-success:light-dark(#127a52,#4fc794);--pad-toast-warning:light-dark(#b46b00,#f0a63a);--pad-toast-error:light-dark(#c62f2e,#ef6b6a);}}.pad-toast{position:static;display:flex;align-items:flex-start;gap:.75em;box-sizing:border-box;width:auto;max-width:32rem;margin:0 0 1em;padding:.8em .8em .8em 1em;border:1px solid var(--pad-toast-line);border-left:4px solid var(--pad-toast-tone);border-radius:10px;background:var(--pad-toast-surface);color:var(--pad-toast-text);box-shadow:0 6px 20px rgba(0,0,0,.12)}.pad-toast:not([open]){display:none}.pad-toast-info{--pad-toast-tone:var(--pad-toast-info)}.pad-toast-success{--pad-toast-tone:var(--pad-toast-success)}.pad-toast-warning{--pad-toast-tone:var(--pad-toast-warning)}.pad-toast-error{--pad-toast-tone:var(--pad-toast-error)}.pad-toast-top,.pad-toast-bottom{position:fixed;z-index:2147482000;inset:auto 1rem auto auto;width:min(24rem,calc(100vw - 2rem));margin:0}.pad-toast-top{top:1rem}.pad-toast-bottom{bottom:1rem}.pad-toast-body{flex:1;min-width:0}.pad-toast-title{margin:0;font-weight:650;line-height:1.35}.pad-toast-text{color:var(--pad-toast-muted);line-height:1.45}.pad-toast-title+.pad-toast-text{margin-top:.2em}.pad-toast-text>:first-child{margin-top:0}.pad-toast-text>:last-child{margin-bottom:0}.pad-toast-form{flex:none;margin:0}.pad-toast-close{display:flex;align-items:center;justify-content:center;width:1.8em;height:1.8em;margin:-.3em -.3em 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-toast-muted);font:inherit;font-size:1.2em;line-height:1;cursor:pointer}.pad-toast-close:hover{background:var(--pad-toast-line);color:var(--pad-toast-text)}.pad-toast-close:focus-visible{outline:2px solid var(--pad-toast-tone);outline-offset:2px}@keyframes pad-toast-in{from{opacity:0;transform:translateY(-.5rem)}}@media (prefers-reduced-motion:no-preference){.pad-toast-top,.pad-toast-bottom{animation:pad-toast-in .2s ease-out}}@media print{.pad-toast{display:none}}</style><dialog open class="pad-toast pad-toast-success" id="pad-toast-16963cbc" aria-labelledby="pad-toast-16963cbc-title"><div class="pad-toast-body" role="status"><p class="pad-toast-title" id="pad-toast-16963cbc-title">The widget tag</p></div><form class="pad-toast-form" method="dialog"><button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">&#215;</span></button></form></dialog>
+<dialog open class="pad-toast pad-toast-info" id="pad-toast-a5c48f52" aria-labelledby="pad-toast-a5c48f52-title"><div class="pad-toast-body" role="status"><p class="pad-toast-title" id="pad-toast-a5c48f52-title">The widget: type</p></div><form class="pad-toast-form" method="dialog"><button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">&#215;</span></button></form></dialog>
+<dialog open class="pad-toast pad-toast-warning" id="pad-toast-8f80ef9e" aria-labelledby="pad-toast-8f80ef9e-title"><div class="pad-toast-body" role="alert"><p class="pad-toast-title" id="pad-toast-8f80ef9e-title">The bare name</p></div><form class="pad-toast-form" method="dialog"><button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">&#215;</span></button></form></dialog>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>What the browser does itself</h2>
+
+<p>Each widget stands on what HTML and CSS can do: radio buttons and CSS for tabs and the wizard,
+<code>&lt;details&gt;</code> for the accordion, a <code>&lt;dialog&gt;</code> for the modal, the
+drawer and the toast, the <code>popover</code> attribute for the dropdown, <code>:hover</code>
+and <code>:focus-within</code> for the tooltip, <code>:target</code> for the carousel's links and
+the lightbox. The keyboard works because the browser's own controls are underneath; the scripts
+add the arrow keys of a menu, Escape on a tooltip, the focus of a lightbox.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/widgets_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">dropdown </font><font color="red"><font color="black">'</font>Sort<font color="black">'</font></font>}</b><br>  &lt;a href="?pages/widgets"&gt;By name&lt;/a&gt;<br>  &lt;a href="?pages/widgets"&gt;By price&lt;/a&gt;<br><b>{/<font color="blue">dropdown</font><font color="red"></font>}</b><br>&lt;div&gt;The <b>{<font color="blue">tooltip </font><font color="red"><font color="black">'</font>Billed monthly<font color="black">'</font></font>}</b>Starter<b>{/<font color="blue">tooltip</font><font color="red"></font>}</b> plan.&lt;/div&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-dropdown){--pad-dropdown-accent:#2a78d6;--pad-dropdown-text:#1f1f1d;--pad-dropdown-muted:#62615c;--pad-dropdown-line:#e4e3df;--pad-dropdown-surface:#ffffff;--pad-dropdown-hover:#f1f0ec;}@supports (color:light-dark(#000,#fff)){:where(.pad-dropdown){--pad-dropdown-accent:light-dark(#2a78d6,#5598e7);--pad-dropdown-text:light-dark(#1f1f1d,#ecebe6);--pad-dropdown-muted:light-dark(#62615c,#a9a8a0);--pad-dropdown-line:light-dark(#e4e3df,#3a3a37);--pad-dropdown-surface:light-dark(#ffffff,#242422);--pad-dropdown-hover:light-dark(#f1f0ec,#30302d);}}.pad-dropdown{position:relative;display:inline-block}.pad-dropdown-button{display:inline-flex;align-items:center;gap:.5em;padding:.5em .9em;border:1px solid var(--pad-dropdown-line);border-radius:8px;background:var(--pad-dropdown-surface);color:var(--pad-dropdown-text);font:inherit;font-weight:550;cursor:pointer}.pad-dropdown-button:hover{border-color:var(--pad-dropdown-muted)}.pad-dropdown-button:focus-visible{outline:2px solid var(--pad-dropdown-accent);outline-offset:2px}.pad-dropdown-caret{width:.4em;height:.4em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-25%) rotate(45deg);opacity:.7}.pad-dropdown-menu{box-sizing:border-box;min-width:12rem;max-width:min(22rem,calc(100vw - 2rem));padding:.35em;border:1px solid var(--pad-dropdown-line);border-radius:10px;background:var(--pad-dropdown-surface);color:var(--pad-dropdown-text);box-shadow:0 10px 30px rgba(0,0,0,.18)}@supports (position-area:bottom){.pad-dropdown-menu{inset:auto;margin:.35em 0;position-area:bottom span-right;position-try-fallbacks:flip-block}.pad-dropdown-end{position-area:bottom span-left}}.pad-dropdown-menu>a,.pad-dropdown-menu>button{display:block;box-sizing:border-box;width:100%;padding:.5em .75em;border:0;border-radius:6px;background:none;color:inherit;font:inherit;text-align:left;text-decoration:none;cursor:pointer}.pad-dropdown-menu>a:hover,.pad-dropdown-menu>button:hover{background:var(--pad-dropdown-hover)}.pad-dropdown-menu>a:focus-visible,.pad-dropdown-menu>button:focus-visible{outline:none;background:var(--pad-dropdown-hover);box-shadow:inset 0 0 0 2px var(--pad-dropdown-accent)}.pad-dropdown-menu>hr{margin:.35em .25em;border:0;border-top:1px solid var(--pad-dropdown-line)}.pad-dropdown-menu>p{margin:.4em .75em;color:var(--pad-dropdown-muted);font-size:.85em}@media print{.pad-dropdown-menu{display:none}}</style><div class="pad-dropdown" id="pad-dropdown-4f725b8c"><button type="button" class="pad-dropdown-button" popovertarget="pad-dropdown-4f725b8c-menu">Sort<span class="pad-dropdown-caret" aria-hidden="true"></span></button><div class="pad-dropdown-menu pad-dropdown-start" id="pad-dropdown-4f725b8c-menu" popover><a href="index%EF%B9%96pages%EA%A4%B7widgets.html">By name</a>
+  <a href="index%EF%B9%96pages%EA%A4%B7widgets.html">By price</a></div></div><script>(function () {
+  if (window.padDropdownReady) return;
+  window.padDropdownReady = true;
+  var anchored = window.CSS && CSS.supports && CSS.supports('position-area: bottom');
+  function items(menu) {
+    return Array.prototype.filter.call(menu.querySelectorAll('a[href], button:not([disabled])'), function (item) {
+      return item.offsetParent !== null || item.getClientRects().length;
+    });
+  }
+  function place(menu) {
+    var button = menu.parentNode.querySelector('.pad-dropdown-button');
+    if (anchored || !button) return;
+    var box = button.getBoundingClientRect();
+    menu.style.inset = 'auto';
+    menu.style.margin = '0';
+    var left = menu.classList.contains('pad-dropdown-end') ? box.right - menu.offsetWidth : box.left;
+    var top = box.bottom + 6;
+    if (top + menu.offsetHeight > innerHeight && box.top - menu.offsetHeight - 6 > 0) top = box.top - menu.offsetHeight - 6;
+    menu.style.left = Math.max(8, Math.min(left, innerWidth - menu.offsetWidth - 8)) + 'px';
+    menu.style.top = Math.max(8, top) + 'px';
+  }
+  document.addEventListener('toggle', function (e) {
+    var menu = e.target;
+    if (menu.classList && menu.classList.contains('pad-dropdown-menu') && e.newState === 'open') place(menu);
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    var target = e.target;
+    if (!target.closest) return;
+    var button = target.closest('.pad-dropdown-button');
+    if (button && e.key === 'ArrowDown') {
+      var opens = button.parentNode.querySelector('.pad-dropdown-menu');
+      if (!opens) return;
+      e.preventDefault();
+      if (!opens.matches(':popover-open')) opens.showPopover({ source: button });
+      var first = items(opens)[0];
+      if (first) first.focus();
+      return;
+    }
+    var menu = target.closest('.pad-dropdown-menu');
+    if (!menu || ['ArrowDown', 'ArrowUp', 'Home', 'End'].indexOf(e.key) < 0) return;
+    var list = items(menu), at = list.indexOf(target);
+    if (!list.length) return;
+    e.preventDefault();
+    if (e.key === 'Home') at = 0;
+    else if (e.key === 'End') at = list.length - 1;
+    else if (e.key === 'ArrowDown') at = (at + 1) % list.length;
+    else at = (at - 1 + list.length) % list.length;
+    list[at].focus();
+  });
+  document.addEventListener('click', function (e) {
+    var item = e.target.closest && e.target.closest('.pad-dropdown-menu a[href], .pad-dropdown-menu button');
+    var menu = item && item.closest('.pad-dropdown-menu');
+    if (menu && menu.matches(':popover-open')) menu.hidePopover();
+  });
+})();</script>
+<div>The <span class="pad-tooltip pad-tooltip-top"><span class="pad-tooltip-trigger" tabindex="0" aria-describedby="pad-tooltip-d9fc621e">Starter</span><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-d9fc621e">Billed monthly</span></span><style>:where(.pad-tooltip){--pad-tooltip-accent:#2a78d6;--pad-tooltip-muted:#62615c;--pad-tooltip-surface:#1f1f1d;--pad-tooltip-on:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-tooltip){--pad-tooltip-accent:light-dark(#2a78d6,#5598e7);--pad-tooltip-muted:light-dark(#62615c,#a9a8a0);--pad-tooltip-surface:light-dark(#1f1f1d,#ecebe6);--pad-tooltip-on:light-dark(#ffffff,#1f1f1d);}}.pad-tooltip{position:relative;display:inline-block}.pad-tooltip-trigger{border-bottom:1px dotted currentColor;cursor:help}.pad-tooltip-trigger:focus-visible{outline:2px solid var(--pad-tooltip-accent);outline-offset:2px;border-radius:3px}.pad-tooltip-info{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:1.25em;height:1.25em;margin:0 .1em;padding:0;border:1.5px solid var(--pad-tooltip-muted);border-radius:50%;background:transparent;color:var(--pad-tooltip-muted);font:italic 700 .8em/1 Georgia,serif;vertical-align:.1em}.pad-tooltip-info:hover{border-color:var(--pad-tooltip-accent);color:var(--pad-tooltip-accent)}.pad-tooltip-tip{position:absolute;z-index:2147481000;left:50%;bottom:calc(100% + 8px);box-sizing:border-box;width:max-content;max-width:min(18rem,80vw);padding:.4em .65em;border-radius:6px;background:var(--pad-tooltip-surface);color:var(--pad-tooltip-on);font-size:.85rem;font-weight:400;font-style:normal;line-height:1.35;text-align:left;white-space:normal;transform:translateX(calc(-50% + var(--pad-tooltip-shift,0px)));visibility:hidden;opacity:0;transition:opacity .12s,visibility .12s}.pad-tooltip-tip::before{content:"";position:absolute;left:0;right:0;top:100%;height:10px}.pad-tooltip-tip::after{content:"";position:absolute;left:calc(50% - 5px - var(--pad-tooltip-shift,0px));top:100%;border:5px solid transparent;border-top-color:var(--pad-tooltip-surface)}.pad-tooltip-bottom>.pad-tooltip-tip{top:calc(100% + 8px);bottom:auto}.pad-tooltip-bottom>.pad-tooltip-tip::before{top:auto;bottom:100%}.pad-tooltip-bottom>.pad-tooltip-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--pad-tooltip-surface)}.pad-tooltip:hover>.pad-tooltip-tip,.pad-tooltip:focus-within>.pad-tooltip-tip{visibility:visible;opacity:1}.pad-tooltip.is-dismissed>.pad-tooltip-tip{visibility:hidden;opacity:0}@media (prefers-reduced-motion:reduce){.pad-tooltip-tip{transition:none}}@media print{.pad-tooltip-tip{display:none}}</style><script>(function () {
+  if (window.padTooltipReady) return;
+  window.padTooltipReady = true;
+  function fit(e) {
+    var tooltip = e.target.closest && e.target.closest('.pad-tooltip');
+    var tip = tooltip && tooltip.querySelector(':scope > .pad-tooltip-tip');
+    if (!tip) return;
+    tip.style.setProperty('--pad-tooltip-shift', '0px');
+    var box = tip.getBoundingClientRect(), room = document.documentElement.clientWidth, shift = 0;
+    if (box.left < 8) shift = 8 - box.left;
+    else if (box.right > room - 8) shift = room - 8 - box.right;
+    tip.style.setProperty('--pad-tooltip-shift', Math.round(shift) + 'px');
+  }
+  document.addEventListener('mouseover', fit);
+  document.addEventListener('focusin', fit);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.pad-tooltip:hover, .pad-tooltip:focus-within').forEach(function (tooltip) {
+      tooltip.classList.add('is-dismissed');
+    });
+  });
+  function again(e) {
+    var tooltip = e.target.closest && e.target.closest('.pad-tooltip.is-dismissed');
+    if (tooltip && !tooltip.contains(e.relatedTarget)) tooltip.classList.remove('is-dismissed');
+  }
+  document.addEventListener('mouseout', again);
+  document.addEventListener('focusout', again);
+})();</script> plan.</div>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Items made by a loop</h2>
+
+<p>Tabs, an accordion, a carousel, a wizard and a lightbox take <b>{tab}</b> items. A tab hands
+its content to the nearest of them above it, so it may stand in an <code>{if}</code>
+or in a loop over data - a step per row of a <code>{data}</code> store here.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/widgets_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b><br>  ["Order", "Pack", "Deliver"]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">wizard</font><font color="red"></font>}</b><br>  <b>{<font color="blue">steps</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tab </font><font color="red"><font color="red">$</font>steps</font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>steps</font>}</b>.&lt;/p&gt;<b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">steps</font><font color="red"></font>}</b><br><b>{/<font color="blue">wizard</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+<style>:where(.pad-wizard){--pad-wizard-accent:#2a78d6;--pad-wizard-on:#ffffff;--pad-wizard-text:#1f1f1d;--pad-wizard-muted:#62615c;--pad-wizard-line:#d9d8d3;--pad-wizard-surface:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-wizard){--pad-wizard-accent:light-dark(#2a78d6,#5598e7);--pad-wizard-on:light-dark(#ffffff,#0d1b2e);--pad-wizard-text:light-dark(#1f1f1d,#ecebe6);--pad-wizard-muted:light-dark(#62615c,#a9a8a0);--pad-wizard-line:light-dark(#d9d8d3,#3f3f3c);--pad-wizard-surface:light-dark(#ffffff,#1f1f1d);}}.pad-wizard{display:flex;flex-wrap:wrap;align-items:flex-start;margin:0 0 1em;color:var(--pad-wizard-text)}.pad-wizard-radio{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}.pad-wizard-step{position:relative;flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:.4em;min-width:0;padding:0 .3em .9em;color:var(--pad-wizard-muted);font-size:.92em;font-weight:500;text-align:center;cursor:pointer;user-select:none}.pad-wizard-step::before{content:"";position:absolute;top:1em;right:50%;width:100%;height:2px;margin-top:-1px;background:var(--pad-wizard-line)}.pad-wizard>.pad-wizard-step:first-of-type::before{display:none}.pad-wizard-number{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:2em;height:2em;border:2px solid var(--pad-wizard-line);border-radius:50%;background:var(--pad-wizard-surface);font-weight:650}.pad-wizard-name{overflow-wrap:anywhere}.pad-wizard-of{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.pad-wizard-step:hover{color:var(--pad-wizard-text)}.pad-wizard-step:has(~.pad-wizard-radio:checked) .pad-wizard-number{border-color:var(--pad-wizard-accent);color:var(--pad-wizard-accent)}.pad-wizard-step:has(~.pad-wizard-radio:checked)::before,.pad-wizard-radio:checked+.pad-wizard-step::before{background:var(--pad-wizard-accent)}.pad-wizard-radio:checked+.pad-wizard-step{color:var(--pad-wizard-text)}.pad-wizard-radio:checked+.pad-wizard-step .pad-wizard-number{border-color:var(--pad-wizard-accent);background:var(--pad-wizard-accent);color:var(--pad-wizard-on)}.pad-wizard-radio:focus-visible+.pad-wizard-step .pad-wizard-number{outline:2px solid var(--pad-wizard-accent);outline-offset:3px}.pad-wizard-panel{display:none;flex:1 0 100%;order:1;padding:1em 0 0;border-top:1px solid var(--pad-wizard-line)}.pad-wizard>.pad-wizard-radio:nth-of-type(1):checked~.pad-wizard-panel:nth-of-type(1){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(2):checked~.pad-wizard-panel:nth-of-type(2){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(3):checked~.pad-wizard-panel:nth-of-type(3){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(4):checked~.pad-wizard-panel:nth-of-type(4){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(5):checked~.pad-wizard-panel:nth-of-type(5){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(6):checked~.pad-wizard-panel:nth-of-type(6){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(7):checked~.pad-wizard-panel:nth-of-type(7){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(8):checked~.pad-wizard-panel:nth-of-type(8){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(9):checked~.pad-wizard-panel:nth-of-type(9){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(10):checked~.pad-wizard-panel:nth-of-type(10){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(11):checked~.pad-wizard-panel:nth-of-type(11){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(12):checked~.pad-wizard-panel:nth-of-type(12){display:block}.pad-wizard-panel>:first-child{margin-top:0}.pad-wizard-nav{display:flex;align-items:center;gap:.75em;margin-top:1.2em}.pad-wizard-back,.pad-wizard-next{display:inline-flex;align-items:center;padding:.5em 1.1em;border:1px solid var(--pad-wizard-line);border-radius:8px;background:transparent;color:var(--pad-wizard-text);font:inherit;font-weight:600;cursor:pointer;user-select:none}.pad-wizard-next{margin-left:auto;border-color:var(--pad-wizard-accent);background:var(--pad-wizard-accent);color:var(--pad-wizard-on)}.pad-wizard-back:hover,.pad-wizard-next:hover{filter:brightness(1.06)}.pad-wizard-back:focus-visible,.pad-wizard-next:focus-visible{outline:2px solid var(--pad-wizard-accent);outline-offset:2px}button.pad-wizard-back,button.pad-wizard-next{display:none}@media (scripting:enabled){button.pad-wizard-back,button.pad-wizard-next{display:inline-flex}label.pad-wizard-back,label.pad-wizard-next{display:none}}@media print{.pad-wizard-panel{display:block}.pad-wizard-nav{display:none}}</style><div class="pad-wizard" id="pad-wizard-e3724fb7" role="group" aria-label="Steps"><input class="pad-wizard-radio" type="radio" name="pad-wizard-e3724fb7" id="pad-wizard-e3724fb7-1" aria-controls="pad-wizard-e3724fb7-1-panel" checked><label class="pad-wizard-step" for="pad-wizard-e3724fb7-1" id="pad-wizard-e3724fb7-1-label"><span class="pad-wizard-number" aria-hidden="true">1</span><span class="pad-wizard-name">Order</span><span class="pad-wizard-of">, step 1 of 3</span></label><input class="pad-wizard-radio" type="radio" name="pad-wizard-e3724fb7" id="pad-wizard-e3724fb7-2" aria-controls="pad-wizard-e3724fb7-2-panel"><label class="pad-wizard-step" for="pad-wizard-e3724fb7-2" id="pad-wizard-e3724fb7-2-label"><span class="pad-wizard-number" aria-hidden="true">2</span><span class="pad-wizard-name">Pack</span><span class="pad-wizard-of">, step 2 of 3</span></label><input class="pad-wizard-radio" type="radio" name="pad-wizard-e3724fb7" id="pad-wizard-e3724fb7-3" aria-controls="pad-wizard-e3724fb7-3-panel"><label class="pad-wizard-step" for="pad-wizard-e3724fb7-3" id="pad-wizard-e3724fb7-3-label"><span class="pad-wizard-number" aria-hidden="true">3</span><span class="pad-wizard-name">Deliver</span><span class="pad-wizard-of">, step 3 of 3</span></label><div class="pad-wizard-panel" id="pad-wizard-e3724fb7-1-panel" role="region" aria-labelledby="pad-wizard-e3724fb7-1-label"><p>Order.</p><div class="pad-wizard-nav"><label class="pad-wizard-next" for="pad-wizard-e3724fb7-2">Next</label><button type="button" class="pad-wizard-next" data-pad-step="pad-wizard-e3724fb7-2">Next</button></div></div><div class="pad-wizard-panel" id="pad-wizard-e3724fb7-2-panel" role="region" aria-labelledby="pad-wizard-e3724fb7-2-label"><p>Pack.</p><div class="pad-wizard-nav"><label class="pad-wizard-back" for="pad-wizard-e3724fb7-1">Back</label><button type="button" class="pad-wizard-back" data-pad-step="pad-wizard-e3724fb7-1">Back</button><label class="pad-wizard-next" for="pad-wizard-e3724fb7-3">Next</label><button type="button" class="pad-wizard-next" data-pad-step="pad-wizard-e3724fb7-3">Next</button></div></div><div class="pad-wizard-panel" id="pad-wizard-e3724fb7-3-panel" role="region" aria-labelledby="pad-wizard-e3724fb7-3-label"><p>Deliver.</p><div class="pad-wizard-nav"><label class="pad-wizard-back" for="pad-wizard-e3724fb7-2">Back</label><button type="button" class="pad-wizard-back" data-pad-step="pad-wizard-e3724fb7-2">Back</button></div></div></div><script>(function () {
+  if (window.padWizardReady) return;
+  window.padWizardReady = true;
+  document.addEventListener('click', function (e) {
+    var button = e.target.closest && e.target.closest('.pad-wizard button[data-pad-step]');
+    var radio = button && document.getElementById(button.getAttribute('data-pad-step'));
+    if (!radio) return;
+    radio.click();
+    radio.focus({ preventScroll: true });
+    var wizard = radio.closest('.pad-wizard');
+    if (wizard && wizard.getBoundingClientRect().top < 0) wizard.scrollIntoView({ block: 'start' });
+  });
+})();</script>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The colours are custom properties on <code>.pad-&lt;widget&gt;</code> -
+  <code>--pad-tabs-accent</code>, <code>--pad-toast-success</code> and their like - with light
+  and dark defaults.</li>
+  <li><code>{copy}</code> stays a built-in tag that runs the copy widget, as PHP has
+  a <code>copy()</code> function that a bare name would reach first; <code>{tab}</code>
+  is a built-in tag too.</li>
+  <li>A name that is no widget, an unknown option value and a widget without what it needs - a
+  name, a label, a tab - are errors under the strict check.</li>
+</ul>

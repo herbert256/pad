@@ -1,0 +1,181 @@
+
+<p class="inputs-lead">A number with a minus and a plus beside it: a native &lt;input type=&quot;number&quot;&gt;, typed into or stepped with the arrow keys as it is, and two buttons the script shows, which step it by step= - 1 unless given - within min= and max=. An empty stepper steps from min=, or from 0.</p>
+
+
+<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="775f751395ae33694a8a7e8269098803fca414adb9f114c43e409b9ba6172d80"><input type="hidden" name="padForm" value="try">
+  <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+.pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+.pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+.pad-input [hidden]{display:none!important}
+.pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+.pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+.pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+.pad-input .pi-button:disabled{opacity:.45;cursor:default}
+.pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+.pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+.pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+.pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+.pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+</style><style>.pad-input-stepper .pi-stepper-row{display:inline-flex;align-items:stretch}
+.pad-input-stepper input[type=number]{width:6em;text-align:center;font-variant-numeric:tabular-nums;border-radius:0!important;-moz-appearance:textfield}
+.pad-input-stepper.is-ready input[type=number]::-webkit-inner-spin-button,.pad-input-stepper.is-ready input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.pad-input-stepper:not(.is-ready) input[type=number]{border-radius:6px!important}
+.pad-input-stepper .pi-step{min-width:2.4em;font-size:1.1em;font-weight:600}
+.pad-input-stepper .pi-step[data-step="-1"]{border-radius:6px 0 0 6px;border-right:0}
+.pad-input-stepper .pi-step[data-step="1"]{border-radius:0 6px 6px 0;border-left:0}
+</style><script>/* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+   script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+   - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+   a live region or a script brings later. frame is the field's .pad-input element, cfg its
+   data-config, kit the helpers below. The server wrote a native control that a form posts
+   as it is; a kind's script makes more of it and keeps the posted control's value true -
+   and says so with the input and change events a typed value sends, which the browser's
+   checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+(function () {
+  'use strict';
+
+  if (window.PadInputs) return;
+
+  var kinds = {};
+  var made = 0;
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  var kit = {
+    el: el,
+
+    // A new id of the page, for an element a script adds: a listbox, an option, a box.
+    id: function (base) {
+      made++;
+      return (base || 'pad-input') + '-js' + made;
+    },
+
+    // The value changed as if typed: the form, the rules' checker and any listener hear it.
+    changed: function (control) {
+      control.dispatchEvent(new Event('input', { bubbles: true }));
+      control.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+
+    // What the server wrote hidden for a script to show - a button, a popup's opener.
+    show: function (root, selector) {
+      var list = root.querySelectorAll(selector);
+      for (var i = 0; i < list.length; i++) list[i].hidden = false;
+    },
+
+    // A click outside the element - or the focus leaving it - closes what it opened.
+    outside: function (root, close) {
+      document.addEventListener('pointerdown', function (event) {
+        if (!root.contains(event.target)) close();
+      });
+      root.addEventListener('focusout', function (event) {
+        if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+      });
+    },
+
+    // The text of a field's label, for a name a script gives a control it adds.
+    label: function (frame) {
+      return frame.getAttribute('data-pad-label') || '';
+    }
+  };
+
+  function start(frame) {
+    if (frame.padInputReady) return;
+    var init = kinds[frame.getAttribute('data-pad-input')];
+    if (!init) return;
+    var cfg = {};
+    try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+    frame.padInputReady = true;
+    frame.classList.add('is-ready');
+    init(frame, cfg, kit);
+  }
+
+  function scan(where) {
+    var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+    for (var i = 0; i < list.length; i++) start(list[i]);
+  }
+
+  window.PadInputs = {
+    register: function (name, init) { kinds[name] = init; scan(); },
+    scan: scan,
+    kit: kit
+  };
+
+  document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+  if (window.MutationObserver)
+    new MutationObserver(function (records) {
+      for (var i = 0; i < records.length; i++)
+        for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+        }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script><script>/* stepper - the minus and the plus: a step of the number within its bounds, as the arrow keys
+   step it. The buttons stay out of the tab order - the number itself takes the arrows - and
+   held down they keep stepping. */
+PadInputs.register('stepper', function (frame, cfg, kit) {
+  var number = frame.querySelector('input[type=number]');
+  if (!number) return;
+  kit.show(frame, '.pi-step');
+
+  function step(by) {
+    if (number.disabled || number.readOnly) return;
+    if (number.value === '') {
+      number.value = number.min !== '' ? number.min : '0';
+      if (by > 0 && number.min !== '') { kit.changed(number); return; }
+    }
+    try {
+      if (by > 0) number.stepUp(); else number.stepDown();
+    } catch (e) {
+      var size = parseFloat(number.step) || 1;
+      number.value = String((parseFloat(number.value) || 0) + by * size);
+    }
+    kit.changed(number);
+  }
+
+  Array.prototype.forEach.call(frame.querySelectorAll('.pi-step'), function (button) {
+    var by = +button.getAttribute('data-step');
+    var timer = null;
+    function stop() { clearTimeout(timer); clearInterval(timer); timer = null; }
+    button.addEventListener('click', function (event) { if (event.detail === 0) step(by); });
+    button.addEventListener('pointerdown', function (event) {
+      event.preventDefault();
+      step(by);
+      number.focus();
+      timer = setTimeout(function () { timer = setInterval(function () { step(by); }, 80); }, 400);
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (type) { button.addEventListener(type, stop); });
+  });
+});
+</script><div class="pad-input pad-input-stepper" data-pad-input="stepper" data-pad-label="Guests"><label for="guests">Guests</label><div class="pi-stepper-row"><button type="button" class="pi-button pi-step" data-step="-1" aria-controls="guests" aria-label="Decrease Guests" tabindex="-1" hidden>&minus;</button><input type="number" name="guests" id="guests" inputmode="decimal" min="1" max="12" step="1" value=""><button type="button" class="pi-button pi-step" data-step="1" aria-controls="guests" aria-label="Increase Guests" tabindex="-1" hidden>+</button></div></div>
+  <div class="pad-input pad-input-stepper" data-pad-input="stepper" data-pad-label="Weight in kg"><label for="weight">Weight in kg</label><div class="pi-stepper-row"><button type="button" class="pi-button pi-step" data-step="-1" aria-controls="weight" aria-label="Decrease Weight in kg" tabindex="-1" hidden>&minus;</button><input type="number" name="weight" id="weight" inputmode="decimal" min="0" step="0.5" value="70"><button type="button" class="pi-button pi-step" data-step="1" aria-controls="weight" aria-label="Increase Weight in kg" tabindex="-1" hidden>+</button></div></div>
+  <button class="inputs-send">Send</button>
+</form>
+
+
+
+
+<h2>The template</h2>
+<style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">stepper.pad</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;Stepper&#039;</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="2"><span class="hl-brc">{</span><span class="hl-tag">about</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="3"></span>
+<span class="hl-line" data-line="4"><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">&#039;try&#039;</span>, <span class="hl-opt">class</span>=<span class="hl-str">&#039;inputs-try&#039;</span>, error<span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">stepper</span> <span class="hl-str">&#039;guests&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Guests&#039;</span>, <span class="hl-opt">min</span>=<span class="hl-num">1</span>, <span class="hl-opt">max</span>=<span class="hl-num">12</span>, <span class="hl-opt">rules</span>=<span class="hl-str">&#039;required|integer|between:1,12&#039;</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-brc">{</span><span class="hl-tag">input:stepper</span> <span class="hl-str">&#039;weight&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Weight in kg&#039;</span>, <span class="hl-opt">min</span>=<span class="hl-num">0</span>, <span class="hl-opt">step</span>=<span class="hl-num">0.5</span>, <span class="hl-opt">value</span>=<span class="hl-num">70</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;inputs-send&quot;</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8"><span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10"><span class="hl-brc">{</span><span class="hl-tag">received</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12"><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>The template<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></span></code></pre></div></div>

@@ -67,7 +67,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 141 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
         </form>
         <div class="frame-tools">
           <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -86,7 +86,7 @@
               <span class="brace">{</span>barcode<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.
+              Draws a barcode as inline SVG, encoded on the server - 13 symbologies, from EAN-13 and Code 128 to QR and Data Matrix.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
@@ -97,7 +97,10 @@
               Syntax
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'number'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$code</span>, <span class="hl-opt">type</span>=<span class="hl-str">'code128'</span>, <span class="hl-opt">height</span>=<span class="hl-num">60</span>, <span class="hl-opt">scale</span>=<span class="hl-num">2</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, plain, <span class="hl-opt">color</span>=<span class="hl-str">'#000'</span>, <span class="hl-opt">background</span>=<span class="hl-str">'#fff'</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$code</span>, <span class="hl-opt">type</span>=<span class="hl-str">'code128'</span>, <span class="hl-opt">height</span>=<span class="hl-num">60</span>, <span class="hl-opt">scale</span>=<span class="hl-num">2</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, plain, <span class="hl-opt">color</span>=<span class="hl-str">'#000'</span>, <span class="hl-opt">background</span>=<span class="hl-str">'#fff'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">'number'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">code39</span> <span class="hl-str">'TEXT'</span>, check<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$text</span>, <span class="hl-opt">type</span>=<span class="hl-str">'datamatrix'</span>, <span class="hl-opt">size</span>=<span class="hl-num">160</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -117,7 +120,7 @@
                 <code>type</code>
               </dt>
               <dd>
-                <code>ean13</code>, <code>ean8</code>, <code>upca</code> or <code>code128</code>. Left out, twelve or thirteen digits are an EAN-13 and anything else Code 128.
+                The symbology, a file of <code>pad/codes/types/</code>: <code>codabar</code>, <code>code128</code>, <code>code39</code>, <code>code93</code>, <code>datamatrix</code>, <code>ean13</code>, <code>ean8</code>, <code>itf</code>, <code>itf14</code>, <code>msi</code>, <code>qr</code>, <code>upca</code>, <code>upce</code>. Left out, twelve or thirteen digits are an EAN-13 and anything else Code 128. The barcode type names it as well - <code>{barcode:upce '0425261'/}</code>, or bare, <code>{itf14 '1540014128876'/}</code>, when nothing else has the name.
               </dd>
               <dt>
                 <code>height</code>
@@ -155,6 +158,24 @@
               <dd>
                 The colour behind them, default <code>#fff</code>.
               </dd>
+              <dt>
+                <code>check</code>
+              </dt>
+              <dd>
+                Bare option, <code>code39</code>: the check symbol of modulo 43; <code>itf</code>: the check digit of weights 3 and 1. For <code>msi</code> it names the check digits: <code>mod10</code> (default), <code>mod1010</code> or <code>none</code>.
+              </dd>
+              <dt>
+                <code>size</code>
+              </dt>
+              <dd>
+                <code>qr</code> and <code>datamatrix</code>: the width and height in pixels, default 160 - they take no height, scale or plain.
+              </dd>
+              <dt>
+                <code>level</code>
+              </dt>
+              <dd>
+                <code>qr</code>: the error correction, <code>L</code>, <code>M</code> (default), <code>Q</code> or <code>H</code>.
+              </dd>
             </dl>
           </section>
           <section class="block prose" aria-labelledby="description">
@@ -162,16 +183,33 @@
               Description
             </h2>
             <p>
-              <code>{barcode}</code> encodes its first parameter as a one-dimensional barcode and writes it as inline SVG (<code>tags/_lib/barcode.php</code>) - the bars of a product, a ticket or a parcel label, drawn on the server, no font or image needed.
+              <code>{barcode}</code> encodes its first parameter as a barcode and writes it as inline SVG - the bars of a product, a ticket, a carton or a parcel label, or the squares of a Data Matrix, drawn on the server, no font or image needed. It is the codes subsystem of PAD (<code>pad/codes/</code>): a symbology is a file of <code>pad/codes/types/</code>, and <code>type</code> names it.
+            </p>
+            <h3>
+              The symbologies
+            </h3>
+            <ul>
+              <li>
+                <b>Products</b> - <code>ean13</code>, <code>ean8</code>, <code>upca</code> and <code>upce</code>: digits with a check digit of weights 3 and 1, which may be left off - it is then computed and added - and is checked when given. The guard bars are drawn longer and the digits set under the bars in their groups. A UPC-E stands for a UPC-A with its zeros left out; given the 11 or 12 digits of a UPC-A, <code>upce</code> writes its short form when it has one.
+              </li>
+              <li>
+                <b>Text</b> - <code>code128</code> takes printable ASCII and packs a run of four digits or more two to a symbol; <code>code93</code> takes printable ASCII too, the characters Code 39 lacks as pairs; <code>code39</code> digits, capital letters, space and <code>- . $ / + %</code>, with <code>check</code> for its check symbol.
+              </li>
+              <li>
+                <b>Digits</b> - <code>itf</code> (Interleaved 2 of 5, <code>check</code> for its check digit), <code>itf14</code> (the GS1 number of a carton, between bearer bars), <code>codabar</code> (digits and <code>- $ : / . +</code> between the start and stop letters A to D, A at both ends when the text has none) and <code>msi</code> (a Luhn check digit, or <code>check='mod1010'</code> or <code>'none'</code>).
+              </li>
+              <li>
+                <b>Two-dimensional</b> - <code>qr</code>, the code of <a href="index%EF%B9%96tag%EA%A4%B7qr.html">{qr}</a>, and <code>datamatrix</code>, Data Matrix ECC 200 in the smallest of its 24 square sizes: any text, <code>size</code> in pixels in place of <code>height</code>, <code>scale</code> and <code>plain</code>.
+              </li>
+            </ul>
+            <p>
+              Without <code>type</code> the tag decides by the text: twelve or thirteen digits are an EAN-13, anything else Code 128. The barcode type writes a symbology by its name, <code>{barcode:upce '0425261'/}</code>, and so does the name alone, <code>{itf14 '1540014128876'/}</code>, when no tag, store, field or sequence has it.
             </p>
             <p>
-              Without <code>type</code> the tag decides by the text: twelve or thirteen digits are an EAN-13, anything else Code 128. An EAN-13, EAN-8 or UPC-A number may be written without its check digit, which is then computed and added; a number written with it has the digit checked. These codes draw their guard bars longer and set the digits under the bars in their groups. Code 128 takes printable ASCII, and packs a run of four digits or more two to a symbol, so long numbers stay short.
+              <code>scale</code> is the width of the thinnest bar; keep it at 2 or more for a printed label a scanner has to read. <code>plain</code> leaves the human-readable text out. The colours are fixed - black on white unless <code>color</code> and <code>background</code> say otherwise - since a scanner needs the contrast.
             </p>
             <p>
-              <code>scale</code> is the width of the thinnest bar; keep it at 2 or more for a printed label a scanner has to read. <code>plain</code> leaves the human-readable digits out. The colours are fixed - black on white unless <code>color</code> and <code>background</code> say otherwise - since a scanner needs the contrast.
-            </p>
-            <p>
-              A wrong check digit, a wrong length for the type, a character Code 128 cannot hold or an unknown type is an error under the strict check, and the tag writes nothing. For a code a phone camera reads, see <a href="index%EF%B9%96tag%EA%A4%B7qr.html">{qr}</a>.
+              A wrong check digit, a wrong length for the type, a character the symbology cannot hold, a text too long for it or an unknown type is an error under the strict check, and the tag writes nothing.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -277,6 +315,188 @@
                 </div>
               </div>
             </div>
+            <div class="example" id="example-4">
+              <h3>
+                Three ways to name a symbology
+              </h3>
+              <p class="example-about">
+                type= on the tag, the barcode type, or the name alone when nothing else has it - one code.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/barcode/4-types.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'0425261'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'upce'</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">barcode:upce</span> <span class="hl-str">'0425261'</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">upce</span> <span class="hl-str">'0425261'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7barcode%EA%A4%B74-types.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewbox="0 0 146 74" shape-rendering="crispEdges">
+                    <title>
+                      04252614
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"></path>
+                    <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                      0
+                    </text>
+                    <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                      425261
+                    </text>
+                    <text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                      4
+                    </text></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewbox="0 0 146 74" shape-rendering="crispEdges">
+                    <title>
+                      04252614
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"></path>
+                    <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                      0
+                    </text>
+                    <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                      425261
+                    </text>
+                    <text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                      4
+                    </text></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewbox="0 0 146 74" shape-rendering="crispEdges">
+                    <title>
+                      04252614
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"></path>
+                    <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                      0
+                    </text>
+                    <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                      425261
+                    </text>
+                    <text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                      4
+                    </text></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-5">
+              <h3>
+                Text and digits
+              </h3>
+              <p class="example-about">
+                Code 39 with its check symbol, Code 93 with small letters, Interleaved 2 of 5, Codabar and MSI.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/barcode/5-symbologies.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">code39</span> <span class="hl-str">'PAD-2026'</span>, check, <span class="hl-opt">height</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">code93</span> <span class="hl-str">'Pad-2026!'</span>, <span class="hl-opt">height</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">itf</span> <span class="hl-str">'1234567'</span>, check, <span class="hl-opt">height</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">codabar</span> <span class="hl-str">'A40156B'</span>, <span class="hl-opt">height</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">msi</span> <span class="hl-str">'1234567'</span>, <span class="hl-opt">height</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7barcode%EA%A4%B75-symbologies.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="390" height="54" viewbox="0 0 390 54" shape-rendering="crispEdges">
+                      <title>
+                        PAD-2026
+                      </title>
+                      <rect width="100%" height="100%" fill="#fff"></rect>
+                      <path fill="#000" d="M20,0h2v40h-2zM28,0h2v40h-2zM32,0h6v40h-6zM40,0h6v40h-6zM48,0h2v40h-2zM52,0h2v40h-2zM56,0h6v40h-6zM64,0h6v40h-6zM72,0h2v40h-2zM80,0h2v40h-2zM84,0h6v40h-6zM92,0h2v40h-2zM96,0h2v40h-2zM104,0h2v40h-2zM108,0h6v40h-6zM116,0h2v40h-2zM120,0h2v40h-2zM124,0h6v40h-6zM136,0h2v40h-2zM140,0h6v40h-6zM148,0h2v40h-2zM156,0h2v40h-2zM160,0h2v40h-2zM164,0h6v40h-6zM172,0h6v40h-6zM180,0h2v40h-2zM184,0h6v40h-6zM196,0h2v40h-2zM200,0h2v40h-2zM204,0h6v40h-6zM212,0h2v40h-2zM216,0h2v40h-2zM224,0h6v40h-6zM232,0h6v40h-6zM240,0h2v40h-2zM244,0h2v40h-2zM248,0h6v40h-6zM260,0h2v40h-2zM264,0h2v40h-2zM268,0h6v40h-6zM276,0h2v40h-2zM280,0h6v40h-6zM292,0h6v40h-6zM300,0h2v40h-2zM304,0h2v40h-2zM308,0h6v40h-6zM316,0h2v40h-2zM324,0h2v40h-2zM328,0h6v40h-6zM336,0h2v40h-2zM340,0h2v40h-2zM348,0h2v40h-2zM352,0h6v40h-6zM360,0h6v40h-6zM368,0h2v40h-2z"></path>
+                      <text x="195" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                        PAD-2026
+                      </text></svg>
+                    </p>
+                    <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="330" height="54" viewbox="0 0 330 54" shape-rendering="crispEdges">
+                      <title>
+                        Pad-2026!
+                      </title>
+                      <rect width="100%" height="100%" fill="#fff"></rect>
+                      <path fill="#000" d="M20,0h2v40h-2zM24,0h2v40h-2zM28,0h8v40h-8zM38,0h2v40h-2zM46,0h2v40h-2zM50,0h4v40h-4zM56,0h2v40h-2zM62,0h4v40h-4zM70,0h2v40h-2zM74,0h4v40h-4zM80,0h2v40h-2zM84,0h2v40h-2zM92,0h2v40h-2zM98,0h4v40h-4zM106,0h2v40h-2zM110,0h4v40h-4zM118,0h2v40h-2zM122,0h2v40h-2zM128,0h2v40h-2zM134,0h2v40h-2zM138,0h6v40h-6zM146,0h2v40h-2zM150,0h2v40h-2zM158,0h2v40h-2zM164,0h2v40h-2zM172,0h2v40h-2zM176,0h2v40h-2zM182,0h2v40h-2zM186,0h2v40h-2zM194,0h2v40h-2zM200,0h2v40h-2zM206,0h2v40h-2zM214,0h2v40h-2zM218,0h6v40h-6zM226,0h2v40h-2zM230,0h4v40h-4zM236,0h4v40h-4zM242,0h2v40h-2zM246,0h2v40h-2zM254,0h4v40h-4zM260,0h2v40h-2zM264,0h4v40h-4zM272,0h4v40h-4zM282,0h2v40h-2zM286,0h2v40h-2zM290,0h2v40h-2zM294,0h2v40h-2zM298,0h8v40h-8zM308,0h2v40h-2z"></path>
+                      <text x="165" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                        Pad-2026!
+                      </text></svg>
+                    </p>
+                    <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="202" height="54" viewbox="0 0 202 54" shape-rendering="crispEdges">
+                      <title>
+                        12345670
+                      </title>
+                      <rect width="100%" height="100%" fill="#fff"></rect>
+                      <path fill="#000" d="M20,0h2v40h-2zM24,0h2v40h-2zM28,0h6v40h-6zM36,0h2v40h-2zM44,0h2v40h-2zM48,0h2v40h-2zM52,0h6v40h-6zM64,0h6v40h-6zM72,0h6v40h-6zM80,0h2v40h-2zM88,0h2v40h-2zM92,0h2v40h-2zM100,0h6v40h-6zM108,0h2v40h-2zM116,0h6v40h-6zM128,0h2v40h-2zM132,0h2v40h-2zM136,0h2v40h-2zM140,0h2v40h-2zM144,0h2v40h-2zM152,0h6v40h-6zM164,0h6v40h-6zM172,0h6v40h-6zM180,0h2v40h-2z"></path>
+                      <text x="101" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                        12345670
+                      </text></svg>
+                    </p>
+                    <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="214" height="54" viewbox="0 0 214 54" shape-rendering="crispEdges">
+                      <title>
+                        40156
+                      </title>
+                      <rect width="100%" height="100%" fill="#fff"></rect>
+                      <path fill="#000" d="M20,0h2v40h-2zM24,0h6v40h-6zM36,0h2v40h-2zM44,0h2v40h-2zM48,0h2v40h-2zM52,0h6v40h-6zM60,0h2v40h-2zM68,0h2v40h-2zM72,0h2v40h-2zM76,0h2v40h-2zM80,0h2v40h-2zM88,0h6v40h-6zM96,0h2v40h-2zM100,0h2v40h-2zM104,0h6v40h-6zM116,0h2v40h-2zM120,0h6v40h-6zM128,0h2v40h-2zM132,0h2v40h-2zM140,0h2v40h-2zM144,0h2v40h-2zM152,0h2v40h-2zM156,0h2v40h-2zM160,0h6v40h-6zM168,0h2v40h-2zM176,0h2v40h-2zM184,0h2v40h-2zM188,0h6v40h-6z"></path>
+                      <text x="107" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                        40156
+                      </text></svg>
+                    </p>
+                    <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="254" height="54" viewbox="0 0 254 54" shape-rendering="crispEdges">
+                      <title>
+                        12345674
+                      </title>
+                      <rect width="100%" height="100%" fill="#fff"></rect>
+                      <path fill="#000" d="M24,0h4v40h-4zM30,0h2v40h-2zM36,0h2v40h-2zM42,0h2v40h-2zM48,0h4v40h-4zM54,0h2v40h-2zM60,0h2v40h-2zM66,0h4v40h-4zM72,0h2v40h-2zM78,0h2v40h-2zM84,0h2v40h-2zM90,0h4v40h-4zM96,0h4v40h-4zM102,0h2v40h-2zM108,0h4v40h-4zM114,0h2v40h-2zM120,0h2v40h-2zM126,0h2v40h-2zM132,0h4v40h-4zM138,0h2v40h-2zM144,0h4v40h-4zM150,0h2v40h-2zM156,0h4v40h-4zM162,0h4v40h-4zM168,0h2v40h-2zM174,0h2v40h-2zM180,0h4v40h-4zM186,0h4v40h-4zM192,0h4v40h-4zM198,0h2v40h-2zM204,0h4v40h-4zM210,0h2v40h-2zM216,0h2v40h-2zM222,0h2v40h-2zM228,0h2v40h-2z"></path>
+                      <text x="127" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                        12345674
+                      </text></svg>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-6">
+              <h3>
+                Data Matrix
+              </h3>
+              <p class="example-about">
+                The square code of parts and parcels: the smallest of its 24 sizes that holds the text.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/barcode/6-datamatrix.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datamatrix</span> <span class="hl-str">'PAD-2026-0042'</span>, <span class="hl-opt">size</span>=<span class="hl-num">120</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'https://example.com/order/42'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'datamatrix'</span>, <span class="hl-opt">size</span>=<span class="hl-num">120</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7barcode%EA%A4%B76-datamatrix.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-datamatrix" role="img" width="120" height="120" viewbox="0 0 20 20" shape-rendering="crispEdges">
+                    <title>
+                      PAD-2026-0042
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#000" d="M2,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM8,2h1v1h-1zM10,2h1v1h-1zM12,2h1v1h-1zM14,2h1v1h-1zM16,2h1v1h-1zM2,3h1v1h-1zM4,3h2v1h-2zM7,3h2v1h-2zM10,3h1v1h-1zM16,3h2v1h-2zM2,4h1v1h-1zM6,4h1v1h-1zM8,4h2v1h-2zM11,4h1v1h-1zM14,4h2v1h-2zM2,5h1v1h-1zM4,5h1v1h-1zM7,5h1v1h-1zM9,5h1v1h-1zM17,5h1v1h-1zM2,6h1v1h-1zM4,6h1v1h-1zM6,6h2v1h-2zM10,6h1v1h-1zM12,6h2v1h-2zM2,7h2v1h-2zM5,7h4v1h-4zM10,7h2v1h-2zM13,7h1v1h-1zM16,7h2v1h-2zM2,8h1v1h-1zM4,8h1v1h-1zM7,8h6v1h-6zM16,8h1v1h-1zM2,9h1v1h-1zM4,9h2v1h-2zM8,9h3v1h-3zM14,9h1v1h-1zM17,9h1v1h-1zM2,10h2v1h-2zM9,10h1v1h-1zM12,10h1v1h-1zM14,10h2v1h-2zM2,11h2v1h-2zM7,11h2v1h-2zM11,11h1v1h-1zM13,11h1v1h-1zM15,11h3v1h-3zM2,12h2v1h-2zM5,12h1v1h-1zM11,12h1v1h-1zM13,12h1v1h-1zM15,12h2v1h-2zM2,13h2v1h-2zM11,13h1v1h-1zM13,13h1v1h-1zM15,13h1v1h-1zM17,13h1v1h-1zM2,14h2v1h-2zM5,14h1v1h-1zM9,14h1v1h-1zM11,14h2v1h-2zM15,14h2v1h-2zM2,15h1v1h-1zM8,15h3v1h-3zM12,15h4v1h-4zM17,15h1v1h-1zM2,16h1v1h-1zM5,16h1v1h-1zM12,16h2v1h-2zM16,16h1v1h-1zM2,17h16v1h-16z"></path></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-datamatrix" role="img" width="120" height="120" viewbox="0 0 26 26" shape-rendering="crispEdges">
+                    <title>
+                      https://example.com/order/42
+                    </title>
+                    <rect width="100%" height="100%" fill="#fff"></rect>
+                    <path fill="#000" d="M2,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM8,2h1v1h-1zM10,2h1v1h-1zM12,2h1v1h-1zM14,2h1v1h-1zM16,2h1v1h-1zM18,2h1v1h-1zM20,2h1v1h-1zM22,2h1v1h-1zM2,3h1v1h-1zM4,3h2v1h-2zM7,3h3v1h-3zM12,3h2v1h-2zM15,3h2v1h-2zM19,3h1v1h-1zM23,3h1v1h-1zM2,4h3v1h-3zM7,4h1v1h-1zM10,4h3v1h-3zM16,4h2v1h-2zM19,4h4v1h-4zM2,5h2v1h-2zM5,5h3v1h-3zM10,5h1v1h-1zM13,5h2v1h-2zM16,5h2v1h-2zM20,5h2v1h-2zM23,5h1v1h-1zM2,6h2v1h-2zM6,6h1v1h-1zM9,6h1v1h-1zM11,6h1v1h-1zM13,6h4v1h-4zM18,6h2v1h-2zM22,6h1v1h-1zM2,7h5v1h-5zM8,7h3v1h-3zM12,7h1v1h-1zM17,7h3v1h-3zM23,7h1v1h-1zM2,8h1v1h-1zM5,8h3v1h-3zM11,8h2v1h-2zM15,8h1v1h-1zM17,8h1v1h-1zM19,8h2v1h-2zM2,9h2v1h-2zM6,9h1v1h-1zM8,9h1v1h-1zM10,9h2v1h-2zM13,9h1v1h-1zM15,9h1v1h-1zM17,9h2v1h-2zM20,9h1v1h-1zM22,9h2v1h-2zM2,10h1v1h-1zM5,10h3v1h-3zM9,10h1v1h-1zM14,10h1v1h-1zM21,10h1v1h-1zM2,11h1v1h-1zM4,11h1v1h-1zM7,11h2v1h-2zM10,11h2v1h-2zM13,11h2v1h-2zM16,11h2v1h-2zM19,11h1v1h-1zM23,11h1v1h-1zM2,12h2v1h-2zM8,12h2v1h-2zM14,12h2v1h-2zM18,12h2v1h-2zM21,12h1v1h-1zM2,13h3v1h-3zM6,13h2v1h-2zM9,13h1v1h-1zM13,13h1v1h-1zM16,13h1v1h-1zM19,13h5v1h-5zM2,14h1v1h-1zM5,14h1v1h-1zM9,14h1v1h-1zM11,14h1v1h-1zM13,14h2v1h-2zM17,14h1v1h-1zM21,14h1v1h-1zM2,15h1v1h-1zM4,15h2v1h-2zM9,15h1v1h-1zM13,15h3v1h-3zM17,15h2v1h-2zM23,15h1v1h-1zM2,16h2v1h-2zM7,16h2v1h-2zM11,16h1v1h-1zM13,16h2v1h-2zM17,16h4v1h-4zM22,16h1v1h-1zM2,17h2v1h-2zM6,17h1v1h-1zM11,17h1v1h-1zM13,17h4v1h-4zM23,17h1v1h-1zM2,18h5v1h-5zM9,18h2v1h-2zM12,18h1v1h-1zM14,18h1v1h-1zM17,18h1v1h-1zM19,18h1v1h-1zM21,18h2v1h-2zM2,19h1v1h-1zM4,19h1v1h-1zM6,19h3v1h-3zM10,19h5v1h-5zM16,19h2v1h-2zM23,19h1v1h-1zM2,20h2v1h-2zM6,20h1v1h-1zM8,20h2v1h-2zM12,20h3v1h-3zM16,20h1v1h-1zM20,20h1v1h-1zM2,21h3v1h-3zM10,21h3v1h-3zM15,21h1v1h-1zM18,21h1v1h-1zM21,21h3v1h-3zM2,22h1v1h-1zM4,22h2v1h-2zM7,22h4v1h-4zM13,22h1v1h-1zM15,22h3v1h-3zM19,22h1v1h-1zM21,22h1v1h-1zM2,23h22v1h-22z"></path></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <section class="block" aria-labelledby="see">
             <h2 id="see">
@@ -294,7 +514,7 @@
         </article>
         <footer class="foot">
           <p>
-            141 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
           </p>
         </footer>
       </div>

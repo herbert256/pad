@@ -8,8 +8,11 @@
 (function () {
   'use strict';
   if (window.padValidate) return;
-  var numberPattern = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
-  var emailPattern = /^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i;
+  var rules = {};
+  var empties = {"accepted":true,"required":true};
+  function addRule(name, spec) {
+    rules[name] = spec;
+  }
   function trim(value) {
     return typeof value === 'string' ? value.replace(/^[ \t\n\r\0\x0B]+|[ \t\n\r\0\x0B]+$/g, '') : value;
   }
@@ -23,57 +26,14 @@
   function length(value) {
     return Array.from(String(value)).length;
   }
-  function email(value) {
-    return value.length <= 320 && emailPattern.test(value);
+  function size(value, number) {
+    return number ? toNumber(value) : length(value);
   }
-  function integer(value) {
-    var found = value.match(/^([+-]?)(0|[1-9]\d*)$/);
-    if (!found) return false;
-    var limit = found[1] === '-' ? '9223372036854775808' : '9223372036854775807';
-    return found[2].length < limit.length || (found[2].length === limit.length && found[2] <= limit);
-  }
-  function url(value) {
-    if (!/^https?:\/\//i.test(value) || /[^A-Za-z0-9$\-_.+!*'(),{}|\\^~\[\]`<>#%";\/?:@&=]/.test(value)) return false;
-    var rest = value.replace(/^https?:\/\//i, '');
-    var authority = rest.slice(0, rest.search(/[\/?#]|$/));
-    var at = authority.lastIndexOf('@');
-    var host = authority.slice(at + 1);
-    if (!(host.charAt(0) === '[' && host.slice(-1) === ']')) {
-      var colon = host.lastIndexOf(':');
-      if (colon >= 0) {
-        var port = host.slice(colon + 1);
-        if (port.length > 5) return false;
-        if (port !== '') {
-          var number = port.match(/^[+-]?\d+/);
-          if (!number || +number[0] < 0 || +number[0] > 65535) return false;
-        }
-        host = host.slice(0, colon);
-      }
-    }
-    if (host === '') return false;
-    if (!(host.charAt(0) === '[' && host.slice(-1) === ']' && ipv6(host.slice(1, -1))) && !hostname(host)) return false;
-    if (at < 0) return true;
-    var info = authority.slice(0, at), split = info.indexOf(':');
-    return userinfo(split < 0 ? info : info.slice(0, split)) && (split < 0 || userinfo(info.slice(split + 1)));
+  function items(arg) {
+    return String(arg).split(',').map(trim);
   }
   function alnum(c) {
     return /^[A-Za-z0-9]$/.test(c);
-  }
-  function hostname(host) {
-    var end = host.length;
-    if (end > 0 && host.charAt(end - 1) === '.') end--;
-    if (end > 253 || !alnum(host.charAt(0)) || host.slice(-1) === '-') return false;
-    for (var i = 0, size = 1; i < end; i++) {
-      var c = host.charAt(i);
-      if (c === '.') {
-        if (host.charAt(i + 1) === '.' || !alnum(host.charAt(i - 1)) || !alnum(host.charAt(i + 1))) return false;
-        size = 1;
-      } else {
-        if (size > 63 || (c !== '-' && !alnum(c))) return false;
-        size++;
-      }
-    }
-    return true;
   }
   function ipv4(text) {
     var parts = text.split('.');
@@ -107,10 +67,43 @@
     }
     return (compressed && blocks <= 8) || blocks === 8;
   }
-  function userinfo(text) {
-    return /^(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9][0-9A-Fa-f])*$/.test(text);
+  (function () {
+addRule('accepted', {
+  check: function (value) { return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0; }
+});
+})();
+(function () {
+addRule('alpha', {
+  check: function (value) { return /^[\p{L}\p{M}]+$/u.test(value); }
+});
+})();
+(function () {
+addRule('alphanum', {
+  check: function (value) { return /^[\p{L}\p{M}\p{N}]+$/u.test(value); }
+});
+})();
+(function () {
+addRule('between', {
+  check: function (value, arg, values, number) {
+    var two = String(arg).split(',');
+    var at = size(value, number);
+    return at >= toNumber(two[0]) && at <= toNumber(two.length > 1 ? two.slice(1).join(',') : '');
   }
-  function date(value) {
+});
+})();
+(function () {
+addRule('color', {
+  check: function (value) { return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(value); }
+});
+})();
+(function () {
+function calendarDay(year, month, day) {
+  var moment = new Date(0);
+  moment.setUTCFullYear(year, month - 1, day);
+  return year > 0 && moment.getUTCFullYear() === year && moment.getUTCMonth() === month - 1 && moment.getUTCDate() === day;
+}
+addRule('date', {
+  check: function (value) {
     var iso = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[Tt ](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
     if (iso) {
       if (iso[4] !== undefined && (+iso[4] > 24 || +iso[5] > 59 || +(iso[6] || 0) > 60)) return false;
@@ -120,65 +113,235 @@
     if (dmy) return value.charAt(dmy[1].length) === '/' ? calendarDay(+dmy[3], +dmy[1], +dmy[2]) : calendarDay(+dmy[3], +dmy[2], +dmy[1]);
     return /\d/.test(value);
   }
-  function calendarDay(year, month, day) {
-    var moment = new Date(0);
-    moment.setUTCFullYear(year, month - 1, day);
-    return year > 0 && moment.getUTCFullYear() === year && moment.getUTCMonth() === month - 1 && moment.getUTCDate() === day;
+});
+})();
+(function () {
+addRule('digits', {
+  check: function (value, arg) {
+    return /^[0-9]+$/.test(value) && (trim(arg) === '' || value.length === parseInt(trim(arg), 10));
   }
-  function regex(pattern) {
-    var open = pattern.charAt(0);
-    var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
-    var end = pattern.lastIndexOf(close);
-    if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
-    var flags = pattern.slice(end + 1);
-    if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
-    var body = pattern.slice(1, end);
-    var bare = body.replace(/\\\\/g, '');
-    if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
-    if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
-    if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
-    if (braces(body)) return null;
-    try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+});
+})();
+(function () {
+var emailPattern = /^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/i;
+addRule('email', {
+  check: function (value) { return value.length <= 320 && emailPattern.test(value); }
+});
+})();
+(function () {
+addRule('ends_with', {
+  check: function (value, arg) {
+    return items(arg).some(function (one) { return one !== '' && value.slice(-one.length) === one; });
   }
-  function braces(body) {
-    var inClass = false;
-    for (var i = 0; i < body.length; i++) {
-      var c = body.charAt(i);
-      if (c === '\\') {
-        i++;
-      } else if (inClass) {
-        if (c === ']') inClass = false;
-      } else if (c === '[') {
-        inClass = true;
-        if (body.charAt(i + 1) === '^') i++;
-        if (body.charAt(i + 1) === ']') i++;
-      } else if (c === '{' && /^\{[ \t]*(\d+[ \t]*(,[ \t]*\d*)?|,[ \t]*\d+)[ \t]*\}/.test(body.slice(i)) && !/^\{\d+(,\d*)?\}/.test(body.slice(i))) return true;
+});
+})();
+(function () {
+addRule('iban', {
+  check: function (value) {
+    var iban = value.replace(/ /g, '').toUpperCase();
+    if (!/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/.test(iban)) return false;
+    var digits = (iban.slice(4) + iban.slice(0, 4)).replace(/[A-Z]/g, function (c) { return String(c.charCodeAt(0) - 55); });
+    var rest = 0;
+    for (var i = 0; i < digits.length; i++) rest = (rest * 10 + +digits.charAt(i)) % 97;
+    return rest === 1;
+  }
+});
+})();
+(function () {
+addRule('in', {
+  check: function (value, arg) { return items(arg).indexOf(value) >= 0; },
+  list: function (list, arg) {
+    return list.every(function (one) { return typeof one === 'string' && items(arg).indexOf(trim(one)) >= 0; });
+  }
+});
+})();
+(function () {
+addRule('integer', {
+  check: function (value) {
+    var found = value.match(/^([+-]?)(0|[1-9]\d*)$/);
+    if (!found) return false;
+    var limit = found[1] === '-' ? '9223372036854775808' : '9223372036854775807';
+    return found[2].length < limit.length || (found[2].length === limit.length && found[2] <= limit);
+  }
+});
+})();
+(function () {
+addRule('ip', {
+  check: function (value, arg) {
+    var only = trim(arg).toLowerCase();
+    return (only !== 'v6' && ipv4(value)) || (only !== 'v4' && ipv6(value));
+  }
+});
+})();
+(function () {
+function whole(text) {
+  return !/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(text);
+}
+function holds(value, level) {
+  if (typeof value === 'string') return whole(value);
+  if (value === null || typeof value !== 'object') return true;
+  if (level >= 511) return false;
+  return Object.keys(value).every(function (key) { return whole(key) && holds(value[key], level + 1); });
+}
+addRule('json', {
+  check: function (value) {
+    var read;
+    try { read = JSON.parse(value); } catch (e) { return false; }
+    return holds(read, 0);
+  }
+});
+})();
+(function () {
+addRule('lowercase', {
+  check: function (value) { return value === value.toLowerCase(); }
+});
+})();
+(function () {
+addRule('max', {
+  check: function (value, arg, values, number) { return size(value, number) <= toNumber(arg); }
+});
+})();
+(function () {
+addRule('min', {
+  check: function (value, arg, values, number) { return size(value, number) >= toNumber(arg); }
+});
+})();
+(function () {
+addRule('numeric', {
+  check: function (value) { return /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(value); }
+});
+})();
+(function () {
+function pattern(text) {
+  var open = text.charAt(0);
+  var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
+  var end = text.lastIndexOf(close);
+  if (end <= 0 || /[A-Za-z0-9\\\s]/.test(open)) return null;
+  var flags = text.slice(end + 1);
+  if (/[^imsuxXUAD]/.test(flags) || /[xXUAD]/.test(flags)) return null;
+  var body = text.slice(1, end);
+  var bare = body.replace(/\\\\/g, '');
+  if (/\\([AzZQERhHKGeNXCagoLlUuvV]|x\{)/.test(bare) || /\[:\^?[a-z]+:\]/.test(bare)) return null;
+  if (/(^|[^\\])\[\^?\]/.test(bare)) return null;
+  if (flags.indexOf('u') < 0 ? /\\[pP]/.test(bare) : /\\[wWdDbB]/.test(bare)) return null;
+  if (braces(body)) return null;
+  try { return new RegExp(body, flags.replace(/[^imsu]/g, '')); } catch (e) { return null; }
+}
+function braces(body) {
+  var inClass = false;
+  for (var i = 0; i < body.length; i++) {
+    var c = body.charAt(i);
+    if (c === '\\') {
+      i++;
+    } else if (inClass) {
+      if (c === ']') inClass = false;
+    } else if (c === '[') {
+      inClass = true;
+      if (body.charAt(i + 1) === '^') i++;
+      if (body.charAt(i + 1) === ']') i++;
+    } else if (c === '{' && /^\{[ \t]*(\d+[ \t]*(,[ \t]*\d*)?|,[ \t]*\d+)[ \t]*\}/.test(body.slice(i)) && !/^\{\d+(,\d*)?\}/.test(body.slice(i))) return true;
+  }
+  return false;
+}
+addRule('regex', {
+  check: function (value, arg) {
+    var read = pattern(arg);
+    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) ? read.test(value) : true;
+  }
+});
+})();
+(function () {
+addRule('required', {
+  check: function (value) { return value !== ''; },
+  list: function (list) { return list.length > 0; }
+});
+})();
+(function () {
+addRule('same', {
+  check: function (value, arg, values) {
+    var other = values[arg];
+    return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
+  }
+});
+})();
+(function () {
+addRule('slug', {
+  check: function (value) { return /^[a-z0-9]+(-[a-z0-9]+)*$/.test(value); }
+});
+})();
+(function () {
+addRule('starts_with', {
+  check: function (value, arg) {
+    return items(arg).some(function (one) { return one !== '' && value.indexOf(one) === 0; });
+  }
+});
+})();
+(function () {
+addRule('time', {
+  check: function (value) { return /^([01]?\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/.test(value); }
+});
+})();
+(function () {
+addRule('uppercase', {
+  check: function (value) { return value === value.toUpperCase(); }
+});
+})();
+(function () {
+function url(value) {
+  if (!/^https?:\/\//i.test(value) || /[^A-Za-z0-9$\-_.+!*'(),{}|\\^~\[\]`<>#%";\/?:@&=]/.test(value)) return false;
+  var rest = value.replace(/^https?:\/\//i, '');
+  var authority = rest.slice(0, rest.search(/[\/?#]|$/));
+  var at = authority.lastIndexOf('@');
+  var host = authority.slice(at + 1);
+  if (!(host.charAt(0) === '[' && host.slice(-1) === ']')) {
+    var colon = host.lastIndexOf(':');
+    if (colon >= 0) {
+      var port = host.slice(colon + 1);
+      if (port.length > 5) return false;
+      if (port !== '') {
+        var number = port.match(/^[+-]?\d+/);
+        if (!number || +number[0] < 0 || +number[0] > 65535) return false;
+      }
+      host = host.slice(0, colon);
     }
-    return false;
   }
+  if (host === '') return false;
+  if (!(host.charAt(0) === '[' && host.slice(-1) === ']' && ipv6(host.slice(1, -1))) && !hostname(host)) return false;
+  if (at < 0) return true;
+  var info = authority.slice(0, at), split = info.indexOf(':');
+  return userinfo(split < 0 ? info : info.slice(0, split)) && (split < 0 || userinfo(info.slice(split + 1)));
+}
+function hostname(host) {
+  var end = host.length;
+  if (end > 0 && host.charAt(end - 1) === '.') end--;
+  if (end > 253 || !alnum(host.charAt(0)) || host.slice(-1) === '-') return false;
+  for (var i = 0, size = 1; i < end; i++) {
+    var c = host.charAt(i);
+    if (c === '.') {
+      if (host.charAt(i + 1) === '.' || !alnum(host.charAt(i - 1)) || !alnum(host.charAt(i + 1))) return false;
+      size = 1;
+    } else {
+      if (size > 63 || (c !== '-' && !alnum(c))) return false;
+      size++;
+    }
+  }
+  return true;
+}
+function userinfo(text) {
+  return /^(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9][0-9A-Fa-f])*$/.test(text);
+}
+addRule('url', { check: url });
+})();
+(function () {
+addRule('uuid', {
+  check: function (value) { return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value); }
+});
+})();
   function rule(name, arg, value, values, number) {
-    if (Array.isArray(value)) {
-      if (name === 'required') return value.length > 0;
-      if (name === 'in') return value.every(function (one) { return typeof one === 'string' && rule('in', arg, trim(one), values, number); });
-      return false;
-    }
-    value = String(value);
-    var size = number ? toNumber(value) : length(value);
-    switch (name) {
-      case 'required': return value !== '';
-      case 'accepted': return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0;
-      case 'email':    return email(value);
-      case 'url':      return url(value);
-      case 'numeric':  return numberPattern.test(value);
-      case 'integer':  return integer(value);
-      case 'min':      return size >= toNumber(arg);
-      case 'max':      return size <= toNumber(arg);
-      case 'in':       return arg.split(',').map(trim).indexOf(value) >= 0;
-      case 'regex':    var pattern = regex(arg); return pattern && (pattern.unicode || !/[^\x00-\x7f]/.test(value)) ? pattern.test(value) : true;
-      case 'same':     var other = values[arg]; return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
-      case 'date':     return date(value);
-    }
-    return true;
+    var spec = rules[name];
+    if (!spec) return true;
+    if (Array.isArray(value)) return spec.list ? !!spec.list(value, arg, values, number) : false;
+    return !!spec.check(String(value), arg, values, number);
   }
   function message(text, label, shown) {
     return text.replace(/:label|:n/g, function (token) { return token === ':label' ? label : shown; });
@@ -189,7 +352,7 @@
     if (spec.rules.length && Array.isArray(value) && !spec.list) return message(spec.single, label, '');
     for (var i = 0; i < spec.rules.length; i++) {
       var one = spec.rules[i];
-      if (empty(value) && one[0] !== 'required' && one[0] !== 'accepted') continue;
+      if (empty(value) && !empties[one[0]]) continue;
       if (!rule(one[0], one[1], value, values, spec.number)) return message(one[2], label, one[3]);
     }
     return '';
@@ -224,15 +387,22 @@
     return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
   }
   function labelOf(form, control) {
+    var frame = control && control.closest ? control.closest('[data-pad-label]') : null;
+    if (frame) return frame.getAttribute('data-pad-label');
     if (!control || !control.id || box(control)) return '';
     var label = form.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(control.id) : control.id) + '"]');
     return label ? label.textContent.trim().replace(/[\s:*]+$/, '') : '';
   }
   function idOf(name, control) {
-    return (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+    var shows = control && control.getAttribute ? control.getAttribute('data-pad-shows') : null;
+    return shows || (control && control.id) || name.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
   }
   function box(control) {
-    return control.type === 'checkbox' || control.type === 'radio';
+    return (control.type === 'checkbox' || control.type === 'radio') && control.getAttribute('role') !== 'switch';
+  }
+  function shownBy(control) {
+    var id = control.getAttribute && control.getAttribute('data-pad-shows');
+    return (id && document.getElementById(id)) || control;
   }
   function show(form, name, text) {
     var controls = controlsOf(form, name);
@@ -240,7 +410,7 @@
     if (!last) return;
     var id = idOf(name, box(last) ? controls[0] : last) + '-error';
     var span = document.getElementById(id);
-    controls.forEach(function (control) {
+    controls.map(shownBy).forEach(function (control) {
       if (text) {
         control.setAttribute('aria-invalid', 'true');
         control.setAttribute('aria-describedby', id);
@@ -257,8 +427,8 @@
       span = document.createElement('span');
       span.className = 'error';
       span.id = id;
-      var after = last;
-      if ((last.type === 'checkbox' || last.type === 'radio') && last.nextElementSibling && last.nextElementSibling.tagName === 'LABEL')
+      var after = (last.closest && last.closest('[data-pad-label]')) || last;
+      if (after === last && (last.type === 'checkbox' || last.type === 'radio') && last.nextElementSibling && last.nextElementSibling.tagName === 'LABEL')
         after = last.nextElementSibling;
       after.insertAdjacentElement('afterend', span);
     }
@@ -295,7 +465,7 @@
       var controls = controlsOf(form, name);
       var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
       show(form, name, problem);
-      if (problem && !first) first = controls[0];
+      if (problem && !first && controls[0]) first = shownBy(controls[0]);
     });
     banner(form, !!first);
     if (first && first.focus) first.focus();
@@ -320,7 +490,7 @@
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
       var form = ruled(event.target);
-      if (form && event.target.getAttribute('aria-invalid') === 'true')
+      if (form && shownBy(event.target).getAttribute('aria-invalid') === 'true')
         checkOne(form, event.target.name);
     });
   });

@@ -67,7 +67,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 141 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
         </form>
         <div class="frame-tools">
           <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -150,7 +150,7 @@
               Description
             </h2>
             <p>
-              <code>{qr}</code> encodes its first parameter as a QR code and writes it as an inline SVG. The encoder is PAD's own (<code>tags/_lib/qr.php</code>): nothing is fetched and no image is stored, and the same text is always the same picture, so a page with a code caches and prints like any other.
+              <code>{qr}</code> encodes its first parameter as a QR code and writes it as an inline SVG. The encoder is PAD's own (<code>pad/codes/_lib/qr.php</code>): nothing is fetched and no image is stored, and the same text is always the same picture, so a page with a code caches and prints like any other. It is the <code>qr</code> symbology of the codes subsystem by a tag of its own: <code>{barcode:qr 'text'/}</code> and <code>{barcode 'text', type='qr'/}</code> write the same code.
             </p>
             <p>
               The text is encoded in one mode - numeric for digits only, alphanumeric for upper case, digits and <code>$%*+-./:</code>, else the bytes of its UTF-8 - in the smallest of the 40 versions that holds it at the error correction asked, under the mask with the lowest penalty. A higher <code>level</code> survives more damage (a logo printed over it, a scratched label) at the cost of a denser code.
@@ -231,7 +231,7 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode}</a> <span class="about">Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode}</a> <span class="about">Draws a barcode as inline SVG, encoded on the server - 13 symbologies, from EAN-13 and Code 128 to QR and Data Matrix.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a> <span class="about">Draws a chart as inline SVG on the server - 45 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
@@ -244,7 +244,7 @@
         </article>
         <footer class="foot">
           <p>
-            141 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
           </p>
         </footer>
       </div>

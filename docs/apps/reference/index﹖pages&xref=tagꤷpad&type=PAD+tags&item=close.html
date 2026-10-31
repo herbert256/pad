@@ -66,7 +66,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -288,6 +288,48 @@
                       }
                       padAjaxbbde10c3af3eb550f30077e247997828.open("GET","http://localhost/pad/htmx/?index&padInclude",true);
                       padAjaxbbde10c3af3eb550f30077e247997828.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Inputs'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="inputs-lead"&gt;Rich form fields, each a tag of its own - a file of &lt;code&gt;pad/inputs/types/&lt;/code&gt;<br>in the engine, written &lt;code&gt;<b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>name </font><font color="red"><font color="black">'</font>field<font color="black">'</font></font>/}</b>&lt;/code&gt; or, when nothing else has the<br>name, bare. Every one posts a real value in a plain form submit, refills from the post and shows<br>the message of its &lt;code&gt;rules=&lt;/code&gt;, as &lt;code&gt;<b>{<font color="blue">input</font><font color="red"></font>}</b>&lt;/code&gt; does; its script makes<br>more of a native field where it runs. &lt;a href="?form"&gt;One form&lt;/a&gt; holds them all.&lt;/p&gt;<br><br>&lt;ul class="inputs-cards"&gt;<br>  <b>{<font color="blue">inputs</font><font color="red"></font>}</b><br>  &lt;li&gt;&lt;a class="inputs-card" href="?<b>{<font color="green"><font color="red">$</font>kind</font>}</b>"&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>kind</font>}</b>&lt;/b&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>line</font>}</b>&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;<br>  <b>{/<font color="blue">inputs</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax259a554e5dc804c1ff6094610dff2f65"></div>
+                      <script>
+                      padAjax259a554e5dc804c1ff6094610dff2f65 = new XMLHttpRequest();
+                      padAjax259a554e5dc804c1ff6094610dff2f65.onreadystatechange=function() {
+                      if (padAjax259a554e5dc804c1ff6094610dff2f65.readyState === 4) {
+                      if (padAjax259a554e5dc804c1ff6094610dff2f65.status === 200) {
+                      document.getElementById("padAjax259a554e5dc804c1ff6094610dff2f65").innerHTML=padAjax259a554e5dc804c1ff6094610dff2f65.responseText;
+                      } else {
+                      document.getElementById("padAjax259a554e5dc804c1ff6094610dff2f65").innerHTML=padAjax259a554e5dc804c1ff6094610dff2f65.statusText;
+                      }
+                      }
+                      }
+                      padAjax259a554e5dc804c1ff6094610dff2f65.open("GET","http://localhost/pad/inputs/?index&padInclude",true);
+                      padAjax259a554e5dc804c1ff6094610dff2f65.send();
                       </script>
                     </td>
                   </tr>
@@ -617,7 +659,7 @@
                   </tr>
                 </table><br>
                 <hr>
-                App: manual - Page: pages/collections<br>
+                App: manual - Page: pages/codes<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
                     <th bgcolor="#DDDDDD">
@@ -626,7 +668,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">pages/collections.pad</font>
+                      <font size="-2">pages/codes.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -635,63 +677,23 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown collections<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;A folder of Markdown files is a data source - a small flat-file CMS. The files live in<br>&lt;code&gt;_content/&lt;name&gt;/&lt;/code&gt;, and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>collection<font color="black">'</font></font>/}</b> iterates them: each file is a<br>row, the keys of its front matter (YAML between two &lt;code&gt;---&lt;/code&gt; lines) are its fields,<br>and three are added - &lt;code&gt;slug&lt;/code&gt;, the file name without &lt;code&gt;.md&lt;/code&gt;;<br>&lt;code&gt;body&lt;/code&gt;, the Markdown written as HTML; and &lt;code&gt;source&lt;/code&gt;, the Markdown as it<br>was.&lt;/p&gt;<br><br>&lt;p&gt;This manual has a folder &lt;code&gt;_content/news/&lt;/code&gt; with two files. The newest first:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_1<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;One post&lt;/h2&gt;<br><br>&lt;p&gt;A list links to the page of a post with its slug - &lt;code&gt;?news/post&amp;amp;slug=<b>{<font color="green"><font color="red">$</font>slug</font>}</b>&lt;/code&gt; -<br>and that page names it with the &lt;code&gt;slug&lt;/code&gt; option. A slug that names no file gives no<br>rows, so the <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>/}</b> part answers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/collections_2<font color="black">'</font></font>/}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;body&lt;/code&gt; is HTML; print it raw with &lt;code&gt;<b>{<font color="green"><font color="red">!</font>body</font>}</b>&lt;/code&gt;. Raw HTML in a file is escaped unless the tag has the &lt;code&gt;html&lt;/code&gt; option.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;first&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and the other handling options work on the rows as on any data.&lt;/li&gt;<br>  &lt;li&gt;The folder is looked up like a &lt;code&gt;_data&lt;/code&gt; file: the page's directory, its parents, then &lt;code&gt;_common&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;In PHP, &lt;code&gt;padCollection('news')&lt;/code&gt; gives the same rows.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Barcodes and QR codes<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>barcode<font color="black">'</font></font>/}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>qr<font color="black">'</font></font>/}</b> write a code a scanner reads. It is encoded on the server and<br>drawn as inline SVG - no image library, no font, no remote service - so a page with a code prints,<br>caches and goes in an e-mail like any other. There are <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(padKinds(<font color="black">'</font>codes<font color="black">'</font>))</font>/}</b><br>symbologies, every one a file of &lt;code&gt;pad/codes/types/&lt;/code&gt;. Twelve or thirteen digits are an<br>EAN-13, with the check digit added when it is left off; any other text is Code 128.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/codes_1<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Three ways to write one&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;type=&lt;/code&gt; on the tag names the symbology: &lt;code&gt;<b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>upce<font color="black">'</font></font>/}</b>&lt;/code&gt;.<br>The barcode type does the same, &lt;code&gt;<b>{<font color="blue"><font color="purple">barcode</font><font color="black"><b>:</b></font>upce </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font></font>/}</b>&lt;/code&gt;, and so does the<br>name alone, &lt;code&gt;<b>{<font color="blue">upce </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font></font>/}</b>&lt;/code&gt;, as long as no tag, store, field or sequence<br>has that name. All three draw the same UPC-E.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/codes_2<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Products, parcels and labels&lt;/h2&gt;<br><br>&lt;p&gt;The product codes - &lt;code&gt;ean13&lt;/code&gt;, &lt;code&gt;ean8&lt;/code&gt;, &lt;code&gt;upca&lt;/code&gt; and<br>&lt;code&gt;upce&lt;/code&gt; - check the digit a number ends in, or add it. Code 128 and Code 93 take printable<br>ASCII, Code 39 capital letters, digits and a few signs, with &lt;code&gt;check&lt;/code&gt; for its check<br>symbol. &lt;code&gt;itf&lt;/code&gt; and &lt;code&gt;itf14&lt;/code&gt; are the digits of cartons, &lt;code&gt;codabar&lt;/code&gt; the<br>code of libraries and blood banks, &lt;code&gt;msi&lt;/code&gt; that of shelf labels.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/codes_3<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Two-dimensional codes&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;qr&lt;/code&gt; is the code of <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>qr<font color="black">'</font></font>/}</b>, which a phone camera reads; &lt;code&gt;datamatrix&lt;/code&gt;<br>the square code of parts and medicine packs. Both take any text and choose the smallest symbol that<br>holds it, and both take &lt;code&gt;size=&lt;/code&gt; in pixels in place of the height and scale of the bars.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/codes_4<font color="black">'</font></font>/}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;The colours are black on white unless &lt;code&gt;color=&lt;/code&gt; and &lt;code&gt;background=&lt;/code&gt; say<br>  otherwise - fixed, whatever the page's colour scheme, as a scanner needs the contrast.&lt;/li&gt;<br>  &lt;li&gt;The SVG is &lt;code&gt;role="img"&lt;/code&gt; with the text, or &lt;code&gt;title=&lt;/code&gt;, as its name.&lt;/li&gt;<br>  &lt;li&gt;A wrong check digit, a character the symbology has no bars for or a text too long for it is<br>  an error under the strict check, and nothing is drawn.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax85793968e31469c16e870763297dce26"></div>
+                      <div id="padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5"></div>
                       <script>
-                      padAjax85793968e31469c16e870763297dce26 = new XMLHttpRequest();
-                      padAjax85793968e31469c16e870763297dce26.onreadystatechange=function() {
-                      if (padAjax85793968e31469c16e870763297dce26.readyState === 4) {
-                      if (padAjax85793968e31469c16e870763297dce26.status === 200) {
-                      document.getElementById("padAjax85793968e31469c16e870763297dce26").innerHTML=padAjax85793968e31469c16e870763297dce26.responseText;
+                      padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5 = new XMLHttpRequest();
+                      padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.onreadystatechange=function() {
+                      if (padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.readyState === 4) {
+                      if (padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.status === 200) {
+                      document.getElementById("padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5").innerHTML=padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.responseText;
                       } else {
-                      document.getElementById("padAjax85793968e31469c16e870763297dce26").innerHTML=padAjax85793968e31469c16e870763297dce26.statusText;
+                      document.getElementById("padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5").innerHTML=padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.statusText;
                       }
                       }
                       }
-                      padAjax85793968e31469c16e870763297dce26.open("GET","http://localhost/pad/manual/?pages/collections&padInclude",true);
-                      padAjax85793968e31469c16e870763297dce26.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: manual - Page: pages/comments<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">pages/comments.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Comments<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;PAD has two comment forms. Both are taken out of the template before it is scanned, so a tag written inside one never runs and nothing of it reaches the output.&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="green"><font color="red">#</font> ... <font color="red">#</font></font>}</b>&lt;/code&gt; - the original form&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;{-- ... --}&lt;/code&gt; - the form the editor kits highlight and toggle&lt;/li&gt;<br>&lt;/ul&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/comments_1<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Rules&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;A comment closes at the first &lt;code&gt;#}&lt;/code&gt; or &lt;code&gt;--}&lt;/code&gt; after it, and may span lines.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;{--&lt;/code&gt; must be followed by whitespace: a CSS custom property inside an <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>/}</b> block, &lt;code&gt;:root{--gap:4px}&lt;/code&gt;, is CSS and stays as it is.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;<b>{<font color="green"><font color="red">#</font>name</font>}</b>&lt;/code&gt; is not a comment but the option sigil - the value of the tag option &lt;code&gt;name&lt;/code&gt;.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;See Also&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>ignore<font color="black">'</font></font>/}</b> - keep PAD from parsing braces&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxdd7eff139246279556d88d8af9efa22b"></div>
-                      <script>
-                      padAjaxdd7eff139246279556d88d8af9efa22b = new XMLHttpRequest();
-                      padAjaxdd7eff139246279556d88d8af9efa22b.onreadystatechange=function() {
-                      if (padAjaxdd7eff139246279556d88d8af9efa22b.readyState === 4) {
-                      if (padAjaxdd7eff139246279556d88d8af9efa22b.status === 200) {
-                      document.getElementById("padAjaxdd7eff139246279556d88d8af9efa22b").innerHTML=padAjaxdd7eff139246279556d88d8af9efa22b.responseText;
-                      } else {
-                      document.getElementById("padAjaxdd7eff139246279556d88d8af9efa22b").innerHTML=padAjaxdd7eff139246279556d88d8af9efa22b.statusText;
-                      }
-                      }
-                      }
-                      padAjaxdd7eff139246279556d88d8af9efa22b.open("GET","http://localhost/pad/manual/?pages/comments&padInclude",true);
-                      padAjaxdd7eff139246279556d88d8af9efa22b.send();
+                      padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.open("GET","http://localhost/pad/manual/?pages/codes&padInclude",true);
+                      padAjaxf6a2c3c22019ce3f4ea93cd0d23230e5.send();
                       </script>
                     </td>
                   </tr>

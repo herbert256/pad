@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Mandelbrot set · PAD toys
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="toys.css">
+    <style>
+    :where(.pad-toy){--pad-toy-ink:#1a1a19;--pad-toy-muted:#6b6a65;--pad-toy-line:#c9c8c2;--pad-toy-surface:#fcfcfb;--pad-toy-canvas:#ffffff;--pad-toy-grid:#ecebe6;--pad-toy-accent:#2a78d6;--pad-toy-accent2:#eb6834;--pad-toy-accent3:#8a4fd3;--pad-toy-good:#1a8a5a;--pad-toy-bad:#d43c3b;--pad-toy-mark:#d99a00;--pad-toy-night:#0b1020;--pad-toy-glow:#fbf7ea;}@supports (color:light-dark(#000,#fff)){:where(.pad-toy){--pad-toy-ink:light-dark(#1a1a19,#f4f3ee);--pad-toy-muted:light-dark(#6b6a65,#a8a79f);--pad-toy-line:light-dark(#c9c8c2,#4a4a46);--pad-toy-surface:light-dark(#fcfcfb,#1a1a19);--pad-toy-canvas:light-dark(#ffffff,#10100f);--pad-toy-grid:light-dark(#ecebe6,#2a2a27);--pad-toy-accent:light-dark(#2a78d6,#5598e7);--pad-toy-accent2:light-dark(#eb6834,#e8875f);--pad-toy-accent3:light-dark(#8a4fd3,#a98ae8);--pad-toy-good:light-dark(#1a8a5a,#3fbf86);--pad-toy-bad:light-dark(#d43c3b,#ef6b6a);--pad-toy-mark:light-dark(#d99a00,#f2c94c);--pad-toy-night:light-dark(#0b1020,#05070d);--pad-toy-glow:light-dark(#fbf7ea,#fbf7ea);}}:where(.pad-toy){display:block;width:fit-content;max-width:100%;margin:1em 0;padding:14px 16px;border:1px solid var(--pad-toy-line);border-radius:10px;background:var(--pad-toy-surface);color:var(--pad-toy-ink);font:15px/1.4 system-ui,sans-serif;box-sizing:border-box}
+    .pad-toy *,.pad-toy *::before,.pad-toy *::after{box-sizing:border-box}
+    .pad-toy .pt-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin:0 0 10px}
+    .pad-toy .pt-title{font-weight:650;font-size:16px}
+    .pad-toy .pt-status{color:var(--pad-toy-muted);min-height:1.4em}
+    .pad-toy .pt-stage{position:relative;max-width:100%;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+    .pad-toy .pt-canvas{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas);touch-action:none;cursor:crosshair}
+    .pad-toy .pt-canvas.is-pixels{image-rendering:pixelated}
+    .pad-toy .pt-info{color:var(--pad-toy-muted);font-size:13px;font-variant-numeric:tabular-nums;min-height:1.3em;margin-top:6px}
+    .pad-toy .pt-info:empty{min-height:0;margin:0}
+    .pad-toy .pt-bar{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    .pad-toy .pt-bar:empty{display:none}
+    .pad-toy .pt-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+    .pad-toy .pt-button{font:inherit;font-size:14px;padding:6px 12px;border-radius:6px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas);color:var(--pad-toy-ink);cursor:pointer}
+    .pad-toy .pt-button:hover:not(:disabled){border-color:var(--pad-toy-accent)}
+    .pad-toy .pt-button:disabled{opacity:.45;cursor:default}
+    .pad-toy .pt-button.is-on,.pad-toy .pt-button[aria-pressed="true"].is-toggle{background:var(--pad-toy-accent);border-color:var(--pad-toy-accent);color:#fff}
+    .pad-toy .pt-play{min-width:5.2em}
+    .pad-toy .pt-slider,.pad-toy .pt-select,.pad-toy .pt-check{display:inline-flex;align-items:center;gap:6px;font-size:14px}
+    .pad-toy .pt-label{color:var(--pad-toy-muted)}
+    .pad-toy .pt-slider input{width:110px;accent-color:var(--pad-toy-accent)}
+    .pad-toy .pt-value{min-width:2.6em;font-variant-numeric:tabular-nums}
+    .pad-toy .pt-select select{font:inherit;font-size:14px;padding:4px 6px;border-radius:6px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas);color:var(--pad-toy-ink)}
+    .pad-toy .pt-check input{accent-color:var(--pad-toy-accent)}
+    .pad-toy button:focus-visible,.pad-toy canvas:focus-visible,.pad-toy input:focus-visible,.pad-toy select:focus-visible,.pad-toy [tabindex]:focus-visible{outline:2px solid var(--pad-toy-accent);outline-offset:2px}
+    .pad-toy .pt-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-toy .pt-noscript{color:var(--pad-toy-bad);margin:0}
+    </style>
+  </head>
+  <body class="frame app-toys">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>toys</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="toys">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All toys</a>
+        <div class="frame-head">
+          Toys
+        </div><a href="index%EF%B9%96ant.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Langton's ant</a> <a href="index%EF%B9%96automaton.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Cellular automaton</a> <a href="index%EF%B9%96boids.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Boids</a> <a href="index%EF%B9%96clocks.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Clocks</a> <a href="index%EF%B9%96fireworks.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Fireworks</a> <a href="index%EF%B9%96flowfield.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Flow field</a> <a href="index%EF%B9%96galton.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Galton board</a> <a href="index%EF%B9%96harmonograph.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Harmonograph</a> <a href="index%EF%B9%96kaleidoscope.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Kaleidoscope</a> <a href="index%EF%B9%96life.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Game of Life</a> <a href="index%EF%B9%96lsystem.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> L-system</a> <a href="index%EF%B9%96mandelbrot.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Mandelbrot set</a> <a href="index%EF%B9%96orbits.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Orbits</a> <a href="index%EF%B9%96pendulum.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Double pendulum</a> <a href="index%EF%B9%96ripples.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Ripple tank</a> <a href="index%EF%B9%96sand.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Falling sand</a> <a href="index%EF%B9%96sorting.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Sorting algorithms</a> <a href="index%EF%B9%96spirograph.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Spirograph</a> <a href="index%EF%B9%96starfield.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Starfield</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Mandelbrot set
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="toys-lead">
+          The Mandelbrot set, the points c of the plane where z = z² + c stays near home, its edge coloured by how fast the rest escape. Click to zoom in at a point, Shift-click or right-click to zoom out, drag to move; Julia shows the Julia set of the point in the middle, and Play cycles the colours. iterations= how long a point is followed (300 unless given, 50 to 5000); palette= ocean, fire, rainbow or mono; center= the middle of the view, 'x, y'; zoom= how far in (1, up to a trillion); julia= the point c of a Julia set to start with instead, 'x, y'.
+        </p>
+        <div class="toys-play">
+          <section class="pad-toy pad-toy-mandelbrot" id="pad-toy-mandelbrot-31ff1bd2" data-pad-toy="mandelbrot" data-config="{&quot;iterations&quot;:300,&quot;palette&quot;:&quot;ocean&quot;,&quot;center&quot;:[-0.6,0],&quot;zoom&quot;:1,&quot;julia&quot;:null,&quot;name&quot;:&quot;Mandelbrot set&quot;}" aria-label="Mandelbrot set">
+            <header class="pt-head">
+              <strong class="pt-title">Mandelbrot set</strong><span class="pt-status" role="status" aria-live="polite"></span>
+            </header>
+            <div class="pt-stage"></div>
+            <div class="pt-info"></div>
+            <div class="pt-bar"></div><noscript>
+            <p class="pt-noscript">
+              This toy runs in the browser and needs JavaScript.
+            </p></noscript>
+          </section>
+          <script>
+          /* The runtime of the PAD toys (pad/toys/_lib/toy.php writes it once per page). A toy's script
+          registers itself - PadToys.register('life', function (k, cfg) { ... }) - and is started on
+          every stage of its kind: the ones on the page, and the ones a fragment, a live region or a
+          script brings later. k is the toy's kit: its stage, status line, counter line and bar, a
+          random number seeded by seed= (the same on every load) or by the browser, a canvas whose
+          palette is resolved for the page's light or dark scheme, the pointer over it in the
+          canvas's own units, labelled controls, and the animation loop.
+
+          The loop is the kit's, not the toy's, so every toy behaves alike: it runs a frame function
+          on each animation frame while the toy plays, holds while the page is hidden or the toy is
+          scrolled out of view - and goes on where it was when it comes back - and does not start by
+          itself when the visitor asks for reduced motion, or when the tag says paused. The root
+          carries the state as data-state: playing, paused or held. */
+
+          (function () {
+          'use strict';
+
+          if (window.PadToys) return;
+
+          var kinds = {}, kits = [];
+
+          // The colours of the palette, custom properties --pad-toy-<role> (toys/_lib/toy.php).
+          var ROLES = ['ink', 'muted', 'line', 'surface', 'canvas', 'grid', 'accent', 'accent2', 'accent3', 'good', 'bad', 'mark', 'night', 'glow'];
+          var media = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };
+          var reduced = media('(prefers-reduced-motion: reduce)');
+
+          // mulberry32: a small, fast generator whose numbers follow from the seed alone.
+
+          function random(seed) {
+          var a = seed >>> 0;
+          return function () {
+          a = (a + 0x6D2B79F5) >>> 0;
+          var t = a;
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+          }
+
+          function el(tag, cls, text) {
+          var e = document.createElement(tag);
+          if (cls) e.className = cls;
+          if (text !== undefined && text !== null) e.textContent = text;
+          return e;
+          }
+
+          var uid = 0;
+
+          function Kit(root, cfg) {
+          this.root = root;
+          this.cfg = cfg;
+          this.stage = root.querySelector('.pt-stage');
+          this.bar = root.querySelector('.pt-bar');
+          this.infoEl = root.querySelector('.pt-info');
+          this.statusEl = root.querySelector('.pt-status');
+          this.seed = (typeof cfg.seed === 'number') ? cfg.seed : Math.floor(Math.random() * 2147483647);
+          this.rand = random(this.seed);
+          this.playing = false;
+          this.held = false;
+          this.frameFn = null;
+          this.drawFn = null;
+          this.themeFns = [];
+          this.raf = 0;
+          this.last = 0;
+          this.seen = true;
+          this.colours = {};
+          this.playBtn = null;
+          this.probe = el('span', 'pt-hide');
+          this.probe.setAttribute('aria-hidden', 'true');
+          root.appendChild(this.probe);
+          this.keymap = {};
+          this.listen();
+          this.setState('paused');
+          }
+
+          Kit.prototype = {
+          el: el,
+
+          // Random numbers from the toy's own generator: what the seed makes the same.
+          int: function (n) { return Math.floor(this.rand() * n); },
+          range: function (a, b) { return a + this.rand() * (b - a); },
+          pick: function (list) { return list[this.int(list.length)]; },
+          chance: function (p) { return this.rand() < p; },
+          gauss: function () {
+          var u = 1 - this.rand(), v = this.rand();
+          return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+          },
+          shuffle: function (list) {
+          for (var i = list.length - 1; i > 0; i--) {
+          var j = this.int(i + 1), t = list[i];
+          list[i] = list[j];
+          list[j] = t;
+          }
+          return list;
+          },
+
+          // The status line is a live region: it says what changed - started, paused, sorted - and
+          // is not written every frame. Counters that change all the time go to the info line.
+          status: function (text) { if (this.statusEl.textContent !== text) this.statusEl.textContent = text; },
+          info: function (text) { if (this.infoEl.textContent !== text) this.infoEl.textContent = text; },
+
+          // A colour of the palette - 'accent', '--pad-toy-accent' or any CSS colour - as the
+          // canvas can paint it: the custom properties are light-dark(...) text, so a probe element
+          // resolves them to the colour of the page's scheme, kept until the scheme changes.
+          color: function (name) {
+          if (!this.colours[name]) {
+          this.probe.style.color = ROLES.indexOf(name) >= 0 ? 'var(--pad-toy-' + name + ')' : (name.indexOf('--') === 0 ? 'var(' + name + ')' : name);
+          this.colours[name] = getComputedStyle(this.probe).color;
+          }
+          return this.colours[name];
+          },
+          rgb: function (name) {
+          var m = this.color(name).match(/[\d.]+/g) || [0, 0, 0];
+          return [+m[0], +m[1], +m[2]];
+          },
+          alpha: function (name, a) {
+          var c = this.rgb(name);
+          return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+          },
+          // Whether the toy draws on a dark canvas - the page's dark scheme.
+          dark: function () {
+          var c = this.rgb('canvas');
+          return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) < 128;
+          },
+          // Called again after the scheme changed, with the colours resolved anew.
+          theme: function (fn) { this.themeFns.push(fn); },
+          retheme: function () {
+          this.colours = {};
+          this.themeFns.forEach(function (fn) { fn(); });
+          if (!this.playing || this.held) this.redraw();
+          },
+
+          // A canvas on the stage, w by h in its own units. It scales down with a narrow page and
+          // keeps its proportions; the pointer is handed over in those units. A canvas drawn as
+          // pixels - an image, a grid of cells - is one unit a pixel; any other is drawn sharp on
+          // a screen of more pixels per unit. role=img and the label say what it shows.
+          canvas: function (w, h, label, pixels) {
+          var c = el('canvas', 'pt-canvas'), ratio = pixels ? 1 : Math.min(2, window.devicePixelRatio || 1);
+          c.width = Math.round(w * ratio);
+          c.height = Math.round(h * ratio);
+          c.style.width = w + 'px';
+          c.setAttribute('role', 'img');
+          c.setAttribute('aria-label', label);
+          c.tabIndex = 0;
+          if (pixels) c.classList.add('is-pixels');
+          c.unitW = w;
+          c.unitH = h;
+          this.stage.appendChild(c);
+          var ctx = c.getContext('2d');
+          if (ratio !== 1) ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+          c.ratio = ratio;
+          return ctx;
+          },
+          describe: function (canvas, label) { canvas.setAttribute('aria-label', label); },
+
+          // The pointer over a canvas - mouse, pen or finger - in the canvas's units: down(p, e),
+          // move(p, e, pressed) and up(p, e), p = { x, y, button, shift }.
+          pointer: function (canvas, on) {
+          var pressed = false;
+          function at(e) {
+          var r = canvas.getBoundingClientRect();
+          return { x: (e.clientX - r.left) * canvas.unitW / r.width, y: (e.clientY - r.top) * canvas.unitH / r.height,
+                 button: e.button, shift: e.shiftKey, alt: e.altKey, type: e.pointerType };
+          }
+          canvas.addEventListener('pointerdown', function (e) {
+          pressed = true;
+          try { canvas.setPointerCapture(e.pointerId); } catch (x) {}
+          if (on.down && on.down(at(e), e) !== false) e.preventDefault();
+          });
+          canvas.addEventListener('pointermove', function (e) { if (on.move) on.move(at(e), e, pressed); });
+          function end(e) {
+          if (!pressed) return;
+          pressed = false;
+          if (on.up) on.up(at(e), e);
+          }
+          canvas.addEventListener('pointerup', end);
+          canvas.addEventListener('pointercancel', end);
+          canvas.addEventListener('pointerleave', function (e) { if (on.leave) on.leave(at(e), e); });
+          canvas.addEventListener('contextmenu', function (e) { if (on.context !== false) e.preventDefault(); });
+          },
+
+          // Keys the toy reads while it has the focus - added to the ones it has; Space plays and
+          // pauses every toy (listen, in the constructor).
+          keys: function (map) { for (var key in map) this.keymap[key] = map[key]; },
+          listen: function () {
+          var kit = this;
+          this.root.addEventListener('keydown', function (e) {
+          if (e.altKey || e.ctrlKey || e.metaKey) return;
+          var t = e.target, tag = t && t.tagName;
+          if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || (tag === 'BUTTON' && (e.key === ' ' || e.key === 'Enter'))) return;
+          var fn = kit.keymap[e.key];
+          if (!fn && e.key === ' ' && kit.frameFn) fn = function () { kit.toggle(); };
+          if (fn && fn(e) !== false) e.preventDefault();
+          });
+          },
+
+          // The controls, in the bar: a row of them, then buttons, sliders, a list and a box, each
+          // with the label a screen reader says.
+          row: function () {
+          var r = el('div', 'pt-row');
+          this.bar.appendChild(r);
+          this.rowEl = r;
+          return r;
+          },
+          place: function (node) { (this.rowEl || this.row()).appendChild(node); return node; },
+          button: function (label, fn, title) {
+          var b = el('button', 'pt-button', label);
+          b.type = 'button';
+          if (title) { b.title = title; b.setAttribute('aria-label', title); }
+          b.addEventListener('click', fn);
+          return this.place(b);
+          },
+          slider: function (label, min, max, step, value, fn, show) {
+          var id = 'pt-' + (++uid), wrap = el('label', 'pt-slider'), name = el('span', 'pt-label', label),
+          input = el('input'), out = el('output', 'pt-value');
+          input.type = 'range';
+          input.min = min;
+          input.max = max;
+          input.step = step;
+          input.value = value;
+          input.id = id;
+          out.htmlFor = id;
+          show = show || function (v) { return v; };
+          out.textContent = show(+input.value);
+          input.addEventListener('input', function () { out.textContent = show(+input.value); fn(+input.value); });
+          wrap.appendChild(name);
+          wrap.appendChild(input);
+          wrap.appendChild(out);
+          this.place(wrap);
+          input.set = function (v) { input.value = v; out.textContent = show(+input.value); };
+          return input;
+          },
+          select: function (label, options, value, fn) {
+          var wrap = el('label', 'pt-select'), name = el('span', 'pt-label', label), s = el('select');
+          options.forEach(function (o) {
+          var opt = el('option', '', Array.isArray(o) ? o[1] : o);
+          opt.value = Array.isArray(o) ? o[0] : o;
+          s.appendChild(opt);
+          });
+          s.value = value;
+          s.addEventListener('change', function () { fn(s.value); });
+          wrap.appendChild(name);
+          wrap.appendChild(s);
+          return this.place(wrap);
+          },
+          check: function (label, value, fn) {
+          var wrap = el('label', 'pt-check'), box = el('input');
+          box.type = 'checkbox';
+          box.checked = !!value;
+          box.addEventListener('change', function () { fn(box.checked); });
+          wrap.appendChild(box);
+          wrap.appendChild(el('span', 'pt-label', label));
+          this.place(wrap);
+          return box;
+          },
+
+          // The animation loop: fn(dt, now) on every frame while the toy plays and is in view - dt
+          // the seconds since the frame before, at most a tenth, so a toy coming back from a pause
+          // does not jump. draw() repaints a toy that is not playing, after the scheme changed.
+          loop: function (fn, draw) { this.frameFn = fn; this.drawFn = draw || null; },
+          redraw: function () { if (this.drawFn) this.drawFn(); },
+          setState: function (s) { this.root.setAttribute('data-state', s); },
+          tick: function (now) {
+          this.raf = 0;
+          if (!this.playing || this.held) return;
+          var dt = this.last ? Math.min(0.1, (now - this.last) / 1000) : 1 / 60;
+          this.last = now;
+          if (this.frameFn) this.frameFn(dt, now);
+          this.schedule();
+          },
+          schedule: function () {
+          var kit = this;
+          if (!this.raf && this.playing && !this.held) this.raf = requestAnimationFrame(function (now) { kit.tick(now); });
+          },
+          // Held while the page is hidden or the toy out of view, without changing what the
+          // visitor chose: it goes on where it was once it is seen again.
+          hold: function () {
+          var held = document.hidden || !this.seen;
+          if (held === this.held) return;
+          this.held = held;
+          if (held && this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+          this.last = 0;
+          this.setState(this.playing ? (held ? 'held' : 'playing') : 'paused');
+          if (!held) this.schedule();
+          },
+          play: function () {
+          if (this.playing) return;
+          this.playing = true;
+          this.last = 0;
+          this.setState(this.held ? 'held' : 'playing');
+          if (this.playBtn) { this.playBtn.textContent = 'Pause'; this.playBtn.setAttribute('aria-pressed', 'true'); }
+          if (this.onPlay) this.onPlay();
+          this.schedule();
+          },
+          pause: function () {
+          if (!this.playing) return;
+          this.playing = false;
+          if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+          this.setState('paused');
+          if (this.playBtn) { this.playBtn.textContent = 'Play'; this.playBtn.setAttribute('aria-pressed', 'false'); }
+          if (this.onPause) this.onPause();
+          },
+          toggle: function () { if (this.playing) this.pause(); else this.play(); },
+          // The Play / Pause button every toy has; the toy starts playing unless reduced motion is
+          // asked for or the tag says paused, and the status says why it waits.
+          playButton: function () {
+          var kit = this;
+          this.playBtn = this.button('Play', function () { kit.toggle(); });
+          this.playBtn.classList.add('pt-play');
+          this.playBtn.setAttribute('aria-pressed', 'false');
+          return this.playBtn;
+          },
+          begin: function (playingText) {
+          if (reduced.matches) this.status('Paused, as reduced motion is asked for - press Play to start');
+          else if (this.cfg.paused) this.status('Press Play to start');
+          else {
+          this.play();
+          if (playingText) this.status(playingText);
+          }
+          if (this.playing) return;
+          if (this.stillFn) this.stillFn();
+          else this.redraw();
+          },
+          // What a toy that waits shows: the figure it would draw, finished - a still picture in
+          // place of an empty canvas.
+          still: function (fn) { this.stillFn = fn; }
+          };
+
+          function start(root) {
+          if (root.padToyKit) return;
+          var init = kinds[root.getAttribute('data-pad-toy')];
+          if (!init) return;
+          var cfg = {};
+          try { cfg = JSON.parse(root.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+          var kit = new Kit(root, cfg);
+          root.padToyKit = kit;
+          root.classList.add('is-ready');
+          kits.push(kit);
+          if (seer) seer.observe(root);
+          init(kit, cfg);
+          }
+
+          function scan(where) {
+          var list = (where || document).querySelectorAll('.pad-toy[data-pad-toy]');
+          for (var i = 0; i < list.length; i++) start(list[i]);
+          }
+
+          // A toy that leaves the page - a fragment swapped out - is let go: its loop stops.
+          function prune() {
+          kits = kits.filter(function (kit) {
+          if (document.documentElement.contains(kit.root)) return true;
+          kit.pause();
+          if (seer) seer.unobserve(kit.root);
+          return false;
+          });
+          }
+
+          var seer = window.IntersectionObserver ? new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+          var kit = en.target.padToyKit;
+          if (kit) { kit.seen = en.isIntersecting; kit.hold(); }
+          });
+          }) : null;
+
+          document.addEventListener('visibilitychange', function () { kits.forEach(function (kit) { kit.hold(); }); });
+
+          if (reduced.addEventListener)
+          reduced.addEventListener('change', function () { if (reduced.matches) kits.forEach(function (kit) { kit.pause(); }); });
+
+          // The scheme changes with the system, or with the frame's own switch (data-theme on <html>,
+          // the padtheme event): every toy resolves its palette anew.
+          function retheme() { kits.forEach(function (kit) { kit.retheme(); }); }
+          var darkQuery = media('(prefers-color-scheme: dark)');
+          if (darkQuery.addEventListener) darkQuery.addEventListener('change', retheme);
+          document.addEventListener('padtheme', function () { setTimeout(retheme, 0); });
+
+          window.PadToys = {
+          register: function (name, init) { kinds[name] = init; scan(); },
+          scan: scan,
+          random: random,
+          el: el
+          };
+
+          document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+          if (window.MutationObserver) {
+          new MutationObserver(function (records) {
+          var added = false, removed = false;
+          for (var i = 0; i < records.length; i++) {
+          if (records[i].type === 'attributes') { retheme(); continue; }
+          if (records[i].removedNodes.length) removed = true;
+          for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-toy') || n.querySelector('.pad-toy'))) added = true;
+          }
+          }
+          if (added) scan();
+          if (removed && kits.length) prune();
+          }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-theme'] });
+          }
+          })();
+          </script>
+          <script>
+          PadToys.register('mandelbrot', function (k, cfg) {
+          var W = 560, H = 400, SIZE = 1024;
+          var maxIter = cfg.iterations, palette = cfg.palette, julia = cfg.julia, home = { cx: cfg.center[0], cy: cfg.center[1], zoom: cfg.zoom };
+          var view = { cx: home.cx, cy: home.cy, zoom: home.zoom }, saved = null;
+          var values = new Float32Array(W * H), lut = new Uint32Array(SIZE), inside = 0, offset = 0;
+          var ctx = k.canvas(W, H, 'Mandelbrot set', true), canvas = ctx.canvas;
+          var image = ctx.createImageData(W, H), pixels = new Uint32Array(image.data.buffer);
+          var job = null, drawn = 0;
+
+          function pack(c) { return (255 << 24 | Math.round(c[2]) << 16 | Math.round(c[1]) << 8 | Math.round(c[0])) >>> 0; }
+
+          // A palette is a few colours, blended into SIZE steps the escape counts cycle through;
+          // mono runs from the canvas to the ink, so it follows the page's scheme.
+          var STOPS = {
+          ocean: [[0, 7, 100], [32, 107, 203], [237, 255, 255], [255, 170, 0], [0, 2, 0]],
+          fire: [[0, 0, 0], [120, 0, 10], [230, 60, 0], [255, 190, 20], [255, 250, 210], [120, 0, 10]],
+          rainbow: null,
+          mono: null
+          };
+          function makeLut() {
+          var stops = STOPS[palette];
+          if (palette === 'mono') { var c = k.rgb('canvas'), i = k.rgb('ink'), a = k.rgb('accent'); stops = [c, a, i, a]; }
+          for (var n = 0; n < SIZE; n++) {
+          var f = n / SIZE;
+          if (palette === 'rainbow') { lut[n] = pack(hsl(f * 360, 0.85, 0.55)); continue; }
+          var x = f * stops.length, j = Math.floor(x), t = x - j, p = stops[j % stops.length], q = stops[(j + 1) % stops.length];
+          lut[n] = pack([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t, p[2] + (q[2] - p[2]) * t]);
+          }
+          inside = palette === 'mono' ? pack(k.rgb('ink')) : pack([0, 0, 0]);
+          }
+          function hsl(h, s, l) {
+          var c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = l - c / 2, r = 0, g = 0, b = 0;
+          if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; } else if (h < 180) { g = c; b = x; }
+          else if (h < 240) { g = x; b = c; } else if (h < 300) { r = x; b = c; } else { r = c; b = x; }
+          return [(r + m) * 255, (g + m) * 255, (b + m) * 255];
+          }
+
+          function span() { return 3.5 / view.zoom; }
+          function toPlane(px, py) { var s = span() / W; return { x: view.cx + (px - W / 2) * s, y: view.cy - (py - H / 2) * s }; }
+
+          // The escape count of a point, smoothed by how far past the escape radius it got, so the
+          // bands blend; -1 for a point that stays.
+          function escape(x, y) {
+          var zx, zy, cx, cy, n = 0, xx, yy;
+          if (julia) { zx = x; zy = y; cx = julia[0]; cy = julia[1]; }
+          else {
+          zx = 0; zy = 0; cx = x; cy = y;
+          // The main cardioid and the bulb left of it never escape: skipped at once.
+          var q = (x - 0.25) * (x - 0.25) + y * y;
+          if (q * (q + (x - 0.25)) <= 0.25 * y * y || (x + 1) * (x + 1) + y * y <= 0.0625) return -1;
+          }
+          while (n < maxIter) {
+          xx = zx * zx; yy = zy * zy;
+          if (xx + yy > 256) break;
+          zy = 2 * zx * zy + cy;
+          zx = xx - yy + cx;
+          n++;
+          }
+          if (n >= maxIter) return -1;
+          return n + 1 - Math.log(Math.log(zx * zx + zy * zy) / 2 / Math.LN2) / Math.LN2;
+          }
+
+          function colourAt(v) { return v < 0 ? inside : lut[(Math.floor(v * 12 + offset) % SIZE + SIZE) % SIZE]; }
+          function paint() {
+          for (var i = 0; i < values.length; i++) pixels[i] = colourAt(values[i]);
+          ctx.putImageData(image, 0, 0);
+          if (!julia && document.activeElement === canvas) {
+          ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(W / 2 - 8, H / 2 + 0.5); ctx.lineTo(W / 2 + 8, H / 2 + 0.5);
+          ctx.moveTo(W / 2 + 0.5, H / 2 - 8); ctx.lineTo(W / 2 + 0.5, H / 2 + 8);
+          ctx.stroke();
+          }
+          }
+
+          // Rendering goes in two passes - blocks of four pixels, then every pixel - a slice of rows
+          // per animation frame, so the page stays free and a new view can start before the last is
+          // done. It runs whether the colours cycle or not.
+          function render() {
+          if (job) cancelAnimationFrame(job.raf);
+          job = { pass: 0, y: 0, raf: 0 };
+          k.status('Drawing ...');
+          describe();
+          work();
+          }
+          function work() {
+          var started = performance.now(), block = job.pass === 0 ? 4 : 1;
+          while (job.y < H && performance.now() - started < 14) {
+          for (var x = 0; x < W; x += block) {
+          var p = toPlane(x + block / 2, job.y + block / 2), v = escape(p.x, p.y);
+          if (block === 1) values[job.y * W + x] = v;
+          else for (var dy = 0; dy < block && job.y + dy < H; dy++) for (var dx = 0; dx < block && x + dx < W; dx++) values[(job.y + dy) * W + x + dx] = v;
+          }
+          job.y += block;
+          }
+          paint();
+          if (job.y >= H) {
+          if (job.pass === 0) { job.pass = 1; job.y = 0; }
+          else { job = null; drawn++; done(); return; }
+          }
+          job.raf = requestAnimationFrame(work);
+          }
+          function done() {
+          k.status(julia ? 'The Julia set of ' + complex(julia[0], julia[1]) + ' - click to zoom, Mandelbrot to go back'
+                   : 'Click to zoom in, Shift-click to zoom out, drag to move');
+          }
+          function complex(x, y) { return x.toFixed(4) + (y < 0 ? ' − ' : ' + ') + Math.abs(y).toFixed(4) + 'i'; }
+          function describe() {
+          var z = view.zoom >= 1000 ? Math.round(view.zoom).toLocaleString('en') : +view.zoom.toPrecision(3);
+          k.info('Centre ' + complex(view.cx, view.cy) + ' · zoom ' + z + '× · ' + maxIter + ' iterations');
+          k.describe(canvas, (julia ? 'The Julia set of ' + complex(julia[0], julia[1]) : 'The Mandelbrot set') + ', centred on ' + complex(view.cx, view.cy) + ' at ' + z + ' times zoom');
+          }
+
+          function zoomAt(px, py, f) {
+          var p = toPlane(px, py);
+          view.cx = p.x; view.cy = p.y;
+          view.zoom = Math.max(0.5, Math.min(1e13, view.zoom * f));
+          render();
+          }
+
+          // A press that does not move is a click - zoom; one that moves drags the picture along,
+          // shown at once and drawn anew when let go.
+          var press = null;
+          k.pointer(canvas, {
+          down: function (p, e) { press = { x: p.x, y: p.y, cx: view.cx, cy: view.cy, moved: false, out: p.shift || e.button === 2 }; },
+          move: function (p, e, pressed) {
+          if (!pressed || !press) return;
+          var dx = p.x - press.x, dy = p.y - press.y;
+          if (!press.moved && Math.abs(dx) + Math.abs(dy) < 4) return;
+          press.moved = true;
+          var s = span() / W;
+          view.cx = press.cx - dx * s;
+          view.cy = press.cy + dy * s;
+          ctx.putImageData(image, Math.round(dx), Math.round(dy));
+          describe();
+          },
+          up: function (p) {
+          if (!press) return;
+          if (press.moved) render();
+          else zoomAt(p.x, p.y, press.out ? 0.5 : 2);
+          press = null;
+          }
+          });
+
+          function pan(dx, dy) { return function () { var s = span() / W; view.cx += dx * W / 8 * s; view.cy -= dy * H / 8 * s; render(); }; }
+          function toJulia() {
+          if (julia) return;
+          saved = { cx: view.cx, cy: view.cy, zoom: view.zoom };
+          julia = [view.cx, view.cy];
+          view = { cx: 0, cy: 0, zoom: 1.2 };
+          juliaBtn.textContent = 'Mandelbrot';
+          render();
+          }
+          function toMandelbrot() {
+          if (!julia) return;
+          julia = null;
+          view = saved || { cx: -0.6, cy: 0, zoom: 1 };
+          juliaBtn.textContent = 'Julia';
+          render();
+          }
+          function reset() { view = { cx: home.cx, cy: home.cy, zoom: home.zoom }; julia = cfg.julia; juliaBtn.textContent = julia ? 'Mandelbrot' : 'Julia'; render(); }
+
+          k.keys({
+          ArrowLeft: pan(-1, 0), ArrowRight: pan(1, 0), ArrowUp: pan(0, -1), ArrowDown: pan(0, 1),
+          '+': function () { zoomAt(W / 2, H / 2, 2); }, '=': function () { zoomAt(W / 2, H / 2, 2); }, '-': function () { zoomAt(W / 2, H / 2, 0.5); },
+          j: function () { julia ? toMandelbrot() : toJulia(); }, r: reset
+          });
+          canvas.addEventListener('focus', function () { if (!job) paint(); });
+          canvas.addEventListener('blur', function () { if (!job) paint(); });
+
+          k.loop(function (dt) { offset = (offset + dt * 90) % SIZE; if (!job) paint(); }, paint);
+          k.onPlay = function () { k.status('The colours cycle - Pause holds them'); };
+          k.onPause = function () { if (!job) done(); };
+
+          k.row();
+          k.playButton().title = 'Cycle the colours';
+          k.button('Zoom in', function () { zoomAt(W / 2, H / 2, 2); }, 'Zoom in at the middle (+)');
+          k.button('Zoom out', function () { zoomAt(W / 2, H / 2, 0.5); }, 'Zoom out (-)');
+          var juliaBtn = k.button(julia ? 'Mandelbrot' : 'Julia', function () { julia ? toMandelbrot() : toJulia(); }, 'The Julia set of the point in the middle, and back (J)');
+          k.button('Reset', reset, 'The first view (R)');
+          k.row();
+          k.select('Palette', [['ocean', 'Ocean'], ['fire', 'Fire'], ['rainbow', 'Rainbow'], ['mono', 'Ink']], palette, function (v) { palette = v; makeLut(); paint(); });
+          var levels = [50, 100, 200, 300, 500, 1000, 2000, 5000], at = 0;
+          levels.forEach(function (v, i) { if (Math.abs(v - maxIter) < Math.abs(levels[at] - maxIter)) at = i; });
+          k.slider('Iterations', 0, levels.length - 1, 1, at, function (v) { maxIter = levels[v]; render(); }, function (v) { return levels[v]; });
+          k.theme(function () { makeLut(); });
+
+          makeLut();
+          render();
+          k.begin();
+          if (!k.playing) done();
+          });
+          </script>
+        </div>
+        <h2>
+          The template
+        </h2>
+        <pre class="toys-source"><code><span class="hl-brc">{</span><span class="hl-tag">toy</span> <span class="hl-str">'mandelbrot'</span><span class="hl-brc">/}</span></code></pre>
+      </div>
+    </main>
+  </body>
+</html>

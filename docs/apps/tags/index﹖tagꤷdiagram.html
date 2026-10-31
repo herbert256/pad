@@ -27,6 +27,69 @@
     <style>
     :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
     </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-start{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-stop{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5}.pad-chart-diagram .pd-line{stroke:var(--pad-diagram-border);stroke-width:1}.pad-chart-diagram .pd-desc{font-size:11px}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-name{font-weight:700}.pad-chart-diagram .pd-type{font-size:11px;font-style:italic}.pad-chart-diagram .pd-abstract{font-style:italic}.pad-chart-diagram .pd-static{text-decoration:underline}.pad-chart-diagram .pd-line{stroke:var(--pad-diagram-border);stroke-width:1}.pad-chart-diagram .pd-hollow{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-foot{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5}.pad-chart-diagram .pd-ring{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5}.pad-chart-diagram .pd-end{font-size:11px}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-body{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-headfill{fill:var(--pad-diagram-node)}.pad-chart-diagram .pd-outline{fill:none;stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-line{stroke:var(--pad-diagram-border);stroke-width:1}.pad-chart-diagram .pd-row{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart-diagram .pd-name{font-weight:700}.pad-chart-diagram .pd-muted{opacity:.7}.pad-chart-diagram .pd-note-text{font-style:italic}.pad-chart-diagram .pd-key{font-size:10px;font-weight:700;fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-hollow{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-foot{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5}.pad-chart-diagram .pd-ring{fill:var(--pad-chart-surface);stroke:var(--pad-diagram-edge);stroke-width:1.5}.pad-chart-diagram .pd-end{font-size:11px}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-b1{color:var(--pad-chart-1)}.pad-chart-diagram .pd-b2{color:var(--pad-chart-2)}.pad-chart-diagram .pd-b3{color:var(--pad-chart-3)}.pad-chart-diagram .pd-b4{color:var(--pad-chart-4)}.pad-chart-diagram .pd-b5{color:var(--pad-chart-5)}.pad-chart-diagram .pd-b6{color:var(--pad-chart-6)}.pad-chart-diagram .pd-b7{color:var(--pad-chart-7)}.pad-chart-diagram .pd-b8{color:var(--pad-chart-8)}.pad-chart-diagram .pd-mm-root{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-mm-top{fill:var(--pad-chart-surface);font-size:14px;font-weight:700}.pad-chart-diagram .pd-mm-node{fill:currentColor;fill-opacity:.14;stroke:currentColor;stroke-width:1.5}.pad-chart-diagram .pd-mm-link{fill:none;stroke:currentColor;stroke-linecap:round}.pad-chart-diagram .pd-mm-d1{stroke-width:3}.pad-chart-diagram .pd-mm-d2{stroke-width:2}.pad-chart-diagram .pd-mm-d3{stroke-width:1.5}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-node.pd-root{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-root-text{fill:var(--pad-chart-surface);font-weight:700}.pad-chart-diagram .pd-node.pd-leaf{fill:var(--pad-chart-surface)}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-score-1:#e34948;--pad-diagram-score-2:#eb6834;--pad-diagram-score-3:#eda100;--pad-diagram-score-4:#8ab82e;--pad-diagram-score-5:#1baf7a;--pad-diagram-face:#2b2a27;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-score-1:light-dark(#e34948,#e66767);--pad-diagram-score-2:light-dark(#eb6834,#d95926);--pad-diagram-score-3:light-dark(#eda100,#c98500);--pad-diagram-score-4:light-dark(#8ab82e,#7aa526);--pad-diagram-score-5:light-dark(#1baf7a,#199e70);--pad-diagram-face:light-dark(#2b2a27,#1a1a19);}}.pad-chart-diagram .pd-who1{fill:var(--pad-chart-1)}.pad-chart-diagram .pd-who2{fill:var(--pad-chart-2)}.pad-chart-diagram .pd-who3{fill:var(--pad-chart-3)}.pad-chart-diagram .pd-who4{fill:var(--pad-chart-4)}.pad-chart-diagram .pd-who5{fill:var(--pad-chart-5)}.pad-chart-diagram .pd-who6{fill:var(--pad-chart-6)}.pad-chart-diagram .pd-who7{fill:var(--pad-chart-7)}.pad-chart-diagram .pd-who8{fill:var(--pad-chart-8)}.pad-chart-diagram .pd-s1{fill:var(--pad-diagram-score-1)}.pad-chart-diagram .pd-s2{fill:var(--pad-diagram-score-2)}.pad-chart-diagram .pd-s3{fill:var(--pad-diagram-score-3)}.pad-chart-diagram .pd-s4{fill:var(--pad-diagram-score-4)}.pad-chart-diagram .pd-s5{fill:var(--pad-diagram-score-5)}.pad-chart-diagram .pd-heading{font-size:15px;font-weight:700}.pad-chart-diagram .pd-name{font-weight:700}.pad-chart-diagram .pd-band0{fill:var(--pad-diagram-node)}.pad-chart-diagram .pd-band1{fill:var(--pad-diagram-round)}.pad-chart-diagram .pd-node.pd-card{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-trail{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-opacity:.5}.pad-chart-diagram .pd-eye{fill:var(--pad-diagram-face)}.pad-chart-diagram .pd-mouth{fill:none;stroke:var(--pad-diagram-face);stroke-width:1.6;stroke-linecap:round}.pad-chart-diagram .pd-dot{stroke:var(--pad-chart-surface);stroke-width:1.5}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-g1{fill:var(--pad-chart-1)}.pad-chart-diagram .pd-gl1{stroke:var(--pad-chart-1)}.pad-chart-diagram .pd-g2{fill:var(--pad-chart-2)}.pad-chart-diagram .pd-gl2{stroke:var(--pad-chart-2)}.pad-chart-diagram .pd-g3{fill:var(--pad-chart-3)}.pad-chart-diagram .pd-gl3{stroke:var(--pad-chart-3)}.pad-chart-diagram .pd-g4{fill:var(--pad-chart-4)}.pad-chart-diagram .pd-gl4{stroke:var(--pad-chart-4)}.pad-chart-diagram .pd-g5{fill:var(--pad-chart-5)}.pad-chart-diagram .pd-gl5{stroke:var(--pad-chart-5)}.pad-chart-diagram .pd-g6{fill:var(--pad-chart-6)}.pad-chart-diagram .pd-gl6{stroke:var(--pad-chart-6)}.pad-chart-diagram .pd-g7{fill:var(--pad-chart-7)}.pad-chart-diagram .pd-gl7{stroke:var(--pad-chart-7)}.pad-chart-diagram .pd-g8{fill:var(--pad-chart-8)}.pad-chart-diagram .pd-gl8{stroke:var(--pad-chart-8)}.pad-chart-diagram .pd-git-line{fill:none;stroke-width:3;stroke-linecap:round}.pad-chart-diagram .pd-commit{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart-diagram .pd-hole{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-cross{stroke:var(--pad-chart-surface);stroke-width:2;stroke-linecap:round}.pad-chart-diagram .pd-lane-name{fill:var(--pad-chart-surface);font-size:11px;font-weight:700}.pad-chart-diagram .pd-commit-name{font-size:10px}.pad-chart-diagram .pd-tag{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}
+    </style>
   </head>
   <body class="frame app-tags">
     <aside class="frame-side">
@@ -85,7 +148,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 141 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
         </form>
         <div class="frame-tools">
           <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -104,7 +167,7 @@
               <span class="brace">{</span>diagram<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.
+              Draws a diagram from Mermaid-style lines of text, laid out on the server as inline SVG - 9 kinds, from flowcharts and sequence diagrams to state machines, class and entity-relationship diagrams, mind maps, trees, user journeys and commit graphs.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
@@ -115,7 +178,14 @@
               Syntax
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> A[Start] --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">Ready</span>?<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span> [*] --<span class="hl-htm">&gt;</span> Idle <span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:class</span><span class="hl-brc">}</span> Animal &lt;|-- Duck <span class="hl-brc">{</span><span class="hl-tag">/diagram:class</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:er</span><span class="hl-brc">}</span> CUSTOMER ||--o<span class="hl-brc">{</span> ORDER : places <span class="hl-brc">{</span><span class="hl-tag">/diagram:er</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">mindmap</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/mindmap</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:tree</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:tree</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">journey</span><span class="hl-brc">}</span> section Morning ... <span class="hl-brc">{</span><span class="hl-tag">/journey</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">gitgraph</span><span class="hl-brc">}</span> commit ... <span class="hl-brc">{</span><span class="hl-tag">/gitgraph</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -124,25 +194,25 @@
                 <code>type</code>
               </dt>
               <dd>
-                <code>flowchart</code> (default) or <code>sequence</code> - a first line <code>sequenceDiagram</code> says so too.
+                The kind, a file of <code>pad/diagrams/types/</code>: <code>class</code>, <code>er</code>, <code>flowchart</code>, <code>gitgraph</code>, <code>journey</code>, <code>mindmap</code>, <code>sequence</code>, <code>state</code>, <code>tree</code> - <code>flowchart</code> unless it says otherwise. The diagram type names it as well, <code>{diagram:state}</code>, and so does the bare name, <code>{state}</code>, when nothing else has it; <code>sequence</code> and <code>tree</code> are tags of their own, so those are <code>{diagram:sequence}</code> and <code>{diagram:tree}</code>. A first line written the Mermaid way - <code>sequenceDiagram</code>, <code>stateDiagram-v2</code>, <code>classDiagram</code>, <code>erDiagram</code>, <code>gitGraph</code> - names the kind too.
               </dd>
               <dt>
                 <code>direction</code>
               </dt>
               <dd>
-                <code>TB</code> (default), <code>BT</code>, <code>LR</code> or <code>RL</code> - else a first line <code>graph LR</code> or <code>flowchart LR</code> names it.
+                flowchart, state, class, er and tree: <code>TB</code> (default), <code>BT</code>, <code>LR</code> or <code>RL</code> - else a first line <code>graph LR</code> in a flowchart, or a line <code>direction LR</code> in a state, class or entity-relationship diagram.
               </dd>
               <dt>
                 <code>edges</code>
               </dt>
               <dd>
-                How a flowchart's edges run: <code>orthogonal</code> (default, rounded turns), <code>straight</code> or <code>curved</code>.
+                flowchart, state, class and er: how the edges run - <code>orthogonal</code> (default, rounded turns), <code>straight</code> or <code>curved</code>.
               </dd>
               <dt>
                 <code>title</code>
               </dt>
               <dd>
-                The accessible name, default <code>Flowchart</code> or <code>Sequence diagram</code>.
+                The accessible name, by default the kind's - <code>Flowchart</code>, <code>Sequence diagram</code>, <code>State diagram</code> ... - and for a journey its <code>title</code> line.
               </dd>
             </dl>
           </section>
@@ -151,7 +221,7 @@
               Description
             </h2>
             <p>
-              <code>{diagram}</code> turns a few lines of text in its content into a picture, written the way Mermaid writes them, and lays it out on the server (<code>tags/_lib/diagram.php</code>) as inline SVG - no JavaScript in the browser. The content is taken as it stands before the level walks it, so the braces of a decision like <code>B{Paid?}</code> need no ignore.
+              <code>{diagram}</code> turns a few lines of text in its content into a picture, written the way Mermaid writes them, and lays it out on the server (<code>pad/diagrams/</code>) as inline SVG - no JavaScript in the browser, and the same lines always draw the same picture. The content is taken as it stands before the level walks it, so the braces of a decision like <code>B{Paid?}</code> or a class <code>class A {</code> need no ignore. Every kind is a file of <code>pad/diagrams/types/</code>; each is written three ways - <code>{diagram type='state'}</code>, <code>{diagram:state}</code> and the bare <code>{state}</code> when nothing else has the name.
             </p>
             <h3>
               Flowcharts
@@ -163,10 +233,22 @@
               Sequence diagrams
             </h3>
             <p>
-              With <code>type='sequence'</code>: <code>participant A as Alice</code>, <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code> (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross), <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and <code>over A,B</code>), the frames <code>loop</code>, <code>alt</code> / <code>else</code>, <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.
+              With <code>type='sequence'</code> or <code>{diagram:sequence}</code> - bare, <code>{sequence}</code> is the sequence tag: <code>participant A as Alice</code>, <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code> (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross), <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and <code>over A,B</code>), the frames <code>loop</code>, <code>alt</code> / <code>else</code>, <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.
+            </p>
+            <h3>
+              State, class and entity-relationship diagrams
+            </h3>
+            <p>
+              Laid out in layers as a flowchart is. A state diagram: <code>[*] --&gt; A</code> the start, <code>A --&gt; [*]</code> the end, <code>A --&gt; B : label</code>, <code>state "Long name" as A</code>, <code>A : a line of description</code>, <code>state C &lt;&lt;choice&gt;&gt;</code>, <code>&lt;&lt;fork&gt;&gt;</code> and <code>&lt;&lt;join&gt;&gt;</code>. A class diagram: <code>class A { +field; +method() }</code> a member a line (<code>$</code> static, <code>*</code> abstract, <code>List~int~</code> generic), <code>A : +member</code>, <code>&lt;&lt;interface&gt;&gt; A</code>, and <code>A &lt;|-- B</code> (inherits), <code>A &lt;|.. B</code> (implements), <code>A *-- B</code> (made of), <code>A o-- B</code> (holds), <code>A --&gt; B</code>, <code>A ..&gt; B</code> (depends on), with multiplicities <code>A "1" --&gt; "*" B</code>. An entity-relationship diagram: <code>A ||--o{ B : label</code> - <code>||</code> exactly one, <code>|o</code> zero or one, <code>}|</code> one or more, <code>}o</code> zero or more, mirrored on the right, <code>..</code> not identifying - and <code>A { type name PK "comment" }</code>.
+            </p>
+            <h3>
+              Mind maps, trees, journeys and commit graphs
+            </h3>
+            <p>
+              A mind map and a tree read their hierarchy from the indentation - the mind map's shapes by their brackets, <code>[square]</code>, <code>(rounded)</code>, <code>((circle))</code>, <code>{{hexagon}}</code>, <code>)cloud(</code>, <code>))bang((</code>; the tree is <code>{diagram:tree}</code>, as <code>{tree}</code> is the tree tag. A journey: <code>title text</code>, <code>section text</code> and a step a line, <code>Make tea: 5: Me, Cat</code> with its score from 1 to 5. A commit graph: <code>commit id: "x" tag: "v1" type: HIGHLIGHT</code>, <code>branch name</code>, <code>checkout name</code>, <code>merge name</code> and <code>cherry-pick id: "x"</code>.
             </p>
             <p>
-              The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> that says every edge or message. A diagram without nodes answers nothing, so its <code>@else@</code> shows; a line it cannot read, or an unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the strict check.
+              The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> that says every edge, message, relation or step. A diagram without nodes answers nothing, so its <code>@else@</code> shows; a line it cannot read, or an unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the strict check.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -553,6 +635,795 @@
                 </div>
               </div>
             </div>
+            <div class="example" id="example-4">
+              <h3>
+                A state diagram
+              </h3>
+              <p class="example-about">
+                The start and the end, labelled transitions, a choice and a line of description.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/4-state.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:state</span> <span class="hl-opt">title</span>=<span class="hl-str">'A ticket'</span><span class="hl-brc">}</span>
+  [*] --<span class="hl-htm">&gt;</span> Open
+  Open --<span class="hl-htm">&gt;</span> Working : take
+  Working : the clock runs
+  state Done &lt;<span class="hl-htm">&lt;choice</span><span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span>
+  Working --<span class="hl-htm">&gt;</span> Done : finish
+  Done --<span class="hl-htm">&gt;</span> Closed : accepted
+  Done --<span class="hl-htm">&gt;</span> Working : rejected
+  Closed --<span class="hl-htm">&gt;</span> [*]
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B74-state.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-1cd07c97-title pad-chart-1cd07c97-desc" width="173" height="482" viewbox="0 0 173 482">
+                    <title id="pad-chart-1cd07c97-title">
+                      A ticket
+                    </title>
+                    <desc id="pad-chart-1cd07c97-desc">
+                      Start → Open; Open → Working (take); Working → Done (finish); Done → Closed (accepted); Done → Working (rejected); Closed → End; Working: the clock runs
+                    </desc>
+                    <g class="pc-mark">
+                      <title>
+                        Start → Open
+                      </title>
+                      <path class="pd-edge" d="M75,30L75,67"></path>
+                      <path class="pd-head" d="M75,74L70.5,65L79.5,65Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Open → Working (take)
+                      </title>
+                      <path class="pd-edge" d="M75,108L75,161"></path>
+                      <path class="pd-head" d="M75,168L70.5,159L79.5,159Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Working → Done (finish)
+                      </title>
+                      <path class="pd-edge" d="M68,222L68,282"></path>
+                      <path class="pd-head" d="M68,289L63.5,280L72.5,280Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Done → Closed (accepted)
+                      </title>
+                      <path class="pd-edge" d="M75,310L75,363"></path>
+                      <path class="pd-head" d="M75,370L70.5,361L79.5,361Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Done → Working (rejected)
+                      </title>
+                      <path class="pd-edge" d="M82,289L82,229"></path>
+                      <path class="pd-head" d="M82,222L86.5,231L77.5,231Z"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Closed → End
+                      </title>
+                      <path class="pd-edge" d="M75,404L75,441"></path>
+                      <path class="pd-head" d="M75,448L70.5,439L79.5,439Z"></path>
+                    </g>
+                    <rect class="pd-plate" x="57" y="129" width="36" height="18" rx="3"></rect>
+                    <text x="75" y="142" text-anchor="middle">
+                      take
+                    </text>
+                    <rect class="pd-plate" x="43" y="246.5" width="50" height="18" rx="3"></rect>
+                    <text x="68" y="259.5" text-anchor="middle">
+                      finish
+                    </text>
+                    <rect class="pd-plate" x="43" y="331" width="64" height="18" rx="3"></rect>
+                    <text x="75" y="344" text-anchor="middle">
+                      accepted
+                    </text>
+                    <rect class="pd-plate" x="97" y="246.5" width="64" height="18" rx="3"></rect>
+                    <text x="129" y="259.5" text-anchor="middle">
+                      rejected
+                    </text>
+                    <circle class="pd-start" cx="75" cy="21" r="9"></circle>
+                    <rect class="pd-node" x="40" y="74" width="70" height="34" rx="10"></rect>
+                    <text x="75" y="95" text-anchor="middle">
+                      <tspan x="75">
+                        Open
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="12" y="168" width="126" height="54" rx="10"></rect>
+                    <text x="75" y="185" text-anchor="middle">
+                      <tspan x="75">
+                        Working
+                      </tspan>
+                    </text>
+                    <path class="pd-line" d="M12,194H138"></path>
+                    <text class="pd-desc" x="75" y="212" text-anchor="middle">
+                      <tspan x="75">
+                        the clock runs
+                      </tspan>
+                    </text>
+                    <path class="pd-node pd-diamond" d="M75,282L89,296L75,310L61,296Z"></path>
+                    <rect class="pd-node" x="40" y="370" width="70" height="34" rx="10"></rect>
+                    <text x="75" y="391" text-anchor="middle">
+                      <tspan x="75">
+                        Closed
+                      </tspan>
+                    </text>
+                    <circle class="pd-stop" cx="75" cy="459" r="11"></circle>
+                    <circle class="pd-start" cx="75" cy="459" r="6"></circle></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-5">
+              <h3>
+                A class diagram
+              </h3>
+              <p class="example-about">
+                Classes with fields and methods, inheritance, composition and an association with its multiplicities.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/5-class.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:class</span> <span class="hl-opt">title</span>=<span class="hl-str">'An order'</span><span class="hl-brc">}</span>
+  class Order <span class="hl-brc">{</span>
+    +Date placed
+    +total() Money
+  <span class="hl-brc">}</span>
+  class Line <span class="hl-brc">{</span>
+    +int quantity
+  <span class="hl-brc">}</span>
+  Customer <span class="hl-str">"1"</span> --<span class="hl-htm">&gt;</span> <span class="hl-str">"*"</span> Order : places
+  Order *-- <span class="hl-str">"1..*"</span> Line
+  Line --<span class="hl-htm">&gt;</span> Product
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:class</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B75-class.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-6f881cd0-title pad-chart-6f881cd0-desc" width="142" height="472" viewbox="0 0 142 472">
+                    <title id="pad-chart-6f881cd0-title">
+                      An order
+                    </title>
+                    <desc id="pad-chart-6f881cd0-desc">
+                      Customer (1) → Order (*) (places); Order is made of Line (1..*); Line → Product; Order: +Date placed, +total() Money; Line: +int quantity; Customer; Product
+                    </desc>
+                    <g class="pc-mark">
+                      <title>
+                        Customer (1) → Order (*) (places)
+                      </title>
+                      <path class="pd-edge" d="M71,44L71,134"></path>
+                      <path class="pd-edge" d="M66,124L71,134L76,124"></path>
+                    </g>
+                    <text class="pd-end" x="58.5" y="68" text-anchor="middle">
+                      1
+                    </text>
+                    <text class="pd-end" x="58.5" y="118" text-anchor="middle">
+                      *
+                    </text>
+                    <g class="pc-mark">
+                      <title>
+                        Order is made of Line (1..*)
+                      </title>
+                      <path class="pd-edge" d="M71,234L71,294"></path>
+                      <path class="pd-head" d="M71,218L76,226L71,234L66,226Z"></path>
+                    </g>
+                    <text class="pd-end" x="48" y="278" text-anchor="middle">
+                      1..*
+                    </text>
+                    <g class="pc-mark">
+                      <title>
+                        Line → Product
+                      </title>
+                      <path class="pd-edge" d="M71,378L71,428"></path>
+                      <path class="pd-edge" d="M66,418L71,428L76,418"></path>
+                    </g>
+                    <rect class="pd-plate" x="46" y="80" width="50" height="18" rx="3"></rect>
+                    <text x="71" y="93" text-anchor="middle">
+                      places
+                    </text>
+                    <g>
+                      <title>
+                        Order
+                      </title>
+                      <rect class="pd-node" x="12" y="134" width="118" height="84" rx="3"></rect>
+                      <text class="pd-name" x="71" y="154" text-anchor="middle">
+                        Order
+                      </text>
+                      <path class="pd-line" d="M12,166H130"></path>
+                      <text x="22" y="183">
+                        +Date placed
+                      </text>
+                      <path class="pd-line" d="M12,192H130"></path>
+                      <text x="22" y="209">
+                        +total() Money
+                      </text>
+                    </g>
+                    <g>
+                      <title>
+                        Line
+                      </title>
+                      <rect class="pd-node" x="15.5" y="294" width="111" height="84" rx="3"></rect>
+                      <text class="pd-name" x="71" y="314" text-anchor="middle">
+                        Line
+                      </text>
+                      <path class="pd-line" d="M15.5,326H126.5"></path>
+                      <text x="25.5" y="343">
+                        +int quantity
+                      </text>
+                      <path class="pd-line" d="M15.5,352H126.5"></path>
+                    </g>
+                    <g>
+                      <title>
+                        Customer
+                      </title>
+                      <rect class="pd-node" x="26" y="12" width="90" height="32" rx="3"></rect>
+                      <text class="pd-name" x="71" y="32" text-anchor="middle">
+                        Customer
+                      </text>
+                    </g>
+                    <g>
+                      <title>
+                        Product
+                      </title>
+                      <rect class="pd-node" x="26" y="428" width="90" height="32" rx="3"></rect>
+                      <text class="pd-name" x="71" y="448" text-anchor="middle">
+                        Product
+                      </text>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-6">
+              <h3>
+                An entity-relationship diagram
+              </h3>
+              <p class="example-about">
+                Entities as tables of their attributes, the feet of a crow for how many.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/6-er.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:er</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'A shop'</span><span class="hl-brc">}</span>
+  CUSTOMER ||--o<span class="hl-brc">{</span> ORDER : places
+  ORDER ||--|<span class="hl-brc">{</span> LINE-ITEM : contains
+  PRODUCT ||--o<span class="hl-brc">{</span> LINE-ITEM : <span class="hl-str">"is in"</span>
+  ORDER <span class="hl-brc">{</span>
+    int id PK
+    int customer FK
+    date placed
+  <span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:er</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B76-er.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8a1e5ff9-title pad-chart-8a1e5ff9-desc" width="531" height="156" viewbox="0 0 531 156">
+                    <title id="pad-chart-8a1e5ff9-title">
+                      A shop
+                    </title>
+                    <desc id="pad-chart-8a1e5ff9-desc">
+                      CUSTOMER places ORDER: exactly one CUSTOMER to zero or more ORDER; ORDER contains LINE-ITEM: exactly one ORDER to one or more LINE-ITEM; PRODUCT is in LINE-ITEM: exactly one PRODUCT to zero or more LINE-ITEM; CUSTOMER; ORDER: id (int, PK), customer (int, FK), placed (date); LINE-ITEM; PRODUCT
+                    </desc>
+                    <g class="pc-mark">
+                      <title>
+                        CUSTOMER places ORDER: exactly one CUSTOMER to zero or more ORDER
+                      </title>
+                      <path class="pd-edge" d="M102,59L182,59"></path>
+                      <path class="pd-foot" d="M182,67L170,59L182,51M182,59L170,59"></path>
+                      <circle class="pd-ring" cx="164" cy="59" r="4.5"></circle>
+                      <path class="pd-foot" d="M108,52L108,66"></path>
+                      <path class="pd-foot" d="M113,52L113,66"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        ORDER contains LINE-ITEM: exactly one ORDER to one or more LINE-ITEM
+                      </title>
+                      <path class="pd-edge" d="M332,59L354.7,59Q362.7,59 362.7,67L362.7,74Q362.7,82 370.7,82L424.1,82"></path>
+                      <path class="pd-foot" d="M424.1,90L412.1,82L424.1,74M424.1,82L412.1,82"></path>
+                      <path class="pd-foot" d="M408.1,89L408.1,75"></path>
+                      <path class="pd-foot" d="M338,52L338,66"></path>
+                      <path class="pd-foot" d="M343,52L343,66"></path>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        PRODUCT is in LINE-ITEM: exactly one PRODUCT to zero or more LINE-ITEM
+                      </title>
+                      <path class="pd-edge" d="M102,129L249,129Q257,129 265,129L385.4,129Q393.4,129 393.4,121L393.4,114Q393.4,106 401.4,106L424.1,106"></path>
+                      <path class="pd-foot" d="M424.1,114L412.1,106L424.1,98M424.1,106L412.1,106"></path>
+                      <circle class="pd-ring" cx="406.1" cy="106" r="4.5"></circle>
+                      <path class="pd-foot" d="M108,122L108,136"></path>
+                      <path class="pd-foot" d="M113,122L113,136"></path>
+                    </g>
+                    <rect class="pd-plate" x="117" y="50" width="50" height="18" rx="3"></rect>
+                    <text x="142" y="63" text-anchor="middle">
+                      places
+                    </text>
+                    <rect class="pd-plate" x="334.6" y="73" width="64" height="18" rx="3"></rect>
+                    <text x="366.6" y="86" text-anchor="middle">
+                      contains
+                    </text>
+                    <rect class="pd-plate" x="235.5" y="120" width="43" height="18" rx="3"></rect>
+                    <text x="257" y="133" text-anchor="middle">
+                      is in
+                    </text>
+                    <g>
+                      <title>
+                        CUSTOMER
+                      </title>
+                      <rect class="pd-body" x="12" y="44" width="90" height="30" rx="3"></rect>
+                      <rect class="pd-headfill" x="12" y="44" width="90" height="30" rx="3"></rect>
+                      <text class="pd-name" x="57" y="63" text-anchor="middle">
+                        CUSTOMER
+                      </text>
+                      <path class="pd-line" d="M12,74H102"></path>
+                      <rect class="pd-outline" x="12" y="44" width="90" height="30" rx="3"></rect>
+                    </g>
+                    <g>
+                      <title>
+                        ORDER
+                      </title>
+                      <rect class="pd-body" x="182" y="12" width="150" height="94" rx="3"></rect>
+                      <rect class="pd-headfill" x="182" y="12" width="150" height="30" rx="3"></rect>
+                      <text class="pd-name" x="257" y="31" text-anchor="middle">
+                        ORDER
+                      </text>
+                      <text class="pd-muted" x="192" y="58">
+                        int
+                      </text>
+                      <text class="pd-attr" x="234" y="58">
+                        id
+                      </text>
+                      <text class="pd-key" x="304" y="58">
+                        PK
+                      </text>
+                      <path class="pd-row" d="M182,64H332"></path>
+                      <text class="pd-muted" x="192" y="78">
+                        int
+                      </text>
+                      <text class="pd-attr" x="234" y="78">
+                        customer
+                      </text>
+                      <text class="pd-key" x="304" y="78">
+                        FK
+                      </text>
+                      <path class="pd-row" d="M182,84H332"></path>
+                      <text class="pd-muted" x="192" y="98">
+                        date
+                      </text>
+                      <text class="pd-attr" x="234" y="98">
+                        placed
+                      </text>
+                      <path class="pd-line" d="M182,42H332"></path>
+                      <rect class="pd-outline" x="182" y="12" width="150" height="94" rx="3"></rect>
+                    </g>
+                    <g>
+                      <title>
+                        LINE-ITEM
+                      </title>
+                      <rect class="pd-body" x="424" y="79" width="95" height="30" rx="3"></rect>
+                      <rect class="pd-headfill" x="424" y="79" width="95" height="30" rx="3"></rect>
+                      <text class="pd-name" x="471.5" y="98" text-anchor="middle">
+                        LINE-ITEM
+                      </text>
+                      <path class="pd-line" d="M424,109H519"></path>
+                      <rect class="pd-outline" x="424" y="79" width="95" height="30" rx="3"></rect>
+                    </g>
+                    <g>
+                      <title>
+                        PRODUCT
+                      </title>
+                      <rect class="pd-body" x="12" y="114" width="90" height="30" rx="3"></rect>
+                      <rect class="pd-headfill" x="12" y="114" width="90" height="30" rx="3"></rect>
+                      <text class="pd-name" x="57" y="133" text-anchor="middle">
+                        PRODUCT
+                      </text>
+                      <path class="pd-line" d="M12,144H102"></path>
+                      <rect class="pd-outline" x="12" y="114" width="90" height="30" rx="3"></rect>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-7">
+              <h3>
+                A mind map and a tree
+              </h3>
+              <p class="example-about">
+                Both read the hierarchy from the indentation; the tree tag keeps the bare name tree, so the tree diagram is diagram:tree.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/7-hierarchies.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'mindmap'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'A trip'</span><span class="hl-brc">}</span>
+  Trip((Trip))
+    Packing
+      Passport
+      Charger
+    Travel
+      Train
+      Ferry
+    Plans
+      Museum
+      Beach
+<span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:tree</span> <span class="hl-opt">title</span>=<span class="hl-str">'The company'</span><span class="hl-brc">}</span>
+  Board
+    Sales
+      North
+      South
+    Engineering
+    Finance
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:tree</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B77-hierarchies.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-ec6cc38f-title pad-chart-ec6cc38f-desc" width="518" height="154" viewbox="0 0 518 154">
+                    <title id="pad-chart-ec6cc38f-title">
+                      A trip
+                    </title>
+                    <desc id="pad-chart-ec6cc38f-desc">
+                      Trip: Packing, Travel, Plans; Packing: Passport, Charger; Travel: Train, Ferry; Plans: Museum, Beach
+                    </desc>
+                    <path class="pd-mm-link pd-b1 pd-mm-d1" d="M244.6,77C286.4,77 286.4,40 328.2,40"></path>
+                    <path class="pd-mm-link pd-b1 pd-mm-d2" d="M401.2,40C419.2,40 419.2,36 437.2,36"></path>
+                    <path class="pd-mm-link pd-b1 pd-mm-d2" d="M401.2,40C419.2,40 419.2,68 437.2,68"></path>
+                    <path class="pd-mm-link pd-b2 pd-mm-d1" d="M244.6,77C286.4,77 286.4,114 328.2,114"></path>
+                    <path class="pd-mm-link pd-b2 pd-mm-d2" d="M394.2,114C412.2,114 412.2,110 430.2,110"></path>
+                    <path class="pd-mm-link pd-b2 pd-mm-d2" d="M394.2,114C412.2,114 412.2,142 430.2,142"></path>
+                    <path class="pd-mm-link pd-b3 pd-mm-d1" d="M244.6,77C202.8,77 202.8,77 161,77"></path>
+                    <path class="pd-mm-link pd-b3 pd-mm-d2" d="M102,77C84,77 84,73 66,73"></path>
+                    <path class="pd-mm-link pd-b3 pd-mm-d2" d="M102,77C84,77 84,105 66,105"></path>
+                    <circle class="pd-mm-root" cx="244.6" cy="77" r="27.6"></circle>
+                    <text class="pd-mm-top" x="244.6" y="81" text-anchor="middle">
+                      <tspan x="244.6">
+                        Trip
+                      </tspan>
+                    </text>
+                    <rect class="pd-mm-node pd-b1" x="328.2" y="25" width="73" height="30" rx="6"></rect>
+                    <text x="364.7" y="44" text-anchor="middle">
+                      <tspan x="364.7">
+                        Packing
+                      </tspan>
+                    </text>
+                    <text x="471.2" y="28" text-anchor="middle">
+                      <tspan x="471.2">
+                        Passport
+                      </tspan>
+                    </text>
+                    <path class="pd-mm-link pd-b1 pd-mm-d2" d="M437.2,36H505.2"></path>
+                    <text x="467.7" y="60" text-anchor="middle">
+                      <tspan x="467.7">
+                        Charger
+                      </tspan>
+                    </text>
+                    <path class="pd-mm-link pd-b1 pd-mm-d2" d="M437.2,68H498.2"></path>
+                    <rect class="pd-mm-node pd-b2" x="328.2" y="99" width="66" height="30" rx="6"></rect>
+                    <text x="361.2" y="118" text-anchor="middle">
+                      <tspan x="361.2">
+                        Travel
+                      </tspan>
+                    </text>
+                    <text x="453.7" y="102" text-anchor="middle">
+                      <tspan x="453.7">
+                        Train
+                      </tspan>
+                    </text>
+                    <path class="pd-mm-link pd-b2 pd-mm-d2" d="M430.2,110H477.2"></path>
+                    <text x="453.7" y="134" text-anchor="middle">
+                      <tspan x="453.7">
+                        Ferry
+                      </tspan>
+                    </text>
+                    <path class="pd-mm-link pd-b2 pd-mm-d2" d="M430.2,142H477.2"></path>
+                    <rect class="pd-mm-node pd-b3" x="102" y="62" width="59" height="30" rx="6"></rect>
+                    <text x="131.5" y="81" text-anchor="middle">
+                      <tspan x="131.5">
+                        Plans
+                      </tspan>
+                    </text>
+                    <text x="39" y="65" text-anchor="middle">
+                      <tspan x="39">
+                        Museum
+                      </tspan>
+                    </text>
+                    <path class="pd-mm-link pd-b3 pd-mm-d2" d="M12,73H66"></path>
+                    <text x="42.5" y="97" text-anchor="middle">
+                      <tspan x="42.5">
+                        Beach
+                      </tspan>
+                    </text>
+                    <path class="pd-mm-link pd-b3 pd-mm-d2" d="M19,105H66"></path></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-90c69994-title pad-chart-90c69994-desc" width="366" height="200" viewbox="0 0 366 200">
+                    <title id="pad-chart-90c69994-title">
+                      The company
+                    </title>
+                    <desc id="pad-chart-90c69994-desc">
+                      Board: Sales, Engineering, Finance; Sales: North, South
+                    </desc>
+                    <path class="pd-edge" d="M183,44L183,56Q183,64 175,64L88,64Q80,64 80,72L80,84"></path>
+                    <path class="pd-edge" d="M80,116L80,128Q80,136 72,136L50,136Q42,136 42,144L42,156"></path>
+                    <path class="pd-edge" d="M80,116L80,128Q80,136 88,136L110,136Q118,136 118,144L118,156"></path>
+                    <path class="pd-edge" d="M183,44L183,56Q183,64 191,64L206.5,64Q214.5,64 214.5,72L214.5,84"></path>
+                    <path class="pd-edge" d="M183,44L183,56Q183,64 191,64L309.5,64Q317.5,64 317.5,72L317.5,84"></path>
+                    <rect class="pd-node pd-root" x="153" y="12" width="60" height="32" rx="4"></rect>
+                    <text class="pd-root-text" x="183" y="32" text-anchor="middle">
+                      <tspan x="183">
+                        Board
+                      </tspan>
+                    </text>
+                    <rect class="pd-node" x="50" y="84" width="60" height="32" rx="4"></rect>
+                    <text x="80" y="104" text-anchor="middle">
+                      <tspan x="80">
+                        Sales
+                      </tspan>
+                    </text>
+                    <rect class="pd-node pd-leaf" x="12" y="156" width="60" height="32" rx="4"></rect>
+                    <text x="42" y="176" text-anchor="middle">
+                      <tspan x="42">
+                        North
+                      </tspan>
+                    </text>
+                    <rect class="pd-node pd-leaf" x="88" y="156" width="60" height="32" rx="4"></rect>
+                    <text x="118" y="176" text-anchor="middle">
+                      <tspan x="118">
+                        South
+                      </tspan>
+                    </text>
+                    <rect class="pd-node pd-leaf" x="164" y="84" width="101" height="32" rx="4"></rect>
+                    <text x="214.5" y="104" text-anchor="middle">
+                      <tspan x="214.5">
+                        Engineering
+                      </tspan>
+                    </text>
+                    <rect class="pd-node pd-leaf" x="281" y="84" width="73" height="32" rx="4"></rect>
+                    <text x="317.5" y="104" text-anchor="middle">
+                      <tspan x="317.5">
+                        Finance
+                      </tspan>
+                    </text></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-8">
+              <h3>
+                A user journey
+              </h3>
+              <p class="example-about">
+                Steps in sections, a face at the height of each score and a dot for every person.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/8-journey.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">journey</span><span class="hl-brc">}</span>
+  title A day at the office
+  section Morning
+    Make tea: <span class="hl-num">5</span>: Me
+    Read the mail: <span class="hl-num">2</span>: Me, Cat
+  section Afternoon
+    Fix the build: <span class="hl-num">1</span>: Me, Team
+    Go home: <span class="hl-num">5</span>: Me
+<span class="hl-brc">{</span><span class="hl-tag">/journey</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B78-journey.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-12eced6c-title pad-chart-12eced6c-desc" width="502" height="314" viewbox="0 0 502 314">
+                    <title id="pad-chart-12eced6c-title">
+                      A day at the office
+                    </title>
+                    <desc id="pad-chart-12eced6c-desc">
+                      Morning: Make tea, 5 of 5 (Me); Morning: Read the mail, 2 of 5 (Me, Cat); Afternoon: Fix the build, 1 of 5 (Me, Team); Afternoon: Go home, 5 of 5 (Me)
+                    </desc>
+                    <text class="pd-heading" x="12" y="30">
+                      A day at the office
+                    </text>
+                    <circle class="pd-who1 pd-dot" cx="18" cy="288" r="5"></circle>
+                    <text x="28" y="292">
+                      Me
+                    </text>
+                    <circle class="pd-who2 pd-dot" cx="62" cy="288" r="5"></circle>
+                    <text x="72" y="292">
+                      Cat
+                    </text>
+                    <circle class="pd-who3 pd-dot" cx="113" cy="288" r="5"></circle>
+                    <text x="123" y="292">
+                      Team
+                    </text>
+                    <rect class="pd-band0" x="12" y="42" width="230" height="28" rx="4"></rect>
+                    <text class="pd-name" x="127" y="60" text-anchor="middle">
+                      Morning
+                    </text>
+                    <rect class="pd-band1" x="260" y="42" width="230" height="28" rx="4"></rect>
+                    <text class="pd-name" x="375" y="60" text-anchor="middle">
+                      Afternoon
+                    </text>
+                    <path class="pd-trail" d="M67.5,132L186.5,204L315.5,228L434.5,132"></path>
+                    <g class="pc-mark">
+                      <title>
+                        Morning: Make tea, 5 of 5 (Me)
+                      </title>
+                      <rect class="pd-node pd-card" x="12" y="78" width="111" height="32" rx="4"></rect>
+                      <text x="67.5" y="98" text-anchor="middle">
+                        <tspan x="67.5">
+                          Make tea
+                        </tspan>
+                      </text>
+                      <line class="pd-life" x1="67.5" x2="67.5" y1="110" y2="119"></line>
+                      <circle class="pd-s5" cx="67.5" cy="132" r="13"></circle>
+                      <circle class="pd-eye" cx="63" cy="129" r="1.6"></circle>
+                      <circle class="pd-eye" cx="72" cy="129" r="1.6"></circle>
+                      <path class="pd-mouth" d="M62.5,135Q67.5,140 72.5,135"></path>
+                      <circle class="pd-who1 pd-dot" cx="67.5" cy="260" r="5"></circle>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Morning: Read the mail, 2 of 5 (Me, Cat)
+                      </title>
+                      <rect class="pd-node pd-card" x="131" y="78" width="111" height="32" rx="4"></rect>
+                      <text x="186.5" y="98" text-anchor="middle">
+                        <tspan x="186.5">
+                          Read the mail
+                        </tspan>
+                      </text>
+                      <line class="pd-life" x1="186.5" x2="186.5" y1="110" y2="191"></line>
+                      <circle class="pd-s2" cx="186.5" cy="204" r="13"></circle>
+                      <circle class="pd-eye" cx="182" cy="201" r="1.6"></circle>
+                      <circle class="pd-eye" cx="191" cy="201" r="1.6"></circle>
+                      <path class="pd-mouth" d="M181.5,211Q186.5,206 191.5,211"></path>
+                      <circle class="pd-who1 pd-dot" cx="180" cy="260" r="5"></circle>
+                      <circle class="pd-who2 pd-dot" cx="193" cy="260" r="5"></circle>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Afternoon: Fix the build, 1 of 5 (Me, Team)
+                      </title>
+                      <rect class="pd-node pd-card" x="260" y="78" width="111" height="32" rx="4"></rect>
+                      <text x="315.5" y="98" text-anchor="middle">
+                        <tspan x="315.5">
+                          Fix the build
+                        </tspan>
+                      </text>
+                      <line class="pd-life" x1="315.5" x2="315.5" y1="110" y2="215"></line>
+                      <circle class="pd-s1" cx="315.5" cy="228" r="13"></circle>
+                      <circle class="pd-eye" cx="311" cy="225" r="1.6"></circle>
+                      <circle class="pd-eye" cx="320" cy="225" r="1.6"></circle>
+                      <path class="pd-mouth" d="M310.5,235Q315.5,230 320.5,235"></path>
+                      <circle class="pd-who1 pd-dot" cx="309" cy="260" r="5"></circle>
+                      <circle class="pd-who3 pd-dot" cx="322" cy="260" r="5"></circle>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Afternoon: Go home, 5 of 5 (Me)
+                      </title>
+                      <rect class="pd-node pd-card" x="379" y="78" width="111" height="32" rx="4"></rect>
+                      <text x="434.5" y="98" text-anchor="middle">
+                        <tspan x="434.5">
+                          Go home
+                        </tspan>
+                      </text>
+                      <line class="pd-life" x1="434.5" x2="434.5" y1="110" y2="119"></line>
+                      <circle class="pd-s5" cx="434.5" cy="132" r="13"></circle>
+                      <circle class="pd-eye" cx="430" cy="129" r="1.6"></circle>
+                      <circle class="pd-eye" cx="439" cy="129" r="1.6"></circle>
+                      <path class="pd-mouth" d="M429.5,135Q434.5,140 439.5,135"></path>
+                      <circle class="pd-who1 pd-dot" cx="434.5" cy="260" r="5"></circle>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-9">
+              <h3>
+                A commit graph
+              </h3>
+              <p class="example-about">
+                Branches as lanes, a merge with its tag, a highlighted and a reverted commit.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/diagram/9-gitgraph.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">gitgraph</span><span class="hl-brc">}</span>
+  commit id: <span class="hl-str">"Init"</span>
+  branch develop
+  commit id: <span class="hl-str">"Parser"</span> type: HIGHLIGHT
+  checkout main
+  commit id: <span class="hl-str">"Oops"</span> type: REVERSE
+  merge develop tag: <span class="hl-str">"v1.0"</span>
+<span class="hl-brc">{</span><span class="hl-tag">/gitgraph</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B79-gitgraph.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-766cc1da-title pad-chart-766cc1da-desc" width="297" height="132" viewbox="0 0 297 132">
+                    <title id="pad-chart-766cc1da-title">
+                      Commit graph
+                    </title>
+                    <desc id="pad-chart-766cc1da-desc">
+                      main: commit Init; develop branches off main; develop: commit Parser; main: commit Oops; main: merge of develop (tag v1.0)
+                    </desc>
+                    <rect class="pd-g1" x="12" y="30" width="69" height="20" rx="10"></rect>
+                    <text class="pd-lane-name" x="46.5" y="44" text-anchor="middle">
+                      main
+                    </text>
+                    <rect class="pd-g2" x="12" y="86" width="69" height="20" rx="10"></rect>
+                    <text class="pd-lane-name" x="46.5" y="100" text-anchor="middle">
+                      develop
+                    </text>
+                    <path class="pd-git-line pd-gl2" d="M131,40H145Q155,40 155,50V86Q155,96 165,96H174.9"></path>
+                    <path class="pd-git-line pd-gl2" d="M174.9,96H224.7Q234.7,96 234.7,86V50Q234.7,40 244.7,40H258.7"></path>
+                    <path class="pd-git-line pd-gl1" d="M131,40H218.7"></path>
+                    <path class="pd-git-line pd-gl1" d="M218.7,40H258.7"></path>
+                    <g class="pc-mark">
+                      <title>
+                        main: commit Init
+                      </title>
+                      <circle class="pd-g1 pd-commit" cx="131" cy="40" r="7"></circle>
+                      <text class="pd-commit-name" x="131" y="61" text-anchor="middle">
+                        Init
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        develop: commit Parser
+                      </title>
+                      <rect class="pd-g2 pd-commit" x="167.9" y="89" width="14" height="14" rx="2"></rect>
+                      <text class="pd-commit-name" x="174.9" y="117" text-anchor="middle">
+                        Parser
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        main: commit Oops
+                      </title>
+                      <circle class="pd-g1 pd-commit" cx="218.7" cy="40" r="7"></circle>
+                      <path class="pd-cross" d="M215.2,36.5l7,7m0,-7l-7,7"></path>
+                      <text class="pd-commit-name" x="218.7" y="61" text-anchor="middle">
+                        Oops
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        main: merge of develop (tag v1.0)
+                      </title>
+                      <circle class="pd-g1 pd-commit" cx="258.7" cy="40" r="7"></circle>
+                      <circle class="pd-hole" cx="258.7" cy="40" r="3.5"></circle>
+                      <path class="pd-tag" d="M240.8,10h35.8v16h-13.9l-4,4l-4,-4H240.8Z"></path>
+                      <text class="pd-commit-name" x="258.7" y="22" text-anchor="middle">
+                        v1.0
+                      </text>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <section class="block" aria-labelledby="see">
             <h2 id="see">
@@ -565,6 +1436,9 @@
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
               </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7tree.html">{tree}</a> <span class="about">Renders a tree of rows: its body for every row, and {recurse} renders it again for the row's children.</span>
+              </li>
             </ul>
           </section>
           <nav class="prevnext" aria-label="Other tags">
@@ -573,7 +1447,7 @@
         </article>
         <footer class="foot">
           <p>
-            141 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
           </p>
         </footer>
       </div>

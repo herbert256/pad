@@ -66,7 +66,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -160,6 +160,46 @@
                 padAjax747f0f1231966ff1ef75e1fc703980de.open("GET","http://localhost/pad/manual/?fragments/expressions_34&padInclude",true);
                 padAjax747f0f1231966ff1ef75e1fc703980de.send();
                 </script><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_text_too_long_for_a_data_matrix_code_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_text_too_long_for_a_data_matrix_code_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">datamatrix </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>7<font color="black">'</font><font color="black">,</font> 3117)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb6fe9634ec0bce63989746b3fa0f9841"></div>
+                      <script>
+                      padAjaxb6fe9634ec0bce63989746b3fa0f9841 = new XMLHttpRequest();
+                      padAjaxb6fe9634ec0bce63989746b3fa0f9841.onreadystatechange=function() {
+                      if (padAjaxb6fe9634ec0bce63989746b3fa0f9841.readyState === 4) {
+                      if (padAjaxb6fe9634ec0bce63989746b3fa0f9841.status === 200) {
+                      document.getElementById("padAjaxb6fe9634ec0bce63989746b3fa0f9841").innerHTML=padAjaxb6fe9634ec0bce63989746b3fa0f9841.responseText;
+                      } else {
+                      document.getElementById("padAjaxb6fe9634ec0bce63989746b3fa0f9841").innerHTML=padAjaxb6fe9634ec0bce63989746b3fa0f9841.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb6fe9634ec0bce63989746b3fa0f9841.open("GET","http://localhost/pad/regression/errors/?syntax/a_text_too_long_for_a_data_matrix_code_is_reported&padInclude",true);
+                      padAjaxb6fe9634ec0bce63989746b3fa0f9841.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
                 <hr>
                 App: regression/framework - Page: expressions/a_ternary_without_its_then_branch_answers_its_condition<br>
                 <table border="1" cellpadding="10" cellspacing="0">
@@ -318,6 +358,46 @@
                       }
                       padAjax553868c8028e88f7e52d0ab0f5467e67.open("GET","http://localhost/pad/regression/framework/?lenient/a_php_function_refusing_its_arguments_answers_empty&padInclude",true);
                       padAjax553868c8028e88f7e52d0ab0f5467e67.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/datamatrix_draws_the_smallest_square_that_holds_the_text<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/datamatrix_draws_the_smallest_square_that_holds_the_text.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">datamatrix </font><font color="red"><font color="black">'</font>123456<font color="black">'</font><font color="black">,</font> size=56</font>/}</b><br><b>{<font color="blue">datamatrix </font><font color="red"><font color="black">'</font>Hello<font color="black">,</font> World!<font color="black">'</font><font color="black">,</font> size=80</font>/}</b><br><b>{<font color="blue"><font color="purple">barcode</font><font color="black"><b>:</b></font>datamatrix </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>7<font color="black">'</font><font color="black">,</font> 3116)<font color="black">,</font> size=592 <font color="black">|</font> php<font color="black">:</font>md5(<font color="black">@</font>)</font>/}</b> <b>{<font color="blue">datamatrix </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>7<font color="black">'</font><font color="black">,</font> 3116)<font color="black">,</font> size=592 <font color="black">|</font> php<font color="black">:</font>substr_count(<font color="black">@</font><font color="black">,</font> <font color="black">'</font>viewBox="0 0 148 148"<font color="black">'</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax086b959c9323216bc57808f5d0fcb051"></div>
+                      <script>
+                      padAjax086b959c9323216bc57808f5d0fcb051 = new XMLHttpRequest();
+                      padAjax086b959c9323216bc57808f5d0fcb051.onreadystatechange=function() {
+                      if (padAjax086b959c9323216bc57808f5d0fcb051.readyState === 4) {
+                      if (padAjax086b959c9323216bc57808f5d0fcb051.status === 200) {
+                      document.getElementById("padAjax086b959c9323216bc57808f5d0fcb051").innerHTML=padAjax086b959c9323216bc57808f5d0fcb051.responseText;
+                      } else {
+                      document.getElementById("padAjax086b959c9323216bc57808f5d0fcb051").innerHTML=padAjax086b959c9323216bc57808f5d0fcb051.statusText;
+                      }
+                      }
+                      }
+                      padAjax086b959c9323216bc57808f5d0fcb051.open("GET","http://localhost/pad/regression/framework/?tags/datamatrix_draws_the_smallest_square_that_holds_the_text&padInclude",true);
+                      padAjax086b959c9323216bc57808f5d0fcb051.send();
                       </script>
                     </td>
                   </tr>

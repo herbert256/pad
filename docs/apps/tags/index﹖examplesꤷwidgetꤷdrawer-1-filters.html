@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Filters at the side · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-drawer){--pad-drawer-accent:#2a78d6;--pad-drawer-on:#ffffff;--pad-drawer-text:#1f1f1d;--pad-drawer-muted:#62615c;--pad-drawer-line:#e4e3df;--pad-drawer-surface:#ffffff;--pad-drawer-backdrop:rgba(20,20,18,.45);}@supports (color:light-dark(#000,#fff)){:where(.pad-drawer){--pad-drawer-accent:light-dark(#2a78d6,#5598e7);--pad-drawer-on:light-dark(#ffffff,#0d1b2e);--pad-drawer-text:light-dark(#1f1f1d,#ecebe6);--pad-drawer-muted:light-dark(#62615c,#a9a8a0);--pad-drawer-line:light-dark(#e4e3df,#3a3a37);--pad-drawer-surface:light-dark(#ffffff,#1f1f1d);--pad-drawer-backdrop:light-dark(rgba(20,20,18,.45),rgba(0,0,0,.65));}}.pad-drawer{display:contents}.pad-drawer-button{display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;border:0;border-radius:8px;background:var(--pad-drawer-accent);color:var(--pad-drawer-on);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}.pad-drawer-button:hover{filter:brightness(1.08)}.pad-drawer-button:focus-visible,.pad-drawer-close:focus-visible{outline:2px solid var(--pad-drawer-accent);outline-offset:2px}button.pad-drawer-button,button.pad-drawer-close{display:none}@media (scripting:enabled){button.pad-drawer-button{display:inline-flex}button.pad-drawer-close{display:flex}a.pad-drawer-link{display:none}}.pad-drawer-panel{box-sizing:border-box;width:min(24rem,calc(100vw - 3rem));max-width:none;height:100%;max-height:none;margin:0 0 0 auto;padding:0;border:0;border-left:1px solid var(--pad-drawer-line);background:var(--pad-drawer-surface);color:var(--pad-drawer-text);box-shadow:0 0 40px rgba(0,0,0,.25);--pad-drawer-from:translateX(100%)}.pad-drawer-panel.pad-drawer-left{margin:0 auto 0 0;border-left:0;border-right:1px solid var(--pad-drawer-line);--pad-drawer-from:translateX(-100%)}.pad-drawer-panel.pad-drawer-bottom{width:100%;height:fit-content;max-height:85vh;margin:auto 0 0;border-left:0;border-top:1px solid var(--pad-drawer-line);border-radius:14px 14px 0 0;--pad-drawer-from:translateY(100%)}.pad-drawer-panel[open],.pad-drawer-panel:target{display:flex;flex-direction:column}.pad-drawer-panel::backdrop{background:rgba(20,20,18,.5)}.pad-drawer-panel:target:not([open]){position:fixed;inset:0;z-index:2147483000;overflow:auto;box-shadow:0 0 0 100vmax var(--pad-drawer-backdrop)}@media (scripting:enabled){.pad-drawer-panel:target:not([open]){display:none}}@keyframes pad-drawer-in{from{transform:var(--pad-drawer-from)}}@media (prefers-reduced-motion:no-preference){.pad-drawer-panel[open],.pad-drawer-panel:target{animation:pad-drawer-in .22s ease-out}}.pad-drawer-head{display:flex;align-items:center;gap:1em;padding:.9em 1.2em;border-bottom:1px solid var(--pad-drawer-line)}.pad-drawer-title{flex:1;margin:0;font-size:1.15em;line-height:1.3}.pad-drawer-close{display:flex;align-items:center;justify-content:center;flex:none;width:2em;height:2em;margin:-.3em -.5em -.3em 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-drawer-muted);font:inherit;font-size:1.3em;line-height:1;text-decoration:none;cursor:pointer}.pad-drawer-close:hover{background:var(--pad-drawer-line);color:var(--pad-drawer-text)}.pad-drawer-body{flex:1;overflow:auto;padding:1.1em 1.2em 1.4em}.pad-drawer-body>:first-child{margin-top:0}.pad-drawer-body>:last-child{margin-bottom:0}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <div class="pad-drawer">
+          <button type="button" class="pad-drawer-button" commandfor="pad-drawer-filters" command="show-modal">Show filters</button><a class="pad-drawer-button pad-drawer-link" id="pad-drawer-filters-open" href="#pad-drawer-filters">Show filters</a>
+          <dialog class="pad-drawer-panel pad-drawer-left" id="pad-drawer-filters" aria-labelledby="pad-drawer-filters-title" closedby="any">
+            <div class="pad-drawer-head">
+              <h2 class="pad-drawer-title" id="pad-drawer-filters-title">
+                Filters
+              </h2><button type="button" class="pad-drawer-close" commandfor="pad-drawer-filters" command="close" aria-label="Close"><span aria-hidden="true">×</span></button><a class="pad-drawer-close pad-drawer-link" href="#pad-drawer-filters-open" aria-label="Close"><span aria-hidden="true">×</span></a>
+            </div>
+            <div class="pad-drawer-body">
+              <p>
+                <label><input type="checkbox" checked> In stock</label>
+              </p>
+              <p>
+                <label><input type="checkbox"> On sale</label>
+              </p>
+              <p>
+                <label><input type="checkbox"> Free delivery</label>
+              </p>
+            </div>
+          </dialog>
+        </div>
+        <script>
+        (function () {
+        if (window.padDrawerReady) return;
+        window.padDrawerReady = true;
+        var native = 'command' in HTMLButtonElement.prototype;
+        document.addEventListener('click', function (e) {
+        var target = e.target;
+        if (target.matches && target.matches('dialog.pad-drawer-panel[open]')) { target.close(); return; }
+        var button = target.closest && target.closest('button.pad-drawer-button, button.pad-drawer-close');
+        if (!button || native) return;
+        var dialog = document.getElementById(button.getAttribute('commandfor'));
+        if (!dialog) return;
+        if (button.getAttribute('command') === 'close') dialog.close();
+        else if (!dialog.open) dialog.showModal();
+        });
+        function arrived() {
+        var id = '';
+        try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+        var dialog = id && document.getElementById(id);
+        if (dialog && dialog.matches('dialog.pad-drawer-panel') && !dialog.open) dialog.showModal();
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
+        else arrived();
+        window.addEventListener('hashchange', arrived);
+        document.addEventListener('close', function (e) {
+        var dialog = e.target, id = '';
+        if (!dialog.matches || !dialog.matches('dialog.pad-drawer-panel')) return;
+        try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+        if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+        }, true);
+        })();
+        </script>
+        <footer class="foot">
+          <p>
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

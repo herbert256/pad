@@ -1,0 +1,216 @@
+
+<p class="inputs-lead">A colour picked from a row of swatches, typed as a code or chosen in the browser&#039;s own picker: a native &lt;input type=&quot;color&quot;&gt;, which posts #rrggbb, and - where the script runs - the swatches and a text field for the hexadecimal code, each kept in step with the colour. swatches= the colours of the row, a list of #rgb or #rrggbb, eight of the palette unless given; value= the colour before a post, #000000 as a colour field has unless given. #rgb is written #rrggbb, which is all a colour field takes.</p>
+
+
+<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="651b44b3d1f7a2da91ec034945b9e7be6a3d5024b154478bbf490e4faea333ca"><input type="hidden" name="padForm" value="try">
+  <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+.pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+.pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+.pad-input [hidden]{display:none!important}
+.pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+.pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+.pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+.pad-input .pi-button:disabled{opacity:.45;cursor:default}
+.pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+.pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+.pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+.pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+.pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+</style><style>.pad-input-colorpicker input[type=color]{width:3em;height:2.2em;padding:2px;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);cursor:pointer}
+.pad-input-colorpicker .pi-color-code{width:6.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.pad-input-colorpicker .pi-swatches{display:flex;flex-wrap:wrap;gap:.35em;margin-top:.45em}
+.pad-input-colorpicker .pi-swatch{width:1.9em;height:1.9em;padding:0;border-radius:50%;border:2px solid var(--pad-input-field);box-shadow:0 0 0 1px var(--pad-input-line);cursor:pointer}
+.pad-input-colorpicker .pi-swatch[aria-pressed=true]{box-shadow:0 0 0 2px var(--pad-input-ink)}
+.pad-input-colorpicker .pi-swatch:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:3px}
+@media (forced-colors:active){.pad-input-colorpicker .pi-swatch{forced-color-adjust:none}}
+</style><script>/* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+   script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+   - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+   a live region or a script brings later. frame is the field's .pad-input element, cfg its
+   data-config, kit the helpers below. The server wrote a native control that a form posts
+   as it is; a kind's script makes more of it and keeps the posted control's value true -
+   and says so with the input and change events a typed value sends, which the browser's
+   checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+(function () {
+  'use strict';
+
+  if (window.PadInputs) return;
+
+  var kinds = {};
+  var made = 0;
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  var kit = {
+    el: el,
+
+    // A new id of the page, for an element a script adds: a listbox, an option, a box.
+    id: function (base) {
+      made++;
+      return (base || 'pad-input') + '-js' + made;
+    },
+
+    // The value changed as if typed: the form, the rules' checker and any listener hear it.
+    changed: function (control) {
+      control.dispatchEvent(new Event('input', { bubbles: true }));
+      control.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+
+    // What the server wrote hidden for a script to show - a button, a popup's opener.
+    show: function (root, selector) {
+      var list = root.querySelectorAll(selector);
+      for (var i = 0; i < list.length; i++) list[i].hidden = false;
+    },
+
+    // A click outside the element - or the focus leaving it - closes what it opened.
+    outside: function (root, close) {
+      document.addEventListener('pointerdown', function (event) {
+        if (!root.contains(event.target)) close();
+      });
+      root.addEventListener('focusout', function (event) {
+        if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+      });
+    },
+
+    // The text of a field's label, for a name a script gives a control it adds.
+    label: function (frame) {
+      return frame.getAttribute('data-pad-label') || '';
+    }
+  };
+
+  function start(frame) {
+    if (frame.padInputReady) return;
+    var init = kinds[frame.getAttribute('data-pad-input')];
+    if (!init) return;
+    var cfg = {};
+    try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+    frame.padInputReady = true;
+    frame.classList.add('is-ready');
+    init(frame, cfg, kit);
+  }
+
+  function scan(where) {
+    var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+    for (var i = 0; i < list.length; i++) start(list[i]);
+  }
+
+  window.PadInputs = {
+    register: function (name, init) { kinds[name] = init; scan(); },
+    scan: scan,
+    kit: kit
+  };
+
+  document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+  if (window.MutationObserver)
+    new MutationObserver(function (records) {
+      for (var i = 0; i < records.length; i++)
+        for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+        }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script><script>/* colorpicker - the swatches and the code field beside the colour field, all three in step:
+   a swatch chosen, a code typed - #rgb or #rrggbb - or a colour picked sets the other two,
+   and the colour field, the one the form posts, says it changed. The swatch of the colour
+   is pressed. The swatches are buttons in a group, the arrow keys move along them. */
+PadInputs.register('colorpicker', function (frame, cfg, kit) {
+  var colour = frame.querySelector('input[type=color]');
+  var code = frame.querySelector('.pi-color-code');
+  var row = frame.querySelector('.pi-swatches');
+  if (!colour) return;
+  var buttons = [];
+
+  function full(text) {
+    var one = String(text).trim().toLowerCase().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/);
+    if (!one) return null;
+    var hex = one[1];
+    return '#' + (hex.length === 3 ? hex.replace(/./g, '$&$&') : hex);
+  }
+
+  function mark() {
+    buttons.forEach(function (button) {
+      button.setAttribute('aria-pressed', button.getAttribute('data-colour') === colour.value ? 'true' : 'false');
+    });
+  }
+
+  function set(value, from) {
+    if (value === null) return;
+    if (colour.value !== value) {
+      colour.value = value;
+      kit.changed(colour);
+    }
+    if (code && from !== code) code.value = value;
+    mark();
+  }
+
+  (cfg.swatches || []).forEach(function (one, i) {
+    var button = kit.el('button', 'pi-swatch');
+    button.type = 'button';
+    button.setAttribute('data-colour', one);
+    button.setAttribute('aria-label', one);
+    button.title = one;
+    button.tabIndex = i === 0 ? 0 : -1;
+    button.style.background = one;
+    button.addEventListener('click', function () { set(one); });
+    buttons.push(button);
+    row.appendChild(button);
+  });
+
+  // One tab stop for the row: the arrows move between the swatches, as in a toolbar.
+  row.addEventListener('keydown', function (event) {
+    var at = buttons.indexOf(document.activeElement);
+    if (at < 0) return;
+    var to = { ArrowRight: at + 1, ArrowDown: at + 1, ArrowLeft: at - 1, ArrowUp: at - 1, Home: 0, End: buttons.length - 1 }[event.key];
+    if (to === undefined) return;
+    event.preventDefault();
+    to = (to + buttons.length) % buttons.length;
+    buttons[at].tabIndex = -1;
+    buttons[to].tabIndex = 0;
+    buttons[to].focus();
+  });
+
+  // A colour picked in the browser's own picker; the code being typed is left as it is typed.
+  colour.addEventListener('input', function () { if (code && document.activeElement !== code) code.value = colour.value; mark(); });
+
+  if (code) {
+    code.addEventListener('input', function () { set(full(code.value), code); });
+    code.addEventListener('change', function () { var value = full(code.value); code.value = value || colour.value; set(value); });
+  }
+
+  if (buttons.length) row.hidden = false;
+  if (code) code.hidden = false;
+  mark();
+});
+</script><div class="pad-input pad-input-colorpicker" data-pad-input="colorpicker" data-pad-label="Theme colour" data-config="{&quot;swatches&quot;:[&quot;#2a78d6&quot;,&quot;#1a8a5a&quot;,&quot;#e8a317&quot;,&quot;#eb6834&quot;,&quot;#d43c3b&quot;,&quot;#8e44ad&quot;,&quot;#1a1a19&quot;,&quot;#ffffff&quot;]}"><label for="tint">Theme colour</label><div class="pi-row pi-color-row"><input type="color" name="tint" id="tint" value="#2a78d6"><input type="text" class="pi-color-code" value="#2a78d6" size="8" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Theme colour, hexadecimal code" hidden></div><div class="pi-swatches" role="group" aria-label="Swatches for Theme colour" hidden></div></div>
+  <div class="pad-input pad-input-colorpicker" data-pad-input="colorpicker" data-pad-label="Marker" data-config="{&quot;swatches&quot;:[&quot;#fff1b8&quot;,&quot;#ffd6a5&quot;,&quot;#caffbf&quot;,&quot;#9bf6ff&quot;,&quot;#bdb2ff&quot;,&quot;#ffc6ff&quot;]}"><label for="mark">Marker</label><div class="pi-row pi-color-row"><input type="color" name="mark" id="mark" value="#000000"><input type="text" class="pi-color-code" value="#000000" size="8" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Marker, hexadecimal code" hidden></div><div class="pi-swatches" role="group" aria-label="Swatches for Marker" hidden></div></div>
+  <button class="inputs-send">Send</button>
+</form>
+
+
+
+
+<h2>The template</h2>
+<style>:where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}</style><div class="pad-source"><input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">colorpicker.pad</label><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;Colour picker&#039;</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="2"><span class="hl-brc">{</span><span class="hl-tag">about</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="3"></span>
+<span class="hl-line" data-line="4"><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">&#039;try&#039;</span>, <span class="hl-opt">class</span>=<span class="hl-str">&#039;inputs-try&#039;</span>, error<span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">colorpicker</span> <span class="hl-str">&#039;tint&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Theme colour&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;#2a78d6&#039;</span>, <span class="hl-opt">rules</span>=<span class="hl-str">&#039;required|color&#039;</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-brc">{</span><span class="hl-tag">colorpicker</span> <span class="hl-str">&#039;mark&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Marker&#039;</span>, <span class="hl-opt">swatches</span>=<span class="hl-str">&#039;#fff1b8, #ffd6a5, #caffbf, #9bf6ff, #bdb2ff, #ffc6ff&#039;</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;inputs-send&quot;</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8"><span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10"><span class="hl-brc">{</span><span class="hl-tag">received</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12"><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>The template<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></span></code></pre></div></div>

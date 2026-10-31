@@ -66,7 +66,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -129,6 +129,48 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: regression/framework - Page: tags/wizard_makes_a_step_per_row_of_a_loop<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/wizard_makes_a_step_per_row_of_a_loop.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/wizard_makes_a_step_per_row_of_a_loop.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $plans </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Starter'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 9' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Team'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 29' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Studio'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'€ 79' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">wizard </font><font color="red">label=<font color="black">'</font>Plans<font color="black">'</font></font>}</b><b>{<font color="blue">plans</font><font color="red"></font>}</b><b>{<font color="blue">tab </font><font color="red"><font color="red">$</font>name</font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/p&gt;<b>{/<font color="blue">tab</font><font color="red"></font>}</b><b>{/<font color="blue">plans</font><font color="red"></font>}</b><b>{/<font color="blue">wizard</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8f5521b238c638de265a34815ff08213"></div>
+                      <script>
+                      padAjax8f5521b238c638de265a34815ff08213 = new XMLHttpRequest();
+                      padAjax8f5521b238c638de265a34815ff08213.onreadystatechange=function() {
+                      if (padAjax8f5521b238c638de265a34815ff08213.readyState === 4) {
+                      if (padAjax8f5521b238c638de265a34815ff08213.status === 200) {
+                      document.getElementById("padAjax8f5521b238c638de265a34815ff08213").innerHTML=padAjax8f5521b238c638de265a34815ff08213.responseText;
+                      } else {
+                      document.getElementById("padAjax8f5521b238c638de265a34815ff08213").innerHTML=padAjax8f5521b238c638de265a34815ff08213.statusText;
+                      }
+                      }
+                      }
+                      padAjax8f5521b238c638de265a34815ff08213.open("GET","http://localhost/pad/regression/framework/?tags/wizard_makes_a_step_per_row_of_a_loop&padInclude",true);
+                      padAjax8f5521b238c638de265a34815ff08213.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: showcase - Page: tabs/plans_from_data<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -171,16 +213,16 @@
                   </tr>
                 </table><br>
                 <hr>
-                App: tags - Page: examples/tabs/2-loop<br>
+                App: tags - Page: examples/widget/tabs-2-loop<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">examples/tabs/2-loop.php</font>
+                      <font size="-2">examples/widget/tabs-2-loop.php</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">examples/tabs/2-loop.pad</font>
+                      <font size="-2">examples/widget/tabs-2-loop.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -194,20 +236,20 @@
                       <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A tab per row<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The tabs made in a loop over the data - one per plan.<font color="black">'</font></font>/}</b><br><b>{<font color="blue">tabs</font><font color="red"></font>}</b><br>  <b>{<font color="blue">plans</font><font color="red"></font>}</b><br>    <b>{<font color="blue">tab </font><font color="red"><font color="red">$</font>name</font>}</b><br>      &lt;p&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/strong&gt; a month - <b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/p&gt;<br>    <b>{/<font color="blue">tab</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">plans</font><font color="red"></font>}</b><br><b>{/<font color="blue">tabs</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax4ff856fe902c0b4224f26ee9bb608468"></div>
+                      <div id="padAjax956e40be462eadceb5e419126150f11f"></div>
                       <script>
-                      padAjax4ff856fe902c0b4224f26ee9bb608468 = new XMLHttpRequest();
-                      padAjax4ff856fe902c0b4224f26ee9bb608468.onreadystatechange=function() {
-                      if (padAjax4ff856fe902c0b4224f26ee9bb608468.readyState === 4) {
-                      if (padAjax4ff856fe902c0b4224f26ee9bb608468.status === 200) {
-                      document.getElementById("padAjax4ff856fe902c0b4224f26ee9bb608468").innerHTML=padAjax4ff856fe902c0b4224f26ee9bb608468.responseText;
+                      padAjax956e40be462eadceb5e419126150f11f = new XMLHttpRequest();
+                      padAjax956e40be462eadceb5e419126150f11f.onreadystatechange=function() {
+                      if (padAjax956e40be462eadceb5e419126150f11f.readyState === 4) {
+                      if (padAjax956e40be462eadceb5e419126150f11f.status === 200) {
+                      document.getElementById("padAjax956e40be462eadceb5e419126150f11f").innerHTML=padAjax956e40be462eadceb5e419126150f11f.responseText;
                       } else {
-                      document.getElementById("padAjax4ff856fe902c0b4224f26ee9bb608468").innerHTML=padAjax4ff856fe902c0b4224f26ee9bb608468.statusText;
+                      document.getElementById("padAjax956e40be462eadceb5e419126150f11f").innerHTML=padAjax956e40be462eadceb5e419126150f11f.statusText;
                       }
                       }
                       }
-                      padAjax4ff856fe902c0b4224f26ee9bb608468.open("GET","http://localhost/pad/tags/?examples/tabs/2-loop&padInclude",true);
-                      padAjax4ff856fe902c0b4224f26ee9bb608468.send();
+                      padAjax956e40be462eadceb5e419126150f11f.open("GET","http://localhost/pad/tags/?examples/widget/tabs-2-loop&padInclude",true);
+                      padAjax956e40be462eadceb5e419126150f11f.send();
                       </script>
                     </td>
                   </tr>

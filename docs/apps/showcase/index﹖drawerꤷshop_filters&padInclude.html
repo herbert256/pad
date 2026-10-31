@@ -1,0 +1,41 @@
+
+<div style="width:100%; max-width:560px">
+  <h2>Kettles</h2>
+  <p>
+    <style>:where(.pad-drawer){--pad-drawer-accent:#2a78d6;--pad-drawer-on:#ffffff;--pad-drawer-text:#1f1f1d;--pad-drawer-muted:#62615c;--pad-drawer-line:#e4e3df;--pad-drawer-surface:#ffffff;--pad-drawer-backdrop:rgba(20,20,18,.45);}@supports (color:light-dark(#000,#fff)){:where(.pad-drawer){--pad-drawer-accent:light-dark(#2a78d6,#5598e7);--pad-drawer-on:light-dark(#ffffff,#0d1b2e);--pad-drawer-text:light-dark(#1f1f1d,#ecebe6);--pad-drawer-muted:light-dark(#62615c,#a9a8a0);--pad-drawer-line:light-dark(#e4e3df,#3a3a37);--pad-drawer-surface:light-dark(#ffffff,#1f1f1d);--pad-drawer-backdrop:light-dark(rgba(20,20,18,.45),rgba(0,0,0,.65));}}.pad-drawer{display:contents}.pad-drawer-button{display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;border:0;border-radius:8px;background:var(--pad-drawer-accent);color:var(--pad-drawer-on);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}.pad-drawer-button:hover{filter:brightness(1.08)}.pad-drawer-button:focus-visible,.pad-drawer-close:focus-visible{outline:2px solid var(--pad-drawer-accent);outline-offset:2px}button.pad-drawer-button,button.pad-drawer-close{display:none}@media (scripting:enabled){button.pad-drawer-button{display:inline-flex}button.pad-drawer-close{display:flex}a.pad-drawer-link{display:none}}.pad-drawer-panel{box-sizing:border-box;width:min(24rem,calc(100vw - 3rem));max-width:none;height:100%;max-height:none;margin:0 0 0 auto;padding:0;border:0;border-left:1px solid var(--pad-drawer-line);background:var(--pad-drawer-surface);color:var(--pad-drawer-text);box-shadow:0 0 40px rgba(0,0,0,.25);--pad-drawer-from:translateX(100%)}.pad-drawer-panel.pad-drawer-left{margin:0 auto 0 0;border-left:0;border-right:1px solid var(--pad-drawer-line);--pad-drawer-from:translateX(-100%)}.pad-drawer-panel.pad-drawer-bottom{width:100%;height:fit-content;max-height:85vh;margin:auto 0 0;border-left:0;border-top:1px solid var(--pad-drawer-line);border-radius:14px 14px 0 0;--pad-drawer-from:translateY(100%)}.pad-drawer-panel[open],.pad-drawer-panel:target{display:flex;flex-direction:column}.pad-drawer-panel::backdrop{background:rgba(20,20,18,.5)}.pad-drawer-panel:target:not([open]){position:fixed;inset:0;z-index:2147483000;overflow:auto;box-shadow:0 0 0 100vmax var(--pad-drawer-backdrop)}@media (scripting:enabled){.pad-drawer-panel:target:not([open]){display:none}}@keyframes pad-drawer-in{from{transform:var(--pad-drawer-from)}}@media (prefers-reduced-motion:no-preference){.pad-drawer-panel[open],.pad-drawer-panel:target{animation:pad-drawer-in .22s ease-out}}.pad-drawer-head{display:flex;align-items:center;gap:1em;padding:.9em 1.2em;border-bottom:1px solid var(--pad-drawer-line)}.pad-drawer-title{flex:1;margin:0;font-size:1.15em;line-height:1.3}.pad-drawer-close{display:flex;align-items:center;justify-content:center;flex:none;width:2em;height:2em;margin:-.3em -.5em -.3em 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-drawer-muted);font:inherit;font-size:1.3em;line-height:1;text-decoration:none;cursor:pointer}.pad-drawer-close:hover{background:var(--pad-drawer-line);color:var(--pad-drawer-text)}.pad-drawer-body{flex:1;overflow:auto;padding:1.1em 1.2em 1.4em}.pad-drawer-body>:first-child{margin-top:0}.pad-drawer-body>:last-child{margin-bottom:0}</style><div class="pad-drawer"><button type="button" class="pad-drawer-button" commandfor="pad-drawer-shop-filters" command="show-modal">Filters</button><a class="pad-drawer-button pad-drawer-link" id="pad-drawer-shop-filters-open" href="#pad-drawer-shop-filters">Filters</a><dialog class="pad-drawer-panel pad-drawer-left" id="pad-drawer-shop-filters" aria-labelledby="pad-drawer-shop-filters-title" closedby="any"><div class="pad-drawer-head"><h2 class="pad-drawer-title" id="pad-drawer-shop-filters-title">Filters</h2><button type="button" class="pad-drawer-close" commandfor="pad-drawer-shop-filters" command="close" aria-label="Close"><span aria-hidden="true">&#215;</span></button><a class="pad-drawer-close pad-drawer-link" href="#pad-drawer-shop-filters-open" aria-label="Close"><span aria-hidden="true">&#215;</span></a></div><div class="pad-drawer-body"><p><label><input type="checkbox" checked> In stock</label></p>
+      <p><label><input type="checkbox"> On sale</label></p>
+      <p><label><input type="checkbox"> Free delivery</label></p></div></dialog></div><script>(function () {
+  if (window.padDrawerReady) return;
+  window.padDrawerReady = true;
+  var native = 'command' in HTMLButtonElement.prototype;
+  document.addEventListener('click', function (e) {
+    var target = e.target;
+    if (target.matches && target.matches('dialog.pad-drawer-panel[open]')) { target.close(); return; }
+    var button = target.closest && target.closest('button.pad-drawer-button, button.pad-drawer-close');
+    if (!button || native) return;
+    var dialog = document.getElementById(button.getAttribute('commandfor'));
+    if (!dialog) return;
+    if (button.getAttribute('command') === 'close') dialog.close();
+    else if (!dialog.open) dialog.showModal();
+  });
+  function arrived() {
+    var id = '';
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    var dialog = id && document.getElementById(id);
+    if (dialog && dialog.matches('dialog.pad-drawer-panel') && !dialog.open) dialog.showModal();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
+  else arrived();
+  window.addEventListener('hashchange', arrived);
+  document.addEventListener('close', function (e) {
+    var dialog = e.target, id = '';
+    if (!dialog.matches || !dialog.matches('dialog.pad-drawer-panel')) return;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+  }, true);
+})();</script>
+    <div class="pad-drawer"><button type="button" class="pad-drawer-button" commandfor="pad-drawer-shop-cart" command="show-modal">Cart (1)</button><a class="pad-drawer-button pad-drawer-link" id="pad-drawer-shop-cart-open" href="#pad-drawer-shop-cart">Cart (1)</a><dialog class="pad-drawer-panel pad-drawer-right" id="pad-drawer-shop-cart" aria-labelledby="pad-drawer-shop-cart-title" closedby="any"><div class="pad-drawer-head"><h2 class="pad-drawer-title" id="pad-drawer-shop-cart-title">Your cart</h2><button type="button" class="pad-drawer-close" commandfor="pad-drawer-shop-cart" command="close" aria-label="Close"><span aria-hidden="true">&#215;</span></button><a class="pad-drawer-close pad-drawer-link" href="#pad-drawer-shop-cart-open" aria-label="Close"><span aria-hidden="true">&#215;</span></a></div><div class="pad-drawer-body"><p>1 × Aurora electric kettle, <strong>€ 79.00</strong></p>
+      <p>Delivery tomorrow, free above € 50.</p></div></dialog></div>
+  </p>
+  <p>Twelve kettles, from € 29 to € 149.</p>
+</div>

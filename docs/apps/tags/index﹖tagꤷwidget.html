@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {widget} · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-toast){--pad-toast-text:#1f1f1d;--pad-toast-muted:#4f4e4a;--pad-toast-line:#e4e3df;--pad-toast-surface:#ffffff;--pad-toast-info:#2a78d6;--pad-toast-success:#127a52;--pad-toast-warning:#b46b00;--pad-toast-error:#c62f2e;}@supports (color:light-dark(#000,#fff)){:where(.pad-toast){--pad-toast-text:light-dark(#1f1f1d,#ecebe6);--pad-toast-muted:light-dark(#4f4e4a,#bdbcb4);--pad-toast-line:light-dark(#e4e3df,#3a3a37);--pad-toast-surface:light-dark(#ffffff,#242422);--pad-toast-info:light-dark(#2a78d6,#5598e7);--pad-toast-success:light-dark(#127a52,#4fc794);--pad-toast-warning:light-dark(#b46b00,#f0a63a);--pad-toast-error:light-dark(#c62f2e,#ef6b6a);}}.pad-toast{position:static;display:flex;align-items:flex-start;gap:.75em;box-sizing:border-box;width:auto;max-width:32rem;margin:0 0 1em;padding:.8em .8em .8em 1em;border:1px solid var(--pad-toast-line);border-left:4px solid var(--pad-toast-tone);border-radius:10px;background:var(--pad-toast-surface);color:var(--pad-toast-text);box-shadow:0 6px 20px rgba(0,0,0,.12)}.pad-toast:not([open]){display:none}.pad-toast-info{--pad-toast-tone:var(--pad-toast-info)}.pad-toast-success{--pad-toast-tone:var(--pad-toast-success)}.pad-toast-warning{--pad-toast-tone:var(--pad-toast-warning)}.pad-toast-error{--pad-toast-tone:var(--pad-toast-error)}.pad-toast-top,.pad-toast-bottom{position:fixed;z-index:2147482000;inset:auto 1rem auto auto;width:min(24rem,calc(100vw - 2rem));margin:0}.pad-toast-top{top:1rem}.pad-toast-bottom{bottom:1rem}.pad-toast-body{flex:1;min-width:0}.pad-toast-title{margin:0;font-weight:650;line-height:1.35}.pad-toast-text{color:var(--pad-toast-muted);line-height:1.45}.pad-toast-title+.pad-toast-text{margin-top:.2em}.pad-toast-text>:first-child{margin-top:0}.pad-toast-text>:last-child{margin-bottom:0}.pad-toast-form{flex:none;margin:0}.pad-toast-close{display:flex;align-items:center;justify-content:center;width:1.8em;height:1.8em;margin:-.3em -.3em 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-toast-muted);font:inherit;font-size:1.2em;line-height:1;cursor:pointer}.pad-toast-close:hover{background:var(--pad-toast-line);color:var(--pad-toast-text)}.pad-toast-close:focus-visible{outline:2px solid var(--pad-toast-tone);outline-offset:2px}@keyframes pad-toast-in{from{opacity:0;transform:translateY(-.5rem)}}@media (prefers-reduced-motion:no-preference){.pad-toast-top,.pad-toast-bottom{animation:pad-toast-in .2s ease-out}}@media print{.pad-toast{display:none}}
+    </style>
+    <style>
+    :where(.pad-accordion){--pad-accordion-accent:#2a78d6;--pad-accordion-text:#1f1f1d;--pad-accordion-muted:#62615c;--pad-accordion-line:#e4e3df;--pad-accordion-hover:#f4f3f0;}@supports (color:light-dark(#000,#fff)){:where(.pad-accordion){--pad-accordion-accent:light-dark(#2a78d6,#5598e7);--pad-accordion-text:light-dark(#1f1f1d,#ecebe6);--pad-accordion-muted:light-dark(#62615c,#a9a8a0);--pad-accordion-line:light-dark(#e4e3df,#3a3a37);--pad-accordion-hover:light-dark(#f4f3f0,#242422);}}.pad-accordion{margin:0 0 1em;border-top:1px solid var(--pad-accordion-line)}.pad-accordion-item{border-bottom:1px solid var(--pad-accordion-line)}.pad-accordion-summary{display:flex;align-items:center;gap:.75em;padding:.8em .5em;cursor:pointer;list-style:none;color:var(--pad-accordion-text);font-weight:600}.pad-accordion-summary::-webkit-details-marker{display:none}.pad-accordion-summary::after{content:"";flex:none;margin-left:auto;width:.5em;height:.5em;border-right:2px solid var(--pad-accordion-muted);border-bottom:2px solid var(--pad-accordion-muted);transform:translateY(-25%) rotate(45deg);transition:transform .15s}.pad-accordion-item[open]>.pad-accordion-summary::after{transform:translateY(25%) rotate(-135deg)}.pad-accordion-summary:hover{background:var(--pad-accordion-hover)}.pad-accordion-summary:focus-visible{outline:2px solid var(--pad-accordion-accent);outline-offset:-2px;border-radius:6px}.pad-accordion-body{padding:0 .5em 1em;color:var(--pad-accordion-text)}.pad-accordion-body>:first-child{margin-top:0}.pad-accordion-body>:last-child{margin-bottom:0}@media (prefers-reduced-motion:reduce){.pad-accordion-summary::after{transition:none}}
+    </style>
+    <style>
+    :where(.pad-breadcrumb){--pad-breadcrumb-text:#1f1f1d;--pad-breadcrumb-muted:#62615c;--pad-breadcrumb-link:#1f64b8;--pad-breadcrumb-line:#a9a8a0;}@supports (color:light-dark(#000,#fff)){:where(.pad-breadcrumb){--pad-breadcrumb-text:light-dark(#1f1f1d,#ecebe6);--pad-breadcrumb-muted:light-dark(#62615c,#a9a8a0);--pad-breadcrumb-link:light-dark(#1f64b8,#7fb2f0);--pad-breadcrumb-line:light-dark(#a9a8a0,#62615c);}}:where(.pad-breadcrumb){--pad-breadcrumb-separator:"/"}.pad-breadcrumb{margin:0 0 1em;font-size:.92em}.pad-breadcrumb-list{display:flex;flex-wrap:wrap;align-items:center;gap:.25em .55em;margin:0;padding:0;list-style:none}.pad-breadcrumb-item{display:inline-flex;align-items:center;gap:.55em;color:var(--pad-breadcrumb-muted)}.pad-breadcrumb-item+.pad-breadcrumb-item::before{content:var(--pad-breadcrumb-separator);content:var(--pad-breadcrumb-separator) / "";color:var(--pad-breadcrumb-line)}.pad-breadcrumb-item a{color:var(--pad-breadcrumb-link);text-decoration:none}.pad-breadcrumb-item a:hover{text-decoration:underline}.pad-breadcrumb-item a:focus-visible{outline:2px solid var(--pad-breadcrumb-link);outline-offset:2px;border-radius:3px}.pad-breadcrumb [aria-current]{color:var(--pad-breadcrumb-text);font-weight:600}
+    </style>
+    <style>
+    :where(.pad-carousel){--pad-carousel-accent:#2a78d6;--pad-carousel-text:#1f1f1d;--pad-carousel-muted:#62615c;--pad-carousel-surface:#fcfcfb;--pad-carousel-dot:#c9c8c2;}@supports (color:light-dark(#000,#fff)){:where(.pad-carousel){--pad-carousel-accent:light-dark(#2a78d6,#5598e7);--pad-carousel-text:light-dark(#1f1f1d,#ecebe6);--pad-carousel-muted:light-dark(#62615c,#a9a8a0);--pad-carousel-surface:light-dark(#fcfcfb,#1a1a19);--pad-carousel-dot:light-dark(#c9c8c2,#4a4a46);}}.pad-carousel{position:relative;margin:0 0 1em}.pad-carousel-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;border-radius:12px}.pad-carousel-track::-webkit-scrollbar{display:none}.pad-carousel-track:focus-visible{outline:2px solid var(--pad-carousel-accent);outline-offset:2px}@media (prefers-reduced-motion:no-preference){.pad-carousel-track{scroll-behavior:smooth}}.pad-carousel-slide{position:relative;flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;margin:0}.pad-carousel-content>*{display:block;width:100%;height:auto}.pad-carousel-caption{margin:.5em 0 0;text-align:center;color:var(--pad-carousel-muted);font-size:.9em}.pad-carousel-prev,.pad-carousel-next{position:absolute;top:calc(50% - 1.2em);display:flex;align-items:center;justify-content:center;width:2.4em;height:2.4em;border-radius:50%;background:var(--pad-carousel-surface);color:var(--pad-carousel-text);font-size:1.1em;line-height:1;text-decoration:none;opacity:.85;box-shadow:0 1px 4px rgba(0,0,0,.25)}.pad-carousel-prev{left:.6em}.pad-carousel-next{right:.6em}.pad-carousel-prev span,.pad-carousel-next span{font-size:1.6em;margin-top:-.15em}.pad-carousel-prev:hover,.pad-carousel-next:hover{opacity:1}.pad-carousel-dots{display:flex;justify-content:center;gap:.5em;padding:.7em 0 0}.pad-carousel-dot{width:.7em;height:.7em;border-radius:50%;background:var(--pad-carousel-dot)}.pad-carousel-dot:hover{background:var(--pad-carousel-muted)}.pad-carousel a:focus-visible{outline:2px solid var(--pad-carousel-accent);outline-offset:2px}.pad-carousel:not([data-pad-current]):not(:has(>.pad-carousel-track>.pad-carousel-slide:target))>.pad-carousel-dots>.pad-carousel-dot:first-child,.pad-carousel-dot[aria-current]{background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(1):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(1){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(2):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(2){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(3):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(3){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(4):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(4){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(5):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(5){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(6):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(6){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(7):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(7){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(8):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(8){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(9):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(9){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(10):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(10){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(11):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(11){background:var(--pad-carousel-accent)}.pad-carousel:not([data-pad-current]):has(>.pad-carousel-track>.pad-carousel-slide:nth-child(12):target)>.pad-carousel-dots>.pad-carousel-dot:nth-child(12){background:var(--pad-carousel-accent)}@media print{.pad-carousel-track{flex-direction:column}.pad-carousel-prev,.pad-carousel-next,.pad-carousel-dots{display:none}}
+    </style>
+    <style>
+    :where(.pad-drawer){--pad-drawer-accent:#2a78d6;--pad-drawer-on:#ffffff;--pad-drawer-text:#1f1f1d;--pad-drawer-muted:#62615c;--pad-drawer-line:#e4e3df;--pad-drawer-surface:#ffffff;--pad-drawer-backdrop:rgba(20,20,18,.45);}@supports (color:light-dark(#000,#fff)){:where(.pad-drawer){--pad-drawer-accent:light-dark(#2a78d6,#5598e7);--pad-drawer-on:light-dark(#ffffff,#0d1b2e);--pad-drawer-text:light-dark(#1f1f1d,#ecebe6);--pad-drawer-muted:light-dark(#62615c,#a9a8a0);--pad-drawer-line:light-dark(#e4e3df,#3a3a37);--pad-drawer-surface:light-dark(#ffffff,#1f1f1d);--pad-drawer-backdrop:light-dark(rgba(20,20,18,.45),rgba(0,0,0,.65));}}.pad-drawer{display:contents}.pad-drawer-button{display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;border:0;border-radius:8px;background:var(--pad-drawer-accent);color:var(--pad-drawer-on);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}.pad-drawer-button:hover{filter:brightness(1.08)}.pad-drawer-button:focus-visible,.pad-drawer-close:focus-visible{outline:2px solid var(--pad-drawer-accent);outline-offset:2px}button.pad-drawer-button,button.pad-drawer-close{display:none}@media (scripting:enabled){button.pad-drawer-button{display:inline-flex}button.pad-drawer-close{display:flex}a.pad-drawer-link{display:none}}.pad-drawer-panel{box-sizing:border-box;width:min(24rem,calc(100vw - 3rem));max-width:none;height:100%;max-height:none;margin:0 0 0 auto;padding:0;border:0;border-left:1px solid var(--pad-drawer-line);background:var(--pad-drawer-surface);color:var(--pad-drawer-text);box-shadow:0 0 40px rgba(0,0,0,.25);--pad-drawer-from:translateX(100%)}.pad-drawer-panel.pad-drawer-left{margin:0 auto 0 0;border-left:0;border-right:1px solid var(--pad-drawer-line);--pad-drawer-from:translateX(-100%)}.pad-drawer-panel.pad-drawer-bottom{width:100%;height:fit-content;max-height:85vh;margin:auto 0 0;border-left:0;border-top:1px solid var(--pad-drawer-line);border-radius:14px 14px 0 0;--pad-drawer-from:translateY(100%)}.pad-drawer-panel[open],.pad-drawer-panel:target{display:flex;flex-direction:column}.pad-drawer-panel::backdrop{background:rgba(20,20,18,.5)}.pad-drawer-panel:target:not([open]){position:fixed;inset:0;z-index:2147483000;overflow:auto;box-shadow:0 0 0 100vmax var(--pad-drawer-backdrop)}@media (scripting:enabled){.pad-drawer-panel:target:not([open]){display:none}}@keyframes pad-drawer-in{from{transform:var(--pad-drawer-from)}}@media (prefers-reduced-motion:no-preference){.pad-drawer-panel[open],.pad-drawer-panel:target{animation:pad-drawer-in .22s ease-out}}.pad-drawer-head{display:flex;align-items:center;gap:1em;padding:.9em 1.2em;border-bottom:1px solid var(--pad-drawer-line)}.pad-drawer-title{flex:1;margin:0;font-size:1.15em;line-height:1.3}.pad-drawer-close{display:flex;align-items:center;justify-content:center;flex:none;width:2em;height:2em;margin:-.3em -.5em -.3em 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-drawer-muted);font:inherit;font-size:1.3em;line-height:1;text-decoration:none;cursor:pointer}.pad-drawer-close:hover{background:var(--pad-drawer-line);color:var(--pad-drawer-text)}.pad-drawer-body{flex:1;overflow:auto;padding:1.1em 1.2em 1.4em}.pad-drawer-body>:first-child{margin-top:0}.pad-drawer-body>:last-child{margin-bottom:0}
+    </style>
+    <style>
+    :where(.pad-dropdown){--pad-dropdown-accent:#2a78d6;--pad-dropdown-text:#1f1f1d;--pad-dropdown-muted:#62615c;--pad-dropdown-line:#e4e3df;--pad-dropdown-surface:#ffffff;--pad-dropdown-hover:#f1f0ec;}@supports (color:light-dark(#000,#fff)){:where(.pad-dropdown){--pad-dropdown-accent:light-dark(#2a78d6,#5598e7);--pad-dropdown-text:light-dark(#1f1f1d,#ecebe6);--pad-dropdown-muted:light-dark(#62615c,#a9a8a0);--pad-dropdown-line:light-dark(#e4e3df,#3a3a37);--pad-dropdown-surface:light-dark(#ffffff,#242422);--pad-dropdown-hover:light-dark(#f1f0ec,#30302d);}}.pad-dropdown{position:relative;display:inline-block}.pad-dropdown-button{display:inline-flex;align-items:center;gap:.5em;padding:.5em .9em;border:1px solid var(--pad-dropdown-line);border-radius:8px;background:var(--pad-dropdown-surface);color:var(--pad-dropdown-text);font:inherit;font-weight:550;cursor:pointer}.pad-dropdown-button:hover{border-color:var(--pad-dropdown-muted)}.pad-dropdown-button:focus-visible{outline:2px solid var(--pad-dropdown-accent);outline-offset:2px}.pad-dropdown-caret{width:.4em;height:.4em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-25%) rotate(45deg);opacity:.7}.pad-dropdown-menu{box-sizing:border-box;min-width:12rem;max-width:min(22rem,calc(100vw - 2rem));padding:.35em;border:1px solid var(--pad-dropdown-line);border-radius:10px;background:var(--pad-dropdown-surface);color:var(--pad-dropdown-text);box-shadow:0 10px 30px rgba(0,0,0,.18)}@supports (position-area:bottom){.pad-dropdown-menu{inset:auto;margin:.35em 0;position-area:bottom span-right;position-try-fallbacks:flip-block}.pad-dropdown-end{position-area:bottom span-left}}.pad-dropdown-menu>a,.pad-dropdown-menu>button{display:block;box-sizing:border-box;width:100%;padding:.5em .75em;border:0;border-radius:6px;background:none;color:inherit;font:inherit;text-align:left;text-decoration:none;cursor:pointer}.pad-dropdown-menu>a:hover,.pad-dropdown-menu>button:hover{background:var(--pad-dropdown-hover)}.pad-dropdown-menu>a:focus-visible,.pad-dropdown-menu>button:focus-visible{outline:none;background:var(--pad-dropdown-hover);box-shadow:inset 0 0 0 2px var(--pad-dropdown-accent)}.pad-dropdown-menu>hr{margin:.35em .25em;border:0;border-top:1px solid var(--pad-dropdown-line)}.pad-dropdown-menu>p{margin:.4em .75em;color:var(--pad-dropdown-muted);font-size:.85em}@media print{.pad-dropdown-menu{display:none}}
+    </style>
+    <style>
+    :where(.pad-lightbox){--pad-lightbox-accent:#2a78d6;--pad-lightbox-shade:#efeeea;--pad-lightbox-backdrop:rgba(12,12,11,.9);--pad-lightbox-button:rgba(255,255,255,.14);--pad-lightbox-caption:#f4f3ee;}@supports (color:light-dark(#000,#fff)){:where(.pad-lightbox){--pad-lightbox-accent:light-dark(#2a78d6,#5598e7);--pad-lightbox-shade:light-dark(#efeeea,#2a2a28);--pad-lightbox-backdrop:light-dark(rgba(12,12,11,.9),rgba(0,0,0,.92));--pad-lightbox-button:light-dark(rgba(255,255,255,.14),rgba(255,255,255,.12));--pad-lightbox-caption:light-dark(#f4f3ee,#ecebe6);}}.pad-lightbox{margin:0 0 1em}.pad-lightbox-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--pad-lightbox-size,9rem),1fr));gap:.5em;margin:0;padding:0;list-style:none}.pad-lightbox-thumb{display:block;aspect-ratio:var(--pad-lightbox-ratio,4/3);overflow:hidden;border-radius:8px;background:var(--pad-lightbox-shade);cursor:zoom-in}.pad-lightbox-thumb>*{display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s}.pad-lightbox-thumb:hover>*{transform:scale(1.04)}.pad-lightbox-thumb:focus-visible{outline:2px solid var(--pad-lightbox-accent);outline-offset:2px}.pad-lightbox-view{display:none}.pad-lightbox-view:target{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;box-sizing:border-box;padding:3.5rem 4.5rem}html:has(.pad-lightbox-view:target){overflow:hidden}.pad-lightbox-backdrop{position:absolute;inset:0;background:var(--pad-lightbox-backdrop);cursor:zoom-out}.pad-lightbox-figure{position:relative;display:flex;flex-direction:column;align-items:center;gap:.7em;max-width:100%;max-height:100%;margin:0}.pad-lightbox-figure>:first-child{display:block;max-width:min(100%,1400px);max-height:calc(100vh - 9rem);width:auto;height:auto;border-radius:6px}.pad-lightbox-figure>svg:first-child{width:min(calc(100vw - 9rem),1000px)}.pad-lightbox-caption{display:flex;gap:1em;align-items:baseline;color:var(--pad-lightbox-caption);font-size:.95em}.pad-lightbox-count{opacity:.7;font-variant-numeric:tabular-nums}.pad-lightbox-close,.pad-lightbox-prev,.pad-lightbox-next{position:absolute;display:flex;align-items:center;justify-content:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--pad-lightbox-button);color:#fff;font-size:1.5rem;line-height:1;text-decoration:none}.pad-lightbox-close:hover,.pad-lightbox-prev:hover,.pad-lightbox-next:hover{background:rgba(255,255,255,.26)}.pad-lightbox-close:focus-visible,.pad-lightbox-prev:focus-visible,.pad-lightbox-next:focus-visible{outline:2px solid #fff;outline-offset:2px}.pad-lightbox-close{top:1rem;right:1rem}.pad-lightbox-prev{left:1rem;top:calc(50% - 1.3rem)}.pad-lightbox-next{right:1rem;top:calc(50% - 1.3rem)}.pad-lightbox-prev span,.pad-lightbox-next span{font-size:1.4em;margin-top:-.12em}@media (prefers-reduced-motion:reduce){.pad-lightbox-thumb>*{transition:none}}@media print{.pad-lightbox-view{display:none!important}}
+    </style>
+    <style>
+    :where(.pad-modal){--pad-modal-accent:#2a78d6;--pad-modal-on:#ffffff;--pad-modal-text:#1f1f1d;--pad-modal-muted:#62615c;--pad-modal-line:#e4e3df;--pad-modal-surface:#ffffff;--pad-modal-backdrop:rgba(20,20,18,.45);}@supports (color:light-dark(#000,#fff)){:where(.pad-modal){--pad-modal-accent:light-dark(#2a78d6,#5598e7);--pad-modal-on:light-dark(#ffffff,#0d1b2e);--pad-modal-text:light-dark(#1f1f1d,#ecebe6);--pad-modal-muted:light-dark(#62615c,#a9a8a0);--pad-modal-line:light-dark(#e4e3df,#3a3a37);--pad-modal-surface:light-dark(#ffffff,#1f1f1d);--pad-modal-backdrop:light-dark(rgba(20,20,18,.45),rgba(0,0,0,.65));}}.pad-modal-button{display:inline-flex;align-items:center;gap:.4em;padding:.55em 1.1em;border:0;border-radius:8px;background:var(--pad-modal-accent);color:var(--pad-modal-on);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}.pad-modal-button:hover{filter:brightness(1.08)}.pad-modal-button:focus-visible,.pad-modal-close:focus-visible{outline:2px solid var(--pad-modal-accent);outline-offset:2px}button.pad-modal-button,button.pad-modal-close{display:none}@media (scripting:enabled){button.pad-modal-button{display:inline-flex}button.pad-modal-close{display:flex}a.pad-modal-link{display:none}}.pad-modal{width:min(36rem,calc(100vw - 2rem));max-height:calc(100vh - 4rem);padding:0;border:1px solid var(--pad-modal-line);border-radius:14px;background:var(--pad-modal-surface);color:var(--pad-modal-text);box-shadow:0 20px 50px rgba(0,0,0,.3)}.pad-modal::backdrop{background:rgba(20,20,18,.5)}.pad-modal:target:not([open]){display:block;position:fixed;inset:0;margin:auto;height:fit-content;z-index:2147483000;overflow:auto;box-shadow:0 0 0 100vmax var(--pad-modal-backdrop)}@media (scripting:enabled){.pad-modal:target:not([open]){display:none}}.pad-modal-frame{padding:1.2em 1.4em 1.4em}.pad-modal-head{display:flex;align-items:flex-start;gap:1em;margin-bottom:.6em}.pad-modal-title{flex:1;margin:0;font-size:1.2em;line-height:1.3}.pad-modal-close{display:flex;align-items:center;justify-content:center;flex:none;width:2em;height:2em;margin:-.3em -.5em 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--pad-modal-muted);font:inherit;font-size:1.3em;line-height:1;text-decoration:none;cursor:pointer}.pad-modal-close:hover{background:var(--pad-modal-line);color:var(--pad-modal-text)}.pad-modal-body>:first-child{margin-top:0}.pad-modal-body>:last-child{margin-bottom:0}
+    </style>
+    <style>
+    :where(.pad-tabs){--pad-tabs-accent:#2a78d6;--pad-tabs-text:#1f1f1d;--pad-tabs-muted:#62615c;--pad-tabs-line:#e4e3df;}@supports (color:light-dark(#000,#fff)){:where(.pad-tabs){--pad-tabs-accent:light-dark(#2a78d6,#5598e7);--pad-tabs-text:light-dark(#1f1f1d,#ecebe6);--pad-tabs-muted:light-dark(#62615c,#a9a8a0);--pad-tabs-line:light-dark(#e4e3df,#3a3a37);}}.pad-tabs{display:flex;flex-wrap:wrap;align-items:flex-end;margin:0 0 1em}.pad-tabs-radio{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}.pad-tabs-label{position:relative;z-index:1;margin-bottom:-1px;padding:.55em 1em;border-bottom:2px solid transparent;color:var(--pad-tabs-muted);font-weight:500;cursor:pointer;user-select:none}.pad-tabs-label:hover{color:var(--pad-tabs-text)}.pad-tabs-radio:checked+.pad-tabs-label{color:var(--pad-tabs-text);border-bottom-color:var(--pad-tabs-accent)}.pad-tabs-radio:focus-visible+.pad-tabs-label{outline:2px solid var(--pad-tabs-accent);outline-offset:-2px;border-radius:6px 6px 0 0}.pad-tabs-panel{display:none;flex:1 0 100%;order:1;padding:1em 0 0;border-top:1px solid var(--pad-tabs-line)}.pad-tabs>.pad-tabs-radio:nth-of-type(1):checked~.pad-tabs-panel:nth-of-type(1){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(2):checked~.pad-tabs-panel:nth-of-type(2){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(3):checked~.pad-tabs-panel:nth-of-type(3){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(4):checked~.pad-tabs-panel:nth-of-type(4){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(5):checked~.pad-tabs-panel:nth-of-type(5){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(6):checked~.pad-tabs-panel:nth-of-type(6){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(7):checked~.pad-tabs-panel:nth-of-type(7){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(8):checked~.pad-tabs-panel:nth-of-type(8){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(9):checked~.pad-tabs-panel:nth-of-type(9){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(10):checked~.pad-tabs-panel:nth-of-type(10){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(11):checked~.pad-tabs-panel:nth-of-type(11){display:block}.pad-tabs>.pad-tabs-radio:nth-of-type(12):checked~.pad-tabs-panel:nth-of-type(12){display:block}@media print{.pad-tabs-panel{display:block}}
+    </style>
+    <style>
+    :where(.pad-tooltip){--pad-tooltip-accent:#2a78d6;--pad-tooltip-muted:#62615c;--pad-tooltip-surface:#1f1f1d;--pad-tooltip-on:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-tooltip){--pad-tooltip-accent:light-dark(#2a78d6,#5598e7);--pad-tooltip-muted:light-dark(#62615c,#a9a8a0);--pad-tooltip-surface:light-dark(#1f1f1d,#ecebe6);--pad-tooltip-on:light-dark(#ffffff,#1f1f1d);}}.pad-tooltip{position:relative;display:inline-block}.pad-tooltip-trigger{border-bottom:1px dotted currentColor;cursor:help}.pad-tooltip-trigger:focus-visible{outline:2px solid var(--pad-tooltip-accent);outline-offset:2px;border-radius:3px}.pad-tooltip-info{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:1.25em;height:1.25em;margin:0 .1em;padding:0;border:1.5px solid var(--pad-tooltip-muted);border-radius:50%;background:transparent;color:var(--pad-tooltip-muted);font:italic 700 .8em/1 Georgia,serif;vertical-align:.1em}.pad-tooltip-info:hover{border-color:var(--pad-tooltip-accent);color:var(--pad-tooltip-accent)}.pad-tooltip-tip{position:absolute;z-index:2147481000;left:50%;bottom:calc(100% + 8px);box-sizing:border-box;width:max-content;max-width:min(18rem,80vw);padding:.4em .65em;border-radius:6px;background:var(--pad-tooltip-surface);color:var(--pad-tooltip-on);font-size:.85rem;font-weight:400;font-style:normal;line-height:1.35;text-align:left;white-space:normal;transform:translateX(calc(-50% + var(--pad-tooltip-shift,0px)));visibility:hidden;opacity:0;transition:opacity .12s,visibility .12s}.pad-tooltip-tip::before{content:"";position:absolute;left:0;right:0;top:100%;height:10px}.pad-tooltip-tip::after{content:"";position:absolute;left:calc(50% - 5px - var(--pad-tooltip-shift,0px));top:100%;border:5px solid transparent;border-top-color:var(--pad-tooltip-surface)}.pad-tooltip-bottom>.pad-tooltip-tip{top:calc(100% + 8px);bottom:auto}.pad-tooltip-bottom>.pad-tooltip-tip::before{top:auto;bottom:100%}.pad-tooltip-bottom>.pad-tooltip-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--pad-tooltip-surface)}.pad-tooltip:hover>.pad-tooltip-tip,.pad-tooltip:focus-within>.pad-tooltip-tip{visibility:visible;opacity:1}.pad-tooltip.is-dismissed>.pad-tooltip-tip{visibility:hidden;opacity:0}@media (prefers-reduced-motion:reduce){.pad-tooltip-tip{transition:none}}@media print{.pad-tooltip-tip{display:none}}
+    </style>
+    <style>
+    :where(.pad-wizard){--pad-wizard-accent:#2a78d6;--pad-wizard-on:#ffffff;--pad-wizard-text:#1f1f1d;--pad-wizard-muted:#62615c;--pad-wizard-line:#d9d8d3;--pad-wizard-surface:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-wizard){--pad-wizard-accent:light-dark(#2a78d6,#5598e7);--pad-wizard-on:light-dark(#ffffff,#0d1b2e);--pad-wizard-text:light-dark(#1f1f1d,#ecebe6);--pad-wizard-muted:light-dark(#62615c,#a9a8a0);--pad-wizard-line:light-dark(#d9d8d3,#3f3f3c);--pad-wizard-surface:light-dark(#ffffff,#1f1f1d);}}.pad-wizard{display:flex;flex-wrap:wrap;align-items:flex-start;margin:0 0 1em;color:var(--pad-wizard-text)}.pad-wizard-radio{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}.pad-wizard-step{position:relative;flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:.4em;min-width:0;padding:0 .3em .9em;color:var(--pad-wizard-muted);font-size:.92em;font-weight:500;text-align:center;cursor:pointer;user-select:none}.pad-wizard-step::before{content:"";position:absolute;top:1em;right:50%;width:100%;height:2px;margin-top:-1px;background:var(--pad-wizard-line)}.pad-wizard>.pad-wizard-step:first-of-type::before{display:none}.pad-wizard-number{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:2em;height:2em;border:2px solid var(--pad-wizard-line);border-radius:50%;background:var(--pad-wizard-surface);font-weight:650}.pad-wizard-name{overflow-wrap:anywhere}.pad-wizard-of{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.pad-wizard-step:hover{color:var(--pad-wizard-text)}.pad-wizard-step:has(~.pad-wizard-radio:checked) .pad-wizard-number{border-color:var(--pad-wizard-accent);color:var(--pad-wizard-accent)}.pad-wizard-step:has(~.pad-wizard-radio:checked)::before,.pad-wizard-radio:checked+.pad-wizard-step::before{background:var(--pad-wizard-accent)}.pad-wizard-radio:checked+.pad-wizard-step{color:var(--pad-wizard-text)}.pad-wizard-radio:checked+.pad-wizard-step .pad-wizard-number{border-color:var(--pad-wizard-accent);background:var(--pad-wizard-accent);color:var(--pad-wizard-on)}.pad-wizard-radio:focus-visible+.pad-wizard-step .pad-wizard-number{outline:2px solid var(--pad-wizard-accent);outline-offset:3px}.pad-wizard-panel{display:none;flex:1 0 100%;order:1;padding:1em 0 0;border-top:1px solid var(--pad-wizard-line)}.pad-wizard>.pad-wizard-radio:nth-of-type(1):checked~.pad-wizard-panel:nth-of-type(1){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(2):checked~.pad-wizard-panel:nth-of-type(2){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(3):checked~.pad-wizard-panel:nth-of-type(3){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(4):checked~.pad-wizard-panel:nth-of-type(4){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(5):checked~.pad-wizard-panel:nth-of-type(5){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(6):checked~.pad-wizard-panel:nth-of-type(6){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(7):checked~.pad-wizard-panel:nth-of-type(7){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(8):checked~.pad-wizard-panel:nth-of-type(8){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(9):checked~.pad-wizard-panel:nth-of-type(9){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(10):checked~.pad-wizard-panel:nth-of-type(10){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(11):checked~.pad-wizard-panel:nth-of-type(11){display:block}.pad-wizard>.pad-wizard-radio:nth-of-type(12):checked~.pad-wizard-panel:nth-of-type(12){display:block}.pad-wizard-panel>:first-child{margin-top:0}.pad-wizard-nav{display:flex;align-items:center;gap:.75em;margin-top:1.2em}.pad-wizard-back,.pad-wizard-next{display:inline-flex;align-items:center;padding:.5em 1.1em;border:1px solid var(--pad-wizard-line);border-radius:8px;background:transparent;color:var(--pad-wizard-text);font:inherit;font-weight:600;cursor:pointer;user-select:none}.pad-wizard-next{margin-left:auto;border-color:var(--pad-wizard-accent);background:var(--pad-wizard-accent);color:var(--pad-wizard-on)}.pad-wizard-back:hover,.pad-wizard-next:hover{filter:brightness(1.06)}.pad-wizard-back:focus-visible,.pad-wizard-next:focus-visible{outline:2px solid var(--pad-wizard-accent);outline-offset:2px}button.pad-wizard-back,button.pad-wizard-next{display:none}@media (scripting:enabled){button.pad-wizard-back,button.pad-wizard-next{display:inline-flex}label.pad-wizard-back,label.pad-wizard-next{display:none}}@media print{.pad-wizard-panel{display:block}.pad-wizard-nav{display:none}}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#widgets">Widgets</a><span>/</span><span aria-current="page">widget</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>widget<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              An interactive part of the page that works without JavaScript - 13 of them, from tabs, a modal and a carousel to a toast, a dropdown and a wizard.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget</span> <span class="hl-str">'name'</span>, ...<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:name</span> ...<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:name</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">tabs</span> <span class="hl-opt">active</span>=<span class="hl-str">'label'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'caption'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/carousel</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">wizard</span> <span class="hl-opt">active</span>=<span class="hl-num">1</span>, <span class="hl-opt">next</span>=<span class="hl-str">'Next'</span>, <span class="hl-opt">back</span>=<span class="hl-str">'Back'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'step'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/wizard</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lightbox</span> <span class="hl-opt">label</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'caption'</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;img</span> ...<span class="hl-htm">&gt;</span> <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/lightbox</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">modal</span> <span class="hl-str">'name'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'heading'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/modal</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">drawer</span> <span class="hl-str">'name'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'heading'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">side</span>=<span class="hl-str">'left'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/drawer</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">dropdown</span> <span class="hl-str">'text'</span>, <span class="hl-opt">align</span>=<span class="hl-str">'end'</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"..."</span><span class="hl-htm">&gt;</span> ... <span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> ... <span class="hl-brc">{</span><span class="hl-tag">/dropdown</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">tooltip</span> <span class="hl-str">'tip'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tooltip</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-str">'title'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'success'</span>, <span class="hl-opt">place</span>=<span class="hl-str">'top'</span>, <span class="hl-opt">timeout</span>=<span class="hl-num">5</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'text'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'name'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'Yes, No'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'question'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Vote'</span>, results<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">breadcrumb</span> <span class="hl-opt">home</span>=<span class="hl-str">'Home'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Breadcrumb'</span><span class="hl-brc">/}</span></code></pre>
+            <h3>
+              Parameters
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>name</code>
+              </dt>
+              <dd>
+                The widget, a file of <code>pad/widgets/types/</code>: <code>accordion</code>, <code>breadcrumb</code>, <code>carousel</code>, <code>copy</code>, <code>drawer</code>, <code>dropdown</code>, <code>lightbox</code>, <code>modal</code>, <code>poll</code>, <code>tabs</code>, <code>toast</code>, <code>tooltip</code>, <code>wizard</code>. The widget: type names it as well - <code>{widget:modal 'terms'}</code> - and so does the bare name, <code>{modal 'terms'}</code>, after every other kind of tag: a store, a field or an array of the name wins.
+              </dd>
+              <dt>
+                <code>first</code>
+              </dt>
+              <dd>
+                The widget's own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer or a poll, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip.
+              </dd>
+            </dl>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>active</code>
+              </dt>
+              <dd>
+                tabs, wizard: the tab or step shown first, by its number from 1 or its label.
+              </dd>
+              <dt>
+                <code>single</code>
+              </dt>
+              <dd>
+                Bare option, accordion: one item open at a time.
+              </dd>
+              <dt>
+                <code>open</code>
+              </dt>
+              <dd>
+                accordion: the item open at first, by its number or its label; bare, every item.
+              </dd>
+              <dt>
+                <code>label</code>
+              </dt>
+              <dd>
+                carousel, lightbox, wizard, breadcrumb: the name for a screen reader; copy: the button's text.
+              </dd>
+              <dt>
+                <code>title</code>
+              </dt>
+              <dd>
+                modal, drawer: the heading that names the dialog; poll: the question.
+              </dd>
+              <dt>
+                <code>button</code>
+              </dt>
+              <dd>
+                modal, drawer: the text of the button that opens it (<code>Open</code>); poll: the vote button.
+              </dd>
+              <dt>
+                <code>side</code>
+              </dt>
+              <dd>
+                drawer: <code>right</code> (the default), <code>left</code> or <code>bottom</code>.
+              </dd>
+              <dt>
+                <code>align</code>
+              </dt>
+              <dd>
+                dropdown: <code>start</code> (the default) or <code>end</code> - the menu's edge under the button's.
+              </dd>
+              <dt>
+                <code>place</code>
+              </dt>
+              <dd>
+                tooltip: <code>top</code> or <code>bottom</code>; toast: <code>inline</code>, <code>top</code> or <code>bottom</code> - in the flow, or in that corner of the window.
+              </dd>
+              <dt>
+                <code>tone</code>
+              </dt>
+              <dd>
+                toast: <code>info</code>, <code>success</code>, <code>warning</code> or <code>error</code>.
+              </dd>
+              <dt>
+                <code>timeout</code>
+              </dt>
+              <dd>
+                toast: seconds, 1 to 600, after which it closes by itself - the one thing that needs its script.
+              </dd>
+              <dt>
+                <code>next</code>
+              </dt>
+              <dd>
+                wizard: the text of the Next button (<code>Next</code>).
+              </dd>
+              <dt>
+                <code>back</code>
+              </dt>
+              <dd>
+                wizard: the text of the Back button (<code>Back</code>).
+              </dd>
+              <dt>
+                <code>options</code>
+              </dt>
+              <dd>
+                poll: the answers, separated by commas - two or more.
+              </dd>
+              <dt>
+                <code>results</code>
+              </dt>
+              <dd>
+                Bare option, poll: the results to everyone, also before a vote.
+              </dd>
+              <dt>
+                <code>home</code>
+              </dt>
+              <dd>
+                breadcrumb: the first step's text when the trail is the page's path (<code>Home</code>).
+              </dd>
+              <dt>
+                <code>data</code>
+              </dt>
+              <dd>
+                breadcrumb: the steps from rows - their label and link fields - of a store, the page's array or a <code>_data</code> file.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a toast, a copy box, a poll, a breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code> attribute, <code>:target</code>. Where a widget has a script it only makes it handier - Escape, the arrow keys, the focus - and is written once per page, with the CSP nonce. Every widget is a file of <code>pad/widgets/types/</code>, its functions in <code>pad/widgets/_lib/</code>, its style and script in <code>pad/widgets/assets/</code>; the files of <code>types/</code> are the widgets there are.
+            </p>
+            <p>
+              A widget is written three ways, the same widget each time: the tag with the widget's name, <code>{widget 'modal', 'terms'}</code>, whose second parameter is the widget's own first; the widget: type, <code>{widget:modal 'terms'}</code>; and the bare name, <code>{modal 'terms'}</code>. The bare name comes after every other kind of tag, so a store, a field or an array of the name wins - a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. Two names stay built-in tags: <a href="index%EF%B9%96tag%EA%A4%B7copy.html"><code>{copy}</code></a>, as PHP has a <code>copy()</code> function a bare name would reach first, and <a href="index%EF%B9%96tag%EA%A4%B7tab.html"><code>{tab}</code></a>, the item of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard and lightbox.
+            </p>
+            <ul>
+              <li>
+                <b>tabs</b> - panels behind a row of tabs: a radio button and a label per tab, the arrow keys move between them, printed every panel shows. <b>accordion</b> - every item a <code>&lt;details&gt;</code>; <code>single</code> one open at a time. <b>carousel</b> - slides that scroll and snap sideways, links to the slides before and after, a dot per slide, no autoplay. <b>wizard</b> - steps one at a time, numbered above, Back and Next under each. <b>lightbox</b> - thumbnails whose picture opens large over the page.
+              </li>
+              <li>
+                <b>modal</b> - a <code>&lt;dialog&gt;</code> and its button, opened by the invoker commands, a script where the browser has none, or a <code>:target</code> link without scripting. <b>drawer</b> - the same along the side of the window.
+              </li>
+              <li>
+                <b>dropdown</b> - a menu under a button, a popover the browser opens, closes and places. <b>tooltip</b> - a tip on hover and focus, by CSS; Escape hides it. <b>toast</b> - a notice in an open <code>&lt;dialog&gt;</code> whose button closes it through a form of method dialog; <code>timeout=</code> closes it by itself.
+              </li>
+              <li>
+                <b>copy</b> - a text and a copy-to-clipboard button. <b>poll</b> - a vote once per visitor, the results as bars. <b>breadcrumb</b> - the trail from home to the page, from the page's path, the lines of a pair or <code>data=</code>.
+              </li>
+            </ul>
+            <p>
+              The colours are custom properties on <code>.pad-&lt;widget&gt;</code> - <code>--pad-tabs-accent</code>, <code>--pad-toast-success</code> ... - with <code>light-dark()</code> defaults, so a page of <code>color-scheme: light dark</code> gets the dark ones in dark mode. A name that is no widget, an option a widget does not know and a widget without what it needs - a name, a label, a tab - are errors under the strict check. The poll's examples are shown but not run: what it shows depends on the votes and the visitor's session.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                Three ways to write one
+              </h3>
+              <p class="example-about">
+                The widget tag, the widget: type and the bare name - the same toast each time.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/0-forms.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget</span> <span class="hl-str">'toast'</span>, <span class="hl-str">'The widget tag'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'success'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">open</span><span class="hl-brc">/}</span>widget <span class="hl-str">'toast'</span>, <span class="hl-str">'The widget tag'</span><span class="hl-brc">{</span><span class="hl-tag">close</span><span class="hl-brc">/}</span> - the second parameter is the toast's title.<span class="hl-brc">{</span><span class="hl-tag">/widget</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:toast</span> <span class="hl-str">'The widget: type'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">open</span><span class="hl-brc">/}</span>widget:toast <span class="hl-str">'The widget: type'</span><span class="hl-brc">{</span><span class="hl-tag">close</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:toast</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-str">'The bare name'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'warning'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">open</span><span class="hl-brc">/}</span>toast <span class="hl-str">'The bare name'</span><span class="hl-brc">{</span><span class="hl-tag">close</span><span class="hl-brc">/}</span> - when no store, field or array has the name.<span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B70-forms.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <dialog open class="pad-toast pad-toast-success" id="pad-toast-8f3835d4" aria-labelledby="pad-toast-8f3835d4-title">
+                      <div class="pad-toast-body" role="status">
+                        <p class="pad-toast-title" id="pad-toast-8f3835d4-title">
+                          The widget tag
+                        </p>
+                        <div class="pad-toast-text">
+                          {widget 'toast', 'The widget tag'} - the second parameter is the toast's title.
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                    <dialog open class="pad-toast pad-toast-info" id="pad-toast-f2514fc6" aria-labelledby="pad-toast-f2514fc6-title">
+                      <div class="pad-toast-body" role="status">
+                        <p class="pad-toast-title" id="pad-toast-f2514fc6-title">
+                          The widget: type
+                        </p>
+                        <div class="pad-toast-text">
+                          {widget:toast 'The widget: type'}
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                    <dialog open class="pad-toast pad-toast-warning" id="pad-toast-bc0f6ae9" aria-labelledby="pad-toast-bc0f6ae9-title">
+                      <div class="pad-toast-body" role="alert">
+                        <p class="pad-toast-title" id="pad-toast-bc0f6ae9-title">
+                          The bare name
+                        </p>
+                        <div class="pad-toast-text">
+                          {toast 'The bare name'} - when no store, field or array has the name.
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-2">
+              <h3>
+                A FAQ, one open at a time
+              </h3>
+              <p class="example-about">
+                single makes opening one question close the other; open=1 opens the first.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/accordion-1-faq.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'When will my order arrive?'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Orders placed before <span class="hl-num">22</span>:<span class="hl-num">00</span> on a working day are delivered the next day.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Can I return something?'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Yes - within <span class="hl-num">30</span> days, unused and in its box.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Is there a warranty?'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Two years on every appliance.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7accordion-1-faq.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-accordion" id="pad-accordion-da186468">
+                      <details class="pad-accordion-item" name="pad-accordion-da186468" open>
+                        <summary class="pad-accordion-summary">
+                          When will my order arrive?
+                        </summary>
+                        <div class="pad-accordion-body">
+                          <p>
+                            Orders placed before 22:00 on a working day are delivered the next day.
+                          </p>
+                        </div>
+                      </details>
+                      <details class="pad-accordion-item" name="pad-accordion-da186468">
+                        <summary class="pad-accordion-summary">
+                          Can I return something?
+                        </summary>
+                        <div class="pad-accordion-body">
+                          <p>
+                            Yes - within 30 days, unused and in its box.
+                          </p>
+                        </div>
+                      </details>
+                      <details class="pad-accordion-item" name="pad-accordion-da186468">
+                        <summary class="pad-accordion-summary">
+                          Is there a warranty?
+                        </summary>
+                        <div class="pad-accordion-body">
+                          <p>
+                            Two years on every appliance.
+                          </p>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-3">
+              <h3>
+                All open, from data
+              </h3>
+              <p class="example-about">
+                A bare open opens every item; the items come from a loop.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/accordion-2-all-open.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span> open<span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">steps</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-var">$step</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$detail</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/steps</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/widget/accordion-2-all-open.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$steps</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'step'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Order'</span><span class="hl-pun">,</span>   <span class="hl-str">'detail'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Pick the products and pay.'</span>      <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'step'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Pack'</span><span class="hl-pun">,</span>    <span class="hl-str">'detail'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'The warehouse packs the parcel.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'step'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Deliver'</span><span class="hl-pun">,</span> <span class="hl-str">'detail'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'The courier brings it to you.'</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7accordion-2-all-open.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-accordion" id="pad-accordion-e3724fb7">
+                      <details class="pad-accordion-item" open>
+                        <summary class="pad-accordion-summary">
+                          Order
+                        </summary>
+                        <div class="pad-accordion-body">
+                          <p>
+                            Pick the products and pay.
+                          </p>
+                        </div>
+                      </details>
+                      <details class="pad-accordion-item" open>
+                        <summary class="pad-accordion-summary">
+                          Pack
+                        </summary>
+                        <div class="pad-accordion-body">
+                          <p>
+                            The warehouse packs the parcel.
+                          </p>
+                        </div>
+                      </details>
+                      <details class="pad-accordion-item" open>
+                        <summary class="pad-accordion-summary">
+                          Deliver
+                        </summary>
+                        <div class="pad-accordion-body">
+                          <p>
+                            The courier brings it to you.
+                          </p>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-4">
+              <h3>
+                A trail
+              </h3>
+              <p class="example-about">
+                The page's own path, and a trail of its lines - a label and its link after a bar, the page itself last.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/breadcrumb-1-trail.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">breadcrumb</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">breadcrumb</span><span class="hl-brc">}</span>
+  Home | <span class="hl-var">?index</span>
+  Kettles | <span class="hl-var">?groups</span>
+  Aurora
+<span class="hl-brc">{</span><span class="hl-tag">/breadcrumb</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7breadcrumb-1-trail.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <nav class="pad-breadcrumb" aria-label="Breadcrumb">
+                      <ol class="pad-breadcrumb-list">
+                        <li class="pad-breadcrumb-item">
+                          <a href="index%EF%B9%96index.html">Home</a>
+                        </li>
+                        <li class="pad-breadcrumb-item">
+                          <span>Tag</span>
+                        </li>
+                        <li class="pad-breadcrumb-item">
+                          <a href="index%EF%B9%96tag%EA%A4%B7widget.html" aria-current="page">Widget</a>
+                        </li>
+                      </ol>
+                    </nav>
+                    <nav class="pad-breadcrumb" aria-label="Breadcrumb">
+                      <ol class="pad-breadcrumb-list">
+                        <li class="pad-breadcrumb-item">
+                          <a href="index%EF%B9%96index.html">Home</a>
+                        </li>
+                        <li class="pad-breadcrumb-item">
+                          <a href="index%EF%B9%96groups.html">Kettles</a>
+                        </li>
+                        <li class="pad-breadcrumb-item">
+                          <span aria-current="page">Aurora</span>
+                        </li>
+                      </ol>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-5">
+              <h3>
+                Three slides
+              </h3>
+              <p class="example-about">
+                Coloured slides with a caption each, named Colours for a screen reader.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/carousel-1-slides.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'Colours'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Morning'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;svg</span> <span class="hl-opt">viewBox</span>=<span class="hl-str">"0 0 400 160"</span> <span class="hl-opt">role</span>=<span class="hl-str">"img"</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">"A yellow sky"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;rect</span> <span class="hl-opt">width</span>=<span class="hl-str">"400"</span> <span class="hl-opt">height</span>=<span class="hl-str">"160"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#fbd38d"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;/svg</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Noon'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;svg</span> <span class="hl-opt">viewBox</span>=<span class="hl-str">"0 0 400 160"</span> <span class="hl-opt">role</span>=<span class="hl-str">"img"</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">"A blue sky"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;rect</span> <span class="hl-opt">width</span>=<span class="hl-str">"400"</span> <span class="hl-opt">height</span>=<span class="hl-str">"160"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#90cdf4"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;/svg</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Night'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;svg</span> <span class="hl-opt">viewBox</span>=<span class="hl-str">"0 0 400 160"</span> <span class="hl-opt">role</span>=<span class="hl-str">"img"</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">"A dark violet sky"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;rect</span> <span class="hl-opt">width</span>=<span class="hl-str">"400"</span> <span class="hl-opt">height</span>=<span class="hl-str">"160"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#553c9a"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;/svg</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/carousel</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7carousel-1-slides.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <section class="pad-carousel" id="pad-carousel-b005aeab" aria-roledescription="carousel" aria-label="Colours">
+                      <div class="pad-carousel-track" tabindex="0" aria-label="Colours, slides">
+                        <div class="pad-carousel-slide" id="pad-carousel-b005aeab-1" role="group" aria-roledescription="slide" aria-label="1 of 3: Morning">
+                          <div class="pad-carousel-content">
+                            <svg viewbox="0 0 400 160" role="img" aria-label="A yellow sky">
+                            <rect width="400" height="160" fill="#fbd38d"></rect></svg>
+                          </div>
+                          <p class="pad-carousel-caption">
+                            Morning
+                          </p><a class="pad-carousel-prev" href="#pad-carousel-b005aeab-3" aria-label="Previous slide"><span aria-hidden="true">‹</span></a><a class="pad-carousel-next" href="#pad-carousel-b005aeab-2" aria-label="Next slide"><span aria-hidden="true">›</span></a>
+                        </div>
+                        <div class="pad-carousel-slide" id="pad-carousel-b005aeab-2" role="group" aria-roledescription="slide" aria-label="2 of 3: Noon">
+                          <div class="pad-carousel-content">
+                            <svg viewbox="0 0 400 160" role="img" aria-label="A blue sky">
+                            <rect width="400" height="160" fill="#90cdf4"></rect></svg>
+                          </div>
+                          <p class="pad-carousel-caption">
+                            Noon
+                          </p><a class="pad-carousel-prev" href="#pad-carousel-b005aeab-1" aria-label="Previous slide"><span aria-hidden="true">‹</span></a><a class="pad-carousel-next" href="#pad-carousel-b005aeab-3" aria-label="Next slide"><span aria-hidden="true">›</span></a>
+                        </div>
+                        <div class="pad-carousel-slide" id="pad-carousel-b005aeab-3" role="group" aria-roledescription="slide" aria-label="3 of 3: Night">
+                          <div class="pad-carousel-content">
+                            <svg viewbox="0 0 400 160" role="img" aria-label="A dark violet sky">
+                            <rect width="400" height="160" fill="#553c9a"></rect></svg>
+                          </div>
+                          <p class="pad-carousel-caption">
+                            Night
+                          </p><a class="pad-carousel-prev" href="#pad-carousel-b005aeab-2" aria-label="Previous slide"><span aria-hidden="true">‹</span></a><a class="pad-carousel-next" href="#pad-carousel-b005aeab-1" aria-label="Next slide"><span aria-hidden="true">›</span></a>
+                        </div>
+                      </div>
+                      <nav class="pad-carousel-dots" aria-label="Colours, choose a slide">
+                        <a class="pad-carousel-dot" href="#pad-carousel-b005aeab-1" aria-label="Slide 1 of 3: Morning"></a><a class="pad-carousel-dot" href="#pad-carousel-b005aeab-2" aria-label="Slide 2 of 3: Noon"></a><a class="pad-carousel-dot" href="#pad-carousel-b005aeab-3" aria-label="Slide 3 of 3: Night"></a>
+                      </nav>
+                    </section>
+                    <script>
+                    (function () {
+                    if (window.padCarouselReady) return;
+                    window.padCarouselReady = true;
+                    function mark(carousel) {
+                    var track = carousel.querySelector(':scope > .pad-carousel-track');
+                    if (!track || !track.clientWidth) return;
+                    var current = Math.round(track.scrollLeft / track.clientWidth);
+                    carousel.setAttribute('data-pad-current', current + 1);
+                    carousel.querySelectorAll(':scope > .pad-carousel-dots > .pad-carousel-dot').forEach(function (dot, index) {
+                    if (index === current) dot.setAttribute('aria-current', 'true');
+                    else dot.removeAttribute('aria-current');
+                    });
+                    }
+                    function markAll() {
+                    document.querySelectorAll('.pad-carousel').forEach(mark);
+                    }
+                    document.addEventListener('click', function (e) {
+                    var link = e.target.closest && e.target.closest('.pad-carousel a[href^="#"]');
+                    var carousel = link && link.closest('.pad-carousel');
+                    var slide = carousel && document.getElementById(link.getAttribute('href').slice(1));
+                    if (!slide || !carousel.contains(slide)) return;
+                    e.preventDefault();
+                    var track = slide.parentNode;
+                    track.scrollTo({ left: Array.prototype.indexOf.call(track.children, slide) * track.clientWidth });
+                    });
+                    var pending = false;
+                    document.addEventListener('scroll', function (e) {
+                    var track = e.target.classList && e.target.classList.contains('pad-carousel-track') && e.target;
+                    if (!track || pending) return;
+                    pending = true;
+                    requestAnimationFrame(function () { pending = false; mark(track.parentNode); });
+                    }, true);
+                    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', markAll);
+                    else markAll();
+                    })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-6">
+              <h3>
+                Slides from data, no captions
+              </h3>
+              <p class="example-about">
+                A slide per row of the data; a carousel slide may go without a label.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/carousel-2-quotes.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'What customers say'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">quotes</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">tab</span><span class="hl-brc">}</span><span class="hl-htm">&lt;blockquote</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;footer</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/footer</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/blockquote</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/quotes</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/carousel</span><span class="hl-brc">}</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/widget/carousel-2-quotes.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$quotes</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Marieke'</span><span class="hl-pun">,</span> <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Quiet, fast, and the light is a nice touch.'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Tom'</span><span class="hl-pun">,</span>     <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Boils quickly. The lid is a little stiff.'</span>   <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Aisha'</span><span class="hl-pun">,</span>   <span class="hl-str">'text'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'The keep-warm setting is perfect for tea.'</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7carousel-2-quotes.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <section class="pad-carousel" id="pad-carousel-2146d5e0" aria-roledescription="carousel" aria-label="What customers say">
+                      <div class="pad-carousel-track" tabindex="0" aria-label="What customers say, slides">
+                        <div class="pad-carousel-slide" id="pad-carousel-2146d5e0-1" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                          <div class="pad-carousel-content">
+                            <blockquote>
+                              <p>
+                                Quiet, fast, and the light is a nice touch.
+                              </p>
+                              <footer>
+                                Marieke
+                              </footer>
+                            </blockquote>
+                          </div><a class="pad-carousel-prev" href="#pad-carousel-2146d5e0-3" aria-label="Previous slide"><span aria-hidden="true">‹</span></a><a class="pad-carousel-next" href="#pad-carousel-2146d5e0-2" aria-label="Next slide"><span aria-hidden="true">›</span></a>
+                        </div>
+                        <div class="pad-carousel-slide" id="pad-carousel-2146d5e0-2" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                          <div class="pad-carousel-content">
+                            <blockquote>
+                              <p>
+                                Boils quickly. The lid is a little stiff.
+                              </p>
+                              <footer>
+                                Tom
+                              </footer>
+                            </blockquote>
+                          </div><a class="pad-carousel-prev" href="#pad-carousel-2146d5e0-1" aria-label="Previous slide"><span aria-hidden="true">‹</span></a><a class="pad-carousel-next" href="#pad-carousel-2146d5e0-3" aria-label="Next slide"><span aria-hidden="true">›</span></a>
+                        </div>
+                        <div class="pad-carousel-slide" id="pad-carousel-2146d5e0-3" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                          <div class="pad-carousel-content">
+                            <blockquote>
+                              <p>
+                                The keep-warm setting is perfect for tea.
+                              </p>
+                              <footer>
+                                Aisha
+                              </footer>
+                            </blockquote>
+                          </div><a class="pad-carousel-prev" href="#pad-carousel-2146d5e0-2" aria-label="Previous slide"><span aria-hidden="true">‹</span></a><a class="pad-carousel-next" href="#pad-carousel-2146d5e0-1" aria-label="Next slide"><span aria-hidden="true">›</span></a>
+                        </div>
+                      </div>
+                      <nav class="pad-carousel-dots" aria-label="What customers say, choose a slide">
+                        <a class="pad-carousel-dot" href="#pad-carousel-2146d5e0-1" aria-label="Slide 1 of 3"></a><a class="pad-carousel-dot" href="#pad-carousel-2146d5e0-2" aria-label="Slide 2 of 3"></a><a class="pad-carousel-dot" href="#pad-carousel-2146d5e0-3" aria-label="Slide 3 of 3"></a>
+                      </nav>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-7">
+              <h3>
+                Filters at the side
+              </h3>
+              <p class="example-about">
+                A panel that slides in from the left - a modal dialog, and a :target overlay without scripting.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/drawer-1-filters.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">drawer</span> <span class="hl-str">'filters'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Filters'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Show filters'</span>, <span class="hl-opt">side</span>=<span class="hl-str">'left'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"checkbox"</span> checked<span class="hl-htm">&gt;</span> In stock<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"checkbox"</span><span class="hl-htm">&gt;</span> On sale<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"checkbox"</span><span class="hl-htm">&gt;</span> Free delivery<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/drawer</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7drawer-1-filters.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-drawer">
+                      <button type="button" class="pad-drawer-button" commandfor="pad-drawer-filters" command="show-modal">Show filters</button><a class="pad-drawer-button pad-drawer-link" id="pad-drawer-filters-open" href="#pad-drawer-filters">Show filters</a>
+                      <dialog class="pad-drawer-panel pad-drawer-left" id="pad-drawer-filters" aria-labelledby="pad-drawer-filters-title" closedby="any">
+                        <div class="pad-drawer-head">
+                          <h2 class="pad-drawer-title" id="pad-drawer-filters-title">
+                            Filters
+                          </h2><button type="button" class="pad-drawer-close" commandfor="pad-drawer-filters" command="close" aria-label="Close"><span aria-hidden="true">×</span></button><a class="pad-drawer-close pad-drawer-link" href="#pad-drawer-filters-open" aria-label="Close"><span aria-hidden="true">×</span></a>
+                        </div>
+                        <div class="pad-drawer-body">
+                          <p>
+                            <label><input type="checkbox" checked> In stock</label>
+                          </p>
+                          <p>
+                            <label><input type="checkbox"> On sale</label>
+                          </p>
+                          <p>
+                            <label><input type="checkbox"> Free delivery</label>
+                          </p>
+                        </div>
+                      </dialog>
+                    </div>
+                    <script>
+                    (function () {
+                    if (window.padDrawerReady) return;
+                    window.padDrawerReady = true;
+                    var native = 'command' in HTMLButtonElement.prototype;
+                    document.addEventListener('click', function (e) {
+                    var target = e.target;
+                    if (target.matches && target.matches('dialog.pad-drawer-panel[open]')) { target.close(); return; }
+                    var button = target.closest && target.closest('button.pad-drawer-button, button.pad-drawer-close');
+                    if (!button || native) return;
+                    var dialog = document.getElementById(button.getAttribute('commandfor'));
+                    if (!dialog) return;
+                    if (button.getAttribute('command') === 'close') dialog.close();
+                    else if (!dialog.open) dialog.showModal();
+                    });
+                    function arrived() {
+                    var id = '';
+                    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+                    var dialog = id && document.getElementById(id);
+                    if (dialog && dialog.matches('dialog.pad-drawer-panel') && !dialog.open) dialog.showModal();
+                    }
+                    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
+                    else arrived();
+                    window.addEventListener('hashchange', arrived);
+                    document.addEventListener('close', function (e) {
+                    var dialog = e.target, id = '';
+                    if (!dialog.matches || !dialog.matches('dialog.pad-drawer-panel')) return;
+                    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+                    if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+                    }, true);
+                    })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-8">
+              <h3>
+                An account menu
+              </h3>
+              <p class="example-about">
+                A popover the button opens - a click outside or Escape closes it, the arrow keys move between the items.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/dropdown-1-account.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">dropdown</span> <span class="hl-str">'Account'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Signed in as Ann<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?index"</span><span class="hl-htm">&gt;</span>Profile<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?groups"</span><span class="hl-htm">&gt;</span>Settings<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;hr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?names"</span><span class="hl-htm">&gt;</span>Log out<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/dropdown</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7dropdown-1-account.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-dropdown" id="pad-dropdown-feac949e">
+                      <button type="button" class="pad-dropdown-button" popovertarget="pad-dropdown-feac949e-menu">Account<span class="pad-dropdown-caret" aria-hidden="true"></span></button>
+                      <div class="pad-dropdown-menu pad-dropdown-start" id="pad-dropdown-feac949e-menu" popover="">
+                        <p>
+                          Signed in as Ann
+                        </p><a href="index%EF%B9%96index.html">Profile</a> <a href="index%EF%B9%96groups.html">Settings</a>
+                        <hr>
+                        <a href="index%EF%B9%96names.html">Log out</a>
+                      </div>
+                    </div>
+                    <script>
+                    (function () {
+                    if (window.padDropdownReady) return;
+                    window.padDropdownReady = true;
+                    var anchored = window.CSS && CSS.supports && CSS.supports('position-area: bottom');
+                    function items(menu) {
+                    return Array.prototype.filter.call(menu.querySelectorAll('a[href], button:not([disabled])'), function (item) {
+                    return item.offsetParent !== null || item.getClientRects().length;
+                    });
+                    }
+                    function place(menu) {
+                    var button = menu.parentNode.querySelector('.pad-dropdown-button');
+                    if (anchored || !button) return;
+                    var box = button.getBoundingClientRect();
+                    menu.style.inset = 'auto';
+                    menu.style.margin = '0';
+                    var left = menu.classList.contains('pad-dropdown-end') ? box.right - menu.offsetWidth : box.left;
+                    var top = box.bottom + 6;
+                    if (top + menu.offsetHeight > innerHeight && box.top - menu.offsetHeight - 6 > 0) top = box.top - menu.offsetHeight - 6;
+                    menu.style.left = Math.max(8, Math.min(left, innerWidth - menu.offsetWidth - 8)) + 'px';
+                    menu.style.top = Math.max(8, top) + 'px';
+                    }
+                    document.addEventListener('toggle', function (e) {
+                    var menu = e.target;
+                    if (menu.classList && menu.classList.contains('pad-dropdown-menu') && e.newState === 'open') place(menu);
+                    }, true);
+                    document.addEventListener('keydown', function (e) {
+                    var target = e.target;
+                    if (!target.closest) return;
+                    var button = target.closest('.pad-dropdown-button');
+                    if (button && e.key === 'ArrowDown') {
+                    var opens = button.parentNode.querySelector('.pad-dropdown-menu');
+                    if (!opens) return;
+                    e.preventDefault();
+                    if (!opens.matches(':popover-open')) opens.showPopover({ source: button });
+                    var first = items(opens)[0];
+                    if (first) first.focus();
+                    return;
+                    }
+                    var menu = target.closest('.pad-dropdown-menu');
+                    if (!menu || ['ArrowDown', 'ArrowUp', 'Home', 'End'].indexOf(e.key) < 0) return;
+                    var list = items(menu), at = list.indexOf(target);
+                    if (!list.length) return;
+                    e.preventDefault();
+                    if (e.key === 'Home') at = 0;
+                    else if (e.key === 'End') at = list.length - 1;
+                    else if (e.key === 'ArrowDown') at = (at + 1) % list.length;
+                    else at = (at - 1 + list.length) % list.length;
+                    list[at].focus();
+                    });
+                    document.addEventListener('click', function (e) {
+                    var item = e.target.closest && e.target.closest('.pad-dropdown-menu a[href], .pad-dropdown-menu button');
+                    var menu = item && item.closest('.pad-dropdown-menu');
+                    if (menu && menu.matches(':popover-open')) menu.hidePopover();
+                    });
+                    })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-9">
+              <h3>
+                A gallery
+              </h3>
+              <p class="example-about">
+                Thumbnails that open their picture large over the page, with the pictures before and after it.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/lightbox-1-skies.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">lightbox</span> <span class="hl-opt">label</span>=<span class="hl-str">'Skies'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Morning'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;svg</span> <span class="hl-opt">viewBox</span>=<span class="hl-str">"0 0 400 300"</span> <span class="hl-opt">role</span>=<span class="hl-str">"img"</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">"A yellow sky"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;rect</span> <span class="hl-opt">width</span>=<span class="hl-str">"400"</span> <span class="hl-opt">height</span>=<span class="hl-str">"300"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#fbd38d"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;circle</span> <span class="hl-opt">cx</span>=<span class="hl-str">"200"</span> <span class="hl-opt">cy</span>=<span class="hl-str">"230"</span> <span class="hl-opt">r</span>=<span class="hl-str">"60"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#f6ad55"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;/svg</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Noon'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;svg</span> <span class="hl-opt">viewBox</span>=<span class="hl-str">"0 0 400 300"</span> <span class="hl-opt">role</span>=<span class="hl-str">"img"</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">"A blue sky"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;rect</span> <span class="hl-opt">width</span>=<span class="hl-str">"400"</span> <span class="hl-opt">height</span>=<span class="hl-str">"300"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#90cdf4"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;circle</span> <span class="hl-opt">cx</span>=<span class="hl-str">"200"</span> <span class="hl-opt">cy</span>=<span class="hl-str">"80"</span> <span class="hl-opt">r</span>=<span class="hl-str">"40"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#fefcbf"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;/svg</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Night'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;svg</span> <span class="hl-opt">viewBox</span>=<span class="hl-str">"0 0 400 300"</span> <span class="hl-opt">role</span>=<span class="hl-str">"img"</span> <span class="hl-opt">aria-label</span>=<span class="hl-str">"A dark violet sky"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;rect</span> <span class="hl-opt">width</span>=<span class="hl-str">"400"</span> <span class="hl-opt">height</span>=<span class="hl-str">"300"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#553c9a"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;circle</span> <span class="hl-opt">cx</span>=<span class="hl-str">"300"</span> <span class="hl-opt">cy</span>=<span class="hl-str">"70"</span> <span class="hl-opt">r</span>=<span class="hl-str">"25"</span> <span class="hl-opt">fill</span>=<span class="hl-str">"#e9d8fd"</span><span class="hl-htm">/&gt;</span><span class="hl-htm">&lt;/svg</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/lightbox</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7lightbox-1-skies.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-lightbox" id="pad-lightbox-c61441f1" role="group" aria-label="Skies">
+                      <ul class="pad-lightbox-grid">
+                        <li>
+                          <a class="pad-lightbox-thumb" id="pad-lightbox-c61441f1-1-thumb" href="#pad-lightbox-c61441f1-1" aria-label="Morning, picture 1 of 3"><svg viewbox="0 0 400 300" role="img" aria-label="A yellow sky">
+                          <rect width="400" height="300" fill="#fbd38d"></rect>
+                          <circle cx="200" cy="230" r="60" fill="#f6ad55"></circle></svg></a>
+                        </li>
+                        <li>
+                          <a class="pad-lightbox-thumb" id="pad-lightbox-c61441f1-2-thumb" href="#pad-lightbox-c61441f1-2" aria-label="Noon, picture 2 of 3"><svg viewbox="0 0 400 300" role="img" aria-label="A blue sky">
+                          <rect width="400" height="300" fill="#90cdf4"></rect>
+                          <circle cx="200" cy="80" r="40" fill="#fefcbf"></circle></svg></a>
+                        </li>
+                        <li>
+                          <a class="pad-lightbox-thumb" id="pad-lightbox-c61441f1-3-thumb" href="#pad-lightbox-c61441f1-3" aria-label="Night, picture 3 of 3"><svg viewbox="0 0 400 300" role="img" aria-label="A dark violet sky">
+                          <rect width="400" height="300" fill="#553c9a"></rect>
+                          <circle cx="300" cy="70" r="25" fill="#e9d8fd"></circle></svg></a>
+                        </li>
+                      </ul>
+                      <div class="pad-lightbox-view" id="pad-lightbox-c61441f1-1" role="dialog" aria-label="Picture 1 of 3: Morning">
+                        <a class="pad-lightbox-backdrop" href="#pad-lightbox-c61441f1-1-thumb" tabindex="-1" aria-hidden="true"></a>
+                        <figure class="pad-lightbox-figure">
+                          <svg viewbox="0 0 400 300" role="img" aria-label="A yellow sky">
+                          <rect width="400" height="300" fill="#fbd38d"></rect>
+                          <circle cx="200" cy="230" r="60" fill="#f6ad55"></circle></svg>
+                          <figcaption class="pad-lightbox-caption">
+                            Morning<span class="pad-lightbox-count">1 / 3</span>
+                          </figcaption>
+                        </figure><a class="pad-lightbox-close" href="#pad-lightbox-c61441f1-1-thumb" aria-label="Close"><span aria-hidden="true">×</span></a><a class="pad-lightbox-prev" href="#pad-lightbox-c61441f1-3" aria-label="Previous picture"><span aria-hidden="true">‹</span></a><a class="pad-lightbox-next" href="#pad-lightbox-c61441f1-2" aria-label="Next picture"><span aria-hidden="true">›</span></a>
+                      </div>
+                      <div class="pad-lightbox-view" id="pad-lightbox-c61441f1-2" role="dialog" aria-label="Picture 2 of 3: Noon">
+                        <a class="pad-lightbox-backdrop" href="#pad-lightbox-c61441f1-2-thumb" tabindex="-1" aria-hidden="true"></a>
+                        <figure class="pad-lightbox-figure">
+                          <svg viewbox="0 0 400 300" role="img" aria-label="A blue sky">
+                          <rect width="400" height="300" fill="#90cdf4"></rect>
+                          <circle cx="200" cy="80" r="40" fill="#fefcbf"></circle></svg>
+                          <figcaption class="pad-lightbox-caption">
+                            Noon<span class="pad-lightbox-count">2 / 3</span>
+                          </figcaption>
+                        </figure><a class="pad-lightbox-close" href="#pad-lightbox-c61441f1-2-thumb" aria-label="Close"><span aria-hidden="true">×</span></a><a class="pad-lightbox-prev" href="#pad-lightbox-c61441f1-1" aria-label="Previous picture"><span aria-hidden="true">‹</span></a><a class="pad-lightbox-next" href="#pad-lightbox-c61441f1-3" aria-label="Next picture"><span aria-hidden="true">›</span></a>
+                      </div>
+                      <div class="pad-lightbox-view" id="pad-lightbox-c61441f1-3" role="dialog" aria-label="Picture 3 of 3: Night">
+                        <a class="pad-lightbox-backdrop" href="#pad-lightbox-c61441f1-3-thumb" tabindex="-1" aria-hidden="true"></a>
+                        <figure class="pad-lightbox-figure">
+                          <svg viewbox="0 0 400 300" role="img" aria-label="A dark violet sky">
+                          <rect width="400" height="300" fill="#553c9a"></rect>
+                          <circle cx="300" cy="70" r="25" fill="#e9d8fd"></circle></svg>
+                          <figcaption class="pad-lightbox-caption">
+                            Night<span class="pad-lightbox-count">3 / 3</span>
+                          </figcaption>
+                        </figure><a class="pad-lightbox-close" href="#pad-lightbox-c61441f1-3-thumb" aria-label="Close"><span aria-hidden="true">×</span></a><a class="pad-lightbox-prev" href="#pad-lightbox-c61441f1-2" aria-label="Previous picture"><span aria-hidden="true">‹</span></a><a class="pad-lightbox-next" href="#pad-lightbox-c61441f1-1" aria-label="Next picture"><span aria-hidden="true">›</span></a>
+                      </div>
+                    </div>
+                    <script>
+                    (function () {
+                    if (window.padLightboxReady) return;
+                    window.padLightboxReady = true;
+                    function target() {
+                    var id = '';
+                    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return null; }
+                    return id ? document.getElementById(id) : null;
+                    }
+                    function focus() {
+                    var element = target();
+                    if (!element || !element.closest('.pad-lightbox')) return;
+                    if (element.classList.contains('pad-lightbox-view')) element.querySelector('.pad-lightbox-close').focus({ preventScroll: true });
+                    else if (element.classList.contains('pad-lightbox-thumb')) element.focus({ preventScroll: true });
+                    }
+                    document.addEventListener('keydown', function (e) {
+                    var view = target();
+                    if (!view || !view.classList.contains('pad-lightbox-view')) return;
+                    var link = e.key === 'Escape' ? '.pad-lightbox-close' : e.key === 'ArrowLeft' ? '.pad-lightbox-prev' : e.key === 'ArrowRight' ? '.pad-lightbox-next' : '';
+                    var go = link && view.querySelector(link);
+                    if (!go) return;
+                    e.preventDefault();
+                    go.click();
+                    });
+                    window.addEventListener('hashchange', focus);
+                    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', focus);
+                    else focus();
+                    })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-10">
+              <h3>
+                Terms in a dialog
+              </h3>
+              <p class="example-about">
+                A button that opens the terms of sale over the page.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/modal-1-terms.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Your order: <span class="hl-num">1</span> × Aurora electric kettle, <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span>€ <span class="hl-num">79.00</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">modal</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Terms of sale'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Read the terms'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;ol</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Prices include VAT; shipping is free above € <span class="hl-num">50</span>.<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>You may return an unused product within <span class="hl-num">30</span> days.<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/ol</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/modal</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7modal-1-terms.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <p>
+                      Your order: 1 × Aurora electric kettle, <strong>€ 79.00</strong>
+                    </p><button type="button" class="pad-modal-button" commandfor="pad-modal-terms" command="show-modal">Read the terms</button><a class="pad-modal-button pad-modal-link" id="pad-modal-terms-open" href="#pad-modal-terms">Read the terms</a>
+                    <dialog class="pad-modal" id="pad-modal-terms" aria-labelledby="pad-modal-terms-title" closedby="any">
+                      <div class="pad-modal-frame">
+                        <div class="pad-modal-head">
+                          <h2 class="pad-modal-title" id="pad-modal-terms-title">
+                            Terms of sale
+                          </h2><button type="button" class="pad-modal-close" commandfor="pad-modal-terms" command="close" aria-label="Close"><span aria-hidden="true">×</span></button><a class="pad-modal-close pad-modal-link" href="#pad-modal-terms-open" aria-label="Close"><span aria-hidden="true">×</span></a>
+                        </div>
+                        <div class="pad-modal-body">
+                          <ol>
+                            <li>Prices include VAT; shipping is free above € 50.
+                            </li>
+                            <li>You may return an unused product within 30 days.
+                            </li>
+                          </ol>
+                        </div>
+                      </div>
+                    </dialog>
+                    <script>
+                    (function () {
+                    if (window.padModalReady) return;
+                    window.padModalReady = true;
+                    var native = 'command' in HTMLButtonElement.prototype;
+                    document.addEventListener('click', function (e) {
+                    var target = e.target;
+                    if (target.matches && target.matches('dialog.pad-modal[open]')) { target.close(); return; }
+                    var button = target.closest && target.closest('button.pad-modal-button, button.pad-modal-close');
+                    if (!button || native) return;
+                    var dialog = document.getElementById(button.getAttribute('commandfor'));
+                    if (!dialog) return;
+                    if (button.getAttribute('command') === 'close') dialog.close();
+                    else if (!dialog.open) dialog.showModal();
+                    });
+                    function arrived() {
+                    var id = '';
+                    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+                    var dialog = id && document.getElementById(id);
+                    if (dialog && dialog.matches('dialog.pad-modal') && !dialog.open) dialog.showModal();
+                    }
+                    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
+                    else arrived();
+                    window.addEventListener('hashchange', arrived);
+                    document.addEventListener('close', function (e) {
+                    var dialog = e.target, id = '';
+                    if (!dialog.matches || !dialog.matches('dialog.pad-modal')) return;
+                    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+                    if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+                    }, true);
+                    })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-11">
+              <h3>
+                Rendered content
+              </h3>
+              <p class="example-about">
+                The content is template - here a loop over the page's data - rendered before it goes into the dialog.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/modal-2-data.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">modal</span> <span class="hl-str">'opening-hours'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Opening hours'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+    <span class="hl-brc">{</span><span class="hl-tag">hours</span><span class="hl-brc">}</span><span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$day</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$open</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/hours</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/modal</span><span class="hl-brc">}</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/widget/modal-2-data.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$hours</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Monday to Friday'</span><span class="hl-pun">,</span> <span class="hl-str">'open'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'09:00 - 18:00'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Saturday'</span><span class="hl-pun">,</span>         <span class="hl-str">'open'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'10:00 - 16:00'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'day'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Sunday'</span><span class="hl-pun">,</span>           <span class="hl-str">'open'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'closed'</span>        <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7modal-2-data.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <button type="button" class="pad-modal-button" commandfor="pad-modal-opening-hours" command="show-modal">Opening hours</button><a class="pad-modal-button pad-modal-link" id="pad-modal-opening-hours-open" href="#pad-modal-opening-hours">Opening hours</a>
+                    <dialog class="pad-modal" id="pad-modal-opening-hours" aria-labelledby="pad-modal-opening-hours-title" closedby="any">
+                      <div class="pad-modal-frame">
+                        <div class="pad-modal-head">
+                          <h2 class="pad-modal-title" id="pad-modal-opening-hours-title">
+                            Opening hours
+                          </h2><button type="button" class="pad-modal-close" commandfor="pad-modal-opening-hours" command="close" aria-label="Close"><span aria-hidden="true">×</span></button><a class="pad-modal-close pad-modal-link" href="#pad-modal-opening-hours-open" aria-label="Close"><span aria-hidden="true">×</span></a>
+                        </div>
+                        <div class="pad-modal-body">
+                          <table>
+                            <tr>
+                              <th>
+                                Monday to Friday
+                              </th>
+                              <td>
+                                09:00 - 18:00
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                Saturday
+                              </th>
+                              <td>
+                                10:00 - 16:00
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>
+                                Sunday
+                              </th>
+                              <td>
+                                closed
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </dialog>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-12">
+              <h3>
+                A question
+              </h3>
+              <p class="example-about">
+                Four answers and a question; after the vote the visitor sees the results as bars.
+              </p>
+              <div class="example-grid is-static">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/poll-1-question.src</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'favorite-language'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'PHP, Python, Ruby, Go'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Which language do you reach for first?'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-13">
+              <h3>
+                A results page
+              </h3>
+              <p class="example-about">
+                The same poll with results - the bars show to everyone, voted or not.
+              </p>
+              <div class="example-grid is-static">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/poll-2-results.src</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>How the vote stands<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'favorite-language'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'PHP, Python, Ruby, Go'</span>, results<span class="hl-brc">/}</span></code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-14">
+              <h3>
+                Three tabs
+              </h3>
+              <p class="example-about">
+                A tab set with the second tab shown first, named by its label.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/tabs-1-basic.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">tabs</span> <span class="hl-opt">active</span>=<span class="hl-str">'Specifications'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A <span class="hl-num">1.7</span> litre kettle in brushed steel that boils a full jug in under four minutes.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Specifications'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
+      <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Capacity<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">1.7</span> litres<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+      <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Power<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">2200</span> W<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Reviews'</span><span class="hl-brc">}</span>
+    <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Quiet, fast, and the light is a nice touch.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7tabs-1-basic.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-tabs" id="pad-tabs-1f24a3bf">
+                      <input class="pad-tabs-radio" type="radio" name="pad-tabs-1f24a3bf" id="pad-tabs-1f24a3bf-1" aria-controls="pad-tabs-1f24a3bf-1-panel"><label class="pad-tabs-label" for="pad-tabs-1f24a3bf-1" id="pad-tabs-1f24a3bf-1-label">Overview</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-1f24a3bf" id="pad-tabs-1f24a3bf-2" aria-controls="pad-tabs-1f24a3bf-2-panel" checked><label class="pad-tabs-label" for="pad-tabs-1f24a3bf-2" id="pad-tabs-1f24a3bf-2-label">Specifications</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-1f24a3bf" id="pad-tabs-1f24a3bf-3" aria-controls="pad-tabs-1f24a3bf-3-panel"><label class="pad-tabs-label" for="pad-tabs-1f24a3bf-3" id="pad-tabs-1f24a3bf-3-label">Reviews</label>
+                      <div class="pad-tabs-panel" id="pad-tabs-1f24a3bf-1-panel" role="region" aria-labelledby="pad-tabs-1f24a3bf-1-label">
+                        <p>
+                          A 1.7 litre kettle in brushed steel that boils a full jug in under four minutes.
+                        </p>
+                      </div>
+                      <div class="pad-tabs-panel" id="pad-tabs-1f24a3bf-2-panel" role="region" aria-labelledby="pad-tabs-1f24a3bf-2-label">
+                        <table>
+                          <tr>
+                            <th>
+                              Capacity
+                            </th>
+                            <td>
+                              1.7 litres
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Power
+                            </th>
+                            <td>
+                              2200 W
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="pad-tabs-panel" id="pad-tabs-1f24a3bf-3-panel" role="region" aria-labelledby="pad-tabs-1f24a3bf-3-label">
+                        <p>
+                          Quiet, fast, and the light is a nice touch.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-15">
+              <h3>
+                A tab per row
+              </h3>
+              <p class="example-about">
+                The tabs made in a loop over the data - one per plan.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/tabs-2-loop.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">tabs</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">plans</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-var">$name</span><span class="hl-brc">}</span>
+      <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> a month - <span class="hl-brc">{</span><span class="hl-var">$about</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+    <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/plans</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/widget/tabs-2-loop.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$plans</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Starter'</span><span class="hl-pun">,</span> <span class="hl-str">'price'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'€ 9'</span><span class="hl-pun">,</span>  <span class="hl-str">'about'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'for one person and a side project'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Team'</span><span class="hl-pun">,</span>    <span class="hl-str">'price'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'€ 29'</span><span class="hl-pun">,</span> <span class="hl-str">'about'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'for a team that ships every week'</span>  <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Studio'</span><span class="hl-pun">,</span>  <span class="hl-str">'price'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'€ 79'</span><span class="hl-pun">,</span> <span class="hl-str">'about'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'for an agency with many clients'</span>   <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7tabs-2-loop.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-tabs" id="pad-tabs-52ac09e7">
+                      <input class="pad-tabs-radio" type="radio" name="pad-tabs-52ac09e7" id="pad-tabs-52ac09e7-1" aria-controls="pad-tabs-52ac09e7-1-panel" checked><label class="pad-tabs-label" for="pad-tabs-52ac09e7-1" id="pad-tabs-52ac09e7-1-label">Starter</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-52ac09e7" id="pad-tabs-52ac09e7-2" aria-controls="pad-tabs-52ac09e7-2-panel"><label class="pad-tabs-label" for="pad-tabs-52ac09e7-2" id="pad-tabs-52ac09e7-2-label">Team</label><input class="pad-tabs-radio" type="radio" name="pad-tabs-52ac09e7" id="pad-tabs-52ac09e7-3" aria-controls="pad-tabs-52ac09e7-3-panel"><label class="pad-tabs-label" for="pad-tabs-52ac09e7-3" id="pad-tabs-52ac09e7-3-label">Studio</label>
+                      <div class="pad-tabs-panel" id="pad-tabs-52ac09e7-1-panel" role="region" aria-labelledby="pad-tabs-52ac09e7-1-label">
+                        <p>
+                          <strong>€ 9</strong> a month - for one person and a side project
+                        </p>
+                      </div>
+                      <div class="pad-tabs-panel" id="pad-tabs-52ac09e7-2-panel" role="region" aria-labelledby="pad-tabs-52ac09e7-2-label">
+                        <p>
+                          <strong>€ 29</strong> a month - for a team that ships every week
+                        </p>
+                      </div>
+                      <div class="pad-tabs-panel" id="pad-tabs-52ac09e7-3-panel" role="region" aria-labelledby="pad-tabs-52ac09e7-3-label">
+                        <p>
+                          <strong>€ 79</strong> a month - for an agency with many clients
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-16">
+              <h3>
+                Notices
+              </h3>
+              <p class="example-about">
+                A toast of each tone, closed by its button through a form of method dialog - no script.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/toast-1-tones.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-str">'Saved'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'success'</span><span class="hl-brc">}</span>Your changes are kept.<span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-str">'Heads up'</span><span class="hl-brc">}</span>The shop closes at six today.<span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-opt">tone</span>=<span class="hl-str">'warning'</span><span class="hl-brc">}</span>Your session ends in five minutes.<span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-str">'Payment failed'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'error'</span><span class="hl-brc">}</span>The card was declined - try another one.<span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7toast-1-tones.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <dialog open class="pad-toast pad-toast-success" id="pad-toast-3f460793" aria-labelledby="pad-toast-3f460793-title">
+                      <div class="pad-toast-body" role="status">
+                        <p class="pad-toast-title" id="pad-toast-3f460793-title">
+                          Saved
+                        </p>
+                        <div class="pad-toast-text">
+                          Your changes are kept.
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                    <dialog open class="pad-toast pad-toast-info" id="pad-toast-95f819b4" aria-labelledby="pad-toast-95f819b4-title">
+                      <div class="pad-toast-body" role="status">
+                        <p class="pad-toast-title" id="pad-toast-95f819b4-title">
+                          Heads up
+                        </p>
+                        <div class="pad-toast-text">
+                          The shop closes at six today.
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                    <dialog open class="pad-toast pad-toast-warning" id="pad-toast-fbaa1b2b" aria-label="Warning">
+                      <div class="pad-toast-body" role="alert">
+                        <div class="pad-toast-text">
+                          Your session ends in five minutes.
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                    <dialog open class="pad-toast pad-toast-error" id="pad-toast-f039f689" aria-labelledby="pad-toast-f039f689-title">
+                      <div class="pad-toast-body" role="alert">
+                        <p class="pad-toast-title" id="pad-toast-f039f689-title">
+                          Payment failed
+                        </p>
+                        <div class="pad-toast-text">
+                          The card was declined - try another one.
+                        </div>
+                      </div>
+                      <form class="pad-toast-form" method="dialog">
+                        <button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
+                      </form>
+                    </dialog>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-17">
+              <h3>
+                Tips
+              </h3>
+              <p class="example-about">
+                A tip on a word, and the single tag's information button - shown on hover and on focus by CSS.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/tooltip-1-plans.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span>The <span class="hl-brc">{</span><span class="hl-tag">tooltip</span> <span class="hl-str">'Billed every month, cancel any time'</span><span class="hl-brc">}</span>Starter plan<span class="hl-brc">{</span><span class="hl-tag">/tooltip</span><span class="hl-brc">}</span> costs € <span class="hl-num">9</span> a month,
+VAT <span class="hl-brc">{</span><span class="hl-tag">tooltip</span> <span class="hl-str">'Value added tax: 21% on most goods'</span><span class="hl-brc">/}</span> included.<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7tooltip-1-plans.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div>
+                      The <span class="pad-tooltip pad-tooltip-top"><span class="pad-tooltip-trigger" tabindex="0" aria-describedby="pad-tooltip-fadd3c9b">Starter plan</span><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-fadd3c9b">Billed every month, cancel any time</span></span>
+                      <script>
+                      (function () {
+                      if (window.padTooltipReady) return;
+                      window.padTooltipReady = true;
+                      function fit(e) {
+                      var tooltip = e.target.closest && e.target.closest('.pad-tooltip');
+                      var tip = tooltip && tooltip.querySelector(':scope > .pad-tooltip-tip');
+                      if (!tip) return;
+                      tip.style.setProperty('--pad-tooltip-shift', '0px');
+                      var box = tip.getBoundingClientRect(), room = document.documentElement.clientWidth, shift = 0;
+                      if (box.left < 8) shift = 8 - box.left;
+                      else if (box.right > room - 8) shift = room - 8 - box.right;
+                      tip.style.setProperty('--pad-tooltip-shift', Math.round(shift) + 'px');
+                      }
+                      document.addEventListener('mouseover', fit);
+                      document.addEventListener('focusin', fit);
+                      document.addEventListener('keydown', function (e) {
+                      if (e.key !== 'Escape') return;
+                      document.querySelectorAll('.pad-tooltip:hover, .pad-tooltip:focus-within').forEach(function (tooltip) {
+                      tooltip.classList.add('is-dismissed');
+                      });
+                      });
+                      function again(e) {
+                      var tooltip = e.target.closest && e.target.closest('.pad-tooltip.is-dismissed');
+                      if (tooltip && !tooltip.contains(e.relatedTarget)) tooltip.classList.remove('is-dismissed');
+                      }
+                      document.addEventListener('mouseout', again);
+                      document.addEventListener('focusout', again);
+                      })();
+                      </script> costs € 9 a month, VAT <span class="pad-tooltip pad-tooltip-top"><button type="button" class="pad-tooltip-trigger pad-tooltip-info" aria-describedby="pad-tooltip-2c8780d0" aria-label="More information"><span aria-hidden="true">i</span></button><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-2c8780d0">Value added tax: 21% on most goods</span></span> included.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-18">
+              <h3>
+                An order in steps
+              </h3>
+              <p class="example-about">
+                Every tab a step, one at a time, with Back and Next - radio buttons and CSS, as tabs are.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/widget/wizard-1-order.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">wizard</span> <span class="hl-opt">label</span>=<span class="hl-str">'Your order'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Address'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span>Street <span class="hl-htm">&lt;input</span> <span class="hl-opt">name</span>=<span class="hl-str">"street"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Delivery'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"radio"</span> <span class="hl-opt">name</span>=<span class="hl-str">"when"</span> checked<span class="hl-htm">&gt;</span> Tomorrow<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span> <span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"radio"</span> <span class="hl-opt">name</span>=<span class="hl-str">"when"</span><span class="hl-htm">&gt;</span> Saturday<span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'Payment'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Pay by card or by bank transfer when the parcel is on its way.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/wizard</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7wizard-1-order.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <div class="pad-wizard" id="pad-wizard-424a92fe" role="group" aria-label="Your order">
+                      <input class="pad-wizard-radio" type="radio" name="pad-wizard-424a92fe" id="pad-wizard-424a92fe-1" aria-controls="pad-wizard-424a92fe-1-panel" checked><label class="pad-wizard-step" for="pad-wizard-424a92fe-1" id="pad-wizard-424a92fe-1-label"><span class="pad-wizard-number" aria-hidden="true">1</span><span class="pad-wizard-name">Address</span><span class="pad-wizard-of">, step 1 of 3</span></label><input class="pad-wizard-radio" type="radio" name="pad-wizard-424a92fe" id="pad-wizard-424a92fe-2" aria-controls="pad-wizard-424a92fe-2-panel"><label class="pad-wizard-step" for="pad-wizard-424a92fe-2" id="pad-wizard-424a92fe-2-label"><span class="pad-wizard-number" aria-hidden="true">2</span><span class="pad-wizard-name">Delivery</span><span class="pad-wizard-of">, step 2 of 3</span></label><input class="pad-wizard-radio" type="radio" name="pad-wizard-424a92fe" id="pad-wizard-424a92fe-3" aria-controls="pad-wizard-424a92fe-3-panel"><label class="pad-wizard-step" for="pad-wizard-424a92fe-3" id="pad-wizard-424a92fe-3-label"><span class="pad-wizard-number" aria-hidden="true">3</span><span class="pad-wizard-name">Payment</span><span class="pad-wizard-of">, step 3 of 3</span></label>
+                      <div class="pad-wizard-panel" id="pad-wizard-424a92fe-1-panel" role="region" aria-labelledby="pad-wizard-424a92fe-1-label">
+                        <p>
+                          <label>Street <input name="street"></label>
+                        </p>
+                        <div class="pad-wizard-nav">
+                          <label class="pad-wizard-next" for="pad-wizard-424a92fe-2">Next</label><button type="button" class="pad-wizard-next" data-pad-step="pad-wizard-424a92fe-2">Next</button>
+                        </div>
+                      </div>
+                      <div class="pad-wizard-panel" id="pad-wizard-424a92fe-2-panel" role="region" aria-labelledby="pad-wizard-424a92fe-2-label">
+                        <p>
+                          <label><input type="radio" name="when" checked> Tomorrow</label> <label><input type="radio" name="when"> Saturday</label>
+                        </p>
+                        <div class="pad-wizard-nav">
+                          <label class="pad-wizard-back" for="pad-wizard-424a92fe-1">Back</label><button type="button" class="pad-wizard-back" data-pad-step="pad-wizard-424a92fe-1">Back</button><label class="pad-wizard-next" for="pad-wizard-424a92fe-3">Next</label><button type="button" class="pad-wizard-next" data-pad-step="pad-wizard-424a92fe-3">Next</button>
+                        </div>
+                      </div>
+                      <div class="pad-wizard-panel" id="pad-wizard-424a92fe-3-panel" role="region" aria-labelledby="pad-wizard-424a92fe-3-label">
+                        <p>
+                          Pay by card or by bank transfer when the parcel is on its way.
+                        </p>
+                        <div class="pad-wizard-nav">
+                          <label class="pad-wizard-back" for="pad-wizard-424a92fe-2">Back</label><button type="button" class="pad-wizard-back" data-pad-step="pad-wizard-424a92fe-2">Back</button>
+                        </div>
+                      </div>
+                    </div>
+                    <script>
+                    (function () {
+                    if (window.padWizardReady) return;
+                    window.padWizardReady = true;
+                    document.addEventListener('click', function (e) {
+                    var button = e.target.closest && e.target.closest('.pad-wizard button[data-pad-step]');
+                    var radio = button && document.getElementById(button.getAttribute('data-pad-step'));
+                    if (!radio) return;
+                    radio.click();
+                    radio.focus({ preventScroll: true });
+                    var wizard = radio.closest('.pad-wizard');
+                    if (wizard && wizard.getBoundingClientRect().top < 0) wizard.scrollIntoView({ block: 'start' });
+                    });
+                    })();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">{tab}</a> <span class="about">One item of a tabs, accordion, carousel, wizard or lightbox widget: its label and its content, handed to that owner.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7copy.html">{copy}</a> <span class="about">A text in a code block with a button that copies it to the clipboard.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7live.html">{live}</a> <span class="about">A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7while.html">← {while}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7action.html">{action} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

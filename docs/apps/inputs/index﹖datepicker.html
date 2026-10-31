@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Date picker · PAD inputs
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="inputs.css">
+    <style>
+    :where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+    .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+    .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+    .pad-input [hidden]{display:none!important}
+    .pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+    .pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+    .pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+    .pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+    .pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+    .pad-input .pi-button:disabled{opacity:.45;cursor:default}
+    .pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+    .pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+    .pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+    .pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+    .pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+    </style>
+    <style>
+    .pad-input-datepicker .pi-date-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
+    .pad-input-datepicker .pi-calendar{left:0;top:100%;width:max-content}
+    .pad-input-datepicker .pi-cal-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;margin-bottom:.35em}
+    .pad-input-datepicker .pi-cal-title{font-weight:650;text-align:center;flex:1}
+    .pad-input-datepicker .pi-cal-step{padding:.2em .6em;font-size:1.1em}
+    .pad-input-datepicker .pi-cal-grid{border-collapse:collapse}
+    .pad-input-datepicker .pi-cal-grid th{font-size:.75em;font-weight:600;color:var(--pad-input-muted);padding:.25em 0;text-align:center;width:2.4em}
+    .pad-input-datepicker .pi-cal-grid td{padding:1px;text-align:center}
+    .pad-input-datepicker .pi-cal-day{width:2.3em;height:2.1em;font:inherit;font-size:.9em;font-variant-numeric:tabular-nums;border:1px solid transparent;border-radius:6px;background:none;color:var(--pad-input-ink);cursor:pointer}
+    .pad-input-datepicker .pi-cal-day:hover:not(:disabled){border-color:var(--pad-input-accent)}
+    .pad-input-datepicker .pi-cal-day[aria-current=date]{font-weight:700;border-color:var(--pad-input-line)}
+    .pad-input-datepicker .pi-cal-day[aria-pressed=true]{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
+    .pad-input-datepicker .pi-cal-day:disabled{color:var(--pad-input-muted);opacity:.45;cursor:default}
+    .pad-input-datepicker .pi-cal-foot{display:flex;justify-content:space-between;gap:.5em;margin-top:.4em}
+    @media (forced-colors:active){.pad-input-datepicker .pi-cal-day[aria-pressed=true]{border:2px solid Highlight}}
+    </style>
+    <style>
+    :where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}
+    </style>
+    <style>
+    :where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}
+    </style>
+  </head>
+  <body class="frame app-inputs">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>inputs</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="inputs">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All fields</a> <a href="index%EF%B9%96form.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+        <path d="M14 6.5l3.5 3.5"></path></svg> One form</a>
+        <div class="frame-head">
+          Fields
+        </div><a href="index%EF%B9%96colorpicker.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> colorpicker</a> <a href="index%EF%B9%96combobox.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> combobox</a> <a href="index%EF%B9%96datepicker.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> datepicker</a> <a href="index%EF%B9%96dropzone.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> dropzone</a> <a href="index%EF%B9%96mdeditor.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> mdeditor</a> <a href="index%EF%B9%96newpassword.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> newpassword</a> <a href="index%EF%B9%96otp.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> otp</a> <a href="index%EF%B9%96signature.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> signature</a> <a href="index%EF%B9%96slider.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> slider</a> <a href="index%EF%B9%96stars.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> stars</a> <a href="index%EF%B9%96stepper.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> stepper</a> <a href="index%EF%B9%96taginput.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> taginput</a> <a href="index%EF%B9%96timepicker.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> timepicker</a> <a href="index%EF%B9%96toggle.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> toggle</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Date picker
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="inputs-lead">
+          A day typed or chosen from a month that opens beside the field: a native &lt;input type="date"&gt;, which posts the day as 2026-10-31 and can be typed into, with a button beside it - where the script runs - that opens a month to choose from. The month is a grid the arrow keys walk, a day a step and a week a row; Page Up and Page Down go a month, with Shift a year; Home and End to the week's ends; Enter takes the day, Escape closes it and gives the focus back to the field. min= and max= - days written 2026-01-31 - hold both the field and the month to them; weekstart= 'sunday' begins the week on Sunday, Monday unless given.
+        </p>
+        <form method="post" class="inputs-try">
+          <input type="hidden" name="padCsrfToken" value="3cd9b787c69bc1f058f306144dcf6b96a37e0c883b676fb1421f0439ab96a288"><input type="hidden" name="padForm" value="try">
+          <script>
+          /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+          script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+          - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+          a live region or a script brings later. frame is the field's .pad-input element, cfg its
+          data-config, kit the helpers below. The server wrote a native control that a form posts
+          as it is; a kind's script makes more of it and keeps the posted control's value true -
+          and says so with the input and change events a typed value sends, which the browser's
+          checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+          (function () {
+          'use strict';
+
+          if (window.PadInputs) return;
+
+          var kinds = {};
+          var made = 0;
+
+          function el(tag, cls, text) {
+          var e = document.createElement(tag);
+          if (cls) e.className = cls;
+          if (text !== undefined && text !== null) e.textContent = text;
+          return e;
+          }
+
+          var kit = {
+          el: el,
+
+          // A new id of the page, for an element a script adds: a listbox, an option, a box.
+          id: function (base) {
+          made++;
+          return (base || 'pad-input') + '-js' + made;
+          },
+
+          // The value changed as if typed: the form, the rules' checker and any listener hear it.
+          changed: function (control) {
+          control.dispatchEvent(new Event('input', { bubbles: true }));
+          control.dispatchEvent(new Event('change', { bubbles: true }));
+          },
+
+          // What the server wrote hidden for a script to show - a button, a popup's opener.
+          show: function (root, selector) {
+          var list = root.querySelectorAll(selector);
+          for (var i = 0; i < list.length; i++) list[i].hidden = false;
+          },
+
+          // A click outside the element - or the focus leaving it - closes what it opened.
+          outside: function (root, close) {
+          document.addEventListener('pointerdown', function (event) {
+          if (!root.contains(event.target)) close();
+          });
+          root.addEventListener('focusout', function (event) {
+          if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+          });
+          },
+
+          // The text of a field's label, for a name a script gives a control it adds.
+          label: function (frame) {
+          return frame.getAttribute('data-pad-label') || '';
+          }
+          };
+
+          function start(frame) {
+          if (frame.padInputReady) return;
+          var init = kinds[frame.getAttribute('data-pad-input')];
+          if (!init) return;
+          var cfg = {};
+          try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+          frame.padInputReady = true;
+          frame.classList.add('is-ready');
+          init(frame, cfg, kit);
+          }
+
+          function scan(where) {
+          var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+          for (var i = 0; i < list.length; i++) start(list[i]);
+          }
+
+          window.PadInputs = {
+          register: function (name, init) { kinds[name] = init; scan(); },
+          scan: scan,
+          kit: kit
+          };
+
+          document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+          if (window.MutationObserver)
+          new MutationObserver(function (records) {
+          for (var i = 0; i < records.length; i++)
+          for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+          }
+          }).observe(document.documentElement, { childList: true, subtree: true });
+          })();
+          </script>
+          <script>
+          /* datepicker - the month over the date field: a dialog with the month's days as a grid, the
+          way the WAI-ARIA date picker dialog is built. The field stays what the form posts, and the
+          day chosen is written into it as 2026-10-31 - it says it changed, as a typed day does. The
+          arrow keys walk the days, Page Up and Page Down the months (with Shift the years), Home
+          and End the week; Enter or Space takes the day, Escape closes, and the focus goes back to
+          the button that opened it. Days outside min= and max= cannot be chosen. The names of the
+          months and the days are the browser's, in the page's language. */
+          PadInputs.register('datepicker', function (frame, cfg, kit) {
+          var field = frame.querySelector('input[type=date]');
+          var opener = frame.querySelector('.pi-date-open');
+          var anchor = frame.querySelector('.pi-anchor');
+          if (!field || !opener || !anchor) return;
+
+          var lang = document.documentElement.lang || undefined;
+          var first = cfg.weekstart === 'sunday' ? 0 : 1;
+          var name = kit.label(frame);
+          var monthName = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+          var dayName = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+          var shortDay = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
+          var longDay = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' });
+
+          // A day is a number of days since 1970-01-01, in UTC: no clock change in between.
+          function parse(text) {
+          var one = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || '');
+          if (!one) return null;
+          var day = Date.UTC(+one[1], +one[2] - 1, +one[3]) / 86400000;
+          return iso(day) === text ? day : null;
+          }
+          function iso(day) {
+          var d = new Date(day * 86400000);
+          return String(d.getUTCFullYear()).padStart(4, '0') + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
+          }
+          function parts(day) {
+          var d = new Date(day * 86400000);
+          return { y: d.getUTCFullYear(), m: d.getUTCMonth(), d: d.getUTCDate(), w: d.getUTCDay() };
+          }
+          function addMonths(day, n) {
+          var p = parts(day);
+          var last = new Date(Date.UTC(p.y, p.m + n + 1, 0)).getUTCDate();
+          return Date.UTC(p.y, p.m + n, Math.min(p.d, last)) / 86400000;
+          }
+          function today() {
+          var now = new Date();
+          return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000;
+          }
+
+          var dialog = kit.el('div', 'pi-popup pi-calendar');
+          dialog.id = kit.id((field.id || 'date') + '-calendar');
+          dialog.setAttribute('role', 'dialog');
+          dialog.setAttribute('aria-modal', 'false');
+          dialog.setAttribute('aria-label', 'Choose ' + (name || 'a day'));
+          dialog.hidden = true;
+
+          var head = kit.el('div', 'pi-cal-head');
+          var back = kit.el('button', 'pi-button pi-cal-step', '‹');
+          back.type = 'button';
+          back.setAttribute('aria-label', 'Previous month');
+          var title = kit.el('div', 'pi-cal-title');
+          title.id = dialog.id + '-title';
+          title.setAttribute('aria-live', 'polite');
+          var ahead = kit.el('button', 'pi-button pi-cal-step', '›');
+          ahead.type = 'button';
+          ahead.setAttribute('aria-label', 'Next month');
+          head.appendChild(back);
+          head.appendChild(title);
+          head.appendChild(ahead);
+
+          var grid = kit.el('table', 'pi-cal-grid');
+          grid.setAttribute('role', 'grid');
+          grid.setAttribute('aria-labelledby', title.id);
+          var thead = kit.el('thead');
+          var names = kit.el('tr');
+          for (var i = 0; i < 7; i++) {
+          var sample = Date.UTC(2024, 0, 7 + first + i);  // 2024-01-07 is a Sunday
+          var th = kit.el('th', '', shortDay.format(sample));
+          th.setAttribute('scope', 'col');
+          th.setAttribute('abbr', longDay.format(sample));
+          names.appendChild(th);
+          }
+          thead.appendChild(names);
+          var tbody = kit.el('tbody');
+          grid.appendChild(thead);
+          grid.appendChild(tbody);
+
+          var foot = kit.el('div', 'pi-cal-foot');
+          var now = kit.el('button', 'pi-button', 'Today');
+          now.type = 'button';
+          var close = kit.el('button', 'pi-button', 'Close');
+          close.type = 'button';
+          foot.appendChild(now);
+          foot.appendChild(close);
+
+          dialog.appendChild(head);
+          dialog.appendChild(grid);
+          dialog.appendChild(foot);
+          anchor.appendChild(dialog);
+          opener.setAttribute('aria-controls', dialog.id);
+          opener.hidden = false;
+
+          var focus = today();
+
+          function allowed(day) {
+          var low = parse(field.min), high = parse(field.max);
+          return (low === null || day >= low) && (high === null || day <= high);
+          }
+
+          function within(day) {
+          var low = parse(field.min), high = parse(field.max);
+          if (low !== null && day < low) return low;
+          if (high !== null && day > high) return high;
+          return day;
+          }
+
+          function draw(moveFocus) {
+          var p = parts(focus);
+          var start = Date.UTC(p.y, p.m, 1) / 86400000;
+          var lead = (parts(start).w - first + 7) % 7;
+          var chosen = parse(field.value), now = today();
+          title.textContent = monthName.format(start * 86400000);
+          tbody.textContent = '';
+          var length = new Date(Date.UTC(p.y, p.m + 1, 0)).getUTCDate();
+          var rows = Math.ceil((lead + length) / 7);
+          var day = start - lead;
+          for (var row = 0; row < rows; row++) {
+          var tr = kit.el('tr');
+          for (var col = 0; col < 7; col++, day++) {
+          var td = kit.el('td');
+          var q = parts(day);
+          if (q.m === p.m) {
+          var button = kit.el('button', 'pi-cal-day', String(q.d));
+          button.type = 'button';
+          button.tabIndex = day === focus ? 0 : -1;
+          button.setAttribute('data-day', String(day));
+          button.setAttribute('aria-label', dayName.format(day * 86400000));
+          if (day === chosen) { button.setAttribute('aria-pressed', 'true'); td.setAttribute('aria-selected', 'true'); }
+          if (day === now) button.setAttribute('aria-current', 'date');
+          if (!allowed(day)) button.disabled = true;
+          td.appendChild(button);
+          }
+          tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+          }
+          var low = parse(field.min), high = parse(field.max);
+          back.disabled = low !== null && start - 1 < low;
+          ahead.disabled = high !== null && start + length > high;
+          now.disabled = !allowed(today());
+          if (moveFocus) {
+          var target = tbody.querySelector('[data-day="' + focus + '"]');
+          if (target) target.focus();
+          }
+          }
+
+          function show() {
+          var chosen = parse(field.value);
+          focus = within(chosen !== null ? chosen : today());
+          dialog.hidden = false;
+          opener.setAttribute('aria-expanded', 'true');
+          draw(true);
+          }
+
+          function hide(giveBack) {
+          if (dialog.hidden) return;
+          dialog.hidden = true;
+          opener.setAttribute('aria-expanded', 'false');
+          if (giveBack) opener.focus();
+          }
+
+          function take(day) {
+          if (!allowed(day)) return;
+          field.value = iso(day);
+          kit.changed(field);
+          hide(true);
+          }
+
+          function move(day) {
+          focus = within(day);
+          draw(true);
+          }
+
+          opener.addEventListener('click', function () { if (dialog.hidden) show(); else hide(true); });
+          back.addEventListener('click', function () { focus = within(addMonths(focus, -1)); draw(false); });
+          ahead.addEventListener('click', function () { focus = within(addMonths(focus, 1)); draw(false); });
+          now.addEventListener('click', function () { take(today()); });
+          close.addEventListener('click', function () { hide(true); });
+
+          tbody.addEventListener('click', function (event) {
+          var button = event.target.closest('.pi-cal-day');
+          if (button && !button.disabled) take(+button.getAttribute('data-day'));
+          });
+
+          tbody.addEventListener('keydown', function (event) {
+          var key = event.key, to = null;
+          var w = (parts(focus).w - first + 7) % 7;
+          if (key === 'ArrowLeft') to = focus - 1;
+          else if (key === 'ArrowRight') to = focus + 1;
+          else if (key === 'ArrowUp') to = focus - 7;
+          else if (key === 'ArrowDown') to = focus + 7;
+          else if (key === 'Home') to = focus - w;
+          else if (key === 'End') to = focus + 6 - w;
+          else if (key === 'PageUp') to = addMonths(focus, event.shiftKey ? -12 : -1);
+          else if (key === 'PageDown') to = addMonths(focus, event.shiftKey ? 12 : 1);
+          else if (key === 'Enter' || key === ' ') { event.preventDefault(); take(focus); return; }
+          if (to === null) return;
+          event.preventDefault();
+          move(to);
+          });
+
+          dialog.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); hide(true); }
+          });
+
+          kit.outside(anchor, function () { hide(false); });
+          });
+          </script>
+          <div class="pad-input pad-input-datepicker" data-pad-input="datepicker" data-pad-label="Arrival" data-config="{&quot;weekstart&quot;:&quot;monday&quot;}">
+            <label for="arrival">Arrival</label>
+            <div class="pi-anchor">
+              <div class="pi-row">
+                <input type="date" name="arrival" id="arrival" value="" min="2026-01-01" max="2027-12-31"><button type="button" class="pi-button pi-date-open" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Arrival" hidden=""><svg width="16" height="16" viewbox="0 0 16 16" aria-hidden="true" focusable="false">
+                <rect x="1.5" y="3" width="13" height="11.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+                <path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4" fill="none"></path></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="pad-input pad-input-datepicker" data-pad-input="datepicker" data-pad-label="Birthday" data-config="{&quot;weekstart&quot;:&quot;sunday&quot;}">
+            <label for="birthday">Birthday</label>
+            <div class="pi-anchor">
+              <div class="pi-row">
+                <input type="date" name="birthday" id="birthday" value=""><button type="button" class="pi-button pi-date-open" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Birthday" hidden=""><svg width="16" height="16" viewbox="0 0 16 16" aria-hidden="true" focusable="false">
+                <rect x="1.5" y="3" width="13" height="11.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"></rect>
+                <path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4" fill="none"></path></svg></button>
+              </div>
+            </div>
+          </div><button class="inputs-send">Send</button>
+        </form>
+        <h2>
+          The template
+        </h2>
+        <div class="pad-source">
+          <input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">datepicker.pad</label>
+          <div class="pad-source-panel">
+            <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'Date picker'</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="2"><span class="hl-brc">{</span><span class="hl-tag">about</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="3"></span>
+<span class="hl-line" data-line="4"><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'try'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'inputs-try'</span>, error<span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">datepicker</span> <span class="hl-str">'arrival'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Arrival'</span>, <span class="hl-opt">min</span>=<span class="hl-str">'2026-01-01'</span>, <span class="hl-opt">max</span>=<span class="hl-str">'2027-12-31'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|date'</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-brc">{</span><span class="hl-tag">datepicker</span> <span class="hl-str">'birthday'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Birthday'</span>, <span class="hl-opt">weekstart</span>=<span class="hl-str">'sunday'</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="7">  <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">"inputs-send"</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="8"><span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="9"></span>
+<span class="hl-line" data-line="10"><span class="hl-brc">{</span><span class="hl-tag">received</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="11"></span>
+<span class="hl-line" data-line="12"><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>The template<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="13"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></span></code></pre>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

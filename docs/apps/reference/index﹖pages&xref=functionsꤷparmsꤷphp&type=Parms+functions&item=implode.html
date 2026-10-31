@@ -66,7 +66,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -179,6 +179,86 @@
                       }
                       padAjax58fae39642c84e92c470e6204ee3c864.open("GET","http://localhost/pad/manual/?fragments/expressions_43&padInclude",true);
                       padAjax58fae39642c84e92c470e6204ee3c864.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: pages/forms<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">pages/forms.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Forms<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>/}</b>, <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>/}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>/}</b> write the fields of a form. When the<br>form comes back with mistakes in it, each field shows again what was typed - escaped - and<br>the message for its mistake beside it. &lt;code&gt;padValidate&lt;/code&gt; in the page's PHP finds the<br>mistakes.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_1<font color="black">'</font></font>/}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>/}</b> posts back to the page and carries the session's CSRF token (see<br>  <b>{<font color="blue">manual </font><font color="red"><font color="black">'</font>csrf_protection<font color="black">'</font></font>/}</b>) and its name: &lt;code&gt;padPosted ( 'contact' )&lt;/code&gt; is true when<br>  this form came back, so a page with two forms knows which one did.&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>/}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>/}</b> take the field name first; &lt;code&gt;label=&lt;/code&gt; writes a<br>  label tied to the field, &lt;code&gt;value=&lt;/code&gt; the value before anything was posted, and every<br>  other item is an attribute of the field, as <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>attrs<font color="black">'</font></font>/}</b> writes it - &lt;code&gt;required&lt;/code&gt;,<br>  &lt;code&gt;rows=6&lt;/code&gt;, &lt;code&gt;placeholder='...'&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A checkbox or radio is checked when the posted value is its own value; a password or<br>  file field is never refilled.&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Validation&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;padValidate ( $rules )&lt;/code&gt; checks the posted values and answers one message per<br>field that breaks a rule, keyed by the field - empty when all is well. A second argument<br>checks other data; a third replaces messages, per field (&lt;code&gt;'email'&lt;/code&gt;) or per field<br>and rule (&lt;code&gt;'email.required'&lt;/code&gt;):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_2<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;A rule takes its argument after a colon: &lt;code&gt;min:n&lt;/code&gt;, &lt;code&gt;max:n&lt;/code&gt; and<br>&lt;code&gt;between:a,b&lt;/code&gt; are a length, or a value with &lt;code&gt;numeric&lt;/code&gt; or<br>&lt;code&gt;integer&lt;/code&gt;; &lt;code&gt;in:a,b,c&lt;/code&gt; a list, &lt;code&gt;regex:/.../&lt;/code&gt; a pattern,<br>&lt;code&gt;same:other_field&lt;/code&gt; another field, &lt;code&gt;digits:4&lt;/code&gt; a number of digits. An empty<br>field is checked for &lt;code&gt;required&lt;/code&gt; and &lt;code&gt;accepted&lt;/code&gt; only. Every rule is a file of<br>&lt;code&gt;pad/rules/types/&lt;/code&gt; - its check in the browser beside it in &lt;code&gt;pad/rules/assets/&lt;/code&gt; -<br>and these are the <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(padRuleTypes())</font>/}</b> there are:<br><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> padRuleTypes())</font>/}</b>. A rule name nothing knows is an error.&lt;/p&gt;<br><br>&lt;h2&gt;After a failed post&lt;/h2&gt;<br><br>&lt;p&gt;The fields of the form that came back show the message beside them, in the words of their<br>own label, tied to the field with &lt;code&gt;aria-invalid&lt;/code&gt; and<br>&lt;code&gt;aria-describedby&lt;/code&gt; so a screen reader reads them together. Here the post is<br>pretended in the PHP, the way a visitor's would arrive:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_3<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;After a post that passes, store it and send the visitor on with &lt;code&gt;padRedirect ()&lt;/code&gt;:<br>a refresh of the page they land on does not post a second time.&lt;/p&gt;<br><br>&lt;h2&gt;Rules in the template&lt;/h2&gt;<br><br>&lt;p&gt;The rules can stand on the fields themselves: &lt;code&gt;rules='required|email'&lt;/code&gt; on an<br><b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>input<font color="black">'</font></font>/}</b> or a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>textarea<font color="black">'</font></font>/}</b>. They are read from the page's template before its PHP<br>runs, and a post of the form is checked against them there - &lt;code&gt;padPosted ( 'contact' )&lt;/code&gt;<br>is true only for a post that kept them, so the PHP acts on a good post alone. A post that broke<br>one renders the form again, refilled, with the messages beside the fields and the form's<br>&lt;code&gt;error=&lt;/code&gt; above them (&lt;code&gt;error&lt;/code&gt; alone says "Please correct the errors<br>below."):&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/forms_4<font color="black">'</font><font color="black">,</font> skipResult</font>/}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;Only what is written out counts: quoted rules, on a field with a quoted name, in a<br>  <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>form<font color="black">'</font></font>/}</b> with a name that posts back to its own page. Rules on a field in a snippet, a<br>  custom tag, a <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>page<font color="black">'</font></font>/}</b> or a layout, rules made from a variable, rules in a form with<br>  &lt;code&gt;action=&lt;/code&gt; or &lt;code&gt;method='get'&lt;/code&gt; and rules on a file field are errors -<br>  nothing would check them.&lt;/li&gt;<br>  &lt;li&gt;Every field of the posted form that has rules is checked, also one in an <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>if<font color="black">'</font></font>/}</b><br>  branch that did not render. A field that is there only sometimes keeps its check in the<br>  PHP: &lt;code&gt;padValidate&lt;/code&gt; adds its messages to those of the template.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;padFormFailed ( 'contact' )&lt;/code&gt; is true when the form came back and broke its<br>  rules.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax766a6cb5376f3cfba0783f41f967d73c"></div>
+                      <script>
+                      padAjax766a6cb5376f3cfba0783f41f967d73c = new XMLHttpRequest();
+                      padAjax766a6cb5376f3cfba0783f41f967d73c.onreadystatechange=function() {
+                      if (padAjax766a6cb5376f3cfba0783f41f967d73c.readyState === 4) {
+                      if (padAjax766a6cb5376f3cfba0783f41f967d73c.status === 200) {
+                      document.getElementById("padAjax766a6cb5376f3cfba0783f41f967d73c").innerHTML=padAjax766a6cb5376f3cfba0783f41f967d73c.responseText;
+                      } else {
+                      document.getElementById("padAjax766a6cb5376f3cfba0783f41f967d73c").innerHTML=padAjax766a6cb5376f3cfba0783f41f967d73c.statusText;
+                      }
+                      }
+                      }
+                      padAjax766a6cb5376f3cfba0783f41f967d73c.open("GET","http://localhost/pad/manual/?pages/forms&padInclude",true);
+                      padAjax766a6cb5376f3cfba0783f41f967d73c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: pages/inputs<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">pages/inputs.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Rich form fields<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;Beside &lt;code&gt;<b>{<font color="blue">input</font><font color="red"></font>}</b>&lt;/code&gt; and &lt;code&gt;<b>{<font color="blue">textarea</font><font color="red"></font>}</b>&lt;/code&gt; a form can hold<br>fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input,<br>a signature, a Markdown editor with its preview. There are <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(padInputTypes())</font>/}</b> of<br>them - every kind is a file of &lt;code&gt;pad/inputs/types/&lt;/code&gt;, its script and style in<br>&lt;code&gt;pad/inputs/assets/&lt;/code&gt;, and the &lt;a href="../inputs/"&gt;inputs&lt;/a&gt; application shows them all,<br>each in a form that posts back.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/inputs_1<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Two ways to write one&lt;/h2&gt;<br><br>&lt;p&gt;The input: type names the kind, &lt;code&gt;<b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font></font>/}</b>&lt;/code&gt;, and so does<br>the bare name, &lt;code&gt;<b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font></font>/}</b>&lt;/code&gt;, as long as no tag, store, field or<br>sequence has that name - an array of the page with a key &lt;code&gt;slider&lt;/code&gt; is read first. The<br>first parameter is the field's name, &lt;code&gt;label=&lt;/code&gt; its label, and every other item the kind<br>does not take is an attribute of its field, as with &lt;code&gt;<b>{<font color="blue">input</font><font color="red"></font>}</b>&lt;/code&gt;:<br>&lt;code&gt;required&lt;/code&gt;, &lt;code&gt;placeholder=&lt;/code&gt;, &lt;code&gt;autocomplete=&lt;/code&gt;.&lt;/p&gt;<br><br>&lt;h2&gt;A real value, with or without a script&lt;/h2&gt;<br><br>&lt;p&gt;Every kind writes a native field that a form posts as it is - a range, a number, a date, a<br>time, a colour, a checkbox, radio buttons, a text field - and its script, written once a page with<br>the CSP nonce, makes more of it: a month over the date, the times to pick from, swatches beside the<br>colour. Without the script the form works all the same; only the signature needs it.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/inputs_2<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;Some fields post a text of their own making: a tag input the words joined with a comma, the boxes<br>of a one-time code the code, a signature a PNG as a data URL - each in a field with the name, which<br>a form without the script fills by hand. Choices come from a list - &lt;code&gt;options=&lt;/code&gt;,<br>&lt;code&gt;suggestions=&lt;/code&gt; - from a store named by &lt;code&gt;data=&lt;/code&gt;, or a line each between the<br>tags.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/inputs_3<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Refilled, with the message beside it&lt;/h2&gt;<br><br>&lt;p&gt;The fields are fields of the &lt;a href="?pages/forms"&gt;<b>{<font color="blue">form</font><font color="red"></font>}</b>&lt;/a&gt; around them: after a<br>post of that form they show what was posted, and the message &lt;code&gt;padValidate&lt;/code&gt; left for them<br>after their frame, in the words of their label. &lt;code&gt;rules=&lt;/code&gt; on a field is read from the<br>template before the page's PHP runs, as on &lt;code&gt;<b>{<font color="blue">input</font><font color="red"></font>}</b>&lt;/code&gt;, and &lt;code&gt;client&lt;/code&gt;<br>on the form checks the same rules in the browser. Here the post is pretended in the PHP:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/inputs_4<font color="black">'</font></font>/}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;The kinds: <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> padInputTypes())</font>/}</b>.&lt;/li&gt;<br>  &lt;li&gt;The colours are custom properties on &lt;code&gt;.pad-input&lt;/code&gt; - &lt;code&gt;--pad-input-accent&lt;/code&gt;,<br>  &lt;code&gt;--pad-input-line&lt;/code&gt;, &lt;code&gt;--pad-input-star&lt;/code&gt; and their like - with light and dark<br>  defaults.&lt;/li&gt;<br>  &lt;li&gt;A password is never refilled, a file field cannot be, and the rules of a drop zone are<br>  &lt;code&gt;padUpload&lt;/code&gt;'s.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc0ff085ac435a0218d9ccccfe7881f3e"></div>
+                      <script>
+                      padAjaxc0ff085ac435a0218d9ccccfe7881f3e = new XMLHttpRequest();
+                      padAjaxc0ff085ac435a0218d9ccccfe7881f3e.onreadystatechange=function() {
+                      if (padAjaxc0ff085ac435a0218d9ccccfe7881f3e.readyState === 4) {
+                      if (padAjaxc0ff085ac435a0218d9ccccfe7881f3e.status === 200) {
+                      document.getElementById("padAjaxc0ff085ac435a0218d9ccccfe7881f3e").innerHTML=padAjaxc0ff085ac435a0218d9ccccfe7881f3e.responseText;
+                      } else {
+                      document.getElementById("padAjaxc0ff085ac435a0218d9ccccfe7881f3e").innerHTML=padAjaxc0ff085ac435a0218d9ccccfe7881f3e.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc0ff085ac435a0218d9ccccfe7881f3e.open("GET","http://localhost/pad/manual/?pages/inputs&padInclude",true);
+                      padAjaxc0ff085ac435a0218d9ccccfe7881f3e.send();
                       </script>
                     </td>
                   </tr>
@@ -583,86 +663,6 @@
                       }
                       padAjax9af843f2d5a62d38c20a14260579eca5.open("GET","http://localhost/pad/regression/framework/?sequence/a_value_piped_into_an_action_is_its_argument_under_both_prefixes_and_a_number_is_a_value&padInclude",true);
                       padAjax9af843f2d5a62d38c20a14260579eca5.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: sequence/merge_and_combine_put_lists_not_in_order_in_order<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">sequence/merge_and_combine_put_lists_not_in_order_in_order.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>3;1<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>a<font color="black">'</font></font>/}</b><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>2;0<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>b<font color="black">'</font></font>/}</b>[<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a </font><font color="red">merge=<font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a </font><font color="red">combine=<font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>a</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font><font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>combine([3<font color="black">,</font>1]<font color="black">,</font>[2<font color="black">,</font>0]))</font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax319cda4be5267b9c4742eb7e42c530f4"></div>
-                      <script>
-                      padAjax319cda4be5267b9c4742eb7e42c530f4 = new XMLHttpRequest();
-                      padAjax319cda4be5267b9c4742eb7e42c530f4.onreadystatechange=function() {
-                      if (padAjax319cda4be5267b9c4742eb7e42c530f4.readyState === 4) {
-                      if (padAjax319cda4be5267b9c4742eb7e42c530f4.status === 200) {
-                      document.getElementById("padAjax319cda4be5267b9c4742eb7e42c530f4").innerHTML=padAjax319cda4be5267b9c4742eb7e42c530f4.responseText;
-                      } else {
-                      document.getElementById("padAjax319cda4be5267b9c4742eb7e42c530f4").innerHTML=padAjax319cda4be5267b9c4742eb7e42c530f4.statusText;
-                      }
-                      }
-                      }
-                      padAjax319cda4be5267b9c4742eb7e42c530f4.open("GET","http://localhost/pad/regression/framework/?sequence/merge_and_combine_put_lists_not_in_order_in_order&padInclude",true);
-                      padAjax319cda4be5267b9c4742eb7e42c530f4.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: sequence/numbers_written_one_after_another_are_the_values_of_an_expression_s_action<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">sequence/numbers_written_one_after_another_are_the_values_of_an_expression_s_action.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>sum(1<font color="black">,</font> 2<font color="black">,</font> 3))</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>sort(3<font color="black">,</font> 1<font color="black">,</font> 2))</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>count(1<font color="black">,</font> 2<font color="black">,</font> 3))</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>average(2<font color="black">,</font> 4))</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>median(1<font color="black">,</font> 2<font color="black">,</font> 3))</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> action<font color="black">:</font>sum(1<font color="black">,</font> 2<font color="black">,</font> 3))</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> <font color="black">'</font><font color="black">,</font> sequence<font color="black">:</font>first(5<font color="black">,</font> 2))</font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax3ebfdde9f942f89c6045dbea1c7699c2"></div>
-                      <script>
-                      padAjax3ebfdde9f942f89c6045dbea1c7699c2 = new XMLHttpRequest();
-                      padAjax3ebfdde9f942f89c6045dbea1c7699c2.onreadystatechange=function() {
-                      if (padAjax3ebfdde9f942f89c6045dbea1c7699c2.readyState === 4) {
-                      if (padAjax3ebfdde9f942f89c6045dbea1c7699c2.status === 200) {
-                      document.getElementById("padAjax3ebfdde9f942f89c6045dbea1c7699c2").innerHTML=padAjax3ebfdde9f942f89c6045dbea1c7699c2.responseText;
-                      } else {
-                      document.getElementById("padAjax3ebfdde9f942f89c6045dbea1c7699c2").innerHTML=padAjax3ebfdde9f942f89c6045dbea1c7699c2.statusText;
-                      }
-                      }
-                      }
-                      padAjax3ebfdde9f942f89c6045dbea1c7699c2.open("GET","http://localhost/pad/regression/framework/?sequence/numbers_written_one_after_another_are_the_values_of_an_expression_s_action&padInclude",true);
-                      padAjax3ebfdde9f942f89c6045dbea1c7699c2.send();
                       </script>
                     </td>
                   </tr>

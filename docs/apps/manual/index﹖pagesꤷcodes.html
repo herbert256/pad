@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Barcodes and QR codes · PAD manual
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+  </head>
+  <body class="frame app-manual">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>manual</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="manual">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Contents</a>
+        <div class="frame-head">
+          Basic concepts
+        </div><a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a> <a href="index%EF%B9%96pages%EA%A4%B7expressions.html">Expressions</a> <a href="index%EF%B9%96pages%EA%A4%B7conditions.html">Conditions</a> <a href="index%EF%B9%96pages%EA%A4%B7loops.html">Loops</a> <a href="index%EF%B9%96pages%EA%A4%B7trees.html">Trees</a> <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a> <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a> <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a> <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a> <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a> <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a> <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a> <a href="index%EF%B9%96pages%EA%A4%B7field_sigils.html">Field sigils</a>
+        <div class="frame-head">
+          Constructs
+        </div><a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a> <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a> <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a> <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+        <div class="frame-head">
+          Text and markup
+        </div><a href="index%EF%B9%96pages%EA%A4%B7comments.html">Comments</a> <a href="index%EF%B9%96pages%EA%A4%B7whitespace.html">Whitespace</a> <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a> <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+        <div class="frame-head">
+          Advanced concepts
+        </div><a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a> <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a> <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a> <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a> <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a> <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a> <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a> <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a> <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
+        <div class="frame-head">
+          Data
+        </div><a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a> <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a> <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a> <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a> <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a> <a href="index%EF%B9%96pages%EA%A4%B7padSelect.html">PadSelect</a> <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a> <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a> <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a> <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a> <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+        <div class="frame-head">
+          PHP helpers
+        </div><a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a> <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a> <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a> <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a> <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a> <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a> <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a> <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+        <div class="frame-head">
+          Output
+        </div><a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a> <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a> <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a> <a href="index%EF%B9%96pages%EA%A4%B7charts.html">Charts</a> <a href="index%EF%B9%96pages%EA%A4%B7diagrams.html">Diagrams</a> <a href="index%EF%B9%96pages%EA%A4%B7games.html">Games</a> <a href="index%EF%B9%96pages%EA%A4%B7toys.html">Toys</a> <a href="index%EF%B9%96pages%EA%A4%B7widgets.html">Widgets</a> <a href="index%EF%B9%96pages%EA%A4%B7codes.html" aria-current="page">Codes</a> <a href="index%EF%B9%96pages%EA%A4%B7icons.html">Icons</a> <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a> <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a> <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a> <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a> <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
+        <div class="frame-head">
+          Layouts and components
+        </div><a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a> <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a> <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a> <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a> <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
+        <div class="frame-head">
+          The application
+        </div><a href="index%EF%B9%96pages%EA%A4%B7application_structure.html">Application structure</a> <a href="index%EF%B9%96pages%EA%A4%B7extending.html">Extending</a> <a href="index%EF%B9%96pages%EA%A4%B7events.html">Events</a> <a href="index%EF%B9%96pages%EA%A4%B7application_options.html">Application options</a> <a href="index%EF%B9%96pages%EA%A4%B7requests_and_urls.html">Requests and urls</a> <a href="index%EF%B9%96pages%EA%A4%B7clean_urls.html">Clean urls</a> <a href="index%EF%B9%96pages%EA%A4%B7sitemap.html">Sitemap</a> <a href="index%EF%B9%96pages%EA%A4%B7mail.html">Mail</a>
+        <div class="frame-head">
+          With JavaScript
+        </div><a href="index%EF%B9%96pages%EA%A4%B7htmx.html">Htmx</a> <a href="index%EF%B9%96pages%EA%A4%B7alpine.html">Alpine</a> <a href="index%EF%B9%96pages%EA%A4%B7vite.html">Vite</a> <a href="index%EF%B9%96pages%EA%A4%B7islands.html">Islands</a> <a href="index%EF%B9%96pages%EA%A4%B7web_components.html">Web components</a>
+        <div class="frame-head">
+          Forms and security
+        </div><a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a> <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a> <a href="index%EF%B9%96pages%EA%A4%B7inputs.html">Inputs</a> <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a> <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a> <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a> <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a> <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
+        <div class="frame-head">
+          Development tools
+        </div><a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a> <a href="/pad/manual/?pages/template_errors">Template errors</a> <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a> <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a> <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a> <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a> <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a> <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a> <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a> <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a> <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a> <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a> <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a> <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a> <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a> <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Barcodes and QR codes
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p>
+          <b>{barcode}</b> and <b>{qr}</b> write a code a scanner reads. It is encoded on the server and drawn as inline SVG - no image library, no font, no remote service - so a page with a code prints, caches and goes in an e-mail like any other. There are 13 symbologies, every one a file of <code>pad/codes/types/</code>. Twelve or thirteen digits are an EAN-13, with the check digit added when it is left off; any other text is Code 128.
+        </p>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2"></font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">fragments/codes_1.pad</font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              Result
+            </th>
+          </tr>
+          <tr>
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>871234567890<font color="black">'</font></font>/}</b><br><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>PAD-2026-0042<font color="black">'</font><font color="black">,</font> height=50</font>/}</b></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="74" viewbox="0 0 234 74" shape-rendering="crispEdges">
+              <title>
+                8712345678906
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM30,0h6v60h-6zM38,0h4v60h-4zM44,0h4v60h-4zM52,0h4v60h-4zM60,0h2v60h-2zM66,0h4v60h-4zM72,0h2v60h-2zM82,0h2v60h-2zM88,0h6v60h-6zM96,0h2v60h-2zM100,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v60h-2zM126,0h2v60h-2zM136,0h2v60h-2zM144,0h2v60h-2zM150,0h2v60h-2zM156,0h2v60h-2zM164,0h6v60h-6zM172,0h2v60h-2zM178,0h6v60h-6zM188,0h2v60h-2zM192,0h2v60h-2zM196,0h2v60h-2zM206,0h2v66h-2zM210,0h2v66h-2z"></path>
+              <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                8
+              </text>
+              <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                712345
+              </text>
+              <text x="164" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                678906
+              </text></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="374" height="64" viewbox="0 0 374 64" shape-rendering="crispEdges">
+              <title>
+                PAD-2026-0042
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M20,0h4v50h-4zM26,0h2v50h-2zM32,0h2v50h-2zM42,0h6v50h-6zM50,0h6v50h-6zM58,0h4v50h-4zM64,0h2v50h-2zM68,0h2v50h-2zM76,0h4v50h-4zM86,0h2v50h-2zM90,0h4v50h-4zM100,0h2v50h-2zM108,0h2v50h-2zM114,0h4v50h-4zM120,0h6v50h-6zM130,0h4v50h-4zM138,0h6v50h-6zM148,0h2v50h-2zM152,0h2v50h-2zM158,0h6v50h-6zM166,0h4v50h-4zM174,0h4v50h-4zM182,0h6v50h-6zM192,0h2v50h-2zM196,0h4v50h-4zM204,0h6v50h-6zM212,0h2v50h-2zM218,0h2v50h-2zM224,0h4v50h-4zM230,0h6v50h-6zM240,0h2v50h-2zM244,0h6v50h-6zM252,0h8v50h-8zM262,0h4v50h-4zM268,0h4v50h-4zM276,0h4v50h-4zM284,0h2v50h-2zM288,0h4v50h-4zM294,0h6v50h-6zM306,0h2v50h-2zM314,0h2v50h-2zM320,0h4v50h-4zM328,0h4v50h-4zM338,0h6v50h-6zM346,0h2v50h-2zM350,0h4v50h-4z"></path>
+              <text x="187" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                PAD-2026-0042
+              </text></svg>
+            </td>
+          </tr>
+        </table>
+        <h2>
+          Three ways to write one
+        </h2>
+        <p>
+          <code>type=</code> on the tag names the symbology: <code>{barcode '0425261', type='upce'/}</code>. The barcode type does the same, <code>{barcode:upce '0425261'/}</code>, and so does the name alone, <code>{upce '0425261'/}</code>, as long as no tag, store, field or sequence has that name. All three draw the same UPC-E.
+        </p>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2"></font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">fragments/codes_2.pad</font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              Result
+            </th>
+          </tr>
+          <tr>
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000"><b>{<font color="blue">barcode </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>upce<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">barcode</font><font color="black"><b>:</b></font>upce </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font></font>/}</b><br><b>{<font color="blue">upce </font><font color="red"><font color="black">'</font>0425261<font color="black">'</font></font>/}</b></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewbox="0 0 146 74" shape-rendering="crispEdges">
+              <title>
+                04252614
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"></path>
+              <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                0
+              </text>
+              <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                425261
+              </text>
+              <text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                4
+              </text></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewbox="0 0 146 74" shape-rendering="crispEdges">
+              <title>
+                04252614
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"></path>
+              <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                0
+              </text>
+              <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                425261
+              </text>
+              <text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                4
+              </text></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="146" height="74" viewbox="0 0 146 74" shape-rendering="crispEdges">
+              <title>
+                04252614
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM32,0h6v60h-6zM40,0h2v60h-2zM46,0h2v60h-2zM52,0h4v60h-4zM58,0h6v60h-6zM68,0h2v60h-2zM74,0h4v60h-4zM80,0h4v60h-4zM86,0h2v60h-2zM90,0h8v60h-8zM102,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h2v66h-2z"></path>
+              <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                0
+              </text>
+              <text x="70" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                425261
+              </text>
+              <text x="134" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                4
+              </text></svg>
+            </td>
+          </tr>
+        </table>
+        <h2>
+          Products, parcels and labels
+        </h2>
+        <p>
+          The product codes - <code>ean13</code>, <code>ean8</code>, <code>upca</code> and <code>upce</code> - check the digit a number ends in, or add it. Code 128 and Code 93 take printable ASCII, Code 39 capital letters, digits and a few signs, with <code>check</code> for its check symbol. <code>itf</code> and <code>itf14</code> are the digits of cartons, <code>codabar</code> the code of libraries and blood banks, <code>msi</code> that of shelf labels.
+        </p>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2"></font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">fragments/codes_3.pad</font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              Result
+            </th>
+          </tr>
+          <tr>
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">code39 </font><font color="red"><font color="black">'</font>PAD-2026<font color="black">'</font><font color="black">,</font> check<font color="black">,</font> height=40</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">itf14 </font><font color="red"><font color="black">'</font>1540014128876<font color="black">'</font><font color="black">,</font> height=40</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">codabar </font><font color="red"><font color="black">'</font>40156<font color="black">'</font><font color="black">,</font> height=40</font>/}</b>&lt;/p&gt;</code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="390" height="54" viewbox="0 0 390 54" shape-rendering="crispEdges">
+                <title>
+                  PAD-2026
+                </title>
+                <rect width="100%" height="100%" fill="#fff"></rect>
+                <path fill="#000" d="M20,0h2v40h-2zM28,0h2v40h-2zM32,0h6v40h-6zM40,0h6v40h-6zM48,0h2v40h-2zM52,0h2v40h-2zM56,0h6v40h-6zM64,0h6v40h-6zM72,0h2v40h-2zM80,0h2v40h-2zM84,0h6v40h-6zM92,0h2v40h-2zM96,0h2v40h-2zM104,0h2v40h-2zM108,0h6v40h-6zM116,0h2v40h-2zM120,0h2v40h-2zM124,0h6v40h-6zM136,0h2v40h-2zM140,0h6v40h-6zM148,0h2v40h-2zM156,0h2v40h-2zM160,0h2v40h-2zM164,0h6v40h-6zM172,0h6v40h-6zM180,0h2v40h-2zM184,0h6v40h-6zM196,0h2v40h-2zM200,0h2v40h-2zM204,0h6v40h-6zM212,0h2v40h-2zM216,0h2v40h-2zM224,0h6v40h-6zM232,0h6v40h-6zM240,0h2v40h-2zM244,0h2v40h-2zM248,0h6v40h-6zM260,0h2v40h-2zM264,0h2v40h-2zM268,0h6v40h-6zM276,0h2v40h-2zM280,0h6v40h-6zM292,0h6v40h-6zM300,0h2v40h-2zM304,0h2v40h-2zM308,0h6v40h-6zM316,0h2v40h-2zM324,0h2v40h-2zM328,0h6v40h-6zM336,0h2v40h-2zM340,0h2v40h-2zM348,0h2v40h-2zM352,0h6v40h-6zM360,0h6v40h-6zM368,0h2v40h-2z"></path>
+                <text x="195" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                  PAD-2026
+                </text></svg>
+              </p>
+              <p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="310" height="70" viewbox="0 0 310 70" shape-rendering="crispEdges">
+                <title>
+                  15400141288763
+                </title>
+                <rect width="100%" height="100%" fill="#fff"></rect>
+                <path fill="#000" d="M20,8h2v40h-2zM24,8h2v40h-2zM28,8h6v40h-6zM40,8h2v40h-2zM44,8h2v40h-2zM52,8h2v40h-2zM56,8h6v40h-6zM64,8h2v40h-2zM68,8h2v40h-2zM72,8h6v40h-6zM84,8h2v40h-2zM92,8h6v40h-6zM100,8h2v40h-2zM108,8h2v40h-2zM112,8h6v40h-6zM120,8h6v40h-6zM128,8h2v40h-2zM136,8h2v40h-2zM144,8h2v40h-2zM148,8h6v40h-6zM156,8h2v40h-2zM160,8h6v40h-6zM172,8h2v40h-2zM180,8h6v40h-6zM188,8h2v40h-2zM192,8h2v40h-2zM200,8h6v40h-6zM208,8h6v40h-6zM216,8h2v40h-2zM220,8h2v40h-2zM224,8h6v40h-6zM236,8h2v40h-2zM244,8h2v40h-2zM252,8h6v40h-6zM264,8h6v40h-6zM272,8h2v40h-2zM276,8h2v40h-2zM280,8h6v40h-6zM288,8h2v40h-2zM0,0h310v8h-310zM0,48h310v8h-310z"></path>
+                <text x="155" y="67.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                  15400141288763
+                </text></svg>
+              </p>
+              <p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="214" height="54" viewbox="0 0 214 54" shape-rendering="crispEdges">
+                <title>
+                  40156
+                </title>
+                <rect width="100%" height="100%" fill="#fff"></rect>
+                <path fill="#000" d="M20,0h2v40h-2zM24,0h6v40h-6zM36,0h2v40h-2zM44,0h2v40h-2zM48,0h2v40h-2zM52,0h6v40h-6zM60,0h2v40h-2zM68,0h2v40h-2zM72,0h2v40h-2zM76,0h2v40h-2zM80,0h2v40h-2zM88,0h6v40h-6zM96,0h2v40h-2zM100,0h2v40h-2zM104,0h6v40h-6zM116,0h2v40h-2zM120,0h6v40h-6zM128,0h2v40h-2zM132,0h2v40h-2zM140,0h2v40h-2zM144,0h2v40h-2zM152,0h2v40h-2zM156,0h2v40h-2zM160,0h6v40h-6zM168,0h2v40h-2zM172,0h6v40h-6zM184,0h2v40h-2zM192,0h2v40h-2z"></path>
+                <text x="107" y="51.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+                  40156
+                </text></svg>
+              </p>
+            </td>
+          </tr>
+        </table>
+        <h2>
+          Two-dimensional codes
+        </h2>
+        <p>
+          <code>qr</code> is the code of <b>{qr}</b>, which a phone camera reads; <code>datamatrix</code> the square code of parts and medicine packs. Both take any text and choose the smallest symbol that holds it, and both take <code>size=</code> in pixels in place of the height and scale of the bars.
+        </p>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2"></font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">fragments/codes_4.pad</font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              Result
+            </th>
+          </tr>
+          <tr>
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000"><b>{<font color="blue">qr </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//example.com/order/42<font color="black">'</font><font color="black">,</font> size=140</font>/}</b><br><b>{<font color="blue">datamatrix </font><font color="red"><font color="black">'</font>https<font color="black">:</font>//example.com/order/42<font color="black">'</font><font color="black">,</font> size=120</font>/}</b></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-qr" role="img" width="140" height="140" viewbox="0 0 37 37" shape-rendering="crispEdges">
+              <title>
+                https://example.com/order/42
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M4,4h7v1h-7zM13,4h2v1h-2zM16,4h4v1h-4zM22,4h3v1h-3zM26,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM14,5h1v1h-1zM16,5h5v1h-5zM26,5h1v1h-1zM32,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM17,6h1v1h-1zM19,6h1v1h-1zM22,6h2v1h-2zM26,6h1v1h-1zM28,6h3v1h-3zM32,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h1v1h-1zM14,7h3v1h-3zM18,7h2v1h-2zM21,7h1v1h-1zM24,7h1v1h-1zM26,7h1v1h-1zM28,7h3v1h-3zM32,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM12,8h2v1h-2zM19,8h2v1h-2zM22,8h3v1h-3zM26,8h1v1h-1zM28,8h3v1h-3zM32,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM12,9h5v1h-5zM24,9h1v1h-1zM26,9h1v1h-1zM32,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM26,10h7v1h-7zM12,11h1v1h-1zM14,11h1v1h-1zM16,11h1v1h-1zM18,11h1v1h-1zM20,11h1v1h-1zM23,11h2v1h-2zM4,12h1v1h-1zM6,12h5v1h-5zM14,12h1v1h-1zM16,12h1v1h-1zM20,12h2v1h-2zM23,12h1v1h-1zM26,12h5v1h-5zM6,13h4v1h-4zM14,13h1v1h-1zM17,13h3v1h-3zM23,13h2v1h-2zM26,13h3v1h-3zM32,13h1v1h-1zM4,14h5v1h-5zM10,14h1v1h-1zM12,14h1v1h-1zM14,14h2v1h-2zM17,14h6v1h-6zM24,14h2v1h-2zM27,14h2v1h-2zM5,15h1v1h-1zM7,15h1v1h-1zM13,15h1v1h-1zM17,15h1v1h-1zM19,15h1v1h-1zM22,15h4v1h-4zM27,15h1v1h-1zM29,15h1v1h-1zM31,15h1v1h-1zM6,16h3v1h-3zM10,16h1v1h-1zM12,16h2v1h-2zM16,16h1v1h-1zM18,16h2v1h-2zM21,16h3v1h-3zM29,16h2v1h-2zM5,17h3v1h-3zM11,17h1v1h-1zM13,17h1v1h-1zM15,17h1v1h-1zM19,17h5v1h-5zM25,17h4v1h-4zM32,17h1v1h-1zM4,18h2v1h-2zM7,18h1v1h-1zM9,18h2v1h-2zM12,18h1v1h-1zM15,18h2v1h-2zM21,18h1v1h-1zM24,18h1v1h-1zM26,18h5v1h-5zM4,19h1v1h-1zM6,19h3v1h-3zM12,19h1v1h-1zM14,19h2v1h-2zM18,19h1v1h-1zM20,19h1v1h-1zM24,19h2v1h-2zM28,19h1v1h-1zM31,19h1v1h-1zM4,20h2v1h-2zM7,20h1v1h-1zM9,20h3v1h-3zM13,20h1v1h-1zM15,20h2v1h-2zM20,20h4v1h-4zM29,20h2v1h-2zM4,21h5v1h-5zM11,21h1v1h-1zM13,21h3v1h-3zM17,21h3v1h-3zM23,21h6v1h-6zM30,21h1v1h-1zM32,21h1v1h-1zM4,22h1v1h-1zM6,22h2v1h-2zM10,22h2v1h-2zM13,22h2v1h-2zM17,22h4v1h-4zM24,22h1v1h-1zM28,22h1v1h-1zM30,22h1v1h-1zM4,23h1v1h-1zM13,23h1v1h-1zM15,23h1v1h-1zM17,23h1v1h-1zM19,23h1v1h-1zM22,23h3v1h-3zM31,23h1v1h-1zM4,24h1v1h-1zM6,24h3v1h-3zM10,24h1v1h-1zM12,24h2v1h-2zM18,24h2v1h-2zM21,24h8v1h-8zM30,24h3v1h-3zM12,25h1v1h-1zM14,25h2v1h-2zM19,25h2v1h-2zM24,25h1v1h-1zM28,25h5v1h-5zM4,26h7v1h-7zM14,26h2v1h-2zM21,26h4v1h-4zM26,26h1v1h-1zM28,26h3v1h-3zM4,27h1v1h-1zM10,27h1v1h-1zM12,27h1v1h-1zM15,27h1v1h-1zM18,27h1v1h-1zM20,27h1v1h-1zM22,27h3v1h-3zM28,27h1v1h-1zM31,27h1v1h-1zM4,28h1v1h-1zM6,28h3v1h-3zM10,28h1v1h-1zM12,28h1v1h-1zM14,28h1v1h-1zM20,28h1v1h-1zM22,28h1v1h-1zM24,28h5v1h-5zM30,28h1v1h-1zM32,28h1v1h-1zM4,29h1v1h-1zM6,29h3v1h-3zM10,29h1v1h-1zM12,29h2v1h-2zM15,29h1v1h-1zM18,29h2v1h-2zM21,29h5v1h-5zM27,29h1v1h-1zM29,29h2v1h-2zM4,30h1v1h-1zM6,30h3v1h-3zM10,30h1v1h-1zM12,30h2v1h-2zM17,30h5v1h-5zM25,30h7v1h-7zM4,31h1v1h-1zM10,31h1v1h-1zM13,31h1v1h-1zM16,31h1v1h-1zM18,31h2v1h-2zM21,31h2v1h-2zM24,31h1v1h-1zM26,31h4v1h-4zM31,31h1v1h-1zM4,32h7v1h-7zM12,32h1v1h-1zM16,32h1v1h-1zM19,32h1v1h-1zM23,32h1v1h-1zM25,32h4v1h-4zM30,32h1v1h-1z"></path></svg> <svg xmlns="http://www.w3.org/2000/svg" class="pad-datamatrix" role="img" width="120" height="120" viewbox="0 0 26 26" shape-rendering="crispEdges">
+              <title>
+                https://example.com/order/42
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M2,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM8,2h1v1h-1zM10,2h1v1h-1zM12,2h1v1h-1zM14,2h1v1h-1zM16,2h1v1h-1zM18,2h1v1h-1zM20,2h1v1h-1zM22,2h1v1h-1zM2,3h1v1h-1zM4,3h2v1h-2zM7,3h3v1h-3zM12,3h2v1h-2zM15,3h2v1h-2zM19,3h1v1h-1zM23,3h1v1h-1zM2,4h3v1h-3zM7,4h1v1h-1zM10,4h3v1h-3zM16,4h2v1h-2zM19,4h4v1h-4zM2,5h2v1h-2zM5,5h3v1h-3zM10,5h1v1h-1zM13,5h2v1h-2zM16,5h2v1h-2zM20,5h2v1h-2zM23,5h1v1h-1zM2,6h2v1h-2zM6,6h1v1h-1zM9,6h1v1h-1zM11,6h1v1h-1zM13,6h4v1h-4zM18,6h2v1h-2zM22,6h1v1h-1zM2,7h5v1h-5zM8,7h3v1h-3zM12,7h1v1h-1zM17,7h3v1h-3zM23,7h1v1h-1zM2,8h1v1h-1zM5,8h3v1h-3zM11,8h2v1h-2zM15,8h1v1h-1zM17,8h1v1h-1zM19,8h2v1h-2zM2,9h2v1h-2zM6,9h1v1h-1zM8,9h1v1h-1zM10,9h2v1h-2zM13,9h1v1h-1zM15,9h1v1h-1zM17,9h2v1h-2zM20,9h1v1h-1zM22,9h2v1h-2zM2,10h1v1h-1zM5,10h3v1h-3zM9,10h1v1h-1zM14,10h1v1h-1zM21,10h1v1h-1zM2,11h1v1h-1zM4,11h1v1h-1zM7,11h2v1h-2zM10,11h2v1h-2zM13,11h2v1h-2zM16,11h2v1h-2zM19,11h1v1h-1zM23,11h1v1h-1zM2,12h2v1h-2zM8,12h2v1h-2zM14,12h2v1h-2zM18,12h2v1h-2zM21,12h1v1h-1zM2,13h3v1h-3zM6,13h2v1h-2zM9,13h1v1h-1zM13,13h1v1h-1zM16,13h1v1h-1zM19,13h5v1h-5zM2,14h1v1h-1zM5,14h1v1h-1zM9,14h1v1h-1zM11,14h1v1h-1zM13,14h2v1h-2zM17,14h1v1h-1zM21,14h1v1h-1zM2,15h1v1h-1zM4,15h2v1h-2zM9,15h1v1h-1zM13,15h3v1h-3zM17,15h2v1h-2zM23,15h1v1h-1zM2,16h2v1h-2zM7,16h2v1h-2zM11,16h1v1h-1zM13,16h2v1h-2zM17,16h4v1h-4zM22,16h1v1h-1zM2,17h2v1h-2zM6,17h1v1h-1zM11,17h1v1h-1zM13,17h4v1h-4zM23,17h1v1h-1zM2,18h5v1h-5zM9,18h2v1h-2zM12,18h1v1h-1zM14,18h1v1h-1zM17,18h1v1h-1zM19,18h1v1h-1zM21,18h2v1h-2zM2,19h1v1h-1zM4,19h1v1h-1zM6,19h3v1h-3zM10,19h5v1h-5zM16,19h2v1h-2zM23,19h1v1h-1zM2,20h2v1h-2zM6,20h1v1h-1zM8,20h2v1h-2zM12,20h3v1h-3zM16,20h1v1h-1zM20,20h1v1h-1zM2,21h3v1h-3zM10,21h3v1h-3zM15,21h1v1h-1zM18,21h1v1h-1zM21,21h3v1h-3zM2,22h1v1h-1zM4,22h2v1h-2zM7,22h4v1h-4zM13,22h1v1h-1zM15,22h3v1h-3zM19,22h1v1h-1zM21,22h1v1h-1zM2,23h22v1h-22z"></path></svg>
+            </td>
+          </tr>
+        </table>
+        <ul>
+          <li>The colours are black on white unless <code>color=</code> and <code>background=</code> say otherwise - fixed, whatever the page's colour scheme, as a scanner needs the contrast.
+          </li>
+          <li>The SVG is <code>role="img"</code> with the text, or <code>title=</code>, as its name.
+          </li>
+          <li>A wrong check digit, a character the symbology has no bars for or a text too long for it is an error under the strict check, and nothing is drawn.
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

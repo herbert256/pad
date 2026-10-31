@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Signature · PAD inputs
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="inputs.css">
+    <style>
+    :where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+    .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+    .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+    .pad-input [hidden]{display:none!important}
+    .pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+    .pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+    .pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+    .pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+    .pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+    .pad-input .pi-button:disabled{opacity:.45;cursor:default}
+    .pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+    .pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+    .pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+    .pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+    .pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+    </style>
+    <style>
+    .pad-input-signature .pi-signature-pad{display:inline-block;max-width:100%;border:1px solid var(--pad-input-line);border-radius:8px;background:#fff;box-shadow:inset 0 -2.2em 0 -2.1em #c9c8c2;overflow:hidden}
+    .pad-input-signature .pi-signature-canvas{display:block;max-width:100%;height:auto;touch-action:none;cursor:crosshair}
+    .pad-input-signature .pi-signature-bar{margin-top:.4em}
+    .pad-input-signature .pi-signature-typed{width:16em}
+    </style>
+    <style>
+    :where(.pad-source){margin:1em 0;border:1px solid rgba(127,127,127,.3);border-radius:8px;overflow:hidden}:where(.pad-source>input){position:absolute;opacity:0;pointer-events:none}:where(.pad-source>label){display:inline-block;padding:8px 14px;cursor:pointer;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;opacity:.65;border-bottom:2px solid transparent}:where(.pad-source>input:checked+label){opacity:1;border-bottom-color:currentColor}:where(.pad-source>input:focus-visible+label){outline:2px solid currentColor;outline-offset:-2px}:where(.pad-source-panel){display:none}:where(.pad-source-panel .pad-highlight){margin:0;border-radius:0}:where(.pad-source>input:nth-of-type(1):checked~.pad-source-panel:nth-of-type(1)){display:block}:where(.pad-source>input:nth-of-type(2):checked~.pad-source-panel:nth-of-type(2)){display:block}:where(.pad-source>input:nth-of-type(3):checked~.pad-source-panel:nth-of-type(3)){display:block}:where(.pad-source>input:nth-of-type(4):checked~.pad-source-panel:nth-of-type(4)){display:block}:where(.pad-source>input:nth-of-type(5):checked~.pad-source-panel:nth-of-type(5)){display:block}:where(.pad-source>input:nth-of-type(6):checked~.pad-source-panel:nth-of-type(6)){display:block}:where(.pad-source>input:nth-of-type(7):checked~.pad-source-panel:nth-of-type(7)){display:block}:where(.pad-source>input:nth-of-type(8):checked~.pad-source-panel:nth-of-type(8)){display:block}:where(.pad-source>input:nth-of-type(9):checked~.pad-source-panel:nth-of-type(9)){display:block}:where(.pad-source>input:nth-of-type(10):checked~.pad-source-panel:nth-of-type(10)){display:block}:where(.pad-source>input:nth-of-type(11):checked~.pad-source-panel:nth-of-type(11)){display:block}:where(.pad-source>input:nth-of-type(12):checked~.pad-source-panel:nth-of-type(12)){display:block}
+    </style>
+    <style>
+    :where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}
+    </style>
+  </head>
+  <body class="frame app-inputs">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>inputs</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="inputs">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All fields</a> <a href="index%EF%B9%96form.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+        <path d="M14 6.5l3.5 3.5"></path></svg> One form</a>
+        <div class="frame-head">
+          Fields
+        </div><a href="index%EF%B9%96colorpicker.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> colorpicker</a> <a href="index%EF%B9%96combobox.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> combobox</a> <a href="index%EF%B9%96datepicker.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> datepicker</a> <a href="index%EF%B9%96dropzone.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> dropzone</a> <a href="index%EF%B9%96mdeditor.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> mdeditor</a> <a href="index%EF%B9%96newpassword.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> newpassword</a> <a href="index%EF%B9%96otp.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> otp</a> <a href="index%EF%B9%96signature.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> signature</a> <a href="index%EF%B9%96slider.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> slider</a> <a href="index%EF%B9%96stars.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> stars</a> <a href="index%EF%B9%96stepper.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> stepper</a> <a href="index%EF%B9%96taginput.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> taginput</a> <a href="index%EF%B9%96timepicker.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> timepicker</a> <a href="index%EF%B9%96toggle.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> toggle</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Signature
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="inputs-lead">
+          A signature drawn with the mouse, a pen or a finger: a canvas, and the picture drawn posted as a PNG data URL - data:image/png;base64,... - in a hidden field. The page's PHP decodes it: base64_decode of what follows the comma is the PNG. Who cannot draw types the name in the field beside it, and the name is drawn on the canvas in a hand of writing; Clear wipes it. width= and height= the canvas, 400 by 150 unless given. A signature needs the script: without it the page says so. After a post that came back the picture is drawn again from the posted field - one that is no PNG data URL is not refilled.
+        </p>
+        <form method="post" class="inputs-try">
+          <input type="hidden" name="padCsrfToken" value="7e5b0fdf9cb000c3e55ddd5e0fb9283060aa6a54578d05fe4b2719a5f993929d"><input type="hidden" name="padForm" value="try">
+          <script>
+          /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+          script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+          - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+          a live region or a script brings later. frame is the field's .pad-input element, cfg its
+          data-config, kit the helpers below. The server wrote a native control that a form posts
+          as it is; a kind's script makes more of it and keeps the posted control's value true -
+          and says so with the input and change events a typed value sends, which the browser's
+          checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+          (function () {
+          'use strict';
+
+          if (window.PadInputs) return;
+
+          var kinds = {};
+          var made = 0;
+
+          function el(tag, cls, text) {
+          var e = document.createElement(tag);
+          if (cls) e.className = cls;
+          if (text !== undefined && text !== null) e.textContent = text;
+          return e;
+          }
+
+          var kit = {
+          el: el,
+
+          // A new id of the page, for an element a script adds: a listbox, an option, a box.
+          id: function (base) {
+          made++;
+          return (base || 'pad-input') + '-js' + made;
+          },
+
+          // The value changed as if typed: the form, the rules' checker and any listener hear it.
+          changed: function (control) {
+          control.dispatchEvent(new Event('input', { bubbles: true }));
+          control.dispatchEvent(new Event('change', { bubbles: true }));
+          },
+
+          // What the server wrote hidden for a script to show - a button, a popup's opener.
+          show: function (root, selector) {
+          var list = root.querySelectorAll(selector);
+          for (var i = 0; i < list.length; i++) list[i].hidden = false;
+          },
+
+          // A click outside the element - or the focus leaving it - closes what it opened.
+          outside: function (root, close) {
+          document.addEventListener('pointerdown', function (event) {
+          if (!root.contains(event.target)) close();
+          });
+          root.addEventListener('focusout', function (event) {
+          if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+          });
+          },
+
+          // The text of a field's label, for a name a script gives a control it adds.
+          label: function (frame) {
+          return frame.getAttribute('data-pad-label') || '';
+          }
+          };
+
+          function start(frame) {
+          if (frame.padInputReady) return;
+          var init = kinds[frame.getAttribute('data-pad-input')];
+          if (!init) return;
+          var cfg = {};
+          try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+          frame.padInputReady = true;
+          frame.classList.add('is-ready');
+          init(frame, cfg, kit);
+          }
+
+          function scan(where) {
+          var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+          for (var i = 0; i < list.length; i++) start(list[i]);
+          }
+
+          window.PadInputs = {
+          register: function (name, init) { kinds[name] = init; scan(); },
+          scan: scan,
+          kit: kit
+          };
+
+          document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+          if (window.MutationObserver)
+          new MutationObserver(function (records) {
+          for (var i = 0; i < records.length; i++)
+          for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+          }
+          }).observe(document.documentElement, { childList: true, subtree: true });
+          })();
+          </script>
+          <script>
+          /* signature - the canvas: strokes drawn with the mouse, a pen or a finger (pointer events,
+          the pressure of a pen in the line's width), or a typed name drawn in a hand of writing. The
+          picture is posted as a PNG data URL in the hidden field after every stroke and every typed
+          letter, and the field says it changed; Clear empties both. A canvas is drawn in the pixels
+          of the screen, so a signature is as sharp on a phone as on paper, and posted at the size
+          width= and height= give. A signature that came back with the post is drawn again. */
+          PadInputs.register('signature', function (frame, cfg, kit) {
+          var pad = frame.querySelector('.pi-signature-pad');
+          var canvas = frame.querySelector('.pi-signature-canvas');
+          var bar = frame.querySelector('.pi-signature-bar');
+          var typed = frame.querySelector('.pi-signature-typed');
+          var clear = frame.querySelector('.pi-signature-clear');
+          var hidden = frame.querySelector('input[type=hidden]');
+          if (!canvas || !hidden || !canvas.getContext) return;
+
+          var width = canvas.width, height = canvas.height;
+          var ratio = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
+          canvas.width = width * ratio;
+          canvas.height = height * ratio;
+          canvas.style.width = width + 'px';
+          canvas.style.aspectRatio = width + ' / ' + height;
+          var ink = canvas.getContext('2d');
+          ink.scale(ratio, ratio);
+          ink.lineCap = 'round';
+          ink.lineJoin = 'round';
+          ink.strokeStyle = '#1a1a19';
+          ink.fillStyle = '#1a1a19';
+
+          var drawn = false, drawing = false, last = null, wasTyped = false;
+
+          pad.hidden = false;
+          if (bar) bar.hidden = false;
+
+          // The picture posted at its own size: a copy of the screen's pixels scaled to width= by
+          // height=, so the post is the same on every screen.
+          function post() {
+          if (!drawn) {
+          hidden.value = '';
+          } else {
+          var out = document.createElement('canvas');
+          out.width = width;
+          out.height = height;
+          out.getContext('2d').drawImage(canvas, 0, 0, width, height);
+          hidden.value = out.toDataURL('image/png');
+          }
+          kit.changed(hidden);
+          }
+
+          function wipe() {
+          ink.clearRect(0, 0, width, height);
+          drawn = false;
+          }
+
+          function at(event) {
+          var box = canvas.getBoundingClientRect();
+          return { x: (event.clientX - box.left) * width / box.width, y: (event.clientY - box.top) * height / box.height };
+          }
+
+          canvas.addEventListener('pointerdown', function (event) {
+          if (event.button !== undefined && event.button > 0) return;
+          if (wasTyped) { wipe(); wasTyped = false; if (typed) typed.value = ''; }
+          drawing = true;
+          last = at(event);
+          canvas.setPointerCapture(event.pointerId);
+          ink.beginPath();
+          ink.arc(last.x, last.y, 1.1, 0, Math.PI * 2);
+          ink.fill();
+          drawn = true;
+          event.preventDefault();
+          });
+
+          canvas.addEventListener('pointermove', function (event) {
+          if (!drawing) return;
+          var points = event.getCoalescedEvents ? event.getCoalescedEvents() : [event];
+          if (!points.length) points = [event];
+          points.forEach(function (one) {
+          var now = at(one);
+          ink.lineWidth = one.pointerType === 'pen' && one.pressure ? 0.8 + one.pressure * 3 : 2.2;
+          ink.beginPath();
+          ink.moveTo(last.x, last.y);
+          ink.lineTo(now.x, now.y);
+          ink.stroke();
+          last = now;
+          });
+          event.preventDefault();
+          });
+
+          function end() {
+          if (!drawing) return;
+          drawing = false;
+          post();
+          }
+          canvas.addEventListener('pointerup', end);
+          canvas.addEventListener('pointercancel', end);
+
+          if (typed) typed.addEventListener('input', function () {
+          wipe();
+          var name = typed.value.trim();
+          if (name) {
+          var size = Math.min(height * 0.42, width * 1.6 / Math.max(4, name.length));
+          ink.font = 'italic ' + Math.round(size) + 'px "Snell Roundhand", "Segoe Script", "Brush Script MT", "Apple Chancery", cursive';
+          ink.textAlign = 'center';
+          ink.textBaseline = 'middle';
+          ink.fillText(name, width / 2, height / 2, width - 24);
+          drawn = true;
+          }
+          wasTyped = true;
+          post();
+          });
+
+          if (clear) clear.addEventListener('click', function () {
+          wipe();
+          if (typed) typed.value = '';
+          wasTyped = false;
+          post();
+          (typed || canvas).focus();
+          });
+
+          // The signature of a post that came back - a PNG of this field, drawn on the canvas again.
+          if (/^data:image\/png;base64,/.test(hidden.value)) {
+          var picture = new Image();
+          picture.onload = function () { ink.drawImage(picture, 0, 0, width, height); drawn = true; };
+          picture.src = hidden.value;
+          }
+          });
+          </script>
+          <div class="pad-input pad-input-signature" data-pad-input="signature" data-pad-label="Signature">
+            <label for="signed">Signature</label>
+            <div class="pi-signature-pad" hidden="">
+              <canvas class="pi-signature-canvas" width="400" height="150" role="img" aria-label="Signature - drawn with the mouse, a pen or a finger"></canvas>
+            </div>
+            <div class="pi-row pi-signature-bar" hidden="">
+              <input type="text" class="pi-signature-typed" id="signed" placeholder="Or type your name" autocomplete="name"><button type="button" class="pi-button pi-signature-clear">Clear</button>
+            </div><input type="hidden" name="signed" value="" data-pad-shows="signed"><noscript>
+            <p class="pi-noscript">
+              Signing needs JavaScript.
+            </p></noscript>
+          </div><button class="inputs-send">Send</button>
+        </form>
+        <h2>
+          The template
+        </h2>
+        <div class="pad-source">
+          <input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">signature.pad</label>
+          <div class="pad-source-panel">
+            <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'Signature'</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="2"><span class="hl-brc">{</span><span class="hl-tag">about</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="3"></span>
+<span class="hl-line" data-line="4"><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'try'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'inputs-try'</span>, error<span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="5">  <span class="hl-brc">{</span><span class="hl-tag">signature</span> <span class="hl-str">'signed'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Signature'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required'</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-htm">&lt;button</span> <span class="hl-opt">class</span>=<span class="hl-str">"inputs-send"</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="7"><span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="8"></span>
+<span class="hl-line" data-line="9"><span class="hl-brc">{</span><span class="hl-tag">received</span><span class="hl-brc">/}</span></span>
+<span class="hl-line" data-line="10"></span>
+<span class="hl-line" data-line="11"><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>The template<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></span>
+<span class="hl-line" data-line="12"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></span></code></pre>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

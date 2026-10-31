@@ -67,7 +67,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 141 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
         </form>
         <div class="frame-tools">
           <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -387,7 +387,8 @@
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span>, <span class="hl-opt">min</span>=<span class="hl-num">0</span>, <span class="hl-opt">max</span>=<span class="hl-num">100</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7nonce.html">nonce</a> <span class="about">This request's Content-Security-Policy nonce, for a script or style the policy lets run.</span>
@@ -613,6 +614,13 @@
 <span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$html</span>, <span class="hl-opt">words</span>=<span class="hl-num">30</span>, html<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7fake.html">fake</a> <span class="about">Makes a fake value - a name, an email, a price, an IBAN, 27 kinds - or rows of several kinds, the same on every request, for prototypes and previews.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-str">'kind'</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">fake:kind</span> <span class="hl-opt">from</span>=<span class="hl-num">1</span>, <span class="hl-opt">to</span>=<span class="hl-num">6</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-str">'name, email'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span>, <span class="hl-opt">toData</span>=<span class="hl-str">'store'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-str">'field:kind, field:kind'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">3</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/fake</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">highlight</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-str">'lang'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/highlight</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">highlight</span> <span class="hl-str">'lang'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'3, 5-7'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/highlight</span><span class="hl-brc">}</span>
@@ -658,9 +666,12 @@
           </div>
           <div class="cheat">
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">barcode</a> <span class="about">Draws a barcode as inline SVG - EAN-13, EAN-8, UPC-A or Code 128, encoded on the server.</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">barcode</a> <span class="about">Draws a barcode as inline SVG, encoded on the server - 13 symbologies, from EAN-13 and Code 128 to QR and Data Matrix.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'number'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$code</span>, <span class="hl-opt">type</span>=<span class="hl-str">'code128'</span>, <span class="hl-opt">height</span>=<span class="hl-num">60</span>, <span class="hl-opt">scale</span>=<span class="hl-num">2</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, plain, <span class="hl-opt">color</span>=<span class="hl-str">'#000'</span>, <span class="hl-opt">background</span>=<span class="hl-str">'#fff'</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$code</span>, <span class="hl-opt">type</span>=<span class="hl-str">'code128'</span>, <span class="hl-opt">height</span>=<span class="hl-num">60</span>, <span class="hl-opt">scale</span>=<span class="hl-num">2</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, plain, <span class="hl-opt">color</span>=<span class="hl-str">'#000'</span>, <span class="hl-opt">background</span>=<span class="hl-str">'#fff'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">'number'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">code39</span> <span class="hl-str">'TEXT'</span>, check<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-var">$text</span>, <span class="hl-opt">type</span>=<span class="hl-str">'datamatrix'</span>, <span class="hl-opt">size</span>=<span class="hl-num">160</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">calendar</a> <span class="about">Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.</span>
@@ -679,12 +690,19 @@
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'bar'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'csv'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/chart</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7diagram.html">diagram</a> <span class="about">Draws a flowchart or a sequence diagram from Mermaid-style lines of text, laid out on the server as inline SVG.</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7diagram.html">diagram</a> <span class="about">Draws a diagram from Mermaid-style lines of text, laid out on the server as inline SVG - 9 kinds, from flowcharts and sequence diagrams to state machines, class and entity-relationship diagrams, mind maps, trees, user journeys and commit graphs.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> A[Start] --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">Ready</span>?<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span> [*] --<span class="hl-htm">&gt;</span> Idle <span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:class</span><span class="hl-brc">}</span> Animal &lt;|-- Duck <span class="hl-brc">{</span><span class="hl-tag">/diagram:class</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:er</span><span class="hl-brc">}</span> CUSTOMER ||--o<span class="hl-brc">{</span> ORDER : places <span class="hl-brc">{</span><span class="hl-tag">/diagram:er</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">mindmap</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/mindmap</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:tree</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:tree</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">journey</span><span class="hl-brc">}</span> section Morning ... <span class="hl-brc">{</span><span class="hl-tag">/journey</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">gitgraph</span><span class="hl-brc">}</span> commit ... <span class="hl-brc">{</span><span class="hl-tag">/gitgraph</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">map</a> <span class="about">Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its regions.</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">map</a> <span class="about">Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its 22 regions.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">map</span> <span class="hl-str">'world'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">key</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">scale</span>=<span class="hl-str">'quantile'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">width</span>=<span class="hl-num">720</span>, <span class="hl-opt">height</span>=<span class="hl-num">400</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">map</span> <span class="hl-str">'europe'</span>, <span class="hl-opt">key</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/map</span><span class="hl-brc">}</span></code></pre>
             </div>
@@ -725,15 +743,24 @@
 <span class="hl-brc">{</span><span class="hl-tag">country</span> <span class="hl-var">$code</span>, name<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7embed.html">embed</a> <span class="about">Embeds a video, a sound, a map, a pen or a document of another site behind a click-to-load facade - 12 providers, nothing of theirs loaded before the click.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed</span> <span class="hl-str">'https://www.youtube.com/watch?v=id'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">embed:vimeo</span> <span class="hl-str">'id'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">at</span>=<span class="hl-str">'1:30'</span>, <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">openstreetmap</span> <span class="hl-str">'latitude,longitude'</span>, <span class="hl-opt">zoom</span>=<span class="hl-num">15</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">embed</span> <span class="hl-str">'https://codepen.io/user/pen/id'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">tab</span>=<span class="hl-str">'html,result'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">audio</span> <span class="hl-str">'sounds/bell.mp3'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">gravatar</a> <span class="about">Writes the Gravatar picture of an e-mail address as an img - only a hash of the address leaves the page - or a local avatar instead.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">64</span>, <span class="hl-opt">default</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'avatar'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7icon.html">icon</a> <span class="about">Writes an interface icon from PAD's own set of 79 as inline SVG, drawn in the colour of the text around it.</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7icon.html">icon</a> <span class="about">Writes an interface icon from PAD's own set of 202 as inline SVG, drawn in the colour of the text around it.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'arrow-right'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'trash'</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">2</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'trash'</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">2</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">20</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7identicon.html">identicon</a> <span class="about">Draws a GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a hash of the value.</span>
@@ -783,17 +810,6 @@
           </div>
           <div class="cheat">
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7accordion.html">accordion</a> <span class="about">Items that open and close on a click, each a details element - no JavaScript.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">accordion</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">accordion</span> open<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span></code></pre>
-            </div>
-            <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7carousel.html">carousel</a> <span class="about">Slides in a row that scrolls and snaps sideways, with arrow links and dots - no JavaScript needed.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">carousel</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'caption'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/carousel</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/carousel</span><span class="hl-brc">}</span></code></pre>
-            </div>
-            <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7copy.html">copy</a> <span class="about">A text in a code block with a button that copies it to the clipboard.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'text'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$value</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">/}</span>
@@ -814,23 +830,26 @@
 <span class="hl-brc">{</span><span class="hl-tag">jsonview</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-str">"id"</span>: <span class="hl-num">42</span>, <span class="hl-str">"paid"</span>: true<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/jsonview</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7modal.html">modal</a> <span class="about">A dialog over the page with the button that opens it - works with and without JavaScript.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">modal</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/modal</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">modal</span> <span class="hl-str">'name'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Heading'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Button text'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/modal</span><span class="hl-brc">}</span></code></pre>
-            </div>
-            <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7poll.html">poll</a> <span class="about">A vote among a few answers, once per visitor, then the results as bars with percentages.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'name'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'Yes, No'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'name'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'PHP, Python, Go'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Question?'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Vote'</span>, results<span class="hl-brc">/}</span></code></pre>
-            </div>
-            <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">tab</a> <span class="about">One item of a tabs, accordion or carousel: its label and its content, handed to that owner.</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">tab</a> <span class="about">One item of a tabs, accordion, carousel, wizard or lightbox widget: its label and its content, handed to that owner.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tabs.html">tabs</a> <span class="about">Panels behind a row of tabs, switched by radio buttons and CSS - no JavaScript.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">tabs</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">tabs</span> <span class="hl-opt">active</span>=<span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">widget</a> <span class="about">An interactive part of the page that works without JavaScript - 13 of them, from tabs, a modal and a carousel to a toast, a dropdown and a wizard.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget</span> <span class="hl-str">'name'</span>, ...<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:name</span> ...<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:name</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">tabs</span> <span class="hl-opt">active</span>=<span class="hl-str">'label'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/accordion</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'caption'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/carousel</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">wizard</span> <span class="hl-opt">active</span>=<span class="hl-num">1</span>, <span class="hl-opt">next</span>=<span class="hl-str">'Next'</span>, <span class="hl-opt">back</span>=<span class="hl-str">'Back'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'step'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/wizard</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lightbox</span> <span class="hl-opt">label</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'caption'</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;img</span> ...<span class="hl-htm">&gt;</span> <span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/lightbox</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">modal</span> <span class="hl-str">'name'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'heading'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/modal</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">drawer</span> <span class="hl-str">'name'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'heading'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">side</span>=<span class="hl-str">'left'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/drawer</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">dropdown</span> <span class="hl-str">'text'</span>, <span class="hl-opt">align</span>=<span class="hl-str">'end'</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"..."</span><span class="hl-htm">&gt;</span> ... <span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> ... <span class="hl-brc">{</span><span class="hl-tag">/dropdown</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">tooltip</span> <span class="hl-str">'tip'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/tooltip</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toast</span> <span class="hl-str">'title'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'success'</span>, <span class="hl-opt">place</span>=<span class="hl-str">'top'</span>, <span class="hl-opt">timeout</span>=<span class="hl-num">5</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/toast</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'text'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">poll</span> <span class="hl-str">'name'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'Yes, No'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'question'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Vote'</span>, results<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">breadcrumb</span> <span class="hl-opt">home</span>=<span class="hl-str">'Home'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Breadcrumb'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -857,6 +876,16 @@
 <span class="hl-brc">{</span><span class="hl-tag">crossword</span><span class="hl-brc">}</span> WORD: clue ... <span class="hl-brc">{</span><span class="hl-tag">/crossword</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">hangman</span><span class="hl-brc">}</span> word ... <span class="hl-brc">{</span><span class="hl-tag">/hangman</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">quiz</span><span class="hl-brc">}</span> question | right | wrong ... <span class="hl-brc">{</span><span class="hl-tag">/quiz</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7toy.html">toy</a> <span class="about">A small live simulation or visual toy in the browser - 19 of them, from the Game of Life and a flock of birds to the Mandelbrot set and falling sand.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toy</span> <span class="hl-str">'life'</span>, <span class="hl-opt">pattern</span>=<span class="hl-str">'gun'</span>, wrap<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toy:mandelbrot</span> <span class="hl-opt">iterations</span>=<span class="hl-num">500</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">boids</span> <span class="hl-opt">birds</span>=<span class="hl-num">200</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sorting</span> race<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">life</span><span class="hl-brc">}</span> .O. / ..O / OOO <span class="hl-brc">{</span><span class="hl-tag">/life</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lsystem</span><span class="hl-brc">}</span> axiom: X / X: F[+X]-X / angle: <span class="hl-num">25</span> <span class="hl-brc">{</span><span class="hl-tag">/lsystem</span><span class="hl-brc">}</span></code></pre>
             </div>
           </div>
         </section>
@@ -1052,7 +1081,7 @@
         </section>
         <footer class="foot">
           <p>
-            141 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
           </p>
         </footer>
       </div>

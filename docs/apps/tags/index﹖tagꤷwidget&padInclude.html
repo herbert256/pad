@@ -1,0 +1,48 @@
+
+<p><code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
+a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a toast, a copy box, a poll, a
+breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
+CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code>
+attribute, <code>:target</code>. Where a widget has a script it only makes it handier - Escape,
+the arrow keys, the focus - and is written once per page, with the CSP nonce. Every widget is a
+file of <code>pad/widgets/types/</code>, its functions in <code>pad/widgets/_lib/</code>, its
+style and script in <code>pad/widgets/assets/</code>; the files of <code>types/</code> are the
+widgets there are.</p>
+
+<p>A widget is written three ways, the same widget each time: the tag with the widget's name,
+<code>{widget 'modal', 'terms'}</code>, whose second parameter is the widget's own first; the
+widget: type, <code>{widget:modal 'terms'}</code>; and the bare name, <code>{modal 'terms'}</code>.
+The bare name comes after every other kind of tag, so a store, a field or an array of the name
+wins - a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. Two names stay
+built-in tags: <a href="index%EF%B9%96tag%EA%A4%B7copy.html"><code>{copy}</code></a>, as PHP has a <code>copy()</code>
+function a bare name would reach first, and <a href="index%EF%B9%96tag%EA%A4%B7tab.html"><code>{tab}</code></a>, the item
+of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard and
+lightbox.</p>
+
+<ul>
+  <li><b>tabs</b> - panels behind a row of tabs: a radio button and a label per tab, the arrow
+  keys move between them, printed every panel shows. <b>accordion</b> - every item a
+  <code>&lt;details&gt;</code>; <code>single</code> one open at a time. <b>carousel</b> - slides
+  that scroll and snap sideways, links to the slides before and after, a dot per slide, no
+  autoplay. <b>wizard</b> - steps one at a time, numbered above, Back and Next under each.
+  <b>lightbox</b> - thumbnails whose picture opens large over the page.</li>
+  <li><b>modal</b> - a <code>&lt;dialog&gt;</code> and its button, opened by the invoker
+  commands, a script where the browser has none, or a <code>:target</code> link without
+  scripting. <b>drawer</b> - the same along the side of the window.</li>
+  <li><b>dropdown</b> - a menu under a button, a popover the browser opens, closes and places.
+  <b>tooltip</b> - a tip on hover and focus, by CSS; Escape hides it. <b>toast</b> - a notice in
+  an open <code>&lt;dialog&gt;</code> whose button closes it through a form of method dialog;
+  <code>timeout=</code> closes it by itself.</li>
+  <li><b>copy</b> - a text and a copy-to-clipboard button. <b>poll</b> - a vote once per visitor,
+  the results as bars. <b>breadcrumb</b> - the trail from home to the page, from the page's
+  path, the lines of a pair or <code>data=</code>.</li>
+</ul>
+
+<p>The colours are custom properties on <code>.pad-&lt;widget&gt;</code> -
+<code>--pad-tabs-accent</code>, <code>--pad-toast-success</code> ... - with
+<code>light-dark()</code> defaults, so a page of <code>color-scheme: light dark</code> gets the
+dark ones in dark mode. A name that is no widget, an option a widget does not know and a widget
+without what it needs - a name, a label, a tab - are errors under the strict check. The poll's
+examples are shown but not run: what it shows depends on the votes and the visitor's
+session.</p>
+

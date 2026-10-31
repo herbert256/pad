@@ -73,7 +73,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 141 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 140 tags" autocomplete="off">
         </form>
         <div class="frame-tools">
           <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -92,7 +92,7 @@
               <span class="brace">{</span>tab<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              One item of a tabs, accordion or carousel: its label and its content, handed to that owner.
+              One item of a tabs, accordion, carousel, wizard or lightbox widget: its label and its content, handed to that owner.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
@@ -120,13 +120,13 @@
               Description
             </h2>
             <p>
-              <code>{tab}</code> is the item of the three widgets that take a list of labelled parts: <a href="index%EF%B9%96tag%EA%A4%B7tabs.html"><code>{tabs}</code></a> (a tab and its panel), <a href="index%EF%B9%96tag%EA%A4%B7accordion.html"><code>{accordion}</code></a> (a <code>&lt;details&gt;</code> with the label as its summary) and <a href="index%EF%B9%96tag%EA%A4%B7carousel.html"><code>{carousel}</code></a> (a slide with the label as its caption). It prints nothing where it stands: its content is rendered, trimmed, and handed to the nearest of those owners above it, which builds its markup from the items once its own content has rendered.
+              <code>{tab}</code> is the item of the five <a href="index%EF%B9%96tag%EA%A4%B7widget.html">widgets</a> that take a list of labelled parts: <code>{tabs}</code> (a tab and its panel), <code>{accordion}</code> (a <code>&lt;details&gt;</code> with the label as its summary), <code>{carousel}</code> (a slide with the label as its caption), <code>{wizard}</code> (a step) and <code>{lightbox}</code> (a picture with its caption). It prints nothing where it stands: its content is rendered, trimmed, and handed to the nearest of those owners above it, which builds its markup from the items once its own content has rendered.
             </p>
             <p>
-              Because the hand-over goes to the nearest owner and not to the direct parent, a tab may stand inside an <code>{if}</code>, or inside a loop that makes a tab per row of data: <code>{tabs}{plans}{tab $name}...{/tab}{/plans}{/tabs}</code>.
+              Because the hand-over goes to the nearest owner and not to the direct parent, a tab may stand inside an <code>{if}</code>, or inside a loop that makes a tab per row of data: <code>{tabs}{plans}{tab $name}...{/tab}{/plans}{/tabs}</code>. The owners are widgets, reached by their bare names after every other kind of tag; <code>{tab}</code> is a built-in tag, so a row with a field named <code>tab</code> still makes tabs.
             </p>
             <p>
-              Under the strict check a <code>{tab}</code> outside any owner is an error, as is one that never closes, and a tab of a <code>{tabs}</code> or an <code>{accordion}</code> without a label. A carousel slide may go without a label; it then has no caption.
+              Under the strict check a <code>{tab}</code> outside any owner is an error, as is one that never closes, and a tab of a <code>{tabs}</code>, an <code>{accordion}</code> or a <code>{wizard}</code> without a label. A carousel slide and a lightbox picture may go without a label; they then have no caption.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -231,23 +231,17 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7tabs.html">{tabs}</a> <span class="about">Panels behind a row of tabs, switched by radio buttons and CSS - no JavaScript.</span>
-              </li>
-              <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7accordion.html">{accordion}</a> <span class="about">Items that open and close on a click, each a details element - no JavaScript.</span>
-              </li>
-              <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7carousel.html">{carousel}</a> <span class="about">Slides in a row that scrolls and snaps sideways, with arrow links and dots - no JavaScript needed.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">{widget}</a> <span class="about">An interactive part of the page that works without JavaScript - 13 of them, from tabs, a modal and a carousel to a toast, a dropdown and a wizard.</span>
               </li>
             </ul>
           </section>
           <nav class="prevnext" aria-label="Other tags">
-            <a href="index%EF%B9%96tag%EA%A4%B7switch.html">← {switch}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7tabs.html">{tabs} →</a>
+            <a href="index%EF%B9%96tag%EA%A4%B7switch.html">← {switch}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7textarea.html">{textarea} →</a>
           </nav>
         </article>
         <footer class="foot">
           <p>
-            141 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
+            140 built-in tags of PAD, each with its syntax, its own options and live examples - every result on this site rendered by the tag it documents.
           </p>
         </footer>
       </div>
