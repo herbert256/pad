@@ -2,13 +2,17 @@
 
   // slider - a range of numbers to drag along: a native <input type="range"> with its value
   // beside it in an <output>, the ends of the range under it. min= and max=, 0 and 100 unless
-  // given, step= 1; unit= follows the value as it is shown - '%', ' kg'. marks= a list of
-  // values the track shows a tick at. Without a value the slider stands in the middle, as a
-  // range does, and that is what it posts. The script keeps the output - and the value a
-  // screen reader says, aria-valuetext - in step as it moves.
+  // given - a max of min= + 100 when min= is 100 or more - step= 1; unit= follows the value as
+  // it is shown - '%', ' kg'. marks= a list of values the track shows a tick at. Without a
+  // value the slider stands in the middle, as a range does, and that is what it posts. The
+  // script keeps the output - and the value a screen reader says, aria-valuetext - in step as
+  // it moves.
+
+  // The default max follows a min= past it: held to the min=, the default 100 refused
+  // {slider 'v', min=200/} for a max the template never wrote.
 
   $padInputMin  = padInputNumber ( 'min',  0 );
-  $padInputMax  = padInputNumber ( 'max',  100, $padInputMin );
+  $padInputMax  = padInputNumber ( 'max',  $padInputMin < 100 ? 100 : $padInputMin + 100, $padInputMin );
   $padInputStep = padInputNumber ( 'step', 1, 0 );
   $padInputUnit = (string) padInputTake ( 'unit', '' );
   $padInputMark = padInputList ( 'marks' );
