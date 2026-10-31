@@ -110,18 +110,19 @@
     $nodes [0] ['x'] = 0;
     $nodes [0] ['y'] = 0;
 
+    $extent = padDiagramMindExtents ( $nodes );
+
     foreach ( [ [ $right, 1 ], [ $left, -1 ] ] as list ( $side, $sign ) ) {
 
       $total = 0;
       foreach ( $side as $i => $kid )
-        $total += padDiagramMindExtent ( $nodes, $kid ) + ( $i ? 18 : 0 );
+        $total += $extent [$kid] + ( $i ? 18 : 0 );
 
       $y = -$total / 2;
 
       foreach ( $side as $kid ) {
-        $extent = padDiagramMindExtent ( $nodes, $kid );
-        padDiagramMindPlace ( $nodes, $kid, $nodes [0] ['x'] + $sign * ( $nodes [0] ['w'] / 2 + 56 + $nodes [$kid] ['w'] / 2 ), $y + $extent / 2, $sign );
-        $y += $extent + 18;
+        padDiagramMindPlace ( $nodes, $extent, $kid, $nodes [0] ['x'] + $sign * ( $nodes [0] ['w'] / 2 + 56 + $nodes [$kid] ['w'] / 2 ), $y + $extent [$kid] / 2, $sign );
+        $y += $extent [$kid] + 18;
       }
 
     }
@@ -228,20 +229,31 @@
 
   }
 
-  // How high a node's part of its side is: its own height, or its children's stacked.
+  // How high each node's part of its side is: its own height, or its children's stacked -
+  // by node, worked out once from the leaves up, as the tree's spans are: a node comes after
+  // its parent in the list. Worked out again for every subtree at every level above it, a
+  // chain of 2000 nested lines took half a second.
 
-  function padDiagramMindExtent ( $nodes, $k ) {
+  function padDiagramMindExtents ( $nodes ) {
 
-    $kids = 0;
+    $extent = [];
 
-    foreach ( $nodes [$k] ['kids'] as $i => $kid )
-      $kids += padDiagramMindExtent ( $nodes, $kid ) + ( $i ? 8 : 0 );
+    foreach ( array_reverse ( array_keys ( $nodes ) ) as $k ) {
 
-    return max ( $nodes [$k] ['h'], $kids );
+      $kids = 0;
+
+      foreach ( $nodes [$k] ['kids'] as $i => $kid )
+        $kids += $extent [$kid] + ( $i ? 8 : 0 );
+
+      $extent [$k] = max ( $nodes [$k] ['h'], $kids );
+
+    }
+
+    return $extent;
 
   }
 
-  function padDiagramMindPlace ( &$nodes, $k, $x, $y, $sign ) {
+  function padDiagramMindPlace ( &$nodes, $extent, $k, $x, $y, $sign ) {
 
     $nodes [$k] ['x']    = $x;
     $nodes [$k] ['y']    = $y;
@@ -249,14 +261,13 @@
 
     $total = 0;
     foreach ( $nodes [$k] ['kids'] as $i => $kid )
-      $total += padDiagramMindExtent ( $nodes, $kid ) + ( $i ? 8 : 0 );
+      $total += $extent [$kid] + ( $i ? 8 : 0 );
 
     $at = $y - $total / 2;
 
     foreach ( $nodes [$k] ['kids'] as $kid ) {
-      $extent = padDiagramMindExtent ( $nodes, $kid );
-      padDiagramMindPlace ( $nodes, $kid, $x + $sign * ( $nodes [$k] ['w'] / 2 + 36 + $nodes [$kid] ['w'] / 2 ), $at + $extent / 2, $sign );
-      $at += $extent + 8;
+      padDiagramMindPlace ( $nodes, $extent, $kid, $x + $sign * ( $nodes [$k] ['w'] / 2 + 36 + $nodes [$kid] ['w'] / 2 ), $at + $extent [$kid] / 2, $sign );
+      $at += $extent [$kid] + 8;
     }
 
   }
