@@ -2285,6 +2285,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
+| `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
 
 **Every widget:** its markup is built on the server; a script, where it has one, is written once
 per page with the CSP nonce and only makes it smoother. The colours are custom properties on
@@ -2477,6 +2478,38 @@ a vote from PHP, `padPollCounts ( $name )` reads them. The colours are `--pad-po
 `-on`, `-text`, `-muted`, `-line`, `-track` and `-surface` on `.pad-poll`, `light-dark()`
 defaults, written once per page. A name that is no file name is an error; fewer than two
 answers is one under the strict check.
+
+---
+
+### toast
+A notice the visitor dismisses - a `<dialog>` shown from the start, not modal, with its title,
+its text and a close button that submits a form of method dialog, so the browser closes it
+without a script (`widgets/_lib/toast.php`).
+
+```html
+{toast 'Saved', tone='success'}Your changes are kept.{/toast}
+{toast 'Payment failed', tone='error', place='top'/}
+{toast 'Copied', place='bottom', timeout=4/}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The title; a pair's content is the text under it, rendered first. One of the two is needed |
+| `tone` | `info` (the default), `success`, `warning` or `error` - the colour of its edge |
+| `place` | `inline` (the default, in the flow of the page), `top` or `bottom` - fixed in that corner of the window |
+| `timeout` | Seconds, 1 to 600: the toast closes by itself after them |
+
+**Behavior:** the text is a status region, an alert for a warning or an error, so a toast a
+fragment or a live region brings is read out; a toast without a title is named by its tone.
+Only `timeout=` needs the script, written once per page with the CSP nonce, which holds the
+time while the pointer or the focus is on the toast and closes a focused toast with Escape; a
+toast a fragment brings later is timed as well. Two toasts in one corner lie over each other,
+so a page puts one there. Printed, no toast shows. The colours are `--pad-toast-text`,
+`-muted`, `-line`, `-surface`, `-info`, `-success`, `-warning` and `-error` on `.pad-toast`,
+`light-dark()` defaults. A toast without title and text, an unknown tone or place and a
+timeout that is no whole number of seconds are errors under the strict check.
 
 ---
 
@@ -3681,6 +3714,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `carousel` | Widget | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `copy` | Widget | A text with a copy-to-clipboard button, selectable by hand without scripting |
 | `poll` | Widget | A vote once per visitor, results as bars - a live region, a plain form without scripting |
+| `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` closed by a form of method dialog, no JavaScript |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
