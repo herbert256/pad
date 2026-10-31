@@ -704,6 +704,7 @@ show them.
 {tooltip 'Billed every month'}Starter{/tooltip}  VAT {tooltip 'Value added tax'/}   # a tip on hover and focus
 {wizard}{tab 'Address'}...{/tab}{tab 'Payment'}...{/tab}{/wizard}   # steps one at a time, Back and Next
 {lightbox label='Harbour'}{tab 'Dawn'}<img ...>{/tab}...{/lightbox}   # thumbnails, a picture large on :target
+{drawer 'filters', title='Filters', side='left'}...{/drawer}   # a side panel - a <dialog>, with and without JS
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```

@@ -2282,6 +2282,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
+| `drawer` | A panel that slides in from a side of the window, with the button that opens it | the name, `title`, `button`, `side` |
 | `dropdown` | A button and the menu it opens - the popover attribute, anchored under it | the button's text, `align` |
 | `lightbox` | Every `{tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
@@ -2653,6 +2654,38 @@ wide at least - `--pad-lightbox-ratio` and `--pad-lightbox-size` change that. Pr
 shows. The colours are `--pad-lightbox-accent`, `-shade`, `-backdrop`, `-button` and `-caption`
 on `.pad-lightbox`, `light-dark()` defaults. A lightbox without pictures or with text between
 them is an error under the strict check.
+
+---
+
+### drawer
+A panel that slides in from a side of the window - a modal `<dialog>` along an edge and the
+button that opens it, opened the way `{modal}` opens its dialog (`widgets/_lib/drawer.php`).
+
+```html
+{drawer 'filters', title='Filters', button='Show filters', side='left'}
+  {form 'filter'}...{/form}
+{/drawer}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name - letters, digits, `_` and `-`; the panel's id is `pad-drawer-<name>` |
+| `title` | The heading of the panel, which names it; the button's text when not given |
+| `button` | The text of the button that opens it, default `Open` |
+| `side` | `right` (the default) or `left` - the whole height of the window - or `bottom`, a sheet across its width |
+
+**Behavior:** the button opens the panel by the HTML invoker commands where the browser has
+them, by a small script, once per page with the CSP nonce, where it has not, and with scripting
+off a link to the panel's id shows it as an overlay (`:target`) with a close link back to the
+opener. Opened, the page behind is inert, the focus moves into the panel and back afterwards,
+and Escape, the close button or a click on the backdrop closes it; an address ending in
+`#pad-drawer-<name>` opens it on arrival. The panel slides in unless reduced motion is asked
+for. The button, its link and the panel stand in a `<div class="pad-drawer">` of
+`display: contents`, which carries the colours: `--pad-drawer-accent`, `-on`, `-text`, `-muted`,
+`-line`, `-surface` and `-backdrop`, `light-dark()` defaults. A drawer without a valid name and
+an unknown `side` are errors under the strict check.
 
 ---
 
@@ -3862,6 +3895,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
 | `wizard` | Widget | Steps one at a time - every `{tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
 | `lightbox` | Widget | A gallery of thumbnails whose pictures open large over the page by `:target` - no JavaScript |
+| `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{modal}`'s, a `:target` overlay without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
