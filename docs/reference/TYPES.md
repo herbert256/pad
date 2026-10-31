@@ -60,7 +60,8 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 20. **action** - Sequence action
 21. **chart** - Chart type, a file of `PAD/charts/types/`
 22. **game** - Game, a file of `PAD/games/types/`
-23. **function** - PAD function (fallback)
+23. **diagram** - Diagram kind, a file of `PAD/diagrams/types/`
+24. **function** - PAD function (fallback)
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -470,6 +471,28 @@ games, and a game is added by adding its files. Bare, a game comes after every o
 
 ---
 
+## Diagram Types
+
+### diagram
+
+A diagram of the kind the tag names, drawn from the lines between its tags - the diagram
+subsystem in `PAD/diagrams/` lays it out, as the `{diagram}` tag lays out the kind its
+`type=` names.
+
+```
+{diagram:flowchart direction='LR'}A[Order] --> B{Paid?}{/diagram:flowchart}
+{diagram:sequence}Shop ->> Bank: Charge{/diagram:sequence}
+{flowchart}A --> B{/flowchart}
+```
+
+**Resolution:** a file `PAD/diagrams/types/<name>.php` (`padDiagramType()` in
+`PAD/diagrams/_lib/diagram.php`): the files there are the kinds, and a kind is added by adding
+its file. Bare, a diagram kind comes after every other kind of tag, the chart kinds and the
+games too - so `{sequence}` is the sequence tag, and the sequence diagram is
+`{diagram:sequence}` or `{diagram type='sequence'}`.
+
+---
+
 ## Sequence Types
 
 These types integrate with the PAD sequence subsystem.
@@ -599,6 +622,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `action` | PQ | Sequence actions |
 | `chart` | PAD/charts/types/ | Chart kinds |
 | `game` | PAD/games/types/ | Games |
+| `diagram` | PAD/diagrams/types/ | Diagram kinds |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -622,6 +646,7 @@ types/
 ├── constant.php    → PHP constant
 ├── content.php     → Content store
 ├── data.php        → Data store
+├── diagram.php     → Diagram kind
 ├── field.php       → Field value
 ├── game.php        → Game
 ├── flag.php        → Sequence membership flags
