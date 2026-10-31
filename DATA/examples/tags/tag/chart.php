@@ -1,6 +1,8 @@
 <?php
 
-  $tagAbout   = 'Draws a chart as inline SVG on the server - 46 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.';
+  // The kinds are the files of pad/charts/types/, as the engine reads them (padChartTypes).
+
+  $tagAbout   = 'Draws a chart as inline SVG on the server - ' . count ( padChartTypes () ) . ' kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.';
   $tagGroup   = 'graphics';
   $tagForm    = 'both';
 
@@ -8,13 +10,16 @@
 {chart 'bar', data='name', label='field', value='field, field', stacked, title='text', width=600, height=300/}
 {chart 'line', sequence='fibonacci', rows=12/}
 {chart 'pie', data='name', label='field', value='field'/}
+{chart:pie data='name', label='field', value='field'/}
 {chart 'scatter', data='name', x='field', y='field', size='field', color='field', trend/}
 {chart 'gauge', value=72, from=0, to=100, bands='60, 85', target=80, unit='%'/}
 {chart 'bar', label='field', value='field', type='csv'} ... {/chart}
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind of chart: <code>bar</code> (or <code>column</code>), <code>hbar</code>, <code>line</code>, <code>sparkline</code>, <code>pie</code>, <code>donut</code>, <code>scatter</code>, <code>bubble</code>, <code>heatmap</code>, <code>sankey</code>, <code>network</code>, <code>treemap</code>, <code>sunburst</code>, <code>gauge</code>, <code>radar</code>, <code>waterfall</code>, <code>histogram</code>, <code>boxplot</code>, <code>calendar</code>, <code>gantt</code>, <code>area</code>, <code>stream</code>, <code>multiples</code>, <code>candlestick</code>, <code>dual</code>, <code>spiral</code>, <code>rose</code>, <code>radialbar</code>, <code>funnel</code>, <code>pyramid</code>, <code>waffle</code>, <code>marimekko</code>, <code>parliament</code>, <code>venn</code>, <code>density</code>, <code>violin</code>, <code>bullet</code>, <code>rings</code>, <code>parallel</code>, <code>proportional</code>, <code>chord</code>, <code>arc</code>, <code>pack</code> or <code>orgchart</code>.' ];
+    'kind' => 'The kind of chart, a file of <code>pad/charts/types/</code>: '
+                . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padChartTypes () ) )
+                . '. The chart type names it as well - <code>{chart:pie data=\'budget\'/}</code>, or bare, <code>{pie data=\'budget\'/}</code>, when nothing else has the name.' ];
 
   $tagOptions = [
     'data'     => 'The rows: a <code>{data}</code> store, a sequence store, the page\'s array or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',

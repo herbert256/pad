@@ -6,7 +6,7 @@
   // date 2026-09-06 became 01:00 of that day - a moment, no longer a day. A date with its
   // offset is still put in the application's timezone.
 
-  include_once PAD . 'tags/_lib/chart.php';
+  include_once PAD . 'charts/_lib/chart.php';
 
   $read = [];
 

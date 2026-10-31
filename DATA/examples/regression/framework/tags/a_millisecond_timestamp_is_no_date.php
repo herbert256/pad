@@ -4,7 +4,7 @@
   // date: written back as 57742-03-07 it was read as 2002, and a calendar of one such row
   // beside 2026 showed ten empty years and left the real day out.
 
-  include_once PAD . 'tags/_lib/chart.php';
+  include_once PAD . 'charts/_lib/chart.php';
 
   $read = [];
 
