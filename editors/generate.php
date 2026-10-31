@@ -18,7 +18,10 @@
   //
   // Every list is the directory it comes from, sorted: pad/tags, pad/functions, pad/properties,
   // pad/types (the type prefixes), pad/sequence/types (one directory per type), and for the
-  // options pad/options, the start-phase names of inits/const.php and pad/handling/types.
+  // options pad/options, the start-phase names of inits/const.php and pad/handling/types. The
+  // kinds a subsystem reaches bare - {pie/}, {tabs}, {slider/} - are the files of the types/
+  // of every subsystem padSubsystems (lib/subsystem.php) lets be written bare, a name taken
+  // once, by the first of the list, and never when a tag of pad/tags has it.
   // Sublime inserts a property with its @, ready for the tag name. No list says which tags are
   // single: a single tag is written {tag/}, so the close-tag help of every kit reads that from
   // the template itself.
@@ -57,6 +60,22 @@
   }
 
 
+  // The bare kinds: [ name => what a miss of its type: prefix calls a kind ] - 'chart type',
+  // 'widget' ... - for the detail of the completion.
+
+  include "$pad/lib/subsystem.php";
+
+  $kinds = [];
+  $tags  = array_flip ( generateNames ( "$pad/tags" ) );
+
+  foreach ( padSubsystems as [ $kindDir, $kindBare, $kindLabel ] )
+    if ( $kindBare and is_dir ( "$pad/$kindDir/types" ) )
+      foreach ( generateNames ( "$pad/$kindDir/types" ) as $kindName )
+        if ( ! isset ( $tags [$kindName] ) )
+          $kinds [$kindName] ??= $kindLabel;
+
+  uksort ( $kinds, 'strcasecmp' );
+
   $options = array_unique ( array_merge (
     generateNames ( "$pad/options" ),
     generateStartOptions ( "$pad/inits/const.php" ),
@@ -79,6 +98,9 @@
     [ generateNames ( "$pad/sequence/types", TRUE ),       'Class',      'sequence type', [ 'type',     's', 'Sequence' ], 'sequence'      ],
   ];
 
+  foreach ( $kinds as $kindName => $kindLabel )
+    $groups [] = [ [ $kindName ], 'Keyword', $kindLabel, [ 'keyword', 'k', 'Kind' ], $kindLabel ];
+
   $code    = [];
   $sublime = [];
 
@@ -100,7 +122,8 @@
   ];
 
   // The Tree-sitter highlights name the built-ins: a tag name is a keyword when pad/tags has
-  // it (or it is one of the clauses the level engine reads, else / elseif / when) and an
+  // it, a subsystem reaches it bare (a chart kind, a widget ...) or it is one of the clauses
+  // the level engine reads, else / elseif / when, and an
   // application's tag otherwise; a pipe function is built in or the application's; a bare
   // word among a tag's arguments is an option or a word operator. Each pair of patterns is
   // exclusive - any-of and not-any-of over one list - so no editor's rule for overlapping
@@ -137,7 +160,7 @@
 
   }
 
-  $tsTags = array_unique ( array_merge ( generateNames ( "$pad/tags" ), [ 'else', 'elseif', 'when' ] ) );
+  $tsTags = array_unique ( array_merge ( generateNames ( "$pad/tags" ), array_keys ( $kinds ), [ 'else', 'elseif', 'when' ] ) );
   sort ( $tsTags, SORT_STRING | SORT_FLAG_CASE );
 
   $tsGenerated =

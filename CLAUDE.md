@@ -502,9 +502,11 @@ Renders when the value differs from the previous row of the loop; the first row 
 The fields refill from the post when their form came back and show the message
 `padValidate` found - in the page's PHP:
 `if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] );`
-Rules: required, email, url, numeric, integer, min:n, max:n, in:a,b, regex:/x/, same:field,
-accepted, date. A list passes `required` and `in:` (every item) only, and only on a field
-named for one (`tags[]`, in the rules too); on a field of one value it is refused - "must be a
+Rules - a file each of `pad/rules/types/`: required, email, url, numeric, integer, min:n, max:n,
+between:a,b, digits[:n], in:a,b, regex:/x/, same:field, accepted, date, time, alpha, alphanum,
+starts_with:x, ends_with:x, lowercase, uppercase, color, uuid, ip[:v4|v6], slug, json, iban. A
+list passes `required` and `in:` (every item) only, and only on a field named for one
+(`tags[]`, in the rules too); on a field of one value it is refused - "must be a
 single value".
 
 The rules can also stand on the fields, checked before any PHP runs and in the browser too -
@@ -693,6 +695,14 @@ Resolve naming conflicts with explicit prefixes:
 | `sequence:` | Sequence type | `{sequence:fibonacci}` as a tag, `sequence:fibonacci(8)` in an expression - the 8th term |
 | `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart 'pie', data='budget'/}` - a kind is a file of `pad/charts/types/` |
 | `game:` | Game | `{game:memory pairs=6/}`, the same game as `{game 'memory', pairs=6/}` - a game is a file of `pad/games/types/` |
+| `toy:` | Toy | `{toy:life/}`, as `{toy 'life'/}` - a toy is a file of `pad/toys/types/` |
+| `diagram:` | Diagram kind | `{diagram:state}...{/diagram:state}`, the same as `{diagram type='state'}` - a kind is a file of `pad/diagrams/types/` |
+| `widget:` | Widget | `{widget:modal 'terms'}...{/widget:modal}`, as `{widget 'modal', 'terms'}` or bare `{modal 'terms'}` - a widget is a file of `pad/widgets/types/` |
+| `barcode:` | Barcode symbology | `{barcode:ean13 '400638133393'/}`, as `{barcode '...', type='ean13'/}` - a symbology is a file of `pad/codes/types/` |
+| `icon:` | Icon | `{icon:star size=20/}`, as `{icon 'star', size=20/}` - an icon is a file of `pad/icons/types/`; never bare |
+| `embed:` | Embed provider | `{embed:youtube 'id'/}`, as `{embed 'https://youtu.be/id'/}` - a provider is a file of `pad/embeds/types/` |
+| `fake:` | Fake kind | `{fake:email/}`, as `{fake 'email'/}` - a kind is a file of `pad/fakes/types/`; never bare |
+| `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{slider 'volume'/}` - a kind is a file of `pad/inputs/types/` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
@@ -753,6 +763,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [CORS](docs/FEATURES.md#cross-origin-requests-cors) | `$padCors` |
 | [Login, gates, feature flags](docs/FEATURES.md#logging-in-gates-and-feature-flags) | `padLogin`, `padAuthRequire`, `{auth}`, `{guest}`, `{can}`, `padGate`, `{feature}` |
 | [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag/}`, `padAsset ()` |
+| [Fake data](docs/FEATURES.md#migrations-and-seeders) | `{fake 'email'/}`, `{fake 'name, email', rows=5, toData='people'/}`, `padFake ()`, `padFakeRows ()` - a kind per file of `pad/fakes/types/` |
 | [Migrations and seeders](docs/FEATURES.md#migrations-and-seeders) | `_migrations/`, `_seeds/`, `pad migrate`, `padFactory`, `padFake*` |
 | [Queues and the scheduler](docs/FEATURES.md#queues-and-the-scheduler) | `padQueue ()`, `_jobs/`, `pad work`, `_schedule.php` |
 | [Offline applications](docs/FEATURES.md#offline-applications-in-the-browser) | `pad pack notes`, `_offline.json`, `padWasm ()` |
@@ -763,6 +774,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Page links](docs/FEATURES.md#page-links-pager-tag) | `page=`, `rows=`, `{pager 'products'}` |
 | [Recursive trees](docs/FEATURES.md#recursive-trees) | `{tree}`, `{branch}`, `{recurse}` |
 | [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser) | `rules='required\|email'` on a field, `client`, `{validator}` |
+| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{slider 'v'/}`, `{input:datepicker 'd'/}`, `{stars}`, `{taginput}`, `{signature}` ... - native fields made more of, a kind per file of `pad/inputs/types/` |
 | [Layouts](docs/FEATURES.md#layouts-extends--block--parent) | `{extends}`, `{block 'title'}`, `{parent}` |
 | [Components](docs/FEATURES.md#components-slots--parms) | `{slot}`, `{parms}` in a `_tags/x.pad` |
 | [Tags defined in the template](docs/FEATURES.md#tags-defined-in-the-template-define--macro) | `{define}`, `{macro}` |
@@ -778,10 +790,16 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
 | [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/charts/types/`; `{sparkline/}` |
 | [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/games/types/` |
+| [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/toys/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/widgets/types/` |
+| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/diagrams/types/` |
+| [Maps](docs/FEATURES.md#maps) | `{map 'eu', data=, key=, value=/}` - a view per file of `pad/maps/types/` |
+| [Embeds](docs/FEATURES.md#embeds) | `{embed 'url'/}`, `{youtube 'id'/}`, `{openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/embeds/types/`; `padEmbedSources ()` |
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
-| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode}` |
-| [Showcase tags](docs/FEATURES.md#showcase-tags) | `{avatar}`, `{progress}`, `{rating}`, `{icon}`, `{tabs}`, `{modal}`, `{datatable}`, `{toc}`, `{diagram}`, `{map}`, `{pdf}` ... |
+| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}` - a symbology per file of `pad/codes/types/` |
+| [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/icons/types/` (an SVG each) |
+| [Showcase tags](docs/FEATURES.md#showcase-tags) | `{avatar}`, `{progress}`, `{rating}`, `{icon}`, `{datatable}`, `{toc}`, `{diagram}`, `{map}`, `{pdf}` ... |
 | [Settings](docs/FEATURES.md#configuration-settings) | every `$pad*` setting - defaults and comments in `pad/config/config.php` |
 | [Designer preview](docs/FEATURES.md#designer-preview-with-sample-data) | `?page&padSample`, `_samples/`, `pad sample` |
 | [Expression errors](docs/FEATURES.md#expression-errors) | what the strict check says about a malformed expression |
@@ -1137,6 +1155,8 @@ the `claude` line of `./ci.sh`.
 | `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | `edit` | Standard | A browser editor for every application, behind a login, this machine only by default - file tree with new, copy, rename, delete, upload and trash; Monaco with PAD colouring, completion, hover, go-to-definition and PAD's own checks, PHP completion; preview, history, search, git, a terminal, an Xdebug step debugger; the framework's own pad/ in the tree too |
 | `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/games/types/` |
+| `toys` | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy that runs it beside its template, read from `pad/toys/types/` |
+| `inputs` | Standard | Every rich form field of `pad/inputs/` to try - a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |

@@ -617,6 +617,29 @@ and `{carousel}`, is a built-in tag.
 
 ---
 
+## Input Types
+
+### input
+
+A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a
+signature ... - the inputs subsystem in `PAD/inputs/` writes it, a field of its `{form}` as
+`{input}` is: a native field a form posts without any script, made more of by its script.
+
+```
+{input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
+{input:datepicker 'arrival', label='Arrival', min='2026-01-01'/}
+{stars 'score', label='Score'/}
+```
+
+**Resolution:** a PHP file `PAD/inputs/types/<name>.php`, its script and style in
+`PAD/inputs/assets/`, the field written by `PAD/inputs/input.php`: the files of `types/` are
+the kinds, and a kind is added by adding its file. Its items are read raw, as `{input}`'s are -
+`label=`, `rules=`, `min=` are the field's, never an option of the engine. Bare, an input kind
+comes last of the subsystems, so a store, a field, an array of the name - a page's `$slider` -
+or a kind of another subsystem wins; write `input:slider` there.
+
+---
+
 ## Sequence Types
 
 These types integrate with the PAD sequence subsystem.
@@ -753,6 +776,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `icon` | PAD/icons/types/ | Icons |
 | `toy` | PAD/toys/types/ | Toys |
 | `widget` | PAD/widgets/types/ | Widgets |
+| `input` | PAD/inputs/types/ | Rich form fields |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -777,18 +801,21 @@ types/
 ├── constant.php    → PHP constant
 ├── content.php     → Content store
 ├── data.php        → Data store
+├── define.php      → Tag defined in the template ({define})
 ├── diagram.php     → Diagram kind
 ├── embed.php       → Embed provider
 ├── fake.php        → Fake value kind
 ├── field.php       → Field value
-├── game.php        → Game
 ├── flag.php        → Sequence membership flags
 ├── function.php    → PAD function
+├── game.php        → Game
 ├── icon.php        → Icon
 ├── include.php     → Include file
+├── input.php       → Rich form field
 ├── keep.php        → Sequence keep
 ├── level.php       → Array field of an enclosing row
 ├── local.php       → Local file
+├── macro.php       → Macro of the template ({macro})
 ├── make.php        → Sequence make
 ├── pad.php         → PAD tag
 ├── parm.php        → Tag parameter
@@ -799,6 +826,7 @@ types/
 ├── script.php      → Shell script
 ├── select.php      → Select table query
 ├── sequence.php    → Sequence type
+├── toy.php         → Toy
 ├── widget.php      → Widget
 └── _go/
     ├── local.php   → Local file processing

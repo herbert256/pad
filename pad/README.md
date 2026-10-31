@@ -11,12 +11,13 @@ pad/
 ├── cache/         # Caching system
 ├── call/          # PHP file inclusion wrappers
 ├── callback/      # Callback execution
-├── config/        # Configuration
-├── charts/       # Chart subsystem (a kind per file of charts/types/)
+├── charts/        # Chart subsystem (a kind per file of charts/types/)
 ├── codes/         # Codes subsystem (a barcode symbology per file of codes/types/)
+├── config/        # Configuration
 ├── constructs/    # @name@ construct handlers
 ├── data/          # Data format handlers (CSV, JSON, XML, YAML)
 ├── database/      # SQL schema definitions
+├── diagrams/      # Diagram subsystem (a kind per file of diagrams/types/)
 ├── embeds/        # Embed subsystem (a provider per file of embeds/types/)
 ├── error/         # Error handling
 ├── eval/          # Expression parser
@@ -69,6 +70,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | constructs/ | `@name@` construct handlers (page, content, start, end, tidy) |
 | data/ | Data format handlers (CSV, JSON, XML, YAML) |
 | database/ | SQL schema definitions for PAD internal database |
+| diagrams/ | The diagram subsystem - `{diagram}`, `{mindmap}`, `{gitgraph}` and the `diagram:` type; a kind is a file of `diagrams/types/` laying out the lines between the tags as inline SVG |
 | embeds/ | The embed subsystem - `{embed}`, the `embed:` type and the addresses of `{video}`; a provider is a file of `embeds/types/` - the addresses it knows and the frame it writes - the click-to-load facade and `{video}`'s own markup in `embeds/_lib/` |
 | error/ | Boot-time and runtime error handling |
 | eval/ | Expression parser and evaluator |
