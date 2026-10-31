@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{avatar 'name'}
-{avatar $name, size=48, shape='square', label='text'}
+{avatar 'name'/}
+{avatar $name, size=48, shape='square', label='text'/}
 PAD;
 
   $tagParms   = [

@@ -22,7 +22,7 @@ CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces
 
 {highlight 'pad'}
   {orders sort='date', first=10}
-    <li class="{even@orders ? 'even' : 'odd'}">
+    <li class="{even@orders ? 'even' : 'odd'/}">
       {$number}: {$total | money}
     </li>
   @else@
@@ -47,7 +47,7 @@ CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces
 
 <h2>A file of this application</h2>
 
-{highlight file='qr.php'}
+{highlight file='qr.php'/}
 
 <p><code>{ignore}{highlight file='qr.php'}{/ignore}</code> - the language follows the extension.</p>
 

@@ -4,6 +4,6 @@
 
   $padProtectValues = FALSE;
 
-  $v = '{echo 6 * 7}';
+  $v = '{echo 6 * 7/}';
 
 ?>

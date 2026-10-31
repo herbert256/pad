@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{assert condition}
-{assert condition, 'message'}
+{assert condition/}
+{assert condition, 'message'/}
 PAD;
 
   $tagParms   = [

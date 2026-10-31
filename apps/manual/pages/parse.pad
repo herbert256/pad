@@ -1,26 +1,26 @@
 {block}
 
 <p>
-PAD parses on the fly (on demand) it searches for the first <b>{close}</b>, then it takes the first <b>{open}</b> before it, and analyses it to see if it is a PAD tag or a PAD variable.
+PAD parses on the fly (on demand) it searches for the first <b>{close/}</b>, then it takes the first <b>{open/}</b> before it, and analyses it to see if it is a PAD tag or a PAD variable.
 </p>
 
 <p>
 In below example, the {source}{$myVar}{/source} part is parsed first and executed.
 </p>
 
-{example 'miscellaneous/parse/1', skipResult, skipPhp, skipHeader}
+{example 'miscellaneous/parse/1', skipResult, skipPhp, skipHeader/}
 
 <p>
-Lets assume {source}{$myVar}{/source} has the value ABC, then the result will be below, and now the {tag 'pad'} tag will be processed.
+Lets assume {source}{$myVar}{/source} has the value ABC, then the result will be below, and now the {tag 'pad'/} tag will be processed.
 </p>
 
-{example 'miscellaneous/parse/2', skipResult, skipPhp, skipHeader}
+{example 'miscellaneous/parse/2', skipResult, skipPhp, skipHeader/}
 
 <p>
 Without quotes around {source}{$myVar}{/source} the result is the same while <code>$padProtectValues</code> is on, the default: a field written into a tag's parameters is spliced in as a quoted string (a plain number as the number), so its value stays the text ABC - with it off, the value is read as the bare word below. Only a bare word written in the template itself, as below, is read as the PHP constant of that name when one is defined, and as the text when not - a quoted value is always the text
 </p>
 
-{example 'miscellaneous/parse/3', skipResult, skipPhp, skipHeader}
+{example 'miscellaneous/parse/3', skipResult, skipPhp, skipHeader/}
 
 
 {/block}

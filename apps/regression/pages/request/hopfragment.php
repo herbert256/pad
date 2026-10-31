@@ -4,6 +4,6 @@
   // runs it. An action page - the tag ends the request through padRedirect's exit - so the
   // walker leaves it out; request/redirect_fragment fetches it deliberately.
 
-  echo padCode ( "{redirect 'https://example.com/x?a=1#top', \$from = 'pad'}" );
+  echo padCode ( "{redirect 'https://example.com/x?a=1#top', \$from = 'pad'/}" );
 
 ?>

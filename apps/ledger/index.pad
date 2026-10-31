@@ -16,13 +16,13 @@
 
     <section class="card">
       <h2>Six months</h2>
-      {chart 'bar', data='history', label='month', value='income, spending', title='Income and spending, six months'}
+      {chart 'bar', data='history', label='month', value='income, spending', title='Income and spending, six months'/}
     </section>
 
     <section class="card">
       <h2>Where it went</h2>
       {if $totals.spent gt 0}
-        {chart 'donut', data='spending', label='category', value='spent', title='Spending by category'}
+        {chart 'donut', data='spending', label='category', value='spent', title='Spending by category'/}
       {else}
         <p class="dim">Nothing spent this month.</p>
       {/if}
@@ -34,7 +34,7 @@
         {budgets}
         <li class="{$state}">
           <div class="line"><span class="dot" style="background: {$color}"></span><b>{$name}</b><span>{$spent | money} of {$monthly | money}</span></div>
-          {progress $share, max=100, label=$name, color=$tone}
+          {progress $share, max=100, label=$name, color=$tone/}
         </li>
         @else@
         <li class="dim">No budgets yet.</li>

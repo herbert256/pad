@@ -4,6 +4,6 @@
   // action page - the tag ends the request through padRedirect's exit - so the walker
   // leaves it out; request/redirect_absolute fetches it deliberately.
 
-  echo padCode ( "{redirect 'https://example.com/landing', \$from = 'pad'}" );
+  echo padCode ( "{redirect 'https://example.com/landing', \$from = 'pad'/}" );
 
 ?>

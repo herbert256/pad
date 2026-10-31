@@ -1,7 +1,7 @@
-{meta title='Remote data with a cache'}
+{meta title='Remote data with a cache'/}
 
 <p>Data can come from another server: a URL as the data of a tag, a <code>.curl</code> file
-in <code>_data/</code>, or the {tag 'curl'} tag for the raw answer. Each of them takes a
+in <code>_data/</code>, or the {tag 'curl'/} tag for the raw answer. Each of them takes a
 <code>ttl</code> - the seconds to keep the answer - and within that time the page is served
 from the copy instead of asking the source again. A dashboard on an external API then costs
 one call per ttl, not one per visitor.</p>
@@ -18,13 +18,13 @@ reads the rates from a page of this manual standing in for an API:</p>
 
 <p>Its name is a tag, like any data file:</p>
 
-{example 'fragments/remote_1'}
+{example 'fragments/remote_1'/}
 
 <p>The same with the URL in the template - the ttl is an option of the tag the data is
-for, <code>{open}pad data='https://...', ttl=600{close}</code> - or the answer as it came,
-with {tag 'curl'}:</p>
+for, <code>{open/}pad data='https://...', ttl=600{close/}</code> - or the answer as it came,
+with {tag 'curl'/}:</p>
 
-{example 'fragments/remote_2'}
+{example 'fragments/remote_2'/}
 
 <p>When the source fails after the ttl - it is down, or answers with an error - the last good
 copy is served and the failure is written to the error log, where an

@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{calendar}
-{calendar '2026-10', data='name', date='field', title='field', link='field', query='month', sunday}
+{calendar/}
+{calendar '2026-10', data='name', date='field', title='field', link='field', query='month', sunday/}
 {calendar '2026-10', data='name'} ... {days} ... {events} ... {/events} ... {/days} ... {/calendar}
 PAD;
 

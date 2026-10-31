@@ -1,4 +1,4 @@
-{meta title='Pipes - Transform Output with Functions'}
+{meta title='Pipes - Transform Output with Functions'/}
 
 <p>Pipes allow you to pass output through functions to transform it. Use the pipe symbol <code>|</code> followed by a function name to process data.</p>
 
@@ -6,34 +6,34 @@
 
 <h3>1. Variable Pipes</h3>
 
-<p>Apply functions to a variable with <code>{open}$variable | function{close}</code> - the field tag runs the sanitize chain on the result - or with <code>{open}echo $variable | function{close}</code>, which prints it raw, as the examples on this page do:</p>
+<p>Apply functions to a variable with <code>{open/}$variable | function{close/}</code> - the field tag runs the sanitize chain on the result - or with <code>{open/}echo $variable | function/{close/}</code>, which prints it raw, as the examples on this page do:</p>
 
-{example 'fragments/pipes_1'}
+{example 'fragments/pipes_1'/}
 
 <h3>2. Tag Pipes</h3>
 
 <p>Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:</p>
 
-{example 'fragments/pipes_2'}
+{example 'fragments/pipes_2'/}
 
 <h2>Pipe Timing: Opening vs Closing Tag</h2>
 
 <p>The placement of the pipe determines <strong>when</strong> the function is applied:</p>
 
 <ul>
-  <li><strong>Opening tag</strong> <code>{open}tag | function{close}</code> - transforms the content template, once, before any occurrence is rendered. What the function is handed is the source between the tags, not the tag's data.</li>
-  <li><strong>Closing tag</strong> <code>{open}/tag | function{close}</code> - transforms the output, after every occurrence has been rendered and joined.</li>
+  <li><strong>Opening tag</strong> <code>{open/}tag | function/{close/}</code> - transforms the content template, once, before any occurrence is rendered. What the function is handed is the source between the tags, not the tag's data.</li>
+  <li><strong>Closing tag</strong> <code>{open/}/tag | function{close/}</code> - transforms the output, after every occurrence has been rendered and joined.</li>
 </ul>
 
 <p>An opening pipe is therefore not a way to reorder or filter what a tag iterates: a field written inside the content would be transformed along with everything else, and then not resolve. Reshaping the data is what the <a href="?pages/data_handling">data handling</a> options are for.</p>
 
-{example 'fragments/pipes_4'}
+{example 'fragments/pipes_4'/}
 
 <h2>Chaining Pipes</h2>
 
 <p>Chain multiple pipe functions together by separating them with <code>|</code>. Functions are applied left to right:</p>
 
-{example 'fragments/pipes_3'}
+{example 'fragments/pipes_3'/}
 
 <h2>Presentation helpers</h2>
 
@@ -42,7 +42,7 @@
 context it lands in - <code>html</code>, <code>attr</code>, <code>js</code>, <code>css</code> or
 <code>url</code>:</p>
 
-{example 'fragments/pipes_5'}
+{example 'fragments/pipes_5'/}
 
 <h2>Common Pipe Functions</h2>
 
@@ -55,52 +55,52 @@ context it lands in - <code>html</code>, <code>attr</code>, <code>js</code>, <co
   <tr>
     <td><code>upper</code></td>
     <td>Convert to uppercase</td>
-    <td><code>{open}echo $text | upper{close}</code></td>
+    <td><code>{open/}echo $text | upper/{close/}</code></td>
   </tr>
   <tr>
     <td><code>lower</code></td>
     <td>Convert to lowercase</td>
-    <td><code>{open}echo $text | lower{close}</code></td>
+    <td><code>{open/}echo $text | lower/{close/}</code></td>
   </tr>
   <tr>
     <td><code>ucwords</code></td>
     <td>Capitalize each word</td>
-    <td><code>{open}echo $text | ucwords{close}</code></td>
+    <td><code>{open/}echo $text | ucwords/{close/}</code></td>
   </tr>
   <tr>
     <td><code>trim</code></td>
     <td>Remove whitespace</td>
-    <td><code>{open}echo $text | trim{close}</code></td>
+    <td><code>{open/}echo $text | trim/{close/}</code></td>
   </tr>
   <tr>
     <td><code>html</code></td>
     <td>HTML encode</td>
-    <td><code>{open}echo $text | html{close}</code></td>
+    <td><code>{open/}echo $text | html/{close/}</code></td>
   </tr>
   <tr>
     <td><code>replace(a,b)</code></td>
     <td>Replace text</td>
-    <td><code>{open}echo $text | replace('old','new'){close}</code></td>
+    <td><code>{open/}echo $text | replace('old','new')/{close/}</code></td>
   </tr>
   <tr>
     <td><code>+ n</code></td>
     <td>Add number</td>
-    <td><code>{open}echo $count | + 1{close}</code></td>
+    <td><code>{open/}echo $count | + 1/{close/}</code></td>
   </tr>
   <tr>
     <td><code>date(fmt)</code></td>
     <td>Format date</td>
-    <td><code>{open}echo $timestamp | date('Y-m-d'){close}</code></td>
+    <td><code>{open/}echo $timestamp | date('Y-m-d')/{close/}</code></td>
   </tr>
 </table>
 
 <h2>Important Rules</h2>
 
 <ul>
-  <li><strong>A literal needs {tag 'echo'}</strong> - <code>{open}echo 'text' | upper{close}</code>; a field pipes as it stands, <code>{open}$var | upper{close}</code>, as well as through <code>{open}echo $var | upper{close}</code> - which prints the value raw, without the sanitize chain the field tag runs</li>
-  <li><strong>Arithmetic needs spaces</strong> - <code>{open}echo $x | + 1{close}</code> NOT <code>{open}echo $x | +1{close}</code></li>
-  <li><strong>Quote string parameters</strong> - <code>{open}echo $x | replace('a','b'){close}</code></li>
-  <li><strong>Functions apply left to right</strong> - <code>{open}echo $x | trim | upper{close}</code> trims first, then uppercases</li>
+  <li><strong>A literal needs {tag 'echo'/}</strong> - <code>{open/}echo 'text' | upper/{close/}</code>; a field pipes as it stands, <code>{open/}$var | upper{close/}</code>, as well as through <code>{open/}echo $var | upper/{close/}</code> - which prints the value raw, without the sanitize chain the field tag runs</li>
+  <li><strong>Arithmetic needs spaces</strong> - <code>{open/}echo $x | + 1/{close/}</code> NOT <code>{open/}echo $x | +1/{close/}</code></li>
+  <li><strong>Quote string parameters</strong> - <code>{open/}echo $x | replace('a','b')/{close/}</code></li>
+  <li><strong>Functions apply left to right</strong> - <code>{open/}echo $x | trim | upper/{close/}</code> trims first, then uppercases</li>
 </ul>
 
 <h2>When to Use Opening vs Closing Tag Pipes</h2>
@@ -114,29 +114,29 @@ context it lands in - <code>html</code>, <code>attr</code>, <code>js</code>, <co
   <tr>
     <td>Transform the content template before it repeats</td>
     <td>Opening tag</td>
-    <td><code>{open}items | trim{close}...{open}/items{close}</code></td>
+    <td><code>{open/}items | trim{close/}...{open/}/items{close/}</code></td>
   </tr>
   <tr>
     <td>Reshape the data itself</td>
     <td>Option, not a pipe</td>
-    <td><code>{open}items sort{close}...{open}/items{close}</code></td>
+    <td><code>{open/}items sort{close/}...{open/}/items{close/}</code></td>
   </tr>
   <tr>
     <td>Transform final output after rendering</td>
     <td>Closing tag</td>
-    <td><code>{open}tag{close}...{open}/tag | upper{close}</code></td>
+    <td><code>{open/}tag{close/}...{open/}/tag | upper{close/}</code></td>
   </tr>
   <tr>
     <td>Format variable values</td>
     <td>Variable pipe</td>
-    <td><code>{open}echo $price | number_format(@, 2){close}</code></td>
+    <td><code>{open/}echo $price | number_format(@, 2)/{close/}</code></td>
   </tr>
 </table>
 
 <h2>See Also</h2>
 
 <ul>
-  <li>{tag 'echo'} - Evaluate and output expressions</li>
-  <li>{tag 'functions'} - List of all pipe functions</li>
-  <li>{tag 'options'} - Tag options reference</li>
+  <li>{tag 'echo'/} - Evaluate and output expressions</li>
+  <li>{tag 'functions'/} - List of all pipe functions</li>
+  <li>{tag 'options'/} - Tag options reference</li>
 </ul>

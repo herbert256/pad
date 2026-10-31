@@ -1,4 +1,4 @@
-{meta title='Hashing and encryption'}
+{meta title='Hashing and encryption'/}
 
 <p>Three jobs every application with users meets: keeping passwords so that nobody - the
 database's reader included - can read them back; handing a value to the browser that it
@@ -23,7 +23,7 @@ expires. PHP has the building blocks - <code>password_hash</code>, sodium,
 random salt each time, so two users with the same password get different hashes;
 <code>padHashCheck</code> tells whether a password typed at login matches the stored hash.</p>
 
-{example 'fragments/hashing_and_encryption_1'}
+{example 'fragments/hashing_and_encryption_1'/}
 
 <ul>
   <li>After a successful login, <code>padHashNeedsRehash</code> says whether the stored hash
@@ -40,7 +40,7 @@ random salt each time, so two users with the same password get different hashes;
 so it can travel through the browser in a cookie, a hidden field or a link, and come back
 unread and unchanged. Anyone can carry the payload; only the application can open it.</p>
 
-{example 'fragments/hashing_and_encryption_2'}
+{example 'fragments/hashing_and_encryption_2'/}
 
 <ul>
   <li>The value is JSON-encoded and sealed with sodium's <code>secretbox</code> and a random
@@ -58,7 +58,7 @@ work without a login, for the one who got it, and stop working after a while.
 page and every value; <code>padSignatureValid ()</code>, in the page the link leads to, says
 whether the request came by such a link.</p>
 
-{example 'fragments/hashing_and_encryption_3'}
+{example 'fragments/hashing_and_encryption_3'/}
 
 <p>The page the link leads to checks it before anything else:</p>
 
@@ -66,7 +66,7 @@ whether the request came by such a link.</p>
 if ( ! padSignatureValid () )
   padRedirect ( 'link_expired' );
 
-$invoice = db ( "RECORD * FROM invoices WHERE id = {open}0{close}", [ $id ] );</pre>
+$invoice = db ( "RECORD * FROM invoices WHERE id = {open/}0{close/}", [ $id ] );</pre>
 
 <ul>
   <li>The expiry is a number of seconds, a <code>DateInterval</code> or a moment such as

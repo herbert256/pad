@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{trans 'key'}
-{trans 'key', count=$n}
-{trans 'key', name=$value, other=$value}
+{trans 'key'/}
+{trans 'key', count=$n/}
+{trans 'key', name=$value, other=$value/}
 PAD;
 
   $tagParms   = [

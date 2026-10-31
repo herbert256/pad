@@ -10,7 +10,7 @@
 {demo} {sequence sum, '31..40'          } {$sum} {/sequence}               {/demo}
 {demo} {sequence '31..40', action='sum' } {$sum} {/sequence}               {/demo}
 
-{demo} {sequence '31..40', push='mySequence'}{/demo}
+{demo} {sequence '31..40', push='mySequence'/}{/demo}
 
 {demo} {mySequence sum             } {$sequence} {/mySequence}        {/demo}
 {demo} {mySequence action='sum'    } {$sequence} {/mySequence}        {/demo}
@@ -34,7 +34,7 @@
 {demo} {sequence '31..40', make, add=3, even, sum       } {$sequence} {/sequence}{/demo}
 {demo} {sequence '31..40', make='add|3', even, sum      } {$sequence} {/sequence}{/demo}
 
-{demo} {sequence '31..40', push='mySequence'           } {/demo}
+{demo} {sequence '31..40', push='mySequence'           /} {/demo}
 
 {demo} {add mySequence, 3, even, sum                  } {$sequence} {/add}{/demo}
 {demo} {add 3, mySequence, even, sum                  } {$sequence} {/add}{/demo}

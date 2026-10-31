@@ -23,8 +23,8 @@ place of this one without a round trip to the browser.</p>
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>tag</th><th>what it does</th></tr>
   <tr><td><code>{exit}</code></td><td>ends the request where it stands - nothing is shipped, not even the output so far</td></tr>
-  <tr><td><code>{error 'message'}</code></td><td>reports an error through the configured error action, which normally ends the request with a 500</td></tr>
-  <tr><td><code>{exception 'message'}</code></td><td>throws a real PHP exception, for testing the nets that catch one</td></tr>
+  <tr><td><code>{error 'message'/}</code></td><td>reports an error through the configured error action, which normally ends the request with a 500</td></tr>
+  <tr><td><code>{exception 'message'/}</code></td><td>throws a real PHP exception, for testing the nets that catch one</td></tr>
   <tr><td><code>{dump}</code></td><td>stops the request on a dump of the engine state, the heavy debugging tool</td></tr>
 </table>
 

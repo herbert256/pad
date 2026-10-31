@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{datatable data='name', columns='a, b, c', labels='A, B, C', totals='c'}
-{datatable data='name', format="c:currency('EUR')", sortable, striped, caption='Caption'}
-{datatable data='name', rows=10, query='prefix_'}
+{datatable data='name', columns='a, b, c', labels='A, B, C', totals='c'/}
+{datatable data='name', format="c:currency('EUR')", sortable, striped, caption='Caption'/}
+{datatable data='name', rows=10, query='prefix_'/}
 {datatable totals='amount'} month,amount ... {/datatable}
 PAD;
 

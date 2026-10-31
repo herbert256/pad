@@ -2,7 +2,7 @@
 with the token of the visitor's session: 64 hex characters, made on first use - the session
 starts here when the visitor has none. A form carries it back, and <code>padCsrfValid()</code>
 in the page's PHP tells whether the request brought the session's token, in that field or an
-<code>X-CSRF-Token</code> header. <code>{csrf token}</code> is the bare token, for a script
+<code>X-CSRF-Token</code> header. <code>{csrf token/}</code> is the bare token, for a script
 that sends the header itself.</p>
 
 <p>The token is one per session, not one per form: two tabs and the back button keep working.

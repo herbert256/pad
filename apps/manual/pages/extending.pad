@@ -1,17 +1,17 @@
-{meta title='Extending PAD'}
+{meta title='Extending PAD'/}
 
 <p>An application teaches PAD new words by putting files in the right directory - no
 registration, no configuration. The file's name is the name in the template.</p>
 
 <h2>A tag of your own: _tags/</h2>
 
-<p>A file <code>_tags/badge.php</code> makes <code>{open}badge{close}</code> a tag. The file
+<p>A file <code>_tags/badge.php</code> makes <code>{open/}badge{close/}</code> a tag. The file
 reads its parameters with <code>padTagParm ( name, default )</code> and returns what it
 renders - a value, whose braces stay text; <code>$padContent</code> is template source, so
 nothing built from a parameter goes there. The <code>app:</code> prefix names it
 explicitly when another meaning of the name is in the way:</p>
 
-{example 'fragments/extending_1'}
+{example 'fragments/extending_1'/}
 
 {ignore}
 <pre><code>&lt;?php                                   // _tags/badge.php
@@ -29,21 +29,21 @@ explicitly when another meaning of the name is in the way:</p>
 the piped text as <code>$value</code>, its parameters as <code>$parm</code>, and returns the
 answer - and it chains with everything else:</p>
 
-{example 'fragments/extending_2'}
+{example 'fragments/extending_2'/}
 
 <h2>A snippet: _include/</h2>
 
 <p>A file <code>_include/tip.pad</code> is template, dropped in wherever its name is written
 - bare, or with the <code>include:</code> prefix:</p>
 
-{example 'fragments/extending_3'}
+{example 'fragments/extending_3'/}
 
 <h2>Functions for every page: _lib/</h2>
 
 <p>Every <code>.php</code> file in <code>_lib/</code> is included on every request, so a
 page's PHP half calls what they define without an include of its own:</p>
 
-{example 'fragments/extending_4'}
+{example 'fragments/extending_4'/}
 
 <h2>The whole family</h2>
 

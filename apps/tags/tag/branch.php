@@ -5,7 +5,7 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{branch} ... {recurse} ... {/branch}
+{branch} ... {recurse/} ... {/branch}
 {branch} ... @else@ ... {/branch}
 PAD;
 

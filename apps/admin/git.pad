@@ -5,12 +5,12 @@
   <div class="grid2">
 
     <section class="card">
-      <h2>{icon 'link', size=18} Checkout</h2>
+      <h2>{icon 'link', size=18/} Checkout</h2>
       <table class="facts">{facts}<tr><th>{$label}</th><td><code>{$value}</code></td></tr>{/facts}</table>
     </section>
 
     <section class="card scroll">
-      <h2>{icon 'edit', size=18} Not committed ({$changeCount})</h2>
+      <h2>{icon 'edit', size=18/} Not committed ({$changeCount})</h2>
       {if $changeCount}
         <table class="list">
           <tbody>{changeRows}<tr><td class="nowrap"><span class="badge {$tone}">{$state}</span></td><td><code>{$file}</code></td></tr>{/changeRows}</tbody>
@@ -23,7 +23,7 @@
   </div>
 
   <section class="card scroll">
-    <h2>{icon 'clock', size=18} The last commits</h2>
+    <h2>{icon 'clock', size=18/} The last commits</h2>
     <table class="list">
       <thead><tr><th>Commit</th><th>When</th><th>Who</th><th>What</th></tr></thead>
       <tbody>

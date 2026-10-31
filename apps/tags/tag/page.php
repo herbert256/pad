@@ -5,14 +5,14 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{page 'dir/name'}
-{page 'products/42'}
-{page 'name', include=false}
-{page 'name', sandbox}
-{page 'name', reset}
-{page 'name', clean}
-{page 'name', function='name'}
-{page 'name', app='other', ajax=false}
+{page 'dir/name'/}
+{page 'products/42'/}
+{page 'name', include=false/}
+{page 'name', sandbox/}
+{page 'name', reset/}
+{page 'name', clean/}
+{page 'name', function='name'/}
+{page 'name', app='other', ajax=false/}
 PAD;
 
   $tagParms   = [

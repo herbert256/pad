@@ -41,7 +41,7 @@
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">extends </font><font color="red"><font color="black">'</font>_layouts/report<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">block </font><font color="red"><font color="black">'</font>title<font color="black">'</font></font>}</b>Sales report<b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">block </font><font color="red"><font color="black">'</font>sidebar<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">parent</font><font color="red"></font>}</b> | &lt;a href="?pages/data_answers"&gt;Export&lt;/a&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt;Revenue this month: 12.500&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">extends </font><font color="red"><font color="black">'</font>_layouts/report<font color="black">'</font></font>/}</b><br><br><b>{<font color="blue">block </font><font color="red"><font color="black">'</font>title<font color="black">'</font></font>}</b>Sales report<b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">block </font><font color="red"><font color="black">'</font>sidebar<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">parent</font><font color="red"></font>/}</b> | &lt;a href="?pages/data_answers"&gt;Export&lt;/a&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt;Revenue this month: 12.500&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -80,7 +80,7 @@
 <h2>The three tags</h2>
 
 <ul>
-  <li><code>{extends '_layouts/report'}</code> - the page is framed by that layout instead of by its directories' wrappers. The layout is named from the application root, like a <code>{page}</code>; an underscore directory keeps it from being a page of its own. A layout may extend another layout.</li>
+  <li><code>{extends '_layouts/report'/}</code> - the page is framed by that layout instead of by its directories' wrappers. The layout is named from the application root, like a <code>{page}</code>; an underscore directory keeps it from being a page of its own. A layout may extend another layout.</li>
   <li><code>{block 'name'}...{/block}</code> in the layout is a region: its content renders unless the page overrides it. The same pair standing directly in the page is an override. The name is always quoted.</li>
   <li><code>{parent}</code> inside an override is the content it overrides - to add to a region instead of replacing it.</li>
 </ul>

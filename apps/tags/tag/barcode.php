@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{barcode 'number'}
-{barcode $code, type='code128', height=60, scale=2, title='text', plain, color='#000', background='#fff'}
+{barcode 'number'/}
+{barcode $code, type='code128', height=60, scale=2, title='text', plain, color='#000', background='#fff'/}
 PAD;
 
   $tagParms   = [

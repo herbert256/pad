@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{meta title='Title', name=value}
-{meta layout='layout', cache=600, access='admin', sitemap=false}
+{meta title='Title', name=value/}
+{meta layout='layout', cache=600, access='admin', sitemap=false/}
 PAD;
 
   $tagParms   = [];

@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{img 'photos/harbour.jpg', width=400, height=300, alt='text'}
-{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''}
+{img 'photos/harbour.jpg', width=400, height=300, alt='text'/}
+{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
 PAD;
 
   $tagParms   = [

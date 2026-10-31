@@ -1,6 +1,6 @@
 {ignore}
 <p><code>{attrs}</code> stands inside an HTML start tag and writes the attributes its items
-describe, separated by spaces: <code>&lt;button {attrs disabled=$busy, title=$help}&gt;</code>.
+describe, separated by spaces: <code>&lt;button {attrs disabled=$busy, title=$help/}&gt;</code>.
 Each value is escaped for the attribute, so a quote in a value cannot end it. The items are
 read raw - <code>content=</code>, <code>data=</code> or <code>print=</code> are attribute names
 here, not the options they are on other tags.</p>
@@ -11,7 +11,7 @@ here, not the options they are on other tags.</p>
 like - is written bare when its value is true and left out otherwise. Any other attribute is left
 out for FALSE and NULL, written bare for TRUE, and otherwise written with its value: the text
 <code>'false'</code> stays <code>aria-expanded="false"</code>, an empty text is an empty
-attribute, an array is joined with spaces. A name alone - <code>{attrs required}</code> - is a
+attribute, an array is joined with spaces. A name alone - <code>{attrs required/}</code> - is a
 bare attribute.</p>
 
 <h3>Attributes from an array</h3>

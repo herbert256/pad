@@ -12,7 +12,7 @@
   editRemoveTree ( $base );
 
   editWrite ( $base . 'names/plain.pad', "<p>{\$typo}</p>\n" );
-  editWrite ( $base . 'names/pipe.pad',  "<p>{echo 1 | uppr}</p>\n" );
+  editWrite ( $base . 'names/pipe.pad',  "<p>{echo 1 | uppr/}</p>\n" );
   editWrite ( $base . 'names/index.pad', "\xEF\xBB\xBF<p>{\$typo}</p>\n" );
 
   $at = function ( $page ) use ( $base ) {

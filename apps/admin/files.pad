@@ -28,13 +28,13 @@
     <nav class="card" aria-label="Files">
       <ul class="tree">
         {if $hasParent}
-          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$parentDir | url}">{icon 'arrow-up', size=14} ..</a></li>
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$parentDir | url}">{icon 'arrow-up', size=14/} ..</a></li>
         {/if}
         {dirRows}
-          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$path | url}">{icon 'folder', size=14} {$name}</a></li>
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$path | url}">{icon 'folder', size=14/} {$name}</a></li>
         {/dirRows}
         {fileRows}
-          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir | url}&amp;file={$path | url}" {if $current}class="current" aria-current="page"{/if}>{icon 'file', size=14} {$name}</a></li>
+          <li><a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir | url}&amp;file={$path | url}" {if $current}class="current" aria-current="page"{/if}>{icon 'file', size=14/} {$name}</a></li>
         {/fileRows}
       </ul>
     </nav>
@@ -42,7 +42,7 @@
     <div>
       {if $fileName ne ''}
         <section class="card">
-          <h2>{icon 'file', size=18} {$fileName}</h2>
+          <h2>{icon 'file', size=18/} {$fileName}</h2>
           <p class="dim">
             {$fileInfo}
             - <a href="{$padRoot}edit/?app={$app}">open in the editor</a>

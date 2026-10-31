@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{pager 'name'}
-{pager 'name', window=2, query='p'}
+{pager 'name'/}
+{pager 'name', window=2, query='p'/}
 {pager 'name'} ... {$kind} {$page} {$label} {$href} ... @else@ ... {/pager}
 PAD;
 

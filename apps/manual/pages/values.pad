@@ -1,4 +1,4 @@
-{meta title='Value helpers'}
+{meta title='Value helpers'/}
 
 <p>A page's PHP spends much of its time asking whether a value is there, picking a default
 when it is not, and guarding the parts that may fail. These helpers say each of those in one
@@ -26,7 +26,7 @@ few spaces filled. <code>padBlank</code> is the test a page means: nothing there
 text of nothing but whitespace (a non-breaking space too), an empty array and an empty
 Countable. A number and a boolean are always values.</p>
 
-{example 'fragments/values_1'}
+{example 'fragments/values_1'/}
 
 <h2>Defaults and callbacks</h2>
 
@@ -40,7 +40,7 @@ Countable. A number and a boolean are always values.</p>
   with the value itself, whatever the callback answers.</li>
 </ul>
 
-{example 'fragments/values_2'}
+{example 'fragments/values_2'/}
 
 <h2>Retry and rescue</h2>
 
@@ -55,7 +55,7 @@ Exception or an Error - the answer is the rescue value, a Closure given the exce
 With <code>$report</code> (on unless it is FALSE) the failure is written to PHP's error log,
 so a rescued fault is not lost.</p>
 
-{example 'fragments/values_3'}
+{example 'fragments/values_3'/}
 
 <h2>Once per request</h2>
 
@@ -65,7 +65,7 @@ the page call. A callback that throws gave no result, so the next call runs it a
 place is the file and line of the call: two padOnce calls on one line share their
 result.</p>
 
-{example 'fragments/values_4'}
+{example 'fragments/values_4'/}
 
 <h2>Mistakes</h2>
 

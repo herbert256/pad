@@ -172,7 +172,7 @@ tags. Wrapped in <b>{ignore}</b>, the code is safe whichever way it is written:<
 
 <h3>2. As a Pipe Function: <code>| ignore</code></h3>
 
-<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. A variable's value needs it no more: values are text, their braces are never parsed (with <code>$padProtectValues</code> on, the default). It matters for what a tag answers as template source - an application tag that builds its <code>$padContent</code>, such as a <code>{json 'products' | ignore}</code> - and with <code>$padProtectValues</code> off.</p>
+<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. A variable's value needs it no more: values are text, their braces are never parsed (with <code>$padProtectValues</code> on, the default). It matters for what a tag answers as template source - an application tag that builds its <code>$padContent</code>, such as a <code>{json 'products' | ignore/}</code> - and with <code>$padProtectValues</code> off.</p>
 
 <h4>Example 3: JSON Data in Attributes</h4>
 
@@ -215,7 +215,7 @@ tags. Wrapped in <b>{ignore}</b>, the code is safe whichever way it is written:<
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Sample data for JSON example<br>  </span><span style="color: #0000BB">$userData </span><span style="color: #007700">= [<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Developer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Designer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charlie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Manager'</span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #FF8000">// Encode to JSON with HTML escaping<br>  </span><span style="color: #0000BB">$usersJson </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userData</span><span style="color: #007700">), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;div id="ignore-example-4" data-users="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;<br>  const element = document.getElementById('ignore-example-4');<br>  const users = JSON.parse(element.dataset.users);<br><br>  const html = '&lt;ul&gt;' + users.map(user =&gt;<br>    '&lt;li&gt;&lt;strong&gt;' + user.name + '&lt;/strong&gt; - ' + user.role + '&lt;/li&gt;'<br>  ).join('') + '&lt;/ul&gt;';<br><br>  element.innerHTML = html;<br>&lt;/script&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;div id="ignore-example-4" data-users="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>/}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;<br>  const element = document.getElementById('ignore-example-4');<br>  const users = JSON.parse(element.dataset.users);<br><br>  const html = '&lt;ul&gt;' + users.map(user =&gt;<br>    '&lt;li&gt;&lt;strong&gt;' + user.name + '&lt;/strong&gt; - ' + user.role + '&lt;/li&gt;'<br>  ).join('') + '&lt;/ul&gt;';<br><br>  element.innerHTML = html;<br>&lt;/script&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -248,7 +248,7 @@ tags. Wrapped in <b>{ignore}</b>, the code is safe whichever way it is written:<
 
 
 
-<p>The JSON data was passed from PAD/PHP through a data attribute using <code>{echo $usersJson | ignore}</code>.</p>
+<p>The JSON data was passed from PAD/PHP through a data attribute using <code>{echo $usersJson | ignore/}</code>.</p>
 
 <h3>3. As an Option: <code>ignore</code></h3>
 
@@ -337,7 +337,7 @@ tags. Wrapped in <b>{ignore}</b>, the code is safe whichever way it is written:<
   <li><code>{variableName}</code> - Not treated as a variable reference</li>
   <li><code>{tagName}</code> - Not treated as a PAD tag</li>
   <li><code>{if condition}...{/if}</code> - Not treated as conditional</li>
-  <li><code>{echo $expr}</code> - Not treated as expression</li>
+  <li><code>{echo $expr/}</code> - Not treated as expression</li>
 </ul>
 
 <p>Everything within ignored content is treated as <strong>literal text</strong>.</p>
@@ -405,7 +405,7 @@ tags. Wrapped in <b>{ignore}</b>, the code is safe whichever way it is written:<
   </tr>
   <tr>
     <td><strong>Option</strong></td>
-    <td><code>{tag ignore}</code></td>
+    <td><code>{tag ignore/}</code></td>
     <td>Tag content should not be parsed</td>
   </tr>
 </table>

@@ -1,4 +1,4 @@
-{meta title='Number helpers'}
+{meta title='Number helpers'/}
 
 <p>Numbers written for people from a page's PHP: grouped with the locale's marks, shortened
 to 1.5K or 1.5 million, as a place, a percentage or a file size - and kept between bounds.
@@ -25,7 +25,7 @@ already counted in hundreds - 25 is 25% - and writes it the locale's way too. Ha
 rounded up, so 2.5 is 3. PHP's intl extension does the writing when it is there; without
 it the number is written the plain <code>number_format</code> way.</p>
 
-{example 'fragments/numbers_1'}
+{example 'fragments/numbers_1'/}
 
 <h2>Short and readable</h2>
 
@@ -37,7 +37,7 @@ chosen on the number as it will be written, so 999999 is 1M, not 1000K. Below 10
 number has no unit, and a size below 1024 is in B. These write English, with a point before
 the decimals.</p>
 
-{example 'fragments/numbers_2'}
+{example 'fragments/numbers_2'/}
 
 <h2>Places and bounds</h2>
 
@@ -46,16 +46,16 @@ and 13th take th, as do 111th to 113th. <code>padNumberClamp</code> keeps a numb
 minimum and a maximum: a page number from the address that has to stay within the pages
 there are.</p>
 
-{example 'fragments/numbers_3'}
+{example 'fragments/numbers_3'/}
 
 <h2>In a template</h2>
 
 <p>The <code>abbreviate</code> pipe is <code>padNumberAbbreviate</code> -
-<code>{open}$views | abbreviate{close}</code>, <code>{open}$views | abbreviate(1){close}</code> -
+<code>{open/}$views | abbreviate{close/}</code>, <code>{open/}$views | abbreviate(1){close/}</code> -
 and the <code>ordinal</code> pipe is <code>padNumberOrdinal</code>. A value that is not a
 number goes through them unchanged, as it does through <code>bytes</code>.</p>
 
-{example 'fragments/numbers_4'}
+{example 'fragments/numbers_4'/}
 
 <h2>Nothing and mistakes</h2>
 

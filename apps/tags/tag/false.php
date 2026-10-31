@@ -5,7 +5,7 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{false}
+{false/}
 {false} ... {/false}
 {false} ... @else@ ... {/false}
 PAD;

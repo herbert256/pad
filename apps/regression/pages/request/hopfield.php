@@ -10,8 +10,8 @@
   $t = 'Tom & Jerry';
 
   if ( padRequest ( 'form' ) == 'url' )
-    echo padCode ( "{redirect '?request/vars{?t}'}" );
+    echo padCode ( "{redirect '?request/vars{?t}'/}" );
   else
-    echo padCode ( "{redirect '?request/vars&q={\$q}&n={\$n}'}" );
+    echo padCode ( "{redirect '?request/vars&q={\$q}&n={\$n}'/}" );
 
 ?>

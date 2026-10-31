@@ -5,8 +5,8 @@ outputs what that pass produced. Inside, everything a page can do works: tags, f
 expressions, <code>{set}</code>.</p>
 
 <p>Its main use is as a pipe. A value is text in PAD: a field holding
-<code>{echo 1 + 1}</code> prints those characters, it does not run them. Piping the value into
-<code>code</code> - <code>{echo $snippet | code}</code> - is the explicit way to say that it
+<code>{echo 1 + 1/}</code> prints those characters, it does not run them. Piping the value into
+<code>code</code> - <code>{echo $snippet | code/}</code> - is the explicit way to say that it
 is a template, for a snippet kept in a database or a file.</p>
 
 <p>By default the pass shares the page's state: it sees the variables and the stores, and

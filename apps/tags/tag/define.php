@@ -6,10 +6,10 @@
 
   $tagSyntax  = <<<'PAD'
 {define 'name'} ... {#parm} ... @content@ ... {/define}
-{define 'name'} {parms title, tone='info'} ... {slot 'footer'}@content@{/slot} {/define}
-{name parm='value'}
+{define 'name'} {parms title, tone='info'/} ... {slot 'footer'}@content@{/slot} {/define}
+{name parm='value'/}
 {name parm='value'} content {slot 'footer'}fill{/slot} {/name}
-{define:name ...}
+{define:name .../}
 PAD;
 
   $tagParms   = [

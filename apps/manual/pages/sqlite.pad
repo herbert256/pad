@@ -1,4 +1,4 @@
-{meta title='SQLite - no database server'}
+{meta title='SQLite - no database server'/}
 
 <p>The application database is MySQL by default. One setting makes it SQLite: a single file,
 no server to install, which is all a small application or a test needs.</p>
@@ -20,13 +20,13 @@ from text kept with the application.</p>
 examples, which this manual runs on MySQL - with the settings above it runs unchanged on
 SQLite:</p>
 
-{example 'fragments/database_1'}
+{example 'fragments/database_1'/}
 
 <ul>
   <li>The <code>db()</code> verbs answer in the same shapes - <code>field</code>, <code>record</code>,
       <code>array</code>, <code>check</code>, <code>insert</code> with the new id,
       <code>update</code> and <code>delete</code> with the rows they touched.</li>
-  <li>The <code>{open}0{close}</code> placeholders escape the way SQLite needs: a quote is doubled,
+  <li>The <code>{open/}0{close/}</code> placeholders escape the way SQLite needs: a quote is doubled,
       so a value never ends its literal early.</li>
   <li>The database tags, named <code>_data/*.sql</code> queries and the Select subsystem work as
       they do on MySQL.</li>

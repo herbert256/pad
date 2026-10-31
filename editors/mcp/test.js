@@ -152,11 +152,11 @@ async function main() {
 
         let r = await call('pad_render', { app: 'shop', page: 'orders' });
         expect('pad_render renders a page with its data', !r.error && r.text.includes('Orders for ALICE') && r.text.includes('$42.00'), r);
-        r = await call('pad_render', { app: 'shop', template: '<b>{badge}</b> {echo 3 | money}' });
+        r = await call('pad_render', { app: 'shop', template: '<b>{badge/}</b> {echo 3 | money/}' });
         expect('pad_render renders a template with the application\'s tags and functions', !r.error && r.text.trim() === '<b>shop</b> $3.00', r);
         r = await call('pad_render', { app: 'shop', page: 'orders', template: '{$customer} {$total}' });
         expect('pad_render renders a template with a page\'s data', !r.error && r.text.trim() === 'Alice 42', r);
-        r = await call('pad_render', { app: 'shop', page: 'admin/new', template: '{badge}' });
+        r = await call('pad_render', { app: 'shop', page: 'admin/new', template: '{badge/}' });
         expect('a template in a subdirectory uses that directory\'s _tags', !r.error && r.text.trim() === '<b>admin</b>', r);
         r = await call('pad_render', { app: 'shop', template: '{$id}', query: 'id=7' });
         expect('pad_render passes request values', !r.error && r.text.trim() === '7', r);
@@ -182,7 +182,7 @@ async function main() {
         expect('pad_render with data and a template renders a routed page in a bracketed directory with the data', !r.error && r.text.trim() === '[Y1|the-slug]', r);
         r = await call('pad_render', { app: 'shop', page: 'blog/2026/hello', template: '[{$year}|{$slug}]', data: {} });
         expect('pad_render with data and a template keeps the values the route binds', !r.error && r.text.trim() === '[2026|hello]', r);
-        r = await call('pad_render', { app: 'shop', page: 'admin', template: '{badge} {$who}', data: { who: 'Ann' } });
+        r = await call('pad_render', { app: 'shop', page: 'admin', template: '{badge/} {$who}', data: { who: 'Ann' } });
         expect('pad_render with data and a template for a directory renders in that directory, as without data', !r.error && r.text.includes('<b>admin</b>') && r.text.includes('Ann'), r);
         r = await call('pad_check', { app: 'shop', page: 'products/42', data: {} });
         expect('pad_check with data passes a routed page whose field the route binds', !r.error && r.text.startsWith('ok'), r);
@@ -234,8 +234,8 @@ async function main() {
         expect('pad_compare runs a snippet on HEAD and the working tree', !r.error && /^old: HEAD [0-9a-f]{9}\nnew: working tree\n/.test(r.text) && r.text.includes('the same on both:\n\n=> 42'), r);
         r = await call('pad_compare', { app: 'shop', template: '{$who}', data: { who: 'Ann' } });
         expect('pad_compare renders a template with data on both', !r.error && r.text.includes('the same on both:\n\nAnn'), r);
-        r = await call('pad_compare', { app: 'shop', template: '{if 1 eq 1}x' });
-        expect('pad_compare reads an error on both sides alike, wherever each engine lives', !r.error && r.text.includes('the same on both') && r.text.includes('never closes'), r);
+        r = await call('pad_compare', { app: 'shop', template: '{echo $nowhere/}' });
+        expect('pad_compare reads an error on both sides alike, wherever each engine lives', !r.error && r.text.includes('the same on both') && r.text.includes('no field named'), r);
         r = await call('pad_compare', { app: 'shop', template: 'x', ref: 'no-such-ref-at-all' });
         expect('pad_compare names a ref git does not know', r.error && r.text.includes("git knows no commit 'no-such-ref-at-all'"), r);
         r = await call('pad_compare', { app: 'shop', template: 'x', ref: 'HEAD..HEAD~1' });

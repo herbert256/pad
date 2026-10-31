@@ -13,7 +13,7 @@
 {sequence random, minimal=1, maximal=100, rows=5, unique, randomly} ... {/sequence}
 {sequence '1..20', keep, prime, sum} ... {/sequence}
 {sequence '1..20', keep='prime', action='first|3'} ... {/sequence}
-{sequence prime, rows=10, push='primes', toData='primeList'}
+{sequence prime, rows=10, push='primes', toData='primeList'/}
 {sequence pull='primes', reverse} ... {/sequence}
 PAD;
 

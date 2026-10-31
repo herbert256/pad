@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{sudoku 'puzzle'}
-{sudoku 'puzzle', solve, title='Caption'}
+{sudoku 'puzzle'/}
+{sudoku 'puzzle', solve, title='Caption'/}
 PAD;
 
   $tagParms   = [

@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{validator}
+{validator/}
 PAD;
 
   $tagParms   = [];

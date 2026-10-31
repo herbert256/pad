@@ -5,7 +5,7 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{map 'world', data='name', key='field', value='field', scale='quantile', title='text', width=720, height=400}
+{map 'world', data='name', key='field', value='field', scale='quantile', title='text', width=720, height=400/}
 {map 'europe', key='field', value='field'} ... {/map}
 PAD;
 

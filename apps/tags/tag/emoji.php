@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{emoji 'rocket'}
-{emoji ':tada:', label='Party!'}
+{emoji 'rocket'/}
+{emoji ':tada:', label='Party!'/}
 PAD;
 
   $tagParms   = [

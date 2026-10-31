@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{classes 'fixed names', name=condition, other=condition}
-{classes $array}
+{classes 'fixed names', name=condition, other=condition/}
+{classes $array/}
 PAD;
 
   $tagParms   = [

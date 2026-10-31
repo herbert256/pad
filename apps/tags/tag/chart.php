@@ -5,11 +5,11 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{chart 'bar', data='name', label='field', value='field, field', stacked, title='text', width=600, height=300}
-{chart 'line', sequence='fibonacci', rows=12}
-{chart 'pie', data='name', label='field', value='field'}
-{chart 'scatter', data='name', x='field', y='field', size='field', color='field', trend}
-{chart 'gauge', value=72, from=0, to=100, bands='60, 85', target=80, unit='%'}
+{chart 'bar', data='name', label='field', value='field, field', stacked, title='text', width=600, height=300/}
+{chart 'line', sequence='fibonacci', rows=12/}
+{chart 'pie', data='name', label='field', value='field'/}
+{chart 'scatter', data='name', x='field', y='field', size='field', color='field', trend/}
+{chart 'gauge', value=72, from=0, to=100, bands='60, 85', target=80, unit='%'/}
 {chart 'bar', label='field', value='field', type='csv'} ... {/chart}
 PAD;
 

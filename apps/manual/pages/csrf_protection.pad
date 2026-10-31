@@ -1,4 +1,4 @@
-{meta title='CSRF protection'}
+{meta title='CSRF protection'/}
 
 <p>Another site can make a visitor's browser post to your application - a hidden form that
 submits itself - and the browser sends your session cookie along. A CSRF token tells those
@@ -14,14 +14,14 @@ back is answered <code>403</code> before any of the application runs. The forms 
 application already has are protected without a change to them. A form that posts to another
 site gets no token, and neither does a GET form, whose fields end up in the url.</p>
 
-<h2>The {open}csrf{close} tag</h2>
+<h2>The {open/}csrf{close/} tag</h2>
 
-<p>{tag 'csrf'} writes the field itself, for a form the page builds some other way, or for
+<p>{tag 'csrf'/} writes the field itself, for a form the page builds some other way, or for
 an application that leaves <code>$padCsrf</code> off and checks a post by hand with
-<code>padCsrfValid ()</code>. <code>{open}csrf token{close}</code> is the bare token, for a
+<code>padCsrfValid ()</code>. <code>{open/}csrf token/{close/}</code> is the bare token, for a
 script that sends it in an <code>X-CSRF-Token</code> header:</p>
 
-{example 'fragments/csrf_protection_1'}
+{example 'fragments/csrf_protection_1'/}
 
 <ul>
   <li>The token is one per session, so two open tabs and the back button keep working. The

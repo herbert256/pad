@@ -6,7 +6,7 @@
 
   $tagSyntax  = <<<'PAD'
 {bool 'name'} expression {/bool}
-{bool 'name', value}
+{bool 'name', value/}
 {name} ... @else@ ... {/name}
 PAD;
 

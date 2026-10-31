@@ -1,5 +1,5 @@
 {common:padFrame}
-  {slot 'head'}{asset 'padSelect.css', tag}{/slot}
+  {slot 'head'}{asset 'padSelect.css', tag/}{/slot}
 {/common:padFrame}
 {if $isExample}
 <div class="ps-example">
@@ -37,7 +37,7 @@
 
     <section class="ps-cell ps-cell-sql" aria-label="The SQL">
       <header class="ps-head"><span class="ps-num">4</span> The SQL PAD sent</header>
-      {statements}
+      {statements/}
     </section>
 
   </div>
@@ -49,4 +49,4 @@
 
 </div>
 {/if}
-{common:padFrameEnd}
+{common:padFrameEnd/}

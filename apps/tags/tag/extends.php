@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{extends 'layout'}
-{extends $layout}
+{extends 'layout'/}
+{extends $layout/}
 PAD;
 
   $tagParms   = [

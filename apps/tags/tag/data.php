@@ -7,7 +7,7 @@
   $tagSyntax  = <<<'PAD'
 {data 'name'} ... {/data}
 {data 'name', type='csv'} ... {/data}
-{data 'name', source}
+{data 'name', source/}
 {data} ... {/data 'name'}
 PAD;
 

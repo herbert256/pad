@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{tree 'rows'} ... {recurse} ... {/tree}
-{tree data='rows', children='items'} ... {branch} ... {recurse} ... {/branch} ... {/tree}
+{tree 'rows'} ... {recurse/} ... {/tree}
+{tree data='rows', children='items'} ... {branch} ... {recurse/} ... {/branch} ... {/tree}
 {tree 'rows'} ... @else@ ... {/tree}
 PAD;
 

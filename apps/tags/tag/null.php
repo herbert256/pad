@@ -5,7 +5,7 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{null}
+{null/}
 {null} ... {/null}
 {null null='name'} ... {/null}
 PAD;

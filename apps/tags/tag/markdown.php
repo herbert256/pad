@@ -5,7 +5,7 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{markdown $text}
+{markdown $text/}
 {markdown} ... {/markdown}
 {markdown html} ... {/markdown}
 {markdown ignore} ... {/markdown}

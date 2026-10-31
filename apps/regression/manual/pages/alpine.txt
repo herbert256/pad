@@ -26,7 +26,7 @@ stays text. Three ways keep the braces apart:</p>
 <p>A component asks the page that wrote it: <code>?page&amp;padFormat=json</code> answers what
 the page's PHP names in <code>$padExpose</code> (<a href="/pad/manual/?pages/data_answers">Data answers</a>). A post carries the
 session's token in an <code>X-CSRF-Token</code> header, read from
-<code>&lt;meta name="csrf-token" content="{csrf token}"&gt;</code>. A form's rules can live in
+<code>&lt;meta name="csrf-token" content="{csrf token/}"&gt;</code>. A form's rules can live in
 PHP for both sides - <code>padValidateClient ( $rules )</code> for the browser,
 <code>padValidate ( $rules )</code> for the post (<a href="/pad/manual/?pages/client_validation">Client validation</a>) - and
 <code>padSse()</code> streams events an <code>EventSource</code> in <code>x-init</code> turns into

@@ -5,7 +5,7 @@
 {demo} {sequence '31..40', make, add=3        } {$sequence} {/sequence}{/demo}
 {demo} {sequence '31..40', make='add|3'       } {$sequence} {/sequence}{/demo}
 
-{demo} {sequence '31..40', push='mySequence' } {/demo}
+{demo} {sequence '31..40', push='mySequence' /} {/demo}
 
 {demo} {add mySequence, 3                   } {$sequence} {/add}{/demo}
 {demo} {add 3, mySequence                   } {$sequence} {/add}{/demo}
@@ -37,7 +37,7 @@
 {demo} {sequence '31..40', add=3, even             } {$sequence} {/sequence}{/demo}
 {demo} {sequence '31..40', make, add=3, even       } {$sequence} {/sequence}{/demo}
 {demo} {sequence '31..40', make='add|3', even      } {$sequence} {/sequence}{/demo}
-{demo} {sequence '31..40', push='mySequence'      } {/demo}
+{demo} {sequence '31..40', push='mySequence'      /} {/demo}
 
 {demo} {add mySequence, 3, even                  } {$sequence} {/add}{/demo}
 {demo} {add 3, mySequence, even                  } {$sequence} {/add}{/demo}

@@ -73,8 +73,8 @@
 
     $source = str_replace ( '<pre>', '', $source );
     $source = str_replace ( '</pre>', '', $source );
-    $source = str_replace ( '{open}', '{', $source );
-    $source = str_replace ( '{close}', '}', $source );
+    $source = str_replace ( [ '{open}', '{open/}' ], '{', $source );
+    $source = str_replace ( [ '{close}', '{close/}' ], '}', $source );
     $source = str_replace ( '&lt;', '<', $source );
     $source = str_replace ( '&gt;', '>', $source );
 
@@ -122,6 +122,12 @@ go: $end = strpos($source, '}');
       padColorsTag ( $source, $start, $end, $between, $words, $search );
       goto go;
     }
+
+    // A single tag without parameters carries its slash on the name - {flush/}, {key@rows/}:
+    // the name is the word without it.
+
+    if ( count ( $words ) == 1 and str_ends_with ( $tag, '/' ) )
+      $tag = substr ( $tag, 0, -1 );
 
     $ns_pos = strpos($tag, ':');
     if ($ns_pos) {
@@ -297,6 +303,11 @@ go: $end = strpos($source, '}');
       $parms=substr($parms, 0, -1);
     } else
       $close1 = '';
+
+    if ( $parms === '' and strlen ( $search ) > 1 and substr ( $search, -1 ) == '/' ) {
+      $close1 = '/';
+      $search = substr ( $search, 0, -1 );
+    }
 
     if (substr($search, 0,1) == '/') {
       $close2='/';

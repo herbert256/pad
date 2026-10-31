@@ -1,19 +1,19 @@
 <div class="cols-2">
 
   <section>
-    <div class="panel-title">Accordion - accordion({open}^faq{close})</div>
+    <div class="panel-title">Accordion - accordion({open/}^faq{close/})</div>
     <div class="accordion" x-data="accordion({^faq})">
       {faq}
-      <div class="accordion-item" :class="isOpen({current@faq}) && 'is-open'">
-        <button class="accordion-head" @click="toggle({current@faq})" :aria-expanded="isOpen({current@faq})">{$q}<span aria-hidden="true">+</span></button>
-        <div class="accordion-body" x-show="isOpen({current@faq})" x-transition>{$a}</div>
+      <div class="accordion-item" :class="isOpen({current@faq/}) && 'is-open'">
+        <button class="accordion-head" @click="toggle({current@faq/})" :aria-expanded="isOpen({current@faq/})">{$q}<span aria-hidden="true">+</span></button>
+        <div class="accordion-body" x-show="isOpen({current@faq/})" x-transition>{$a}</div>
       </div>
       {/faq}
     </div>
   </section>
 
   <section>
-    <div class="panel-title">Tabs - tabs({open}^tabs{close})</div>
+    <div class="panel-title">Tabs - tabs({open/}^tabs{close/})</div>
     <div class="tabs" x-data="tabs({^tabs})">
       <div class="pills" role="tablist">
         <template x-for="tab in list" :key="tab.key">

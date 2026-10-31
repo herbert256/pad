@@ -9,9 +9,9 @@
     </div>
   {else}
     {form 'signup', client, error, hx-post='?examples/form', hx-target='#signup', class='stack'}
-      {input 'name', label='Name', rules='required|max:40', class='input'}
-      {input 'email', type='email', label='E-mail', rules='required|email', class='input'}
-      {input 'age', label='Age', rules='integer|min:18', class='input'}
+      {input 'name', label='Name', rules='required|max:40', class='input'/}
+      {input 'email', type='email', label='E-mail', rules='required|email', class='input'/}
+      {input 'age', label='Age', rules='integer|min:18', class='input'/}
       <button>Sign up</button>
     {/form}
   {/if}

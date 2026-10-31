@@ -15,7 +15,7 @@
 
 {queueApps}
   <section class="card scroll">
-    <h2>{icon 'list', size=18} <a href="?application&amp;app={$name}">{$name}</a></h2>
+    <h2>{icon 'list', size=18/} <a href="?application&amp;app={$name}">{$name}</a></h2>
 
     {if $queueCount}
       <table class="list">
@@ -27,7 +27,7 @@
               <td class="right">
                 <form method="post" class="inline">
                   <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="flush"><input type="hidden" name="queue" value="{$queue}">
-                  <button class="small danger" data-confirm="Remove every waiting job of {$queue}?">{icon 'trash', size=14} Flush</button>
+                  <button class="small danger" data-confirm="Remove every waiting job of {$queue}?">{icon 'trash', size=14/} Flush</button>
                 </form>
               </td>
             </tr>
@@ -41,16 +41,16 @@
     <div class="bar" style="margin-top:12px">
       <form method="post" class="inline">
         <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="work">
-        <button {if $hasJobs eq 0}disabled title="this application has no _jobs/"{/if}>{icon 'play', size=16} Work the due jobs once</button>
+        <button {if $hasJobs eq 0}disabled title="this application has no _jobs/"{/if}>{icon 'play', size=16/} Work the due jobs once</button>
       </form>
       {if $failedCount}
         <form method="post" class="inline">
           <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="retry"><input type="hidden" name="id" value="all">
-          <button>{icon 'refresh', size=16} Retry every failed job</button>
+          <button>{icon 'refresh', size=16/} Retry every failed job</button>
         </form>
         <form method="post" class="inline">
           <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="flush-failed">
-          <button class="danger" data-confirm="Remove every failed job of {$name}?">{icon 'trash', size=16} Remove the failed jobs</button>
+          <button class="danger" data-confirm="Remove every failed job of {$name}?">{icon 'trash', size=16/} Remove the failed jobs</button>
         </form>
       {/if}
     </div>
@@ -68,7 +68,7 @@
               <td>
                 <form method="post" class="inline">
                   <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="retry"><input type="hidden" name="id" value="{$id}">
-                  <button class="small">{icon 'refresh', size=14} Retry</button>
+                  <button class="small">{icon 'refresh', size=14/} Retry</button>
                 </form>
               </td>
             </tr>

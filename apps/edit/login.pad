@@ -17,13 +17,13 @@
     {/if}
 
     {form 'login'}
-      <p>{input 'name', label='Name', autocomplete='username', required, autofocus}</p>
+      <p>{input 'name', label='Name', autocomplete='username', required, autofocus/}</p>
       {if $loginSetup eq 1}
-        <p>{input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8}</p>
-        <p>{input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8}</p>
+        <p>{input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8/}</p>
+        <p>{input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8/}</p>
         <p><button type="submit">Make the user and log in</button></p>
       {else}
-        <p>{input 'password', type='password', label='Password', autocomplete='current-password', required}</p>
+        <p>{input 'password', type='password', label='Password', autocomplete='current-password', required/}</p>
         <p><button type="submit">Log in</button></p>
       {/if}
     {/form}

@@ -1,4 +1,4 @@
-{meta title='Directory guards'}
+{meta title='Directory guards'/}
 
 <p>A <code>_guard.php</code> in a directory decides, for every page below it, whether the
 request may see the page - before any <code>_inits.php</code> or page PHP runs. Access
@@ -7,7 +7,7 @@ protected, with no list of routes to keep in step.</p>
 
 <p>The guard of this manual's <code>guarded/</code> directory:</p>
 
-{source 'guarded/_guard.php'}
+{source 'guarded/_guard.php'/}
 
 <ul>
   <li>Returning <code>FALSE</code> - or anything that is not true: <code>NULL</code>,
@@ -17,11 +17,11 @@ protected, with no list of routes to keep in step.</p>
   <code>_lib</code> files, so a guard can call the application's functions and read the session
   and request variables - and <code>$padPage</code>, to decide per page.</li>
   <li>A guard can send the visitor elsewhere itself: <code>padRedirect ( 'login' )</code>.</li>
-  <li>A page a {tag 'page'} tag includes is guarded too: when its guard says no, it renders as
+  <li>A page a {tag 'page'/} tag includes is guarded too: when its guard says no, it renders as
   nothing, and the page that includes it carries on.</li>
   <li>A guarded page is never served from the page cache, nor stored in it.</li>
 </ul>
 
 <p>This request did not say <code>?pass=yes</code>, so the included page stays empty:</p>
 
-{example 'fragments/directory_guards_1'}
+{example 'fragments/directory_guards_1'/}

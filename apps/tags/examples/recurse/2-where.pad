@@ -1,4 +1,4 @@
-{meta title='Filtered at every depth', about='A where option on the tree is carried along by recurse - hidden rows are left out at every level.'}
+{meta title='Filtered at every depth', about='A where option on the tree is carried along by recurse - hidden rows are left out at every level.'/}
 {data 'recurseSite'}
 [
   { "page": "About", "hidden": 0, "children": [
@@ -10,6 +10,6 @@
 {/data}
 <ul>
 {tree 'recurseSite', where='$hidden eq 0'}
-  <li>{$page}{branch}<ul>{recurse}</ul>{/branch}</li>
+  <li>{$page}{branch}<ul>{recurse/}</ul>{/branch}</li>
 {/tree}
 </ul>

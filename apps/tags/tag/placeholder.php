@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{placeholder '600x300', text='text'}
-{placeholder ratio='16:9', width=640, fluid}
+{placeholder '600x300', text='text'/}
+{placeholder ratio='16:9', width=640, fluid/}
 PAD;
 
   $tagParms   = [

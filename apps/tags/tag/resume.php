@@ -5,10 +5,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{resume reverse}
-{resume add=10}
-{resume keep, prime}
-{resume first=3}
+{resume reverse/}
+{resume add=10/}
+{resume keep, prime/}
+{resume first=3/}
 PAD;
 
   $tagParms   = [];

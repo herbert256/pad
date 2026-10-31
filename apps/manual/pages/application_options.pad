@@ -1,8 +1,8 @@
-{meta title='Options of your own'}
+{meta title='Options of your own'/}
 
 <p>A file in the application's <code>_options/</code> directory makes its name an option
-of every tag - written bare, <code>{open}staff words{close}</code>, or with a value,
-<code>{open}staff wrap='em'{close}</code>. Where the file stands decides when it runs:</p>
+of every tag - written bare, <code>{open/}staff words{close/}</code>, or with a value,
+<code>{open/}staff wrap='em'{close/}</code>. Where the file stands decides when it runs:</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>file</th><th>runs</th><th><code>$padContent</code> is</th></tr>
@@ -25,7 +25,7 @@ fields filled in, so it can count, mark or tidy what the tag produced. Here
 ?&gt;</code></pre>
 {/ignore}
 
-{example 'fragments/options/options_1'}
+{example 'fragments/options/options_1'/}
 
 <p>With a value - <code>_options/end/wrap.php</code> puts the result in the element it is
 given:</p>
@@ -38,7 +38,7 @@ given:</p>
 ?&gt;</code></pre>
 {/ignore}
 
-{example 'fragments/options/options_2'}
+{example 'fragments/options/options_2'/}
 
 <p>An option may have both files: the first works on the template, the second on what it
 became. The end options run before the built-in <code>toContent</code>, <code>toData</code>

@@ -2,15 +2,15 @@
 
   {slot 'head'}
     <meta name="robots" content="noindex">
-    {asset 'admin.css', tag}
-    {asset 'admin.js', tag}
+    {asset 'admin.css', tag/}
+    {asset 'admin.js', tag/}
   {/slot}
 
   {slot 'foot'}
     {if $adminIn}
       <div class="frame-foot">
-        {icon 'user', size=16} {$adminWho} <span class="dim">on {$adminHost}</span>
-        <form method="post" action="?logout"><button>{icon 'log-out', size=16} Log out</button></form>
+        {icon 'user', size=16/} {$adminWho} <span class="dim">on {$adminHost}</span>
+        <form method="post" action="?logout"><button>{icon 'log-out', size=16/} Log out</button></form>
       </div>
     {/if}
   {/slot}
@@ -23,4 +23,4 @@
 
 @page@
 
-{common:padFrameEnd}
+{common:padFrameEnd/}

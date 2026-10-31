@@ -1,4 +1,4 @@
-{meta title='A nested menu', about='One body renders every level; branch leaves the inner list out for a leaf.'}
+{meta title='A nested menu', about='One body renders every level; branch leaves the inner list out for a leaf.'/}
 {data 'treeMenu'}
 [
   { "title": "Home" },
@@ -10,6 +10,6 @@
 {/data}
 <ul>
 {tree 'treeMenu'}
-  <li>{$title}{branch}<ul>{recurse}</ul>{/branch}</li>
+  <li>{$title}{branch}<ul>{recurse/}</ul>{/branch}</li>
 {/tree}
 </ul>

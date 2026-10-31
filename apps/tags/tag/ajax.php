@@ -5,10 +5,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{ajax 'name'}
-{ajax 'name', fragment='fragmentName'}
-{ajax 'name', app='other'}
-{ajax 'name', $colour = 'red'}
+{ajax 'name'/}
+{ajax 'name', fragment='fragmentName'/}
+{ajax 'name', app='other'/}
+{ajax 'name', $colour = 'red'/}
 PAD;
 
   $tagParms   = [

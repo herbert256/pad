@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{gravatar $email}
-{gravatar $email, size=64, default='identicon', alt='text'}
-{gravatar $email, fallback='avatar', alt='text'}
+{gravatar $email/}
+{gravatar $email, size=64, default='identicon', alt='text'/}
+{gravatar $email, fallback='avatar', alt='text'/}
 PAD;
 
   $tagParms   = [

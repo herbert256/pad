@@ -1,7 +1,7 @@
 rollup: [{staffSel fields="floor(salary / 2000) as band, sum(salary) as pay", group="band", rollup}{$pay} {/staffSel}]
 key rollup: [{staffKey fields="floor(salary / 2000) as band, sum(salary) as pay", group="band", rollup}{$pay} {/staffKey}]
 count: [{staffSel fields="count(*) as n"}{$n}{/staffSel}]
-field: [{staffKey type='field', fields="max(salary)"}]
+field: [{staffKey type='field', fields="max(salary)"/}]
 view: [{perBand}{$bonus} {/perBand}]
 view order: [{bandDesc}{$band}:{$n} {/bandDesc}]
 tag order: [{staffSel fields="floor(salary / 2000) as band, count(*) as n", group="band", order="n desc, band"}{$band}:{$n} {/staffSel}]

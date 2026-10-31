@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{chess 'fen'}
-{chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=320, title='Name'}
+{chess 'fen'/}
+{chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=320, title='Name'/}
 PAD;
 
   $tagParms   = [

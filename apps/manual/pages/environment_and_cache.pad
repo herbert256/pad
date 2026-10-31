@@ -1,4 +1,4 @@
-{meta title='Environment, cache and rate limits'}
+{meta title='Environment, cache and rate limits'/}
 
 <p>Some values differ per machine and must not stand in the code: the database password, an
 API key, a debug switch. <code>padEnv</code> reads them from the server's environment or from
@@ -20,7 +20,7 @@ the default is called. This manual has a <code>.env</code> of its own:</p>
 MANUAL_PAGE_SIZE=20
 MANUAL_DEBUG=false</code></pre>
 
-{example 'fragments/environment_and_cache_1'}
+{example 'fragments/environment_and_cache_1'/}
 
 <p>The engine loads its library before it reads any configuration, so the place a secret is
 needed first can ask for it - <code>_config/config.php</code>:</p>
@@ -43,7 +43,7 @@ lines"                            a quoted value may run over several lines</cod
 
 <ul>
   <li>A quoted value is always text: <code>"false"</code> is the word, not FALSE.</li>
-  <li><code>${open}OTHER{close}</code> is OTHER from the real environment, else as set
+  <li><code>${open/}OTHER{close/}</code> is OTHER from the real environment, else as set
   earlier in the same file, else empty; it works in bare values too.</li>
   <li>A key written twice: the later line wins, as in a shell.</li>
   <li>A line that is none of these is an error naming the file and the line number - never
@@ -65,7 +65,7 @@ for <code>$ttl</code> seconds and answers that. <code>padCachePut</code>,
 <code>padCacheGet</code>, <code>padCacheHas</code> and <code>padCacheForget</code> do the same
 by hand.</p>
 
-{example 'fragments/environment_and_cache_2'}
+{example 'fragments/environment_and_cache_2'/}
 
 <ul>
   <li>The ttl is a number of seconds - 3600 when <code>padCachePut</code> is not told - or
@@ -92,7 +92,7 @@ first hit starts a window of <code>$decaySeconds</code>; when it ends, the key s
 nothing again. A login form, a contact form, an expensive search: key it on the visitor, or
 on the account that is tried.</p>
 
-{example 'fragments/environment_and_cache_3'}
+{example 'fragments/environment_and_cache_3'/}
 
 <ul>
   <li><code>padRateLimitRemaining ( $key, $maxAttempts )</code> - the hits left in the

@@ -1,4 +1,4 @@
-{meta title='Security headers'}
+{meta title='Security headers'/}
 
 <p>Every web response carries a few headers that cost nothing and close common holes:</p>
 
@@ -14,21 +14,21 @@ name =&gt; value - an empty value leaves one out, <code>[]</code> sends none - a
 <code>$padCsp</code> is the policy, <code>''</code> for none. A header the page's own PHP sent
 stands over the default.</p>
 
-<h2>A strict policy and the {open}nonce{close} tag</h2>
+<h2>A strict policy and the {open/}nonce{close/} tag</h2>
 
 <p>A strict policy refuses inline scripts - which is the point: a script someone smuggled
 into the page does not run. Your own inline script runs when it carries the request's nonce.
-Write <code>'nonce'</code>, with the quotes, in the policy, and {tag 'nonce'} in the script
+Write <code>'nonce'</code>, with the quotes, in the policy, and {tag 'nonce'/} in the script
 tag; the engine puts the same random value in both, new for every request:</p>
 
 <pre>$padCsp = "default-src 'self'; script-src 'self' 'nonce'; frame-ancestors 'self'";</pre>
 
-{example 'fragments/security_headers_1'}
+{example 'fragments/security_headers_1'/}
 
 <ul>
-  <li>The nonce is written only where the template writes {tag 'nonce'}. The engine does not
+  <li>The nonce is written only where the template writes {tag 'nonce'/}. The engine does not
   add it to the page's script tags: a smuggled script would get it as well.</li>
-  <li>{tag 'nonce'} goes outside an {tag 'ignore'} block - inside one it is text. The script's
-  body, with its braces, is what the {tag 'ignore'} is for.</li>
+  <li>{tag 'nonce'/} goes outside an {tag 'ignore'/} block - inside one it is text. The script's
+  body, with its braces, is what the {tag 'ignore'/} is for.</li>
   <li>A page carrying a nonce is never stored in the page cache.</li>
 </ul>

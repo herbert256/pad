@@ -165,12 +165,12 @@
     _config: 'Configuration - config.php',
     _data: 'Data files and named .sql queries',
     _scripts: 'Shell scripts',
-    _mail: "E-mail templates - {mail template='name'}",
+    _mail: "E-mail templates - {mail template='name'/}",
     _tests: 'Application tests - pad test',
-    _lang: "Translation catalogs - {trans 'key'}",
+    _lang: "Translation catalogs - {trans 'key'/}",
     _content: "Markdown collections - {collection 'name'}",
     _samples: 'Sample data for the designer preview',
-    _layouts: "Layouts - {extends '_layouts/name'}",
+    _layouts: "Layouts - {extends '_layouts/name'/}",
     _guard: 'Decides access to every page below',
     _inits: 'Runs before (php) or wraps (pad) every page below',
     _exits: 'Runs after (php) or closes (pad) every page below'
@@ -1315,8 +1315,8 @@
     { kind: 'data', label: 'Data file', hint: '_data/name.json - {name}', ask: 'Data name', def: 'colors' },
     { kind: 'query', label: 'Named query', hint: '_data/name.sql - {name}', ask: 'Query name', def: 'customers' },
     { kind: 'test', label: 'Test', hint: '_tests/name.pad + name.txt - pad test', ask: 'Test name', def: 'home' },
-    { kind: 'mail', label: 'Mail template', hint: "_mail/name.pad - {mail template='name'}", ask: 'Template name', def: 'welcome' },
-    { kind: 'lang', label: 'Translation catalog', hint: "_lang/locale.json - {trans 'key'}", ask: 'Locale', def: 'en' },
+    { kind: 'mail', label: 'Mail template', hint: "_mail/name.pad - {mail template='name'/}", ask: 'Template name', def: 'welcome' },
+    { kind: 'lang', label: 'Translation catalog', hint: "_lang/locale.json - {trans 'key'/}", ask: 'Locale', def: 'en' },
     { kind: 'content', label: 'Markdown entry', hint: "_content/collection/name.md - {collection 'collection'}", ask: 'collection/name', def: 'blog/first-post' }
   ];
 

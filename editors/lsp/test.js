@@ -129,7 +129,7 @@ async function main() {
     for (const f of ['orders.pad', 'admin/report.pad', 'broken.pad', 'undefined.pad', '_include/footer.pad', 'products/[id].pad', 'twice.pad', 'refused.pad', 'included.pad']) open(f);
 
     // completion, as before
-    let r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{badge}', 2) });
+    let r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{badge/}', 2) });
     expect('completion lists the built-in tags', r.result.some((c) => c.label === 'if'), r.result.length);
     r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{/orders}', 2) });
     expect('completion closes the open tag', r.result.length && r.result[0].label === 'orders', r.result);
@@ -143,10 +143,9 @@ async function main() {
     const closers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips else, self-closed and commented tags', closers.join(',') === 'if,orders', closers);
 
-    // a tag that never opens a pair - the single tags added since {highlight} too - is no
-    // close-tag candidate
+    // a single tag, written {tag/}, is no close-tag candidate
     const singleUri = uri('orders.pad').replace('orders.pad', 'singles.pad');
-    notify('textDocument/didOpen', { textDocument: { uri: singleUri, languageId: 'pad', version: 1, text: '{items}\n<li>{icon "check"} {$name} {asset "a.css"} {avatar $name} {vite "a.js"}</li>\n{/' } });
+    notify('textDocument/didOpen', { textDocument: { uri: singleUri, languageId: 'pad', version: 1, text: '{items}\n<li>{icon "check"/} {$name} {asset "a.css"/} {avatar $name/} {vite "a.js"/}</li>\n{/' } });
     r = await request('textDocument/completion', { textDocument: { uri: singleUri }, position: { line: 2, character: 2 } });
     const singleClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips the tags that are never a pair', singleClosers.join(',') === 'items', singleClosers);
@@ -158,13 +157,13 @@ async function main() {
     const bothClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion offers a tag written both ways, as a pair as often as not', bothClosers.join(',') === 'true,highlight,items', bothClosers);
 
-    // a tag written both ways that is alone more often than a pair - {map}, {jsonview},
-    // {pager} - is no close-tag candidate: the rule stopped at a third and left them out
+    // a single tag is written {tag/} - before a pipe too, {tag x /| pipe} - and opens no pair,
+    // whatever its name; a tag without the slash opens one, {icon} as well as {items}
     const aloneUri = uri('orders.pad').replace('orders.pad', 'alone.pad');
-    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{items}\n{map 'europe', data='sales'}{jsonview $r}{pager 'items'}\n{/" } });
+    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{items}\n{map 'europe', data='sales'/}{jsonview $r /| trim}{pager 'items'/}{chart}{/chart}\n{/" } });
     r = await request('textDocument/completion', { textDocument: { uri: aloneUri }, position: { line: 2, character: 2 } });
     const aloneClosers = (r.result || []).map((c) => c.label);
-    expect('close-tag completion skips a tag written both ways that is alone more often than not', aloneClosers.join(',') === 'items', aloneClosers);
+    expect('close-tag completion skips a tag written single, {tag/}', aloneClosers.join(',') === 'items', aloneClosers);
 
     // whitespace control: {~items~} opens a pair and {~/orders~} closes one, the ~ just
     // inside the brace taking the whitespace on that side
@@ -188,7 +187,7 @@ async function main() {
     expect('hover on a property shows its PROPERTIES.md section', h.includes('### first') && h.includes('PROPERTIES.md'), h);
     h = await hover('orders.pad', 'include:footer', 9);
     expect('hover on an include names its file', h.includes('include `editors/fixture/apps/shop/_include/footer.pad`'), h);
-    h = await hover('orders.pad', '{badge}', 2);
+    h = await hover('orders.pad', '{badge/}', 2);
     expect('hover on an application tag names its file', h.includes('application tag `editors/fixture/apps/shop/_tags/badge.php`'), h);
     h = await hover('orders.pad', 'echo $total', 6);
     expect('hover on a field shows the line that assigns it', h.includes('orders.php:10') && h.includes('$total = 42;'), h);
@@ -219,9 +218,9 @@ async function main() {
     expect('a field goes to the paired .php line that assigns it', d[0] === 'editors/fixture/apps/shop/orders.php:10', d);
     d = await definition('orders.pad', '{orders', 3);
     expect('a data tag goes to the .php line that sets its array', d[0] === 'editors/fixture/apps/shop/orders.php:5', d);
-    d = await definition('orders.pad', '{badge}', 2);
+    d = await definition('orders.pad', '{badge/}', 2);
     expect('a tag goes to the nearest _tags file', d.length === 1 && d[0] === 'editors/fixture/apps/shop/_tags/badge.php:1', d);
-    d = await definition('admin/report.pad', '{badge}', 2);
+    d = await definition('admin/report.pad', '{badge/}', 2);
     expect('a subdirectory _tags file wins over the root one', d.length === 1 && d[0] === 'editors/fixture/apps/shop/admin/_tags/badge.pad:1', d);
     d = await definition('admin/report.pad', 'money', 1);
     expect('a pipe function is found up the directories', d[0] === 'editors/fixture/apps/shop/_functions/money.php:1', d);
@@ -292,12 +291,12 @@ async function main() {
         fs.mkdirSync(path.join(bareDir, 'apps', '_common', '_include'), { recursive: true });
         fs.writeFileSync(path.join(bareDir, 'apps', '_common', '_include', 'hello.pad'), 'hello');
         fs.mkdirSync(path.join(bareDir, 'apps', 'mine'), { recursive: true });
-        fs.writeFileSync(path.join(bareDir, 'apps', 'mine', 'page.pad'), '<p>{hello} {$typo}</p>\n');
+        fs.writeFileSync(path.join(bareDir, 'apps', 'mine', 'page.pad'), '<p>{hello/} {$typo}</p>\n');
         const bareUri = url.pathToFileURL(path.join(bareDir, 'apps', 'mine', 'page.pad')).href;
-        notify('textDocument/didOpen', { textDocument: { uri: bareUri, languageId: 'pad', version: 1, text: '<p>{hello} {$typo}</p>\n' } });
+        notify('textDocument/didOpen', { textDocument: { uri: bareUri, languageId: 'pad', version: 1, text: '<p>{hello/} {$typo}</p>\n' } });
         g = await diagnosticsFor(bareUri);
         expect('a page beside a _common with no _lib and no _inits.pad gets its own diagnostics, not the missing _common/_lib',
-            g && g.length === 1 && g[0].message === "Field '$typo' not found" && g[0].range.start.character === 12, g);
+            g && g.length === 1 && g[0].message === "Field '$typo' not found" && g[0].range.start.character === 13, g);
         // and its error report says the page is wrapped by nothing: tested after the @page@ was
         // added, the _common/_inits.pad that is not there was listed as its wrapper
         const run = spawnSync(process.env.PAD_LSP_PHP || 'php', [path.join(home, 'editors', 'render.php'), 'mine', 'page', '--apps=' + path.join(bareDir, 'apps')], { cwd: home, encoding: 'utf8' });
@@ -311,7 +310,7 @@ async function main() {
     g = await diagnosticsFor(uri('included.pad'));
     expect('an error in an included snippet sits on the page\'s tag that includes it, not on a look-alike in a dead branch, and names the snippet\'s file and place',
         g && g[0] && g[0].message === "Field '$lost' not found - in _include/lost.pad:2:4"
-        && g[0].range.start.line === 3 && g[0].range.start.character === 0 && g[0].range.end.character === 6, g);
+        && g[0].range.start.line === 3 && g[0].range.start.character === 0 && g[0].range.end.character === 7, g);
 
     diagnostics.delete(uri('orders.pad'));
     notify('textDocument/didSave', { textDocument: { uri: uri('orders.pad') } });

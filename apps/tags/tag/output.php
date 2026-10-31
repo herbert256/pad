@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{output 'type'}
+{output 'type'/}
 PAD;
 
   $tagParms   = [

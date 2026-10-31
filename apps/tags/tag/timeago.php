@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{timeago $moment}
-{timeago $moment, now='2026-10-08 12:00', format='j M Y'}
+{timeago $moment/}
+{timeago $moment, now='2026-10-08 12:00', format='j M Y'/}
 PAD;
 
   $tagParms   = [

@@ -1,5 +1,5 @@
 // The build of the islands application: the components of every framework in src/, made
-// into www/islands/build/ with a manifest - {vite 'src/main.js'} in the templates reads it.
+// into www/islands/build/ with a manifest - {vite 'src/main.js'/} in the templates reads it.
 //
 //   npm install
 //   npm run build      www/islands/build/ - what the pages load

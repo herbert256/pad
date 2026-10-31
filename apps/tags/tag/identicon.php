@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{identicon $email}
-{identicon $value, size=64, title='text'}
+{identicon $email/}
+{identicon $value, size=64, title='text'/}
 PAD;
 
   $tagParms   = [

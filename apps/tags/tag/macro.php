@@ -6,11 +6,11 @@
 
   $tagSyntax  = <<<'PAD'
 {macro 'name', required, optional='default'} ... {$required} {$optional} ... {/macro}
-{name 'value'}
-{name 'value', 'other'}
-{name required='value', optional=$x}
+{name 'value'/}
+{name 'value', 'other'/}
+{name required='value', optional=$x/}
 {name 'value'} content for @content@ {/name}
-{macro:name ...}
+{macro:name .../}
 PAD;
 
   $tagParms   = [

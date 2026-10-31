@@ -10,7 +10,7 @@
 {code reset} ... {/code}
 {code clean} ... {/code}
 {code function='name'} ... {/code}
-{echo $snippet | code}
+{echo $snippet | code/}
 PAD;
 
   $tagParms   = [];

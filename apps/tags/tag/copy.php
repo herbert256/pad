@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{copy 'text'}
-{copy $value, label='Copy command'}
+{copy 'text'/}
+{copy $value, label='Copy command'/}
 {copy label='Copy'} ... {/copy}
 PAD;
 
