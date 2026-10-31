@@ -303,7 +303,6 @@
     elseif ( padPhpAllowed      ( $item                          ) ) return 'php';
     elseif ( pqSeq              ( $item                          ) ) return 'sequence';
     elseif ( pqAction           ( $item                          ) ) return 'action';
-    elseif ( $subsystem = padSubsystemBare ( $item               ) ) return $subsystem;
 
     return FALSE;
 
@@ -331,6 +330,16 @@
 
     if ( $common )
       return $common;
+
+    // A kind of a subsystem reached bare - {pie/}, {modal}, {slider/} - after every other kind
+    // of tag (lib/subsystem.php), and only as a tag: a kind is no value, and the words of an
+    // expression are asked of padTypeFunction, whose own padTypeTag ( $type, 0 ) must not find
+    // one either. In padTypeCommon it made the bare word line, class or toggle of an
+    // expression the tag chart:line, and {echo line/} or {if $k eq class} ended the page on
+    // an expression error where the word had been the constant it names.
+
+    if ( $goFunction and $subsystem = padSubsystemBare ( $type ) )
+      return $subsystem;
 
     if ( $goFunction and padTypeFunction ( $type, 0 ) )
       return 'function';
