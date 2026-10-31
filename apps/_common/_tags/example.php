@@ -5,6 +5,16 @@
 
   $examplePage       = $padParm ;
 
+  // A page of a bracketed route - reversi of the games application - shows the files of its
+  // route, [game].php and [game].pad: by its own name there were none, and its PHP and HTML
+  // panels stood empty beside the result.
+
+  $exampleSource     = $examplePage;
+
+  if ( ! file_exists ( "$exampleDir$examplePage.pad" ) and ! file_exists ( "$exampleDir$examplePage.php" )
+       and ( $exampleRoute = padPageRoute ( $examplePage, $exampleDir ) ) and $exampleRoute ['vars'] )
+    $exampleSource   = $exampleRoute ['page'];
+
   // The title is the last part of the name. strrpos answers FALSE when the name has no / at
   // all, and FALSE + 1 is 1, so an example named without a directory - {example 'offices'} -
   // used to lose its first letter and come out as "ffices". A title= given on the tag wins:
@@ -13,7 +23,7 @@
   $exampleSlash      = strrpos ( $examplePage, '/' );
   $exampleTitle      = ( $exampleSlash === FALSE ) ? $examplePage : substr ( $examplePage, $exampleSlash + 1 );
   $exampleTitle      = padTagParm ( 'title', $exampleTitle );
-  $exampleFile       = $exampleDir . $examplePage;
+  $exampleFile       = $exampleDir . $exampleSource;
   $exampleLayout     = padTagParm ( 'layout' , layout ("$exampleFile.pad") );
   $exampleOnlyResult = onlyResult ( "$exampleFile.pad" );
 
@@ -22,8 +32,8 @@
 
   $examplePhp = $examplePad = $exampleDir;
 
-  $examplePhp      .= ( $examplePhpGiven ) ? $examplePhpGiven : "$examplePage.php";
-  $examplePad      .= ( $examplePadGiven ) ? $examplePadGiven : "$examplePage.pad";
+  $examplePhp      .= ( $examplePhpGiven ) ? $examplePhpGiven : "$exampleSource.php";
+  $examplePad      .= ( $examplePadGiven ) ? $examplePadGiven : "$exampleSource.pad";
 
   $exampleSrcPhp   = ( file_exists($examplePhp) ) ? padColorsFile ($examplePhp) : '';
   $exampleSrcPad   = ( file_exists($examplePad) ) ? padColorsFile ($examplePad) : '';
