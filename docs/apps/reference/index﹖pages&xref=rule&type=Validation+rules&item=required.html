@@ -87,16 +87,16 @@
             <td>
               <center>
                 <hr>
-                App: regression/framework - Page: tags/input_refills_the_posted_value_and_shows_the_error_of_its_field<br>
+                App: demo - Page: contact<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">tags/input_refills_the_posted_value_and_shows_the_error_of_its_field.php</font>
+                      <font size="-2">contact.php</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">tags/input_refills_the_posted_value_and_shows_the_error_of_its_field.pad</font>
+                      <font size="-2">contact.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -104,26 +104,590 @@
                   </tr>
                   <tr>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'POST'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'x@'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann & Bob' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required|email'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Contact Form'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #DD0000">'demo/messages.json'</span><span style="color: #007700">;   </span><span style="color: #FF8000">// under DATA/, for padFileGet and padFilePut<br><br>  // The rules of a valid message stand on the fields in contact.pad - rules='required|email' -<br>  // and are checked before this file runs: padPosted ( 'contact' ) is TRUE only for a post<br>  // that keeps them. A post that breaks one never gets here; the form comes back refilled<br>  // with what was typed, each message beside its field.<br><br>  // The rules let a field posted as a list - name[]=x - through, so a message whose fields<br>  // are not all text is not stored: htmlspecialchars() was handed the array and the post<br>  // ended on a 500. The form comes back as it was sent.<br><br>  </span><span style="color: #0000BB">$sent </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequestOnly </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email'</span><span style="color: #007700">, </span><span style="color: #DD0000">'subject'</span><span style="color: #007700">, </span><span style="color: #DD0000">'message' </span><span style="color: #007700">] );<br><br>  if ( </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'contact' </span><span style="color: #007700">) and </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$sent</span><span style="color: #007700">, </span><span style="color: #DD0000">'is_string' </span><span style="color: #007700">) ) == </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$sent </span><span style="color: #007700">) ) {<br><br>    </span><span style="color: #0000BB">$messages </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padFileGet </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br><br>    </span><span style="color: #0000BB">$entry          </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( </span><span style="color: #DD0000">'htmlspecialchars'</span><span style="color: #007700">, </span><span style="color: #0000BB">$sent </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'date'</span><span style="color: #007700">] = </span><span style="color: #0000BB">padNow </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">$messages </span><span style="color: #007700">[] = </span><span style="color: #0000BB">$entry</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">padFilePut </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile</span><span style="color: #007700">, </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$messages</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_PRETTY_PRINT </span><span style="color: #007700">) );<br><br>    </span><span style="color: #FF8000">// Post, redirect, get: the browser is sent on to a plain GET of this page, so a refresh<br>    // shows the empty form instead of sending the message a second time - the thanks go<br>    // along as a flash message.<br><br>    </span><span style="color: #0000BB">padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Thank you for your message! We will get back to you soon.' </span><span style="color: #007700">);<br><br>    </span><span style="color: #0000BB">padRedirect </span><span style="color: #007700">( </span><span style="color: #DD0000">'contact' </span><span style="color: #007700">);<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font></font>/}</b><b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> required</font>/}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;Have a question or feedback? Send us a message!&lt;/p&gt;<br><br><b>{<font color="blue">flash</font><font color="red"></font>}</b><br>  &lt;div class="message"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">flash</font><font color="red"></font>}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>contact<font color="black">'</font><font color="black">,</font> error=<font color="black">'</font>Please correct the errors below.<font color="black">'</font></font>}</b><br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your Name<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>100<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your Email<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>subject<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Subject<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>200<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<b>{<font color="blue">textarea </font><font color="red"><font color="black">'</font>message<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Message<font color="black">:</font> *<font color="black">'</font><font color="black">,</font> rows=6<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>2000<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><br>  &lt;p&gt;<br>    &lt;input type="submit" value="Send Message"&gt;<br>  &lt;/p&gt;<br><br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>&lt;p style="color: #999; font-size: 12px;"&gt;* Required fields&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax0f3ec5dac26d14e85bd52484f1b69347"></div>
+                      <div id="padAjax6db7b6bef232405341bca8882c09b885"></div>
                       <script>
-                      padAjax0f3ec5dac26d14e85bd52484f1b69347 = new XMLHttpRequest();
-                      padAjax0f3ec5dac26d14e85bd52484f1b69347.onreadystatechange=function() {
-                      if (padAjax0f3ec5dac26d14e85bd52484f1b69347.readyState === 4) {
-                      if (padAjax0f3ec5dac26d14e85bd52484f1b69347.status === 200) {
-                      document.getElementById("padAjax0f3ec5dac26d14e85bd52484f1b69347").innerHTML=padAjax0f3ec5dac26d14e85bd52484f1b69347.responseText;
+                      padAjax6db7b6bef232405341bca8882c09b885 = new XMLHttpRequest();
+                      padAjax6db7b6bef232405341bca8882c09b885.onreadystatechange=function() {
+                      if (padAjax6db7b6bef232405341bca8882c09b885.readyState === 4) {
+                      if (padAjax6db7b6bef232405341bca8882c09b885.status === 200) {
+                      document.getElementById("padAjax6db7b6bef232405341bca8882c09b885").innerHTML=padAjax6db7b6bef232405341bca8882c09b885.responseText;
                       } else {
-                      document.getElementById("padAjax0f3ec5dac26d14e85bd52484f1b69347").innerHTML=padAjax0f3ec5dac26d14e85bd52484f1b69347.statusText;
+                      document.getElementById("padAjax6db7b6bef232405341bca8882c09b885").innerHTML=padAjax6db7b6bef232405341bca8882c09b885.statusText;
                       }
                       }
                       }
-                      padAjax0f3ec5dac26d14e85bd52484f1b69347.open("GET","http://localhost/pad/regression/framework/?tags/input_refills_the_posted_value_and_shows_the_error_of_its_field&padInclude",true);
-                      padAjax0f3ec5dac26d14e85bd52484f1b69347.send();
+                      padAjax6db7b6bef232405341bca8882c09b885.open("GET","http://localhost/pad/demo/?contact&padInclude",true);
+                      padAjax6db7b6bef232405341bca8882c09b885.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: demo - Page: qr<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">qr.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">qr.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'QR Codes'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The text to encode: what the form posted - its rules, on the field in qr.pad, are kept<br>  // before this runs - else the address of PAD itself.<br><br>  </span><span style="color: #007700">if ( ! </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'qr' </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$text </span><span style="color: #007700">?? </span><span style="color: #0000BB">NULL </span><span style="color: #007700">) )<br>    </span><span style="color: #0000BB">$text </span><span style="color: #007700">= </span><span style="color: #DD0000">'https://github.com/herbert256/pad'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$levels </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'level' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'L'</span><span style="color: #007700">, </span><span style="color: #DD0000">'restores' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'7%'  </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'level' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'M'</span><span style="color: #007700">, </span><span style="color: #DD0000">'restores' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'15%' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'level' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q'</span><span style="color: #007700">, </span><span style="color: #DD0000">'restores' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'25%' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'level' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'H'</span><span style="color: #007700">, </span><span style="color: #DD0000">'restores' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'30%' </span><span style="color: #007700">],<br>  ];<br><br>  </span><span style="color: #0000BB">$wifi </span><span style="color: #007700">= </span><span style="color: #DD0000">'WIFI:T:WPA;S:PAD Demo;P:inversion-of-control;;'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p&gt;The &lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">qr</font><font color="red"></font>}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt; tag encodes a text as a QR code and writes it as inline SVG -<br>no image library, no remote service, no JavaScript. Type a text and scan the result with your phone.&lt;/p&gt;<br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>qr<font color="black">'</font><font color="black">,</font> error=<font color="black">'</font>Please correct the errors below.<font color="black">'</font></font>}</b><br>  &lt;p&gt;<b>{<font color="blue">input </font><font color="red"><font color="black">'</font>text<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Text or address<font color="black">:</font><font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>text<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>1000<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>  &lt;p&gt;&lt;input type="submit" value="Make the QR code"&gt;&lt;/p&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br>&lt;div class="qr-big"&gt;<b>{<font color="blue">qr </font><font color="red"><font color="red">$</font>text<font color="black">,</font> size=220</font>/}</b>&lt;/div&gt;<br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">qr </font><font color="red"><font color="red">$</font>text<font color="black">,</font> size=220</font>/}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/p&gt;<br><br>&lt;h2&gt;Error correction&lt;/h2&gt;<br><br>&lt;p&gt;The higher the level, the more of the symbol may be damaged or covered - a logo in the<br>middle - and the more modules it takes.&lt;/p&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    <b>{<font color="blue">levels</font><font color="red"></font>}</b>&lt;th&gt;level='<b>{<font color="green"><font color="red">$</font>level</font>}</b>' - restores <b>{<font color="green"><font color="red">$</font>restores</font>}</b>&lt;/th&gt;<b>{/<font color="blue">levels</font><font color="red"></font>}</b><br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    <b>{<font color="blue">levels</font><font color="red"></font>}</b>&lt;td&gt;<b>{<font color="blue">qr </font><font color="red"><font color="red">$</font>text<font color="black">,</font> level=<font color="red">$</font>level<font color="black">,</font> size=150</font>/}</b>&lt;/td&gt;<b>{/<font color="blue">levels</font><font color="red"></font>}</b><br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Not only addresses&lt;/h2&gt;<br><br>&lt;p&gt;A phone joins a Wi-Fi network from this one:&lt;/p&gt;<br><br>&lt;p&gt;<b>{<font color="blue">qr </font><font color="red"><font color="red">$</font>wifi<font color="black">,</font> size=150<font color="black">,</font> title=<font color="black">'</font>Join the PAD Demo network<font color="black">'</font><font color="black">,</font> color=<font color="black">'</font>#2e7d32<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><br>&lt;p&gt;&lt;code&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><b>{<font color="blue">qr </font><font color="red"><font color="black">'</font>WIFI<font color="black">:</font>T<font color="black">:</font>WPA;S<font color="black">:</font>PAD Demo;P<font color="black">:</font>inversion-of-control;;<font color="black">'</font><font color="black">,</font> color=<font color="black">'</font>#2e7d32<font color="black">'</font></font>/}</b><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax576cb2bfca8b2786181df310a61f85d9"></div>
+                      <script>
+                      padAjax576cb2bfca8b2786181df310a61f85d9 = new XMLHttpRequest();
+                      padAjax576cb2bfca8b2786181df310a61f85d9.onreadystatechange=function() {
+                      if (padAjax576cb2bfca8b2786181df310a61f85d9.readyState === 4) {
+                      if (padAjax576cb2bfca8b2786181df310a61f85d9.status === 200) {
+                      document.getElementById("padAjax576cb2bfca8b2786181df310a61f85d9").innerHTML=padAjax576cb2bfca8b2786181df310a61f85d9.responseText;
+                      } else {
+                      document.getElementById("padAjax576cb2bfca8b2786181df310a61f85d9").innerHTML=padAjax576cb2bfca8b2786181df310a61f85d9.statusText;
+                      }
+                      }
+                      }
+                      padAjax576cb2bfca8b2786181df310a61f85d9.open("GET","http://localhost/pad/demo/?qr&padInclude",true);
+                      padAjax576cb2bfca8b2786181df310a61f85d9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: htmx - Page: examples/form<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/form.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/form.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The rules= of form.pad checked the post before this file runs: padPosted ( 'signup' ) is<br>  // TRUE for a post that kept them alone. htmx posts the form (hx-post) and swaps the answer<br>  // into its place - hx-target="#signup" sends HX-Target: signup, so the answer is the<br>  // {fragment 'signup'}: the form again, refilled, with PAD's messages beside its fields, or<br>  // the welcome. The browser checks the same rules first (client); switch that off to see<br>  // PAD's own answer.<br><br>  </span><span style="color: #0000BB">$done </span><span style="color: #007700">= </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'signup' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">htmxText </span><span style="color: #007700">( </span><span style="color: #DD0000">'name' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;label class="small switch-line"&gt;&lt;input type="checkbox" checked data-toggle-rules="#signup form"&gt; Check in the browser first - turn it off to see PAD's answer to a bad post&lt;/label&gt;<br><br>&lt;div id="signup"&gt;<br><b>{<font color="blue">fragment </font><font color="red"><font color="black">'</font>signup<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>done</font>}</b><br>    &lt;div class="callout is-good rise"&gt;<br>      &lt;p&gt;&lt;strong&gt;Welcome aboard, <b>{<font color="green"><font color="red">$</font>name</font>}</b>!&lt;/strong&gt; PAD checked the post against the rules of the form and the page's PHP ran for a good one only.&lt;/p&gt;<br>      &lt;p&gt;&lt;button class="btn-sm btn-ghost" hx-get="?examples/form" hx-target="#signup"&gt;Sign up someone else&lt;/button&gt;&lt;/p&gt;<br>    &lt;/div&gt;<br>  <b>{<font color="blue">else</font><font color="red"></font>}</b><br>    <b>{<font color="blue">form </font><font color="red"><font color="black">'</font>signup<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error<font color="black">,</font> hx-post=<font color="black">'</font>?examples/form<font color="black">'</font><font color="black">,</font> hx-target=<font color="black">'</font>#signup<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>stack<font color="black">'</font></font>}</b><br>      <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>name<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Name<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>40<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>input<font color="black">'</font></font>/}</b><br>      <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>email<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>email<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>E-mail<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>email<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>input<font color="black">'</font></font>/}</b><br>      <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>age<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Age<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>integer<font color="black">|</font>min<font color="black">:</font>18<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>input<font color="black">'</font></font>/}</b><br>      &lt;button&gt;Sign up&lt;/button&gt;<br>    <b>{/<font color="blue">form</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">fragment</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax454c45c0395f8c5427c1602e77bb67f1"></div>
+                      <script>
+                      padAjax454c45c0395f8c5427c1602e77bb67f1 = new XMLHttpRequest();
+                      padAjax454c45c0395f8c5427c1602e77bb67f1.onreadystatechange=function() {
+                      if (padAjax454c45c0395f8c5427c1602e77bb67f1.readyState === 4) {
+                      if (padAjax454c45c0395f8c5427c1602e77bb67f1.status === 200) {
+                      document.getElementById("padAjax454c45c0395f8c5427c1602e77bb67f1").innerHTML=padAjax454c45c0395f8c5427c1602e77bb67f1.responseText;
+                      } else {
+                      document.getElementById("padAjax454c45c0395f8c5427c1602e77bb67f1").innerHTML=padAjax454c45c0395f8c5427c1602e77bb67f1.statusText;
+                      }
+                      }
+                      }
+                      padAjax454c45c0395f8c5427c1602e77bb67f1.open("GET","http://localhost/pad/htmx/?examples/form&padInclude",true);
+                      padAjax454c45c0395f8c5427c1602e77bb67f1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: colorpicker<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">colorpicker.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Colour picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Theme colour<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>#2a78d6<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>color<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>mark<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Marker<font color="black">'</font><font color="black">,</font> swatches=<font color="black">'</font>#fff1b8<font color="black">,</font> #ffd6a5<font color="black">,</font> #caffbf<font color="black">,</font> #9bf6ff<font color="black">,</font> #bdb2ff<font color="black">,</font> #ffc6ff<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax64545a58db560021751365b85c21a905"></div>
+                      <script>
+                      padAjax64545a58db560021751365b85c21a905 = new XMLHttpRequest();
+                      padAjax64545a58db560021751365b85c21a905.onreadystatechange=function() {
+                      if (padAjax64545a58db560021751365b85c21a905.readyState === 4) {
+                      if (padAjax64545a58db560021751365b85c21a905.status === 200) {
+                      document.getElementById("padAjax64545a58db560021751365b85c21a905").innerHTML=padAjax64545a58db560021751365b85c21a905.responseText;
+                      } else {
+                      document.getElementById("padAjax64545a58db560021751365b85c21a905").innerHTML=padAjax64545a58db560021751365b85c21a905.statusText;
+                      }
+                      }
+                      }
+                      padAjax64545a58db560021751365b85c21a905.open("GET","http://localhost/pad/inputs/?colorpicker&padInclude",true);
+                      padAjax64545a58db560021751365b85c21a905.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: combobox<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">combobox.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Combobox<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Amsterdam<font color="black">,</font>Antwerp<font color="black">,</font>Athens<font color="black">,</font>Berlin<font color="black">,</font>Bern<font color="black">,</font>Brussels<font color="black">,</font>Lisbon<font color="black">,</font>London<font color="black">,</font>Madrid<font color="black">,</font>Paris<font color="black">,</font>Prague<font color="black">,</font>Rome<font color="black">,</font>Vienna<font color="black">'</font></font>}</b><br>    Amsterdam<br>    Antwerp<br>    Athens<br>    Berlin<br>    Bern<br>    Brussels<br>    Lisbon<br>    London<br>    Madrid<br>    Paris<br>    Prague<br>    Rome<br>    Vienna<br>  <b>{/<font color="blue">combobox</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>combobox </font><font color="red"><font color="black">'</font>fruit<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Fruit<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Apple<font color="black">,</font> Apricot<font color="black">,</font> Banana<font color="black">,</font> Cherry<font color="black">,</font> Grape<font color="black">,</font> Lemon<font color="black">,</font> Mango<font color="black">,</font> Orange<font color="black">,</font> Pear<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6cc4477e90e8105faaad2f2e87207617"></div>
+                      <script>
+                      padAjax6cc4477e90e8105faaad2f2e87207617 = new XMLHttpRequest();
+                      padAjax6cc4477e90e8105faaad2f2e87207617.onreadystatechange=function() {
+                      if (padAjax6cc4477e90e8105faaad2f2e87207617.readyState === 4) {
+                      if (padAjax6cc4477e90e8105faaad2f2e87207617.status === 200) {
+                      document.getElementById("padAjax6cc4477e90e8105faaad2f2e87207617").innerHTML=padAjax6cc4477e90e8105faaad2f2e87207617.responseText;
+                      } else {
+                      document.getElementById("padAjax6cc4477e90e8105faaad2f2e87207617").innerHTML=padAjax6cc4477e90e8105faaad2f2e87207617.statusText;
+                      }
+                      }
+                      }
+                      padAjax6cc4477e90e8105faaad2f2e87207617.open("GET","http://localhost/pad/inputs/?combobox&padInclude",true);
+                      padAjax6cc4477e90e8105faaad2f2e87207617.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: datepicker<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">datepicker.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Date picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>2026-01-01<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>2027-12-31<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>date<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>birthday<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Birthday<font color="black">'</font><font color="black">,</font> weekstart=<font color="black">'</font>sunday<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax37db85c08dc92f4d70caf6542de9fbd0"></div>
+                      <script>
+                      padAjax37db85c08dc92f4d70caf6542de9fbd0 = new XMLHttpRequest();
+                      padAjax37db85c08dc92f4d70caf6542de9fbd0.onreadystatechange=function() {
+                      if (padAjax37db85c08dc92f4d70caf6542de9fbd0.readyState === 4) {
+                      if (padAjax37db85c08dc92f4d70caf6542de9fbd0.status === 200) {
+                      document.getElementById("padAjax37db85c08dc92f4d70caf6542de9fbd0").innerHTML=padAjax37db85c08dc92f4d70caf6542de9fbd0.responseText;
+                      } else {
+                      document.getElementById("padAjax37db85c08dc92f4d70caf6542de9fbd0").innerHTML=padAjax37db85c08dc92f4d70caf6542de9fbd0.statusText;
+                      }
+                      }
+                      }
+                      padAjax37db85c08dc92f4d70caf6542de9fbd0.open("GET","http://localhost/pad/inputs/?datepicker&padInclude",true);
+                      padAjax37db85c08dc92f4d70caf6542de9fbd0.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: form<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">form.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One form<font color="black">'</font></font>/}</b><br>&lt;p class="inputs-lead"&gt;Every kind of field in one form, each with rules. &lt;code&gt;client&lt;/code&gt; on the<br>form checks the rules in the browser before the form leaves, with the messages the server gives -<br>the server checks the post again all the same. Send it empty to see them.&lt;/p&gt;<br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>booking<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error=<font color="black">'</font>Please correct the fields marked below.<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Volume<font color="black">'</font><font color="black">,</font> unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>integer<font color="black">|</font>between<font color="black">:</font>10<font color="black">,</font>90<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> min=1<font color="black">,</font> max=12<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">toggle </font><font color="red"><font color="black">'</font>terms<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>I accept the terms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>accepted<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your rating<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Colour<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>#2a78d6<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>color<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>date<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Pick-up time<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>08<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>18<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> every=30<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>time<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> suggestions=<font color="black">'</font>pad<font color="black">,</font> php<font color="black">,</font> forms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>60<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">signature </font><font color="red"><font color="black">'</font>signed<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Signature<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">mdeditor </font><font color="red"><font color="black">'</font>note<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>A note<font color="black">'</font><font color="black">,</font> rows=4<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>10<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">dropzone </font><font color="red"><font color="black">'</font>resume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your CV<font color="black">'</font><font color="black">,</font> accept=<font color="black">'</font>.pdf<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">newpassword </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Password<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Code<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>digits<font color="black">:</font>6<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Amsterdam<font color="black">,</font> Berlin<font color="black">,</font> Paris<font color="black">,</font> Rome<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Amsterdam<font color="black">,</font>Berlin<font color="black">,</font>Paris<font color="black">,</font>Rome<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1f940a5f140e35a3ba2377e001c04982"></div>
+                      <script>
+                      padAjax1f940a5f140e35a3ba2377e001c04982 = new XMLHttpRequest();
+                      padAjax1f940a5f140e35a3ba2377e001c04982.onreadystatechange=function() {
+                      if (padAjax1f940a5f140e35a3ba2377e001c04982.readyState === 4) {
+                      if (padAjax1f940a5f140e35a3ba2377e001c04982.status === 200) {
+                      document.getElementById("padAjax1f940a5f140e35a3ba2377e001c04982").innerHTML=padAjax1f940a5f140e35a3ba2377e001c04982.responseText;
+                      } else {
+                      document.getElementById("padAjax1f940a5f140e35a3ba2377e001c04982").innerHTML=padAjax1f940a5f140e35a3ba2377e001c04982.statusText;
+                      }
+                      }
+                      }
+                      padAjax1f940a5f140e35a3ba2377e001c04982.open("GET","http://localhost/pad/inputs/?form&padInclude",true);
+                      padAjax1f940a5f140e35a3ba2377e001c04982.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: mdeditor<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">mdeditor.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown editor<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">mdeditor </font><font color="red"><font color="black">'</font>post<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your post<font color="black">'</font><font color="black">,</font> rows=8<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>20<font color="black">|</font>max<font color="black">:</font>5000<font color="black">'</font></font>}</b><br>    # A title<br><br>    Some **bold** text, some *italic* and a [link](https://example.com).<br><br>    - a list<br>    - of things<br>  <b>{/<font color="blue">mdeditor</font><font color="red"></font>}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1cd4a3584a99b005f410ba98bb15b316"></div>
+                      <script>
+                      padAjax1cd4a3584a99b005f410ba98bb15b316 = new XMLHttpRequest();
+                      padAjax1cd4a3584a99b005f410ba98bb15b316.onreadystatechange=function() {
+                      if (padAjax1cd4a3584a99b005f410ba98bb15b316.readyState === 4) {
+                      if (padAjax1cd4a3584a99b005f410ba98bb15b316.status === 200) {
+                      document.getElementById("padAjax1cd4a3584a99b005f410ba98bb15b316").innerHTML=padAjax1cd4a3584a99b005f410ba98bb15b316.responseText;
+                      } else {
+                      document.getElementById("padAjax1cd4a3584a99b005f410ba98bb15b316").innerHTML=padAjax1cd4a3584a99b005f410ba98bb15b316.statusText;
+                      }
+                      }
+                      }
+                      padAjax1cd4a3584a99b005f410ba98bb15b316.open("GET","http://localhost/pad/inputs/?mdeditor&padInclude",true);
+                      padAjax1cd4a3584a99b005f410ba98bb15b316.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: newpassword<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">newpassword.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>New password<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">newpassword </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Choose a password<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">newpassword </font><font color="red"><font color="black">'</font>old<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your password now<font color="black">'</font><font color="black">,</font> known</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db"></div>
+                      <script>
+                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db = new XMLHttpRequest();
+                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.onreadystatechange=function() {
+                      if (padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.readyState === 4) {
+                      if (padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.status === 200) {
+                      document.getElementById("padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db").innerHTML=padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.responseText;
+                      } else {
+                      document.getElementById("padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db").innerHTML=padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.open("GET","http://localhost/pad/inputs/?newpassword&padInclude",true);
+                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: otp<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">otp.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One-time code<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>The code we sent you<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>digits<font color="black">:</font>6<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>voucher<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Voucher<font color="black">'</font><font color="black">,</font> length=8<font color="black">,</font> letters</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9"></div>
+                      <script>
+                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9 = new XMLHttpRequest();
+                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.onreadystatechange=function() {
+                      if (padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.readyState === 4) {
+                      if (padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.status === 200) {
+                      document.getElementById("padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9").innerHTML=padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.responseText;
+                      } else {
+                      document.getElementById("padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9").innerHTML=padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.statusText;
+                      }
+                      }
+                      }
+                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.open("GET","http://localhost/pad/inputs/?otp&padInclude",true);
+                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: signature<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">signature.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Signature<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">signature </font><font color="red"><font color="black">'</font>signed<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Signature<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8b9e6b3768974b0bc0d2328d3eec2b00"></div>
+                      <script>
+                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00 = new XMLHttpRequest();
+                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00.onreadystatechange=function() {
+                      if (padAjax8b9e6b3768974b0bc0d2328d3eec2b00.readyState === 4) {
+                      if (padAjax8b9e6b3768974b0bc0d2328d3eec2b00.status === 200) {
+                      document.getElementById("padAjax8b9e6b3768974b0bc0d2328d3eec2b00").innerHTML=padAjax8b9e6b3768974b0bc0d2328d3eec2b00.responseText;
+                      } else {
+                      document.getElementById("padAjax8b9e6b3768974b0bc0d2328d3eec2b00").innerHTML=padAjax8b9e6b3768974b0bc0d2328d3eec2b00.statusText;
+                      }
+                      }
+                      }
+                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00.open("GET","http://localhost/pad/inputs/?signature&padInclude",true);
+                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: stars<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">stars.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stars<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>How was your stay?<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>5<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>food<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>The food<font color="black">'</font><font color="black">,</font> max=10</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb0572838e27df089a177c19bb216bfad"></div>
+                      <script>
+                      padAjaxb0572838e27df089a177c19bb216bfad = new XMLHttpRequest();
+                      padAjaxb0572838e27df089a177c19bb216bfad.onreadystatechange=function() {
+                      if (padAjaxb0572838e27df089a177c19bb216bfad.readyState === 4) {
+                      if (padAjaxb0572838e27df089a177c19bb216bfad.status === 200) {
+                      document.getElementById("padAjaxb0572838e27df089a177c19bb216bfad").innerHTML=padAjaxb0572838e27df089a177c19bb216bfad.responseText;
+                      } else {
+                      document.getElementById("padAjaxb0572838e27df089a177c19bb216bfad").innerHTML=padAjaxb0572838e27df089a177c19bb216bfad.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb0572838e27df089a177c19bb216bfad.open("GET","http://localhost/pad/inputs/?stars&padInclude",true);
+                      padAjaxb0572838e27df089a177c19bb216bfad.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: stepper<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">stepper.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stepper<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> min=1<font color="black">,</font> max=12<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stepper </font><font color="red"><font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Weight in kg<font color="black">'</font><font color="black">,</font> min=0<font color="black">,</font> step=0.5<font color="black">,</font> value=70</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf631c2dde0df7b375511865237c659e3"></div>
+                      <script>
+                      padAjaxf631c2dde0df7b375511865237c659e3 = new XMLHttpRequest();
+                      padAjaxf631c2dde0df7b375511865237c659e3.onreadystatechange=function() {
+                      if (padAjaxf631c2dde0df7b375511865237c659e3.readyState === 4) {
+                      if (padAjaxf631c2dde0df7b375511865237c659e3.status === 200) {
+                      document.getElementById("padAjaxf631c2dde0df7b375511865237c659e3").innerHTML=padAjaxf631c2dde0df7b375511865237c659e3.responseText;
+                      } else {
+                      document.getElementById("padAjaxf631c2dde0df7b375511865237c659e3").innerHTML=padAjaxf631c2dde0df7b375511865237c659e3.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf631c2dde0df7b375511865237c659e3.open("GET","http://localhost/pad/inputs/?stepper&padInclude",true);
+                      padAjaxf631c2dde0df7b375511865237c659e3.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: taginput<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">taginput.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tag input<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>pad<font color="black">,</font> forms<font color="black">'</font><font color="black">,</font> suggestions=<font color="black">'</font>pad<font color="black">,</font> php<font color="black">,</font> forms<font color="black">,</font> htmx<font color="black">,</font> charts<font color="black">,</font> games<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>80<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> most=5</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax7f094c744a018aad39adea53399369be"></div>
+                      <script>
+                      padAjax7f094c744a018aad39adea53399369be = new XMLHttpRequest();
+                      padAjax7f094c744a018aad39adea53399369be.onreadystatechange=function() {
+                      if (padAjax7f094c744a018aad39adea53399369be.readyState === 4) {
+                      if (padAjax7f094c744a018aad39adea53399369be.status === 200) {
+                      document.getElementById("padAjax7f094c744a018aad39adea53399369be").innerHTML=padAjax7f094c744a018aad39adea53399369be.responseText;
+                      } else {
+                      document.getElementById("padAjax7f094c744a018aad39adea53399369be").innerHTML=padAjax7f094c744a018aad39adea53399369be.statusText;
+                      }
+                      }
+                      }
+                      padAjax7f094c744a018aad39adea53399369be.open("GET","http://localhost/pad/inputs/?taginput&padInclude",true);
+                      padAjax7f094c744a018aad39adea53399369be.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: timepicker<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">timepicker.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Time picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Pick-up time<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>08<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>18<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> every=15<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>time<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>alarm<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Alarm<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5d62b92d5d033a5fca591e20c643a4f8"></div>
+                      <script>
+                      padAjax5d62b92d5d033a5fca591e20c643a4f8 = new XMLHttpRequest();
+                      padAjax5d62b92d5d033a5fca591e20c643a4f8.onreadystatechange=function() {
+                      if (padAjax5d62b92d5d033a5fca591e20c643a4f8.readyState === 4) {
+                      if (padAjax5d62b92d5d033a5fca591e20c643a4f8.status === 200) {
+                      document.getElementById("padAjax5d62b92d5d033a5fca591e20c643a4f8").innerHTML=padAjax5d62b92d5d033a5fca591e20c643a4f8.responseText;
+                      } else {
+                      document.getElementById("padAjax5d62b92d5d033a5fca591e20c643a4f8").innerHTML=padAjax5d62b92d5d033a5fca591e20c643a4f8.statusText;
+                      }
+                      }
+                      }
+                      padAjax5d62b92d5d033a5fca591e20c643a4f8.open("GET","http://localhost/pad/inputs/?timepicker&padInclude",true);
+                      padAjax5d62b92d5d033a5fca591e20c643a4f8.send();
                       </script>
                     </td>
                   </tr>

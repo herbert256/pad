@@ -248,6 +248,48 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: tags - Page: examples/fake/4-kinds<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/fake/4-kinds.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/fake/4-kinds.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $kinds </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$kind </span><span style="color: #007700">) =&gt; [ </span><span style="color: #DD0000">'kind' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$kind </span><span style="color: #007700">], </span><span style="color: #0000BB">padKinds </span><span style="color: #007700">( </span><span style="color: #DD0000">'fakes' </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every kind<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The kinds of pad/fakes/types/ as a page array<font color="black">,</font> a value of each - the same on every request.<font color="black">'</font></font>/}</b><br>&lt;table&gt;<br>  <b>{<font color="blue">kinds</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;&lt;code&gt;<b>{<font color="green"><font color="red">$</font>kind</font>}</b>&lt;/code&gt;&lt;/td&gt;&lt;td&gt;<b>{<font color="blue">fake </font><font color="red"><font color="red">$</font>kind</font>/}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">kinds</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax930f4ce1e23fca2c6269de076ccb0959"></div>
+                      <script>
+                      padAjax930f4ce1e23fca2c6269de076ccb0959 = new XMLHttpRequest();
+                      padAjax930f4ce1e23fca2c6269de076ccb0959.onreadystatechange=function() {
+                      if (padAjax930f4ce1e23fca2c6269de076ccb0959.readyState === 4) {
+                      if (padAjax930f4ce1e23fca2c6269de076ccb0959.status === 200) {
+                      document.getElementById("padAjax930f4ce1e23fca2c6269de076ccb0959").innerHTML=padAjax930f4ce1e23fca2c6269de076ccb0959.responseText;
+                      } else {
+                      document.getElementById("padAjax930f4ce1e23fca2c6269de076ccb0959").innerHTML=padAjax930f4ce1e23fca2c6269de076ccb0959.statusText;
+                      }
+                      }
+                      }
+                      padAjax930f4ce1e23fca2c6269de076ccb0959.open("GET","http://localhost/pad/tags/?examples/fake/4-kinds&padInclude",true);
+                      padAjax930f4ce1e23fca2c6269de076ccb0959.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

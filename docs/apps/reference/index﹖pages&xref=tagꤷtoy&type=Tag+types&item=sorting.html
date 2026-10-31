@@ -206,6 +206,48 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: toys - Page: sorting<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[toy].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[toy].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A toy, by the name in the address - ?life, /toys/life: one of the engine's toys, else a<br>  // page not found. Its template is shown beside it, coloured, and run.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$toys</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$item </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$item </span><span style="color: #007700">[</span><span style="color: #DD0000">'toy'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$toy </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">toysTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$toy </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="toys-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="toys-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="toys-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax644e872747e89fc7fbbb89292e9f1e6b"></div>
+                      <script>
+                      padAjax644e872747e89fc7fbbb89292e9f1e6b = new XMLHttpRequest();
+                      padAjax644e872747e89fc7fbbb89292e9f1e6b.onreadystatechange=function() {
+                      if (padAjax644e872747e89fc7fbbb89292e9f1e6b.readyState === 4) {
+                      if (padAjax644e872747e89fc7fbbb89292e9f1e6b.status === 200) {
+                      document.getElementById("padAjax644e872747e89fc7fbbb89292e9f1e6b").innerHTML=padAjax644e872747e89fc7fbbb89292e9f1e6b.responseText;
+                      } else {
+                      document.getElementById("padAjax644e872747e89fc7fbbb89292e9f1e6b").innerHTML=padAjax644e872747e89fc7fbbb89292e9f1e6b.statusText;
+                      }
+                      }
+                      }
+                      padAjax644e872747e89fc7fbbb89292e9f1e6b.open("GET","http://localhost/pad/toys/?sorting&padInclude",true);
+                      padAjax644e872747e89fc7fbbb89292e9f1e6b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

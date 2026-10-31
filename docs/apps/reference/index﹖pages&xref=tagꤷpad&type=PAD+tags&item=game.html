@@ -246,6 +246,468 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: games - Page: bullscows<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe588f7dd4e115393b17b6076226889ef"></div>
+                      <script>
+                      padAjaxe588f7dd4e115393b17b6076226889ef = new XMLHttpRequest();
+                      padAjaxe588f7dd4e115393b17b6076226889ef.onreadystatechange=function() {
+                      if (padAjaxe588f7dd4e115393b17b6076226889ef.readyState === 4) {
+                      if (padAjaxe588f7dd4e115393b17b6076226889ef.status === 200) {
+                      document.getElementById("padAjaxe588f7dd4e115393b17b6076226889ef").innerHTML=padAjaxe588f7dd4e115393b17b6076226889ef.responseText;
+                      } else {
+                      document.getElementById("padAjaxe588f7dd4e115393b17b6076226889ef").innerHTML=padAjaxe588f7dd4e115393b17b6076226889ef.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe588f7dd4e115393b17b6076226889ef.open("GET","http://localhost/pad/games/?bullscows&padInclude",true);
+                      padAjaxe588f7dd4e115393b17b6076226889ef.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: fifteen<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax248bb31f8bbe2a81643814a9bf5fd67f"></div>
+                      <script>
+                      padAjax248bb31f8bbe2a81643814a9bf5fd67f = new XMLHttpRequest();
+                      padAjax248bb31f8bbe2a81643814a9bf5fd67f.onreadystatechange=function() {
+                      if (padAjax248bb31f8bbe2a81643814a9bf5fd67f.readyState === 4) {
+                      if (padAjax248bb31f8bbe2a81643814a9bf5fd67f.status === 200) {
+                      document.getElementById("padAjax248bb31f8bbe2a81643814a9bf5fd67f").innerHTML=padAjax248bb31f8bbe2a81643814a9bf5fd67f.responseText;
+                      } else {
+                      document.getElementById("padAjax248bb31f8bbe2a81643814a9bf5fd67f").innerHTML=padAjax248bb31f8bbe2a81643814a9bf5fd67f.statusText;
+                      }
+                      }
+                      }
+                      padAjax248bb31f8bbe2a81643814a9bf5fd67f.open("GET","http://localhost/pad/games/?fifteen&padInclude",true);
+                      padAjax248bb31f8bbe2a81643814a9bf5fd67f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: gomoku<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax27a1551882401faefeee7c00878409d1"></div>
+                      <script>
+                      padAjax27a1551882401faefeee7c00878409d1 = new XMLHttpRequest();
+                      padAjax27a1551882401faefeee7c00878409d1.onreadystatechange=function() {
+                      if (padAjax27a1551882401faefeee7c00878409d1.readyState === 4) {
+                      if (padAjax27a1551882401faefeee7c00878409d1.status === 200) {
+                      document.getElementById("padAjax27a1551882401faefeee7c00878409d1").innerHTML=padAjax27a1551882401faefeee7c00878409d1.responseText;
+                      } else {
+                      document.getElementById("padAjax27a1551882401faefeee7c00878409d1").innerHTML=padAjax27a1551882401faefeee7c00878409d1.statusText;
+                      }
+                      }
+                      }
+                      padAjax27a1551882401faefeee7c00878409d1.open("GET","http://localhost/pad/games/?gomoku&padInclude",true);
+                      padAjax27a1551882401faefeee7c00878409d1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: hanoi<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax9edc54a93760a5a09ca504005adb04d1"></div>
+                      <script>
+                      padAjax9edc54a93760a5a09ca504005adb04d1 = new XMLHttpRequest();
+                      padAjax9edc54a93760a5a09ca504005adb04d1.onreadystatechange=function() {
+                      if (padAjax9edc54a93760a5a09ca504005adb04d1.readyState === 4) {
+                      if (padAjax9edc54a93760a5a09ca504005adb04d1.status === 200) {
+                      document.getElementById("padAjax9edc54a93760a5a09ca504005adb04d1").innerHTML=padAjax9edc54a93760a5a09ca504005adb04d1.responseText;
+                      } else {
+                      document.getElementById("padAjax9edc54a93760a5a09ca504005adb04d1").innerHTML=padAjax9edc54a93760a5a09ca504005adb04d1.statusText;
+                      }
+                      }
+                      }
+                      padAjax9edc54a93760a5a09ca504005adb04d1.open("GET","http://localhost/pad/games/?hanoi&padInclude",true);
+                      padAjax9edc54a93760a5a09ca504005adb04d1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: maze<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa7e5b50d61cefd20686b78834ee1e6a3"></div>
+                      <script>
+                      padAjaxa7e5b50d61cefd20686b78834ee1e6a3 = new XMLHttpRequest();
+                      padAjaxa7e5b50d61cefd20686b78834ee1e6a3.onreadystatechange=function() {
+                      if (padAjaxa7e5b50d61cefd20686b78834ee1e6a3.readyState === 4) {
+                      if (padAjaxa7e5b50d61cefd20686b78834ee1e6a3.status === 200) {
+                      document.getElementById("padAjaxa7e5b50d61cefd20686b78834ee1e6a3").innerHTML=padAjaxa7e5b50d61cefd20686b78834ee1e6a3.responseText;
+                      } else {
+                      document.getElementById("padAjaxa7e5b50d61cefd20686b78834ee1e6a3").innerHTML=padAjaxa7e5b50d61cefd20686b78834ee1e6a3.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa7e5b50d61cefd20686b78834ee1e6a3.open("GET","http://localhost/pad/games/?maze&padInclude",true);
+                      padAjaxa7e5b50d61cefd20686b78834ee1e6a3.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: memory<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax914ba4b946a1cc611af5b64107ff4df5"></div>
+                      <script>
+                      padAjax914ba4b946a1cc611af5b64107ff4df5 = new XMLHttpRequest();
+                      padAjax914ba4b946a1cc611af5b64107ff4df5.onreadystatechange=function() {
+                      if (padAjax914ba4b946a1cc611af5b64107ff4df5.readyState === 4) {
+                      if (padAjax914ba4b946a1cc611af5b64107ff4df5.status === 200) {
+                      document.getElementById("padAjax914ba4b946a1cc611af5b64107ff4df5").innerHTML=padAjax914ba4b946a1cc611af5b64107ff4df5.responseText;
+                      } else {
+                      document.getElementById("padAjax914ba4b946a1cc611af5b64107ff4df5").innerHTML=padAjax914ba4b946a1cc611af5b64107ff4df5.statusText;
+                      }
+                      }
+                      }
+                      padAjax914ba4b946a1cc611af5b64107ff4df5.open("GET","http://localhost/pad/games/?memory&padInclude",true);
+                      padAjax914ba4b946a1cc611af5b64107ff4df5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: nim<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax812ef408d086e5529a2ca84173ca992d"></div>
+                      <script>
+                      padAjax812ef408d086e5529a2ca84173ca992d = new XMLHttpRequest();
+                      padAjax812ef408d086e5529a2ca84173ca992d.onreadystatechange=function() {
+                      if (padAjax812ef408d086e5529a2ca84173ca992d.readyState === 4) {
+                      if (padAjax812ef408d086e5529a2ca84173ca992d.status === 200) {
+                      document.getElementById("padAjax812ef408d086e5529a2ca84173ca992d").innerHTML=padAjax812ef408d086e5529a2ca84173ca992d.responseText;
+                      } else {
+                      document.getElementById("padAjax812ef408d086e5529a2ca84173ca992d").innerHTML=padAjax812ef408d086e5529a2ca84173ca992d.statusText;
+                      }
+                      }
+                      }
+                      padAjax812ef408d086e5529a2ca84173ca992d.open("GET","http://localhost/pad/games/?nim&padInclude",true);
+                      padAjax812ef408d086e5529a2ca84173ca992d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: pegsolitaire<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxffbd9df923163a25b5454a7d29abc605"></div>
+                      <script>
+                      padAjaxffbd9df923163a25b5454a7d29abc605 = new XMLHttpRequest();
+                      padAjaxffbd9df923163a25b5454a7d29abc605.onreadystatechange=function() {
+                      if (padAjaxffbd9df923163a25b5454a7d29abc605.readyState === 4) {
+                      if (padAjaxffbd9df923163a25b5454a7d29abc605.status === 200) {
+                      document.getElementById("padAjaxffbd9df923163a25b5454a7d29abc605").innerHTML=padAjaxffbd9df923163a25b5454a7d29abc605.responseText;
+                      } else {
+                      document.getElementById("padAjaxffbd9df923163a25b5454a7d29abc605").innerHTML=padAjaxffbd9df923163a25b5454a7d29abc605.statusText;
+                      }
+                      }
+                      }
+                      padAjaxffbd9df923163a25b5454a7d29abc605.open("GET","http://localhost/pad/games/?pegsolitaire&padInclude",true);
+                      padAjaxffbd9df923163a25b5454a7d29abc605.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: reversi<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa84c8b6824a083acc6d90abc02c3edf9"></div>
+                      <script>
+                      padAjaxa84c8b6824a083acc6d90abc02c3edf9 = new XMLHttpRequest();
+                      padAjaxa84c8b6824a083acc6d90abc02c3edf9.onreadystatechange=function() {
+                      if (padAjaxa84c8b6824a083acc6d90abc02c3edf9.readyState === 4) {
+                      if (padAjaxa84c8b6824a083acc6d90abc02c3edf9.status === 200) {
+                      document.getElementById("padAjaxa84c8b6824a083acc6d90abc02c3edf9").innerHTML=padAjaxa84c8b6824a083acc6d90abc02c3edf9.responseText;
+                      } else {
+                      document.getElementById("padAjaxa84c8b6824a083acc6d90abc02c3edf9").innerHTML=padAjaxa84c8b6824a083acc6d90abc02c3edf9.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa84c8b6824a083acc6d90abc02c3edf9.open("GET","http://localhost/pad/games/?reversi&padInclude",true);
+                      padAjaxa84c8b6824a083acc6d90abc02c3edf9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: scramble<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax76c169129dfab768d2fa5a0be6c6676b"></div>
+                      <script>
+                      padAjax76c169129dfab768d2fa5a0be6c6676b = new XMLHttpRequest();
+                      padAjax76c169129dfab768d2fa5a0be6c6676b.onreadystatechange=function() {
+                      if (padAjax76c169129dfab768d2fa5a0be6c6676b.readyState === 4) {
+                      if (padAjax76c169129dfab768d2fa5a0be6c6676b.status === 200) {
+                      document.getElementById("padAjax76c169129dfab768d2fa5a0be6c6676b").innerHTML=padAjax76c169129dfab768d2fa5a0be6c6676b.responseText;
+                      } else {
+                      document.getElementById("padAjax76c169129dfab768d2fa5a0be6c6676b").innerHTML=padAjax76c169129dfab768d2fa5a0be6c6676b.statusText;
+                      }
+                      }
+                      }
+                      padAjax76c169129dfab768d2fa5a0be6c6676b.open("GET","http://localhost/pad/games/?scramble&padInclude",true);
+                      padAjax76c169129dfab768d2fa5a0be6c6676b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: games - Page: snake<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6d6d1cc440f01dc5b4214e1a19090b1d"></div>
+                      <script>
+                      padAjax6d6d1cc440f01dc5b4214e1a19090b1d = new XMLHttpRequest();
+                      padAjax6d6d1cc440f01dc5b4214e1a19090b1d.onreadystatechange=function() {
+                      if (padAjax6d6d1cc440f01dc5b4214e1a19090b1d.readyState === 4) {
+                      if (padAjax6d6d1cc440f01dc5b4214e1a19090b1d.status === 200) {
+                      document.getElementById("padAjax6d6d1cc440f01dc5b4214e1a19090b1d").innerHTML=padAjax6d6d1cc440f01dc5b4214e1a19090b1d.responseText;
+                      } else {
+                      document.getElementById("padAjax6d6d1cc440f01dc5b4214e1a19090b1d").innerHTML=padAjax6d6d1cc440f01dc5b4214e1a19090b1d.statusText;
+                      }
+                      }
+                      }
+                      padAjax6d6d1cc440f01dc5b4214e1a19090b1d.open("GET","http://localhost/pad/games/?snake&padInclude",true);
+                      padAjax6d6d1cc440f01dc5b4214e1a19090b1d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

@@ -127,6 +127,48 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: showcase - Page: icon/gallery<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">icon/gallery.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">icon/gallery.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $icons </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">padIconNames </span><span style="color: #007700">() as </span><span style="color: #0000BB">$name </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$icons </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every icon<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The whole set<font color="black">,</font> listed by padIconNames () - lines on a 24 by 24 grid in the colour of the text.<font color="black">'</font></font>/}</b><br>&lt;ul style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(92px, 1fr)); gap:6px"&gt;<br>  <b>{<font color="blue">icons</font><font color="red"></font>}</b><br>  &lt;li style="display:grid; justify-items:center; gap:6px; padding:12px 4px; border:1px solid rgba(127,127,127,.2); border-radius:10px"&gt;<br>    <b>{<font color="blue">icon </font><font color="red"><font color="red">$</font>name<font color="black">,</font> size=24</font>/}</b><br>    &lt;code style="font-size:11px"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/code&gt;<br>  &lt;/li&gt;<br>  <b>{/<font color="blue">icons</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax32543efc388871f6b6d6568b206841de"></div>
+                      <script>
+                      padAjax32543efc388871f6b6d6568b206841de = new XMLHttpRequest();
+                      padAjax32543efc388871f6b6d6568b206841de.onreadystatechange=function() {
+                      if (padAjax32543efc388871f6b6d6568b206841de.readyState === 4) {
+                      if (padAjax32543efc388871f6b6d6568b206841de.status === 200) {
+                      document.getElementById("padAjax32543efc388871f6b6d6568b206841de").innerHTML=padAjax32543efc388871f6b6d6568b206841de.responseText;
+                      } else {
+                      document.getElementById("padAjax32543efc388871f6b6d6568b206841de").innerHTML=padAjax32543efc388871f6b6d6568b206841de.statusText;
+                      }
+                      }
+                      }
+                      padAjax32543efc388871f6b6d6568b206841de.open("GET","http://localhost/pad/showcase/?icon/gallery&padInclude",true);
+                      padAjax32543efc388871f6b6d6568b206841de.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: tags - Page: examples/icon/2-sizes<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -162,6 +204,48 @@
                       }
                       padAjaxf2eb58eca02dd693d64ddb3b7074002a.open("GET","http://localhost/pad/tags/?examples/icon/2-sizes&padInclude",true);
                       padAjaxf2eb58eca02dd693d64ddb3b7074002a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/icon/5-every<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/icon/5-every.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/icon/5-every.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $glyphs </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$name </span><span style="color: #007700">) =&gt; [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$name </span><span style="color: #007700">], </span><span style="color: #0000BB">padIconNames </span><span style="color: #007700">() );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Every icon of the set<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The names of pad/icons/types/ as a page array<font color="black">,</font> each icon drawn with its name under it.<font color="black">'</font></font>/}</b><br>&lt;ul style="list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(104px, 1fr)); gap:12px"&gt;<br>  <b>{<font color="blue">glyphs</font><font color="red"></font>}</b><br>  &lt;li style="text-align:center"&gt;<b>{<font color="blue">icon </font><font color="red"><font color="red">$</font>name<font color="black">,</font> size=24</font>/}</b>&lt;br&gt;&lt;code style="font-size:11px"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  <b>{/<font color="blue">glyphs</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8"></div>
+                      <script>
+                      padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8 = new XMLHttpRequest();
+                      padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.onreadystatechange=function() {
+                      if (padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.readyState === 4) {
+                      if (padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.status === 200) {
+                      document.getElementById("padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8").innerHTML=padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.responseText;
+                      } else {
+                      document.getElementById("padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8").innerHTML=padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.statusText;
+                      }
+                      }
+                      }
+                      padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.open("GET","http://localhost/pad/tags/?examples/icon/5-every&padInclude",true);
+                      padAjaxefa86e4aa5dd55e8c436f3b73fd9a7d8.send();
                       </script>
                     </td>
                   </tr>

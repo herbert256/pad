@@ -206,6 +206,48 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: games - Page: tictactoe<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">[game].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">[game].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A game, by the name in the address - ?memory, /games/memory: one of the engine's games,<br>  // else a page not found. Its template is shown beside it, coloured, and played.<br><br>  </span><span style="color: #0000BB">$one </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$games</span><span style="color: #007700">, fn ( </span><span style="color: #0000BB">$entry </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$entry </span><span style="color: #007700">[</span><span style="color: #DD0000">'game'</span><span style="color: #007700">] === </span><span style="color: #0000BB">$game </span><span style="color: #007700">) ) [</span><span style="color: #0000BB">0</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">$one </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title    </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$text     </span><span style="color: #007700">= </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$template </span><span style="color: #007700">= </span><span style="color: #0000BB">gamesTemplate </span><span style="color: #007700">( </span><span style="color: #0000BB">$game </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$source   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">$template</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p class="games-lead"&gt;<b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/p&gt;<br><br>&lt;div class="games-play"&gt;<br>  <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>template <font color="black">|</font> code</font>/}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;The template&lt;/h2&gt;<br>&lt;pre class="games-source"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>source</font>}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax874417f22e60c0e7470a86b38cfd8ade"></div>
+                      <script>
+                      padAjax874417f22e60c0e7470a86b38cfd8ade = new XMLHttpRequest();
+                      padAjax874417f22e60c0e7470a86b38cfd8ade.onreadystatechange=function() {
+                      if (padAjax874417f22e60c0e7470a86b38cfd8ade.readyState === 4) {
+                      if (padAjax874417f22e60c0e7470a86b38cfd8ade.status === 200) {
+                      document.getElementById("padAjax874417f22e60c0e7470a86b38cfd8ade").innerHTML=padAjax874417f22e60c0e7470a86b38cfd8ade.responseText;
+                      } else {
+                      document.getElementById("padAjax874417f22e60c0e7470a86b38cfd8ade").innerHTML=padAjax874417f22e60c0e7470a86b38cfd8ade.statusText;
+                      }
+                      }
+                      }
+                      padAjax874417f22e60c0e7470a86b38cfd8ade.open("GET","http://localhost/pad/games/?tictactoe&padInclude",true);
+                      padAjax874417f22e60c0e7470a86b38cfd8ade.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>
