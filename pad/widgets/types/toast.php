@@ -1,11 +1,12 @@
 <?php
 
   // {toast 'Saved'}Your changes are kept.{/toast} or {toast 'Saved'/} - a notice the visitor
-  // dismisses: a <dialog> shown from the start, its title, its text, and a close button in a
-  // form of method dialog, which closes it without a script. tone= colours it - info,
+  // dismisses: a <dialog> shown from the start, its title, its text, and a close button the
+  // browser makes close it (invoker commands), a small script (CSP nonce) where it does not -
+  // no form of its own, so a toast stands inside a {form} too. tone= colours it - info,
   // success, warning or error; place= puts it in a corner of the window, top or bottom,
-  // instead of in the flow; timeout= closes it after so many seconds, which a small script
-  // does (CSP nonce), held while the pointer or the focus is on it. widgets/_lib/toast.php.
+  // instead of in the flow; timeout= closes it after so many seconds, which the script
+  // does, held while the pointer or the focus is on it. widgets/_lib/toast.php.
   //
   // The text of the pair is template, rendered first: like {live}, the pair asks for the end
   // walk and frames what rendered.

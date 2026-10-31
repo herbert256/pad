@@ -6,23 +6,27 @@
   //   {toast 'Payment failed', tone='error', place='top'/}
   //
   // The toast is a <dialog> with the open attribute: shown as the page arrives, not modal -
-  // the page stays usable - and closed by its button, which submits a form of method dialog:
-  // the browser closes the dialog it stands in, so dismissing needs no script. Its text is
-  // a status region, an alert for a warning or an error, so a toast a fragment or a live
+  // the page stays usable - and closed by its button, whose commandfor and command="close"
+  // attributes (HTML invoker commands) have the browser close the dialog without a script;
+  // a browser without them has the toast's script do it. The button is no form of its own:
+  // it closed the dialog by submitting a form of method dialog, which inside a {form} the
+  // HTML parser dropped - the button then submitted the page's form, and the inner </form>
+  // closed the outer one, every field after the toast falling out of it. Its text is a
+  // status region, an alert for a warning or an error, so a toast a fragment or a live
   // region brings later is read out.
   //
   // place= puts it in the top or the bottom corner of the window instead of in the flow of
   // the page; two toasts in one corner lie over each other, so a page puts one there.
-  // timeout= closes it after so many seconds: the one thing that needs the script, written
-  // once per page with the CSP nonce, which holds the time while the pointer or the focus is
-  // on the toast - a notice that goes before it is read is an accessibility fault - and
-  // closes a toast with Escape. Printed, no toast shows.
+  // timeout= closes it after so many seconds, which the script does as well, written once
+  // per page with the CSP nonce: it holds the time while the pointer or the focus is on the
+  // toast - a notice that goes before it is read is an accessibility fault - and closes a
+  // toast with Escape. Printed, no toast shows.
   //
   // padToast         the dialog: the title, the text, the close button
   // padToastTimeout  the seconds of timeout=, 0 without it
   // padToastStyle    the CSS, assets/toast.css, once per page
-  // padToastScript   the script, assets/toast.js, once per page - only for a toast that
-  //                  closes by itself
+  // padToastScript   the script, assets/toast.js, once per page - the close button of a
+  //                  browser without invoker commands, Escape and timeout=
 
   function padToast ( $title, $text, $tone, $place, $timeout ) {
 
@@ -39,10 +43,9 @@
                       . ( $text  !== '' ? '<div class="pad-toast-text">' : '' ) )
          . $text
          . padProtect ( ( $text !== '' ? '</div>' : '' ) . '</div>'
-                      . '<form class="pad-toast-form" method="dialog">'
-                      . '<button class="pad-toast-close" aria-label="Dismiss"><span aria-hidden="true">&#215;</span></button>'
-                      . '</form></dialog>' )
-         . ( $timeout ? padToastScript () : '' );
+                      . "<button type=\"button\" class=\"pad-toast-close\" commandfor=\"$id\" command=\"close\" aria-label=\"Dismiss\"><span aria-hidden=\"true\">&#215;</span></button>"
+                      . '</dialog>' )
+         . padToastScript ();
 
   }
 

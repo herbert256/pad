@@ -25,6 +25,12 @@
   function scan() {
     document.querySelectorAll('dialog.pad-toast[open][data-pad-timeout]').forEach(arm);
   }
+  if (!('command' in HTMLButtonElement.prototype))
+    document.addEventListener('click', function (e) {
+      var button = e.target.closest && e.target.closest('button.pad-toast-close');
+      var toast = button && document.getElementById(button.getAttribute('commandfor'));
+      if (toast && toast.matches('dialog.pad-toast')) toast.close();
+    });
   document.addEventListener('keydown', function (e) {
     var toast = e.key === 'Escape' && e.target.closest && e.target.closest('dialog.pad-toast[open]');
     if (toast) toast.close();

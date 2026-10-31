@@ -2491,8 +2491,9 @@ answers is one under the strict check.
 
 ### toast
 A notice the visitor dismisses - a `<dialog>` shown from the start, not modal, with its title,
-its text and a close button that submits a form of method dialog, so the browser closes it
-without a script (`widgets/_lib/toast.php`).
+its text and a close button whose invoker command (`commandfor`, `command="close"`) has the
+browser close it, the toast's script where the browser has none - no form of its own, so a
+toast stands inside a `{form}` as well, its fields staying in the form (`widgets/_lib/toast.php`).
 
 ```html
 {toast 'Saved', tone='success'}Your changes are kept.{/toast}
@@ -2511,10 +2512,11 @@ without a script (`widgets/_lib/toast.php`).
 
 **Behavior:** the text is a status region, an alert for a warning or an error, so a toast a
 fragment or a live region brings is read out; a toast without a title is named by its tone.
-Only `timeout=` needs the script, written once per page with the CSP nonce, which holds the
-time while the pointer or the focus is on the toast and closes a focused toast with Escape; a
-toast a fragment brings later is timed as well. Two toasts in one corner lie over each other,
-so a page puts one there. Printed, no toast shows. The colours are `--pad-toast-text`,
+The script is written once per page with the CSP nonce: it closes a toast where the browser
+has no invoker commands, closes a focused toast with Escape and runs `timeout=`, holding the
+time while the pointer or the focus is on the toast; a toast a fragment brings later is
+timed as well. Two toasts in one corner lie over each other, so a page puts one there.
+Printed, no toast shows. The colours are `--pad-toast-text`,
 `-muted`, `-line`, `-surface`, `-info`, `-success`, `-warning` and `-error` on `.pad-toast`,
 `light-dark()` defaults. A toast without title and text, an unknown tone or place and a
 timeout that is no whole number of seconds are errors under the strict check.
@@ -3930,7 +3932,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `carousel` | Widget | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `copy` | Widget | A text with a copy-to-clipboard button, selectable by hand without scripting |
 | `poll` | Widget | A vote once per visitor, results as bars - a live region, a plain form without scripting |
-| `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` closed by a form of method dialog, no JavaScript |
+| `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` its button closes by an invoker command |
 | `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
 | `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
 | `wizard` | Widget | Steps one at a time - every `{tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
