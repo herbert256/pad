@@ -675,9 +675,9 @@ world, the six continents (europe, africa, asia, north-america, south-america, o
 middle-east, mediterranean, eu, nordic, benelux, baltic, british-isles, iberia, dach, balkans,
 central-america, caribbean, east-asia, southeast-asia, south-asia, central-asia. A view of a
 list draws the countries around it quieter, without values (`--pad-map-context`); a value of
-a country the view does not show is named in the title. A view is added by adding its file -
-no new outlines needed, every view is a crop of the same Natural Earth outlines
-(`pad/maps/_lib/world.json`).
+a country the view does not show is named in the title, and kept off the scale. A view is
+added by adding its file - no new outlines needed, every view is a crop of the same Natural
+Earth outlines (`pad/maps/_lib/world.json`).
 
 ### Embeds
 ```

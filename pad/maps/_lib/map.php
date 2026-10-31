@@ -152,9 +152,26 @@
 
     $focus = isset ( padMapView ( $view ) ['countries'] ) ? array_flip ( padMapView ( $view ) ['countries'] ) : NULL;
 
+    // A country with a value that the view does not show is named in the title, as a key
+    // that is no country is: its value was dropped from the picture without a word. Its
+    // value is in nothing else - not the scale, the legend or the description, which are
+    // the values the map draws: a region view is fed a wider data set, and on a Benelux map
+    // with Germany at 1000 in it the Netherlands, Belgium and Luxembourg at 10 to 30 all
+    // took the lightest step, the legend ran to 1,000 and the description read Germany out.
+
+    $outside = $inside = [];
+
+    foreach ( $values as $code => $value ) {
+      $box = $countries [$code] [3];
+      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 or ( $focus !== NULL and ! isset ( $focus [$code] ) ) )
+        $outside [] = $countries [$code] [1];
+      else
+        $inside [$code] = $value;
+    }
+
     $boxW   = $x1 - $x0;
     $boxH   = $y1 - $y0;
-    $legend = $values ? 34 : 0;
+    $legend = $inside ? 34 : 0;
 
     if ( $height <= 0 )
       $height = (int) round ( $width * $boxH / $boxW ) + $legend;
@@ -163,32 +180,20 @@
     $simple = ( $boxW / $width > 3 );
     $desc   = [];
 
-    foreach ( $values as $code => list ( $value ) )
+    foreach ( $inside as $code => list ( $value ) )
       $desc [] = $countries [$code] [1] . ': ' . padChartNumber ( $value );
 
     if ( ! $desc )
       $desc [] = 'No values';
 
-    // A country with a value that the view does not show is named in the title, as a key
-    // that is no country is: its value was dropped from the picture without a word, while
-    // it still set the colour scale.
-
-    $outside = [];
-
-    foreach ( $values as $code => $value ) {
-      $box = $countries [$code] [3];
-      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 or ( $focus !== NULL and ! isset ( $focus [$code] ) ) )
-        $outside [] = $countries [$code] [1];
-    }
-
     if ( $outside )
       $title .= ' (not in this view: ' . implode ( ', ', array_slice ( $outside, 0, 10 ) ) . ')';
 
-    list ( $id, $svg ) = padChartOpen ( 'map', [ $view, $values ], $desc, $title, $width, $height );
+    list ( $id, $svg ) = padChartOpen ( 'map', [ $view, $inside ], $desc, $title, $width, $height );
 
     $svg .= padMapStyle ( $focus !== NULL );
 
-    $all  = array_column ( $values, 0 );
+    $all  = array_column ( $inside, 0 );
     $min  = $all ? min ( $all ) : 0;
     $max  = $all ? max ( $all ) : 0;
     $span = $max - $min;
@@ -225,8 +230,8 @@
 
       if ( $focus !== NULL and ! isset ( $focus [$code] ) )
         $svg .= "<path class=\"pm-land pm-context\" d=\"$d\"><title>" . padChartAttr ( $name ) . '</title></path>';
-      elseif ( isset ( $values [$code] ) )
-        $later .= '<path class="pc-mark pm-land pc-h' . $step ( $values [$code] [0] ) . "\" d=\"$d\"><title>" . padChartAttr ( $name . ': ' . padChartNumber ( $values [$code] [0] ) ) . '</title></path>';
+      elseif ( isset ( $inside [$code] ) )
+        $later .= '<path class="pc-mark pm-land pc-h' . $step ( $inside [$code] [0] ) . "\" d=\"$d\"><title>" . padChartAttr ( $name . ': ' . padChartNumber ( $inside [$code] [0] ) ) . '</title></path>';
       else
         $svg .= "<path class=\"pm-land pm-empty\" d=\"$d\"><title>" . padChartAttr ( $name ) . '</title></path>';
 
@@ -234,7 +239,7 @@
 
     $svg .= "$later</svg>";
 
-    if ( ! $values )
+    if ( ! $inside )
       return "$svg</svg>";
 
     // The scale: the lowest value, the seven steps, the highest, and the grey of no value.

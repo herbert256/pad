@@ -3083,7 +3083,7 @@ server by the map subsystem in `pad/maps/` from Natural Earth's outlines (`maps/
 | `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - else the first field that is no number |
 | `value` | The number - else the first numeric field |
-| `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) |
+| `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) - of the values the view draws |
 | `width`, `height` | Default 720 wide; the height follows from the view unless given |
 | `title` | The accessible name, default `<Value> by country` |
 
@@ -3105,7 +3105,8 @@ of the globe its `countries` (alpha-2 codes) and the `name` the map's title take
 there are the views there are (`padMapViews`), and a view is added by adding its file. A view
 draws every country its box touches; with a list of countries, the others are the land
 around them, drawn without a value in `--pad-map-context`, and a value of theirs is named in
-the title (`not in this view: Germany`), as one of a country outside the box is.
+the title (`not in this view: Germany`), as one of a country outside the box is - and is
+left out of the scale, the legend and the description, which are the values the map draws.
 
 ---
 
