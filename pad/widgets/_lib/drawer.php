@@ -21,7 +21,11 @@
   //
   // side= is the edge: right (the default) and left, the whole height of the window, or
   // bottom, a sheet across its width - the panel slides in from there unless reduced motion
-  // is asked for. The id is the drawer's name, pad-drawer-filters.
+  // is asked for. The id is the drawer's name, pad-drawer-filters. What the drawer adds to it
+  // - the number of a second drawer of one name, pad-drawer-filters.2, and the ids of its
+  // opening link and its title, .open and .title - follows a dot, which no name can hold: a
+  // dash, as before, made the second 'f' and a drawer named 'f-2' one id, and the link of
+  // 'g' and the panel of a drawer named 'g-open' - the button of one opened the other.
   //
   // padDrawer        the button, the links and the panel around the rendered content
   // padDrawerStyle   the CSS, assets/drawer.css, once per page
@@ -34,19 +38,19 @@
 
     $names [$name] = ( $names [$name] ?? 0 ) + 1;
 
-    $id     = "pad-drawer-$name" . ( $names [$name] > 1 ? '-' . $names [$name] : '' );
+    $id     = "pad-drawer-$name" . ( $names [$name] > 1 ? '.' . $names [$name] : '' );
     $title  = padWidgetAttr ( $title );
     $button = padWidgetAttr ( $button );
 
     return padDrawerStyle ()
          . padProtect ( '<div class="pad-drawer">'
                       . "<button type=\"button\" class=\"pad-drawer-button\" commandfor=\"$id\" command=\"show-modal\">$button</button>"
-                      . "<a class=\"pad-drawer-button pad-drawer-link\" id=\"$id-open\" href=\"#$id\">$button</a>"
-                      . "<dialog class=\"pad-drawer-panel pad-drawer-$side\" id=\"$id\" aria-labelledby=\"$id-title\" closedby=\"any\">"
+                      . "<a class=\"pad-drawer-button pad-drawer-link\" id=\"$id.open\" href=\"#$id\">$button</a>"
+                      . "<dialog class=\"pad-drawer-panel pad-drawer-$side\" id=\"$id\" aria-labelledby=\"$id.title\" closedby=\"any\">"
                       . '<div class="pad-drawer-head">'
-                      . "<h2 class=\"pad-drawer-title\" id=\"$id-title\">$title</h2>"
+                      . "<h2 class=\"pad-drawer-title\" id=\"$id.title\">$title</h2>"
                       . "<button type=\"button\" class=\"pad-drawer-close\" commandfor=\"$id\" command=\"close\" aria-label=\"Close\"><span aria-hidden=\"true\">&#215;</span></button>"
-                      . "<a class=\"pad-drawer-close pad-drawer-link\" href=\"#$id-open\" aria-label=\"Close\"><span aria-hidden=\"true\">&#215;</span></a>"
+                      . "<a class=\"pad-drawer-close pad-drawer-link\" href=\"#$id.open\" aria-label=\"Close\"><span aria-hidden=\"true\">&#215;</span></a>"
                       . '</div><div class="pad-drawer-body">' )
          . $content
          . padProtect ( '</div></dialog></div>' )

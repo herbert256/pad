@@ -2379,7 +2379,7 @@ A dialog over the page - an HTML `<dialog>` with the content, and the button tha
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The name - letters, digits, `_` and `-`; the dialog's id is `pad-modal-<name>` |
+| first parameter | The name - letters, digits, `_` and `-`; the dialog's id is `pad-modal-<name>`, a second modal of the name `pad-modal-<name>.2` |
 | `title` | The heading of the dialog, which names it; the button's text when not given |
 | `button` | The text of the button that opens it, default `Open` |
 
@@ -2680,7 +2680,7 @@ button that opens it, opened the way `{modal}` opens its dialog (`widgets/_lib/d
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The name - letters, digits, `_` and `-`; the panel's id is `pad-drawer-<name>` |
+| first parameter | The name - letters, digits, `_` and `-`; the panel's id is `pad-drawer-<name>`, a second drawer of the name `pad-drawer-<name>.2` |
 | `title` | The heading of the panel, which names it; the button's text when not given |
 | `button` | The text of the button that opens it, default `Open` |
 | `side` | `right` (the default) or `left` - the whole height of the window - or `bottom`, a sheet across its width |

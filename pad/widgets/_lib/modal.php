@@ -26,6 +26,10 @@
   // button or Escape reached - a dialog opened by its address could not be closed.
   //
   // The id is the modal's name - pad-modal-terms - so a link elsewhere can open it too: ?page#pad-modal-terms.
+  // What the modal adds to it - the number of a second modal of one name, pad-modal-terms.2,
+  // and the ids of its opening link and its title, .open and .title - follows a dot, which no
+  // name can hold: a dash, as before, made the second 'terms' and a modal named 'terms-2'
+  // one id, and the link of 'terms' and the dialog of a modal named 'terms-open'.
   //
   // padModal        the button, the links and the dialog around the rendered content
   // padModalStyle   the CSS, assets/modal.css, once per page
@@ -38,18 +42,18 @@
 
     $names [$name] = ( $names [$name] ?? 0 ) + 1;
 
-    $id     = "pad-modal-$name" . ( $names [$name] > 1 ? '-' . $names [$name] : '' );
+    $id     = "pad-modal-$name" . ( $names [$name] > 1 ? '.' . $names [$name] : '' );
     $title  = padWidgetAttr ( $title );
     $button = padWidgetAttr ( $button );
 
     return padModalStyle ()
          . padProtect ( "<button type=\"button\" class=\"pad-modal-button\" commandfor=\"$id\" command=\"show-modal\">$button</button>"
-                      . "<a class=\"pad-modal-button pad-modal-link\" id=\"$id-open\" href=\"#$id\">$button</a>"
-                      . "<dialog class=\"pad-modal\" id=\"$id\" aria-labelledby=\"$id-title\" closedby=\"any\">"
+                      . "<a class=\"pad-modal-button pad-modal-link\" id=\"$id.open\" href=\"#$id\">$button</a>"
+                      . "<dialog class=\"pad-modal\" id=\"$id\" aria-labelledby=\"$id.title\" closedby=\"any\">"
                       . '<div class="pad-modal-frame"><div class="pad-modal-head">'
-                      . "<h2 class=\"pad-modal-title\" id=\"$id-title\">$title</h2>"
+                      . "<h2 class=\"pad-modal-title\" id=\"$id.title\">$title</h2>"
                       . "<button type=\"button\" class=\"pad-modal-close\" commandfor=\"$id\" command=\"close\" aria-label=\"Close\"><span aria-hidden=\"true\">&#215;</span></button>"
-                      . "<a class=\"pad-modal-close pad-modal-link\" href=\"#$id-open\" aria-label=\"Close\"><span aria-hidden=\"true\">&#215;</span></a>"
+                      . "<a class=\"pad-modal-close pad-modal-link\" href=\"#$id.open\" aria-label=\"Close\"><span aria-hidden=\"true\">&#215;</span></a>"
                       . '</div><div class="pad-modal-body">' )
          . $content
          . padProtect ( '</div></div></dialog>' )
