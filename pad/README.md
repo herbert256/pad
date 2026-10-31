@@ -64,7 +64,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | events/ | Event hooks of the info modes (trace, stats, xref) - an application's own hooks are its `_events/`, run by lib/events.php |
 | exits/ | Shutdown, output formatting, and HTTP responses |
 | functions/ | Pipe functions (trim, upper, date, html, etc.) |
-| games/ | The games subsystem - `{game}` and the `game:` type; a game is a file of `games/types/` with its `.js` and `.css`, the runtime and the sudoku and crossword code in `games/_lib/` |
+| games/ | The games subsystem - `{game}` and the `game:` type; a game is a file of `games/types/`, its `.js` and `.css` in `games/assets/` beside the runtime's, the sudoku and crossword code in `games/_lib/` |
 | get/ | Variable getter system for content retrieval |
 | handling/ | Data array post-processing (sort, page, dedup) |
 | info/ | Debugging, tracing, and profiling system |

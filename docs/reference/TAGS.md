@@ -1979,8 +1979,8 @@ under the strict check.
 ### game
 A little game played in the browser: the server checks what the game is given and writes its
 board, the game's script - once per page, with the CSP nonce - plays it. Every game is a file of
-`pad/games/types/` with its `.js` and `.css` beside it, and the files there are the games there
-are (`padGameTypes()`); the subsystem is `pad/games/`.
+`pad/games/types/`, its `.js` and `.css` in `pad/games/assets/`, and the files of `types/` are
+the games there are (`padGameTypes()`); the subsystem is `pad/games/`.
 
 ```html
 {game 'memory', pairs=6/}

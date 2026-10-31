@@ -465,8 +465,8 @@ A little game played in the browser, of the kind the tag names - the games subsy
 ```
 
 **Resolution:** a PHP file `PAD/games/types/<name>.php` (`padGameType()` in `PAD/lib/game.php`),
-its script and style beside it: the files there are the games, and a game is added by adding
-its files. Bare, a game comes after every other kind of tag, the chart kinds too.
+its script and style `PAD/games/assets/<name>.js` and `.css`: the files of `types/` are the
+games, and a game is added by adding its files. Bare, a game comes after every other kind of tag, the chart kinds too.
 
 ---
 

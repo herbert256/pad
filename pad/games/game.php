@@ -2,9 +2,9 @@
 
   // The body of a game, whichever way it is written: {game 'memory', pairs=6/}, the game: type -
   // {game:memory pairs=6/}, or a bare {memory pairs=6/} when nothing else has the name. The
-  // caller sets $padGameKind; a game is a file of games/types/ - with its script and its
-  // style beside it - and the files there are all the games there are (padGameTypes,
-  // lib/game.php).
+  // caller sets $padGameKind; a game is a file of games/types/ - its script and its style
+  // are games/assets/<game>.js and .css - and the files there are all the games there are
+  // (padGameTypes, lib/game.php).
   //
   // A game is played in the browser: the server checks what it is given and writes the board,
   // the game's script plays it - once per page, with the CSP nonce, as the interactive tags

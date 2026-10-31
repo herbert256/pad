@@ -558,10 +558,10 @@ kinds), `types/` the kinds; `pad/types/chart.php` the chart type.
 {/quiz}
 ```
 The games are the files of `pad/games/types/` - `<game>.php` checks the options and writes the
-board, `<game>.js` plays it, `<game>.css` draws it - and the files there are the games there
-are: bullscows, crossword, fifteen, gomoku (five in a row), hangman, hanoi, maze, memory, nim,
+board; `pad/games/assets/<game>.js` plays it, `<game>.css` there draws it - and the files there
+are the games there are: bullscows, crossword, fifteen, gomoku (five in a row), hangman, hanoi, maze, memory, nim,
 nonogram, pegsolitaire, quiz, reversi, scramble, snake, sudoku, tictactoe, wordsearch. The
-script of every game and a small runtime (`pad/games/_lib/game.js`: a seeded random number,
+script of every game and a small runtime (`pad/games/assets/game.js`: a seeded random number,
 the status line, the buttons) are written once per page with the CSP nonce; a game a fragment
 or a live region brings later starts too. A finished game carries `data-result="won"` or
 `"lost"` and sends `pad-game-end`. The `games` application plays every one of them, the

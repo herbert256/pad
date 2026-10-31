@@ -1,7 +1,7 @@
 <?php
 
   // The kinds of game: the names of the PHP files of games/types/, sorted - a game is added by
-  // adding its file, with the .js and .css of the same name beside it. Read from the listing
+  // adding its file, and its script and style of the same name in games/assets/. Read from the listing
   // kept between requests (padDirList, lib/dirs.php), as written on disk, as the chart kinds
   // are (padChartTypes, lib/chart.php). The tag types ask padGameType of every name nothing
   // else claims (lib/type.php); the rest of the games is the subsystem in games/, its
