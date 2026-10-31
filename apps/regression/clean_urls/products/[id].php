@@ -10,4 +10,8 @@
 
   $pagedList = isset ( $paged );
 
+  // Asked with ?crumbs, it shows its {breadcrumb/} (breadcrumbroute).
+
+  $crumbed = isset ( $crumbs );
+
 ?>

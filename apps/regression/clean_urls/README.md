@@ -26,4 +26,5 @@ of the request would write its old value back over the session.
 | `[lang]/about.pad`, `langroute.php/pad` | A bracketed directory at the root: `?nl/about` on a clean URL names its page, a single `?nl` stays a value |
 | `encoded.php/pad` | An encoded `%26` in a path segment stays in the segment; a real `&` starts the tail |
 | `pagerroute.php/pad` | The `{pager}` of a routed page (`products/42?paged`) links to `products/42`, keeps the bare `paged`, and its next page renders |
+| `breadcrumbroute.php/pad` | The `{breadcrumb/}` of a routed page (`products/a%23b%26c%20d?crumbs`) links to itself with every segment encoded, and the link reaches it |
 | `_config/config.php` | Switches `$padCleanUrls` on, declares the session variable `member`, `_common` off |

@@ -84,11 +84,14 @@
     $path  = '';
 
     // A directory links to its index page where it has one, and is a step without a link
-    // where it has none; the page itself, the last step, links to itself.
+    // where it has none; the page itself, the last step, links to itself. A link writes
+    // every segment encoded (as lib/api.php does): a routed page asked as products/a%23b
+    // binds a#b, and linked as it stands it took the visitor to products/a with a fragment.
 
     foreach ( $parts as $at => $part ) {
       $path   .= ( $path === '' ? '' : '/' ) . $part;
-      $link    = ( $at == count ( $parts ) - 1 ) ? $padGo . $path : ( padCheck ( APP . "$path/index" ) ? $padGo . "$path/index" : '' );
+      $go      = $padGo . implode ( '/', array_map ( 'rawurlencode', explode ( '/', $path ) ) );
+      $link    = ( $at == count ( $parts ) - 1 ) ? $go : ( padCheck ( APP . "$path/index" ) ? "$go/index" : '' );
       $items [] = [ padWidgetAttr ( ucfirst ( strtolower ( padStrHeadline ( $part ) ) ) ), $link !== '' ? padWidgetLink ( $link ) : '' ];
     }
 
