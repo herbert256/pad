@@ -1380,6 +1380,15 @@
     if ( ( $known [$form] [$name] ?? NULL ) !== padFormRulesText ( $take ['rules'] ) )
       padError ( "the rules of $field in {form '$form'} are never checked - rules= is read from the page's own template before its PHP runs, and this field stands in a snippet, a custom tag, a {page} or a layout, or its rules are made while the page renders" );
 
+    // The rules a field shows go on the xref record as padValidate's do: a page that writes
+    // rules='required|email' uses the two, where only a post's padValidate filed them, and a
+    // crawl, which posts nothing, filed none.
+
+    if ( $GLOBALS ['padInfoXref'] ?? FALSE )
+      foreach ( padValidateSplit ( padFormRulesText ( $take ['rules'] ) ) as $rule )
+        if ( trim ( $rule ) !== '' )
+          padInfoXref ( 'rule', padValidateParts ( trim ( $rule ) ) [0] );
+
   }
 
 ?>
