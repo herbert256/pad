@@ -12,8 +12,16 @@
 {toy:mandelbrot iterations=500/}
 {boids birds=200/}
 {sorting race/}
-{life} .O. / ..O / OOO {/life}
-{lsystem} axiom: X / X: F[+X]-X / angle: 25 {/lsystem}
+{life}
+  .O.
+  ..O
+  OOO
+{/life}
+{lsystem}
+  axiom: X
+  X: F[+X]-X
+  angle: 25
+{/lsystem}
 PAD;
 
   $tagParms   = [
@@ -26,7 +34,7 @@ PAD;
     'title'      => 'The name the toy is shown under, else its own.',
     'paused'     => 'Bare option: the toy waits for its Play button, as every toy does when the visitor asks for reduced motion.',
     'width'      => 'life (64), sand (160): the cells across; <code>height</code> the cells down.',
-    'speed'      => 'How fast it runs: generations, steps or rows a second (life, ant, automaton, sorting), or a level of 1 to 10 (boids, starfield, flowfield, orbits).',
+    'speed'      => 'How fast it runs: generations, steps or rows a second (life, ant, automaton, sorting), or a level of 1 to 10 (boids, flowfield, orbits; starfield 1 to 20).',
     'pattern'    => 'life: glider, spaceship, pulsar, gun, pentadecathlon, rpentomino, acorn, diehard, random or empty - or a pattern of your own between the tags.',
     'rule'       => 'life: <code>B3/S23</code> and its like; ant: the turns, <code>RL</code>, <code>LLRR</code> ...; automaton: Wolfram\'s number, 0 to 255.',
     'wrap'       => 'Bare option, life: the edges of the grid join.',

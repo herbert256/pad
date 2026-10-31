@@ -41,7 +41,7 @@ PAD;
     'align'   => 'dropdown: <code>start</code> (the default) or <code>end</code> - the menu\'s edge under the button\'s.',
     'place'   => 'tooltip: <code>top</code> or <code>bottom</code>; toast: <code>inline</code>, <code>top</code> or <code>bottom</code> - in the flow, or in that corner of the window.',
     'tone'    => 'toast: <code>info</code>, <code>success</code>, <code>warning</code> or <code>error</code>.',
-    'timeout' => 'toast: seconds, 1 to 600, after which it closes by itself - the one thing that needs its script.',
+    'timeout' => 'toast: seconds, 1 to 600, after which it closes by itself, which its script does.',
     'next'    => 'wizard: the text of the Next button (<code>Next</code>).',
     'back'    => 'wizard: the text of the Back button (<code>Back</code>).',
     'options' => 'poll: the answers, separated by commas - two or more.',
