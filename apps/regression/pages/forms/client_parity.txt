@@ -4712,6 +4712,83 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "again",
+            "data": {
+                "again": "pw",
+                "password": "pw"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "same",
+                            "password",
+                            ":label must be the same as :n",
+                            "Password"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "again": "pw",
+                "password": "px"
+            },
+            "server": "Again must be the same as Password",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "same",
+                            "password",
+                            ":label must be the same as :n",
+                            "Password"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "nick",
+            "data": {
+                "nick": "ab"
+            },
+            "server": "Nick must be at least 3 characters",
+            "client": {
+                "nick": {
+                    "label": "Nick",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min",
+                            "3",
+                            ":label must be at least :n characters",
+                            "3"
+                        ],
+                        [
+                            "max",
+                            "5",
+                            ":label must be at most :n characters",
+                            "5"
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }

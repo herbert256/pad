@@ -113,6 +113,20 @@
 
   }
 
+  // A rule as its name, in lower case, and its argument, each trimmed - min:3 or min: 3, same:
+  // password. Every reader splits a rule here - padValidate, padValidateClient and the rules=
+  // of a template - so the server and the browser's checker are handed one argument: the
+  // blank after the colon of same: password stayed in it, the server found the other field
+  // (padFormPath trims a name) and the checker looked up ' password', and blocked the form.
+
+  function padValidateParts ( $rule ) {
+
+    $parts = explode ( ':', (string) $rule, 2 );
+
+    return [ strtolower ( trim ( $parts [0] ) ), trim ( $parts [1] ?? '' ) ];
+
+  }
+
   // Why the argument of a rule is none the rule can use, '' when it is - or when the rule
   // takes any.
 
@@ -225,9 +239,9 @@
       $empty  = ( $value === '' or $value === NULL or $value === [] );
 
       foreach ( $list as $rule )
-        if ( ! padRule ( strtolower ( explode ( ':', $rule, 2 ) [0] ) ) )
+        if ( ! padRule ( padValidateParts ( $rule ) [0] ) )
           padValidateUnknown ( $rule );
-        elseif ( ( $why = padValidateArgument ( strtolower ( explode ( ':', $rule, 2 ) [0] ), explode ( ':', $rule, 2 ) [1] ?? '' ) ) !== '' )
+        elseif ( ( $why = padValidateArgument ( ...padValidateParts ( $rule ) ) ) !== '' )
           padError ( "padValidate: the rule $rule is $why" );
 
       // The rules checked go on the xref record, which the reference application shows: the
@@ -235,7 +249,7 @@
 
       if ( $GLOBALS ['padInfoXref'] ?? FALSE )
         foreach ( $list as $rule )
-          padInfoXref ( 'rule', strtolower ( explode ( ':', $rule, 2 ) [0] ) );
+          padInfoXref ( 'rule', padValidateParts ( $rule ) [0] );
 
       // A list belongs to a field named for one - tags[] - and a field of one value posted
       // as a list is refused whatever its rules: name[]=x passed required and color[]=red
@@ -252,9 +266,7 @@
 
       foreach ( $list as $rule ) {
 
-        $parts = explode ( ':', $rule, 2 );
-        $name  = strtolower ( $parts [0] );
-        $arg   = $parts [1] ?? '';
+        [ $name, $arg ] = padValidateParts ( $rule );
 
         if ( $empty and ! ( padRule ( $name ) ['empty'] ?? FALSE ) )
           continue;
@@ -1028,9 +1040,7 @@
 
       foreach ( $list as $rule ) {
 
-        $parts = explode ( ':', $rule, 2 );
-        $name  = strtolower ( $parts [0] );
-        $arg   = $parts [1] ?? '';
+        [ $name, $arg ] = padValidateParts ( $rule );
 
         if ( ! padRule ( $name ) ) {
           padValidateUnknown ( $rule );
@@ -1289,10 +1299,10 @@
       return padError ( "the rules of $where are never checked - a file field is checked by padUpload" );
 
     foreach ( padValidateSplit ( $list ) as $whole ) {
-      $rule = strtolower ( trim ( explode ( ':', $whole, 2 ) [0] ) );
+      [ $rule, $arg ] = padValidateParts ( $whole );
       if ( $rule !== '' and ! padRule ( $rule ) )
         return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padRuleTypes () ) );
-      if ( $rule !== '' and ( $why = padValidateArgument ( $rule, explode ( ':', trim ( $whole ), 2 ) [1] ?? '' ) ) !== '' )
+      if ( $rule !== '' and ( $why = padValidateArgument ( $rule, $arg ) ) !== '' )
         return padError ( "the rules of $where have a $rule: that is $why" );
     }
 
