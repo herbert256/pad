@@ -66,7 +66,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -179,6 +179,46 @@
                       }
                       padAjax58fae39642c84e92c470e6204ee3c864.open("GET","http://localhost/pad/manual/?fragments/expressions_43&padInclude",true);
                       padAjax58fae39642c84e92c470e6204ee3c864.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: pages/games<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">pages/games.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Games<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>game<font color="black">'</font></font>/}</b> puts a little game on the page that is played in the browser. The server checks<br>what the game is given and writes its board; the game's script, written once per page, plays it.<br>There are <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(padGameTypes())</font>/}</b> of them - every game is a file of<br>&lt;code&gt;pad/games/types/&lt;/code&gt;, and the &lt;a href="../games/"&gt;games&lt;/a&gt; application plays them all.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/games_1<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;Three ways to write one&lt;/h2&gt;<br><br>&lt;p&gt;The tag names the game: &lt;code&gt;<b>{<font color="blue">game </font><font color="red"><font color="black">'</font>tictactoe<font color="black">'</font></font>/}</b>&lt;/code&gt;. The game: type does the same,<br>&lt;code&gt;<b>{<font color="blue"><font color="purple">game</font><font color="black"><b>:</b></font>tictactoe</font><font color="red"></font>/}</b>&lt;/code&gt;, and so does the bare name,<br>&lt;code&gt;<b>{<font color="blue">tictactoe</font><font color="red"></font>/}</b>&lt;/code&gt;, as long as no tag, store, field or sequence has that name.<br>&lt;code&gt;opens='computer'&lt;/code&gt; lets the computer open, &lt;code&gt;two&lt;/code&gt; makes it a game of two players<br>at one screen.&lt;/p&gt;<br><br>&lt;h2&gt;Words, questions and pictures&lt;/h2&gt;<br><br>&lt;p&gt;The games that play with words, questions or a picture take them between their tags, a line each,<br>as they are written - braces and all. A quiz line is the question with its answers after a bar, the<br>right one first; they are shuffled when shown.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/games_2<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;The same list can come from the page: &lt;code&gt;data=&lt;/code&gt; names a store, an array of the page or a<br>&lt;code&gt;_data&lt;/code&gt; file, as a chart's data does.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/games_3<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;The same game every time&lt;/h2&gt;<br><br>&lt;p&gt;&lt;code&gt;seed=&lt;/code&gt; makes a game's shuffles, boards and puzzles the same on every load - a page can<br>say which sudoku it hands out. Without a puzzle the sudoku makes a new one with one solution;<br>&lt;code&gt;givens=&lt;/code&gt; says how many squares it shows. &lt;code&gt;paper&lt;/code&gt; draws a sudoku or a crossword<br>to print instead, with no script, and &lt;code&gt;solve&lt;/code&gt; - &lt;code&gt;solution&lt;/code&gt; for a crossword -<br>fills in the answers.&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/games_4<font color="black">'</font></font>/}</b><br><br>&lt;ul&gt;<br>  &lt;li&gt;When a game ends its board carries &lt;code&gt;data-result="won"&lt;/code&gt; or &lt;code&gt;"lost"&lt;/code&gt;, and a<br>  &lt;code&gt;pad-game-end&lt;/code&gt; event goes up from it - a page can count the games won.&lt;/li&gt;<br>  &lt;li&gt;The colours are custom properties on &lt;code&gt;.pad-game&lt;/code&gt; - &lt;code&gt;--pad-game-accent&lt;/code&gt;,<br>  &lt;code&gt;--pad-game-good&lt;/code&gt;, &lt;code&gt;--pad-game-bad&lt;/code&gt; and their like - with light and dark<br>  defaults.&lt;/li&gt;<br>  &lt;li&gt;The script carries the CSP nonce, as the interactive tags' scripts do, and a game a fragment<br>  or a live region brings later starts as well.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax99382fbf8b1ea992da56e6f9baef0f56"></div>
+                      <script>
+                      padAjax99382fbf8b1ea992da56e6f9baef0f56 = new XMLHttpRequest();
+                      padAjax99382fbf8b1ea992da56e6f9baef0f56.onreadystatechange=function() {
+                      if (padAjax99382fbf8b1ea992da56e6f9baef0f56.readyState === 4) {
+                      if (padAjax99382fbf8b1ea992da56e6f9baef0f56.status === 200) {
+                      document.getElementById("padAjax99382fbf8b1ea992da56e6f9baef0f56").innerHTML=padAjax99382fbf8b1ea992da56e6f9baef0f56.responseText;
+                      } else {
+                      document.getElementById("padAjax99382fbf8b1ea992da56e6f9baef0f56").innerHTML=padAjax99382fbf8b1ea992da56e6f9baef0f56.statusText;
+                      }
+                      }
+                      }
+                      padAjax99382fbf8b1ea992da56e6f9baef0f56.open("GET","http://localhost/pad/manual/?pages/games&padInclude",true);
+                      padAjax99382fbf8b1ea992da56e6f9baef0f56.send();
                       </script>
                     </td>
                   </tr>

@@ -57,7 +57,7 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
 
   $apps = [ 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
             'nono', 'react', 'structure', 'cli', 'classicModels', 'padSelect', 'regression/main', 'develop',
-            'tags', 'charts', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
+            'tags', 'charts', 'games', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
             'notes', 'ledger', 'kanban' ];
 
   // The pages of those that act when they are fetched, by their query string: the suites'

@@ -312,12 +312,6 @@
                   <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7country.php.html">country.php</a>
                 </li>
                 <li>
-                  <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7crossword.pad.html">crossword.pad</a>
-                </li>
-                <li>
-                  <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7crossword.php.html">crossword.php</a>
-                </li>
-                <li>
                   <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7csrf.pad.html">csrf.pad</a>
                 </li>
                 <li>
@@ -496,6 +490,12 @@
                 </li>
                 <li>
                   <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7fragment.php.html">fragment.php</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7game.pad.html">game.pad</a>
+                </li>
+                <li>
+                  <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7game.php.html">game.php</a>
                 </li>
                 <li>
                   <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7get.pad.html">get.pad</a>
@@ -846,12 +846,6 @@
                   <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7stack.php.html">stack.php</a>
                 </li>
                 <li>
-                  <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7sudoku.pad.html">sudoku.pad</a>
-                </li>
-                <li>
-                  <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7sudoku.php.html">sudoku.php</a>
-                </li>
-                <li>
                   <a href="index%EF%B9%96browse&amp;app=tags&amp;dir=tag&amp;file=tag%EA%A4%B7switch.pad.html">switch.pad</a>
                 </li>
                 <li>
@@ -959,7 +953,7 @@
               <h3>
                 tag/chess.php
               </h3>
-              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $tagAbout   </span><span style="color: #007700">= </span><span style="color: #DD0000">'A chess position from FEN as an SVG board, with marked squares and arrows.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tagGroup   </span><span style="color: #007700">= </span><span style="color: #DD0000">'games'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tagForm    </span><span style="color: #007700">= </span><span style="color: #DD0000">'single'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$tagSyntax  </span><span style="color: #007700">= &lt;&lt;&lt;'PAD'<br></span><span style="color: #DD0000">{chess 'fen'/}<br>{chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=320, title='Name'/}<br></span><span style="color: #007700">PAD;<br><br>  </span><span style="color: #0000BB">$tagParms   </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'fen' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The position in FEN. The piece placement alone will do; side to move, castling, en passant and the two counters are checked when written.' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$tagOptions </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'flip'      </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bare option: turn the board, Black at the bottom.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'highlight' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Squares to mark, separated by commas: &lt;code&gt;\'e2, e4\'&lt;/code&gt;.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'arrow'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Arrows from square to square, separated by commas: &lt;code&gt;\'e2-e4, g1-f3\'&lt;/code&gt;.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'size'      </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Width and height in pixels, 360 when not given (80 at least); the board shrinks to fit a narrower container.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'title'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The accessible name of the board. &lt;code&gt;Chess position, White to move&lt;/code&gt; when not given.' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$tagSee     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'sudoku'</span><span style="color: #007700">, </span><span style="color: #DD0000">'crossword'</span><span style="color: #007700">, </span><span style="color: #DD0000">'chart' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $tagAbout   </span><span style="color: #007700">= </span><span style="color: #DD0000">'A chess position from FEN as an SVG board, with marked squares and arrows.'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tagGroup   </span><span style="color: #007700">= </span><span style="color: #DD0000">'games'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tagForm    </span><span style="color: #007700">= </span><span style="color: #DD0000">'single'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$tagSyntax  </span><span style="color: #007700">= &lt;&lt;&lt;'PAD'<br></span><span style="color: #DD0000">{chess 'fen'/}<br>{chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=320, title='Name'/}<br></span><span style="color: #007700">PAD;<br><br>  </span><span style="color: #0000BB">$tagParms   </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'fen' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The position in FEN. The piece placement alone will do; side to move, castling, en passant and the two counters are checked when written.' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$tagOptions </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'flip'      </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bare option: turn the board, Black at the bottom.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'highlight' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Squares to mark, separated by commas: &lt;code&gt;\'e2, e4\'&lt;/code&gt;.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'arrow'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Arrows from square to square, separated by commas: &lt;code&gt;\'e2-e4, g1-f3\'&lt;/code&gt;.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'size'      </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Width and height in pixels, 360 when not given (80 at least); the board shrinks to fit a narrower container.'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'title'     </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The accessible name of the board. &lt;code&gt;Chess position, White to move&lt;/code&gt; when not given.' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$tagSee     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'game'</span><span style="color: #007700">, </span><span style="color: #DD0000">'chart' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </div>
           </div>
         </div>

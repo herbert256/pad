@@ -126,10 +126,69 @@
     :where(.pad-chess){--pad-chess-light:#f0d9b5;--pad-chess-dark:#b58863;--pad-chess-white:#ffffff;--pad-chess-black:#2b2a28;--pad-chess-ink:#1a1a19;--pad-chess-mark:rgba(235,200,40,.55);--pad-chess-arrow:rgba(21,120,27,.75);--pad-chess-text:#52514e;}@supports (color:light-dark(#000,#fff)){:where(.pad-chess){--pad-chess-light:light-dark(#f0d9b5,#c9b38f);--pad-chess-dark:light-dark(#b58863,#8b6748);--pad-chess-white:light-dark(#ffffff,#f4f3ee);--pad-chess-black:light-dark(#2b2a28,#22211f);--pad-chess-ink:light-dark(#1a1a19,#0e0e0d);--pad-chess-mark:light-dark(rgba(235,200,40,.55),rgba(235,200,40,.5));--pad-chess-arrow:light-dark(rgba(21,120,27,.75),rgba(60,170,70,.8));--pad-chess-text:light-dark(#52514e,#c3c2b7);}}:where(.pad-chess){max-width:100%;max-height:100%;height:auto}.pad-chess .pcs-light{fill:var(--pad-chess-light)}.pad-chess .pcs-dark{fill:var(--pad-chess-dark)}.pad-chess .pcs-mark{fill:var(--pad-chess-mark)}.pad-chess .pcs-edge{fill:none;stroke:var(--pad-chess-dark);stroke-width:2}.pad-chess .pcs-coord{fill:var(--pad-chess-text);font:600 26px system-ui,sans-serif}.pad-chess .pcs-w,.pad-chess .pcs-b{stroke:var(--pad-chess-ink);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}.pad-chess .pcs-w{fill:var(--pad-chess-white)}.pad-chess .pcs-b{fill:var(--pad-chess-black)}.pad-chess .pcs-w .pcs-d{stroke:var(--pad-chess-ink)}.pad-chess .pcs-b .pcs-d{stroke:var(--pad-chess-white)}.pad-chess .pcs-w .pcs-e{fill:var(--pad-chess-ink);stroke:none}.pad-chess .pcs-b .pcs-e{fill:var(--pad-chess-white);stroke:none}.pad-chess .pcs-arrow{fill:var(--pad-chess-arrow)}
     </style>
     <style>
+    :where(.pad-game){--pad-game-ink:#1a1a19;--pad-game-muted:#6b6a65;--pad-game-line:#c9c8c2;--pad-game-surface:#fcfcfb;--pad-game-cell:#ffffff;--pad-game-shade:#f0efea;--pad-game-accent:#2a78d6;--pad-game-accent2:#eb6834;--pad-game-good:#1a8a5a;--pad-game-bad:#d43c3b;--pad-game-mark:#fff1b8;}@supports (color:light-dark(#000,#fff)){:where(.pad-game){--pad-game-ink:light-dark(#1a1a19,#f4f3ee);--pad-game-muted:light-dark(#6b6a65,#a8a79f);--pad-game-line:light-dark(#c9c8c2,#4a4a46);--pad-game-surface:light-dark(#fcfcfb,#1a1a19);--pad-game-cell:light-dark(#ffffff,#242422);--pad-game-shade:light-dark(#f0efea,#2c2c29);--pad-game-accent:light-dark(#2a78d6,#5598e7);--pad-game-accent2:light-dark(#eb6834,#e8875f);--pad-game-good:light-dark(#1a8a5a,#3fbf86);--pad-game-bad:light-dark(#d43c3b,#ef6b6a);--pad-game-mark:light-dark(#fff1b8,#4a4320);}}:where(.pad-game){display:block;width:fit-content;max-width:100%;margin:1em 0;padding:14px 16px;border:1px solid var(--pad-game-line);border-radius:10px;background:var(--pad-game-surface);color:var(--pad-game-ink);font:15px/1.4 system-ui,sans-serif;box-sizing:border-box}
+    .pad-game *,.pad-game *::before,.pad-game *::after{box-sizing:border-box}
+    .pad-game .pg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin:0 0 10px}
+    .pad-game .pg-title{font-weight:650;font-size:16px}
+    .pad-game .pg-status{color:var(--pad-game-muted);min-height:1.4em}
+    .pad-game.is-won .pg-status{color:var(--pad-game-good);font-weight:600}
+    .pad-game.is-lost .pg-status{color:var(--pad-game-bad);font-weight:600}
+    .pad-game .pg-board{position:relative;max-width:100%;overflow-x:auto}
+    .pad-game .pg-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pad-game .pg-bar:empty{display:none}
+    .pad-game .pg-button{font:inherit;font-size:14px;padding:6px 12px;border-radius:6px;border:1px solid var(--pad-game-line);background:var(--pad-game-cell);color:var(--pad-game-ink);cursor:pointer}
+    .pad-game .pg-button:hover:not(:disabled){border-color:var(--pad-game-accent)}
+    .pad-game .pg-button:disabled{opacity:.45;cursor:default}
+    .pad-game .pg-button.is-on{background:var(--pad-game-accent);border-color:var(--pad-game-accent);color:#fff}
+    .pad-game button:focus-visible,.pad-game [tabindex]:focus-visible,.pad-game input:focus-visible{outline:2px solid var(--pad-game-accent);outline-offset:2px}
+    .pad-game .pg-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-game .pg-noscript{color:var(--pad-game-bad);margin:0}
+    .pad-game .pg-note{color:var(--pad-game-muted);font-size:13px;margin:8px 0 0}
+    .pad-game .pg-input{font:inherit;padding:6px 8px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink)}
+    </style>
+    <style>
+    .pad-game-crossword .cwd-wrap{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+    .pad-game-crossword .cwd-bar{margin:0 0 8px;min-height:1.4em;font-weight:600;max-width:520px}
+    .pad-game-crossword .cwd-grid{--cwd-size:36px;display:grid;gap:0;width:max-content}
+    .pad-game-crossword .cwd-block{width:var(--cwd-size);height:var(--cwd-size)}
+    .pad-game-crossword .cwd-square{position:relative;width:var(--cwd-size);height:var(--cwd-size);border:1px solid var(--pad-game-ink);margin:0 -1px -1px 0;background:var(--pad-game-cell)}
+    .pad-game-crossword .cwd-square.is-word{background:color-mix(in srgb,var(--pad-game-accent) 14%,var(--pad-game-cell))}
+    .pad-game-crossword .cwd-square:focus-within{background:var(--pad-game-mark)}
+    .pad-game-crossword .cwd-square.is-wrong .cwd-input{color:var(--pad-game-bad)}
+    .pad-game-crossword .cwd-square.is-revealed .cwd-input{color:var(--pad-game-accent)}
+    .pad-game-crossword .cwd-number{position:absolute;top:1px;left:2px;font:600 9px/1 system-ui,sans-serif;color:var(--pad-game-muted);pointer-events:none}
+    .pad-game-crossword .cwd-input{width:100%;height:100%;border:0;padding:6px 0 0;background:transparent;color:var(--pad-game-ink);font:600 19px/1 system-ui,sans-serif;text-align:center;text-transform:uppercase;caret-color:transparent;cursor:pointer}
+    .pad-game-crossword .cwd-input:focus{outline:none}
+    .pad-game-crossword .cwd-lists{display:flex;flex-wrap:wrap;gap:18px;max-width:560px}
+    .pad-game-crossword .cwd-clues h4{margin:0 0 4px;font-size:15px}
+    .pad-game-crossword .cwd-clues ol{margin:0;padding-left:26px}
+    .pad-game-crossword .cwd-clue{font:inherit;text-align:left;border:0;background:none;color:var(--pad-game-ink);padding:2px 4px;border-radius:4px;cursor:pointer}
+    .pad-game-crossword li.is-current .cwd-clue{background:var(--pad-game-mark)}
+    </style>
+    <style>
     :where(.pad-crossword){--pad-crossword-square:#ffffff;--pad-crossword-line:#2b2a28;--pad-crossword-number:#52514e;--pad-crossword-letter:#1a1a19;--pad-crossword-answer:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-crossword){--pad-crossword-square:light-dark(#ffffff,#1f1f1d);--pad-crossword-line:light-dark(#2b2a28,#c3c2b7);--pad-crossword-number:light-dark(#52514e,#a3a29b);--pad-crossword-letter:light-dark(#1a1a19,#f4f3ee);--pad-crossword-answer:light-dark(#2a78d6,#5598e7);}}:where(.pad-crossword){display:flex;flex-wrap:wrap;gap:20px 32px;align-items:flex-start}:where(.pad-crossword .pcw-grid){max-width:100%;height:auto;flex:none}.pad-crossword .pcw-square{fill:var(--pad-crossword-square);stroke:var(--pad-crossword-line);stroke-width:1.5}.pad-crossword .pcw-number{fill:var(--pad-crossword-number);font:600 10px system-ui,sans-serif}.pad-crossword .pcw-letter{fill:var(--pad-crossword-letter);font:600 19px system-ui,sans-serif}:where(.pad-crossword .pcw-lists){display:flex;flex-wrap:wrap;gap:12px 32px;flex:1 1 220px;font-size:14px;line-height:1.45}:where(.pad-crossword .pcw-clues){flex:1 1 200px}:where(.pad-crossword h3){margin:0 0 6px;font-size:15px}:where(.pad-crossword ol){margin:0;padding-left:2em}:where(.pad-crossword li){margin:0 0 4px}:where(.pad-crossword .pcw-length){opacity:.65}:where(.pad-crossword .pcw-answer){color:var(--pad-crossword-answer);font-weight:600;letter-spacing:.06em}:where(.pad-crossword .pcw-skipped){flex-basis:100%;margin:0;font-size:13px;opacity:.75}
     </style>
     <style>
     :where(.pad-sudoku){--pad-sudoku-line:#b9b8b2;--pad-sudoku-box:#2b2a28;--pad-sudoku-given:#1a1a19;--pad-sudoku-solved:#2a78d6;--pad-sudoku-cell:#ffffff;--pad-sudoku-shade:#f4f3ef;}@supports (color:light-dark(#000,#fff)){:where(.pad-sudoku){--pad-sudoku-line:light-dark(#b9b8b2,#4a4a46);--pad-sudoku-box:light-dark(#2b2a28,#c3c2b7);--pad-sudoku-given:light-dark(#1a1a19,#f4f3ee);--pad-sudoku-solved:light-dark(#2a78d6,#5598e7);--pad-sudoku-cell:light-dark(#ffffff,#1f1f1d);--pad-sudoku-shade:light-dark(#f4f3ef,#262624);}}:where(.pad-sudoku){border-collapse:collapse;border:3px solid var(--pad-sudoku-box);background:var(--pad-sudoku-cell);font:22px/1 system-ui,sans-serif;margin:0 auto}:where(.pad-sudoku caption){padding:6px;font-weight:600;font-size:16px}:where(.pad-sudoku td){width:2em;height:2em;padding:0;text-align:center;vertical-align:middle;border:1px solid var(--pad-sudoku-line)}:where(.pad-sudoku td:nth-child(3n)){border-right:3px solid var(--pad-sudoku-box)}:where(.pad-sudoku tr:nth-child(3n) td){border-bottom:3px solid var(--pad-sudoku-box)}:where(.pad-sudoku .psd-given){background:var(--pad-sudoku-shade);color:var(--pad-sudoku-given)}:where(.pad-sudoku .psd-given b){font-weight:700}:where(.pad-sudoku .psd-solved){color:var(--pad-sudoku-solved);font-weight:400}.pad-sudoku .psd-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    </style>
+    <style>
+    .pad-game-sudoku .sdk-wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+    .pad-game-sudoku .sdk-grid{display:grid;grid-template-columns:repeat(9,40px);grid-template-rows:repeat(9,40px);border:3px solid var(--pad-game-ink);width:max-content;background:var(--pad-game-ink);gap:1px}
+    .pad-game-sudoku .sdk-cell{border:0;padding:0;background:var(--pad-game-cell);color:var(--pad-game-accent);font:500 21px/1 system-ui,sans-serif;cursor:pointer;position:relative}
+    .pad-game-sudoku .sdk-cell:nth-child(9n+3),.pad-game-sudoku .sdk-cell:nth-child(9n+6){margin-right:2px}
+    .pad-game-sudoku .sdk-cell:nth-child(n+19):nth-child(-n+27),.pad-game-sudoku .sdk-cell:nth-child(n+46):nth-child(-n+54){margin-bottom:2px}
+    .pad-game-sudoku .sdk-cell.is-given{color:var(--pad-game-ink);font-weight:700;background:var(--pad-game-shade)}
+    .pad-game-sudoku .sdk-cell.is-peer{background:color-mix(in srgb,var(--pad-game-accent) 9%,var(--pad-game-cell))}
+    .pad-game-sudoku .sdk-cell.is-given.is-peer{background:color-mix(in srgb,var(--pad-game-accent) 9%,var(--pad-game-shade))}
+    .pad-game-sudoku .sdk-cell.is-same{background:color-mix(in srgb,var(--pad-game-accent) 24%,var(--pad-game-cell))}
+    .pad-game-sudoku .sdk-cell.is-selected{background:var(--pad-game-mark)}
+    .pad-game-sudoku .sdk-cell.is-clash{color:var(--pad-game-bad)}
+    .pad-game-sudoku .sdk-cell.is-wrong{background:color-mix(in srgb,var(--pad-game-bad) 30%,var(--pad-game-cell))}
+    .pad-game-sudoku .sdk-notes{position:absolute;inset:2px;display:grid;grid-template-columns:repeat(3,1fr);font-size:10px;line-height:12px;color:var(--pad-game-muted)}
+    .pad-game-sudoku .sdk-pad{display:grid;grid-template-columns:repeat(5,44px);gap:6px}
+    .pad-game-sudoku .sdk-key{height:44px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink);font:600 19px/1 system-ui,sans-serif;cursor:pointer;padding:0}
+    .pad-game-sudoku .sdk-key:hover{border-color:var(--pad-game-accent)}
+    @media (max-width:520px){.pad-game-sudoku .sdk-grid{grid-template-columns:repeat(9,32px);grid-template-rows:repeat(9,32px)}}
     </style>
   </head>
   <body>
@@ -185,8 +244,8 @@
               <path d="M3 4.5l3 3 3-3"></path></svg></button>
               <div class="drop">
                 <div class="drop-head">
-                  <span class="drop-kicker">Boards and puzzles</span><span class="drop-count">7 examples</span>
-                </div><a class="drop-link" href="index%EF%B9%96chess%EA%A4%B7opening.html"><span class="drop-title">After 1.e4, seen by Black</span> <span class="drop-text">The full FEN of the position after the king's pawn opening, the board flipped for the side to move.</span></a> <a class="drop-link" href="index%EF%B9%96chess%EA%A4%B7opera.html"><span class="drop-title">The Opera game</span> <span class="drop-text">Morphy mates in Paris, 1858 - the last move marked, the bishop that guards the rook as an arrow.</span></a> <a class="drop-link" href="index%EF%B9%96crossword%EA%A4%B7php.html"><span class="drop-title">A PHP crossword</span> <span class="drop-text">Ten words about PHP laid out on the server - the empty grid to print, with the clues beside it.</span></a> <a class="drop-link" href="index%EF%B9%96crossword%EA%A4%B7solution.html"><span class="drop-title">With the solution</span> <span class="drop-text">The same words with solution - the letters in the grid and the answers behind the clues.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7hardest.html"><span class="drop-title">The hardest one</span> <span class="drop-text">Arto Inkala's "world's hardest sudoku", written in nine lines and solved in a blink.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html"><span class="drop-title">The puzzle</span> <span class="drop-text">The classic example puzzle, its givens bold and the open cells ready to print.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7solved.html"><span class="drop-title">Solved on the server</span> <span class="drop-text">The same puzzle with solve - the backtracking solver fills in every open cell, in another colour.</span></a>
+                  <span class="drop-kicker">Boards and puzzles</span><span class="drop-count">8 examples</span>
+                </div><a class="drop-link" href="index%EF%B9%96chess%EA%A4%B7opening.html"><span class="drop-title">After 1.e4, seen by Black</span> <span class="drop-text">The full FEN of the position after the king's pawn opening, the board flipped for the side to move.</span></a> <a class="drop-link" href="index%EF%B9%96chess%EA%A4%B7opera.html"><span class="drop-title">The Opera game</span> <span class="drop-text">Morphy mates in Paris, 1858 - the last move marked, the bishop that guards the rook as an arrow.</span></a> <a class="drop-link" href="index%EF%B9%96crossword%EA%A4%B7php.html"><span class="drop-title">A PHP crossword</span> <span class="drop-text">Ten words about PHP laid out on the server and played in the page - type into the squares, click a clue.</span></a> <a class="drop-link" href="index%EF%B9%96crossword%EA%A4%B7solution.html"><span class="drop-title">With the solution</span> <span class="drop-text">The same words with solution - the letters in the grid and the answers behind the clues.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7hardest.html"><span class="drop-title">The hardest one</span> <span class="drop-text">Arto Inkala's "world's hardest sudoku", written in nine lines and solved in a blink.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7print.html"><span class="drop-title">To print</span> <span class="drop-text">The same puzzle with paper - the givens bold and the open squares empty, no script.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html"><span class="drop-title">The puzzle</span> <span class="drop-text">The classic example puzzle, played in the page - select a square and type, notes, a hint, a check.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7solved.html"><span class="drop-title">Solved on the server</span> <span class="drop-text">The same puzzle with solve - the backtracking solver fills in every open cell, in another colour.</span></a>
               </div>
             </li>
           </ul>
@@ -212,7 +271,7 @@
               <b>32</b> tags
             </li>
             <li>
-              <b>65</b> examples
+              <b>66</b> examples
             </li>
           </ul>
         </div>
@@ -4145,19 +4204,19 @@
             <div class="card-chart" inert="">
               <ul style="list-style:none;margin:0;padding:0;min-width:24em">
                 <li style="display:flex;justify-content:space-between;gap:24px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.25)">
-                  <strong>Jazz in the park</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-10-29T08:42:21+00:00" title="Thursday 29 October 2026, 08:42">Sold out</time></span>
+                  <strong>Jazz in the park</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-10-29T09:49:25+00:00" title="Thursday 29 October 2026, 09:49">Sold out</time></span>
                 </li>
                 <li style="display:flex;justify-content:space-between;gap:24px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.25)">
-                  <strong>Pottery workshop</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-10-31T12:02:21+00:00" title="Saturday 31 October 2026, 12:02">3 hours, 20 minutes</time></span>
+                  <strong>Pottery workshop</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-10-31T13:09:25+00:00" title="Saturday 31 October 2026, 13:09">3 hours, 20 minutes</time></span>
                 </li>
                 <li style="display:flex;justify-content:space-between;gap:24px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.25)">
-                  <strong>City half marathon</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-11-04T14:42:21+00:00" title="Wednesday 4 November 2026, 14:42">4 days, 6 hours</time></span>
+                  <strong>City half marathon</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-11-04T15:49:25+00:00" title="Wednesday 4 November 2026, 15:49">4 days, 6 hours</time></span>
                 </li>
                 <li style="display:flex;justify-content:space-between;gap:24px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.25)">
-                  <strong>Film night</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-11-26T10:42:21+00:00" title="Thursday 26 November 2026, 10:42">26 days, 2 hours</time></span>
+                  <strong>Film night</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2026-11-26T11:49:25+00:00" title="Thursday 26 November 2026, 11:49">26 days, 2 hours</time></span>
                 </li>
                 <li style="display:flex;justify-content:space-between;gap:24px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.25)">
-                  <strong>New year concert</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2027-01-23T11:42:21+00:00" title="Saturday 23 January 2027, 11:42">84 days, 3 hours</time></span>
+                  <strong>New year concert</strong> <span style="opacity:.8"><time class="pad-countdown" datetime="2027-01-23T12:49:25+00:00" title="Saturday 23 January 2027, 12:49">84 days, 3 hours</time></span>
                 </li>
               </ul>
             </div>
@@ -4172,7 +4231,7 @@
                   Version 3.0 launches in
                 </p>
                 <p style="margin:10px 0 12px;font-size:30px;font-weight:700;font-variant-numeric:tabular-nums">
-                  <time class="pad-countdown" datetime="2026-11-12T14:12:21+00:00" title="Thursday 12 November 2026, 14:12" role="timer" data-pad-countdown="1794492741000" data-pad-units="3" data-pad-past="We are live!">12 days, 5 hours, 30 minutes</time>
+                  <time class="pad-countdown" datetime="2026-11-12T15:19:25+00:00" title="Thursday 12 November 2026, 15:19" role="timer" data-pad-countdown="1794496765000" data-pad-units="3" data-pad-past="We are live!">12 days, 5 hours, 30 minutes</time>
                   <script>
                   (function () {
                   if (window.padCountdownReady) return;
@@ -4198,7 +4257,7 @@
                   </script>
                 </p>
                 <p style="margin:0;font-size:14px;opacity:.85">
-                  Thursday 12 November, 14:12
+                  Thursday 12 November, 15:19
                 </p>
               </section>
             </div>
@@ -5293,7 +5352,7 @@
                 <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
                   <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:#2a78d6">M</span>
                   <div>
-                    <strong>Maya</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-07-01T08:41:51+00:00" title="Wednesday 1 July 2026, 08:41">3 months ago</time></small>
+                    <strong>Maya</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-07-01T09:48:55+00:00" title="Wednesday 1 July 2026, 09:48">3 months ago</time></small>
                     <p style="margin:4px 0 0;line-height:1.5">
                       Is there a way to export the report as a spreadsheet?
                     </p>
@@ -5302,7 +5361,7 @@
                 <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
                   <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:#1baf7a">J</span>
                   <div>
-                    <strong>Jonas</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-10T08:41:51+00:00" title="Saturday 10 October 2026, 08:41">3 weeks ago</time></small>
+                    <strong>Jonas</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-10T09:48:55+00:00" title="Saturday 10 October 2026, 09:48">3 weeks ago</time></small>
                     <p style="margin:4px 0 0;line-height:1.5">
                       The CSV answer of the same page does exactly that.
                     </p>
@@ -5311,7 +5370,7 @@
                 <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
                   <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:#eb6834">P</span>
                   <div>
-                    <strong>Priya</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-30T08:41:51+00:00" title="Friday 30 October 2026, 08:41">yesterday</time></small>
+                    <strong>Priya</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-30T09:48:55+00:00" title="Friday 30 October 2026, 09:48">yesterday</time></small>
                     <p style="margin:4px 0 0;line-height:1.5">
                       Tried it today - one line in the page and it works.
                     </p>
@@ -5320,7 +5379,7 @@
                 <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
                   <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:#7c5cff">T</span>
                   <div>
-                    <strong>Tomás</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-31T06:41:51+00:00" title="Saturday 31 October 2026, 06:41">2 hours ago</time></small>
+                    <strong>Tomás</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-31T07:48:55+00:00" title="Saturday 31 October 2026, 07:48">2 hours ago</time></small>
                     <p style="margin:4px 0 0;line-height:1.5">
                       Can the columns be chosen?
                     </p>
@@ -5329,7 +5388,7 @@
                 <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
                   <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:#2a78d6">M</span>
                   <div>
-                    <strong>Maya</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-31T08:36:51+00:00" title="Saturday 31 October 2026, 08:36">5 minutes ago</time></small>
+                    <strong>Maya</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-31T09:43:55+00:00" title="Saturday 31 October 2026, 09:43">5 minutes ago</time></small>
                     <p style="margin:4px 0 0;line-height:1.5">
                       Yes: list them in the page, in the order you want.
                     </p>
@@ -5338,7 +5397,7 @@
                 <li style="display:grid;grid-template-columns:40px 1fr;gap:12px">
                   <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:#e34948">K</span>
                   <div>
-                    <strong>Ken</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-31T08:41:48+00:00" title="Saturday 31 October 2026, 08:41">just now</time></small>
+                    <strong>Ken</strong> <small style="opacity:.65">· <time class="pad-timeago" datetime="2026-10-31T09:48:52+00:00" title="Saturday 31 October 2026, 09:48">just now</time></small>
                     <p style="margin:4px 0 0;line-height:1.5">
                       Thanks, everyone!
                     </p>
@@ -6878,131 +6937,313 @@ padSqlSetup=_install/schema.sql</code></pre><button type="button" class="pad-cop
         <header class="family-head">
           <h2>
             Crossword
-          </h2><span class="family-line">Words and clues in, a numbered grid and the Across and Down lists out</span>
+          </h2><span class="family-line">Words and clues in, a numbered grid to play - or to print - beside the Across and Down lists</span>
         </header>
         <div class="cards">
           <article class="card">
             <div class="card-chart" inert="">
-              <div class="pad-crossword">
-                <svg xmlns="http://www.w3.org/2000/svg" class="pcw-grid" role="img" aria-labelledby="pad-crossword-a2ace975-title pad-crossword-a2ace975-desc" width="470" height="362" viewbox="0 0 470 362">
-                <title id="pad-crossword-a2ace975-title">
-                  PHP crossword
-                </title>
-                <desc id="pad-crossword-a2ace975-desc">
-                  10 words on a grid of 13 by 10 squares
-                </desc>
-                <rect class="pcw-square" x="145" y="73" width="36" height="36"></rect>
-                <rect class="pcw-square" x="325" y="73" width="36" height="36"></rect>
-                <text class="pcw-number" x="328" y="84">
-                  2
-                </text>
-                <rect class="pcw-square" x="145" y="37" width="36" height="36"></rect>
-                <rect class="pcw-square" x="145" y="1" width="36" height="36"></rect>
-                <text class="pcw-number" x="148" y="12">
-                  1
-                </text>
-                <rect class="pcw-square" x="73" y="109" width="36" height="36"></rect>
-                <text class="pcw-number" x="76" y="120">
-                  3
-                </text>
-                <rect class="pcw-square" x="109" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="145" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="181" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="217" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="253" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="289" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="325" y="109" width="36" height="36"></rect>
-                <rect class="pcw-square" x="73" y="145" width="36" height="36"></rect>
-                <rect class="pcw-square" x="325" y="145" width="36" height="36"></rect>
-                <rect class="pcw-square" x="397" y="145" width="36" height="36"></rect>
-                <text class="pcw-number" x="400" y="156">
-                  4
-                </text>
-                <rect class="pcw-square" x="73" y="181" width="36" height="36"></rect>
-                <rect class="pcw-square" x="433" y="181" width="36" height="36"></rect>
-                <rect class="pcw-square" x="217" y="181" width="36" height="36"></rect>
-                <text class="pcw-number" x="220" y="192">
-                  5
-                </text>
-                <rect class="pcw-square" x="289" y="181" width="36" height="36"></rect>
-                <text class="pcw-number" x="292" y="192">
-                  6
-                </text>
-                <rect class="pcw-square" x="325" y="181" width="36" height="36"></rect>
-                <rect class="pcw-square" x="361" y="181" width="36" height="36"></rect>
-                <rect class="pcw-square" x="397" y="181" width="36" height="36"></rect>
-                <rect class="pcw-square" x="1" y="217" width="36" height="36"></rect>
-                <text class="pcw-number" x="4" y="228">
-                  7
-                </text>
-                <rect class="pcw-square" x="73" y="217" width="36" height="36"></rect>
-                <text class="pcw-number" x="76" y="228">
-                  8
-                </text>
-                <rect class="pcw-square" x="109" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="145" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="181" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="217" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="253" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="325" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="397" y="217" width="36" height="36"></rect>
-                <rect class="pcw-square" x="1" y="253" width="36" height="36"></rect>
-                <rect class="pcw-square" x="73" y="253" width="36" height="36"></rect>
-                <rect class="pcw-square" x="217" y="253" width="36" height="36"></rect>
-                <rect class="pcw-square" x="397" y="253" width="36" height="36"></rect>
-                <rect class="pcw-square" x="37" y="289" width="36" height="36"></rect>
-                <rect class="pcw-square" x="1" y="289" width="36" height="36"></rect>
-                <text class="pcw-number" x="4" y="300">
-                  9
-                </text>
-                <rect class="pcw-square" x="73" y="289" width="36" height="36"></rect>
-                <rect class="pcw-square" x="109" y="289" width="36" height="36"></rect>
-                <rect class="pcw-square" x="145" y="289" width="36" height="36"></rect>
-                <rect class="pcw-square" x="181" y="289" width="36" height="36"></rect>
-                <rect class="pcw-square" x="217" y="289" width="36" height="36"></rect>
-                <rect class="pcw-square" x="1" y="325" width="36" height="36"></rect>
-                <rect class="pcw-square" x="73" y="325" width="36" height="36"></rect>
-                <rect class="pcw-square" x="217" y="325" width="36" height="36"></rect></svg>
-                <div class="pcw-lists">
-                  <section class="pcw-clues">
-                    <h3>
-                      Across
-                    </h3>
-                    <ol>
-                      <li value="3">The dependency manager most projects install <span class="pcw-length">(8)</span>
-                      </li>
-                      <li value="6">The stricter switch, an expression since 8.0 <span class="pcw-length">(5)</span>
-                      </li>
-                      <li value="8">Late binding keyword, or a property of the class <span class="pcw-length">(6)</span>
-                      </li>
-                      <li value="9">A framework with Eloquent and Blade <span class="pcw-length">(7)</span>
-                      </li>
-                    </ol>
-                  </section>
-                  <section class="pcw-clues">
-                    <h3>
-                      Down
-                    </h3>
-                    <ol>
-                      <li value="1">A type with a fixed set of cases, new in 8.1 <span class="pcw-length">(4)</span>
-                      </li>
-                      <li value="2">An ordered map, the workhorse of PHP <span class="pcw-length">(5)</span>
-                      </li>
-                      <li value="3">An anonymous function that captures variables with use <span class="pcw-length">(7)</span>
-                      </li>
-                      <li value="4">A language construct that outputs one or more strings <span class="pcw-length">(4)</span>
-                      </li>
-                      <li value="5">Hands a value out of a generator and pauses it <span class="pcw-length">(5)</span>
-                      </li>
-                      <li value="7">The value of a variable that has none <span class="pcw-length">(4)</span>
-                      </li>
-                    </ol>
-                  </section>
-                </div>
-              </div>
+              <section class="pad-game pad-game-crossword" id="pad-game-crossword-e22540a8" data-pad-game="crossword" data-config="{&quot;rows&quot;:10,&quot;cols&quot;:13,&quot;letters&quot;:&quot;CgoKCkUKCgoKCgoKCgoKCgoKTgoKCgoKCgoKCgoKCgpVCgoKCgpBCgoKCgoKQwpPCk0KUApPClMKRQpSCgoKCgoKTAoKCgoKCgpSCgpFCgoKCk8KCgoKWQoKTQpBClQKQwpICk4KClMKVApBClQKSQpDCgpZCgpICgpVCgpVCgoKCkUKCgoKCk8KCkwKQQpSCkEKVgpFCkwKCgoKCgoKTAoKRQoKCgpECgoKCgoK&quot;,&quot;clues&quot;:[{&quot;n&quot;:1,&quot;across&quot;:false,&quot;clue&quot;:&quot;A type with a fixed set of cases, new in 8.1&quot;,&quot;squares&quot;:[4,17,30,43]},{&quot;n&quot;:2,&quot;across&quot;:false,&quot;clue&quot;:&quot;An ordered map, the workhorse of PHP&quot;,&quot;squares&quot;:[35,48,61,74,87]},{&quot;n&quot;:3,&quot;across&quot;:false,&quot;clue&quot;:&quot;An anonymous function that captures variables with use&quot;,&quot;squares&quot;:[41,54,67,80,93,106,119]},{&quot;n&quot;:3,&quot;across&quot;:true,&quot;clue&quot;:&quot;The dependency manager most projects install&quot;,&quot;squares&quot;:[41,42,43,44,45,46,47,48]},{&quot;n&quot;:4,&quot;across&quot;:false,&quot;clue&quot;:&quot;A language construct that outputs one or more strings&quot;,&quot;squares&quot;:[63,76,89,102]},{&quot;n&quot;:5,&quot;across&quot;:false,&quot;clue&quot;:&quot;Hands a value out of a generator and pauses it&quot;,&quot;squares&quot;:[71,84,97,110,123]},{&quot;n&quot;:6,&quot;across&quot;:true,&quot;clue&quot;:&quot;The stricter switch, an expression since 8.0&quot;,&quot;squares&quot;:[73,74,75,76,77]},{&quot;n&quot;:7,&quot;across&quot;:false,&quot;clue&quot;:&quot;The value of a variable that has none&quot;,&quot;squares&quot;:[78,91,104,117]},{&quot;n&quot;:8,&quot;across&quot;:true,&quot;clue&quot;:&quot;Late binding keyword, or a property of the class&quot;,&quot;squares&quot;:[80,81,82,83,84,85]},{&quot;n&quot;:9,&quot;across&quot;:true,&quot;clue&quot;:&quot;A framework with Eloquent and Blade&quot;,&quot;squares&quot;:[104,105,106,107,108,109,110]}],&quot;skipped&quot;:[],&quot;name&quot;:&quot;PHP crossword&quot;}" aria-label="PHP crossword">
+                <header class="pg-head">
+                  <strong class="pg-title">PHP crossword</strong><span class="pg-status" role="status" aria-live="polite"></span>
+                </header>
+                <div class="pg-board"></div>
+                <div class="pg-bar"></div><noscript>
+                <p class="pg-noscript">
+                  This game is played in the browser and needs JavaScript.
+                </p></noscript>
+              </section>
+              <script>
+              /* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+              script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
+              started on every board of its kind: the ones on the page, and the ones a fragment, a live
+              region or a script brings later. k is the game's kit: its board, its status line and its
+              bar, a random number seeded by seed= (the same games on every load) or by the browser,
+              timers that stop with the game, and the end of a game, which the board carries as
+              data-result="won" or "lost" and announces with a pad-game-end event. */
+
+              (function () {
+              'use strict';
+
+              if (window.PadGames) return;
+
+              var kinds = {};
+
+              // mulberry32: a small, fast generator whose numbers follow from the seed alone.
+
+              function random(seed) {
+              var a = seed >>> 0;
+              return function () {
+              a = (a + 0x6D2B79F5) >>> 0;
+              var t = a;
+              t = Math.imul(t ^ (t >>> 15), t | 1);
+              t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+              return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+              };
+              }
+
+              function el(tag, cls, text) {
+              var e = document.createElement(tag);
+              if (cls) e.className = cls;
+              if (text !== undefined && text !== null) e.textContent = text;
+              return e;
+              }
+
+              function Kit(root, cfg) {
+              this.root = root;
+              this.cfg = cfg;
+              this.board = root.querySelector('.pg-board');
+              this.bar = root.querySelector('.pg-bar');
+              this.statusEl = root.querySelector('.pg-status');
+              this.seed = (typeof cfg.seed === 'number') ? cfg.seed : Math.floor(Math.random() * 2147483647);
+              this.rand = random(this.seed);
+              this.timers = [];
+              }
+
+              Kit.prototype = {
+              el: el,
+              int: function (n) { return Math.floor(this.rand() * n); },
+              pick: function (list) { return list[this.int(list.length)]; },
+              shuffle: function (list) {
+              for (var i = list.length - 1; i > 0; i--) {
+              var j = this.int(i + 1), t = list[i];
+              list[i] = list[j];
+              list[j] = t;
+              }
+              return list;
+              },
+              status: function (text) { this.statusEl.textContent = text; },
+              button: function (label, fn, cls) {
+              var b = el('button', 'pg-button' + (cls ? ' ' + cls : ''), label);
+              b.type = 'button';
+              b.addEventListener('click', fn);
+              this.bar.appendChild(b);
+              return b;
+              },
+              // A new game: the board emptied, the result and the timers of the last one gone.
+              fresh: function () {
+              this.stop();
+              this.board.textContent = '';
+              this.root.classList.remove('is-won', 'is-lost');
+              this.root.removeAttribute('data-result');
+              },
+              won: function (text) { this.finish('won', text); },
+              lost: function (text) { this.finish('lost', text); },
+              finish: function (result, text) {
+              this.stop();
+              this.root.classList.add(result === 'won' ? 'is-won' : 'is-lost');
+              this.root.setAttribute('data-result', result);
+              this.status(text);
+              this.root.dispatchEvent(new CustomEvent('pad-game-end', { bubbles: true, detail: { result: result } }));
+              },
+              over: function () { return this.root.hasAttribute('data-result'); },
+              later: function (fn, ms) { var t = setTimeout(fn, ms); this.timers.push(t); return t; },
+              every: function (fn, ms) { var t = setInterval(fn, ms); this.timers.push(t); return t; },
+              stop: function () {
+              this.timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+              this.timers = [];
+              },
+              // Keys the game reads while it has the focus; the arrows then do not scroll the page.
+              keys: function (map) {
+              this.root.addEventListener('keydown', function (e) {
+              if (e.altKey || e.ctrlKey || e.metaKey) return;
+              var fn = map[e.key];
+              if (fn && fn(e) !== false) e.preventDefault();
+              });
+              },
+              // A swipe over the board, as the arrow it points: 'ArrowUp', 'ArrowLeft' ...
+              swipe: function (fn) {
+              var x0 = null, y0 = null, board = this.board;
+              board.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+              board.addEventListener('touchend', function (e) {
+              if (x0 === null) return;
+              var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+              x0 = null;
+              if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+              fn(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'ArrowRight' : 'ArrowLeft') : (dy > 0 ? 'ArrowDown' : 'ArrowUp'));
+              });
+              }
+              };
+
+              function start(root) {
+              if (root.padGameKit) return;
+              var init = kinds[root.getAttribute('data-pad-game')];
+              if (!init) return;
+              var cfg = {};
+              try { cfg = JSON.parse(root.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+              var kit = new Kit(root, cfg);
+              root.padGameKit = kit;
+              root.classList.add('is-ready');
+              init(kit, cfg);
+              }
+
+              function scan(where) {
+              var list = (where || document).querySelectorAll('.pad-game[data-pad-game]');
+              for (var i = 0; i < list.length; i++) start(list[i]);
+              }
+
+              window.PadGames = {
+              register: function (name, init) { kinds[name] = init; scan(); },
+              scan: scan,
+              random: random,
+              el: el
+              };
+
+              document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+              if (window.MutationObserver)
+              new MutationObserver(function (records) {
+              for (var i = 0; i < records.length; i++)
+              for (var j = 0; j < records[i].addedNodes.length; j++) {
+              var n = records[i].addedNodes[j];
+              if (n.nodeType === 1 && (n.matches('.pad-game') || n.querySelector('.pad-game'))) { scan(); return; }
+              }
+              }).observe(document.documentElement, { childList: true, subtree: true });
+              })();
+              </script>
+              <script>
+              PadGames.register('crossword', function (k, cfg) {
+              var R = cfg.rows, C = cfg.cols, letters, inputs = [], across = true, current = null, clueItems = [];
+
+              letters = new TextDecoder().decode(Uint8Array.from(atob(cfg.letters), function (c) { return c.charCodeAt(0); })).split('\n');
+
+              // The clue of a square in a direction, and the squares of that clue.
+              function clueOf(i, way) {
+              for (var n = 0; n < cfg.clues.length; n++) if (cfg.clues[n].across === way && cfg.clues[n].squares.indexOf(i) >= 0) return cfg.clues[n];
+              return null;
+              }
+
+              function focus(i, way) {
+              if (way !== undefined) across = way;
+              if (!clueOf(i, across)) across = !across;
+              current = clueOf(i, across);
+              inputs[i].focus();
+              mark();
+              }
+
+              function mark() {
+              inputs.forEach(function (inp) { if (inp) inp.parentNode.classList.remove('is-word'); });
+              clueItems.forEach(function (li) { li.classList.remove('is-current'); });
+              if (!current) return;
+              current.squares.forEach(function (j) { inputs[j].parentNode.classList.add('is-word'); });
+              var li = clueItems[cfg.clues.indexOf(current)];
+              li.classList.add('is-current');
+              clueBar.textContent = current.n + (current.across ? ' across: ' : ' down: ') + current.clue;
+              }
+
+              function step(i, forward) {
+              if (!current) return;
+              var at = current.squares.indexOf(i), next = current.squares[at + (forward ? 1 : -1)];
+              if (next !== undefined) inputs[next].focus();
+              }
+
+              function check(marking) {
+              var right = 0, total = 0, wrong = 0;
+              inputs.forEach(function (inp, i) {
+              if (!inp) return;
+              total++;
+              var v = inp.value.toUpperCase(), ok = v === letters[i].toUpperCase();
+              if (ok) right++;
+              if (marking) inp.parentNode.classList.toggle('is-wrong', !!v && !ok);
+              if (v && !ok) wrong++;
+              });
+              if (right === total) {
+              inputs.forEach(function (inp) { if (inp) { inp.readOnly = true; inp.parentNode.classList.remove('is-wrong'); } });
+              return k.won('Solved - every word is right!');
+              }
+              if (marking) k.status(wrong ? wrong + (wrong === 1 ? ' letter is wrong' : ' letters are wrong') + ' - marked in red' : 'Nothing wrong so far - ' + (total - right) + ' squares to go.');
+              }
+
+              function reveal(squares) {
+              squares.forEach(function (j) { inputs[j].value = letters[j]; inputs[j].parentNode.classList.add('is-revealed'); inputs[j].parentNode.classList.remove('is-wrong'); });
+              check(false);
+              }
+
+              var grid = k.el('div', 'cwd-grid'), clueBar = k.el('p', 'cwd-bar');
+              grid.style.gridTemplateColumns = 'repeat(' + C + ', var(--cwd-size))';
+              var numbers = {};
+              cfg.clues.forEach(function (c) { numbers[c.squares[0]] = c.n; });
+
+              for (var i = 0; i < R * C; i++) (function (i) {
+              if (!letters[i]) { grid.appendChild(k.el('span', 'cwd-block')); inputs.push(null); return; }
+              var sq = k.el('span', 'cwd-square'), inp = k.el('input', 'cwd-input');
+              if (numbers[i]) sq.appendChild(k.el('span', 'cwd-number', numbers[i]));
+              inp.maxLength = 1;
+              inp.autocomplete = 'off';
+              inp.setAttribute('autocapitalize', 'characters');
+              inp.setAttribute('aria-label', 'row ' + (Math.floor(i / C) + 1) + ', column ' + (i % C + 1) + (numbers[i] ? ', ' + numbers[i] : ''));
+              inp.addEventListener('focus', function () { if (!current || current.squares.indexOf(i) < 0) { current = clueOf(i, across) || clueOf(i, !across); if (current) across = current.across; mark(); } inp.select(); });
+              inp.addEventListener('mousedown', function (e) {
+              if (document.activeElement === inp && clueOf(i, !across)) { e.preventDefault(); focus(i, !across); }
+              });
+              inp.addEventListener('input', function () {
+              inp.value = inp.value.slice(-1).toUpperCase();
+              sq.classList.remove('is-wrong', 'is-revealed');
+              if (inp.value) step(i, true);
+              check(false);
+              });
+              inp.addEventListener('keydown', function (e) {
+              var r = Math.floor(i / C), c = i % C, to = null;
+              if (e.key === 'Backspace' && !inp.value) { step(i, false); e.preventDefault(); return; }
+              if (e.key === 'ArrowRight') to = [r, c + 1, true];
+              if (e.key === 'ArrowLeft') to = [r, c - 1, true];
+              if (e.key === 'ArrowDown') to = [r + 1, c, false];
+              if (e.key === 'ArrowUp') to = [r - 1, c, false];
+              if (!to) return;
+              e.preventDefault();
+              for (var rr = to[0], cc = to[1]; rr >= 0 && cc >= 0 && rr < R && cc < C; rr += to[0] - r, cc += to[1] - c) {
+              if (inputs[rr * C + cc]) { focus(rr * C + cc, to[2]); return; }
+              if (to[0] === r && to[1] === c) break;
+              }
+              });
+              sq.appendChild(inp);
+              grid.appendChild(sq);
+              inputs.push(inp);
+              })(i);
+
+              var lists = k.el('div', 'cwd-lists');
+              [true, false].forEach(function (way) {
+              var mine = cfg.clues.filter(function (c) { return c.across === way; });
+              if (!mine.length) return;
+              var sec = k.el('section', 'cwd-clues');
+              sec.appendChild(k.el('h4', null, way ? 'Across' : 'Down'));
+              var ol = k.el('ol');
+              mine.forEach(function (c) {
+              var li = k.el('li', null);
+              li.value = c.n;
+              var b = k.el('button', 'cwd-clue', c.clue + ' (' + c.squares.length + ')');
+              b.type = 'button';
+              b.addEventListener('click', function () { focus(c.squares[0], c.across); });
+              li.appendChild(b);
+              ol.appendChild(li);
+              clueItems[cfg.clues.indexOf(c)] = li;
+              });
+              sec.appendChild(ol);
+              lists.appendChild(sec);
+              });
+              if (cfg.skipped && cfg.skipped.length) lists.appendChild(k.el('p', 'pg-note', 'Not placed: ' + cfg.skipped.join(', ')));
+
+              var wrap = k.el('div', 'cwd-wrap'), left = k.el('div', 'cwd-left');
+              left.appendChild(clueBar);
+              left.appendChild(grid);
+              wrap.appendChild(left);
+              wrap.appendChild(lists);
+              k.board.appendChild(wrap);
+
+              k.button('Check', function () { if (!k.over()) check(true); });
+              k.button('Reveal word', function () { if (!k.over() && current) reveal(current.squares); });
+              k.button('Reveal all', function () { if (!k.over()) { var all = []; inputs.forEach(function (inp, j) { if (inp) all.push(j); }); reveal(all); } });
+              k.button('Clear', function () {
+              inputs.forEach(function (inp) { if (inp) { inp.value = ''; inp.readOnly = false; inp.parentNode.classList.remove('is-wrong', 'is-revealed'); } });
+              k.root.classList.remove('is-won');
+              k.root.removeAttribute('data-result');
+              k.status(cfg.clues.length + ' words - click a square or a clue and type');
+              });
+              k.status(cfg.clues.length + ' words - click a square or a clue and type');
+              });
+              </script>
             </div>
             <div class="card-body">
-              <a class="card-title" href="index%EF%B9%96crossword%EA%A4%B7php.html">A PHP crossword</a> <span class="card-text">Ten words about PHP laid out on the server - the empty grid to print, with the clues beside it.</span>
+              <a class="card-title" href="index%EF%B9%96crossword%EA%A4%B7php.html">A PHP crossword</a> <span class="card-text">Ten words about PHP laid out on the server and played in the page - type into the squares, click a clue.</span>
             </div>
           </article>
           <article class="card">
@@ -7270,7 +7511,7 @@ padSqlSetup=_install/schema.sql</code></pre><button type="button" class="pad-cop
         <header class="family-head">
           <h2>
             Sudoku
-          </h2><span class="family-line">A puzzle as a grid, givens bold - and solved on the server by backtracking</span>
+          </h2><span class="family-line">A puzzle to play in the page - or printed, and solved on the server by backtracking</span>
         </header>
         <div class="cards">
           <article class="card">
@@ -7817,7 +8058,191 @@ padSqlSetup=_install/schema.sql</code></pre><button type="button" class="pad-cop
               </table>
             </div>
             <div class="card-body">
-              <a class="card-title" href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html">The puzzle</a> <span class="card-text">The classic example puzzle, its givens bold and the open cells ready to print.</span>
+              <a class="card-title" href="index%EF%B9%96sudoku%EA%A4%B7print.html">To print</a> <span class="card-text">The same puzzle with paper - the givens bold and the open squares empty, no script.</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-chart" inert="">
+              <section class="pad-game pad-game-sudoku" id="pad-game-sudoku-8c27b891" data-pad-game="sudoku" data-config="{&quot;puzzle&quot;:&quot;530070000600195000098000060800060003400803001700020006060000280000419005000080079&quot;,&quot;solution&quot;:&quot;534678912672195348198342567859761423426853791713924856961537284287419635345286179&quot;,&quot;many&quot;:false,&quot;name&quot;:&quot;Sudoku&quot;}" aria-label="Sudoku">
+                <header class="pg-head">
+                  <strong class="pg-title">Sudoku</strong><span class="pg-status" role="status" aria-live="polite"></span>
+                </header>
+                <div class="pg-board"></div>
+                <div class="pg-bar"></div><noscript>
+                <p class="pg-noscript">
+                  This game is played in the browser and needs JavaScript.
+                </p></noscript>
+              </section>
+              <script>
+              PadGames.register('sudoku', function (k, cfg) {
+              var puzzle, solution, value, notes, cells, selected, noting, noteBtn, pad, many = !!cfg.many;
+
+              function peers(i) {
+              var r = Math.floor(i / 9), c = i % 9, br = r - r % 3, bc = c - c % 3, list = [];
+              for (var j = 0; j < 9; j++) { list.push(r * 9 + j, j * 9 + c, (br + Math.floor(j / 3)) * 9 + bc + j % 3); }
+              return list.filter(function (x) { return x !== i; });
+              }
+              var PEERS = []; for (var p = 0; p < 81; p++) PEERS.push(peers(p));
+
+              // Solutions of a grid, at most 'limit': the square with the fewest digits left first.
+              function solve(grid, limit, random) {
+              var g = grid.slice(), out = [];
+              (function go() {
+              if (out.length >= limit) return;
+              var best = -1, bestCands = null;
+              for (var i = 0; i < 81; i++) if (!g[i]) {
+              var used = {}, cands = [];
+              PEERS[i].forEach(function (q) { used[g[q]] = true; });
+              for (var d = 1; d <= 9; d++) if (!used[d]) cands.push(d);
+              if (!cands.length) return;
+              if (!bestCands || cands.length < bestCands.length) { best = i; bestCands = cands; if (cands.length === 1) break; }
+              }
+              if (best < 0) { out.push(g.slice()); return; }
+              if (random) k.shuffle(bestCands);
+              for (var n = 0; n < bestCands.length && out.length < limit; n++) { g[best] = bestCands[n]; go(); }
+              g[best] = 0;
+              })();
+              return out;
+              }
+
+              // A new puzzle: a full grid, then squares taken out in a random order as long as the
+              // puzzle keeps its one solution.
+              function generate(givens) {
+              var full = solve(new Array(81).fill(0), 1, true)[0], grid = full.slice(), order = k.shuffle(Array.from({ length: 81 }, function (_, i) { return i; }));
+              var shown = 81;
+              for (var n = 0; n < order.length && shown > givens; n++) {
+              var i = order[n], keep = grid[i];
+              grid[i] = 0;
+              if (solve(grid, 2, false).length !== 1) grid[i] = keep; else shown--;
+              }
+              return { puzzle: grid, solution: full };
+              }
+
+              function draw() {
+              var sel = selected, digit = sel !== null ? value[sel] : 0;
+              cells.forEach(function (b, i) {
+              var v = value[i], wrongPlace = v && PEERS[i].some(function (q) { return value[q] === v; });
+              b.classList.toggle('is-given', !!puzzle[i]);
+              b.classList.toggle('is-selected', sel === i);
+              b.classList.toggle('is-peer', sel !== null && PEERS[sel].indexOf(i) >= 0);
+              b.classList.toggle('is-same', !!digit && v === digit && sel !== i);
+              b.classList.toggle('is-clash', !!wrongPlace && !puzzle[i]);
+              b.textContent = '';
+              if (v) b.textContent = v;
+              else if (notes[i].length) {
+              var box = k.el('span', 'sdk-notes');
+              for (var d = 1; d <= 9; d++) box.appendChild(k.el('span', null, notes[i].indexOf(d) >= 0 ? d : ''));
+              b.appendChild(box);
+              }
+              b.setAttribute('aria-label', 'row ' + (Math.floor(i / 9) + 1) + ', column ' + (i % 9 + 1) + ', ' + (v ? v + (puzzle[i] ? ', given' : '') : 'empty'));
+              });
+              }
+
+              function select(i) { selected = i; draw(); if (cells[i] !== document.activeElement) cells[i].focus(); }
+
+              function enter(d) {
+              if (k.over() || selected === null || puzzle[selected]) return;
+              var i = selected;
+              if (noting && d) {
+              if (value[i]) return;
+              var at = notes[i].indexOf(d);
+              if (at >= 0) notes[i].splice(at, 1); else notes[i].push(d);
+              } else {
+              value[i] = (value[i] === d) ? 0 : d;
+              notes[i] = [];
+              if (d && value[i]) PEERS[i].forEach(function (q) { var j = notes[q].indexOf(d); if (j >= 0) notes[q].splice(j, 1); });
+              }
+              draw();
+              progress();
+              }
+
+              function progress() {
+              var empty = value.filter(function (v) { return !v; }).length;
+              if (!empty) {
+              var clash = value.some(function (v, i) { return PEERS[i].some(function (q) { return value[q] === v; }); });
+              if (!clash) {
+              selected = null;
+              draw();
+              return k.won('Solved!');
+              }
+              return k.status('Every square is filled, but something clashes - check marks the wrong ones.');
+              }
+              k.status(empty + ' squares to go' + (many ? ' - this puzzle has more than one solution' : ''));
+              }
+
+              function newGame(fixed) {
+              k.fresh();
+              var made = fixed || generate(cfg.givens || 30);
+              puzzle = made.puzzle;
+              solution = made.solution;
+              value = puzzle.slice();
+              notes = value.map(function () { return []; });
+              selected = null;
+              var grid = k.el('div', 'sdk-grid');
+              grid.setAttribute('role', 'grid');
+              cells = value.map(function (_, i) {
+              var b = k.el('button', 'sdk-cell');
+              b.type = 'button';
+              b.addEventListener('click', function () { select(i); });
+              b.addEventListener('focus', function () { if (selected !== i) { selected = i; draw(); } });
+              grid.appendChild(b);
+              return b;
+              });
+              pad = k.el('div', 'sdk-pad');
+              for (var d = 1; d <= 10; d++) (function (d) {
+              var b = k.el('button', 'sdk-key', d === 10 ? '⌫' : d);
+              b.type = 'button';
+              b.setAttribute('aria-label', d === 10 ? 'erase' : 'digit ' + d);
+              b.addEventListener('click', function () { enter(d === 10 ? 0 : d); if (selected !== null) cells[selected].focus(); });
+              pad.appendChild(b);
+              })(d);
+              var wrap = k.el('div', 'sdk-wrap');
+              wrap.appendChild(grid);
+              wrap.appendChild(pad);
+              k.board.appendChild(wrap);
+              draw();
+              progress();
+              }
+
+              function move(dr, dc) {
+              return function () {
+              var i = selected === null ? 0 : selected, r = (Math.floor(i / 9) + dr + 9) % 9, c = (i % 9 + dc + 9) % 9;
+              select(r * 9 + c);
+              };
+              }
+
+              var keys = { ArrowUp: move(-1, 0), ArrowDown: move(1, 0), ArrowLeft: move(0, -1), ArrowRight: move(0, 1),
+               Backspace: function () { enter(0); }, Delete: function () { enter(0); }, '0': function () { enter(0); },
+               n: function () { noteBtn.click(); } };
+              for (var d = 1; d <= 9; d++) keys[String(d)] = (function (d) { return function () { enter(d); }; })(d);
+              k.keys(keys);
+
+              noteBtn = k.button('Notes', function () { noting = !noting; noteBtn.classList.toggle('is-on', noting); noteBtn.setAttribute('aria-pressed', noting ? 'true' : 'false'); });
+              noteBtn.setAttribute('aria-pressed', 'false');
+              k.button('Hint', function () {
+              if (k.over()) return;
+              var i = (selected !== null && !puzzle[selected] && value[selected] !== solution[selected]) ? selected : -1;
+              if (i < 0) { var open = []; value.forEach(function (v, j) { if (v !== solution[j]) open.push(j); }); if (!open.length) return; i = k.pick(open); }
+              value[i] = solution[i];
+              notes[i] = [];
+              selected = i;
+              draw();
+              progress();
+              });
+              k.button('Check', function () {
+              if (k.over()) return;
+              var wrong = 0;
+              cells.forEach(function (b, i) { var bad = value[i] && value[i] !== solution[i]; b.classList.toggle('is-wrong', !!bad); if (bad) wrong++; });
+              k.status(wrong ? wrong + (wrong === 1 ? ' square is wrong' : ' squares are wrong') + ' - marked in red' : 'Nothing wrong so far.');
+              k.later(function () { cells.forEach(function (b) { b.classList.remove('is-wrong'); }); }, 2500);
+              });
+              if (cfg.puzzle) newGame({ puzzle: cfg.puzzle.split('').map(Number), solution: cfg.solution.split('').map(Number) });
+              else { k.button('New puzzle', function () { newGame(); }); newGame(); }
+              });
+              </script>
+            </div>
+            <div class="card-body">
+              <a class="card-title" href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html">The puzzle</a> <span class="card-text">The classic example puzzle, played in the page - select a square and type, notes, a hint, a check.</span>
             </div>
           </article>
           <article class="card">

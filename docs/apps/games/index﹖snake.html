@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Snake · PAD games
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="games.css">
+    <style>
+    :where(.pad-game){--pad-game-ink:#1a1a19;--pad-game-muted:#6b6a65;--pad-game-line:#c9c8c2;--pad-game-surface:#fcfcfb;--pad-game-cell:#ffffff;--pad-game-shade:#f0efea;--pad-game-accent:#2a78d6;--pad-game-accent2:#eb6834;--pad-game-good:#1a8a5a;--pad-game-bad:#d43c3b;--pad-game-mark:#fff1b8;}@supports (color:light-dark(#000,#fff)){:where(.pad-game){--pad-game-ink:light-dark(#1a1a19,#f4f3ee);--pad-game-muted:light-dark(#6b6a65,#a8a79f);--pad-game-line:light-dark(#c9c8c2,#4a4a46);--pad-game-surface:light-dark(#fcfcfb,#1a1a19);--pad-game-cell:light-dark(#ffffff,#242422);--pad-game-shade:light-dark(#f0efea,#2c2c29);--pad-game-accent:light-dark(#2a78d6,#5598e7);--pad-game-accent2:light-dark(#eb6834,#e8875f);--pad-game-good:light-dark(#1a8a5a,#3fbf86);--pad-game-bad:light-dark(#d43c3b,#ef6b6a);--pad-game-mark:light-dark(#fff1b8,#4a4320);}}:where(.pad-game){display:block;width:fit-content;max-width:100%;margin:1em 0;padding:14px 16px;border:1px solid var(--pad-game-line);border-radius:10px;background:var(--pad-game-surface);color:var(--pad-game-ink);font:15px/1.4 system-ui,sans-serif;box-sizing:border-box}
+    .pad-game *,.pad-game *::before,.pad-game *::after{box-sizing:border-box}
+    .pad-game .pg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin:0 0 10px}
+    .pad-game .pg-title{font-weight:650;font-size:16px}
+    .pad-game .pg-status{color:var(--pad-game-muted);min-height:1.4em}
+    .pad-game.is-won .pg-status{color:var(--pad-game-good);font-weight:600}
+    .pad-game.is-lost .pg-status{color:var(--pad-game-bad);font-weight:600}
+    .pad-game .pg-board{position:relative;max-width:100%;overflow-x:auto}
+    .pad-game .pg-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pad-game .pg-bar:empty{display:none}
+    .pad-game .pg-button{font:inherit;font-size:14px;padding:6px 12px;border-radius:6px;border:1px solid var(--pad-game-line);background:var(--pad-game-cell);color:var(--pad-game-ink);cursor:pointer}
+    .pad-game .pg-button:hover:not(:disabled){border-color:var(--pad-game-accent)}
+    .pad-game .pg-button:disabled{opacity:.45;cursor:default}
+    .pad-game .pg-button.is-on{background:var(--pad-game-accent);border-color:var(--pad-game-accent);color:#fff}
+    .pad-game button:focus-visible,.pad-game [tabindex]:focus-visible,.pad-game input:focus-visible{outline:2px solid var(--pad-game-accent);outline-offset:2px}
+    .pad-game .pg-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-game .pg-noscript{color:var(--pad-game-bad);margin:0}
+    .pad-game .pg-note{color:var(--pad-game-muted);font-size:13px;margin:8px 0 0}
+    .pad-game .pg-input{font:inherit;padding:6px 8px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink)}
+    </style>
+    <style>
+    .pad-game-snake .snk-field{display:block;max-width:100%;height:auto;border-radius:6px;box-shadow:0 0 0 1px var(--pad-game-line)}
+    .pad-game-snake .snk-pad{min-width:40px;font-size:18px;line-height:1}
+    </style>
+  </head>
+  <body class="frame app-games">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>games</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="games">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All games</a>
+        <div class="frame-head">
+          Games
+        </div><a href="index%EF%B9%96bullscows.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Bulls and cows</a> <a href="index%EF%B9%96crossword.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Crossword</a> <a href="index%EF%B9%96fifteen.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Fifteen puzzle</a> <a href="index%EF%B9%96gomoku.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Five in a row</a> <a href="index%EF%B9%96hangman.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Hangman</a> <a href="index%EF%B9%96hanoi.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Towers of Hanoi</a> <a href="index%EF%B9%96maze.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Maze</a> <a href="index%EF%B9%96memory.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Memory</a> <a href="index%EF%B9%96nim.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Nim</a> <a href="index%EF%B9%96nonogram.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Nonogram</a> <a href="index%EF%B9%96pegsolitaire.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Peg solitaire</a> <a href="index%EF%B9%96quiz.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Quiz</a> <a href="index%EF%B9%96reversi.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Reversi</a> <a href="index%EF%B9%96scramble.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Word scramble</a> <a href="index%EF%B9%96snake.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Snake</a> <a href="index%EF%B9%96sudoku.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Sudoku</a> <a href="index%EF%B9%96tictactoe.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Tic-tac-toe</a> <a href="index%EF%B9%96wordsearch.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Word search</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Snake
+        </h1>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="games-lead">
+          Steer a snake round a field with the arrow keys, by swiping or with the buttons, to eat the apples; each one makes it longer and a little faster, and it ends where the snake runs into a wall or itself. size= the field, 18 squares a side unless given (10 to 30); speed= the steps a second it starts with, 6 unless given (2 to 15); wrap lets it run off one side and on at the other instead of into the wall.
+        </p>
+        <div class="games-play">
+          <section class="pad-game pad-game-snake" id="pad-game-snake-0c94e4e5" data-pad-game="snake" data-config="{&quot;size&quot;:18,&quot;speed&quot;:6,&quot;wrap&quot;:false,&quot;name&quot;:&quot;Snake&quot;}" aria-label="Snake">
+            <header class="pg-head">
+              <strong class="pg-title">Snake</strong><span class="pg-status" role="status" aria-live="polite"></span>
+            </header>
+            <div class="pg-board"></div>
+            <div class="pg-bar"></div><noscript>
+            <p class="pg-noscript">
+              This game is played in the browser and needs JavaScript.
+            </p></noscript>
+          </section>
+          <script>
+          /* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+          script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
+          started on every board of its kind: the ones on the page, and the ones a fragment, a live
+          region or a script brings later. k is the game's kit: its board, its status line and its
+          bar, a random number seeded by seed= (the same games on every load) or by the browser,
+          timers that stop with the game, and the end of a game, which the board carries as
+          data-result="won" or "lost" and announces with a pad-game-end event. */
+
+          (function () {
+          'use strict';
+
+          if (window.PadGames) return;
+
+          var kinds = {};
+
+          // mulberry32: a small, fast generator whose numbers follow from the seed alone.
+
+          function random(seed) {
+          var a = seed >>> 0;
+          return function () {
+          a = (a + 0x6D2B79F5) >>> 0;
+          var t = a;
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+          }
+
+          function el(tag, cls, text) {
+          var e = document.createElement(tag);
+          if (cls) e.className = cls;
+          if (text !== undefined && text !== null) e.textContent = text;
+          return e;
+          }
+
+          function Kit(root, cfg) {
+          this.root = root;
+          this.cfg = cfg;
+          this.board = root.querySelector('.pg-board');
+          this.bar = root.querySelector('.pg-bar');
+          this.statusEl = root.querySelector('.pg-status');
+          this.seed = (typeof cfg.seed === 'number') ? cfg.seed : Math.floor(Math.random() * 2147483647);
+          this.rand = random(this.seed);
+          this.timers = [];
+          }
+
+          Kit.prototype = {
+          el: el,
+          int: function (n) { return Math.floor(this.rand() * n); },
+          pick: function (list) { return list[this.int(list.length)]; },
+          shuffle: function (list) {
+          for (var i = list.length - 1; i > 0; i--) {
+          var j = this.int(i + 1), t = list[i];
+          list[i] = list[j];
+          list[j] = t;
+          }
+          return list;
+          },
+          status: function (text) { this.statusEl.textContent = text; },
+          button: function (label, fn, cls) {
+          var b = el('button', 'pg-button' + (cls ? ' ' + cls : ''), label);
+          b.type = 'button';
+          b.addEventListener('click', fn);
+          this.bar.appendChild(b);
+          return b;
+          },
+          // A new game: the board emptied, the result and the timers of the last one gone.
+          fresh: function () {
+          this.stop();
+          this.board.textContent = '';
+          this.root.classList.remove('is-won', 'is-lost');
+          this.root.removeAttribute('data-result');
+          },
+          won: function (text) { this.finish('won', text); },
+          lost: function (text) { this.finish('lost', text); },
+          finish: function (result, text) {
+          this.stop();
+          this.root.classList.add(result === 'won' ? 'is-won' : 'is-lost');
+          this.root.setAttribute('data-result', result);
+          this.status(text);
+          this.root.dispatchEvent(new CustomEvent('pad-game-end', { bubbles: true, detail: { result: result } }));
+          },
+          over: function () { return this.root.hasAttribute('data-result'); },
+          later: function (fn, ms) { var t = setTimeout(fn, ms); this.timers.push(t); return t; },
+          every: function (fn, ms) { var t = setInterval(fn, ms); this.timers.push(t); return t; },
+          stop: function () {
+          this.timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+          this.timers = [];
+          },
+          // Keys the game reads while it has the focus; the arrows then do not scroll the page.
+          keys: function (map) {
+          this.root.addEventListener('keydown', function (e) {
+          if (e.altKey || e.ctrlKey || e.metaKey) return;
+          var fn = map[e.key];
+          if (fn && fn(e) !== false) e.preventDefault();
+          });
+          },
+          // A swipe over the board, as the arrow it points: 'ArrowUp', 'ArrowLeft' ...
+          swipe: function (fn) {
+          var x0 = null, y0 = null, board = this.board;
+          board.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+          board.addEventListener('touchend', function (e) {
+          if (x0 === null) return;
+          var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+          x0 = null;
+          if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+          fn(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'ArrowRight' : 'ArrowLeft') : (dy > 0 ? 'ArrowDown' : 'ArrowUp'));
+          });
+          }
+          };
+
+          function start(root) {
+          if (root.padGameKit) return;
+          var init = kinds[root.getAttribute('data-pad-game')];
+          if (!init) return;
+          var cfg = {};
+          try { cfg = JSON.parse(root.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+          var kit = new Kit(root, cfg);
+          root.padGameKit = kit;
+          root.classList.add('is-ready');
+          init(kit, cfg);
+          }
+
+          function scan(where) {
+          var list = (where || document).querySelectorAll('.pad-game[data-pad-game]');
+          for (var i = 0; i < list.length; i++) start(list[i]);
+          }
+
+          window.PadGames = {
+          register: function (name, init) { kinds[name] = init; scan(); },
+          scan: scan,
+          random: random,
+          el: el
+          };
+
+          document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+          if (window.MutationObserver)
+          new MutationObserver(function (records) {
+          for (var i = 0; i < records.length; i++)
+          for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-game') || n.querySelector('.pad-game'))) { scan(); return; }
+          }
+          }).observe(document.documentElement, { childList: true, subtree: true });
+          })();
+          </script>
+          <script>
+          PadGames.register('snake', function (k, cfg) {
+          var N = cfg.size || 18, CELL = 20, canvas, ctx, body, dir, queued, apple, score, running, tick, best = 0;
+
+          // A colour of the game's palette as the canvas can paint it: the custom property is
+          // light-dark(...) text, so a probe element resolves it to the colour of the page's scheme.
+          var probe = k.el('span', 'pg-hide'), colours = {};
+          k.root.appendChild(probe);
+          function css(name) {
+          if (!colours[name]) { probe.style.color = 'var(' + name + ')'; colours[name] = getComputedStyle(probe).color; }
+          return colours[name];
+          }
+
+          function placeApple() {
+          var free = [];
+          for (var i = 0; i < N * N; i++) if (body.indexOf(i) < 0) free.push(i);
+          apple = free.length ? k.pick(free) : -1;
+          }
+
+          function draw() {
+          ctx.fillStyle = css('--pad-game-cell');
+          ctx.fillRect(0, 0, N * CELL, N * CELL);
+          ctx.fillStyle = css('--pad-game-shade');
+          for (var i = 0; i < N * N; i++) if ((Math.floor(i / N) + i % N) % 2) ctx.fillRect((i % N) * CELL, Math.floor(i / N) * CELL, CELL, CELL);
+          if (apple >= 0) {
+          ctx.fillStyle = css('--pad-game-bad');
+          ctx.beginPath();
+          ctx.arc((apple % N) * CELL + CELL / 2, Math.floor(apple / N) * CELL + CELL / 2, CELL / 2 - 3, 0, Math.PI * 2);
+          ctx.fill();
+          }
+          body.forEach(function (j, n) {
+          ctx.fillStyle = n === 0 ? css('--pad-game-good') : css('--pad-game-accent');
+          ctx.fillRect((j % N) * CELL + 1, Math.floor(j / N) * CELL + 1, CELL - 2, CELL - 2);
+          });
+          }
+
+          function step() {
+          if (queued.length) dir = queued.shift();
+          var head = body[0], r = Math.floor(head / N) + dir[0], c = head % N + dir[1];
+          if (cfg.wrap) { r = (r + N) % N; c = (c + N) % N; }
+          var next = r * N + c, tail = body[body.length - 1];
+          if (r < 0 || c < 0 || r >= N || c >= N || (body.indexOf(next) >= 0 && next !== tail)) return over();
+          body.unshift(next);
+          if (next === apple) {
+          score++;
+          placeApple();
+          k.status(score + (score === 1 ? ' apple' : ' apples'));
+          restart();
+          } else body.pop();
+          draw();
+          }
+
+          function speed() { return 1000 / Math.min(20, cfg.speed + score * 0.3); }
+
+          function restart() { k.stop(); if (running) k.every(step, speed()); }
+
+          function over() {
+          running = false;
+          best = Math.max(best, score);
+          draw();
+          k.lost('The snake hit ' + (cfg.wrap ? 'itself' : 'a wall or itself') + ' - ' + score + (score === 1 ? ' apple' : ' apples') + (best ? ', best ' + best : '') + '.');
+          playBtn.textContent = 'Play again';
+          }
+
+          function turn(d) {
+          return function () {
+          if (!running) return start();
+          var last = queued.length ? queued[queued.length - 1] : dir;
+          if (last[0] === -d[0] && last[1] === -d[1]) return;
+          if (last[0] === d[0] && last[1] === d[1]) return;
+          if (queued.length < 3) queued.push(d);
+          };
+          }
+
+          function reset() {
+          k.fresh();
+          canvas = k.el('canvas', 'snk-field');
+          canvas.width = canvas.height = N * CELL;
+          canvas.setAttribute('role', 'img');
+          canvas.setAttribute('aria-label', 'The snake field');
+          canvas.tabIndex = 0;
+          ctx = canvas.getContext('2d');
+          k.board.appendChild(canvas);
+          var mid = Math.floor(N / 2) * N + Math.floor(N / 2);
+          body = [mid, mid - 1, mid - 2];
+          dir = [0, 1];
+          queued = [];
+          score = 0;
+          placeApple();
+          draw();
+          }
+
+          function start() {
+          if (k.over() || !body) reset();
+          if (running) return;
+          running = true;
+          playBtn.textContent = 'Pause';
+          canvas.focus();
+          k.status(score ? score + ' apples' : 'Eat the apples - arrow keys, swipe or the buttons');
+          restart();
+          }
+
+          function pause() { running = false; k.stop(); playBtn.textContent = 'Play'; k.status('Paused - ' + score + ' apples'); }
+
+          var keys = { ArrowUp: turn([-1, 0]), ArrowDown: turn([1, 0]), ArrowLeft: turn([0, -1]), ArrowRight: turn([0, 1]) };
+          keys.w = keys.ArrowUp; keys.s = keys.ArrowDown; keys.a = keys.ArrowLeft; keys.d = keys.ArrowRight;
+          keys[' '] = function () { running ? pause() : start(); };
+          k.keys(keys);
+          k.swipe(function (key) { keys[key](); });
+          var playBtn = k.button('Play', function () { running ? pause() : start(); });
+          [['Up', 'ArrowUp', '↑'], ['Left', 'ArrowLeft', '←'], ['Down', 'ArrowDown', '↓'], ['Right', 'ArrowRight', '→']].forEach(function (b) {
+          k.button(b[2], keys[b[1]], 'snk-pad').setAttribute('aria-label', b[0]);
+          });
+          document.addEventListener('visibilitychange', function () { if (document.hidden && running) pause(); });
+          reset();
+          k.status('Press Play, or an arrow key, to start');
+          });
+          </script>
+        </div>
+        <h2>
+          The template
+        </h2>
+        <pre class="games-source"><code><span class="hl-brc">{</span><span class="hl-tag">game</span> <span class="hl-str">'snake'</span><span class="hl-brc">/}</span></code></pre>
+      </div>
+    </main>
+  </body>
+</html>
