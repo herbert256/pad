@@ -590,17 +590,34 @@
     // with its label beside it: the room it takes is kept free, beside the node in its rank
     // (TB, BT) or in the gap after its rank (LR, RL), where it was drawn over the next node.
     // In TB and BT every label of a node's loops stands past the outermost one, so the room
-    // reaches past that loop by the widest label.
+    // reaches past that loop by the widest label. The texts by the ends of a loop - the
+    // multiplicities of a class on itself - stand beside the node over and under the loop,
+    // and the room reaches past them too.
 
-    $loopRoom = $loopCount = $loopWide = [];
+    // In LR and RL the texts at the starts of a node's loops stand over the loops and the
+    // plates of their labels over those (padDiagramGraph): the height they add is kept free
+    // above the node, toward the one before it in its rank.
 
-    foreach ( $edges as list ( $a, $b, $label ) )
-      if ( $a === $b ) {
+    $loopRoom = $loopCount = $loopWide = $loopTails = $loopUp = [];
+
+    foreach ( $edges as $edge )
+      if ( $edge [0] === $edge [1] ) {
+        $a              = $edge [0];
         $k              = $loopCount [$a] = ( $loopCount [$a] ?? -1 ) + 1;
-        $wide           = $label !== '' ? padDiagramWidth ( $label ) + 8 : 0;
+        $wide           = $edge [2] !== '' ? padDiagramWidth ( $edge [2] ) + 8 : 0;
         $loopWide [$a]  = max ( $loopWide [$a] ?? 0, $wide );
         $loopRoom [$a]  = $vertical ? 30 + 22 * $k + $loopWide [$a] : max ( $loopRoom [$a] ?? 0, 30 + 22 * $k + $wide );
+        foreach ( $edge ['ends'] ?? [] as $end => $text )
+          if ( $text !== '' ) {
+            $loopRoom [$a]  = max ( $loopRoom [$a], padDiagramWidth ( $text ) + 10 );
+            $loopTails [$a] = ( $loopTails [$a] ?? 0 ) + ( $end ? 0 : 1 );
+          }
       }
+
+    if ( ! $vertical )
+      foreach ( $loopTails as $a => $tails )
+        if ( $tails )
+          $loopUp [$a] = 12 * $tails + 2 * $loopCount [$a] + 3;
 
     // The main axis: each rank as deep as its deepest node, the gaps between as wide as
     // their labels ask.
@@ -634,7 +651,7 @@
 
     $size  = fn ( $id ) => $vertical ? $nodes [$id] ['w'] : $nodes [$id] ['h'];
     $space = fn ( $a, $b ) => ( $size ( $a ) + $size ( $b ) ) / 2 + ( ( $nodes [$a] ['shape'] == 'dummy' or $nodes [$b] ['shape'] == 'dummy' ) ? 14 : 30 )
-                            + ( $vertical ? ( $loopRoom [$a] ?? 0 ) : 0 );
+                            + ( $vertical ? ( $loopRoom [$a] ?? 0 ) : ( $loopUp [$b] ?? 0 ) );
     $cross = [];
 
     foreach ( $ranks as $list ) {
@@ -1028,28 +1045,45 @@
     // other: each past its own loop at the node's middle, two labelled loops on one node had
     // their plates on one spot, the first also over the second loop's turn.
 
+    // The texts by the ends of a loop stand beside the node where the loop leaves it, the
+    // one at its start over the loop and its mark, the one at its end under them - one over
+    // or under the other for further loops, all loops of a node leaving it on one spot - and
+    // in LR and RL the plates of the labels stand over those texts.
+
     $side   = ( $direction == 'RL' ) ? -1 : 1;
-    $loops  = $labels = $curves = $loopsOf = [];
+    $loops  = $labels = $curves = $loopsOf = $tailsOf = $loopEnds = $endsAt = [];
 
-    foreach ( $edges as list ( $a, $b ) )
-      if ( $a === $b )
-        $loopsOf [$a] = ( $loopsOf [$a] ?? 0 ) + 1;
+    foreach ( $edges as $edge )
+      if ( $edge [0] === $edge [1] ) {
+        $loopsOf [ $edge [0] ] = ( $loopsOf [ $edge [0] ] ?? 0 ) + 1;
+        if ( ( $edge ['ends'] [0] ?? '' ) !== '' )
+          $tailsOf [ $edge [0] ] = ( $tailsOf [ $edge [0] ] ?? 0 ) + 1;
+      }
 
-    foreach ( $edges as $e => list ( $a, $b, $label ) )
-      if ( $a === $b ) {
+    foreach ( $edges as $e => $edge )
+      if ( $edge [0] === $edge [1] ) {
+        list ( $a, , $label ) = $edge;
         $k          = $loops [$a] = ( $loops [$a] ?? -1 ) + 1;
         $n          = $nodes [$a];
         $far        = $n ['x'] + $side * ( $n ['w'] / 2 + 30 + 22 * $k + ( $label !== '' ? padDiagramWidth ( $label ) + 8 : 0 ) );
         $boxes []   = [ min ( $n ['x'], $far ), $n ['y'] - 28 - 6 * $k, max ( $n ['x'], $far ), $n ['y'] + 28 + 6 * $k ];
         list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
         $curves []  = [ $x + $r * 0.375, $n ['y'], abs ( $r ) * 0.75, 15 + 2 * $k, 'loop' ];
+        $tails      = $tailsOf [$a] ?? 0;
         if ( $label !== '' ) {
           $w              = padDiagramWidth ( $label ) + 8;
           $outer          = padDiagramLoopAt ( $n, $loopsOf [$a] - 1, $side ) [1];
           $labels [$e]    = $vertical ? [ $x + $outer * 0.75 + $side * $w / 2, $n ['y'] + 21 * ( $k - ( $loopsOf [$a] - 1 ) / 2 ), $w ]
-                                      : [ $x + $side * $w / 2, $n ['y'] - 28 - 21 * $k, $w ];
+                                      : [ $x + $side * $w / 2, $n ['y'] - 28 - 21 * $k - ( $tails ? 12 * $tails + 2 * $loopsOf [$a] + 1 : 0 ), $w ];
           $boxes []       = [ $labels [$e] [0] - $w / 2, $labels [$e] [1] - 9, $labels [$e] [0] + $w / 2, $labels [$e] [1] + 9 ];
         }
+        foreach ( [ 0 => -1, 1 => 1 ] as $end => $way )
+          if ( ( $text = $edge ['ends'] [$end] ?? '' ) !== '' ) {
+            $j                 = $endsAt [$a] [$end] = ( $endsAt [$a] [$end] ?? -1 ) + 1;
+            $base              = $n ['y'] + $way * ( ( $end ? 29 : 22 ) + 2 * ( $loopsOf [$a] - 1 ) + 12 * $j );
+            $loopEnds [$e] []  = [ $text, $x + $side * 4, $base ];
+            $boxes []          = [ min ( $x, $x + $side * ( padDiagramWidth ( $text ) + 4 ) ), $base - 10, max ( $x, $x + $side * ( padDiagramWidth ( $text ) + 4 ) ), $base + 2 ];
+          }
       }
 
     $loops = [];
@@ -1146,9 +1180,18 @@
 
         list ( $x, $r ) = padDiagramLoopAt ( $n, $k, $side );
 
+        // The mark at its tail where it leaves the node, as an edge between two nodes has it:
+        // a relation of a class to itself - a tree of nodes, a manager - lost its diamond,
+        // and one of an entity to itself the bars of its exactly one, while the description
+        // said them. The texts by its ends stand beside the node, over and under the loop.
+
         $d  = 'M' . $X ( $x ) . ',' . $Y ( $y - 8 ) . 'C' . $X ( $x + $r ) . ',' . $Y ( $y - 28 - 6 * $k ) . ' ' . $X ( $x + $r ) . ',' . $Y ( $y + 28 + 6 * $k ) . ' ' . $X ( $x + 6 * $side ) . ',' . $Y ( $y + 10 );
         $svg .= "<g class=\"pc-mark\">$tip<path class=\"$class\" d=\"$d\"/>"
-              . padDiagramMark ( $head, [ $x + 12 * $side, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style ) . '</g>';
+              . padDiagramMark ( $head, [ $x + 12 * $side, $y + 14 ], [ $x, $y + 8 ], $X, $Y, $style )
+              . padDiagramMark ( $tail, [ $x + 12 * $side, $y - 14 ], [ $x, $y - 8 ], $X, $Y, $style ) . '</g>';
+
+        foreach ( $loopEnds [$e] ?? [] as list ( $text, $tx, $ty ) )
+          $svg .= '<text class="pd-end" x="' . $X ( $tx ) . '" y="' . $Y ( $ty ) . '" text-anchor="' . ( $side > 0 ? 'start' : 'end' ) . '">' . padChartAttr ( $text ) . '</text>';
 
         continue;
 
