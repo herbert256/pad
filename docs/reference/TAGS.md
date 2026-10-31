@@ -2287,6 +2287,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
 | `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
+| `tooltip` | A short tip while the pointer or the focus is on its trigger - CSS alone | the tip, `place` |
 
 **Every widget:** its markup is built on the server; a script, where it has one, is written once
 per page with the CSP nonce and only makes it smoother. The colours are custom properties on
@@ -2548,6 +2549,36 @@ script either, the menu shows in the middle of the window. The colours are
 `--pad-dropdown-accent`, `-text`, `-muted`, `-line`, `-surface` and `-hover` on
 `.pad-dropdown`, `light-dark()` defaults. A dropdown without the text of its button, one with
 an empty menu and an unknown `align` are errors under the strict check.
+
+---
+
+### tooltip
+A short tip shown while the pointer is on its trigger or the trigger has the focus - shown by
+CSS alone, the trigger naming it for a screen reader with `aria-describedby`
+(`widgets/_lib/tooltip.php`).
+
+```html
+The {tooltip 'Billed every month, cancel any time'}Starter plan{/tooltip} costs € 9.
+VAT {tooltip 'Value added tax: 21% on most goods'/} included.
+Read the {tooltip 'Opens the terms', place='bottom'}<a href="?terms">terms</a>{/tooltip}.
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The tip, a text |
+| `place` | `top` (the default) or `bottom` - above or below the trigger |
+
+**Behavior:** the pair's content is the trigger, rendered first; the single tag's trigger is a
+small information button named 'More information'. A trigger of text gets a stop in the tab
+order; content that holds a link, a button or a field takes the focus itself and gets none.
+The tip has the `tooltip` role and stays while the pointer moves onto it, so it can be read; a
+small script, once per page with the CSP nonce, hides a shown tip on Escape and shifts a tip
+that would run off the side of the window back into it. Printed, no tip shows. The colours are
+`--pad-tooltip-accent`, `-muted`, `-surface` and `-on` on `.pad-tooltip`, `light-dark()`
+defaults - a dark tip on a light page, a light one on a dark page. A tooltip without its tip, a
+pair with nothing between its tags and an unknown `place` are errors under the strict check.
 
 ---
 
@@ -3754,6 +3785,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `poll` | Widget | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` closed by a form of method dialog, no JavaScript |
 | `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
+| `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
