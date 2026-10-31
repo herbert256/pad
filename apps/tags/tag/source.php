@@ -17,6 +17,6 @@ PAD;
     'files' => 'Files after the page\'s, a text with commas: a file of the application, or <code>www:</code> one in its <code>www/</code> directory.',
     'only'  => 'Those files alone, without the page\'s - the same kind of list as <code>files=</code>.' ];
 
-  $tagSee     = [ 'highlight', 'tabs', 'page' ];
+  $tagSee     = [ 'highlight', 'widget', 'page' ];
 
 ?>

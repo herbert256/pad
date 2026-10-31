@@ -16,6 +16,6 @@ PAD;
   $tagOptions = [
     'label' => 'The text of the button, <code>Copy</code> when not given.' ];
 
-  $tagSee     = [ 'highlight', 'source', 'modal' ];
+  $tagSee     = [ 'highlight', 'source', 'widget' ];
 
 ?>

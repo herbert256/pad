@@ -18,6 +18,6 @@ PAD;
     'icon'  => '<code>star</code> (default) or <code>heart</code>.',
     'label' => 'The accessible name, default <code>4.5 out of 5</code>.' ];
 
-  $tagSee     = [ 'progress', 'icon', 'poll' ];
+  $tagSee     = [ 'progress', 'icon', 'widget' ];
 
 ?>
