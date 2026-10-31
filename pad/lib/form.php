@@ -101,6 +101,15 @@
 
   }
 
+  // Whether a rule's argument is a number as min: and max: read one - a sign, digits with a
+  // point, an exponent - which the browser's checker reads alike.
+
+  function padRuleNumber ( $arg ) {
+
+    return preg_match ( '/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/D', trim ( (string) $arg ) ) === 1;
+
+  }
+
   // Whether a field is a number field: one of its rules makes it one - numeric, integer.
 
   function padValidateNumber ( $list ) {
@@ -1303,7 +1312,7 @@
       if ( $rule !== '' and ! padRule ( $rule ) )
         return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padRuleTypes () ) );
       if ( $rule !== '' and ( $why = padValidateArgument ( $rule, $arg ) ) !== '' )
-        return padError ( "the rules of $where have a $rule: that is $why" );
+        return padError ( "the rules of $where have " . ( strspn ( $rule, 'aeio' ) ? 'an' : 'a' ) . " $rule: that is $why" );
     }
 
     if ( isset ( $rules [$named] [$name] ) and $rules [$named] [$name] !== $list )
