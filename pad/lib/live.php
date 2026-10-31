@@ -13,7 +13,12 @@
   // region swaps in works the same: a click on a pad-click element, a submit of a pad-submit
   // form or a change of a pad-change field inside a region posts to the page's own URL -
   // padLive (the region), padEvent (the attribute's value) and padValue (pad-value, or the
-  // field's value), plus the form's fields - and puts what comes back into the region.
+  // field's value), plus the form's fields - and puts what comes back into the region. The
+  // scripts of what comes back run, as those of a page that arrives: put in by innerHTML
+  // they never ran, and the script a widget brought with the answer - a toast's timeout, a
+  // carousel's buttons - did nothing on a page that had no such widget before. Under a
+  // Content-Security-Policy naming a nonce only a script carrying the answer's nonce runs,
+  // given the page's - the answer's own nonce is no nonce of the page.
   //
   // On the server that post is an ordinary request of the same page: its PHP runs, reads the
   // event with padLiveEvent () and padLiveValue (), and keeps state where a page keeps it - in
@@ -144,6 +149,19 @@
 (function () {
   if (window.padLiveReady) return;
   window.padLiveReady = true;
+  var nonce = document.currentScript ? document.currentScript.nonce : '';
+  function scripts(region, policy) {
+    var sent = /'nonce-([^']+)'/.exec(policy || '');
+    region.querySelectorAll('script').forEach(function (old) {
+      if (sent && old.nonce !== sent[1]) return;
+      var script = document.createElement('script');
+      for (var i = 0; i < old.attributes.length; i++)
+        if (old.attributes[i].name !== 'nonce') script.setAttribute(old.attributes[i].name, old.attributes[i].value);
+      if (nonce) script.nonce = nonce;
+      script.text = old.text;
+      old.parentNode.replaceChild(script, old);
+    });
+  }
   function send(region, fields) {
     var body = new URLSearchParams();
     fields.forEach(function (field) { body.append(field[0], field[1]); });
@@ -155,10 +173,10 @@
       .then(function (response) {
         return response.text().then(function (text) {
           if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-          return text;
+          return [text, response.headers.get('Content-Security-Policy')];
         });
       })
-      .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+      .then(function (answer) { region.innerHTML = answer[0]; scripts(region, answer[1]); region.removeAttribute('data-pad-live-error'); })
       .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
       .then(function () { region.removeAttribute('aria-busy'); });
   }

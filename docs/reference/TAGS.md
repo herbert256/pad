@@ -475,7 +475,9 @@ if ( padLiveEvent () == 'add' )
 region brings a small inline script. An event posts `padLive`, `padEvent` and `padValue` to
 the page's own URL; the page runs as always - its PHP reads `padLiveEvent()` and
 `padLiveValue()` - and the response is the inner content of that region alone, which the
-script swaps in. State lives where a page keeps it: the session (`$padSessionVars`), a
+script swaps in, running the scripts it holds as a page that arrives runs its own - a timed
+toast or a carousel the answer brings works (under a nonce policy only a script carrying the
+answer's nonce runs, given the page's). State lives where a page keeps it: the session (`$padSessionVars`), a
 database, or the value the event carries. With `$padCsrf` on, the region carries the
 session's token (`data-pad-csrf`) and the script sends it with every event. A post for a
 region the page does not render is an error. Under the strict check a `{live}` without a name, or without its `{/live}`, is an
@@ -2514,8 +2516,8 @@ toast stands inside a `{form}` as well, its fields staying in the form (`widgets
 fragment or a live region brings is read out; a toast without a title is named by its tone.
 The script is written once per page with the CSP nonce: it closes a toast where the browser
 has no invoker commands, closes a focused toast with Escape and runs `timeout=`, holding the
-time while the pointer or the focus is on the toast; a toast a fragment brings later is
-timed as well. Two toasts in one corner lie over each other, so a page puts one there.
+time while the pointer or the focus is on the toast; a toast a fragment or a live region
+brings later is timed as well. Two toasts in one corner lie over each other, so a page puts one there.
 Printed, no toast shows. The colours are `--pad-toast-text`,
 `-muted`, `-line`, `-surface`, `-info`, `-success`, `-warning` and `-error` on `.pad-toast`,
 `light-dark()` defaults. A toast without title and text, an unknown tone or place and a
