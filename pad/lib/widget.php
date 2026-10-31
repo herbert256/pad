@@ -91,18 +91,26 @@
   }
 
   // Once per output: the page, a {cache} section that is being kept - it comes back on
-  // other pages, where nothing else wrote its CSS and script - and a mail rendered during
-  // the request ($padOnceScope, lib/mail.php). Remembered for the PHP process, a section
+  // other pages, where nothing else wrote its CSS and script - a mail rendered during the
+  // request ($padOnceScope, lib/mail.php) and, for a style, a {shadow} root ($padShadowScope,
+  // tags/shadow.php). Remembered for the PHP process, a section
   // was kept without the style or the script an earlier widget of its page had written -
   // a video's play button did nothing elsewhere - and a mail took the page's style.
 
   function padWidgetOnce ( $key ) {
 
-    global $pad, $padFragment, $padOnceScope;
+    global $pad, $padFragment, $padOnceScope, $padShadowScope;
 
     static $done = [];
 
     $scope = (string) ( $padOnceScope ?? '' );
+
+    // A {shadow} root takes no style from the page: what a widget writes once - its style,
+    // the rules of its slots - is written once in every shadow root as well; a script runs
+    // for the whole document and stays once a page.
+
+    if ( $padShadowScope and ! str_starts_with ( $key, 'script:' ) )
+      $scope .= '|' . end ( $padShadowScope );
 
     for ( $i = $pad ?? -1; $i >= 0; $i-- )
       if ( is_array ( $padFragment [$i] ?? NULL ) and ! $padFragment [$i] ['hit'] ) {
