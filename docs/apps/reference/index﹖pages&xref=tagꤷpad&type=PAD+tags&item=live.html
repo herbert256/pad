@@ -66,7 +66,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -206,6 +206,48 @@
                       }
                       padAjaxce733927dba16f8d1793e4806975dded.open("GET","http://localhost/pad/regression/errors/?syntax/a_live_region_needs_a_name&padInclude",true);
                       padAjaxce733927dba16f8d1793e4806975dded.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_cached_section_with_a_live_counter<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_cached_section_with_a_live_counter.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_cached_section_with_a_live_counter.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $count </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add' </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$count</span><span style="color: #007700">++;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h1&gt;Counter&lt;/h1&gt;<b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwLiveCounter<font color="black">'</font></font>}</b><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>counter<font color="black">'</font></font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>count</font>}</b>&lt;/p&gt;&lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>count</font>}</b>"&gt;+1&lt;/button&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>&lt;p&gt;after&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4"></div>
+                      <script>
+                      padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4 = new XMLHttpRequest();
+                      padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.onreadystatechange=function() {
+                      if (padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.readyState === 4) {
+                      if (padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.status === 200) {
+                      document.getElementById("padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4").innerHTML=padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.responseText;
+                      } else {
+                      document.getElementById("padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4").innerHTML=padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.open("GET","http://localhost/pad/regression/framework/?tags/a_cached_section_with_a_live_counter&padInclude",true);
+                      padAjaxc9cc4aaf699ba0f037c2dff2c51b9ed4.send();
                       </script>
                     </td>
                   </tr>
