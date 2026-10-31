@@ -20,6 +20,7 @@ This directory contains PAD applications and examples.
 | [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | [edit](edit/README.md) | Standard | A browser editor for every application, behind a login - file management, PAD and PHP colouring, completion and checks, preview, history, a terminal, a step debugger |
 | [games](games/README.md) | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, read from `pad/games/types/` |
+| [toys](toys/README.md) | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy with the template that shows it, read from `pad/toys/types/` |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
 | [htmx](htmx/README.md) | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates, server-sent events - htmx asks for a part, PAD answers its fragment |
